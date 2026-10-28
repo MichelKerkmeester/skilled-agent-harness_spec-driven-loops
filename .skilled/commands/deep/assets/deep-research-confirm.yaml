@@ -1298,6 +1298,17 @@ workflow:
                   + containment.violations.map((v) => v.path).join(', '),
               );
             }
+            // A path that was already dirty before the dispatch and changed during it is held out of
+            // violations. enforceWriteContainment records it in the state log as containment_contested;
+            // this prints it so the run's own output says so too.
+            if (containment.contested.length > 0) {
+              console.error(
+                'write-containment contested: ' + containment.contested.length
+                  + ' path(s) already dirty before the dispatch changed during it, left on disk: '
+                  + containment.contested.map((v) => v.path).join(', ')
+                  + '\n' + containment.contestedNote,
+              );
+            }
             process.exit(dispatchExit);
             EOF
           working_directory: "{repo_root}"
@@ -1305,7 +1316,7 @@ workflow:
           wait_for_completion: true
           notes:
             - "Routed through runAuditedExecutorCommand so opencode produces INTENT + COMPLETION dispatch receipts; recursion guard + env allowlist enforced via buildExecutorDispatchEnv"
-            - "Structural write-containment: snapshot out-of-scope dirty paths pre-dispatch, then diff post-dispatch and record a containment_violation event for every NEW out-of-artifact-dir path. The remedy preserves by default -- bytes stay on disk and a copy is quarantined -- because a path the guard cannot attribute may belong to a concurrent writer, so restoring is opt-in per run and nothing here fails the iteration; the authority for both modes is runtime/lib/deep-loop/write-containment.ts. The leaf's own artifact-dir writes are never flagged. The confirm branch previously relied on the prompt contract plus post-dispatch validation alone"
+            - "Structural write-containment: snapshot out-of-scope dirty paths pre-dispatch, then diff post-dispatch and record a containment_violation event for every NEW out-of-artifact-dir path. The remedy preserves by default -- bytes stay on disk and a copy is quarantined -- because a path the guard cannot attribute may belong to a concurrent writer, so restoring is opt-in per run and nothing here fails the iteration; the authority for both modes is runtime/lib/deep-loop/write-containment.ts. The leaf's own artifact-dir writes are never flagged. A path that was already dirty at the baseline and changed during the dispatch is held out of the violations and reported as contested instead: printed with its note and recorded as a containment_contested state-log event, with no quarantine copy, patch or revert, because the tree shows its bytes changed, not who wrote them. The confirm branch previously relied on the prompt contract plus post-dispatch validation alone"
             - "input:'' yields closed stdin (EOF), equivalent to </dev/null — opencode reads stdin at startup and hangs without it"
             - "--dangerously-skip-permissions enables hands-off automation; sandboxMode='read-only' is not currently honored (no opencode equivalent)"
             - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §SELF-INVOCATION PROHIBITED contract is the authoritative gate"

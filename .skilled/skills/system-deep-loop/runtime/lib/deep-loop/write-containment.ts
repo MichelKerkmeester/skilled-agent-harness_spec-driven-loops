@@ -234,8 +234,27 @@ export interface ContainmentViolationEvent {
   timestamp: string;
 }
 
+/**
+ * The state-log record for paths `enforceWriteContainment` reports as contested. It carries the
+ * same `paths` and `note` the fan-out runner's `containment_contested` ledger event does, so a
+ * single-lineage run and a fan-out lane say the same thing about the same path.
+ */
+export interface ContainmentContestedEvent {
+  type: 'event';
+  event: 'containment_contested';
+  severity: 'warning';
+  iteration?: number;
+  label?: string;
+  paths: Array<{ path: string; kind: ContainmentViolationKind; status: string }>;
+  note: string;
+  timestamp: string;
+}
+
 export interface EnforceInput extends DetectOptions {
-  /** When set, the containment_violation event is appended to this JSONL log. */
+  /**
+   * When set, a containment_violation event for the lane's paths and a containment_contested
+   * event for the contested ones are appended to this JSONL log, each only when it has paths.
+   */
   stateLogPath?: string;
   iteration?: number;
   /**
@@ -1813,7 +1832,10 @@ export function buildContainmentViolationEvent(input: {
   };
 }
 
-function appendContainmentEvent(stateLogPath: string, event: ContainmentViolationEvent): void {
+function appendContainmentEvent(
+  stateLogPath: string,
+  event: ContainmentViolationEvent | ContainmentContestedEvent,
+): void {
   try {
     mkdirSync(dirname(stateLogPath), { recursive: true });
     appendFileSync(stateLogPath, `${JSON.stringify(event)}\n`, 'utf8');
@@ -1865,7 +1887,8 @@ const CONTESTED_NOTE =
 /**
  * High-level post-dispatch guard: detect NEW out-of-scope violations, quarantine what each
  * guarded path left behind, save what a restore would undo as a patch, apply the remedy, and
- * (when stateLogPath is provided) append a containment_violation event. Returns the
+ * (when stateLogPath is provided) append a containment_violation event, plus a
+ * containment_contested event when some path was contested. Returns the
  * violations, revert result, the event (null when clean), `recoveryHint` naming the saved
  * patch for the caller's fatal message, and `quarantinePath` naming the durable record. The
  * record is per pass: pass the iteration (and the attempt, for a caller that retries one) and
@@ -1906,6 +1929,21 @@ export function enforceWriteContainment(input: EnforceInput): EnforceResult {
   const contested = allDetected.filter(isContested);
   const detected = allDetected.filter((violation) => !isContested(violation));
   const contestedNote = contested.length > 0 ? CONTESTED_NOTE : null;
+  // A contested path has no other durable record: no quarantine copy, no patch, and it is held
+  // out of the violation event below. Without this line a caller that only prints violations
+  // would leave a lane write to the operator's draft reported nowhere.
+  if (input.stateLogPath && contested.length > 0) {
+    appendContainmentEvent(input.stateLogPath, {
+      type: 'event',
+      event: 'containment_contested',
+      severity: 'warning',
+      ...(typeof input.iteration === 'number' ? { iteration: input.iteration } : {}),
+      ...(typeof input.label === 'string' && input.label.length > 0 ? { label: input.label } : {}),
+      paths: contested.map((v) => ({ path: v.path, kind: v.kind, status: v.status })),
+      note: CONTESTED_NOTE,
+      timestamp: new Date().toISOString(),
+    });
+  }
   if (detected.length === 0) {
     return {
       violations: [], advisories: [], revertResult: { reverted: [] }, event: null, recoveryHint: null,

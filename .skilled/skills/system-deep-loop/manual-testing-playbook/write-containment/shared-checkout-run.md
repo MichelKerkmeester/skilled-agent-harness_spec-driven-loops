@@ -7,7 +7,7 @@ description: "Verify a fan-out on a shared checkout leaves every out-of-scope fi
 expected_intent: research
 expected_workflow_mode: research
 expected_leaf_resources: []
-version: "1.0.0.0"
+version: "1.0.1.0"
 ---
 
 # WC-001: Shared-Checkout Run Preserves a Neighbour's Work
@@ -26,12 +26,13 @@ finding is reported.
 **Realistic user request**: An operator runs a research fan-out while a second session is editing
 files in the same checkout.
 
-**Preconditions**: A checkout with at least one dirty file outside the run's spec folder. The lane
-shares the checkout.
+**Preconditions**: A checkout with one file outside the run's spec folder that is already dirty
+when the run starts, and one tracked file outside it that is clean. The lane shares the checkout.
 
-**Expected outcome**: The run completes. Every dirty file outside the lineage directory keeps its
-bytes. The lane settles as completed with a containment advisory rather than failed, and the
-orchestration summary counts it separately.
+**Expected outcome**: The run completes. Every file outside the lineage directory keeps its bytes.
+The file that was already dirty and changed again is reported as contested, not charged to the
+lane. The file that was clean is still attributed to the lane, which settles as completed with a
+containment advisory rather than failed, and the orchestration summary counts it separately.
 
 ---
 
@@ -39,8 +40,10 @@ orchestration summary counts it separately.
 
 ### Preconditions
 
-1. A spec folder the run may write into, and at least one dirty file outside it.
-2. A second shell open on the same checkout, standing in for the neighbouring session.
+1. A spec folder the run may write into.
+2. `<dirty-file>`: a file outside it with an uncommitted edit already on disk.
+3. `<outside-file>`: a tracked file outside it with no uncommitted edit.
+4. A second shell open on the same checkout, standing in for the neighbouring session.
 
 ### Prompt
 
@@ -50,7 +53,7 @@ orchestration summary counts it separately.
 
 1. **Record the before state**: `shasum -a 256 <dirty-file> > /tmp/dlw-WC-001/before.txt`.
 2. **Start the run**: launch a one-lineage research fan-out on `<spec-folder>` through `/deep:research`, leaving the containment mode at its default of `preserve`.
-3. **Edit as the neighbour**: while the lane runs, change `<outside-file>` from the second shell.
+3. **Edit as the neighbour**: while the lane runs, change both `<dirty-file>` and `<outside-file>` from the second shell.
 4. **Record the after state**: when the run settles, `shasum -a 256 <dirty-file> <outside-file> > /tmp/dlw-WC-001/after.txt`.
 5. **Read the run record**: copy `<artifact-dir>/orchestration-status.log` and the runner's JSON output to `/tmp/dlw-WC-001/`.
 
@@ -59,24 +62,26 @@ orchestration summary counts it separately.
 | Step | Signal |
 |---|---|
 | 2 | The runner exits 0 and the lane settles as completed, not failed. |
-| 4 | `<dirty-file>` matches its before hash, and `<outside-file>` holds the neighbour's edit. |
-| 5 | `orchestration-status.log` carries a `containment_advisory` event with severity `warning`, and the lineage's JSON output lists both files under `containment.violations`. |
+| 4 | `<dirty-file>` and `<outside-file>` both hold the neighbour's edits, and neither was reverted. |
+| 5 | `orchestration-status.log` carries a `containment_contested` event with severity `warning` naming `<dirty-file>`, and the lineage's JSON output lists `<dirty-file>` under `containmentContested.paths` with its note, not under `containment.violations`. |
+| 5 | `orchestration-status.log` carries a `containment_violation` event naming `<outside-file>`, and the lineage's JSON output lists `<outside-file>` alone under `containment.violations`. |
 
 ### Evidence
 
 - Hashes before and after: `/tmp/dlw-WC-001/before.txt` and `/tmp/dlw-WC-001/after.txt`.
-- The copied `orchestration-status.log` and runner JSON output, showing the advisory and the violations.
+- The copied `orchestration-status.log` and runner JSON output, showing the contested path and the violation.
 
 ### Pass/Fail Criteria
 
-- **PASS**: both files are byte-identical to what the neighbour wrote, the status ledger carries a containment finding naming them, and no file was reverted.
-- **FAIL**: any file differs, or the run reports a clean pass having changed one.
+- **PASS**: both files are byte-identical to what the neighbour wrote, no file was reverted, `<dirty-file>` is reported as contested, and `<outside-file>` is reported as a violation.
+- **FAIL**: any file differs, the run reports a clean pass having changed one, or `<dirty-file>` appears under `containment.violations` or in no field at all.
 
 ### Failure Triage
 
 1. A reverted file means the remedy ran as `restore`: check the fan-out configuration's `containment.mode` and any override passed to the runner.
-2. A missing advisory means the out-of-scope snapshot missed the file: inspect `snapshotOutOfScopeDirtyPaths` in `runtime/lib/deep-loop/write-containment.ts`.
-3. A failed lane with intact files means the advisory was counted as a failure: inspect the containment branch of `runtime/scripts/fanout-run.cjs`.
+2. A missing finding means the out-of-scope snapshot missed the file: inspect `snapshotOutOfScopeDirtyPaths` in `runtime/lib/deep-loop/write-containment.ts`.
+3. `<dirty-file>` under `containment.violations` means the contested split did not run: check that the containment mode is `preserve` and that the lane had not quarantined that path on an earlier pass, then inspect `enforceWriteContainment`.
+4. A failed lane with intact files means the advisory was counted as a failure: inspect the containment branch of `runtime/scripts/fanout-run.cjs`.
 
 ---
 

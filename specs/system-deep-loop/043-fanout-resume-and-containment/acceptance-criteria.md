@@ -8,9 +8,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/043-fanout-resume-and-containment"
-    last_updated_at: "2026-10-27T19:44:36Z"
+    last_updated_at: "2026-10-28T06:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Met every criterion with observed evidence"
+    recent_action: "Met the contested call-site criteria with observed evidence"
     next_safe_action: "None"
     blockers: []
     key_files: []
@@ -63,6 +63,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-008 | REQ-004 | Given the unit-test and library READMEs, When the follow-up rows are added, Then `check_readme_references.py` and `check_derived_readme_counts.py` report no failure the README did not already have | Tests README: `unresolved=1` before and after (the existing `scripts/runtime-bootstrap.cjs` line), counts check PASS; library README: references PASS `unresolved=0`, counts PASS | Met | - |
 | AC-009 | REQ-004 | Given both loop protocols state the contested rule, When the three deep command contracts are recompiled, Then the drift checks pass | `check-contract-drift.cjs`: `[CONTRACT DRIFT] OK commands=3`, exit 0; `check-documentation-drift.cjs`: `"errors": []`, exit 0 | Met | - |
 | AC-010 | REQ-004 | Given the runtime and hub changelog entries and the bumped hub carriers, When the document and version checks run, Then each passes | `validate_document.py`: `Total issues: 0` on `v1.9.13.0.md` and `v1.6.13.0.md`; `hvr_scan.py` hard blockers 0 on each; `frontmatter-version.mjs verify`: `454 files \| ok=454`, exit 0; `parent-skill-check.cjs`: `all hard invariants passed, 0 warnings`, exit 0 | Met | - |
+| AC-011 | REQ-002 | Given a single-lineage /deep:research or /deep:review dispatch whose pass has a contested path, When the step's containment code runs, Then it prints the contested paths and their note | `.skilled/skills/system-deep-loop/runtime/tests/unit/write-containment-yaml-call-sites.vitest.ts` passes over all ten call sites; the same matching rules flag 10 of 10 call sites in the HEAD YAML and 0 of 10 in the working tree | Met | - |
+| AC-012 | REQ-002 | Given a caller that passes `stateLogPath`, When a pass has a contested path, Then the log gains one `containment_contested` event with its paths and note, apart from any `containment_violation` event | `.skilled/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts`, cases "records a contested path in the state log even when there is no violation" and "logs the contested path apart from the violation event": both pass | Met | - |
+| AC-013 | REQ-004 | Given the call-site follow-up, When the runtime suite, drift checks, type check, mirror checks and strict validation run, Then each passes | `npx vitest run` in the runtime: `Test Files  171 passed (171)`, `Tests  2838 passed \| 8 skipped (2846)`, exit 0, four tests and one file more than the last clean count of `2834 passed \| 8 skipped (2842)`; `check-contract-drift.cjs` `[CONTRACT DRIFT] OK commands=3`; `check-documentation-drift.cjs` `"errors": []`; `npm run typecheck` exit 0; runtime-mirror, Codex and Pi prompt checks PASS; `sync-skills-hermes.cjs --check` PASS; `validate.sh --strict` `RESULT: PASSED` | Met | - |
 
 ### Status values
 

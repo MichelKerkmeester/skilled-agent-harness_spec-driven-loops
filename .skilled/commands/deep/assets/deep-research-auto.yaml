@@ -1354,6 +1354,17 @@ workflow:
                   + containment.violations.map((v) => v.path).join(', '),
               );
             }
+            // A path that was already dirty before the dispatch and changed during it is held out of
+            // violations. enforceWriteContainment records it in the state log as containment_contested;
+            // this prints it so the run's own output says so too.
+            if (containment.contested.length > 0) {
+              console.error(
+                'write-containment contested: ' + containment.contested.length
+                  + ' path(s) already dirty before the dispatch changed during it, left on disk: '
+                  + containment.contested.map((v) => v.path).join(', ')
+                  + '\n' + containment.contestedNote,
+              );
+            }
             process.exit(dispatchExit);
             EOF
           working_directory: "{repo_root}"
@@ -1442,6 +1453,17 @@ workflow:
                 'write-containment advisory: detected ' + containment.violations.length
                   + ' out-of-scope path(s), left on disk: '
                   + containment.violations.map((v) => v.path).join(', '),
+              );
+            }
+            // A path that was already dirty before the dispatch and changed during it is held out of
+            // violations. enforceWriteContainment records it in the state log as containment_contested;
+            // this prints it so the run's own output says so too.
+            if (containment.contested.length > 0) {
+              console.error(
+                'write-containment contested: ' + containment.contested.length
+                  + ' path(s) already dirty before the dispatch changed during it, left on disk: '
+                  + containment.contested.map((v) => v.path).join(', ')
+                  + '\n' + containment.contestedNote,
               );
             }
             process.exit(dispatchExit);
@@ -1533,6 +1555,17 @@ workflow:
                 'write-containment advisory: detected ' + containment.violations.length
                   + ' out-of-scope path(s), left on disk: '
                   + containment.violations.map((v) => v.path).join(', '),
+              );
+            }
+            // A path that was already dirty before the dispatch and changed during it is held out of
+            // violations. enforceWriteContainment records it in the state log as containment_contested;
+            // this prints it so the run's own output says so too.
+            if (containment.contested.length > 0) {
+              console.error(
+                'write-containment contested: ' + containment.contested.length
+                  + ' path(s) already dirty before the dispatch changed during it, left on disk: '
+                  + containment.contested.map((v) => v.path).join(', ')
+                  + '\n' + containment.contestedNote,
               );
             }
             process.exit(dispatchExit);
@@ -1741,6 +1774,17 @@ workflow:
                 'write-containment advisory: detected ' + containment.violations.length
                   + ' out-of-scope path(s), left on disk: '
                   + containment.violations.map((v) => v.path).join(', '),
+              );
+            }
+            // A path that was already dirty before the dispatch and changed during it is held out of
+            // violations. enforceWriteContainment records it in the state log as containment_contested;
+            // this prints it so the run's own output says so too.
+            if (containment.contested.length > 0) {
+              console.error(
+                'write-containment contested: ' + containment.contested.length
+                  + ' path(s) already dirty before the dispatch changed during it, left on disk: '
+                  + containment.contested.map((v) => v.path).join(', ')
+                  + '\n' + containment.contestedNote,
               );
             }
             process.exit(dispatchExit);

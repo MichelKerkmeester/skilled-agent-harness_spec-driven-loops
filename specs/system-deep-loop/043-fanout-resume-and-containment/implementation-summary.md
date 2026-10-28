@@ -8,9 +8,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/043-fanout-resume-and-containment"
-    last_updated_at: "2026-10-27T19:44:36Z"
+    last_updated_at: "2026-10-28T06:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Fixed both bugs and verified the runtime suite"
+    recent_action: "Reported contested paths at the single-lineage call sites"
     next_safe_action: "None"
     blockers: []
     key_files: []
@@ -55,6 +55,10 @@ Resume. `dispatchExecutorEffect` named each executor spawn `fanout-dispatch:<lab
 
 Containment. The guard could not tell an operator's save from a lane write on a path that was dirty before the lane started and changed again. The 001 manifests show exactly that: a baseline diff exists only for a path that was already dirty, and the file was `scratch/findings.md`, the operator's draft. Under the default remedy such a path is now `contested`: reported in the guard result, as a `containment_contested` ledger event and as `containmentContested` on the lineage output, with a note, and given no quarantine copy, patch or revert. A path the lane itself quarantined on an earlier pass stays the lane's, restore mode keeps its single-owner reading, and a path that was clean at the baseline is still a violation.
 
+### Follow-up: contested paths at the single-lineage call sites
+
+A review found the contested report reached only the fan-out runner. The ten direct `enforceWriteContainment` calls in the research and review workflow YAMLs printed `violations` and nothing else, and the guard writes no violation event, quarantine copy or patch for a contested path. So in a single-lineage run a lane write to a file the operator had dirty was reported nowhere. `enforceWriteContainment` now appends a `containment_contested` event (severity `warning`, `paths`, `note`) to the state log a caller passes, and every workflow call site prints the contested paths and their note beside the violations. The protocols, the shared-checkout playbook scenario and the compiled contracts say the same.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -74,7 +78,16 @@ Containment. The guard could not tell an operator's save from a lane write on a 
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/README.md` | Modified | Contested class in the `write-containment.ts` row |
 | `.skilled/skills/system-deep-loop/runtime/changelog/v1.9.13.0.md` | Created | Runtime release note for both fixes |
 | `.skilled/skills/system-deep-loop/changelog/v1.6.13.0.md` | Created | Hub release note for the documentation change |
-| `.skilled/skills/system-deep-loop/SKILL.md`, `description.json`, `hub-router.json`, `mode-registry.json`, `.hermes/skills/system-deep-loop/SKILL.md` | Modified | Hub version 1.6.12.0 to 1.6.13.0 |
+| `.skilled/skills/system-deep-loop/SKILL.md`, `description.json`, `hub-router.json`, `mode-registry.json`, `.hermes/skills/system-deep-loop/SKILL.md` | Modified | Hub version 1.6.12.0 to 1.6.13.0, then to 1.6.15.0 in the follow-up |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts` | Modified (follow-up) | `ContainmentContestedEvent`; append it to `stateLogPath` when a pass has a contested path |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml`, `deep-research-confirm.yaml`, `deep-review-auto.yaml`, `deep-review-confirm.yaml` | Modified (follow-up) | Print contested paths and their note at all ten call sites; the two confirm-step notes state it |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/write-containment-yaml-call-sites.vitest.ts` | Created (follow-up) | Fails when a workflow call site stops passing a state log or stops printing contested paths |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts` | Modified (follow-up) | Two state-log cases for the contested event |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`, `deep-review/references/protocol/loop-protocol.md` | Modified (follow-up) | A single-lineage run reports the contested path in its state log and the dispatch prints it |
+| `.skilled/skills/system-deep-loop/manual-testing-playbook/write-containment/shared-checkout-run.md` | Modified (follow-up) | Expected signals split: the baseline-dirty file is contested, the clean one is a violation |
+| `.skilled/commands/deep/assets/compiled/deep-research.contract.markdown`, `deep-review.contract.markdown`, `deep-ai-council.contract.markdown` | Regenerated (follow-up) | Recompiled after the YAML, protocol and hub-version edits; the council contract changed only in its source digests |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/README.md`, `runtime/lib/deep-loop/README.md` | Modified (follow-up) | Row for the call-site guard; the state-log event in the `write-containment.ts` row |
+| `.skilled/skills/system-deep-loop/runtime/changelog/v1.9.14.0.md`, `changelog/v1.6.15.0.md` | Created (follow-up) | Runtime and hub release notes |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -99,6 +112,7 @@ Each bug was reproduced from the interrupted lineage's on-disk facts (its ledger
 | Key contested on "dirty at the baseline and changed again" | git status shows that bytes changed, not who wrote them. The only fact it and the baseline prove is that someone was already editing this exact path, so that is the one place the guard stops claiming authorship. |
 | Report contested, never quarantine it | A quarantine copy files the bytes under the lane's directory as the lane's evidence. The pre-dispatch bytes are already in the baseline capture, so recoverability does not depend on the copy. |
 | Leave restore mode and earlier-pass paths alone | Restore is the caller's declaration that it owns the checkout. A path the lane quarantined before is the lane's by its own record, so a retry that rewrites it must not escape as contested. |
+| Write the contested event in `enforceWriteContainment`, not at each YAML call site | Every workflow call site already passes `stateLogPath`, and the function already appends the violation event there. Inlining the append would repeat the event shape ten times and need a different `node:fs` import edit at each site. `fanout-run.cjs` passes no `stateLogPath`, so its ledger still gets exactly one event. |
 | Do not widen to a brand-new file | A new file a second session creates mid-run looks the same as a lane write in git status. The default remedy already preserves it and the advisory is non-fatal, so the trade-off stays as it was. |
 <!-- /ANCHOR:decisions -->
 
@@ -123,6 +137,12 @@ Each bug was reproduced from the interrupted lineage's on-disk facts (its ledger
 | README checks after the follow-up rows | Tests README `unresolved=1` before and after (the existing `scripts/runtime-bootstrap.cjs` line); library README PASS; both counts checks PASS |
 | Contract recompile and drift after the protocol edits | `[CONTRACT DRIFT] OK commands=3`, exit 0; documentation drift `"errors": []`, exit 0 |
 | Changelog and version checks | `validate_document.py` `Total issues: 0` on both entries; `frontmatter-version.mjs verify` exit 0; `parent-skill-check.cjs` exit 0 |
+| Follow-up: suite run that overlapped the edits | `Test Files  2 failed \| 168 passed (170)`, `Tests  5 failed \| 2831 passed \| 8 skipped (2844)`, exit 1. Started before the first edit and still running through them, so it is not a clean baseline. All five failures were `STALE_SOURCE_DIGEST` in `check-contract-drift.vitest.ts` and `render-command-contract.vitest.ts`, read while the contracts were stale between the YAML edit and the recompile |
+| Follow-up: final `npx vitest run` in the runtime | `Test Files  171 passed (171)`, `Tests  2838 passed \| 8 skipped (2846)`, exit 0. Against the last clean count above that is one more file and four more tests: the two call-site guard tests and the two state-log cases |
+| Follow-up: call-site guard against the unfixed YAML | Its matching rules applied to the HEAD YAML flag 10 of 10 call sites, and to the working tree 0 of 10 |
+| Follow-up: contract drift, documentation drift, type check | `[CONTRACT DRIFT] OK commands=3`, exit 0, after a second recompile, because the first one preceded the hub version bump; `"errors": []`, exit 0; `npm run typecheck` exit 0 |
+| Follow-up: mirrors and Hermes | `sync-runtime-mirrors.cjs --check` PASS 196 mirrors; Codex and Pi prompt checks PASS 39 each; `sync-skills-hermes.cjs --check` `PASS: 67 Hermes skill copies in sync` |
+| Follow-up: document and version checks | `validate_document.py` `Total issues: 0` on `v1.9.14.0.md`, `v1.6.15.0.md` and the playbook scenario; `hvr_scan.py` hard blockers 0; `frontmatter-version.mjs verify` `454 files \| ok=454`; `parent-skill-check.cjs` `all hard invariants passed, 0 warnings` |
 <!-- /ANCHOR:verification -->
 
 ---

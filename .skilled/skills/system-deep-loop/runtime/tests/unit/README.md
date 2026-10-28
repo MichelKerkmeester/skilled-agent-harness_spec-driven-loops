@@ -117,6 +117,7 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `verify-iteration.vitest.ts` | Executable checks for the verify iteration runtime contract. |
 | `voc-allocation.vitest.ts` | Executable checks for the voc allocation runtime contract. |
 | `workflow-session-id-parity.vitest.ts` | Executable checks for the workflow session id parity runtime contract. |
+| `write-containment-yaml-call-sites.vitest.ts` | Executable checks that every /deep workflow containment call site reports contested paths. |
 | `write-containment.vitest.ts` | Executable checks for the write containment runtime contract. |
 | `write-set-conflict-graph.vitest.ts` | Executable checks for the write set conflict graph runtime contract. |
 

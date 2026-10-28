@@ -71,6 +71,20 @@ Shell variables: `RT` is `.skilled/skills/system-deep-loop/runtime`. `LIN` is `s
 
 ---
 
+## Phase 5: Contested Paths at the Single-Lineage Call Sites
+
+`ASSETS` is `.skilled/commands/deep/assets`. A review found that only `fanout-run.cjs` read the result's `contested` field. The ten direct `enforceWriteContainment` calls in the research and review workflows printed `violations` alone, so a single-lineage run reported a lane write to an operator's dirty file nowhere.
+
+- [x] T016 Confirm the gap before editing (`RT/lib/deep-loop/write-containment.ts`, `RT/scripts/fanout-run.cjs`, `ASSETS/deep-research-*.yaml`, `ASSETS/deep-review-*.yaml`). Verify: `rg -n "contested" RT/scripts/fanout-run.cjs` prints the only reader, and each of the ten YAML call sites prints only `containment.violations`.
+- [x] T017 Record a contested path in the caller's state log (`RT/lib/deep-loop/write-containment.ts`). Verify: the two new cases in the contested block of `RT/tests/unit/write-containment.vitest.ts` pass, one with no violation and one with a violation in the same pass.
+- [x] T018 Print contested paths and their note at every workflow call site, and state it in the two confirm-step notes (`ASSETS/deep-research-auto.yaml`, `ASSETS/deep-research-confirm.yaml`, `ASSETS/deep-review-auto.yaml`, `ASSETS/deep-review-confirm.yaml`). Verify: `rg -c "containment.contestedNote"` prints 4, 1, 4 and 1.
+- [x] T019 Add the call-site guard (`RT/tests/unit/write-containment-yaml-call-sites.vitest.ts`, its README row). Verify: the guard's matching rules applied to the HEAD YAML flag 10 of 10 call sites, and to the working tree 0 of 10.
+- [x] T020 State the single-lineage report in both loop protocols, update the shared-checkout playbook scenario to the violations and contested split, and recompile the three command contracts. Verify: `check-contract-drift.cjs` prints `[CONTRACT DRIFT] OK commands=3`.
+- [x] T021 Write runtime `v1.9.14.0` and hub `v1.6.15.0`, bump the hub carriers and sync Hermes. Verify: `validate_document.py` prints `Total issues: 0` on each entry, `sync-skills-hermes.cjs --check` prints `PASS: 67 Hermes skill copies in sync`.
+- [x] T022 Rerun the whole runtime suite and the checks. Verify: the counts are in `implementation-summary.md`.
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
@@ -142,7 +156,7 @@ Shell variables: `RT` is `.skilled/skills/system-deep-loop/runtime`. `LIN` is `s
 
 - [x] CHK-FIX-001 [P0] Resume is `class-of-bug`: any redispatch of a lineage under a stored session id hit it. Containment is `class-of-bug`: any baseline-dirty path that changed again was filed under the lane.
 - [x] CHK-FIX-002 [P0] Same-class producers: `rg -n "logicalEffectId" RT/lib RT/scripts` shows one fan-out producer, `dispatchExecutorEffect`.
-- [x] CHK-FIX-003 [P0] Consumers: `enforceWriteContainment` has one script caller (`fanout-run.cjs`), updated; the stress and in-process tests that import the module do not read `contested`.
+- [x] CHK-FIX-003 [P0] Consumers: `enforceWriteContainment` has one script caller (`fanout-run.cjs`) and ten direct calls in the four research and review workflow YAMLs. The first census counted only the script; the YAML calls were found in review and fixed in Phase 5. The stress and in-process tests that import the module do not read `contested`.
 - [x] CHK-FIX-004 [P0] The contested rule is a path-identity rule, not a parser or resolver: adversarial cases are the lane's own earlier quarantine (stays the lane's), restore mode (not applied), a regenerable-state path (stays exempt) and an escaping symlink (never contested).
 - [x] CHK-FIX-005 [P1] Matrix axes: mode (preserve, restore) by baseline state (clean, dirty and unchanged, dirty and changed, dirty and changed but quarantined by an earlier pass). Four of eight rows are covered; the rest are the existing suite.
 - [x] CHK-FIX-006 [P1] Hostile env variant: the fan-out tests run with `GIT_*` redirectors removed, as the neighbouring tests do.

@@ -2736,6 +2736,59 @@ describe('write-containment — a path that was already dirty and changed again 
     expect(result.event?.violations.map((violation) => violation.path)).toEqual(['deep/file.txt']);
   });
 
+  // A caller that passes a state log and prints only `violations` must still leave a durable
+  // record of a contested path, since nothing else (no quarantine, no patch) records one.
+  it('records a contested path in the state log even when there is no violation', () => {
+    const { root, artifactDir, preDispatch, baselineContentRoot } = operatorDraftBaseline();
+    const stateLog = join(artifactDir, 'state.jsonl');
+    writeFileSync(join(root, 'operator-notes.md'), 'NOTES_DRAFT_2\n');
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      baselineContentRoot,
+      stateLogPath: stateLog,
+      iteration: 4,
+      label: 'research-i4-g1',
+    });
+
+    expect(result.event).toBeNull();
+    const records = readFileSync(stateLog, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+    expect(records).toHaveLength(1);
+    expect(records[0]).toMatchObject({
+      type: 'event',
+      event: 'containment_contested',
+      severity: 'warning',
+      iteration: 4,
+      label: 'research-i4-g1',
+      paths: [{ path: 'operator-notes.md', kind: 'untracked' }],
+      note: result.contestedNote,
+    });
+  });
+
+  it('logs the contested path apart from the violation event when both occur in one pass', () => {
+    const { root, artifactDir, preDispatch, baselineContentRoot } = operatorDraftBaseline();
+    const stateLog = join(artifactDir, 'state.jsonl');
+    writeFileSync(join(root, 'operator-notes.md'), 'NOTES_DRAFT_2\n');
+    writeFileSync(join(root, 'deep/file.txt'), 'LANE_WROTE_THIS\n');
+
+    enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      baselineContentRoot,
+      stateLogPath: stateLog,
+      iteration: 5,
+    });
+
+    const records = readFileSync(stateLog, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+    const byEvent = new Map(records.map((record) => [record.event, record]));
+    expect([...byEvent.keys()].sort()).toEqual(['containment_contested', 'containment_violation']);
+    expect(byEvent.get('containment_contested').paths.map((p: { path: string }) => p.path)).toEqual(['operator-notes.md']);
+    expect(byEvent.get('containment_violation').violations.map((v: { path: string }) => v.path)).toEqual(['deep/file.txt']);
+  });
+
   it('leaves an unchanged operator edit out of every field, as before', () => {
     const { root, artifactDir, preDispatch, baselineContentRoot } = operatorDraftBaseline();
 

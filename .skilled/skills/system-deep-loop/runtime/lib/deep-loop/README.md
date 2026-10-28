@@ -53,7 +53,7 @@ deep-loop/
 | `receipt-crypto.ts` | Derives, signs and verifies receipt keys and signatures. |
 | `runtime-capabilities.cjs` | Resolves the parameterized runtime capability matrix. |
 | `sleep.ts` | Provides the synchronous sleep primitive used by runtime coordination. |
-| `write-containment.ts` | Detects runtime writes outside the allowed boundary and reports them. Preserve is the default remedy, so the working tree is left as the lane left it; restoring is opt-in and targets the pre-dispatch baseline, never HEAD. A path already dirty at the baseline that changes again is reported as contested, with no quarantine copy or revert, because the tree cannot say who wrote it. |
+| `write-containment.ts` | Detects runtime writes outside the allowed boundary and reports them. Preserve is the default remedy, so the working tree is left as the lane left it; restoring is opt-in and targets the pre-dispatch baseline, never HEAD. A path already dirty at the baseline that changes again is reported as contested, and appended to the caller's state log as a `containment_contested` event, with no quarantine copy or revert, because the tree cannot say who wrote it. |
 
 ---
 
