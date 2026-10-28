@@ -4039,6 +4039,31 @@ _SPLIT_HANDOFF_VERB_RE = re.compile(r"\b(?:delegate|hand)\b")
 EXECUTOR_NEGATIVE_GUARD_RE = re.compile(
     r"\bopencode[-\s]?(standards|route|skill|agent|plugin|command|convention)\b|\.(?:opencode|skilled)/"
 )
+# The skills that own the workflows an executor CLI runs inside. The executor is
+# the HOW of such a workflow, so a prompt that names both never lets the CLI hub
+# take the route from its owner.
+_WORKFLOW_OWNER_SKILL_IDS = ("system-deep-loop", "system-spec-kit")
+# How far below its workflow owner the lifted CLI hub sits.
+_WORKFLOW_OWNER_CONFIDENCE_GAP = 0.001
+# Match evidence that shows the owner was asked for, not merely mentioned: a
+# declared signal or phrase, a keyword, or the skill's own name. These are the
+# local counterparts of the native explicit lane's phrase, author and explicit
+# evidence.
+_WORKFLOW_OWNER_EVIDENCE_SUFFIXES = ("(signal)", "(phrase)", "(keyword)", "(explicit)")
+# A loop word beside "research" or "review" asks for the deep-loop workflow; the
+# same research-loop and review-loop checks the native explicit lane runs.
+_RESEARCH_LOOP_RE = re.compile(
+    r"\b(continue|resume|launch|kick off|overnight|convergence|iterations?|iterative(?:ly)?|multi-pass|loop)\b"
+)
+_REVIEW_LOOP_RE = re.compile(
+    r"\b(continue|resume|launch|start)(?:\s+[\w-]+){0,3}?\s+(?:deep[- ])?review\b"
+    r"|\b(convergence|iterations?|iterative(?:ly)?|multi-pass|loop)\b"
+)
+# The native scorer floors a skill with that explicit evidence at this
+# confidence, so a loop request lifts the deep-loop owner to the same value. Its
+# uncertainty gets the same relief a verbatim skill-name mention gets here.
+_LOOP_OWNER_CONFIDENCE_FLOOR = 0.82
+_LOOP_OWNER_UNCERTAINTY_CAP = 0.30
 # Generic single tokens that appear in executor metadata as domain labels rather
 # than delegation cues; never treated as executor aliases.
 _EXECUTOR_ALIAS_STOPLIST = frozenset({
@@ -4326,6 +4351,75 @@ def _apply_code_edit_cli_disambiguation(
         sk_code["uncertainty"] = min(float(sk_code.get("uncertainty", 1.0)), 0.30)
 
 
+def _executor_lift_id(executor_id: str) -> str:
+    """Return the recommendation an executor handoff lifts.
+
+    A hub executor is a nested workflow mode, not an advisor identity: the hub
+    projects one identity and its compiled route already names this exact mode
+    as its target. Lifting the bare mode id would put a second, route-less
+    entry above the hub's own compiled one and tie with it on score, so the
+    caller reads a rank-one recommendation it cannot route on. Lift the hub
+    instead; the mode still reaches the caller, through the compiled target.
+    """
+    if executor_id in _build_executor_alias_table()["active_executor_ids"]:
+        return "cli-external-orchestration"
+    return executor_id
+
+
+def _is_loop_workflow_request(prompt_lower: str) -> bool:
+    """True when a loop word sits beside "research" or "review"."""
+    if _RESEARCH_LOOP_RE.search(prompt_lower) and re.search(r"\bresearch\b", prompt_lower):
+        return True
+    return bool(_REVIEW_LOOP_RE.search(prompt_lower) and re.search(r"\breview\b", prompt_lower))
+
+
+def _apply_workflow_owner_guard(
+    ranked: List[Dict[str, Any]],
+    prompt_lower: str,
+) -> List[Dict[str, Any]]:
+    """Keep a named workflow's owner above the CLI hub an executor handoff lifts (mirror of the native guard).
+
+    "run a deep research loop with the cli-pi executor" asks for the deep-loop
+    workflow and names the executor it runs on. The owner stays first and the
+    hub sits directly below it, so the caller starts the workflow and runs the
+    executor inside it. Every other prompt returns ``ranked`` unchanged.
+    """
+    decision = _resolve_executor_delegation(prompt_lower)
+    if decision is None or decision[1] != "route" or decision[0] is None:
+        return ranked
+    lift_id = _executor_lift_id(decision[0])
+    hub = _find_recommendation(ranked, lift_id)
+    if hub is None:
+        return ranked
+
+    loop_request = _is_loop_workflow_request(prompt_lower)
+    owner: Optional[Dict[str, Any]] = None
+    for rec in ranked:
+        skill = rec.get("skill")
+        if skill not in _WORKFLOW_OWNER_SKILL_IDS:
+            continue
+        if rec.get("passes_threshold") and rec.get("_workflow_evidence"):
+            owner = rec
+            break
+        if skill == MERGED_DEEP_SKILL_ID and loop_request:
+            rec["confidence"] = max(float(rec.get("confidence", 0.0)), _LOOP_OWNER_CONFIDENCE_FLOOR)
+            rec["uncertainty"] = min(float(rec.get("uncertainty", 1.0)), _LOOP_OWNER_UNCERTAINTY_CAP)
+            _append_reason_note(rec, "[workflow owner: loop request]")
+            owner = rec
+            break
+    if owner is None:
+        return ranked
+
+    hub["confidence"] = round(
+        min(float(hub.get("confidence", 0.0)), float(owner["confidence"]) - _WORKFLOW_OWNER_CONFIDENCE_GAP),
+        4,
+    )
+    _append_reason_note(hub, f"[workflow owner: {owner['skill']} runs this executor]")
+    guarded = [owner, hub, *(rec for rec in ranked if rec is not owner and rec is not hub)]
+    refresh_passes_threshold(guarded)
+    return guarded
+
+
 def _apply_executor_delegation_disambiguation(
     recommendations: List[Dict[str, Any]],
     prompt_lower: str,
@@ -4357,17 +4451,7 @@ def _apply_executor_delegation_disambiguation(
                 _append_reason_note(rec, "[disambiguation: retired executor named, abstaining]")
         return
 
-    # A hub executor is a nested workflow mode, not an advisor identity: the hub
-    # projects one identity and its compiled route already names this exact mode
-    # as its target. Lifting the bare mode id would put a second, route-less
-    # entry above the hub's own compiled one and tie with it on score, so the
-    # caller reads a rank-one recommendation it cannot route on. Lift the hub
-    # instead; the mode still reaches the caller, through the compiled target.
-    lift_id = (
-        "cli-external-orchestration"
-        if executor_id in _build_executor_alias_table()["active_executor_ids"]
-        else executor_id
-    )
+    lift_id = _executor_lift_id(executor_id)
 
     executor = _find_recommendation(recommendations, lift_id)
     if executor is None:
@@ -4878,6 +4962,9 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
             "reason": f"Matched: {', '.join(sorted(set(matches))[:5])}",
             "_score": round(score, 4),
             "_explicit_skill_match": any('(explicit)' in m for m in matches),
+            "_workflow_evidence": any(
+                m.startswith('!') and m.endswith(_WORKFLOW_OWNER_EVIDENCE_SUFFIXES) for m in matches
+            ),
             "_kind_priority": kind_priority,
             "_num_matches": num_matches,
             "_num_ambiguous": num_ambiguous,
@@ -4940,11 +5027,13 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     )
     ranked = normalize_command_bridge_recommendations(ranked, prompt_lower)
     refresh_passes_threshold(ranked)
+    ranked = _apply_workflow_owner_guard(ranked, prompt_lower)
 
     # Internal sort metadata should not leak in advisor output.
     for rec in ranked:
         rec.pop('_score', None)
         rec.pop('_explicit_skill_match', None)
+        rec.pop('_workflow_evidence', None)
         rec.pop('_kind_priority', None)
         rec.pop('_num_matches', None)
         rec.pop('_num_ambiguous', None)

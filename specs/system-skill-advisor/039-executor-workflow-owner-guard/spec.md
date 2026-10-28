@@ -87,6 +87,44 @@ how do I set SPECKIT_WORKTREE_AUTOREAP=0
   before  no recommendation
   after   no recommendation (the variable is not declared, see Out of Scope)
 ```
+
+Second alignment follow-up, live `advisor_recommend` with `includeCompiledRoute: false`, as `skillId confidence`, before the change and after it:
+
+```text
+how do I set SPECKIT_WORKTREE_AUTOREAP=0
+  before  no recommendation
+  after   sk-git 0.82
+turn off the worktree autoreap
+  before  sk-git 0.8294
+  after   sk-git 0.867
+auto review this PR
+  before  sk-code 0.9423, sk-git 0.9068, system-deep-loop 0.82 (ambiguous)
+  after   sk-code 0.9423, sk-git 0.9068, system-deep-loop 0.82 (ambiguous)
+Review this change iteratively using cli-opencode as the executor.
+  before  system-deep-loop 0.82, cli-external-orchestration 0.819, sk-code 0.88
+  after   unchanged
+```
+
+The Python fallback, force-local with private skills unset, before the port and after it, as `skillId confidence`:
+
+```text
+run a deep research loop with the cli-pi executor
+  before  cli-external-orchestration 0.95, system-deep-loop 0.95
+  after   system-deep-loop 0.95, cli-external-orchestration 0.949
+run a deep review with cli-codex as the executor
+  before  cli-external-orchestration 0.95, system-deep-loop 0.93
+  after   system-deep-loop 0.93, cli-external-orchestration 0.929
+Review this change iteratively using cli-opencode as the executor.
+  before  cli-external-orchestration 0.95, sk-code 0.88 (system-deep-loop 0.28, failing)
+  after   system-deep-loop 0.82, cli-external-orchestration 0.819
+create a spec folder for this feature and use cli-codex to write the code
+  before  cli-external-orchestration 0.95, system-spec-kit 0.95
+  after   system-spec-kit 0.95, cli-external-orchestration 0.949
+delegate this refactor to codex using gpt-6.1 terra
+  before and after  cli-external-orchestration 0.95, sk-code 0.88
+```
+
+The lexical prefix rule, enumerated over the six prompt corpora (416 prompts) against every skill-side token: 46 prompt-word to skill-word pairs got partial credit through `candidate.startsWith(token)`. Real suffix extensions such as `keep -> keeps`, `refactor -> refactoring`, `converge -> convergence` and `perform -> performance` sat beside compounds such as `open -> opencode`, `launch -> launchpad`, `back -> background`, `over -> overview` and `every -> everything`. Declaring `speckit_worktree_autoreap` adds `auto -> autoreap` to the second kind.
 <!-- /ANCHOR:measured-behavior -->
 
 ---
@@ -105,6 +143,8 @@ how do I set SPECKIT_WORKTREE_AUTOREAP=0
 - Alignment follow-up: give sk-git the vocabulary for stopping the session-start numbered-worktree sweep, in its `graph-metadata.json`.
 - Alignment follow-up: catalogue executor delegation and the workflow-owner guard in the advisor feature catalog.
 - Alignment follow-up: decide whether "add a priority fast-mode model mapping" needs a routing change.
+- Second alignment follow-up: port the workflow-owner guard to the Python fallback, so it ranks the same as the native scorer on the shared delegation fixture, including the iteratively phrased review.
+- Second alignment follow-up: fix the lexical prefix rule at its source, so a compound no longer counts as a longer form of a short prompt word, then declare `SPECKIT_WORKTREE_AUTOREAP` for sk-git.
 
 ### Out of Scope
 - Changing any delegation prompt that names no workflow owner - it must behave exactly as before.
@@ -113,8 +153,9 @@ how do I set SPECKIT_WORKTREE_AUTOREAP=0
 - `advisor-graph-health` and the other tests that exercise private skills or the live graph - they keep the variable.
 - Restarting or signalling the shared advisor daemon - it belongs to other sessions.
 - The read-only explainer floor: a prompt that starts with "explain" stays held for every skill, so "Explain how to disable the periodic session-start worktree cleanup." still abstains.
-- A Python mirror of the workflow-owner guard: the Python fallback still lists the CLI hub first on a workflow-owned executor prompt.
-- Declaring `SPECKIT_WORKTREE_AUTOREAP` as sk-git vocabulary: its spaced variant yields the token `autoreap`, which the lexical prefix rule matches against any prompt word `auto`, and that moved holdout row `P1-REVIEW-006` ("auto review this PR") from sk-code to sk-git. A question that names only the variable still gets no recommendation.
+- A Python mirror of the workflow-owner guard, at the first alignment follow-up. The second follow-up brought it into scope.
+- Declaring `SPECKIT_WORKTREE_AUTOREAP` as sk-git vocabulary, at the first alignment follow-up: its spaced variant yields the token `autoreap`, which the lexical prefix rule matched against any prompt word `auto`, and that moved holdout row `P1-REVIEW-006` ("auto review this PR") from sk-code to sk-git. The second follow-up fixed the prefix rule and declared it.
+- The Python fallback's own partial-word rule (`term in corpus_word or corpus_word in term` in `analyze_request`), which still matches both ways. The native rule is the one that moved the holdout row.
 
 ### Files to Change
 
@@ -138,6 +179,15 @@ how do I set SPECKIT_WORKTREE_AUTOREAP=0
 | `.skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md`, `feature-catalog/scorer-fusion/executor-delegation.md` | Modify, Create | Executor delegation and workflow-owner guard entry |
 | `.skilled/skills/system-skill-advisor/leaf-manifest.json`, `leaf-aliases.json` | Regenerate | New catalog leaf, through `ci-skill-root-metadata.cjs --fix` |
 | `.skilled/skills/system-skill-advisor/changelog/v0.17.18.0.md`, `SKILL.md`, `.hermes/skills/system-skill-advisor/SKILL.md` | Create, Modify, Regenerate | Release entry, version bump and the Hermes copy |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Modify | Workflow-owner guard mirrored after the final sort |
+| `.skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/executor-delegation-cases.json` | Modify | Four workflow-owner cases |
+| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/executor-delegation.vitest.ts` | Modify | Python order test, spec-kit owner case, `workflow-owner` branch required |
+| `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-validate.vitest.ts`, `scripts/routing-accuracy/scorer-eval-baseline.json` | Modify, Recapture | Delegation bucket 13 to 17 |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts` | Modify | Partial credit only when the extra letters read as a suffix |
+| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/lexical-candidate-dedup.vitest.ts`, `tests/scorer/sk-git-worktree-sweep-vocabulary.vitest.ts` | Modify | Suffix and compound cases; the variable prompts and the auto review control |
+| `.skilled/skills/sk-git/graph-metadata.json` | Modify | `speckit_worktree_autoreap` and `worktree autoreap` |
+| `.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/executor-delegation.md` | Modify | Python guard sentence and source-table row corrected |
+| `.skilled/skills/system-skill-advisor/changelog/v0.17.19.0.md`, `SKILL.md`, `.hermes/skills/system-skill-advisor/SKILL.md` | Create, Modify, Regenerate | Release 0.17.19.0 and the Hermes copy |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -170,6 +220,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-013 | `how do I turn off the automatic worktree cleanup at session start` and `disable the periodic session-start worktree cleanup` rank sk-git first with no tie, through sk-git's metadata only, and holdout top-1 stays at its baseline. |
 | REQ-014 | The advisor feature catalog has an entry for executor delegation and the workflow-owner guard, and `validate_catalog_package.py` passes. |
 | REQ-015 | The fast-mode model mapping prompt is either fixed or left with a recorded reason. |
+| REQ-016 | The Python fallback ranks every case of `tests/parity/fixtures/executor-delegation-cases.json` with the same top-1 as the native scorer, including four workflow-owner cases, and keeps the owner first with the CLI hub directly below it. |
+| REQ-017 | A skill word that only compounds a prompt word with another word earns no partial lexical credit, while suffix extensions keep it; with `SPECKIT_WORKTREE_AUTOREAP` declared for sk-git, the variable prompt and "turn off the worktree autoreap" route to sk-git, "auto review this PR" stays on sk-code, and holdout top-1 stays at 49. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

@@ -56,7 +56,7 @@ describe('advisor_validate handler', () => {
     expect(memorySave.minN).toBe(32);
     // Same census rule as the corpus buckets, over the executor-delegation fixture.
     expect(delegation.minN).toBe(9);
-    expect(delegation.count.total).toBe(13);
+    expect(delegation.count.total).toBe(17);
   });
 
   it('computes buckets over the full corpus regardless of skillSlug scope', async () => {
@@ -67,7 +67,7 @@ describe('advisor_validate handler', () => {
     );
     expect(scoped.slices.buckets.review.count.total).toBe(31);
     expect(scoped.slices.buckets.memory_save.count.total).toBe(32);
-    expect(scoped.slices.buckets.delegation.count.total).toBe(13);
+    expect(scoped.slices.buckets.delegation.count.total).toBe(17);
   });
 
   it('CorpusRowSchema enforces bucket and source_type enums', () => {

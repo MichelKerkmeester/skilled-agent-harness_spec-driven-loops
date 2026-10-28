@@ -55,4 +55,17 @@ describe('sk-git worktree sweep vocabulary', () => {
     const result = scoreAdvisorPrompt('clean up the session state at session start', { workspaceRoot });
     expect(result.topSkill).not.toBe('sk-git');
   });
+
+  it.each([
+    'how do I set SPECKIT_WORKTREE_AUTOREAP=0',
+    'turn off the worktree autoreap',
+  ])('routes the sweep switch named by its variable to sk-git: %s', (prompt) => {
+    const result = scoreAdvisorPrompt(prompt, { workspaceRoot });
+    expect(result.topSkill).toBe('sk-git');
+  });
+
+  it('keeps a review that only starts with "auto" on sk-code', () => {
+    const result = scoreAdvisorPrompt('auto review this PR', { workspaceRoot });
+    expect(result.topSkill).toBe('sk-code');
+  });
 });

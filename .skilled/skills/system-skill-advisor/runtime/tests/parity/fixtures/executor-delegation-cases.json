@@ -79,6 +79,30 @@
       "prompt": "hand off to QA",
       "expectedTop": "none",
       "branch": "split-handoff-prose"
+    },
+    {
+      "id": "workflow-owner-deep-research-loop-cli-pi",
+      "prompt": "run a deep research loop with the cli-pi executor",
+      "expectedTop": "system-deep-loop",
+      "branch": "workflow-owner"
+    },
+    {
+      "id": "workflow-owner-deep-review-cli-codex",
+      "prompt": "run a deep review with cli-codex as the executor",
+      "expectedTop": "system-deep-loop",
+      "branch": "workflow-owner"
+    },
+    {
+      "id": "workflow-owner-iterative-review-cli-opencode",
+      "prompt": "Review this change iteratively using cli-opencode as the executor.",
+      "expectedTop": "system-deep-loop",
+      "branch": "workflow-owner"
+    },
+    {
+      "id": "workflow-owner-spec-folder-cli-codex",
+      "prompt": "create a spec folder for this feature and use cli-codex to write the code",
+      "expectedTop": "system-spec-kit",
+      "branch": "workflow-owner"
     }
   ]
 }

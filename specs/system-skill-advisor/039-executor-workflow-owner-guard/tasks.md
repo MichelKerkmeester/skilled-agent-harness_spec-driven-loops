@@ -90,6 +90,22 @@ contextType: "general"
 - [x] T042 Rebuild and read the live CLI. Verify: `npm run typecheck` and `npm run build` exit 0; live routes recorded in `spec.md` Measured Behavior.
 - [x] T043 Whole advisor suite after the follow-up. Verify: `Test Files  156 passed (156)`, `Tests  1339 passed | 8 skipped (1347)`, exit 0, against the T031 baseline of 1325 passed and 1 race failure in 154 files; the 13 new tests account for the delta and neither the scorer-eval baseline nor the divergence ledger needed a recapture. `python3 tests/python/test_skill_advisor.py` prints `pass=89, fail=0`.
 
+- [x] T044 Second alignment pass baseline. Verify: whole advisor suite `Test Files  1 failed | 155 passed (156)`, `Tests  1 failed | 1338 passed | 8 skipped (1347)`; the failure was `scorer-eval-baseline-capture-date` reading `capturedAtSha` `382e4b6955` then `4e7538a4aa`, the commit another session made at 07:57 during the 07:55 run, and the file passed alone afterwards (`Tests  2 passed (2)`). `python3 tests/python/test_skill_advisor.py` printed `pass=89, fail=0`.
+- [x] T045 Capture live and Python before-routes. Verify: recorded in `spec.md` Measured Behavior; the Python fallback listed the hub first on all four workflow-owned prompts.
+- [x] T046 Add four `workflow-owner` cases to the shared fixture and a Python order test (`tests/parity/fixtures/executor-delegation-cases.json`, `tests/scorer/executor-delegation.vitest.ts`). Verify: before the port the run printed `Tests  2 failed | 28 passed (30)`, both failures on the Python side (`python=cli-external-orchestration`).
+- [x] T047 Port the guard to the Python fallback (`scripts/skill_advisor.py`, `_apply_workflow_owner_guard`, `_executor_lift_id`, `_is_loop_workflow_request`, the `_workflow_evidence` flag). Verify: `Tests  31 passed (31)`; the plain delegations keep the hub first.
+- [x] T048 Move the delegation bucket total in `tests/handlers/advisor-validate.vitest.ts` from 13 to 17.
+- [x] T049 Enumerate the prefix rule's partial matches over the six prompt corpora. Verify: 46 pairs from 416 prompts, compounds such as `open -> opencode` and `launch -> launchpad` among real suffixes such as `refactor -> refactoring`.
+- [x] T050 Write the prefix tests first (`tests/scorer/lexical-candidate-dedup.vitest.ts`, `tests/scorer/sk-git-worktree-sweep-vocabulary.vitest.ts`). Verify: `Tests  1 failed | 5 passed (6)` (`expected 0.15 to be +0`) and `Tests  1 failed | 5 passed (6)` (`expected null to be 'sk-git'`) on the unchanged code.
+- [x] T051 Credit only a suffix extension in `scoreTokenOverlap` (`lib/scorer/text.ts`, `extendsBySuffix`). Verify: the prefix tests pass; `tests/parity`, `doctor-routing-slice`, `advisor-corpus-parity` and `advisor-validate` printed `Tests  1 failed | 74 passed (75)`, the one failure the expected delegation bucket move.
+- [x] T052 Declare `speckit_worktree_autoreap` and `worktree autoreap` for sk-git (`.skilled/skills/sk-git/graph-metadata.json`). Verify: the sk-git and prefix files print `Tests  12 passed (12)`.
+- [x] T053 Negative control: the new metadata with the old rule. Verify: `holdout top-1 regressed: live=48/66 baseline=49` and "auto review this PR" ranked sk-git; the rule was restored.
+- [x] T054 Typecheck, build and recapture. Verify: `npm run typecheck` exit 0, `npm run build` completed; a dry capture on the stale `dist/` had shown holdout 48, the capture on the fresh build matched the baseline except `capturedAtSha` and delegation 13 to 17, and `--write` recorded exactly that.
+- [x] T055 Live checks after the change. Verify: recorded in `spec.md` Measured Behavior.
+- [x] T056 Router vocabulary reach for every hub. Verify: `RESULT: PASSED` with `outranked=  0` for sk-doc, sk-code, sk-design, system-deep-loop, cli-external-orchestration, cli-classifier and mcp-tooling.
+- [x] T057 Release 0.17.19.0 after `git fetch origin main` showed 0.17.18.0 as the highest on both sides (`changelog/v0.17.19.0.md`, `SKILL.md`), correct the catalog's Python guard sentence. Verify: `sync-skills-hermes.cjs` wrote 1 of 67 copies, `--check` printed `PASS: 67 Hermes skill copies in sync`; `validate_catalog_package.py` printed `PASS: 0 violations`; `ci-skill-root-metadata.cjs` printed `checked=14 passed=14 failed=0`; `python3 tests/python/test_skill_advisor.py` printed `pass=89, fail=0`.
+- [x] T058 Whole advisor suite after the second pass. Verify: `Test Files  156 passed (156)`, `Tests  1345 passed | 8 skipped (1353)`, exit 0, HEAD `4e7538a4aa` before and after the run; against the T044 baseline the six new tests account for the delta.
+
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -211,7 +227,7 @@ contextType: "general"
 | P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-10-27
+**Verification Date**: 2026-10-28
 <!-- /ANCHOR:summary -->
 
 ---

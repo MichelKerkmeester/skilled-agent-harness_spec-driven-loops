@@ -7,7 +7,7 @@ trigger_phrases:
   - "workflow-owner guard"
   - "delegate this refactor to codex"
   - "split delegation phrasing"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Executor Delegation and Workflow-Owner Guard
@@ -36,7 +36,7 @@ On a route the hub owning the executor rises to confidence 0.95 and uncertainty 
 
 ### Workflow-Owner Guard
 
-Before the hub takes first place, the advisor looks for a workflow owner: a passing `system-deep-loop` or `system-spec-kit` recommendation whose explicit lane scores at least 0.55 with phrase, author, explicit, loop or write evidence. That is the floor fusion applies to its own explicit workflow signal, so a side mention of "research" or "plan" does not demote an executor request that never asked for the workflow. When an owner passes, it stays first and the lifted hub sits directly below it at the owner's confidence minus 0.001, so the hub still passes and stays reachable as the runner of that workflow. A prompt with no owner takes the plain lift. The Python fallback mirrors the resolver and the split handoff, but it carries no workflow-owner guard, so a degraded answer still lists the hub first on these prompts.
+Before the hub takes first place, the advisor looks for a workflow owner: a passing `system-deep-loop` or `system-spec-kit` recommendation whose explicit lane scores at least 0.55 with phrase, author, explicit, loop or write evidence. That is the floor fusion applies to its own explicit workflow signal, so a side mention of "research" or "plan" does not demote an executor request that never asked for the workflow. When an owner passes, it stays first and the lifted hub sits directly below it at the owner's confidence minus 0.001, so the hub still passes and stays reachable as the runner of that workflow. A prompt with no owner takes the plain lift. The Python fallback carries the same guard. With no explicit lane to read, it takes a declared signal, phrase, keyword or name match on a passing owner as the evidence, and it lifts `system-deep-loop` to 0.82 when a loop word sits beside "research" or "review", the confidence the native scorer gives that evidence, so a degraded answer keeps the same order.
 
 ---
 
@@ -49,7 +49,7 @@ Before the hub takes first place, the advisor looks for a workflow owner: a pass
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts` | Shared | Alias table, resolver, split handoff, lift and workflow-owner guard |
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` | Shared | Calls the override once per ranking run, after every abstention gate |
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts` | Shared | Research-loop and review-loop evidence the guard reads |
-| `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Script | Python mirror of the resolver and the split handoff |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Script | Python mirror of the resolver, the split handoff and the workflow-owner guard |
 
 ### Validation And Tests
 

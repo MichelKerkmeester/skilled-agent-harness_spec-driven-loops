@@ -58,5 +58,13 @@ describe('scoreTokenOverlap partial credit', () => {
 
   it('matches a skill word that extends a prompt word', () => {
     expect(scoreTokenOverlap(['plan'], ['planning'])).toBeCloseTo(0.15);
+    expect(scoreTokenOverlap(['converge'], ['convergence'])).toBeCloseTo(0.15);
+    expect(scoreTokenOverlap(['deploy'], ['deployment'])).toBeCloseTo(0.15);
+  });
+
+  it('does not match a skill word that only compounds a prompt word with another word', () => {
+    expect(scoreTokenOverlap(['auto'], ['worktree autoreap'])).toBe(0);
+    expect(scoreTokenOverlap(['open'], ['opencode'])).toBe(0);
+    expect(scoreTokenOverlap(['launch'], ['gitlens launchpad'])).toBe(0);
   });
 });

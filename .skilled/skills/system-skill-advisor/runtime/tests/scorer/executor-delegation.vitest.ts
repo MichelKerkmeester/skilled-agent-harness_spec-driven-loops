@@ -40,6 +40,8 @@ interface DelegationFixture {
 interface PythonRow {
   readonly prompt: string;
   readonly top: string | null;
+  /** The first two passing recommendations as [skill, confidence]. */
+  readonly ranked: ReadonlyArray<readonly [string, number]>;
 }
 
 function findWorkspaceRoot(): string {
@@ -95,7 +97,11 @@ prompts = json.loads(sys.stdin.read())
 out = []
 for prompt in prompts:
     recs = mod.analyze_prompt(prompt=prompt, confidence_threshold=0.8, uncertainty_threshold=0.35, confidence_only=False, show_rejections=False)
-    out.append({'prompt': prompt, 'top': recs[0]['skill'] if recs else None})
+    out.append({
+        'prompt': prompt,
+        'top': recs[0]['skill'] if recs else None,
+        'ranked': [[rec['skill'], rec['confidence']] for rec in recs[:2]],
+    })
 print(json.dumps(out))
 `;
   const result = spawnSync('python3', ['-c', script, WORKSPACE_ROOT], {
@@ -206,7 +212,7 @@ describe('executor-delegation shared fixture (TS native + Python parity)', () =>
     // so the three branches below are what non-trivial now means.
     expect(fixture.cases.length).toBeGreaterThanOrEqual(9);
     const branches = new Set(fixture.cases.map((entry) => entry.branch));
-    for (const branch of ['direct-alias', 'orchestrator-cue', 'negative-guard']) {
+    for (const branch of ['direct-alias', 'orchestrator-cue', 'negative-guard', 'workflow-owner']) {
       expect(branches.has(branch)).toBe(true);
     }
   });
@@ -260,6 +266,7 @@ describe('executor delegation never overrides a workflow-owned route', () => {
     ['run a deep research loop with the cli-pi executor', 'system-deep-loop'],
     ['run a deep review with cli-codex as the executor', 'system-deep-loop'],
     ['Review this change iteratively using cli-opencode as the executor.', 'system-deep-loop'],
+    ['create a spec folder for this feature and use cli-codex to write the code', 'system-spec-kit'],
   ];
 
   it.each(workflowOwned)('keeps the workflow owner first and the CLI hub just below: %s', (prompt, owner) => {
@@ -298,4 +305,24 @@ describe('executor delegation never overrides a workflow-owned route', () => {
       expect(result.recommendations.map((rec) => rec.skill)).not.toContain('cli-external-orchestration');
     },
   );
+
+  // The Python fallback answers when the daemon cannot, so a degraded answer
+  // must keep the same order: the owner first, the CLI hub directly below it.
+  it('keeps the same order on the Python fallback', (context) => {
+    if (!pythonReachable()) {
+      if (REQUIRE_PYTHON) throw new Error('python3 is unavailable but this parity check requires it.');
+      context.skip();
+      return;
+    }
+    const rows = runPython([...workflowOwned.map(([prompt]) => prompt), ...pureDelegation]);
+    const byPrompt = new Map(rows.map((row) => [row.prompt, row.ranked]));
+    for (const [prompt, owner] of workflowOwned) {
+      const ranked = byPrompt.get(prompt) ?? [];
+      expect(ranked.map(([skill]) => skill), prompt).toEqual([owner, 'cli-external-orchestration']);
+      expect(ranked[1][1], prompt).toBeLessThan(ranked[0][1]);
+    }
+    for (const prompt of pureDelegation) {
+      expect(byPrompt.get(prompt)?.[0]?.[0], prompt).toBe('cli-external-orchestration');
+    }
+  }, 60_000);
 });

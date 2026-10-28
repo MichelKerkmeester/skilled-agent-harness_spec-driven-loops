@@ -196,7 +196,7 @@
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "The Python",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "A prompt such as \"run a deep research loop with the cli-pi executor\" made the advisor rank `cli-external-orchestration` (confidence 0.95) above `system-deep-loop` (0.9248)",
     "created_at": "2026-10-27T19:44:35Z",
-    "last_save_at": "2026-10-28T05:56:58.532Z",
+    "last_save_at": "2026-10-28T07:18:02.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:28d9430c0012c5f34450bdd9716312ce29842b13a87d766ebf3fd204e24bd370",
+    "source_fingerprint": "sha256:2a5fb33be24a3e56c944572766e8e456d2b89077b1b7480e9229a43448f18731",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b5922c3822de2cac1eebc217bd2e51c479000d8047e2dbf099802e214a636b6f",
+      "spec.md": "59d87144c76c100abd3296c953270f310803fb45c608efa236dcdb0a3c2daab5",
       "plan.md": "d215143e98facda8400e69f530423e5048da2193b8955b5847bef277e8df29e1",
-      "tasks.md": "58e0ecf7e5d269c685fb1507a5ce7f4b25ec04d4b1f092b5451a9f2f9b171a30",
-      "implementation-summary.md": "4c9a31b2a5425a7c4bb5549818c2e55d777e33ac970e897dc119c7b4d1dac0f8"
+      "tasks.md": "1f68a23a516039c2a6334f10dd846f39a454f0bd3a21d74e7dbd58c078c3456c",
+      "implementation-summary.md": "e91e914708896726ae97162cf27739f7a2af49f384f52ec74f4fa7202cae94c8"
     },
     "last_active_at": null
   }

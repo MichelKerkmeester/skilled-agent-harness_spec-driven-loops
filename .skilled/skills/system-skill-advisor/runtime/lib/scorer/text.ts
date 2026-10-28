@@ -93,6 +93,25 @@ export function phraseSpecificity(phrase: string): number {
   return Math.min(0.7 + 0.18 * (count - 1), 1);
 }
 
+// What a longer skill word may add to a prompt word and still name the same
+// concept: a suffix ("plan" -> "planning", "deploy" -> "deployment"). English
+// suffixes start with a vowel or are one of a few consonant-led endings, while a
+// second word added on ("auto" -> "autoreap", "open" -> "opencode", "launch" ->
+// "launchpad") usually starts with a consonant and names something else.
+const VOWEL_LED_TAIL = /^[aeiouy]/;
+const CONSONANT_LED_SUFFIX = /^(?:s|d|ly|ment|ments|ness|ful|less)$/;
+// A stem ending in "e" drops it before "-ence", "-ent", "-er": "converge" -> "convergence".
+const AFTER_FINAL_E_SUFFIX = /^(?:s|d|r|rs|nce|ncy|nt|nts)$/;
+
+function extendsBySuffix(stem: string, word: string): boolean {
+  if (word.length <= stem.length || !word.startsWith(stem)) return false;
+  let tail = word.slice(stem.length);
+  if (stem.endsWith('e') && AFTER_FINAL_E_SUFFIX.test(tail)) return true;
+  // A doubled final consonant comes before the suffix: "plan" -> "planning".
+  if (tail[0] === stem[stem.length - 1] && !VOWEL_LED_TAIL.test(tail)) tail = tail.slice(1);
+  return VOWEL_LED_TAIL.test(tail) || CONSONANT_LED_SUFFIX.test(tail);
+}
+
 // denominatorBasis lets callers that expand the prompt (e.g. synonym injection)
 // normalize by the ORIGINAL prompt-token count, so adding synonyms can only help
 // recall and never dilutes a true match's score. Defaults to promptTokens.length
@@ -112,8 +131,9 @@ export function scoreTokenOverlap(
     }
     for (const candidate of candidateTokens) {
       // A short prompt word inside or at the end of "allowlist" ("list") names a different concept.
-      // A prompt extension ("regressions") or skill extension ("plan" -> "planning") stays related.
-      if (token.length >= 4 && candidate.length >= 4 && (token.includes(candidate) || candidate.startsWith(token))) {
+      // A prompt extension ("regressions") or a skill word that adds a suffix ("plan" -> "planning")
+      // stays related; one that adds a second word ("auto" -> "autoreap") does not.
+      if (token.length >= 4 && candidate.length >= 4 && (token.includes(candidate) || extendsBySuffix(token, candidate))) {
         hits += 0.45;
         break;
       }
