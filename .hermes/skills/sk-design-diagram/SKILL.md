@@ -33,7 +33,7 @@ This packet owns both formats. `type-flowchart.md` remains the HTML/SVG TYPE ref
 - Exporting a generated diagram as `.png` or `.svg` for a slide, social card, print, or further editing.
 - Repainting a diagram in a product's own visual language from a measured or hand-written `DESIGN.md` Style Reference.
 
-Keyword triggers: `create:diagram`, `/design:diagram`, `diagram`, `theme diagram`, `repaint diagram`, `brand the diagram`, `architecture diagram`, `sequence diagram`, `ER diagram`, `data model`, `swimlane`, `state machine`, `venn`, `org chart`, `draw.io`, `drawio`, `mermaid`, `redraw diagram`, `export diagram`, `ASCII flowchart`, `workflow diagram`, `text diagram`, `text characters`, `decision tree`, `decision branch`, `parallel execution diagram`, `approval loop diagram`.
+Keyword triggers: `create:diagram`, `/design:diagram`, `diagram`, `theme diagram`, `repaint diagram`, `brand the diagram`, `architecture diagram`, `sequence diagram`, `ER diagram`, `swimlane`, `venn`, `org chart`, `draw.io`, `drawio`, `mermaid`, `redraw diagram`, `export diagram`, `ASCII flowchart`, `workflow diagram`, `text diagram`, `text characters`, `decision tree`, `decision branch`, `parallel execution diagram`, `approval loop diagram`.
 
 ### Use Cases — selection guide
 

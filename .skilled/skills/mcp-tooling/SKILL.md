@@ -7,7 +7,7 @@ metadata:
   family: mcp
 ---
 
-<!-- Keywords: mcp-tooling, mode-registry, hub-router, workflowMode, packetKind, transport-axis, mcp-chrome-devtools, chrome-devtools, cdp, browser-debugger-cli, bdg, mcp-click-up, clickup, cupt, task-management, mcp-obsidian, obsidian, obsidian-vault, notesmd-cli, obsidian-mcp, note-management, markdown-notes, mcp-aside-devtools, aside, aside-browser, agentic-browser, aside-mcp, mcp-notion, notion, notion-mcp, notion-api, mcp-refero, refero, design-reference, mcp-mobbin, mobbin, app-design-research, mcp-figma, figma-cli, figma-ds-cli, figma-desktop, mcp-magicpath, magicpath, magicpath-ai, mcp-code-mode, mcp-tooling smart routing, mcp tool bridge surface router, mcp tool leaf routing, mcp tool bridge resource map -->
+<!-- Keywords: mcp-tooling, mode-registry, hub-router, workflowMode, packetKind, transport-axis, mcp-chrome-devtools, chrome-devtools, cdp, browser-debugger-cli, bdg, mcp-click-up, clickup, cupt, task-management, mcp-obsidian, obsidian, obsidian-vault, notesmd-cli, obsidian-mcp, note-management, markdown-notes, mcp-aside-devtools, aside, aside-browser, agentic-browser, aside-mcp, mcp-notion, notion, notion-mcp, notion-api, mcp-refero, refero, mcp-mobbin, mobbin, app-design-research, mcp-figma, figma-cli, figma-ds-cli, figma-desktop, mcp-magicpath, magicpath, magicpath-ai, mcp-code-mode, mcp-tooling smart routing, mcp tool bridge surface router, mcp tool leaf routing, mcp tool bridge resource map -->
 
 # MCP Tooling Hub (mcp-tooling)
 

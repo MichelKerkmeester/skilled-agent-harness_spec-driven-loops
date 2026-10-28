@@ -157,7 +157,8 @@ Detail: `scratch/after.md`.
 
 1. **One leaf-replay row now ties.** "research: investigate whether our deep review findings are repeating ..." scores RESEARCH and REVIEW equally, because REVIEW now carries bare `deep review`. The replay scores intents across the whole hub. A live route scores stage two inside the mode stage one picked, and stage one picks research for that row. Phase 007 owns system-deep-loop's stage-two shape.
 2. **sk-code's stage two is unchecked against its stage one.** It carries 92 stage-one terms that no intent names. Phase 005 decides whether its surface router should carry mode vocabulary at all.
-3. **The workflow's path filters do not list the check script itself.** Every input the script reads is covered, but its sibling generator is not listed either, so a change to the script alone does not trigger the workflow.
-4. **Six reach phrases are allowlisted, not resolved.** Each needs lexical-lane work in the advisor rather than vocabulary changes.
-5. **The six allowlist entries share the allowlist's review date** (2026-12-07). Whoever reviews it then has to decide whether each dispute is still real.
+3. **The reverse stage-two leg reports and does not fail.** A review asked that every ROUTER.md intent keyword be in its mode's authored vocabulary. Stage two also carries the leaf keywords that pick a file after the mode is chosen, 193 of them across the non-exempt hubs, so a failing reverse leg could only go green by stripping those. The check lists them per packet instead, and the vocabulary-to-intent direction still fails.
+4. **Three prompts still lean toward sk-design on the lexical lane alone.** After the generic terms came out, "the state machine for the upload flow has a bug" scores sk-design 0.20, "refactor the data model layer" 0.19 and "write a style guide for the public API" 0.26. Each is far below the advisor's routing threshold, so none routes there, but the qualified diagram and style-guide phrases keep a little lexical pull.
+5. **Six reach phrases are allowlisted, not resolved.** Each needs lexical-lane work in the advisor rather than vocabulary changes.
+6. **The six allowlist entries share the allowlist's review date** (2026-12-07). Whoever reviews it then has to decide whether each dispute is still real.
 <!-- /ANCHOR:limitations -->

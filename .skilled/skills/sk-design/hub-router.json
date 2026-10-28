@@ -100,7 +100,6 @@
         "from a site",
         "css extraction",
         "validate design.md",
-        "style guide",
         "extract design tokens",
         "measure a surface",
         "extract css",
@@ -150,8 +149,6 @@
         "theme diagram",
         "repaint diagram",
         "brand the diagram",
-        "data model",
-        "state machine",
         "venn",
         "mermaid"
       ]

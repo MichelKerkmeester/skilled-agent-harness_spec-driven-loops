@@ -14,7 +14,16 @@
  *   - a registry alias advertises a name the authored file never routes, so the
  *     mode is unreachable by the name the registry publishes;
  *   - a packet's `Keyword triggers:` line advertises a term the hub does not
- *     route at all, so the packet is named but never chosen.
+ *     route at all, so the packet is named but never chosen;
+ *   - a packet carries a triggers line while no registry mode names it, so the
+ *     line advertises a leaf the hub can never select.
+ *
+ * The reverse of the stage-two leg is reported but never failed. A ROUTER.md
+ * intent also carries the leaf keywords that pick a file once the mode is already
+ * chosen, and a bare common word there would over-trigger hub selection, so the
+ * intent list is deliberately broader than stage one (ci-router-vocabulary-reach
+ * skips single words for the same reason). The inventory is printed so the
+ * asymmetry stays visible without turning design into a failure.
  *
  * So this compares each restatement against the authored vocabulary and reports
  * every disagreement. It only reads: nothing here rewrites a router.
@@ -78,8 +87,9 @@ function hubs(skillsRoot) {
 }
 
 // The authored vocabulary of one mode: the case-folded union of every class its
-// router signal names. A mode with no signal has no authored vocabulary, and is
-// skipped rather than reported as an empty one.
+// router signal names. A mode with no signal has no authored vocabulary, and
+// returns null so the caller can report the missing signal rather than read an
+// empty list as a mode that simply routes nothing.
 function authoredVocabulary(router, mode) {
   const signal = (router.routerSignals || {})[mode];
   if (!signal) return null;
@@ -140,18 +150,85 @@ function packetVocabulary(registry, router) {
   return out;
 }
 
+const TRIGGER_PREFIX = 'Keyword triggers:';
+
+// The triggers line is hand-written, so a term can be added to it without ever
+// reaching the router, and an unbackticked item counts the same as a backticked
+// one: both are advertised. Every line counts, not just the first, because a
+// packet that grew a second line is still advertising what the second line says.
+// Items split on both separators the corpus uses, and only outside backticks, so a
+// separator inside one term cannot cut it in half.
+function triggerItems(text) {
+  const items = [];
+  const push = (raw) => {
+    // A list ends in a sentence period, which is punctuation rather than part of
+    // the last term.
+    const term = raw.trim().replace(/\.+$/, '').trim();
+    if (term) items.push(term);
+  };
+  for (const line of text.split('\n')) {
+    const at = line.indexOf(TRIGGER_PREFIX);
+    if (at === -1) continue;
+    let item = '';
+    let quoted = false;
+    for (const ch of line.slice(at + TRIGGER_PREFIX.length)) {
+      if (ch === '`') { quoted = !quoted; continue; }
+      if (!quoted && (ch === ',' || ch === ';')) { push(item); item = ''; continue; }
+      item += ch;
+    }
+    push(item);
+  }
+  return items;
+}
+
 function triggersVocabulary(skillsRoot, hub, packet, vocab) {
   const items = [];
   const skill = path.join(skillsRoot, hub, packet, 'SKILL.md');
   if (!fs.existsSync(skill)) return items;
-  const line = fs.readFileSync(skill, 'utf8').split('\n').find((l) => l.includes('Keyword triggers:'));
-  if (!line) return items;
-  for (const m of line.matchAll(/`([^`]+)`/g)) {
-    if (!vocab.seen.has(fold(m[1]))) {
-      items.push(`triggers ${packet}: "${m[1]}" is not in hub-router.json vocabulary`);
+  for (const term of triggerItems(fs.readFileSync(skill, 'utf8'))) {
+    if (!vocab.seen.has(fold(term))) {
+      items.push(`triggers ${packet}: "${term}" is not in hub-router.json vocabulary`);
     }
   }
   return items;
+}
+
+// A packet that advertises triggers while no registry mode names it is a leaf the
+// hub can never select, so the line is dead. The registry is the only place a
+// packet becomes reachable, and nothing else checks the directory listing against
+// it.
+function orphanPackets(skillsRoot, hub, registry) {
+  const items = [];
+  const named = new Set((registry.modes || []).map((mode) => mode.packet).filter(Boolean));
+  for (const entry of fs.readdirSync(path.join(skillsRoot, hub), { withFileTypes: true })) {
+    if (!entry.isDirectory() || named.has(entry.name)) continue;
+    const skill = path.join(skillsRoot, hub, entry.name, 'SKILL.md');
+    if (!fs.existsSync(skill)) continue;
+    if (!fs.readFileSync(skill, 'utf8').includes(TRIGGER_PREFIX)) continue;
+    items.push(`packets ${entry.name}: has a "${TRIGGER_PREFIX}" line but no registry mode names it as a packet`);
+  }
+  return items;
+}
+
+// The reverse of the stage-two leg: an intent keyword whose packet belongs to a
+// mode but that the mode's authored vocabulary never routes. Two modes can share a
+// packet, and an intent cannot say which of them it serves, so the comparison is
+// against the union over every mode naming the packet, the same union the
+// triggers leg uses.
+function stageTwoReverse(registry, router, intents) {
+  const authored = new Map();
+  for (const mode of registry.modes || []) {
+    if (!mode.packet) continue;
+    if (!authored.has(mode.packet)) authored.set(mode.packet, termSet());
+    const vocab = authoredVocabulary(router, mode.workflowMode);
+    if (vocab) addAll(authored.get(mode.packet), vocab.terms);
+  }
+  const out = new Map();
+  for (const [packet, vocab] of authored) {
+    const stageTwo = stageTwoVocabulary(intents, packet);
+    out.set(packet, stageTwo.terms.filter((term) => !vocab.seen.has(fold(term))));
+  }
+  return out;
 }
 
 function evaluateHub(skillsRoot, hub) {
@@ -159,11 +236,25 @@ function evaluateHub(skillsRoot, hub) {
   const registry = readJson(path.join(dir, 'mode-registry.json'));
   const router = readJson(path.join(dir, 'hub-router.json'));
   const intents = parseRouter(fs.readFileSync(path.join(dir, 'ROUTER.md'), 'utf8'));
-  const report = { hub, alias: [], stageTwo: [], triggers: [], stageTwoExempt: STAGE_TWO_EXEMPT[hub] || null };
+  const report = {
+    hub,
+    alias: [],
+    stageTwo: [],
+    stageTwoReverse: [],
+    triggers: [],
+    packets: [],
+    stageTwoExempt: STAGE_TWO_EXEMPT[hub] || null,
+  };
 
   for (const mode of registry.modes || []) {
     const vocab = authoredVocabulary(router, mode.workflowMode);
-    if (!vocab) continue;
+    // A mode with no router signal has no authored vocabulary to compare against,
+    // which is itself the defect: stage one can only pick a mode a signal names,
+    // so this one is unreachable however it is registered.
+    if (!vocab) {
+      report.alias.push(`alias ${mode.workflowMode}: no routerSignals entry, so stage one can never reach this mode`);
+      continue;
+    }
     for (const alias of mode.aliases || []) {
       if (!vocab.seen.has(fold(alias))) {
         report.alias.push(`alias ${mode.workflowMode}: "${alias}" is not in hub-router.json vocabulary`);
@@ -178,9 +269,18 @@ function evaluateHub(skillsRoot, hub) {
     }
   }
 
+  if (!report.stageTwoExempt) {
+    for (const [packet, terms] of stageTwoReverse(registry, router, intents)) {
+      for (const term of terms) {
+        report.stageTwoReverse.push(`stage-two-reverse ${packet}: "${term}" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route`);
+      }
+    }
+  }
+
   for (const [packet, vocab] of packetVocabulary(registry, router)) {
     report.triggers.push(...triggersVocabulary(skillsRoot, hub, packet, vocab));
   }
+  report.packets.push(...orphanPackets(skillsRoot, hub, registry));
 
   return report;
 }
@@ -231,16 +331,28 @@ function main() {
   }
 
   const report = evaluate(skillsRoot, only);
-  const total = report.reduce((n, r) => n + r.alias.length + r.stageTwo.length + r.triggers.length, 0);
+  // A gate over no input proves nothing, and a misconfigured checkout would read
+  // as a clean run: an empty fleet is a usage error, not a pass.
+  if (report.length === 0) {
+    process.stderr.write(`ci-hub-vocabulary-source.cjs: no hubs found under ${skillsRoot}\n`);
+    process.exit(2);
+  }
+  const total = report.reduce((n, r) => n + r.alias.length + r.stageTwo.length + r.triggers.length + r.packets.length, 0);
+  const reverse = report.reduce((n, r) => n + r.stageTwoReverse.length, 0);
 
   if (asJson) {
     process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
   } else {
     for (const r of report) {
-      const drift = r.alias.length + r.stageTwo.length + r.triggers.length;
-      process.stdout.write(`${drift ? 'DRIFT' : 'OK   '} ${r.hub.padEnd(28)} alias=${r.alias.length} stage-two=${r.stageTwo.length} triggers=${r.triggers.length}\n`);
+      const drift = r.alias.length + r.stageTwo.length + r.triggers.length + r.packets.length;
+      process.stdout.write(`${drift ? 'DRIFT' : 'OK   '} ${r.hub.padEnd(28)} alias=${r.alias.length} stage-two=${r.stageTwo.length} triggers=${r.triggers.length} packets=${r.packets.length} stage-two-reverse=${r.stageTwoReverse.length}\n`);
       if (r.stageTwoExempt) process.stdout.write(`  note: stage-two leg not applied (${r.stageTwoExempt})\n`);
-      for (const item of [...r.alias, ...r.stageTwo, ...r.triggers]) process.stdout.write(`  ${item}\n`);
+      for (const item of [...r.alias, ...r.stageTwo, ...r.triggers, ...r.packets, ...r.stageTwoReverse]) process.stdout.write(`  ${item}\n`);
+    }
+    // Stage two is deliberately broader than stage one, so the reverse inventory
+    // is printed for a reader and never counted as drift.
+    if (reverse) {
+      process.stdout.write(`\nnote: stage-two-reverse=${reverse} term(s) are ROUTER.md intent keywords hub-router.json does not route. Stage two also carries the leaf keywords that pick a file once the mode is chosen, so this leg reports and never fails.\n`);
     }
     process.stdout.write(`\nchecked=${report.length} hub(s), drift=${total}\n`);
     process.stdout.write(total ? 'RESULT: FAILED\n' : 'RESULT: PASSED\n');
@@ -254,9 +366,12 @@ module.exports = {
   evaluate,
   evaluateHub,
   hubs,
+  orphanPackets,
   packetVocabulary,
   parseRouter,
+  stageTwoReverse,
   stageTwoVocabulary,
+  triggerItems,
 };
 
 if (require.main === module) main();

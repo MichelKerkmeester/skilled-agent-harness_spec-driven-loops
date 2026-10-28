@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Each hub writes its mode vocabulary in several places that nothing generates from one another: `hub-router.json` classes, `mode-registry.json` aliases, `ROUTER.md` `INTENTSIGNALS` and packet `Keyword triggers:` lines",
     "created_at": "2026-10-28T06:38:45Z",
-    "last_save_at": "2026-10-28T10:01:37.643Z",
+    "last_save_at": "2026-10-28T10:21:57.069Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b0d46722c340a09740be297fe112e60ab6d04b34663609dc808ea2cae92fc94c",
+    "source_fingerprint": "sha256:ae1fd353f04ba0b6c43a83c4456341283f35b8dde4be4c93d2a4f90e341339b3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3cb305ec2db1433e54e6994faa6b107f966499d20cb2bde73e7b0725f0cf3db7",
       "plan.md": "a05938e16f67f7538cf2e1b619636048e12bdfaaf1f5357f511fbb761572d49a",
       "tasks.md": "0abc9814952f0a8b0e0e2dde2e89fb0e0b5ec2b61792692cba04c53a4def9fe4",
-      "implementation-summary.md": "5652992c26ad2f83c9acdfbcfbb0c648c88b885d5b680a679b68e0636efff7d2"
+      "implementation-summary.md": "9c2d31d9f9ffa0fa055459ee0fe998161ec874d3676421166d05494fcd067f78"
     },
     "last_active_at": null
   }

@@ -6,10 +6,10 @@
 
 /**
  * Proves the vocabulary-source check reads hub-router.json's vocabularyClasses
- * as the only authored mode vocabulary, and fails each of the three copies that
- * can drift from it. Every case builds a throwaway hub: the check is a gate over
+ * as the only authored mode vocabulary, and fails each of the copies that can
+ * drift from it. Every case builds a throwaway hub: the check is a gate over
  * real files, and a fixture is the only way to watch one leg fail on its own
- * without the other two moving with it.
+ * without the others moving with it.
  */
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -72,28 +72,29 @@ function routerMarkdown(alphaKeywords) {
   ].join('\n');
 }
 
-function skillMarkdown(triggers) {
+function skillMarkdown(triggerLines) {
   return [
     '# alpha-pkt',
     '',
-    `Keyword triggers: ${triggers.map((t) => `\`${t}\``).join(', ')}.`,
+    ...triggerLines,
     '',
   ].join('\n');
 }
 
 // A complete hub whose three copies agree. Each option replaces one copy only,
-// so a case fails the leg it targets and leaves the other two clean.
+// so a case fails the leg it targets and leaves the other copies clean.
 function fixture(options = {}) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'hub-vocab-'));
   ROOTS.push(root);
   const hub = path.join(root, options.hub || HUB);
 
-  writeJson(path.join(hub, 'mode-registry.json'), {
-    modes: [
-      { workflowMode: 'alpha', packet: ALPHA_PACKET, aliases: options.alphaAliases || ['alpha run', 'alpha mode'] },
-      { workflowMode: 'beta', packet: BETA_PACKET, aliases: ['beta run'] },
-    ],
-  });
+  const modes = [
+    { workflowMode: 'alpha', packet: ALPHA_PACKET, aliases: options.alphaAliases || ['alpha run', 'alpha mode'] },
+    { workflowMode: 'beta', packet: BETA_PACKET, aliases: ['beta run'] },
+  ];
+  if (options.ghostMode) modes.push({ workflowMode: 'ghost', packet: 'ghost-pkt', aliases: ['totally-unrouted-name'] });
+
+  writeJson(path.join(hub, 'mode-registry.json'), { modes });
   writeJson(path.join(hub, 'hub-router.json'), {
     routerSignals: {
       alpha: { weight: 3, classes: ['alpha-aliases'] },
@@ -105,7 +106,13 @@ function fixture(options = {}) {
     },
   });
   write(path.join(hub, 'ROUTER.md'), routerMarkdown(options.alphaIntentKeywords || ALPHA_AUTHORED));
-  write(path.join(hub, ALPHA_PACKET, 'SKILL.md'), skillMarkdown(options.alphaTriggers || ALPHA_AUTHORED));
+
+  const triggerLine = options.alphaTriggerLine
+    || `Keyword triggers: ${(options.alphaTriggers || ALPHA_AUTHORED).map((t) => `\`${t}\``).join(', ')}.`;
+  write(path.join(hub, ALPHA_PACKET, 'SKILL.md'), skillMarkdown([triggerLine, ...(options.alphaExtraTriggerLines || [])]));
+  if (options.orphanPacket) {
+    write(path.join(hub, options.orphanPacket, 'SKILL.md'), skillMarkdown(['Keyword triggers: `alpha run`.']));
+  }
 
   return root;
 }
@@ -133,9 +140,26 @@ after(() => {
 test('a hub whose copies agree passes every leg', () => {
   const result = runCheck(fixture());
   assert.equal(result.status, 0, detail(result));
-  assert.match(result.stdout, /^OK {4}fixture-hub\s+alias=0 stage-two=0 triggers=0$/m, detail(result));
+  assert.match(result.stdout, /^OK {4}fixture-hub\s+alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=0$/m, detail(result));
   assert.match(result.stdout, /checked=1 hub\(s\), drift=0/, detail(result));
   assert.match(result.stdout, /RESULT: PASSED/, detail(result));
+});
+
+test('an empty skills root is a usage error, not a green run', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'hub-vocab-empty-'));
+  ROOTS.push(root);
+  const result = runCheck(root);
+  assert.equal(result.status, 2, detail(result));
+  assert.match(result.stderr, /no hubs found under /, detail(result));
+  assert.doesNotMatch(result.stdout, /RESULT: PASSED/, detail(result));
+});
+
+test('a mode with no routerSignals entry fails instead of being skipped', () => {
+  const result = runCheck(fixture({ ghostMode: true }));
+  assert.equal(result.status, 1, detail(result));
+  assert.match(result.stdout, /alias ghost: no routerSignals entry, so stage one can never reach this mode/, detail(result));
+  assert.match(result.stdout, /alias=1 stage-two=0 triggers=0 packets=0 stage-two-reverse=0/, detail(result));
+  assert.match(result.stdout, /RESULT: FAILED/, detail(result));
 });
 
 test('an alias the authored vocabulary does not carry fails the alias leg', () => {
@@ -154,10 +178,11 @@ test('a term no stage-two intent carries fails the stage-two leg', () => {
   assert.match(result.stdout, /RESULT: FAILED/, detail(result));
 });
 
-test('a stage-two exempt hub skips that leg and says so', () => {
-  const result = runCheck(fixture({ hub: 'sk-code', alphaIntentKeywords: ['alpha run', 'alpha mode'] }));
+test('a stage-two exempt hub skips that leg in both directions and says so', () => {
+  const result = runCheck(fixture({ hub: 'sk-code', alphaIntentKeywords: [...ALPHA_AUTHORED, 'alpha rogue'] }));
   assert.equal(result.status, 0, detail(result));
-  assert.match(result.stdout, /stage-two=0 triggers=0/, detail(result));
+  assert.match(result.stdout, /alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=0/, detail(result));
+  assert.doesNotMatch(result.stdout, /stage-two-reverse alpha-pkt/, detail(result));
   assert.match(result.stdout, /note: stage-two leg not applied \(a surface and phase router:/, detail(result));
   assert.match(result.stdout, /RESULT: PASSED/, detail(result));
 });
@@ -168,6 +193,43 @@ test('a Keyword triggers term outside the authored vocabulary fails the triggers
   assert.match(result.stdout, /triggers alpha-pkt: "gamma unknown" is not in hub-router\.json vocabulary/, detail(result));
   assert.match(result.stdout, /alias=0 stage-two=0 triggers=1/, detail(result));
   assert.match(result.stdout, /RESULT: FAILED/, detail(result));
+});
+
+test('an unbackticked trigger item is compared like a backticked one', () => {
+  const result = runCheck(fixture({
+    alphaTriggerLine: 'Keyword triggers: `alpha run`, a completely unbackticked bogus term.',
+  }));
+  assert.equal(result.status, 1, detail(result));
+  assert.match(result.stdout, /triggers alpha-pkt: "a completely unbackticked bogus term" is not in hub-router\.json vocabulary/, detail(result));
+  assert.match(result.stdout, /alias=0 stage-two=0 triggers=1/, detail(result));
+  assert.match(result.stdout, /RESULT: FAILED/, detail(result));
+});
+
+test('a second Keyword triggers line is read, not just the first', () => {
+  const result = runCheck(fixture({
+    alphaExtraTriggerLines: ['Keyword triggers: `bogus second line term`.'],
+  }));
+  assert.equal(result.status, 1, detail(result));
+  assert.match(result.stdout, /triggers alpha-pkt: "bogus second line term" is not in hub-router\.json vocabulary/, detail(result));
+  assert.match(result.stdout, /alias=0 stage-two=0 triggers=1/, detail(result));
+  assert.match(result.stdout, /RESULT: FAILED/, detail(result));
+});
+
+test('a packet with a triggers line that no registry mode names fails the packets leg', () => {
+  const result = runCheck(fixture({ orphanPacket: 'orphan-pkt' }));
+  assert.equal(result.status, 1, detail(result));
+  assert.match(result.stdout, /packets orphan-pkt: has a "Keyword triggers:" line but no registry mode names it as a packet/, detail(result));
+  assert.match(result.stdout, /alias=0 stage-two=0 triggers=0 packets=1/, detail(result));
+  assert.match(result.stdout, /RESULT: FAILED/, detail(result));
+});
+
+test('the reverse stage-two leg lists an intent keyword the vocabulary does not route', () => {
+  const result = runCheck(fixture({ alphaIntentKeywords: [...ALPHA_AUTHORED, 'alpha rogue'] }));
+  assert.equal(result.status, 0, detail(result));
+  assert.match(result.stdout, /stage-two-reverse alpha-pkt: "alpha rogue" is an intent keyword in ROUTER\.md that hub-router\.json vocabulary does not route/, detail(result));
+  assert.match(result.stdout, /alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=1/, detail(result));
+  assert.match(result.stdout, /stage-two-reverse=1 term\(s\)/, detail(result));
+  assert.match(result.stdout, /RESULT: PASSED/, detail(result));
 });
 
 test('an unknown hub id is a usage error', () => {

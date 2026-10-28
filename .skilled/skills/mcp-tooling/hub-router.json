@@ -257,8 +257,7 @@
         "aside daemon",
         "aside account",
         "repl evidence capture",
-        "click through",
-        "on its own"
+        "click through"
       ]
     },
     "notion-aliases": {
@@ -297,7 +296,6 @@
     },
     "design-reference-research": {
       "keywords": [
-        "design reference",
         "ui screens from real apps",
         "design inspiration search",
         "reference styles",

@@ -35,7 +35,7 @@ Search **Refero's library of real shipped UI** (150,000+ app screens, 6,000+ use
 - Research a company's or domain's shipped UI through screen or flow queries and `site` metadata.
 - Wire, verify, or troubleshoot the `refero` Code Mode manual, its OAuth or Bearer authentication, or its plan gating.
 
-**Keyword Triggers**: "refero", "refero mcp", "design reference", "ui reference search", "real app screens", "refero styles", "refero flows", "search refero".
+**Keyword Triggers**: "refero", "refero mcp", "ui reference search", "real app screens", "refero styles", "refero flows", "search refero".
 
 ### Use Cases
 
