@@ -1,6 +1,6 @@
 ---
 title: sk-doc
-description: Markdown and OpenCode component specialist: structure-first document quality (DQI, HVR voice), scaffolding and packaging, diagrams, charts, feature catalogs, testing playbooks, before/after diffs, repo rules, packet goals and frontmatter contracts.
+description: "Markdown and OpenCode component specialist: structure-first document quality (DQI, HVR voice), scaffolding and packaging, diagrams, charts, feature catalogs, testing playbooks, before/after diffs, repo rules, packet goals and frontmatter contracts."
 trigger_phrases:
   - "documentation"
   - "readme"

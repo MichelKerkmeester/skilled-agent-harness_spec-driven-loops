@@ -2,7 +2,7 @@
 name: mcp-click-up
 description: Routes ClickUp between cupt CLI (daily ops) and the hosted MCP (task create, docs, search). Embedded install and safety rules.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 <!-- Keywords: clickup, click up, cupt, clickup tasks, my clickup tasks, mark task done, complete a clickup task, log time in clickup, start timer, stop timer, add note to task, tag task, process work queue, task queue, create clickup task, clickup document, clickup doc page, search clickup, clickup mcp, install cupt -->

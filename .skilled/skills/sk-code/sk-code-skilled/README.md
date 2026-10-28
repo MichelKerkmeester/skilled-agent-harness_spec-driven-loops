@@ -1,6 +1,6 @@
 ---
 title: opencode
-description: System-code work under .skilled/ holds to the right standards: read-only evidence for the sk-code hub, from six language rule sets to shared patterns, hooks and authoring checklists, bundled beside a workflow mode and never routed as a primary.
+description: "System-code work under .skilled/ holds to the right standards: read-only evidence for the sk-code hub, from six language rule sets to shared patterns, hooks and authoring checklists, bundled beside a workflow mode and never routed as a primary."
 trigger_phrases:
   - "opencode system code"
   - "opencode authoring"

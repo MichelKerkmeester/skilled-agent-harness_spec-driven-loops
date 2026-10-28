@@ -2,7 +2,7 @@
 name: mcp-obsidian
 description: Runs Obsidian vault and note work across notesmd-cli, the obsidian CLI and the cyanheads MCP, plus plugin and theme knowledge.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 0.24.1.0
+version: 0.24.2.0
 ---
 
 <!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, local rest api, health-md, health data, iconic, icon rules, iconic rulebook, icon automation, file icons, folder icons, iconic data json, iconic ruleset, iconic-rules.full.json, iconic-rules.full.md, data.json, obsidian theme, theme system, css theme, css snippet, css variables, theme development, plugin development -->

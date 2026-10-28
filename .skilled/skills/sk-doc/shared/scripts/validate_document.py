@@ -100,6 +100,15 @@ except Exception:  # pragma: no cover - defensive fallback if the sibling is una
                 yield token
 
 
+# PyYAML ships with the system interpreter but not with every Homebrew install, so
+# the frontmatter parse stays optional: without it, a line check still catches the
+# one shape a strict parser rejects and a key-by-key reader does not.
+try:
+    import yaml  # type: ignore
+except ImportError:  # pragma: no cover - depends on the interpreter
+    yaml = None  # type: ignore
+
+
 # An argument-hint should summarize the invocation shape; the router body's
 # EXECUTION TARGETS section is where the full flag surface is enumerated. This
 # is a soft budget — over-budget hints warn, they never block registration.
@@ -1734,6 +1743,82 @@ def _frontmatter_scalar(raw: str) -> str:
     return re.sub(r'(?:^|\s+)#.*$', '', value).strip()
 
 
+def _frontmatter_block(content: str) -> Tuple[Optional[str], int]:
+    """Return the frontmatter block and the 0-based line index where it starts.
+
+    Leading trivia is skipped the way the trigger index skips it, so a comment
+    above the block does not hide the block from the check. A block that carries
+    no plain key line is a thematic break, not frontmatter.
+    """
+    text = content[1:] if content.startswith('﻿') else content
+    start = _skip_leading_trivia(text)
+    head = text[start:]
+    match = re.match(r'^---[ \t]*\r?\n(.*?)\r?\n---', head, re.DOTALL)
+    if not match or not re.search(r'^[A-Za-z0-9_.-]+:[ \t]*', match.group(1), re.MULTILINE):
+        return None, 0
+    return match.group(1), text[:start].count('\n') + head[:match.start(1)].count('\n')
+
+
+def _unquoted_colon_line(block: str) -> Optional[int]:
+    """Index of the first top-level scalar whose unquoted value holds ': '.
+
+    Stands in for the parser when PyYAML is absent. The shapes that legitimately
+    carry the sequence are skipped: block scalars, flow collections, list items,
+    quoted values and trailing comments, which are not part of the value.
+    """
+    for index, line in enumerate(block.split('\n')):
+        if not line or line[0] in ' \t#' or line.startswith('-'):
+            continue
+        found = re.match(r'^[^\s:#][^:]*:[ \t]*(.*)$', line)
+        if not found:
+            continue
+        value = re.sub(r'(?:^|\s+)#.*$', '', found.group(1)).strip()
+        if not value or value[0] in '"\'' or value[0] in '|>{[':
+            continue
+        if ': ' in value:
+            return index
+    return None
+
+
+def validate_frontmatter_yaml(content: str) -> List[Dict[str, Any]]:
+    """Block a frontmatter block that a strict YAML parser rejects.
+
+    Every other frontmatter check reads keys line by line, so a block can satisfy
+    them and still be unparseable: an unquoted value holding ': ' turns the rest
+    of the line into a nested mapping. The parser reports its own line; without
+    PyYAML the line check stands in with the same verdict.
+    """
+    block, first_line = _frontmatter_block(content)
+    if block is None:
+        return []
+
+    line: Optional[int] = None
+    detail = ''
+    if yaml is not None:
+        try:
+            yaml.safe_load(block)
+        except yaml.YAMLError as exc:
+            mark = getattr(exc, 'problem_mark', None)
+            line = first_line + mark.line + 1 if mark is not None else first_line + 1
+            detail = getattr(exc, 'problem', None) or str(exc).splitlines()[0]
+    else:
+        offset = _unquoted_colon_line(block)
+        if offset is not None:
+            line = first_line + offset + 1
+            detail = 'an unquoted value contains ": "'
+
+    if line is None:
+        return []
+    return [{
+        'type': 'frontmatter_invalid_yaml',
+        'severity': 'blocking',
+        'message': f'Frontmatter is not valid YAML at line {line}: {detail}',
+        'fix_hint': 'Quote the value so the colon stays inside the string, e.g. description: "Own it: the rules"',
+        'line_number': line,
+        'auto_fixable': False,
+    }]
+
+
 def validate_frontmatter_values(content: str, values: Any) -> List[Dict[str, Any]]:
     """Warn when contextType or importance_tier is outside the shared list.
 
@@ -1870,6 +1955,7 @@ def validate_document(
         all_errors.extend(validate_changelog_omissions(content, file_path))
     if doc_type == 'code_folder':
         all_errors.extend(validate_code_folder(content, file_path))
+    all_errors.extend(validate_frontmatter_yaml(content))
     all_errors.extend(validate_frontmatter_values(content, _load_frontmatter_values()))
 
     # README rules applied by default look like a README verdict, so say it was a fallback.

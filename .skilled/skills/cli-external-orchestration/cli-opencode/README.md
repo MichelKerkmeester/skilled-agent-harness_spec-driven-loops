@@ -1,6 +1,6 @@
 ---
 title: cli-opencode
-description: Gives an external AI assistant the project's full runtime in one dispatch: every plugin, skill and registered MCP server, plus parallel detached sessions for ablation and worker farms.
+description: "Gives an external AI assistant the project's full runtime in one dispatch: every plugin, skill and registered MCP server, plus parallel detached sessions for ablation and worker farms."
 trigger_phrases:
   - "delegate to opencode"
   - "opencode run"

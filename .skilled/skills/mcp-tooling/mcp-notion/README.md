@@ -1,6 +1,6 @@
 ---
 title: mcp-notion
-description: Operates a Notion workspace from an agent or Code Mode: the official Notion MCP for all page, block, data-source, comment and user CRUD, plus direct Notion REST API calls for the five capabilities the MCP does not expose, with a knowledge layer and dual-backend routing.
+description: "Operates a Notion workspace from an agent or Code Mode: the official Notion MCP for all page, block, data-source, comment and user CRUD, plus direct Notion REST API calls for the five capabilities the MCP does not expose, with a knowledge layer and dual-backend routing."
 trigger_phrases:
   - "notion"
   - "notion mcp"

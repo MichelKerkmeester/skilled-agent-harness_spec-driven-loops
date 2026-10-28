@@ -1,6 +1,6 @@
 ---
 title: mcp-obsidian
-description: Makes Obsidian usable by an AI: note operations across headless and live-app surfaces, plus deep plugin knowledge so the data behind your plugins can be operated directly.
+description: "Makes Obsidian usable by an AI: note operations across headless and live-app surfaces, plus deep plugin knowledge so the data behind your plugins can be operated directly."
 trigger_phrases:
   - "obsidian"
   - "obsidian vault"

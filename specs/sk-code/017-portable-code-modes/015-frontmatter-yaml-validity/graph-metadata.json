@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/017-portable-code-modes/015-frontmatter-yaml-validity",
+  "spec_folder": "sk-code/017-portable-code-modes/015-frontmatter-yaml-validity",
+  "parent_id": "sk-code/017-portable-code-modes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "frontmatter yaml validity",
+      "phase 15 frontmatter yaml validity",
+      "frontmatter is not valid yaml",
+      "frontmatter yaml validity plan",
+      "frontmatter yaml validity tasks",
+      "frontmatter yaml validity acceptance criteria",
+      "frontmatter yaml validity implementation summary"
+    ],
+    "key_topics": [
+      "frontmatter",
+      "yaml",
+      "validity",
+      "phase",
+      "valid",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "operator"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_frontmatter_yaml.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_frontmatter_fleet.py",
+      ".skilled/skills/sk-doc/manual-testing-playbook/unknown-fallback/disambiguation-required.md",
+      ".hermes/plugins/repo-guards/plugin.yaml",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_frontmatter_yaml.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_frontmatter_yaml.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_frontmatter_fleet.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_frontmatter_fleet.py",
+        "source": "derived"
+      },
+      {
+        "name": "disambiguation-required.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/manual-testing-playbook/unknown-fallback/disambiguation-required.md",
+        "source": "derived"
+      },
+      {
+        "name": "plugin.yaml",
+        "kind": "config",
+        "path": ".hermes/plugins/repo-guards/plugin.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-readme-verdicts.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Every",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator opened the quality skill and found its frontmatter was not valid YAML: `description` held a sentence with `: ` in it, unquoted, so a strict parser read the rest of the line as a nested mapping",
+    "created_at": "2026-10-28T05:17:32Z",
+    "last_save_at": "2026-10-28T06:14:52.306Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0e311f665a2a0508b9d2f47352665684fa7aacfd379ccea75879a0cdb28ae61c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6946e68740abeddbb60e707fa9a175e24711689a9c51c8f1e9ef4eb81c3936d9",
+      "plan.md": "60f8bc3ed1c2073b2bd2a4e510887061c53471f93eb511bb8d953e12c4624508",
+      "tasks.md": "52369d01692a5abaa0c51c5b946facd9354fc0cfdb47372f237008cb257e1f27",
+      "implementation-summary.md": "964ef3bfd885829b22169fcaf31fdfc0c26ecebef8c0205e88dc41dbd8d6aea2"
+    },
+    "last_active_at": null
+  }
+}

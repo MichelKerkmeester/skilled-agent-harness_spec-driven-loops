@@ -1,6 +1,6 @@
 ---
 title: mcp-click-up
-description: Makes ClickUp task operations safe and fast from an agent or terminal: a lightweight CLI for daily task operations with a dry-run safety net and the official MCP for task creation, documents, search and workspace structure.
+description: "Makes ClickUp task operations safe and fast from an agent or terminal: a lightweight CLI for daily task operations with a dry-run safety net and the official MCP for task creation, documents, search and workspace structure."
 trigger_phrases:
   - "clickup"
   - "cupt"

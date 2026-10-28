@@ -2,7 +2,7 @@
 name: mcp-notion
 description: Operates a Notion workspace through the official Notion MCP over Code Mode, filling its API gaps with direct Notion API calls.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 0.1.1.0
+version: 0.1.2.0
 ---
 
 <!-- keywords: notion, notion mcp, notion api, notion database, notion data source, notion page, notion property, notion relation, notion rollup, notion formula, notion token, ntn_, notion-mcp-server, notion markdown, notion search -->

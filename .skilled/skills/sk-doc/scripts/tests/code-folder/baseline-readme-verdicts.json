@@ -8720,12 +8720,21 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [],
+      "blocking_errors": [
+        {
+          "auto_fixable": false,
+          "fix_hint": "Quote the value so the colon stays inside the string, e.g. description: \"Own it: the rules\"",
+          "line_number": 3,
+          "message": "Frontmatter is not valid YAML at line 3: mapping values are not allowed here",
+          "severity": "blocking",
+          "type": "frontmatter_invalid_yaml"
+        }
+      ],
       "document_type": "readme",
       "file": "specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge/scratch/w4-build/drafts/skill/README.md",
-      "return_code": 0,
-      "total_issues": 1,
-      "valid": true,
+      "return_code": 1,
+      "total_issues": 2,
+      "valid": false,
       "warnings": [
         {
           "line": "## 5. PACKAGE MAP AND DEEPER DOCS",

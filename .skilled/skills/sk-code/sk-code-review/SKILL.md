@@ -4,7 +4,6 @@ description: "Stack-agnostic code-review for sk-code: findings-first severity, s
 allowed-tools: [Read, Bash, Grep, Glob, Write]
 version: 1.9.8.0
 metadata:
-  author: OpenCode
   family: sk-code
 ---
 

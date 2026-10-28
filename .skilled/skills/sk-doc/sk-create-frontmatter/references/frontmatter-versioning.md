@@ -1,6 +1,6 @@
 ---
 title: Frontmatter Versioning Standard - Per-Doc Edition Reference
-description: Canonical rules for the 4-part version field: SKILL.md carries the skill edition anchored to the changelog, and every other skill doc carries its own edition, raised at commit.
+description: "Canonical rules for the 4-part version field: SKILL.md carries the skill edition anchored to the changelog, and every other skill doc carries its own edition, raised at commit."
 trigger_phrases:
   - "frontmatter versioning standard"
   - "per doc version contract"

@@ -1,6 +1,6 @@
 ---
 title: Retrieval and Continuity Reference
-description: How spec-folder retrieval and continuity work after the memory MCP surface was retired: the trigger index, the ripgrep lane, the continuity ladder, and what is gone for good
+description: "How spec-folder retrieval and continuity work after the memory MCP surface was retired: the trigger index, the ripgrep lane, the continuity ladder, and what is gone for good"
 trigger_phrases:
   - "retrieval and continuity reference"
   - "trigger index behavior"

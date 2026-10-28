@@ -1,6 +1,6 @@
 ---
 title: Skill README Template
-description: Template for human-facing skill README files in the narrative voice used by the repo root README and the changelogs: purpose-first identity, capability sections, at-a-glance table, value-first overview, quick start, HVR enforcement, versioning and a strict validation checklist.
+description: "Template for human-facing skill README files in the narrative voice used by the repo root README and the changelogs: purpose-first identity, capability sections, at-a-glance table, value-first overview, quick start, HVR enforcement, versioning and a strict validation checklist."
 trigger_phrases:
   - "skill readme template"
   - "narrative skill readme"

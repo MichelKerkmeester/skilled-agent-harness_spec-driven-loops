@@ -1,6 +1,6 @@
 ---
 title: sk-code
-description: The single advisor-routable entry point for code work: one hub that routes each request to the focused quality or review mode it needs, bundles the matching surface evidence and keeps one graph identity for the whole code family.
+description: "The single advisor-routable entry point for code work: one hub that routes each request to the focused quality or review mode it needs, bundles the matching surface evidence and keeps one graph identity for the whole code family."
 trigger_phrases:
   - "code skill"
   - "code mode router"

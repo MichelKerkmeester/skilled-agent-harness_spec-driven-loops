@@ -1,6 +1,6 @@
 ---
 title: mcp-chrome-devtools
-description: Makes a real browser inspectable and drivable by an agent: one-shot inspection through a fast CLI and parallel isolated sessions through Code Mode for chained multi-tool work.
+description: "Makes a real browser inspectable and drivable by an agent: one-shot inspection through a fast CLI and parallel isolated sessions through Code Mode for chained multi-tool work."
 trigger_phrases:
   - "chrome devtools"
   - "browser debugging"

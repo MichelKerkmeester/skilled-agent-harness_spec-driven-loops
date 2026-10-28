@@ -4,7 +4,6 @@ description: "Implement, debug and verify code: TypeScript, Python, shell, JSON;
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 3.9.15.0
 metadata:
-  author: OpenCode
   family: sk-code
 ---
 

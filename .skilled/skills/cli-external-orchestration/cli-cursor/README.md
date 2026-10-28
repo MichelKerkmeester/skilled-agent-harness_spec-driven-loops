@@ -1,6 +1,6 @@
 ---
 title: cli-cursor
-description: Safe cross-AI dispatch into Cursor: sandboxed coding, Composer-model work, read-only plan or ask exploration and second-model opinions, all delivered through the `cursor-agent` CLI without leaving the calling runtime.
+description: "Safe cross-AI dispatch into Cursor: sandboxed coding, Composer-model work, read-only plan or ask exploration and second-model opinions, all delivered through the `cursor-agent` CLI without leaving the calling runtime."
 trigger_phrases:
   - "cursor"
   - "cursor cli"

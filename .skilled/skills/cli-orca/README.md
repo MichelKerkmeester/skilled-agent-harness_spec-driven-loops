@@ -1,6 +1,6 @@
 ---
 title: cli-orca
-description: Package index for the cli-orca skill: routes Orca-managed worktrees, terminals, the embedded browser, automations, artifacts, handoffs and the eight official Orca skills, and defers generic worktree, browser and orchestration vocabulary to its sibling owners.
+description: "Package index for the cli-orca skill: routes Orca-managed worktrees, terminals, the embedded browser, automations, artifacts, handoffs and the eight official Orca skills, and defers generic worktree, browser and orchestration vocabulary to its sibling owners."
 trigger_phrases:
   - "cli-orca readme"
   - "orca cli skill index"

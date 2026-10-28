@@ -1,6 +1,6 @@
 ---
 title: "Complete with Note"
-description: "cupt done <id> --note "<text>" — mark complete and add a comment in one call."
+description: "cupt done <id> --note \"<text>\" — mark complete and add a comment in one call."
 trigger_phrases:
   - "complete with note"
   - "cupt done --note"

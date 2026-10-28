@@ -1,6 +1,6 @@
 ---
 title: mcp-refero
-description: Search real shipped UI as design-reference evidence: visual styles, screen patterns, user flows and the metadata behind them, read-only through Code Mode, pairing with sk-design-md-generator for a measured Style Reference (extracted design tokens).
+description: "Search real shipped UI as design-reference evidence: visual styles, screen patterns, user flows and the metadata behind them, read-only through Code Mode, pairing with sk-design-md-generator for a measured Style Reference (extracted design tokens)."
 trigger_phrases:
   - "refero"
   - "refero mcp"

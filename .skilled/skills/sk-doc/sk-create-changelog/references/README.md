@@ -1,6 +1,6 @@
 ---
 title: create-changelog References
-description: Routing hub for create-changelog overflow: worked examples, version-bump nuance and topology and release edge cases.
+description: "Routing hub for create-changelog overflow: worked examples, version-bump nuance and topology and release edge cases."
 trigger_phrases:
   - "changelog creation examples"
   - "create changelog edge cases"

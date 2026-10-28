@@ -1,6 +1,6 @@
 ---
 title: "Add Comment"
-description: "cupt note <id> "<text>" — append a comment to the task."
+description: "cupt note <id> \"<text>\" — append a comment to the task."
 trigger_phrases:
   - "add comment"
   - "cupt note"

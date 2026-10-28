@@ -1,6 +1,6 @@
 ---
 title: mcp-aside-devtools
-description: Turns browser work into agent work with the Aside AI browser: natural-language tasks that finish goals and a deterministic JavaScript REPL for evidence, with an MCP path for Code Mode composition.
+description: "Turns browser work into agent work with the Aside AI browser: natural-language tasks that finish goals and a deterministic JavaScript REPL for evidence, with an MCP path for Code Mode composition."
 trigger_phrases:
   - "aside browser"
   - "ai browser automation"

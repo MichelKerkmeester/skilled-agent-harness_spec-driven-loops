@@ -1,6 +1,6 @@
 ---
 title: Feature Catalog Creation References
-description: Route-map for the create-feature-catalog reference overflow: a worked live-catalog example and a deep-dive pitfalls companion, with the primary workflow held in SKILL.md.
+description: "Route-map for the create-feature-catalog reference overflow: a worked live-catalog example and a deep-dive pitfalls companion, with the primary workflow held in SKILL.md."
 trigger_phrases:
   - "feature catalog references"
   - "feature catalog reference map"

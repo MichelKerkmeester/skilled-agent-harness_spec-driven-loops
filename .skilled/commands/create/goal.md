@@ -1,5 +1,5 @@
 ---
-description: Author or revise a packet goal.md: top-level, phase-parent, child, retrofit, phase-add, amend. :auto/:confirm.
+description: "Author or revise a packet goal.md: top-level, phase-parent, child, retrofit, phase-add, amend. :auto/:confirm."
 argument-hint: "<packet path> [top-level|phase-parent|child|retrofit|phase-add|amend] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ---

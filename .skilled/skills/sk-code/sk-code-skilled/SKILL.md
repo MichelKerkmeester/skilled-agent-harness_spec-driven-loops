@@ -4,7 +4,6 @@ description: "sk-code SKILLED surface: system-code evidence (TypeScript/Python/s
 allowed-tools: [Read, Bash, Grep, Glob]
 version: 2.1.10.0
 metadata:
-  author: OpenCode
   family: sk-code
   packetKind: surface
 ---

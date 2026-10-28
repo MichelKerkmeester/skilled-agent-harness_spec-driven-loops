@@ -1,6 +1,6 @@
 ---
 title: cli-external-orchestration
-description: One hub that routes cross-AI work to the external CLI that fits it best: OpenCode, Claude Code, Codex, Cursor, Devin, Pi or Hermes, each dispatched as a nested workflow packet under a single advisor identity.
+description: "One hub that routes cross-AI work to the external CLI that fits it best: OpenCode, Claude Code, Codex, Cursor, Devin, Pi or Hermes, each dispatched as a nested workflow packet under a single advisor identity."
 trigger_phrases:
   - "opencode cli"
   - "claude cli"

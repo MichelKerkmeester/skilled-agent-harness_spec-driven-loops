@@ -4,7 +4,6 @@ description: "Read-only GitHub Actions workflow evidence: trigger, filter, permi
 allowed-tools: [Read, Bash, Grep, Glob]
 version: 1.1.7.0
 metadata:
-  author: OpenCode
   family: sk-code
   packetKind: surface
 ---
