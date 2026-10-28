@@ -8,7 +8,7 @@ trigger_phrases:
   - "declare an sk-code surface"
 importance_tier: important
 contextType: general
-version: 2.2.9.0
+version: 2.2.10.0
 ---
 
 # Router Reference - Code Surface Detection
@@ -121,9 +121,9 @@ Each reader applies this contract to the input it has:
 | Reader | Input | A specific surface matches on | SKILLED matches on | Returns |
 | --- | --- | --- | --- | --- |
 | `detectWorkspaceSurface` in `.skilled/plugins/system-skill-advisor.js` | The resolved working directory | A path marker the directory holds or sits inside, or a file marker naming a file in it. Extension and content markers are skipped | The directory lying inside the hub's own `.skilled/` | The first match as the session's `--surface-hint`, or no hint |
-| `detect_surface_evidence` in `sk-code-review/SKILL.md` | Resolved workspace and changed files, plus the request text | Any path, file or content marker | Its path markers only | Every matching label in order, or `UNKNOWN` |
 | `detectSurfaces` in `sk-code-skilled/assets/scripts/router-replay-lib.cjs` | The request text only | Any marker found in the text | Any of its markers found in the text | Every matching label in order, with the first as the lead |
 | `fileLabels` in `sk-code-quality/scripts/quality-gate.cjs` | Each changed file's resolved real path, name and content | A path marker on a path segment, a file marker on the extension or exact name, or a content marker in the text | Its path markers, only when the real path lies inside the hub's own `.skilled/` folder, or inside the folder its plugins link resolves to when that folder is not an ancestor of the hub | Each file's labels in order, or `UNKNOWN`, and their union for the run, or `unknown` |
+| The resolver step in `sk-code-review/SKILL.md` | The reviewed files | It runs no detection of its own and reads each file's `surfaces` from `quality-gate.cjs --explain`, the `fileLabels` row above | The same as `fileLabels` | Each file's labels in order, or `UNKNOWN` |
 
 ---
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "python naming checklist"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Python Code Quality Checklist
@@ -232,13 +232,13 @@ def process(data):
 ### TODO Format
 
 ```markdown
-[ ] TODOs include owner or ticket number
+[ ] TODOs name an owner and say what is left, with no ticket id
 ```
 
 **Correct**:
 ```python
 # TODO(username): Add input validation
-# TODO(TICKET-123): Handle edge case
+# TODO(username): Handle the empty-input edge case
 ```
 
 ### KISS / DRY / SOLID Checks

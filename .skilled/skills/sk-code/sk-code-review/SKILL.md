@@ -2,7 +2,7 @@
 name: sk-code-review
 description: "Stack-agnostic code-review for sk-code: findings-first severity, security/correctness minimums, and surface evidence."
 allowed-tools: [Read, Bash, Grep, Glob, Write]
-version: 1.9.4.0
+version: 1.9.5.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -55,7 +55,9 @@ Review behavior follows a baseline+surface-evidence model:
 
 - Baseline (always): the `sk-code-review` mode (of the sk-code family) findings-first doctrine.
 - Surface standards evidence (when available): `sk-code` detected surface resources.
-- Surface detection: the markers and the order come from the shared detection contract, [`stack-detection.md`](../shared/references/stack-detection.md) section 2. Every declared specific surface comes first, then the SKILLED fallback, then UNKNOWN, and a specific surface that matches beside SKILLED leads while SKILLED stays as second evidence. `detect_surface_evidence` below restates that contract and keeps no rules or markers of its own, so it changes only when the contract does.
+- Rule sources: one resolver, the quality runner's explain entry, names each reviewed file's surfaces, the folder each surface loads from, the checklists that apply and their parsed `## Rule overrides` rows. The runner applies the shared detection contract, [`stack-detection.md`](../shared/references/stack-detection.md) section 2: every declared specific surface comes first, then the SKILLED fallback, then UNKNOWN, and a specific surface that matches beside SKILLED leads while SKILLED stays as second evidence. Review keeps no markers or detection of its own, so it changes only when the contract does. `resolve_rule_sources` below shows the call.
+- Candidate surfaces: a surface the hub's router bundles from request words is a candidate. It applies only to the files the resolver places in it.
+- Floor and default lens: the floor applies to every review and no source changes it. The default lens applies until a repository or surface drops or replaces one of its rules. [`review-core.md`](./references/review-core.md) section 8 names every id, the precedence and the `Rule sources:` report line.
 - Unknown surfaces: review against baseline security/correctness only and disclose uncertainty.
 - Run verdict evidence (when present): a run verdict from `sk-code-quality` is input evidence only, and review keeps its own `P0`/`P1`/`P2` finding ids, so no gate count renumbers or replaces a finding.
 
@@ -106,10 +108,11 @@ assets/removal-plan.md
 
 | Rule Type | Source of Truth | Behavior |
 | --- | --- | --- |
-| Security/correctness minimums | `sk-code-review` mode baseline | Always enforced; never relaxed by surface guidance |
-| Surface style/process conventions | `sk-code` detected surface | Surface guidance overrides baseline generic style/process advice |
-| Verification/build/test commands | `sk-code` detected surface | Surface commands are authoritative for the detected surface |
-| Ambiguous conflicts | Escalation | Ask for clarification; do not guess |
+| Security/correctness minimums and the rest of the floor | `sk-code-review` mode baseline, `review-core.md` section 8 | Always enforced; never relaxed by surface guidance or an override row |
+| Default-lens rules | The highest `## Rule overrides` row for the rule: repository checklist, then specific surface, then SKILLED fallback, then the shipped default | A `none` row drops the rule and a `replace:` row puts its text in place, at the same severity |
+| Surface style/process conventions | `sk-code` resolved surface | Surface guidance overrides baseline generic style/process advice |
+| Verification/build/test commands | `sk-code` resolved surface | Surface commands are authoritative for the resolved surface |
+| Ambiguous conflicts | Escalation | Ask for clarification; do not guess. Two override rows at the same level apply the default and are listed under `Conflicts` |
 
 ### Unknown Fallback Checklist
 
@@ -124,7 +127,9 @@ If intent/stack detection is unclear, request:
 ### Smart Router Pseudocode
 
 ```python
+import json
 import re
+import subprocess
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
@@ -219,46 +224,134 @@ def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_i
         selected.append(ranked[1][0])
     return selected[:max_intents]
 
-# Surface markers and their order come from the declared surfaceDetection blocks
-# that the shared detection contract, ../shared/references/stack-detection.md
-# section 2, defines. declared_surfaces() returns them in the contract's order:
-# specific surfaces first, the one fallback last. Nothing here lists a surface.
+# The quality runner's explain entry is the one resolver for which surfaces, skill
+# folders, checklists and rule overrides apply to a file. Review runs it and keeps no
+# surface markers of its own. HUB_ROOT is the sk-code folder this mode was loaded from.
+HUB_ROOT = SKILL_ROOT.parent
+QUALITY_RUNNER = HUB_ROOT / "sk-code-quality" / "scripts" / "quality-gate.cjs"
+SKILLED_PACKET = "sk-code-skilled"
+# bundled_surfaces holds the router's surface bundle, each with its label and packet.
+# known_rule_ids() reads the lens table of review-core.md section 8, the Id column of
+# the universal standards and the hygiene checker's rule names. redact_private()
+# prints a local-* path segment as its surface label, the envelope's redaction.
 
-def detect_surface_evidence(task, workspace_files=None, changed_files=None, read_text=None) -> list[str]:
-    """Return every matching surface label in the contract's order, or ["UNKNOWN"].
+def resolvable_files(files: list[str], cwd: str) -> tuple[list[str], list[str]]:
+    """Split the reviewed paths into existing regular files and the rest.
 
-    The first label leads and any later one, the fallback included, is second evidence.
-    Paths are repository-relative and already resolved through symlinks, as the
-    contract's symlink guard requires, so the fallback, which is the hub's own code,
-    holds only for a path its path markers place inside the hub. read_text(path)
-    returns a file's text, or "".
+    A path the change deleted has nothing to resolve, and one missing path makes
+    --explain stop the whole call with FILE_NOT_FOUND, exit 3. So deleted paths never
+    reach it: the review lists them on its Not checked line where they matter.
     """
-    text = _task_text(task).lower()
-    paths = [path.replace("\\", "/") for path in (workspace_files or []) + (changed_files or [])]
-    read = read_text or (lambda path: "")
+    present = [f for f in files if (Path(cwd) / f).is_file()]
+    return present, [f for f in files if f not in present]
 
-    def name(path: str) -> str:
-        return path.rsplit("/", 1)[-1]
+def resolve_rule_sources(files: list[str], cwd: str) -> dict | None:
+    """Return the code-quality-explain/v1 document for the reviewed files, or None.
 
-    def on_path(marker: str) -> bool:
-        return any(path.startswith(marker) or "/" + marker in path for path in paths)
+    --explain runs nothing, writes nothing and always exits 2. Only existing regular
+    files reach it, from resolvable_files. Exit 3 is then a usage or root fault: the
+    caller catches ResolverError, reports it on the Not checked line and reviews
+    those files against the baseline only.
+    """
+    files, _deleted = resolvable_files(files, cwd)
+    if not files:
+        return None
+    run = subprocess.run(["node", str(QUALITY_RUNNER), "--explain", *files],
+                         cwd=cwd, capture_output=True, text=True)
+    if run.returncode != 2:
+        raise ResolverError(run.stderr.strip() or f"--explain exited {run.returncode}")
+    return json.loads(run.stdout)
 
-    def matches(surface) -> bool:
-        if surface.role == "fallback":
-            return any(on_path(marker) for marker in surface.path_markers)
-        return (
-            any(on_path(marker) for marker in surface.path_markers)
-            or any(name(path) == marker or (marker.startswith(".") and name(path).endswith(marker))
-                   for marker in surface.file_markers for path in paths)
-            or any(marker.lower() in text or any(marker in read(path) for path in paths)
-                   for marker in surface.content_markers)
-        )
+def inside_hub_checkout(cwd: str) -> bool:
+    """True when the working directory shares the hub's git common dir."""
+    def common_dir(where):
+        out = subprocess.run(["git", "-c", "core.fsmonitor=false", "-C", str(where),
+                              "rev-parse", "--path-format=absolute", "--git-common-dir"],
+                             capture_output=True, text=True)
+        return Path(out.stdout.strip()).resolve() if out.returncode == 0 else None
+    hub = common_dir(HUB_ROOT)
+    return hub is not None and common_dir(cwd) == hub
 
-    labels = [surface.label for surface in declared_surfaces() if matches(surface)]
-    # Generic Node (a package.json or src/ alone) is not owned by any surface.
+def surface_evidence(explained, bundled_surfaces, cwd) -> list[str]:
+    """Labels in the resolver's order. A router-bundled surface is only a candidate."""
+    if explained is None:
+        # No files to resolve: keep the bundle, except that SKILLED stays only inside
+        # the hub's own checkout, because a word like "typescript" says nothing about
+        # whose code this is.
+        return [s.label for s in bundled_surfaces
+                if s.packet != SKILLED_PACKET or inside_hub_checkout(cwd)] or ["UNKNOWN"]
+    labels = []
+    for entry in explained["files"]:
+        placed = list(entry["surfaces"]) + [
+            s.label for s in bundled_surfaces
+            if any(c["file"].startswith(f"hub:{HUB_ROOT.name}/{s.packet}/") for c in entry["checklists"])]
+        for label in placed:
+            if label != "UNKNOWN" and label not in labels:
+                labels.append(label)
     return labels or ["UNKNOWN"]
 
-def route_review_resources(task, workspace_files=None, changed_files=None, read_text=None):
+def checklist_level(checklist) -> int:
+    """2 repository, 3 specific surface, 4 SKILLED fallback, 5 shipped default."""
+    def seat(source):
+        if source == "repo-config":
+            return 2
+        if source == "outside-skill":
+            return 3
+        if source == "hub-surface":
+            return 4 if checklist["file"].startswith(f"hub:{HUB_ROOT.name}/{SKILLED_PACKET}/") else 3
+        return 5
+    return min(seat(source) for source in checklist["sources"])
+
+def applied_overrides(explained, known_ids) -> dict:
+    """The winning row per (file, rule id) and the groups of the Rule sources line.
+
+    known_ids holds the lens ids of review-core.md section 8, the floor.* ids of
+    the universal standards and the checker's hygiene.* ids. The linter already
+    refused every hard-floor row, so a refused checklist contributes nothing.
+    """
+    groups = {"sources": [], "overrides": [], "refused": [], "ignored": [], "conflicts": []}
+    winners = {}
+    if explained is None:
+        return {"winners": winners, "groups": groups}
+    disabled = explained["config"].get("hygiene", {}).get("disabled", [])
+    for entry in explained["files"]:
+        candidates = {}
+        for rule_id in disabled:
+            candidates.setdefault(rule_id, []).append(
+                (2, explained["config"]["path"], {"id": rule_id, "action": "none", "text": None}))
+        for checklist in entry["checklists"]:
+            if checklist["file"] not in groups["sources"]:
+                groups["sources"].append(checklist["file"])
+            overrides = checklist.get("overrides") or {}
+            if overrides.get("refused"):
+                groups["refused"].append(checklist["file"])
+                continue
+            for row in overrides.get("rows", []):
+                if row["id"] not in known_ids:
+                    groups["ignored"].append(f'{row["id"]} from {checklist["file"]}')
+                    continue
+                candidates.setdefault(row["id"], []).append((checklist_level(checklist), checklist["file"], row))
+        for rule_id, rows in candidates.items():
+            top = min(level for level, _, _ in rows)
+            best = [(f, r) for level, f, r in rows if level == top]
+            if len({(r["action"], r["text"]) for _, r in best}) > 1:
+                groups["conflicts"].append(f'{rule_id} {best[0][0]} {best[1][0]}')
+                continue
+            winners[(entry["file"], rule_id)] = best[0][1]
+            groups["overrides"].append(f'{rule_id} {best[0][1]["action"]} from {best[0][0]}')
+    for name, values in groups.items():
+        groups[name] = list(dict.fromkeys(values))
+    return {"winners": winners, "groups": groups}
+
+def rule_sources_line(groups) -> str:
+    """The one Rule sources line of review-core.md section 8, private names redacted."""
+    def join(values):
+        return "; ".join(redact_private(v) for v in values) if values else "none"
+    return (f'Rule sources: {", ".join(redact_private(v) for v in groups["sources"]) or "none"}. '
+            f'Overrides: {join(groups["overrides"])}. Refused: {join(groups["refused"])}. '
+            f'Ignored: {join(groups["ignored"])}. Conflicts: {join(groups["conflicts"])}')
+
+def route_review_resources(task, files=None, bundled_surfaces=(), cwd="."):
     inventory = discover_markdown_resources()
     text = _task_text(task)
     scores = score_intents(task)
@@ -277,12 +370,17 @@ def route_review_resources(task, workspace_files=None, changed_files=None, read_
     for relative_path in DEFAULT_RESOURCES:
         load_if_available(relative_path)
 
+    explained = resolve_rule_sources(files or [], cwd)
+    surface_evidence_labels = surface_evidence(explained, bundled_surfaces, cwd)
+    rule_sources = applied_overrides(explained, known_rule_ids())
+
     if sum(scores.values()) < 0.5:
         return {
             "intents": ["QUALITY"],
             "needs_disambiguation": True,
             "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
-            "surface_evidence": detect_surface_evidence(task, workspace_files, changed_files, read_text),
+            "surface_evidence": surface_evidence_labels,
+            "rule_sources": rule_sources,
             "resources": loaded,
         }
 
@@ -295,10 +393,10 @@ def route_review_resources(task, workspace_files=None, changed_files=None, read_
             for relative_path in paths:
                 load_if_available(relative_path)
 
-    surface_evidence = detect_surface_evidence(task, workspace_files, changed_files, read_text)
-
     precedence = {
         "baseline_minimums": ["security", "correctness"],
+        "fixed": "the floor of review-core.md section 8",
+        "lens_overrides": ["repository", "specific_surface", "skilled_fallback", "default_lens"],
         "surface_overrides": ["style", "build", "test_commands", "surface_process"],
         "on_conflict": "escalate",
     }
@@ -306,7 +404,8 @@ def route_review_resources(task, workspace_files=None, changed_files=None, read_
     return {
         "intents": intents,
         "scores": scores,
-        "surface_evidence": surface_evidence,
+        "surface_evidence": surface_evidence_labels,
+        "rule_sources": rule_sources,
         "precedence": precedence,
         "resources": loaded,
     }
@@ -320,16 +419,26 @@ def route_review_resources(task, workspace_files=None, changed_files=None, read_
 
 1. Inspect the review target (`git diff`, staged diff, file list, or commit range).
 2. Load baseline standards from the `sk-code-review` mode (of the sk-code family).
-3. Load `sk-code` surface standards evidence when a surface is detected.
-4. Read the connected code: the callers of each changed function, the functions each changed function calls, the tests that cover it, and the README or docs that describe it. Anything you could not read goes on the `Not checked:` line.
+3. Resolve the rule sources for the reviewed files in one call, from the reviewed repository's root, where `<hub>` is the sk-code folder this mode was loaded from (`.skilled/skills/sk-code` in the repository that ships it):
+
+   ```bash
+   git diff --name-only --diff-filter=d <range>   # the reviewed paths that still exist
+   node <hub>/sk-code-quality/scripts/quality-gate.cjs --explain <file> [<file>...]
+   ```
+
+   Pass only paths that exist as regular files. One deleted or missing path makes the runner stop the whole call with `FILE_NOT_FOUND`, exit 3, which would drop every surface and override for the files that do exist. For a diff, `--diff-filter=d` leaves the deleted paths out. For a file list, drop any path that is not a regular file. List a deleted path on the `Not checked:` line when its removal matters to the review, such as a deleted test or a removed caller. It prints one `code-quality-explain/v1` JSON document and always exits 2, because it runs nothing. Read each `files[]` entry's `surfaces`, `surface_skills` (the folder each surface loads from), `checklists` (each with its `source`, `sources` and parsed `overrides`) and the document's `config.hygiene.disabled`. Exit 3 on that filtered list is a usage or root fault: name it on the `Not checked:` line and review those files against the baseline only. [`runner-contract.md`](../sk-code-quality/references/runner-contract.md) section 3 owns the fields.
+4. Load `sk-code` surface standards evidence for the surfaces the resolver returned. A surface the hub's router bundled from request words is a candidate, and it applies only to the files the resolver places in it: the file's `surfaces` holds its label, or one of its checklists applies to the file. A candidate that holds no reviewed file is not loaded and not named in `Surface evidence used`.
+5. With no file paths to review, nothing is resolved. The bundle keeps `sk-code-skilled` only when the working directory is inside the hub's own checkout, the same git common dir as the hub folder. Anywhere else it drops `sk-code-skilled`, because a word such as "typescript" says nothing about whose code it is.
+6. Read the connected code: the callers of each changed function, the functions each changed function calls, the tests that cover it, and the README or docs that describe it. Anything you could not read goes on the `Not checked:` line.
 
 ### Phase 2: Surface Alignment
 
-1. Load standards from `sk-code` for the detected surface only.
+1. Load standards from `sk-code` for the resolved surfaces only, each for the files the resolver placed in it.
 2. Apply precedence matrix:
-   - Baseline security/correctness minimums always apply.
+   - Baseline security/correctness minimums and the rest of the floor always apply.
+   - Apply the `## Rule overrides` rows of the checklists the resolver returned, by the precedence and outcomes of [`review-core.md`](./references/review-core.md) section 8: the repository checklist, then a specific surface, then the SKILLED fallback, then the default lens. A checklist whose `overrides.refused` is true contributes no row, and a hygiene rule in `config.hygiene.disabled` counts as a `none` row from the repository config.
    - Surface style/process/verification conventions win on conflicts.
-3. If precedence cannot be resolved deterministically, escalate before scoring.
+3. If precedence cannot be resolved deterministically, escalate before scoring. Two rows at the same level that disagree apply the default, go under `Conflicts` and are named in Next Steps.
 
 ### Phase 3: Findings-First Analysis
 
@@ -369,8 +478,9 @@ Required output contract:
 **Files reviewed**: X files, Y lines changed
 **Overall assessment**: [APPROVED / REQUESTED_CHANGES / COMMENTED]
 **Baseline used**: [sk-code (`sk-code-review`)]
-**Surface evidence used**: [detected surface labels in order, such as `<specific surface>, SKILLED` or `SKILLED` | UNKNOWN]
+**Surface evidence used**: [resolved surface labels in order, such as `<specific surface>, SKILLED` or `SKILLED` | UNKNOWN]
 **Quality gate evidence**: [present | absent]
+Rule sources: [checklist files]. Overrides: [rule id none|replace from checklist file, or none]. Refused: [checklist files, or none]. Ignored: [rule id from checklist file, or none]. Conflicts: [rule id and both checklist files, or none]
 
 ## Findings
 
@@ -395,6 +505,8 @@ Required output contract:
 
 Not checked: [one line naming what mattered but could not be checked, and why, or "nothing material"]
 ```
+
+The `Rule sources:` line is defined in [`review-core.md`](./references/review-core.md) section 8: the checklists the review read, then each override outcome group, with `none` for an empty group and `Rule sources: none` when no file was resolved. It never starts with `Review status:` or `Not checked:`, so the final-line checks read the report as before.
 
 `Quality gate evidence` reads `present` when a `sk-code-quality` run verdict was handed to the review as input, and `absent` otherwise. Either value leaves every baseline check in place. The verdict is input evidence only, so no check is skipped because the gate already ran it, and no gate count renumbers a finding.
 
@@ -433,7 +545,7 @@ Not checked: behavior under concurrent writes to /api/bar; no test database was 
 Review status: REQUESTED_CHANGES
 ```
 
-Downstream automation parses this final line via exact string match — do not vary the format, add trailing punctuation, or wrap in Markdown formatting. The sole exception is the documented M-1 / M-2 skip output (§9): those lines begin with the exact `Review status: COMMENTED` and append a parenthetical reason, so a leading-verdict (grep / `startsWith`) parse still yields `COMMENTED`. A normal review must still end with one of the three exact lines above.
+Downstream automation parses this final line via exact string match. Do not vary the format, add trailing punctuation, or wrap in Markdown formatting. The sole exception is the documented M-1 / M-2 skip output (§9): those lines begin with the exact `Review status: COMMENTED` and append a parenthetical reason, so a leading-verdict (grep / `startsWith`) parse still yields `COMMENTED`. A normal review must still end with one of the three exact lines above.
 
 ---
 
@@ -446,6 +558,8 @@ Downstream automation parses this final line via exact string match — do not v
 - Include file:line evidence for actionable findings.
 - State assumptions when evidence is incomplete.
 - Identify `sk-code` surface evidence used for standards alignment.
+- Read each file's surfaces, checklists and overrides from the quality runner's `--explain` resolver, never from a detection of your own.
+- State the applied overrides on the one `Rule sources:` line, `none` included.
 
 ### ⛔ NEVER
 
@@ -453,12 +567,14 @@ Downstream automation parses this final line via exact string match — do not v
 - Approve code with unaddressed P0 security/correctness defects.
 - Produce vague findings without concrete evidence.
 - Mix unrelated cleanup into targeted fix recommendations.
+- Let an override row drop or reword a floor rule, or apply a row from a checklist the resolver did not return.
 - Do not implement fixes during review. Report findings only; implementation is a separate follow-up step.
 
 ### ⚠️ ESCALATE IF
 
 - Surface detection is ambiguous and affects standards or verification commands.
 - Baseline and surface guidance conflict in a non-deterministic way.
+- Two override rows at the same precedence level disagree on one rule for one file.
 - Large diff size prevents reliable severity assignment without narrowed scope.
 - Requested remediation exceeds review scope and becomes architecture redesign.
 
@@ -479,7 +595,8 @@ A repository, a surface packet or a mode a user adds to the hub may raise these 
 
 ### Core References
 
-- [review-core.md](./references/review-core.md) - Shared review doctrine: severity model, evidence rules, precedence, and finding schema.
+- [review-core.md](./references/review-core.md) - Shared review doctrine: severity model, evidence rules, precedence, finding schema, and the floor, default lens and `Rule sources:` line.
+- [rule-overrides.md](../shared/references/universal/rule-overrides.md) - The shared `## Rule overrides` format, rule ids, hard floor and precedence that review and quality both read.
 - [review-ux-single-pass.md](./references/review-ux-single-pass.md) - Interactive single-pass review flow, presentation modes, and PR/pre-commit behavior.
 - [quick-reference.md](./references/quick-reference.md) - Lightweight index for routing between shared doctrine and single-pass UX guidance.
 - [pr-state-dedup.md](./references/pr-state-dedup.md) - Content-hash deduplication for unchanged pull-request reviews.
@@ -517,7 +634,7 @@ A repository can add its own mode to the sk-code hub, such as a security surface
 
 **What a security surface supplies.** It registers as a surface packet (`packetKind: "surface"`, `backendKind: "evidence-base"`) with its own `surfaceDetection` block, router vocabulary and a tie-break slot ahead of the fallback surface. It supplies read-only evidence: the standards and checklists to load, the markers that place a path inside it, and the verification commands for the code it owns. It never supplies a severity table, a status value or findings of its own.
 
-**What a consuming workflow may rely on.** When a request scores both this mode and the surface, the hub returns a surface bundle with this mode first and the surface after it. The review then names the surface's label in `Surface evidence used`, applies the surface's style, process and verification guidance under the precedence matrix in section 2, and keeps its own `P0`/`P1`/`P2` findings, report shape and final status line. A caller parses the report the same way whichever surface was loaded.
+**What a consuming workflow may rely on.** When a request scores both this mode and the surface, the hub returns a surface bundle with this mode first and the surface after it. That bundled surface is a candidate: it applies to the files the quality runner's resolver places in it. The review then names the surface's label in `Surface evidence used`, applies the surface's style, process and verification guidance under the precedence matrix in section 2, honors the `## Rule overrides` rows of the checklists its `quality` block declares at the specific-surface level, and keeps its own `P0`/`P1`/`P2` findings, report shape and final status line. A caller parses the report the same way whichever surface was loaded.
 
 **What it may not change.** The Extension Floors in section 4 bind every user mode. A surface may add checks beside a floor and may raise one, and it may never lower, skip or reword one.
 
@@ -578,7 +695,7 @@ export SK_CODE_REVIEW_MIN_CHANGED_LINES=50  # >0 enables; default 0 = disabled
 git diff --numstat <base-ref>...HEAD | awk '{added+=$1; removed+=$2} END {print added+removed}'
 ```
 
-**Conservative skip taxonomy — NEVER skip when diff touches:**
+**Conservative skip taxonomy. NEVER skip when diff touches:**
 
 | Risk Class | Path/File Patterns | Rationale |
 |---|---|---|
@@ -596,15 +713,15 @@ Review status: COMMENTED (skipped: diff below evidence threshold of N lines, no 
 ```
 If sensitive paths ARE touched, the full review runs regardless of line count.
 
-**Gate is ALWAYS opt-in.** Without `SK_CODE_REVIEW_MIN_CHANGED_LINES` set, M-2 has zero effect — all diffs receive full reviews.
+**Gate is ALWAYS opt-in.** Without `SK_CODE_REVIEW_MIN_CHANGED_LINES` set, M-2 has zero effect: all diffs receive full reviews.
 
 ### 9.3 SK_CODE_REVIEW_DEPTH (opt-in depth alias)
 
-`SK_CODE_REVIEW_DEPTH=lite|full|ultra` is an optional environment variable the **reviewing agent honors** (resolved env > default) — exactly like the §9.2 `SK_CODE_REVIEW_MIN_CHANGED_LINES` gate. Both are skill guidance the reviewer reads and applies in-loop, not a separate compiled dispatcher; this alias only NAMES and PERSISTS an already-existing routing behavior, adds no new tier, and relaxes no floor:
+`SK_CODE_REVIEW_DEPTH=lite|full|ultra` is an optional environment variable the **reviewing agent honors** (resolved env > default), exactly like the §9.2 `SK_CODE_REVIEW_MIN_CHANGED_LINES` gate. Both are skill guidance the reviewer reads and applies in-loop, not a separate compiled dispatcher; this alias only NAMES and PERSISTS an already-existing routing behavior, adds no new tier, and relaxes no floor:
 
 - `full` (default / unset): the normal ALWAYS + CONDITIONAL + ON_DEMAND routing.
 - `ultra`: bias intent selection toward the existing `ON_DEMAND` reference set (the deep-dive tier) for the session, so a reviewer does not have to repeat "comprehensive / full review" each time.
-- `lite`: maps to the existing M-2 conservative skip (§9.2) — it NEVER lowers the ALWAYS tier, the baseline security/correctness minimums, or the P0/P1/P2 contract. It cannot skip a review on a sensitive path (auth/config/persistence/deps/sandbox/public-response), exactly as M-2 already enforces.
+- `lite`: maps to the existing M-2 conservative skip (§9.2). It NEVER lowers the ALWAYS tier, the baseline security/correctness minimums, or the P0/P1/P2 contract. It cannot skip a review on a sensitive path (auth/config/persistence/deps/sandbox/public-response), exactly as M-2 already enforces.
 
 The depth alias is advisory routing only; it must never be read as permission to relax a floor.
 

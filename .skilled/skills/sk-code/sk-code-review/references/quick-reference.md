@@ -8,7 +8,7 @@ trigger_phrases:
   - "which review checklist to load"
 importance_tier: normal
 contextType: general
-version: 1.5.0.15
+version: 1.5.1.0
 ---
 
 # Code Review Quick Reference
@@ -36,7 +36,7 @@ Use this file as an entry index, not as the primary source of review rules. Load
 
 | Reference | Scope | Consumers |
 |-----------|-------|-----------|
-| [review-core.md](./review-core.md) | Shared doctrine: severity, evidence, findings schema, baseline+surface precedence | `@review`, `@deep-review` |
+| [review-core.md](./review-core.md) | Shared doctrine: severity, evidence, findings schema, baseline+surface precedence, floor and default lens ids, rule overrides and the `Rule sources:` line | `@review`, `@deep-review` |
 | [review-ux-single-pass.md](./review-ux-single-pass.md) | Interactive UX: report flow, next-step prompts, PR/pre-commit guidance | `@review` only |
 
 ---

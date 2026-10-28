@@ -1,0 +1,5 @@
+{
+  "schemaVersion": 1,
+  "checklists": [{"file": ".sk-code/checklists/house.md", "paths": ["src/**"], "why": "house rules"}],
+  "commentHygiene": {"disableRules": ["issue"]}
+}

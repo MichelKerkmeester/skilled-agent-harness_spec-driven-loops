@@ -9,7 +9,7 @@ trigger_phrases:
   - "test pyramid awareness"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.7
+version: 1.5.1.0
 ---
 
 # Test Quality Checklist
@@ -32,16 +32,24 @@ Apply when the diff changes tests; check each item against the test diff and fla
 
 Tests that cannot fail are worse than no tests. They create false confidence and hide real defects.
 
+### Rule Ids
+
+Each section names its rule ids under its heading. A **floor** id is fixed: no repository or surface changes it. A **default lens** id is this mode's default, which a repository or surface may drop or replace with a `## Rule overrides` row. The items that make a test unable to fail are floor wherever they sit. [`review-core.md`](../references/review-core.md) section 8 lists every id and how an override reaches the review.
+
+A test finding follows the reach rule in [`review-core.md`](../references/review-core.md) section 2 like any other: its reach is the changed behavior the test claims to cover. A test defect alone exploits nothing and destroys no data, so it is at most P1.
+
 ---
 
 ## 2. COVERAGE QUALITY
 
+Rule: floor, `review.correctness-minimums`. The happy-path-only item carries `floor.boundary-tests`, the overridable universal rule.
+
 Flag:
-- Test functions that execute code paths without any assertions (assertion-free execution).
-- Test suites covering only happy-path scenarios with no error or edge case validation.
+- Test functions that execute code paths without any assertions (assertion-free execution). This test cannot fail.
+- `floor.boundary-tests`: test suites covering only happy-path scenarios with no error or edge case validation.
 - Changed behavior that lacks a corresponding test update or addition.
 - New public API surface introduced without any test coverage.
-- Snapshot or golden-file tests that auto-pass because the baseline was never updated after behavior changes.
+- Snapshot or golden-file tests that auto-pass because the baseline was never updated after behavior changes. This test cannot fail.
 
 Review prompts:
 - "Does every test function contain at least one meaningful assertion?"
@@ -49,7 +57,7 @@ Review prompts:
 - "Do the tests cover the behavior that actually changed in this diff?"
 
 Severity guidance:
-- P0 for assertion-free test functions (silently passing tests that verify nothing).
+- P1 for an assertion-free test function, a silently passing test that verifies nothing, when it is a test of behavior the change touches. P2 when it covers nothing the change reaches.
 - P1 for changed behavior with no corresponding test update.
 - P2 for missing edge case coverage on low-risk paths.
 
@@ -57,12 +65,14 @@ Severity guidance:
 
 ## 3. TEST STRUCTURE AND CLARITY
 
+Rule: default lens. Each item names its own id, and each is a default a repository may change.
+
 Flag:
-- Test functions missing clear Arrange/Act/Assert separation.
-- Test names that do not describe the scenario or expected outcome.
-- Magic values in test data without comments explaining their significance.
-- Multiple unrelated assertions in a single test function.
-- Test setup that obscures the behavior under test.
+- `review.test-aaa-layout`: by default, test functions missing clear Arrange/Act/Assert separation.
+- `review.test-structure`: test names that do not describe the scenario or expected outcome.
+- `review.test-magic-values`: by default, magic values in test data without comments explaining their significance.
+- `review.test-single-concern`: by default, multiple unrelated assertions in a single test function.
+- `review.test-structure`: test setup that obscures the behavior under test.
 
 Review prompts:
 - "Can a reader determine what this test validates from the name alone?"
@@ -76,6 +86,8 @@ Severity guidance:
 ---
 
 ## 4. TEST INDEPENDENCE AND RELIABILITY
+
+Rule: floor, `review.correctness-minimums`.
 
 Flag:
 - Tests that depend on execution order or results from prior tests.
@@ -97,11 +109,13 @@ Severity guidance:
 
 ## 5. TEST SMELL DETECTION
 
+Rule: default lens, `review.test-smells`, except the over-mocking and swallowed-assertion items, which make a test unable to fail and are floor, `review.correctness-minimums`.
+
 Flag:
 - Tests tightly coupled to implementation details (breaking on safe refactors).
-- Over-mocking that replaces the system under test with stubs, testing mock behavior instead of real behavior.
+- Floor: over-mocking that replaces the system under test with stubs, testing mock behavior instead of real behavior. This test cannot fail.
 - Conditional logic (if/else, try/catch) inside test functions that creates untested branches.
-- Catch blocks inside tests that swallow assertion failures and convert them to passing results.
+- Floor: catch blocks inside tests that swallow assertion failures and convert them to passing results. This test cannot fail.
 - Copy-paste duplication across test functions without shared helpers or parameterized tests.
 
 Review prompts:
@@ -110,13 +124,15 @@ Review prompts:
 - "Does any catch block inside a test risk swallowing an assertion error?"
 
 Severity guidance:
-- P0 for catch blocks that swallow assertion failures (tests that cannot fail).
-- P1 for over-mocking that makes the test unable to detect real defects.
-- P2 for implementation coupling or copy-paste duplication.
+- P1 for catch blocks that swallow assertion failures (tests that cannot fail) in a test of behavior the change touches. P2 when that test covers nothing the change reaches.
+- P1 for over-mocking that replaces the system under test, so the test cannot detect a real defect, in a test of behavior the change touches. P2 when that test covers nothing the change reaches.
+- P2 for implementation coupling, conditional logic or copy-paste duplication.
 
 ---
 
 ## 6. TEST PYRAMID AWARENESS
+
+Rule: default lens, `review.test-pyramid`. The levels below are a default a repository may change.
 
 Flag:
 - Unit tests that require database, network, or filesystem access (should be integration tests).

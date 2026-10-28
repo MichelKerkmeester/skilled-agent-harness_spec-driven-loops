@@ -1,0 +1,51 @@
+{
+  "fixture": "opposite-rule",
+  "exit": 2,
+  "hygiene_disabled": [],
+  "files": [
+    {
+      "file": "src/report.ts",
+      "surfaces": [
+        "UNKNOWN"
+      ],
+      "surface_skills": [],
+      "checklists": [
+        {
+          "file": "hub:sk-code/shared/references/universal/code-quality-standards.md",
+          "source": "default",
+          "sources": [
+            "default"
+          ],
+          "overrides": {
+            "found": false,
+            "refused": false,
+            "rows": [],
+            "errors": []
+          }
+        },
+        {
+          "file": ".sk-code/checklists/house.md",
+          "source": "repo-config",
+          "sources": [
+            "repo-config"
+          ],
+          "overrides": {
+            "found": true,
+            "refused": false,
+            "rows": [
+              {
+                "line": 9,
+                "id": "floor.documentation",
+                "action": "replace",
+                "text": "Every function, public or private, carries a doc comment that states what it returns and when it throws",
+                "reason": "The team documents every function"
+              }
+            ],
+            "errors": []
+          }
+        }
+      ]
+    }
+  ],
+  "rule_sources": "Rule sources: hub:sk-code/shared/references/universal/code-quality-standards.md, .sk-code/checklists/house.md. Overrides: floor.documentation replace from .sk-code/checklists/house.md. Refused: none. Ignored: none. Conflicts: none"
+}

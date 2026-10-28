@@ -10,7 +10,7 @@ trigger_phrases:
   - "baseline check families"
 importance_tier: important
 contextType: implementation
-version: 1.5.4.0
+version: 1.5.5.0
 ---
 
 # Review Core Doctrine
@@ -24,6 +24,8 @@ Shared doctrine consumed by both `@review` and `@deep-review`.
 ## 1. OVERVIEW
 
 Shared findings-first review doctrine for both single-pass and deep-review workflows.
+
+Every rule in sections 2 to 7 is review floor, the part no repository or surface can change. Section 8 names the floor ids, the default lens that a repository may drop or replace, and how the review reads and reports those overrides.
 
 ---
 
@@ -74,13 +76,14 @@ Numeric scores are advisory context, not the gate. A reviewer may add an optiona
 
 Apply this skill as the baseline first, then pair it with `sk-code` surface evidence when available:
 
-- Detected code surfaces -> every declared surface that matches, specific surfaces first and the `SKILLED` fallback last. Each one pairs with its `sk-code` evidence packet, such as `sk-code-skilled` for `SKILLED`. No match -> `UNKNOWN`. Detection follows the shared contract, [`stack-detection.md`](../../shared/references/stack-detection.md) section 2.
+- Detected code surfaces -> the surfaces the quality runner's resolver places each reviewed file in, specific surfaces first and the `SKILLED` fallback last. Each one pairs with its `sk-code` evidence packet, such as `sk-code-skilled` for `SKILLED`. No match -> `UNKNOWN`. The resolver applies the shared detection contract, [`stack-detection.md`](../../shared/references/stack-detection.md) section 2, so the review keeps no detection of its own. Section 8 describes what it returns.
 - Unclear surfaces -> baseline-only plus explicit uncertainty
 
 Precedence rules:
 
 - Baseline security and correctness minimums are always enforced.
 - Surface style, process, build, and test conventions override generic baseline guidance.
+- A repository or surface changes one default-lens rule only through a `## Rule overrides` row, by the precedence in section 8.
 - Unclear conflicts must be escalated rather than guessed.
 
 ---
@@ -132,11 +135,120 @@ Suggested shape:
 
 ---
 
-## 8. RELATED RESOURCES
+## 8. FLOOR, DEFAULT LENS AND RULE OVERRIDES
+
+Review applies two kinds of rule. The floor applies in every repository, and no source changes it. The default lens is this mode's own view of maintainable code. It applies as written until a repository or a surface drops or replaces one of its rules through the shared [rule overrides contract](../../shared/references/universal/rule-overrides.md), which this section adopts for review.
+
+### The Floor
+
+Sections 2 to 7 of this file are floor. The checklist sections the table names are floor too, and each one cites its id beside its heading.
+
+| Id | What it fixes | Where |
+| --- | --- | --- |
+| `review.severity` | The ids `P0`, `P1` and `P2` and what each one means | Section 2 |
+| `review.reach` | A `P0` or `P1` finding names an input or caller in reach | Section 2, Reach Calibration |
+| `review.security-minimums` | Auth and authorization gaps, injection exposure, unsafe secrets handling, privilege misuse and reliability risks with security impact | Sections 5 and 6. Security checklist sections 2 to 6 |
+| `review.correctness-minimums` | Regression risk, contract safety, spec mismatch, destructive side effects and boundary handling | Sections 5 and 6. Code quality checklist sections 2, 4 and 5. Security checklist sections 5 and 6. Test quality checklist sections 2 and 4, and the items that make a test unable to fail |
+
+A checklist item that enforces a rule of the universal standards, [`code-quality-standards.md`](../../shared/references/universal/code-quality-standards.md), carries that rule's `floor.*` id, never a `review.*` id. A `FIXED` id, such as `floor.silent-failures`, is floor here as it is in quality. An overridable one, such as `floor.error-messages`, applies as the standards ship it until a row changes it, for review exactly as for quality.
+
+An item in a lens section that is also an auth or authorization gap, injection exposure, unsafe secrets handling or privilege misuse is reported under `review.security-minimums`, so no row that drops the lens rule drops that finding.
+
+The fix completeness checklist and the removal plan are process guides for turning a finding into a fix. They carry no review rule, so no row reaches them.
+
+### The Default Lens
+
+Each lens rule is a default that a repository may change. Its checklist item is worded as the default and names its id.
+
+| Id | Default rule | Checklist and section | Default severity |
+| --- | --- | --- | --- |
+| `review.performance` | No N+1 queries, unbatched per-item calls, uncached hot-loop work, blocking work on a request path or unbounded growth | Code quality, section 3 | P2. P1 when a named workload in reach fails |
+| `review.maintainability` | No repeated logic that behaves differently, hidden coupling through shared mutable state, or side effects the name does not imply | Code quality, section 6 | P2 |
+| `review.magic-literals` | A domain value is a named constant, not a bare literal | Code quality, section 6 | P2 |
+| `review.function-length` | A function stays at 20 lines or fewer unless its structure justifies more | Code quality, section 6 | P2 |
+| `review.nesting-depth` | Control flow nests fewer than 4 levels deep | Code quality, section 6 | P2 |
+| `review.law-of-demeter` | A call chain crosses at most two object boundaries | Code quality, section 6 | P2 |
+| `review.todo-tracking` | A TODO, FIXME or HACK on a production path says what is left and follows the repository's tracking convention | Code quality, section 6 | P2 |
+| `review.hardcoded-config` | Environment-specific values, such as URLs, ports and timeouts, are externalized | Code quality, section 6 | P2 |
+| `review.prefer-native` | No hand-rolled code or dependency where the language, runtime or platform already provides the behavior | Code quality, section 6 | P2 |
+| `review.kiss` | No abstraction, option or code path without a current requirement | Code quality, section 7 | P2. P1 when it adds attack surface, contract obligations or regression risk |
+| `review.dry` | No duplicated rules, copy-paste branches or repeated validation that should share one source | Code quality, section 7 | P2. P1 when the duplication carries behavior risk |
+| `review.rule-of-three` | Consolidate on the third instance of a shared concept, not the second | Code quality, section 7 | P2 |
+| `review.ceiling-marker` | A concrete `ceiling:` comment marks an intentional simplification and downgrades a KISS or YAGNI finding on it | Code quality, section 7 | Lowers a P2 only |
+| `review.solid` | The SOLID prompts and architecture smells | SOLID checklist, sections 2 to 4 | P2 |
+| `review.test-structure` | A test name states the scenario, and setup does not hide the behavior under test | Test quality, section 3 | P2 |
+| `review.test-aaa-layout` | A test separates Arrange, Act and Assert | Test quality, section 3 | P2 |
+| `review.test-magic-values` | A magic value in test data carries a comment that says why it matters | Test quality, section 3 | P2 |
+| `review.test-single-concern` | A test function holds one concern rather than several unrelated assertions | Test quality, section 3 | P2. P1 when an early failure masks a later one |
+| `review.test-smells` | Tests are not coupled to implementation detail, branched or copy-pasted | Test quality, section 5 | P2 |
+| `review.test-pyramid` | Each test sits at the level that fits what it checks | Test quality, section 6 | P2. P1 when the wrong level leaves a confidence gap |
+| `review.rate-limiting` | Code that serves HTTP limits authentication and expensive endpoints | Security, section 7 | P2. P1 when the abuse path is in reach |
+| `review.security-headers` | Code that serves HTTP sets CSP, the standard security headers, a narrow CORS policy and `SameSite` on sensitive cookies | Security, section 8 | P2 |
+| `review.supply-chain` | Dependencies are pinned, audited and from maintained sources, and the lock file is committed | Security, section 9 | P2. P1 for a known vulnerability in reach |
+| `review.audit-logging` | Security-sensitive actions leave an audit trail with enough context | Security, section 10 | P2 |
+| `review.data-privacy` | Personal data is collected, stored and moved only as far as its purpose needs | Security, section 11 | P2 |
+
+Every severity above still follows the reach rule in section 2, and a `replace:` row keeps the severity of the rule it replaces.
+
+### Where the Rules for a File Come From
+
+The review reads the rules for each reviewed file from one resolver, the quality runner's explain entry ([`runner-contract.md`](../../sk-code-quality/references/runner-contract.md) section 3). [`SKILL.md`](../SKILL.md) section 3 holds the command. For each file the output names its surfaces, the folder each surface loads from, every checklist that applies with the seat that declared it, and each checklist's `## Rule overrides` section already read through the contract's linter. Its `config.hygiene.disabled` lists the comment-hygiene rules the repository switched off.
+
+A surface the hub's router bundles from request words alone is a candidate. It applies only to the files the resolver places in it: the file's `surfaces` holds its label, or a checklist it declares applies to the file. With no file to review there is nothing to resolve, and [`SKILL.md`](../SKILL.md) section 3 says which evidence stays.
+
+### Precedence
+
+The level of a checklist comes from its seat in the resolver's output. A checklist that several seats list takes the highest of them.
+
+| Seat in the resolver's `sources` | Level |
+| --- | --- |
+| None. The floor above | 1. The hard floor, which no source changes |
+| `repo-config` | 2. The repository checklist |
+| `hub-surface` outside the SKILLED packet, or `outside-skill` | 3. A specific surface |
+| `hub-surface` inside the SKILLED packet, `sk-code-skilled` | 4. The SKILLED fallback |
+| `default`, or no row at all | 5. The default lens, the rule as this mode ships it |
+
+For each rule and each file, the highest level that speaks to it wins. Two checklists at the same level that disagree on one rule for one file are a conflict: the review applies the default, lists the rule under `Conflicts` and names the conflict in its Next Steps for the repository to settle. Two rows that give the same action and the same text agree.
+
+### Outcomes
+
+| The resolver shows | The review | `Rule sources` group |
+| --- | --- | --- |
+| A checklist with `overrides.refused` true, such as a row that names a floor id | Applies none of that checklist's rows | `Refused: <checklist file>` |
+| A valid row, the highest source for its rule | `none` drops the rule for the files the checklist covers. `replace: <text>` applies the text in its place | `Overrides: <rule id> <none\|replace> from <checklist file>` |
+| A row whose id names no rule review applies: not a lens id above, not a `floor.*` id of the universal standards and not a `hygiene.*` id of the comment-hygiene checker | Ignores the row | `Ignored: <rule id> from <checklist file>` |
+| Two checklists at the same level that disagree | Applies the default | `Conflicts: <rule id> <checklist file> <checklist file>` |
+| A hygiene rule in `config.hygiene.disabled` | Treats it as a `none` row from the repository config | `Overrides: hygiene.<name> none from <config path>` |
+
+### Hygiene Ids and the TODO Rule
+
+Quality's comment-hygiene checker flags artifact labels in comments, each under a `hygiene.*` id ([`runner-contract.md`](../../sk-code-quality/references/runner-contract.md) section 5). Six of them are tracker ids: `hygiene.issue`, `hygiene.task`, `hygiene.adr`, `hygiene.req`, `hygiene.rc` and `hygiene.chk`. Review maps its own judgments onto the same ids, so a rule a repository switches off in quality never comes back as a review finding.
+
+- When the repository switches a hygiene rule off, through `commentHygiene.disableRules` or a `none` row for its id, the review raises no finding for a label of that kind in a comment, at any severity. That covers `floor.ephemeral-pointers`, the judgment half of the same rules.
+- While a tracker-id rule is on, the review never asks a TODO to carry an id of that kind, because quality would block the comment that carries it. `review.todo-tracking` then asks only that the TODO says what is left and why.
+- A repository that wants a tracker reference on every TODO says so with a `replace:` row on `review.todo-tracking`, and switches off the hygiene rule for that id kind. A replacement that asks for an id a hygiene rule still flags is a conflict between two rules: the review applies the default and lists `review.todo-tracking` under `Conflicts`.
+
+### The Rule Sources Line
+
+Every full review states the rules it applied in one `Rule sources:` line in its summary, directly under `Quality gate evidence`. It is the contract's format, section 7:
+
+```text
+Rule sources: <checklist file>, <checklist file>. Overrides: <rule id> <none|replace> from <checklist file>. Refused: <checklist file>. Ignored: <rule id> from <checklist file>. Conflicts: <rule id> <checklist file> <checklist file>
+```
+
+- List each checklist by its `file` value in the resolver's output, in the order the files first reach it, and separate entries within one group with `; `.
+- Write `none` for an empty group, and `Rule sources: none` when no file was resolved.
+- A path segment that starts with `local-` prints as `<LABEL>`, the label its private surface declares, or `<PRIVATE>`, the redaction the quality envelope applies, because a report may be pasted into a tracked file.
+- The line is plain text and never starts with `Review status:`, `Not checked:` or `Overall assessment`, so the two report checkers read the report as before. The M-1 and M-2 skip outputs carry no `Rule sources:` line.
+
+---
+
+## 9. RELATED RESOURCES
 
 - [review-ux-single-pass.md](./review-ux-single-pass.md) - Interactive single-pass report flow and next-step prompts.
 - [quick-reference.md](./quick-reference.md) - Lightweight index across baseline review references.
 - [security-checklist.md](../assets/security-checklist.md) - Security and reliability checks.
 - [code-quality-checklist.md](../assets/code-quality-checklist.md) - Correctness, KISS, DRY, and maintainability checks.
+- [rule-overrides.md](../../shared/references/universal/rule-overrides.md) - The shared override format, ids, hard floor and precedence.
 
 ---

@@ -8,7 +8,7 @@ trigger_phrases:
   - "snake case function naming"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.18
+version: 1.0.1.0
 ---
 
 # Python Quality Standards
@@ -221,12 +221,12 @@ def process(data):
 
 ### TODO Format
 
-TODOs must include context (ticket number or owner):
+TODOs must name an owner and say what is left. A ticket id stays out of the comment:
 
 ```python
 # Required format
 # TODO(username): Description of what needs to be done
-# TODO(TICKET-123): Implement caching for performance
+# TODO(username): Cache the lookup once the hot path is measured
 
 # WRONG - no context
 # TODO: fix this later
@@ -438,10 +438,9 @@ Use `sk-code`'s code-review mode for formal findings-first review output and sev
 
 For review runs:
 
-1. Use `sk-code/sk-code-review/references/quick-reference.md` for severity model and output contract.
-2. Use `sk-code/sk-code-review/assets/code-quality-checklist.md`, `security-checklist.md`, and `test-quality-checklist.md` for baseline risk checks.
-3. Cite this Python standards file as the overlay source for language-specific findings.
-
+1. The review reads which rules apply to a Python file from the quality runner's `--explain` resolver: its surfaces, the checklists that apply and their `## Rule overrides` rows. It keeps its severity model, output contract and baseline checklists in its own mode.
+2. The one default-lens rule the SKILLED surface changes is the TODO format, `review.todo-tracking`. Its row lives in the `## 7. RULE OVERRIDES` section of [`universal-checklist.md`](../../assets/checklists/universal-checklist.md), the checklist every SKILLED file reaches, so the Python checklist, [`python-checklist.md`](../../assets/checklists/python-checklist.md), repeats the format without a second row.
+3. Cite this Python standards file as the overlay source for Python-specific findings.
 ---
 
 ## 9. RELATED RESOURCES

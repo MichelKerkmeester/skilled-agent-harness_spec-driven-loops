@@ -1,0 +1,67 @@
+{
+  "fixture": "no-comments",
+  "exit": 2,
+  "hygiene_disabled": [
+    "hygiene.issue"
+  ],
+  "files": [
+    {
+      "file": "src/report.ts",
+      "surfaces": [
+        "UNKNOWN"
+      ],
+      "surface_skills": [],
+      "checklists": [
+        {
+          "file": "hub:sk-code/shared/references/universal/code-quality-standards.md",
+          "source": "default",
+          "sources": [
+            "default"
+          ],
+          "overrides": {
+            "found": false,
+            "refused": false,
+            "rows": [],
+            "errors": []
+          }
+        },
+        {
+          "file": ".sk-code/checklists/house.md",
+          "source": "repo-config",
+          "sources": [
+            "repo-config"
+          ],
+          "overrides": {
+            "found": true,
+            "refused": false,
+            "rows": [
+              {
+                "line": 9,
+                "id": "floor.documentation",
+                "action": "none",
+                "text": null,
+                "reason": "Public functions carry no doc comments here"
+              },
+              {
+                "line": 10,
+                "id": "review.test-magic-values",
+                "action": "none",
+                "text": null,
+                "reason": "Test data carries no comments"
+              },
+              {
+                "line": 11,
+                "id": "review.function-length",
+                "action": "replace",
+                "text": "A function stays under 60 lines",
+                "reason": "The team's own limit"
+              }
+            ],
+            "errors": []
+          }
+        }
+      ]
+    }
+  ],
+  "rule_sources": "Rule sources: hub:sk-code/shared/references/universal/code-quality-standards.md, .sk-code/checklists/house.md. Overrides: hygiene.issue none from .sk-code/quality.json; floor.documentation none from .sk-code/checklists/house.md; review.test-magic-values none from .sk-code/checklists/house.md; review.function-length replace from .sk-code/checklists/house.md. Refused: none. Ignored: none. Conflicts: none"
+}

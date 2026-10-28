@@ -128,7 +128,7 @@ When the twelve phases in the map ship, the quality, review and CI modes ship wo
 | 2 | 002-quality-hygiene-policy/ | `commentHygiene.disableRules` and `--disable-rule`, the verdict field and the doctor `init` suggestion | 001 | Complete |
 | 3 | 003-quality-floor-and-style-split/ | Floor rule ids with fixed or overridable marks, SKILLED style moved into `sk-code-skilled`, `ceiling:` opt-in, the three JavaScript and CSS default rows retired | 001 | Complete |
 | 4 | 004-quality-resolver/ | `quality-gate.cjs --explain` over several files, plus each surface's owning skill folder | 001 | Complete |
-| 5 | 005-review-floor-lens-overrides | Floor split from the default lens with ids, the wrong P0 hints fixed, review reads `--explain` and honors `## Rule overrides` | 001, 004 | Planned |
+| 5 | 005-review-floor-lens-overrides/ | Floor split from the default lens with ids, the wrong P0 hints fixed, review reads `--explain` and honors `## Rule overrides` | 001, 004 | Complete |
 | 6 | 006-review-agent-and-dispatch | `@review` verdict follows severity, one verdict vocabulary, the `CODE-REVIEW` marker added by the dispatchers | 005 | Planned |
 | 7 | 007-ci-repo-profile | The CI profile loader, report, scaffold and toggle reading `.sk-code/ci.json`, with this repository's profile committed | None (starts after the in-flight sk-code-ci lint lane lands) | Planned |
 | 8 | 008-ci-drift-flags/ | The five YAML drift fixes | None (starts after the in-flight sk-code-ci lint lane lands) | Complete |

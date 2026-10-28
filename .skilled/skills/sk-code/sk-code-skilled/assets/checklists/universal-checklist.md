@@ -8,7 +8,7 @@ trigger_phrases:
   - "numbered all caps sections"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # SKILLED House Code Quality Checklist
@@ -178,7 +178,7 @@ max_retries = 5
 ### TODO Format
 
 ```markdown
-[ ] All TODOs include context (owner or ticket number)
+[ ] All TODOs name an owner and say what is left, with no ticket id
 ```
 
 **Bad**:
@@ -189,7 +189,7 @@ max_retries = 5
 **Good**:
 ```javascript
 // TODO(username): Add input validation
-// TODO(TICKET-123): Handle edge case for empty arrays
+// TODO(username): Handle the empty-array edge case
 ```
 
 ### Error Messages
@@ -349,7 +349,17 @@ For formal findings-first review output, use `sk-code`'s code-review mode as the
 
 ---
 
-## 7. RELATED RESOURCES
+## 7. RULE OVERRIDES
+
+The SKILLED surface changes one rule of the review default lens. The rows below follow the shared [rule overrides contract](../../../shared/references/universal/rule-overrides.md), and the review reads them at the SKILLED fallback level for every file this checklist covers, the hub's own `.skilled/**` files. A repository checklist or a specific surface outranks them.
+
+| Rule | Action | Reason |
+| --- | --- | --- |
+| `review.todo-tracking` | replace: A TODO, FIXME or HACK names its owner, as `TODO(owner)`, and says what is left to do | The SKILLED owner-first TODO format. A ticket id stays out of comments here under `floor.ephemeral-pointers` |
+
+---
+
+## 8. RELATED RESOURCES
 
 ### Language-Specific Checklists
 - [javascript-checklist.md](./javascript-checklist.md)

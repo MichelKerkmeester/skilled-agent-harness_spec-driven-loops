@@ -8,7 +8,7 @@ trigger_phrases:
   - "shell variable quoting check"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.20
+version: 1.0.1.0
 ---
 
 # Shell Code Quality Checklist
@@ -211,7 +211,7 @@ echo "Error: file not found"  # Goes to stdout
 ### TODO Format
 
 ```markdown
-[ ] TODOs include owner or ticket number
+[ ] TODOs name an owner and say what is left, with no ticket id
 ```
 
 ### KISS / DRY / SOLID Checks

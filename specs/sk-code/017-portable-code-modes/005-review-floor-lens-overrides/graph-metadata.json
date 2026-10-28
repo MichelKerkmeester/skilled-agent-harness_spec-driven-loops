@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/017-portable-code-modes/005-review-floor-lens-overrides",
+  "spec_folder": "sk-code/017-portable-code-modes/005-review-floor-lens-overrides",
+  "parent_id": "sk-code/017-portable-code-modes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review floor lens overrides",
+      "review floor default lens and rule overrides",
+      "review rule sources line",
+      "review reads quality explain",
+      "review floor lens overrides plan",
+      "review floor lens overrides tasks",
+      "review floor lens overrides acceptance criteria",
+      "review floor lens overrides implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "floor",
+      "lens",
+      "overrides",
+      "default",
+      "rule",
+      "sources",
+      "line",
+      "reads",
+      "quality",
+      "explain",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
+      ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md",
+      ".skilled/skills/sk-code/sk-code-review/assets/test-quality-checklist.md",
+      ".skilled/skills/sk-code/sk-code-review/assets/security-checklist.md",
+      ".skilled/skills/sk-code/sk-code-review/assets/solid-checklist.md",
+      ".skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md",
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-review/references/quick-reference.md",
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+      ".skilled/skills/sk-code/sk-code-review/scripts/tests/check-rule-copies.test.sh",
+      ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/rule-sources-valid.md",
+      ".skilled/skills/sk-code/sk-code-review/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.5.0.md",
+      ".skilled/skills/sk-code/shared/scripts/tests/review-lens-overrides.test.cjs",
+      ".skilled/skills/sk-code/shared/references/stack-detection.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-core.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-quality-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "test-quality-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/assets/test-quality-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "security-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/assets/security-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "solid-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/assets/solid-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "fix-completeness-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/references/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-rule-copies.js",
+        "kind": "code",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+        "source": "derived"
+      },
+      {
+        "name": "check-rule-copies.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/tests/check-rule-copies.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "rule-sources-valid.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/rule-sources-valid.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.9.5.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.5.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-lens-overrides.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/shared/scripts/tests/review-lens-overrides.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "stack-detection.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/stack-detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior Measured",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The review checklists apply this repository's house rules, such as 20-line functions, the Law of Demeter, the Rule of Three, AAA test layout and a ticket on every TODO, to every codebase, and no repository can switch one off",
+    "created_at": "2026-10-27T23:41:53Z",
+    "last_save_at": "2026-10-28T00:16:23.017Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:60768b53f1bb9ceef4ce271745eb88c7c85befbc505e3dc3a433e71782201d45",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "04dde1c9e512473760e2247365be46bec627abfda72be3f60171ff26dd66bfab",
+      "plan.md": "135a692a8bbba5d59ab2893f792faa70f5a00634072f4a96541c86543b784b8f",
+      "tasks.md": "24653c2909d3e4934fab9c2646dd6504cbb212dfc17daa0702b92909a45cde6b",
+      "implementation-summary.md": "f19696d9b39a5b9035aae9804e1d6478db9a26529a237e27100df6fbf91ed02e"
+    },
+    "last_active_at": null
+  }
+}

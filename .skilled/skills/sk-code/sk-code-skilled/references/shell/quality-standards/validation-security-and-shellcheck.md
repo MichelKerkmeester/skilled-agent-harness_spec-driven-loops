@@ -8,7 +8,7 @@ trigger_phrases:
   - "shellcheck integration"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.15
+version: 1.0.1.0
 ---
 
 # Validation, Errors, Output, Security, Review & ShellCheck
@@ -244,10 +244,9 @@ Use `sk-code`'s code-review mode for formal findings-first review output and sev
 
 For review runs:
 
-1. Use `sk-code/sk-code-review/references/quick-reference.md` for severity model and output contract.
-2. Use `sk-code/sk-code-review/assets/code-quality-checklist.md`, `security-checklist.md`, and `test-quality-checklist.md` for baseline risk checks.
+1. The review reads which rules apply to a shell file from the quality runner's `--explain` resolver: its surfaces, the checklists that apply and their `## Rule overrides` rows. It keeps its severity model, output contract and baseline checklists in its own mode.
+2. The one default-lens rule the SKILLED surface changes is the TODO format, `review.todo-tracking`. Its row lives in the `## 7. RULE OVERRIDES` section of [`universal-checklist.md`](../../../assets/checklists/universal-checklist.md), the checklist every SKILLED file reaches, so the shell checklist, [`shell-checklist.md`](../../../assets/checklists/shell-checklist.md), repeats the format without a second row.
 3. Cite this shell standards file as the overlay source for shell-specific findings.
-
 ---
 
 ## 7. SHELLCHECK INTEGRATION

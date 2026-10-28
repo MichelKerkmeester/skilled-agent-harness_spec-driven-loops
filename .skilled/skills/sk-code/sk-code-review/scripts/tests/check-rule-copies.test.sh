@@ -30,6 +30,7 @@ TARGETS=(
   ".skilled/skills/sk-code/sk-code-review/changelog/v1.3.0.0.md"
   ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md"
   ".skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md"
+  ".skilled/skills/sk-code/sk-code-review/references/review-core.md"
   ".skilled/skills/sk-code/shared/references/workflow-verify.md"
   "AGENTS.md"
   ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md"
@@ -301,6 +302,34 @@ node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, fs.r
   "$CASE_EXAMPLE_MISSING_NOT_CHECKED/.skilled/skills/sk-code/sk-code-review/SKILL.md"
 run_case 1 "canary_example_missing_not_checked" node "$CHECKER" --root "$CASE_EXAMPLE_MISSING_NOT_CHECKED"
 expect_output 'no "Not checked:" line above the status line' "canary_example_missing_not_checked_output" node "$CHECKER" --root "$CASE_EXAMPLE_MISSING_NOT_CHECKED"
+
+# FAIL: the Rule sources line format in review-core.md is reworded, and a review floor id is dropped from its table.
+CASE_RULE_SOURCES="$TMP_DIR/rule_sources_format"
+seed_tree "$CASE_RULE_SOURCES"
+node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, fs.readFileSync(f,"utf8").replace("Refused: <checklist file>. Ignored:","Ignored:"));' \
+  "$CASE_RULE_SOURCES/.skilled/skills/sk-code/sk-code-review/references/review-core.md"
+run_case 1 "rule_sources_format_reworded" node "$CHECKER" --root "$CASE_RULE_SOURCES"
+expect_output 'review-core.md: missing exact invariant string: "Rule sources: <checklist file>' "rule_sources_format_reworded_output" node "$CHECKER" --root "$CASE_RULE_SOURCES"
+
+CASE_REVIEW_FLOOR_ID="$TMP_DIR/review_floor_id"
+seed_tree "$CASE_REVIEW_FLOOR_ID"
+node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, fs.readFileSync(f,"utf8").replace("| `review.reach` |","| `review.function-length` |"));' \
+  "$CASE_REVIEW_FLOOR_ID/.skilled/skills/sk-code/sk-code-review/references/review-core.md"
+run_case 1 "review_floor_id_dropped" node "$CHECKER" --root "$CASE_REVIEW_FLOOR_ID"
+expect_output 'missing exact invariant string: "| `review.reach` |"' "review_floor_id_dropped_output" node "$CHECKER" --root "$CASE_REVIEW_FLOOR_ID"
+
+# PASS: a report that carries the Rule sources line still passes both report checkers.
+run_case 0 "shape_final_line_rule_sources" node "$FINAL_LINE_CHECKER" "$SHAPE_DIR/rule-sources-valid.md"
+run_case 0 "shape_findings_rule_sources" node "$FINDINGS_CHECKER" "$SHAPE_DIR/rule-sources-valid.md"
+expect_output 'OK: findings are numbered once and each carries a Case line' "shape_findings_rule_sources_output" node "$FINDINGS_CHECKER" "$SHAPE_DIR/rule-sources-valid.md"
+
+# FAIL: the resolver step stops filtering deleted paths, so one missing path would stop the whole explain call.
+CASE_DELETED_FILTER="$TMP_DIR/deleted_path_filter"
+seed_tree "$CASE_DELETED_FILTER"
+node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, fs.readFileSync(f,"utf8").replace("--diff-filter=d <range>","<range>"));' \
+  "$CASE_DELETED_FILTER/.skilled/skills/sk-code/sk-code-review/SKILL.md"
+run_case 1 "resolver_deleted_path_filter_dropped" node "$CHECKER" --root "$CASE_DELETED_FILTER"
+expect_output 'missing exact invariant string: "git diff --name-only --diff-filter=d <range>"' "resolver_deleted_path_filter_dropped_output" node "$CHECKER" --root "$CASE_DELETED_FILTER"
 
 if [[ "$failures" -gt 0 ]]; then
   printf '%s rule-canary test case(s) failed\n' "$failures" >&2

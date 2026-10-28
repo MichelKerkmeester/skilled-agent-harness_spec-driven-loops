@@ -10,7 +10,7 @@ trigger_phrases:
   - "dependency supply chain audit"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.9
+version: 1.5.1.0
 ---
 
 # Security and Reliability Checklist
@@ -33,14 +33,24 @@ Apply on security-relevant diffs; classify each finding by exploitability and bu
 
 When impact is unclear, prefer conservative classification and state uncertainty explicitly.
 
+### Rule Ids
+
+Each section names its rule ids under its heading. Sections 2 to 6 are **floor**: no repository or surface changes them. Sections 7 to 11 are the **default lens**, which a repository or surface may drop or replace with a `## Rule overrides` row. An item in a lens section that is also an auth or authorization gap, injection exposure, unsafe secrets handling or privilege misuse stays a `review.security-minimums` finding, which no row drops. [`review-core.md`](../references/review-core.md) section 8 lists every id and how an override reaches the review.
+
+### Web Items
+
+An item marked web-only applies only to code that serves HTTP or calls an HTTP service: a handler, a route, a page or a client. A CLI tool, a library with no network code or a build script is not in its reach, so a web-only item raises no finding there.
+
 ---
 
 ## 2. INPUT/OUTPUT SAFETY
 
+Rule: floor, `review.security-minimums` and `floor.input-validation`.
+
 Check for:
-- XSS via unsafe HTML rendering or template interpolation.
+- Web-only: XSS via unsafe HTML rendering or template interpolation.
 - SQL/NoSQL/command injection via string concatenation.
-- SSRF through unvalidated user-controlled URLs.
+- Web-only: SSRF through unvalidated user-controlled URLs.
 - Path traversal from unchecked path input (`../`).
 - Prototype pollution from unsafe object merge operations.
 
@@ -51,6 +61,8 @@ Review prompts:
 ---
 
 ## 3. AUTHENTICATION AND AUTHORIZATION
+
+Rule: floor, `review.security-minimums`.
 
 Check for:
 - Missing auth guards on newly added entry points.
@@ -65,13 +77,15 @@ High-impact rule: any missing authz control on data mutation is at least P1 and 
 
 ## 4. SECRETS AND PRIVACY
 
+Rule: floor, `review.security-minimums` and `floor.hardcoded-secrets`.
+
 Check for:
 - Hardcoded credentials, API keys, tokens, private keys.
 - Sensitive logs exposing PII or operational secrets.
 - Internal stack traces or environment details in user-facing errors.
-- Client-side exposure of server-only configuration values.
+- Web-only: client-side exposure of server-only configuration values.
 
-Quick command ideas:
+Quick command ideas, as an example search:
 
 ```bash
 rg -n -i "api[_-]?key|secret|token|password|BEGIN .* PRIVATE KEY"
@@ -80,6 +94,8 @@ rg -n -i "api[_-]?key|secret|token|password|BEGIN .* PRIVATE KEY"
 ---
 
 ## 5. RUNTIME RELIABILITY
+
+Rule: floor, `review.security-minimums`, which covers reliability risks with security impact, and `review.correctness-minimums`.
 
 Check for:
 - Missing timeouts/retries for network dependencies.
@@ -95,6 +111,8 @@ Review prompt:
 
 ## 6. CONCURRENCY AND RACE CONDITIONS
 
+Rule: floor, `review.correctness-minimums` and `floor.initialization-safety`.
+
 Flag patterns:
 - Check-then-act without atomicity.
 - Read-modify-write on shared state without lock/transaction.
@@ -102,7 +120,7 @@ Flag patterns:
 - Counter updates without atomic increment semantics.
 - Distributed coordination without lock/lease guarantees.
 
-Examples:
+Examples, in pseudocode:
 
 ```text
 if not exists(key):
@@ -121,6 +139,8 @@ Reviewer questions:
 
 ## 7. RATE LIMITING AND ABUSE PREVENTION
 
+Rule: default lens, `review.rate-limiting`. Web-only.
+
 Check for:
 - Missing rate limits on authentication endpoints (login, signup, password reset).
 - Unthrottled API endpoints accepting expensive operations.
@@ -133,6 +153,8 @@ Review prompt:
 ---
 
 ## 8. CONTENT SECURITY POLICY AND HEADERS
+
+Rule: default lens, `review.security-headers`. Web-only: CSP, the security headers, CORS and cookie attributes reach only code that serves or calls HTTP.
 
 Check for:
 - Missing or overly permissive CSP headers (`unsafe-inline`, `unsafe-eval`, wildcard sources).
@@ -147,8 +169,10 @@ Review prompt:
 
 ## 9. DEPENDENCY AND SUPPLY CHAIN SECURITY
 
+Rule: default lens, `review.supply-chain`.
+
 Check for:
-- Known vulnerabilities in dependencies (`npm audit`, `pip-audit`, `cargo audit`).
+- Known vulnerabilities in dependencies, found with the stack's audit tool, such as `npm audit`, `pip-audit` or `cargo audit`.
 - Unpinned or loosely pinned dependency versions (major version ranges).
 - Dependencies with no maintainer activity or known compromises.
 - Post-install scripts in untrusted packages.
@@ -160,6 +184,8 @@ Review prompt:
 ---
 
 ## 10. AUDIT LOGGING AND OBSERVABILITY
+
+Rule: default lens, `review.audit-logging`. Logging a password, token or PII in plain text is unsafe secrets handling and stays floor.
 
 Check for:
 - Missing audit logs for security-sensitive operations (auth, permission changes, data deletion).
@@ -173,6 +199,8 @@ Review prompt:
 ---
 
 ## 11. PRIVACY AND DATA HANDLING
+
+Rule: default lens, `review.data-privacy`.
 
 Check for:
 - PII stored without encryption at rest or purpose limitation.

@@ -9,7 +9,7 @@ trigger_phrases:
   - "instance only opt out"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.3
+version: 1.5.1.0
 ---
 
 # Fix Completeness Checklist
@@ -56,6 +56,8 @@ Otherwise, run the full fix completeness checklist.
 
 ## 3. REQUIRED INVENTORIES
 
+The commands below are examples written for a JavaScript or TypeScript repository. Swap the patterns and globs for the reviewed stack's own.
+
 Same-class producers:
 
 ```bash
@@ -78,7 +80,7 @@ rg -n '\.replace\(|new RegExp|startsWith\(|includes\(|split\(' <changed-files>
 Matrix/evidence:
 
 ```bash
-rg -n 'it\.each|test\.each|describe\.each|requirement-id|source:' <changed-tests-and-packet-docs>
+rg -n 'it\.each|test\.each|describe\.each|<requirement-id-pattern>|source:' <changed-tests-and-docs>
 git rev-parse --verify HEAD
 git diff --name-only <FIX_SHA>^..<FIX_SHA>
 ```

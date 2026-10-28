@@ -8,7 +8,7 @@ trigger_phrases:
   - "shell quality validation"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.15
+version: 1.0.1.0
 ---
 
 # Shell Quality Standards
@@ -199,12 +199,12 @@ echo "Error: file not found"
 
 ### TODOs With Context
 
-TODOs must include owner or ticket:
+TODOs must name an owner and say what is left. A ticket id stays out of the comment:
 
 ```bash
 # Correct
 # TODO(username): Add input validation
-# TODO(TICKET-123): Handle edge case
+# TODO(username): Handle the empty-argument edge case
 
 # WRONG
 # TODO: fix this later

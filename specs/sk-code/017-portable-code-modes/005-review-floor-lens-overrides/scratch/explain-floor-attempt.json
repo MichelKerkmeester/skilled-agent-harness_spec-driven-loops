@@ -1,0 +1,60 @@
+{
+  "fixture": "floor-attempt",
+  "exit": 2,
+  "hygiene_disabled": [],
+  "files": [
+    {
+      "file": "src/report.ts",
+      "surfaces": [
+        "UNKNOWN"
+      ],
+      "surface_skills": [],
+      "checklists": [
+        {
+          "file": "hub:sk-code/shared/references/universal/code-quality-standards.md",
+          "source": "default",
+          "sources": [
+            "default"
+          ],
+          "overrides": {
+            "found": false,
+            "refused": false,
+            "rows": [],
+            "errors": []
+          }
+        },
+        {
+          "file": ".sk-code/checklists/house.md",
+          "source": "repo-config",
+          "sources": [
+            "repo-config"
+          ],
+          "overrides": {
+            "found": true,
+            "refused": true,
+            "rows": [
+              {
+                "line": 7,
+                "id": "review.function-length",
+                "action": "replace",
+                "text": "A function stays under 60 lines",
+                "reason": "The team's own limit"
+              }
+            ],
+            "errors": [
+              {
+                "line": 8,
+                "message": "`floor.input-validation` is on the hard floor (Input validation: every external input is validated at the boundary) and cannot be overridden"
+              },
+              {
+                "line": 9,
+                "message": "`review.reach` is on the hard floor (The review reach rule: a P0 or P1 finding names an input or caller in reach) and cannot be overridden"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "rule_sources": "Rule sources: hub:sk-code/shared/references/universal/code-quality-standards.md, .sk-code/checklists/house.md. Overrides: none. Refused: .sk-code/checklists/house.md. Ignored: none. Conflicts: none"
+}

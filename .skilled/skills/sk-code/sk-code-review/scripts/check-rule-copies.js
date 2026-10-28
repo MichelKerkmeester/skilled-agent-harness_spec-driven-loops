@@ -16,6 +16,8 @@
 // It pins the assessment tokens to the status-line vocabulary and the pointer to the shared detection contract, so neither can drift back.
 // It pins the AGENTS.md evidence-floor labels the review mode applies, so a renamed or dropped floor fails here instead of going unnoticed.
 // It pins the review mode's extension-floors list inside its own section, so no repository extension can reword or drop a floor unseen.
+// It pins the review floor ids and the Rule sources line format, so an override can never be pointed at a floor and the reported line keeps one shape.
+// It pins the deleted-path filter before the resolver call, because one missing path stops the whole call and drops every override.
 //
 // It is a canary, not a generator: it asserts the load-bearing substrings still
 // exist; it never rewrites anything. It locks wording, not file paths — pass
@@ -47,6 +49,19 @@ const EXACT_INVARIANTS = [
       'Review status: COMMENTED',
       '**Overall assessment**: [APPROVED / REQUESTED_CHANGES / COMMENTED]',
       '../shared/references/stack-detection.md',
+      'quality-gate.cjs --explain <file> [<file>...]',
+      'git diff --name-only --diff-filter=d <range>',
+      'Pass only paths that exist as regular files.',
+    ],
+  },
+  {
+    file: '.skilled/skills/sk-code/sk-code-review/references/review-core.md',
+    strings: [
+      '| `review.severity` |',
+      '| `review.reach` |',
+      '| `review.security-minimums` |',
+      '| `review.correctness-minimums` |',
+      'Rule sources: <checklist file>, <checklist file>. Overrides: <rule id> <none|replace> from <checklist file>. Refused: <checklist file>. Ignored: <rule id> from <checklist file>. Conflicts: <rule id> <checklist file> <checklist file>',
     ],
   },
   {

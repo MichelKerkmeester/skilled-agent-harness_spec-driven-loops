@@ -8,7 +8,7 @@ trigger_phrases:
   - "architecture smell patterns"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.9
+version: 1.5.1.0
 ---
 
 # SOLID and Architecture Checklist
@@ -35,9 +35,15 @@ Favor cohesive modules and low-coupling boundaries so behavior can evolve withou
 
 Use this checklist for new modules, refactors, and behavior-heavy changes where design quality can regress silently.
 
+### Rule Ids
+
+This whole checklist is the **default lens**, `review.solid`: the SOLID prompts, the architecture smells and the refactor guidance are this mode's defaults, which a repository or surface may drop or replace with a `## Rule overrides` row. A design flaw that is also a correctness or security defect is reported under the floor id of [`review-core.md`](../references/review-core.md) section 8, which no row drops.
+
 ---
 
 ## 2. SOLID PROMPTS
+
+Rule: default lens, `review.solid`.
 
 ### SRP - Single Responsibility
 
@@ -78,6 +84,8 @@ Use this checklist for new modules, refactors, and behavior-heavy changes where 
 
 ## 3. ARCHITECTURE SMELLS
 
+Rule: default lens, `review.solid`.
+
 | Smell | Indicators | Typical Risk |
 | --- | --- | --- |
 | God module | Large file with many unrelated responsibilities | High change blast radius |
@@ -92,6 +100,8 @@ KISS/DRY tie-in: if two modules differ only by literals or thin wrappers, consol
 ---
 
 ## 4. REFACTOR GUIDANCE
+
+Rule: default lens, `review.solid`.
 
 1. Split by responsibility, not line count.
 2. Preserve behavior first; refactor second.
