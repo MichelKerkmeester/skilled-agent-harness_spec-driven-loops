@@ -53,6 +53,7 @@ FIXTURE="$(mktemp -d)"
 CUSTOM_BASE="$(mktemp -d)"
 NUM_REPO="$(mktemp -d)"
 SHIM_DIR="$(mktemp -d)"
+REAL_GIT="$(command -v git)"
 STUB_PIDS=""
 cleanup() {
   local pid
@@ -180,6 +181,17 @@ expect "wrapper with an empty process listing: dir kept" test -d "$FIXTURE/.work
 expect "wrapper with an empty process listing: branch kept" git -C "$FIXTURE" show-ref --verify --quiet refs/heads/work/rt/a
 expect "wrapper with an empty process listing: reaper says why" grep -F "live process inside; pid unknown" "$EMPTY_LSOF_OUT"
 
+# A listing that printed rows and then exited non-zero is incomplete too: the process that
+# works inside the worktree may be among the rows it never reached.
+mkdir -p "$SHIM_DIR/partial-lsof"
+printf '#!/bin/sh\nprintf "p1\\nfcwd\\nn/\\n"\nexit 1\n' > "$SHIM_DIR/partial-lsof/lsof"
+chmod +x "$SHIM_DIR/partial-lsof/lsof"
+PARTIAL_LSOF_OUT="$FIXTURE/.reaper-partial-lsof.out"
+( cd "$FIXTURE" && PATH="$SHIM_DIR/partial-lsof:$PATH" bash "$REAPER" ) >"$PARTIAL_LSOF_OUT" 2>&1 || true
+expect "wrapper with a partial process listing: dir kept" test -d "$FIXTURE/.worktrees/rt-a"
+expect "wrapper with a partial process listing: branch kept" git -C "$FIXTURE" show-ref --verify --quiet refs/heads/work/rt/a
+expect "wrapper with a partial process listing: reaper says why" grep -F "live process inside; pid unknown" "$PARTIAL_LSOF_OUT"
+
 # ── run the REAL reaper (not dry-run) inside the fixture ────────
 REAPER_OUT="$FIXTURE/.reaper.out"
 if ( cd "$FIXTURE" && bash "$REAPER" ) >"$REAPER_OUT" 2>&1; then
@@ -241,6 +253,39 @@ expect_no_daemon_ended "(h) live child: daemon reaper ended nothing for it" \
   "$(cd "$FIXTURE/.worktrees/rt-child" && pwd -P)"
 kill "$BUSY_PID" 2>/dev/null || true
 wait "$BUSY_PID" 2>/dev/null || true
+
+# ── an unreadable worktree registry is not an empty one ─────────
+# rt-custom-c lives outside the configured base, so only git's registry says it exists.
+# When the registry cannot be read (git fails, or hangs until its bound), the socket dir
+# and the session marker of every registered worktree must survive and no verdict may
+# rest on the missing list.
+registry_shim() { # registry_shim <name> <shell command that fails the listing>
+  mkdir -p "$SHIM_DIR/$1"
+  cat > "$SHIM_DIR/$1/git" <<SHIM
+#!/bin/sh
+prev=""
+for a in "\$@"; do
+  if [ "\$prev" = worktree ] && [ "\$a" = list ]; then $2; fi
+  prev="\$a"
+done
+exec "$REAL_GIT" "\$@"
+SHIM
+  chmod +x "$SHIM_DIR/$1/git"
+}
+registry_shim dead-registry-git 'exit 1'
+registry_shim hung-registry-git 'exec sleep 60'
+for REG_MODE in dead hung; do
+  printf '%s\n' "$$" > "$MARKERS_DIR/rt-custom-c.pid"
+  mkdir -p "$FAKE_HOME/.spk-wt-sock/rt-custom-c"
+  REG_OUT="$FIXTURE/.reaper-$REG_MODE-registry.out"
+  REG_RC=0
+  ( cd "$FIXTURE" && PATH="$SHIM_DIR/$REG_MODE-registry-git:$PATH" SPECKIT_GIT_TIMEOUT=1 bash "$REAPER" ) >"$REG_OUT" 2>&1 || REG_RC=$?
+  expect "$REG_MODE registry: the run still exits 0" test "$REG_RC" -eq 0
+  expect "$REG_MODE registry: the session marker of a registered worktree survives" test -f "$MARKERS_DIR/rt-custom-c.pid"
+  expect "$REG_MODE registry: the socket dir of a registered worktree survives" test -d "$FAKE_HOME/.spk-wt-sock/rt-custom-c"
+  expect "$REG_MODE registry: the log says the registry could not be read" grep -F "worktree registry could not be read" "$REG_OUT"
+  expect "$REG_MODE registry: the custom-base worktree survives" test -d "$CUSTOM_BASE/rt-custom-c"
+done
 
 # ═══ the opt-in numbered lane ═══════════════════════════════════
 # One worktree per rule. Every worktree is merged into the primary checkout's HEAD and
@@ -320,6 +365,15 @@ num_add 015-regen-mixed
 mkdir -p "$NUM_REPO/.worktrees/015-regen-mixed/$(dirname "$REGEN_BUNDLE")"
 printf 'bundle\n' > "$NUM_REPO/.worktrees/015-regen-mixed/$REGEN_BUNDLE"
 printf 'trace\n' > "$NUM_REPO/.worktrees/015-regen-mixed/$(dirname "$REGEN_BUNDLE")/trace.log"
+# A database or a .state folder inside an otherwise rebuildable folder is still state
+# someone could lose: git reports only the folder, so the reaper has to look inside it.
+num_add 018-sqlite-dist
+mkdir -p "$NUM_REPO/.worktrees/018-sqlite-dist/dist"
+printf 'x\n' > "$NUM_REPO/.worktrees/018-sqlite-dist/dist/out.js"
+printf 'rows\n' > "$NUM_REPO/.worktrees/018-sqlite-dist/dist/session.sqlite"
+num_add 019-state-cache
+mkdir -p "$NUM_REPO/.worktrees/019-state-cache/.pytest_cache/.state"
+printf 'lease\n' > "$NUM_REPO/.worktrees/019-state-cache/.pytest_cache/.state/lease"
 # A branch squash-merged into the primary checkout is not its ancestor, and a branch whose
 # change collides with a later edit in the primary checkout is not merged at all.
 num_add 016-squashed
@@ -340,7 +394,7 @@ printf 'precious\n' > "$NUM_REPO/.worktrees/099-orphan/notes.txt"
 NUM_BUSY_PID=$!
 STUB_PIDS="$STUB_PIDS $NUM_BUSY_PID"
 sleep 0.5
-for n in 001-lockref 002-ok 004-specs-log 005-untracked 006-unpushed 007-process 008-locked 009-stash 013-ignored 014-regen 015-regen-mixed 016-squashed 017-conflict; do
+for n in 001-lockref 002-ok 004-specs-log 005-untracked 006-unpushed 007-process 008-locked 009-stash 013-ignored 014-regen 015-regen-mixed 016-squashed 017-conflict 018-sqlite-dist 019-state-cache; do
   num_age "$n"
 done
 # 003-fresh keeps its creation times; 011-mismatch is aged under its branch's name.
@@ -370,13 +424,23 @@ expect "numbered lane off by default: state unchanged" test "$NUM_STATE_BEFORE" 
 
 # --dry-run changes nothing and says what it would do.
 NUM_DRY_OUT="$SHIM_DIR/num-dry.out"
-run_num "$NUM_DRY_OUT" --numbered --dry-run
+NUM_SCRATCH_TMP="$SHIM_DIR/num-tmp"
+mkdir -p "$NUM_SCRATCH_TMP"
+NUM_OBJECTS_BEFORE="$(git -C "$NUM_REPO" count-objects -v)"
+TMPDIR="$NUM_SCRATCH_TMP" run_num "$NUM_DRY_OUT" --numbered --dry-run
+NUM_OBJECTS_AFTER="$(git -C "$NUM_REPO" count-objects -v)"
 expect "numbered dry-run exits 0" test "$NUM_RC" -eq 0
 expect "numbered dry-run: state unchanged" test "$NUM_STATE_BEFORE" = "$(list_state)"
 expect "numbered dry-run: names 002-ok as would-reap" grep -Eq "^numbered verdict=would-reap worktree=.*/002-ok " "$NUM_DRY_OUT"
 expect "numbered dry-run: names 014-regen as would-reap" grep -Eq "^numbered verdict=would-reap worktree=.*/014-regen " "$NUM_DRY_OUT"
 expect "numbered dry-run: starts no fsmonitor reaper" test ! -e "$NUM_FSMON_LOG"
 expect "numbered dry-run: reports the orphan folder" grep -Eq "^orphan path=.*/099-orphan$" "$NUM_DRY_OUT"
+# The squash check merges in memory, and git writes the merged tree and any conflict blobs.
+# They have to land in a scratch store: a dry run writes nothing to the repository.
+expect "numbered dry-run: the object store is unchanged" test "$NUM_OBJECTS_BEFORE" = "$NUM_OBJECTS_AFTER"
+expect "numbered dry-run: the scratch object store is removed" test -z "$(ls -A "$NUM_SCRATCH_TMP")"
+expect "numbered dry-run: still tells a squash merge from a collision" grep -Eq "^numbered verdict=keep worktree=.*/016-squashed .*reason=branch content already in the live branch \(squash-merged\); remove by hand$" "$NUM_DRY_OUT"
+expect "numbered dry-run: an unmerged branch stays unmerged" grep -Eq "^numbered verdict=keep worktree=.*/006-unpushed .*reason=branch is not merged into the live branch$" "$NUM_DRY_OUT"
 
 # An empty process listing keeps even the worktree that qualifies.
 NUM_LSOF_OUT="$SHIM_DIR/num-lsof.out"
@@ -384,9 +448,26 @@ NUM_LSOF_OUT="$SHIM_DIR/num-lsof.out"
 expect "empty process listing: 002-ok kept" test -d "$NUM_REPO/.worktrees/002-ok"
 expect "empty process listing: reason recorded" grep -Eq "^numbered verdict=keep worktree=.*/002-ok .*reason=process listing unavailable" "$NUM_LSOF_OUT"
 
+# A listing that exits non-zero after printing rows is no proof either.
+NUM_PARTIAL_OUT="$SHIM_DIR/num-partial.out"
+( cd "$NUM_REPO" && PATH="$SHIM_DIR/partial-lsof:$PATH" SPECKIT_FSMON_REAPER="$SHIM_DIR/fsmon-reaper-stub.sh" bash "$REAPER" --numbered --dry-run ) >"$NUM_PARTIAL_OUT" 2>&1 || true
+expect "partial process listing: 002-ok kept" grep -Eq "^numbered verdict=keep worktree=.*/002-ok .*reason=process listing unavailable" "$NUM_PARTIAL_OUT"
+expect "partial process listing: nothing would be reaped" test -z "$(grep -E '^numbered verdict=would-reap' "$NUM_PARTIAL_OUT" || true)"
+
+# An unreadable registry yields no verdict and no orphan report: with no list, every folder
+# under the base would look unregistered.
+for REG_MODE in dead hung; do
+  NUM_REG_OUT="$SHIM_DIR/num-$REG_MODE-registry.out"
+  NUM_RC=0
+  ( cd "$NUM_REPO" && PATH="$SHIM_DIR/$REG_MODE-registry-git:$PATH" SPECKIT_GIT_TIMEOUT=1 SPECKIT_FSMON_REAPER="$SHIM_DIR/fsmon-reaper-stub.sh" bash "$REAPER" --numbered ) >"$NUM_REG_OUT" 2>&1 || NUM_RC=$?
+  expect "$REG_MODE registry (numbered): the run still exits 0" test "$NUM_RC" -eq 0
+  expect "$REG_MODE registry (numbered): no verdict row is printed" test -z "$(grep -E '^numbered verdict=' "$NUM_REG_OUT" || true)"
+  expect "$REG_MODE registry (numbered): no orphan is reported" test -z "$(grep -E '^orphan path=' "$NUM_REG_OUT" || true)"
+  expect "$REG_MODE registry (numbered): 002-ok kept" test -d "$NUM_REPO/.worktrees/002-ok"
+done
+
 # A wedged git status costs one bound, then the worktree is kept.
 mkdir -p "$SHIM_DIR/wedged-git"
-REAL_GIT="$(command -v git)"
 GIT_SHIM_LOG="$SHIM_DIR/git-calls.log"
 cat > "$SHIM_DIR/wedged-git/git" <<SHIM
 #!/bin/sh
@@ -421,10 +502,10 @@ expect "001-lockref: branch kept after git refused -d" test -e "$NUM_COMMON/refs
 expect "001-lockref: refusal logged as keep" grep -F "git refused to delete" "$NUM_OUT"
 expect "014-regen: folder removed although it holds only listed regenerable files" test ! -d "$NUM_REPO/.worktrees/014-regen"
 expect "014-regen: branch removed" test ! -e "$NUM_COMMON/refs/heads/worktrees/014-regen"
-for n in 003-fresh 004-specs-log 005-untracked 006-unpushed 007-process 008-locked 009-stash 010-human 011-folder 012-detached 013-ignored 015-regen-mixed 016-squashed 017-conflict; do
+for n in 003-fresh 004-specs-log 005-untracked 006-unpushed 007-process 008-locked 009-stash 010-human 011-folder 012-detached 013-ignored 015-regen-mixed 016-squashed 017-conflict 018-sqlite-dist 019-state-cache; do
   expect "$n: folder kept" test -d "$NUM_REPO/.worktrees/$n"
 done
-for b in worktrees/003-fresh worktrees/004-specs-log worktrees/005-untracked worktrees/006-unpushed worktrees/007-process worktrees/008-locked worktrees/009-stash other/010-human worktrees/011-mismatch worktrees/013-ignored worktrees/015-regen-mixed worktrees/016-squashed worktrees/017-conflict; do
+for b in worktrees/003-fresh worktrees/004-specs-log worktrees/005-untracked worktrees/006-unpushed worktrees/007-process worktrees/008-locked worktrees/009-stash other/010-human worktrees/011-mismatch worktrees/013-ignored worktrees/015-regen-mixed worktrees/016-squashed worktrees/017-conflict worktrees/018-sqlite-dist worktrees/019-state-cache; do
   expect "$b: branch kept" git -C "$NUM_REPO" show-ref --verify --quiet "refs/heads/$b"
 done
 expect "003-fresh: kept for recent activity" grep -Eq "^numbered verdict=keep worktree=.*/003-fresh .*reason=active within" "$NUM_OUT"
@@ -439,9 +520,11 @@ expect "013-ignored: kept for the ignored file that is no provisioned link" grep
 expect "015-regen-mixed: kept for the unlisted file beside a listed one" grep -Eq "^numbered verdict=keep worktree=.*/015-regen-mixed .*reason=ignored path is not regenerable: .*/trace.log$" "$NUM_OUT"
 expect "016-squashed: kept, reported as squash-merged" grep -Eq "^numbered verdict=keep worktree=.*/016-squashed .*reason=branch content already in the live branch \(squash-merged\); remove by hand$" "$NUM_OUT"
 expect "017-conflict: kept as unmerged when its change collides with the live branch" grep -Eq "^numbered verdict=keep worktree=.*/017-conflict .*reason=branch is not merged into the live branch$" "$NUM_OUT"
+expect "018-sqlite-dist: kept for a database inside a rebuildable folder" grep -Eq "^numbered verdict=keep worktree=.*/018-sqlite-dist .*reason=ignored path is not regenerable: dist" "$NUM_OUT"
+expect "019-state-cache: kept for a .state folder inside a rebuildable folder" grep -Eq "^numbered verdict=keep worktree=.*/019-state-cache .*reason=ignored path is not regenerable: .pytest_cache" "$NUM_OUT"
 expect "orphan folder: untouched" test -f "$NUM_REPO/.worktrees/099-orphan/notes.txt"
 expect "orphan folder: reported" grep -Eq "^orphan path=.*/099-orphan$" "$NUM_OUT"
-expect "the registered folders are never reported as orphans" test -z "$(grep -E '^orphan path=.*/(00[1-9]|01[0-7])-' "$NUM_OUT" || true)"
+expect "the registered folders are never reported as orphans" test -z "$(grep -E '^orphan path=.*/(00[1-9]|01[0-9])-' "$NUM_OUT" || true)"
 expect "the stash entry survives the sweep" test -n "$(git -C "$NUM_REPO" stash list)"
 expect "main checkout untouched" test -f "$NUM_REPO/README"
 expect_not "numbered lane never forces a removal" grep -Eq 'worktree remove (-f|--force)|branch -D' "$REAPER"

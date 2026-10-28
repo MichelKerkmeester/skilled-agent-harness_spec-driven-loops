@@ -43,18 +43,18 @@
       ".skilled/bin/README.md",
       ".skilled/bin/worktree-reaper.sh",
       ".skilled/bin/tests/worktree-reaper.test.sh",
-      ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt",
-      ".skilled/bin/worktree-guard.sh",
-      ".skilled/bin/tests/worktree-guard.test.sh",
-      ".skilled/commands/doctor/scripts/git-setup-check.cjs",
-      ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
-      ".skilled/bin/tests/fsmonitor-daemon-reaper.test.sh",
-      ".skilled/skills/sk-git/SKILL.md",
-      ".skilled/skills/sk-git/changelog/v1.11.1.0.md",
-      ".hermes/skills/sk-git/SKILL.md",
-      ".skilled/skills/sk-git/README.md",
+      ".skilled/skills/sk-git/feature-catalog/session-lifecycle/worktree-reaper.md",
       "feature-catalog/feature-catalog.md",
-      ".skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md"
+      ".skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/reaper-dry-run-no-mutation.md",
+      ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/scripts/git-hooks/lib/README.md",
+      ".skilled/changelog/skilled/v4.0.0.16.md",
+      ".skilled/skills/sk-git/changelog/v1.11.2.0.md",
+      ".skilled/skills/sk-git/SKILL.md",
+      ".hermes/skills/sk-git/SKILL.md",
+      ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt",
+      ".skilled/bin/worktree-guard.sh"
     ],
     "entities": [
       {
@@ -106,51 +106,9 @@
         "source": "derived"
       },
       {
-        "name": "worktree-provision-paths.txt",
-        "kind": "file",
-        "path": ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt",
-        "source": "derived"
-      },
-      {
-        "name": "worktree-guard.sh",
-        "kind": "script",
-        "path": ".skilled/bin/worktree-guard.sh",
-        "source": "derived"
-      },
-      {
-        "name": "worktree-guard.test.sh",
-        "kind": "script",
-        "path": ".skilled/bin/tests/worktree-guard.test.sh",
-        "source": "derived"
-      },
-      {
-        "name": "git-setup-check.cjs",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "git-setup-check.test.cjs",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fsmonitor-daemon-reaper.test.sh",
-        "kind": "script",
-        "path": ".skilled/bin/tests/fsmonitor-daemon-reaper.test.sh",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
+        "name": "worktree-reaper.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-git/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.11.1.0.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-git/changelog/v1.11.1.0.md",
+        "path": ".skilled/skills/sk-git/feature-catalog/session-lifecycle/worktree-reaper.md",
         "source": "derived"
       },
       {
@@ -160,9 +118,51 @@
         "source": "derived"
       },
       {
-        "name": "manual-testing-playbook.md",
+        "name": "reaper-dry-run-no-mutation.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md",
+        "path": ".skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/reaper-dry-run-no-mutation.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-setup.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.16.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.16.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.11.2.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/changelog/v1.11.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-provision-paths.txt",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-guard.sh",
+        "kind": "script",
+        "path": ".skilled/bin/worktree-guard.sh",
         "source": "derived"
       },
       {
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The reaper only removes launch-wrapper worktrees",
     "created_at": "2026-10-27T20:29:24Z",
-    "last_save_at": "2026-10-27T22:21:35.915Z",
+    "last_save_at": "2026-10-28T06:01:44.170Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f11bb88697cfaef961e9f5904c945f6316ab642bc923218ae36f276273f68833",
+    "source_fingerprint": "sha256:5fcbd8868ae37fa58f256f63bb6fbfdb812fdfe4d58930a8ae9a35e53dd21a4d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e795ec2db2bd300984b6b0a527344ab47d5fb975c64f681bd5aedbc3c2cd77ff",
-      "plan.md": "6159e2eee6790fc2159f7d97e3aef20829480486bb5a811048b46d6bdf05bc5b",
-      "tasks.md": "07d878d732655bab3a73b14d2f9ecfdfea1e16f2ae9a5134e66921f0be14e2d4",
-      "implementation-summary.md": "755f298fd286bb3c586b0774b20d80f36b52092c3f550f9deec8dec1793e89fe"
+      "spec.md": "528263dcb5aa21efba2e8321f71115d8dd70762a090d356126736cf2fbe0c0ae",
+      "plan.md": "ed2720e1074d8b8c043f90d38b4bcc437a78f3ed6dd7c651720337dbb2d05df8",
+      "tasks.md": "704cc9c3171443512276d0b1767934f26c5f387f782cdb71283001a1ba968cac",
+      "implementation-summary.md": "efa23cc56d9ad2189ef5ca14bdb2bf1d98343574485b11bba7b082bd4cde1c60"
     },
     "last_active_at": null
   }

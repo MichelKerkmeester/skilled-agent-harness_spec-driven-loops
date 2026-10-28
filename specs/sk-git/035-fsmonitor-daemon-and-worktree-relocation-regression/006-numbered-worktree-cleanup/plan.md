@@ -56,10 +56,11 @@ contextType: "general"
 Other: an ordered keep-rule list with a dry-run-aware action wrapper.
 
 ### Key Components
-- **`_worktree_records`**: turns `git worktree list --porcelain` into one record per worktree (path, branch, detached, locked), joined by the unit separator because paths hold spaces. The loop reads it on fd 3 so no command inside the loop can consume it.
+- **`_worktree_records`**: turns `git worktree list --porcelain` into one record per worktree (path, branch, detached, locked), joined by the unit separator because paths hold spaces. It reads the listing first and returns git's status when the read fails, so a failed or timed-out registry is never an empty one: the caller then judges nothing, reports no orphan and removes no marker or socket dir. The loop reads the records on fd 3 so no command inside the loop can consume them.
 - **`_numbered_keep_reason`**: prints the first reason to keep, in the order pair, locked, idle, merged, stash, status, ignored paths, process; it prints nothing when the worktree may go. The three activity times are read before `git status`, which can rewrite the index, and status runs with `--no-optional-locks`.
-- **`_ignored_is_regenerable`**: allows `node_modules`, `dist`, `build` and the usual tool caches by path component, the outputs `worktree-provision-paths.txt` names, and links (or folders of links) into the primary checkout; it refuses anything under `specs/`.
-- **`_busy_pid_in`**: one bounded `lsof -nP -d cwd -Fpn` listing; an empty or timed-out listing prints `unknown` and the caller keeps.
+- **`_ignored_is_regenerable`**: allows `node_modules`, `dist`, `build` and the usual tool caches by path component, the outputs `worktree-provision-paths.txt` names, and links (or folders of links) into the primary checkout. It refuses anything under `specs/`, any path component that is a SQLite name or `.state`, and a wholly ignored folder that holds one of those names anywhere inside it.
+- **`_branch_content_in_live`**: merges the branch into the live tip in memory and compares trees, with the merge's object writes redirected to a throwaway directory that reads through to the repository's objects and is deleted afterwards.
+- **`_busy_pid_in`**: one bounded `lsof -nP -d cwd -Fpn` listing; an empty listing, a timed-out one and one that exits non-zero all print `unknown` and the caller keeps.
 - **`_remove_worktree`**: ends the daemon through the sibling reaper, then `git worktree remove`, then `git branch -d`, all through `act` so `--dry-run` prints them; a refusal returns non-zero and the loop moves on.
 - **`__guard_sweep_numbered`** in `worktree-guard.sh`: checks the switch, the stamp age and the reaper path, writes the stamp, then starts the sweep with `nohup` in a subshell with all descriptors redirected.
 - **`numberedWorktreesDetail`** in the doctor: runs `--numbered --dry-run` under a 45 second bound and counts `numbered verdict=` and `orphan path=` rows.
@@ -70,7 +71,7 @@ The reaper prints human log lines on stderr and machine rows on stdout: `numbere
 ### Decisions
 - **D1, the idle clock is the newest of three files' mtimes.** The branch reflog catches commits, the worktree's own `logs/HEAD` catches checkouts and resets, and the index catches edits and `git add`. One missing file is skipped; all three missing keeps the worktree.
 - **D2, merged means an ancestor of the primary checkout's HEAD.** It is the rule the wrapper lane already uses. A squash-merged branch is not an ancestor and is kept.
-- **D3, the allowlist is by path component, not a pattern list of whole paths.** A `node_modules` nested three folders down is still regenerable, and `specs/` is checked first so nothing under it can pass.
+- **D3, the allowlist is by path component, not a pattern list of whole paths.** A `node_modules` nested three folders down is still regenerable, and `specs/` is checked first so nothing under it can pass. Names that can hold session state (`*.sqlite`, `*.sqlite3`, `*.db`, `*-wal`, `*-shm`, `.state`) are refused next, before any component can vouch for a path, because git reports a wholly ignored folder as one entry and `dist` would otherwise hide a database inside it.
 - **D4, one `lsof` per surviving candidate, not a shared listing.** The listing is taken last, just before removal, so a process that started during the earlier checks is seen.
 - **D5, the default lane runs with `--numbered` too.** The sweep command is `worktree-reaper.sh --numbered`; the wrapper lane is conservative already and the prune of stale sockets and markers is wanted at the same moment.
 - **D6, the stamp is written before the spawn.** A stamp that cannot be written spawns nothing, so a read-only git directory cannot cause a sweep on every start.
@@ -89,7 +90,7 @@ The reaper prints human log lines on stderr and machine rows on stdout: `numbere
 | `.skilled/commands/doctor/scripts/git-setup-check.cjs` | Worktree base check and the daemon line | update | three new cases fail at HEAD |
 | `.skilled/bin/worktree-session.sh` | Starts the fsmonitor sweep, creates worktrees | not a consumer | `worktree-session.test.sh` unchanged count |
 | `.claude/hooks/worktree-guard.sh` and the Codex, Cursor and Devin entries | Symlinks to the guard | not a consumer | `ls -l` shows each resolves to `.skilled/bin/worktree-guard.sh` |
-| `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` | Lists hook kill-switches | not a consumer | the new switch is in `.env.example`; a row there is noted in the summary |
+| `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` | Lists hook kill-switches | update | rows for the worktree and git timeout settings; the Variable-column count is 197 and the drift guard passes |
 
 Required inventories:
 - Same-class producers: every `git` call line in `worktree-reaper.sh` after the change goes through `git_bounded`; the one raw `git -c core.fsmonitor=false` is the fallback definition when the library is missing.

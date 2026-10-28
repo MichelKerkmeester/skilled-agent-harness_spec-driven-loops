@@ -128,6 +128,10 @@ Reading: HEAD has no numbered lane, none of its 13 git call lines bounds the cal
 | `.skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/*.md` (11 files) | Modify | Replace the false catalog line with the catalog link |
 | `.skilled/bin/README.md`, `.skilled/scripts/git-hooks/README.md`, `.skilled/scripts/git-hooks/lib/README.md`, `.skilled/scripts/git-hooks/tests/README.md`, `.skilled/hooks/git/README.md` | Modify | The rows and sentences phase 005 listed, plus the numbered lane |
 | `.env.example` | Modify | `SPECKIT_WORKTREE_AUTOREAP` and the timeout variables |
+| `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` | Modify | Rows for the worktree and git timeout settings and for `SPECKIT_PRIVATE_SKILL_ROOTS`, and the recounted totals |
+| `.skilled/commands/doctor/assets/doctor-git-setup.yaml` | Modify | The worktrees leg names the numbered worktrees line |
+| `.skilled/changelog/skilled/v4.0.0.16.md` | Modify | The numbered sweep in the Git Worktrees section |
+| `.skilled/skills/sk-git/changelog/v1.11.2.0.md` | Create | Release entry for the alignment fixes |
 | `specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/003-fsmonitor-daemon-lifecycle/implementation-summary.md` | Modify | Known Limitations items 2 and 4 point at phase 005 |
 | `specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/spec.md` | Modify | Phase 6 map row and handoff row |
 <!-- /ANCHOR:scope -->
@@ -205,7 +209,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - **NFR-S02**: No `--force` or `-D` appears in the script.
 
 ### Reliability
-- **NFR-R01**: Any uncertainty (unreadable stash, failed `ls-files`, silent `lsof`, missing activity time) keeps the worktree.
+- **NFR-R01**: Any uncertainty (unreadable stash, failed `ls-files`, silent or failed `lsof`, missing activity time, unreadable worktree registry) keeps the worktree, and an unreadable registry also keeps every session marker and socket dir.
 - **NFR-R02**: Every changed script runs on macOS `bash` 3.2.
 <!-- /ANCHOR:nfr -->
 

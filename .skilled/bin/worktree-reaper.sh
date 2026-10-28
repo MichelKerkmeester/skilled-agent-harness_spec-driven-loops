@@ -15,7 +15,8 @@
 #   - Before removing a worktree, end its fsmonitor daemon through
 #     fsmonitor-daemon-reaper.sh; a failure there is logged and removal continues.
 #   - Prune per-session socket dirs and session markers whose worktree is no longer in
-#     git's worktree registry.
+#     git's worktree registry. When the registry cannot be read (git fails or times out),
+#     no worktree is judged and no socket dir or marker is removed that run.
 #
 # Opt-in numbered lane (--numbered): also remove an sk-git numbered worktree (branch
 # worktrees/NNN-slug in a folder NNN-slug) once ALL of these hold, and keep it otherwise:
@@ -23,18 +24,20 @@
 #   - `git status --porcelain --untracked-files=all` is empty;
 #   - every ignored path is a regenerable item (node_modules, dist, build caches, the
 #     provisioned links, and each file the provisioning list marks "# regenerable:") and
-#     NOTHING ignored sits under specs/;
+#     NOTHING ignored sits under specs/ or is a SQLite file or a .state folder, whatever
+#     folder holds it;
 #   - its branch is an ancestor of the primary checkout's HEAD;
 #   - the newest of the branch reflog, the worktree's own HEAD log and its index file is
 #     older than --idle-hours (default 48);
-#   - a bounded process listing proves no process works inside it (an empty or timed-out
-#     listing counts as busy);
+#   - a bounded process listing proves no process works inside it (an empty, failed or
+#     timed-out listing counts as busy);
 #   - no stash entry belongs to the branch.
 # Removal is plain `git worktree remove` then `git branch -d`, never forced; a refusal logs
 # keep and the run continues with the next worktree. Unregistered folders under the
 # worktree base are reported, never touched. A branch that is not an ancestor but whose
 # changes are already in the live branch (a squash merge) is kept with a reason that says
-# so: only the operator removes it.
+# so: only the operator removes it. Finding that out writes nothing to the repository,
+# a dry run included.
 #
 # Flags:
 #   --dry-run          Print what would be pruned; change nothing.
@@ -191,9 +194,14 @@ _wrapper_branch_matches_dir() {
 
 # One record per registered worktree, fields joined by the unit separator: path, branch
 # (empty when detached), detached flag, locked flag. Paths may hold spaces, so no
-# whitespace separator can be used.
+# whitespace separator can be used. The listing is read first so that git's own status is
+# kept: a failed or timed-out registry prints nothing and returns that status, which a
+# caller must not mistake for a registry with no worktrees in it.
 _worktree_records() {
-  git_bounded -C "$MAIN_TOPLEVEL" worktree list --porcelain 2>/dev/null | LC_ALL=C awk '
+  local listing rc=0
+  listing="$(git_bounded -C "$MAIN_TOPLEVEL" worktree list --porcelain 2>/dev/null)" || rc=$?
+  [ "$rc" -eq 0 ] || return "$rc"
+  printf '%s\n' "$listing" | LC_ALL=C awk '
     function emit() { if (p != "") printf "%s\037%s\037%s\037%s\n", p, b, d, l }
     /^worktree / { emit(); p = substr($0, 10); b = ""; d = 0; l = 0; next }
     /^branch refs\/heads\// { b = substr($0, 19); next }
@@ -208,12 +216,14 @@ _worktree_records() {
 # started without that environment cannot see the worktree through its own base probe and
 # would mistake a live session's state for a leftover. git's registry is authoritative
 # regardless of which base the launcher chose, so membership here decides existence.
+# Returns non-zero, printing nothing, when the registry cannot be read.
 _registered_slugs() {
-  local p
+  local records p
+  records="$(_worktree_records)" || return $?
   while IFS=$'\037' read -r p _; do
     [ -n "$p" ] || continue
     [ "$p" = "$MAIN_TOPLEVEL" ] || basename "$p"
-  done < <(_worktree_records)
+  done <<< "$records"
 }
 _is_registered_slug() {
   local probe="$1" slug
@@ -231,15 +241,17 @@ _is_registered_slug() {
 # lsof is absent but /proc exists, each /proc/<pid>/cwd link is read instead. Both paths
 # compare against the symlink-resolved worktree path because lsof reports resolved paths
 # while git may hand us one with a symlinked prefix (e.g. /var vs /private/var).
-# Prints "unknown" and succeeds when the listing is empty, timed out or unavailable: a
-# partial or missing listing is never proof that nothing works inside, so the caller keeps.
-# Fails (status 1) only when a complete listing shows no process inside.
+# Prints "unknown" and succeeds when the listing is empty, failed or unavailable: lsof can
+# print rows and still exit non-zero after skipping what it could not read, so rows without
+# a clean exit are as little proof that nothing works inside as no rows are, and the caller
+# keeps. A timeout is one such failure. Fails (status 1) only when a listing that ended
+# cleanly shows no process inside.
 _busy_pid_in() {
   local root="$1" canon rows rc=0 line pid="" name link
   canon="$(cd "$root" 2>/dev/null && pwd -P)" || canon="$root"
   if command -v lsof >/dev/null 2>&1; then
     rows="$(bounded_run "$PROBE_TIMEOUT" lsof -nP -d cwd -Fpn 2>/dev/null)" || rc=$?
-    if [ "$rc" -eq 142 ] || [ -z "$rows" ]; then
+    if [ "$rc" -ne 0 ] || [ -z "$rows" ]; then
       printf 'unknown\n'
       return 0
     fi
@@ -326,13 +338,29 @@ if [ "$NUMBERED" = "1" ]; then
   if STASH_LIST="$(git_bounded -C "$MAIN_TOPLEVEL" stash list 2>/dev/null)"; then STASH_KNOWN=1; fi
 fi
 
+# Whether one path component names something that can hold session state: a SQLite database
+# or its journal, or a .state folder. No rebuild brings that back, so it is never regenerable.
+_is_state_name() {
+  case "$1" in .state|*.sqlite|*.sqlite3|*.db|*-wal|*-shm) return 0 ;; esac
+  return 1
+}
+
 # Whether one ignored path (relative to the worktree) is a regenerable item. Anything under
-# specs/ is never regenerable, and an unrecognized path is not either.
+# specs/ is never regenerable, nor is state kept under any other folder name, and an
+# unrecognized path is not either. Git reports a wholly ignored folder as one entry, so a
+# folder is searched for state before its own name can vouch for what is inside it.
 _ignored_is_regenerable() {
-  local wt="$1" rel="${2%/}" comp target allowed
+  local wt="$1" rel="${2%/}" comp target allowed state_hit
   local -a comps
   case "$rel" in specs|specs/*) return 1 ;; esac
   IFS=/ read -r -a comps <<< "$rel"
+  for comp in "${comps[@]}"; do
+    ! _is_state_name "$comp" || return 1
+  done
+  if [ -d "$wt/$rel" ] && [ ! -L "$wt/$rel" ]; then
+    state_hit="$(find "$wt/$rel" \( -name .state -o -name '*.sqlite' -o -name '*.sqlite3' -o -name '*.db' -o -name '*-wal' -o -name '*-shm' \) -print -quit 2>/dev/null)" || return 1
+    [ -z "$state_hit" ] || return 1
+  fi
   for comp in "${comps[@]}"; do
     case "$comp" in
       node_modules|dist|build|.cache|.turbo|.next|.nyc_output|coverage|.vitest|.eslintcache|\
@@ -361,10 +389,19 @@ _ignored_is_regenerable() {
 # same, which is what a squash merge leaves behind. Merging the branch into the live tip in
 # memory gives the live tip's own tree exactly when every change the branch made is already
 # there. A conflict, an error or a timeout means the content is not proven to be in, so the
-# branch counts as unmerged.
+# branch counts as unmerged. `merge-tree --write-tree` stores the merged tree and any
+# conflict blobs as real objects, so it runs against a throwaway object directory that
+# reads through to the repository's own and is deleted afterwards: nothing is written to
+# the repository, a dry run included.
 _branch_content_in_live() {
-  local branch="$1" merged live_tree
-  merged="$(git_bounded -C "$MAIN_TOPLEVEL" merge-tree --write-tree --no-messages "$INTEGRATION" "refs/heads/$branch" 2>/dev/null)" || return 1
+  local branch="$1" scratch merged="" live_tree rc=0
+  scratch="$(mktemp -d "${TMPDIR:-/tmp}/worktree-reaper-objects.XXXXXX" 2>/dev/null)" || return 1
+  merged="$(
+    export GIT_OBJECT_DIRECTORY="$scratch" GIT_ALTERNATE_OBJECT_DIRECTORIES="$COMMON_ABS/objects"
+    git_bounded -C "$MAIN_TOPLEVEL" merge-tree --write-tree --no-messages "$INTEGRATION" "refs/heads/$branch" 2>/dev/null
+  )" || rc=$?
+  rm -rf -- "$scratch"
+  [ "$rc" -eq 0 ] || return 1
   live_tree="$(git_bounded -C "$MAIN_TOPLEVEL" rev-parse --verify --quiet "$INTEGRATION^{tree}" 2>/dev/null)" || return 1
   [ -n "$merged" ] && [ "$merged" = "$live_tree" ]
 }
@@ -479,10 +516,17 @@ act git_bounded -C "$MAIN_TOPLEVEL" worktree prune || log "worktree prune failed
 [ -d "$WT_BASE" ] || log "no worktree base dir ($WT_BASE) — resolving worktrees from the registry"
 
 REGISTERED_PATHS=""
+REGISTRY_RECORDS=""
+REGISTRY_READ=1
+if ! REGISTRY_RECORDS="$(_worktree_records)"; then
+  REGISTRY_READ=0
+  log "worktree registry could not be read; no worktree is judged this run"
+fi
 
 # Iterate every registered worktree, from any base: the launcher may have chosen the base
 # from the environment, so a reaper without it must still see the worktree. Records come
-# in on fd 3 so no command in the loop can read the list from stdin.
+# in on fd 3 so no command in the loop can read the list from stdin. An unreadable registry
+# leaves the list empty, which this loop passes over without judging anything.
 while IFS=$'\037' read -r -u 3 wt_path branch detached locked; do
     [ -n "$wt_path" ] || continue
     [ "$wt_path" = "$MAIN_TOPLEVEL" ] && continue   # never the primary checkout
@@ -542,13 +586,23 @@ while IFS=$'\037' read -r -u 3 wt_path branch detached locked; do
     if _remove_worktree "$wt_path" "$branch"; then
       act rm -f "$MARKERS_DIR/$bn.pid"
     fi
-  done 3< <(_worktree_records)
+  done 3<<< "$REGISTRY_RECORDS"
 
-[ "$NUMBERED" != "1" ] || _report_orphans "$REGISTERED_PATHS"
+# With no registry, every folder under the base would look unregistered.
+[ "$NUMBERED" != "1" ] || [ "$REGISTRY_READ" != "1" ] || _report_orphans "$REGISTERED_PATHS"
 
 # Snapshot the registry AFTER reaping, so a worktree removed above is already absent here
-# and its leftover socket dir and marker still get cleaned.
-REGISTERED_SLUGS="$(_registered_slugs)"
+# and its leftover socket dir and marker still get cleaned. The cleanup below treats a
+# worktree that is missing from this snapshot as gone, so a registry that was unreadable
+# at either read skips it: a live session's socket dir and marker would otherwise be
+# deleted.
+REGISTERED_SLUGS=""
+SLUGS_READ=0
+if [ "$REGISTRY_READ" = "1" ] && REGISTERED_SLUGS="$(_registered_slugs)"; then
+  SLUGS_READ=1
+else
+  log "worktree registry unavailable; leaving socket dirs and session markers alone"
+fi
 
 # ───────────────────────────────────────────────────────────────
 # 6. SOCKET DIRECTORY CLEANUP
@@ -556,7 +610,7 @@ REGISTERED_SLUGS="$(_registered_slugs)"
 
 # Prune short per-session socket dirs (~/.spk-wt-sock/<runtime>-<slug>) whose worktree is gone.
 SOCK_BASE="$HOME/.spk-wt-sock"
-if [ -d "$SOCK_BASE" ]; then
+if [ "$SLUGS_READ" = "1" ] && [ -d "$SOCK_BASE" ]; then
   for sd in "$SOCK_BASE"/*; do
     [ -d "$sd" ] || continue
     slug="$(basename "$sd")"
@@ -569,7 +623,7 @@ if [ -d "$SOCK_BASE" ]; then
 fi
 
 # Prune session markers whose worktree no longer exists.
-if [ -d "$MARKERS_DIR" ]; then
+if [ "$SLUGS_READ" = "1" ] && [ -d "$MARKERS_DIR" ]; then
   for mf in "$MARKERS_DIR"/*.pid; do
     [ -f "$mf" ] || continue
     slug="$(basename "$mf" .pid)"

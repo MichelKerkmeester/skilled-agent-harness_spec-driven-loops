@@ -6,8 +6,8 @@ trigger_phrases:
   - "git workflow capabilities"
   - "worktree naming allocator"
   - "sk-git capability inventory"
-last_updated: "2026-10-27"
-version: 1.2.5.0
+last_updated: "2026-10-28"
+version: 1.2.6.0
 ---
 
 # sk-git: Feature Catalog
@@ -82,7 +82,7 @@ A companion script that prunes finished launch-wrapper worktrees and their lefto
 
 #### Current Reality
 
-`worktree-reaper.sh` removes a `work/<runtime>/<slug>` worktree only when all three hold at once: the tree is clean, its branch is merged into the live integration tip (the primary checkout's actual `HEAD`, not a possibly stale local `main`), and its session is proven inactive by a marker file recording a now-dead process id. Detached worktrees, human task worktrees (`worktrees/NNN-slug`) and any wrapper worktree with a missing or unreadable marker are report-only unless the opt-in `--numbered` lane applies. That lane removes a numbered worktree only when it is clean, merged, locked by nothing, idle for 48 hours, free of live processes and free of any ignored path that is not a regenerable build item; the SessionStart guard starts it detached at most once every six hours (`SPECKIT_WORKTREE_AUTOREAP=0` stops it). Every git call the reaper makes is bounded with fsmonitor off, and a process listing that comes back empty or late counts as busy. The reaper signals no process other than the fsmonitor daemon of a worktree it removes, which it ends through `fsmonitor-daemon-reaper.sh` first.
+`worktree-reaper.sh` removes a `work/<runtime>/<slug>` worktree only when all three hold at once: the tree is clean, its branch is merged into the live integration tip (the primary checkout's actual `HEAD`, not a possibly stale local `main`), and its session is proven inactive by a marker file recording a now-dead process id. Detached worktrees, human task worktrees (`worktrees/NNN-slug`) and any wrapper worktree with a missing or unreadable marker are report-only unless the opt-in `--numbered` lane applies. That lane removes a numbered worktree only when it is clean, merged, locked by nothing, idle for 48 hours, free of live processes and free of any ignored path that is not a regenerable build item (a SQLite file or a `.state` folder never counts as one); the SessionStart guard starts it detached at most once every six hours (`SPECKIT_WORKTREE_AUTOREAP=0` stops it). Every git call the reaper makes is bounded with fsmonitor off, a process listing that comes back empty, failed or late counts as busy, and a worktree registry that cannot be read judges no worktree and cleans up nothing. The reaper signals no process other than the fsmonitor daemon of a worktree it removes, which it ends through `fsmonitor-daemon-reaper.sh` first.
 
 #### Source Files
 

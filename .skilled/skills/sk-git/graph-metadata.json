@@ -74,7 +74,10 @@
     "cherry pick",
     "squash commits",
     "git tag",
-    "tags and publishes"
+    "tags and publishes",
+    "worktree cleanup",
+    "worktree reaper",
+    "numbered worktree sweep"
   ],
   "derived": {
     "trigger_phrases": [
@@ -126,7 +129,11 @@
       "find commits by packet",
       "find commits by id",
       "stamp commit id",
-      "commit-id trailer"
+      "commit-id trailer",
+      "worktree cleanup",
+      "session-start worktree cleanup",
+      "worktree reaper",
+      "numbered worktree sweep"
     ],
     "key_topics": [
       "git",

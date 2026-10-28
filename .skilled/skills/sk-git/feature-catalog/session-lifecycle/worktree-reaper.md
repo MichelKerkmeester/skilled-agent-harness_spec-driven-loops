@@ -7,7 +7,7 @@ trigger_phrases:
   - "reap only proven inactive worktrees"
   - "stale worktree socket cleanup"
 importance_tier: "important"
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Worktree reaper (worktree-reaper.sh)
@@ -36,18 +36,18 @@ A numbered worktree is a registered one on branch `worktrees/NNN-slug` whose fol
 
 - it is not the main checkout, not detached, not locked, and its folder exists;
 - `git status --porcelain --untracked-files=all` is empty;
-- every ignored path is a regenerable item: `node_modules`, `dist`, `build`, test and tool caches, the package outputs `worktree-provision-paths.txt` names, a file that list marks with a `# regenerable: <path>` comment, or a provisioned link back to the primary checkout. Anything ignored under `specs/` is kept, because it is not regenerable, and so are SQLite files and the `.state/` folders, which can hold session state;
+- every ignored path is a regenerable item: `node_modules`, `dist`, `build`, test and tool caches, the package outputs `worktree-provision-paths.txt` names, a file that list marks with a `# regenerable: <path>` comment, or a provisioned link back to the primary checkout. Anything ignored under `specs/` is kept, because it is not regenerable, and so are SQLite files (`*.sqlite`, `*.sqlite3`, `*.db`, `*-wal`, `*-shm`) and `.state/` folders, which can hold session state. That holds in any folder: git reports a wholly ignored folder such as `dist` as one entry, so the reaper searches it for those names before its own name can vouch for what is inside;
 - its branch is an ancestor of the primary checkout's `HEAD`, and no `git stash list` entry belongs to it;
 - the newest of the branch reflog, the worktree's own `logs/HEAD` and its `index` file is older than `--idle-hours` (default 48). The three times are read before any git command that might refresh the index;
-- a bounded `lsof` listing shows no process whose working directory is inside it. An empty, failed or timed-out listing counts as busy.
+- a bounded `lsof` listing shows no process whose working directory is inside it. An empty, timed-out or failed listing counts as busy, and so does one that printed rows and then exited non-zero, because the process that works inside may be among the rows it never reached.
 
-A branch that is not an ancestor of the live branch but whose changes are already in it, as a squash merge leaves it, is kept with the reason `branch content already in the live branch (squash-merged); remove by hand`. The reaper never removes it, and it finds it by merging the branch into the live tip in memory (`git merge-tree --write-tree`) and comparing the resulting tree with the live tip's tree. A conflict, an error or a timeout counts as unmerged. The merge can write one unreachable tree object to the object store, including under `--dry-run`, and changes no ref or worktree.
+A branch that is not an ancestor of the live branch but whose changes are already in it, as a squash merge leaves it, is kept with the reason `branch content already in the live branch (squash-merged); remove by hand`. The reaper never removes it, and it finds it by merging the branch into the live tip in memory (`git merge-tree --write-tree`) and comparing the resulting tree with the live tip's tree. A conflict, an error or a timeout counts as unmerged. `merge-tree` stores the merged tree as a real object, so it runs against a throwaway object directory that reads through to the repository's own and is deleted afterwards. The check writes nothing to the repository, `--dry-run` included, and changes no ref or worktree.
 
 Removal ends the worktree's fsmonitor daemon first, then runs plain `git worktree remove` and `git branch -d`, never with force. If git refuses either one, the reaper logs keep and moves on to the next worktree. Folders under the base that match `NNN-*` but are not registered are reported as orphans and never touched. Each numbered worktree prints one stdout row, `numbered verdict=<would-reap|reaped|keep> worktree=... branch=... reason=...`, and each orphan prints `orphan path=...`; `/doctor:git` counts those rows from a dry run.
 
 ### Bounded Calls
 
-Every git call the reaper makes goes through the shared bounded-git helper: a wall-clock bound (`SPECKIT_GIT_TIMEOUT`, default 20 seconds) with `core.fsmonitor=false`, so a wedged fsmonitor daemon or a stuck index lock costs one timeout. The process listing is bounded too (`FSMON_PROBE_TIMEOUT`, default 15 seconds). A refused `worktree remove` or `branch -d` is logged and the loop continues.
+Every git call the reaper makes goes through the shared bounded-git helper: a wall-clock bound (`SPECKIT_GIT_TIMEOUT`, default 20 seconds) with `core.fsmonitor=false`, so a wedged fsmonitor daemon or a stuck index lock costs one timeout. The process listing is bounded too (`FSMON_PROBE_TIMEOUT`, default 15 seconds). A refused `worktree remove` or `branch -d` is logged and the loop continues. A worktree registry that cannot be read, because `git worktree list` failed or timed out, is not treated as an empty one: the reaper logs it, judges no worktree and prints no orphan report.
 
 ### Session-Start Sweep
 
@@ -55,7 +55,7 @@ Every git call the reaper makes goes through the shared bounded-git helper: a wa
 
 ### Socket and Marker Cleanup
 
-The reaper also prunes the short per-session socket directories under `~/.spk-wt-sock/` and the session marker files under the common git directory once their corresponding worktree no longer exists, so neither accumulates indefinitely alongside the worktrees they were created for.
+The reaper also prunes the short per-session socket directories under `~/.spk-wt-sock/` and the session marker files under the common git directory once their corresponding worktree no longer exists, so neither accumulates indefinitely alongside the worktrees they were created for. The cleanup reads the registry again after the sweep, and when that read fails it removes nothing, because a worktree missing from an unreadable registry looks gone while its session may be live.
 
 ### fsmonitor Daemon End Before Removal
 

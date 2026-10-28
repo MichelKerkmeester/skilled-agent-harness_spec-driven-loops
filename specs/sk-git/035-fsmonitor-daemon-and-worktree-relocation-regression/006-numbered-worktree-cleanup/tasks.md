@@ -90,6 +90,29 @@ Variables: `L` is `.skilled/skills/sk-git/scripts/worktree-provision-paths.txt`,
 
 ---
 
+<!-- ANCHOR:phase-5 -->
+## Phase 5: Follow-up, alignment findings
+
+Variables: `ENVREF` is `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md`, `PB` is `.skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/reaper-dry-run-no-mutation.md`, `CAT` is `.skilled/skills/sk-git/feature-catalog/session-lifecycle/worktree-reaper.md`.
+
+- [x] T031 Re-read each of the nine findings against the code before changing anything. Verify: all nine hold, the lsof exit rule was checked on this host (`lsof -nP -d cwd -Fpn` and the `-a` form each exit 0 in three runs), and the squash-merged fixture alone writes no object (its merged tree already exists), so the object-count case also needs an unmerged branch.
+- [x] T032 Write the reaper cases first: a partial `lsof` listing in both lanes, an unreadable registry (git exits 1, git hangs) in both lanes, the object store across a numbered dry run, and a SQLite file or a `.state` folder inside `dist` and `.pytest_cache` (`$RT`). Verify: against the unmodified reaper the suite prints `PASS=110 FAIL=25` and exits 1.
+- [x] T033 Keep git's own status when reading the registry, and skip the verdicts, the orphan report and both cleanup loops when it fails (`$R`). Verify: the dead-registry and hung-registry cases keep the session marker and the socket dir of a registered worktree and log `worktree registry could not be read`.
+- [x] T034 Treat every non-zero `lsof` exit as an unknown listing (`$R`). Verify: the partial-listing cases keep `rt-a` and `002-ok` with `pid unknown` and `process listing unavailable`.
+- [x] T035 Run the squash-merge check in a throwaway object directory that reads through to the repository's and is deleted afterwards (`$R`). Verify: `git count-objects -v` is identical before and after a numbered dry run, the scratch directory is empty afterwards, and `016-squashed` still reads squash-merged.
+- [x] T036 Refuse SQLite names and `.state` folders as regenerable in any folder, and search a wholly ignored folder for them before its name vouches for it (`$R`). Verify: `018-sqlite-dist` and `019-state-cache` are kept with `ignored path is not regenerable`, and `$RT` prints `PASS=135 FAIL=0`.
+- [x] T037 [P] Update the catalog entry, the catalog summary and the reaper row in `.skilled/bin/README.md` (`$CAT`). Verify: `validate_document.py` reports `Total issues: 0` for the entry and the bin README, and the catalog no longer says the check may write a tree.
+- [x] T038 [P] Add the regenerable-file, state-file and squash-merged signals to the numbered part of GIT-034 (`$PB`). Verify: the playbook validator prints `violations=0`, and a scratch repository run of the described fixture printed each signal with equal object counts.
+- [x] T039 [P] Name the numbered worktrees line in the worktrees leg of the doctor workflow (`.skilled/commands/doctor/assets/doctor-git-setup.yaml`). Verify: the YAML parses and the doctor file prints 77 pass.
+- [x] T040 [P] Add rows to `$ENVREF` for `SPECKIT_WORKTREE_BASE`, `SPECKIT_GIT_TIMEOUT`, `SPECKIT_WORKTREE_ADD_TIMEOUT`, `SPECKIT_FSMON_REAPER`, `SPECKIT_WORKTREE_REAPER`, `FSMON_PROBE_TIMEOUT` and `SPECKIT_PRIVATE_SKILL_ROOTS`, and recount. Verify: the Variable-column count is 197 and 201 with the four governing-var names, and `env-reference-drift.vitest.ts` prints 5 passed.
+- [x] T041 [P] Decide `GIT_BOUND_SECONDS`: it is an internal per-call override, so say so in `.skilled/scripts/git-hooks/lib/README.md` and keep it out of `.env.example`. Verify: `worktree-session.sh` is the only production setter, and `check-env-tokens.cjs` has no way to mark a variable internal, so it is unchanged.
+- [x] T042 [P] Add the numbered sweep to the Git Worktrees section of the v4.0.0.16 notes. Verify: no tag contains the notes, and `validate_document.py` reports `Total issues: 0`.
+- [x] T043 Write the sk-git v1.11.2.0 changelog entry, raise the `SKILL.md` version and sync the Hermes copy. Verify: `validate_document.py` and `frontmatter-version.mjs verify --skill sk-git` exit 0, `validate_skill_package.py` exits 0, and `sync-skills-hermes.cjs --check` prints `PASS: 67 Hermes skill copies in sync`.
+- [x] T044 Rerun every touched suite and the live dry run. Verify: the counts and the unchanged registry, ref and object hashes are in `implementation-summary.md`.
+<!-- /ANCHOR:phase-5 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
@@ -155,6 +178,9 @@ Variables: `L` is `.skilled/skills/sk-git/scripts/worktree-provision-paths.txt`,
 - [x] CHK-024 [P0] Every reader of the provisioning list skips the `# regenerable:` lines: the provisioner, the doctor, the completeness test and the reaper's own loop were each run over the edited list
 - [x] CHK-025 [P1] The follow-up reaper cases fail against the unchanged reaper (`PASS=96 FAIL=6`) and pass after it (`PASS=102 FAIL=0`)
 - [x] CHK-026 [P1] No SQLite file and no `.state/` path is on the regenerable list: the live dry run still keeps four worktrees for `.skilled/skills/.state/` files
+- [x] CHK-027 [P0] An unreadable worktree registry deletes nothing: the dead-registry and hung-registry cases keep the marker and the socket dir of a registered worktree, and fail against the unmodified reaper
+- [x] CHK-028 [P1] A numbered dry run writes no object: `git count-objects -v` is identical before and after, in the fixture and in this repository
+- [x] CHK-029 [P1] A SQLite file or a `.state` folder inside a rebuildable folder keeps its worktree: the new cases fail against the unmodified reaper
 <!-- /ANCHOR:testing -->
 
 ---
@@ -206,11 +232,11 @@ Variables: `L` is `.skilled/skills/sk-git/scripts/worktree-provision-paths.txt`,
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 9/9 |
-| P1 Items | 16 | 16/16 |
+| P0 Items | 13 | 13/13 |
+| P1 Items | 17 | 17/17 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-10-27
+**Verification Date**: 2026-10-28
 <!-- /ANCHOR:summary -->
 
 ---
