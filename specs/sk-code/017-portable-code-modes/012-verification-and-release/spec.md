@@ -148,7 +148,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement |
 |----|-------------|
 | REQ-005 | The in-repository checks run clean: the CI report reads 32 workflows with no drift flag, the toggle asks for a second confirmation before it switches a protected workflow off, the setup battery reads `STATUS=OK legs=9`, the compiled-route guard and sync pass, the skill graph is fresh, the Hermes copies are in sync and the routing capture equals the committed baseline. |
-| REQ-006 | The framework changelog `v4.0.0.17.md` describes the settings move, and `v4.0.0.16.md` keeps the wording of the tagged release instead of describing a move that shipped after it. |
+| REQ-006 | The framework changelog `v4.0.0.17.md` describes the settings move, and `v4.0.0.16.md` keeps the wording of the tagged release instead of describing a move that shipped after it. Amended: On 2026-10-28 the operator folded the open `v4.0.0.17` entry into `v4.0.0.16` and edited the published `v4.0.0.16` release to match, so `v4.0.0.16.md` now describes the move and `v4.0.0.17.md` no longer exists. |
 | REQ-007 | sk-code `v3.9.18.0`, sk-code-ci `v1.1.9.0` and sk-code-quality `v1.13.11.0` each get a changelog entry, and each `SKILL.md` carries the same version. |
 | REQ-008 | The version carriers step together: `description.json`, `hub-router.json`, `mode-registry.json` and the `.hermes` copies carry the new version, the skill graph is regenerated and fresh, and the sk-code compiled route is re-minted from the new carrier. |
 

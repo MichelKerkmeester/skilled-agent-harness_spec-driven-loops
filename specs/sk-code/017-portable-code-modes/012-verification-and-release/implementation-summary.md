@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-28T09:10:00Z"
     last_updated_by: "implementer"
     recent_action: "Recorded the six runs and the release records"
-    next_safe_action: "Conductor reviews and commits the packet; the operator decides on the v4.0.0.17 release"
+    next_safe_action: "None; the packet is closed"
     blockers: []
     key_files:
       - "scratch/e2e/CQ-012.md"
@@ -22,7 +22,7 @@ _memory:
       - "scratch/e2e/ci-foreign-repository-profile.md"
       - "scratch/in-repo.txt"
       - ".skilled/skills/sk-code/sk-code-quality/repository/quality.json"
-      - ".skilled/changelog/skilled/v4.0.0.17.md"
+      - ".skilled/changelog/skilled/v4.0.0.16.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "verification-and-release-implementer"
@@ -138,7 +138,7 @@ The release half followed: the quality config, then the framework changelog with
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No GitHub release was published for `v4.0.0.17`.** The changelog and the version carriers are ready; announcing a tag is the operator's decision, and this phase stops before it.
+1. **No `v4.0.0.17` release exists.** On 2026-10-28 the operator folded the open `v4.0.0.17` entry into `v4.0.0.16` and edited the published `v4.0.0.16` release to match, so `v4.0.0.16.md` now describes the move and `v4.0.0.17.md` no longer exists.
 2. **The operator-local web surface's checklist rows are not in this repository.** Its rows are outside this checkout, so they are neither proved nor changed here.
 3. **The three review runs are one model's output.** `devin 3000.11.228` with `deepseek-v4-1-flash-max` produced them, and each file names the model; a different reviewer may word the same findings differently.
 4. **The review runs needed executor scaffolding.** The `.devin/skills/sk-code` symlink is what let the fixture's review see the skill, so a rerun without it reproduces the first failed attempt rather than the recorded pass.

@@ -44,7 +44,6 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       ".skilled/skills/sk-code/sk-code-quality/repository/quality.json",
-      ".skilled/changelog/skilled/v4.0.0.17.md",
       "scratch/e2e/CQ-012.md",
       "scratch/e2e/CQ-013.md",
       "scratch/e2e/CR-029.md",
@@ -57,7 +56,8 @@
       ".skilled/skills/sk-code/changelog/v3.9.18.0.md",
       ".skilled/skills/sk-code/SKILL.md",
       ".hermes/skills/sk-code/SKILL.md",
-      ".skilled/skills/sk-code/sk-code-ci/SKILL.md"
+      ".skilled/skills/sk-code/sk-code-ci/SKILL.md",
+      ".hermes/skills/sk-code-ci/SKILL.md"
     ],
     "entities": [
       {
@@ -94,12 +94,6 @@
         "name": "quality.json",
         "kind": "config",
         "path": ".skilled/skills/sk-code/sk-code-quality/repository/quality.json",
-        "source": "derived"
-      },
-      {
-        "name": "v4.0.0.17.md",
-        "kind": "doc",
-        "path": ".skilled/changelog/skilled/v4.0.0.17.md",
         "source": "derived"
       },
       {
@@ -203,11 +197,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The earlier phases changed how the three modes read a repository's rules, and every mode ships playbook scenarios a reader is expected to run by hand, but nothing ran them end to end",
     "created_at": "2026-10-28T07:05:32Z",
-    "last_save_at": "2026-10-28T08:06:43.242Z",
+    "last_save_at": "2026-10-28T09:03:38.357Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:345a609d7a794abb945c7ebfd6adbc63c501e95a2cc09a3d4fa294a9102e12ae",
+    "source_fingerprint": "sha256:0a681c55e967dc7609161f5d07153c80b95438aa88c7d880b6938859b738f872",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e37c1a9cddc7b8fef1ac7a2f78d050d51e52bd86ea26fdc55b88be91a7e9c05d",
+      "spec.md": "59de806b22d685d4e330c166dc8ae013477a6d39a517b6defea5c6a9a87ac652",
       "plan.md": "7578631546304b98fa51fbda1691279cbda803c27feadf6534290268013a7fd0",
-      "tasks.md": "4f547e33ebcf6a4138d360c9ed743f06249c0b721963e32fa6518121372f8ca2",
-      "implementation-summary.md": "fa53177067756998eda4f131a14319aa5c719e7c0a018f0ed6831f39ae266c59"
+      "tasks.md": "262eadbd1506457aebc6bcafa5ea0ddfc99923a192a83f0ac5f75446bf7f7245",
+      "implementation-summary.md": "46a508bd0a565edbc34fc8c8458c926ba756e63e2788a65f19c8d75954973d6a"
     },
     "last_active_at": null
   }
