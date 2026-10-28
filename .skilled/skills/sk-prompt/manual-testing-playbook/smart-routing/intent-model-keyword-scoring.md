@@ -1,7 +1,7 @@
 ---
 title: "SP-005 -- INTENT_MODEL keyword scoring routes between TEXT_ENHANCE and FRAMEWORK"
 description: "This scenario validates INTENT_MODEL routing for `SP-005`. It focuses on confirming weighted keyword scoring picks TEXT_ENHANCE for improve-heavy input and FRAMEWORK for framework-named input."
-version: 2.3.0.5
+version: 2.3.1.5
 ---
 
 # SP-005 -- INTENT_MODEL keyword scoring routes between TEXT_ENHANCE and FRAMEWORK
@@ -64,7 +64,7 @@ Routing trace per input. Capture intent name + resource list per call.
 
 ### Failure Triage
 
-1. Inspect SKILL.md §2 INTENT_MODEL keyword weights; compare to the per-input scoring trace.
+1. Inspect SKILL.md §10 INTENT_MODEL keyword weights; compare to the per-input scoring trace.
 2. Re-dispatch each input with the keyword density doubled, see if scoring changes.
 3. Confirm RESOURCE_MAP entries still resolve on disk (`bash: ls .skilled/skills/sk-prompt/references/`).
 
@@ -81,7 +81,7 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../SKILL.md` | sk-prompt skill source: §2 INTENT_MODEL + RESOURCE_MAP |
+| `../../SKILL.md` | sk-prompt skill source: §10 INTENT_MODEL + RESOURCE_MAP |
 
 ### Implementation And Test Anchors
 

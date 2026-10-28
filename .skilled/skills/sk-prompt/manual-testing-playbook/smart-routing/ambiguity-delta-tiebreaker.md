@@ -1,7 +1,7 @@
 ---
 title: "SP-007 -- AMBIGUITY_DELTA top-2 tiebreaker"
 description: "This scenario validates AMBIGUITY_DELTA top-2 selection for `SP-007`. It focuses on confirming both intents load when scores differ by 1 or less."
-version: 2.3.0.5
+version: 2.3.1.0
 ---
 
 # SP-007 -- AMBIGUITY_DELTA top-2 tiebreaker
@@ -79,7 +79,7 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../SKILL.md` | sk-prompt skill source: §2 select_intents() pseudocode |
+| `../../SKILL.md` | sk-prompt skill source: the final MACHINE ROUTER section's select_intents() pseudocode |
 
 ### Implementation And Test Anchors
 

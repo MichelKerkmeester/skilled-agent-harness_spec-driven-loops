@@ -1,7 +1,7 @@
 ---
 title: "sk-prompt: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the sk-prompt skill."
-version: 2.3.0.9
+version: 2.3.1.0
 ---
 
 # sk-prompt: Manual Testing Playbook
@@ -53,7 +53,7 @@ Coverage note (2026-05-06): the playbook covers mode detection across 7 command 
 ## 2. GLOBAL PRECONDITIONS
 
 1. Working directory is project root.
-2. `.skilled/skills/sk-prompt/SKILL.md` is at HEAD-of-main and contains §2 Smart Routing (INTENT_MODEL, RESOURCE_MAP, ON_DEMAND_KEYWORDS, AMBIGUITY_DELTA, UNKNOWN_FALLBACK_CHECKLIST), §3 operating modes table, and §7 agent invocation contract.
+2. `.skilled/skills/sk-prompt/SKILL.md` is at HEAD-of-main and contains the final MACHINE ROUTER section's routing tables (INTENT_MODEL, RESOURCE_MAP, ON_DEMAND_KEYWORDS, AMBIGUITY_DELTA, UNKNOWN_FALLBACK_CHECKLIST), §3 operating modes table, and §7 agent invocation contract.
 3. `.skilled/skills/sk-prompt/references/depth-framework.md`, `.skilled/skills/sk-prompt/references/patterns-evaluation.md`, `.skilled/skills/sk-prompt/assets/format-guide-markdown.md`, `.skilled/skills/sk-prompt/assets/format-guide-json.md`, and `.skilled/skills/sk-prompt/assets/format-guide-yaml.md` resolve on disk.
 4. `@prompt-improver` agent is canonical at `.skilled/agents/prompt-improver.md` (verify with `ls .skilled/agents/prompt-improver.md`).
 5. Destructive scenario: none in this playbook. All scenarios are read+score+return, no file mutation outside the operator's own evidence capture under `/tmp/`.

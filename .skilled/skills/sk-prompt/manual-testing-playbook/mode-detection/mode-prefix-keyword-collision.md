@@ -1,7 +1,7 @@
 ---
 title: "SP-004 -- Mode prefix wins over keyword scoring"
 description: "This scenario validates prefix-vs-keyword precedence for `SP-004`. It focuses on confirming an explicit `$` prefix overrides keyword-weighted INTENT_MODEL scoring even when keyword density is high."
-version: 2.3.0.4
+version: 2.3.1.4
 ---
 
 # SP-004 -- Mode prefix wins over keyword scoring
@@ -63,9 +63,9 @@ Capture transparency report. Confirm 3-round phase log. Confirm no INTENT_MODEL 
 ### Failure Triage
 
 1. Confirm `$short` is the literal first token (no leading whitespace, exact case).
-2. Inspect SKILL.md §2 Phase Detection block: STEP 0 should detect prefix BEFORE STEP 1 keyword scoring.
+2. Inspect SKILL.md §10 Phase Detection block: STEP 0 should detect prefix BEFORE STEP 1 keyword scoring.
 3. Inspect smart-router pseudocode for prefix-precedence logic.
-4. If keyword scoring still runs, file a routing-precedence regression against §2 and SKILL.md.
+4. If keyword scoring still runs, file a routing-precedence regression against §10 and SKILL.md.
 
 ### Optional Supplemental Checks
 
@@ -80,13 +80,13 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../SKILL.md` | sk-prompt skill source: §2 Phase Detection (STEP 0 prefix), §3 operating-modes |
+| `../../SKILL.md` | sk-prompt skill source: §10 Phase Detection (STEP 0 prefix), §3 operating-modes |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` | §2 Smart Router pseudocode (prefix-precedence) |
+| `../../SKILL.md` | §10 Smart Router pseudocode (prefix-precedence) |
 | `../../references/depth-framework.md` | DEPTH 3-round contract under `$short` |
 
 ---

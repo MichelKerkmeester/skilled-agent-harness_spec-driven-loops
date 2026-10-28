@@ -1,0 +1,15 @@
+[
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafScopes": [
+      "feature-catalog",
+      "hooks/claude/README.md",
+      "hooks/lib/README.md",
+      "hooks/pi/README.md",
+      "hooks/skill-advisor-hook-validation.md",
+      "hooks/skill-advisor-hook.md",
+      "manual-testing-playbook",
+      "references"
+    ]
+  }
+]

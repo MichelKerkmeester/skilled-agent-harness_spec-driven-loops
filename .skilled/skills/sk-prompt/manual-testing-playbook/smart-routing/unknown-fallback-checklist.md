@@ -1,7 +1,7 @@
 ---
 title: "SP-008 -- UNKNOWN_FALLBACK with disambiguation checklist"
 description: "This scenario validates zero-keyword fallback for `SP-008`. It focuses on confirming the router defaults to TEXT_ENHANCE and surfaces UNKNOWN_FALLBACK_CHECKLIST."
-version: 2.3.0.5
+version: 2.3.1.5
 ---
 
 # SP-008 -- UNKNOWN_FALLBACK with disambiguation checklist
@@ -79,14 +79,14 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../SKILL.md` | sk-prompt skill source: §2 UNKNOWN_FALLBACK_CHECKLIST |
+| `../../SKILL.md` | sk-prompt skill source: §10 UNKNOWN_FALLBACK_CHECKLIST |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
 | `../../references/depth-framework.md` | DEFAULT_RESOURCE loaded under UNKNOWN_FALLBACK |
-| `../../SKILL.md` | §2 route_prompt_improver_resources() pseudocode |
+| `../../SKILL.md` | §10 route_prompt_improver_resources() pseudocode |
 
 ---
 

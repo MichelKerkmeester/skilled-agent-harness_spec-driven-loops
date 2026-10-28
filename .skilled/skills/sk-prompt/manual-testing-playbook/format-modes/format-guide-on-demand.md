@@ -1,7 +1,7 @@
 ---
 title: "SP-028 -- Format guide on-demand loading"
 description: "This scenario validates format-guide loading for `SP-028`. It focuses on loading `format_guide_*.md` only when format mode and ON_DEMAND keyword signals require it."
-version: 2.3.0.5
+version: 2.3.1.5
 ---
 
 # SP-028 -- Format guide on-demand loading
@@ -80,7 +80,7 @@ Run a `$yaml` request without `format guide` wording and verify the trace does n
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../SKILL.md` | sk-prompt skill source: §2 ON_DEMAND keywords and §7 `@prompt-improver` contract |
+| `../../SKILL.md` | sk-prompt skill source: §10 ON_DEMAND keywords and §7 `@prompt-improver` contract |
 
 ### Implementation And Test Anchors
 

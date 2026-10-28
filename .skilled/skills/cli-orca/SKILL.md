@@ -2,7 +2,7 @@
 name: cli-orca
 description: "Route Orca CLI work: worktrees, terminals, browser, automations, handoffs, artifacts, and the eight official Orca skills."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 0.1.3.0
+version: 0.1.4.0
 user-invocable: true
 ---
 
@@ -61,130 +61,14 @@ A bare `orca` mention is never sufficient. The token also matches the `OpenOrca`
 
 ## 2. SMART ROUTING
 
-### Primary Detection Signals
+cli-orca is a standalone skill, so its own advisor signal selects it, and only an Orca-qualified phrase selects a lane, except the recovery lane, which names a runtime failure state: a named Orca surface, a managed worktree, a paired terminal, the embedded browser, an automation or an official skill placed in Orca.
 
-| Signal | Lane |
-|--------|------|
-| `orca worktree`, `managed worktree`, `orca repository`, worktree id `<repoId>::<path>` | Worktree and handoff lane, [`references/orca-cli-reference.md`](references/orca-cli-reference.md) |
-| `orca terminal`, `paired terminal` | Terminal lane, [`references/session-and-runtime.md`](references/session-and-runtime.md) |
-| `orca browser`, `orca embedded browser`, Orca tab snapshots or refs | Browser lane, [`references/mutation-and-browser-boundaries.md`](references/mutation-and-browser-boundaries.md) |
-| `orca automation`, `orca artifacts`, `orca skills` | Automation and publishing lane, [`references/mutation-and-browser-boundaries.md`](references/mutation-and-browser-boundaries.md) |
-| Any named official skill in an Orca context | Official skills index, [`references/orca-skills/overview.md`](references/orca-skills/overview.md) |
-| Runtime stopped, executable missing, guide mismatch, ambiguous result | Recovery lane, [`references/troubleshooting.md`](references/troubleshooting.md) |
+`SKILL.md` loads first and stays in context.
+The selected lane then loads exactly one reference, and the flags themselves come from the version-matched guide served by the binary.
 
-### Phase Detection
+A request that matches no lane returns `UNKNOWN_FALLBACK` and defers instead of guessing, and a request that belongs to `sk-git`, `mcp-chrome-devtools` or another owner is handed to that owner.
 
-| Phase | What happens |
-|-------|--------------|
-| Discovery | Identify the Orca surface and resolve exactly one executable |
-| Preflight | Capture version, help output, agent context and the matching guide |
-| Execution | Run the lane's commands with `--json` wherever the surface supports it |
-| Verification | Compare the structured result against the requested state and report the receipt |
-
-### Resource Loading Levels
-
-| Level | Content |
-|-------|---------|
-| L0 | This `SKILL.md`, always in context once activated |
-| L1 | The one reference selected by the lane table above |
-| L2 | The version-matched guide served by the binary: `orca skills get orca-cli --full`, or `--reference references/<file>.md` for one guide section |
-
-### Smart Router Pseudocode
-
-```python
-import re
-from pathlib import Path
-
-SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/orca-skills/overview.md"
-
-INTENT_SIGNALS = {
-    "WORKTREE": {"weight": 4, "keywords": ["orca worktree", "managed worktree", "orca repository", "child worktree", "orca cli", "orca handoff", "$orca-cli", "full ownership handoff"]},
-    "TERMINAL": {"weight": 4, "keywords": ["orca terminal", "paired terminal"]},
-    "BROWSER": {"weight": 4, "keywords": ["orca browser", "orca embedded browser"]},
-    "AUTOMATIONS": {"weight": 3, "keywords": ["orca automation", "orca artifacts", "orca skills"]},
-    "ORCA_SKILLS": {"weight": 4, "keywords": ["orca-cli", "orchestration skill", "computer-use", "linear-tickets", "orca-linear", "orca-emulator", "orca-emulator-android", "orca-per-workspace-env"]},
-    # The recovery lane names runtime failure states rather than Orca surfaces, so it is the one
-    # lane that may be entered without an Orca qualifier.
-    "RECOVERY": {"weight": 3, "keywords": ["runtime stopped", "executable missing", "guide mismatch", "ambiguous send"]},
-}
-
-FOREIGN_OWNERS = {
-    "generic git worktree": "sk-git",
-    "chrome devtools protocol": "mcp-chrome-devtools",
-    "agentic browser": "mcp-aside-devtools",
-    "supervised orchestration dag": "the official orchestration skill",
-    "openorca model label": "the pi runtime cache extension",
-    "gnome screen reader": "no owner, ask the operator",
-}
-
-UNKNOWN_FALLBACK = {
-    "load_level": "UNKNOWN_FALLBACK",
-    "action": "defer",
-    "message": "No Orca-qualified phrase matched. A bare 'orca' token never routes here.",
-}
-
-RESOURCE_MAP = {
-    "WORKTREE": ["references/orca-cli-reference.md"],
-    "TERMINAL": ["references/session-and-runtime.md"],
-    "BROWSER": ["references/mutation-and-browser-boundaries.md"],
-    "AUTOMATIONS": ["references/mutation-and-browser-boundaries.md"],
-    "ORCA_SKILLS": ["references/orca-skills/overview.md"],
-    "RECOVERY": ["references/troubleshooting.md"],
-}
-
-def _guard_in_skill(relative_path: str) -> str:
-    """Resolve a resource inside the skill root and refuse anything else."""
-    resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)
-    if resolved.suffix.lower() != ".md":
-        raise ValueError(f"Only markdown resources are routable: {relative_path}")
-    return resolved.relative_to(SKILL_ROOT).as_posix()
-
-def discover_markdown_resources() -> set[str]:
-    """Every routable resource, so a signal can never name a file that does not exist."""
-    docs = []
-    for base in RESOURCE_BASES:
-        if base.exists():
-            docs.extend(path for path in base.rglob("*.md") if path.is_file())
-    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
-
-ORCA_PLACEMENT = re.compile(r"(?:^|[^a-z0-9])\$?orca(?![a-z0-9])")
-
-
-def _places_in_orca(text: str) -> bool:
-    """True when the request names Orca itself, which is what qualifies a bare official skill name."""
-    return bool(ORCA_PLACEMENT.search(text))
-
-
-def orca_qualified_phrases(request: str) -> list[str]:
-    """The request's signals: Orca-qualified phrases plus the sanctioned compound surfaces.
-
-    The recovery lane is state-based by design, so it needs no Orca qualifier; the official-skill
-    names carry one only when the request also places them in Orca, which route() enforces.
-    """
-    text = request.lower()
-    return [keyword for signals in INTENT_SIGNALS.values() for keyword in signals["keywords"] if keyword in text]
-
-def route(request: str) -> dict:
-    signals = orca_qualified_phrases(request)
-    if not signals:
-        return dict(UNKNOWN_FALLBACK)
-    foreign = [owner for phrase, owner in FOREIGN_OWNERS.items() if phrase in request.lower()]
-    if foreign and not any(signal.startswith("orca") for signal in signals):
-        return {"action": "defer", "owners": foreign}
-    lane = max(INTENT_SIGNALS, key=lambda name: sum(signal in signals for signal in INTENT_SIGNALS[name]["keywords"]))
-    if lane == "ORCA_SKILLS" and not _places_in_orca(request.lower()):
-        # An official skill name routes only when the request also places it in Orca, so a bare
-        # name falls back instead of claiming the lane on its own.
-        return dict(UNKNOWN_FALLBACK)
-    resources = RESOURCE_MAP[lane]
-    missing = [resource for resource in resources if resource not in discover_markdown_resources()]
-    if missing:
-        return {"action": "halt", "reason": f"unregistered resource: {missing}"}
-    return {"action": "load", "load_level": lane, "resources": [_guard_in_skill(path) for path in resources]}
-```
+The lane table, the phase table, the loading levels and the routing pseudocode sit in the final `MACHINE ROUTER` section of this file.
 
 ---
 
@@ -338,3 +222,134 @@ The task is ready to report when the resolved executable and the guide command a
 - `mcp-chrome-devtools` keeps Chrome and CDP inspection, and `mcp-aside-devtools` keeps generic agentic browser work.
 - The official `orchestration` skill keeps supervised multi-agent coordination, while this skill keeps the lightweight terminal prompts and full handoffs.
 - The installed Orca guide stays authoritative for version-sensitive command detail, and the snapshot assets stay authoritative for upstream wording.
+
+---
+
+## 8. MACHINE ROUTER
+
+The routing detail behind the short summary: the lane and phase tables, the loading levels and the authoritative router pseudocode.
+
+### Primary Detection Signals
+
+| Signal | Lane |
+|--------|------|
+| `orca worktree`, `managed worktree`, `orca repository`, worktree id `<repoId>::<path>` | Worktree and handoff lane, [`references/orca-cli-reference.md`](references/orca-cli-reference.md) |
+| `orca terminal`, `paired terminal` | Terminal lane, [`references/session-and-runtime.md`](references/session-and-runtime.md) |
+| `orca browser`, `orca embedded browser`, Orca tab snapshots or refs | Browser lane, [`references/mutation-and-browser-boundaries.md`](references/mutation-and-browser-boundaries.md) |
+| `orca automation`, `orca artifacts`, `orca skills` | Automation and publishing lane, [`references/mutation-and-browser-boundaries.md`](references/mutation-and-browser-boundaries.md) |
+| Any named official skill in an Orca context | Official skills index, [`references/orca-skills/overview.md`](references/orca-skills/overview.md) |
+| Runtime stopped, executable missing, guide mismatch, ambiguous result | Recovery lane, [`references/troubleshooting.md`](references/troubleshooting.md) |
+
+### Phase Detection
+
+| Phase | What happens |
+|-------|--------------|
+| Discovery | Identify the Orca surface and resolve exactly one executable |
+| Preflight | Capture version, help output, agent context and the matching guide |
+| Execution | Run the lane's commands with `--json` wherever the surface supports it |
+| Verification | Compare the structured result against the requested state and report the receipt |
+
+### Resource Loading Levels
+
+| Level | Content |
+|-------|---------|
+| L0 | This `SKILL.md`, always in context once activated |
+| L1 | The one reference selected by the lane table above |
+| L2 | The version-matched guide served by the binary: `orca skills get orca-cli --full`, or `--reference references/<file>.md` for one guide section |
+
+### Smart Router Pseudocode
+
+```python
+import re
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/orca-skills/overview.md"
+
+INTENT_SIGNALS = {
+    "WORKTREE": {"weight": 4, "keywords": ["orca worktree", "managed worktree", "orca repository", "child worktree", "orca cli", "orca handoff", "$orca-cli", "full ownership handoff"]},
+    "TERMINAL": {"weight": 4, "keywords": ["orca terminal", "paired terminal"]},
+    "BROWSER": {"weight": 4, "keywords": ["orca browser", "orca embedded browser"]},
+    "AUTOMATIONS": {"weight": 3, "keywords": ["orca automation", "orca artifacts", "orca skills"]},
+    "ORCA_SKILLS": {"weight": 4, "keywords": ["orca-cli", "orchestration skill", "computer-use", "linear-tickets", "orca-linear", "orca-emulator", "orca-emulator-android", "orca-per-workspace-env"]},
+    # The recovery lane names runtime failure states rather than Orca surfaces, so it is the one
+    # lane that may be entered without an Orca qualifier.
+    "RECOVERY": {"weight": 3, "keywords": ["runtime stopped", "executable missing", "guide mismatch", "ambiguous send"]},
+}
+
+FOREIGN_OWNERS = {
+    "generic git worktree": "sk-git",
+    "chrome devtools protocol": "mcp-chrome-devtools",
+    "agentic browser": "mcp-aside-devtools",
+    "supervised orchestration dag": "the official orchestration skill",
+    "openorca model label": "the pi runtime cache extension",
+    "gnome screen reader": "no owner, ask the operator",
+}
+
+UNKNOWN_FALLBACK = {
+    "load_level": "UNKNOWN_FALLBACK",
+    "action": "defer",
+    "message": "No Orca-qualified phrase matched. A bare 'orca' token never routes here.",
+}
+
+RESOURCE_MAP = {
+    "WORKTREE": ["references/orca-cli-reference.md"],
+    "TERMINAL": ["references/session-and-runtime.md"],
+    "BROWSER": ["references/mutation-and-browser-boundaries.md"],
+    "AUTOMATIONS": ["references/mutation-and-browser-boundaries.md"],
+    "ORCA_SKILLS": ["references/orca-skills/overview.md"],
+    "RECOVERY": ["references/troubleshooting.md"],
+}
+
+def _guard_in_skill(relative_path: str) -> str:
+    """Resolve a resource inside the skill root and refuse anything else."""
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def discover_markdown_resources() -> set[str]:
+    """Every routable resource, so a signal can never name a file that does not exist."""
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+ORCA_PLACEMENT = re.compile(r"(?:^|[^a-z0-9])\$?orca(?![a-z0-9])")
+
+
+def _places_in_orca(text: str) -> bool:
+    """True when the request names Orca itself, which is what qualifies a bare official skill name."""
+    return bool(ORCA_PLACEMENT.search(text))
+
+
+def orca_qualified_phrases(request: str) -> list[str]:
+    """The request's signals: Orca-qualified phrases plus the sanctioned compound surfaces.
+
+    The recovery lane is state-based by design, so it needs no Orca qualifier; the official-skill
+    names carry one only when the request also places them in Orca, which route() enforces.
+    """
+    text = request.lower()
+    return [keyword for signals in INTENT_SIGNALS.values() for keyword in signals["keywords"] if keyword in text]
+
+def route(request: str) -> dict:
+    signals = orca_qualified_phrases(request)
+    if not signals:
+        return dict(UNKNOWN_FALLBACK)
+    foreign = [owner for phrase, owner in FOREIGN_OWNERS.items() if phrase in request.lower()]
+    if foreign and not any(signal.startswith("orca") for signal in signals):
+        return {"action": "defer", "owners": foreign}
+    lane = max(INTENT_SIGNALS, key=lambda name: sum(signal in signals for signal in INTENT_SIGNALS[name]["keywords"]))
+    if lane == "ORCA_SKILLS" and not _places_in_orca(request.lower()):
+        # An official skill name routes only when the request also places it in Orca, so a bare
+        # name falls back instead of claiming the lane on its own.
+        return dict(UNKNOWN_FALLBACK)
+    resources = RESOURCE_MAP[lane]
+    missing = [resource for resource in resources if resource not in discover_markdown_resources()]
+    if missing:
+        return {"action": "halt", "reason": f"unregistered resource: {missing}"}
+    return {"action": "load", "load_level": lane, "resources": [_guard_in_skill(path) for path in resources]}
+```

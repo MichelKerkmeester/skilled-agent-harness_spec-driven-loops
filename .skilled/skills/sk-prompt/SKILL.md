@@ -2,7 +2,7 @@
 name: sk-prompt
 description: "Prompt engineering: transforms a request into a structured, scored AI prompt via 7 frameworks, DEPTH thinking and CLEAR scoring."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 3.0.7.0
+version: 3.0.8.0
 ---
 
 <!-- Keywords: prompt-engineering, prompt-improvement, improve prompt, improve this prompt, improve the prompt, enhance prompt, prompt improvement, DEPTH, RICCE, CLEAR-scoring, framework-selection, RCAF, COSTAR, CRAFT, TIDD-EC, CRISPE -->
@@ -52,6 +52,279 @@ Construct a grounded, anti-default generation brief for a design-generation run.
 
 ## 2. SMART ROUTING
 
+The `$improve`, `$text`, `$refine`, `$short`, `$json`, `$yaml` and `$raw` prefixes select this skill, and so does a request to improve, enhance, score or restructure a prompt.
+The prefix is authoritative: it fixes the operating mode before any scoring runs.
+With no prefix, weighted keyword scoring picks the top intent, or the top two when their scores sit within `AMBIGUITY_DELTA`.
+A zero score falls back to `TEXT_ENHANCE` with the disambiguation checklist rather than guessing.
+
+`references/depth-framework.md` loads first on every run except `$raw`, and `references/patterns-evaluation.md` joins it for the text, framework, design-generation, Markdown, JSON and YAML intents.
+The loading levels, the flat `references/` and `assets/` inventory, the phase tree and the smart-router pseudocode stay in the final `MACHINE ROUTER` section of this file.
+
+---
+
+## 3. HOW IT WORKS
+
+### Enhancement Pipeline
+
+Every prompt enhancement follows this pipeline:
+
+```
+STEP 1: Mode Detection
+       ├─ Command prefix check ($text, $improve, $refine, $short, etc.)
+       ├─ Keyword signal analysis (>=80% confidence = auto-route)
+       └─ Ambiguous? Ask ONE comprehensive question
+       ↓
+STEP 2: Framework Selection
+       ├─ Evaluate 7 frameworks against request characteristics
+       ├─ Score: complexity, urgency, audience, creativity, precision
+       └─ Select primary framework + alternative
+       ↓
+STEP 3: DEPTH Processing (5-10 rounds)
+       ├─ Discover: 5 perspectives, assumption audit, RICCE Role & Context
+       ├─ Engineer: Framework application, RICCE Constraints & Instructions
+       ├─ Prototype: Template build, RICCE validation
+       ├─ Test: Scoring (CLEAR), quality gates
+       └─ Harmonize: Final polish, RICCE completeness
+       ↓
+STEP 4: Scoring & Delivery
+       ├─ Apply context-appropriate scoring system
+       ├─ Verify threshold met (CLEAR 40+/50)
+       └─ Deliver enhanced prompt with transparency report
+```
+
+See the Smart Routing pseudocode (Section 10) for the complete routing logic.
+
+### Operating Modes
+
+| Mode | Command | DEPTH Rounds | Scoring | Use Case |
+|------|---------|-------------|---------|----------|
+| Interactive | (default) | 10 | CLEAR | Guided enhancement |
+| Text | `$text` | 10 | CLEAR | Standard text prompt |
+| Short | `$short` | 3 | CLEAR | Quick refinement |
+| Improve | `$improve` | 10 | CLEAR | Standard enhancement |
+| Refine | `$refine` | 10 | CLEAR | Maximum optimization |
+| JSON | `$json` | 10 | CLEAR | API-ready format |
+| YAML | `$yaml` | 10 | CLEAR | Config format |
+| Raw | `$raw` | 0 | None | Skip DEPTH |
+
+### Framework Selection Matrix
+
+| Complexity | Primary Need | Framework |
+|-----------|-------------|-----------|
+| 1-3 | Speed | RACE |
+| 1-4 | Clarity | RCAF |
+| 3-6 | Audience | COSTAR |
+| 4-6 | Instructions | CIDI |
+| 5-7 | Creativity | CRISPE |
+| 6-8 | Precision | TIDD-EC |
+| 7-10 | Comprehensive | CRAFT |
+See [patterns-evaluation.md](./references/patterns-evaluation.md) for complete framework details.
+See [depth-framework.md](./references/depth-framework.md) for the DEPTH methodology.
+
+### Scoring Systems
+
+**CLEAR** (50-point scale): Correctness (10) + Logic (10) + Expression (15) + Arrangement (10) + Reusability (5). Threshold: 40+.
+
+---
+
+## 4. RULES
+
+### ✅ ALWAYS
+
+1. **ALWAYS ask ONE comprehensive question** before processing, in an interactive run whose request leaves the goal open
+   - Gather: What needs enhancement? Use case/goal? Requirements?
+   - Exception: `$raw` mode skips questions entirely
+   - An agent or other non-interactive run never asks: it proceeds on stated assumptions and flags each one in the transparency report
+
+2. **ALWAYS apply DEPTH processing** for the detected mode
+   - 10 rounds for text modes, 3 for $short, 0 for $raw
+
+3. **ALWAYS enforce minimum 3 perspectives** during DEPTH Discover phase
+   - Target 5 perspectives; 3 is the blocking minimum
+   - Perspectives: Prompt Engineering, AI Interpretation, User Clarity, Framework Selection, Token Efficiency
+
+4. **ALWAYS validate with RICCE** before delivery
+   - Role, Instructions, Context, Constraints, Examples must be present or justified
+
+5. **ALWAYS apply scoring** and verify threshold met
+   - CLEAR 40+/50
+
+6. **ALWAYS provide a transparency report** after delivering the enhanced prompt
+   - Framework selected, DEPTH rounds applied, score breakdown, assumptions flagged
+
+### ⛔ NEVER
+
+1. **NEVER answer own questions**
+   - In an interactive run, wait for the user's response before proceeding with enhancement
+
+2. **NEVER skip framework evaluation**
+   - Even for simple prompts, score at least 3 frameworks before selecting
+
+3. **NEVER deliver without scoring**
+   - Every enhanced prompt must have a CLEAR score (except $raw)
+
+4. **NEVER write the enhanced prompt in the operator's voice**
+   - Address the executing model: the role line in the second person ("You are..."), task steps in the imperative
+
+5. **NEVER exceed context with full reference loading**
+   - Load only the references needed for the detected mode
+
+### ⚠️ ESCALATE IF
+
+1. **ESCALATE IF mode detection confidence < 50%**
+   - Ask: "What type of prompt are you creating? Can you describe the use case?"
+
+2. **ESCALATE IF CLEAR score below threshold after DEPTH**
+   - Suggest: "Score is below target. Options: A) Additional refinement round B) Switch framework C) Accept as-is"
+
+3. **ESCALATE IF request conflicts with prompt engineering scope**
+   - Redirect: "This appears to be a [code/doc/debug] task. Consider using [sk-code/sk-doc] instead."
+
+---
+
+## 5. REFERENCES
+
+### Core References
+
+- [depth-framework.md](./references/depth-framework.md) - DEPTH methodology (Discover, Engineer, Prototype, Test, Harmonize), RICCE integration
+- [patterns-evaluation.md](./references/patterns-evaluation.md) - 7 framework definitions, CLEAR scoring
+
+### Asset Files
+
+- [format-guide-markdown.md](./assets/format-guide-markdown.md) - Markdown format deep-dive: fundamentals, delivery standards, RCAF/CRAFT structures, advanced patterns, validation, best practices
+- [format-guide-json.md](./assets/format-guide-json.md) - JSON format deep-dive: fundamentals, data types, delivery standards, RCAF/CRAFT structures, advanced patterns, validation, best practices
+- [format-guide-yaml.md](./assets/format-guide-yaml.md) - YAML format deep-dive: fundamentals, data types, delivery standards, RCAF/CRAFT structures, advanced patterns, templates, validation, best practices
+
+### Reference Loading Notes
+
+- Load only references needed for current intent
+- Smart Routing (Section 10) is the single authority for loading rules
+- SKILL.md (this file) is always loaded; conditionally load mode-specific references
+
+---
+
+## 6. SUCCESS CRITERIA
+
+### Enhancement Complete When
+
+- ✅ Mode detected and framework selected with reasoning
+- ✅ DEPTH rounds completed per mode specification
+- ✅ Scoring applied and threshold verified
+- ✅ RICCE validation passed
+- ✅ Enhanced prompt delivered with transparency report
+- ✅ User can iterate or accept
+
+### Quality Targets
+
+- **CLEAR Score**: 40+ out of 50
+- **Framework Selection Accuracy**: Match task characteristics to framework with >85% alignment
+
+---
+
+## 7. AGENT INVOCATION CONTRACT
+
+`@prompt-improver` is the fresh-context escalation surface for this skill. The agent loads the references in this skill, applies the same framework-selection and CLEAR rules, and returns a structured block that the caller can inject into a CLI dispatch without loading the full skill inline.
+
+### Expected Input Payload
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `raw_task` | Yes | Raw task description or draft prompt to improve |
+| `task_type` | No | One of `generation`, `review`, `research`, `edit`, `analyze` |
+| `target_cli` | No | One of `claude-code`, `opencode`, `copilot` |
+| `complexity_hint` | No | Integer `1-10` used to choose Quick vs Standard DEPTH energy |
+| `constraints` | No | Compliance, security, audience, or output requirements |
+
+### Model Eligibility
+
+Dispatch `@prompt-improver`, or run this skill inline, only on an eligible (model, route) pair. Eligibility is a property of the (model, route) pair, never of the model alone.
+
+| Route | Model | Eligible | Note |
+|-------|-------|----------|------|
+| any route | Opus | No | Denied under no circumstances |
+| any route | Fable | No | Denied under no circumstances |
+| native Claude | Sonnet | Yes | — |
+| native Claude | Haiku | Yes | — |
+| `cli-claude-code` | Sonnet | Yes | — |
+| `cli-claude-code` | Haiku | Yes | — |
+| `cli-codex` | GPT Luna | Yes | — |
+| `cli-pi` | any model except Luna | Yes | — |
+| `cli-opencode` | any model except Luna | Yes | — |
+| `cli-hermes` | `deepseek-v4.1-flash-1017`, `deepseek-v4.1-flash` or `glm-5.3-flash` through `llmgateway` | Yes | The Hermes roster is closed at these ids; none is Luna, Opus or Fable |
+| `cli-pi` or `cli-opencode` | Luna | No | Intentional asymmetry: Luna is eligible through `cli-codex` only |
+
+The denied list outranks the allowance list: Opus and Fable stay denied even where an allowance clause would otherwise admit them, such as Opus reached through `cli-opencode`.
+
+The Luna asymmetry is intentional: Luna is eligible through `cli-codex` and not eligible through `cli-pi` or `cli-opencode`; do not "correct" it.
+
+The allowance list is closed (default-deny). A pair that matches no allowance clause is not eligible; for example, Gemini reached through `cli-cursor` is not eligible.
+
+An ineligible model must refuse the prompt-improve work, name the rule that denied it, and name an eligible (model, route) pair in its place, whether it was reached through this skill inline or through the agent. It must not do the work anyway with a caveat.
+
+The canonical home of this contract is `.skilled/agents/prompt-improver.md`, so future edits land in one place.
+
+### Deterministic Agent Rules
+
+- Use `references/patterns-evaluation.md` as the framework-selection source of truth. Read only `## 2. FRAMEWORK LIBRARY & SELECTION`, the chosen framework's subsection of `## 3. FRAMEWORK DEEP DIVES` and `## 10. CLEAR EVALUATION MASTERY`. A framework switch reads the new framework's subsection, and an on-demand keyword reads the whole file.
+- Use `references/depth-framework.md` for DEPTH flow and CLEAR dimension floors.
+- Choose Quick DEPTH energy for low-complexity routine prompts and Standard DEPTH energy for escalated prompts.
+- Require `CLEAR >= 40/50` and all per-dimension floors before returning success.
+- If the first pass scores below threshold, retry once and then return the best validated prompt with explicit escalation notes.
+
+### Structured Output Block
+
+```text
+FRAMEWORK: <name>
+CLEAR_SCORE: <n>/50 (C:<n> L:<n> E:<n> A:<n> R:<n>)
+RATIONALE: <1-2 lines>
+ENHANCED_PROMPT: |
+  <multi-line ready-to-dispatch prompt>
+ESCALATION_NOTES: <remaining ambiguity, risk, or follow-up>
+```
+
+### Contract Guarantees
+
+- The returned prompt is ready for CLI handoff without another framework-selection pass.
+- The output preserves caller-supplied constraints unless the agent flags them as contradictory or underspecified.
+- The agent remains read-only and leaf-only; it does not write files or spawn other sub-agents.
+
+---
+
+## 8. INTEGRATION POINTS
+
+### Framework Integration
+
+This skill operates within the behavioral framework defined in AGENTS.md.
+
+Key integrations:
+- **Gate 2**: Skill routing via `skill_advisor.py` with prompt-related intent boosters
+- **Tool Routing**: Per AGENTS.md Section 5 decision tree
+- **Continuity**: Context preserved by `/speckit:save`, which writes through `generate-context.js`
+
+### Tool Usage Guidelines
+
+- **Read**: Load reference files from references/ directory
+- **Write**: Output enhanced prompts to user-specified location
+- **Glob**: Discover available reference files in skill directory
+- **Bash**: Run validation scripts if needed
+
+---
+
+## 9. REFERENCES AND RELATED RESOURCES
+
+The router discovers reference, asset, and script docs dynamically. Start with `references/depth-framework.md`, `references/patterns-evaluation.md`, `assets/format-guide-json.md`, `assets/format-guide-markdown.md`, `assets/format-guide-yaml.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+
+## RELATED PLAYBOOK
+
+Manual validation lives at `manual-testing-playbook/manual-testing-playbook.md`.
+
+Related skills: `sk-doc` for documentation outputs, `sk-code` for code-generation prompt context, and the `cli-*` skills that use the prompt quality card before dispatch.
+
+---
+
+## 10. MACHINE ROUTER
+
+The routing detail that does not fit the short summary: the primary detection signal, the phase tree, the resource domains, the loading levels and the smart-router pseudocode.
 
 <!-- CRITICAL: Keep one authoritative Smart Router Pseudocode block in this section.
      Detection context may appear before pseudocode. Do NOT duplicate routing logic in separate lookup tables. -->
@@ -262,263 +535,3 @@ def route_prompt_improver_resources(task):
 
     return {"intents": intents, "intent_scores": scores, "resources": loaded}
 ```
-
----
-
-## 3. HOW IT WORKS
-
-### Enhancement Pipeline
-
-Every prompt enhancement follows this pipeline:
-
-```
-STEP 1: Mode Detection
-       ├─ Command prefix check ($text, $improve, $refine, $short, etc.)
-       ├─ Keyword signal analysis (>=80% confidence = auto-route)
-       └─ Ambiguous? Ask ONE comprehensive question
-       ↓
-STEP 2: Framework Selection
-       ├─ Evaluate 7 frameworks against request characteristics
-       ├─ Score: complexity, urgency, audience, creativity, precision
-       └─ Select primary framework + alternative
-       ↓
-STEP 3: DEPTH Processing (5-10 rounds)
-       ├─ Discover: 5 perspectives, assumption audit, RICCE Role & Context
-       ├─ Engineer: Framework application, RICCE Constraints & Instructions
-       ├─ Prototype: Template build, RICCE validation
-       ├─ Test: Scoring (CLEAR), quality gates
-       └─ Harmonize: Final polish, RICCE completeness
-       ↓
-STEP 4: Scoring & Delivery
-       ├─ Apply context-appropriate scoring system
-       ├─ Verify threshold met (CLEAR 40+/50)
-       └─ Deliver enhanced prompt with transparency report
-```
-
-See the Smart Routing pseudocode (Section 2) for the complete routing logic.
-
-### Operating Modes
-
-| Mode | Command | DEPTH Rounds | Scoring | Use Case |
-|------|---------|-------------|---------|----------|
-| Interactive | (default) | 10 | CLEAR | Guided enhancement |
-| Text | `$text` | 10 | CLEAR | Standard text prompt |
-| Short | `$short` | 3 | CLEAR | Quick refinement |
-| Improve | `$improve` | 10 | CLEAR | Standard enhancement |
-| Refine | `$refine` | 10 | CLEAR | Maximum optimization |
-| JSON | `$json` | 10 | CLEAR | API-ready format |
-| YAML | `$yaml` | 10 | CLEAR | Config format |
-| Raw | `$raw` | 0 | None | Skip DEPTH |
-
-### Framework Selection Matrix
-
-| Complexity | Primary Need | Framework |
-|-----------|-------------|-----------|
-| 1-3 | Speed | RACE |
-| 1-4 | Clarity | RCAF |
-| 3-6 | Audience | COSTAR |
-| 4-6 | Instructions | CIDI |
-| 5-7 | Creativity | CRISPE |
-| 6-8 | Precision | TIDD-EC |
-| 7-10 | Comprehensive | CRAFT |
-See [patterns-evaluation.md](./references/patterns-evaluation.md) for complete framework details.
-See [depth-framework.md](./references/depth-framework.md) for the DEPTH methodology.
-
-### Scoring Systems
-
-**CLEAR** (50-point scale): Correctness (10) + Logic (10) + Expression (15) + Arrangement (10) + Reusability (5). Threshold: 40+.
-
----
-
-## 4. RULES
-
-### ✅ ALWAYS
-
-1. **ALWAYS ask ONE comprehensive question** before processing, in an interactive run whose request leaves the goal open
-   - Gather: What needs enhancement? Use case/goal? Requirements?
-   - Exception: `$raw` mode skips questions entirely
-   - An agent or other non-interactive run never asks: it proceeds on stated assumptions and flags each one in the transparency report
-
-2. **ALWAYS apply DEPTH processing** for the detected mode
-   - 10 rounds for text modes, 3 for $short, 0 for $raw
-
-3. **ALWAYS enforce minimum 3 perspectives** during DEPTH Discover phase
-   - Target 5 perspectives; 3 is the blocking minimum
-   - Perspectives: Prompt Engineering, AI Interpretation, User Clarity, Framework Selection, Token Efficiency
-
-4. **ALWAYS validate with RICCE** before delivery
-   - Role, Instructions, Context, Constraints, Examples must be present or justified
-
-5. **ALWAYS apply scoring** and verify threshold met
-   - CLEAR 40+/50
-
-6. **ALWAYS provide a transparency report** after delivering the enhanced prompt
-   - Framework selected, DEPTH rounds applied, score breakdown, assumptions flagged
-
-### ⛔ NEVER
-
-1. **NEVER answer own questions**
-   - In an interactive run, wait for the user's response before proceeding with enhancement
-
-2. **NEVER skip framework evaluation**
-   - Even for simple prompts, score at least 3 frameworks before selecting
-
-3. **NEVER deliver without scoring**
-   - Every enhanced prompt must have a CLEAR score (except $raw)
-
-4. **NEVER write the enhanced prompt in the operator's voice**
-   - Address the executing model: the role line in the second person ("You are..."), task steps in the imperative
-
-5. **NEVER exceed context with full reference loading**
-   - Load only the references needed for the detected mode
-
-### ⚠️ ESCALATE IF
-
-1. **ESCALATE IF mode detection confidence < 50%**
-   - Ask: "What type of prompt are you creating? Can you describe the use case?"
-
-2. **ESCALATE IF CLEAR score below threshold after DEPTH**
-   - Suggest: "Score is below target. Options: A) Additional refinement round B) Switch framework C) Accept as-is"
-
-3. **ESCALATE IF request conflicts with prompt engineering scope**
-   - Redirect: "This appears to be a [code/doc/debug] task. Consider using [sk-code/sk-doc] instead."
-
----
-
-## 5. REFERENCES
-
-### Core References
-
-- [depth-framework.md](./references/depth-framework.md) - DEPTH methodology (Discover, Engineer, Prototype, Test, Harmonize), RICCE integration
-- [patterns-evaluation.md](./references/patterns-evaluation.md) - 7 framework definitions, CLEAR scoring
-
-### Asset Files
-
-- [format-guide-markdown.md](./assets/format-guide-markdown.md) - Markdown format deep-dive: fundamentals, delivery standards, RCAF/CRAFT structures, advanced patterns, validation, best practices
-- [format-guide-json.md](./assets/format-guide-json.md) - JSON format deep-dive: fundamentals, data types, delivery standards, RCAF/CRAFT structures, advanced patterns, validation, best practices
-- [format-guide-yaml.md](./assets/format-guide-yaml.md) - YAML format deep-dive: fundamentals, data types, delivery standards, RCAF/CRAFT structures, advanced patterns, templates, validation, best practices
-
-### Reference Loading Notes
-
-- Load only references needed for current intent
-- Smart Routing (Section 2) is the single authority for loading rules
-- SKILL.md (this file) is always loaded; conditionally load mode-specific references
-
----
-
-## 6. SUCCESS CRITERIA
-
-### Enhancement Complete When
-
-- ✅ Mode detected and framework selected with reasoning
-- ✅ DEPTH rounds completed per mode specification
-- ✅ Scoring applied and threshold verified
-- ✅ RICCE validation passed
-- ✅ Enhanced prompt delivered with transparency report
-- ✅ User can iterate or accept
-
-### Quality Targets
-
-- **CLEAR Score**: 40+ out of 50
-- **Framework Selection Accuracy**: Match task characteristics to framework with >85% alignment
-
----
-
-## 7. AGENT INVOCATION CONTRACT
-
-`@prompt-improver` is the fresh-context escalation surface for this skill. The agent loads the references in this skill, applies the same framework-selection and CLEAR rules, and returns a structured block that the caller can inject into a CLI dispatch without loading the full skill inline.
-
-### Expected Input Payload
-
-| Field | Required | Description |
-|-------|----------|-------------|
-| `raw_task` | Yes | Raw task description or draft prompt to improve |
-| `task_type` | No | One of `generation`, `review`, `research`, `edit`, `analyze` |
-| `target_cli` | No | One of `claude-code`, `opencode`, `copilot` |
-| `complexity_hint` | No | Integer `1-10` used to choose Quick vs Standard DEPTH energy |
-| `constraints` | No | Compliance, security, audience, or output requirements |
-
-### Model Eligibility
-
-Dispatch `@prompt-improver`, or run this skill inline, only on an eligible (model, route) pair. Eligibility is a property of the (model, route) pair, never of the model alone.
-
-| Route | Model | Eligible | Note |
-|-------|-------|----------|------|
-| any route | Opus | No | Denied under no circumstances |
-| any route | Fable | No | Denied under no circumstances |
-| native Claude | Sonnet | Yes | — |
-| native Claude | Haiku | Yes | — |
-| `cli-claude-code` | Sonnet | Yes | — |
-| `cli-claude-code` | Haiku | Yes | — |
-| `cli-codex` | GPT Luna | Yes | — |
-| `cli-pi` | any model except Luna | Yes | — |
-| `cli-opencode` | any model except Luna | Yes | — |
-| `cli-hermes` | `deepseek-v4.1-flash-1017`, `deepseek-v4.1-flash` or `glm-5.3-flash` through `llmgateway` | Yes | The Hermes roster is closed at these ids; none is Luna, Opus or Fable |
-| `cli-pi` or `cli-opencode` | Luna | No | Intentional asymmetry: Luna is eligible through `cli-codex` only |
-
-The denied list outranks the allowance list: Opus and Fable stay denied even where an allowance clause would otherwise admit them, such as Opus reached through `cli-opencode`.
-
-The Luna asymmetry is intentional: Luna is eligible through `cli-codex` and not eligible through `cli-pi` or `cli-opencode`; do not "correct" it.
-
-The allowance list is closed (default-deny). A pair that matches no allowance clause is not eligible; for example, Gemini reached through `cli-cursor` is not eligible.
-
-An ineligible model must refuse the prompt-improve work, name the rule that denied it, and name an eligible (model, route) pair in its place, whether it was reached through this skill inline or through the agent. It must not do the work anyway with a caveat.
-
-The canonical home of this contract is `.skilled/agents/prompt-improver.md`, so future edits land in one place.
-
-### Deterministic Agent Rules
-
-- Use `references/patterns-evaluation.md` as the framework-selection source of truth. Read only `## 2. FRAMEWORK LIBRARY & SELECTION`, the chosen framework's subsection of `## 3. FRAMEWORK DEEP DIVES` and `## 10. CLEAR EVALUATION MASTERY`. A framework switch reads the new framework's subsection, and an on-demand keyword reads the whole file.
-- Use `references/depth-framework.md` for DEPTH flow and CLEAR dimension floors.
-- Choose Quick DEPTH energy for low-complexity routine prompts and Standard DEPTH energy for escalated prompts.
-- Require `CLEAR >= 40/50` and all per-dimension floors before returning success.
-- If the first pass scores below threshold, retry once and then return the best validated prompt with explicit escalation notes.
-
-### Structured Output Block
-
-```text
-FRAMEWORK: <name>
-CLEAR_SCORE: <n>/50 (C:<n> L:<n> E:<n> A:<n> R:<n>)
-RATIONALE: <1-2 lines>
-ENHANCED_PROMPT: |
-  <multi-line ready-to-dispatch prompt>
-ESCALATION_NOTES: <remaining ambiguity, risk, or follow-up>
-```
-
-### Contract Guarantees
-
-- The returned prompt is ready for CLI handoff without another framework-selection pass.
-- The output preserves caller-supplied constraints unless the agent flags them as contradictory or underspecified.
-- The agent remains read-only and leaf-only; it does not write files or spawn other sub-agents.
-
----
-
-## 8. INTEGRATION POINTS
-
-### Framework Integration
-
-This skill operates within the behavioral framework defined in AGENTS.md.
-
-Key integrations:
-- **Gate 2**: Skill routing via `skill_advisor.py` with prompt-related intent boosters
-- **Tool Routing**: Per AGENTS.md Section 5 decision tree
-- **Continuity**: Context preserved by `/speckit:save`, which writes through `generate-context.js`
-
-### Tool Usage Guidelines
-
-- **Read**: Load reference files from references/ directory
-- **Write**: Output enhanced prompts to user-specified location
-- **Glob**: Discover available reference files in skill directory
-- **Bash**: Run validation scripts if needed
-
----
-
-## 9. REFERENCES AND RELATED RESOURCES
-
-The router discovers reference, asset, and script docs dynamically. Start with `references/depth-framework.md`, `references/patterns-evaluation.md`, `assets/format-guide-json.md`, `assets/format-guide-markdown.md`, `assets/format-guide-yaml.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
-
-## RELATED PLAYBOOK
-
-Manual validation lives at `manual-testing-playbook/manual-testing-playbook.md`.
-
-Related skills: `sk-doc` for documentation outputs, `sk-code` for code-generation prompt context, and the `cli-*` skills that use the prompt quality card before dispatch.

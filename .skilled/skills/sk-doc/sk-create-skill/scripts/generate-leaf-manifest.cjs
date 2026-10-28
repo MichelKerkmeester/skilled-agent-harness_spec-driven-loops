@@ -5,22 +5,20 @@
 'use strict';
 
 /**
- * generate-leaf-manifest.cjs — walks a hub's declared packets, normalizes
- * every leaf resource through leaf-resource-contract.cjs, and writes or
- * checks that hub's `leaf-manifest.json`.
+ * generate-leaf-manifest.cjs — walks a hub's declared packets or a standalone
+ * skill's configured leaf roots and scopes, normalizes each leaf through
+ * leaf-resource-contract.cjs, and writes or checks `leaf-manifest.json`.
  *
  *   --write <skillDir>   generate leaf-manifest.json from mode-registry.json
- *                         (+ leaf-aliases.json and leaf-scopes.json when present)
- *                         and write it.
+ *                         or leaf-manifest.config.json, then write it.
  *   --check <skillDir>   recompute the manifest and fail (nonzero exit) on
  *                         any byte drift against the committed file.
+ *   <skillDir> --write   and <skillDir> --check are also accepted.
  *
- * An absent leaf-aliases.json is treated as zero authored aliases, so a hub
- * that has not authored one yet still generates and checks cleanly from its
- * on-disk packets alone. An absent leaf-scopes.json means every mode walks its
- * packet's full references/ + assets/ roots; a present file narrows a mode to
- * its own packet-relative subtrees (or single leaf files), which is what an
- * N-to-1 packet fan-out needs so its typed routes stay distinguishable.
+ * Hubs read optional leaf-aliases.json and leaf-scopes.json alongside their
+ * registry. Standalone skills read leaf-manifest.config.json, and an optional
+ * leaf-scopes.json narrows their configured roots to packet-relative paths.
+ * Without scopes, each mode walks its full configured leaf roots.
  */
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -45,14 +43,19 @@ function parseArgs(argv) {
   for (let i = 0; i < argv.length; i += 1) {
     if (argv[i] === '--write' || argv[i] === '--check') {
       args.mode = argv[i].slice(2);
-      args.skillDir = argv[i + 1];
-      i += 1;
+      const nextArgument = argv[i + 1];
+      if (args.skillDir === null && nextArgument && !nextArgument.startsWith('-')) {
+        args.skillDir = nextArgument;
+        i += 1;
+      }
     } else if (argv[i].startsWith('-')) {
       // A misspelled flag must fail loudly rather than fall through to a
-      // default run; positional arguments stay ignored exactly as before.
+      // default run.
       process.stderr.write(`generate-leaf-manifest.cjs: unknown option: ${argv[i]}\n`);
-      process.stderr.write('usage: generate-leaf-manifest.cjs --write|--check <skillDir>\n');
+      process.stderr.write('usage: generate-leaf-manifest.cjs --write|--check <skillDir> (or <skillDir> --write|--check)\n');
       process.exit(2);
+    } else if (args.skillDir === null) {
+      args.skillDir = argv[i];
     }
   }
   return args;
@@ -277,32 +280,54 @@ function readStandaloneConfig(skillDir) {
   };
 }
 
-// Walk every declared leaf root for a standalone skill and collect its leaves,
+// Walk a standalone skill's declared leaf roots or authored scopes,
 // dropping only the package-index doc that names its own root directory
 // (feature-catalog/feature-catalog.md, manual-testing-playbook/…). No alias
 // merge happens here: a standalone manifest is a pure function of its on-disk
 // corpus, and any resolver aliases live in their own file for router replay.
-function collectStandaloneLeaves(skillDir, cfg) {
-  const packetRoot = path.join(skillDir, cfg.packet);
-  const leaves = [];
-  for (const root of cfg.leafRoots) {
-    for (const rel of walkLeafFiles(skillDir, packetRoot, root)) {
-      if (cfg.excludeIndexFiles) {
-        const base = rel.split('/').pop();
-        if (INDEX_BASENAMES.has(base) && rel === `${root}/${base}`) continue;
-      }
-      leaves.push(rel);
+function collectStandaloneLeaves(skillDir, cfg, leafScopes) {
+  for (const workflowMode of leafScopes.keys()) {
+    if (workflowMode !== cfg.workflowMode) {
+      throw new contract.ContractError(
+        'ORPHAN_LEAF_SCOPE_MODE',
+        `leaf-scopes.json workflowMode ${JSON.stringify(workflowMode)} has no matching standalone config mode`,
+      );
     }
+  }
+
+  const scopes = leafScopes.get(cfg.workflowMode);
+  if (Array.isArray(scopes)) {
+    for (const scope of scopes) {
+      const isDeclaredRoot = cfg.leafRoots.some((root) => scope === root || scope.startsWith(`${root}/`));
+      if (!isDeclaredRoot) {
+        throw new contract.ContractError(
+          'OUT_OF_ROOT_LEAF_SCOPE',
+          `workflowMode ${cfg.workflowMode} leaf scope must stay under one of its declared leafRoots: ${scope}`,
+        );
+      }
+    }
+  }
+
+  const packetRoot = path.join(skillDir, cfg.packet);
+  const candidates = Array.isArray(scopes)
+    ? collectScopedLeaves(skillDir, packetRoot, scopes, cfg.workflowMode)
+    : cfg.leafRoots.flatMap((root) => walkLeafFiles(skillDir, packetRoot, root));
+  const leaves = [];
+  for (const rel of candidates) {
+    const root = cfg.leafRoots.find((declaredRoot) => rel === declaredRoot || rel.startsWith(`${declaredRoot}/`));
+    const base = rel.split('/').pop();
+    if (cfg.excludeIndexFiles
+        && root
+        && INDEX_BASENAMES.has(base)
+        && rel === `${root}/${base}`) continue;
+    leaves.push(rel);
   }
   return leaves;
 }
 
-// Authored leaf scoping is optional and per mode. A hub whose registry fans two
-// workflowModes onto one physical packet hands every mode the whole packet by
-// default, which makes the typed (workflowMode, leafResourceId) pair unable to
-// distinguish them. A scopes entry narrows one mode to its own packet-relative
-// subtrees (or single leaf files); a mode with no entry keeps the full walk.
-// Absence of the file means no mode is narrowed.
+// Authored leaf scoping is optional and per workflow mode. Hubs use it to keep
+// mode leaves distinct when they share a packet; standalone skills use their
+// sole mode the same way. A mode without a scope keeps the full walk.
 function readLeafScopes(skillDir) {
   const scopesPath = path.join(skillDir, 'leaf-scopes.json');
   const byMode = new Map();
@@ -451,7 +476,8 @@ function buildManifestBytes(skillDir) {
     // branch never fires for them and their generation stays byte-identical.
     const cfg = readStandaloneConfig(skillDir);
     if (cfg) {
-      const leaves = collectStandaloneLeaves(skillDir, cfg);
+      const leafScopes = readLeafScopes(skillDir);
+      const leaves = collectStandaloneLeaves(skillDir, cfg, leafScopes);
       const rawPairs = leaves.map((leaf) => ({ workflowMode: cfg.workflowMode, leafResourceId: leaf }));
       const dupes = contract.findDuplicateComposites(rawPairs);
       if (dupes.length) {
@@ -636,7 +662,7 @@ module.exports = { buildManifestBytes, runWrite, runCheck };
 if (require.main === module) {
   const args = parseArgs(process.argv.slice(2));
   if (!args.mode || !args.skillDir) {
-    process.stderr.write('usage: generate-leaf-manifest.cjs --write|--check <skillDir>\n');
+    process.stderr.write('usage: generate-leaf-manifest.cjs --write|--check <skillDir> (or <skillDir> --write|--check)\n');
     process.exit(2);
   }
   try {

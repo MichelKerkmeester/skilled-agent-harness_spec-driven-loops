@@ -2,7 +2,7 @@
 name: system-skill-advisor
 description: Routes non-trivial requests to matching skills through the daemon-backed advisor CLI and stable advisor command ids.
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 0.17.20.0
+version: 0.17.21.0
 trigger_phrases:
   - "skill advisor"
   - "gate 2 routing"
@@ -55,6 +55,153 @@ Do not use this skill as a replacement for the recommended target skill. For exa
 ---
 
 ## 2. SMART ROUTING
+
+Use this skill for non-trivial Gate 2 routing or requests about advisor commands, hooks, skill graph or the package.
+An exact skill name or explicit user direction takes priority.
+Otherwise, use `advisor_recommend` through the CLI to choose a target skill.
+Load that target skill before acting in its domain.
+This package covers advisor routing and behavior.
+For local documentation, load the leaf mapped to the detected intent.
+Weak signals use fallback references. Broad browsing uses a package index.
+The detailed resource rules and inline router are in §9 MACHINE ROUTER.
+
+---
+
+## 3. HOW IT WORKS
+
+The advisor runs as a resident daemon with one CLI front door. The package owns the whole routing boundary, so routing can be tuned and rolled back independently.
+
+The package owns the advisor daemon and its CLI front door, and it lists all **9 commands**. The command ids stay stable:
+
+Commands (9):
+
+- `advisor_recommend`
+- `advisor_rebuild`
+- `advisor_status`
+- `advisor_validate`
+- `skill_graph_scan`
+- `skill_graph_query`
+- `skill_graph_status`
+- `skill_graph_validate`
+- `skill_graph_propagate_enhances`
+
+`skill_graph_propagate_enhances` is trust-gated only for real apply writes (`mode=apply` with `dryRun` not `true`). Report, propose and dry-run apply calls remain read-safe.
+
+The stable command ids matter because live consumers already call them from hooks, the Python scorer, doctor workflows, scripts and CI. The package boundary supplies the isolation, so callers use the advisor without learning a new vocabulary.
+
+The CLI is the only front door: the same 9 commands are callable through `node .skilled/bin/skill-advisor.cjs <command>` over the daemon's unix socket, behind a shim that refuses to run a stale dist. Recovery example: `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json --timeout-ms 3000`. Exit taxonomy: `0` success, `1` runtime, `64` usage/schema or trusted-mutation refusal, `69` protocol/dist mismatch or stale dist, `75` retryable daemon error. When the daemon is unreachable the CLI answers from the local Python scorer and marks the result degraded instead of failing the call. `--format jsonl` renders one complete JSON payload on one stdout line. It is not streaming JSON Lines. Trust resolution fails closed: a call is untrusted unless `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` is supplied, so the mutation commands require the maintainer path.
+
+**Routing phrases come from `graph-metadata.json`.** The daemon routes from each skill's `graph-metadata.json`, using `intent_signals` and `derived.trigger_phrases`, and the create-skill metadata CI check keeps that file aligned with the skill root. The `trigger_phrases` and `intent_signals` fields in a skill's `SKILL.md` frontmatter are not read by any runtime routing reader. The local Python scorer's frontmatter cache reads only `name`, `description` and an inline `keywords` value. Reference and asset doc frontmatter `trigger_phrases` feed routing only when `SPECKIT_ADVISOR_DOC_TRIGGERS=true`. Skill authors change routing vocabulary in `graph-metadata.json`.
+
+`advisor_status` reports `indexStaleness` on every successful call and, with `includeEmbeddingsHealth`, an opt-in `embeddingsHealth` covering provider resolution and the local model server.
+
+The advisor implementation, skill-graph library and package-local database live under this skill package, while memory remains focused on memory tools.
+
+**Skill lifecycle: how a new skill becomes routable.** The daemon's watcher watches the skills root itself (shallow, top-level directories only) in addition to each known root's identity files, so a skill created while the daemon is warm is ingested automatically: the new directory's event routes through the normal debounce into reindex, and the reindex promotes the root's `SKILL.md`/`graph-metadata.json` into durable watch targets. With no daemon running, the next daemon start ingests it through normal discovery. Manual refresh at any time: `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted`. Deleting a root retires its targets through the same path. The authoring-side counterpart (routing-evidence quality and the discovery smoke test) lives in the create-skill workflows.
+
+---
+
+## 4. RULES
+
+Always:
+
+- Treat `references/runtime/cli-front-door-contract.md` as the source of truth for command ids, output shape and exit codes.
+- Keep the advisor database under `.skilled/skills/system-skill-advisor/runtime/database/`.
+- Keep public advisor and skill graph command ids stable unless a later ADR explicitly changes them.
+- Preserve prompt-safety boundaries. Advisor metadata and lane attribution must not echo raw prompt text.
+- Keep `runtime/lib/skill-graph/` package-local to `system-skill-advisor`.
+
+Never:
+
+- Store `skill-graph.sqlite` outside this package. The database is package-local.
+- Let any other runtime or server write the advisor SQLite database.
+- Rename `advisor_*` or `skill_graph_*` public commands as part of documentation work.
+- Move `runtime/lib/skill-graph/` during a doc-only pass.
+
+Escalate if:
+
+- A caller requires renamed public tools.
+- The standalone advisor cannot build without a broader shared-runtime extraction.
+- Any migration step would create competing writers for `skill-graph.sqlite`.
+
+---
+
+## 5. REFERENCES
+
+Primary contract:
+
+- `references/runtime/cli-front-door-contract.md`: command ids, output envelope, exit taxonomy and caller obligations.
+
+Package references:
+
+- `references/scoring/advisor-scorer.md`: lane attribution, fusion and confidence calibration.
+- `references/scoring/lane-weight-tuning.md`: measured lane-weight change workflow.
+- `references/scoring/validation-baselines.md`: `advisor_validate` baselines and troubleshooting.
+- `references/graph/skill-graph-query-cookbook.md`: worked `skill_graph_query` examples.
+- `references/graph/skill-graph-drift.md`: detect and reconcile SQLite drift from source files.
+- `references/graph/skill-graph-extraction-plan.md`: extraction history and completion record.
+- `references/graph/propagate-enhances.md`: internal `enhances` propagation contract.
+- `references/runtime/standalone-mcp-shape.md`: ADR-001 topology record (historical).
+- `references/runtime/tool-ids-reference.md`: stable public and internal tool ids.
+- `references/runtime/legacy-tool-bridge.md`: historical bridge policy record.
+- `references/runtime/freshness-contract.md`: trust-state vocabulary and caller obligations.
+- `references/runtime/daemon-lease-contract.md`: single-writer daemon lease behavior.
+- `references/config/db-path-policy.md`: package-local SQLite path policy.
+- `hooks/skill-advisor-hook.md`: prompt-time hook behavior.
+- `references/decisions/deferred-decisions.md`: Tier D decision records (F6 deprecation banners).
+- `ARCHITECTURE.md`
+- `runtime/README.md`
+- `runtime/tools/README.md`
+
+---
+
+## 6. SUCCESS CRITERIA
+
+This skill is healthy when:
+
+- `SKILL.md` frontmatter and `graph-metadata.json` parse cleanly.
+- Skill discovery sees `system-skill-advisor` as a first-class critical system skill.
+- Advisor routing requests resolve to this package without displacing target execution skills such as `sk-code`, `sk-doc` or `system-spec-kit`.
+- `advisor_*` and `skill_graph_*` public ids remain documented as stable.
+- The package-local database path is documented consistently.
+
+---
+
+## 7. INTEGRATION POINTS
+
+Current package state:
+
+- The advisor daemon and its CLI front door are owned by this package.
+- Advisor handlers, schemas, tools, scripts, tests, docs and database path ownership live under this package.
+- `skill_graph_*` handlers and command descriptors live under this package.
+- `lib/skill-graph/` database/query logic is fully migrated to `system-skill-advisor` (extraction complete).
+
+Expected consumers:
+
+- Prompt-time adapters for Claude, Codex, Cursor and Devin live under `.skilled/skills/system-spec-kit/runtime/hooks/`. Pi and the OpenCode plugin (`.skilled/plugins/system-skill-advisor.js`) resolve the same brief builder. The plugin invokes `node .skilled/bin/skill-advisor.cjs` directly.
+- CLI callers that run `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` or `skill_graph_propagate_enhances`.
+- Daemon-backed CLI callers (`node .skilled/bin/skill-advisor.cjs <command>`) for doctor routes, scripts and CI, untrusted by default with `--trusted` for maintainer mutations.
+- Doctor workflows that validate advisor health and rebuild state.
+- Skill graph indexers and routing accuracy checks.
+
+---
+
+## 8. REFERENCES AND RELATED RESOURCES
+
+Related skills:
+
+- `system-spec-kit` owns spec folders, memory, validation and packet governance.
+- `sk-doc` owns skill documentation, feature catalogs and playbooks. Its `create-skill` packet also owns the [skill-root metadata contract](../../../.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md) and the [graph-metadata template](../../../.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-graph-metadata-template.json) plus [leaf-manifest config template](../../../.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-leaf-manifest-config-template.json) used by this root.
+- `sk-code` owns implementation once routing selects a code surface.
+- `mcp-code-mode` owns external MCP orchestration workflows.
+
+The advisor should recommend these skills. It should not absorb their implementation rules.
+
+---
+
+## 9. MACHINE ROUTER
+
+This section holds the detailed resource domains, loading rules and machine router.
 
 This package is mandatory context for non-trivial Gate 2 routing. The live advisor scores prompts through the daemon-backed CLI. This smart router controls which local documentation resources an agent should load while maintaining the advisor package.
 
@@ -316,135 +463,3 @@ return {
 - A hand-maintained resource inventory that drifts from `leaf-manifest.json`. Regenerate both generated class-S artifacts with `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix` instead of synchronizing either file by hand.
 - Raw `load("references/file.md")` calls without `_guard_in_skill()`, inventory checks or duplicate suppression.
 - Hardcoded tool IDs in caller code. Consult the live definitions in `runtime/tools/index.ts` and `runtime/tools/skill-graph-tools.ts`.
-
----
-
-## 3. HOW IT WORKS
-
-The advisor runs as a resident daemon with one CLI front door. The package owns the whole routing boundary, so routing can be tuned and rolled back independently.
-
-The package owns the advisor daemon and its CLI front door, and it lists all **9 commands**. The command ids stay stable:
-
-Commands (9):
-
-- `advisor_recommend`
-- `advisor_rebuild`
-- `advisor_status`
-- `advisor_validate`
-- `skill_graph_scan`
-- `skill_graph_query`
-- `skill_graph_status`
-- `skill_graph_validate`
-- `skill_graph_propagate_enhances`
-
-`skill_graph_propagate_enhances` is trust-gated only for real apply writes (`mode=apply` with `dryRun` not `true`). Report, propose and dry-run apply calls remain read-safe.
-
-The stable command ids matter because live consumers already call them from hooks, the Python scorer, doctor workflows, scripts and CI. The package boundary supplies the isolation, so callers use the advisor without learning a new vocabulary.
-
-The CLI is the only front door: the same 9 commands are callable through `node .skilled/bin/skill-advisor.cjs <command>` over the daemon's unix socket, behind a shim that refuses to run a stale dist. Recovery example: `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json --timeout-ms 3000`. Exit taxonomy: `0` success, `1` runtime, `64` usage/schema or trusted-mutation refusal, `69` protocol/dist mismatch or stale dist, `75` retryable daemon error. When the daemon is unreachable the CLI answers from the local Python scorer and marks the result degraded instead of failing the call. `--format jsonl` renders one complete JSON payload on one stdout line. It is not streaming JSON Lines. Trust resolution fails closed: a call is untrusted unless `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` is supplied, so the mutation commands require the maintainer path.
-
-**Routing phrases come from `graph-metadata.json`.** The daemon routes from each skill's `graph-metadata.json`, using `intent_signals` and `derived.trigger_phrases`, and the create-skill metadata CI check keeps that file aligned with the skill root. The `trigger_phrases` and `intent_signals` fields in a skill's `SKILL.md` frontmatter are not read by any runtime routing reader. The local Python scorer's frontmatter cache reads only `name`, `description` and an inline `keywords` value. Reference and asset doc frontmatter `trigger_phrases` feed routing only when `SPECKIT_ADVISOR_DOC_TRIGGERS=true`. Skill authors change routing vocabulary in `graph-metadata.json`.
-
-`advisor_status` reports `indexStaleness` on every successful call and, with `includeEmbeddingsHealth`, an opt-in `embeddingsHealth` covering provider resolution and the local model server.
-
-The advisor implementation, skill-graph library and package-local database live under this skill package, while memory remains focused on memory tools.
-
-**Skill lifecycle: how a new skill becomes routable.** The daemon's watcher watches the skills root itself (shallow, top-level directories only) in addition to each known root's identity files, so a skill created while the daemon is warm is ingested automatically: the new directory's event routes through the normal debounce into reindex, and the reindex promotes the root's `SKILL.md`/`graph-metadata.json` into durable watch targets. With no daemon running, the next daemon start ingests it through normal discovery. Manual refresh at any time: `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted`. Deleting a root retires its targets through the same path. The authoring-side counterpart (routing-evidence quality and the discovery smoke test) lives in the create-skill workflows.
-
----
-
-## 4. RULES
-
-Always:
-
-- Treat `references/runtime/cli-front-door-contract.md` as the source of truth for command ids, output shape and exit codes.
-- Keep the advisor database under `.skilled/skills/system-skill-advisor/runtime/database/`.
-- Keep public advisor and skill graph command ids stable unless a later ADR explicitly changes them.
-- Preserve prompt-safety boundaries. Advisor metadata and lane attribution must not echo raw prompt text.
-- Keep `runtime/lib/skill-graph/` package-local to `system-skill-advisor`.
-
-Never:
-
-- Store `skill-graph.sqlite` outside this package. The database is package-local.
-- Let any other runtime or server write the advisor SQLite database.
-- Rename `advisor_*` or `skill_graph_*` public commands as part of documentation work.
-- Move `runtime/lib/skill-graph/` during a doc-only pass.
-
-Escalate if:
-
-- A caller requires renamed public tools.
-- The standalone advisor cannot build without a broader shared-runtime extraction.
-- Any migration step would create competing writers for `skill-graph.sqlite`.
-
----
-
-## 5. REFERENCES
-
-Primary contract:
-
-- `references/runtime/cli-front-door-contract.md`: command ids, output envelope, exit taxonomy and caller obligations.
-
-Package references:
-
-- `references/scoring/advisor-scorer.md`: lane attribution, fusion and confidence calibration.
-- `references/scoring/lane-weight-tuning.md`: measured lane-weight change workflow.
-- `references/scoring/validation-baselines.md`: `advisor_validate` baselines and troubleshooting.
-- `references/graph/skill-graph-query-cookbook.md`: worked `skill_graph_query` examples.
-- `references/graph/skill-graph-drift.md`: detect and reconcile SQLite drift from source files.
-- `references/graph/skill-graph-extraction-plan.md`: extraction history and completion record.
-- `references/graph/propagate-enhances.md`: internal `enhances` propagation contract.
-- `references/runtime/standalone-mcp-shape.md`: ADR-001 topology record (historical).
-- `references/runtime/tool-ids-reference.md`: stable public and internal tool ids.
-- `references/runtime/legacy-tool-bridge.md`: historical bridge policy record.
-- `references/runtime/freshness-contract.md`: trust-state vocabulary and caller obligations.
-- `references/runtime/daemon-lease-contract.md`: single-writer daemon lease behavior.
-- `references/config/db-path-policy.md`: package-local SQLite path policy.
-- `hooks/skill-advisor-hook.md`: prompt-time hook behavior.
-- `references/decisions/deferred-decisions.md`: Tier D decision records (F6 deprecation banners).
-- `ARCHITECTURE.md`
-- `runtime/README.md`
-- `runtime/tools/README.md`
-
----
-
-## 6. SUCCESS CRITERIA
-
-This skill is healthy when:
-
-- `SKILL.md` frontmatter and `graph-metadata.json` parse cleanly.
-- Skill discovery sees `system-skill-advisor` as a first-class critical system skill.
-- Advisor routing requests resolve to this package without displacing target execution skills such as `sk-code`, `sk-doc` or `system-spec-kit`.
-- `advisor_*` and `skill_graph_*` public ids remain documented as stable.
-- The package-local database path is documented consistently.
-
----
-
-## 7. INTEGRATION POINTS
-
-Current package state:
-
-- The advisor daemon and its CLI front door are owned by this package.
-- Advisor handlers, schemas, tools, scripts, tests, docs and database path ownership live under this package.
-- `skill_graph_*` handlers and command descriptors live under this package.
-- `lib/skill-graph/` database/query logic is fully migrated to `system-skill-advisor` (extraction complete).
-
-Expected consumers:
-
-- Prompt-time adapters for Claude, Codex, Cursor and Devin live under `.skilled/skills/system-spec-kit/runtime/hooks/`. Pi and the OpenCode plugin (`.skilled/plugins/system-skill-advisor.js`) resolve the same brief builder. The plugin invokes `node .skilled/bin/skill-advisor.cjs` directly.
-- CLI callers that run `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` or `skill_graph_propagate_enhances`.
-- Daemon-backed CLI callers (`node .skilled/bin/skill-advisor.cjs <command>`) for doctor routes, scripts and CI, untrusted by default with `--trusted` for maintainer mutations.
-- Doctor workflows that validate advisor health and rebuild state.
-- Skill graph indexers and routing accuracy checks.
-
----
-
-## 8. REFERENCES AND RELATED RESOURCES
-
-Related skills:
-
-- `system-spec-kit` owns spec folders, memory, validation and packet governance.
-- `sk-doc` owns skill documentation, feature catalogs and playbooks. Its `create-skill` packet also owns the [skill-root metadata contract](../../../.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md) and the [graph-metadata template](../../../.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-graph-metadata-template.json) plus [leaf-manifest config template](../../../.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-leaf-manifest-config-template.json) used by this root.
-- `sk-code` owns implementation once routing selects a code surface.
-- `mcp-code-mode` owns external MCP orchestration workflows.
-
-The advisor should recommend these skills. It should not absorb their implementation rules.
