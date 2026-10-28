@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3944e888c4feddecf23804dc83b68b5786ff7d5e080abdb47f9c74b725a4605b",
+  "corpusHash": "c3bdaabf2f15fe8f671bdad30edb828adb67eb915b9f6a06f7178fdaaa38bfc9",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26780,
+  "includedPathCount": 26788,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1832,6 +1832,7 @@
     ".skilled/skills/cli-orca/changelog/v0.1.1.0.md",
     ".skilled/skills/cli-orca/changelog/v0.1.2.0.md",
     ".skilled/skills/cli-orca/changelog/v0.1.3.0.md",
+    ".skilled/skills/cli-orca/changelog/v0.1.4.0.md",
     ".skilled/skills/cli-orca/feature-catalog/feature-catalog.md",
     ".skilled/skills/cli-orca/feature-catalog/orca-skills/official-skill-layer.md",
     ".skilled/skills/cli-orca/feature-catalog/routing/orca-qualified-vocabulary.md",
@@ -1870,6 +1871,7 @@
     ".skilled/skills/mcp-code-mode/changelog/v1.0.10.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.11.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.12.0.md",
+    ".skilled/skills/mcp-code-mode/changelog/v1.0.13.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.2.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.3.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.4.0.md",
@@ -6622,6 +6624,7 @@
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.7.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.7.1.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.7.2.0.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.7.3.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/author-a-two-axis-parent-hub.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/keep-one-parent-identity.md",
@@ -6706,6 +6709,7 @@
     ".skilled/skills/sk-git/changelog/v1.11.1.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.2.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.3.0.md",
+    ".skilled/skills/sk-git/changelog/v1.11.4.0.md",
     ".skilled/skills/sk-git/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-git/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-git/changelog/v1.3.1.0.md",
@@ -6863,6 +6867,7 @@
     ".skilled/skills/sk-prompt/changelog/v3.0.5.0.md",
     ".skilled/skills/sk-prompt/changelog/v3.0.6.0.md",
     ".skilled/skills/sk-prompt/changelog/v3.0.7.0.md",
+    ".skilled/skills/sk-prompt/changelog/v3.0.8.0.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/clear-five-dimensions.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/dimension-drilldown-rationale.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/dimension-floors-block.md",
@@ -7643,6 +7648,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.17.19.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.2.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.20.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.17.21.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.4.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.5.0.md",
@@ -8091,6 +8097,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.16.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.17.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.18.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.19.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
@@ -13759,6 +13766,7 @@
     "specs/sk-doc/072-skill-routing-and-clarity/008-cli-and-mcp-hubs/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/008-cli-and-mcp-hubs/tasks.md",
     "specs/sk-doc/072-skill-routing-and-clarity/009-standalone-skills/acceptance-criteria.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/009-standalone-skills/implementation-summary.md",
     "specs/sk-doc/072-skill-routing-and-clarity/009-standalone-skills/plan.md",
     "specs/sk-doc/072-skill-routing-and-clarity/009-standalone-skills/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/009-standalone-skills/tasks.md",
@@ -26811,7 +26819,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d683e99797f5b080c9bb3fc58f95e65fab1b8a44bfd2b9095ec1e8cfc11e7af5",
+  "manifestHash": "93eea361a135695208a7b4eb9971980fc1c27979b0ca24ef77524088d6ab47dc",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
