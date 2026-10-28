@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.0.46
+version: 1.14.1.0
 ---
 
 # deep-research
@@ -224,3 +224,7 @@ A feature change to this skill typically touches more than one surface. Before c
 - [ ] **command YAML/tests** -- `.skilled/commands/deep/assets/deep-research-auto.yaml` and `deep-research-confirm.yaml`, plus any `scripts/*.test.cjs`, cover the change
 - [ ] **`assets/`** -- templates (`deep-research-config.json`, `deep-research-strategy.md`, `deep-research-dashboard.md`, prompt pack) match the new shape
 - [ ] **`scripts/`** -- `reduce-state.cjs` and `runtime-capabilities.cjs` implement the change and stay idempotent
+
+<!-- readme-check
+allow-ref research/research.md | a research packet writes it inside its own spec folder
+-->
