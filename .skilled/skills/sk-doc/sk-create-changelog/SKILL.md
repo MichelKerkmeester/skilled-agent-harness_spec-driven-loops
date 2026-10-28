@@ -2,7 +2,7 @@
 name: sk-create-changelog
 description: Author global component changelogs in the v4 narrative style, with placement, versioning, lean content and release notes.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.3.6.0
+version: 1.3.7.0
 ---
 
 <!-- Keywords: create-changelog, /create:changelog, changelog, release notes, global changelog, packet-local changelog, semantic version, nested changelog -->
@@ -252,16 +252,17 @@ python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <comp
 
 1. **Analyze context.** Resolve the source type and read the source (section 6). Compile `work_context`: what changed for the reader, the change type, the level and the source.
 2. **Resolve output target.** Discover the folders, match paths and hints (section 6), choose the primary component, list secondary ones and verify `.skilled/changelog/{resolved_folder}/` exists.
-3. **Determine version.** List the `v*.md` entries in the target folder and in its generation folders (`v1+/`, `v2+/` and so on). List the version entries on the upstream branch with `git ls-tree` (the branch's upstream, else `origin/main`). Start from the highest of the local and upstream `vX.Y.Z.B` versions, choose the bump (section 4) and calculate the next version. Increment the build segment while the file exists locally or upstream, because two branches numbering from their own checkout pick the same version and collide at merge. Without a reachable upstream, number locally and say so in the report.
+3. **Determine version.** List the `v*.md` entries in the target folder and in its generation folders (`v1+/`, `v2+/` and so on). List the version entries on the upstream branch with `git ls-tree` (the branch's upstream, else `origin/main`). Start from the highest of the local and upstream `vX.Y.Z.B` versions, choose the bump (section 4) and calculate the next version. Increment the build segment while the file exists locally or upstream, because two branches numbering from their own checkout pick the same version and collide at merge. Without a reachable upstream, number locally and say so in the report. For the `skilled` release line with at least one entry, first check the highest entry for a release tag with `git ls-remote --exit-code --tags origin refs/tags/v{latest}`. Exit 2 means no tag, so that release is still open: extend that entry wherever it sits instead of numbering a new one, keep its version and skip the bump. A bump the operator chose is not applied, and the report says so and that tagging the open release first starts a new one. When the open entry exists only upstream, stop and ask for a merge or rebase first. Any exit other than 0 or 2 means the check failed, so number a new entry and say so rather than risk editing a release that already shipped. Every other component numbers a new entry.
 4. **Generate content.** Read `assets/changelog-template.md`, then:
    - Write the frontmatter block per the Frontmatter Contract in section 5.
    - Choose the content before writing it (template section 3). List what changed, keep what the reader would notice, act on or decide differently about, merge items with the same effect and drop the housekeeping.
    - Select compact or expanded from the changes that survive (template section 5).
    - Write each section to its one job, so a fact appears once: themes in the opening, the gap in Why This Release, one payoff line per theme at a glance, the detail in the H4 items and only actions in the upgrade notes.
    - Lead with why the release matters, and add a table only when its numbers are the story.
-5. **Validate quality.** Run the section 9 checks on the draft. Confirm the version is strictly greater than the latest one, no file exists at the target and every path the entry names exists. Apply the cut test (template section 3), fix what is safe and revalidate.
-6. **Write the file.** Write `.skilled/changelog/{primary_component}/v{next_version}.md`, read back its first lines, then set `next_version` in every version carrier the component's skill root already has (`SKILL.md`, `description.json`, `hub-router.json` and `mode-registry.json`, never `README.md` or a hub `ROUTER.md`, whose versions are each document's own) and, for a hub, run `node .skilled/commands/doctor/scripts/parent-skill-check.cjs` on the hub and stop on a non-zero exit. Report secondary components as candidates rather than writing extra files.
-7. **Report and preserve context.** Report the path, component, version, bump type, summary, section count and files tracked. A spec-folder source can preserve context through the normal memory save workflow. Do not claim completion before the written file is verified.
+   - When extending an open release, read the entry first and fold the new work into it: add its section or H4 items, a glance bullet in section order, its spec folder on the spec-folder line and any upgrade action. Widen the opening and Why This Release only enough to cover the new theme, keep the title unless the new work changes the headline, and correct any existing sentence the new work makes untrue.
+5. **Validate quality.** Run the section 9 checks on the draft. For a new entry, confirm the version is strictly greater than the latest one and no file exists at the target. For an extension, confirm the target is the open entry. Confirm every path the entry names exists. Apply the cut test (template section 3), fix what is safe and revalidate.
+6. **Write the file.** Write `.skilled/changelog/{primary_component}/v{next_version}.md`, or edit the open entry in place when extending, read back its first lines, then set `next_version` in every version carrier the component's skill root already has (`SKILL.md`, `description.json`, `hub-router.json` and `mode-registry.json`, never `README.md` or a hub `ROUTER.md`, whose versions are each document's own) and, for a hub, run `node .skilled/commands/doctor/scripts/parent-skill-check.cjs` on the hub and stop on a non-zero exit. Report secondary components as candidates rather than writing extra files.
+7. **Report and preserve context.** Report the path, component, version, whether the entry is new or extended, bump type, summary, section count and files tracked. A spec-folder source can preserve context through the normal memory save workflow. Do not claim completion before the written file is verified.
 
 Pause when confidence drops below 40 percent, component resolution stays ambiguous, the calculated version looks wrong or a required section would be empty.
 
@@ -297,8 +298,8 @@ Validate the target, version and content before writing.
 
 Global changelog checks:
 
-1. The target is `.skilled/changelog/{component}/v{VERSION}.md` in an existing folder, and no file exists at that path.
-2. The version follows `vX.Y.Z.B` and is strictly greater than the latest one in the folder, counting its generation folders.
+1. The target is `.skilled/changelog/{component}/v{VERSION}.md` in an existing folder, and no file exists at that path. Extending an open `skilled` release is the one exception: the target is that release's existing entry.
+2. The version follows `vX.Y.Z.B` and is strictly greater than the latest one in the folder, counting its generation folders. An extension keeps the open release's version.
 3. The frontmatter carries `title`, `description`, `trigger_phrases`, `importance_tier` and `contextType` in contract order, with both identity phrases for the target path and at least one topic phrase. `validate_document.py` blocks an entry whose block, keys or phrases are missing.
 4. The prose opens with the summary narrative, and the spec-folder blockquote is present when the source is a spec folder.
 5. The tier's sections are present: compact carries the summary, `## What's New at a Glance` and `## Upgrade`. Expanded carries the opening narrative, `## Why This Release`, `## What's New at a Glance`, at least one topical H2 with H4 items and `## Upgrade Notes`.
@@ -336,7 +337,7 @@ If validation fails, fix the blocking issues or report the exact blocker and com
 1. Follow the seven-step workflow in order.
 2. Read `assets/changelog-template.md` before generating global content.
 3. Discover global component folders from `.skilled/changelog/` at run time, and resolve to an existing one before writing.
-4. Keep global versions four-part and strictly sequential.
+4. Keep global versions four-part and strictly sequential. Extending an untagged `skilled` release keeps its version.
 5. Choose content by reader impact and say each fact once.
 6. Refuse `--nested` and route a spec-folder source to a global component entry.
 7. List secondary affected components.
@@ -346,7 +347,7 @@ If validation fails, fix the blocking issues or report the exact blocker and com
 ### ⛔ NEVER
 
 1. Add a packet-local `graph-metadata.json`.
-2. Overwrite an existing changelog or reuse an existing version.
+2. Overwrite an existing changelog or reuse an existing version. Extending an untagged `skilled` release entry is the one exception, and it adds to the entry rather than replacing it.
 3. Guess a component folder, or create a missing one.
 4. Write an entry with an empty summary or an empty required section.
 5. Write a new packet-local changelog, or use the deprecated nested generator to create one. Its `--write` only re-renders an existing packet changelog.
@@ -378,7 +379,7 @@ If validation fails, fix the blocking issues or report the exact blocker and com
 The workflow succeeds when:
 
 1. The file lands at its global component path, and a `--nested` request is refused with a global entry offered instead.
-2. Global versioning is sequential, unique and four-part.
+2. Global versioning is sequential, unique and four-part, and an untagged `skilled` release is extended rather than followed by a second untagged entry.
 3. The entry follows the template's compact or expanded shape and reads in the v4 style: why first, benefit-led headings, only what the reader needs and each fact said once.
 4. A release body, when requested, uses the entry and appends the full changelog path.
 5. Validation passes, or the remaining issue is escalated with exact evidence.

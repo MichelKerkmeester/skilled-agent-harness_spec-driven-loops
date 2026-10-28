@@ -2,7 +2,7 @@
 name: sk-create-quality-control
 description: Validate, score, and optionally improve existing markdown via structure extraction, DQI scoring, HVR review, and validation gates.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Doc Quality (quality)
@@ -19,7 +19,7 @@ Reach this packet through `sk-doc` hub routing on a doc-quality request. It carr
 
 Use this workflow when the request involves:
 - Auditing an existing markdown document for structure, clarity, quality or publish readiness.
-- Running `/doc:quality` on a README, SKILL.md, command doc, knowledge file, spec doc or generic markdown file.
+- Scoring the quality of a README, SKILL.md, command doc, knowledge file, spec doc or generic markdown file.
 - Extracting document structure before deciding what to improve.
 - Computing or interpreting a DQI score from `.skilled/skills/sk-doc/shared/scripts/extract_structure.py`.
 - Applying HVR voice checks for AI-pattern cleanup, direct language and natural writing.
@@ -142,7 +142,7 @@ Follow this workflow from the `SKILL.md` alone. Use references only for overflow
    - Spec-style markdown.
    - Generic markdown.
 4. Select one execution mode:
-   - **Report-only audit**: default for `/doc:quality` and quality check requests.
+   - **Report-only audit**: default for doc-quality and quality check requests.
    - **Structure validation**: user asks for validation, readiness or blocking issues.
    - **Content optimization**: user asks to improve, rewrite, optimize or edit the existing doc.
    - **Batch snapshot**: user asks to assess multiple docs.
@@ -405,7 +405,7 @@ Escalate instead of guessing when required content needs source evidence that is
 ### ✅ ALWAYS
 
 1. Read the target document before judging or editing it.
-2. Treat `/doc:quality` as report-only unless the user explicitly asks for edits.
+2. Treat a doc-quality request as report-only unless the user explicitly asks for edits.
 3. Use `.skilled/skills/sk-doc/shared/scripts/extract_structure.py` as the source of truth for structure, metrics, checklist results and DQI.
 4. Use validation output to distinguish blockers, warnings and recommendations.
 5. Apply HVR voice review before final output.
@@ -431,7 +431,7 @@ Escalate instead of guessing when required content needs source evidence that is
 2. Validation reports blocking failures that require user decisions.
 3. The requested optimization would change product claims, policy text, legal text or canonical spec decisions.
 4. The document needs new source evidence that is not present in the workspace.
-5. The user asks for edits after a report-only `/doc:quality` run but scope or target files are unclear.
+5. The user asks for edits after a report-only audit but scope or target files are unclear.
 
 ---
 

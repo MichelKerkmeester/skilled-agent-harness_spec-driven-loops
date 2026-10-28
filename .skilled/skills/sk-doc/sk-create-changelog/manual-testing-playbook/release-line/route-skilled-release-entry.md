@@ -1,7 +1,7 @@
 ---
 title: "CHG-008 -- Route a Skilled release entry to the release line"
 description: "This scenario validates release-line routing for CHG-008. Naming the skilled component writes the entry to the release line with a version above every existing entry, generation folders included."
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # CHG-008 -- Route a Skilled release entry to the release line
@@ -22,7 +22,7 @@ The `skilled` folder holds one entry per Skilled release, and its older entries 
 
 Operators run the exact prompt and command sequence for `CHG-008` and confirm the target path and version.
 
-- Objective: write a release entry to `.skilled/changelog/skilled/` when the operator names `skilled`
+- Objective: write a release entry to `.skilled/changelog/skilled/` when the operator names `skilled` and the latest release is tagged. An untagged latest release is CHG-013.
 - Realistic user request: `Write the release entry for the next Skilled release from the changes since the last tag.`
 - Prompt: `Create a global changelog for the skilled component. Confirm that skilled is the framework release line, read the latest version from the folder and its generation folders, and calculate a unique four-part version before writing.`
 - Expected execution process: `SKILL.md` section 6 is read for rules 1 and 7, the component folders are listed, `skilled` is matched exactly from the hint, the step 3 reader lists the top level and the generation folders, the bump is chosen and the next version is calculated.

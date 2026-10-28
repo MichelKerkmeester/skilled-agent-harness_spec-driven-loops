@@ -320,8 +320,8 @@ workflow_enforcement:
       enforcement: "MUST resolve to a valid changelog subfolder"
       verification: "Folder exists at .skilled/changelog/{resolved_folder}/"
     step_3_version_determination:
-      enforcement: "MUST calculate a sequential version number"
-      verification: "No file with same version exists in target folder"
+      enforcement: "MUST calculate a sequential version number, or keep the open release's version when entry_mode is extend"
+      verification: "No file with same version exists in target folder, except the open entry when entry_mode is extend"
     step_5_quality_validation:
       enforcement: "MUST verify format compliance before writing"
       verification: "All required sections present in generated content"
@@ -475,27 +475,46 @@ workflow:
         Why: two branches that each number from their own checkout pick the same next version and collide at merge
       - "Parse the latest version file, the highest of the local and upstream lists (the local list alone when upstream was skipped): extract MAJOR.MINOR.PATCH.BUILD"
       - |
-        Determine bump type:
+        CHECK FOR AN OPEN RELEASE (skilled release line only):
+          Set entry_mode = "create"
+          IF primary_component == skilled AND the version listing above is not empty:
+            Run: git ls-remote --exit-code --tags origin "refs/tags/v{latest_existing_version}"
+            Exit 0 -> the latest release is tagged; keep entry_mode = "create"
+            Exit 2 -> no tag, so that release is still open:
+              Run: find -L .skilled/changelog/skilled -name "v{latest_existing_version}.md" | head -1
+              Store the printed path as open_entry_path; it may sit in a generation folder
+              IF the output is empty (the open entry exists only upstream):
+                STOP and report: "v{latest_existing_version} is open on {UPSTREAM} but not in this checkout. Merge or rebase onto {UPSTREAM}, then rerun."
+              Set entry_mode = "extend", next_version = latest_existing_version, bump_type_used = "none"
+              Skip the bump and the collision check below
+              IF version_bump is set and is not "auto":
+                Store bump_not_applied = version_bump, and say in the report that it was not applied because v{next_version} is still open, and that tagging that release first starts a new one
+            Any other exit (origin unreachable or the command failed):
+              Keep entry_mode = "create" and say in the report that the tag check failed, so a new entry was numbered rather than risk editing a release that already shipped
+        Why: notes written before a release is tagged belong to that release, so a second untagged entry never opens beside the first
+      - |
+        Determine bump type (entry_mode == "create" only):
           IF version_bump != "auto" -> use user-specified bump type
           IF version_bump == "auto":
             Check change_type_hint against version_bump_rules.auto_detection
             Check work_context.summary for trigger keywords
             Default to "patch" if no clear signal
-      - "Calculate next version using version_bump_rules.calculation"
+      - "Calculate next version using version_bump_rules.calculation (entry_mode == \"create\" only)"
       - |
-        Verify no collision:
+        Verify no collision (entry_mode == "create" only):
           IF file v{next_version}.md already exists locally or in the upstream listing:
             Increment BUILD segment until unique
     outputs:
-      - next_version: "Calculated version string (e.g., v2.1.0.0)"
-      - bump_type_used: "major/minor/patch/build"
+      - next_version: "Calculated version string (e.g., v2.1.0.0), or the open release's version when extending"
+      - bump_type_used: "major/minor/patch/build, or none when extending"
+      - entry_mode: "create for a new entry, extend for an open skilled release"
       - latest_existing_version: "Previous version for reference"
     validation: version_calculated
     checkpoint:
-      question: "Version calculated: {latest_existing_version} -> {next_version} ({bump_type_used} bump). Approve?"
+      question: "Version calculated: {latest_existing_version} -> {next_version} ({bump_type_used} bump). When entry_mode is extend, ask instead: v{next_version} has no release tag yet, so this work extends that entry. Approve?"
       options:
         - label: "A) Approve - use this version"
-        - label: "B) Override - specify different version or bump type"
+        - label: "B) Override - specify different version or bump type; an override sets entry_mode = \"create\" and numbers a new entry"
         - label: "C) Review - show version history"
         - label: "D) Abort - cancel"
 
@@ -530,7 +549,20 @@ workflow:
           - Make it easy to scan at a glance
           - Avoid packet IDs, numbering, and sentence-length headings unless truly required
       - "Generate UPGRADE section (Upgrade Notes with Adopt/Repoint/Drop lead-ins when there is migration work)"
-      - "Assemble full content per template format, opening with the frontmatter block"
+      - |
+        IF entry_mode == "extend":
+          Read the open entry at open_entry_path first; it is the base, not the template
+          Copy it to a temp file and store that path as open_entry_backup before any edit, so an undo restores it
+          IF the open entry is compact and the merged changes reach the expanded threshold (SELECT FORMAT above), convert it to the expanded format
+          Fold the selected changes into it rather than generating a second entry:
+            Add a topical H2 section, or H4 items under an existing section the change belongs to
+            Add one glance bullet per new theme, in section order
+            Add the spec folder to the spec-folder line and any action to Upgrade Notes
+            Widen the opening and Why This Release only enough to name the new theme
+            Keep the title and frontmatter unless the new work changes the headline
+            Correct any existing sentence the new work makes untrue
+          Never delete or rewrite another session's content beyond those corrections
+      - "Assemble full content per template format, opening with the frontmatter block; when extending, the assembled content is the open entry with the new work folded in"
     outputs:
       - changelog_content: "Complete formatted changelog markdown"
       - section_count: "Number of narrative sections generated"
@@ -547,7 +579,7 @@ workflow:
     purpose: Verify the generated changelog meets format and quality standards
     activities:
       - "Run FORMAT CHECKS (frontmatter block with the five contract keys in order, both identity phrases and at least one topic phrase, narrative summary opening after the frontmatter and any editorial title, spec-folder blockquote when the source is a spec folder, at-a-glance bullets with bold lead-ins, expanded: Why This Release + topical H2/H4 sections + Upgrade Notes, no Files Changed/Test Impact/Schema default sections, an &nbsp; line before every H2, nothing between H4 items and no --- rule in the body)"
-      - "Run VERSION CHECKS (sequential, 4-segment, no duplicates)"
+      - "Run VERSION CHECKS (4-segment; for a new entry sequential with no duplicates; when extending, the version equals the open entry's and no v{next_version} release tag exists yet)"
       - "Run CONTENT CHECKS (compact summary within 3 sentences or expanded opening within 5 paragraphs, bold lead-in bullets, H4 headings 10 words at most, H4 items 7 paragraphs at most, omission rules applied, no internal labels outside the spec-folder line, each fact said once)"
       - "Auto-fix minor issues if possible"
     outputs:
@@ -566,9 +598,9 @@ workflow:
   step_6_write_file:
     purpose: Write the changelog file to the correct location
     activities:
-      - "Construct output path: .skilled/changelog/{primary_component}/v{next_version}.md"
-      - "Write changelog_content to output path using Write tool"
-      - "Verify file was created by reading first 5 lines"
+      - "Construct output path: .skilled/changelog/{primary_component}/v{next_version}.md, or open_entry_path when entry_mode == \"extend\""
+      - "Write changelog_content to output path using Write tool; when entry_mode == \"extend\", edit the open entry in place with the Edit tool instead"
+      - "Verify file was created or updated by reading first 5 lines"
       - |
         MOVE EVERY VERSION COPY to next_version, without its leading v:
           Resolve SKILL_ROOT for the component:
@@ -596,7 +628,7 @@ workflow:
       options:
         - label: "A) Approve - complete workflow"
         - label: "B) Review - show created file"
-        - label: "C) Undo - delete the file and restart"
+        - label: "C) Undo - delete a new file, or restore open_entry_backup when extending, and restart"
 
   step_7_publish_release:
     purpose: Create an annotated git tag and GitHub release, but only when publish_release was explicitly requested and re-approved at this checkpoint
@@ -626,7 +658,7 @@ workflow:
             Strip that line and any immediately following blank lines, because GitHub release bodies never duplicate the release title with a leading H1
           Keep the entry's spacing: an &nbsp; line before every H2 and nothing between H4 items
           Append a blank line, an &nbsp; line, a blank line and then the footer line:
-            Full changelog: `.skilled/changelog/skilled/v{next_version}.md`
+            Full changelog: `{output_path}`
           Write the result to a temp notes file (e.g., /tmp/release-notes-{release_tag}.md) and use it as {notes_file_path}
       - "Compose the exact commands: `git tag -a {release_tag} -m \"{tag_message}\"`, `git push origin {release_tag}`, `gh release create {release_tag} --title \"{release_title}\" --notes-file {notes_file_path}`"
       - "Present the checkpoint below showing the literal tag name and the exact commands. Only execute after explicit Approve."
@@ -691,7 +723,7 @@ quality_standards:
     minimum: "All required sections present"
     enforcement: "Step 5 validates before Step 6 writes"
   version_integrity:
-    minimum: "Sequential, no duplicates"
+    minimum: "Sequential, no duplicates; extending an untagged skilled release keeps its version"
     enforcement: "Step 3 validates before Step 4 generates"
   content_quality:
     minimum: "Summary narrative + at-a-glance + upgrade notes"
@@ -718,7 +750,8 @@ completion_report:
     Changelog Created
 
     Component: {primary_component}
-    Version: {next_version} ({bump_type_used} bump)
+    Version: {next_version} ({bump_type_used} bump), or {next_version} with no bump when extending
+    Entry: {new entry | extended the untagged release entry}
     File: {output_path}
 
     Summary: {summary_first_sentence}
@@ -782,7 +815,7 @@ termination:
 rules:
   ALWAYS:
     - "Follow the 8-step workflow in sequence"
-    - "Validate version is sequential before writing"
+    - "Validate version is sequential before writing, or that the open entry exists when extending"
     - "Match the narrative changelog format defined in the shared template"
     - "Include the required narrative sections: summary, at-a-glance, upgrade notes (plus Why This Release and topical sections in expanded format)"
     - "Use the component mapping table for resolution"
@@ -793,9 +826,9 @@ rules:
   NEVER:
     - "Never skip version validation (Step 3)"
     - "Never write a changelog with an empty summary or empty at-a-glance section"
-    - "Never overwrite an existing changelog file"
+    - "Never overwrite an existing changelog file; extending an untagged skilled release adds to its entry and is the one exception"
     - "Never guess component folder without file path analysis"
-    - "Never use a version number that already exists"
+    - "Never use a version number that already exists, except when extending an untagged skilled release entry"
     - "Never create changelog folders that don't already exist"
     - "Never skip a checkpoint in interactive mode"
     - "Never create a git tag or GitHub release without the Step 7 checkpoint being explicitly approved"

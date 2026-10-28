@@ -96,7 +96,7 @@ A) Spec folder path: [suggest recent specs if found]
 B) Component name, for example sk-doc, commands, system-spec-kit
 C) Recent git commits, auto-detect from history
 
-Q1. Version Bump (if no --bump flag)
+Q1. Version Bump (if no --bump flag; for skilled it applies only when the latest release is tagged)
 A) Minor - new feature or significant addition
 B) Patch - bug fix, refactor, or incremental improvement
 C) Major - breaking change or architectural overhaul
@@ -147,6 +147,7 @@ Changelog Created
 
 Component: [primary_component]
 Version: [next_version]
+Entry: [new entry | extended the untagged release entry]
 File: [output_path]
 
 Summary: [summary_first_sentence]

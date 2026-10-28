@@ -1,7 +1,7 @@
 ---
 title: "create-changelog: Manual Testing Playbook"
 description: "Operator playbook for the create-changelog workflow across global component entries, the deprecated packet-local route, version bumps, format selection and release-note preparation."
-version: 1.3.1.0
+version: 1.3.2.0
 ---
 
 # create-changelog: Manual Testing Playbook
@@ -25,7 +25,7 @@ The negative checks matter because a changelog can look polished while landing i
 2. Resolve `source_type` before choosing an output path.
 3. Discover existing global component folders before selecting one.
 4. Packet-local changelogs are deprecated. Resolve a phase child or a folder with an existing `changelog/` to a global component, and expect `--nested` to be refused.
-5. Never overwrite an existing changelog file.
+5. Never overwrite an existing changelog file. Extending an untagged `skilled` release entry adds to it and is the one exception.
 6. A `SKIP` verdict is valid only when a named sandbox or runtime blocker prevents the command from running.
 
 ---
@@ -122,11 +122,11 @@ Verify that an unresolved component match stops before writing a guessed global 
 
 ---
 
-## 10. RELEASE LINE (`CHG-008..CHG-010`)
+## 10. RELEASE LINE (`CHG-008..CHG-010`, `CHG-013`)
 
 ### CHG-008 | Route a Skilled release entry to the release line
 
-Verify that naming `skilled` writes a release entry to `.skilled/changelog/skilled/` with a version above every existing entry, generation folders included.
+Verify that naming `skilled` while the latest release is tagged writes a release entry to `.skilled/changelog/skilled/` with a version above every existing entry, generation folders included.
 
 > **Scenario:** [CHG-008](release-line/route-skilled-release-entry.md)
 
@@ -141,6 +141,12 @@ Verify that changed files under a skill resolve to that skill by whole path segm
 Verify that `--release` on another component keeps the changelog and creates no tag or GitHub release.
 
 > **Scenario:** [CHG-010](release-line/skip-release-for-component.md)
+
+### CHG-013 | Extend the open release instead of numbering a new one
+
+Verify that when the latest `skilled` entry has no release tag on origin, the run folds the new work into that entry and keeps its version.
+
+> **Scenario:** [CHG-013](release-line/extend-open-release.md)
 
 ---
 
@@ -168,6 +174,7 @@ Verify that the deprecated nested generator still names an existing packet-local
 | `check_authored_name_kebab.py` | Component and phase slug shape | Direct on CHG-001 and CHG-002 |
 | `nested-changelog.js` | Deprecated generator that renders existing packet-local files | Direct on CHG-012 |
 | Existing global changelog folders | Version sequencing and collision review | Direct on CHG-001, CHG-004 and CHG-008 |
+| `git ls-remote --exit-code --tags origin` | Release tag check for the open release | Direct on CHG-013 |
 | `validate_document.py` entry frontmatter check | Entry block, canonical keys, trigger phrases and the version phrase | Direct on CHG-011 |
 | `nested-changelog.vitest.ts` | Identity phrase for phase and root renders, and the trim rule | Direct on CHG-012 |
 

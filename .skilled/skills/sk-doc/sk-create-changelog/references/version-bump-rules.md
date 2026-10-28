@@ -9,7 +9,7 @@ trigger_phrases:
   - "four part semantic version changelog"
 importance_tier: normal
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Changelog Version Bump Rules
@@ -50,6 +50,8 @@ The sk-doc entries under `.skilled/skills/sk-doc/changelog/` show normal release
 ## 5. FIRST-ENTRY CASE
 
 A global component folder that exists but holds no versions starts at `v1.0.0.0`. The workflow never creates the folder itself. If the calculated file already exists, increment `BUILD` until the filename is unique rather than overwriting.
+
+The `skilled` release line has one exception. When its latest entry has no `v{latest}` tag on origin (`git ls-remote --exit-code --tags origin refs/tags/v{latest}` exits 2), that release is still open. The run keeps its version, does not apply the chosen bump and says so, and folds the new work into the existing entry. Any exit other than 0 or 2 means the check failed, and the run numbers a new entry and says so.
 
 ---
 

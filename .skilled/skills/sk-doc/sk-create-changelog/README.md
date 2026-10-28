@@ -4,7 +4,7 @@ description: "Writes a correctly versioned, correctly placed changelog entry fro
 trigger_phrases:
   - "create changelog"
   - "release notes"
-version: 1.3.1.0
+version: 1.3.2.0
 ---
 
 # create-changelog
@@ -61,7 +61,7 @@ The scan must report zero hard blockers, meaning no banned punctuation and no ba
 
 ## 4. HOW IT WORKS
 
-The workflow reads the source, resolves the component, calculates the version, chooses what goes in and writes. It discovers the real folders under `.skilled/changelog/` at run time and picks the primary component by its share of the changed files. Global mode calculates the next `vMAJOR.MINOR.PATCH.BUILD` and never overwrites an existing version.
+The workflow reads the source, resolves the component, calculates the version, chooses what goes in and writes. It discovers the real folders under `.skilled/changelog/` at run time and picks the primary component by its share of the changed files. Global mode calculates the next `vMAJOR.MINOR.PATCH.BUILD` and never overwrites an existing version. The one exception is the `skilled` release line: when its latest entry has no release tag on origin, that release is still open, and new work is folded into its entry instead of opening a second one.
 
 The entry keeps only what a reader would notice or act on, and it says each fact once. Tests, file lists, internal IDs and follow-on housekeeping stay in the spec packet. Fewer than 10 such changes in a release that is neither major nor breaking use the compact format, and the rest use the expanded one.
 
@@ -97,6 +97,7 @@ Reach for create-changelog when a shipped change needs a global release entry, a
 | No version found for `sk-doc` or `sk-code` | The folder is a hub of links with no entry of its own | Resolve it to `<hub>/parent` for the hub itself or to `<hub>/<link>` for one mode. `ls -l .skilled/changelog/<hub>/` shows the links |
 | Version calculation looks off | Auto-detection defaulted to patch without a clear signal | Pass an explicit `--bump` |
 | A file already exists at the calculated version | That version was already written | Let the build segment increment until the path is free. Never overwrite |
+| A `skilled` run edits the latest entry instead of writing a new one | That release has no tag on origin yet, so it is still open | Expected. Tag and publish it first if the new work belongs in the next release |
 | `--nested` is refused | Packet-local changelogs are deprecated | Write a global entry for the component the packet changed |
 | File uses `Added`/`Changed`/`Fixed` headings | The caller asked for another external format | Rewrite as topical sections named for the domain they change, unless the user needs that format |
 | Entry runs long or repeats itself | Every task or fix became its own bullet | Apply the template's section 3: keep what the reader would notice, merge items with one effect and say each fact once |
@@ -125,7 +126,7 @@ A: The entry goes to the primary one by file count, and the report lists the oth
 |---|---|---|
 | Global format | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <changelog-file> --type changelog` | `✅ VALID`: the summary first, the spec-folder blockquote when sourced from a spec, the sections its tier requires and upgrade guidance |
 | Voice | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <changelog-file>` | Zero hard blockers |
-| Version sequencing | List the target folder and its generation folders, then compare against the calculated version | The new version is strictly greater than the latest, and no file exists at that path |
+| Version sequencing | List the target folder and its generation folders, then compare against the calculated version | The new version is strictly greater than the latest, and no file exists at that path. An extended `skilled` entry keeps its version |
 
 ---
 

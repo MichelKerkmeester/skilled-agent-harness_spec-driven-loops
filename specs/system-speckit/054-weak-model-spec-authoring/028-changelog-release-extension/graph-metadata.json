@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring/028-changelog-release-extension",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring/028-changelog-release-extension",
+  "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "status_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "changelog release extension",
+      "phase 28 changelog release extension",
+      "extend the open release",
+      "changelog release extension plan",
+      "changelog release extension tasks",
+      "changelog release extension acceptance criteria",
+      "changelog release extension implementation summary"
+    ],
+    "key_topics": [
+      "changelog",
+      "release",
+      "extension",
+      "phase",
+      "extend",
+      "open",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      ".skilled/commands/create/assets/create-changelog-auto.yaml",
+      ".skilled/commands/create/assets/create-changelog-confirm.yaml",
+      ".skilled/commands/create/assets/create-changelog-presentation.txt",
+      ".skilled/skills/sk-doc/sk-create-changelog/README.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/references/version-bump-rules.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.7.0.md",
+      ".skilled/skills/sk-doc/sk-create-quality-control/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-quality-control/references/workflows.md",
+      ".skilled/skills/sk-doc/sk-create-quality-control/changelog/v1.0.4.0.md",
+      ".skilled/commands/create/changelog.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-changelog-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-changelog-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create-changelog-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-changelog-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create-changelog-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/create/assets/create-changelog-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "version-bump-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/references/version-bump-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.3.7.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.7.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflows.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-quality-control/references/workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.4.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-quality-control/changelog/v1.0.4.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "changelog.md",
+        "kind": "doc",
+        "path": ".skilled/commands/create/changelog.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Step",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/create:changelog` increments the version while a file exists, so a run for the `skilled` line after untagged notes were written opens a second untagged release, and adding the work to the open entry was a hand edit outside the workflow",
+    "created_at": "2026-10-28T05:06:20Z",
+    "last_save_at": "2026-10-28T05:19:28.058Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:69be5df9ed64a57d739d70e2c8e3fc90b6566a1f1072f78a1f69f5b9161b2ddc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ffe85ee14f88362c0caf40f9100e9da8ba5ab52598684ef8f7917d991c91216b",
+      "plan.md": "6c8af2df953318a08786e70304c9d0e764720845dd3a71eb064b2d565a7af8e7",
+      "tasks.md": "f298744b86b4604c67c69c6f10c06ed78ed00bf8d533c566176a571920fc0349",
+      "implementation-summary.md": "bd006f7af75c93cf2ba64fe85498fbc5a75193139de4961d16b6a49c903747d8"
+    },
+    "last_active_at": null
+  }
+}
