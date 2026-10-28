@@ -9,7 +9,7 @@ trigger_phrases:
   - "check rule overrides linter"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Rule Overrides Contract
@@ -170,7 +170,7 @@ node .skilled/skills/sk-code/shared/scripts/check-rule-overrides.cjs <checklist.
 | 1 | A row is refused: a floor id, a `replace:` row on a machine-checked id, an unknown action, a malformed row or id, a repeated id or a second section. Each problem prints as `<file>:<line>: <message>` |
 | 2 | A usage error, an unreadable file or an unreadable contract file |
 
-The linter exports `lintOverrides` and `loadContract`. `lintOverrides(text)` returns the accepted rows and every error, and a mode applies the rows only when the error list is empty.
+The linter exports `lintOverrides`, `loadContract` and `RULE_ID`, the id grammar, so a reader that checks an id outside a section uses the same pattern. `lintOverrides(text)` returns the accepted rows and every error, and a mode applies the rows only when the error list is empty.
 
 ---
 

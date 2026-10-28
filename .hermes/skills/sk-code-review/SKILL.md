@@ -2,7 +2,7 @@
 name: sk-code-review
 description: "Stack-agnostic code-review for sk-code: findings-first severity, security/correctness minimums, and surface evidence."
 allowed-tools: [Read, Bash, Grep, Glob, Write]
-version: 1.9.5.0
+version: 1.9.6.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -36,7 +36,7 @@ Use the `sk-code-review` mode (of the sk-code family) when:
 ### Use Cases
 
 1. Review-only pass: findings-first output with no code edits.
-2. Gate validation: score + pass/fail recommendation for orchestrated workflows.
+2. Gate validation: a pass or fail that follows severity for orchestrated workflows, with any score advisory only.
 3. Focused risk pass: security, concurrency, correctness, or removal-focused review.
 
 ### When NOT to Use
@@ -71,7 +71,7 @@ Review behavior follows a baseline+surface-evidence model:
 ```text
 TASK CONTEXT
     |
-    +- STEP 0: Load the `sk-code-review` mode baseline + `sk-code` surface evidence. The dispatcher / agent assembling the code review prompt MUST prepend `CODE-REVIEW\n\n` as the first two lines of the rendered prompt before the reviewer LLM sees it. Reference resources stay unchanged.
+    +- STEP 0: Load the `sk-code-review` mode baseline + `sk-code` surface evidence. A dispatcher adds `CODE-REVIEW\n\n`, the marker line and one blank line, as the first two lines of the rendered prompt before the reviewer sees it. `@orchestrate` is that dispatcher when it dispatches `@review`. The review entry of the `/speckit:implement` and `/speckit:complete` workflows states the same marker for any step that dispatches `@review`, though no step there dispatches it today. A review a user starts directly has no dispatcher and no marker. Reference resources stay unchanged.
     +- STEP 1: Score intents (top-2 when ambiguity delta <= 1.0)
     +- Phase 1: Scope and baseline checks
     +- Phase 2: Overlay alignment
@@ -511,11 +511,11 @@ Rule sources: [checklist files]. Overrides: [rule id none|replace from checklist
 Not checked: [one line naming what mattered but could not be checked, and why, or "nothing material"]
 ```
 
-The `Rule sources:` line is defined in [`review-core.md`](../../../.skilled/skills/sk-code/sk-code-review/references/review-core.md) section 8: the checklists the review read, then each override outcome group, with `none` for an empty group and `Rule sources: none` when no file was resolved. It never starts with `Review status:` or `Not checked:`, so the final-line checks read the report as before.
+The `Rule sources:` line is defined in [`review-core.md`](../../../.skilled/skills/sk-code/sk-code-review/references/review-core.md) section 8: the checklists the review read, then each override outcome group, with `none` for an empty group and `Rule sources: none` when no file was resolved. It never starts with `Review status:` or `Not checked:`, so the final-line checks read the rest of the report as before, and `scripts/check-review-final-line.js` checks the line's own format when it is present.
 
 `Quality gate evidence` reads `present` when a `sk-code-quality` run verdict was handed to the review as input, and `absent` otherwise. Either value leaves every baseline check in place. The verdict is input evidence only, so no check is skipped because the gate already ran it, and no gate count renumbers a finding.
 
-The `Overall assessment` value names the same status as the final `Review status:` line. `scripts/check-review-final-line.js` fails a report whose two values disagree.
+The `Overall assessment` value names the same status as the final `Review status:` line, and so does a `Recommendation` line, such as the one the review agent's PR shape carries. `scripts/check-review-final-line.js` fails a report whose values disagree, and `scripts/check-review-findings.js` fails a `Recommendation` or a final status that approves or comments over a P0 or P1 finding, or requests changes with none.
 
 After reporting findings, request explicit next action before any implementation follow-up.
 
@@ -590,7 +590,7 @@ A repository, a surface packet or a mode a user adds to the hub may raise these 
 - Baseline security and correctness minimums apply to every review, and surface guidance never relaxes them.
 - No review is approved while a P0 finding is unaddressed.
 - P0 blocks merge, P1 must be fixed before merge, and P2 is advisory and never blocks.
-- The rendered review prompt starts with the `CODE-REVIEW` marker line.
+- A dispatcher adds the `CODE-REVIEW` marker line as the first line of the rendered review prompt.
 - Every review ends on exactly one of the three status lines in section 3.
 - The mode writes only its PR-state cache file in the reviewing user's cache directory, never into the reviewed repository.
 
@@ -630,7 +630,7 @@ A repository, a surface packet or a mode a user adds to the hub may raise these 
 ## 7. INTEGRATION POINTS
 
 - Primary review baseline for the runtime's review agent (`@review`), wherever that runtime keeps its agent definitions.
-- Referenced by review-dispatch steps in `spec_kit` and `create` command YAML workflows.
+- Dispatched as `@review` by `@orchestrate`, which adds the `CODE-REVIEW` marker. The `/speckit:implement` and `/speckit:complete` workflows name `@review` as the agent for their review step and state the marker for a step that dispatches it. The `/create:*` workflows do not dispatch a review.
 - Complements, but does not replace, sibling ownership: the surface packets (`sk-code-skilled`) carry the implement → debug → verify workflow doctrine the acting agent applies to fix accepted findings, and `sk-code-quality` owns author-side gates.
 
 ### User-Authored Modes

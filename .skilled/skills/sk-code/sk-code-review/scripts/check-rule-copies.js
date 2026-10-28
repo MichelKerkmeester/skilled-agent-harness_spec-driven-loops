@@ -22,6 +22,9 @@
 // It is a canary, not a generator: it asserts the load-bearing substrings still
 // exist; it never rewrites anything. It locks wording, not file paths — pass
 // `--root <dir>` to point it at a candidate tree (default: process.cwd()).
+// `--mode-only` checks only the pins inside the sk-code skill, for a repository that
+// installed the skill but has no AGENTS.md of this shape. It names what it skipped,
+// and without `--root` it reads the skill from the folder this script ships in.
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -30,11 +33,19 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { checkReviewOutput } from './check-review-final-line.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. INVARIANTS
 // ─────────────────────────────────────────────────────────────────────────────
+
+// Every pin under this prefix belongs to the sk-code skill. Any other file is the
+// repository's own, which --mode-only skips.
+const HUB_PREFIX = '.skilled/skills/sk-code/';
+// scripts -> sk-code-review -> sk-code
+const HUB_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
+const USAGE = 'usage: check-rule-copies.js [--root <dir>] [--mode-only]';
 
 // (a) EXACT substring presence: each file must literally contain every string.
 // Per-file scope is deliberate — the changelog entry and the dedup reference
@@ -162,7 +173,7 @@ const EXTENSION_FLOORS = {
     'Baseline security and correctness minimums apply to every review, and surface guidance never relaxes them.',
     'No review is approved while a P0 finding is unaddressed.',
     'P0 blocks merge, P1 must be fixed before merge, and P2 is advisory and never blocks.',
-    'The rendered review prompt starts with the `CODE-REVIEW` marker line.',
+    'A dispatcher adds the `CODE-REVIEW` marker line as the first line of the rendered review prompt.',
     'Every review ends on exactly one of the three status lines in section 3.',
     'The mode writes only its PR-state cache file in the reviewing user\'s cache directory, never into the reviewed repository.',
   ],
@@ -184,20 +195,21 @@ const EXAMPLE_OUTPUTS = [
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
-function parseRoot(argv) {
+function parseArgs(argv) {
   let root = null;
+  let modeOnly = false;
   for (let index = 0; index < argv.length; index += 1) {
     const token = argv[index];
     if (token === '--root') {
       const value = argv[index + 1];
       if (!value) {
         console.error('check-rule-copies.js: --root needs a directory');
-        console.error('usage: check-rule-copies.js [--root <dir>]');
+        console.error(USAGE);
         process.exit(2);
       }
       if (value.startsWith('--')) {
         console.error(`check-rule-copies.js: unknown option: ${value}`);
-        console.error('usage: check-rule-copies.js [--root <dir>]');
+        console.error(USAGE);
         process.exit(2);
       }
       if (root === null) {
@@ -206,20 +218,38 @@ function parseRoot(argv) {
       index += 1;
       continue;
     }
+    if (token === '--mode-only') {
+      modeOnly = true;
+      continue;
+    }
     if (token.startsWith('-')) {
       console.error(`check-rule-copies.js: unknown option: ${token}`);
-      console.error('usage: check-rule-copies.js [--root <dir>]');
+      console.error(USAGE);
       process.exit(2);
     }
   }
-  return root === null ? process.cwd() : root;
+  return { root, modeOnly };
 }
 
-const root = parseRoot(process.argv.slice(2));
+const options = parseArgs(process.argv.slice(2));
+const root = options.root === null ? process.cwd() : options.root;
+const modeOnly = options.modeOnly;
+
+function isModePin(relPath) {
+  return relPath.startsWith(HUB_PREFIX);
+}
+
+// A mode-only run with no --root reads the skill it ships in, so it works from any folder.
+function resolvePin(relPath) {
+  if (modeOnly && options.root === null && isModePin(relPath)) {
+    return path.join(HUB_DIR, relPath.slice(HUB_PREFIX.length));
+  }
+  return path.resolve(root, relPath);
+}
 
 function readFileOrNull(relPath) {
   try {
-    return fs.readFileSync(path.resolve(root, relPath), 'utf8');
+    return fs.readFileSync(resolvePin(relPath), 'utf8');
   } catch (err) {
     return null;
   }
@@ -249,8 +279,26 @@ function anchorEndByte(lines, lineStarts, anchor) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 const failures = [];
+const skipped = [];
 
+const exactInvariants = EXACT_INVARIANTS.filter((invariant) => !modeOnly || isModePin(invariant.file));
+const ironLawFiles = IRON_LAW_FILES.filter((relPath) => !modeOnly || isModePin(relPath));
+const checkDeliveryPrefix = !modeOnly || isModePin(DELIVERY_PREFIX.file);
 for (const invariant of EXACT_INVARIANTS) {
+  if (!exactInvariants.includes(invariant)) {
+    skipped.push(`${invariant.file} exact strings`);
+  }
+}
+for (const relPath of IRON_LAW_FILES) {
+  if (!ironLawFiles.includes(relPath)) {
+    skipped.push(`${relPath} Iron Law line`);
+  }
+}
+if (!checkDeliveryPrefix) {
+  skipped.push(`${DELIVERY_PREFIX.file} delivery prefix`);
+}
+
+for (const invariant of exactInvariants) {
   const content = readFileOrNull(invariant.file);
   if (content === null) {
     failures.push(
@@ -265,7 +313,7 @@ for (const invariant of EXACT_INVARIANTS) {
   }
 }
 
-for (const relPath of IRON_LAW_FILES) {
+for (const relPath of ironLawFiles) {
   const content = readFileOrNull(relPath);
   if (content === null) {
     failures.push(`${relPath}: file missing — cannot verify Iron Law invariant`);
@@ -352,8 +400,10 @@ for (const example of EXAMPLE_OUTPUTS) {
 }
 
 const prefixReport = [];
-const prefixContent = readFileOrNull(DELIVERY_PREFIX.file);
-if (prefixContent === null) {
+const prefixContent = checkDeliveryPrefix ? readFileOrNull(DELIVERY_PREFIX.file) : null;
+if (!checkDeliveryPrefix) {
+  // A repository that installed only the skill has no AGENTS.md to measure.
+} else if (prefixContent === null) {
   failures.push(`${DELIVERY_PREFIX.file}: file missing — cannot verify delivery prefix invariant`);
 } else {
   const totalBytes = Buffer.byteLength(prefixContent, 'utf8');
@@ -383,15 +433,30 @@ if (prefixContent === null) {
   }
 }
 
+const skippedLine = `SKIPPED: ${skipped.join(', ')}, the repository's own checks, because --mode-only checks only the sk-code skill's pins.`;
+
 if (failures.length > 0) {
   for (const failure of failures) {
     console.error(`MISSING: ${failure}`);
+  }
+  if (skipped.length > 0) {
+    console.error(skippedLine);
   }
   console.error('');
   console.error(
     `BLOCKED: ${failures.length} rule invariant(s) drifted. Restore the load-bearing wording in the file(s) above so every copy agrees.`
   );
   process.exit(1);
+}
+
+if (modeOnly) {
+  console.log(
+    `OK: mode rule invariants present (${exactInvariants.length} exact-string file(s) + ${ironLawFiles.length} Iron Law file(s) + ${EXTENSION_FLOORS.floors.length} extension floor(s) + ${EXAMPLE_OUTPUTS.length} example output(s)).`
+  );
+  if (skipped.length > 0) {
+    console.log(skippedLine);
+  }
+  process.exit(0);
 }
 
 console.log(

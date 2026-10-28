@@ -1,0 +1,28 @@
+{
+  "specFolder": "sk-code/017-portable-code-modes/006-review-agent-and-dispatch",
+  "description": "Review agent and dispatch: severity verdict, loaded-skill paths, CODE-REVIEW marker, checker and canary mode-only",
+  "keywords": [
+    "review",
+    "agent",
+    "dispatch",
+    "severity",
+    "verdict",
+    "loaded-skill",
+    "paths",
+    "code-review",
+    "marker",
+    "checker",
+    "canary",
+    "mode-only"
+  ],
+  "lastUpdated": "2026-10-28T00:26:09.073Z",
+  "specId": "006",
+  "folderSlug": "review-agent-and-dispatch",
+  "parentChain": [
+    "sk-code",
+    "017-portable-code-modes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

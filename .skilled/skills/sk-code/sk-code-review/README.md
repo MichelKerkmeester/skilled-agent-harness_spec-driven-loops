@@ -8,7 +8,7 @@ trigger_phrases:
   - "pull request"
   - "security review"
   - "code-review"
-version: 1.7.6.0
+version: 1.7.7.0
 ---
 
 # sk-code-review mode
@@ -58,7 +58,7 @@ A P0 or P1 finding must name its reach: an input or call path the code's stated 
 
 ## 3. QUICK START
 
-**Step 1: Invoke it.** Gate 2 routing fires on review keywords. You can also dispatch the `@review` agent directly. The dispatcher prepends `CODE-REVIEW` as the first line of the rendered prompt so the reviewer knows it is operating as the baseline.
+**Step 1: Invoke it.** Gate 2 routing fires on review keywords. You can also dispatch the `@review` agent directly. When `@orchestrate` dispatches the review, it adds `CODE-REVIEW` as the first line of the rendered prompt so the reviewer knows it is operating as the baseline. The `/speckit:implement` and `/speckit:complete` workflows state the same marker for any step that dispatches `@review`.
 
 ```bash
 python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "review my staged changes" --threshold 0.8
@@ -117,7 +117,7 @@ The final line is always exactly one of the three status values below, with no t
 node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js
 ```
 
-Exits 0 when the verdict triplet and the Iron Law wording stay in lockstep across the skill docs and both example outputs end on a `Not checked:` line followed by the exact status line. Run the playbook scenarios from the manual testing playbook for the full behavior gate.
+Exits 0 when the verdict triplet and the Iron Law wording stay in lockstep across the skill docs and both example outputs end on a `Not checked:` line followed by the exact status line. The full run also reads this repository's `AGENTS.md`. In another repository, add `--mode-only` to check only the skill's own pins: it prints a `SKIPPED:` line for the `AGENTS.md` checks and runs from any folder. Run the playbook scenarios from the manual testing playbook for the full behavior gate.
 
 ---
 

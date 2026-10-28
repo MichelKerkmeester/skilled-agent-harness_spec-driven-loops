@@ -179,7 +179,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 #### Step 6: Classify Findings
 
-- Load `.skilled/skills/sk-code/sk-code-review/references/review-core.md` before assigning severity.
+- Load the review mode's `references/review-core.md` before assigning severity: `sk-code-review/references/review-core.md` inside the sk-code skill, wherever the runtime installed it (in this repository: `.skilled/skills/sk-code/sk-code-review/references/review-core.md`).
 - Use shared `P0` / `P1` / `P2` definitions and tag each finding with `correctness`, `security`, `traceability`, or `maintainability`.
 - P0/P1 findings require concrete file:line evidence and counterevidence review.
 - P2 findings require actionable evidence and may include documented inference.
@@ -232,8 +232,10 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 **Record through the gateway**:
 
+Here `<deep-loop>` is the folder of the system-deep-loop skill, wherever the runtime installed it (in this repository: `.skilled/skills/system-deep-loop`).
+
 ```bash
-node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
+node <deep-loop>/runtime/scripts/append-mode-event.cjs \
   --mode review \
   --run-directory <resolved review packet root> \
   --event-json <record file>
@@ -270,7 +272,7 @@ Use Read, Write, Edit, Grep, Glob, Bash and memory tools only within the declare
 
 - The ripgrep recipes in `retrieval-conventions.md`: broader history only after packet continuity is insufficient.
 - `Grep` plus `Glob`: discovery when exact symbols are unknown; verify hits with direct reads.
-- **Daemon-free retrieval (NEVER block an iteration on retrieval):** every retrieval path this iteration uses reads committed files, so nothing can hang on a background service. Direct Grep/Read of the cited files is sufficient evidence on its own for a code audit. Keyed lookup runs `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` and free-text evidence uses the ripgrep recipes in `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
+- **Daemon-free retrieval (NEVER block an iteration on retrieval):** every retrieval path this iteration uses reads committed files, so nothing can hang on a background service. Direct Grep/Read of the cited files is sufficient evidence on its own for a code audit. Where the runtime installed the system-spec-kit skill, keyed lookup runs its `runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` (in this repository: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`) and free-text evidence uses the ripgrep recipes in its `references/retrieval/retrieval-conventions.md`. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
 ### Skills
 
@@ -302,7 +304,7 @@ Runtime mirrors are downstream packaging surfaces, not write targets for this ag
 
 ## 3. REVIEW CONTRACT
 
-This agent loads shared review doctrine from `.skilled/skills/sk-code/sk-code-review/references/review-core.md` for severity definitions, evidence requirements, and baseline check families.
+This agent loads shared review doctrine from the review mode's `sk-code-review/references/review-core.md` inside the sk-code skill, wherever the runtime installed it (in this repository: `.skilled/skills/sk-code/sk-code-review/references/review-core.md`), for severity definitions, evidence requirements, and baseline check families.
 
 ### Review Dimensions
 
@@ -365,14 +367,14 @@ Promotion is blocked by active P0 or failed binary gates, conditional with activ
 - `resume`: continue the active review session; same `sessionId`, no archive.
 - `restart`: archive existing `review/`, mint a fresh `sessionId`, increment `generation`, and append a typed `restarted` event with non-null `archivedPath`.
 - Deferred: `fork`, `completed-continue`.
-- Canonical event contract: `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md §Lifecycle Branches (current release)`.
+- Canonical event contract: `deep-review/references/protocol/loop-protocol.md §Lifecycle Branches (current release)` in the system-deep-loop skill (in this repository: `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md`).
 
 Required read-only lineage metadata: `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, `releaseReadinessState`.
 
 Reducer boundary:
 
 - `review/deep-review-findings-registry.json` is reducer-owned canonical finding state.
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` owns registry/dashboard/report refresh.
+- `runtime/scripts/reduce-state.cjs` in the system-deep-loop skill (in this repository: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`) owns registry/dashboard/report refresh.
 - This leaf agent may read registry for continuity and deduplication.
 - This leaf agent must not overwrite reducer-owned files.
 
@@ -563,9 +565,9 @@ For non-`complete` statuses, replace the heading with `## Review Iteration [N] P
 ## 9. RELATED RESOURCES
 
 - `.skilled/commands/deep/review.md` — the `/deep:review` loop owner that dispatches this agent once per iteration.
-- `.skilled/skills/sk-code/sk-code-review/references/review-core.md` — the shared review doctrine for severity and evidence.
-- `.skilled/skills/system-deep-loop/deep-review/SKILL.md` — the review-mode packet skill.
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` — the reducer this agent's iterations feed.
+- `sk-code-review/references/review-core.md` in the installed sk-code skill (in this repository: `.skilled/skills/sk-code/sk-code-review/references/review-core.md`): the shared review doctrine for severity and evidence.
+- `deep-review/SKILL.md` in the installed system-deep-loop skill (in this repository: `.skilled/skills/system-deep-loop/deep-review/SKILL.md`): the review-mode packet skill.
+- `runtime/scripts/reduce-state.cjs` in that same skill (in this repository: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`): the reducer this agent's iterations feed.
 - `.skilled/agents/review.md` — the separate non-iterative reviewer this agent must not delegate to.
 - `.skilled/agents/deep-research.md` — the separate research-iteration agent this agent must not delegate review work to.
 

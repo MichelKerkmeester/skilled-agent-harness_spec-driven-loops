@@ -323,6 +323,67 @@ run_case 0 "shape_final_line_rule_sources" node "$FINAL_LINE_CHECKER" "$SHAPE_DI
 run_case 0 "shape_findings_rule_sources" node "$FINDINGS_CHECKER" "$SHAPE_DIR/rule-sources-valid.md"
 expect_output 'OK: findings are numbered once and each carries a Case line' "shape_findings_rule_sources_output" node "$FINDINGS_CHECKER" "$SHAPE_DIR/rule-sources-valid.md"
 
+# The review agent's PR shape carries a Recommendation line. It must agree with the status line and the findings.
+run_case 0 "shape_final_line_pr_shape_valid" node "$FINAL_LINE_CHECKER" "$SHAPE_DIR/pr-shape-valid.md"
+run_case 0 "shape_findings_pr_shape_valid" node "$FINDINGS_CHECKER" "$SHAPE_DIR/pr-shape-valid.md"
+run_case 1 "shape_final_line_recommendation_contradicts_status" node "$FINAL_LINE_CHECKER" "$SHAPE_DIR/recommendation-contradicts-status.md"
+expect_output 'Recommendation "APPROVED" contradicts the final status line "Review status: REQUESTED_CHANGES"' "shape_final_line_recommendation_contradicts_status_output" node "$FINAL_LINE_CHECKER" "$SHAPE_DIR/recommendation-contradicts-status.md"
+run_case 0 "shape_final_line_recommendation_contradicts_findings" node "$FINAL_LINE_CHECKER" "$SHAPE_DIR/recommendation-contradicts-findings.md"
+run_case 1 "shape_findings_recommendation_contradicts_findings" node "$FINDINGS_CHECKER" "$SHAPE_DIR/recommendation-contradicts-findings.md"
+expect_output 'Recommendation "APPROVED" contradicts P1 finding 1, which blocks approval' "shape_findings_recommendation_contradicts_findings_output" node "$FINDINGS_CHECKER" "$SHAPE_DIR/recommendation-contradicts-findings.md"
+
+# FAIL: an older report's BLOCK token still maps onto REQUESTED_CHANGES and is compared with the status line.
+RECOMMENDATION_LEGACY="$TMP_DIR/recommendation_legacy_block.md"
+printf '## PR Review: x\n\nRecommendation: BLOCK, Score: 40/100\n\nNot checked: nothing material\n\nReview status: APPROVED\n' > "$RECOMMENDATION_LEGACY"
+run_case 1 "final_line_recommendation_legacy_block" node "$FINAL_LINE_CHECKER" "$RECOMMENDATION_LEGACY"
+expect_output 'Recommendation "BLOCK" contradicts the final status line "Review status: APPROVED"' "final_line_recommendation_legacy_block_output" node "$FINAL_LINE_CHECKER" "$RECOMMENDATION_LEGACY"
+
+# FAIL: changes requested on P2 findings alone, the score-only block a P2 never justifies.
+RECOMMENDATION_P2_ONLY="$TMP_DIR/recommendation_p2_only.md"
+printf '**Recommendation**: REQUESTED_CHANGES\n\n## Findings\n\n### P2 - Suggestion\n1. src/a.ts:1 Long function\n   - Case: x\n\n## Next Steps\n' > "$RECOMMENDATION_P2_ONLY"
+run_case 1 "findings_recommendation_p2_only" node "$FINDINGS_CHECKER" "$RECOMMENDATION_P2_ONLY"
+expect_output 'requests changes with no P0 or P1 finding, and a P2 never blocks' "findings_recommendation_p2_only_output" node "$FINDINGS_CHECKER" "$RECOMMENDATION_P2_ONLY"
+
+# PASS: a template line that lists the tokens is not a verdict.
+RECOMMENDATION_TEMPLATE="$TMP_DIR/recommendation_template.md"
+printf 'Recommendation: APPROVED / REQUESTED_CHANGES / COMMENTED\n\nNot checked: nothing material\n\nReview status: COMMENTED\n' > "$RECOMMENDATION_TEMPLATE"
+run_case 0 "final_line_recommendation_template" node "$FINAL_LINE_CHECKER" "$RECOMMENDATION_TEMPLATE"
+
+# PASS: a prose Recommendation sub-line is not a verdict, wherever it sits.
+run_case 0 "shape_final_line_recommendation_prose" node "$FINAL_LINE_CHECKER" "$SHAPE_DIR/recommendation-prose-next-steps.md"
+run_case 0 "shape_findings_recommendation_prose" node "$FINDINGS_CHECKER" "$SHAPE_DIR/recommendation-prose-next-steps.md"
+
+# FAIL: the Focused File Review shape puts its Recommendation inside the Findings section, and it is still read.
+run_case 1 "shape_final_line_focused_file_recommendation" node "$FINAL_LINE_CHECKER" "$SHAPE_DIR/focused-file-recommendation-contradicts.md"
+expect_output 'Recommendation "APPROVED" contradicts the final status line "Review status: REQUESTED_CHANGES"' "shape_final_line_focused_file_recommendation_output" node "$FINAL_LINE_CHECKER" "$SHAPE_DIR/focused-file-recommendation-contradicts.md"
+run_case 1 "shape_findings_focused_file_recommendation" node "$FINDINGS_CHECKER" "$SHAPE_DIR/focused-file-recommendation-contradicts.md"
+
+# FAIL: the final status line follows severity too, so an open P1 under COMMENTED and changes requested over P2 alone both fail.
+run_case 1 "shape_findings_status_commented_open_p1" node "$FINDINGS_CHECKER" "$SHAPE_DIR/status-commented-open-p1.md"
+expect_output 'Review status "COMMENTED" contradicts P1 finding 1, which blocks approval' "shape_findings_status_commented_open_p1_output" node "$FINDINGS_CHECKER" "$SHAPE_DIR/status-commented-open-p1.md"
+run_case 1 "shape_findings_status_requested_changes_p2_only" node "$FINDINGS_CHECKER" "$SHAPE_DIR/status-requested-changes-p2-only.md"
+expect_output 'Review status "REQUESTED_CHANGES" requests changes with no P0 or P1 finding, and a P2 never blocks' "shape_findings_status_requested_changes_p2_only_output" node "$FINDINGS_CHECKER" "$SHAPE_DIR/status-requested-changes-p2-only.md"
+
+# The Rule sources line is optional, and when present it must keep its five groups and entry shapes.
+run_case 1 "shape_final_line_rule_sources_malformed" node "$FINAL_LINE_CHECKER" "$SHAPE_DIR/rule-sources-malformed.md"
+expect_output 'Rule sources line has a malformed Overrides entry: "review.function-length dropped by .sk-code/checklists/house.md"' "shape_final_line_rule_sources_malformed_output" node "$FINAL_LINE_CHECKER" "$SHAPE_DIR/rule-sources-malformed.md"
+# FAIL: an upper-case rule id breaks the shared linter's id grammar, which the checker reads from the linter.
+RULE_SOURCES_UPPERCASE_ID="$TMP_DIR/rule_sources_uppercase_id.md"
+printf 'Rule sources: a.md. Overrides: Review.KISS none from a.md. Refused: none. Ignored: none. Conflicts: none\n\nNot checked: nothing material\n\nReview status: APPROVED\n' > "$RULE_SOURCES_UPPERCASE_ID"
+run_case 1 "final_line_rule_sources_uppercase_id" node "$FINAL_LINE_CHECKER" "$RULE_SOURCES_UPPERCASE_ID"
+expect_output 'Rule sources line has a malformed Overrides entry: "Review.KISS none from a.md"' "final_line_rule_sources_uppercase_id_output" node "$FINAL_LINE_CHECKER" "$RULE_SOURCES_UPPERCASE_ID"
+RULE_SOURCES_GROUP_MISSING="$TMP_DIR/rule_sources_group_missing.md"
+printf 'Rule sources: a.md. Overrides: none. Ignored: none. Conflicts: none\n\nNot checked: nothing material\n\nReview status: APPROVED\n' > "$RULE_SOURCES_GROUP_MISSING"
+run_case 1 "final_line_rule_sources_group_missing" node "$FINAL_LINE_CHECKER" "$RULE_SOURCES_GROUP_MISSING"
+expect_output 'Rule sources line does not name its five groups in order' "final_line_rule_sources_group_missing_output" node "$FINAL_LINE_CHECKER" "$RULE_SOURCES_GROUP_MISSING"
+RULE_SOURCES_TWICE="$TMP_DIR/rule_sources_twice.md"
+printf 'Rule sources: none\nRule sources: none\n\nNot checked: nothing material\n\nReview status: APPROVED\n' > "$RULE_SOURCES_TWICE"
+run_case 1 "final_line_rule_sources_twice" node "$FINAL_LINE_CHECKER" "$RULE_SOURCES_TWICE"
+expect_output 'more than one "Rule sources:" line in the output' "final_line_rule_sources_twice_output" node "$FINAL_LINE_CHECKER" "$RULE_SOURCES_TWICE"
+RULE_SOURCES_NONE="$TMP_DIR/rule_sources_none.md"
+printf 'Rule sources: none\n\nNot checked: nothing material\n\nReview status: APPROVED\n' > "$RULE_SOURCES_NONE"
+run_case 0 "final_line_rule_sources_none" node "$FINAL_LINE_CHECKER" "$RULE_SOURCES_NONE"
+
 # FAIL: the resolver step stops filtering deleted paths, so one missing path would stop the whole explain call.
 CASE_DELETED_FILTER="$TMP_DIR/deleted_path_filter"
 seed_tree "$CASE_DELETED_FILTER"
@@ -330,6 +391,40 @@ node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, fs.r
   "$CASE_DELETED_FILTER/.skilled/skills/sk-code/sk-code-review/SKILL.md"
 run_case 1 "resolver_deleted_path_filter_dropped" node "$CHECKER" --root "$CASE_DELETED_FILTER"
 expect_output 'missing exact invariant string: "git diff --name-only --diff-filter=d <range>"' "resolver_deleted_path_filter_dropped_output" node "$CHECKER" --root "$CASE_DELETED_FILTER"
+
+# --mode-only in a repository that installed the skill somewhere else and has no AGENTS.md.
+# The install folder is outside this checkout, and the run starts from the foreign root.
+FOREIGN_REPO="$TMP_DIR/foreign_repo"
+FOREIGN_HUB="$FOREIGN_REPO/.agents/skills/sk-code"
+install_foreign_skill() {
+  local rel
+  rm -rf "$FOREIGN_REPO"
+  mkdir -p "$FOREIGN_REPO"
+  for rel in "${TARGETS[@]}"; do
+    case "$rel" in
+      .skilled/skills/sk-code/*)
+        mkdir -p "$FOREIGN_HUB/$(dirname "${rel#.skilled/skills/sk-code/}")"
+        cp "$REPO_ROOT/$rel" "$FOREIGN_HUB/${rel#.skilled/skills/sk-code/}"
+        ;;
+    esac
+  done
+  mkdir -p "$FOREIGN_HUB/sk-code-review/scripts" "$FOREIGN_HUB/shared/scripts"
+  cp "$CHECKER" "$FINAL_LINE_CHECKER" "$FOREIGN_HUB/sk-code-review/scripts/"
+  # The final-line checker reads the rule id grammar from the shared linter.
+  cp "$REPO_ROOT/.skilled/skills/sk-code/shared/scripts/check-rule-overrides.cjs" "$FOREIGN_HUB/shared/scripts/"
+}
+foreign_run() {
+  ( cd "$FOREIGN_REPO" && node "$FOREIGN_HUB/sk-code-review/scripts/check-rule-copies.js" "$@" )
+}
+install_foreign_skill
+run_case 0 "mode_only_foreign_repo" foreign_run --mode-only
+expect_output 'OK: mode rule invariants present (7 exact-string file(s) + 1 Iron Law file(s)' "mode_only_foreign_repo_ok_output" foreign_run --mode-only
+expect_output 'SKIPPED: AGENTS.md exact strings, AGENTS.md Iron Law line, AGENTS.md delivery prefix' "mode_only_foreign_repo_skipped_output" foreign_run --mode-only
+run_case 1 "full_mode_foreign_repo_still_needs_agents_md" foreign_run
+node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, fs.readFileSync(f,"utf8").replace("No review is approved while a P0 finding is unaddressed.","A review may be approved with a P0 finding open."));' \
+  "$FOREIGN_HUB/sk-code-review/SKILL.md"
+run_case 1 "mode_only_foreign_repo_floor_reworded" foreign_run --mode-only
+expect_output 'extension floor missing from "### Extension Floors"' "mode_only_foreign_repo_floor_reworded_output" foreign_run --mode-only
 
 if [[ "$failures" -gt 0 ]]; then
   printf '%s rule-canary test case(s) failed\n' "$failures" >&2

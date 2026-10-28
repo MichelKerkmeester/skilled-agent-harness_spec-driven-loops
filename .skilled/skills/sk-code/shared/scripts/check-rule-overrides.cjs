@@ -283,6 +283,7 @@ if (require.main === module) {
 
 module.exports = {
   CONTRACT_PATH,
+  RULE_ID,
   USAGE_TEXT,
   lintOverrides,
   loadContract,

@@ -158,7 +158,7 @@ Before every sub-agent dispatch, compare the selected route, loaded agent defini
 | @deep-research | `.skilled/agents/deep-research.md` | LEAF agent; iterative autonomous research loop with externalized state          |
 | @deep-review | `.skilled/agents/deep-review.md` | LEAF agent; iterative code-audit dimension pass, P0/P1/P2 findings, JSONL state |
 | @ai-council | `.skilled/agents/ai-council.md` | Planning-only multi-strategy architect (max 3 strategies). Post-dispatch responsibility: when @orchestrate dispatches at Depth 1, run `node .skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet>` after the LEAF returns to persist `ai-council/` artifacts (see ai-council persistence protocol). If the LEAF's returned report shows `max_rounds` reached without a converged plan (check `current_round >= max_rounds` in `ai-council-config.json`), add `--not-converged` to that invocation — the helper cannot detect max-round exhaustion on its own and defaults to `convergence:true` otherwise. |
-| @review   | `.skilled/agents/review.md`   | Codebase-agnostic quality scoring                                                      |
+| @review   | `.skilled/agents/review.md`   | Codebase-agnostic code review; verdict follows severity, score is advisory            |
 | @debug    | `.skilled/agents/debug.md`    | Isolated by design (no conversation context)                                           |
 | @code     | `.skilled/agents/code.md`     | Application-code LEAF; sk-code stack delegation; D3 convention-floor caller-restriction (`Depth: 1` marker required); fail-closed verify |
 
@@ -228,6 +228,10 @@ The loaded agent definition remains authoritative. If `AGENT_IO_RESULT v1` is pr
 ### Review Focus and Drift Hints
 
 Use `reviewer_focus` only when the planner can name a high-risk file, module, behavior, or assumption worth earlier review attention. Omit it for ordinary work. When present, include it in @review dispatches so @review can prioritize reads and evidence; do not alter the review threshold or ask for findings without normal evidence.
+
+### Code Review Marker
+
+When the task dispatches `@review`, or asks any agent for a code review, the rendered prompt starts with the line `CODE-REVIEW`, then one blank line, before the task block and the agent definition. This is the marker the review mode's floor names, and the dispatcher adds it. Write it exactly, never in another case or with other text on its line. Never add it to a `@deep-review` or `@deep-research` dispatch: their loops own their own markers and refuse a foreign one.
 
 If @code returns a `spec_drift` or `update_recommended` block, surface the reason and affected docs in synthesis and handover planning. Do not auto-edit spec docs from that hint. A hard contradiction still routes through Logic-Sync and the native @code escalation, not through `spec_drift`.
 
@@ -514,7 +518,23 @@ This keeps execution depth bounded and eliminates illegal nested delegation chai
 □ Pre-Delegation Reasoning documented for each task dispatch
 □ Advisory hints treated as optional: focus steers attention only; drift is surfaced without auto-mutation
 □ Context Package includes all 6 sections (if from @context — includes Nested Dispatch Status section)
+□ @code's `Quality Gate` field read and handled (if from @code: see Reading @code's Quality Gate below)
+□ @review's verdict read from its final `Review status:` line (if from @review: the score is advisory)
 ```
+
+### Reading @code's Quality Gate
+
+`@code`'s RETURN carries `**Quality Gate:** <GATE> | p0_blocking=<n> | unverified=<ids or none>` (`code.md` §8), the quality runner's verdict that @code read in its QUALITY step. Read it before accepting the output, and before the Scoring Dimensions below:
+
+| `<GATE>` | Action |
+| -------- | ------ |
+| `BLOCKED`, or `p0_blocking` above 0 | Reject. Re-dispatch @code to fix the blocker in place, with the runner's finding in the feedback |
+| `UNVERIFIED` | Each id in `unverified` is an open claim. Hand it to verification or the `@review` dispatch, and never synthesize it as done |
+| `NOTHING_CHECKED` | Report that the runner checked nothing. Never read it as clean |
+| `ERROR` | Stop on that output until the runner's `errors[]` entry is repaired |
+| `NO_BLOCKER_FOUND` | Proceed. It is the runner's verdict, not a review: a formal review still goes to `@review` |
+
+A RETURN with no `Quality Gate` field is a Missing Deliverable under the Rejection Criteria. The field is the quality runner's verdict and `@review`'s is the review gate: keep the two apart in synthesis.
 
 ### Verification Actions (Execute BEFORE accepting output)
 

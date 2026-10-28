@@ -10,6 +10,7 @@
 
 import fs from 'node:fs';
 import { pathToFileURL } from 'node:url';
+import ruleOverrides from '../../shared/scripts/check-rule-overrides.cjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -22,9 +23,123 @@ const ASSESSMENT_STATUSES = new Set(['APPROVED', 'REQUESTED_CHANGES', 'COMMENTED
 const COMMENTED_SKIP_STATUS =
   /^Review status: COMMENTED \((no changes since last review at \S+|skipped: [^)]+)\)$/;
 const RESULT_BLOCK_HEADER = 'AGENT_IO_RESULT v1';
+// The agent's report carries a Recommendation line. It is a verdict only when its whole value
+// is one status token, or one of the older tokens followed by the end of the line or a comma,
+// so prose such as "approve the migration after the fix" is never read as one.
+const RECOMMENDATION = /^\s*(?:[-*+]\s+)?\*{0,2}Recommendation\*{0,2}:\s*(.*)$/i;
+const RECOMMENDATION_STATUS = /^(APPROVED|REQUESTED_CHANGES|COMMENTED)$/;
+const RECOMMENDATION_LEGACY = /^(APPROVE|REQUEST CHANGES|BLOCK)(?:$|,)/;
+const LEGACY_STATUS = new Map([
+  ['APPROVE', 'APPROVED'],
+  ['REQUEST CHANGES', 'REQUESTED_CHANGES'],
+  ['BLOCK', 'REQUESTED_CHANGES'],
+]);
+// The Rule sources line names five groups in a fixed order. Its rule ids use the grammar
+// of the shared rule-overrides linter, read from the linter so the two cannot drift.
+const RULE_SOURCES_PREFIX = 'Rule sources:';
+const RULE_SOURCES_EMPTY = 'Rule sources: none';
+const RULE_SOURCES_LINE =
+  /^Rule sources: (.+?)\. Overrides: (.+?)\. Refused: (.+?)\. Ignored: (.+?)\. Conflicts: (.+)$/;
+const RULE_ID_TOKEN = ruleOverrides.RULE_ID.source.replace(/^\^/, '').replace(/\$$/, '');
+const RULE_SOURCES_ENTRIES = {
+  Overrides: { separator: '; ', entry: new RegExp(`^${RULE_ID_TOKEN} (?:none|replace) from \\S.*$`) },
+  Refused: { separator: '; ', entry: /^\S.*$/ },
+  Ignored: { separator: '; ', entry: new RegExp(`^${RULE_ID_TOKEN} from \\S.*$`) },
+  Conflicts: { separator: '; ', entry: new RegExp(`^${RULE_ID_TOKEN} \\S+ \\S+$`) },
+};
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. REVIEW OUTPUT CHECKER
+// 3. SUMMARY LINE READERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Reads the verdict-bearing Recommendation lines, wherever they sit in the report.
+ *
+ * @param {string} text - Review output text.
+ * @returns {{ status: string, raw: string }[]} One entry per verdict line, its token mapped onto
+ *   the status vocabulary. Prose and a template line that lists several tokens are skipped.
+ */
+function readRecommendations(text) {
+  const recommendations = [];
+  for (const line of text.replace(/\r\n/g, '\n').split('\n')) {
+    const match = line.match(RECOMMENDATION);
+    if (match === null) {
+      continue;
+    }
+    const value = match[1].replace(/[*`]/g, '').trim();
+    const status = value.match(RECOMMENDATION_STATUS);
+    if (status !== null) {
+      recommendations.push({ status: status[1], raw: status[1] });
+      continue;
+    }
+    const legacy = value.match(RECOMMENDATION_LEGACY);
+    if (legacy !== null) {
+      recommendations.push({ status: LEGACY_STATUS.get(legacy[1]), raw: legacy[1] });
+    }
+  }
+  return recommendations;
+}
+
+/**
+ * Reads the status from the final line of a full review. A skip status is not a full review,
+ * so it returns null for one, as it does for a report with no exact status line last.
+ *
+ * @param {string} text - Review output text.
+ * @returns {string | null} `APPROVED`, `REQUESTED_CHANGES`, `COMMENTED` or null.
+ */
+function readFinalStatus(text) {
+  const lines = text.replace(/\r\n/g, '\n').replace(/\n+$/, '').split('\n');
+  const match = lines[lines.length - 1].match(EXACT_STATUS);
+  return match === null ? null : match[1];
+}
+
+/**
+ * Checks each Rule sources line. The line is optional, so a report without one passes.
+ *
+ * @param {string[]} lines - Review output lines.
+ * @returns {string[]} Failure messages, or an empty array when valid.
+ */
+function checkRuleSources(lines) {
+  const ruleLines = lines.filter((line) => line.startsWith(RULE_SOURCES_PREFIX));
+  if (ruleLines.length > 1) {
+    return ['more than one "Rule sources:" line in the output'];
+  }
+  if (ruleLines.length === 0 || ruleLines[0] === RULE_SOURCES_EMPTY) {
+    return [];
+  }
+  const line = ruleLines[0];
+  // A documented template shows placeholders, not a report. A redacted private path such as
+  // `<PRIVATE>` is still a report, so only the two template spellings are skipped.
+  if (line.startsWith('Rule sources: [') || line.includes('<checklist file>')) {
+    return [];
+  }
+  const match = line.match(RULE_SOURCES_LINE);
+  if (match === null) {
+    return [
+      'Rule sources line does not name its five groups in order: Rule sources, Overrides, Refused, Ignored, Conflicts',
+    ];
+  }
+  const failures = [];
+  const [, sources, ...groupValues] = match;
+  if (sources !== 'none' && sources.split(', ').some((entry) => entry.trim() === '')) {
+    failures.push('Rule sources line lists an empty checklist file');
+  }
+  Object.entries(RULE_SOURCES_ENTRIES).forEach(([group, shape], index) => {
+    const value = groupValues[index];
+    if (value === 'none') {
+      return;
+    }
+    for (const entry of value.split(shape.separator)) {
+      if (!shape.entry.test(entry)) {
+        failures.push(`Rule sources line has a malformed ${group} entry: "${entry}"`);
+      }
+    }
+  });
+  return failures;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. REVIEW OUTPUT CHECKER
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -103,6 +218,14 @@ function checkReviewOutput(text) {
         );
       }
     }
+    for (const recommendation of readRecommendations(normalizedText)) {
+      if (recommendation.status !== finalStatus) {
+        failures.push(
+          `Recommendation "${recommendation.raw}" contradicts the final status line "Review status: ${finalStatus}"`
+        );
+      }
+    }
+    failures.push(...checkRuleSources(lines));
     return failures;
   }
 
@@ -110,7 +233,7 @@ function checkReviewOutput(text) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. COMMAND-LINE INTERFACE
+// 5. COMMAND-LINE INTERFACE
 // ─────────────────────────────────────────────────────────────────────────────
 
 function runCli() {
@@ -147,10 +270,10 @@ function runCli() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 5. EXPORTS
+// 6. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-export { checkReviewOutput };
+export { checkReviewOutput, readFinalStatus, readRecommendations };
 
 if (
   process.argv[1] &&
