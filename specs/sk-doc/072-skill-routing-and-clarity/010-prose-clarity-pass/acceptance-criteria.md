@@ -53,6 +53,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given the phase is implemented, When its gates run, Then: `check-rule-copies.js`, `package_skill.py --strict` and `verify-doc-claims.cjs` pass after the pass. | Recorded in `scratch/after.md` | Unmet | - |
 | AC-002 | REQ-002 | Given the phase is implemented, When its gates run, Then: No line in a skill `SKILL.md` exceeds 400 characters outside code blocks and tables. | Recorded in `scratch/after.md` | Unmet | - |
+| AC-003 | REQ-003 | Given a new skill created through `/create:skill`, When creation finishes, Then: its `SKILL.md` follows the clarity rules with no later clarity pass. | Recorded in `scratch/after.md` | Unmet | - |
+| AC-004 | REQ-004 | Given the default create flow runs, When it writes `SKILL.md` and `README.md`, Then: it runs the `sk-create-with-human-voice` check on both and reports the score. | Recorded in `scratch/after.md` | Unmet | - |
 
 ### Status values
 

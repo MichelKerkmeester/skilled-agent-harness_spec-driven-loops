@@ -48,8 +48,7 @@
       "001-deep-research/research/research.md",
       ".skilled/skills/system-skill-advisor/SKILL.md",
       ".skilled/skills/sk-code/ROUTER.md",
-      ".skilled/skills/mcp-tooling/ROUTER.md",
-      ".skilled/skills/sk-doc/scripts/package_skill.py"
+      ".skilled/skills/mcp-tooling/ROUTER.md"
     ],
     "entities": [
       {
@@ -68,12 +67,6 @@
         "name": "ROUTER.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/ROUTER.md",
-        "source": "derived"
-      },
-      {
-        "name": "package_skill.py",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/scripts/package_skill.py",
         "source": "derived"
       },
       {
@@ -115,16 +108,16 @@
     ],
     "causal_summary": "Skill docs under `.skilled/skills/` are hard to read",
     "created_at": "2026-10-28T06:21:53Z",
-    "last_save_at": "2026-10-28T06:54:03.453Z",
+    "last_save_at": "2026-10-28T07:28:45.707Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:00eee02bde14eeb20006992e738a8d70cd2b8d9f322f98dc9e2fda1683114704",
+    "source_fingerprint": "sha256:cc455fc5f6d8b3076081bd3b347659907ca56b27c3bdb83134d91038154668bd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aca712b02ee0201a7cf6dba2e6937dbdc651095a19d03f18d341c120744d51eb"
+      "spec.md": "009a228fe2995d20856e0436e8b3c4e3cd5e759090d05066b31591c99a1475eb"
     },
     "last_active_at": null
   }

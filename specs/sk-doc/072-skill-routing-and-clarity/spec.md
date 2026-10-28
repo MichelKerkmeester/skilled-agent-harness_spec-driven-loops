@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/072-skill-routing-and-clarity"
-    last_updated_at: "2026-10-28T06:55:00Z"
+    last_updated_at: "2026-10-28T09:30:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Phase 001 research complete; phases 002 to 011 planned from it"
-    next_safe_action: "Run /speckit:plan on 002-baseline-and-routing-correctness"
+    recent_action: "Phase 002 complete: baseline recorded and routing-correctness fixes landed"
+    next_safe_action: "Run /speckit:plan on 003-routing-canon-and-tooling"
     blockers: []
     key_files:
       - "001-deep-research/research/research.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "skill-routing-and-clarity-orchestrator"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 20
     open_questions: []
     answered_questions: []
 ---
@@ -93,10 +93,10 @@ Give every skill one source per routing decision, a routing shape that fits its 
 |-----------|-------------|-------|-------------|
 | `specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/research/` | Create | 001 | Research loop artifacts and synthesis |
 | `.skilled/skills/system-skill-advisor/SKILL.md`, `.skilled/skills/sk-code/ROUTER.md`, `.skilled/skills/mcp-tooling/ROUTER.md` | Modify | 002 | Routing correctness fixes |
-| `.skilled/skills/sk-doc/sk-create-skill/assets/`, `.skilled/skills/sk-doc/scripts/package_skill.py` | Modify | 003 | Packet routing canon and the tooling that checks it |
+| `.skilled/skills/sk-doc/sk-create-skill/`, `.skilled/commands/create/` | Modify | 003 | Packet routing canon, sk-create-skill producing it by default, and the creation check that rejects the old shape |
 | `.skilled/skills/*/hub-router.json`, `mode-registry.json`, `ROUTER.md` | Modify | 004 | One authored vocabulary per hub |
 | `.skilled/skills/<hub>/` and `.skilled/skills/<standalone>/SKILL.md` | Modify | 005 to 009 | Canon routing shape per hub and skill |
-| `.skilled/skills/**/SKILL.md`, `.skilled/commands/`, `.skilled/agents/` | Modify | 010 | Prose clarity |
+| `.skilled/skills/**/SKILL.md`, `.skilled/commands/`, `.skilled/agents/` | Modify | 010 | Prose clarity, also built into sk-create-skill with the human-voice check in its default flow |
 | `.hermes/skills/`, leaf manifests, compiled routes, changelogs | Modify | 011 | Regeneration and the full gate |
 <!-- /ANCHOR:scope -->
 
@@ -110,15 +110,15 @@ Give every skill one source per routing decision, a routing shape that fits its 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-deep-research/ | Ten iterations of deep research that decided the routing shape per skill type and this plan | Complete |
-| 2 | 002-baseline-and-routing-correctness/ | Record a baseline for every routing gate; fix the routing bugs the research found, with no shape change | Planned |
-| 3 | 003-routing-canon-and-tooling/ | Packet routing canon in the templates, proven on one packet against parseRouter, verify-router-sync, package_skill and parent-skill-check | Planned |
+| 2 | 002-baseline-and-routing-correctness/ | Record a baseline for every routing gate; fix the routing bugs the research found, with no shape change | Complete |
+| 3 | 003-routing-canon-and-tooling/ | Packet routing canon in the templates, proven on one packet against parseRouter, verify-router-sync, package_skill and parent-skill-check; sk-create-skill produces it by default and its creation check rejects the old shape | Planned |
 | 4 | 004-single-vocabulary-source/ | One authored vocabulary per hub; generate or check every copy against it; re-mint compiled routes | Planned |
 | 5 | 005-sk-code-hub/ | sk-code hub and its four packets to the canon shape, review last | Planned |
 | 6 | 006-sk-doc-hub/ | sk-doc hub and the five packets that still carry machine blocks | Planned |
 | 7 | 007-sk-design-and-deep-loop-hubs/ | sk-design and system-deep-loop hubs and packets | Planned |
 | 8 | 008-cli-and-mcp-hubs/ | cli-external-orchestration, cli-classifier and mcp-tooling hubs and packets | Planned |
 | 9 | 009-standalone-skills/ | The seven standalone skills: short inline router, machine block last, generated leaf manifest | Planned |
-| 10 | 010-prose-clarity-pass/ | Prose clarity over every skill doc and the command and agent docs that teach routing | Planned |
+| 10 | 010-prose-clarity-pass/ | Prose clarity over every skill doc and the command and agent docs that teach routing, and in sk-create-skill so new skills start clear | Planned |
 | 11 | 011-regeneration-and-verification/ | Regenerate every mirror and generated file; rerun the phase 002 baseline and report the delta | Planned |
 
 ### Phase Transition Rules

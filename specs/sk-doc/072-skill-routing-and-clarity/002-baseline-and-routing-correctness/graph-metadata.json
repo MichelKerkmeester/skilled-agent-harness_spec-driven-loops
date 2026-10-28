@@ -15,7 +15,8 @@
       "skill routing phase 2",
       "baseline and routing correctness plan",
       "baseline and routing correctness tasks",
-      "baseline and routing correctness acceptance criteria"
+      "baseline and routing correctness acceptance criteria",
+      "baseline and routing correctness implementation summary"
     ],
     "key_topics": [
       "baseline",
@@ -27,17 +28,21 @@
       "tasks",
       "acceptance",
       "criteria",
-      "later",
-      "phases",
-      "cannot"
+      "implementation",
+      "summary",
+      "later"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scratch/baseline.md",
+      "scratch/after.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-resource-contract.test.cjs",
       ".skilled/skills/system-skill-advisor/SKILL.md",
       ".skilled/skills/sk-code/ROUTER.md",
       ".skilled/skills/mcp-tooling/ROUTER.md",
@@ -66,6 +71,30 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.md",
+        "kind": "doc",
+        "path": "scratch/baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.md",
+        "kind": "doc",
+        "path": "scratch/after.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-resource-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-resource-contract.test.cjs",
         "source": "derived"
       },
       {
@@ -163,49 +192,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Later phases cannot claim no regressions without numbers from before they start, and the research found routing bugs that are independent of any shape change",
     "created_at": "2026-10-28T06:38:43Z",
-    "last_save_at": "2026-10-28T06:41:17.550Z",
+    "last_save_at": "2026-10-28T07:28:47.214Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0857106811300524016ae932f12670f875fecbaeab645c356b3a4244764d2b94",
+    "source_fingerprint": "sha256:8cabe758bfa854f98fc0bfd82e28d4f0201eab17927eef5b69c20a3af80e374c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ab400e68d8b9e59a4e1f23978e3add0c95ab03c444fcb519f31384547db92dcb",
-      "plan.md": "8fb071fda4725879e374a7d21b212177323caa60166665c946dc8f0b11c5e1e1",
-      "tasks.md": "da182805f5e57b53a0cc1a04835a8e697da03837897644fc4c7873f75013c59e"
+      "spec.md": "8c287f8c936301b42b74f2be314616d60b0d836398b107bf3077687f49a31b66",
+      "plan.md": "c9d8df11cc6c1605a791e21403c005b3aefc23b8937d6723a8b457365422b0d6",
+      "tasks.md": "1ca5c1671e395ef75491f81c741102eb6012a1c0f1f54d9715385c30852e0d8a",
+      "implementation-summary.md": "03b80b384cacd4ecf7701367384f0c10447dbdfac48af45b93adaf9decc19f02"
     },
     "last_active_at": null
   }

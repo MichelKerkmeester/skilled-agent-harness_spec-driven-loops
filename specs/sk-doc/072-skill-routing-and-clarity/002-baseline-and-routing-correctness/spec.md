@@ -20,7 +20,7 @@ contextType: "planning"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-28 |
 | **Branch** | `worktrees/254-skill-routing-and-clarity` |
 | **Parent Spec** | ../spec.md |
@@ -61,7 +61,7 @@ Record a baseline for every routing gate and fix the known routing bugs without 
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
 ```text
-N/A: this phase is Planned. Its first task records the measured behavior before any edit.
+Before any edit every gate passed (scratch/baseline.md). Measured defects: sk-code ROUTER.md §2 listed 2 intents §9 lacks and lacked 5 §9 has; mcp-tooling OBSIDIAN missed health and health-md; system-skill-advisor discovered 0 feature-catalog and playbook docs, and its HOOK leaf was absent from leaf-manifest.json.
 ```
 <!-- /ANCHOR:measured-behavior -->
 

@@ -1,6 +1,6 @@
 {
   "skill": "cli-external-orchestration",
-  "version": "1.7.6.0",
+  "version": "1.7.7.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,

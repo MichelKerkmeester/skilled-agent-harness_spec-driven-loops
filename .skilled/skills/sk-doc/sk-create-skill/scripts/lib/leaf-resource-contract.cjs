@@ -51,10 +51,11 @@ const crypto = require('crypto');
 // A leafResourceId must start under one of these packet-root-relative roots.
 // `references/` and `assets/` are the parent-hub packet roots; `feature-catalog/`
 // and `manual-testing-playbook/` extend the set for a standalone skill whose
-// feature-catalog and playbook docs are themselves the routed leaves. Adding a
+// feature-catalog and playbook docs are themselves the routed leaves. `hooks/`
+// admits a standalone skill whose hook reference docs are routed leaves. Adding a
 // root is backward-compatible: it only ever admits more strings, never rejects a
 // previously-legal one, so no committed manifest changes bytes on this account.
-const LEAF_ROOTS = Object.freeze(['references/', 'assets/', 'feature-catalog/', 'manual-testing-playbook/']);
+const LEAF_ROOTS = Object.freeze(['references/', 'assets/', 'feature-catalog/', 'manual-testing-playbook/', 'hooks/']);
 const CANONICAL_PACKAGE_ROOTS = Object.freeze({
   'feature-catalog': 'feature-catalog',
   'manual-testing-playbook': 'manual-testing-playbook',

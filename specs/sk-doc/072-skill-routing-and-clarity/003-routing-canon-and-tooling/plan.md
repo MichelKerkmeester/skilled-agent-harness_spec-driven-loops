@@ -73,6 +73,8 @@ Steps, in order:
 3. Run the three gates on it and record the output.
 4. Change the tooling only where a gate rejects the shape, with a test for each change.
 5. Record the decision on the no-match name and glossary location.
+6. Make sk-create-skill produce the new shape by default: templates and scaffolds in `sk-create-skill/assets/`, the guidance in `sk-create-skill/references/`, and the `/create:skill` and `/create:skill-parent` workflows and presentation assets in `.skilled/commands/create/`.
+7. Extend the check that already runs on skill creation (`package_skill.py --strict` or the create-skill CI checks) to reject a `SKILL.md` in the old shape, with a test that fails before the change and a known-debt list that keeps existing skills from failing CI until phases 005 to 009.
 
 `tasks.md` holds the checkboxes for these steps.
 <!-- /ANCHOR:phases -->

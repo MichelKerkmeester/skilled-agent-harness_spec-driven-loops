@@ -109,8 +109,9 @@ SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (
     SKILL_ROOT / "references",
     SKILL_ROOT / "assets",
-    SKILL_ROOT / "feature_catalog",
-    SKILL_ROOT / "manual_testing_playbook",
+    SKILL_ROOT / "feature-catalog",
+    SKILL_ROOT / "manual-testing-playbook",
+    SKILL_ROOT / "hooks",
 )
 
 # This standalone skill emits exactly one workflow mode. Every routed leaf is a

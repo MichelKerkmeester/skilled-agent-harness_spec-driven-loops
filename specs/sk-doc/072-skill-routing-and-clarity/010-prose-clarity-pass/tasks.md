@@ -45,6 +45,8 @@ contextType: "planning"
 - [ ] T005 Rewrite each hub and its packets, one skill at a time, running the checks after each.
 - [ ] T006 Rewrite the standalone skills.
 - [ ] T007 Rewrite the routing prose in the command and agent docs.
+- [ ] T010 Put the clarity rules into sk-create-skill's templates, writing guidance and the `/create:skill` authoring step (`.skilled/skills/sk-doc/sk-create-skill/`, `.skilled/commands/create/`). Verify: a skill created through `/create:skill` needs no clarity edit afterwards.
+- [ ] T011 Run the `sk-create-with-human-voice` check in the default create flow on the generated `SKILL.md` and `README.md`. Verify: the flow's output shows the human-voice score for both files.
 <!-- /ANCHOR:phase-2 -->
 
 ---

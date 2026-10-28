@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "sk-doc/072-skill-routing-and-clarity/002-baseline-and-routing-correctness"
     last_updated_at: "2026-10-28T06:50:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Planned the phase from the phase 001 research"
-    next_safe_action: "Run /speckit:plan on this phase before implementation"
+    recent_action: "Closed the phase: baseline, six fixes, rerun"
+    next_safe_action: "Start phase 003"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "skill-routing-and-clarity-planning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** `sk-doc/072-skill-routing-and-clarity/002-baseline-and-routing-correctness`
 **Level:** 2
-**Status:** Planned
+**Status:** Complete
 **Date:** 2026-10-28
 <!-- /ANCHOR:metadata -->
 
@@ -51,9 +51,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the phase is implemented, When its gates run, Then: A baseline file in this phase's `scratch/` records every gate's output and exit status before the first edit. | Recorded in `scratch/after.md` | Unmet | - |
-| AC-002 | REQ-002 | Given the phase is implemented, When its gates run, Then: After the fixes, every gate in the baseline passes at least as well as before. | Recorded in `scratch/after.md` | Unmet | - |
-| AC-003 | REQ-003 | Given the phase is implemented, When its gates run, Then: Each fixed defect cites the research finding it closes. | Recorded in `scratch/after.md` | Unmet | - |
+| AC-001 | REQ-001 | Given the phase is implemented, When its gates run, Then: A baseline file in this phase's `scratch/` records every gate's output and exit status before the first edit. | `scratch/baseline.md` §1, written at `bd8f7e946d` before the first edit, every gate with exit status | Met | - |
+| AC-002 | REQ-002 | Given the phase is implemented, When its gates run, Then: After the fixes, every gate in the baseline passes at least as well as before. | `scratch/after.md` §1 delta table: every gate exit 0 with the same result as before | Met | - |
+| AC-003 | REQ-003 | Given the phase is implemented, When its gates run, Then: Each fixed defect cites the research finding it closes. | `implementation-summary.md` fix table names the research finding for each fix | Met | - |
 
 ### Status values
 
@@ -78,7 +78,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-The phase is Planned and no criterion is met yet.
+Every criterion is Met, with evidence in `scratch/baseline.md`, `scratch/after.md` and `implementation-summary.md`.
 <!-- /ANCHOR:closure -->

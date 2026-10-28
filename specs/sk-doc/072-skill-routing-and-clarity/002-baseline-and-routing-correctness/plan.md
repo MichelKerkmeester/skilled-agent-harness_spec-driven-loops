@@ -35,14 +35,14 @@ Record a baseline for every routing gate and fix the known routing bugs without 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified: The research synthesis in phase 001
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified: The research synthesis in phase 001
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Every gate in scope passes, with output and exit status recorded in `scratch/`
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Every gate in scope passes, with output and exit status recorded in `scratch/`
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

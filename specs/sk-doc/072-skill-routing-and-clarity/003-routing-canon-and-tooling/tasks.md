@@ -46,6 +46,9 @@ contextType: "planning"
 - [ ] T006 Run the three gates on it and record the output.
 - [ ] T007 Change the tooling only where a gate rejects the shape, with a test for each change.
 - [ ] T008 Record the decision on the no-match name and glossary location.
+- [ ] T011 Make sk-create-skill produce the new shape by default (`.skilled/skills/sk-doc/sk-create-skill/assets/`, `sk-create-skill/references/`, `.skilled/commands/create/`). Verify: a skill scaffolded through `/create:skill` and one through `/create:skill-parent` pass `package_skill.py --strict` in the new shape.
+- [ ] T012 Extend the existing creation check to reject the old shape: a SMART ROUTING section over the agreed length, a machine router block that is not the final appendix, a `ROUTER.md` inside a mode packet. Verify: the new test fails before the change and passes after it.
+- [ ] T013 Run the extended check over the whole fleet. Verify: every existing skill in the old shape is listed as known debt for phases 005 to 009, and the CI run exits 0.
 <!-- /ANCHOR:phase-2 -->
 
 ---

@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The templates and checks that shape every skill still teach the long inline routing section",
     "created_at": "2026-10-28T06:38:44Z",
-    "last_save_at": "2026-10-28T06:42:24.294Z",
+    "last_save_at": "2026-10-28T07:28:48.579Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "tasks.md",
       "acceptance-criteria.md"
     ],
-    "source_fingerprint": "sha256:82e08a54bad16ca8c7c095fc57de15e7a5afe0bdb5087cbac9431244ccdbf039",
+    "source_fingerprint": "sha256:2d231c29db731211eb379a09ca0ddedfd63a7371b1cdca1f841a626b97cbab12",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "75e3674d45b2527231ec67ad862c72034eeca66806eb7aa0cb4da9032af847a9",
-      "plan.md": "d4b186c3ffda5be1792f56f7fb0da2d4ef3aeadc460caab3e8327fae91d91bd6",
-      "tasks.md": "91c8aed7a44e18c593d1b74ee6fe0a484185ebd65769ffa8127116074bf5dea5"
+      "spec.md": "decebfa4dbd9be4104290d114ee19dfc2254f1037e456cbaca0e9bd76e227f9b",
+      "plan.md": "7f13680daaf21f473bfd34c7f870bbd1bb6bda57f2e346531591845dfa05c7cd",
+      "tasks.md": "b9c0c073f8544e9386ffd987a8521e695b84fdd74538575014d156fb630f4ed6"
     },
     "last_active_at": null
   }

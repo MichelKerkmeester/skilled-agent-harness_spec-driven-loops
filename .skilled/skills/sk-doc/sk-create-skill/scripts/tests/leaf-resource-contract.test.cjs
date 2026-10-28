@@ -398,6 +398,32 @@ function testQualifiedIdToLeafFailsClosedOnOrphansAndMismatch() {
   assert.equal(contract.qualifiedIdToLeaf('sk-code//packet/x/y', { modeIndex }).code, 'MALFORMED_QUALIFIED_ID');
 }
 
+function testStandaloneHooksLeafRootIsAdmitted() {
+  // A standalone skill whose hook reference docs are routed leaves declares
+  // `hooks` as a leaf root, so the contract must own that root and the
+  // generator must walk it instead of rejecting the config.
+  assert.ok(contract.LEAF_ROOTS.includes('hooks/'));
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'leaf-hooks-'));
+  try {
+    fs.writeFileSync(path.join(tempDir, 'leaf-manifest.config.json'), `${JSON.stringify({
+      workflowMode: 'demo',
+      packet: '.',
+      leafRoots: ['references', 'hooks'],
+      excludeIndexFiles: true,
+      resourceContractVersion: 1,
+    }, null, 2)}\n`);
+    fs.mkdirSync(path.join(tempDir, 'hooks'), { recursive: true });
+    fs.mkdirSync(path.join(tempDir, 'references'), { recursive: true });
+    fs.writeFileSync(path.join(tempDir, 'hooks', 'demo-hook.md'), '# demo hook\n');
+    fs.writeFileSync(path.join(tempDir, 'references', 'demo.md'), '# demo\n');
+
+    const manifest = JSON.parse(generator.buildManifestBytes(tempDir).toString('utf8'));
+    assert.ok(manifest.modes[0].leaves.includes('hooks/demo-hook.md'));
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 11. RUN
 // ─────────────────────────────────────────────────────────────────────────────
@@ -412,6 +438,7 @@ testDualReadDoesNotGenericallyStripUnrecognizedPrefixes();
 testCanonicalBytesAreDeterministic();
 testGeneratorRejectsOrphanAliasModeAndPreservesLiveBytes();
 testStandaloneConfigRejectsPacketEscapingRoot();
+testStandaloneHooksLeafRootIsAdmitted();
 testHubModeRejectsPacketEscapingRoot();
 testDualReadOfRealLegacyFixtureString();
 testDualReadOfSharedAliasRequiresAuthoredEntry();

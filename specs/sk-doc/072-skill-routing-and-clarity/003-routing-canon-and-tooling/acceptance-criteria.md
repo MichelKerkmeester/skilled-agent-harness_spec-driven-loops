@@ -54,6 +54,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-001 | REQ-001 | Given the phase is implemented, When its gates run, Then: One proof packet uses the new shape and `verify-router-sync.cjs`, `package_skill.py --strict` and `parent-skill-check.cjs` pass on it. | Recorded in `scratch/after.md` | Unmet | - |
 | AC-002 | REQ-002 | Given the phase is implemented, When its gates run, Then: Every tooling change ships with a test that fails without it. | Recorded in `scratch/after.md` | Unmet | - |
 | AC-003 | REQ-003 | Given the phase is implemented, When its gates run, Then: The templates describe the new shape in plain words with one example. | Recorded in `scratch/after.md` | Unmet | - |
+| AC-004 | REQ-004 | Given a new skill and a new parent skill are created through `/create:skill` and `/create:skill-parent`, When creation finishes, Then: both are in the new shape with no hand edit, and `package_skill.py --strict` passes on each. | Recorded in `scratch/after.md` | Unmet | - |
+| AC-005 | REQ-005 | Given a `SKILL.md` in the old shape, When the extended creation check runs, Then: it fails, a test proves it failed before the change, and a fleet run lists existing old-shape skills as known debt and exits 0. | Recorded in `scratch/after.md` | Unmet | - |
 
 ### Status values
 

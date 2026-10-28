@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.6.0
+version: 2.3.7.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -54,10 +54,13 @@ Intent classification scores task text against weighted keyword signals to pick 
 | CODE_QUALITY | `lint`, `format`, `quality gate`, `p0`, `p1`, `style`, `naming`, `standards`, `restraint`, `yagni`, `simplify`, `simplification`, `over-engineering`, `bloat`, `skipped_untrusted`, `untrusted repository check`, `trustrepochecks`, `quality config`, `repository/quality.json`, `configured check`, `unverified` |
 | DEBUGGING | `debug`, `fix`, `bug`, `error`, `broken`, `failing`, `stack trace`, `console error` |
 | VERIFICATION | `verify`, `done`, `complete`, `works`, `fixed`, `passing`, `build`, `type-check` |
-| TESTING | `test`, `unit`, `integration`, `coverage`, `vitest`, `pytest`, `shellcheck` |
 | HOOKS | `hook`, `session-prime`, `user-prompt-submit`, `pre-tool-use`, `post-tool-use` |
 | CONFIG | `json`, `jsonc`, `schema`, `descriptor`, `config` |
-| LANGUAGE_STANDARDS | `typescript`, `python`, `shell`, `commonjs`, `strict`, `docstring` |
+| JAVASCRIPT | `javascript`, `vanilla js`, `.js`, `commonjs`, `.cjs`, `.mjs` |
+| TYPESCRIPT | `typescript`, `.ts`, `.tsx` |
+| PYTHON | `python`, `.py`, `docstring` |
+| SHELL | `shell script`, `bash`, `.sh` |
+| RUST | `rust`, `.rs`, `cargo.toml`, `cargo.lock`, `napi-rs`, `napi_rs`, `#[napi]`, `wasm-bindgen`, `wasm_bindgen`, `#[wasm_bindgen]`, `wasi`, `cdylib` |
 | CI_WORKFLOW | `github actions workflow`, `ci workflow`, `github actions yaml`, `workflow path filters`, `github workflow timeout`, `github workflow concurrency`, `github workflow permissions`, `required status check workflow`, `ci job`, `action to a sha`, `sha-pinned action`, `github actions permissions`, `ci workflows`, `ci switch`, `turn off ci`, `.github/workflows`, `workflow concurrency`, `github actions release workflow`, `github actions deploy workflow`, `release workflow yaml`, `deploy workflow yaml`, `github actions minutes`, `actions minutes`, `actions runner minutes`, `runner minutes`, `ci workflow cost`, `ci cost`, `reduce ci costs`, `lower ci costs`, `cut ci costs`, `reduce our ci costs`, `lower our ci costs`, `ci spend`, `ci bill`, `ci minutes cost`, `cut the ci minutes`, `cut ci minutes`, `reduce ci minutes`, `ci pipeline cost`, `ci pipeline cheaper`, `ci pipelines cheaper`, `cheaper ci pipeline`, `ci runs cheaper`, `failing ci`, `failing ci pipeline`, `ci failure`, `ci failures`, `ci is failing`, `broken ci`, `debug the ci`, `debug ci`, `cost of our ci`, `make ci cheaper`, `github actions bill`, `github actions cost`, `turn off the ci`, `turn on the ci`, `ci review workflow` |
 
 ### Scoring algorithm
@@ -82,7 +85,7 @@ Doc-only prose changes subtract from `sk-code` intent scoring and add to `sk-doc
 
 Do not apply this anti-signal when the same request asks to modify executable code, parser logic, tests, shell behavior, TypeScript/Python entrypoints, JSON schema behavior, or routing algorithms. In that case, keep SKILLED surface detection and load `sk-code`.
 
-Multi-symptom prompts like `debug the broken jsonc descriptor` should load both DEBUGGING and CONFIG. Prompts like `update TypeScript advisor fixture` should load SKILLED plus LANGUAGE_STANDARDS and CODE_QUALITY.
+Multi-symptom prompts like `debug the broken jsonc descriptor` should load both DEBUGGING and CONFIG. Prompts like `update TypeScript advisor fixture` should load SKILLED plus TYPESCRIPT and CODE_QUALITY.
 
 ### Surface-specific intent notes
 

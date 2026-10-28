@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Skill docs use terms before defining them, mix project history into instructions, and carry single lines of 1,000 to 2,200 characters",
     "created_at": "2026-10-28T06:38:51Z",
-    "last_save_at": "2026-10-28T06:42:24.272Z",
+    "last_save_at": "2026-10-28T07:28:49.907Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,12 +196,12 @@
       "tasks.md",
       "acceptance-criteria.md"
     ],
-    "source_fingerprint": "sha256:f81457be93d3854238089ba7fc363eaf1c390367fa718257268e660ee38b754a",
+    "source_fingerprint": "sha256:d75ec9b3c94061f504c999f1720c7a1399e7f2246f65420a94c4136bb1058ecf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e17937021953d1a7ee661b9ede4260dd372bc911793bc90dc89e236130cfbf7d",
-      "plan.md": "df1046e86da2b6504c49b2b8e139b3c03d81222f6c021fee12a82333a9bf1d01",
-      "tasks.md": "59ed6b733389f9d6311a59421c0b87170fd04367a644ce74e8b85ed3fe998b04"
+      "spec.md": "c3dd33c131b3d7f0f77955fa1f2d895b18549bee3fad4b2a6827d03cf1a2f9b7",
+      "plan.md": "3a8d0f83100c7a97f69c6bb6bcf154d5636fff537f44844c5d0c22050d338a3e",
+      "tasks.md": "ef8cff19db31b2ba9c1f0b19a47cf7ac189a560ddb3c59f7afa2a0756ade9a46"
     },
     "last_active_at": null
   }

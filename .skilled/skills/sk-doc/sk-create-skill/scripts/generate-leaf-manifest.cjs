@@ -250,7 +250,7 @@ function readStandaloneConfig(skillDir) {
     throw new contract.ContractError('MALFORMED_STANDALONE_CONFIG', `${cfgPath} must declare a non-empty "workflowMode"`);
   }
   const leafRoots = Array.isArray(cfg.leafRoots) && cfg.leafRoots.length ? cfg.leafRoots : S_DEFAULTS.leafRoots;
-  const allowedRoots = new Set(['references', 'assets']);
+  const allowedRoots = new Set(['references', 'assets', 'hooks']);
   for (const root of leafRoots) {
     if (!allowedRoots.has(root) && !contract.canonicalPackageRoot(root)) {
       throw new contract.ContractError('UNSUPPORTED_LEAF_ROOT', `unsupported standalone leaf root: ${root}`);

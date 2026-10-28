@@ -72,6 +72,8 @@ Steps, in order:
 2. Rewrite each hub and its packets, one skill at a time, running the checks after each.
 3. Rewrite the standalone skills.
 4. Rewrite the routing prose in the command and agent docs.
+5. Put the clarity rules into sk-create-skill: its templates, its writing guidance and the `/create:skill` authoring step.
+6. Make the default create flow run the `sk-create-with-human-voice` check on the generated `SKILL.md` and `README.md`.
 
 `tasks.md` holds the checkboxes for these steps.
 <!-- /ANCHOR:phases -->

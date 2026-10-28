@@ -226,6 +226,76 @@
   },
   {
     "workflowMode": "system-skill-advisor",
+    "leafResourceId": "hooks/claude/README.md",
+    "diskPath": "hooks/claude/README.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "hooks/claude/directive-lifecycle-boundary.ts",
+    "diskPath": "hooks/claude/directive-lifecycle-boundary.ts"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "hooks/claude/user-prompt-submit.ts",
+    "diskPath": "hooks/claude/user-prompt-submit.ts"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "hooks/lib/README.md",
+    "diskPath": "hooks/lib/README.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "hooks/lib/directive-lifecycle-contract.ts",
+    "diskPath": "hooks/lib/directive-lifecycle-contract.ts"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "hooks/lib/directive-lifecycle-file-store.ts",
+    "diskPath": "hooks/lib/directive-lifecycle-file-store.ts"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "hooks/lib/directive-lifecycle-store.py",
+    "diskPath": "hooks/lib/directive-lifecycle-store.py"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "hooks/lib/directive-lifecycle-vectors.json",
+    "diskPath": "hooks/lib/directive-lifecycle-vectors.json"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "hooks/lib/directive-lifecycle.ts",
+    "diskPath": "hooks/lib/directive-lifecycle.ts"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "hooks/lib/skill-advisor-cli-fallback.ts",
+    "diskPath": "hooks/lib/skill-advisor-cli-fallback.ts"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "hooks/pi/README.md",
+    "diskPath": "hooks/pi/README.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "hooks/pi/prompt-advisor.ts",
+    "diskPath": "hooks/pi/prompt-advisor.ts"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "hooks/skill-advisor-hook-validation.md",
+    "diskPath": "hooks/skill-advisor-hook-validation.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "hooks/skill-advisor-hook.md",
+    "diskPath": "hooks/skill-advisor-hook.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
     "leafResourceId": "manual-testing-playbook/auto-indexing/anti-stuffing.md",
     "diskPath": "manual-testing-playbook/auto-indexing/anti-stuffing.md"
   },
