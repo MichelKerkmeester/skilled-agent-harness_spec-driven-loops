@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7347,
-    "ok": 15794,
+    "ok": 15802,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26689,
+  "documentsScanned": 26697,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "0d9ae04dc4a60a03a64853630835b4539f0fe8f48f44e0acb746fc8e890d7221",
+  "manifestHash": "f384b3511f74990010949f79a40d9f15953c435da735c95a385a95cf89cccbe7",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38802,
+      "ok": 38820,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -71831,6 +71831,10 @@
     },
     {
       "path": "specs/sk-code/017-portable-code-modes/006-review-agent-and-dispatch/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/007-ci-repo-profile/scratch",
       "reason": "excluded directory"
     },
     {

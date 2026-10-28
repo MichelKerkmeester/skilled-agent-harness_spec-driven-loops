@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0d9ae04dc4a60a03a64853630835b4539f0fe8f48f44e0acb746fc8e890d7221",
+  "manifestHash": "f384b3511f74990010949f79a40d9f15953c435da735c95a385a95cf89cccbe7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -18216,6 +18216,9 @@
     "ci pi and provisioning follow ups tasks": [
       "ci pi and provisioning follow ups tasks"
     ],
+    "ci profile sk code ci json": [
+      "ci profile sk-code ci.json"
+    ],
     "ci push triggers": [
       "ci push triggers"
     ],
@@ -18245,6 +18248,24 @@
     ],
     "ci regression gate comparison rule sets": [
       "ci regression gate comparison rule sets"
+    ],
+    "ci repo profile": [
+      "ci repo profile"
+    ],
+    "ci repo profile acceptance criteria": [
+      "ci repo profile acceptance criteria"
+    ],
+    "ci repo profile implementation summary": [
+      "ci repo profile implementation summary"
+    ],
+    "ci repo profile plan": [
+      "ci repo profile plan"
+    ],
+    "ci repo profile tasks": [
+      "ci repo profile tasks"
+    ],
+    "ci repository profile for sk code ci": [
+      "ci repository profile for sk code ci"
     ],
     "ci research acceptance criteria": [
       "ci research acceptance criteria"
@@ -38627,6 +38648,12 @@
     ],
     "doctor ci review wiring tasks": [
       "doctor ci review wiring tasks"
+    ],
+    "doctor ci toggle contract": [
+      "doctor ci toggle contract"
+    ],
+    "doctor ci toggle second confirmation": [
+      "doctor ci toggle second confirmation"
     ],
     "doctor cocoindex": [
       "/doctor cocoindex",
@@ -80986,6 +81013,9 @@
     "readme check allow marker": [
       "readme-check allow marker"
     ],
+    "readme check sk code path": [
+      "readme check sk-code path"
+    ],
     "readme claim check approach": [
       "readme claim check approach"
     ],
@@ -85037,6 +85067,9 @@
     ],
     "repository checks trust": [
       "repository checks trust"
+    ],
+    "repository ci profile": [
+      "repository ci profile"
     ],
     "repository database path": [
       "repository database path"
@@ -95206,8 +95239,14 @@
     "sk code ci 1 1 4 0": [
       "sk-code-ci 1.1.4.0"
     ],
+    "sk code ci 1 1 5 0": [
+      "sk-code-ci 1.1.5.0"
+    ],
     "sk code ci cost aliases": [
       "sk-code ci cost aliases"
+    ],
+    "sk code ci json profile": [
+      "sk-code ci.json profile"
     ],
     "sk code ci registration plan": [
       "sk-code-ci registration plan"
@@ -95257,6 +95296,9 @@
     ],
     "sk code ci v1 1 4 0": [
       "sk-code-ci v1.1.4.0"
+    ],
+    "sk code ci v1 1 5 0": [
+      "sk-code-ci v1.1.5.0"
     ],
     "sk code close out": [
       "sk-code close-out"
@@ -96889,6 +96931,9 @@
     "sk create command 1 0 5 0": [
       "sk-create-command 1.0.5.0"
     ],
+    "sk create command 1 0 6 0": [
+      "sk-create-command 1.0.6.0"
+    ],
     "sk create command playbook": [
       "sk-create-command playbook"
     ],
@@ -96912,6 +96957,9 @@
     ],
     "sk create command v1 0 5 0": [
       "sk-create-command v1.0.5.0"
+    ],
+    "sk create command v1 0 6 0": [
+      "sk-create-command v1.0.6.0"
     ],
     "sk create diagram benchmark index": [
       "sk-create-diagram benchmark index"
@@ -97246,6 +97294,9 @@
     "sk create readme 1 3 4 0": [
       "sk-create-readme 1.3.4.0"
     ],
+    "sk create readme 1 3 5 0": [
+      "sk-create-readme 1.3.5.0"
+    ],
     "sk create readme lacks the writing style rules": [
       "sk create readme lacks the writing style rules"
     ],
@@ -97278,6 +97329,9 @@
     ],
     "sk create readme v1 3 4 0": [
       "sk-create-readme v1.3.4.0"
+    ],
+    "sk create readme v1 3 5 0": [
+      "sk-create-readme v1.3.5.0"
     ],
     "sk create readme writing style": [
       "sk create readme writing style"
