@@ -1,5 +1,5 @@
 {
-  "corpusHash": "795191ac4ce942ee7f4e8cbc59e2f650d28d9a244441460a31dd02fc60ee8c00",
+  "corpusHash": "5f043dffede3224bda68c363e1b753ea8e5f5536c6e52b4d7077dfc0b6e920c0",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26710,
+  "includedPathCount": 26729,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2757,6 +2757,7 @@
     ".skilled/skills/sk-code/changelog/v3.9.11.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.12.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.13.0.md",
+    ".skilled/skills/sk-code/changelog/v3.9.14.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.2.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.3.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.4.0.md",
@@ -2771,6 +2772,9 @@
     ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-code/feature-catalog/quality-gate/codebase-agnostic-quality-gate.md",
     ".skilled/skills/sk-code/feature-catalog/quality-gate/repository-quality-config.md",
+    ".skilled/skills/sk-code/feature-catalog/quality-gate/rule-overrides-and-hygiene-policy.md",
+    ".skilled/skills/sk-code/feature-catalog/review-calibration/review-agent-severity-verdict.md",
+    ".skilled/skills/sk-code/feature-catalog/review-calibration/review-floor-lens-and-overrides.md",
     ".skilled/skills/sk-code/feature-catalog/review-calibration/review-reach-calibration.md",
     ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
     ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/quality-ci-surface-evidence-compiled-routing.md",
@@ -2820,7 +2824,9 @@
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.3.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.4.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.5.0.md",
+    ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.6.0.md",
     ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/ci-surface/ci-surface.md",
+    ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/foreign-repository/foreign-repository-profile.md",
     ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
     ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
@@ -2860,6 +2866,7 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.5.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.6.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.7.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.8.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.4.0.0.md",
@@ -2872,7 +2879,9 @@
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/absent-required-tool.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/ci-target-change.md",
+    ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/disabled-hygiene-rules.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/envelope-round-trip.md",
+    ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/floor-override-refused.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/foreign-polyglot-change.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/parallel-syntax-pool.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/private-surface-change.md",
@@ -2933,6 +2942,7 @@
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.4.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.5.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.6.0.md",
+    ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.7.0.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/large-refactor-pr.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/multi-commit-feature-branch.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/small-pr-single-file.md",
@@ -2947,6 +2957,9 @@
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/finding-accuracy/clean-control.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/finding-accuracy/seeded-off-by-one.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/finding-accuracy/seeded-sql-injection.md",
+    ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/foreign-repository-rules/almost-no-inline-comments.md",
+    ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/foreign-repository-rules/comment-every-function.md",
+    ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/foreign-repository-rules/floor-override-refused.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/dry.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/kiss.md",
     ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/quality.md",
@@ -3045,6 +3058,7 @@
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.6.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.7.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.8.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.9.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/code-quality-gate.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/implementation-authoring.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
@@ -12626,6 +12640,11 @@
     "specs/sk-code/017-portable-code-modes/009-integration-fixes/plan.md",
     "specs/sk-code/017-portable-code-modes/009-integration-fixes/spec.md",
     "specs/sk-code/017-portable-code-modes/009-integration-fixes/tasks.md",
+    "specs/sk-code/017-portable-code-modes/010-docs-and-doctor-alignment/acceptance-criteria.md",
+    "specs/sk-code/017-portable-code-modes/010-docs-and-doctor-alignment/implementation-summary.md",
+    "specs/sk-code/017-portable-code-modes/010-docs-and-doctor-alignment/plan.md",
+    "specs/sk-code/017-portable-code-modes/010-docs-and-doctor-alignment/spec.md",
+    "specs/sk-code/017-portable-code-modes/010-docs-and-doctor-alignment/tasks.md",
     "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/acceptance-criteria.md",
     "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/implementation-summary.md",
     "specs/sk-code/017-portable-code-modes/011-node20-test-fixes/plan.md",
@@ -26741,7 +26760,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "07ed0beba3f31f5cc8a97436b6b2a1c0a1c782d5f34d5a9487289f6770004292",
+  "manifestHash": "ca8bb65ff9da777c460da7bc6769d16179a989b142b09cc8fa888b6c6b16fe96",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29621,6 +29640,10 @@
     },
     {
       "path": "specs/sk-code/017-portable-code-modes/009-integration-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/017-portable-code-modes/010-docs-and-doctor-alignment/scratch",
       "reason": "excluded directory"
     },
     {

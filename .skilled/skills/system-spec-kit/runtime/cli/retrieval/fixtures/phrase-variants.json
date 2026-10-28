@@ -1,5 +1,5 @@
 {
-  "manifestHash": "07ed0beba3f31f5cc8a97436b6b2a1c0a1c782d5f34d5a9487289f6770004292",
+  "manifestHash": "ca8bb65ff9da777c460da7bc6769d16179a989b142b09cc8fa888b6c6b16fe96",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10530,6 +10530,9 @@
     "align deep loop runtime with sk code": [
       "align deep-loop runtime with sk-code"
     ],
+    "align docs playbooks catalogs and doctor text": [
+      "align docs playbooks catalogs and doctor text"
+    ],
     "align rerank sidecar cjs and sidecar worker with sk changelog": [
       "align rerank sidecar cjs and sidecar worker with sk changelog"
     ],
@@ -18135,6 +18138,9 @@
     "ci dependency hardening acceptance criteria": [
       "ci dependency hardening acceptance criteria"
     ],
+    "ci doctor foreign repository": [
+      "ci doctor foreign repository"
+    ],
     "ci drift flags": [
       "ci drift flags"
     ],
@@ -18230,6 +18236,9 @@
     ],
     "ci pi and provisioning follow ups tasks": [
       "ci pi and provisioning follow ups tasks"
+    ],
+    "ci profile docs": [
+      "ci profile docs"
     ],
     "ci profile sk code ci json": [
       "ci profile sk-code ci.json"
@@ -24378,6 +24387,7 @@
       "code-review fold into review"
     ],
     "code review marker": [
+      "CODE-REVIEW marker",
       "code-review marker"
     ],
     "code review marker dispatch": [
@@ -38447,6 +38457,21 @@
     "docs and closeout tasks": [
       "docs and closeout tasks"
     ],
+    "docs and doctor alignment": [
+      "docs and doctor alignment"
+    ],
+    "docs and doctor alignment acceptance criteria": [
+      "docs and doctor alignment acceptance criteria"
+    ],
+    "docs and doctor alignment implementation summary": [
+      "docs and doctor alignment implementation summary"
+    ],
+    "docs and doctor alignment plan": [
+      "docs and doctor alignment plan"
+    ],
+    "docs and doctor alignment tasks": [
+      "docs and doctor alignment tasks"
+    ],
     "docs and final gate": [
       "docs-and-final-gate"
     ],
@@ -47122,6 +47147,9 @@
     ],
     "foreign key relationships": [
       "foreign key relationships"
+    ],
+    "foreign repository playbook scenarios": [
+      "foreign repository playbook scenarios"
     ],
     "foreign spec ids dominate rendered content": [
       "foreign spec ids dominate rendered content"
@@ -80002,6 +80030,9 @@
     "quality config seam": [
       "quality config seam"
     ],
+    "quality docs rule overrides": [
+      "quality docs rule overrides"
+    ],
     "quality fallback fts5 bm25 grep": [
       "quality fallback fts5 bm25 grep"
     ],
@@ -80169,6 +80200,9 @@
     ],
     "quality obsidian coverage tasks": [
       "quality obsidian coverage tasks"
+    ],
+    "quality playbook disabled hygiene rules": [
+      "quality playbook disabled hygiene rules"
     ],
     "quality report listing": [
       "quality report listing"
@@ -87387,6 +87421,9 @@
     "review advisories tasks": [
       "review advisories tasks"
     ],
+    "review agent advisory score": [
+      "review agent advisory score"
+    ],
     "review agent and dispatch": [
       "review agent and dispatch"
     ],
@@ -87401,6 +87438,9 @@
     ],
     "review agent and dispatch tasks": [
       "review agent and dispatch tasks"
+    ],
+    "review agent severity verdict": [
+      "review agent severity verdict"
     ],
     "review agent structural impact removal": [
       "review agent structural impact removal"
@@ -87579,6 +87619,9 @@
     "review divergent convergence": [
       "review divergent convergence"
     ],
+    "review docs floor and lens": [
+      "review docs floor and lens"
+    ],
     "review drift remediation": [
       "review drift remediation"
     ],
@@ -87639,6 +87682,9 @@
     "review first implement second": [
       "review first implement second"
     ],
+    "review floor and default lens": [
+      "review floor and default lens"
+    ],
     "review floor default lens and rule overrides": [
       "review floor default lens and rule overrides"
     ],
@@ -87665,6 +87711,9 @@
     ],
     "review folders under spec tree root": [
       "review folders under spec-tree root"
+    ],
+    "review gate follows severity": [
+      "review gate follows severity"
     ],
     "review gateway event rows": [
       "review gateway event rows"
@@ -87731,6 +87780,9 @@
     ],
     "review leaf protocol": [
       "review leaf protocol"
+    ],
+    "review lens ids": [
+      "review lens ids"
     ],
     "review lens override tests": [
       "review lens override tests"
@@ -87858,6 +87910,9 @@
     ],
     "review pivot council": [
       "review pivot council"
+    ],
+    "review playbook foreign repository rules": [
+      "review playbook foreign repository rules"
     ],
     "review plus write disambiguation": [
       "review-plus-write disambiguation"
@@ -88035,6 +88090,9 @@
     ],
     "review rows reconciliation tasks": [
       "review rows reconciliation tasks"
+    ],
+    "review rule overrides": [
+      "review rule overrides"
     ],
     "review rule sources line": [
       "review rule sources line"
@@ -89516,11 +89574,17 @@
     "rule loading research outcome": [
       "rule loading research outcome"
     ],
+    "rule overrides and hygiene policy": [
+      "rule overrides and hygiene policy"
+    ],
     "rule overrides any repository": [
       "rule overrides any repository"
     ],
     "rule overrides contract": [
       "rule overrides contract"
+    ],
+    "rule overrides docs alignment": [
+      "rule overrides docs alignment"
     ],
     "rule overrides linter": [
       "rule overrides linter"
@@ -95095,6 +95159,9 @@
     "sk code 3 9 13 0": [
       "sk-code 3.9.13.0"
     ],
+    "sk code 3 9 14 0": [
+      "sk-code 3.9.14.0"
+    ],
     "sk code 3 9 2 0": [
       "sk-code 3.9.2.0"
     ],
@@ -95278,6 +95345,9 @@
     "sk code ci 1 1 5 0": [
       "sk-code-ci 1.1.5.0"
     ],
+    "sk code ci 1 1 6 0": [
+      "sk-code-ci 1.1.6.0"
+    ],
     "sk code ci cost aliases": [
       "sk-code ci cost aliases"
     ],
@@ -95335,6 +95405,9 @@
     ],
     "sk code ci v1 1 5 0": [
       "sk-code-ci v1.1.5.0"
+    ],
+    "sk code ci v1 1 6 0": [
+      "sk-code-ci v1.1.6.0"
     ],
     "sk code close out": [
       "sk-code close-out"
@@ -95471,6 +95544,9 @@
     "sk code feature catalog quality gate": [
       "sk-code feature catalog quality gate"
     ],
+    "sk code feature catalog rule overrides": [
+      "sk-code feature catalog rule overrides"
+    ],
     "sk code five mode scaffold": [
       "sk-code five mode scaffold"
     ],
@@ -95530,6 +95606,9 @@
     ],
     "sk code hub capabilities": [
       "sk-code hub capabilities"
+    ],
+    "sk code hub rule overrides docs": [
+      "sk-code hub rule overrides docs"
     ],
     "sk code hub voice": [
       "sk code hub voice",
@@ -95860,6 +95939,9 @@
     "sk code quality 1 13 7 0": [
       "sk-code-quality 1.13.7.0"
     ],
+    "sk code quality 1 13 8 0": [
+      "sk-code-quality 1.13.8.0"
+    ],
     "sk code quality 1 2 0 0": [
       "sk-code-quality 1.2.0.0"
     ],
@@ -95964,6 +96046,9 @@
     ],
     "sk code quality v1 13 7 0": [
       "sk-code-quality v1.13.7.0"
+    ],
+    "sk code quality v1 13 8 0": [
+      "sk-code-quality v1.13.8.0"
     ],
     "sk code quality v1 2 0 0": [
       "sk-code-quality v1.2.0.0"
@@ -96109,6 +96194,9 @@
     "sk code review 1 9 6 0": [
       "sk-code-review 1.9.6.0"
     ],
+    "sk code review 1 9 7 0": [
+      "sk-code-review 1.9.7.0"
+    ],
     "sk code review advisor merge": [
       "sk-code-review advisor merge"
     ],
@@ -96213,6 +96301,9 @@
     ],
     "sk code review v1 9 6 0": [
       "sk-code-review v1.9.6.0"
+    ],
+    "sk code review v1 9 7 0": [
+      "sk-code-review v1.9.7.0"
     ],
     "sk code review workflow": [
       "sk code review workflow"
@@ -96376,6 +96467,9 @@
     "sk code skilled 2 1 8 0": [
       "sk-code-skilled 2.1.8.0"
     ],
+    "sk code skilled 2 1 9 0": [
+      "sk-code-skilled 2.1.9.0"
+    ],
     "sk code skilled alignment": [
       "sk-code-skilled alignment"
     ],
@@ -96391,6 +96485,9 @@
     "sk code skilled esm exemption": [
       "sk-code-skilled esm exemption"
     ],
+    "sk code skilled house style docs": [
+      "sk-code-skilled house style docs"
+    ],
     "sk code skilled readme narrative": [
       "sk-code-skilled readme narrative"
     ],
@@ -96402,6 +96499,9 @@
     ],
     "sk code skilled rename review": [
       "sk-code-skilled rename review"
+    ],
+    "sk code skilled rule overrides section": [
+      "sk-code-skilled rule overrides section"
     ],
     "sk code skilled section dividers advisor": [
       "sk-code-skilled section dividers advisor"
@@ -96501,6 +96601,9 @@
     ],
     "sk code skilled v2 1 8 0": [
       "sk-code-skilled v2.1.8.0"
+    ],
+    "sk code skilled v2 1 9 0": [
+      "sk-code-skilled v2.1.9.0"
     ],
     "sk code smart routing": [
       "sk-code smart routing"
@@ -96678,6 +96781,9 @@
     ],
     "sk code v3 9 13 0": [
       "sk-code v3.9.13.0"
+    ],
+    "sk code v3 9 14 0": [
+      "sk-code v3.9.14.0"
     ],
     "sk code v3 9 2 0": [
       "sk-code v3.9.2.0"
