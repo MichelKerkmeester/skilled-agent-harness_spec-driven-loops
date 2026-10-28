@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/072-skill-routing-and-clarity"
-    last_updated_at: "2026-10-28T14:45:00Z"
+    last_updated_at: "2026-10-28T15:45:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Phases 001 to 008 complete: cli and mcp hubs and their packets at the canon shape"
-    next_safe_action: "Plan 009-standalone-skills"
+    recent_action: "Phases 001 to 009 complete: standalone skills at the canon shape"
+    next_safe_action: "Finish 010-prose-clarity-pass"
     blockers: []
     key_files:
       - "001-deep-research/research/research.md"
@@ -114,11 +114,11 @@ Give every skill one source per routing decision, a routing shape that fits its 
 | 3 | 003-routing-canon-and-tooling/ | Packet routing canon in the templates, proven on one packet against parseRouter, verify-router-sync, package_skill and parent-skill-check; sk-create-skill produces it by default and its creation check rejects the old shape | Complete |
 | 4 | 004-single-vocabulary-source/ | One authored vocabulary per hub; generate or check every copy against it; re-mint compiled routes | Complete |
 | 5 | 005-sk-code-hub/ | sk-code hub and its four packets to the canon shape, review last | Complete |
-| 6 | 006-sk-doc-hub/ | sk-doc hub and the five packets that still carry machine blocks | Planned |
-| 7 | 007-sk-design-and-deep-loop-hubs/ | sk-design and system-deep-loop hubs and packets | Planned |
-| 8 | 008-cli-and-mcp-hubs/ | cli-external-orchestration, cli-classifier and mcp-tooling hubs and packets | Planned |
-| 9 | 009-standalone-skills/ | The seven standalone skills: short inline router, machine block last, generated leaf manifest | Planned |
-| 10 | 010-prose-clarity-pass/ | Prose clarity over every skill doc and the command and agent docs that teach routing, and in sk-create-skill so new skills start clear | Planned |
+| 6 | 006-sk-doc-hub/ | sk-doc hub and the five packets that still carry machine blocks | Complete |
+| 7 | 007-sk-design-and-deep-loop-hubs/ | sk-design and system-deep-loop hubs and packets | Complete |
+| 8 | 008-cli-and-mcp-hubs/ | cli-external-orchestration, cli-classifier and mcp-tooling hubs and packets | Complete |
+| 9 | 009-standalone-skills/ | The seven standalone skills: short inline router, machine block last, generated leaf manifest | Complete |
+| 10 | 010-prose-clarity-pass/ | Prose clarity over every skill doc and the command and agent docs that teach routing, and in sk-create-skill so new skills start clear | In Progress |
 | 11 | 011-regeneration-and-verification/ | Regenerate every mirror and generated file; rerun the phase 002 baseline and report the delta | Planned |
 
 ### Phase Transition Rules

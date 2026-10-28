@@ -15,7 +15,8 @@
       "skill routing phase 9",
       "standalone skills plan",
       "standalone skills tasks",
-      "standalone skills acceptance criteria"
+      "standalone skills acceptance criteria",
+      "standalone skills implementation summary"
     ],
     "key_topics": [
       "standalone",
@@ -27,17 +28,29 @@
       "tasks",
       "acceptance",
       "criteria",
-      "seven",
-      "keep",
-      "whole"
+      "implementation",
+      "summary",
+      "seven"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scratch/before.md",
+      "scratch/after.md",
+      ".skilled/skills/cli-orca/SKILL.md",
+      ".skilled/skills/mcp-code-mode/SKILL.md",
+      ".skilled/skills/sk-git/SKILL.md",
+      ".skilled/skills/sk-prompt/SKILL.md",
+      ".skilled/skills/system-skill-advisor/SKILL.md",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      "feature-catalog/feature-catalog.md",
+      "scratch/gates.sh",
+      "references/cli/shared-smart-router.md",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs"
     ],
     "entities": [
@@ -63,6 +76,48 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "before.md",
+        "kind": "doc",
+        "path": "scratch/before.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.md",
+        "kind": "doc",
+        "path": "scratch/after.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-orca/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "gates.sh",
+        "kind": "script",
+        "path": "scratch/gates.sh",
+        "source": "derived"
+      },
+      {
+        "name": "shared-smart-router.md",
+        "kind": "doc",
+        "path": "references/cli/shared-smart-router.md",
         "source": "derived"
       },
       {
@@ -142,67 +197,27 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The seven standalone skills keep their whole router inline, and routing fills up to 60 percent of system-spec-kit and system-skill-advisor",
     "created_at": "2026-10-28T06:38:50Z",
-    "last_save_at": "2026-10-28T07:43:23.130Z",
+    "last_save_at": "2026-10-28T15:05:01.310Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bbf7b0122ee392da1129b0799f4b51ea8f7ff8299ceda2f16c9eddb1e5b17121",
+    "source_fingerprint": "sha256:132e8dc7ec5101b54fabf3aa5fbbab664216a7cf4d48a660edd896e149d5929b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f953871fa111743d3b11bd50ca38c45aa92c2b3adc05f247c19958263761a86e",
+      "spec.md": "d07f481f11ea0074647d53830fed5852262bf22c3ffcbf086c27d33a69b4e26a",
       "plan.md": "081ffa30c7c219bd79e7a8c72939cc4efe8c14eafecd7f2f0ad4833a1cf8182b",
-      "tasks.md": "846248eba578c25d5c81797a61fd2cb80fb1c8f63cfcbd35c277f3c66e9fa671"
+      "tasks.md": "006a2a4aada0f66d30fe017ae1724387e318c65f525ea52dd3fe7a6dce752235",
+      "implementation-summary.md": "ddce11fcfb59597a67ab9c4835f99c7a210b433f3fdf481c9bf23731d24613fe"
     },
     "last_active_at": null
   }

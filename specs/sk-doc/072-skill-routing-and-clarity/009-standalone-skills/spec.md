@@ -6,6 +6,27 @@ trigger_phrases:
   - "skill routing phase 9"
 importance_tier: "normal"
 contextType: "planning"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/072-skill-routing-and-clarity/009-standalone-skills"
+    last_updated_at: "2026-10-28T15:45:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Phase 009 closed: six standalone skills at the canon shape"
+    next_safe_action: "Conductor landing"
+    blockers: []
+    key_files:
+      - "scratch/before.md"
+      - "scratch/after.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "skill-routing-and-clarity-phase-009"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Did the phase need code, or could an edit to a JSON file keep hooks/ to Markdown? Code. The standalone path in generate-leaf-manifest.cjs never read leaf-scopes.json, so the generator gained the hub's scope reader plus a containment check."
+      - "Did sk-git keep its router body and still fit the 5,000-word cap? Yes. The review found the body had been replaced by a pointer, it was restored, and three prose subsections now point at their references so the file lands at 4,896 words."
+      - "Was sk-vision restructured with the other six? No. Another session is deprecating it, so its ledger entry and its manifest are unchanged."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
 # Feature Specification: Phase 9: Standalone skills
@@ -20,7 +41,7 @@ contextType: "planning"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-28 |
 | **Branch** | `worktrees/254-skill-routing-and-clarity` |
 | **Parent Spec** | ../spec.md |
@@ -61,8 +82,19 @@ Give each standalone skill a short inline router, with the machine block last an
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
 ```text
-N/A: this phase is Planned. Its first task records the measured behavior before any edit.
+$ git -c core.fsmonitor=false show HEAD:.skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json \
+    | python3 -c "import json,sys;d=json.load(sys.stdin);ks=[k for k in d['debt'] if k in ('cli-orca','mcp-code-mode','sk-git','sk-prompt','system-skill-advisor','system-spec-kit')];print(len(ks),'entries');[print(k, json.dumps(d['debt'][k])) for k in ks]"
+6 entries
+cli-orca {"lines": 103, "words": 714, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+mcp-code-mode {"lines": 129, "words": 773, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-git {"lines": 135, "words": 639, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-prompt {"lines": 174, "words": 1019, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+system-skill-advisor {"lines": 226, "words": 1987, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+system-spec-kit {"lines": 312, "words": 1712, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
 ```
+The ledger's six entries are the debt this phase closes: one per standalone skill, each routing section between 103 and 312 lines and between 639 and 1,987 words against a canon that allows 12 lines and 180 words. `sk-vision` carries a seventh entry and stays on the ledger, because another session is deprecating that skill, so this phase leaves it alone.
+
+One requirement could not be met by editing JSON. The standalone path in `generate-leaf-manifest.cjs` walked every configured leaf root and never read `leaf-scopes.json`, so `system-skill-advisor`'s `hooks/` root handed the router nine `.ts`, `.py` and `.json` files. The generator now reads the same scopes file the hub path reads, and a scope outside a declared leaf root fails closed. `scratch/before.md` holds the full gate set at the baseline: 39 of 39 exit 0, accuracy 155/195, 49/66 and 19/24, and both facts above measured on the files.
 <!-- /ANCHOR:measured-behavior -->
 
 ---
