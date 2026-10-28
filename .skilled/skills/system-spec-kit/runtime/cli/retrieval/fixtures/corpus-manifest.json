@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4014f687b5b2943674b04a96a9dd308533a69cf79122f7e67efa8b922549b071",
+  "corpusHash": "626241a581e9575963a10dbbe3fcc018219ae3ed395e92923198c81c6a6fa7e1",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26828,
+  "includedPathCount": 26836,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -163,6 +163,7 @@
     ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.4.0.md",
     ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.5.0.md",
     ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.6.0.md",
+    ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.7.0.md",
     ".skilled/skills/cli-classifier/cli-jev/feature-catalog/dispatch-guards/dispatch-guards.md",
     ".skilled/skills/cli-classifier/cli-jev/feature-catalog/feature-catalog.md",
     ".skilled/skills/cli-classifier/cli-jev/feature-catalog/judgment-primitives/judgment-primitives.md",
@@ -250,6 +251,7 @@
     ".skilled/skills/cli-external-orchestration/changelog/v1.7.4.0.md",
     ".skilled/skills/cli-external-orchestration/changelog/v1.7.5.0.md",
     ".skilled/skills/cli-external-orchestration/changelog/v1.7.6.0.md",
+    ".skilled/skills/cli-external-orchestration/changelog/v1.7.7.0.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/README.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-quality-card.md",
@@ -1962,6 +1964,7 @@
     ".skilled/skills/mcp-tooling/changelog/v1.8.5.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.8.6.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.8.7.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.8.8.0.md",
     ".skilled/skills/mcp-tooling/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/mcp-tooling/feature-catalog/feature-catalog.md",
     ".skilled/skills/mcp-tooling/feature-catalog/workflow-vs-transport-routing/workflow-vs-transport-routing.md",
@@ -2773,6 +2776,7 @@
     ".skilled/skills/sk-code/changelog/v3.9.14.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.15.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.16.0.md",
+    ".skilled/skills/sk-code/changelog/v3.9.17.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.2.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.3.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.4.0.md",
@@ -6582,6 +6586,7 @@
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.10.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.11.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.12.0.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.13.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.2.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.3.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.4.0.md",
@@ -7713,6 +7718,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.17.18.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.19.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.2.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.17.20.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.4.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.5.0.md",
@@ -8160,6 +8166,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.15.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.16.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.17.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.18.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
@@ -13780,6 +13787,7 @@
     "specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/tasks.md",
     "specs/sk-doc/072-skill-routing-and-clarity/002-baseline-and-routing-correctness/acceptance-criteria.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/002-baseline-and-routing-correctness/implementation-summary.md",
     "specs/sk-doc/072-skill-routing-and-clarity/002-baseline-and-routing-correctness/plan.md",
     "specs/sk-doc/072-skill-routing-and-clarity/002-baseline-and-routing-correctness/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/002-baseline-and-routing-correctness/tasks.md",
@@ -26859,7 +26867,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e877dfb6d6a2b5c41035f057ff688e127a3ff58f8447aa3385622b4a0e734a87",
+  "manifestHash": "b00af3bd9834a5308b0d968d41aadb54ffc72db2ada0474467512533b6cfd147",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

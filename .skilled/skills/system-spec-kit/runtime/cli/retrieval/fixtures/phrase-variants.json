@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e877dfb6d6a2b5c41035f057ff688e127a3ff58f8447aa3385622b4a0e734a87",
+  "manifestHash": "b00af3bd9834a5308b0d968d41aadb54ffc72db2ada0474467512533b6cfd147",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13230,6 +13230,9 @@
     "baseline and routing correctness acceptance criteria": [
       "baseline and routing correctness acceptance criteria"
     ],
+    "baseline and routing correctness implementation summary": [
+      "baseline and routing correctness implementation summary"
+    ],
     "baseline and routing correctness plan": [
       "baseline and routing correctness plan"
     ],
@@ -13283,6 +13286,9 @@
     ],
     "baseline reconciliation": [
       "baseline reconciliation"
+    ],
+    "baseline references load per route": [
+      "baseline references load per route"
     ],
     "baseline restore decision": [
       "baseline restore decision"
@@ -20538,6 +20544,9 @@
     "cli external orchestration 1 7 6 0": [
       "cli-external-orchestration 1.7.6.0"
     ],
+    "cli external orchestration 1 7 7 0": [
+      "cli-external-orchestration 1.7.7.0"
+    ],
     "cli external orchestration benchmark": [
       "cli-external-orchestration benchmark"
     ],
@@ -20633,6 +20642,9 @@
     ],
     "cli external orchestration v1 7 6 0": [
       "cli-external-orchestration v1.7.6.0"
+    ],
+    "cli external orchestration v1 7 7 0": [
+      "cli-external-orchestration v1.7.7.0"
     ],
     "cli fallback envelope normalization": [
       "cli fallback envelope normalization"
@@ -20766,6 +20778,9 @@
     "cli hermes dispatch rules": [
       "cli hermes dispatch rules"
     ],
+    "cli hermes executor": [
+      "cli-hermes executor"
+    ],
     "cli hermes executor kind": [
       "cli-hermes executor kind"
     ],
@@ -20897,6 +20912,9 @@
     ],
     "cli jev 0 1 6 0": [
       "cli-jev 0.1.6.0"
+    ],
+    "cli jev 0 1 7 0": [
+      "cli-jev 0.1.7.0"
     ],
     "cli jev 0 2 0 0": [
       "cli-jev 0.2.0.0"
@@ -21086,6 +21104,9 @@
     ],
     "cli jev v0 1 6 0": [
       "cli-jev v0.1.6.0"
+    ],
+    "cli jev v0 1 7 0": [
+      "cli-jev v0.1.7.0"
     ],
     "cli jev v0 2 0 0": [
       "cli-jev v0.2.0.0"
@@ -37022,6 +37043,9 @@
     ],
     "deterministic research state fold": [
       "deterministic research state fold"
+    ],
+    "deterministic router replay": [
+      "deterministic router replay"
     ],
     "deterministic scenario": [
       "deterministic scenario"
@@ -53640,6 +53664,9 @@
     "hook paths from repository root": [
       "hook paths from repository root"
     ],
+    "hook references as routed leaves": [
+      "hook references as routed leaves"
+    ],
     "hook registration drift": [
       "hook registration drift"
     ],
@@ -53762,6 +53789,9 @@
     ],
     "hooks hub full index": [
       "hooks hub full index"
+    ],
+    "hooks leaf root": [
+      "hooks leaf root"
     ],
     "hooks lib": [
       "hooks lib"
@@ -54020,6 +54050,9 @@
     ],
     "hub gate transient failure": [
       "hub gate transient failure"
+    ],
+    "hub intent vocabulary": [
+      "hub intent vocabulary"
     ],
     "hub lists changelogs as global only": [
       "hub lists changelogs as global only"
@@ -55767,6 +55800,9 @@
     "intent signals resource map": [
       "intent signals resource map"
     ],
+    "intent table matches routing": [
+      "intent table matches routing"
+    ],
     "intentional trigger exception": [
       "intentional trigger exception"
     ],
@@ -57443,6 +57479,9 @@
     ],
     "language agnostic naming": [
       "language agnostic naming"
+    ],
+    "language keywords": [
+      "language keywords"
     ],
     "language slice capability table": [
       "language slice capability table"
@@ -62575,6 +62614,9 @@
     "mcp tooling 1 8 7 0": [
       "mcp-tooling 1.8.7.0"
     ],
+    "mcp tooling 1 8 8 0": [
+      "mcp-tooling 1.8.8.0"
+    ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
     ],
@@ -62691,6 +62733,9 @@
     ],
     "mcp tooling v1 8 7 0": [
       "mcp-tooling v1.8.7.0"
+    ],
+    "mcp tooling v1 8 8 0": [
+      "mcp-tooling v1.8.8.0"
     ],
     "mcp tools": [
       "mcp tools"
@@ -68080,6 +68125,9 @@
     "no match diagnostic tasks": [
       "no match diagnostic tasks"
     ],
+    "no match loads nothing": [
+      "no-match loads nothing"
+    ],
     "no memory surface left": [
       "no memory surface left"
     ],
@@ -69060,6 +69108,9 @@
     ],
     "obsidian get note": [
       "obsidian_get_note"
+    ],
+    "obsidian health routing": [
+      "obsidian health routing"
     ],
     "obsidian import": [
       "obsidian import"
@@ -86677,6 +86728,9 @@
     "resource choice is deliberate": [
       "resource choice is deliberate"
     ],
+    "resource discovery roots": [
+      "resource discovery roots"
+    ],
     "resource exhaustion symlink attack": [
       "resource exhaustion symlink attack"
     ],
@@ -94598,6 +94652,9 @@
     "shared smart router helpers": [
       "shared smart router helpers"
     ],
+    "shared smart router reference": [
+      "shared smart-router reference"
+    ],
     "shared spec folder identity resolver": [
       "shared spec folder identity resolver"
     ],
@@ -95503,6 +95560,9 @@
     ],
     "sk code 3 9 16 0": [
       "sk-code 3.9.16.0"
+    ],
+    "sk code 3 9 17 0": [
+      "sk-code 3.9.17.0"
     ],
     "sk code 3 9 2 0": [
       "sk-code 3.9.2.0"
@@ -97196,6 +97256,9 @@
     "sk code v3 9 16 0": [
       "sk-code v3.9.16.0"
     ],
+    "sk code v3 9 17 0": [
+      "sk-code v3.9.17.0"
+    ],
     "sk code v3 9 2 0": [
       "sk-code v3.9.2.0"
     ],
@@ -98009,6 +98072,9 @@
     "sk create skill 1 5 12 0": [
       "sk-create-skill 1.5.12.0"
     ],
+    "sk create skill 1 5 13 0": [
+      "sk-create-skill 1.5.13.0"
+    ],
     "sk create skill 1 5 2 0": [
       "sk-create-skill 1.5.2.0"
     ],
@@ -98068,6 +98134,9 @@
     ],
     "sk create skill v1 5 12 0": [
       "sk-create-skill v1.5.12.0"
+    ],
+    "sk create skill v1 5 13 0": [
+      "sk-create-skill v1.5.13.0"
     ],
     "sk create skill v1 5 2 0": [
       "sk-create-skill v1.5.2.0"
@@ -108704,6 +108773,9 @@
     "system skill advisor 0 17 2 0": [
       "system-skill-advisor 0.17.2.0"
     ],
+    "system skill advisor 0 17 20 0": [
+      "system-skill-advisor 0.17.20.0"
+    ],
     "system skill advisor 0 17 3 0": [
       "system-skill-advisor 0.17.3.0"
     ],
@@ -108940,6 +109012,9 @@
     ],
     "system skill advisor v0 17 2 0": [
       "system-skill-advisor v0.17.2.0"
+    ],
+    "system skill advisor v0 17 20 0": [
+      "system-skill-advisor v0.17.20.0"
     ],
     "system skill advisor v0 17 3 0": [
       "system-skill-advisor v0.17.3.0"
@@ -109246,6 +109321,9 @@
     ],
     "system spec kit 2 12 17 0": [
       "system-spec-kit 2.12.17.0"
+    ],
+    "system spec kit 2 12 18 0": [
+      "system-spec-kit 2.12.18.0"
     ],
     "system spec kit 2 12 2 0": [
       "system-spec-kit 2.12.2.0"
@@ -109738,6 +109816,9 @@
     ],
     "system spec kit v2 12 17 0": [
       "system-spec-kit v2.12.17.0"
+    ],
+    "system spec kit v2 12 18 0": [
+      "system-spec-kit v2.12.18.0"
     ],
     "system spec kit v2 12 2 0": [
       "system-spec-kit v2.12.2.0"
