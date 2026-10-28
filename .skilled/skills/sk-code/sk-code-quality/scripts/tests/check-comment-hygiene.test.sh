@@ -340,8 +340,9 @@ fi
 
 # A missing rule-override contract under --disable-rule is a usage error (exit 3),
 # never an uncaught exception, so a caller can tell a bad setup from a violation.
+# -B keeps this direct import from leaving a cache folder beside the package.
 set +e
-contract_output="$(python3 - "$(dirname "$CHECKER")/lib" "$TMP_DIR/multi_good.js" 2>&1 <<'PY'
+contract_output="$(python3 -B - "$(dirname "$CHECKER")/lib" "$TMP_DIR/multi_good.js" 2>&1 <<'PY'
 import sys
 sys.path.insert(0, sys.argv[1])
 import comment_hygiene.cli as cli
