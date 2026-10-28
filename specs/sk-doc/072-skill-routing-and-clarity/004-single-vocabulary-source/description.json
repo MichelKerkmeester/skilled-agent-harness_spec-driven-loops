@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/072-skill-routing-and-clarity/004-single-vocabulary-source",
+  "description": "Phase 4: single-vocabulary-source",
+  "keywords": [
+    "phase",
+    "single-vocabulary-source"
+  ],
+  "lastUpdated": "2026-10-28T06:38:45.867Z",
+  "specId": "004",
+  "folderSlug": "single-vocabulary-source",
+  "parentChain": [
+    "sk-doc",
+    "072-skill-routing-and-clarity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

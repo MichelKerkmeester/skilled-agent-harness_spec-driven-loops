@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/072-skill-routing-and-clarity",
+  "description": "Skill routing and clarity: consolidate routing restatements and rewrite skill docs for clarity across every skill and hub",
+  "keywords": [
+    "skill",
+    "routing",
+    "clarity",
+    "consolidate",
+    "restatements",
+    "rewrite",
+    "docs",
+    "across",
+    "every",
+    "hub"
+  ],
+  "lastUpdated": "2026-10-28T06:21:53.879Z",
+  "specId": "072",
+  "folderSlug": "skill-routing-and-clarity",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

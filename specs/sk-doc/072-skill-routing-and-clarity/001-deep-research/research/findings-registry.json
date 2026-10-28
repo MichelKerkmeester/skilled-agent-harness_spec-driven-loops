@@ -1,0 +1,1302 @@
+{
+  "mergedFrom": [
+    "devin",
+    "pi"
+  ],
+  "lineageExecutors": {
+    "devin": {
+      "kind": "cli-devin",
+      "model": "deepseek-v4-1-flash-max",
+      "reasoningEffort": null
+    },
+    "pi": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash-1017",
+      "reasoningEffort": "max"
+    }
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-per-skill-which-routing-mechanisms-exist-where-is-one-routing-decision-restated-",
+      "inboxId": null,
+      "text": "Per skill, which routing mechanisms exist, where is one routing decision restated, and where have the copies drifted?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "question-1-which-mechanisms-make-each-of-the-five-routing-decisions-in-sk-code-sk-doc-sk-de",
+      "inboxId": null,
+      "text": "Which mechanisms make each of the five routing decisions in sk-code, sk-doc, sk-design and system-deep-loop, and where is each decision restated?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "question-2-where-have-restated-copies-of-the-same-routing-decision-drifted-and-which-copy-i",
+      "inboxId": null,
+      "text": "Where have restated copies of the same routing decision drifted, and which copy is authoritative?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "question-2-which-checks-parsers-templates-generators-benchmarks-and-runtime-mirrors-enforce",
+      "inboxId": null,
+      "text": "Which checks, parsers, templates, generators, benchmarks and runtime mirrors enforce the current routing shape, and what would each proposed change break?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "question-3-should-hubs-mode-packets-and-standalone-skills-each-use-a-per-mode-router-md-one",
+      "inboxId": null,
+      "text": "Should hubs, mode packets and standalone skills each use a per-mode ROUTER.md, one hub ROUTER.md, the advisor hybrid, or JSON-only?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "question-3-which-checks-parsers-templates-generators-benchmarks-and-runtime-mirrors-enforce",
+      "inboxId": null,
+      "text": "Which checks, parsers, templates, generators, benchmarks and runtime mirrors enforce the current shape, and what would each proposed change break?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "question-4-which-readability-problems-does-each-skill-show-and-which-quoted-passages-demons",
+      "inboxId": null,
+      "text": "Which readability problems does each skill show, and which quoted passages demonstrate them?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "question-4-which-routing-shape-wins-for-hubs-for-mode-packets-and-for-standalone-skills-per",
+      "inboxId": null,
+      "text": "Which routing shape wins for hubs, for mode packets and for standalone skills: per-mode ROUTER.md, one hub ROUTER.md, the advisor hybrid, or JSON-only?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "question-5-what-phased-implementation-plan-with-order-risk-and-rollback-follows-from-the-ev",
+      "inboxId": null,
+      "text": "What phased implementation plan, with order, risk and rollback, follows from the evidence?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "question-5-what-readability-defects-exist-per-skill-with-quoted-passages",
+      "inboxId": null,
+      "text": "What readability defects exist per skill, with quoted passages?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "question-6-what-phased-implementation-plan-order-risk-rollback-delivers-the-winning-shape",
+      "inboxId": null,
+      "text": "What phased implementation plan (order, risk, rollback) delivers the winning shape?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "_lineages": [
+        "pi"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-cli-external-orchestration-restates-executor-vocabulary-in-four-separate-machine",
+      "text": "`cli-external-orchestration` restates executor vocabulary in four separate machine-readable places: `mode-registry.json` aliases (12/5/6/5/6/9/8 phrases per mode at lines 37, 74, 104, 135, 165, 196, 230), `hub-router.json` `vocabularyClasses` (13/7/7/5/9/10/9 alias keywords plus a dispatch class, from line 104), `ROUTER.md` `INTENT_SIGNALS` (10/11/11/10/11/9/10 keywords, line 93), and each packet's `<!-- Keywords: -->` comment (for example `cli-devin/SKILL.md:8`). A read-only set comparison found 6 registry aliases missing from `ROUTER.md` for `cli-opencode` (for example \"parallel opencode session\", \"in-opencode parallel session\") and 8 `ROUTER.md` keywords missing from the registry for `cli-devin` (for example \"swe-2 dispatch\", \"devin cloud session\"). [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:104] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:37] [SOURCE: .skilled/skills/cli-external-orchestration/ROUTER.md:93]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/cli-external-orchestration/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `description.json`, `leaf-manifest.json`, `benchmark/README.md`",
+        "`.skilled/skills/cli-external-orchestration/cli-{opencode,claude-code,codex,cursor,devin,pi,hermes}/SKILL.md`",
+        "`.skilled/skills/cli-classifier/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `description.json`",
+        "`.skilled/skills/cli-classifier/cli-jev/SKILL.md`",
+        "`.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-1-1-sk-code-restates-stage-one-mode-selection-in-four-live-places-plus-one-generated",
+      "text": "**sk-code restates stage-one mode selection in four live places plus one generated artifact.** The registry is named the source of truth at `SKILL.md:54`; the same selection is re-expressed as Python `route()` at `SKILL.md:76-134`; as weighted classes in `hub-router.json:24-39`; as a 40-line prompt-keyword row in `ROUTER.md:252` (CI_WORKFLOW); and as the compiled projection `.skilled/bin/compiled-route.cjs` invoked at `SKILL.md:56-60`. `mode-registry.json` itself carries only 4 modes, with 83 aliases across them (13 quality, 10 review, 5 skilled, 55 ci). [SOURCE: .skilled/skills/sk-code/SKILL.md:54] [SOURCE: .skilled/skills/sk-code/hub-router.json:21]",
+      "addedAtIteration": 1,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-1-2-router-md-2-and-9-have-drifted-in-both-directions-not-one-the-report-s-claim-tha",
+      "text": "**ROUTER.md §2 and §9 have drifted in both directions, not one.** The report's claim that §2 lists TESTING (`ROUTER.md:57`) and LANGUAGE_STANDARDS (`ROUTER.md:60`) with \"no §9 key\" is confirmed: §9 `INTENT_SIGNALS` runs `IMPLEMENTATION, CODE_QUALITY, DEBUGGING, VERIFICATION, HOOKS, CONFIG, JAVASCRIPT, TYPESCRIPT, PYTHON, SHELL, RUST, CI_WORKFLOW` (`ROUTER.md:241-252`). The report missed the converse: five §9 intents — JAVASCRIPT, TYPESCRIPT, PYTHON, SHELL, RUST — have no §2 prose row at all, so the \"byte-for-byte source\" claim at `ROUTER.md:223` holds for neither direction. [SOURCE: .skilled/skills/sk-code/ROUTER.md:241]",
+      "addedAtIteration": 1,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-1-2-stage-two-leaf-routing-has-three-disagreeing-definitions-per-mode-router-md-says",
+      "text": "Stage-two leaf routing has three disagreeing definitions per mode. `ROUTER.md` says every mode's first slice is `references/cli-reference.md` plus `references/integration-patterns.md` (lines 103-132). `cli-devin/SKILL.md` says the ALWAYS slice is `references/cli-reference.md` plus `assets/prompt-quality-card.md` (line 86) while its `RESOURCE_MAP` sends GENERATION to `references/cli-reference.md` plus `assets/prompt-templates.md` (line 112). `cli-hermes/SKILL.md` repeats the same split (ALWAYS at line 93, `RESOURCE_MAP` at line 117). Three documents, three answers to \"what loads first\". [SOURCE: .skilled/skills/cli-external-orchestration/ROUTER.md:103] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:86] [SOURCE: .skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md:93]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/cli-external-orchestration/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `description.json`, `leaf-manifest.json`, `benchmark/README.md`",
+        "`.skilled/skills/cli-external-orchestration/cli-{opencode,claude-code,codex,cursor,devin,pi,hermes}/SKILL.md`",
+        "`.skilled/skills/cli-classifier/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `description.json`",
+        "`.skilled/skills/cli-classifier/cli-jev/SKILL.md`",
+        "`.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-1-3-all-seven-mode-packets-carry-a-complete-python-router-intent-signals-resource-ma",
+      "text": "All seven mode packets carry a complete Python router (`INTENT_SIGNALS`, `RESOURCE_MAP`, `LOADING_LEVELS`, `UNKNOWN_FALLBACK_CHECKLIST`) and restate the same six-step call sequence; only the helper bodies are shared. `cli-devin/SKILL.md:92-148` is representative: the dictionaries are inline and the call sequence is six numbered steps. The shared reference those packets point at still describes \"the six cli-* sibling skills\" and lists six providers, omitting `cli-hermes`, which defers to it at `cli-hermes/SKILL.md:101`. [SOURCE: .skilled/skills/system-spec-kit/references/cli/shared-smart-router.md:17] [SOURCE: .skilled/skills/system-spec-kit/references/cli/shared-smart-router.md:139] [SOURCE: .skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md:101]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/cli-external-orchestration/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `description.json`, `leaf-manifest.json`, `benchmark/README.md`",
+        "`.skilled/skills/cli-external-orchestration/cli-{opencode,claude-code,codex,cursor,devin,pi,hermes}/SKILL.md`",
+        "`.skilled/skills/cli-classifier/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `description.json`",
+        "`.skilled/skills/cli-classifier/cli-jev/SKILL.md`",
+        "`.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-1-3-three-docs-each-claim-a-different-routing-authority-skill-md-54-says-mode-regist",
+      "text": "**Three docs each claim a different routing authority.** `SKILL.md:54` says \"`mode-registry.json` is the single source of truth\"; `sk-code-review/SKILL.md:612` says \"Keep Section 2 (`SMART ROUTING`) as the authoritative routing source\"; `ROUTER.md:223` calls its §9 block \"the byte-for-byte source a deterministic router parses\". Only the third is measurably true — `parseRouter` reads the §9 block — so the other two are restatements that contradict the parser. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:612] [SOURCE: .skilled/skills/sk-code/ROUTER.md:223]",
+      "addedAtIteration": 1,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-1-4-cli-classifier-restates-the-jev-vocabulary-four-times-and-its-hub-router-contrad",
+      "text": "`cli-classifier` restates the Jev vocabulary four times and its hub router contradicts the packet's own baseline. `mode-registry.json` has 9 aliases (line 36); `hub-router.json` has a 9-keyword `cli-jev-aliases` class and a 17-keyword `jev-dispatch` class (lines 24, 37); `ROUTER.md` has four intent lists of 10/8/7/4 keywords (line 58); `cli-jev/SKILL.md` repeats them again in `INTENT_MODEL` (line 117). The hub router declares `DEFAULT_RESOURCE = []` and \"no hub-wide preamble\" (`ROUTER.md:51-54`), while the packet declares `DEFAULT_RESOURCES` with two always-loaded files (`cli-jev/SKILL.md:115`) — the same routing decision, two incompatible statements. [SOURCE: .skilled/skills/cli-classifier/hub-router.json:24] [SOURCE: .skilled/skills/cli-classifier/ROUTER.md:54] [SOURCE: .skilled/skills/cli-classifier/cli-jev/SKILL.md:115]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/cli-external-orchestration/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `description.json`, `leaf-manifest.json`, `benchmark/README.md`",
+        "`.skilled/skills/cli-external-orchestration/cli-{opencode,claude-code,codex,cursor,devin,pi,hermes}/SKILL.md`",
+        "`.skilled/skills/cli-classifier/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `description.json`",
+        "`.skilled/skills/cli-classifier/cli-jev/SKILL.md`",
+        "`.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-ci-vocabulary-is-copied-five-times-with-three-different-sizes-hub-router-jso",
+      "text": "**The CI vocabulary is copied five times with three different sizes.** `hub-router.json:76-78` `code-ci-aliases` (55 keywords), `ROUTER.md:252` CI_WORKFLOW (61 keywords), `sk-code-ci/SKILL.md:62` (12 keywords), `mode-registry.json` `sk-code-ci.aliases` (55), plus the packet's `RESOURCE_MAP` at `sk-code-ci/SKILL.md:65`. The hub-router class and the registry alias list happen to agree today; the ROUTER.md row and the packet row do not, and the packet's own header admits the divergence is deliberate (\"Every keyword is multi-word, so a bare 'workflow' never scores this surface\", `sk-code-ci/SKILL.md:56`). [SOURCE: .skilled/skills/sk-code/hub-router.json:76] [SOURCE: .skilled/skills/sk-code/sk-code-ci/SKILL.md:62]",
+      "addedAtIteration": 1,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-advisor-s-stage-one-input-duplicates-the-same-phrases-a-fifth-time-cli-exter",
+      "text": "The advisor's stage-one input duplicates the same phrases a fifth time. `cli-external-orchestration/graph-metadata.json` holds 73 `intent_signals` (line 63) and 87 `derived.trigger_phrases` (line 139); `description.json` adds its own keyword list (line 6); `cli-classifier/graph-metadata.json` holds 33 `intent_signals` (line 32) drawn from the same Jev phrases as the router. A phrase added to one list does not propagate to the others, and the comparison in finding 1 shows the drift already exists. [SOURCE: .skilled/skills/cli-external-orchestration/graph-metadata.json:63] [SOURCE: .skilled/skills/cli-external-orchestration/graph-metadata.json:139] [SOURCE: .skilled/skills/cli-classifier/graph-metadata.json:32]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/cli-external-orchestration/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `description.json`, `leaf-manifest.json`, `benchmark/README.md`",
+        "`.skilled/skills/cli-external-orchestration/cli-{opencode,claude-code,codex,cursor,devin,pi,hermes}/SKILL.md`",
+        "`.skilled/skills/cli-classifier/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `description.json`",
+        "`.skilled/skills/cli-classifier/cli-jev/SKILL.md`",
+        "`.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-report-s-own-inventory-numbers-are-off-and-must-be-corrected-before-a-plan-q",
+      "text": "**The report's own inventory numbers are off and must be corrected before a plan quotes them.** It says `mode-registry.json`, \"about 59 aliases\"; the actual count is 83. It cites `hub-router.json:77` as a CI-vocabulary copy — line 77 is the `code-ci-aliases` keyword array, so the anchor is right but it is one class, not the class list. The direction of its conclusion survives; its quantities do not. [SOURCE: .skilled/skills/sk-code/mode-registry.json:1] [SOURCE: .skilled/skills/sk-code/hub-router.json:77]",
+      "addedAtIteration": 1,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-1-6-the-enforcement-surface-that-reads-router-md-is-the-leaf-manifest-not-the-benchm",
+      "text": "The enforcement surface that reads `ROUTER.md` is the leaf manifest, not the benchmark. `leaf-manifest.json` enumerates `modes[].leaves` from the packets, so a `RESOURCE_MAP` path must resolve and be registered; `ROUTER.md` itself says the block is what \"the deterministic router-replay parses\" (line 48). The benchmark claim in `SKILL.md:76` (\"the deterministic router-replay and benchmarks parse\") is stale: `benchmark/README.md` states the Lane C harness, runner and scoring contract were removed and no new run can start. The prose advertises an enforcement that no longer runs. [SOURCE: .skilled/skills/cli-external-orchestration/leaf-manifest.json:1] [SOURCE: .skilled/skills/cli-external-orchestration/ROUTER.md:48] [SOURCE: .skilled/skills/cli-external-orchestration/benchmark/README.md:20]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/cli-external-orchestration/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `description.json`, `leaf-manifest.json`, `benchmark/README.md`",
+        "`.skilled/skills/cli-external-orchestration/cli-{opencode,claude-code,codex,cursor,devin,pi,hermes}/SKILL.md`",
+        "`.skilled/skills/cli-classifier/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `description.json`",
+        "`.skilled/skills/cli-classifier/cli-jev/SKILL.md`",
+        "`.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-1-6-two-packets-advertise-routing-the-tooling-does-not-read-sk-code-quality-skill-md",
+      "text": "**Two packets advertise routing the tooling does not read.** `sk-code-quality/SKILL.md:30` carries a 15-term \"Keyword triggers:\" line and `sk-code-quality/SKILL.md:154-156` calls the deterministic router-replay \"retired\", while `sk-code-skilled/SKILL.md:178` documents that same replay as the live leg-1..4 guard. One of the two statements is stale; the guard is the one that runs. [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:154] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:178]",
+      "addedAtIteration": 1,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-1-7-readability-routing-prose-comes-before-the-instructions-in-both-hubs-and-is-writ",
+      "text": "Readability: routing prose comes before the instructions in both hubs and is written in long compound sentences. `cli-external-orchestration/SKILL.md` has 27 lines over 200 characters, the longest 779 characters at line 76: \"Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-mode leaf-intent model (every mode in `mode-registry.json`, plus the deliberate absence: a bare CLI-dispatch phrase that names no executor fires no intent and defers at the hub), the machine-readable `DEFAULT_RESOURCE` / `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union, the `orderedBundle` outcome; no keyword match → hub `defer`, never a silent default to `cli-opencode`).\" `cli-devin/SKILL.md` has 47 lines over 200 characters, the longest 1,397 at line 333, a single numbered rule carrying a persona-injection contract, a roster path, a fallback mechanism and an exceptions clause. [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:76] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:333]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/cli-external-orchestration/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `description.json`, `leaf-manifest.json`, `benchmark/README.md`",
+        "`.skilled/skills/cli-external-orchestration/cli-{opencode,claude-code,codex,cursor,devin,pi,hermes}/SKILL.md`",
+        "`.skilled/skills/cli-classifier/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `description.json`",
+        "`.skilled/skills/cli-classifier/cli-jev/SKILL.md`",
+        "`.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-1-7-stage-two-leaf-choice-has-no-runtime-script-so-the-leaf-map-is-model-only-compil",
+      "text": "**Stage-two leaf choice has no runtime script, so the leaf map is model-only.** `compiled-route.cjs` emits packets (`hub-router.json:24-39` `resources: [\"<packet>/SKILL.md\"]`), and `leaf-manifest.json` is a generated, checked artifact with no router consumer — its readers are tests and the compiler (`compiled-route-admission.cjs`, `parent-skill-check-leaf-manifest.test.cjs`). So D4 (which leaf files) is decided by prose and by each packet's own machine block, never by a resolver. [SOURCE: .skilled/skills/sk-code/hub-router.json:24] [SOURCE: .skilled/skills/sk-code/leaf-manifest.json:1]",
+      "addedAtIteration": 1,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-1-8-readability-routing-precedes-instructions-and-jargon-precedes-definition-in-sk-c",
+      "text": "**Readability: routing precedes instructions and jargon precedes definition.** In `sk-code-review/SKILL.md` the SMART ROUTING section opens at line 49 and the first executable step block opens at line 67; the report's 364-line/50% measurement is consistent with the section boundaries I read. The opening sentence of `sk-code-quality/SKILL.md:15` reads verbatim: \"`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the acting agent applying `workflow-implement.md` changes the code and before the surface's verification workflow or done-claim.\" The hub's own opening is a four-metaphor sentence: \"One skill, two axes, one shared surface-detection router, and one advisor identity.\" (`SKILL.md:15`). [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:15] [SOURCE: .skilled/skills/sk-code/SKILL.md:15]",
+      "addedAtIteration": 1,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-2-1-stage-one-can-route-to-mcp-obsidian-on-signals-stage-two-has-no-leaf-set-for-mod",
+      "text": "Stage one can route to `mcp-obsidian` on signals stage two has no leaf set for. `mode-registry.json` gives `mcp-obsidian` 26 aliases (line 265), including the health, Iconic rulebook, Excalidraw and Minimal-theme families; `hub-router.json` wires those families into the `mcp-obsidian` signal through four classes (line 56). `ROUTER.md`'s `OBSIDIAN` intent has 13 keywords (line 97), none of which is health, iconic, excalidraw or theme. A request that scores on those classes selects the mode, then matches no stage-two intent and defers. [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:265] [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:56] [SOURCE: .skilled/skills/mcp-tooling/ROUTER.md:97]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/mcp-tooling/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `leaf-manifest.json`",
+        "`.skilled/skills/mcp-tooling/mcp-{chrome-devtools,click-up,obsidian,aside-devtools,notion,figma,refero,mobbin,magicpath}/SKILL.md`",
+        "`.skilled/skills/mcp-code-mode/SKILL.md`, `leaf-manifest.config.json`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs` (path existence)"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-2-1-two-hubs-assign-opposite-authorities-to-the-same-stage-one-vocabulary-sk-doc-say",
+      "text": "**Two hubs assign opposite authorities to the same stage-one vocabulary.** sk-doc says \"each nested packet's single `Keyword triggers:` line is the source of truth for its routing vocabulary; `mode-registry.json` and `hub-router.json` are synchronized projections\" (`sk-doc/SKILL.md:53`); sk-code says \"`mode-registry.json` is the single source of truth\" (`sk-code/SKILL.md:54`). Whichever wins, one hub's model is wrong today. [SOURCE: .skilled/skills/sk-doc/SKILL.md:53] [SOURCE: .skilled/skills/sk-code/SKILL.md:54]",
+      "addedAtIteration": 2,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-2-2-nothing-parses-the-declared-source-of-truth-a-search-of-every-cjs-js-ts-py-mjs-u",
+      "text": "**Nothing parses the declared source of truth.** A search of every `.cjs/.js/.ts/.py/.mjs` under `.skilled` and `.pi` for `Keyword triggers` returns zero code hits. The machine reader, `router-replay-lib.cjs`, resolves a hub's modes from `hub-router.json` and its leaves from `ROUTER.md`; the `Keyword triggers:` line is prose only. So sk-doc's \"source of truth\" is a convention enforced by review, not by a check. [SOURCE: .skilled/skills/sk-doc/SKILL.md:53] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:1]",
+      "addedAtIteration": 2,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-mcp-hub-repeats-the-same-four-list-vocabulary-pattern-and-the-same-drift-mea",
+      "text": "The mcp hub repeats the same four-list vocabulary pattern and the same drift, measured the same way: registry aliases (6/6/26/7/14/7/6/6/6 at lines 52, 86, 120, 158, 195, 231, 265, 319, 363), `hub-router.json` vocabulary classes (23 classes from line 23), `ROUTER.md` `INTENT_SIGNALS` (11/11/13/11/14/11/8/9/6 keywords from line 94), and each packet's `<!-- Keywords: -->` comment. Comparing registry aliases with `ROUTER.md` found 6 `mcp-chrome-devtools` registry phrases absent from the router, 5 `mcp-click-up`, 6 `mcp-obsidian`, 4 `mcp-aside-devtools`, 1 `mcp-notion`, 4 `mcp-figma`, 2 `mcp-refero` and 4 `mcp-mobbin`; only `mcp-magicpath` matched exactly. [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:52] [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:23] [SOURCE: .skilled/skills/mcp-tooling/ROUTER.md:94]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/mcp-tooling/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `leaf-manifest.json`",
+        "`.skilled/skills/mcp-tooling/mcp-{chrome-devtools,click-up,obsidian,aside-devtools,notion,figma,refero,mobbin,magicpath}/SKILL.md`",
+        "`.skilled/skills/mcp-code-mode/SKILL.md`, `leaf-manifest.config.json`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs` (path existence)"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-2-3-the-synchronized-projection-claim-is-false-today-comparing-the-173-backticked-te",
+      "text": "**The \"synchronized projection\" claim is false today.** Comparing the 173 backticked terms across the 14 packets' `Keyword triggers:` lines with the union of `hub-router.json` vocabulary keywords finds 17 terms absent from the projection. `sk-create-diff` is the worst: 5 of its 7 triggers — `document before/after review`, `before/after document diff`, `review document edits`, `docx diff`, `pdf diff` — exist nowhere in `hub-router.json`. Every `/create:*` and `/doc:quality` slash form is also absent (for example `/create:readme`, `/create:skill-parent`). [SOURCE: .skilled/skills/sk-doc/sk-create-diff/SKILL.md:30] [SOURCE: .skilled/skills/sk-doc/hub-router.json:1]",
+      "addedAtIteration": 2,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-2-3-unlike-the-cli-hub-the-mcp-packets-state-the-same-fallback-contract-the-hub-rout",
+      "text": "Unlike the CLI hub, the mcp packets state the same fallback contract the hub router states. Every packet declares `DEFAULT_RESOURCE` plus `DEFAULT_RESOURCE_SEMANTICS = \"fallback-only\"` (for example `mcp-obsidian/SKILL.md:152-156`, `mcp-figma/SKILL.md:122-124`), and the hub router declares `DEFAULT_RESOURCE = []` with \"No always-loaded preamble\" (`ROUTER.md:90-92`). The wording is restated ten times, but the semantics agree: the default is a defer-time suggestion, never unioned into a scored route. [SOURCE: .skilled/skills/mcp-tooling/mcp-obsidian/SKILL.md:152] [SOURCE: .skilled/skills/mcp-tooling/mcp-figma/SKILL.md:122] [SOURCE: .skilled/skills/mcp-tooling/ROUTER.md:90]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/mcp-tooling/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `leaf-manifest.json`",
+        "`.skilled/skills/mcp-tooling/mcp-{chrome-devtools,click-up,obsidian,aside-devtools,notion,figma,refero,mobbin,magicpath}/SKILL.md`",
+        "`.skilled/skills/mcp-code-mode/SKILL.md`, `leaf-manifest.config.json`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs` (path existence)"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-2-4-mcp-code-mode-is-the-working-model-for-a-standalone-skill-no-mode-registry-json-",
+      "text": "`mcp-code-mode` is the working model for a standalone skill: no `mode-registry.json`, no hub router, and still a typed leaf projection. Its SKILL.md says so directly — \"mcp-code-mode is a normal, standalone single-mode skill whose sole workflow mode is `mcp-code-mode` (there is no `mode-registry.json`)\" — and it ships `leaf-manifest.json`, `leaf-manifest.config.json` and `leaf-aliases.json`, regenerated with `generate-leaf-manifest.cjs --write`. The generator lives at `.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs`. [SOURCE: .skilled/skills/mcp-code-mode/SKILL.md:62] [SOURCE: .skilled/skills/mcp-code-mode/leaf-manifest.config.json:7]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/mcp-tooling/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `leaf-manifest.json`",
+        "`.skilled/skills/mcp-tooling/mcp-{chrome-devtools,click-up,obsidian,aside-devtools,notion,figma,refero,mobbin,magicpath}/SKILL.md`",
+        "`.skilled/skills/mcp-code-mode/SKILL.md`, `leaf-manifest.config.json`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs` (path existence)"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-2-4-stage-two-is-hub-owned-in-sk-doc-and-packet-owned-in-sk-code-on-the-same-decisio",
+      "text": "**Stage two is hub-owned in sk-doc and packet-owned in sk-code, on the same decision.** Only 5 of 14 sk-doc packets carry a `RESOURCE_MAP` machine block (`sk-create-benchmark:115`, `sk-create-frontmatter:80`, `sk-create-repo-rule:89`, `sk-create-skill:106`, `sk-create-with-human-voice:89`); the other 9 have no router block and depend entirely on `ROUTER.md` §3, which names every packet's leaves packet-qualified. sk-code does the reverse: all four packets carry blocks and the hub block duplicates them. Both shapes pass the same checks today, which matters for the verdict — one hub already demonstrates that per-mode blocks are optional. [SOURCE: .skilled/skills/sk-doc/ROUTER.md:145] [SOURCE: .skilled/skills/sk-doc/sk-create-readme/SKILL.md:42]",
+      "addedAtIteration": 2,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-2-5-mcp-code-mode-s-router-declares-a-default-that-cannot-act-as-one-default-resourc",
+      "text": "`mcp-code-mode`'s router declares a default that cannot act as one. `DEFAULT_RESOURCE = \"references/workflows.md\"` (line 74) is also the only `LOADING_LEVELS[\"ALWAYS\"]` entry (line 103), and the fallback `if not loaded: load_if_available(DEFAULT_RESOURCE)` (lines 195-196) therefore runs only when the ALWAYS file is missing. The \"default\" is an always-load, so the fallback branch is dead in normal operation. [SOURCE: .skilled/skills/mcp-code-mode/SKILL.md:74] [SOURCE: .skilled/skills/mcp-code-mode/SKILL.md:103] [SOURCE: .skilled/skills/mcp-code-mode/SKILL.md:195]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/mcp-tooling/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `leaf-manifest.json`",
+        "`.skilled/skills/mcp-tooling/mcp-{chrome-devtools,click-up,obsidian,aside-devtools,notion,figma,refero,mobbin,magicpath}/SKILL.md`",
+        "`.skilled/skills/mcp-code-mode/SKILL.md`, `leaf-manifest.config.json`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs` (path existence)"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-2-5-sk-doc-forbids-the-hub-level-move-the-report-proposes-to-test-by-name-and-mechan",
+      "text": "**sk-doc forbids the hub-level move the report proposes to test, by name and mechanism.** `SKILL.md:65` states the machine block \"must not move into `SKILL.md` (the replay would treat it as the hub's own router and lose the mode projection) or into `hub-router.json` (schema handoff-ambiguity rule)\". That is a hub-level constraint, not a packet-level one: no document forbids moving a packet's own block inside its own `SKILL.md`, which is where the block already lives. The report's plan is safe at packet level and blocked at hub level, and the two cases were conflated. [SOURCE: .skilled/skills/sk-doc/SKILL.md:65]",
+      "addedAtIteration": 2,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-2-6-the-json-cost-grows-with-the-mode-count-and-so-does-the-drift-surface-sk-doc-spe",
+      "text": "**The JSON cost grows with the mode count, and so does the drift surface.** sk-doc spends 605 lines of `mode-registry.json` and 477 of `hub-router.json` for 15 modes and 152 aliases — 40 registry lines per mode; sk-code spends 130 and 83 for 4 modes and 83 aliases — 33 lines per mode. The per-mode cost is roughly constant, so the alias drift in finding 3 is a function of mode count, not of the hub. A shape that keeps one JSON per hub must budget for that growth or generate it. [SOURCE: .skilled/skills/sk-doc/mode-registry.json:1] [SOURCE: .skilled/skills/sk-doc/hub-router.json:1]",
+      "addedAtIteration": 2,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-2-6-the-same-regeneration-instruction-is-actionable-in-one-skill-and-unactionable-in",
+      "text": "The same regeneration instruction is actionable in one skill and unactionable in the other. `mcp-code-mode` names the exact command and the byte-stability check (`SKILL.md:62`); `mcp-tooling` says only \"Regenerate `leaf-manifest.json` through the canonical metadata command\" (`SKILL.md:126`) without naming the command, the script or the check. An operator reading the hub cannot perform the instruction from the text. [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:126] [SOURCE: .skilled/skills/mcp-code-mode/SKILL.md:62]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/mcp-tooling/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `leaf-manifest.json`",
+        "`.skilled/skills/mcp-tooling/mcp-{chrome-devtools,click-up,obsidian,aside-devtools,notion,figma,refero,mobbin,magicpath}/SKILL.md`",
+        "`.skilled/skills/mcp-code-mode/SKILL.md`, `leaf-manifest.config.json`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs` (path existence)"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-2-7-readability-splits-sharply-between-the-two-skills-mcp-tooling-skill-md-is-the-cl",
+      "text": "Readability splits sharply between the two skills. `mcp-tooling/SKILL.md` is the cleanest hub read so far: 152 lines, 8 lines over 200 characters, and a 17-line §2 (lines 48-64) that states the two stages before any table. `mcp-code-mode/SKILL.md` puts 155 lines of §2 before its first instruction, 134 of them a Python block, and line 62 is a 972-character paragraph: \"**Typed leaf projection (fleet routing standard).** mcp-code-mode is a normal, standalone single-mode skill whose sole workflow mode is `mcp-code-mode` (there is no `mode-registry.json`). Every routable leaf under `references/`, `assets/`, and the manual-testing playbook is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (regenerate with `generate-leaf-manifest.cjs --write .skilled/skills/mcp-code-mode`; it must stay byte-stable under `--check`).\" [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:48] [SOURCE: .skilled/skills/mcp-code-mode/SKILL.md:62]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/mcp-tooling/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `graph-metadata.json`, `leaf-manifest.json`",
+        "`.skilled/skills/mcp-tooling/mcp-{chrome-devtools,click-up,obsidian,aside-devtools,notion,figma,refero,mobbin,magicpath}/SKILL.md`",
+        "`.skilled/skills/mcp-code-mode/SKILL.md`, `leaf-manifest.config.json`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs` (path existence)"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-2-7-readability-the-routing-definition-is-a-107-word-run-on-and-the-trigger-lines-ar",
+      "text": "**Readability: the routing definition is a 107-word run-on, and the trigger lines are ungrouped term dumps.** `sk-doc/SKILL.md:53` reads verbatim: \"Routing is **registry-driven at runtime and packet-authored at source** in two stages. Stage 1 (hub → mode): each nested packet's single `Keyword triggers:` line is the source of truth for its routing vocabulary; `mode-registry.json` and `hub-router.json` are synchronized projections that the hub reads without re-deriving mappings during a request. The advisor routes any documentation/authoring query to the single identity `sk-doc`; the hub then picks the packet. Stage 2 (mode → leaves): the root `ROUTER.md` maps the request's authoring intent to the exact packet-local leaf resources that mode loads. The two layers stay separate: the hub never emits leaf paths, and the surface router never re-decides the mode.\" The frontmatter packet's trigger line (`sk-create-frontmatter/SKILL.md:36`) is 28 terms with no grouping, mixing field names, error symptoms and version formats. [SOURCE: .skilled/skills/sk-doc/SKILL.md:53] [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/SKILL.md:36]",
+      "addedAtIteration": 2,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-2-8-hub-shape-already-diverges-inside-the-same-skill-family-sk-doc-carries-leaf-alia",
+      "text": "**Hub shape already diverges inside the same skill family.** sk-doc carries `leaf-aliases.json` (5 alias entries) and `leaf-scopes.json` in addition to `leaf-manifest.json`; sk-code carries only `leaf-manifest.json`. `leaf-aliases.json` is read by `router-replay-lib.cjs` and `parent-skill-check.cjs`, so the extra file changes which paths a guard can resolve — the hubs are not interchangeable inputs to the same checks. [SOURCE: .skilled/skills/sk-doc/leaf-aliases.json:1] [SOURCE: .skilled/skills/sk-code/leaf-manifest.json:1]",
+      "addedAtIteration": 2,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-3-1-all-four-roots-are-class-s-by-the-fleet-contract-not-by-convention-a-class-s-roo",
+      "text": "All four roots are Class S by the fleet contract, not by convention: a Class S root declares neither `mode-registry.json` nor `hub-router.json`, and `description.json`, `mode-registry.json`, `hub-router.json` and `command-metadata.json` are **forbidden** for S while `leaf-manifest.config.json` is required and `leaf-manifest.json` plus `leaf-aliases.json` are generated. The contract names exactly these roots: \"**S** (7) | `cli-orca`, `mcp-code-mode`, `sk-git`, `sk-prompt`, `sk-vision`, `system-skill-advisor`, `system-spec-kit`\". `sk-vision/SKILL.md:66` restates it: \"No `mode-registry.json`, no `hub-router.json`, no `description.json`.\" [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md:41] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md:54] [SOURCE: .skilled/skills/sk-vision/SKILL.md:66]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.skilled/skills/cli-orca/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-git/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-prompt/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-vision/SKILL.md`, `graph-metadata.json`, `leaf-manifest.json`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-rule-that-blocks-the-hub-level-move-is-copied-in-four-hubs-and-one-copy-has-",
+      "text": "**The rule that blocks the hub-level move is copied in four hubs, and one copy has drifted.** sk-doc `SKILL.md:65`, system-deep-loop `SKILL.md:50` and cli-external-orchestration `SKILL.md:78` carry the sentence verbatim, including \"(schema handoff-ambiguity rule)\"; sk-design `SKILL.md:74` paraphrases it as \"nor into `hub-router.json`, which is a different schema\". The rule is the single most load-bearing constraint on the restructuring question, and its justification is now paraphrased in one of the four places that state it. [SOURCE: .skilled/skills/sk-doc/SKILL.md:65] [SOURCE: .skilled/skills/sk-design/SKILL.md:74]",
+      "addedAtIteration": 3,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-3-2-hub-level-only-no-document-extends-the-forbid-to-a-packet-s-own-skill-md-every-c",
+      "text": "**Hub-level only: no document extends the forbid to a packet's own `SKILL.md`.** Every copy of the rule names \"the machine block\" moving into *the hub's* `SKILL.md` or into `hub-router.json`. Since a packet's machine block already lives in the packet's own `SKILL.md`, moving it within that file is outside the rule's wording. The advisor report conflated the two cases; the texts do not. [SOURCE: .skilled/skills/system-deep-loop/SKILL.md:50]",
+      "addedAtIteration": 3,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-3-2-sk-vision-s-router-cannot-route-it-declares-one-intent-vision-line-84-maps-that-",
+      "text": "`sk-vision`'s router cannot route. It declares one intent (`VISION`, line 84), maps that intent to two directory prefixes (`feature-catalog/`, `manual-testing-playbook/`, line 97-99), and `route_resources` loads every markdown file under both prefixes whenever the inventory is non-empty (lines 130-142). `UNKNOWN_FALLBACK` returns only when the corpus is empty, never for an unrecognised request. The `INTENT_SIGNALS` keywords are therefore decorative: any invocation loads the whole corpus. [SOURCE: .skilled/skills/sk-vision/SKILL.md:84] [SOURCE: .skilled/skills/sk-vision/SKILL.md:97] [SOURCE: .skilled/skills/sk-vision/SKILL.md:130]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.skilled/skills/cli-orca/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-git/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-prompt/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-vision/SKILL.md`, `graph-metadata.json`, `leaf-manifest.json`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-3-3-cli-orca-declares-weights-its-router-never-reads-and-carries-a-unique-ownership-",
+      "text": "`cli-orca` declares weights its router never reads and carries a unique ownership map. Every intent declares `\"weight\"` (lines 102-110), but lane selection at line 177 is `max(INTENT_SIGNALS, key=lambda name: sum(signal in signals for signal in INTENT_SIGNALS[name][\"keywords\"]))` — a count of matched phrases, not a weighted score. The same router also holds `FOREIGN_OWNERS` (lines 113-120), which defers generic-git, Chrome-DevTools, agentic-browser and other out-of-scope phrases to named sibling skills; no other router in this lineage has an ownership table. [SOURCE: .skilled/skills/cli-orca/SKILL.md:102] [SOURCE: .skilled/skills/cli-orca/SKILL.md:113] [SOURCE: .skilled/skills/cli-orca/SKILL.md:177]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.skilled/skills/cli-orca/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-git/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-prompt/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-vision/SKILL.md`, `graph-metadata.json`, `leaf-manifest.json`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-3-3-workflowmode-means-a-different-thing-in-system-deep-loop-than-in-the-other-three",
+      "text": "**`workflowMode` means a different thing in system-deep-loop than in the other three hubs.** sk-code keys it by packet (`sk-code-review`, `SKILL.md:69`), sk-doc by packet (`SKILL.md:68`), sk-design by packet (`SKILL.md:80`); system-deep-loop keys it by loop (`research`, `review`, `ai-council`, `SKILL.md:59`) while its `hub-router.json` resources point at `deep-research/SKILL.md`. So the canonical `(workflowMode, leafResourceId)` pair has per-hub key semantics, and any cross-hub resolver has to special-case this hub. [SOURCE: .skilled/skills/system-deep-loop/SKILL.md:59] [SOURCE: .skilled/skills/system-deep-loop/hub-router.json:24]",
+      "addedAtIteration": 3,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-3-4-sk-git-implements-a-third-scoring-shape-it-adds-noisy-synonyms-lines-67-71-as-a-",
+      "text": "`sk-git` implements a third scoring shape. It adds `NOISY_SYNONYMS` (lines 67-71) as a second weighted table and a boundary-aware `keyword_present()` matcher (lines 115-117) whose docstring explains why: \"bare substrings misroute ('pr' in 'improve prompt')\". The three standalone routers therefore implement three different versions of the same \"weighted intent scoring\" claim — prefix load in `sk-vision`, match count in `cli-orca`, weighted plus synonyms plus word boundaries in `sk-git` — and only `sk-git` fixes the substring bug. [SOURCE: .skilled/skills/sk-git/SKILL.md:67] [SOURCE: .skilled/skills/sk-git/SKILL.md:115]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.skilled/skills/cli-orca/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-git/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-prompt/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-vision/SKILL.md`, `graph-metadata.json`, `leaf-manifest.json`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-no-match-outcome-has-three-names-and-no-shared-enum-system-deep-loop-writes-",
+      "text": "**The no-match outcome has three names and no shared enum.** system-deep-loop writes \"no keyword match → hub `defer`\" (`SKILL.md:48`) and encodes `outcomes.defer` in `hub-router.json:11`; sk-code returns `load_level: \"UNKNOWN_FALLBACK\"` from its `route()` (`SKILL.md:110`); sk-doc writes \"hub UNKNOWN fallback\" (`ROUTER.md:405`) and sk-design \"the hub's UNKNOWN fallback\" (`SKILL.md:76`). A consumer that joins hub decisions cannot key on one value. [SOURCE: .skilled/skills/system-deep-loop/hub-router.json:11] [SOURCE: .skilled/skills/sk-design/SKILL.md:71]",
+      "addedAtIteration": 3,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-3-5-sk-design-restates-the-mode-list-a-fourth-time-inside-the-hub-skill-md-54-60-is-",
+      "text": "**sk-design restates the mode list a fourth time inside the hub.** `SKILL.md:54-60` is a four-column mode table (mode, command, owns, reach by asking), while the same list is the registry `modes[]`, the `hub-router.json` `routerSignals` keys and `tieBreak`, and the `ROUTER.md` intent model. The table is the copy most likely to drift, because nothing parses it. [SOURCE: .skilled/skills/sk-design/SKILL.md:54]",
+      "addedAtIteration": 3,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-3-5-sk-prompt-forbids-the-duplication-it-then-performs-a-comment-at-lines-56-57-says",
+      "text": "`sk-prompt` forbids the duplication it then performs. A comment at lines 56-57 says \"Keep one authoritative Smart Router Pseudocode block in this section. Detection context may appear before pseudocode. Do NOT duplicate routing logic in separate lookup tables.\" The same section then lists the leaf files three times: the `Resource Domains` text list (lines 83-89), the `Resource Loading Levels` table (lines 93-98) and `RESOURCE_MAP` (lines 143-152), with `COMMAND_INTENTS` (lines 118-126) as a fourth mode-selection table read before `INTENT_MODEL`. [SOURCE: .skilled/skills/sk-prompt/SKILL.md:56] [SOURCE: .skilled/skills/sk-prompt/SKILL.md:83] [SOURCE: .skilled/skills/sk-prompt/SKILL.md:143]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.skilled/skills/cli-orca/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-git/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-prompt/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-vision/SKILL.md`, `graph-metadata.json`, `leaf-manifest.json`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-3-6-standalone-routing-bounds-the-duplication-at-two-files-because-description-json-",
+      "text": "Standalone routing bounds the duplication at two files. Because `description.json` is forbidden for Class S, the advisor vocabulary lives only in `graph-metadata.json` and the SKILL.md block: `intent_signals` counts are 13 (`cli-orca`), 35 (`sk-git`), 10 (`sk-prompt`) and 8 (`sk-vision`), with `derived.trigger_phrases` at 12, 49, 20 and 8. That is one duplicate pair, not the hub's five-way restatement — the structural difference the verdict should preserve. [SOURCE: .skilled/skills/cli-orca/graph-metadata.json:1] [SOURCE: .skilled/skills/sk-git/graph-metadata.json:1] [SOURCE: .skilled/skills/sk-prompt/graph-metadata.json:1] [SOURCE: .skilled/skills/sk-vision/graph-metadata.json:1]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.skilled/skills/cli-orca/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-git/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-prompt/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-vision/SKILL.md`, `graph-metadata.json`, `leaf-manifest.json`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-staleness-claim-does-not-reproduce-compiled-route-guard-cjs-reports-all-seve",
+      "text": "**The staleness claim does not reproduce.** `compiled-route-guard.cjs` reports all seven hubs `fresh` today, system-deep-loop included (`{\"hubId\":\"system-deep-loop\",\"ok\":true,\"reason\":\"fresh\"}`), and the guard iterates the full hub list, not just sk-code. The report's note that \"system-deep-loop reports a stale compiled manifest today\" is stale itself, and the guard's coverage means any hub `SKILL.md` edit forces a re-mint while a packet edit does not. [SOURCE: .skilled/bin/compiled-route-guard.cjs:168]",
+      "addedAtIteration": 3,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-3-7-correction-to-iteration-2-s-cost-estimate-growth-is-linear-the-per-mode-constant",
+      "text": "**Correction to iteration 2's cost estimate: growth is linear, the per-mode constant is not.** Registry lines per mode are sk-code 32.5, system-deep-loop 34.7, sk-doc 40.3, sk-design 51.5. The linear-in-mode-count claim holds; \"roughly constant per mode\" does not, because alias and `toolSurface` blocks vary by hub — so a generator must be parameterised per hub, not templated globally. [SOURCE: .skilled/skills/sk-design/mode-registry.json:1] [SOURCE: .skilled/skills/system-deep-loop/mode-registry.json:1]",
+      "addedAtIteration": 3,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-3-7-readability-routing-is-the-largest-block-in-every-standalone-file-and-it-precede",
+      "text": "Readability: routing is the largest block in every standalone file and it precedes the instructions. `sk-prompt` runs §2 from line 53 to line 267 (215 lines, 41% of 524) before \"## 3. HOW IT WORKS\" at line 268. `sk-git` has 33 lines over 200 characters and a 2,195-character rule at line 307 (\"**Provision a worktree before you trust anything it reports** — Every dependency tree here is gitignored, so a fresh worktree has none of them and fails in ways that read as broken code…\"). `cli-orca` has 16 such lines, the longest 673 characters at line 226 (\"The Orca browser is scoped to an Orca worktree and is not Chrome, Safari or the Orca desktop UI. Work in a snapshot, interact, re-snapshot loop…\"). [SOURCE: .skilled/skills/sk-prompt/SKILL.md:268] [SOURCE: .skilled/skills/sk-git/SKILL.md:307] [SOURCE: .skilled/skills/cli-orca/SKILL.md:226]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.skilled/skills/cli-orca/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-git/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-prompt/SKILL.md`, `graph-metadata.json`",
+        "`.skilled/skills/sk-vision/SKILL.md`, `graph-metadata.json`, `leaf-manifest.json`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-3-8-readability-a-hard-invariant-sits-inside-the-routing-section-of-a-170-line-hub-s",
+      "text": "**Readability: a hard invariant sits inside the routing section of a 170-line hub.** `system-deep-loop/SKILL.md:54-58` carries a 96-word note explaining that the hub's `allowed-tools` grant must equal the union of every mode's `toolSurface.allowed` or `parent-skill-check.cjs` check 3j fails — a build constraint, not a routing rule, placed between the routing model and the discriminator. sk-design's `SKILL.md:61` opens a paragraph with the fragment \"Four modes.\" after the table has already said so. [SOURCE: .skilled/skills/system-deep-loop/SKILL.md:54] [SOURCE: .skilled/skills/sk-design/SKILL.md:61]",
+      "addedAtIteration": 3,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-4-1-a-packet-root-router-md-is-invisible-to-the-replay-exactly-as-the-report-claimed",
+      "text": "**A packet-root `ROUTER.md` is invisible to the replay, exactly as the report claimed — the anchor is the pointer regex.** `findReferencedRouterDoc` only accepts `references/[...].md` (`router-replay-lib.cjs:374`) or the convention path `references/smart-routing.md` (`:384`); a `ROUTER.md` at a packet root matches neither. Any per-mode router file is therefore unparseable by the component that verifies stage two. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:374]",
+      "addedAtIteration": 4,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-4-1-stage-one-reads-exactly-one-file-per-skill-graph-metadata-json-system-skill-advi",
+      "text": "Stage one reads exactly one file per skill: `graph-metadata.json`. `system-skill-advisor/SKILL.md:340` states it plainly — \"The daemon routes from each skill's `graph-metadata.json`, using `intent_signals` and `derived.trigger_phrases` … The `trigger_phrases` and `intent_signals` fields in a skill's `SKILL.md` frontmatter are not read by any runtime routing reader.\" The `trigger_phrases` blocks in `ROUTER.md` and reference frontmatter (for example `mcp-tooling/ROUTER.md:4-8`) are documentation metadata, not routing inputs, so the five-list restatement is not five live sources — it is one live source and four copies the runtime ignores. [SOURCE: .skilled/skills/system-skill-advisor/SKILL.md:340] [SOURCE: .skilled/skills/mcp-tooling/ROUTER.md:4]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/SKILL.md`, `leaf-manifest.json`",
+        "`.skilled/skills/system-spec-kit/SKILL.md`, `leaf-manifest.json`, `references/cli/shared-smart-router.md`",
+        "`.skilled/commands/doctor/assets/doctor-router-reach.yaml`, `.skilled/commands/doctor/skill-advisor.md`",
+        "`.skilled/commands/deep/research.md`, `.skilled/commands/deep/review.md`",
+        "`.skilled/agents/*.md` (advisor paragraph count, `code.md:66`, `orchestrate.md` table)",
+        "`.hermes/SYNC.md`, `.claude/SYNC.md`, `.devin/SYNC.md`, `.codex/SYNC.md`, `.cursor/SYNC.md`, `.opencode/README.md`, `.cursor/rules/skill-routing.md`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-4-2-moving-a-packet-s-machine-block-anywhere-inside-the-same-skill-md-is-safe-for-pa",
+      "text": "**Moving a packet's machine block anywhere inside the same `SKILL.md` is safe for `parseRouter`.** `parseRouter` extracts `INTENT_SIGNALS`/`RESOURCE_MAP` from the whole `SKILL.md` text (`router-replay-lib.cjs:397-403`) with no section or order constraint, so an appendix at the end of the file parses identically. The report's \"may not be free\" risk is resolvable without a tooling change at packet level. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:397]",
+      "addedAtIteration": 4,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-4-2-router-reach-is-the-check-that-couples-the-two-live-stages-and-the-one-that-make",
+      "text": "`router-reach` is the check that couples the two live stages and the one that makes ROUTER.md vocabulary load-bearing. Its invariant says \"the advisor scores a hub's graph-metadata.json intent_signals to choose a hub; that hub's ROUTER.md then chooses a mode inside it\", and it fails `WRONG-HUB` or `OUTRANKED` when a multi-word ROUTER.md phrase does not reach its declaring hub. Its `stage_one_vocabulary` is `.skilled/skills/*/graph-metadata.json`, its `stage_two_vocabulary` is `.skilled/skills/*/ROUTER.md`, and its hub predicate requires both `ROUTER.md` and `mode-registry.json`. Deleting a ROUTER.md keyword that the graph never carried is invisible; deleting one the graph does carry, or removing ROUTER.md, fails the diagnostic. [SOURCE: .skilled/commands/doctor/assets/doctor-router-reach.yaml:23] [SOURCE: .skilled/commands/doctor/assets/doctor-router-reach.yaml:61] [SOURCE: .skilled/commands/doctor/assets/doctor-router-reach.yaml:81]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/SKILL.md`, `leaf-manifest.json`",
+        "`.skilled/skills/system-spec-kit/SKILL.md`, `leaf-manifest.json`, `references/cli/shared-smart-router.md`",
+        "`.skilled/commands/doctor/assets/doctor-router-reach.yaml`, `.skilled/commands/doctor/skill-advisor.md`",
+        "`.skilled/commands/deep/research.md`, `.skilled/commands/deep/review.md`",
+        "`.skilled/agents/*.md` (advisor paragraph count, `code.md:66`, `orchestrate.md` table)",
+        "`.hermes/SYNC.md`, `.claude/SYNC.md`, `.devin/SYNC.md`, `.codex/SYNC.md`, `.cursor/SYNC.md`, `.opencode/README.md`, `.cursor/rules/skill-routing.md`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-4-3-system-skill-advisor-s-own-router-has-a-discovery-root-that-cannot-see-six-of-it",
+      "text": "`system-skill-advisor`'s own router has a discovery root that cannot see six of its intents. `RESOURCE_BASES` lists `feature_catalog` and `manual_testing_playbook` (underscores, lines 107-108) while the directories are `feature-catalog` and `manual-testing-playbook`, and it omits `hooks/` entirely. Six intents map to paths under those roots: `RECOMMEND`, `STATUS`, `REBUILD`, `VALIDATE_TOOL`, `CLI` (lines 185-189) and `HOOK` (`hooks/skill-advisor-hook.md`, line 183). `discover_markdown_resources` walks only `RESOURCE_BASES` (lines 199-204), so those six leaves are never in inventory and `load_if_available` silently skips them. [SOURCE: .skilled/skills/system-skill-advisor/SKILL.md:107] [SOURCE: .skilled/skills/system-skill-advisor/SKILL.md:183] [SOURCE: .skilled/skills/system-skill-advisor/SKILL.md:199]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/SKILL.md`, `leaf-manifest.json`",
+        "`.skilled/skills/system-spec-kit/SKILL.md`, `leaf-manifest.json`, `references/cli/shared-smart-router.md`",
+        "`.skilled/commands/doctor/assets/doctor-router-reach.yaml`, `.skilled/commands/doctor/skill-advisor.md`",
+        "`.skilled/commands/deep/research.md`, `.skilled/commands/deep/review.md`",
+        "`.skilled/agents/*.md` (advisor paragraph count, `code.md:66`, `orchestrate.md` table)",
+        "`.hermes/SYNC.md`, `.claude/SYNC.md`, `.devin/SYNC.md`, `.codex/SYNC.md`, `.cursor/SYNC.md`, `.opencode/README.md`, `.cursor/rules/skill-routing.md`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-router-sync-guard-covers-sk-code-only-verify-router-sync-cjs-s-every-leg-is-",
+      "text": "**The router-sync guard covers sk-code only.** `verify-router-sync.cjs`'s every leg is keyed to the `SKCODE` constant (`SKCODE` root, `SURFACES = ['sk-code-ci','sk-code-skilled']`, `hubPacketDirs()` under `SKCODE`), and `readSkillRouter` reads `<packet>/SKILL.md` (`:47`). sk-doc's 14 packets, sk-design's 4 and system-deep-loop's 3 are outside the guard, which is why sk-doc's 9 router-less packets pass unnoticed. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:47]",
+      "addedAtIteration": 4,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-4-4-leg-2-fails-closed-on-a-stage1-only-hub-reproducing-the-report-s-finding-legsurf",
+      "text": "**Leg 2 fails closed on a stage1-only hub, reproducing the report's finding.** `legSurfaceMap` pushes a problem when `SHARED_CONTROL_RESOURCES` is empty — \"so the parent-tier check would be vacuous\" (`verify-router-sync.cjs:198-200`) — and separately requires each surface `resourceMap` to be non-empty. A hub that legitimately delegates stage two to JSON breaks this leg even though the canon blesses `router_state: stage1-only`. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:198]",
+      "addedAtIteration": 4,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-4-4-the-hook-intent-also-violates-the-skill-s-own-manifest-rule-and-typed-leaves-can",
+      "text": "The `HOOK` intent also violates the skill's own manifest rule, and `typed_leaves` cannot catch it. The comment above `RESOURCE_MAP` says \"every value is a concrete markdown leaf that exists in `leaf-manifest.json`\" (lines 163-164), but `hooks/skill-advisor-hook.md` is absent from the 121-leaf manifest. `typed_leaves` says \"a path that is not a real manifest leaf is dropped, never emitted as an invented pair\" (lines 233-235), yet its body only dedupes and skips package indexes (lines 236-243) — it never reads the manifest, so the invented pair is emitted. [SOURCE: .skilled/skills/system-skill-advisor/SKILL.md:163] [SOURCE: .skilled/skills/system-skill-advisor/SKILL.md:231]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/SKILL.md`, `leaf-manifest.json`",
+        "`.skilled/skills/system-spec-kit/SKILL.md`, `leaf-manifest.json`, `references/cli/shared-smart-router.md`",
+        "`.skilled/commands/doctor/assets/doctor-router-reach.yaml`, `.skilled/commands/doctor/skill-advisor.md`",
+        "`.skilled/commands/deep/research.md`, `.skilled/commands/deep/review.md`",
+        "`.skilled/agents/*.md` (advisor paragraph count, `code.md:66`, `orchestrate.md` table)",
+        "`.hermes/SYNC.md`, `.claude/SYNC.md`, `.devin/SYNC.md`, `.codex/SYNC.md`, `.cursor/SYNC.md`, `.opencode/README.md`, `.cursor/rules/skill-routing.md`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-4-5-json-only-for-hubs-fails-a-frozen-contract-code-not-a-style-rule-root-router-con",
+      "text": "**JSON-only for hubs fails a frozen contract code, not a style rule.** `root-router-contract.cjs` freezes `RRC-001 MISSING_ROOT_ROUTER`, `RRC-005 STAGE1_NONEMPTY` and `RRC-009 MISSING_PROSE_SECTION` (`:127-135`), and check 12a runs that library against every hub (`parent-skill-check.cjs:1787-1830`). Deleting a hub `ROUTER.md` therefore fails 12a with `RRC-001`; a stage1-only hub must also ship empty maps (`RRC-005`). JSON-only at hub level needs a contract revision, and the report's \"RRC-001 if ROUTER.md goes away\" is exactly right. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs:127] [SOURCE: .skilled/commands/doctor/scripts/parent-skill-check.cjs:1787]",
+      "addedAtIteration": 4,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-4-5-system-spec-kit-is-class-s-but-routes-a-cli-helper-doc-as-one-of-its-own-leaves-",
+      "text": "`system-spec-kit` is Class S but routes a CLI helper doc as one of its own leaves. Its `CLI_TRANSPORT` intent includes `references/cli/shared-smart-router.md` (`SKILL.md:268`), and that path is one of the root's 46 manifest leaves. The same file is the helper reference the seven CLI packets defer to. A change to the shared helper therefore changes spec-kit's manifest and leaf aliases as well as every CLI mode's router contract — a cross-hub coupling that a standalone-skill verdict must account for. [SOURCE: .skilled/skills/system-spec-kit/SKILL.md:268] [SOURCE: .skilled/skills/system-spec-kit/SKILL.md:95] [SOURCE: .skilled/skills/system-spec-kit/references/cli/shared-smart-router.md:17]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/SKILL.md`, `leaf-manifest.json`",
+        "`.skilled/skills/system-spec-kit/SKILL.md`, `leaf-manifest.json`, `references/cli/shared-smart-router.md`",
+        "`.skilled/commands/doctor/assets/doctor-router-reach.yaml`, `.skilled/commands/doctor/skill-advisor.md`",
+        "`.skilled/commands/deep/research.md`, `.skilled/commands/deep/review.md`",
+        "`.skilled/agents/*.md` (advisor paragraph count, `code.md:66`, `orchestrate.md` table)",
+        "`.hermes/SYNC.md`, `.claude/SYNC.md`, `.devin/SYNC.md`, `.codex/SYNC.md`, `.cursor/SYNC.md`, `.opencode/README.md`, `.cursor/rules/skill-routing.md`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-4-6-the-agent-docs-restate-the-advisor-precedence-rule-eleven-times-the-identical-pa",
+      "text": "The agent docs restate the advisor-precedence rule eleven times. The identical paragraph \"Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates…\" appears verbatim in 10 of the 11 `.skilled/agents/*.md` files (`ai-council:32`, `code:28`, `context:30`, `debug:28`, `deep-research:28`, `deep-review:27`, `orchestrate:39`, `prompt-improver:32`, `review:28`, and a wrapped variant in `design:28`). `code.md:66` adds a second routing decision — run `sk-code`'s smart router, else `advisor_recommend`, else escalate `UNKNOWN_ROUTE` — which duplicates the Gate 2 order in prose for one agent only. [SOURCE: .skilled/agents/code.md:28] [SOURCE: .skilled/agents/code.md:66] [SOURCE: .skilled/agents/orchestrate.md:39]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/SKILL.md`, `leaf-manifest.json`",
+        "`.skilled/skills/system-spec-kit/SKILL.md`, `leaf-manifest.json`, `references/cli/shared-smart-router.md`",
+        "`.skilled/commands/doctor/assets/doctor-router-reach.yaml`, `.skilled/commands/doctor/skill-advisor.md`",
+        "`.skilled/commands/deep/research.md`, `.skilled/commands/deep/review.md`",
+        "`.skilled/agents/*.md` (advisor paragraph count, `code.md:66`, `orchestrate.md` table)",
+        "`.hermes/SYNC.md`, `.claude/SYNC.md`, `.devin/SYNC.md`, `.codex/SYNC.md`, `.cursor/SYNC.md`, `.opencode/README.md`, `.cursor/rules/skill-routing.md`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-4-6-the-compiler-hashes-the-hub-skill-md-and-reads-it-from-the-opencode-mirror-not-f",
+      "text": "**The compiler hashes the hub `SKILL.md` — and reads it from the `.opencode` mirror, not from `.skilled`.** `build-artifacts.cjs:44-58` sets `SKILL_ROOT = <repo>/.opencode/skills/sk-code` and hashes `SKILL.md`, `hub-router.json`, `mode-registry.json`. Packet `SKILL.md` files are not in the hash. Today `.skilled/skills/<hub>` and `.opencode/skills/<hub>` are separate real directories with identical bytes for all four hubs (sha256 match, checked), so any restructuring must be written to both or the compiled route compiles the old bytes. [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs:44]",
+      "addedAtIteration": 4,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-4-7-only-one-runtime-mirror-copies-routing-text-the-rest-symlink-or-omit-it-hermes-s",
+      "text": "Only one runtime mirror copies routing text; the rest symlink or omit it. `.hermes/skills/<name>/SKILL.md` is a generated markdown-only copy of every canonical `SKILL.md` (56 real skills plus 11 `agent-<name>` copies on disk), checked by `sync-skills-hermes.cjs --check`; `.claude/skills` and `.devin/skills` are whole-directory symlinks to `../.skilled/skills`; `.opencode` mirrors the tree with per-entry symlinks; `.codex` and `.cursor` carry no skills mirror at all. A routing edit therefore propagates by symlink to Claude, Devin and OpenCode, requires one Hermes regeneration, and requires `sync-prompts.cjs`/`sync-prompts-hermes.cjs` only for command docs. [SOURCE: .hermes/SYNC.md:24] [SOURCE: .claude/SYNC.md:60] [SOURCE: .devin/SYNC.md:57] [SOURCE: .codex/SYNC.md:28]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/SKILL.md`, `leaf-manifest.json`",
+        "`.skilled/skills/system-spec-kit/SKILL.md`, `leaf-manifest.json`, `references/cli/shared-smart-router.md`",
+        "`.skilled/commands/doctor/assets/doctor-router-reach.yaml`, `.skilled/commands/doctor/skill-advisor.md`",
+        "`.skilled/commands/deep/research.md`, `.skilled/commands/deep/review.md`",
+        "`.skilled/agents/*.md` (advisor paragraph count, `code.md:66`, `orchestrate.md` table)",
+        "`.hermes/SYNC.md`, `.claude/SYNC.md`, `.devin/SYNC.md`, `.codex/SYNC.md`, `.cursor/SYNC.md`, `.opencode/README.md`, `.cursor/rules/skill-routing.md`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-4-7-package-skill-py-pins-the-section-name-and-three-marker-words-it-requires-an-h2-",
+      "text": "**`package_skill.py` pins the section name and three marker words.** It requires an H2 named `SMART ROUTING` (`:69`, accepted variants `:79-80`), requires `discover_markdown_resources`, `_guard_in_skill` and `UNKNOWN_FALLBACK` inside that section (`:182-184`), and validates it at `:769`. A shrunk 8-to-12-line §2 survives only if those three markers stay inside §2, which is compatible with the report's plan but rules out deleting the section. [SOURCE: .skilled/skills/sk-doc/scripts/package_skill.py:182]",
+      "addedAtIteration": 4,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-4-8-check-rule-copies-js-pins-prose-inside-sk-code-review-skill-md-its-extension-flo",
+      "text": "**`check-rule-copies.js` pins prose inside `sk-code-review/SKILL.md`.** Its `EXTENSION_FLOORS` block reads that file (`:169-170`) and the script's header says it exists \"so no repository extension can reword or drop a floor unseen\" (`:18`). A readability pass over review must leave those lines byte-identical or change the pin in the same commit. [SOURCE: .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:169]",
+      "addedAtIteration": 4,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-4-8-the-cursor-routing-rule-is-the-one-hand-maintained-routing-list-and-its-own-mani",
+      "text": "The Cursor routing rule is the one hand-maintained routing list, and its own manifest says so. `.cursor/SYNC.md:114` records: \"`rules/skill-routing.md`'s packet list has no generator and is not derived from the skill registry, so a new skill packet will not appear in it automatically. Only its Gate 1 pointer block is generated.\" The file itself is 28 lines and lists seven packet pointers (lines 9-16), so it is already narrower than the 14-root fleet. [SOURCE: .cursor/SYNC.md:114] [SOURCE: .cursor/rules/skill-routing.md:9]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/SKILL.md`, `leaf-manifest.json`",
+        "`.skilled/skills/system-spec-kit/SKILL.md`, `leaf-manifest.json`, `references/cli/shared-smart-router.md`",
+        "`.skilled/commands/doctor/assets/doctor-router-reach.yaml`, `.skilled/commands/doctor/skill-advisor.md`",
+        "`.skilled/commands/deep/research.md`, `.skilled/commands/deep/review.md`",
+        "`.skilled/agents/*.md` (advisor paragraph count, `code.md:66`, `orchestrate.md` table)",
+        "`.hermes/SYNC.md`, `.claude/SYNC.md`, `.devin/SYNC.md`, `.codex/SYNC.md`, `.cursor/SYNC.md`, `.opencode/README.md`, `.cursor/rules/skill-routing.md`"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-4-9-the-reach-diagnostic-consumes-the-document-that-json-only-would-delete-doctor-ro",
+      "text": "**The reach diagnostic consumes the document that JSON-only would delete.** `doctor-router-reach.yaml:64-65` takes stage-one vocabulary from `.skilled/skills/*/graph-metadata.json` and stage-two vocabulary from `.skilled/skills/*/ROUTER.md`, so removing a hub `ROUTER.md` removes that hub's stage-two reach input; the canon template additionally states the router is \"first-class at the hub root as `ROUTER.md`, never at a nested path\" (`parent-skill-root-router-template.md:20`), which forecloses per-mode routers by authoring rule as well as by parser. [SOURCE: .skilled/commands/doctor/assets/doctor-router-reach.yaml:65] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md:20]",
+      "addedAtIteration": 4,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-5-1-hub-verdict-the-advisor-hybrid-wins-stage-one-json-one-hub-root-router-md-script",
+      "text": "**Hub verdict: the advisor hybrid wins — stage-one JSON, one hub-root `ROUTER.md`, script resolvers — and both alternatives fail on named checks.** Per-mode `ROUTER.md` is unavailable: the Class H contract defines a hub by `mode-registry.json` plus `hub-router.json` and calls `ROUTER.md` a hub-root companion, `router-reach` scans only `.skilled/skills/*/ROUTER.md` and requires a hub carrying both JSON files, and no packet in either hub has a router today. JSON-only is unavailable: `router-reach` reads `ROUTER.md` as `stage_two_vocabulary` and fails a hub whose advertised phrase does not reach it, so deleting the document removes the only stage-two leaf map the check can read. The hybrid is what already runs: `graph-metadata.json` decides the hub, `hub-router.json` decides the mode, `ROUTER.md` decides the first leaf slice, and `leaf-manifest.json` plus `leaf-aliases.json` type the result. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md:40] [SOURCE: .skilled/commands/doctor/assets/doctor-router-reach.yaml:64] [SOURCE: .skilled/skills/system-skill-advisor/SKILL.md:340]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Iterations 1-4 of this lineage (`iterations/iteration-001.md` … `iteration-004.md`)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.skilled/commands/doctor/assets/doctor-router-reach.yaml`",
+        "`.skilled/skills/system-skill-advisor/SKILL.md`",
+        "`.skilled/skills/system-spec-kit/SKILL.md`, `references/cli/shared-smart-router.md`",
+        "`.skilled/skills/cli-external-orchestration/*`, `.skilled/skills/mcp-tooling/*`, standalone skill roots",
+        "`specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/scratch/sk-code-advisor-report.md` (prior evidence, not re-verified)"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-5-1-verdict-for-hubs-one-hub-router-md-wins-and-the-other-three-shapes-each-have-a-n",
+      "text": "**Verdict for hubs: one hub `ROUTER.md` wins, and the other three shapes each have a named failing check.** Per-mode `ROUTER.md` is unparseable (`router-replay-lib.cjs:374`) and forbidden by the canon (\"never at a nested path\", `parent-skill-root-router-template.md:20`); hub-level JSON-only fails `RRC-001` and `RRC-009` (`root-router-contract.cjs:127-135`) and empties the reach diagnostic's stage-two input (`doctor-router-reach.yaml:65`); a per-mode router also leaves the reach glob with nothing to read. The advisor hybrid — JSON for stage one, one hub `ROUTER.md` for stage two, script resolvers for checklists — is the only shape no check rejects. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs:127] [SOURCE: .skilled/commands/doctor/assets/doctor-router-reach.yaml:65]",
+      "addedAtIteration": 5,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-5-10-plan-phase-4-hub-skill-md-last-because-it-is-the-only-edit-that-needs-a-re-mint-",
+      "text": "**Plan, phase 4 — hub `SKILL.md` last, because it is the only edit that needs a re-mint and a mirror sync.** Replace each hub's `route()` pseudocode with a five-line statement plus a pointer to `compiled-route.cjs`, keep the hub-level \"must not move\" rationale in one place and link the other three hubs to it. Every hub `SKILL.md` edit requires the `.opencode` mirror to carry the same bytes (`build-artifacts.cjs:44-58` reads `.opencode`) and then a re-mint with `compiled-route-sync.cjs`; the guard is the only signal that this happened. Risk: high — a missed re-mint silently drops the hub to legacy routing, and the mirror-sync step's owner is UNKNOWN in this lineage. Rollback: `compiled-route-sync.cjs --revert <rollback-root>` restores the serving set, then revert the doc. [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs:44] [SOURCE: .skilled/bin/compiled-route-sync.cjs:1100]",
+      "addedAtIteration": 5,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-5-11-plan-phase-5-prose-pass-then-a-deferred-contract-phase-apply-the-six-clarity-rul",
+      "text": "**Plan, phase 5 — prose pass, then a deferred contract phase.** Apply the six clarity rules from the report plus \"instructions before apparatus\", re-run the baseline set plus `verify-doc-claims.cjs`, and defer any JSON-only ambition to a spec-level change that revises `RRC-001`/`RRC-009`, the reach glob and leg 2 together. Changing the contract is a different scope from changing the docs; conflating them is how a doc pass turns into an unguarded routing change. Risk: low for the prose pass, high for the contract phase, which should not start in the same packet. Rollback: prose is revert-only; the contract phase needs its own packet and its own rollback story. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md:20]",
+      "addedAtIteration": 5,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-5-2-mode-packet-verdict-no-per-mode-router-md-keep-a-short-2-and-move-the-machine-bl",
+      "text": "**Mode-packet verdict: no per-mode `ROUTER.md`; keep a short §2 and move the machine block to an appendix, but keep the packet's task-intent map.** The packet's `INTENT_SIGNALS` answers a different question from the hub's: the hub scores executor identity (`OPENCODE`, `DEVIN`) while the packet scores task intent inside one executor (`GENERATION`, `REVIEW`, `CLOUD_HANDOFF`). That map cannot be replaced by the hub router, so the hypothesis report's \"remove the per-packet loading tables\" is only half right — remove the first-slice restatement that duplicates `ROUTER.md`, keep the task-intent map. A packet-root router would be a fifth copy of the leaf decision and is invisible to `router-reach` and to the hub-root contract. [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:97] [SOURCE: .skilled/skills/cli-external-orchestration/ROUTER.md:93]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Iterations 1-4 of this lineage (`iterations/iteration-001.md` … `iteration-004.md`)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.skilled/commands/doctor/assets/doctor-router-reach.yaml`",
+        "`.skilled/skills/system-skill-advisor/SKILL.md`",
+        "`.skilled/skills/system-spec-kit/SKILL.md`, `references/cli/shared-smart-router.md`",
+        "`.skilled/skills/cli-external-orchestration/*`, `.skilled/skills/mcp-tooling/*`, standalone skill roots",
+        "`specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/scratch/sk-code-advisor-report.md` (prior evidence, not re-verified)"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-5-2-verdict-for-mode-packets-no-router-md-per-mode-the-block-may-stay-inline-or-move",
+      "text": "**Verdict for mode packets: no `ROUTER.md` per mode; the block may stay inline or move to an appendix in the same file — or be deleted where the hub already names the leaves.** `parseRouter` reads the block from anywhere in `SKILL.md` (`:397`) and packet files are outside the compiler hash (`build-artifacts.cjs:44-58`), so moving is free. But sk-doc already runs 9 of 14 packets with no machine block at all and passes, so for a packet whose leaves the hub `ROUTER.md` §3 already names, the second copy is pure drift surface and should be deleted rather than relocated. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:397] [SOURCE: .skilled/skills/sk-doc/ROUTER.md:145]",
+      "addedAtIteration": 5,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-5-3-standalone-verdict-leaf-manifest-and-aliases-only-no-router-md-and-the-full-pyth",
+      "text": "**Standalone verdict: leaf manifest and aliases only — no `ROUTER.md`, and the full Python block is optional.** Class S forbids `mode-registry.json`, `hub-router.json`, `description.json` and `command-metadata.json`; it requires `leaf-manifest.config.json`, generated `leaf-manifest.json` and generated `leaf-aliases.json`. A per-mode or hub router is therefore structurally impossible, and JSON-only is already the operative shape for leaf identity. The Python block adds no routing value where it cannot choose: `sk-vision` loads its whole corpus on every invocation and `cli-orca` ignores its own weights. Keep a short leaf list plus the generated manifest; drop or shrink the block where it has one intent or one leaf set. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md:62] [SOURCE: .skilled/skills/sk-vision/SKILL.md:130] [SOURCE: .skilled/skills/cli-orca/SKILL.md:177]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Iterations 1-4 of this lineage (`iterations/iteration-001.md` … `iteration-004.md`)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.skilled/commands/doctor/assets/doctor-router-reach.yaml`",
+        "`.skilled/skills/system-skill-advisor/SKILL.md`",
+        "`.skilled/skills/system-spec-kit/SKILL.md`, `references/cli/shared-smart-router.md`",
+        "`.skilled/skills/cli-external-orchestration/*`, `.skilled/skills/mcp-tooling/*`, standalone skill roots",
+        "`specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/scratch/sk-code-advisor-report.md` (prior evidence, not re-verified)"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-5-3-verdict-for-standalone-skills-inline-smart-routing-stays-json-only-does-not-appl",
+      "text": "**Verdict for standalone skills: inline `SMART ROUTING` stays, JSON-only does not apply.** No standalone skill carries a `ROUTER.md`, `hub-router.json` or `mode-registry.json`; there is no registry for a JSON-only shape to live in, and `package_skill.py` still requires the H2 section and the three marker words (`:69`, `:182-184`). The shape is therefore \"inline §2 with markers, no router files\", and the sibling lineage's per-skill findings refine it. [SOURCE: .skilled/skills/sk-doc/scripts/package_skill.py:182]",
+      "addedAtIteration": 5,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-5-4-readability-synthesis-routing-occupies-about-a-third-of-each-file-on-average-and",
+      "text": "**Readability synthesis: routing occupies about a third of each file on average, and the two largest roots put roughly 60% of the file before the first instruction.** Measured §2 share of file length: `mcp-tooling` 11%, `cli-external-orchestration` 20%, `cli-classifier` 23%, `sk-vision` 25%, `sk-git` 29%, `mcp-code-mode` 33%, `cli-orca` 38%, `sk-prompt` 41%, `system-skill-advisor` 59%, `system-spec-kit` 60% (mean 34%). The longest single lines are 2,195 characters (`sk-git/SKILL.md:307`), 1,988 (`system-spec-kit/SKILL.md:95`), 1,397 (`cli-devin/SKILL.md:333`), 1,249 (`system-skill-advisor/SKILL.md:84`), 972 (`mcp-code-mode/SKILL.md:62`), 840 (`cli-classifier/SKILL.md:114`), 779 (`cli-external-orchestration/SKILL.md:76`) and 673 (`cli-orca/SKILL.md:226`). Terms arrive before definitions — \"Class S\", \"typed leaf\", \"fallback-only\", \"orderedBundle\" — and two docs still describe retired enforcement: \"the deterministic router-replay and benchmarks parse\" while `benchmark/README.md:20` records the harness removed. [SOURCE: .skilled/skills/sk-git/SKILL.md:307] [SOURCE: .skilled/skills/system-spec-kit/SKILL.md:95] [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:76] [SOURCE: .skilled/skills/cli-external-orchestration/benchmark/README.md:20]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Iterations 1-4 of this lineage (`iterations/iteration-001.md` … `iteration-004.md`)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.skilled/commands/doctor/assets/doctor-router-reach.yaml`",
+        "`.skilled/skills/system-skill-advisor/SKILL.md`",
+        "`.skilled/skills/system-spec-kit/SKILL.md`, `references/cli/shared-smart-router.md`",
+        "`.skilled/skills/cli-external-orchestration/*`, `.skilled/skills/mcp-tooling/*`, standalone skill roots",
+        "`specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/scratch/sk-code-advisor-report.md` (prior evidence, not re-verified)"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-5-4-the-report-s-recommendation-survives-its-own-errors-with-three-amendments-correc",
+      "text": "**The report's recommendation survives its own errors, with three amendments.** Correct as stated: one hub `ROUTER.md`; no `ROUTER.md` per mode; JSON-only only as a hybrid; `leaf-manifest.json` decides nothing; `parseRouter` cannot see a packet-root router. Wrong and to be corrected before a plan quotes it: \"about 59 aliases\" is 83; \"system-deep-loop reports a stale compiled manifest\" does not reproduce (7/7 fresh); the §2/§9 drift is bidirectional, not one-way. Missing: sk-doc's 9 router-less packets, which are the strongest existing evidence that per-mode blocks are optional. [SOURCE: .skilled/skills/sk-code/mode-registry.json:1] [SOURCE: .skilled/bin/compiled-route-guard.cjs:168]",
+      "addedAtIteration": 5,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-5-5-phase-1-fix-correctness-without-changing-shape-low-risk-revert-one-file-per-item",
+      "text": "**Phase 1 — fix correctness without changing shape (low risk, revert one file per item).** (a) `system-skill-advisor`: hyphenate `feature_catalog`/`manual_testing_playbook`, add `hooks/` to `RESOURCE_BASES`, add the hook leaf to the manifest or remove the `HOOK` intent, and make `typed_leaves` read the manifest. (b) `cli-jev`: make `DEFAULT_RESOURCES` agree with the hub router's `DEFAULT_RESOURCE = []`, or state the baseline in both. (c) `mcp-tooling`: add the four missing obsidian intents to `ROUTER.md` or drop the four stage-one classes that lead nowhere. (d) `shared-smart-router.md`: six providers → seven, add `hermes` to the provider slug list. (e) `cli-external-orchestration`: delete the benchmark claim or mark the lane retired. (f) `mcp-tooling`: align `ROUTER.md` version 1.8.2.0 with the hub's 1.8.6.0 or document the exemption the CLI hub documents. Each item is a one-file revert; the only regeneration risk is spec-kit's manifest after (d). [SOURCE: .skilled/skills/system-skill-advisor/SKILL.md:107] [SOURCE: .skilled/skills/cli-classifier/cli-jev/SKILL.md:115] [SOURCE: .skilled/skills/mcp-tooling/ROUTER.md:97] [SOURCE: .skilled/skills/system-spec-kit/references/cli/shared-smart-router.md:139]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Iterations 1-4 of this lineage (`iterations/iteration-001.md` … `iteration-004.md`)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.skilled/commands/doctor/assets/doctor-router-reach.yaml`",
+        "`.skilled/skills/system-skill-advisor/SKILL.md`",
+        "`.skilled/skills/system-spec-kit/SKILL.md`, `references/cli/shared-smart-router.md`",
+        "`.skilled/skills/cli-external-orchestration/*`, `.skilled/skills/mcp-tooling/*`, standalone skill roots",
+        "`specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/scratch/sk-code-advisor-report.md` (prior evidence, not re-verified)"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-5-5-readability-verdict-the-routing-share-of-the-biggest-packet-is-the-problem-not-t",
+      "text": "**Readability verdict: the routing share of the biggest packet is the problem, not the hub prose.** In `sk-code-review/SKILL.md` (730 lines) SMART ROUTING opens at 49 and the first executable step tree at 67, with the resolver pseudocode running past line 392 — roughly half the file is routing apparatus before a reviewer reads the first check. Hub files are shorter but carry the same defect in miniature: `sk-doc/SKILL.md:53` is a 107-word definition and `system-deep-loop/SKILL.md:54-58` smuggles a build invariant into routing. The README files read better than the `SKILL.md` files, which is a signal about register rather than about length. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:49] [SOURCE: .skilled/skills/sk-doc/SKILL.md:53]",
+      "addedAtIteration": 5,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-5-6-phase-2-consolidate-vocabulary-behind-one-authored-list-high-risk-generator-leve",
+      "text": "**Phase 2 — consolidate vocabulary behind one authored list (high risk, generator-level rollback).** Choose `hub-router.json` `vocabularyClasses` as the single authored executor vocabulary, generate `mode-registry.json` aliases and `ROUTER.md` `INTENT_SIGNALS` from it, and keep `graph-metadata.json` `intent_signals` as the authored stage-one list that must be a superset of every advertised `ROUTER.md` phrase. Risk: the compiled route hashes the hub `SKILL.md` and must be re-minted; `router-reach` fails on any phrase the graph loses; the alias-subset check fails if generation order is wrong. Rollback: keep the generated files in git and revert the generator commit; the compiled manifest is re-mintable from the previous `SKILL.md`. Do this after Phase 1 because the drift counts are the test fixture. [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:104] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:37] [SOURCE: .skilled/commands/doctor/assets/doctor-router-reach.yaml:23]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Iterations 1-4 of this lineage (`iterations/iteration-001.md` … `iteration-004.md`)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.skilled/commands/doctor/assets/doctor-router-reach.yaml`",
+        "`.skilled/skills/system-skill-advisor/SKILL.md`",
+        "`.skilled/skills/system-spec-kit/SKILL.md`, `references/cli/shared-smart-router.md`",
+        "`.skilled/skills/cli-external-orchestration/*`, `.skilled/skills/mcp-tooling/*`, standalone skill roots",
+        "`specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/scratch/sk-code-advisor-report.md` (prior evidence, not re-verified)"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-5-6-plan-phase-0-capture-the-baseline-before-any-edit-record-the-current-output-of-c",
+      "text": "**Plan, phase 0 — capture the baseline before any edit.** Record the current output of `compiled-route-guard.cjs --json` (7/7 fresh today), `verify-router-sync.cjs` (sk-code legs 1a-4), `parent-skill-check.cjs`, `check-rule-copies.js` and `package_skill.py --strict`. Without the baseline, a later \"no regressions\" claim cannot distinguish a pre-existing warning from a new one. Risk: none (read-only). Rollback: not applicable. [SOURCE: .skilled/bin/compiled-route-guard.cjs:168]",
+      "addedAtIteration": 5,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-5-7-phase-3-5-prose-then-regeneration-then-the-gate-medium-risk-file-level-rollback-",
+      "text": "**Phase 3-5 — prose, then regeneration, then the gate (medium risk, file-level rollback).** Phase 3 restructures each mode packet: §2 becomes 8-12 lines that say the hub picks the mode, the packet map picks the task leaves, and the three marker words in one line; the Python block moves to a final `## MACHINE ROUTER` appendix. Phase 4 is the readability pass: split lines over roughly 30 words, define \"Class S\", \"typed leaf\", \"fallback-only\" once per hub, remove project history from instructions, and leave pinned lines alone. Phase 5 regenerates every derived surface and runs the gate: `leaf-manifest --check` for both classes, `sync-skills-hermes.cjs --check` (the only text-copy mirror), `sync-prompts.cjs`/`sync-prompts-hermes.cjs` for command edits, the compiled-route re-mint, then `parent-skill-check`, `verify-router-sync`, `router-reach`, `package_skill --strict` and the drift guards. Rollback is per-phase: a prose change is a file revert plus one mirror regeneration; a consolidation change is a generator revert plus a compiled-route re-mint. [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:76] [SOURCE: .hermes/SYNC.md:24] [SOURCE: .cursor/SYNC.md:114]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Iterations 1-4 of this lineage (`iterations/iteration-001.md` … `iteration-004.md`)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.skilled/commands/doctor/assets/doctor-router-reach.yaml`",
+        "`.skilled/skills/system-skill-advisor/SKILL.md`",
+        "`.skilled/skills/system-spec-kit/SKILL.md`, `references/cli/shared-smart-router.md`",
+        "`.skilled/skills/cli-external-orchestration/*`, `.skilled/skills/mcp-tooling/*`, standalone skill roots",
+        "`specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/scratch/sk-code-advisor-report.md` (prior evidence, not re-verified)"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-5-7-plan-phase-1-arrest-drift-inside-json-and-inside-2-9-before-any-restructuring-me",
+      "text": "**Plan, phase 1 — arrest drift inside JSON and inside §2/§9, before any restructuring.** Merge the CI vocabulary to one source (`hub-router.json` `code-ci-aliases`) and delete the three redundant copies at `ROUTER.md:252`, `sk-code-ci/SKILL.md:62` and the packet's prose; then make `ROUTER.md` §2 and §9 agree in both directions (add TESTING and LANGUAGE_STANDARDS to §9, or delete the five language intents from §9 and keep the language axis in `sk-code-skilled`). Risk: low — no contract file changes; `3d-alias` and `5k` catch duplicates and class mismatches. Rollback: revert the two JSON/MD files per hub, no re-mint needed because hub `SKILL.md` is untouched. [SOURCE: .skilled/skills/sk-code/hub-router.json:76] [SOURCE: .skilled/skills/sk-code/ROUTER.md:241]",
+      "addedAtIteration": 5,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-5-8-plan-phase-2-shrink-mode-packet-2-in-ascending-blast-order-never-touching-pinned",
+      "text": "**Plan, phase 2 — shrink mode-packet §2 in ascending blast order, never touching pinned lines.** Order: `sk-code-quality` (349), `sk-code-ci` (111), `sk-code-skilled` (226), `sk-code-review` (730) last. Each keeps an 8-to-12-line §2 that contains `discover_markdown_resources`, `_guard_in_skill` and `UNKNOWN_FALLBACK` (the `package_skill.py:182-184` contract) and moves the Python block to a final `## MACHINE ROUTER` appendix, or deletes it where the hub names the leaves. Review's `EXTENSION_FLOORS` block (`check-rule-copies.js:169`) stays byte-identical. Risk: medium — leg 1b/3 read packet routers, so a deletion must land in the same change as the hub map that replaces it. Rollback: `git revert` per packet; no re-mint (packets are not hashed). [SOURCE: .skilled/skills/sk-doc/scripts/package_skill.py:184] [SOURCE: .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:169]",
+      "addedAtIteration": 5,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "finding-5-9-plan-phase-3-settle-the-sk-doc-authority-question-with-a-generator-not-a-decisio",
+      "text": "**Plan, phase 3 — settle the sk-doc authority question with a generator, not a decision.** Either generate `hub-router.json` `vocabularyClasses` from the 14 packets' `Keyword triggers:` lines (adding a parser is the only way the declared source of truth becomes true), or declare `mode-registry.json` authoritative and delete the \"source of truth\" claim plus fix the 17 missing terms. The generator path is preferred because it makes `sk-doc/SKILL.md:53` true and removes 152 hand-maintained aliases. Risk: high — alias churn changes live routing; `3d-alias` and the router-reach allowlist are the safety net. Rollback: revert JSON and packet lines together; a partial revert leaves aliases duplicated and `3d-alias` fails loudly. [SOURCE: .skilled/skills/sk-doc/SKILL.md:53]",
+      "addedAtIteration": 5,
+      "sources": [],
+      "_lineages": [
+        "pi"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-e6ab689c1cab",
+      "text": "Counting \"keyword triggers\" lines as a routing decision: the CLI packets have none; their triggers live in the `<!-- Keywords: -->` comment, which no parser in this iteration was found to read.",
+      "contentHash": "e6ab689c1cab",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-ed12811b5d5f",
+      "text": "Treating `benchmark/reports/**` as live enforcement. The reports are frozen archives from an older worktree and the harness is retired (`benchmark/README.md:20`), so they are evidence of past behaviour only.",
+      "contentHash": "ed12811b5d5f",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-fdd5a1cae2b4",
+      "text": "Treating the mode packets' `INTENT_SIGNALS` as a duplicate of the hub's. They encode a different decision (task intent inside one executor), so the duplicate is the leaf mapping, not the intent names.",
+      "contentHash": "fdd5a1cae2b4",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-57acd74a4fb5",
+      "text": "Treating the mcp hub as a copy of the CLI hub. Its stage-two contract is consistent with its packets, so the CLI drift is a packet-level defect, not a universal hub defect.",
+      "contentHash": "57acd74a4fb5",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-d68fc67948a8",
+      "text": "Treating `DEFAULT_RESOURCE = []` and `DEFAULT_RESOURCE = \"references/x.md\"` as a contradiction. Both declare fallback-only semantics; the difference is representation.",
+      "contentHash": "d68fc67948a8",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-e1243023aac8",
+      "text": "Searching the mcp packets for a per-mode `ROUTER.md`: none exists. Every packet routes from its own SKILL.md block.",
+      "contentHash": "e1243023aac8",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-41d8b3fedc9c",
+      "text": "A per-mode `ROUTER.md` for standalone skills. Class S forbids the hub files outright, so the option is not available, not merely inadvisable.",
+      "contentHash": "41d8b3fedc9c",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-4746b63916f2",
+      "text": "Treating the four standalone routers as interchangeable. Their scoring implementations differ; only `sk-git` handles word boundaries.",
+      "contentHash": "4746b63916f2",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-d43e3dc0cad5",
+      "text": "Looking for `description.json` in the standalone roots: the contract forbids it, and none exists.",
+      "contentHash": "d43e3dc0cad5",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-44e87f281cf3",
+      "text": "Counting `.hermes/skills` against `find .skilled/skills -name SKILL.md` without excluding `node_modules`: the three extra hits are Playwright's bundled skills, correctly not mirrored.",
+      "contentHash": "44e87f281cf3",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-90702488f164",
+      "text": "Treating all five phrase lists as live routing sources. Only `graph-metadata.json` feeds stage one; the rest are documentation or dead metadata.",
+      "contentHash": "90702488f164",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-a21c65d20fbf",
+      "text": "Treating the Hermes mirror as a text copy of routing prose that can be hand-edited. It is generated and `--check` enforces it.",
+      "contentHash": "a21c65d20fbf",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-b304b9283cbe",
+      "text": "Treating ROUTER.md as removable on the strength of the CLI hub's duplication alone. `router-reach` reads it and fails without it.",
+      "contentHash": "b304b9283cbe",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-1ad0dd560140",
+      "text": "Treating the hypothesis report as confirmed wholesale. Its hub and standalone conclusions hold; its \"remove the per-packet loading tables\" needs the correction in finding 2.",
+      "contentHash": "1ad0dd560140",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-a60c68e2c301",
+      "text": "Trying to express stage-two leaf choice in today's JSON without a script. The compiled router emits packets, not leaves (prior report), and no leaf resolver exists for hub routes.",
+      "contentHash": "a60c68e2c301",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-b4ec1a9eaba6",
+      "text": "Deleting the packet task-intent maps. They answer a different question from the hub's executor map.",
+      "contentHash": "b4ec1a9eaba6",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-cd640ccd740e",
+      "text": "Pure JSON-only routing for hubs. `router-reach` reads `ROUTER.md` as stage-two vocabulary.",
+      "contentHash": "cd640ccd740e",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-de312c7acd08",
+      "text": "A per-mode `ROUTER.md` for any class. Class S forbids the hub files; Class H's router is hub-root only; no packet carries one.",
+      "contentHash": "de312c7acd08",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "devin"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 11,
+    "keyFindings": 80,
+    "sourceFindings": 80,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.515,
+    "coverageBySources": {}
+  }
+}

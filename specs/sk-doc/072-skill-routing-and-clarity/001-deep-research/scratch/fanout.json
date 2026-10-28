@@ -1,0 +1,1 @@
+{"concurrency": 2, "executors": [{"kind": "cli-pi", "model": "deepseek-v4.1-flash-1017", "reasoningEffort": "max", "timeoutSeconds": 1800, "label": "pi", "count": 1, "iterations": 5}, {"kind": "cli-devin", "model": "deepseek-v4-1-flash-max", "timeoutSeconds": 1800, "label": "devin", "count": 1, "iterations": 5}]}

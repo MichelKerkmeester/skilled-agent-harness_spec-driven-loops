@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/072-skill-routing-and-clarity/001-deep-research",
+  "description": "The operator finds the sk-code mode skills hard to read, and suspects they carry too many kinds of routing",
+  "keywords": [
+    "operator",
+    "finds",
+    "sk-code",
+    "mode",
+    "skills",
+    "hard",
+    "read",
+    "suspects",
+    "carry",
+    "too",
+    "many",
+    "kinds",
+    "routing"
+  ],
+  "lastUpdated": "2026-10-28T06:24:12.134Z",
+  "specId": "001",
+  "folderSlug": "deep-research",
+  "parentChain": [
+    "sk-doc",
+    "072-skill-routing-and-clarity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/072-skill-routing-and-clarity/007-sk-design-and-deep-loop-hubs",
+  "description": "Phase 7: sk-design-and-deep-loop-hubs",
+  "keywords": [
+    "phase",
+    "sk-design-and-deep-loop-hubs"
+  ],
+  "lastUpdated": "2026-10-28T06:38:48.993Z",
+  "specId": "007",
+  "folderSlug": "sk-design-and-deep-loop-hubs",
+  "parentChain": [
+    "sk-doc",
+    "072-skill-routing-and-clarity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

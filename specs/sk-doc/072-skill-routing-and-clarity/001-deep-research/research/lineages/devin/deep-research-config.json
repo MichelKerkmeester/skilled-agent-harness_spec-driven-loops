@@ -1,0 +1,87 @@
+{
+  "topic": "Skill routing shape and doc clarity across every skill and hub under .skilled/skills, plus the command and agent docs that teach routing. Starting hypothesis to test, not assume: the sk-code advisor report at specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/scratch/sk-code-advisor-report.md (JSON decides stage one, one hub ROUTER.md decides leaf files, script resolvers handle the rest, each mode SKILL.md keeps a short routing section with the machine block moved to an appendix, no ROUTER.md per mode, JSON-only viable only as a hybrid). Answer with path:line evidence: (a) per skill, every routing mechanism and every place one routing decision is restated, and where copies have drifted; (b) which checks, parsers, templates, generators, benchmarks and runtime mirrors enforce the current shape, and what each proposed change would break; (c) a verdict on per-mode ROUTER.md versus one hub ROUTER.md versus the advisor hybrid versus JSON-only, separately for hubs, mode packets and standalone skills; (d) readability findings per skill with quoted passages; (e) a phased implementation plan with order, risk and rollback. Read-only research: change no file outside your lineage directory.",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "divergent": {},
+    "stopPolicy": "max-iterations"
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/sk-doc/072-skill-routing-and-clarity/001-deep-research",
+  "createdAt": "2026-10-28T06:26:11Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-devin",
+    "model": "deepseek-v4-1-flash-max",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 1800
+  },
+  "fanout": {
+    "label": "devin",
+    "sessionId": "fanout-devin-1793168730352-knacf5",
+    "lineageArtifactDir": "specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/research/lineages/devin"
+  },
+  "lineage": {
+    "sessionId": "fanout-devin-1793168730352-knacf5",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "resource_map": {
+    "emit": true
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

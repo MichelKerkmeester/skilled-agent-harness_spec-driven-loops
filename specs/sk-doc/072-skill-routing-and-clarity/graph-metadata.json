@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/072-skill-routing-and-clarity",
+  "spec_folder": "sk-doc/072-skill-routing-and-clarity",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/072-skill-routing-and-clarity/001-deep-research",
+    "sk-doc/072-skill-routing-and-clarity/002-baseline-and-routing-correctness",
+    "sk-doc/072-skill-routing-and-clarity/003-routing-canon-and-tooling",
+    "sk-doc/072-skill-routing-and-clarity/004-single-vocabulary-source",
+    "sk-doc/072-skill-routing-and-clarity/005-sk-code-hub",
+    "sk-doc/072-skill-routing-and-clarity/006-sk-doc-hub",
+    "sk-doc/072-skill-routing-and-clarity/007-sk-design-and-deep-loop-hubs",
+    "sk-doc/072-skill-routing-and-clarity/008-cli-and-mcp-hubs",
+    "sk-doc/072-skill-routing-and-clarity/009-standalone-skills",
+    "sk-doc/072-skill-routing-and-clarity/010-prose-clarity-pass",
+    "sk-doc/072-skill-routing-and-clarity/011-regeneration-and-verification"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill routing and clarity phase parent spec",
+      "skill routing restatement cleanup",
+      "skill doc clarity program"
+    ],
+    "key_topics": [
+      "skill",
+      "routing",
+      "clarity",
+      "phase",
+      "parent",
+      "spec",
+      "restatement",
+      "cleanup",
+      "doc",
+      "program",
+      "docs",
+      "skilled"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "001-deep-research/research/research.md",
+      ".skilled/skills/system-skill-advisor/SKILL.md",
+      ".skilled/skills/sk-code/ROUTER.md",
+      ".skilled/skills/mcp-tooling/ROUTER.md",
+      ".skilled/skills/sk-doc/scripts/package_skill.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Skill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Skill docs under `.skilled/skills/` are hard to read",
+    "created_at": "2026-10-28T06:21:53Z",
+    "last_save_at": "2026-10-28T06:43:06.471Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:53d4d69ca5b158082d6b24f3f54de6205d869b52a733ef4498ca4d42f7609fda",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d4dfd5b14095a51bcb52818dfa5031e30874931313379fcdcb798bdadc2dacf5"
+    },
+    "last_active_at": null
+  }
+}

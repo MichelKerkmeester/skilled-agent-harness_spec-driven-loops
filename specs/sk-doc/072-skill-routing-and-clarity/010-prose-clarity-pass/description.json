@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/072-skill-routing-and-clarity/010-prose-clarity-pass",
+  "description": "Phase 10: prose-clarity-pass",
+  "keywords": [
+    "phase",
+    "prose-clarity-pass"
+  ],
+  "lastUpdated": "2026-10-28T06:38:52.326Z",
+  "specId": "010",
+  "folderSlug": "prose-clarity-pass",
+  "parentChain": [
+    "sk-doc",
+    "072-skill-routing-and-clarity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

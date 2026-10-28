@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/072-skill-routing-and-clarity/001-deep-research",
+  "spec_folder": "sk-doc/072-skill-routing-and-clarity/001-deep-research",
+  "parent_id": "sk-doc/072-skill-routing-and-clarity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill routing deep research",
+      "router.md versus json routing",
+      "skill routing restatement inventory",
+      "skill routing deep research plan",
+      "skill routing deep research tasks",
+      "skill routing deep research acceptance criteria",
+      "skill routing deep research implementation summary"
+    ],
+    "key_topics": [
+      "skill",
+      "routing",
+      "deep",
+      "research",
+      "router",
+      "versus",
+      "json",
+      "restatement",
+      "inventory",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "scratch/sk-code-advisor-report.md",
+      "scratch/fanout.json",
+      "research/resource-map.md",
+      "research/lineages/pi/deep-research-state.jsonl",
+      "research/lineages/devin/deep-research-state.jsonl",
+      ".skilled/skills/sk-code/mode-registry.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-advisor-report.md",
+        "kind": "doc",
+        "path": "scratch/sk-code-advisor-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout.json",
+        "kind": "config",
+        "path": "scratch/fanout.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/lineages/pi/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "sync-skills-hermes.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator finds the sk-code mode skills hard to read, and suspects they carry too many kinds of routing",
+    "created_at": "2026-10-28T06:21:54Z",
+    "last_save_at": "2026-10-28T06:42:25.437Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:d23d73fa8d6c9197d19a4f42e0f1f9b7930455455386fef6ef0553f106cade47",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1e301fc3abc4c7b5286ad1a9c55ad7fc7bc00c49a4aa4e22477ec84387654bdb",
+      "plan.md": "b253c38d6dc47c9d6a1b972b1264b6dc4cb2ffacf76e382d14c58196cf1b2b16",
+      "tasks.md": "30e2d9944f8922ab180530c883596a6d679a919a956edc644b2a183d2d2920db",
+      "implementation-summary.md": "6d6f6d36563655537dc14e7e026eab08bf3c524d37e87c5d0ce18d2e717d0838",
+      "research/research.md": "3e69fc471128aa24c01903f1a471a7897dc3eed98f90ed99876392cfe67f9841"
+    },
+    "last_active_at": null
+  }
+}

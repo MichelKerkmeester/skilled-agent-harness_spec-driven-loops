@@ -1,0 +1,50 @@
+{
+  "topic": "Skill routing shape and doc clarity across every skill and hub under .skilled/skills, plus the command and agent docs that teach routing. Starting hypothesis to test, not assume: the sk-code advisor report at specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/scratch/sk-code-advisor-report.md (JSON decides stage one, one hub ROUTER.md decides leaf files, script resolvers handle the rest, each mode SKILL.md keeps a short routing section with the machine block moved to an appendix, no ROUTER.md per mode, JSON-only viable only as a hybrid). Answer with path:line evidence: (a) per skill, every routing mechanism and every place one routing decision is restated, and where copies have drifted; (b) which checks, parsers, templates, generators, benchmarks and runtime mirrors enforce the current shape, and what each proposed change would break; (c) a verdict on per-mode ROUTER.md versus one hub ROUTER.md versus the advisor hybrid versus JSON-only, separately for hubs, mode packets and standalone skills; (d) readability findings per skill with quoted passages; (e) a phased implementation plan with order, risk and rollback. Read-only research: change no file outside your lineage directory.",
+  "maxIterations": 10,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "specFolder": "specs/sk-doc/072-skill-routing-and-clarity/001-deep-research",
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-10-28T06:25:22Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "fanout": {
+    "concurrency": 2,
+    "executors": [
+      {
+        "kind": "cli-pi",
+        "model": "deepseek-v4.1-flash-1017",
+        "reasoningEffort": "max",
+        "timeoutSeconds": 1800,
+        "label": "pi",
+        "count": 1,
+        "iterations": 5
+      },
+      {
+        "kind": "cli-devin",
+        "model": "deepseek-v4-1-flash-max",
+        "timeoutSeconds": 1800,
+        "label": "devin",
+        "count": 1,
+        "iterations": 5
+      }
+    ]
+  },
+  "lineage": {
+    "sessionId": "skill-routing-and-clarity-research",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  }
+}

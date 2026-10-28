@@ -25,7 +25,8 @@
     "sk-doc/068-hub-repo-folder-exemption",
     "sk-doc/069-local-command-support",
     "sk-doc/070-repo-doc-debt",
-    "sk-doc/071-readme-reference-debt"
+    "sk-doc/071-readme-reference-debt",
+    "sk-doc/072-skill-routing-and-clarity"
   ],
   "manual": {
     "depends_on": [],

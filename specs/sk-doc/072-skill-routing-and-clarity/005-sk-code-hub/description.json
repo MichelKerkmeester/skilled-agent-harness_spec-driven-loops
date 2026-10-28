@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/072-skill-routing-and-clarity/005-sk-code-hub",
+  "description": "Phase 5: sk-code-hub",
+  "keywords": [
+    "phase",
+    "sk-code-hub"
+  ],
+  "lastUpdated": "2026-10-28T06:38:46.860Z",
+  "specId": "005",
+  "folderSlug": "sk-code-hub",
+  "parentChain": [
+    "sk-doc",
+    "072-skill-routing-and-clarity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

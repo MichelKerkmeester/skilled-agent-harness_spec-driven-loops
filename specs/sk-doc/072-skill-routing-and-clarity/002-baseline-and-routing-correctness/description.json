@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/072-skill-routing-and-clarity/002-baseline-and-routing-correctness",
+  "description": "Phase 2: baseline-and-routing-correctness",
+  "keywords": [
+    "phase",
+    "baseline-and-routing-correctness"
+  ],
+  "lastUpdated": "2026-10-28T06:38:43.940Z",
+  "specId": "002",
+  "folderSlug": "baseline-and-routing-correctness",
+  "parentChain": [
+    "sk-doc",
+    "072-skill-routing-and-clarity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
