@@ -1,5 +1,5 @@
 {
-  "corpusHash": "dbe5bd83b56391e54e1518781724b051b23bf25aa434569c6f27b4b788705af2",
+  "corpusHash": "5280e82410a4850d97c7e7e0f25a6e9a7dc169451716e0016a4b7b83f6b892b4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26871,
+  "includedPathCount": 26872,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6699,6 +6699,7 @@
     ".skilled/skills/sk-git/changelog/v1.11.0.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.1.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.2.0.md",
+    ".skilled/skills/sk-git/changelog/v1.11.3.0.md",
     ".skilled/skills/sk-git/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-git/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-git/changelog/v1.3.1.0.md",
@@ -26902,7 +26903,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "aa05bfe25d7e5bef7b7ac654410e59a90b9d4a18ad88c4293b5982cfeebe16b2",
+  "manifestHash": "a2100859e2a5e1724808e8c10028a4b1e437f68611a4e2b45e615b4b23119a66",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
