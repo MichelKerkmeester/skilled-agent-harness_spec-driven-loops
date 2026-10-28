@@ -166,6 +166,7 @@ and findings belong here.
 | Phase 25 closed | Complete | packet changelogs deprecated; suite 2241 passed 0 failed; AC Met |
 | Phase 26 closed | Complete | --write refuses a packet with no changelog, SKILL.md at 4982 words, suite 2242 passed and 0 failed, trigger index rebuilt after the rebase at push time |
 | 2026-10-27 phase 027 complete: README checkers merged with sk-doc/071 (63 tests, both self-tests, no README newly failing over 987), packet-changelog routing to sk-doc, aggregator overrides; rebase... | Done |  |
+| 2026-10-28 phase 027 pushed to main as cb83f3e20f: README checkers are main's sk-doc/070 version with slash-command and count-claim checks ported on top (fresh Opus high rec), releases spec-kit 2.1... | Done |  |
 
 ### Deviations and findings
 
