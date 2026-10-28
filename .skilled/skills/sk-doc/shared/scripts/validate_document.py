@@ -102,7 +102,7 @@ except Exception:  # pragma: no cover - defensive fallback if the sibling is una
 
 # PyYAML ships with the system interpreter but not with every Homebrew install, so
 # the frontmatter parse stays optional: without it, a line check still catches the
-# one shape a strict parser rejects and a key-by-key reader does not.
+# common shapes a strict parser rejects and a key-by-key reader does not.
 try:
     import yaml  # type: ignore
 except ImportError:  # pragma: no cover - depends on the interpreter
@@ -1759,12 +1759,33 @@ def _frontmatter_block(content: str) -> Tuple[Optional[str], int]:
     return match.group(1), text[:start].count('\n') + head[:match.start(1)].count('\n')
 
 
-def _unquoted_colon_line(block: str) -> Optional[int]:
-    """Index of the first top-level scalar whose unquoted value holds ': '.
+def _has_unescaped_inner_quote(value: str) -> bool:
+    """Whether a double-quoted value closes before its last character.
 
-    Stands in for the parser when PyYAML is absent. The shapes that legitimately
-    carry the sequence are skipped: block scalars, flow collections, list items,
-    quoted values and trailing comments, which are not part of the value.
+    A backslash escapes the next character, so the first unescaped quote after
+    the opening one ends the scalar. Anything but a trailing comment after it
+    means the writer meant that quote as text, and a parser will not.
+    """
+    index = 1
+    while index < len(value):
+        if value[index] == '\\':
+            index += 2
+            continue
+        if value[index] == '"':
+            rest = value[index + 1:]
+            return bool(rest.strip()) and not re.fullmatch(r'\s+#.*', rest)
+        index += 1
+    return False
+
+
+def _fallback_yaml_problem(block: str) -> Optional[Tuple[int, str, str]]:
+    """First line a strict parser would reject, as (index, detail, fix hint).
+
+    Stands in for the parser when PyYAML is absent, for the three shapes a
+    key-by-key read cannot see: an unquoted value holding ': ', an unquoted value
+    that opens with a template placeholder, and a double-quoted value whose inner
+    quote is unescaped. Block scalars, flow collections, list items and trailing
+    comments are not part of a value, so they are skipped.
     """
     for index, line in enumerate(block.split('\n')):
         if not line or line[0] in ' \t#' or line.startswith('-'):
@@ -1772,11 +1793,32 @@ def _unquoted_colon_line(block: str) -> Optional[int]:
         found = re.match(r'^[^\s:#][^:]*:[ \t]*(.*)$', line)
         if not found:
             continue
-        value = re.sub(r'(?:^|\s+)#.*$', '', found.group(1)).strip()
-        if not value or value[0] in '"\'' or value[0] in '|>{[':
+        value = found.group(1).strip()
+        if not value:
+            continue
+        if value.startswith('{{'):
+            return (
+                index,
+                'an unquoted value opens a "{{" placeholder, which a parser reads as a flow mapping',
+                'Quote the value so the placeholder stays a string, e.g. description: "{{title}}"',
+            )
+        if value.startswith('"'):
+            if _has_unescaped_inner_quote(value):
+                return (
+                    index,
+                    'a double-quoted value holds an unescaped inner double quote',
+                    'Escape the inner quote as \\" or wrap the value in single quotes',
+                )
+            continue
+        value = re.sub(r'(?:^|\s+)#.*$', '', value).strip()
+        if not value or value[0] in "'|>{[":
             continue
         if ': ' in value:
-            return index
+            return (
+                index,
+                'an unquoted value contains ": "',
+                'Quote the value so the colon stays inside the string, e.g. description: "Own it: the rules"',
+            )
     return None
 
 
@@ -1785,8 +1827,10 @@ def validate_frontmatter_yaml(content: str) -> List[Dict[str, Any]]:
 
     Every other frontmatter check reads keys line by line, so a block can satisfy
     them and still be unparseable: an unquoted value holding ': ' turns the rest
-    of the line into a nested mapping. The parser reports its own line; without
-    PyYAML the line check stands in with the same verdict.
+    of the line into a nested mapping. The parser reports its own line. Without
+    PyYAML the line check catches an unquoted ': ', an unquoted '{{' placeholder
+    and an unescaped inner double quote; other parse errors need the strict
+    parser.
     """
     block, first_line = _frontmatter_block(content)
     if block is None:
@@ -1794,6 +1838,7 @@ def validate_frontmatter_yaml(content: str) -> List[Dict[str, Any]]:
 
     line: Optional[int] = None
     detail = ''
+    hint = 'Quote the value so the colon stays inside the string, e.g. description: "Own it: the rules"'
     if yaml is not None:
         try:
             yaml.safe_load(block)
@@ -1802,10 +1847,10 @@ def validate_frontmatter_yaml(content: str) -> List[Dict[str, Any]]:
             line = first_line + mark.line + 1 if mark is not None else first_line + 1
             detail = getattr(exc, 'problem', None) or str(exc).splitlines()[0]
     else:
-        offset = _unquoted_colon_line(block)
-        if offset is not None:
+        problem = _fallback_yaml_problem(block)
+        if problem is not None:
+            offset, detail, hint = problem
             line = first_line + offset + 1
-            detail = 'an unquoted value contains ": "'
 
     if line is None:
         return []
@@ -1813,7 +1858,7 @@ def validate_frontmatter_yaml(content: str) -> List[Dict[str, Any]]:
         'type': 'frontmatter_invalid_yaml',
         'severity': 'blocking',
         'message': f'Frontmatter is not valid YAML at line {line}: {detail}',
-        'fix_hint': 'Quote the value so the colon stays inside the string, e.g. description: "Own it: the rules"',
+        'fix_hint': hint,
         'line_number': line,
         'auto_fixable': False,
     }]

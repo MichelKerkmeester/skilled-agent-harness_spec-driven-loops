@@ -11,7 +11,7 @@ A first line of '---' is taken as declaring frontmatter here: the validator's
 key-line guard exists to keep a thematic break out of the parse, and a file
 that opens with the fence has already made that call.
 
-Run: python3 -m pytest -q .skilled/sk-doc/scripts/tests/test_frontmatter_fleet.py
+Run: python3 -m pytest -q .skilled/skills/sk-doc/scripts/tests/test_frontmatter_fleet.py
 """
 
 import re
@@ -60,10 +60,11 @@ def frontmatter_yaml_failure(content):
             detail = getattr(exc, 'problem', None) or str(exc).splitlines()[0]
             return f'frontmatter is not valid YAML at line {line}: {detail}'
         return None
-    offset = validate_document._unquoted_colon_line(block)
-    if offset is None:
+    problem = validate_document._fallback_yaml_problem(block)
+    if problem is None:
         return None
-    return f'frontmatter is not valid YAML at line {offset + 2}: an unquoted value contains ": "'
+    offset, detail, _ = problem
+    return f'frontmatter is not valid YAML at line {offset + 2}: {detail}'
 
 
 def test_tracked_frontmatter_parses_as_yaml():
@@ -93,8 +94,9 @@ def test_exclusions_are_live():
         if not path.exists():
             stale.append(f'{relative}: no longer exists ({reason})')
         elif validate_document.yaml is None:
-            # The line fallback only flags an unquoted ': ', so a table block
-            # passes it; the exclusion can only be judged by the strict parser.
+            # The line fallback flags an unquoted ': ', a '{{' placeholder and an
+            # unescaped inner double quote, none of which a table block carries;
+            # the exclusion can only be judged by the strict parser.
             continue
         elif frontmatter_yaml_failure(path.read_text(encoding='utf-8')) is None:
             stale.append(f'{relative}: passes the check now ({reason})')

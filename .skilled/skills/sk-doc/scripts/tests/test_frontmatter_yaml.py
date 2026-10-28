@@ -30,6 +30,11 @@ BAD = (
     '# Example\n'
 )
 GOOD = BAD.replace('description: Own it: the rules', 'description: "Own it: the rules"')
+BAD_PLACEHOLDER = BAD.replace('Own it: the rules', '{{title}} for the rules')
+BAD_INNER_QUOTE = BAD.replace('Own it: the rules', '"cupt note <id> "<text>" appends a comment."')
+GOOD_ESCAPED_QUOTE = BAD.replace('Own it: the rules', '"cupt note <id> \\"<text>\\" appends a comment."')
+GOOD_QUOTED_PLACEHOLDER = BAD.replace('Own it: the rules', '"{{title}} for the rules"')
+GOOD_SINGLE_QUOTED = BAD.replace('Own it: the rules', '\'say "hi" now\'')
 
 PARITY_SNIPPET = (
     'import json, sys\n'
@@ -63,6 +68,19 @@ def main() -> int:
     if issues(GOOD):
         failures.append(f'quoted value: got {[i["type"] for i in issues(GOOD)]}')
 
+    for name, content in (
+        ('unquoted "{{" placeholder', BAD_PLACEHOLDER),
+        ('unescaped inner double quote', BAD_INNER_QUOTE),
+    ):
+        checks += 1
+        found = issues(content)
+        if [i['type'] for i in found] != ['frontmatter_invalid_yaml']:
+            failures.append(f'{name}: got {[i["type"] for i in found]}')
+        elif found[0]['severity'] != 'blocking':
+            failures.append(f'{name}: severity is {found[0]["severity"]}')
+        elif found[0].get('line_number') != 3:
+            failures.append(f'{name}: line_number is {found[0].get("line_number")}')
+
     silent_cases = [
         ('no frontmatter', '# Example\n\nBody.\n'),
         ('literal block scalar', '---\ndescription: |\n  Own it: the rules\n---\n# Example\n'),
@@ -72,6 +90,9 @@ def main() -> int:
         ('URL in plain scalar', '---\ndescription: See https://example.com/docs\n---\n# Example\n'),
         ('flow mapping', '---\nseverityCounts: { "P0": 3, "P1": 8 }\n---\n# Example\n'),
         ('thematic break after a comment', '<!-- note -->\n\n---\n\n## Section\n\nBody.\n'),
+        ('escaped inner double quote', GOOD_ESCAPED_QUOTE),
+        ('quoted "{{" placeholder', GOOD_QUOTED_PLACEHOLDER),
+        ('single-quoted double quote', GOOD_SINGLE_QUOTED),
     ]
     for name, content in silent_cases:
         checks += 1
@@ -110,6 +131,11 @@ def main() -> int:
         for name, content, expected in (
             ('bad', BAD, ['frontmatter_invalid_yaml']),
             ('quoted', GOOD, []),
+            ('unquoted "{{" placeholder', BAD_PLACEHOLDER, ['frontmatter_invalid_yaml']),
+            ('unescaped inner double quote', BAD_INNER_QUOTE, ['frontmatter_invalid_yaml']),
+            ('escaped inner double quote', GOOD_ESCAPED_QUOTE, []),
+            ('quoted "{{" placeholder', GOOD_QUOTED_PLACEHOLDER, []),
+            ('single-quoted double quote', GOOD_SINGLE_QUOTED, []),
         ):
             checks += 1
             run = subprocess.run(

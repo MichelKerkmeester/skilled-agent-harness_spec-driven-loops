@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The operator opened the quality skill and found its frontmatter was not valid YAML: `description` held a sentence with `: ` in it, unquoted, so a strict parser read the rest of the line as a nested mapping",
     "created_at": "2026-10-28T05:17:32Z",
-    "last_save_at": "2026-10-28T06:14:52.306Z",
+    "last_save_at": "2026-10-28T06:46:54.256Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0e311f665a2a0508b9d2f47352665684fa7aacfd379ccea75879a0cdb28ae61c",
+    "source_fingerprint": "sha256:6f1ba706c18dae1bd4d0a0538a764695a65414ae51e3f5ea526f624c874b779c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6946e68740abeddbb60e707fa9a175e24711689a9c51c8f1e9ef4eb81c3936d9",
       "plan.md": "60f8bc3ed1c2073b2bd2a4e510887061c53471f93eb511bb8d953e12c4624508",
       "tasks.md": "52369d01692a5abaa0c51c5b946facd9354fc0cfdb47372f237008cb257e1f27",
-      "implementation-summary.md": "964ef3bfd885829b22169fcaf31fdfc0c26ecebef8c0205e88dc41dbd8d6aea2"
+      "implementation-summary.md": "12b143f4c0f455587490660a59b0446b8a39789ebb1ba0cf7dea3e013ecdaa59"
     },
     "last_active_at": null
   }

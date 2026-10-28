@@ -56,7 +56,7 @@ A reader could open the quality skill and see a header that looked fine, while e
 
 The report started on one file. `sk-code-quality/SKILL.md` described the gate as running "after implementation, before verification" in an unquoted value, so a parser read the second colon as the start of a nested mapping. The description is quoted now and reads word for word as it did. The same report asked why nine `SKILL.md` files said `author: OpenCode`: nothing reads that field, it was not true, and the header is down to the fields a tool reads.
 
-Scanning the rest of the tree is what made this a phase rather than a one-line fix. A strict parse of every tracked `.skilled` block rejected 29 files: 28 live blocks and the one deliberate fixture. Of the 28, 24 held an unquoted value with `: ` in it, three template assets carried a `{{...}}` placeholder a parser read as a flow mapping, and one playbook file kept its `version:` line inside a list. All 28 are repaired without rewording a value.
+Scanning the rest of the tree is what made this a phase rather than a one-line fix. A strict parse of every tracked `.skilled` block rejected 29 files: 28 live blocks and the one deliberate fixture. Of the 28, 22 held an unquoted value with `: ` in it, two carried unescaped inner double quotes, three template assets carried a `{{...}}` placeholder a parser read as a flow mapping, and one playbook file kept its `version:` line inside a list. All 28 are repaired without rewording a value.
 
 ### Files Changed
 
