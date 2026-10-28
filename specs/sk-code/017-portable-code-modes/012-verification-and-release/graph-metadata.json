@@ -54,7 +54,7 @@
       "scratch/in-repo.txt",
       ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/foreign-repository/foreign-repository-profile.md",
       ".skilled/changelog/skilled/v4.0.0.16.md",
-      ".skilled/skills/sk-code/changelog/v3.9.17.0.md",
+      ".skilled/skills/sk-code/changelog/v3.9.18.0.md",
       ".skilled/skills/sk-code/SKILL.md",
       ".hermes/skills/sk-code/SKILL.md",
       ".skilled/skills/sk-code/sk-code-ci/SKILL.md"
@@ -157,9 +157,9 @@
         "source": "derived"
       },
       {
-        "name": "v3.9.17.0.md",
+        "name": "v3.9.18.0.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/changelog/v3.9.17.0.md",
+        "path": ".skilled/skills/sk-code/changelog/v3.9.18.0.md",
         "source": "derived"
       },
       {
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The earlier phases changed how the three modes read a repository's rules, and every mode ships playbook scenarios a reader is expected to run by hand, but nothing ran them end to end",
     "created_at": "2026-10-28T07:05:32Z",
-    "last_save_at": "2026-10-28T08:01:44.962Z",
+    "last_save_at": "2026-10-28T08:06:43.242Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bc528beddaa6c08055edf82e1fddacc4f32a4edb4625fa5d25845783852a4a7e",
+    "source_fingerprint": "sha256:345a609d7a794abb945c7ebfd6adbc63c501e95a2cc09a3d4fa294a9102e12ae",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0162a5c021da7bd6ff48a722e29f239fcd86105bdb009b8fe98ea7c0edd965da",
-      "plan.md": "65773396e73d906da1ecd8d664cfdf032698a04308f99c3c22015b4710d292c0",
-      "tasks.md": "13d809e43defd8bac7f7885fc8496319168749b09f75b3ebfcafc8c96c2678f4",
-      "implementation-summary.md": "b9247203821c8883553c23996bbcd38e5d558b25262e9cffe96f15e0a8d8893d"
+      "spec.md": "e37c1a9cddc7b8fef1ac7a2f78d050d51e52bd86ea26fdc55b88be91a7e9c05d",
+      "plan.md": "7578631546304b98fa51fbda1691279cbda803c27feadf6534290268013a7fd0",
+      "tasks.md": "4f547e33ebcf6a4138d360c9ed743f06249c0b721963e32fa6518121372f8ca2",
+      "implementation-summary.md": "fa53177067756998eda4f131a14319aa5c719e7c0a018f0ed6831f39ae266c59"
     },
     "last_active_at": null
   }

@@ -75,7 +75,7 @@ A scenario builds its fixture from heredocs, runs the shipped scripts against it
 | `.skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/foreign-repository/foreign-repository-profile.md` | Builds the fixture that runs the copied CI scripts | update | Line 80 copies `repository-identity.cjs`; `scratch/e2e/ci-foreign-repository-profile.md:295` records the pass |
 | `.skilled/commands/doctor/scripts/lib/ci-profile.cjs` | Requires the identity helper at load | not a consumer of this phase's change | The fixture change supplies the helper; the script is unchanged |
 | `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` | This repository's quality config | create | `sk-code-quality-config.cjs status` prints `STATUS=OK SOURCE="repo" TRUST=trusted`, exit 0 |
-| `.skilled/skills/sk-code/SKILL.md`, `description.json`, `hub-router.json`, `mode-registry.json` | Carry the sk-code version | update | Each reads `3.9.17.0` |
+| `.skilled/skills/sk-code/SKILL.md`, `description.json`, `hub-router.json`, `mode-registry.json` | Carry the sk-code version | update | Each reads `3.9.18.0` |
 | `.hermes/skills/sk-code*/SKILL.md`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` | Mirrors and graph built from the carriers | update | The graph freshness check exits 0; the Hermes sync check reads 67 copies in sync |
 | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json` | Serves the compiled sk-code policy | update | `compiled-route-guard.cjs --json` reads `"failures": 0`, exit 0; `compiled-route-sync.cjs --check` reads all 55 copies match |
 

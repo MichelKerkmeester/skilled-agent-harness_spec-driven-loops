@@ -61,7 +61,7 @@ The three modes had shipped their playbook scenarios and nobody had run them end
 
 Each recorded file is the run, not a summary of it: the fixture build, every command, the verbatim output, the exit codes and the pass criteria, in the order the playbook gives them. Two quality-gate scenarios prove that a repository can switch a hygiene rule off and that a floor rule stays refused. Three review scenarios prove that a live reviewer records both overrides, raises an undocumented function at P2 with the repository's own replacement text, and keeps a path traversal at P0 even when the repository's checklist asks to drop input validation. The CI scenario proves that a repository without a profile gets the defaults, that the scaffold writes nothing repository-specific, and that the gate, master and unknown switches are refused.
 
-The release half writes `.skilled/skills/sk-code/sk-code-quality/repository/quality.json`: this repository's name, one optional `actionlint` check for workflow files, and no hygiene rule disabled. The quality doctor reads it as `SOURCE="repo" TRUST=trusted` with no error, and the 21 hygiene rules stay on. `.skilled/changelog/skilled/v4.0.0.17.md` describes the settings move; `v4.0.0.16.md` was restored to the wording its tag published, because that release shipped before the move. sk-code 3.9.17.0, sk-code-ci 1.1.9.0 and sk-code-quality 1.13.11.0 each get a changelog entry, and every carrier that names the sk-code version moved with them.
+The release half writes `.skilled/skills/sk-code/sk-code-quality/repository/quality.json`: this repository's name, one optional `actionlint` check for workflow files, and no hygiene rule disabled. The quality doctor reads it as `SOURCE="repo" TRUST=trusted` with no error, and the 21 hygiene rules stay on. `.skilled/changelog/skilled/v4.0.0.17.md` describes the settings move; `v4.0.0.16.md` was restored to the wording its tag published, because that release shipped before the move. sk-code 3.9.18.0, sk-code-ci 1.1.9.0 and sk-code-quality 1.13.11.0 each get a changelog entry, and every carrier that names the sk-code version moved with them.
 
 ### Files Changed
 
@@ -78,8 +78,8 @@ The release half writes `.skilled/skills/sk-code/sk-code-quality/repository/qual
 | `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` | Created | This repository's quality config |
 | `.skilled/changelog/skilled/v4.0.0.17.md` | Created | Framework release notes for the settings move |
 | `.skilled/changelog/skilled/v4.0.0.16.md` | Modified | Restored the wording the tagged release published |
-| `.skilled/skills/sk-code/changelog/v3.9.17.0.md`, `sk-code-ci/changelog/v1.1.9.0.md`, `sk-code-quality/changelog/v1.13.11.0.md` | Created | The three skill releases |
-| `.skilled/skills/sk-code/SKILL.md`, `description.json`, `hub-router.json`, `mode-registry.json` and the `.hermes/skills/sk-code/SKILL.md` copy | Modified | Step the sk-code version to 3.9.17.0 |
+| `.skilled/skills/sk-code/changelog/v3.9.18.0.md`, `sk-code-ci/changelog/v1.1.9.0.md`, `sk-code-quality/changelog/v1.13.11.0.md` | Created | The three skill releases |
+| `.skilled/skills/sk-code/SKILL.md`, `description.json`, `hub-router.json`, `mode-registry.json` and the `.hermes/skills/sk-code/SKILL.md` copy | Modified | Step the sk-code version to 3.9.18.0 |
 | `.skilled/skills/sk-code/sk-code-ci/SKILL.md` and `.hermes/skills/sk-code-ci/SKILL.md` | Modified | Step sk-code-ci to 1.1.9.0 |
 | `.skilled/skills/sk-code/sk-code-quality/SKILL.md` and `.hermes/skills/sk-code-quality/SKILL.md` | Modified | Step sk-code-quality to 1.13.11.0 |
 | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json` and its `specs/sk-doc/z_archive/` twin | Modified | Re-mint the compiled route from the new carrier |

@@ -122,8 +122,8 @@ scratch/e2e/CR-030.md:1
 | `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` | Create | This repository's quality config |
 | `.skilled/changelog/skilled/v4.0.0.17.md` | Create | Framework release notes for the settings move |
 | `.skilled/changelog/skilled/v4.0.0.16.md` | Modify | Restore the wording the tagged release published |
-| `.skilled/skills/sk-code/changelog/v3.9.17.0.md`, `sk-code-ci/changelog/v1.1.9.0.md`, `sk-code-quality/changelog/v1.13.11.0.md` | Create | The three skill releases |
-| `SKILL.md`, `description.json`, `hub-router.json`, `mode-registry.json` and the `.hermes` copies | Modify | Step the version to 3.9.17.0, 1.1.9.0 and 1.13.11.0 |
+| `.skilled/skills/sk-code/changelog/v3.9.18.0.md`, `sk-code-ci/changelog/v1.1.9.0.md`, `sk-code-quality/changelog/v1.13.11.0.md` | Create | The three skill releases |
+| `SKILL.md`, `description.json`, `hub-router.json`, `mode-registry.json` and the `.hermes` copies | Modify | Step the version to 3.9.18.0, 1.1.9.0 and 1.13.11.0 |
 | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json` and its `specs/sk-doc/z_archive/` twin | Modify | Re-mint the compiled route from the new carrier |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` | Modify | Refresh the skill graph for the stepped carriers |
 <!-- /ANCHOR:scope -->
@@ -149,7 +149,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 |----|-------------|
 | REQ-005 | The in-repository checks run clean: the CI report reads 32 workflows with no drift flag, the toggle asks for a second confirmation before it switches a protected workflow off, the setup battery reads `STATUS=OK legs=9`, the compiled-route guard and sync pass, the skill graph is fresh, the Hermes copies are in sync and the routing capture equals the committed baseline. |
 | REQ-006 | The framework changelog `v4.0.0.17.md` describes the settings move, and `v4.0.0.16.md` keeps the wording of the tagged release instead of describing a move that shipped after it. |
-| REQ-007 | sk-code `v3.9.17.0`, sk-code-ci `v1.1.9.0` and sk-code-quality `v1.13.11.0` each get a changelog entry, and each `SKILL.md` carries the same version. |
+| REQ-007 | sk-code `v3.9.18.0`, sk-code-ci `v1.1.9.0` and sk-code-quality `v1.13.11.0` each get a changelog entry, and each `SKILL.md` carries the same version. |
 | REQ-008 | The version carriers step together: `description.json`, `hub-router.json`, `mode-registry.json` and the `.hermes` copies carry the new version, the skill graph is regenerated and fresh, and the sk-code compiled route is re-minted from the new carrier. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
