@@ -366,8 +366,8 @@ If sensitive paths ARE touched, the full review runs regardless of line count.
 
 `SK_CODE_REVIEW_DEPTH=lite|full|ultra` is an optional environment variable the **reviewing agent honors** (resolved env > default), exactly like the §9.2 `SK_CODE_REVIEW_MIN_CHANGED_LINES` gate. Both are skill guidance the reviewer reads and applies in-loop, not a separate compiled dispatcher; this alias only NAMES and PERSISTS an already-existing routing behavior, adds no new tier, and relaxes no floor:
 
-- `full` (default / unset): the normal ALWAYS + CONDITIONAL + ON_DEMAND routing.
-- `ultra`: bias intent selection toward the existing `ON_DEMAND` reference set (the deep-dive tier) for the session, so a reviewer does not have to repeat "comprehensive / full review" each time.
+- `full` (default / unset): the normal ALWAYS + CONDITIONAL + ON_DEMAND routing (§10 resource loading levels).
+- `ultra`: bias intent selection toward the existing `ON_DEMAND` reference set (the deep-dive tier in §10) for the session, so a reviewer does not have to repeat "comprehensive / full review" each time.
 - `lite`: maps to the existing M-2 conservative skip (§9.2). It NEVER lowers the ALWAYS tier, the baseline security/correctness minimums, or the P0/P1/P2 contract. It cannot skip a review on a sensitive path (auth/config/persistence/deps/sandbox/public-response), exactly as M-2 already enforces.
 
 The depth alias is advisory routing only; it must never be read as permission to relax a floor.
@@ -377,6 +377,14 @@ The depth alias is advisory routing only; it must never be read as permission to
 ## 10. MACHINE ROUTER
 
 The packet's deterministic intent-to-reference routing. Paths are relative to this skill root.
+
+### Resource loading levels
+
+| Level | Rule |
+| --- | --- |
+| ALWAYS | `DEFAULT_RESOURCES` |
+| CONDITIONAL | `RESOURCE_MAP[intent]` |
+| ON_DEMAND | every `RESOURCE_MAP` target when an `ON_DEMAND_KEYWORDS` term matches |
 
 ```python
 import re

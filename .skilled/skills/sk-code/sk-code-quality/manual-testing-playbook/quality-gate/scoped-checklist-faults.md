@@ -8,7 +8,7 @@ expected_resources:
   - references/runner-contract.md
   - references/quality-config.md
   - scripts/quality-gate.cjs
-version: 1.1.4.0
+version: 1.1.4.1
 ---
 
 # CQ-010: A Checklist Row Fault Stays Scoped To The Files Its Declaration Reaches
@@ -185,7 +185,7 @@ Command transcript from steps 1 to 4, the frontmatter block with `expected_inten
 
 | File | Role |
 | --- | --- |
-| [SKILL.md](../../SKILL.md) §3 | The gate workflow line that reads an `ERROR` run as no verdict rather than a pass |
+| [SKILL.md](../../SKILL.md) §4 | The gate workflow line that reads an `ERROR` run as no verdict rather than a pass |
 | [quality-gate.test.cjs](../../scripts/tests/quality-gate.test.cjs) | The scoped-fault cases this scenario replays |
 | [runner-contract.md](../../references/runner-contract.md) §6 | The row rules, the fault codes and the rule that sends an unreached fault to `config.warnings` |
 | [runner-contract.md](../../references/runner-contract.md) §3 | The `config` field of the envelope: `errors` and `warnings` |

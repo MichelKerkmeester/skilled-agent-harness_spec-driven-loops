@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.8.0
+version: 2.3.8.1
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -208,7 +208,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 
 ## 9. MACHINE-READABLE ROUTER (replay / benchmark source)
 
-This is the single machine-readable projection of the prose Intent Model (§2) and the per-surface map (§4 SKILLED). The prose sections above are the human-facing contract; this block is the byte-for-byte source a deterministic router parses. Keep the two in sync: when a map row changes above, update the matching `RESOURCE_MAP` entry here.
+This block is the authored source for the intent vocabulary and weights. §2 explains how it is scored and does not repeat the keywords; §4 renders the same rows as prose. When an intent row changes here, update the matching prose row in §4.
 
 This projection is intentionally lossy in two documented ways the flat dictionary cannot express, both enforced by the prose contract and the surface-detection pseudocode in `SKILL.md` §2:
 

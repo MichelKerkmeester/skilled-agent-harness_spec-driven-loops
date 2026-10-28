@@ -10,7 +10,7 @@ expected_resources:
   - references/config/quality-standards.md
   - references/config/quick-reference.md
   - assets/checklists/config-checklist.md
-version: 1.0.1.0
+version: 1.0.1.1
 ---
 
 # OC-004: Config schema routing
@@ -23,7 +23,7 @@ This document captures the routing-recall contract, execution process, source an
 
 This scenario validates `CONFIG` routing for `OC-004`. It focuses on confirming that the exact prompt
 below classifies as `CONFIG` and loads the full 4-file resource set instead of a generic or mismatched
-resource set, per `SKILL.md` §2b's machine-readable router.
+resource set, per `SKILL.md` §6's machine-readable router.
 
 ### Why This Matters
 
@@ -50,7 +50,7 @@ Review the jsonc descriptor config schema for a skill and point out schema issue
   `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
   `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-skilled/`, and each one
-  documents `CONFIG` routing per `SKILL.md` §2 or §2b.
+  documents `CONFIG` routing per `SKILL.md` §2 or §6.
 - Desired user-visible outcome: the bundled workflow cites the routed `CONFIG` resources as the
   standards evidence, not a mismatched language or generic tier.
 - Pass/fail: PASS if every listed path exists and the frontmatter surface/intent are `SKILLED`/
@@ -109,7 +109,7 @@ excerpt.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §6 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §2 | Reference-map prose entry for the `CONFIG` resource set |
 | [SKILL.md](../../SKILL.md) §3 | The descriptors-are-load-bearing rule this scenario's config resources enforce |
 

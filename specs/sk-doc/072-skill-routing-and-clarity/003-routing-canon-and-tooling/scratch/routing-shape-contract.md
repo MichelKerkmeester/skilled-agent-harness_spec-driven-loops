@@ -5,7 +5,7 @@ One definition of the routing-shape check, implemented twice: in `package_skill.
 ## 1. The canon (what the check enforces)
 
 - **Hub** (a root with `mode-registry.json` and `hub-router.json`): keeps one root `ROUTER.md`. Its SKILL.md SMART ROUTING section is short prose that says how a prompt reaches a mode and points at `ROUTER.md`.
-- **Mode packet** (a folder inside a hub): no `ROUTER.md`. Its SMART ROUTING section is 8 to 12 non-blank lines, and at most 180 words, of plain prose: what selects this packet, what it loads first, where the machine router is. Any machine router block sits in a final `## MACHINE ROUTER` section, the last H2 of the file. A packet whose leaves the hub `ROUTER.md` already names may carry no block.
+- **Mode packet** (a folder inside a hub): no `ROUTER.md`. Its SMART ROUTING section is at most 12 non-blank lines and at most 180 words of plain prose, which both checks enforce; 8 to 12 lines is the authoring target, not a floor, so a shorter section conforms: what selects this packet, what it loads first, where the machine router is. Any machine router block sits in a final `## MACHINE ROUTER` section, the last H2 of the file. A packet whose leaves the hub `ROUTER.md` already names may carry no block.
 - **Standalone skill** (neither hub file): the same short SMART ROUTING section, with its inline router in the final `## MACHINE ROUTER` section.
 - The no-match outcome is named `UNKNOWN_FALLBACK` everywhere.
 - The appendix heading is numbered like every other H2 (for example `## 8. MACHINE ROUTER`); the checks read the title with its number removed. A hub keeps its compiled-routing directive and its `UNKNOWN_FALLBACK_CHECKLIST` there, so its SMART ROUTING prose keeps its room.

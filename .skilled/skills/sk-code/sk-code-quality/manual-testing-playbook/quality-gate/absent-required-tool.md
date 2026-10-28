@@ -8,7 +8,7 @@ expected_resources:
   - references/runner-contract.md
   - references/quality-config.md
   - scripts/quality-gate.cjs
-version: 1.1.4.0
+version: 1.1.4.1
 ---
 
 # CQ-006: Absent Required Tool Reports Unverified
@@ -168,7 +168,7 @@ Command transcript from steps 1 to 4, the frontmatter block with `expected_inten
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §3 | The gate workflow line that reads `UNVERIFIED` as an open claim rather than a pass |
+| [SKILL.md](../../SKILL.md) §4 | The gate workflow line that reads `UNVERIFIED` as an open claim rather than a pass |
 | [configured-checks.test.cjs](../../scripts/tests/configured-checks.test.cjs) | The F06 case this scenario replays |
 | [runner-contract.md](../../references/runner-contract.md) §2 and §3 | The exit codes, the check states, the repair field and the unverified list |
 | [quality-config.md](../../references/quality-config.md) §3 | The `checks` schema the fixture config uses |

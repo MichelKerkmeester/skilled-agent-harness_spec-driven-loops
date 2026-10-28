@@ -109,7 +109,7 @@ contextType: "planning"
 
 - [x] CHK-010 [P0] Every changed script passes its own tests Evidence: no script changed. The checks the phase relies on pass: `check-rule-copies.js` and its canary, `verify-router-sync` 5/5, and parent-skill-check 12b with an empty ledger (`scratch/after.md` §2, §4).
 - [x] CHK-011 [P0] Every gate in scope passes Evidence: `scratch/after.md` §1, 35 of 35 exit 0.
-- [x] CHK-012 [P1] No operator-local surface is named in a tracked file Evidence: no added line in the commit contains `local-`; the occurrences in the changed files are unchanged lines, and `router-reach` reports operator-local 0.
+- [x] CHK-012 [P1] No operator-local surface is named in a tracked file Evidence: the only added `local-` text is the generic `local-*` redaction pattern in `review-core.md` §9 and a test filename (`local-native-divergence-ratchet`); no private skill is named, and `router-reach` reports operator-local 0.
 - [x] CHK-013 [P1] Changes follow the phase 003 canon Evidence: parent-skill-check 12b prints `hub and 4 packet(s) follow the routing canon (0 known debt)` with an empty ledger.
 <!-- /ANCHOR:code-quality -->
 

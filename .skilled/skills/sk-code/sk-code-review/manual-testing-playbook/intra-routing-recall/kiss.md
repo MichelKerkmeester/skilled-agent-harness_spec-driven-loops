@@ -11,7 +11,7 @@ expected_resources:
   - assets/security-checklist.md
   - assets/code-quality-checklist.md
   - assets/fix-completeness-checklist.md
-version: 1.0.0.1
+version: 1.0.1.0
 ---
 
 # CR-R03: KISS routing
@@ -28,7 +28,7 @@ path this scenario declares under `expected_resources` — this scenario's set a
 
 ### Why This Matters
 
-`KISS` shares its `RESOURCE_MAP` target, `assets/code-quality-checklist.md`, with `QUALITY` and `DRY` - the same checklist carries correctness, simplicity, and duplication checks together. CR-R03 proves a simplicity-shaped prompt ("over-engineered", "KISS") still resolves that shared checklist, and that the architecture lens from `SKILL.md` §1's Unknown Fallback Checklist ("KISS/DRY/SOLID strict or optional") stays attached to the resolved intent rather than being silently dropped.
+`KISS` shares its `RESOURCE_MAP` target, `assets/code-quality-checklist.md`, with `QUALITY` and `DRY` - the same checklist carries correctness, simplicity, and duplication checks together. CR-R03 proves a simplicity-shaped prompt ("over-engineered", "KISS") still resolves that shared checklist, and that the architecture lens from `SKILL.md` §10 (`UNKNOWN_FALLBACK_CHECKLIST`) ("KISS/DRY/SOLID strict or optional") stays attached to the resolved intent rather than being silently dropped.
 
 ---
 

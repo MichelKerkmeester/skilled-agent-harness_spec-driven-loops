@@ -41,9 +41,9 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       ".skilled/skills/sk-code/SKILL.md",
+      "scratch/after.md",
       "scratch/gates.sh",
       "scratch/baseline.md",
-      "scratch/after.md",
       ".skilled/skills/sk-code/ROUTER.md"
     ],
     "entities": [
@@ -84,6 +84,12 @@
         "source": "derived"
       },
       {
+        "name": "after.md",
+        "kind": "doc",
+        "path": "scratch/after.md",
+        "source": "derived"
+      },
+      {
         "name": "gates.sh",
         "kind": "script",
         "path": "scratch/gates.sh",
@@ -93,12 +99,6 @@
         "name": "baseline.md",
         "kind": "doc",
         "path": "scratch/baseline.md",
-        "source": "derived"
-      },
-      {
-        "name": "after.md",
-        "kind": "doc",
-        "path": "scratch/after.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Routing prose fills 37 to 54 percent of the sk-code mode `SKILL.md` files, and three of its documents each claim a different routing authority",
     "created_at": "2026-10-28T06:38:46Z",
-    "last_save_at": "2026-10-28T11:10:02.222Z",
+    "last_save_at": "2026-10-28T11:33:58.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8754e1bf99bdfa11f80f1b4ac051a4acd8d1d2618b26a4e83321e0073874bb8",
+    "source_fingerprint": "sha256:82b7846421d15f5e0c8ab21bb7510fd1e006ba8d7bb4d27159cf7ccedd645c0d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fc7ded6ed18bcb02fd55f31140e2b170f01fa99e13438012b015516f5b314dca",
       "plan.md": "c35f4b1f81c8bd89c94d62f875948844d622c7c3eeffa5f37970900cb0eeb788",
-      "tasks.md": "93d31d6dbcd90fd5b6b748e8e4c7d0367e0ca611288cc774d3dcc7414b670d7c",
-      "implementation-summary.md": "c6eb96f2c6a1bef325842a1b05154db70d93cc406de43856d5b7dda59058e3a6"
+      "tasks.md": "be339ecefb7f8b41a4a23d470bd278c5c2e6454a7138d0a1d7aca2a3886bd696",
+      "implementation-summary.md": "14c7ed2f5cff225d86a693fcf094b93737d84403f92578e6f4d753e83f7c0a21"
     },
     "last_active_at": null
   }

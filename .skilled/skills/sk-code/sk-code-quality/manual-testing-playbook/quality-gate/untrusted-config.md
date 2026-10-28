@@ -8,7 +8,7 @@ expected_resources:
   - references/quality-config.md
   - references/runner-contract.md
   - scripts/quality-gate.cjs
-version: 1.1.4.0
+version: 1.1.4.1
 ---
 
 # CQ-009: Untrusted Config Reads Skipped Untrusted Until The Operator Grants Trust
@@ -183,7 +183,7 @@ Command transcript from steps 1 to 4, the frontmatter block with `expected_inten
 
 | File | Role |
 | --- | --- |
-| [SKILL.md](../../SKILL.md) §3 | The gate workflow line that reads `UNVERIFIED` as an open claim rather than a pass |
+| [SKILL.md](../../SKILL.md) §4 | The gate workflow line that reads `UNVERIFIED` as an open claim rather than a pass |
 | [configured-checks.test.cjs](../../scripts/tests/configured-checks.test.cjs) | The trust cases this scenario replays |
 | [quality-config.md](../../references/quality-config.md) §8 | The trust boundary: the four rules, the state, the repair line and what `config.trust` names |
 | [runner-contract.md](../../references/runner-contract.md) §2 | The check states, the `SKIPPED_UNTRUSTED` row and the unverified list |

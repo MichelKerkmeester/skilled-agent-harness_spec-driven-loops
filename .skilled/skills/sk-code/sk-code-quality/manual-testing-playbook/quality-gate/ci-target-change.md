@@ -8,7 +8,7 @@ expected_resources:
   - references/runner-contract.md
   - scripts/quality-gate.cjs
   - assets/quality-defaults.json
-version: 1.1.5.0
+version: 1.1.5.1
 ---
 
 # CQ-004: A CI Workflow Change Lists The CI Checklist
@@ -155,7 +155,7 @@ Command transcript from steps 1 to 4, the frontmatter block with `expected_inten
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §2 | The checklist sources and the --explain pointer |
+| [SKILL.md](../../SKILL.md) §3 | The checklist sources and the --explain pointer |
 | [SKILL.md](../../../sk-code-skilled/SKILL.md) §5 | This repository's quality checklist map |
 | [quality-gate.test.cjs](../../scripts/tests/quality-gate.test.cjs) | The F14 case this scenario replays |
 | [runner-contract.md](../../references/runner-contract.md) §3 | The `checklists` and `checks` fields this scenario reads, and the YAML check row |

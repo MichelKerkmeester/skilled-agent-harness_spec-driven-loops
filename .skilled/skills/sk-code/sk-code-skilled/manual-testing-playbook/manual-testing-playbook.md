@@ -1,7 +1,7 @@
 ---
 title: "sk-code-skilled: Manual Testing Playbook"
 description: "Routing-recall corpus for the sk-code-skilled surface: scenarios that exercise its intent signals, resource map and SKILLED surface detection."
-version: 1.1.0.0
+version: 1.1.0.1
 ---
 
 # sk-code-skilled: Manual Testing Playbook
@@ -21,11 +21,11 @@ each scenario.
 ## 1. OVERVIEW
 
 Routing-recall corpus for the `sk-code-skilled` surface. These scenarios exercise the machine-readable
-intent signals and resource map in `SKILL.md` §2b, and the surface detection (`SKILLED`, work under
+intent signals and resource map in `SKILL.md` §6, and the surface detection (`SKILLED`, work under
 `.skilled/`) that causes the hub to bundle this packet. The corpus is derived from the walked tree
 below, split into three category folders by resource domain.
 
-Coverage note: the corpus covers each prompt intent that `SKILL.md` §2b declares machine-readably, one
+Coverage note: the corpus covers each prompt intent that `SKILL.md` §6 declares machine-readably, one
 scenario per intent, across the packet's three resource domains. `JAVASCRIPT` is the one declared intent
 that has no scenario yet, so a JavaScript-routed prompt stays uncovered here.
 

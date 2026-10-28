@@ -63,13 +63,13 @@ Counted the way `package_skill.py` counts: non-blank lines between the SMART ROU
 | `sk-code-skilled/SKILL.md` | 118 / 327 → 3 / 112 | `## 6. MACHINE ROUTER`, last | `## 3. SURFACE STANDARDS` at 57 |
 | `sk-code-review/SKILL.md` | 312 / 2104 → 8 / 130 | `## 10. MACHINE ROUTER`, last | `## 3. HOW IT WORKS` at 63, from 415 |
 
-The moved blocks are unchanged. The python block sets at `782195b82b^` and `782195b82b` are identical for the hub, quality and skilled. Review's block was split: the seven resolver functions are byte-identical in `review-core.md` §9 (checked function by function), and the entry point lost the resolver calls, the `precedence` dict and the return fields that carried them.
+The moved blocks are unchanged. The python block sets at `782195b82b^` and `782195b82b` are identical for the hub, quality and skilled. Review's block was split: the seven resolver functions are byte-identical in `review-core.md` §9 (checked function by function), and the resolver calls, the `precedence` dict and the return fields that carried them now sit beside those functions, with the caller composition (see Review fixes).
 
 ### Review's resolver algorithm
 
 The 282-line pseudocode block held two jobs. The intent scoring and the resource loader stay in `## 10. MACHINE ROUTER`. The rule-override algorithm moved into `review-core.md` section 9, beside the floor, the precedence table and the outcomes it implements: `resolvable_files`, `resolve_rule_sources`, `inside_hub_checkout`, `surface_evidence`, `checklist_level`, `applied_overrides` and `rule_sources_line`. Section 2 of the packet names the move in one line.
 
-The packet drops from 5,676 to 4,297 words, under the 5,000-word ceiling. The Extension Floors section is byte-identical, so `check-rule-copies.js` and its canary needed no change.
+The packet drops from 5,676 to 4,297 words at the phase commit and 4,340 after the review fixes, under the 5,000-word ceiling. The Extension Floors section is byte-identical, so `check-rule-copies.js` and its canary needed no change.
 
 ### One routing authority
 
@@ -92,6 +92,24 @@ The four sk-code entries came off `routing-shape-known-debt.json`, so `parent-sk
 ### Changelogs and carriers
 
 sk-code v3.9.20.0, sk-code-quality v1.13.13.0, sk-code-skilled v2.1.12.0 and sk-code-review v1.9.11.0. The carriers stepped with them: `hub-router.json`, `mode-registry.json` and `description.json` to 3.9.20.0, `ROUTER.md` to 2.3.8.0, `review-core.md` to 1.5.7.0, the catalog pages and the playbook files by one patch. The `.hermes` copies, the activation manifest and `skill-graph.json` were regenerated.
+
+### Review fixes
+
+A read-only review of the two phase commits returned four P1 and five P2 findings. Every one is fixed in the working tree.
+
+| Finding | Fix |
+|---------|-----|
+| P1-1 `ROUTER.md` §9 named §2 as the keyword source | The §9 preamble now names its `INTENT_SIGNALS` block as the authored vocabulary, §2 as the scoring explanation and §4 as the prose rows. The fenced block is byte-identical; `verify-router-sync` and the accuracy baseline rerun unchanged. |
+| P1-2 Review's `SKILL.md` used the deleted ALWAYS / CONDITIONAL / ON_DEMAND tiers | §10 gained a "Resource loading levels" table (ALWAYS = `DEFAULT_RESOURCES`, CONDITIONAL = `RESOURCE_MAP[intent]`, ON_DEMAND = every target on an `ON_DEMAND_KEYWORDS` match); §9.3 and `kiss.md` now cite it. |
+| P1-3 The resolver's composition was dropped with the move | `review-core.md` §9 now carries the caller (`resolve_rule_sources` → `surface_evidence` → `applied_overrides` → `rule_sources_line`), the `precedence` mapping and the `json` / `subprocess` imports beside the seven functions. |
+| P1-4 35 stale `§2b` pointers in the quality and skilled playbooks | 45 pointer lines across 21 files repointed: quality §2b→§9, gate workflow §3→§4, completion claim §4→§5, comment hygiene §2→§3; skilled §2b→§6, keeping §2 where it means the prose map. The playbook carriers stepped one patch. |
+| P2-1 CHK-012 claimed no added line contains `local-` | Restated: the additions are the generic `local-*` redaction pattern in `review-core.md` §9 and a test filename; no private skill is named, and `router-reach` reports operator-local 0. |
+| P2-2 The review changelog stated 4,274 words | Both figures corrected to the measured 4,340 by `wc -w`, down from 5,676. |
+| P2-3 The canon said 8–12 lines while both checks enforce only a maximum | The phase 003 routing-shape contract now says at most 12 lines and 180 words, enforced by both checks; 8 to 12 lines is the authoring target, not a floor. |
+| P2-4 The parent continuity block still pointed at 005 as unplanned | Refreshed: phase 005 complete, next action to plan 006, completion 45 percent (5 of the 11 phases). |
+| P2-5 Acceptance evidence cited headings | AC-001 to AC-004 now cite the `scratch/after.md` lines that carry each claim (gate rows, result rows and output lines) instead of section headings. |
+
+One gate is red in the working tree: `sync-skills-hermes.cjs --check` reports `DRIFT sk-code-review`, because the review edits landed after the last mirror regeneration. The phase 011 mirror pass regenerates it; no other mirror drifted.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -147,7 +165,7 @@ No executor dispatch is recorded for this phase. The work is the scratch scripts
 | `check-rule-copies.js` | OK: 8 exact-string files, 2 Iron Law files, 21 delivery-prefix anchors, 6 extension floors, 2 example outputs |
 | `tests/check-rule-copies.test.sh` | `All rule-canary test cases passed`, exit 0 |
 | Extension Floors section, `782195b82b^` vs `HEAD` | `diff` empty |
-| `sk-code-review/SKILL.md` words | 5,676 → 4,297 (ceiling 5,000) |
+| `sk-code-review/SKILL.md` words | 5,676 → 4,340 by `wc -w` (ceiling 5,000; `package_skill.py` reports 4,339) |
 | Routing accuracy | 155/195, 49/66, 19/24, identical to the baseline |
 | `compiled-route-guard.cjs --json` | 7 of 7 `fresh`, failures 0 |
 | Router reach | wrong-hub 0, outranked 0, no-reach 0, allowed 9 (baseline the same) |
@@ -162,6 +180,6 @@ Detail: `scratch/after.md`.
 ## Known Limitations
 
 1. **The 92 stage-one terms are still carried by no intent.** That is a decision, not a gap left open: sk-code keeps its stage-two exemption for the reason in Key Decisions. The check cannot show the gap because its sk-code line prints `stage-two=0` by design. A later phase that gives sk-code a mode-vocabulary stage two has to revisit the decision.
-2. **The `v1.9.11.0` changelog says the review packet dropped to 4,274 words.** The check's own count at the commit is 4,297; the changelog figure was taken before the last edit. Both are under the ceiling, and the measured number is the one recorded here.
+2. **Two counters differ by one word on the review packet.** `wc -w` reports 4,340 and `package_skill.py` reports 4,339; both are under the 5,000-word ceiling, and the changelog records the `wc -w` figure.
 3. **The transform scripts and their verifiers are not committed.** They live in `.scratch-dc90/072-005/`. The evidence inside the packet is the runner `scratch/gates.sh` and the two gate tables, which land with these docs.
 <!-- /ANCHOR:limitations -->

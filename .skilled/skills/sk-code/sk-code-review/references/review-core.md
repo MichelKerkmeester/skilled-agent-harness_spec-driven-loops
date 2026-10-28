@@ -10,7 +10,7 @@ trigger_phrases:
   - "baseline check families"
 importance_tier: important
 contextType: implementation
-version: 1.5.7.0
+version: 1.5.8.0
 ---
 
 # Review Core Doctrine
@@ -245,9 +245,12 @@ Rule sources: <checklist file>, <checklist file>. Overrides: <rule id> <none|rep
 
 ## 9. THE RESOLVER ALGORITHM
 
-The review reads the rules for a reviewed file from one resolver, the quality runner's explain entry, and this section is the algorithm that turns its output into the floor, the lens and the `Rule sources:` line. It is pseudocode: `ResolverError` is the caller's own error type, reported on the `Not checked:` line, and `load()` is the resource loader the router supplies.
+The review reads the rules for a reviewed file from one resolver, the quality runner's explain entry, and this section is the algorithm that turns its output into the floor, the lens and the `Rule sources:` line. It is pseudocode: `ResolverError` is the caller's own error type, reported on the `Not checked:` line, and `load()` is the resource loader the router supplies. The block closes with the caller that composes the seven functions in order and the precedence mapping the route returns, which encodes the precedence table of section 8.
 
 ```python
+import json
+import subprocess
+
 # The quality runner's explain entry is the one resolver for which surfaces, skill
 # folders, checklists and rule overrides apply to a file. Review runs it and keeps no
 # surface markers of its own. HUB_ROOT is the sk-code folder this mode was loaded from.
@@ -374,6 +377,21 @@ def rule_sources_line(groups) -> str:
     return (f'Rule sources: {", ".join(redact_private(v) for v in groups["sources"]) or "none"}. '
             f'Overrides: {join(groups["overrides"])}. Refused: {join(groups["refused"])}. '
             f'Ignored: {join(groups["ignored"])}. Conflicts: {join(groups["conflicts"])}')
+
+# The caller composes the steps in this order, each one feeding the next.
+explained = resolve_rule_sources(files or [], cwd)  # None when no file resolves
+surface_evidence_labels = surface_evidence(explained, bundled_surfaces, cwd)
+rule_sources = applied_overrides(explained, known_rule_ids())
+line = rule_sources_line(rule_sources["groups"])
+
+# The precedence the route reports, the mapping of the precedence table in section 8.
+precedence = {
+    "baseline_minimums": ["security", "correctness"],
+    "fixed": "the floor of review-core.md section 8",
+    "lens_overrides": ["repository", "specific_surface", "skilled_fallback", "default_lens"],
+    "surface_overrides": ["style", "build", "test_commands", "surface_process"],
+    "on_conflict": "escalate",
+}
 ```
 
 ---

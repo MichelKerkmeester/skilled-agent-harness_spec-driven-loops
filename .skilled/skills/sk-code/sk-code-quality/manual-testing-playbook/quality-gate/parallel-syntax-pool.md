@@ -8,7 +8,7 @@ expected_resources:
   - scripts/lib/parallel-node-check.cjs
   - references/runner-contract.md
   - scripts/quality-gate.cjs
-version: 1.1.3.0
+version: 1.1.3.1
 ---
 
 # CQ-011: A Multi-File Change Gets One Syntax Finding Per Bad File From The Parallel Pool
@@ -179,7 +179,7 @@ Command transcript from steps 1 to 4, the frontmatter block with `expected_inten
 
 | File | Role |
 | --- | --- |
-| [SKILL.md](../../SKILL.md) §3 | The gate workflow line that treats a blocking run as a stop before completion |
+| [SKILL.md](../../SKILL.md) §4 | The gate workflow line that treats a blocking run as a stop before completion |
 | [parallel-node-check.cjs](../../scripts/lib/parallel-node-check.cjs) | The bounded pool helper, its input-order records and its usage errors |
 | [parallel-node-check.test.cjs](../../scripts/tests/parallel-node-check.test.cjs) | The helper unit cases this scenario replays |
 | [runner-contract.md](../../references/runner-contract.md) §2 and §5 | The built-in `syntax-node` check and the `syntax.mjs` rule |

@@ -8,7 +8,7 @@ expected_resources:
   - references/quality-config.md
   - references/runner-contract.md
   - scripts/quality-gate.cjs
-version: 1.0.2.0
+version: 1.0.2.1
 ---
 
 # CQ-012: A Repository That Switches A Hygiene Rule Off Is Not Blocked By It
@@ -195,7 +195,7 @@ Command transcript from steps 1 to 5, the frontmatter block with `expected_inten
 
 | File | Role |
 | --- | --- |
-| [SKILL.md](../../SKILL.md) §2 | The comment-hygiene gate notes and the `disableRules` paragraph |
+| [SKILL.md](../../SKILL.md) §3 | The comment-hygiene gate notes and the `disableRules` paragraph |
 | [quality-config.md](../../references/quality-config.md) §3 | The `commentHygiene.disableRules` key, its ids and its errors |
 | [runner-contract.md](../../references/runner-contract.md) §3 | The `config.hygiene` field of the verdict and the explain output |
 | [rule-overrides.md](../../../shared/references/universal/rule-overrides.md) | The section format the style document follows |

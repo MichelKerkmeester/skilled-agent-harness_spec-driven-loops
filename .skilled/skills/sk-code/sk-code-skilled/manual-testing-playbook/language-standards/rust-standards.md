@@ -23,7 +23,7 @@ expected_resources:
   - references/rust/quick-reference/collections-imports-and-errors.md
   - references/rust/quick-reference/rustdoc-and-cargo.md
   - references/rust/quick-reference/determinism-parity-and-related.md
-version: 1.0.1.0
+version: 1.0.1.1
 ---
 
 # OC-009: Rust standards routing
@@ -36,7 +36,7 @@ This document captures the routing-recall contract, execution process, source an
 
 This scenario validates `RUST` routing for `OC-009`. It focuses on confirming that the exact prompt
 below classifies as `RUST` and loads the full 17-file resource set instead of a generic or mismatched
-resource set, per `SKILL.md` §2b's machine-readable router.
+resource set, per `SKILL.md` §6's machine-readable router.
 
 ### Why This Matters
 
@@ -63,7 +63,7 @@ For an OpenCode Rust napi-rs or WASM module, apply the Rust standards and TypeSc
   `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
   `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-skilled/`, and each one
-  documents `RUST` routing per `SKILL.md` §2 or §2b.
+  documents `RUST` routing per `SKILL.md` §2 or §6.
 - Desired user-visible outcome: the bundled workflow cites the routed `RUST` resources as the
   standards evidence, not a mismatched language or generic tier.
 - Pass/fail: PASS if every listed path exists and the frontmatter surface/intent are `SKILLED`/
@@ -122,7 +122,7 @@ excerpt.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §6 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §2 | Reference-map prose entry for the `RUST` resource set |
 | [SKILL.md](../../SKILL.md) §3 | The Rust-preserves-the-TypeScript-contract rule this scenario's interop files enforce |
 

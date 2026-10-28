@@ -15,7 +15,7 @@ expected_resources:
   - assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md
   - assets/checklists/rust-checklist/p1-required.md
   - assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md
-version: 1.0.1.0
+version: 1.0.1.1
 ---
 
 # OC-007: Code quality gate routing
@@ -28,7 +28,7 @@ This document captures the routing-recall contract, execution process, source an
 
 This scenario validates `CODE_QUALITY` routing for `OC-007`. It focuses on confirming that the exact prompt
 below classifies as `CODE_QUALITY` and loads the full 9-file resource set instead of a generic or mismatched
-resource set, per `SKILL.md` §2b's machine-readable router.
+resource set, per `SKILL.md` §6's machine-readable router.
 
 ### Why This Matters
 
@@ -55,7 +55,7 @@ Run a quality gate for lint, format, naming, standards, and code smell risks in 
   `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
   `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-skilled/`, and each one
-  documents `CODE_QUALITY` routing per `SKILL.md` §2 or §2b.
+  documents `CODE_QUALITY` routing per `SKILL.md` §2 or §6.
 - Desired user-visible outcome: the bundled workflow cites the routed `CODE_QUALITY` resources as the
   standards evidence, not a mismatched language or generic tier.
 - Pass/fail: PASS if every listed path exists and the frontmatter surface/intent are `SKILLED`/
@@ -114,7 +114,7 @@ excerpt.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §6 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §2 | Reference-map prose entry for the `CODE_QUALITY` resource set |
 
 ---

@@ -7,7 +7,7 @@ expected_intent: QUALITY
 expected_resources:
   - references/runner-contract.md
   - references/quality-config.md
-version: 1.2.0.0
+version: 1.2.0.1
 ---
 
 # CQ-001: Quality Gate Routes To The Checklist
@@ -29,7 +29,7 @@ loads the set `DEFAULT_RESOURCE` names: the runner contract, the universal floor
 
 `sk-code-quality` sits between implementation and verification for every surface. If a quality-gate prompt
 is mis-routed away from its own checklist, an author-side pass could claim a gate ran without ever
-loading the P0/P1/P2 criteria that actually block completion, per `SKILL.md` §2b's thin-router note.
+loading the P0/P1/P2 criteria that actually block completion, per `SKILL.md` §9's thin-router note.
 
 ---
 
@@ -51,7 +51,7 @@ Run the comment hygiene quality gate and check P0/P1/P2 standards before marking
   `INTENT_SIGNALS` keywords (`quality gate`, `p0 p1 p2`, ...) match the prompt, and every path this
   scenario lists under `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-quality/`, and each one
-  is a resource `SKILL.md` §2 names.
+  is a resource `SKILL.md` §3 names.
 - Desired user-visible outcome: the bundled workflow loads the `DEFAULT_RESOURCE` checklist set
   before any completion claim.
 - Pass/fail: PASS if every listed path exists and the frontmatter `expected_intent` is `QUALITY`; FAIL if
@@ -93,7 +93,7 @@ excerpt.
 1. Re-run step 3 for the specific path that failed and confirm whether the file was renamed or
    removed under `references/`.
 2. Diff this scenario's `expected_resources` against `SKILL.md`'s `RESOURCE_MAP["QUALITY"]` and
-   `DEFAULT_RESOURCE` (§2b) to see whether the drift is a stale scenario file or a stale router map.
+   `DEFAULT_RESOURCE` (§9) to see whether the drift is a stale scenario file or a stale router map.
    `RESOURCE_MAP["QUALITY"]` names the repository config reference, and
    `DEFAULT_RESOURCE` names the runner contract, the universal floor and the style guide. Step 3 tracks
    the `DEFAULT_RESOURCE` set, and `expected_resources` draws from both.
@@ -112,8 +112,8 @@ excerpt.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §2b | Thin `INTENT_SIGNALS`/`RESOURCE_MAP` router this scenario exercises |
-| [SKILL.md](../../SKILL.md) §4 | The completion-claim rule this checklist gate must hold before hand-off |
+| [SKILL.md](../../SKILL.md) §9 | Thin `INTENT_SIGNALS`/`RESOURCE_MAP` router this scenario exercises |
+| [SKILL.md](../../SKILL.md) §5 | The completion-claim rule this checklist gate must hold before hand-off |
 
 ---
 
