@@ -1,12 +1,12 @@
 ---
 title: "Two-Axis Registry-Driven Routing"
-description: "`mode-registry.json` lists the modes and their packets, discriminated by `workflowMode`, `packetKind`, and `backendKind`. The hub's `SKILL.md` section 2 names `hub-router.json` as the mode vocabulary and `ROUTER.md` as the leaf-set router."
+description: "`mode-registry.json` lists the modes and their packets, discriminated by `workflowMode`, `packetKind`, and `backendKind`. The routing authority is named once in the hub's `SKILL.md` section 2, where `hub-router.json` is the mode vocabulary and `ROUTER.md` is the leaf-set router."
 trigger_phrases:
   - "two-axis registry-driven routing"
   - "sk-code workflow and surface axis"
   - "mode-registry mode and packet list"
   - "sk-code smart routing"
-version: 1.0.4.1
+version: 1.0.4.2
 ---
 
 # Two-Axis Registry-Driven Routing (sk-code)
