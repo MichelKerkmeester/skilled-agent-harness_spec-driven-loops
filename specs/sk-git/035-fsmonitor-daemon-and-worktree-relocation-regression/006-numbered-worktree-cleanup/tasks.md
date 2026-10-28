@@ -73,6 +73,23 @@ Variables: `R` is `.skilled/bin/worktree-reaper.sh`, `RT` is `.skilled/bin/tests
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Follow-up, regenerable ignored files and squash-merged branches
+
+Variables: `L` is `.skilled/skills/sk-git/scripts/worktree-provision-paths.txt`, `N` is `.skilled/skills/sk-git/scripts/worktree-naming.sh`.
+
+- [x] T023 Read every reader of `$L` and prove each skips `#` lines (`$R`, `$N` provision, `$D` `readProvisionEntries`, `worktree-naming.test.sh`, the CI setup action). Verify: `provision` over the edited list in a scratch tree warns 14 times for its 14 entries and never for a directive, and warns 15 times once a plain extra line is appended; the doctor's worktrees row lists the same 14 entries and no directive; `worktree-naming.test.sh` prints `PASS=171 FAIL=0`.
+- [x] T024 Write the reaper cases first: two listed regenerable files, a listed file beside an unlisted one, a squash-merged branch and a colliding branch (`$RT`). Verify: against the unchanged reaper and list the suite prints `PASS=96 FAIL=6` and exits 1.
+- [x] T025 Read `# regenerable: <path>` comments into the ignored-path allowlist and mark the sk-vision adapter bundle and the spec-kit Node version stamp (`$R`, `$L`). Verify: `$RT` prints `PASS=102 FAIL=0`.
+- [x] T026 Keep a branch whose changes are already in the live branch, with a reason that says it was squash-merged (`$R`). Verify: the 016 case reads `branch content already in the live branch (squash-merged); remove by hand`, the colliding 017 case still reads `branch is not merged into the live branch`.
+- [x] T027 [P] Add the six-hour sweep and `SPECKIT_WORKTREE_AUTOREAP=0` to rule 17 and trim the same number of words elsewhere (`.skilled/skills/sk-git/SKILL.md`). Verify: `wc -w` and Python `split()` give the HEAD counts (5000 and 4999) and `validate_skill_package.py` exits 0.
+- [x] T028 [P] Update the catalog entry and the reaper row in `.skilled/bin/README.md`. Verify: `validate_document.py` reports `Total issues: 0` for both files and the README reference and derived-count checks print `PASS`.
+- [x] T029 Write the sk-git v1.11.1.0 changelog entry, raise the `SKILL.md` version and sync the Hermes copy. Verify: `validate_document.py` and `frontmatter-version.mjs verify --skill sk-git` exit 0, and `sync-skills-hermes.cjs --check` prints `PASS: 67 Hermes skill copies in sync`.
+- [x] T030 Rerun every touched suite and the live dry run. Verify: the counts and the unchanged registry hash are in `implementation-summary.md`.
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
@@ -135,6 +152,9 @@ Variables: `R` is `.skilled/bin/worktree-reaper.sh`, `RT` is `.skilled/bin/tests
 - [x] CHK-021 [P0] Live dry run recorded with the registry and refs unchanged
 - [x] CHK-022 [P1] The new reaper cases fail against the HEAD reaper
 - [x] CHK-023 [P1] The guard cases fail against the HEAD guard, and the doctor cases against the HEAD module
+- [x] CHK-024 [P0] Every reader of the provisioning list skips the `# regenerable:` lines: the provisioner, the doctor, the completeness test and the reaper's own loop were each run over the edited list
+- [x] CHK-025 [P1] The follow-up reaper cases fail against the unchanged reaper (`PASS=96 FAIL=6`) and pass after it (`PASS=102 FAIL=0`)
+- [x] CHK-026 [P1] No SQLite file and no `.state/` path is on the regenerable list: the live dry run still keeps four worktrees for `.skilled/skills/.state/` files
 <!-- /ANCHOR:testing -->
 
 ---
@@ -186,8 +206,8 @@ Variables: `R` is `.skilled/bin/worktree-reaper.sh`, `RT` is `.skilled/bin/tests
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | 8/8 |
-| P1 Items | 14 | 14/14 |
+| P0 Items | 9 | 9/9 |
+| P1 Items | 16 | 16/16 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-10-27

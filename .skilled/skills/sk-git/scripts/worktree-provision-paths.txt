@@ -10,7 +10,8 @@
 # further fields name other repository-relative paths the build compiles, whose
 # tracked files count the same way. A package with a bun.lock or bun.lockb
 # and no package-lock.json is installed and built with bun. Blank lines and #
-# comments are ignored.
+# comments are ignored, except for the two comment forms that other tools read:
+# the "excluded:" and "regenerable:" markers further down.
 #
 # Order is install order: a package whose build another package consumes comes
 # first.
@@ -64,6 +65,19 @@
 # the Playwright packages from here, and its build writes the CLI entry the
 # extract pipeline runs. The install downloads no browser.
 .skilled/skills/sk-design/sk-design-md-generator/backend  dist/cli.js
+
+# Ignored files a build or install writes into a checkout, that no package line above
+# names as its output. The numbered-worktree reaper treats each as regenerable, so a finished
+# worktree holding one is still removed. Only the reaper reads these lines, and every
+# other reader of this file sees a comment. List a path only when a build or install
+# restores it exactly. A database or a session-state folder can hold work that nothing
+# rebuilds, so neither belongs here.
+#
+# regenerable: .skilled/skills/sk-vision/hooks/opencode/sk-vision.js
+# The OpenCode adapter bundle that sk-vision's build writes beside its source.
+#
+# regenerable: .skilled/skills/system-spec-kit/.node-version-marker
+# The Node version stamp spec-kit's postinstall records.
 
 # Tracked packages left out on purpose. The completeness test in
 # tests/worktree-naming.test.sh reads the path on each "excluded:" line and fails

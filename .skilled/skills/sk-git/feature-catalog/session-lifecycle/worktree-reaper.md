@@ -7,7 +7,7 @@ trigger_phrases:
   - "reap only proven inactive worktrees"
   - "stale worktree socket cleanup"
 importance_tier: "important"
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # Worktree reaper (worktree-reaper.sh)
@@ -36,10 +36,12 @@ A numbered worktree is a registered one on branch `worktrees/NNN-slug` whose fol
 
 - it is not the main checkout, not detached, not locked, and its folder exists;
 - `git status --porcelain --untracked-files=all` is empty;
-- every ignored path is a regenerable item: `node_modules`, `dist`, `build`, test and tool caches, the package outputs `worktree-provision-paths.txt` names, or a provisioned link back to the primary checkout. Anything ignored under `specs/` is kept, because it is not regenerable;
+- every ignored path is a regenerable item: `node_modules`, `dist`, `build`, test and tool caches, the package outputs `worktree-provision-paths.txt` names, a file that list marks with a `# regenerable: <path>` comment, or a provisioned link back to the primary checkout. Anything ignored under `specs/` is kept, because it is not regenerable, and so are SQLite files and the `.state/` folders, which can hold session state;
 - its branch is an ancestor of the primary checkout's `HEAD`, and no `git stash list` entry belongs to it;
 - the newest of the branch reflog, the worktree's own `logs/HEAD` and its `index` file is older than `--idle-hours` (default 48). The three times are read before any git command that might refresh the index;
 - a bounded `lsof` listing shows no process whose working directory is inside it. An empty, failed or timed-out listing counts as busy.
+
+A branch that is not an ancestor of the live branch but whose changes are already in it, as a squash merge leaves it, is kept with the reason `branch content already in the live branch (squash-merged); remove by hand`. The reaper never removes it, and it finds it by merging the branch into the live tip in memory (`git merge-tree --write-tree`) and comparing the resulting tree with the live tip's tree. A conflict, an error or a timeout counts as unmerged. The merge can write one unreachable tree object to the object store, including under `--dry-run`, and changes no ref or worktree.
 
 Removal ends the worktree's fsmonitor daemon first, then runs plain `git worktree remove` and `git branch -d`, never with force. If git refuses either one, the reaper logs keep and moves on to the next worktree. Folders under the base that match `NNN-*` but are not registered are reported as orphans and never touched. Each numbered worktree prints one stdout row, `numbered verdict=<would-reap|reaped|keep> worktree=... branch=... reason=...`, and each orphan prints `orphan path=...`; `/doctor:git` counts those rows from a dry run.
 
@@ -69,6 +71,7 @@ Before it removes a qualifying wrapper worktree, the reaper runs `fsmonitor-daem
 |---|---|---|
 | `.skilled/bin/worktree-reaper.sh` | Script | Worktree pruning gates for both lanes, orphan report, socket/marker cleanup |
 | `.skilled/bin/worktree-guard.sh` | Hook script | Starts the throttled numbered sweep at session start |
+| `.skilled/skills/sk-git/scripts/worktree-provision-paths.txt` | Config list | Names the build outputs and, through `# regenerable:` comments, the ignored files the reaper may discard |
 | `.skilled/scripts/git-hooks/lib/bounded-git.sh` | Shell library | The wall-clock bound and fsmonitor opt-out every reaper git call runs under |
 | `.skilled/bin/fsmonitor-daemon-reaper.sh` | Script | Ends a removed worktree's fsmonitor daemon before the removal |
 
@@ -76,7 +79,7 @@ Before it removes a qualifying wrapper worktree, the reaper runs `fsmonitor-daem
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/bin/tests/worktree-reaper.test.sh` | Automated test | Exercises the wrapper gate, every numbered-lane keep rule, the empty process listing, the wedged git status and the orphan report |
+| `.skilled/bin/tests/worktree-reaper.test.sh` | Automated test | Exercises the wrapper gate, every numbered-lane keep rule, the regenerable list, the squash-merge check, the empty process listing, the wedged git status and the orphan report |
 | `.skilled/bin/tests/worktree-guard.test.sh` | Automated test | Proves the hook returns at once and spawns at most one sweep per window |
 
 ---

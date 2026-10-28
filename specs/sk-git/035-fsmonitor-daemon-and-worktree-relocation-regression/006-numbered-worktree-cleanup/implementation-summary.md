@@ -62,18 +62,31 @@ Finished numbered worktrees no longer pile up. `worktree-reaper.sh --numbered` r
 
 **Docs and follow-ups.** Rule 17, the catalog entry (which wrongly said the reaper only touches `<repo>/.worktrees/`), GIT-034, the five READMEs, `.env.example`, the eleven playbook files with the false catalog line, and phase 003's Known Limitations items 2 and 4.
 
+### Follow-up: regenerable ignored files and squash-merged branches
+
+**Regenerable ignored files.** `worktree-provision-paths.txt` now carries `# regenerable: <path>` comments and the reaper reads each into its ignored-path allowlist (`.skilled/bin/worktree-reaper.sh:310`). Two files are listed. One is the sk-vision adapter bundle that sk-vision's build writes. The other is the spec-kit Node version stamp that the package's postinstall writes. Both are gitignored and both sat in nearly every worktree. No SQLite file and no `.state/` path is listed, because those can hold session state. The `specs/` refusal still runs first.
+
+**Every other reader of the list skips the new lines.** The reaper, the provisioner (`worktree-naming.sh provision`, which the CI setup action also calls), the doctor's `readProvisionEntries` and the two list readers in `worktree-naming.test.sh` each skip a line that starts with `#`. The `# excluded:` lines already rode on the same rule. The CI action also hashes the list into its cache key, so the first CI run after this change misses the cache once.
+
+**Squash-merged branches.** When a numbered branch is not an ancestor of the live tip, the reaper merges it into the tip in memory with `git merge-tree --write-tree --no-messages` and compares the resulting tree with the tip's tree (`:365`). Equal trees mean every change the branch made is already in the live branch, and the keep reason reads `branch content already in the live branch (squash-merged); remove by hand`. A conflict (exit 1), any other error and a timeout all count as unmerged, and the old reason stays. The reaper still never removes such a worktree. The in-memory merge can write one unreachable tree object into the object store, including under `--dry-run`. It changes no ref, worktree or registry entry.
+
+**Docs.** Rule 17 of `SKILL.md` records that a session-start sweep runs the numbered reaper at most every 6 hours and that `SPECKIT_WORKTREE_AUTOREAP=0` stops it (checked against `worktree-guard.sh`, window 21600 seconds). The file stays at its word count by trimming 13 words from rule 17's own phrasing and from the launch-wrapper paragraph, where the same fact about strict validation on `main` is stated in the next paragraph. The catalog entry and the `.skilled/bin/README.md` row describe both changes. The sk-git changelog gained `v1.11.1.0`, `SKILL.md` moved to that version and the Hermes copy was synced.
+
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/bin/worktree-reaper.sh` | Modified | Numbered lane, orphan report, bounded probe and git, refusal handling |
-| `.skilled/bin/tests/worktree-reaper.test.sh` | Modified | 63 new assertions: empty-listing wrapper case and the numbered fixture |
+| `.skilled/bin/worktree-reaper.sh` | Modified | Numbered lane, orphan report, bounded probe and git, refusal handling, `# regenerable:` allowlist, squash-merge check |
+| `.skilled/bin/tests/worktree-reaper.test.sh` | Modified | 63 new assertions: empty-listing wrapper case and the numbered fixture. 13 more for the regenerable files and the squash-merged branch |
+| `.skilled/skills/sk-git/scripts/worktree-provision-paths.txt` | Modified | Two `# regenerable:` lines and the comment that explains them |
 | `.skilled/bin/worktree-guard.sh` | Modified | Throttled detached sweep, switch, non-git exit fix |
 | `.skilled/bin/tests/worktree-guard.test.sh` | Created | 17 assertions |
 | `.skilled/commands/doctor/scripts/git-setup-check.cjs` | Modified | `numbered worktrees:` line |
 | `.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs` | Modified | 3 new cases |
 | `.skilled/bin/tests/fsmonitor-daemon-reaper.test.sh` | Modified | Real-daemon case runs only for a daemon that completes a status round trip |
-| `.skilled/skills/sk-git/SKILL.md` | Modified | Rule 17 (SKILL.md is at the 5000 word limit) |
+| `.skilled/skills/sk-git/SKILL.md` | Modified | Rule 17, then the sweep sentence and 13 words trimmed (SKILL.md is at the 5000 word limit), version 1.11.1.0 |
+| `.skilled/skills/sk-git/changelog/v1.11.1.0.md` | Created | Release entry for the follow-up |
+| `.hermes/skills/sk-git/SKILL.md` | Modified | Hermes copy synced from `SKILL.md` |
 | `.skilled/skills/sk-git/README.md`, `feature-catalog/feature-catalog.md`, `feature-catalog/session-lifecycle/worktree-reaper.md` | Modified | Numbered lane, bounded calls, sweep, registry-based claim |
 | `.skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md` | Modified | Cross-reference row for the guard test |
 | `.skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/` (12 files) | Modified | GIT-034 numbered dry run; catalog link in 11 files |
@@ -119,6 +132,21 @@ Every suite ran at HEAD first. The new reaper and guard tests were written befor
 The one new unresolved reference is the `bounded-git.sh` line in the git-hooks tree. The checker resolves tree names against `git ls-files`, and the file is still untracked. With a scratch copy of the index that lists it (the real index was not touched) the count returns to 5. The pre-existing failures are not caused by this phase.
 
 **Item 10, the real-daemon assertion.** The cause was not the suite's 2 second stop bound. A trace of a failing run showed git's `stop` returning at once and the daemon still alive after the reaper's one second wait. Raising `FSMON_STOP_TIMEOUT` to 30 seconds, and then adding a 15 second post-stop wait, left the case failing, so both were backed out. Separately, a fresh daemon in a clean scratch repository left `git status` waiting for over three minutes and survived `git fsmonitor--daemon stop` ("fsmonitor--daemon is not running"); it had to be ended by its pid. That is the wedge the parent packet describes, and the reaper's SIGTERM fallback (`via=term`) is the right response to it. The case now runs only when the real daemon completes a bounded `git status --porcelain` round trip, kills the daemon it started and prints `SKIP` otherwise, so a daemon that answers and is not ended by git's stop still fails. In three consecutive runs after the change, every one printed `SKIP` for that case on this loaded host (PASS=159 FAIL=0), so the `via=stop` path had no real-daemon coverage here; a quiet host runs it. I could not show the case passing on this host.
+**Follow-up before and after.** Reaper cases were written first and run against the unchanged reaper and list.
+
+| Suite | Before | After |
+|-------|--------|-------|
+| `.skilled/bin/tests/worktree-reaper.test.sh` | PASS=89 FAIL=0, exit 0 | PASS=102 FAIL=0, exit 0 |
+| `.skilled/bin/tests/worktree-guard.test.sh` | PASS=17 FAIL=0, exit 0 | PASS=17 FAIL=0, exit 0 |
+| `.skilled/bin/tests/worktree-session.test.sh` | PASS=76 FAIL=0, exit 0 | PASS=76 FAIL=0, exit 0 |
+| `.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs` | 77 pass, 0 fail | 77 pass, 0 fail, exit 0 |
+| `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | not run before | PASS=171 FAIL=0, exit 0 (it reads the edited list in two places and its assertions did not change) |
+
+**Failing first.** With the 13 new assertions in place and the reaper and list unchanged, the reaper suite printed `PASS=96 FAIL=6` and exited 1. The six failures were the would-reap row for `014-regen`, its folder and branch removal, the reason for `015-regen-mixed`, the reason for `016-squashed` and the missing `merge-tree` call in the git shim log. The collision case `017-conflict` passed before the change, as it should, because a colliding branch was always reported as unmerged. The `006-unpushed` fixture commit became a real file change, because an empty commit adds nothing and now counts as already merged.
+
+**Readers of the list.** Run over the edited list, `worktree-naming.sh provision` in a scratch tree warned 14 times for the 14 package lines and never for a directive. With one plain extra line appended it warned 15 times, so the count can tell. The doctor's worktrees row listed the same 14 entries and no directive, and the check passed. `worktree-naming.test.sh` passed.
+
+**Live dry run.** `worktree-reaper.sh --numbered --dry-run` exited 0 in about 1.2 seconds. The hashes of `git worktree list --porcelain` and `git for-each-ref` were equal before and after, for that run and for a second run with `WORKTREE_REAPER_NOW` set 30 days ahead. The first run printed 14 numbered verdict rows, all `keep ... reason=active within the last 48 hours`. The 30 day run printed: 217 and 145 not merged (a trial merge of each exits 1 and each is 6 and 9 commits ahead of the live tip), 218, 237, 240, 241 and 243 uncommitted or untracked files, 232, 234, 236 and 244 an ignored `.skilled/skills/.state/` file (a SQLite lease or a JSON generation file), and 235, 238 and 242 would be reaped. 235 and 238 were blocked before this change by `sk-vision.js`. No real worktree is squash-merged today, so that reason is proven in the scratch fixture only. Worktree 239 was detached during those two runs and printed no verdict row, as detached worktrees are report-only. A third run at the end, after another session had put 239 on its branch, printed 15 rows, all `active within the last 48 hours`, with the registry and ref hashes again equal before and after.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -135,6 +163,8 @@ The one new unresolved reference is the `bounded-git.sh` line in the git-hooks t
 | The doctor reads stdout rows, not log lines | The rows are a stable contract; the stderr text is for people |
 | The real-daemon case skips a daemon that fails a status round trip instead of lengthening a bound | Two longer bounds were tried and neither changed the outcome; the cause is a wedged daemon |
 | Rule 17 states the lane in about 80 words | `SKILL.md` is at the 5000 word limit its validator enforces, so the detail lives in the catalog entry |
+| Regenerable files are `# regenerable:` comments in the existing list, not a second file or an option | Every other reader already skips comments, and the `# excluded:` lines set the precedent, so no reader needed a change |
+| Squash detection compares a trial merge tree with the live tip's tree | It needs no patch matching and no extra option, and a conflict or error falls back to the old unmerged reason |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -152,6 +182,10 @@ The one new unresolved reference is the `bounded-git.sh` line in the git-hooks t
 | `validate-playbook-package.cjs --package .skilled/skills/sk-git/manual-testing-playbook` | `PASS package=sk-git ... violations=0 warnings=0`, exit 0 |
 | `validate_skill_package.py .skilled/skills/sk-git` | exit 0 (`package_skill.py --check: PASS`) |
 | `validate.sh <this folder> --strict` | `RESULT: PASSED`, Errors: 0, Warnings: 0 (after `repair-derived.cjs --apply` on derived drift) |
+| Follow-up: reaper, guard, session suites, doctor file, naming suite | PASS=102, PASS=17, PASS=76, 77 pass, PASS=171; each exit 0 |
+| Follow-up: new reaper cases against the unchanged reaper | `PASS=96 FAIL=6`, exit 1 |
+| Follow-up: `bash -n` and `shellcheck -x` on the reaper and its test | exit 0 each, run from the file's own directory |
+| Follow-up: `validate_skill_package.py`, `validate_document.py` on the entry, `SKILL.md`, the catalog entry and the bin README, `frontmatter-version.mjs verify --skill sk-git`, `sync-skills-hermes.cjs --check` | exit 0 each, `Total issues: 0`, `ok=84`, `PASS: 67 Hermes skill copies in sync` |
 | `validate.sh <parent> --recursive` | `RESULT: PASSED` seven times (the parent and its six children), after `repair-derived.cjs --apply` on the parent and on phase 003 |
 <!-- /ANCHOR:verification -->
 
@@ -160,8 +194,8 @@ The one new unresolved reference is the `bounded-git.sh` line in the git-hooks t
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The allowlist keeps most real worktrees here.** Compiled or bundled output that is not under `dist/` or `node_modules/`, such as `.skilled/skills/sk-vision/hooks/opencode/sk-vision.js`, counts as not regenerable, so a worktree holding it is kept for good. Add the paths the operator accepts to `_ignored_is_regenerable`, or list them in `worktree-provision-paths.txt`.
-2. **A squash-merged branch is never removed.** It is not an ancestor of the live branch, so the reaper keeps it and the operator removes it.
+1. **The allowlist still keeps some real worktrees here.** The sk-vision bundle and the Node version stamp are now listed, but four worktrees hold `.skilled/skills/.state/` files (a SQLite lease and a JSON generation file) and stay kept on purpose, because session state can hold work. Any other rebuildable file takes one `# regenerable: <path>` line in `worktree-provision-paths.txt`.
+2. **A squash-merged branch is never removed.** The reaper now says the branch was squash-merged and leaves removal to the operator. A squash merge followed by a later edit to the same lines in the live branch makes the trial merge conflict, so the branch reads as unmerged. A branch that adds nothing, such as one empty commit, also reads as squash-merged.
 3. **`bounded-git.sh` and the new guard test are untracked.** The reaper falls back to an unbounded call with fsmonitor off when the library is missing, so commit both with this phase.
 4. **Phase 005's documents are stale in places this phase fixed and did not edit.** Its Known Limitations items 1, 4 and 6 and the "README changes recommended, not made" table describe work done here.
 5. **The real-daemon case can skip.** On a host where fresh daemons wedge it prints `SKIP` and the reaper's `via=stop` path then has no real-daemon coverage in that run. A wedged daemon can also outlive the case even after the SIGTERM the skip branch sends: one such daemon, watching a deleted scratch repository, was found after the runs and ended by hand by its pid.

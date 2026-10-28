@@ -40,21 +40,21 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      ".skilled/bin/README.md",
       ".skilled/bin/worktree-reaper.sh",
       ".skilled/bin/tests/worktree-reaper.test.sh",
+      ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt",
       ".skilled/bin/worktree-guard.sh",
       ".skilled/bin/tests/worktree-guard.test.sh",
       ".skilled/commands/doctor/scripts/git-setup-check.cjs",
       ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
       ".skilled/bin/tests/fsmonitor-daemon-reaper.test.sh",
       ".skilled/skills/sk-git/SKILL.md",
+      ".skilled/skills/sk-git/changelog/v1.11.1.0.md",
+      ".hermes/skills/sk-git/SKILL.md",
       ".skilled/skills/sk-git/README.md",
       "feature-catalog/feature-catalog.md",
-      ".skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md",
-      ".skilled/bin/README.md",
-      ".skilled/scripts/git-hooks/README.md",
-      ".skilled/scripts/git-hooks/lib/README.md",
-      ".skilled/scripts/git-hooks/tests/README.md"
+      ".skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md"
     ],
     "entities": [
       {
@@ -88,6 +88,12 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
         "name": "worktree-reaper.sh",
         "kind": "script",
         "path": ".skilled/bin/worktree-reaper.sh",
@@ -97,6 +103,12 @@
         "name": "worktree-reaper.test.sh",
         "kind": "script",
         "path": ".skilled/bin/tests/worktree-reaper.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-provision-paths.txt",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt",
         "source": "derived"
       },
       {
@@ -136,9 +148,9 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
+        "name": "v1.11.1.0.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-git/README.md",
+        "path": ".skilled/skills/sk-git/changelog/v1.11.1.0.md",
         "source": "derived"
       },
       {
@@ -188,23 +200,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The reaper only removes launch-wrapper worktrees",
     "created_at": "2026-10-27T20:29:24Z",
-    "last_save_at": "2026-10-27T21:27:26.741Z",
+    "last_save_at": "2026-10-27T22:21:35.915Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e1909342f594dfee66b3bd3459dcf61d60b4492edabbc52ab0036d7436301f53",
+    "source_fingerprint": "sha256:f11bb88697cfaef961e9f5904c945f6316ab642bc923218ae36f276273f68833",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e795ec2db2bd300984b6b0a527344ab47d5fb975c64f681bd5aedbc3c2cd77ff",
       "plan.md": "6159e2eee6790fc2159f7d97e3aef20829480486bb5a811048b46d6bdf05bc5b",
-      "tasks.md": "4e074120f7e94c8a1254a76ab2aa081e351cec2e0c4ae408d949949dfb2f7b5a",
-      "implementation-summary.md": "10c8b44e0a287a4a721f62d9b22ae86a17fae35f83f0436be875ab078853f283"
+      "tasks.md": "07d878d732655bab3a73b14d2f9ecfdfea1e16f2ae9a5134e66921f0be14e2d4",
+      "implementation-summary.md": "755f298fd286bb3c586b0774b20d80f36b52092c3f550f9deec8dec1793e89fe"
     },
     "last_active_at": null
   }

@@ -13,7 +13,8 @@
 # removes, and one assertion holds it to that so a broader kill path cannot
 # return unnoticed. A second fixture repo covers the opt-in numbered lane: one
 # worktree per keep rule plus one that qualifies, and a stub lsof and a stub git
-# prove the process check and every git call fail toward keeping.
+# prove the process check and every git call fail toward keeping. The same fixture
+# covers the provisioning list's regenerable files and a squash-merged branch.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
@@ -247,15 +248,23 @@ wait "$BUSY_PID" 2>/dev/null || true
 # reason it stays. 002-ok is the one that qualifies; 001-lockref qualifies too, but a
 # ref lock file makes `branch -d` refuse, and it sorts first so a run that aborted on the
 # refusal would leave 002-ok behind.
+# Two ignored files that the repository's build and install write into every checkout. The
+# provisioning list names both as regenerable, so neither may keep a worktree. Each sits
+# beside a tracked file, which makes git report the file itself rather than its folder.
+REGEN_BUNDLE=".skilled/skills/sk-vision/hooks/opencode/sk-vision.js"
+REGEN_MARKER=".skilled/skills/system-spec-kit/.node-version-marker"
 git -C "$NUM_REPO" init -q
-mkdir -p "$NUM_REPO/.nohooks" "$NUM_REPO/specs/a"
+mkdir -p "$NUM_REPO/.nohooks" "$NUM_REPO/specs/a" "$NUM_REPO/$(dirname "$REGEN_BUNDLE")" "$NUM_REPO/$(dirname "$REGEN_MARKER")"
 git -C "$NUM_REPO" config core.hooksPath "$NUM_REPO/.nohooks"
 git -C "$NUM_REPO" config user.email t@t.t
 git -C "$NUM_REPO" config user.name t
-printf 'node_modules/\ndist/\n.pytest_cache/\n*.log\nlocal-*\n.nohooks/\n' > "$NUM_REPO/.gitignore"
+printf 'node_modules/\ndist/\n.pytest_cache/\n*.log\nlocal-*\n.nohooks/\n%s\n%s\n' \
+  "$REGEN_BUNDLE" "$REGEN_MARKER" > "$NUM_REPO/.gitignore"
 printf 'readme\n' > "$NUM_REPO/README"
 printf 'spec\n' > "$NUM_REPO/specs/a/spec.md"
-git -C "$NUM_REPO" add .gitignore README specs
+printf 'tracked\n' > "$NUM_REPO/$(dirname "$REGEN_BUNDLE")/index.js"
+printf 'tracked\n' > "$NUM_REPO/$(dirname "$REGEN_MARKER")/package.json"
+git -C "$NUM_REPO" add .gitignore README specs "$(dirname "$REGEN_BUNDLE")/index.js" "$(dirname "$REGEN_MARKER")/package.json"
 git -C "$NUM_REPO" commit -q -m init
 NUM_REPO_REAL="$(cd "$NUM_REPO" && pwd -P)"
 NUM_COMMON="$NUM_REPO_REAL/.git"
@@ -285,7 +294,9 @@ printf 'log\n' > "$NUM_REPO/.worktrees/004-specs-log/specs/a/x.log"
 num_add 005-untracked
 printf 'new\n' > "$NUM_REPO/.worktrees/005-untracked/new.txt"
 num_add 006-unpushed
-git -C "$NUM_REPO/.worktrees/006-unpushed" commit -q --allow-empty -m "unmerged work"
+printf 'unmerged\n' > "$NUM_REPO/.worktrees/006-unpushed/unmerged.txt"
+git -C "$NUM_REPO/.worktrees/006-unpushed" add unmerged.txt
+git -C "$NUM_REPO/.worktrees/006-unpushed" commit -q -m "unmerged work"
 num_add 007-process
 num_add 008-locked
 git -C "$NUM_REPO" worktree lock "$NUM_REPO/.worktrees/008-locked"
@@ -298,6 +309,30 @@ git -C "$NUM_REPO" worktree add -q -b worktrees/011-mismatch "$NUM_REPO/.worktre
 git -C "$NUM_REPO" worktree add -q --detach "$NUM_REPO/.worktrees/012-detached" HEAD
 num_add 013-ignored
 printf 'private\n' > "$NUM_REPO/.worktrees/013-ignored/local-note.txt"
+# Regenerable ignored files: both listed paths, then a listed path beside an unlisted
+# one. The unlisted file sorts after the listed one, so a run that stopped at the listed
+# path would name the wrong file.
+num_add 014-regen
+mkdir -p "$NUM_REPO/.worktrees/014-regen/$(dirname "$REGEN_BUNDLE")" "$NUM_REPO/.worktrees/014-regen/$(dirname "$REGEN_MARKER")"
+printf 'bundle\n' > "$NUM_REPO/.worktrees/014-regen/$REGEN_BUNDLE"
+printf 'v24\n' > "$NUM_REPO/.worktrees/014-regen/$REGEN_MARKER"
+num_add 015-regen-mixed
+mkdir -p "$NUM_REPO/.worktrees/015-regen-mixed/$(dirname "$REGEN_BUNDLE")"
+printf 'bundle\n' > "$NUM_REPO/.worktrees/015-regen-mixed/$REGEN_BUNDLE"
+printf 'trace\n' > "$NUM_REPO/.worktrees/015-regen-mixed/$(dirname "$REGEN_BUNDLE")/trace.log"
+# A branch squash-merged into the primary checkout is not its ancestor, and a branch whose
+# change collides with a later edit in the primary checkout is not merged at all.
+num_add 016-squashed
+printf 'squashed\n' > "$NUM_REPO/.worktrees/016-squashed/squashed.txt"
+git -C "$NUM_REPO/.worktrees/016-squashed" add squashed.txt
+git -C "$NUM_REPO/.worktrees/016-squashed" commit -q -m "squashed work"
+num_add 017-conflict
+printf 'branch side\n' > "$NUM_REPO/.worktrees/017-conflict/README"
+git -C "$NUM_REPO/.worktrees/017-conflict" commit -q -am "branch edit"
+git -C "$NUM_REPO" merge --squash worktrees/016-squashed >/dev/null
+git -C "$NUM_REPO" commit -q -m "squash of 016"
+printf 'primary side\n' > "$NUM_REPO/README"
+git -C "$NUM_REPO" commit -q -am "primary edit"
 # A folder git does not know about.
 mkdir -p "$NUM_REPO/.worktrees/099-orphan"
 printf 'precious\n' > "$NUM_REPO/.worktrees/099-orphan/notes.txt"
@@ -305,7 +340,7 @@ printf 'precious\n' > "$NUM_REPO/.worktrees/099-orphan/notes.txt"
 NUM_BUSY_PID=$!
 STUB_PIDS="$STUB_PIDS $NUM_BUSY_PID"
 sleep 0.5
-for n in 001-lockref 002-ok 004-specs-log 005-untracked 006-unpushed 007-process 008-locked 009-stash 013-ignored; do
+for n in 001-lockref 002-ok 004-specs-log 005-untracked 006-unpushed 007-process 008-locked 009-stash 013-ignored 014-regen 015-regen-mixed 016-squashed 017-conflict; do
   num_age "$n"
 done
 # 003-fresh keeps its creation times; 011-mismatch is aged under its branch's name.
@@ -339,6 +374,7 @@ run_num "$NUM_DRY_OUT" --numbered --dry-run
 expect "numbered dry-run exits 0" test "$NUM_RC" -eq 0
 expect "numbered dry-run: state unchanged" test "$NUM_STATE_BEFORE" = "$(list_state)"
 expect "numbered dry-run: names 002-ok as would-reap" grep -Eq "^numbered verdict=would-reap worktree=.*/002-ok " "$NUM_DRY_OUT"
+expect "numbered dry-run: names 014-regen as would-reap" grep -Eq "^numbered verdict=would-reap worktree=.*/014-regen " "$NUM_DRY_OUT"
 expect "numbered dry-run: starts no fsmonitor reaper" test ! -e "$NUM_FSMON_LOG"
 expect "numbered dry-run: reports the orphan folder" grep -Eq "^orphan path=.*/099-orphan$" "$NUM_DRY_OUT"
 
@@ -369,8 +405,9 @@ expect "wedged git status: run ends within a few bounds" test "$WEDGE_ELAPSED" -
 expect "wedged git status: 002-ok kept" test -d "$NUM_REPO/.worktrees/002-ok"
 expect "wedged git status: timeout recorded as the reason" grep -Eq "^numbered verdict=keep worktree=.*/002-ok .*reason=git status timed out" "$NUM_WEDGE_OUT"
 expect "git calls that read a tree run with fsmonitor off" \
-  test -z "$(grep -E ' (status|ls-files|merge-base|branch|stash|prune|remove)( |$)' "$GIT_SHIM_LOG" | grep -v 'core.fsmonitor=false' || true)"
+  test -z "$(grep -E ' (status|ls-files|merge-base|merge-tree|branch|stash|prune|remove)( |$)' "$GIT_SHIM_LOG" | grep -v 'core.fsmonitor=false' || true)"
 expect "the shim saw the reaper's status calls" grep -Eq 'core.fsmonitor=false .*status' "$GIT_SHIM_LOG"
+expect "the shim saw the reaper's merge-tree call" grep -Eq 'core.fsmonitor=false .*merge-tree' "$GIT_SHIM_LOG"
 
 # The real sweep.
 NUM_OUT="$SHIM_DIR/num-real.out"
@@ -382,10 +419,12 @@ expect "002-ok: fsmonitor reaper ran first" grep -Fq "002-ok" "$NUM_FSMON_LOG"
 expect "001-lockref: folder removed" test ! -d "$NUM_REPO/.worktrees/001-lockref"
 expect "001-lockref: branch kept after git refused -d" test -e "$NUM_COMMON/refs/heads/worktrees/001-lockref"
 expect "001-lockref: refusal logged as keep" grep -F "git refused to delete" "$NUM_OUT"
-for n in 003-fresh 004-specs-log 005-untracked 006-unpushed 007-process 008-locked 009-stash 010-human 011-folder 012-detached 013-ignored; do
+expect "014-regen: folder removed although it holds only listed regenerable files" test ! -d "$NUM_REPO/.worktrees/014-regen"
+expect "014-regen: branch removed" test ! -e "$NUM_COMMON/refs/heads/worktrees/014-regen"
+for n in 003-fresh 004-specs-log 005-untracked 006-unpushed 007-process 008-locked 009-stash 010-human 011-folder 012-detached 013-ignored 015-regen-mixed 016-squashed 017-conflict; do
   expect "$n: folder kept" test -d "$NUM_REPO/.worktrees/$n"
 done
-for b in worktrees/003-fresh worktrees/004-specs-log worktrees/005-untracked worktrees/006-unpushed worktrees/007-process worktrees/008-locked worktrees/009-stash other/010-human worktrees/011-mismatch worktrees/013-ignored; do
+for b in worktrees/003-fresh worktrees/004-specs-log worktrees/005-untracked worktrees/006-unpushed worktrees/007-process worktrees/008-locked worktrees/009-stash other/010-human worktrees/011-mismatch worktrees/013-ignored worktrees/015-regen-mixed worktrees/016-squashed worktrees/017-conflict; do
   expect "$b: branch kept" git -C "$NUM_REPO" show-ref --verify --quiet "refs/heads/$b"
 done
 expect "003-fresh: kept for recent activity" grep -Eq "^numbered verdict=keep worktree=.*/003-fresh .*reason=active within" "$NUM_OUT"
@@ -397,9 +436,12 @@ expect "008-locked: kept as locked" grep -Eq "^numbered verdict=keep worktree=.*
 expect "009-stash: kept for its stash entry" grep -Eq "^numbered verdict=keep worktree=.*/009-stash .*reason=a stash entry belongs" "$NUM_OUT"
 expect "011-folder: kept as a mismatched pair" grep -Eq "^numbered verdict=keep worktree=.*/011-folder .*reason=not a numbered branch and folder pair" "$NUM_OUT"
 expect "013-ignored: kept for the ignored file that is no provisioned link" grep -Eq "^numbered verdict=keep worktree=.*/013-ignored .*reason=ignored path is not regenerable: local-note.txt" "$NUM_OUT"
+expect "015-regen-mixed: kept for the unlisted file beside a listed one" grep -Eq "^numbered verdict=keep worktree=.*/015-regen-mixed .*reason=ignored path is not regenerable: .*/trace.log$" "$NUM_OUT"
+expect "016-squashed: kept, reported as squash-merged" grep -Eq "^numbered verdict=keep worktree=.*/016-squashed .*reason=branch content already in the live branch \(squash-merged\); remove by hand$" "$NUM_OUT"
+expect "017-conflict: kept as unmerged when its change collides with the live branch" grep -Eq "^numbered verdict=keep worktree=.*/017-conflict .*reason=branch is not merged into the live branch$" "$NUM_OUT"
 expect "orphan folder: untouched" test -f "$NUM_REPO/.worktrees/099-orphan/notes.txt"
 expect "orphan folder: reported" grep -Eq "^orphan path=.*/099-orphan$" "$NUM_OUT"
-expect "the registered folders are never reported as orphans" test -z "$(grep -E '^orphan path=.*/(00[1-9]|01[0-3])-' "$NUM_OUT" || true)"
+expect "the registered folders are never reported as orphans" test -z "$(grep -E '^orphan path=.*/(00[1-9]|01[0-7])-' "$NUM_OUT" || true)"
 expect "the stash entry survives the sweep" test -n "$(git -C "$NUM_REPO" stash list)"
 expect "main checkout untouched" test -f "$NUM_REPO/README"
 expect_not "numbered lane never forces a removal" grep -Eq 'worktree remove (-f|--force)|branch -D' "$REAPER"

@@ -22,7 +22,8 @@
 #   - registered, not the primary checkout, not detached, not locked, folder present;
 #   - `git status --porcelain --untracked-files=all` is empty;
 #   - every ignored path is a regenerable item (node_modules, dist, build caches, the
-#     provisioned links) and NOTHING ignored sits under specs/;
+#     provisioned links, and each file the provisioning list marks "# regenerable:") and
+#     NOTHING ignored sits under specs/;
 #   - its branch is an ancestor of the primary checkout's HEAD;
 #   - the newest of the branch reflog, the worktree's own HEAD log and its index file is
 #     older than --idle-hours (default 48);
@@ -31,7 +32,9 @@
 #   - no stash entry belongs to the branch.
 # Removal is plain `git worktree remove` then `git branch -d`, never forced; a refusal logs
 # keep and the run continues with the next worktree. Unregistered folders under the
-# worktree base are reported, never touched.
+# worktree base are reported, never touched. A branch that is not an ancestor but whose
+# changes are already in the live branch (a squash merge) is kept with a reason that says
+# so: only the operator removes it.
 #
 # Flags:
 #   --dry-run          Print what would be pruned; change nothing.
@@ -299,10 +302,16 @@ _remove_worktree() {
 # ───────────────────────────────────────────────────────────────
 
 # Repository-relative paths the provisioning list says are regenerable: each package's
-# node_modules and its named build output.
+# node_modules and its named build output, plus every path on a "# regenerable: <path>"
+# line. That line is a comment to every other reader of the list, so it names an ignored
+# file that a build or install rewrites without belonging to any listed package.
 PROVISION_ALLOW=""
 if [ "$NUMBERED" = "1" ] && [ -r "$PROVISION_LIST" ]; then
-  while read -r pdir pout _; do
+  while read -r pdir pout pregen _; do
+    if [ "$pdir" = "#" ] && [ "$pout" = "regenerable:" ] && [ -n "${pregen:-}" ]; then
+      PROVISION_ALLOW="$PROVISION_ALLOW$pregen"$'\n'
+      continue
+    fi
     case "$pdir" in ''|'#'*) continue ;; esac
     PROVISION_ALLOW="$PROVISION_ALLOW$pdir/node_modules"$'\n'
     [ -z "${pout:-}" ] || PROVISION_ALLOW="$PROVISION_ALLOW$pdir/$pout"$'\n'
@@ -348,6 +357,18 @@ _ignored_is_regenerable() {
   return 1
 }
 
+# Whether a branch that is not an ancestor of the live branch has its changes in it all the
+# same, which is what a squash merge leaves behind. Merging the branch into the live tip in
+# memory gives the live tip's own tree exactly when every change the branch made is already
+# there. A conflict, an error or a timeout means the content is not proven to be in, so the
+# branch counts as unmerged.
+_branch_content_in_live() {
+  local branch="$1" merged live_tree
+  merged="$(git_bounded -C "$MAIN_TOPLEVEL" merge-tree --write-tree --no-messages "$INTEGRATION" "refs/heads/$branch" 2>/dev/null)" || return 1
+  live_tree="$(git_bounded -C "$MAIN_TOPLEVEL" rev-parse --verify --quiet "$INTEGRATION^{tree}" 2>/dev/null)" || return 1
+  [ -n "$merged" ] && [ "$merged" = "$live_tree" ]
+}
+
 # Whether one symbolic link points into the primary checkout.
 _links_into_primary() {
   local target
@@ -381,7 +402,12 @@ _numbered_keep_reason() {
   fi
 
   if ! git_bounded -C "$MAIN_TOPLEVEL" merge-base --is-ancestor "refs/heads/$branch" "$INTEGRATION" >/dev/null 2>&1; then
-    printf 'branch is not merged into the live branch\n'; return 0
+    if _branch_content_in_live "$branch"; then
+      printf 'branch content already in the live branch (squash-merged); remove by hand\n'
+    else
+      printf 'branch is not merged into the live branch\n'
+    fi
+    return 0
   fi
   if [ "$STASH_KNOWN" != "1" ]; then printf 'stash list unreadable\n'; return 0; fi
   if printf '%s\n' "$STASH_LIST" | grep -Fq -e ": WIP on $branch:" -e ": On $branch:"; then
