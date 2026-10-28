@@ -118,7 +118,7 @@ describe('classifySurface', () => {
     ['.env.example', 'env'],
     ['.skilled/skills/system-spec-kit/runtime/cli/tests/x.vitest.ts', 'tests'],
     ['.skilled/hooks/session-prime.sh', 'hooks'],
-    ['.skilled/plugins/demo.js', 'plugins'],
+    ['.opencode/plugins/demo.js', 'plugins'],
     ['.skilled/bin/demo.cjs', 'bin'],
     ['.claude/agents/code.md', 'agents'],
     ['.skilled/commands/demo/run.md', 'commands'],

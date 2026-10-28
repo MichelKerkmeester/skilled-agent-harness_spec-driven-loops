@@ -6,7 +6,7 @@ trigger_phrases:
   - "chokidar narrow scope"
   - "skill.md watcher"
   - "key_files watcher"
-version: 0.8.0.13
+version: 0.8.1.0
 ---
 
 # Chokidar Narrow-Scope Watcher
@@ -19,7 +19,7 @@ Keep the advisor graph fresh without incurring the cost of watching the whole wo
 
 ## 2. HOW IT WORKS
 
-`lib/daemon/watcher.ts` boots a Chokidar watcher at daemon startup (through `lib/daemon/lifecycle.ts`) scoped to per-skill `SKILL.md` and `graph-metadata.json` paths. When a skill declares additional tracked files via `derived.key_files` in its graph metadata, those paths are added dynamically. Unrelated writes under `.skilled/plugins/`, repo source code or other skill subfolders do not trigger a reindex. Daemon hardening added reindex-storm back-pressure so rapid bursts of writes debounce into a single reindex event.
+`lib/daemon/watcher.ts` boots a Chokidar watcher at daemon startup (through `lib/daemon/lifecycle.ts`) scoped to per-skill `SKILL.md` and `graph-metadata.json` paths. When a skill declares additional tracked files via `derived.key_files` in its graph metadata, those paths are added dynamically. Unrelated writes under `.opencode/plugins/`, repo source code or other skill subfolders do not trigger a reindex. Daemon hardening added reindex-storm back-pressure so rapid bursts of writes debounce into a single reindex event.
 
 ---
 

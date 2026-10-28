@@ -1334,44 +1334,33 @@ test('F21a hub repository: a .js and a .css file under .skilled/ list the JavaSc
   for (const file of STYLE_CHECKLISTS) assert.ok(files.includes(file), `${file} left a SKILLED file`);
 }));
 
-// The hub's plugins folder is a link to a folder outside .skilled/. A plugin reached
-// through it is still the hub's own code, so it resolves to SKILLED and keeps the house style.
-test('F21b hub repository: a plugin behind the .skilled/plugins link resolves to SKILLED', () => withRepo({
+// The hub's OpenCode plugins live in .opencode/plugins beside .skilled/. A plugin there is
+// still the hub's own code, so it resolves to SKILLED and keeps the house style.
+test('F21b hub repository: a plugin in .opencode/plugins resolves to SKILLED', () => withRepo({
   hub: 'inside',
   change: { '.opencode/plugins/a.js': 'module.exports = 1;\n' },
-  links: { '.skilled/plugins': '../.opencode/plugins' },
 }, (repo) => {
   const { verdict } = assertSnapshotUnchanged(repo, () => repo.run(['--files', '.opencode/plugins/a.js']));
   assert.deepEqual(surfaceOf(verdict, '.opencode/plugins/a.js'), ['SKILLED']);
   const files = checklistFiles(verdict);
-  for (const file of STYLE_CHECKLISTS) assert.ok(files.includes(file), `${file} left a linked plugin`);
+  for (const file of STYLE_CHECKLISTS) assert.ok(files.includes(file), `${file} left a plugin`);
 }));
 
-// A plugins link whose target holds the hub would make every file under it hub code, so a
-// target that is an ancestor of .skilled/ is not read as the plugins folder at all.
-for (const target of ['..', '../..']) {
-  test(`F21c hub repository: a .skilled/plugins link to ${target} claims no other file`, () => withRepo({
-    hub: 'inside',
-    change: { '.opencode/agents/b.js': 'module.exports = 1;\n', 'vendor/.opencode/d.js': 'module.exports = 1;\n' },
-    links: { '.skilled/plugins': target },
-  }, (repo) => {
-    const { verdict } = assertSnapshotUnchanged(repo, () => repo.run(['--files', '.opencode/agents/b.js', 'vendor/.opencode/d.js']));
-    assert.deepEqual(surfaceOf(verdict, '.opencode/agents/b.js'), ['UNKNOWN']);
-    assert.deepEqual(surfaceOf(verdict, 'vendor/.opencode/d.js'), ['UNKNOWN']);
-  }));
-}
-
-// A plugins link that dangles or loops resolves to no folder of hub code, and the run
-// still reads every other file the way it would without the link.
-test('F21d hub repository: a dangling or looping .skilled/plugins link changes no surface', () => {
-  for (const links of [{ '.skilled/plugins': '../.opencode/missing' }, { '.skilled/plugins': 'plugins' }]) {
-    withRepo({ hub: 'inside', change: { '.opencode/agents/b.js': 'module.exports = 1;\n', '.skilled/tools/x.js': 'module.exports = 1;\n' }, links }, (repo) => {
-      const { verdict } = assertSnapshotUnchanged(repo, () => repo.run(['--files', '.opencode/agents/b.js', '.skilled/tools/x.js']));
-      assert.deepEqual(surfaceOf(verdict, '.opencode/agents/b.js'), ['UNKNOWN']);
-      assert.deepEqual(surfaceOf(verdict, '.skilled/tools/x.js'), ['SKILLED']);
-    });
-  }
-});
+// Only the plugins folder is hub code. Another .opencode folder, or a nested .opencode
+// elsewhere, claims nothing, and a missing plugins folder changes no other surface.
+test('F21c hub repository: other .opencode files resolve to no surface', () => withRepo({
+  hub: 'inside',
+  change: {
+    '.opencode/agents/b.js': 'module.exports = 1;\n',
+    'vendor/.opencode/plugins/d.js': 'module.exports = 1;\n',
+    '.skilled/tools/x.js': 'module.exports = 1;\n',
+  },
+}, (repo) => {
+  const { verdict } = assertSnapshotUnchanged(repo, () => repo.run(['--files', '.opencode/agents/b.js', 'vendor/.opencode/plugins/d.js', '.skilled/tools/x.js']));
+  assert.deepEqual(surfaceOf(verdict, '.opencode/agents/b.js'), ['UNKNOWN']);
+  assert.deepEqual(surfaceOf(verdict, 'vendor/.opencode/plugins/d.js'), ['UNKNOWN']);
+  assert.deepEqual(surfaceOf(verdict, '.skilled/tools/x.js'), ['SKILLED']);
+}));
 
 // The same row still lists for this repository's own spec docs, which resolve to no surface, so
 // the scope is the repository boundary and not the file's label.

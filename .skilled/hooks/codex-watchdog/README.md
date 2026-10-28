@@ -41,7 +41,7 @@ The log is capped at 256 KB (truncated on overflow). The plugin never throws, ne
 
 | Runtime | Adapter | Event / wiring | Delivery |
 |---|---|---|---|
-| **OpenCode** | `.skilled/plugins/codex-hooks-watchdog.js` (mirrored at `opencode/`) | Plugin `event` on `session.created` | Bounded workspace log only. Never stdout/stderr, never model context, never a thrown error. |
+| **OpenCode** | `.opencode/plugins/codex-hooks-watchdog.js` (mirrored at `opencode/`) | Plugin `event` on `session.created` | Bounded workspace log only. Never stdout/stderr, never model context, never a thrown error. |
 | **Claude** | — | — | Not applicable. Claude hooks are repo-local and cannot drift. |
 | **Codex** | — | — | Not applicable. Codex is the *observed* runtime, not the observing one. |
 | **Devin** | — | — | Not applicable. |
@@ -65,7 +65,7 @@ codex-watchdog/
 
 | File | Responsibility |
 |---|---|
-| `.skilled/plugins/codex-hooks-watchdog.js` | The plugin. Exports `MkCodexHooksWatchdogPlugin(ctx)`. On `session.created`, dedupes by session ID, runs `install-codex-hooks.mjs --check` (5s timeout, `stdio: 'ignore'`), and logs drift to `.skilled/logs/codex-hooks-watchdog.log` (256 KB cap). Fail-open on every error path. |
+| `.opencode/plugins/codex-hooks-watchdog.js` | The plugin. Exports `MkCodexHooksWatchdogPlugin(ctx)`. On `session.created`, dedupes by session ID, runs `install-codex-hooks.mjs --check` (5s timeout, `stdio: 'ignore'`), and logs drift to `.skilled/logs/codex-hooks-watchdog.log` (256 KB cap). Fail-open on every error path. |
 | `.skilled/bin/install-codex-hooks.mjs` | The Codex hook installer. `--check` is the non-mutating verification mode the watchdog calls; the operator runs it without `--check` to repair drift. Not in this folder. |
 
 ---
@@ -99,7 +99,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 
 ```bash
 # Verify the plugin loads without error
-node -e "import('./.skilled/plugins/codex-hooks-watchdog.js').then(m => console.log('ok', typeof m.default))"
+node -e "import('./.opencode/plugins/codex-hooks-watchdog.js').then(m => console.log('ok', typeof m.default))"
 ```
 
 Expected result: `ok object`, the dual plugin export.
@@ -107,7 +107,7 @@ Expected result: `ok object`, the dual plugin export.
 ```bash
 # Verify the kill switch short-circuits
 CODEX_HOOKS_WATCHDOG_DISABLED=1 node -e "
-  import('./.skilled/plugins/codex-hooks-watchdog.js').then(async m => {
+  import('./.opencode/plugins/codex-hooks-watchdog.js').then(async m => {
     const plugin = await m.default.server({ directory: process.cwd() });
     // session.created with disabled flag -> no log written, no throw
     await plugin.event({ event: { type: 'session.created', sessionID: 'test' } });
@@ -131,5 +131,5 @@ Expected result: exit 0 when hooks are in sync; non-zero on drift. The watchdog 
 
 - [`../README.md`](../README.md): the unified hooks tree this concern lives in, with the full kill-switch index and coverage matrix.
 - [`../shared/README.md`](../shared/README.md): the shared kill-switch resolver the plugin uses.
-- [`../../plugins/README.md`](../../plugins/README.md): the OpenCode plugins index.
+- [`../../../.opencode/plugins/README.md`](../../../.opencode/plugins/README.md): the OpenCode plugins index.
 - [`../../bin/install-codex-hooks.mjs`](../../bin/install-codex-hooks.mjs): the Codex hook installer whose `--check` mode the watchdog calls.

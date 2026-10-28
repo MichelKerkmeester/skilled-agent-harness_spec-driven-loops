@@ -19,7 +19,7 @@ contextType: "reference"
 
 The concern has two faces that share one checker core (`dist-freshness.cjs`):
 
-- **OpenCode plugin** (`.skilled/plugins/system-dist-freshness-guard.js`) owns the *projection*: the signal that reaches the agent mid-session. It checks all watched packages at session start, re-checks on risky Bash dispatches, invalidates on source edits, and injects a bounded brief into the system context per turn through a short-lived cache.
+- **OpenCode plugin** (`.opencode/plugins/system-dist-freshness-guard.js`) owns the *projection*: the signal that reaches the agent mid-session. It checks all watched packages at session start, re-checks on risky Bash dispatches, invalidates on source edits, and injects a bounded brief into the system context per turn through a short-lived cache.
 - **Per-runtime shell check** (`check-dist-staleness.sh`, a Python 3 script despite the `.sh` suffix) backs the editor runtimes. It runs edited-file-scoped on each PostToolUse and cross-package once per SessionStart, surfacing a bounded banner on stdout.
 
 Both faces fail open: a check error, a missing checker, a spawn failure, or a build failure leaves the existing build in place and never blocks the session.
@@ -61,7 +61,7 @@ The coverage matrix marks the *projection* OpenCode-owned: the system-context in
 
 | Runtime | Adapter | Event / wiring | Delivery |
 |---|---|---|---|
-| **OpenCode** | `.skilled/plugins/system-dist-freshness-guard.js` (mirrored at `opencode/`) | Plugin `event` on `session.created` / teardown; `tool.execute.before` for Bash and mutating tools; `experimental.chat.system.transform` per turn | Bounded brief injected into `output.system`; audit log only, never stdout/stderr |
+| **OpenCode** | `.opencode/plugins/system-dist-freshness-guard.js` (mirrored at `opencode/`) | Plugin `event` on `session.created` / teardown; `tool.execute.before` for Bash and mutating tools; `experimental.chat.system.transform` per turn | Bounded brief injected into `output.system`; audit log only, never stdout/stderr |
 | **Claude** | `claude/check-dist-staleness.sh` (symlink → `sk-code-quality/scripts/`) | PostToolUse (single-file) + SessionStart (`--all`) | Bounded stdout banner; always exits 0 |
 | **Codex** | `codex/check-dist-staleness.sh` (symlink) | PostToolUse (single-file) + SessionStart (`--all`) | Bounded stdout banner |
 | **Cursor** | `cursor/check-dist-staleness.sh` (symlink) | PostToolUse (single-file) + SessionStart (`--all`) | Bounded stdout banner |
@@ -81,7 +81,7 @@ dist-freshness/
 +-- codex/    check-dist-staleness.sh  (symlink)
 +-- cursor/   check-dist-staleness.sh  (symlink)
 +-- devin/    check-dist-staleness.sh  (symlink)
-`-- opencode/ system-dist-freshness-guard.js (browsability symlink -> .skilled/plugins/system-dist-freshness-guard.js)
+`-- opencode/ system-dist-freshness-guard.js (browsability symlink -> .opencode/plugins/system-dist-freshness-guard.js)
 ```
 
 ---
@@ -90,7 +90,7 @@ dist-freshness/
 
 | File | Responsibility |
 |---|---|
-| `.skilled/plugins/system-dist-freshness-guard.js` | The OpenCode plugin. Exports `MkDistFreshnessGuardPlugin(ctx)`. Session-start refresh, risky-Bash refresh, mutation invalidation, per-turn system-context injection (120s TTL cache), bounded audit log. Fail-open on every path. |
+| `.opencode/plugins/system-dist-freshness-guard.js` | The OpenCode plugin. Exports `MkDistFreshnessGuardPlugin(ctx)`. Session-start refresh, risky-Bash refresh, mutation invalidation, per-turn system-context injection (120s TTL cache), bounded audit log. Fail-open on every path. |
 | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` | The per-runtime shell check (Python 3). Single-file PostToolUse and `--all` SessionStart modes; stdout banner; session-start auto-rebuild. Always exits 0. |
 | `.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs` | The shared checker core both faces call: `checkAllFreshness`, `check-file`, `check-all`, `formatWarning`, `formatCheckError`, `packageForSourceFile`. Not in this folder. |
 | `.skilled/hooks/shared/hook-flags.cjs` | The shared kill-switch resolver the plugin imports (`isHookEnabled('dist-freshness')`). The shell check re-implements the same resolution from `hook-flags.env`. |
@@ -120,7 +120,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 | Output | The plugin never writes stdout/stderr (TUI corruption); it logs to a bounded workspace log and injects through `output.system`. The shell check prints a bounded stdout banner and always exits 0. |
 | Bounded | Plugin: 120s diagnostic TTL, 256 KB log (rotated), 1000-session LRU, 8 diagnostic lines. Shell: 8s checker timeout, 180s rebuild timeout. |
 | Imports | The plugin imports Node builtins, `../hooks/shared/hook-flags.cjs`, and `../skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs`. The shell check shells out to the same `.cjs` via `node`. Nothing outside the repo. |
-| Real code | Stays in `.skilled/plugins/` and `sk-code-quality/scripts/`; the hub entries are relative symlinks. |
+| Real code | Stays in `.opencode/plugins/` and `sk-code-quality/scripts/`; the hub entries are relative symlinks. |
 
 ---
 
@@ -128,7 +128,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 
 ```bash
 # Verify the OpenCode plugin loads without error
-node -e "import('./.skilled/plugins/system-dist-freshness-guard.js').then(m => console.log('ok', typeof m.default))"
+node -e "import('./.opencode/plugins/system-dist-freshness-guard.js').then(m => console.log('ok', typeof m.default))"
 ```
 
 Expected result: `ok object`, the dual plugin export.
@@ -153,5 +153,5 @@ Expected result: `exit: 0`, no output.
 
 - [`../README.md`](../README.md): the unified hooks tree this concern lives in, with the full kill-switch index and coverage matrix.
 - [`../shared/README.md`](../shared/README.md): the shared kill-switch resolver the plugin uses.
-- [`../../plugins/README.md`](../../plugins/README.md): the OpenCode plugins folder that loads `system-dist-freshness-guard.js`.
+- [`../../../.opencode/plugins/README.md`](../../../.opencode/plugins/README.md): the OpenCode plugins folder that loads `system-dist-freshness-guard.js`.
 - [`../../skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh`](../../skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh): the per-runtime shell check's real home.

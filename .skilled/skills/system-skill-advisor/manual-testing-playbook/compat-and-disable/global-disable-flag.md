@@ -6,7 +6,7 @@ trigger_phrases:
   - "global disable flag"
   - "global disable"
   - "global"
-version: 0.8.1.0
+version: 0.8.2.0
 id: CP-003
 category: compat_and_disable
 stage: routing
@@ -130,7 +130,7 @@ tail -n 1 "$DIAG"
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`
 - `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`
-- `.skilled/plugins/system-skill-advisor.js`
+- `.opencode/plugins/system-skill-advisor.js`
 - `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`
 
 ---

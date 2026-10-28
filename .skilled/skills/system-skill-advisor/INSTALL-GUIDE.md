@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor Install + Setup Guide"
 description: "Bootstrap, verification, runtime hooks, local scorer, rollback, operator notes and reference commands for the daemon-backed skill advisor CLI."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Skill Advisor Install + Setup Guide
@@ -123,7 +123,7 @@ The prompt-time brief ships with the repository, so there is nothing to register
 | Codex and Devin | shims at `.skilled/skills/system-spec-kit/runtime/hooks/codex/user-prompt-submit.ts` and `.../devin/user-prompt-submit.ts`, which delegate to the Claude shim |
 | Cursor | `.skilled/skills/system-spec-kit/runtime/hooks/cursor/user-prompt-submit.ts` |
 | Pi | `.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts`, loaded as a Pi extension through the symlink at `.pi/extensions/prompt-advisor.ts` |
-| OpenCode | `.skilled/plugins/system-skill-advisor.js` |
+| OpenCode | `.opencode/plugins/system-skill-advisor.js` |
 
 Every surface ends at the same stable entrypoint, the CLI:
 

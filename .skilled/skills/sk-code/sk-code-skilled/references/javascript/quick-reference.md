@@ -8,7 +8,7 @@ trigger_phrases:
   - "jsdoc template pattern"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.11
+version: 1.0.1.0
 ---
 
 # JavaScript Quick Reference
@@ -158,7 +158,7 @@ module.exports = {
 ## 6. EXPORT PATTERN TEMPLATE
 
 Use this template for non-plugin `.js/.cjs` utility modules. For
-`.skilled/plugins/`, use ESM instead.
+`.opencode/plugins/`, use ESM instead.
 
 ```javascript
 module.exports = {

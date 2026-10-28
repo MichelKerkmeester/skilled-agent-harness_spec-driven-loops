@@ -1,1 +1,1 @@
-../../../plugins/system-completion-sentinel.js
+../../../../.opencode/plugins/system-completion-sentinel.js

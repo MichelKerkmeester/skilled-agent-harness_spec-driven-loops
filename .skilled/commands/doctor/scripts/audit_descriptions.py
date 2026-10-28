@@ -6,12 +6,13 @@
 """
 Audit the total description-budget consumption across the authored skill,
 command and agent surfaces. The total is the authoring surface, not exactly
-the list Claude Code loads: it includes the runtime-exclusive command
+the list Claude Code loads: it includes the OpenCode-native command
 goal-opencode.md, which is never mirrored into .claude/commands.
 
 Surfaces walked:
 - .skilled/skills/<name>/SKILL.md            (YAML frontmatter)
 - .skilled/commands/**/<name>.md             (YAML frontmatter)
+- .opencode/commands/<name>.md               (OpenCode-native files only, not links)
 - .skilled/agents/<name>.md                  (YAML frontmatter)
 - .claude/agents/<name>.md                   (YAML frontmatter, often a symlink)
 
@@ -234,7 +235,11 @@ def walk_commands(repo: Path) -> List[Item]:
     base = repo / ".skilled" / "commands"
     if not base.is_dir():
         return items
-    for cmd in sorted(base.rglob("*.md")):
+    # A runtime-native command is a real file beside that runtime's links onto the
+    # canonical tree, so only the real files there are new to the audit.
+    native_root = repo / ".opencode" / "commands"
+    native = sorted(p for p in native_root.glob("*.md") if not p.is_symlink()) if native_root.is_dir() else []
+    for cmd in sorted(base.rglob("*.md")) + native:
         # Skip nested asset markdown files
         if "assets" in cmd.parts or "scripts" in cmd.parts:
             continue
@@ -245,7 +250,7 @@ def walk_commands(repo: Path) -> List[Item]:
         desc = parse_yaml_frontmatter_description(text)
         if desc is None:
             continue
-        rel = cmd.relative_to(base)
+        rel = cmd.relative_to(native_root if cmd.parent == native_root else base)
         # Name: use folder/basename for namespaced commands (e.g., "memory/save")
         if rel.parent != Path("."):
             display_name = f"{rel.parent}/{rel.stem}"

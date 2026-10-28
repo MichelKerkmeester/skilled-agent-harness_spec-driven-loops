@@ -129,7 +129,7 @@ function piRegistrations(): Registration[] {
 
 // OpenCode has no source-hook adapter tree either (hook-system.md ss2): the
 // prompt-time advisor and the Gate-3 enforcement hook are both plain plugin
-// files discovered from `.skilled/plugins/`.
+// files discovered from `.opencode/plugins/`.
 function openCodeRegistrations(): Registration[] {
   return [
     { runtime: 'opencode', event: 'plugin', path: resolve(repoRoot, '.opencode/plugins/system-skill-advisor.js') },

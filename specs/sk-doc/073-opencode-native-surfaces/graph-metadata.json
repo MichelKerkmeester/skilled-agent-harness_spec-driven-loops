@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/073-opencode-native-surfaces",
+  "spec_folder": "sk-doc/073-opencode-native-surfaces",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode native surfaces",
+      "move goal opencode command into opencode only",
+      "opencode native surfaces plan",
+      "opencode native surfaces tasks",
+      "opencode native surfaces acceptance criteria",
+      "opencode native surfaces implementation summary"
+    ],
+    "key_topics": [
+      "opencode",
+      "native",
+      "surfaces",
+      "move",
+      "goal",
+      "command",
+      "only",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".opencode/commands/goal-opencode.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/command-scope.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+      ".opencode/SYNC.md",
+      ".skilled/commands/README.txt",
+      ".opencode/commands/local-skilled-alignment.md",
+      ".skilled/bin/tests/opencode-compat-layout.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-opencode.md",
+        "kind": "doc",
+        "path": ".opencode/commands/goal-opencode.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-runtime-mirrors.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-scope.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/command-scope.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "quality-gate.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".opencode/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "local-skilled-alignment.md",
+        "kind": "doc",
+        "path": ".opencode/commands/local-skilled-alignment.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-compat-layout.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/opencode-compat-layout.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Both",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/goal-opencode` works only in OpenCode, yet its file sits at `.skilled/commands/goal-opencode.md` because `.opencode/commands` is one symlink to the whole shared command tree",
+    "created_at": "2026-10-28T15:46:17Z",
+    "last_save_at": "2026-10-28T16:21:13.494Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8cfc6b4d773cf3b48e4a746fbc024f1f4181b731e16efbab0c5649720fefade9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "012bb93732b69b834b2503ba255f55201523037e58d1f5f15063450d235c6fe9",
+      "plan.md": "9ff91d5a2f4e8adc8a83355cb026fd40fe5284a949f4a15f32f34717274c7cd5",
+      "tasks.md": "58515227be6cfb58d9830470a343ebc03f59273d4f6739a461423deea2339830",
+      "implementation-summary.md": "bb87a41f3ff3bb4c5d875b24816c621614427fbd10bad1a36840cd3c3fafaed4"
+    },
+    "last_active_at": null
+  }
+}

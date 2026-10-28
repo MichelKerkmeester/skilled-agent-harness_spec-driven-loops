@@ -1,1 +1,1 @@
-../../../plugins/session-relaunch.js
+../../../../.opencode/plugins/session-relaunch.js

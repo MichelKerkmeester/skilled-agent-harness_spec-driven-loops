@@ -132,7 +132,7 @@ Expected result: all tests pass (default-on, master switch, per-concern switch, 
 `hook-adapter-shared.cjs` is covered by its consumers' own suites:
 
 ```bash
-node --test .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs .skilled/plugins/tests/claude-task-dispatch-guard.test.cjs
+node --test .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs
 ```
 
 Expected result: all tests pass.

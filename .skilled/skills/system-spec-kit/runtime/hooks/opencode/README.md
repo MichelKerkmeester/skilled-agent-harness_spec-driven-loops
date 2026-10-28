@@ -16,7 +16,7 @@ trigger_phrases:
 
 `opencode/` holds one file, `system-spec-gate.js`. It is the OpenCode transport adapter over the runtime-neutral Gate-3 policy core, kept here so it sits beside the other per-runtime hook folders.
 
-The file is the same artifact as `.skilled/plugins/system-spec-gate.js`, which OpenCode loads. Its relative imports are therefore written against the plugins directory, not this folder, so they resolve to `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` for policy and `.skilled/hooks/shared/hook-flags.cjs` for the kill switches. The file is real ESM, so it reaches the CommonJS flag module through `createRequire`.
+The file is the same artifact as `.opencode/plugins/system-spec-gate.js`, which OpenCode loads. Its relative imports are therefore written against the plugins directory, not this folder, so they resolve to `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` for policy and `.skilled/hooks/shared/hook-flags.cjs` for the kill switches. The file is real ESM, so it reaches the CommonJS flag module through `createRequire`.
 
 | File | Responsibility |
 |---|---|
@@ -75,7 +75,7 @@ With `SYSTEM_SPEC_GATE_ENFORCE=1` set, a Write or Edit whose gate is open and un
 Run from the repository root.
 
 ```bash
-node --test .skilled/plugins/tests/system-spec-gate.test.cjs
+node --test .opencode/plugins/tests/system-spec-gate.test.cjs
 ```
 
 Expected result: the regression suite reports every test passing. It loads the plugin and the core directly, needs no live OpenCode session, and pins the kill-switch ordering plus the normal deferral path.
@@ -86,4 +86,4 @@ Expected result: the regression suite reports every test passing. It loads the p
 
 - [Hooks README](../README.md)
 - [Spec-gate core README](../lib/spec-gate/README.md)
-- [Plugins README](../../../../../plugins/README.md)
+- [Plugins README](../../../../../../.opencode/plugins/README.md)

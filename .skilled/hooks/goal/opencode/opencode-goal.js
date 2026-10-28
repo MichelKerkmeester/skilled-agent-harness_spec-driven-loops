@@ -1,1 +1,1 @@
-../../../plugins/opencode-goal.js
+../../../../.opencode/plugins/opencode-goal.js

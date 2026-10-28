@@ -8,7 +8,7 @@ trigger_phrases:
   - "opencode plugin dispose"
   - "startup guard warnings"
   - "session teardown sweep"
-version: 1.0.1.0
+version: 1.0.2.0
 id: plugins-and-hooks-session-cleanup-plugin
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -20,7 +20,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-`.skilled/plugins/session-cleanup.js` is an OpenCode plugin that runs bounded startup guards
+`.opencode/plugins/session-cleanup.js` is an OpenCode plugin that runs bounded startup guards
 on `session.created` and a session-scoped teardown sweep on `dispose()`, without ever writing
 directly into the OpenCode TUI. On `session.created` it shells out (via `spawnSync`, bounded to
 an 8 second timeout) to `.skilled/bin/worktree-guard.sh` and `.skilled/bin/check-git-hooks.sh`,
@@ -46,8 +46,8 @@ targets the same underlying cleanup script the plugin's `dispose()` calls.
 ## 2. SCENARIO CONTRACT
 
 - Preconditions:
-  - Plugin file exists at `.skilled/plugins/session-cleanup.js` (270 lines).
-  - Test file exists at `.skilled/plugins/tests/session-cleanup.test.cjs` (391 lines, `node:test`).
+  - Plugin file exists at `.opencode/plugins/session-cleanup.js` (270 lines).
+  - Test file exists at `.opencode/plugins/tests/session-cleanup.test.cjs` (391 lines, `node:test`).
   - Shared shell scripts exist: `.skilled/scripts/session-cleanup.sh` (191 lines),
     `.skilled/bin/worktree-guard.sh` (50 lines), `.skilled/bin/check-git-hooks.sh` (142 lines).
   - Node supports the built-in `node:test` runner (verified on Node v22.23.1 in this run).
@@ -106,7 +106,7 @@ OpenCode fires the `session.created` event when a new session starts
 1. Run the plugin's Node unit test suite:
 
 ```bash
-node --test .skilled/plugins/tests/session-cleanup.test.cjs
+node --test .opencode/plugins/tests/session-cleanup.test.cjs
 ```
 
 Expected: `# tests 13`, `# suites 3`, `# pass 13`, `# fail 0`.
@@ -133,7 +133,7 @@ import { pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
 
 const REPO_ROOT = process.cwd();
-const PLUGIN_PATH = resolve(REPO_ROOT, '.skilled/plugins/session-cleanup.js');
+const PLUGIN_PATH = resolve(REPO_ROOT, '.opencode/plugins/session-cleanup.js');
 const plugin = (await import(pathToFileURL(PLUGIN_PATH).href)).default;
 
 // Point the plugin's guard/cleanup working directory (its `directory` context) at a
@@ -232,14 +232,14 @@ Capture, for every step in the Commands sequence above:
 
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- Plugin source: `.skilled/plugins/session-cleanup.js`
-- Plugin unit test: `.skilled/plugins/tests/session-cleanup.test.cjs`
+- Plugin source: `.opencode/plugins/session-cleanup.js`
+- Plugin unit test: `.opencode/plugins/tests/session-cleanup.test.cjs`
 - Cleanup script (session-scoped descendant sweep): `.skilled/scripts/session-cleanup.sh`
 - Startup guard (worktree isolation warning): `.skilled/bin/worktree-guard.sh`
 - Startup guard (git hooks symlink integrity): `.skilled/bin/check-git-hooks.sh`
 - Claude Code hook wiring: `.claude/settings.json` (`SessionEnd` hook)
 
-Provenance: .skilled/plugins/tests/session-cleanup.test.cjs
+Provenance: .opencode/plugins/tests/session-cleanup.test.cjs
 
 ---
 

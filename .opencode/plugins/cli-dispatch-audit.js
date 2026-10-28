@@ -24,7 +24,7 @@ import { createRequire } from 'node:module';
 
 import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
-// The audit core lives outside .skilled/plugins/ so this file can remain a thin,
+// The audit core lives outside .opencode/plugins/ so this file can remain a thin,
 // default-export-only OpenCode plugin while the Claude hook consumes the same logic.
 import * as dispatchAuditCore from '../hooks/dispatch/lib/dispatch-audit.mjs';
 // The same engine the Claude PreToolUse adapter runs, so a rule enforced there is enforced

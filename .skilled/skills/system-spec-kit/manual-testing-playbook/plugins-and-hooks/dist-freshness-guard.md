@@ -6,7 +6,7 @@ trigger_phrases:
   - "dist freshness guard"
   - "session.created stale dist warning"
   - "stale compiled dist"
-version: 1.0.1.0
+version: 1.0.2.0
 id: plugins-and-hooks-dist-freshness-guard
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -57,7 +57,7 @@ the real repository state.
   injection channel -- never stdout/stderr, (c) refreshes on `session.created` and on a risky
   Bash command, and (d) the Claude-side `SessionStart` wrapper agrees with the same finding.
 - Preconditions: repository checked out at its current commit; Node available on `PATH`;
-  `.skilled/plugins/system-dist-freshness-guard.js` and
+  `.opencode/plugins/system-dist-freshness-guard.js` and
   `.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs` present.
 - Real user-facing trigger: starting a new OpenCode session (fires `session.created`), or
   running a Bash command containing `validate.sh` or `opencode run` (fires the risky-bash
@@ -91,7 +91,7 @@ confirm the plugin (a) detects real stale/fresh dist state for every watched
 1. Run the plugin's own regression suite:
 
    ```bash
-   node .skilled/plugins/tests/system-dist-freshness-guard.test.cjs
+   node .opencode/plugins/tests/system-dist-freshness-guard.test.cjs
    ```
 
    Expected: TAP output, `# tests 15`, `# pass 15`, `# fail 0`.
@@ -113,7 +113,7 @@ confirm the plugin (a) detects real stale/fresh dist state for every watched
    (async () => {
      const { pathToFileURL } = require("node:url");
      const path = require("node:path");
-     const url = pathToFileURL(path.join(process.cwd(), ".skilled/plugins/system-dist-freshness-guard.js")).href;
+     const url = pathToFileURL(path.join(process.cwd(), ".opencode/plugins/system-dist-freshness-guard.js")).href;
      const mod = await import(url);
      const hooks = await mod.default.server({ directory: process.cwd() });
      const output = { system: [] };
@@ -134,7 +134,7 @@ confirm the plugin (a) detects real stale/fresh dist state for every watched
    (async () => {
      const { pathToFileURL } = require("node:url");
      const path = require("node:path");
-     const url = pathToFileURL(path.join(process.cwd(), ".skilled/plugins/system-dist-freshness-guard.js")).href;
+     const url = pathToFileURL(path.join(process.cwd(), ".opencode/plugins/system-dist-freshness-guard.js")).href;
      const mod = await import(url);
      const hooks = await mod.default.server({ directory: process.cwd() });
      const captured = [];
@@ -194,8 +194,8 @@ Capture, for every step in the Commands sequence above:
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- Plugin: `.skilled/plugins/system-dist-freshness-guard.js`
-- Plugin unit test: `.skilled/plugins/tests/system-dist-freshness-guard.test.cjs`
+- Plugin: `.opencode/plugins/system-dist-freshness-guard.js`
+- Plugin unit test: `.opencode/plugins/tests/system-dist-freshness-guard.test.cjs`
 - Shared core: `.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs`
 - Claude `SessionStart` wrapper: `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh`
 - Claude `PostToolUse(Write|Edit)` hook: `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`
@@ -203,7 +203,7 @@ Capture, for every step in the Commands sequence above:
 - Hook wiring: `.claude/settings.json` (`SessionStart` and `PostToolUse` blocks)
 - Guard audit log (runtime artifact, not source): `.skilled/logs/dist-freshness-guard.log`
 
-Provenance: .skilled/plugins/tests/system-dist-freshness-guard.test.cjs
+Provenance: .opencode/plugins/tests/system-dist-freshness-guard.test.cjs
 
 ---
 

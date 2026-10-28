@@ -28,11 +28,11 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
 
 | Surface | Path | Role |
 |---|---|---|
-| Plugin | `.skilled/plugins/opencode-goal.js` | Auto-loaded OpenCode plugin with `event`, `experimental.chat.system.transform`, `opencode_goal`, and `opencode_goal_status`. |
-| Command | `.skilled/commands/goal-opencode.md` | State-free `/goal-opencode` router for `bind`, `unbind`, `resent`, `log`, `packet`, `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
+| Plugin | `.opencode/plugins/opencode-goal.js` | Auto-loaded OpenCode plugin with `event`, `experimental.chat.system.transform`, `opencode_goal`, and `opencode_goal_status`. |
+| Command | `.opencode/commands/goal-opencode.md` | State-free `/goal-opencode` router for `bind`, `unbind`, `resent`, `log`, `packet`, `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
 | State | `.skilled/skills/.state/goal/` | Per-session JSON record keyed by a fixed SHA-256 digest of the session id: the packet pointer, the objective slice, liveness and telemetry. The directive is the bound packet's `goal.md`. |
 | Slice | `.skilled/hooks/goal/lib/goal-slice.cjs` | The packet goal projections the plugin renders from; shared with the runtime-neutral core so the frontmatter boundary is defined once. |
-| Tests | `.skilled/plugins/tests/opencode-goal-*.test.cjs` | Unit coverage for state, tool path, lifecycle, supervisor, continuation, export contract, and injection behavior. |
+| Tests | `.opencode/plugins/tests/opencode-goal-*.test.cjs` | Unit coverage for state, tool path, lifecycle, supervisor, continuation, export contract, and injection behavior. |
 
 ---
 
@@ -113,11 +113,11 @@ The default heuristic marks a goal `met` only when the latest assistant evidence
 
 ## 6. BOUNDARIES
 
-- Keep `.skilled/commands/goal-opencode.md` as a thin one-tool router. Do not duplicate state parsing or prompt construction in command markdown.
+- Keep `.opencode/commands/goal-opencode.md` as a thin one-tool router. Do not duplicate state parsing or prompt construction in command markdown.
 - Do not route `opencode-goal` through the skill-advisor daemon CLI or any other daemon-backed bridge. Goal state is session-local plugin state.
 - The packet `goal.md` is the directive and the plugin only reads it. Tooling writes a packet goal's log, below the durable slice, through the shared core's locked append; nothing writes the decisions, binding rows or criteria unprompted, and nothing sends the file's frontmatter anywhere.
 - Do not auto-run shell commands inferred from the goal objective. Verification evidence must come from explicit tests, command output, or supervisor-safe state.
-- Restart OpenCode after changing `.skilled/plugins/opencode-goal.js`, `.skilled/commands/goal-opencode.md`, or this plugin's load-time configuration.
+- Restart OpenCode after changing `.opencode/plugins/opencode-goal.js`, `.opencode/commands/goal-opencode.md`, or this plugin's load-time configuration.
 
 ---
 
@@ -126,16 +126,16 @@ The default heuristic marks a goal `met` only when the latest assistant evidence
 Run these checks after modifying goal-plugin behavior or docs that describe the plugin:
 
 ```bash
-node .skilled/plugins/tests/opencode-goal-state.test.cjs
-node .skilled/plugins/tests/opencode-goal-tool-path.test.cjs
-node .skilled/plugins/tests/opencode-goal-export-contract.test.cjs
-node .skilled/plugins/tests/opencode-goal-capabilities.test.cjs
-node .skilled/plugins/tests/opencode-goal-lifecycle.test.cjs
-node .skilled/plugins/tests/opencode-goal-supervisor.test.cjs
-node .skilled/plugins/tests/opencode-goal-continuation.test.cjs
-node .skilled/plugins/tests/opencode-goal-handover.test.cjs
-python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .skilled/plugins
-python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .skilled/plugins/opencode-goal.js
+node .opencode/plugins/tests/opencode-goal-state.test.cjs
+node .opencode/plugins/tests/opencode-goal-tool-path.test.cjs
+node .opencode/plugins/tests/opencode-goal-export-contract.test.cjs
+node .opencode/plugins/tests/opencode-goal-capabilities.test.cjs
+node .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs
+node .opencode/plugins/tests/opencode-goal-supervisor.test.cjs
+node .opencode/plugins/tests/opencode-goal-continuation.test.cjs
+node .opencode/plugins/tests/opencode-goal-handover.test.cjs
+python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .opencode/plugins
+python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .opencode/plugins/opencode-goal.js
 ```
 
 For documentation-only changes, also run the relevant `sk-doc` structure check and the active spec folder's strict validation.
@@ -163,7 +163,7 @@ This plugin is the OpenCode-native goal system. Cursor, Pi and Devin reach the s
 
 | Runtime | Command | Source | Drives |
 |---|---|---|---|
-| OpenCode | `/goal-opencode` | `.skilled/commands/goal-opencode.md` | `opencode_goal` / `opencode_goal_status` plugin tools |
+| OpenCode | `/goal-opencode` | `.opencode/commands/goal-opencode.md` | `opencode_goal` / `opencode_goal_status` plugin tools |
 | Cursor | `/goal-cursor` | `.cursor/commands/goal-cursor.md` | `packet <path>` through the session-free CLI read; every other action fails with `UNSUPPORTED_SESSION_BINDING` |
 | Pi | `/goal-pi` | Registered by `.skilled/hooks/goal/pi/goal-context.ts` | Shared CLI with native runtime/session/workspace flags appended by the extension |
 

@@ -122,26 +122,26 @@ hooks/
 |   +-- devin/    (same pair)
 |   +-- codex/    (same pair)
 |   +-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (real file; `.pi/extensions/` symlinks to it)
-|   `-- opencode/ cli-dispatch-audit.js (browsability symlink -> .skilled/plugins/)
+|   `-- opencode/ cli-dispatch-audit.js (browsability symlink -> .opencode/plugins/)
 +-- mcp-route-guard/                 # native mcp_* call -> Code Mode routing advisory
 |   +-- lib/mcp-route-guard.cjs, mcp-route-guard.test.cjs
 |   +-- claude/, devin/, codex/      mcp-route-guard.cjs
 |   +-- cursor/   mcp-route-guard.mjs
 |   +-- pi/       mcp-route-guard.ts (real file; `.pi/extensions/` symlinks to it)
-|   `-- opencode/ mcp-route-guard.js (browsability symlink -> .skilled/plugins/)
+|   `-- opencode/ mcp-route-guard.js (browsability symlink -> .opencode/plugins/)
 +-- post-edit-quality/               # comment-hygiene + dist-staleness findings on edit/write
 |   +-- lib/post-edit-router.cjs
 |   +-- claude/   claude-posttooluse.cjs
 |   +-- devin/    post-edit-quality.cjs
 |   +-- codex/    post-edit-quality.cjs
 |   +-- pi/       post-edit-quality.ts (real file; `.pi/extensions/` symlinks to it)
-|   `-- opencode/ sk-code-post-edit-quality.js (browsability symlink -> .skilled/plugins/)
+|   `-- opencode/ sk-code-post-edit-quality.js (browsability symlink -> .opencode/plugins/)
 +-- classifier-injection-screen/                # Jev screen of fetched web text for instructions aimed at an agent
 |   +-- lib/  classifier-injection-advisory.mjs, classifier-screen-fetched-text.mjs
 |   |           (+ a co-located test per module)
 |   +-- claude/   classifier-injection-screen-posttooluse.mjs (+ test)
 |   +-- devin/    classifier-injection-screen-posttooluse.mjs (+ test)
-|   +-- opencode/ classifier-injection-screen.js (browsability symlink -> .skilled/plugins/)
+|   +-- opencode/ classifier-injection-screen.js (browsability symlink -> .opencode/plugins/)
 |   `-- pi/       classifier-injection-screen.ts (+ test; `.pi/extensions/` symlinks to it)
 +-- task-dispatch/                   # Task/subagent dispatch guard + Fable-subagent policy
 |   +-- lib/dispatch-guard.cjs
@@ -149,14 +149,14 @@ hooks/
 |   +-- devin/    task-dispatch-guard.cjs
 |   +-- cursor/   task-dispatch-guard.mjs
 |   +-- pi/       task-dispatch-guard.ts (real file; `.pi/extensions/` symlinks to it)
-|   `-- opencode/ system-deep-loop-guard.js (browsability symlink -> .skilled/plugins/)
+|   `-- opencode/ system-deep-loop-guard.js (browsability symlink -> .opencode/plugins/)
 +-- session-relaunch/              # Claude, Pi, OpenCode, Codex and Hermes context nudge and relaunch adapters
 |   +-- bin/session-relaunch.cjs
 |   +-- claude/compact-pointer.mjs, context-nudge.mjs, stop-arm.mjs
 |   +-- codex/context-nudge.mjs, prompt-seed.mjs, shared.mjs, stop-arm.mjs
 |   +-- hermes/context-nudge.mjs, session-end-arm.mjs
 |   +-- pi/session-relaunch.ts, session-relaunch.test.ts
-|   +-- opencode/session-relaunch.js (browsability symlink -> .skilled/plugins/session-relaunch.js)
+|   +-- opencode/session-relaunch.js (browsability symlink -> .opencode/plugins/session-relaunch.js)
 |   +-- lib/context-usage.cjs, nudge.cjs, relaunch-core.cjs, killer.cjs
 |   `-- tests/ fifteen Node test files plus payload fixtures
 `-- goal/                            # cross-runtime passive session-goal tracking (sibling of opencode-goal)
@@ -166,12 +166,12 @@ hooks/
     +-- cursor/   goal-inject.mjs
     +-- devin/    goal-inject.mjs
     +-- pi/       goal-context.ts (real file; `.pi/extensions/` symlinks to it)
-    `-- opencode/ opencode-goal.js (browsability symlink -> .skilled/plugins/)
+    `-- opencode/ opencode-goal.js (browsability symlink -> .opencode/plugins/)
 ```
 
 **Skill-owned concerns are indexed here too**: the tree above shows only the concerns whose *real code* lives in this hub. Every skill-owned concern is additionally present as per-runtime symlinks under `<concern>/<runtime>/` (real code stays in the owning skill, as "Full index + kill-switches" above describes): `skill-advisor/`, `spec-gate/`, `session-lifecycle/`, `completion/`, `directive-lifecycle/`, `git-preflight/`, `git-message-gate/`, `dist-freshness/`, `codex-watchdog/`, and `permission-policy/`. The same pattern covers the bin-backed concerns: `git-live-follow/` and `git-primary-reconcile/` hold one symlink per runtime into `.skilled/bin/` and are indexed in the additional-hooks table below.
 
-Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch/pi/`, `mcp-route-guard/pi/`, `post-edit-quality/pi/`, `task-dispatch/pi/`, `goal/pi/`, `session-relaunch/pi/`), Pi auto-discovers `.pi/extensions/`, but its loader follows symlinks and resolves each extension's relative imports against the *symlink* path (probe-verified against the installed loader), so `.pi/extensions/` holds relative symlinks back to the real files and every import stays written for the `.pi/extensions/` base. OpenCode (`.opencode/plugins/*.js`) remains the one runtime whose adapter files genuinely cannot live here: its plugins are real modules in a fixed folder OpenCode's loader scans by a flat glob, so only their `require()`/`import` path to these cores changed. For browsability, each concern's `opencode/` subfolder holds a *relative symlink back into* `.skilled/plugins/`, the reverse of Pi's direction: nothing loads through the OpenCode symlink (verified: the loader globs only `.opencode/plugins/`, not the tree), it is a documentation mirror so the tree shows OpenCode beside the other runtimes. Cursor's multiplexed `post-tool-use.mjs` proxy is indexed under both `dispatch/cursor/` and `post-edit-quality/cursor/` because one live adapter serves both concerns.
+Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch/pi/`, `mcp-route-guard/pi/`, `post-edit-quality/pi/`, `task-dispatch/pi/`, `goal/pi/`, `session-relaunch/pi/`), Pi auto-discovers `.pi/extensions/`, but its loader follows symlinks and resolves each extension's relative imports against the *symlink* path (probe-verified against the installed loader), so `.pi/extensions/` holds relative symlinks back to the real files and every import stays written for the `.pi/extensions/` base. OpenCode (`.opencode/plugins/*.js`) remains the one runtime whose adapter files genuinely cannot live here: its plugins are real modules in a fixed folder OpenCode's loader scans by a flat glob, so only their `require()`/`import` path to these cores changed. For browsability, each concern's `opencode/` subfolder holds a *relative symlink back into* `.opencode/plugins/`, the reverse of Pi's direction: nothing loads through the OpenCode symlink (verified: the loader globs only `.opencode/plugins/`, not the tree), it is a documentation mirror so the tree shows OpenCode beside the other runtimes. Cursor's multiplexed `post-tool-use.mjs` proxy is indexed under both `dispatch/cursor/` and `post-edit-quality/cursor/` because one live adapter serves both concerns.
 
 ---
 
@@ -229,7 +229,7 @@ pi --offline --approve -p "list your available tools" </dev/null
 Expected result: exit 0, no extension-load error (confirms `.pi/extensions/*.ts`'s relocated import paths resolve).
 
 ```bash
-node -e "import('./.skilled/plugins/mcp-route-guard.js').then(()=>console.log('ok'))"
+node -e "import('./.opencode/plugins/mcp-route-guard.js').then(()=>console.log('ok'))"
 ```
 
 Expected result: `ok`, no module-resolution error (repeat for `sk-code-post-edit-quality.js`, `system-deep-loop-guard.js`, `cli-dispatch-audit.js`, `sk-git-preflight-advisory.js`).
@@ -249,7 +249,7 @@ Expected result: a `COMMENT_CHECKER=${SOURCE_ROOT}/skills/sk-code/sk-code-qualit
 - [`git/README.md`](./git/README.md): the git commit-hooks installer nested in this tree.
 - [`../scripts/git-hooks/README.md`](../scripts/git-hooks/README.md): the primary git-hooks installer, whose `pre-commit` carries its own comment-hygiene gate.
 - [`../../.claude/hooks/README.md`](../../.claude/hooks/README.md), [`../../.cursor/hooks/README.md`](../../.cursor/hooks/README.md), [`../../.devin/hooks/README.md`](../../.devin/hooks/README.md), [`../../.codex/hooks/README.md`](../../.codex/hooks/README.md): per-runtime discovery mirrors pointing back into this tree.
-- [`../plugins/README.md`](../plugins/README.md): the OpenCode plugins that import these cores directly.
+- [`../../.opencode/plugins/README.md`](../../.opencode/plugins/README.md): the OpenCode plugins that import these cores directly.
 - [`../../.pi/extensions/README.md`](../../.pi/extensions/README.md): the Pi extensions that import these cores directly.
 
 ---
@@ -282,7 +282,7 @@ For the *why* behind each absence, why a runtime has no adapter for a concern, s
 
 ### Additional centralized hooks
 
-Beyond the guard-core concerns above, the hub also indexes every remaining repo-authored hook so one directory shows them all. These are shared scripts, installers, and deployed entrypoints whose real code lives in `.skilled/bin/`, `.skilled/scripts/`, `.skilled/plugins/`, or a skill folder. The hub holds a relative symlink per runtime that has the hook.
+Beyond the guard-core concerns above, the hub also indexes every remaining repo-authored hook so one directory shows them all. These are shared scripts, installers, and deployed entrypoints whose real code lives in `.skilled/bin/`, `.skilled/scripts/`, `.opencode/plugins/`, or a skill folder. The hub holds a relative symlink per runtime that has the hook.
 
 | Concern | Runtimes | Real home |
 |---|---|---|
@@ -290,7 +290,7 @@ Beyond the guard-core concerns above, the hub also indexes every remaining repo-
 | `git-hooks-check` | claude, codex, cursor, devin + opencode plugin + hermes plugin | `.skilled/bin/check-git-hooks.sh` |
 | `git-primary-reconcile` | claude, codex, cursor, devin, pi + opencode plugin + hermes plugin | `.skilled/bin/git-primary-reconcile.sh` |
 | `live-sync` (`git-live-follow`) | claude, codex, cursor, devin, pi + opencode plugin + hermes plugin | `.skilled/bin/git-live-follow.sh` |
-| `session-cleanup` | claude, codex, cursor, devin + opencode plugin + hermes plugin | `.skilled/scripts/session-cleanup.sh`, `.skilled/plugins/session-cleanup.js` |
+| `session-cleanup` | claude, codex, cursor, devin + opencode plugin + hermes plugin | `.skilled/scripts/session-cleanup.sh`, `.opencode/plugins/session-cleanup.js` |
 | `hook-install` | claude, cursor, devin (Codex's user-global file is the cleanup target) | `.skilled/bin/install-codex-hooks.mjs` |
 | `dist-freshness` (per-runtime `.sh`) | claude, codex, cursor, devin + hermes plugin | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` |
 

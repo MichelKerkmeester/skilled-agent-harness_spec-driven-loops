@@ -343,7 +343,7 @@ session-relaunch/
 |   +-- session-relaunch.ts
 |   `-- session-relaunch.test.ts
 +-- opencode/
-|   `-- session-relaunch.js (browsability symlink -> .skilled/plugins/session-relaunch.js)
+|   `-- session-relaunch.js (browsability symlink -> .opencode/plugins/session-relaunch.js)
 +-- lib/
 |   +-- context-usage.cjs
 |   +-- goal-handover.cjs

@@ -6,7 +6,7 @@ trigger_phrases:
   - "git advisory runtime matrix"
   - "SKGIT_ADVISORY"
   - "git hook fail open"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # hooks: Git Preflight Advisory Runtime Adapters
@@ -78,7 +78,7 @@ Every runtime evaluates the **same** `GIT_SHAPE` gate, `GIT_CHECKS` rule set, `r
 | **Codex** | `git-preflight-advisory.mjs` | `PreToolUse` in `.codex/hooks.json`, matcher `exec\|Bash` (Codex sends `exec` before 0.160 and `Bash` from 0.160). Timeout 5s | Same `exec` payload shape as Devin. `cd "${CODEX_PROJECT_DIR:-$PWD}"` | Same `additionalContext` JSON. A fallback `printf` envelope covers a resolution failure |
 | **Devin** | `git-preflight-advisory.mjs` | `PreToolUse` in `.devin/hooks.v1.json`, matcher `^exec$`. Timeout 5s | Same `exec` shape. `cd "${DEVIN_PROJECT_DIR:-$PWD}"` | Same `additionalContext` JSON. Fallback `printf` envelope |
 | **Cursor** | `git-preflight-advisory.mjs` (registered directly, and `.cursor/hooks/git-preflight-advisory.mjs` is a browsability-only mirror symlink) | `preToolUse` in `.cursor/hooks.json`, matcher `Shell` | Cursor carries the project root in `workspace_roots[0]` instead of `cwd`. The hook falls through to `CLAUDE_PROJECT_DIR`/`CODEX_PROJECT_DIR`/`process.cwd()` when absent | Same `additionalContext` JSON |
-| **OpenCode** | `.skilled/plugins/sk-git-preflight-advisory.js` (mirrored at `opencode/` via browsability symlink) | `tool.execute.before` for `bash`. Advisory buffered and drained on the next `experimental.chat.system.transform` | Resolves repo root via `findRepoRoot` (falls back to host dir). OpenCode plugins cannot print without overlaying the TUI prompt line, so it buffers at most 20 events | Bounded findings injected once as a system block on the next transform. Never stdout/stderr. The command is never delayed or blocked |
+| **OpenCode** | `.opencode/plugins/sk-git-preflight-advisory.js` (mirrored at `opencode/` via browsability symlink) | `tool.execute.before` for `bash`. Advisory buffered and drained on the next `experimental.chat.system.transform` | Resolves repo root via `findRepoRoot` (falls back to host dir). OpenCode plugins cannot print without overlaying the TUI prompt line, so it buffers at most 20 events | Bounded findings injected once as a system block on the next transform. Never stdout/stderr. The command is never delayed or blocked |
 | **Pi** | `pi/git-preflight-advisory.ts` (real file, and `.pi/extensions/` symlinks here) | `tool_call` for `bash`. Advisory keyed by call id and delivered on the matching `tool_result` | Pi's agent core reads a `tool_call` handler's return only for `.block`: a bare `reason` is discarded before the model sees it, so the advisory is buffered and appended to the `tool_result` content instead | Appended to `tool_result` content. Warn-only, never `block: true` |
 | **Hermes** | `.hermes/plugins/repo-guards/__init__.py` | `transform_tool_result` for `terminal` | Sends the Devin `exec` payload shape with `cwd` | Appended to the tool result as guidance. Never a block |
 
@@ -203,7 +203,7 @@ Loads only when HERMES_ENABLE_PROJECT_PLUGINS is set
 |---|---|---|---|
 | **Claude, Codex, Devin** | `git-message-gate.mjs` | `PreToolUse` from the hook registry, matcher `Bash` / `exec` / `^exec$` | `hookSpecificOutput.permissionDecision: "deny"` with the reason, exit 0 |
 | **Cursor** | `git-message-gate.mjs` | `preToolUse`, matcher `Shell` | `{ permission: "deny", user_message, agent_message }`, exit 2 |
-| **OpenCode** | `.skilled/plugins/sk-git-message-gate.js` (mirrored at `opencode/`) | `tool.execute.before` for `bash` | Throws an error prefixed `sk-git-message-gate:`, which OpenCode returns as the tool result |
+| **OpenCode** | `.opencode/plugins/sk-git-message-gate.js` (mirrored at `opencode/`) | `tool.execute.before` for `bash` | Throws an error prefixed `sk-git-message-gate:`, which OpenCode returns as the tool result |
 | **Pi** | `pi/git-message-gate.ts` (real file, and `.pi/extensions/` symlinks here) | `tool_call` for `bash` | Returns `{ block: true, reason }` |
 | **Hermes** | `.hermes/plugins/repo-guards/__init__.py` | `pre_tool_call` for `terminal`, after the dispatch preflight | Returns `{ "action": "block", "message": reason }` from the core's deny |
 
@@ -218,7 +218,7 @@ hooks/  (sk-git/scripts/hooks/)
 +-- git-preflight-advisory.test.mjs   # node --test suite
 +-- opencode/
 |   +-- README.md
-|   +-- sk-git-message-gate.js        # symlink -> .skilled/plugins/sk-git-message-gate.js
+|   +-- sk-git-message-gate.js        # symlink -> .opencode/plugins/sk-git-message-gate.js
 |   `-- sk-git-preflight-advisory.js  # symlink -> ../../../../../plugins/sk-git-preflight-advisory.js
 `-- pi/
     +-- README.md
@@ -240,12 +240,12 @@ The hooks-tree index at `.skilled/hooks/git-preflight/` mirrors these: `shared/g
 | File | Responsibility |
 |---|---|
 | `git-message-gate.mjs` | Blocking companion to the advisory. Claude, Codex, Devin and Cursor run it through the hook registry. The OpenCode plugin, the Pi extension and the Hermes `repo-guards` plugin call it too (see "Message gate delivery" above). Denies a `git commit -m`/`-F`, a `gh pr create`/`edit` body or a branch-creating command whose text breaks the repository's own template rules. Allows what it cannot read, since the commit-msg and pre-push hooks and CI stand behind it. |
-| `.skilled/plugins/sk-git-message-gate.js` | OpenCode plugin. `tool.execute.before` for `bash` throws the gate's refusal. An internal fault is swallowed. |
+| `.opencode/plugins/sk-git-message-gate.js` | OpenCode plugin. `tool.execute.before` for `bash` throws the gate's refusal. An internal fault is swallowed. |
 | `pi/git-message-gate.ts` | Pi `tool_call` extension. Returns `{ block: true, reason }` on a refusal. A gate that cannot load allows the call. |
 | `git-preflight-advisory.mjs` | Shared stdin hook for `Bash`, `exec`, and Cursor `Shell` payloads. Reads the repo from payload `cwd`, Cursor's `workspace_roots[0]`, or the runtime project-directory env. Kill-switch, suppression tiers, shape gate, rule read/filter, lazy context, evaluate, cap-at-3 surface, `additionalContext` JSON emit. `main().catch(approve)`: the fail-open path is also the exit-0 path. |
 | `../lib/git-rule-checks.mjs` | The `GIT_SHAPE` gate, `parseGitCommand` (subcommand/flags/pathspec split with value-flag and `--` handling), and the 17 `GIT_CHECKS`. Each check gates on state, returns `true` (fine) / `false` (advise), and fails open on uncertainty. |
 | `../lib/git-context.mjs` | Lazy repository-state collector. Each accessor runs only when a check asks, caches for one invocation, and fails soft (returns `null`/safe unknown) on any git failure or 1.5s timeout. Reads only pre-command state. |
-| `.skilled/plugins/sk-git-preflight-advisory.js` | OpenCode plugin. `tool.execute.before` for `bash` evaluates the same engine and buffers at most 20 advisory events. `experimental.chat.system.transform` drains them as one system block on the next turn. Never prints. Never blocks. |
+| `.opencode/plugins/sk-git-preflight-advisory.js` | OpenCode plugin. `tool.execute.before` for `bash` evaluates the same engine and buffers at most 20 advisory events. `experimental.chat.system.transform` drains them as one system block on the next turn. Never prints. Never blocks. |
 | `pi/git-preflight-advisory.ts` | Pi `tool_call`/`tool_result` extension. Evaluates on `tool_call`, buffers by call id, appends to `tool_result` content. Warn-only, never `block: true`. |
 | `../../hooks/dispatch/lib/dispatch-rule-checks.mjs` | Shared `readHardRules` sidecar reader and `evaluate` runner imported by all adapters. |
 | `../../hooks/shared/hook-flags.mjs` / `.cjs` | Kill-switch resolver (`isHookEnabled('git-preflight')`). |
@@ -306,8 +306,8 @@ Expected result: all pass. Each suite refuses a nonconforming commit in a throwa
 
 ```bash
 node --check .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs
-node --check .skilled/plugins/sk-git-preflight-advisory.js
-node --check .skilled/plugins/sk-git-message-gate.js
+node --check .opencode/plugins/sk-git-preflight-advisory.js
+node --check .opencode/plugins/sk-git-message-gate.js
 ```
 
 Expected result: no syntax errors.

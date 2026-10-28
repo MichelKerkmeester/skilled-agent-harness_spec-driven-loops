@@ -1,1 +1,1 @@
-../../../plugins/classifier-injection-screen.js
+../../../../.opencode/plugins/classifier-injection-screen.js

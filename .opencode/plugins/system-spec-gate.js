@@ -23,7 +23,7 @@
 
 import { createRequire } from 'node:module';
 
-// The guard policy lives outside .skilled/plugins/ so this file can remain a
+// The guard policy lives outside .opencode/plugins/ so this file can remain a
 // thin, default-export-only OpenCode plugin while the Claude hooks consume the
 // same core. Unlike the deep-loop guard's .cjs core, this core is real ESM
 // (it statically imports the ESM Gate-3 classifier), so it is imported directly.

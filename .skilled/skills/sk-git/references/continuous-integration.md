@@ -10,7 +10,7 @@ trigger_phrases:
   - "ide always shows current work"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Continuous Integration - Always-Current Live Branch
@@ -169,7 +169,7 @@ The two SessionStart guards that make the model observable are `worktree-guard.s
 | Runtime | Guard wiring |
 |---------|--------------|
 | Claude | `.claude/settings.json` SessionStart |
-| OpenCode | `.skilled/plugins/session-cleanup.js` (runs guards and detached reconcile on `session.created`) |
+| OpenCode | `.opencode/plugins/session-cleanup.js` (runs guards and detached reconcile on `session.created`) |
 | Codex | `.codex/hooks.json` SessionStart |
 | Pi | `session-start-advisories.ts` advisory chain |
 

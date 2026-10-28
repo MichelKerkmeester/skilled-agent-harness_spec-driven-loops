@@ -1,7 +1,7 @@
 ---
 title: "457 -- Cross-runtime directive-lifecycle dedup"
 description: "Validate lifecycle-scoped directive delivery through the canonical decision, registered runtime adapters, plugin and Pi seams, and separately classified native-host receipts."
-version: 1.7.0.3
+version: 1.7.1.0
 id: ux-hooks-directive-lifecycle-dedup
 expected_workflow_mode: system-spec-kit
 expected_leaf_resources:
@@ -146,7 +146,7 @@ A complete run stores:
 - Durable store: `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts`
 - Host boundary: `.skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts`
 - Registered bridge: `.skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts`
-- OpenCode adapter: `.skilled/plugins/system-skill-advisor.js`
+- OpenCode adapter: `.opencode/plugins/system-skill-advisor.js`
 - Persistence wrapper: retired with its benchmark lane, see MTP-005 in `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/operator-contract/persist-scenario-result.md`
 
 Provenance: manual only - follow the TEST EXECUTION sequence by hand

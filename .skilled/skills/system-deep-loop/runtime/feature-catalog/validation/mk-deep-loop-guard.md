@@ -9,7 +9,7 @@ trigger_phrases:
   - "loop-like repeated dispatch detection"
   - "loop-guard state cleanup"
   - "loop-guard state retention"
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 # system-deep-loop-guard (tool.execute.before plugin)
@@ -64,13 +64,13 @@ Unlike `opencode-goal.js`, this plugin needs no per-session mutation queue to ma
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/plugins/system-deep-loop-guard.js` | Script | OpenCode plugin entrypoint; registers the `tool.execute.before` hook; implements identity resolution and both checks. |
+| `.opencode/plugins/system-deep-loop-guard.js` | Script | OpenCode plugin entrypoint; registers the `tool.execute.before` hook; implements identity resolution and both checks. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/plugins/tests/system-deep-loop-guard.test.cjs` | Automated test | Hermetic regression coverage for export shape, identity resolution, both warn/reject toggles, command-driven/non-loop-executor exemptions, cross-session isolation, and both fail-open paths, run against a fixture registry (no live OpenCode session required). |
+| `.opencode/plugins/tests/system-deep-loop-guard.test.cjs` | Automated test | Hermetic regression coverage for export shape, identity resolution, both warn/reject toggles, command-driven/non-loop-executor exemptions, cross-session isolation, and both fail-open paths, run against a fixture registry (no live OpenCode session required). |
 
 Live-verified against a real `opencode` session during development: hook registration, warn-mode logging, reject-mode blocking for both checks, fail-open on a missing registry, and pass-through for non-deep `subagent_type` values.
 
@@ -81,7 +81,7 @@ Live-verified against a real `opencode` session during development: hook registr
 - Group: Validation
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `validation/mk-deep-loop-guard.md`
-- Primary sources: `.skilled/plugins/system-deep-loop-guard.js`, `.skilled/plugins/tests/system-deep-loop-guard.test.cjs`
+- Primary sources: `.opencode/plugins/system-deep-loop-guard.js`, `.opencode/plugins/tests/system-deep-loop-guard.test.cjs`
 
 Related references:
 - [post-dispatch-validate.md](../../feature-catalog/validation/post-dispatch-validate.md) — the post-dispatch counterpart this plugin complements from the pre-dispatch side.

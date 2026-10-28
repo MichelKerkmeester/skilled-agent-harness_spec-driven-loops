@@ -130,7 +130,7 @@
       "reason": "Names the retired tools it replaces so a reader can map each one to its recipe."
     },
     {
-      "pathPrefixOrGlob": ".skilled/plugins/tests/opencode-goal-tool-path.test.cjs",
+      "pathPrefixOrGlob": ".opencode/plugins/tests/opencode-goal-tool-path.test.cjs",
       "reason": "Negative assertion that the retired server name is forbidden as a goal tool path."
     },
     {

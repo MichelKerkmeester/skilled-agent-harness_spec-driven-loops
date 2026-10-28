@@ -6,7 +6,7 @@ trigger_phrases:
   - "watcher scope"
   - "chokidar narrow scope"
   - "auto update daemon watcher"
-version: 0.8.0.14
+version: 0.8.1.0
 id: AU-001
 category: auto_update_daemon
 stage: routing
@@ -52,7 +52,7 @@ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/pa
 2. Touch an unrelated file under `.skilled/`:
 
 ```bash
-touch .skilled/plugins/system-skill-advisor.js
+touch .opencode/plugins/system-skill-advisor.js
 ```
 
 3. Wait 3 seconds and recheck status:

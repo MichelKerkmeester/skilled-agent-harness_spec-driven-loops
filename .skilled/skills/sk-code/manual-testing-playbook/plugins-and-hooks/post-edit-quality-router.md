@@ -7,7 +7,7 @@ trigger_phrases:
   - "post edit quality router"
   - "sk-code-post-edit-quality"
   - "posttooluse quality hook"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Post-Edit Quality Router
@@ -44,11 +44,11 @@ or `Edit` tool call in Claude Code (`PostToolUse`) or a `write`/`edit`/`patch`/`
 call in OpenCode; the exact adapter invocations exercised are the live commands in §3 TEST EXECUTION.
 
 - Preconditions:
-  - `.skilled/plugins/sk-code-post-edit-quality.js` exists (OpenCode plugin adapter).
+  - `.opencode/plugins/sk-code-post-edit-quality.js` exists (OpenCode plugin adapter).
   - `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs` exists (Claude adapter).
   - `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` exists (shared core).
   - `.claude/settings.json` wires `PostToolUse` matcher `Write|Edit` to the Claude adapter above.
-  - `.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs` (38 tests) is present.
+  - `.opencode/plugins/tests/sk-code-post-edit-quality.test.cjs` (38 tests) is present.
   - All six canonical checker paths in `CHECKER_RELATIVE_PATHS` exist on disk (comment-hygiene,
     flowchart, frontmatter-versions, placeholders, wikilinks, dist-staleness) -- verified present.
   - Node `v22.23.1` available on PATH (confirmed via `node --version`).
@@ -89,7 +89,7 @@ call in OpenCode; the exact adapter invocations exercised are the live commands 
 1. Run the real unit-test suite (hermetic fixtures, no live session required):
 
 ```bash
-node --test .skilled/plugins/tests/sk-code-post-edit-quality.test.cjs
+node --test .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs
 ```
 
 Expected: `# tests 38`, `# pass 38`, `# fail 0`, `# cancelled 0`.
@@ -99,7 +99,7 @@ Expected: `# tests 38`, `# pass 38`, `# fail 0`, `# cancelled 0`.
    then removed):
 
 ```bash
-TMPDIR_LIVE=$(mktemp -d ".skilled/plugins/tests/.tmp-manual-scenario-live-XXXXXX")
+TMPDIR_LIVE=$(mktemp -d ".opencode/plugins/tests/.tmp-manual-scenario-live-XXXXXX")
 cat > "$TMPDIR_LIVE/edited.ts" <<'EOF'
 // See ADR-042 for details
 export const liveSample = 1;
@@ -120,7 +120,7 @@ Expected: stdout contains `COMMENT HYGIENE WARNING`, `EXIT_CODE=0`.
    already produces empty stdout):
 
 ```bash
-TMPDIR_KILL=$(mktemp -d ".skilled/plugins/tests/.tmp-manual-scenario-kill-XXXXXX")
+TMPDIR_KILL=$(mktemp -d ".opencode/plugins/tests/.tmp-manual-scenario-kill-XXXXXX")
 cat > "$TMPDIR_KILL/edited.ts" <<'EOF'
 // See ADR-042 for details
 export const liveSample = 1;
@@ -140,7 +140,7 @@ just showed.
    comment-hygiene checker so the run stays hermetic and fast):
 
 ```bash
-TMPDIR_LIVE=$(mktemp -d ".skilled/plugins/tests/.tmp-manual-scenario-oc-XXXXXX")
+TMPDIR_LIVE=$(mktemp -d ".opencode/plugins/tests/.tmp-manual-scenario-oc-XXXXXX")
 mkdir -p "$TMPDIR_LIVE/.skilled/skills/sk-code/sk-code-quality/scripts"
 cat > "$TMPDIR_LIVE/edited.ts" <<'EOF'
 // See ADR-042 for details
@@ -155,7 +155,7 @@ chmod +x "$TMPDIR_LIVE/.skilled/skills/sk-code/sk-code-quality/scripts/check-com
 
 cat > "$TMPDIR_LIVE/live-invoke.mjs" <<EOF
 import path from 'node:path';
-const { default: MkPostEditQualityPlugin } = await import(new URL('file://$PWD/.skilled/plugins/sk-code-post-edit-quality.js'));
+const { default: MkPostEditQualityPlugin } = await import(new URL('file://$PWD/.opencode/plugins/sk-code-post-edit-quality.js'));
 const projectDir = '$PWD/$TMPDIR_LIVE';
 const editedFile = path.join(projectDir, 'edited.ts');
 const hooks = await MkPostEditQualityPlugin.server({ directory: projectDir });
@@ -210,7 +210,7 @@ check, and `.claude/settings.json` wiring).
 
 ### Failure Triage
 
-1. If the unit-test suite is not fully green, re-run `node --test .skilled/plugins/tests/sk-code-post-edit-quality.test.cjs` and inspect the first failing assertion before touching any live invocation.
+1. If the unit-test suite is not fully green, re-run `node --test .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs` and inspect the first failing assertion before touching any live invocation.
 2. If the live Claude adapter invocation (Command 2) produces no `COMMENT HYGIENE WARNING` banner, confirm the fixture file's comment still carries an `ADR-<n>`-style pointer and that `check-comment-hygiene.sh` is executable.
 3. If the kill-switch invocation (Command 3) is not empty, verify `SK_CODE_POST_EDIT_QUALITY_DISABLED=1` is exported into the same process that invokes `claude-posttooluse.cjs`, and that the adapter reads it before dispatch.
 4. If the OpenCode plugin invocation (Command 4) does not surface the buffered finding, confirm the fixture `check-comment-hygiene.sh` under the throwaway `.skilled/skills/sk-code/sk-code-quality/scripts/` path is executable and that `tool.execute.before` ran before `tool.execute.after`.
@@ -222,10 +222,10 @@ check, and `.claude/settings.json` wiring).
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- OpenCode plugin adapter: `.skilled/plugins/sk-code-post-edit-quality.js`
+- OpenCode plugin adapter: `.opencode/plugins/sk-code-post-edit-quality.js`
 - Claude PostToolUse adapter: `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`
 - Shared runtime-neutral core: `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs`
-- Unit-test suite (38 tests): `.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs`
+- Unit-test suite (38 tests): `.opencode/plugins/tests/sk-code-post-edit-quality.test.cjs`
 - Hook wiring: `.claude/settings.json` (`PostToolUse` -> matcher `Write|Edit`)
 - Checkers dispatched by the router:
   - `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`
@@ -251,7 +251,7 @@ check, and `.claude/settings.json` wiring).
 Unit-test suite command and real tail output:
 
 ```bash
-node --test .skilled/plugins/tests/sk-code-post-edit-quality.test.cjs
+node --test .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs
 ```
 
 ```text
@@ -277,8 +277,8 @@ export const liveSample = 1;
 
 COMMENT HYGIENE WARNING: ephemeral-artifact pointers found in code comments.
 These references are unstable and will rot. Replace each with the durable WHY.
-Violations in .skilled/plugins/tests/.tmp-manual-scenario-live-SQocEV/edited.ts:
-  .skilled/plugins/tests/.tmp-manual-scenario-live-SQocEV/edited.ts:1: // See ADR-042 for details
+Violations in .opencode/plugins/tests/.tmp-manual-scenario-live-SQocEV/edited.ts:
+  .opencode/plugins/tests/.tmp-manual-scenario-live-SQocEV/edited.ts:1: // See ADR-042 for details
 See: .skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md §4
 Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line.
 
@@ -300,7 +300,7 @@ Live OpenCode plugin module invocation (real dynamic import, real hooks, fixture
 --- live OpenCode plugin invocation (real import, real hooks, fixture checker) ---
 {
   "system": [
-    "[post-edit-quality] Advisory findings from recent edits:\n- [comment-hygiene] .skilled/plugins/tests/.tmp-manual-scenario-oc-0VYiTx/edited.ts: .skilled/plugins/tests/.tmp-manual-scenario-oc-0VYiTx/edited.ts:1: fake ADR-style violation (live scenario fixture checker)"
+    "[post-edit-quality] Advisory findings from recent edits:\n- [comment-hygiene] .opencode/plugins/tests/.tmp-manual-scenario-oc-0VYiTx/edited.ts: .opencode/plugins/tests/.tmp-manual-scenario-oc-0VYiTx/edited.ts:1: fake ADR-style violation (live scenario fixture checker)"
   ]
 }
 EXIT_CODE=0
@@ -365,7 +365,7 @@ unit-test suite's `OpenCode plugin: before/after correlation...with zero termina
 additionally proves the console/stdout/stderr are never touched during that sequence -- both stand in
 as the concrete fallback evidence for the runtime-session-only path.
 
-Working-tree note: `.skilled/plugins/sk-code-post-edit-quality.js` shows as modified (`git diff --stat`,
+Working-tree note: `.opencode/plugins/sk-code-post-edit-quality.js` shows as modified (`git diff --stat`,
 9 insertions/9 deletions) in this repo's working tree independent of this scenario -- this scenario
 only ever used `Read` on that file and ran throwaway fixtures under `mktemp`-created, removed-after-use
 directories; it made no edits to any source file.

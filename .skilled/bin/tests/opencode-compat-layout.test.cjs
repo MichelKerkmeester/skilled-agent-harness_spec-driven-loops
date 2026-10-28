@@ -81,11 +81,11 @@ describe('the shipped .opencode directory matches its sync manifest', () => {
     });
   }
 
-  test('.skilled/plugins links back to the plugins authored here', () => {
-    const link = path.join(REPO_ROOT, '.skilled', 'plugins');
-    assert.equal(fs.lstatSync(link).isSymbolicLink(), true);
-    assert.equal(fs.readlinkSync(link), '../.opencode/plugins');
-    assert.equal(fs.realpathSync(link), fs.realpathSync(path.join(COMPAT_ROOT, 'plugins')));
+  test('the plugins and the goal command live only here', () => {
+    assert.equal(fs.existsSync(path.join(REPO_ROOT, '.skilled', 'plugins')), false);
+    assert.equal(fs.existsSync(path.join(REPO_ROOT, '.skilled', 'commands', 'goal-opencode.md')), false);
+    const goal = path.join(COMPAT_ROOT, 'commands', 'goal-opencode.md');
+    assert.equal(fs.lstatSync(goal).isFile(), true, 'goal-opencode.md is not a real file');
   });
 
   test('package.json gives the plugins their module type and their SDK', () => {

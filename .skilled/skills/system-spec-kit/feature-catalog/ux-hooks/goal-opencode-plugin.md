@@ -8,7 +8,7 @@ trigger_phrases:
   - "active_goal injection"
   - "goalPrompt"
   - "bind packet goal"
-version: 1.9.1.0
+version: 1.9.2.0
 ---
 
 # Goal OpenCode plugin
@@ -25,13 +25,13 @@ This feature is cataloged under UX hooks because it is a runtime-injection and o
 
 ## 2. HOW IT WORKS
 
-`.skilled/plugins/opencode-goal.js` is auto-loaded by OpenCode. It registers:
+`.opencode/plugins/opencode-goal.js` is auto-loaded by OpenCode. It registers:
 
 - `experimental.chat.system.transform` to append `[active_goal:<goalId>]` when the session has an active goal.
 - `event` to restore goals, record message activity, track prompt blockers, verify on idle, and gate continuation.
 - `opencode_goal` and `opencode_goal_status` plugin tools for command routing and diagnostics.
 
-`.skilled/commands/goal-opencode.md` is intentionally thin. It parses `$ARGUMENTS`, calls exactly one plugin tool, and never reads or writes `.skilled/skills/.state/goal` directly.
+`.opencode/commands/goal-opencode.md` is intentionally thin. It parses `$ARGUMENTS`, calls exactly one plugin tool, and never reads or writes `.skilled/skills/.state/goal` directly.
 
 Stored state keeps the packet pointer when bound, plus the raw sanitized `objective` and the deterministic `goalPrompt`. The packet projections come from `.skilled/hooks/goal/lib/goal-slice.cjs`, shared with the runtime-neutral core, so the frontmatter boundary is defined once. `resend_pending` in status output tells the agent the packet's durable slice changed since it was last resent in chat; `resent` clears it. The raw objective is audit data; `goalPrompt` is the model-facing execution brief. Idle verification uses an injected `supervisorVerifier` when present; otherwise `OPENCODE_GOAL_VERIFIER=heuristic` applies a deterministic fail-closed verifier over the latest assistant evidence and goal objective. `OPENCODE_GOAL_VERIFIER=llm` opts into `ctx.client.session.promptAsync` semantic verdicts. Status output includes verifier provenance as `verifier_source` with `injected`, `default-heuristic`, or `default-llm` when a verdict has run. Autonomy is disabled unless `OPENCODE_GOAL_AUTONOMY=active` or smoke-tested with `OPENCODE_GOAL_AUTONOMY=smoke`. No token budget, turn count or elapsed time stops continuation, and status output includes `provider_retry_after_ms`.
 
@@ -47,8 +47,8 @@ State does not grow unboundedly: on `session.deleted` the goal-state file is arc
 
 | File | Layer | Role |
 |------|-------|------|
-| `.skilled/plugins/opencode-goal.js` | OpenCode plugin | State, injection, lifecycle, verifier, continuation gates, and plugin tools. |
-| `.skilled/commands/goal-opencode.md` | Slash command | Thin `/goal-opencode` router for `bind`, `unbind`, `resent`, `log`, `packet`, `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
+| `.opencode/plugins/opencode-goal.js` | OpenCode plugin | State, injection, lifecycle, verifier, continuation gates, and plugin tools. |
+| `.opencode/commands/goal-opencode.md` | Slash command | Thin `/goal-opencode` router for `bind`, `unbind`, `resent`, `log`, `packet`, `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
 | `.skilled/hooks/goal/lib/goal-slice.cjs` | Shared module | Packet `goal.md` projections: durable slice, chat slice, objective slice, hash. |
 | `.skilled/skills/.state/goal/` | Runtime state | Per-session JSON records (pointer, operator copy, liveness, telemetry) and bounded debug logs. |
 | `.skilled/hooks/goal/goal-plugin.md` | Operator reference | Contract, env vars, boundaries, verification, and restart guidance. |
@@ -57,15 +57,15 @@ State does not grow unboundedly: on `session.deleted` the goal-state file is arc
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/plugins/tests/opencode-goal-state.test.cjs` | Automated test | State persistence, generated prompt fields, injection, caps, sanitization, redaction, and status output. |
-| `.skilled/plugins/tests/opencode-goal-tool-path.test.cjs` | Automated test | Plugin tool context persistence, status output, packet bind, resent, packet read and the injected resend reminder. |
-| `.skilled/plugins/tests/opencode-goal-export-contract.test.cjs` | Automated test | Export contract. |
-| `.skilled/plugins/tests/opencode-goal-render-parity.test.cjs` | Automated test | Shared injection label set across both renderers; brief cache key sensitivity. |
-| `.skilled/plugins/tests/speckit-goal-offer-contract.test.cjs` | Automated test | Speckit goal-offer presentation and router contract. |
-| `.skilled/plugins/tests/opencode-goal-capabilities.test.cjs` | Automated test | History, doctor/health, resume, token budget display, retired cap env vars, provider-limit detection, and retry-after recovery. |
-| `.skilled/plugins/tests/opencode-goal-lifecycle.test.cjs` | Automated test | Event/lifecycle behavior. |
-| `.skilled/plugins/tests/opencode-goal-supervisor.test.cjs` | Automated test | Injected verifier precedence, default heuristic positive/negative matrix, LLM verifier mode, provenance, and evidence redaction. |
-| `.skilled/plugins/tests/opencode-goal-continuation.test.cjs` | Automated test | Guarded continuation decisions. |
+| `.opencode/plugins/tests/opencode-goal-state.test.cjs` | Automated test | State persistence, generated prompt fields, injection, caps, sanitization, redaction, and status output. |
+| `.opencode/plugins/tests/opencode-goal-tool-path.test.cjs` | Automated test | Plugin tool context persistence, status output, packet bind, resent, packet read and the injected resend reminder. |
+| `.opencode/plugins/tests/opencode-goal-export-contract.test.cjs` | Automated test | Export contract. |
+| `.opencode/plugins/tests/opencode-goal-render-parity.test.cjs` | Automated test | Shared injection label set across both renderers; brief cache key sensitivity. |
+| `.opencode/plugins/tests/speckit-goal-offer-contract.test.cjs` | Automated test | Speckit goal-offer presentation and router contract. |
+| `.opencode/plugins/tests/opencode-goal-capabilities.test.cjs` | Automated test | History, doctor/health, resume, token budget display, retired cap env vars, provider-limit detection, and retry-after recovery. |
+| `.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs` | Automated test | Event/lifecycle behavior. |
+| `.opencode/plugins/tests/opencode-goal-supervisor.test.cjs` | Automated test | Injected verifier precedence, default heuristic positive/negative matrix, LLM verifier mode, provenance, and evidence redaction. |
+| `.opencode/plugins/tests/opencode-goal-continuation.test.cjs` | Automated test | Guarded continuation decisions. |
 
 ---
 

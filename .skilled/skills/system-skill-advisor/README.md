@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.12.8.0
+version: 0.12.9.0
 ---
 
 # system-skill-advisor
@@ -225,7 +225,7 @@ A: Memory, spec folders and continuity stay in `system-spec-kit`. The advisor de
 
 **Q: Where are the runtime hooks documented?**
 
-A: `hooks/skill-advisor-hook.md` covers the prompt-time hook contract across every runtime (Claude, Codex, Cursor, Devin, Pi) and the OpenCode plugin. The advisor's own handler, the Pi extension and the CLI fallback live under `hooks/`. Claude, Codex, Cursor and Devin enter through thin shims in `system-spec-kit/runtime/hooks/<runtime>/`, and the OpenCode plugin is `.skilled/plugins/system-skill-advisor.js`.
+A: `hooks/skill-advisor-hook.md` covers the prompt-time hook contract across every runtime (Claude, Codex, Cursor, Devin, Pi) and the OpenCode plugin. The advisor's own handler, the Pi extension and the CLI fallback live under `hooks/`. Claude, Codex, Cursor and Devin enter through thin shims in `system-spec-kit/runtime/hooks/<runtime>/`, and the OpenCode plugin is `.opencode/plugins/system-skill-advisor.js`.
 
 ---
 

@@ -69,7 +69,7 @@ Every outcome is recorded as a tab-separated line in `<common-dir>/git-primary-r
 | **Pi** | `pi/git-primary-reconcile.sh` (symlink) | SessionStart hook chain | Same |
 | **Cursor** | `cursor/git-primary-reconcile.sh` (symlink) | SessionStart hook chain, detached in the background | Backgrounded with output discarded; log line in the common dir; always exits 0 |
 | **Devin** | `devin/git-primary-reconcile.sh` (symlink) | SessionStart hook chain, detached in the background | Same |
-| **OpenCode** | launched by `.skilled/plugins/session-cleanup.js` | Plugin `event` on `session.created` | Same script, backgrounded by the session-start plugin; no per-runtime symlink adapter |
+| **OpenCode** | launched by `.opencode/plugins/session-cleanup.js` | Plugin `event` on `session.created` | Same script, backgrounded by the session-start plugin; no per-runtime symlink adapter |
 
 One real file backs the wired runtimes; the per-runtime entries are symlinks into `.skilled/bin/`.
 
@@ -94,7 +94,7 @@ git-primary-reconcile/
 | File | Responsibility |
 |---|---|
 | `.skilled/bin/git-primary-reconcile.sh` | The reconcile script. Worktree gate, kill-switches, single-flight lock, live-branch resolution, bounded fetch, fast-forward / rebase-publish, rebase-abort safety assertion, push-gate classification, and tab-separated logging. Always exits 0. |
-| `.skilled/plugins/session-cleanup.js` | The OpenCode session-start plugin that launches this script on `session.created` (see [`session-cleanup/`](../session-cleanup/README.md)). Not in this folder. |
+| `.opencode/plugins/session-cleanup.js` | The OpenCode session-start plugin that launches this script on `session.created` (see [`session-cleanup/`](../session-cleanup/README.md)). Not in this folder. |
 | `.skilled/hooks/shared/hook-flags.sh` | The shared shell kill-switch resolver (`hook_enabled live-sync`, `hook_enabled primary-reconcile`). Sourced fail-open. |
 
 ---

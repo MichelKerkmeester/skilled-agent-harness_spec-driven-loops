@@ -199,7 +199,7 @@ The bridge in `lib/v2-bridge.js` maps that set onto OpenCode 2 registrations: `e
 Run the Node regression command from the repository root:
 
 ```bash
-node --test .skilled/plugins/tests/*.test.cjs
+node --test .opencode/plugins/tests/*.test.cjs
 ```
 
 Expected result: Node discovers every current CJS test file and reports the suite result. A failing test is a validation failure.
@@ -207,7 +207,7 @@ Expected result: Node discovers every current CJS test file and reports the suit
 ```bash
 (
   rc=0
-  for f in .skilled/plugins/*.js
+  for f in .opencode/plugins/*.js
   do node --check "$f" || rc=1
   done
   exit "$rc"

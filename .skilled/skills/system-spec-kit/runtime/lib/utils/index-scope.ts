@@ -51,7 +51,7 @@ const CODE_GRAPH_DEFAULT_EXCLUDE_GLOBS = {
   // Plugins are authored under the opencode runtime, which is the only loader and
   // the tree whose installed SDK they bind. The other spelling still resolves and is
   // matched too, because documents and older records address them by that path.
-  plugins: ['**/.opencode/plugins/**', '**/.skilled/plugins/**'],
+  plugins: ['**/.opencode/plugins/**'],
 } as const;
 
 // ───────────────────────────────────────────────────────────────────

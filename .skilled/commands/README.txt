@@ -18,7 +18,7 @@ trigger_phrases:
 
 Commands are invoked as slash commands (e.g., `/create:feature-catalog`, `/deep:review`, `/prompt:improve`, `/speckit:save`, `/speckit:plan`). Each command is a markdown file with YAML frontmatter that defines its description, argument hints, and allowed tools.
 
-Commands are organized into six groups plus root-level utilities:
+Commands are organized into six groups:
 
 | Group | Path | Commands | Purpose |
 |-------|------|----------|---------|
@@ -28,9 +28,8 @@ Commands are organized into six groups plus root-level utilities:
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
 | **speckit** | `commands/speckit/` | 7 | Spec folder workflows (plan, implement, resume and complete), context save (save), lexical search (search) and the manual trigger for the session relaunch loop (handoff) |
-| **root** | `commands/` | 1 | Standalone `/goal-opencode` utilities |
 
-Standalone commands live at the root level: `goal-opencode.md` manages the passive session goal via the `opencode-goal` plugin. The prompt-improvement surface lives in the `prompt` group as `prompt/improve.md` (invoked `/prompt:improve`).
+One OpenCode-only command lives outside this tree: `/goal-opencode` manages the passive session goal via the `opencode-goal` plugin, so it is authored in `.opencode/commands/goal-opencode.md`, beside that directory's links to these groups. The prompt-improvement surface lives in the `prompt` group as `prompt/improve.md` (invoked `/prompt:improve`).
 
 Each group's command count above is the number of command files in that folder. When a command is added, update the count and its row in section 4. A group whose file set outgrew this index is the failure mode this document has hit before.
 
@@ -48,7 +47,6 @@ This file is descriptive only. The executable contract for any workflow lives in
 
 ```text
 command/
-├── goal-opencode.md          # Session-goal router for the opencode-goal plugin (OpenCode only)
 ├── prompt/                   # Prompt engineering command group
 │   └── improve.md            # Canonical prompt improvement command (/prompt:improve)
 ├── create/                   # Component creation commands, see create/README.txt for the
@@ -172,7 +170,7 @@ Root commands have no group prefix.
 | Command | Invocation | Purpose |
 |---------|------------|---------|
 | Prompt | `/prompt:improve <prompt_or_topic> [:auto\|:confirm]` | Create or improve prompts using frameworks, DEPTH thinking, and CLEAR scoring |
-| Goal (OpenCode) | `/goal-opencode <condition>` | Set/show/pause/clear/complete a durable session-completion goal via the `opencode-goal` plugin |
+| Goal (OpenCode) | `/goal-opencode <condition>` | Set/show/pause/clear/complete a durable session-completion goal via the `opencode-goal` plugin. Authored in `.opencode/commands/`, not in this tree |
 
 ### Spec Kit Commands
 

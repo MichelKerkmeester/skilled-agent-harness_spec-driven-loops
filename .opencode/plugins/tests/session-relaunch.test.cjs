@@ -13,7 +13,7 @@ const { pathToFileURL } = require('node:url');
 const { test } = require('node:test');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..');
-const PLUGIN_PATH = path.join(REPO_ROOT, '.skilled', 'plugins', 'session-relaunch.js');
+const PLUGIN_PATH = path.join(REPO_ROOT, '.opencode', 'plugins', 'session-relaunch.js');
 const CORE_PATH = path.join(
   REPO_ROOT,
   '.skilled',

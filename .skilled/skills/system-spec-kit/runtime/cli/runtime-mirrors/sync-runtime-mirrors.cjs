@@ -2,7 +2,7 @@
 // MODULE: Sync Runtime Mirrors
 // ───────────────────────────────────────────────────────────────────
 //
-// Claude, Cursor, and Devin discover agents and commands by file convention,
+// Claude, Cursor, Devin and OpenCode discover agents and commands by file convention,
 // each at its own path and in its own shape. Rather than fork the content, every
 // entry is a symlink back to one canonical file, so a mirror cannot drift from
 // what it mirrors. This script owns those symlink trees.
@@ -44,7 +44,12 @@ const CLAUDE_AGENTS = '.claude/agents';
 // Keep in step with the same list in the /doctor agent-roster check.
 const CLAUDE_ONLY_AGENTS = new Set(['Explore']);
 const CLAUDE_COMMANDS = '.claude/commands';
-const OPENCODE_COMMANDS = '.skilled/commands';
+const CANONICAL_COMMANDS = '.skilled/commands';
+// OpenCode reads the canonical tree in its own shape, so it mirrors each top-level
+// entry rather than each command file, and keeps its native command beside them.
+const OPENCODE_COMMANDS = '.opencode/commands';
+// Command roots that must be real directories of links, never one link to the tree.
+const REAL_COMMAND_ROOTS = [CLAUDE_COMMANDS, OPENCODE_COMMANDS];
 
 const HOOK_CONFIGS = [
   { runtime: 'claude', config: '.claude/settings.json', mirror: '.claude/hooks' },
@@ -80,9 +85,9 @@ function listAgentNames() {
 }
 
 function listCommandPaths() {
-  const root = path.join(REPO_ROOT, OPENCODE_COMMANDS);
+  const root = path.join(REPO_ROOT, CANONICAL_COMMANDS);
   if (!fs.existsSync(root)) {
-    throw new Error(`No canonical commands found at ${OPENCODE_COMMANDS}`);
+    throw new Error(`No canonical commands found at ${CANONICAL_COMMANDS}`);
   }
   const found = [];
   const walk = (current) => {
@@ -99,6 +104,14 @@ function listCommandPaths() {
   };
   walk(root);
   return found.sort();
+}
+
+// Every top-level entry OpenCode needs from the canonical tree. A local-* entry is
+// private and git-ignored, so provisioning links it per checkout instead.
+function listCommandRootEntries() {
+  return fs.readdirSync(path.join(REPO_ROOT, CANONICAL_COMMANDS))
+    .filter((name) => !name.startsWith('.') && !name.startsWith('local-'))
+    .sort();
 }
 
 // `create/agent.md` -> `create-agent`: both runtimes expose a flat namespace,
@@ -134,10 +147,14 @@ function buildExpectedLinks() {
     // Runtime-exclusive commands (the goal triggers) are not cross-mirrored; each
     // runtime carries only its own hand-authored native command instead.
     if (isCanonicalMirrorExcluded(relativePath)) continue;
-    const source = `${OPENCODE_COMMANDS}/${relativePath}`;
+    const source = `${CANONICAL_COMMANDS}/${relativePath}`;
     const flat = toFlatName(relativePath);
     links.push({ tree: 'claude-commands', mirror: `${CLAUDE_COMMANDS}/${relativePath}`, source });
     links.push({ tree: 'cursor-commands', mirror: `.cursor/commands/${flat}.md`, source });
+  }
+
+  for (const name of listCommandRootEntries()) {
+    links.push({ tree: 'opencode-commands', mirror: `${OPENCODE_COMMANDS}/${name}`, source: `${CANONICAL_COMMANDS}/${name}` });
   }
 
   for (const { runtime, config, mirror } of HOOK_CONFIGS) {
@@ -202,7 +219,8 @@ function findOrphans(expectedLinks, repoRoot = REPO_ROOT) {
     const absoluteDir = path.join(repoRoot, dir);
     if (!fs.existsSync(absoluteDir)) continue;
     for (const entry of fs.readdirSync(absoluteDir, { withFileTypes: true })) {
-      if (entry.name === 'README.md' || entry.name === 'README.txt' || entry.name.startsWith('.')) continue;
+      if (entry.name.startsWith('.')) continue;
+      if ((entry.name === 'README.md' || entry.name === 'README.txt') && !names.has(entry.name)) continue;
       // A local-* entry is private to one checkout and git-ignored, so it is neither
       // drift nor an orphan to prune.
       if (entry.name.startsWith('local-')) continue;
@@ -244,15 +262,16 @@ function findOrphans(expectedLinks, repoRoot = REPO_ROOT) {
 
 function checkMirrors(expectedLinks) {
   const drift = [];
-  const claudeCommandsRoot = path.join(REPO_ROOT, CLAUDE_COMMANDS);
-  try {
-    const rootStat = fs.lstatSync(claudeCommandsRoot);
-    if (!rootStat.isDirectory() || rootStat.isSymbolicLink()) {
-      drift.push(`STALE ${CLAUDE_COMMANDS} — must be a real filtered command directory`);
+  for (const commandsRoot of REAL_COMMAND_ROOTS) {
+    try {
+      const rootStat = fs.lstatSync(path.join(REPO_ROOT, commandsRoot));
+      if (!rootStat.isDirectory() || rootStat.isSymbolicLink()) {
+        drift.push(`STALE ${commandsRoot} — must be a real filtered command directory`);
+      }
+    } catch (error) {
+      if (error?.code === 'ENOENT') drift.push(`MISSING ${commandsRoot}`);
+      else throw error;
     }
-  } catch (error) {
-    if (error?.code === 'ENOENT') drift.push(`MISSING ${CLAUDE_COMMANDS}`);
-    else throw error;
   }
   for (const link of expectedLinks) {
     const result = inspect(link);
@@ -274,18 +293,20 @@ function checkMirrors(expectedLinks) {
 
 function writeMirrors(expectedLinks) {
   let changed = 0;
-  const claudeCommandsRoot = path.join(REPO_ROOT, CLAUDE_COMMANDS);
-  try {
-    const rootStat = fs.lstatSync(claudeCommandsRoot);
-    if (rootStat.isSymbolicLink()) {
-      fs.unlinkSync(claudeCommandsRoot);
-    } else if (!rootStat.isDirectory()) {
-      throw new Error(`${CLAUDE_COMMANDS} exists but is not a directory`);
+  for (const commandsRoot of REAL_COMMAND_ROOTS) {
+    const absoluteRoot = path.join(REPO_ROOT, commandsRoot);
+    try {
+      const rootStat = fs.lstatSync(absoluteRoot);
+      if (rootStat.isSymbolicLink()) {
+        fs.unlinkSync(absoluteRoot);
+      } else if (!rootStat.isDirectory()) {
+        throw new Error(`${commandsRoot} exists but is not a directory`);
+      }
+    } catch (error) {
+      if (error?.code !== 'ENOENT') throw error;
     }
-  } catch (error) {
-    if (error?.code !== 'ENOENT') throw error;
+    fs.mkdirSync(absoluteRoot, { recursive: true });
   }
-  fs.mkdirSync(claudeCommandsRoot, { recursive: true });
 
   for (const link of expectedLinks) {
     const result = inspect(link);

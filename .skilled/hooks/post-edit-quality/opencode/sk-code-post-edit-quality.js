@@ -1,1 +1,1 @@
-../../../plugins/sk-code-post-edit-quality.js
+../../../../.opencode/plugins/sk-code-post-edit-quality.js

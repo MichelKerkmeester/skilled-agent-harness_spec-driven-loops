@@ -173,7 +173,7 @@ Current package state:
 
 Expected consumers:
 
-- Prompt-time adapters for Claude, Codex, Cursor and Devin live under `.skilled/skills/system-spec-kit/runtime/hooks/`. Pi and the OpenCode plugin (`.skilled/plugins/system-skill-advisor.js`) resolve the same brief builder. The plugin invokes `node .skilled/bin/skill-advisor.cjs` directly.
+- Prompt-time adapters for Claude, Codex, Cursor and Devin live under `.skilled/skills/system-spec-kit/runtime/hooks/`. Pi and the OpenCode plugin (`.opencode/plugins/system-skill-advisor.js`) resolve the same brief builder. The plugin invokes `node .skilled/bin/skill-advisor.cjs` directly.
 - CLI callers that run `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` or `skill_graph_propagate_enhances`.
 - Daemon-backed CLI callers (`node .skilled/bin/skill-advisor.cjs <command>`) for doctor routes, scripts and CI, untrusted by default with `--trusted` for maintainer mutations.
 - Doctor workflows that validate advisor health and rebuild state.

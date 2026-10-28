@@ -68,7 +68,7 @@ Every runtime evaluates the **same** `lib/post-edit-router.cjs` core. What diffe
 | **Devin** | `devin/post-edit-quality.cjs` | `PostToolUse` on `^(edit\|write)$` (`.devin/hooks.v1.json`) | `file_path`/`filePath`/`path`; resolves relative paths against `DEVIN_PROJECT_DIR` | PostToolUse `hookSpecificOutput.additionalContext`. |
 | **Cursor** | `cursor/post-tool-use.mjs` | `postToolUse` event | Multiplexed proxy: `Write` tool_name → shapes a Claude payload and `spawnSync`s `claude-posttooluse.cjs`; `Shell` → dispatch audit (separate concern) | Findings returned as `agent_message` in the `{permission: 'allow'}` envelope. |
 | **Pi** | `pi/post-edit-quality.ts` | `tool_result` event, discovered via `.pi/extensions/` | `toolName: 'edit'`/`'write'`; `event.input.path` resolved against `ctx.cwd` | Appends findings as `{type: "text", text}` content to the tool result, model-visible. |
-| **OpenCode** | `.skilled/plugins/sk-code-post-edit-quality.js` (mirrored at `opencode/`) | Plugin: `tool.execute.before` + `tool.execute.after` + `experimental.chat.system.transform` | `after` carries only a `callID`, so `before` stashes the file path in a bounded correlation map and `after` retrieves+evicts it; watches `write`/`edit`/`patch`/`multiedit`/`apply_patch` | Findings buffered, then drained into the next turn's system context (model-visible) via the transform hook. Also written to a rotated log `.skilled/logs/post-edit-quality.log` (256 KB). **Never** stdout/stderr. OpenCode's TUI paints console output onto the prompt line. 4s budget, 3s per checker, per-skill dedupe. |
+| **OpenCode** | `.opencode/plugins/sk-code-post-edit-quality.js` (mirrored at `opencode/`) | Plugin: `tool.execute.before` + `tool.execute.after` + `experimental.chat.system.transform` | `after` carries only a `callID`, so `before` stashes the file path in a bounded correlation map and `after` retrieves+evicts it; watches `write`/`edit`/`patch`/`multiedit`/`apply_patch` | Findings buffered, then drained into the next turn's system context (model-visible) via the transform hook. Also written to a rotated log `.skilled/logs/post-edit-quality.log` (256 KB). **Never** stdout/stderr. OpenCode's TUI paints console output onto the prompt line. 4s budget, 3s per checker, per-skill dedupe. |
 
 The three CommonJS adapters (Claude, Codex, Devin) share the same structure: read stdin JSON, fast-exit on a non-edit tool name, resolve the file, run the router, then deliver findings. Claude and Devin write a `hookSpecificOutput.additionalContext` JSON envelope on stdout; Codex prints plain text on stdout. They share the Claude budget constants. Cursor deliberately does not reimplement the check: it reshapes its `Write` payload and shells out to the Claude adapter. Pi and OpenCode deliver findings into model-visible channels (tool-result content and the system transform respectively) rather than stdout.
 
@@ -106,7 +106,7 @@ post-edit-quality/
 | `devin/post-edit-quality.cjs` | Devin `PostToolUse(^(edit\|write)$)` adapter. Accepts `file_path`/`filePath`/`path` and resolves relative paths against the project dir. |
 | `cursor/post-tool-use.mjs` | Multiplexed Cursor proxy. For `Write`, shapes a Claude payload and `spawnSync`s the Claude adapter, returning findings as `agent_message`. Real home is under `system-spec-kit`; indexed here as a symlink. |
 | `pi/post-edit-quality.ts` | Pi `tool_result` extension. Resolves the path, runs the router, appends findings as text content to the tool result. |
-| `.skilled/plugins/sk-code-post-edit-quality.js` | OpenCode plugin. `before`/`after` correlate the file path by callID; `after` runs the router under the OpenCode budget with dedupe; `experimental.chat.system.transform` drains buffered findings into the next turn's system context. Also writes a rotated log. |
+| `.opencode/plugins/sk-code-post-edit-quality.js` | OpenCode plugin. `before`/`after` correlate the file path by callID; `after` runs the router under the OpenCode budget with dedupe; `experimental.chat.system.transform` drains buffered findings into the next turn's system context. Also writes a rotated log. |
 
 ---
 
@@ -144,13 +144,13 @@ node --test .skilled/hooks/post-edit-quality/tests/*.test.cjs
 Expected result: the router suite and the Codex and Devin adapter suites all pass, with `fail 0`.
 
 ```bash
-node --test .skilled/plugins/tests/sk-code-post-edit-quality.test.cjs
+node --test .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs
 ```
 
 Expected result: all tests pass (covers the router and the Claude/Codex adapters, including multi-file patch coverage).
 
 ```bash
-node -e "import('./.skilled/plugins/sk-code-post-edit-quality.js').then(()=>console.log('ok'))"
+node -e "import('./.opencode/plugins/sk-code-post-edit-quality.js').then(()=>console.log('ok'))"
 ```
 
 Expected result: `ok`, with no module-resolution error (confirms the OpenCode adapter still resolves this core).

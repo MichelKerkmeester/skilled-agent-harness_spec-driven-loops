@@ -48,7 +48,7 @@ One real script backs the wired runtimes. Claude, Codex, Cursor, Devin, and Pi c
 | **Cursor** | `cursor/git-live-follow.sh` (symlink) | SessionStart hook chain, `--start` | Same |
 | **Devin** | `devin/git-live-follow.sh` (symlink) | SessionStart hook chain, `--start` | Same |
 | **Pi** | bundled into `.pi/extensions/session-start-advisories.ts` (`ctx.exec()`) | `session_start`, concern `live-sync` | Same script, `--start`; any status text surfaces through `ctx.ui.notify()` instead of the raw stderr line |
-| **OpenCode** | launched by `.skilled/plugins/session-cleanup.js` | Plugin `event` on `session.created` | Same script, backgrounded by the session-start plugin; no per-runtime symlink adapter |
+| **OpenCode** | launched by `.opencode/plugins/session-cleanup.js` | Plugin `event` on `session.created` | Same script, backgrounded by the session-start plugin; no per-runtime symlink adapter |
 
 Hermes runs the same script as one of its session-start guards in the `repo-guards` plugin.
 
@@ -73,7 +73,7 @@ git-live-follow/
 | File | Responsibility |
 |---|---|
 | `.skilled/bin/git-live-follow.sh` | The follower. `--start` gate and backgrounding, per-checkout lock, bounded poll of the live branch, fast-forward-only advance, tracked-only dirty test, state logging with rotation. Exits 0 for every poll-time failure; a missing `git`, a non-repo checkout, or a manual detached-HEAD run without `--live` exits 1. |
-| `.skilled/plugins/session-cleanup.js` | The OpenCode session-start plugin that launches this script on `session.created` (see [`session-cleanup/`](../session-cleanup/README.md)). Not in this folder. |
+| `.opencode/plugins/session-cleanup.js` | The OpenCode session-start plugin that launches this script on `session.created` (see [`session-cleanup/`](../session-cleanup/README.md)). Not in this folder. |
 | `.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts` | The Pi extension that runs the same script with `--start`. Not in this folder. |
 | `.skilled/hooks/shared/hook-flags.sh` | The shared shell kill-switch resolver (`hook_enabled live-sync`, `hook_enabled live-follow`). Sourced fail-open by `--start`. |
 

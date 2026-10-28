@@ -5,7 +5,7 @@ trigger_phrases:
   - "completion sentinel state"
   - "advisory deduplication"
   - "completion evidence sentinel"
-version: 1.0.0.1
+version: 1.0.1.0
 ---
 
 # Completion Sentinel Runtime State
@@ -16,7 +16,7 @@ version: 1.0.0.1
 
 ## 1. OVERVIEW
 
-The [`system-completion-sentinel.js`](../../../plugins/system-completion-sentinel.js) plugin adapts OpenCode lifecycle events to the shared [`completion-evidence-sentinel.cjs`](../../system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs) core. The plugin does not define this folder directly. It imports the core, which owns the state path, completion-evidence policy, deduplication and cleanup behavior.
+The [`system-completion-sentinel.js`](../../../../.opencode/plugins/system-completion-sentinel.js) plugin adapts OpenCode lifecycle events to the shared [`completion-evidence-sentinel.cjs`](../../system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs) core. The plugin does not define this folder directly. It imports the core, which owns the state path, completion-evidence policy, deduplication and cleanup behavior.
 
 This state supports the `system-spec-kit` completion verification workflow. That workflow requires strict spec-folder validation before a completion claim. The sentinel provides a separate advisory safeguard at turn end. It inspects recorded completion artifacts after an assistant claims work is complete, but it does not replace the workflow's required validation, execute tests or run `validate.sh`.
 
@@ -126,7 +126,7 @@ Operators can delete `advisory-dedup.json` to reset advisory suppression. The se
 
 | Resource | Purpose |
 |---|---|
-| [`system-completion-sentinel.js`](../../../plugins/system-completion-sentinel.js) | Adapts OpenCode session events to the shared sentinel core. |
+| [`system-completion-sentinel.js`](../../../../.opencode/plugins/system-completion-sentinel.js) | Adapts OpenCode session events to the shared sentinel core. |
 | [`completion-evidence-sentinel.cjs`](../../system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs) | Owns completion checks, dedup persistence and stale-state cleanup. |
 | [`completion-evidence-stop.cjs`](../../system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs) | Adapts Claude Code Stop payloads and hook state to the shared core. |
 | [`system-spec-kit/SKILL.md`](../../system-spec-kit/SKILL.md) | Defines the broader validation-before-completion workflow that the sentinel observes. |

@@ -1,1 +1,1 @@
-../../../plugins/system-deep-loop-guard.js
+../../../../.opencode/plugins/system-deep-loop-guard.js

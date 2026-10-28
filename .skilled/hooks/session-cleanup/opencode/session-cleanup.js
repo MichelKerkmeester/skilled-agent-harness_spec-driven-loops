@@ -1,1 +1,1 @@
-../../../plugins/session-cleanup.js
+../../../../.opencode/plugins/session-cleanup.js

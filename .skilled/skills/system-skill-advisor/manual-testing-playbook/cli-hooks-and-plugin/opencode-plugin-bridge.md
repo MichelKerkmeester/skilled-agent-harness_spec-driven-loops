@@ -6,7 +6,7 @@ trigger_phrases:
   - "opencode plugin bridge"
   - "opencode plugin"
   - "opencode"
-version: 0.8.0.17
+version: 0.8.1.0
 id: CL-005
 category: cli_hooks_and_plugin
 stage: routing
@@ -32,7 +32,7 @@ Validate the OpenCode plugin path, which spawns the advisor CLI and falls back t
 ## 2. SCENARIO CONTRACT
 
 - Advisor runtime build is current.
-- Plugin host file exists at `.skilled/plugins/system-skill-advisor.js`.
+- Plugin host file exists at `.opencode/plugins/system-skill-advisor.js`.
 - The plugin reaches the advisor by spawning `.skilled/bin/skill-advisor.cjs`.
 
 ---
@@ -95,7 +95,7 @@ grep -n 'spec_kit_skill_advisor_status' /tmp/skill-advisor-playbook/cl-005.stdou
 
 ## 4. SOURCE FILES
 
-- `.skilled/plugins/system-skill-advisor.js`
+- `.opencode/plugins/system-skill-advisor.js`
 - `.skilled/bin/skill-advisor.cjs`
 - `.skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts`
 
@@ -115,7 +115,7 @@ grep -n 'spec_kit_skill_advisor_status' /tmp/skill-advisor-playbook/cl-005.stdou
 Preconditions observed:
 
 ```text
-.skilled/plugins/system-skill-advisor.js read successfully; total 1476 lines.
+.opencode/plugins/system-skill-advisor.js read successfully; total 1476 lines.
 .skilled/bin/skill-advisor.cjs read successfully; total 116 lines.
 .skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js present; 15675 bytes.
 .skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/render.js present; 15501 bytes.
@@ -169,7 +169,7 @@ Disable-flag evidence, from the same test file selected with `-t opt-out`:
 
 The three opt-out paths are `env opt-out disables bridge invocation`, `shared hook env opt-out disables bridge invocation` and `config opt-out disables bridge invocation`. Each asserts that no advisor process is spawned and that the status tool reports `enabled=false` with the matching `disabled_reason`.
 
-Plugin source evidence from `.skilled/plugins/system-skill-advisor.js`:
+Plugin source evidence from `.opencode/plugins/system-skill-advisor.js`:
 
 ```js
 const ADVISOR_CLI_PATH = fileURLToPath(new URL('../bin/skill-advisor.cjs', import.meta.url));

@@ -8,7 +8,7 @@ trigger_phrases:
   - "spec gate enforce"
   - "gate-3 question"
   - "SYSTEM_SPEC_GATE_ENFORCE"
-version: 1.0.0.1
+version: 1.0.1.0
 id: plugins-and-hooks-spec-mutation-gate-enforce
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -22,7 +22,7 @@ expected_leaf_resources: []
 
 `system-spec-gate` turns the "spec folder before any file mutation" rule (Gate 3) from a prompt-time instruction into session-scoped state both runtimes can read. It ships as two thin transport adapters over one runtime-neutral core:
 
-- OpenCode plugin: `.skilled/plugins/system-spec-gate.js` -- classify runs in `experimental.chat.system.transform` (best-effort fetches the session's last user message via `ctx.client` since the real hook input carries no prompt field), enforce runs in `tool.execute.before` on the mutating-tool set.
+- OpenCode plugin: `.opencode/plugins/system-spec-gate.js` -- classify runs in `experimental.chat.system.transform` (best-effort fetches the session's last user message via `ctx.client` since the real hook input carries no prompt field), enforce runs in `tool.execute.before` on the mutating-tool set.
 - Claude hooks: `.skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs` (`UserPromptSubmit`) and `spec-gate-enforce.mjs` (`PreToolUse` on `Write|Edit` and `Bash`).
 - Shared core: `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` -- `classifyIntent()` opens the gate and returns the bounded Gate-3 question, or parses an answer to an already-open gate; `evaluateMutation()` reads the cached gate state for a Write/Edit and returns `allow`/`advise`/`deny`, carrying `GATE_3_MUTATION_NOTICE` on the first delivery plus the persisted marker that keeps later mutations silent.
 
@@ -34,7 +34,7 @@ This scenario validates, with real executed evidence: (a) with enforce OFF (the 
 
 ## 2. SCENARIO CONTRACT
 
-- Preconditions: Node is on `PATH`. `.skilled/plugins/system-spec-gate.js`, `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs`, and both Claude hook adapters exist (confirmed live, see Evidence). `.claude/settings.json` wires `PreToolUse` (`Write|Edit` and `Bash` matchers) to `spec-gate-enforce.mjs` and `UserPromptSubmit` to `spec-gate-classify.mjs`, with `env.SYSTEM_SPEC_GATE_ENFORCE` set to `"0"` project-wide.
+- Preconditions: Node is on `PATH`. `.opencode/plugins/system-spec-gate.js`, `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs`, and both Claude hook adapters exist (confirmed live, see Evidence). `.claude/settings.json` wires `PreToolUse` (`Write|Edit` and `Bash` matchers) to `spec-gate-enforce.mjs` and `UserPromptSubmit` to `spec-gate-classify.mjs`, with `env.SYSTEM_SPEC_GATE_ENFORCE` set to `"0"` project-wide.
 - Real user-facing trigger: a user asks the agent to "fix the login bug" (or any other file-mutation-shaped request) without naming a spec folder, then the agent attempts a `Write`/`Edit` on a real, non-exempt source file before a spec folder has been named -- exactly the Gate-3 violation the CLAUDE.md GATE 3 rule targets.
 - Expected signals: `classifyIntent()` returns `{status:"open", question: <GATE_3_QUESTION>}` on an interactive mutation-shaped prompt while the Claude classify hook writes nothing for the turn; `evaluateMutation()` returns `decision:"advise"` with `wouldDeny:true` and `detail` containing `"SPEC FOLDER QUESTION"` (the once-per-session mutation notice) for the first in-gate Write/Edit whenever enforce is off, then a silent allow for later mutations in that session; `decision:"deny"` with `detail` containing `"DENIED: this Write/Edit needs a bound spec folder first"` only when enforce is on, the session is interactive, and the target is non-exempt; a child returns `{status:"closed", question:null}` from classify and `{decision:"allow", detail:null, wouldDeny:false}` from enforce; spec-tree/`.git`/`node_modules`/`dist`/`/tmp`/`/private/tmp` targets and the disabled kill-switch also allow.
 - Desired user-visible outcome: a concise PASS/FAIL verdict citing the exact captured command output for each of the six behaviors above, plus a real false-positive rate measured from this repo's own telemetry.
@@ -57,7 +57,7 @@ a user asks the agent to "fix the login bug" (or any other file-mutation-shaped 
 1. Run the OpenCode plugin adapter's unit-test suite. Neutralize the two vars the operator may export ambiently (`AI_SESSION_CHILD` and `SYSTEM_SPEC_GATE_ENFORCE`) with `env -u` so the suite is hermetic -- an inherited `AI_SESSION_CHILD=1` would force the complete child no-op and suppress interactive deny assertions:
 
 ```bash
-env -u AI_SESSION_CHILD -u SYSTEM_SPEC_GATE_ENFORCE node .skilled/plugins/tests/system-spec-gate.test.cjs
+env -u AI_SESSION_CHILD -u SYSTEM_SPEC_GATE_ENFORCE node .opencode/plugins/tests/system-spec-gate.test.cjs
 ```
 
 Expected: TAP output, `# tests 11`, `# pass 11`, `# fail 0`.
@@ -200,8 +200,8 @@ Capture, for every step in the Commands sequence above:
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- OpenCode plugin adapter: `.skilled/plugins/system-spec-gate.js`
-- Plugin adapter unit test: `.skilled/plugins/tests/system-spec-gate.test.cjs`
+- OpenCode plugin adapter: `.opencode/plugins/system-spec-gate.js`
+- Plugin adapter unit test: `.opencode/plugins/tests/system-spec-gate.test.cjs`
 - Runtime-neutral core: `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs`
 - Core unit test: `.skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs`
 - Pi extension suite: `.skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts`
@@ -212,7 +212,7 @@ Capture, for every step in the Commands sequence above:
 - Deny-predicate documentation: `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md`
 - Live telemetry: `.skilled/skills/.state/spec-gate/spec-gate-warnings.log` (real, project-local, gitignored state)
 
-Provenance: .skilled/plugins/tests/system-spec-gate.test.cjs
+Provenance: .opencode/plugins/tests/system-spec-gate.test.cjs
 
 ---
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "cross-runtime hook smoke"
 importance_tier: normal
 contextType: implementation
-version: 3.6.0.20
+version: 3.6.1.0
 ---
 
 # Skill Advisor Hook Validation Playbook
@@ -53,7 +53,7 @@ Required files:
 | `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts` | `advisor_validate` handler (must surface `thresholdSemantics` + telemetry totals) |
 | `.skilled/skills/system-skill-advisor/runtime/lib/render.ts` | Shared `renderAdvisorBrief(...)` invariants |
 | `.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts` | Durable JSONL diagnostics sink + metric labels |
-| `.skilled/plugins/system-skill-advisor.js` | OpenCode plugin |
+| `.opencode/plugins/system-skill-advisor.js` | OpenCode plugin |
 | `.skilled/bin/skill-advisor.cjs` | Advisor CLI the hooks and OpenCode plugin shell out to |
 
 ---
@@ -176,13 +176,13 @@ Confirm no runtime or plugin still routes through a bespoke formatter or a non-s
 ```bash
 rg -n "renderAdvisorBrief|effectiveThresholds|thresholdSemantics|workspaceRoot" \
   .skilled/skills/system-skill-advisor/runtime \
-  .skilled/plugins/system-skill-advisor.js \
+  .opencode/plugins/system-skill-advisor.js \
   .skilled/skills/system-spec-kit/runtime/hooks
 
 rg -n "formatAdvisorBrief|legacyAdvisorRender|custom formatter" \
   .skilled/skills/system-spec-kit/runtime \
-  .skilled/plugins \
-  .skilled/plugins
+  .opencode/plugins \
+  .opencode/plugins
 ```
 
 Pass condition: the first grep returns the expected shared-contract references; the second grep returns no hits (no drift back to branch-specific rendering).

@@ -24,8 +24,8 @@ what a path is. Five kinds of reference are read:
   command tree (``.skilled/commands``). ``/group:name`` names
   ``group/name.md``, and a trailing ``:mode`` must be one the command declares
   in its ``argument-hint`` or ``description``. A command file directly under
-  the tree, such as ``vision.md``, has no group, so ``/vision:auto`` names it in
-  mode ``auto`` when no ``vision/`` group folder exists. A hyphen form such as
+  the tree, such as ``notes.md``, has no group, so ``/notes:auto`` names it in
+  mode ``auto`` when no ``notes/`` group folder exists. A hyphen form such as
   ``/create-changelog`` is tried as each ``group-name`` split. It fails only
   when it opens a code span and its prefix names a group holding a command it
   nearly spells (``/create-changelg``), so a skill name such as ``/deep-dive``
@@ -836,8 +836,8 @@ def resolve_slash_command(reference: Reference, root: Path) -> Resolution:
         hits = sorted(glob.glob(str(tree / group / f"{name}.md")))
         if hits and command_group(tree, group):
             return check_modes(reference, Path(hits[0]), modes, concrete="*" not in name)
-        # A command file directly under the tree, such as `vision.md`, has no
-        # group, so in `/vision:auto` the segment after the colon is a mode.
+        # A command file directly under the tree, such as `notes.md`, has no
+        # group, so in `/notes:auto` the segment after the colon is a mode.
         top_level = tree / f"{group}.md"
         if not command_group(tree, group) and top_level.is_file():
             return check_modes(reference, top_level, [name, *modes], concrete="*" not in name)

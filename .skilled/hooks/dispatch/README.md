@@ -93,7 +93,7 @@ Every runtime evaluates the **same** `lib/` cores. What differs is the event eac
 | **Devin** | `devin/dispatch-preflight-lint.mjs`, `devin/dispatch-audit-posttooluse.mjs` | `PreToolUse`/`PostToolUse` on `exec` (`.devin/hooks.v1.json`) | `tool_name: 'exec'`; whitespace-only `cwd` treated as absent, falls back to `DEVIN_PROJECT_DIR` | Same deny/advisory envelope; audit tagged `runtime: 'devin'`. |
 | **Cursor** | `cursor/dispatch-preflight-lint.mjs`, `cursor/post-tool-use.mjs` | `preToolUse` and `postToolUse` events, both on the `Shell` matcher (`.cursor/hooks.json`) | Preflight spawns the Claude preflight with a Claude-shaped `Bash` payload and translates its envelope. PostToolUse is a multiplexed proxy: `Shell` tool_name → normalizes to `Bash` and `spawnSync`s `claude/dispatch-audit-posttooluse.mjs`; `Write` → post-edit-quality (separate concern). Cursor's `tool_output` is a JSON-stringified string, parsed back into `{stdout, exitCode}`. | Preflight: `{permission: 'deny'}` with `agent_message`/`user_message` and exit 2 on block, `agent_message` on warn, `{permission: 'allow'}` otherwise. Audit: proxy emits `{permission: 'allow'}` and never blocks. |
 | **Pi** | `pi/dispatch-preflight-lint.ts`, `pi/dispatch-audit.ts` | `tool_call` / `tool_result` events, discovered via `.pi/extensions/` | `toolName: 'bash'`. Preflight is richer: captures raw user input on the `input` event, then runs `shouldDenyPiDispatch` authorization (ambiguous denied; direct-but-unnamed denied unless the user text explicitly names the executor or a `/deep:... --executor cli-*` carries it) *before* evaluating hard rules. | Preflight: `{block: true, reason}` on deny/block; `{reason}` on warn. Audit: `recordDispatch` tagged `runtime: 'pi'`. |
-| **OpenCode** | `.skilled/plugins/cli-dispatch-audit.js` (mirrored at `opencode/`) | Plugin, `tool.execute.before` and `tool.execute.after` events | `input.tool: 'bash'`; anchors the log path to the repo root via `findRepoRoot` so a nested working directory cannot plant a stray `.opencode` tree; resolves the declaring skill under the checkout's source root | Preflight in-process: `tool.execute.before` throws with the block reason to deny. Audit: `tool.execute.after` records only, tagged `runtime: 'opencode'`. |
+| **OpenCode** | `.opencode/plugins/cli-dispatch-audit.js` (mirrored at `opencode/`) | Plugin, `tool.execute.before` and `tool.execute.after` events | `input.tool: 'bash'`; anchors the log path to the repo root via `findRepoRoot` so a nested working directory cannot plant a stray `.opencode` tree; resolves the declaring skill under the checkout's source root | Preflight in-process: `tool.execute.before` throws with the block reason to deny. Audit: `tool.execute.after` records only, tagged `runtime: 'opencode'`. |
 
 The three hosted CommonJS/ESM preflight-and-audit pairs (Claude, Codex, Devin) share the same structure: read stdin JSON, fast-exit on a non-dispatch tool name or non-matching command, evaluate the core, emit the result. Cursor deliberately does not reimplement either half: its preflight shapes a Claude payload and shells out to the Claude preflight adapter, and its postToolUse proxy does the same for the audit, so a future change to the rules or the audit logic lands in both without a second edit. OpenCode keeps both halves in-process in its plugin, the one surface where `tool.execute.before` can still stop a command. Pi is the only runtime that adds an authorization layer on top of the hard-rule lint, because a direct dispatch must be authorized by the operator's own request.
 
@@ -115,7 +115,7 @@ dispatch/
 +-- codex/    (same pair), codex-shell-tool.test.mjs  # vitest, hooks config
 +-- cursor/   dispatch-preflight-lint.mjs (Shell preflight), post-tool-use.mjs  # multiplexed proxy (Shell -> dispatch audit, Write -> post-edit-quality)
 +-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (real files; `.pi/extensions/` symlinks to them), dispatch-preflight-lint.test.ts, directive-dedup.test.ts  # vitest, hooks config
-`-- opencode/ cli-dispatch-audit.js (browsability symlink -> .skilled/plugins/; real file loaded from .opencode/plugins/)
+`-- opencode/ cli-dispatch-audit.js (browsability symlink -> .opencode/plugins/; real file loaded from .opencode/plugins/)
 ```
 
 ---
@@ -132,7 +132,7 @@ dispatch/
 | `pi/dispatch-preflight-lint.ts` | Pi `tool_call` extension. Captures raw user input on the `input` event, resolves a wrapped or shell-run dispatch before running `shouldDenyPiDispatch` authorization (unnamed-direct denial), then evaluates every resolved packet's hard rules. A sentence that names the executor authorizes only when it carries no negation or refusal word (the two `not <other>, use <executor>` / `not <other> but <executor>` forms excepted), so an odd double negative such as `use cli-devin, it is not forbidden` is a fail-closed deny accepted by policy, and the operator writes the request as its own sentence. A mention authorizes only outside every quote, backtick, `$(` and `${` span, read the way a POSIX shell quotes the text, with and without comments and with curly quotes read as quotes and as literals. Text whose quoting never closes, nests past 32 levels or puts a `case` inside a substitution is denied, and only listed English contractions count as prose apostrophes. |
 | `pi/dispatch-audit.ts` | Pi `tool_result` extension. Calls `recordDispatch` tagged `runtime: 'pi'`. |
 
-`.skilled/plugins/cli-dispatch-audit.js` is the OpenCode adapter; it imports this concern's `lib/dispatch-audit.mjs` core and the shared `hook-flags.cjs` resolver.
+`.opencode/plugins/cli-dispatch-audit.js` is the OpenCode adapter; it imports this concern's `lib/dispatch-audit.mjs` core and the shared `hook-flags.cjs` resolver.
 
 ---
 
@@ -179,7 +179,7 @@ node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
 Expected result: all tests pass.
 
 ```bash
-node -e "import('./.skilled/plugins/cli-dispatch-audit.js').then(()=>console.log('ok'))"
+node -e "import('./.opencode/plugins/cli-dispatch-audit.js').then(()=>console.log('ok'))"
 ```
 
 Expected result: `ok`, with no module-resolution error (confirms the OpenCode adapter still resolves this core).

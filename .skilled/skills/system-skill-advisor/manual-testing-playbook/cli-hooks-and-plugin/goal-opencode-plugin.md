@@ -6,7 +6,7 @@ trigger_phrases:
   - "goal opencode plugin"
   - "/goal-opencode command"
   - "opencode_goal"
-version: 0.8.2.0
+version: 0.8.3.0
 id: CL-007
 category: cli_hooks_and_plugin
 stage: routing
@@ -31,8 +31,8 @@ Validate that `/goal-opencode` routes through the OpenCode plugin tools, persist
 
 ## 2. SCENARIO CONTRACT
 
-- OpenCode plugin host can load `.skilled/plugins/opencode-goal.js`.
-- `/goal-opencode` command exists at `.skilled/commands/goal-opencode.md` and routes `bind`, `resent` and `packet` alongside the lifecycle actions.
+- OpenCode plugin host can load `.opencode/plugins/opencode-goal.js`.
+- `/goal-opencode` command exists at `.opencode/commands/goal-opencode.md` and routes `bind`, `resent` and `packet` alongside the lifecycle actions.
 - Use a disposable session or temporary `stateDir` so existing session goals are not overwritten.
 - Live OpenCode-run tool invocation is verified (an `opencode serve` run lists `opencode_goal`/`opencode_goal_status` and a live model turn persists per-session state); when a live session is unavailable in this run, execute the plugin tool path directly and record that as the fallback, not as an open blocker.
 
@@ -43,17 +43,17 @@ Validate that `/goal-opencode` routes through the OpenCode plugin tools, persist
 1. Run the state and tool-path tests (the tool-path suite covers packet bind, resent, packet read and the injected resend reminder):
 
 ```bash
-node .skilled/plugins/tests/opencode-goal-state.test.cjs
-node .skilled/plugins/tests/opencode-goal-tool-path.test.cjs
+node .opencode/plugins/tests/opencode-goal-state.test.cjs
+node .opencode/plugins/tests/opencode-goal-tool-path.test.cjs
 ```
 
 2. Run the supervisor, continuation and lifecycle tests:
 
 ```bash
-node .skilled/plugins/tests/opencode-goal-supervisor.test.cjs
-node .skilled/plugins/tests/opencode-goal-continuation.test.cjs
-node .skilled/plugins/tests/opencode-goal-lifecycle.test.cjs
-node .skilled/plugins/tests/opencode-goal-capabilities.test.cjs
+node .opencode/plugins/tests/opencode-goal-supervisor.test.cjs
+node .opencode/plugins/tests/opencode-goal-continuation.test.cjs
+node .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs
+node .opencode/plugins/tests/opencode-goal-capabilities.test.cjs
 ```
 
 3. In a live OpenCode session when tool invocation is available, run:
@@ -117,9 +117,9 @@ node .skilled/plugins/tests/opencode-goal-capabilities.test.cjs
 ## 4. SOURCE FILES
 
 - Feature [`hooks-and-plugin/goal-opencode-plugin.md`](../../feature-catalog/hooks-and-plugin/goal-opencode-plugin.md)
-- Source: `.skilled/plugins/opencode-goal.js`
-- Source: `.skilled/commands/goal-opencode.md`
-- Tests: `.skilled/plugins/tests/opencode-goal-*.test.cjs`
+- Source: `.opencode/plugins/opencode-goal.js`
+- Source: `.opencode/commands/goal-opencode.md`
+- Tests: `.opencode/plugins/tests/opencode-goal-*.test.cjs`
 
 ---
 
@@ -134,12 +134,12 @@ node .skilled/plugins/tests/opencode-goal-capabilities.test.cjs
   carried stale usage counters (tokens, elapsed time, last-accounted message) into the revived goal.
 - Must-stay-true invariant: re-arming an objective after a terminal goal must reset usage to zero
   and clear the last-accounted message and continuation-suppressed flags.
-- Pass/fail: PASS only if `node .skilled/plugins/tests/opencode-goal-lifecycle.test.cjs` exits 0 AND
+- Pass/fail: PASS only if `node .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs` exits 0 AND
   the revived-goal assertions remain (`tokensUsed === 0`, `timeUsedSeconds === 0`,
   `lastAccountedMessageID === null`); FAIL if the test is missing, weakened, or exits non-zero.
 
 ```bash
-PATH=/opt/homebrew/bin:$PATH node .skilled/plugins/tests/opencode-goal-lifecycle.test.cjs
+PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs
 ```
 
 ### 5.2 Injection clamp must preserve directive and fence markers
@@ -149,21 +149,21 @@ PATH=/opt/homebrew/bin:$PATH node .skilled/plugins/tests/opencode-goal-lifecycle
 - Must-stay-true invariant: clamping a long objective must still emit the opening
   `[active_goal:<id>]` marker, the `directive:` line, and the closing `[/active_goal]` fence —
   only the objective text is truncated (ends with `...`).
-- Pass/fail: PASS only if `node .skilled/plugins/tests/opencode-goal-state.test.cjs` exits 0 AND the
+- Pass/fail: PASS only if `node .opencode/plugins/tests/opencode-goal-state.test.cjs` exits 0 AND the
   clamped-injection assertions remain (block starts with `[active_goal:<id>]`, contains the
   `directive:` line, ends with `[/active_goal]`); FAIL if the test is missing, weakened, or exits
   non-zero.
 
 ```bash
-PATH=/opt/homebrew/bin:$PATH node .skilled/plugins/tests/opencode-goal-state.test.cjs
+PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/tests/opencode-goal-state.test.cjs
 ```
 
 ### Regression Anchors
 
 | File | Role |
 |---|---|
-| `.skilled/plugins/tests/opencode-goal-lifecycle.test.cjs` | Fails if a revived same-objective goal carries stale usage. |
-| `.skilled/plugins/tests/opencode-goal-state.test.cjs` | Fails if the injection clamp drops the directive or fence markers. |
+| `.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs` | Fails if a revived same-objective goal carries stale usage. |
+| `.opencode/plugins/tests/opencode-goal-state.test.cjs` | Fails if the injection clamp drops the directive or fence markers. |
 
 ---
 
@@ -180,7 +180,7 @@ PATH=/opt/homebrew/bin:$PATH node .skilled/plugins/tests/opencode-goal-state.tes
 
 ### Preconditions
 
-Command file read confirmed `.skilled/commands/goal-opencode.md` exists and routes only through plugin tools:
+Command file read confirmed `.opencode/commands/goal-opencode.md` exists and routes only through plugin tools:
 
 ```text
 4: allowed-tools: opencode_goal, opencode_goal_status
@@ -192,7 +192,7 @@ Command file read confirmed `.skilled/commands/goal-opencode.md` exists and rout
 83: - Reads go through `opencode_goal_status`; mutations go through `opencode_goal`.
 ```
 
-Grep evidence for direct state path and plugin tools in `.skilled/commands/goal-opencode.md`:
+Grep evidence for direct state path and plugin tools in `.opencode/commands/goal-opencode.md`:
 
 ```text
 Found 17 matches
@@ -237,8 +237,8 @@ Found 17 matches
 Command:
 
 ```bash
-node .skilled/plugins/tests/opencode-goal-state.test.cjs
-node .skilled/plugins/tests/opencode-goal-tool-path.test.cjs
+node .opencode/plugins/tests/opencode-goal-state.test.cjs
+node .opencode/plugins/tests/opencode-goal-tool-path.test.cjs
 ```
 
 Observed output:
@@ -250,9 +250,9 @@ opencode-goal tool-path tests passed
 Command:
 
 ```bash
-node .skilled/plugins/tests/opencode-goal-supervisor.test.cjs
-node .skilled/plugins/tests/opencode-goal-continuation.test.cjs
-node .skilled/plugins/tests/opencode-goal-lifecycle.test.cjs
+node .opencode/plugins/tests/opencode-goal-supervisor.test.cjs
+node .opencode/plugins/tests/opencode-goal-continuation.test.cjs
+node .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs
 ```
 
 Observed output:
@@ -264,7 +264,7 @@ Observed output:
 Command:
 
 ```bash
-PATH=/opt/homebrew/bin:$PATH node .skilled/plugins/tests/opencode-goal-lifecycle.test.cjs
+PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs
 ```
 
 Observed output:
@@ -276,7 +276,7 @@ Observed output:
 Command:
 
 ```bash
-PATH=/opt/homebrew/bin:$PATH node .skilled/plugins/tests/opencode-goal-state.test.cjs
+PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/tests/opencode-goal-state.test.cjs
 ```
 
 Observed output:
@@ -411,7 +411,7 @@ injection_preview=""
 Command:
 
 ```bash
-env -u OPENCODE_GOAL_AUTONOMY node .skilled/plugins/tests/opencode-goal-continuation.test.cjs
+env -u OPENCODE_GOAL_AUTONOMY node .opencode/plugins/tests/opencode-goal-continuation.test.cjs
 ```
 
 Observed output:
@@ -423,7 +423,7 @@ Observed output:
 Command:
 
 ```bash
-OPENCODE_GOAL_AUTONOMY=smoke node .skilled/plugins/tests/opencode-goal-continuation.test.cjs
+OPENCODE_GOAL_AUTONOMY=smoke node .opencode/plugins/tests/opencode-goal-continuation.test.cjs
 ```
 
 Observed output:
@@ -435,7 +435,7 @@ Observed output:
 Command:
 
 ```bash
-OPENCODE_GOAL_AUTONOMY=active node .skilled/plugins/tests/opencode-goal-continuation.test.cjs
+OPENCODE_GOAL_AUTONOMY=active node .opencode/plugins/tests/opencode-goal-continuation.test.cjs
 ```
 
 Observed output:

@@ -59,7 +59,7 @@ Every covered runtime evaluates the **same** `lib/dispatch-guard.cjs` core. What
 | **Claude** | `claude/fable-subagent-guard.mjs` | `PreToolUse` on `Task\|Agent` | Reads the active main-loop model from `payload.transcript_path`; denies the three Fable shapes above | `permissionDecision: 'deny'` + per-shape reason. Claude-only; no other runtime has this guard. |
 | **Devin** | `devin/task-dispatch-guard.cjs` | `PreToolUse` on `run_subagent` (`.devin/hooks.v1.json`) | `tool_name: 'run_subagent'`; accepts `subagent_type`/`subagentType`/`agent_type`/`agentType`; whitespace-only `cwd` falls back to `DEVIN_PROJECT_DIR` | Same deny/advisory envelope as Claude. No Fable guard. |
 | **Cursor** | `cursor/task-dispatch-guard.mjs` | `preToolUse` (matcher `Task`) | `tool_name: 'Task'`; forwards the payload unchanged (the Claude core already reads the shape Cursor emits) | `spawnSync`s the Claude adapter, then translates its `hookSpecificOutput` into Cursor's envelope: deny → `{permission: 'deny', user_message, agent_message}` (exit 2); warn → `{permission: 'allow', agent_message}`. |
-| **OpenCode** | `.skilled/plugins/system-deep-loop-guard.js` (mirrored at `opencode/`) | Plugin: `tool.execute.before` on `task` + `event` on `session.created` | `input.tool: 'task'`; reads `args.subagent_type`/`subagentType` + `args.prompt` | reject → throws `Error(result.detail)` (OpenCode treats a thrown `before` error as a denial); warn → state-dir log only, **never** stdout/stderr. `session.created` triggers a throttled state-directory sweep. |
+| **OpenCode** | `.opencode/plugins/system-deep-loop-guard.js` (mirrored at `opencode/`) | Plugin: `tool.execute.before` on `task` + `event` on `session.created` | `input.tool: 'task'`; reads `args.subagent_type`/`subagentType` + `args.prompt` | reject → throws `Error(result.detail)` (OpenCode treats a thrown `before` error as a denial); warn → state-dir log only, **never** stdout/stderr. `session.created` triggers a throttled state-directory sweep. |
 | **Codex** | — | — | — | `n/a`: codex-cli 0.160 fires `PreToolUse` on `spawn_agent` as `collaborationspawn_agent`, but a captured payload carries the spawn `message` encrypted beside `task_name` and `fork_turns`, so the guard's prompt and target checks have nothing to read. No adapter is wired. |
 | **Pi** | `pi/task-dispatch-guard.ts` (linked as `.pi/extensions/task-dispatch-guard.ts`) | `tool_call` on `subagent` | `event.toolName: 'subagent'`; loads the core from its own folder or, through the extension link, from the hub | Advisory only: a core rejection returns a `reason`, never a block. `~ partial`: workflow-nested (`runs.run`) dispatches are not yet covered. |
 
@@ -96,7 +96,7 @@ task-dispatch/
 | `devin/task-dispatch-guard.cjs` | Devin `PreToolUse(run_subagent)` adapter over the same core. Accepts the four `subagent_type`/`agent_type` field aliases. |
 | `cursor/task-dispatch-guard.mjs` | Cursor `preToolUse` (matcher `Task`) adapter; `spawnSync`s the Claude adapter and translates its envelope into Cursor's permission shape. |
 | `pi/task-dispatch-guard.ts` | Pi `tool_call` adapter on the `subagent` tool. Turns every core rejection into an advisory reason and fails open. |
-| `.skilled/plugins/system-deep-loop-guard.js` | OpenCode plugin. `tool.execute.before` runs the policy (reject → thrown error); `event` on `session.created` runs the state-directory sweep. |
+| `.opencode/plugins/system-deep-loop-guard.js` | OpenCode plugin. `tool.execute.before` runs the policy (reject → thrown error); `event` on `session.created` runs the state-directory sweep. |
 
 ---
 
@@ -133,13 +133,13 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 ## 8. VALIDATION
 
 ```bash
-node --test .skilled/plugins/tests/claude-task-dispatch-guard.test.cjs .skilled/plugins/tests/system-deep-loop-guard.test.cjs
+node --test .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs .opencode/plugins/tests/system-deep-loop-guard.test.cjs
 ```
 
 Expected result: all tests pass (includes the forged-iteration-marker regression cases).
 
 ```bash
-node -e "import('./.skilled/plugins/system-deep-loop-guard.js').then(()=>console.log('ok'))"
+node -e "import('./.opencode/plugins/system-deep-loop-guard.js').then(()=>console.log('ok'))"
 ```
 
 Expected result: `ok`, with no module-resolution error (confirms the OpenCode adapter still resolves this core).

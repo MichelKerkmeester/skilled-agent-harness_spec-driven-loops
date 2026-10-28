@@ -1,7 +1,7 @@
 ---
 title: "CC-029 -- Claude Code repository goal discovery boundary"
 description: "Validates that Claude Code cannot discover the OpenCode-only goal command through this repository."
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # CC-029 -- Claude Code repository goal discovery boundary
@@ -49,7 +49,7 @@ This scenario proves repository discovery only: it says nothing about where a ho
 || `../../../../sk-doc/sk-create-goal/references/budget-and-handoff.md` | Full rule for what a sent parent goal contains, including the Claude Code fence (section 4). |
 || `../../../../../hooks/goal/README.md` | Current support matrix and sibling-core boundary. |
 || `../../../../../hooks/goal/lib/goal-core.cjs` | Scoped core that has no Claude caller. |
-|| `../../../../../commands/goal-opencode.md` | OpenCode-only command, not a Claude Code fallback. |
+|| `../../../../../../.opencode/commands/goal-opencode.md` | OpenCode-only command, not a Claude Code fallback. |
 || `../../../../../skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs` | Filtered Claude command mirror authority. |
 
 ---

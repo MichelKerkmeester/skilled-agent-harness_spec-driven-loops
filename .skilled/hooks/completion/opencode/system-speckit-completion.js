@@ -1,1 +1,1 @@
-../../../plugins/system-speckit-completion.js
+../../../../.opencode/plugins/system-speckit-completion.js

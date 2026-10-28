@@ -46,3 +46,24 @@ test('never reports a private local-* entry as an orphan, as a file or as a link
     rmSync(env.root, { recursive: true, force: true });
   }
 });
+
+test('keeps the OpenCode native goal command and a mirrored README, but flags a stray entry', () => {
+  const root = mkdtempSync(join(tmpdir(), 'runtime-mirrors-'));
+  try {
+    const commandsDir = join(root, '.opencode', 'commands');
+    mkdirSync(join(root, '.skilled', 'commands', 'deep'), { recursive: true });
+    writeFileSync(join(root, '.skilled', 'commands', 'README.txt'), 'commands\n');
+    mkdirSync(commandsDir, { recursive: true });
+    symlinkSync(join('..', '..', '.skilled', 'commands', 'deep'), join(commandsDir, 'deep'));
+    symlinkSync(join('..', '..', '.skilled', 'commands', 'README.txt'), join(commandsDir, 'README.txt'));
+    writeFileSync(join(commandsDir, 'goal-opencode.md'), '# goal\n');
+    writeFileSync(join(commandsDir, 'stray.md'), '# stray\n');
+    const expected = [
+      { mirror: '.opencode/commands/deep', source: '.skilled/commands/deep' },
+      { mirror: '.opencode/commands/README.txt', source: '.skilled/commands/README.txt' },
+    ];
+    assert.deepEqual(findOrphans(expected, root), ['.opencode/commands/stray.md']);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});

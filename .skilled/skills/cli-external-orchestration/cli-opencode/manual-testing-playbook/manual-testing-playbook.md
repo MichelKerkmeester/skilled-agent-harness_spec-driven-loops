@@ -1,7 +1,7 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.21.0
+version: 1.4.22.0
 ---
 
 # cli-opencode: Manual Testing Playbook
@@ -753,7 +753,7 @@ Expected signals: Layer 1 trips. SKILL.md `has_parallel_session_keywords` is the
 
 ## 16. GOAL HOOK (`CO-039`)
 
-This category covers 1 scenario while the linked feature file remains the canonical execution contract. It exercises the OpenCode-native `opencode-goal` plugin (`.skilled/plugins/opencode-goal.js`) directly in-process: the `/goal-opencode` action set, two-session isolation, fixed SHA-256 state keys, long-session persistence, validated lazy migration from the earlier hex layout, native token accounting, and `experimental.chat.system.transform` injection. `opencode-goal` remains separate from the runtime-neutral Pi/Cursor core validated as `CE-P03` in the hub playbook.
+This category covers 1 scenario while the linked feature file remains the canonical execution contract. It exercises the OpenCode-native `opencode-goal` plugin (`.opencode/plugins/opencode-goal.js`) directly in-process: the `/goal-opencode` action set, two-session isolation, fixed SHA-256 state keys, long-session persistence, validated lazy migration from the earlier hex layout, native token accounting, and `experimental.chat.system.transform` injection. `opencode-goal` remains separate from the runtime-neutral Pi/Cursor core validated as `CE-P03` in the hub playbook.
 
 ### CO-039 | Goal hook native opencode-goal validation
 

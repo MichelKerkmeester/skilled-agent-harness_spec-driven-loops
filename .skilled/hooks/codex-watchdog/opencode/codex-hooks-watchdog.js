@@ -1,1 +1,1 @@
-../../../plugins/codex-hooks-watchdog.js
+../../../../.opencode/plugins/codex-hooks-watchdog.js

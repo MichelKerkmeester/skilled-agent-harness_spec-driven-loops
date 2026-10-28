@@ -7,7 +7,7 @@ trigger_phrases:
   - "checkPackageFreshness"
   - "compiled validation orchestrator is stale"
   - "STALE DIST WARNING"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Dist-freshness enforcement
@@ -33,7 +33,7 @@ The module has four independent classes of caller, one of which fans out to the 
 
 2. **`validate.sh`'s compiled-orchestrator backstop**: `resolve_orchestrator()` in `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` calls the module scoped to `system-spec-kit/runtime`'s `validation-orchestrator` entry before delegating a validation run to the compiled Node orchestrator. A stale result prints `ERROR: validate.sh compiled validation orchestrator is stale.` plus the rebuild command and exits **3** — a hard, fail-closed backstop with no auto-rebuild.
 3. **Claude Code PostToolUse hook**: `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` (a Python script despite the `.sh` extension) is wired into `.skilled/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh`, which fires on every `Write`/`Edit`. It calls the module's `check-file` command against the edited file and, if the file falls under a watched source tree and that package is stale, prints a `STALE DIST WARNING: <package> -- run: <rebuild command>` banner. It always exits 0 — warn-only, never blocking the edit.
-4. **OpenCode plugin**: `.skilled/plugins/system-dist-freshness-guard.js` hooks `tool.execute.before` and warns via `console.warn` (never throws) before a Bash call matching `opencode run` or `validate\.sh` when any of the 7 watched packages is stale, and warns once per session on the `session.created` event (deduped by session ID).
+4. **OpenCode plugin**: `.opencode/plugins/system-dist-freshness-guard.js` hooks `tool.execute.before` and warns via `console.warn` (never throws) before a Bash call matching `opencode run` or `validate\.sh` when any of the 7 watched packages is stale, and warns once per session on the `session.created` event (deduped by session ID).
 
 ### Fail-Closed Vs Warn-Only Asymmetry
 
@@ -54,7 +54,7 @@ None of the four consumer classes auto-rebuilds on detecting staleness. This was
 | `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` | Script | `resolve_orchestrator()` hard backstop, exit 3 |
 | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` | Handler | PostToolUse warn-only checker (Python, `.sh` extension) |
 | `.skilled/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh` | Handler | Dispatches the dist-staleness checker on every `Write`/`Edit` |
-| `.skilled/plugins/system-dist-freshness-guard.js` | Handler | OpenCode plugin: `tool.execute.before` and `session.created` warnings |
+| `.opencode/plugins/system-dist-freshness-guard.js` | Handler | OpenCode plugin: `tool.execute.before` and `session.created` warnings |
 
 ### Validation And Tests
 

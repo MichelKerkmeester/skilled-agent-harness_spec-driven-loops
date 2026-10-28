@@ -64,7 +64,7 @@ runtime/hooks/
 ├── cursor/                  # Cursor CLI adapters and the sessionStart prebind
 ├── devin/                   # Devin CLI adapters, permission policy and post-compaction
 ├── pi/                      # Pi extension factories (symlinked from .pi/extensions/)
-├── opencode/                # Browsability symlink -> .skilled/plugins/system-spec-gate.js
+├── opencode/                # Browsability symlink -> .opencode/plugins/system-spec-gate.js
 ├── lib/                     # Runtime-neutral spec-gate core, adapter and workspace helpers
 ├── shared-provenance.ts     # Provenance-wrapped transport helpers
 ├── shared-stdin.ts          # Deadline stdin reader for the compiled adapters
@@ -80,7 +80,7 @@ runtime/hooks/
 | `claude/` | Claude Code lifecycle hooks (session prime, compact inject, session stop, transcript parsing) plus the Gate-3 pair. The other runtimes delegate their lifecycle semantics here. |
 | `codex/`, `cursor/`, `devin/` | Per-runtime adapters that normalize each CLI's payload onto the Claude implementations, plus that runtime's spec-gate pair. Envelope shapes differ: Codex and Devin use `hookSpecificOutput`, and Cursor uses `{permission, user_message, agent_message}`. |
 | `pi/` | Pi extension factories, discovered through relative symlinks at `.pi/extensions/`. Pi resolves their imports against the symlink path, so every import in those files is written for the `.pi/extensions/` base. |
-| `opencode/` | Browsability-only symlink to `.skilled/plugins/system-spec-gate.js`. OpenCode discovers plugins solely from `.opencode/plugins/`, so the real file stays there and nothing loads through this symlink. |
+| `opencode/` | Browsability-only symlink to `.opencode/plugins/system-spec-gate.js`. OpenCode discovers plugins solely from `.opencode/plugins/`, so the real file stays there and nothing loads through this symlink. |
 | `lib/spec-gate/spec-gate-core.mjs` | The Gate-3 policy core. Owns `classifyIntent()` and `evaluateMutation()`, the two orchestration calls every adapter makes (`runClassifyGate()` and `runEnforceGate()`, which build the delivery observation and the warning-log event once), and the persisted once-per-session delivery marker (`shouldDeliverGate3Deferral`, `recordGate3NoticeDelivered`, `bindGate3Answer`, `rearmGate3NoticeDelivery`). An adapter keeps only its payload parsing and its envelope. |
 | `lib/hook-adapter-shared.mjs` | Deadline stdin reader and fail-open JSON parser for every plain `.mjs` and `.cjs` adapter. See [`lib/README.md`](./lib/README.md). |
 | `lib/workspace/repo-root.mjs` | Repository-root resolution used by the spec-gate core. |

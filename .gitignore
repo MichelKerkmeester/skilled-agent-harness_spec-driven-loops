@@ -239,10 +239,10 @@ sweep-reports/
 # router and its assets folder are ignored, and so is every mirror the runtime
 # generators derive from them, so running a generator in a checkout that holds
 # a private command leaves nothing to stage. No trailing slash, for the same
-# symlink reason as the skill rules above. .opencode/commands links to
-# .skilled/commands, so it needs no rule of its own.
+# symlink reason as the skill rules above.
 /.skilled/commands/local-*
 /.skilled/commands/assets/local-*
+/.opencode/commands/local-*
 /.claude/commands/local-*
 /.cursor/commands/local-*
 /.codex/prompts/local-*

@@ -16,17 +16,17 @@ const test = require('node:test');
 const { pathToFileURL } = require('node:url');
 
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..', '..');
-const PLUGIN_PATH = path.join(WORKSPACE_ROOT, '.skilled', 'plugins', 'system-skill-advisor.js');
+const PLUGIN_PATH = path.join(WORKSPACE_ROOT, '.opencode', 'plugins', 'system-skill-advisor.js');
 const MESSAGE_IDENTITY_PATH = path.join(
   WORKSPACE_ROOT,
-  '.skilled',
+  '.opencode',
   'plugins',
   'lib',
   'opencode-message-identity.js',
 );
 const RENDER_HELPERS_PATH = path.join(
   WORKSPACE_ROOT,
-  '.skilled',
+  '.opencode',
   'plugins',
   'lib',
   'skill-advisor-render.js',

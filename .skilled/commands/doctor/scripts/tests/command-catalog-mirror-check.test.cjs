@@ -23,7 +23,7 @@ const SCRIPT = path.resolve(__dirname, '..', 'command-catalog-mirror-check.cjs')
 
 const COMMAND_FILES = {
   'agent-router.md': 'Route a request',
-  'vision.md': 'Read the latest image',
+  'notes.md': 'Show the session notes',
   'create/skill.md': 'Create a skill',
   'create/skill-parent.md': 'Create a parent skill',
   'deep/research.md': 'Run a research loop',
@@ -36,7 +36,7 @@ const GROUP_ROWS = [
   '| **deep** | `commands/deep/` | 1 | Deep loops |',
   '| **doctor** | `commands/doctor/` | 1 | Diagnostics |',
   '| **prompt** | `commands/prompt/` | 1 | Prompt surface (`/prompt:improve`) |',
-  '| **root** | `commands/` | 2 | Standalone `/agent-router` and `/vision` utilities |',
+  '| **root** | `commands/` | 2 | Standalone `/agent-router` and `/notes` utilities |',
 ];
 
 const COMMAND_ROWS = [
@@ -46,7 +46,7 @@ const COMMAND_ROWS = [
   '| Doctor Router | `/doctor:speckit <target>` (backed by `doctor/speckit.md`) | Router |',
   '| Agent Router | `/agent-router <request>` | Route a request |',
   '| Prompt | `/prompt:improve <topic>` | Improve a prompt |',
-  '| Vision | `/vision [question]` | Read the latest image |',
+  '| Notes | `/notes [topic]` | Show the session notes |',
 ];
 
 const roots = [];
@@ -143,10 +143,10 @@ test('deleting a command row is drift even when a longer id contains its text', 
 });
 
 test('deleting command rows is drift even when group-table prose mentions them', () => {
-  const commandRows = without(without(COMMAND_ROWS, '`/vision'), '`/prompt:improve');
+  const commandRows = without(without(COMMAND_ROWS, '`/notes'), '`/prompt:improve');
   const { status, out } = run(buildRoot({ commandRows }));
   assert.equal(status, 1, out);
-  assert.match(out, /\/vision not listed/);
+  assert.match(out, /\/notes not listed/);
   assert.match(out, /\/prompt:improve not listed/);
 });
 

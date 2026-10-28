@@ -701,7 +701,7 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 #### How Runtimes Talk To It
 
 - **Claude Code, Codex, Cursor and Devin**: call the prompt-time hook adapters under `.skilled/skills/system-spec-kit/runtime/hooks/`, and each adapter labels its diagnostics with its own runtime name
-- **OpenCode**: uses `.skilled/plugins/system-skill-advisor.js`, which spawns `.skilled/bin/skill-advisor.cjs` and renders the returned brief through the shared renderer
+- **OpenCode**: uses `.opencode/plugins/system-skill-advisor.js`, which spawns `.skilled/bin/skill-advisor.cjs` and renders the returned brief through the shared renderer
 - **Pi**: the extension `.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts` runs the same hook in-process and falls back to the outage status line and the directives if the advisor misses its deadline
 - **Disable everywhere**: set `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` (or `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED=1` for the OpenCode plugin alone). The legacy `SPECKIT_`-prefixed names still work
 - **Threshold contract at the prompt**: confidence ≥ 0.8 and uncertainty ≤ 0.35 by default
@@ -978,7 +978,7 @@ The [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers 
 &nbsp;
 #### OpenCode Plugins
 
-Seventeen JavaScript plugins live in `.skilled/plugins/`, and OpenCode finds them through `.opencode/plugins/`. Each one translates OpenCode events into the same shared policy cores the other runtimes call. They load on OpenCode 2 (recommended) and OpenCode 1 (fallback) alike. When both are installed, `OPENCODE_BIN=opencode1` keeps CLI dispatches on OpenCode 1.
+Seventeen JavaScript plugins live in `.opencode/plugins/`, where OpenCode finds them. Each one translates OpenCode events into the same shared policy cores the other runtimes call. They load on OpenCode 2 (recommended) and OpenCode 1 (fallback) alike. When both are installed, `OPENCODE_BIN=opencode1` keeps CLI dispatches on OpenCode 1.
 
 - **Gates:** the spec-folder gate and two completion checks that ask for evidence before a task is called done
 - **Routing:** the skill advisor's prompt-time brief, and a guard that suggests Code Mode when a native MCP call should go through it
@@ -1036,7 +1036,7 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
 
 ## 11. ⌨️ COMMAND LIBRARY
 
-39 commands: 38 in six groups plus one utility. Each one is a Markdown file under `.skilled/commands/`, and most hand their steps to a YAML workflow beside it.
+39 commands: 38 in six groups plus one utility. The grouped ones are Markdown files under `.skilled/commands/`, and most hand their steps to a YAML workflow beside them. The OpenCode-only `/goal-opencode` is authored in `.opencode/commands/`.
 
 #### SPEC KIT
 

@@ -62,7 +62,7 @@ gate blocks violations.
 ```
 
 - **Trigger:** every user prompt submission. The **constant directive** is delivered in full on the first proven message and after lifecycle boundaries. Route-only delivery requires confirmed primitive identity, valid transcript evidence, a matching versioned record, stable generation/epoch state, and an atomically advanced transcript high-water mark. Registered session/compaction owners advance the durable epoch through the boundary bridge; unidentified or failed boundaries poison older receipts until a successful reset clears the fail-safe marker. The file-backed store uses a directory-descriptor-anchored helper and defers full-delivery receipts until stdout handoff. `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` restores always-full delivery. Missing evidence, contention, insecure state, helper/platform failure, fallback policy, or any error also stays full. Canonical rule: `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts`; durable state: `directive-lifecycle-file-store.ts` plus `directive-lifecycle-store.py`; OpenCode mirrors the in-process semantics.
-- **Canonical owner:** `.skilled/skills/system-skill-advisor/runtime/lib/render.ts` (`renderAdvisorBrief`, `HYGIENE_DIRECTIVE`) owns the shared directive text used by runtime adapters. The OpenCode plugin (`.skilled/plugins/system-skill-advisor.js`) is the fallback emitter: it mirrors the same directive locally and delegates to the canonical renderer when the compiled module is available.
+- **Canonical owner:** `.skilled/skills/system-skill-advisor/runtime/lib/render.ts` (`renderAdvisorBrief`, `HYGIENE_DIRECTIVE`) owns the shared directive text used by runtime adapters. The OpenCode plugin (`.opencode/plugins/system-skill-advisor.js`) is the fallback emitter: it mirrors the same directive locally and delegates to the canonical renderer when the compiled module is available.
 - **Channel per runtime:** Claude Code `[SYS]` (`user-prompt-submit.js` -> `hookSpecificOutput.additionalContext`). Cursor/Devin `[SYS]` (same shim, re-wrapped into each CLI's own envelope). Codex `[SYS]` (mirror of the Claude shim). OpenCode `[SYS]` (`system-skill-advisor.js` via `experimental.chat.system.transform`). Pi `[MSG]` (`prompt-advisor.ts` forwards the shared context onto the visible prompt via the `input` event's `{action:"transform"}`).
 - **Pi-only directive ownership:** the Pi adapter forwards the shared advisor context onto the visible prompt but injects no Pi-only directive of its own; the current-turn `cli-*` override policy is enforced at the tool-call boundary by `dispatch-preflight-lint.ts`, which never writes into the prompt. The Pi adapter is a forwarder, not an owner, of the shared directive; it is not emitted by `render.ts` or the OpenCode bridge.
 - **See also:** [`skill-advisor-hook.md`](../skills/system-skill-advisor/hooks/skill-advisor-hook.md) for setup and validation. This file only documents the injected content.
@@ -85,7 +85,7 @@ Do not stop to ask it now; ask it once when you are about to write, then continu
 **Injects:** active-goal guidance or a stale-dist warning, each bounded and each appended independently.
 
 - **Trigger:** `session.created` (goal) or before a risky Bash command (dist-freshness).
-- **Owning modules:** `opencode-goal.js`, `system-dist-freshness-guard.js` (see their own entries in [`../plugins/README.md`](../plugins/README.md) §5).
+- **Owning modules:** `opencode-goal.js`, `system-dist-freshness-guard.js` (see their own entries in [`../../.opencode/plugins/README.md`](../../.opencode/plugins/README.md) §5).
 - **Channel:** `[SYS]` only. Both use `experimental.chat.system.transform`, never `chat.message`'s mutable `parts`, so none of this is rendered as a visible chat bubble in OpenCode today (see §5 below for what would make it visible).
 
 ### Cross-Runtime Active-Goal Brief (Cursor / Pi / Devin)
@@ -272,7 +272,7 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 
 - [`skill-advisor-hook.md`](../skills/system-skill-advisor/hooks/skill-advisor-hook.md): setup, validation, and operator states for the advisor hook this doc's §2 cites.
 - [`goal-plugin.md`](./goal/goal-plugin.md): the `/goal` plugin's own injection contract, referenced in §2, not duplicated here.
-- [`../plugins/README.md`](../plugins/README.md): full OpenCode plugin inventory and hook-event model this doc's OpenCode column cites.
+- [`../../.opencode/plugins/README.md`](../../.opencode/plugins/README.md): full OpenCode plugin inventory and hook-event model this doc's OpenCode column cites.
 - [`../../.pi/extensions/README.md`](../../.pi/extensions/README.md): Pi's own extension inventory, including the `session_compact`-untraced caveat this doc's §4 repeats.
 - [`../../.claude/hooks/README.md`](../../.claude/hooks/README.md), [`../../.cursor/hooks/README.md`](../../.cursor/hooks/README.md), [`../../.devin/hooks/README.md`](../../.devin/hooks/README.md), [`../../.codex/hooks/README.md`](../../.codex/hooks/README.md): per-runtime discovery mirrors this doc cross-links from.
 - [`README.md`](./README.md): why `dispatch`, `mcp-route-guard`, `post-edit-quality`, and `task-dispatch` live outside `.skilled/skills/` while every other hook in this doc stays inside its owning skill.

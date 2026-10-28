@@ -9,7 +9,7 @@ trigger_phrases:
   - "advisor hook smoke tests"
 importance_tier: important
 contextType: implementation
-version: 3.6.3.0
+version: 3.6.4.0
 ---
 
 # Skill Advisor Hook Reference
@@ -20,7 +20,7 @@ version: 3.6.3.0
 
 The Skill Advisor concern surfaces prompt-safe routing context at the moment a user submits a prompt: it scores the prompt against the maintained skill graph and, when a match clears the confidence threshold, injects a brief recommending the matching skill(s). The brief is advisory: it never replaces explicit skill loading, never persists raw prompt text, and never blocks the prompt on an advisor failure.
 
-The maintained advisor implementation lives in `system-skill-advisor/runtime/`. The four editor runtimes (Claude, Codex, Cursor, Devin) each carry a thin `user-prompt-submit` shim in `system-spec-kit/runtime/hooks/<runtime>/` that resolves and spawns the compiled advisor in `system-skill-advisor`. The real brief-building, scoring, freshness, and rendering logic lives in the advisor package. Pi carries a native TypeScript extension that imports the same advisor module in-process (Pi awaits input handlers before agent processing, so the old two-process blocking-spawn bridge stalled every send). OpenCode integrates through the committed plugin at `.skilled/plugins/system-skill-advisor.js`, which shells out to the advisor CLI.
+The maintained advisor implementation lives in `system-skill-advisor/runtime/`. The four editor runtimes (Claude, Codex, Cursor, Devin) each carry a thin `user-prompt-submit` shim in `system-spec-kit/runtime/hooks/<runtime>/` that resolves and spawns the compiled advisor in `system-skill-advisor`. The real brief-building, scoring, freshness, and rendering logic lives in the advisor package. Pi carries a native TypeScript extension that imports the same advisor module in-process (Pi awaits input handlers before agent processing, so the old two-process blocking-spawn bridge stalled every send). OpenCode integrates through the committed plugin at `.opencode/plugins/system-skill-advisor.js`, which shells out to the advisor CLI.
 
 The single most important property is that it **fails open**: the prompt always proceeds. When the advisor call times out, fails or finds no route, the handler and the OpenCode plugin emit the directives fallback instead of a brief. An unparseable payload, an unhandled error or a shim that cannot relay its child resolves to `{}`. Every adapter honors the `skill-advisor` kill-switch, default-on.
 
@@ -55,7 +55,7 @@ Every native runtime and Pi run the same hook handler, which gates the prompt, c
 | **Cursor** | `system-spec-kit/.../hooks/cursor/user-prompt-submit.ts` (shim) → `.../dist/hooks/cursor/user-prompt-submit.js` | `beforeSubmitPrompt` in `.cursor/hooks.json`, timeout 10s | Same shim dispatch | Same `additionalContext` JSON |
 | **Devin** | `system-spec-kit/.../hooks/devin/user-prompt-submit.ts` (shim) → `.../dist/hooks/devin/user-prompt-submit.js` | `UserPromptSubmit` in `.devin/hooks.v1.json`, matcher `""`, timeout 10s | Same shim dispatch. `cd "${DEVIN_PROJECT_DIR:-$PWD}"`. Fallback `printf` envelope | Same `additionalContext` JSON |
 | **Pi** | `system-skill-advisor/hooks/pi/prompt-advisor.ts` (real file, `.pi/extensions/` symlinks here) | `user_input` / prompt event via `.pi/extensions/` | Imports the advisor module **in-process** (not a subprocess). Pi awaits input handlers before agent processing, so the old blocking-spawn bridge stalled every send. In-process calls remove the stall and let the module-level prompt cache work. Captures raw user text (bounded 32 KiB, 64-session LRU). The in-process call passes `runtime: 'pi'` and races a timer of the advisor budget plus 300 ms, delivering the fallback directives if the call hangs | Model-visible message. Delivery-state machine suppresses same-session re-delivery |
-| **OpenCode** | `.skilled/plugins/system-skill-advisor.js` | Plugin, loaded by OpenCode's flat glob over `.opencode/plugins/`. `experimental.chat.system.transform` per prompt, `event` for session lifecycle, `tool` for status | Shells out to the advisor CLI (bounded timeout, stdout cap 256 KiB, grace termination), TTL+LRU prompt cache with in-flight dedup, transform-dedup integration | Brief appended to `output.system`. `spec_kit_skill_advisor_status` tool returns a key=value report (no raw path leakage) |
+| **OpenCode** | `.opencode/plugins/system-skill-advisor.js` | Plugin, loaded by OpenCode's flat glob over `.opencode/plugins/`. `experimental.chat.system.transform` per prompt, `event` for session lifecycle, `tool` for status | Shells out to the advisor CLI (bounded timeout, stdout cap 256 KiB, grace termination), TTL+LRU prompt cache with in-flight dedup, transform-dedup integration | Brief appended to `output.system`. `spec_kit_skill_advisor_status` tool returns a key=value report (no raw path leakage) |
 
 OpenCode has no source-hook adapter in `system-spec-kit`. Its prompt-time integration is the committed plugin, which shells out to the advisor CLI and inherits the shared render contract. The hooks-tree index at `.skilled/hooks/skill-advisor/` mirrors the per-runtime shims and the OpenCode plugin via relative symlinks. This README is the symlink target.
 
@@ -85,7 +85,7 @@ system-skill-advisor/runtime/
 +-- dist/hooks/<runtime>/user-prompt-submit.js   # compiled advisor the shims spawn
 +-- lib/skill-advisor-brief.ts, render.ts, metrics.ts, subprocess.ts
 `-- scripts/skill_advisor.py                      # standalone Python advisor CLI
-.skilled/plugins/system-skill-advisor.js         # OpenCode plugin
+.opencode/plugins/system-skill-advisor.js         # OpenCode plugin
 ```
 
 ---
@@ -97,7 +97,7 @@ system-skill-advisor/runtime/
 | `system-skill-advisor/hooks/claude/user-prompt-submit.ts` | The real advisor handler (Claude shape). Builds the brief, runs the CLI fallback, renders, applies directive-lifecycle dedup, emits the `additionalContext` envelope, persists a diagnostic record. The codex/cursor/devin siblings share the same advisor core over their runtime's payload shape. |
 | `system-spec-kit/.../hooks/<runtime>/user-prompt-submit.ts` | Thin process-boundary shims. Resolve the advisor target by walking up to the `.opencode` ancestor, spawn the compiled advisor with bounded stdin/stdio/timeout, and relay its stdout (or `{}` on any failure). |
 | `system-skill-advisor/hooks/pi/prompt-advisor.ts` | Native Pi extension. Imports the advisor module in-process, captures raw user text (bounded LRU), runs a delivery-state machine that suppresses same-session re-delivery, and sends the brief as a model-visible message. Races the advisor call against a deadline of the advisor budget plus 300 ms and delivers the fallback directives if it hangs. |
-| `.skilled/plugins/system-skill-advisor.js` | OpenCode plugin. `experimental.chat.system.transform` spawns the bridge and appends the brief to `output.system`. `event` manages session lifecycle and cache invalidation. `tool: spec_kit_skill_advisor_status` returns a sanitized status report. TTL+LRU prompt cache with in-flight dedup and transform-dedup integration. |
+| `.opencode/plugins/system-skill-advisor.js` | OpenCode plugin. `experimental.chat.system.transform` spawns the bridge and appends the brief to `output.system`. `event` manages session lifecycle and cache invalidation. `tool: spec_kit_skill_advisor_status` returns a sanitized status report. TTL+LRU prompt cache with in-flight dedup and transform-dedup integration. |
 | `.skilled/bin/skill-advisor.cjs` | The CLI front door the OpenCode plugin spawns. Receives the `advisor_recommend` command line, returns the JSON payload on stdout. |
 | `system-skill-advisor/runtime/lib/skill-advisor-brief.ts` | The brief builder: scoring, freshness, status, confidence/uncertainty. |
 | `system-skill-advisor/runtime/lib/render.ts` | `renderAdvisorBrief` / `renderAdvisorFallbackDirective`, produces the model-visible text. |
@@ -165,7 +165,7 @@ Expected result: both builds succeed and `dist/hooks/<runtime>/user-prompt-submi
 ```bash
 npm --prefix .skilled/skills/system-spec-kit/runtime run typecheck
 npm --prefix .skilled/skills/system-skill-advisor/runtime test -- --reporter=default
-node --test .skilled/plugins/tests/system-skill-advisor.test.cjs
+node --test .opencode/plugins/tests/system-skill-advisor.test.cjs
 ```
 
 Expected result: no type errors. All advisor package tests pass. The OpenCode plugin test passes.
@@ -202,4 +202,4 @@ This compares the repository's maintained Codex registration and adapter paths. 
 - [`claude/README.md`](claude/README.md), [`pi/README.md`](pi/README.md), [`lib/README.md`](lib/README.md): per-surface detail.
 - [`../../system-spec-kit/runtime/hooks/README.md`](../../system-spec-kit/runtime/hooks/README.md): the owning skill's hook contract (where the shims live).
 - [`../../../hooks/README.md`](../../../hooks/README.md): the unified hooks tree with the kill-switch index and coverage matrix.
-- [`../../../plugins/README.md`](../../../plugins/README.md): the OpenCode plugins folder that loads `system-skill-advisor.js`.
+- [`../../../../.opencode/plugins/README.md`](../../../../.opencode/plugins/README.md): the OpenCode plugins folder that loads `system-skill-advisor.js`.

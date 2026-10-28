@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`helpers/` holds shared utility functions for the sibling `*.test.cjs` files in `.skilled/plugins/tests/`. It centralizes continuation-log reading and environment-variable restoration so individual test files do not duplicate that logic, and it reads the plugin inventory and scans plugin sources for the v2 suites. The helpers are CJS (`.cjs`) so they can be `require()`'d directly by the CJS test shells.
+`helpers/` holds shared utility functions for the sibling `*.test.cjs` files in `.opencode/plugins/tests/`. It centralizes continuation-log reading and environment-variable restoration so individual test files do not duplicate that logic, and it reads the plugin inventory and scans plugin sources for the v2 suites. The helpers are CJS (`.cjs`) so they can be `require()`'d directly by the CJS test shells.
 
 Current state: two modules. `continuation-log.cjs` exports two functions and is consumed by four goal-plugin test files through `require('./helpers/continuation-log.cjs')`. `plugin-inventory.cjs` reads the plugin inventory and uses a rolldown AST parse to find the event names each plugin compares against; it is consumed by `plugin-inventory.test.cjs`, `v2-registration.test.cjs` and `v2-hard-plugins.test.cjs`.
 
@@ -75,16 +75,16 @@ None. The helpers are pure utility functions with no configuration surface.
 The helpers are exercised by their consuming suites; there is no standalone helper test. Run the consuming suites to validate:
 
 ```bash
-node --test .skilled/plugins/tests/opencode-goal-lifecycle.test.cjs \
-         .skilled/plugins/tests/opencode-goal-state.test.cjs \
-         .skilled/plugins/tests/opencode-goal-continuation.test.cjs \
-         .skilled/plugins/tests/opencode-goal-capabilities.test.cjs
+node --test .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs \
+         .opencode/plugins/tests/opencode-goal-state.test.cjs \
+         .opencode/plugins/tests/opencode-goal-continuation.test.cjs \
+         .opencode/plugins/tests/opencode-goal-capabilities.test.cjs
 ```
 
 Expected result: all four suites pass (confirms the helpers behave as their consumers expect).
 
 ```bash
-node --check .skilled/plugins/tests/helpers/continuation-log.cjs
+node --check .opencode/plugins/tests/helpers/continuation-log.cjs
 ```
 
 Expected result: no syntax error.

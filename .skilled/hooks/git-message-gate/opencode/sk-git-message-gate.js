@@ -1,1 +1,1 @@
-../../../plugins/sk-git-message-gate.js
+../../../../.opencode/plugins/sk-git-message-gate.js

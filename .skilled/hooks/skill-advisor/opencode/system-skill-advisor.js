@@ -1,1 +1,1 @@
-../../../plugins/system-skill-advisor.js
+../../../../.opencode/plugins/system-skill-advisor.js

@@ -54,7 +54,7 @@ Every runtime evaluates the **same** `lib/mcp-route-guard.cjs` core. What differ
 | **Devin** | `devin/mcp-route-guard.cjs` | Devin hook entry (`.devin/hooks.v1.json`) | Same packed shape via stdin | Runtime advisory envelope |
 | **Cursor** | `cursor/mcp-route-guard.mjs` | `beforeMCPExecution` event | Payload splits server and tool into SEPARATE fields (`mcp_server_name` + a bare `tool_name`); a bare tool name matches nothing, so the adapter recombines them into the packed shape first | Recombines, then `spawnSync`s the Claude adapter so the two runtimes cannot drift |
 | **Pi** | `pi/mcp-route-guard.ts` | `tool_call` event, discovered via `.pi/extensions/` | Filters on the `mcp_` prefix, then dynamic-imports the core | Attaches the core's warnings to the tool call |
-| **OpenCode** | `.skilled/plugins/mcp-route-guard.js` | Plugin, loaded by OpenCode's flat glob over `.opencode/plugins/` | Native OpenCode plugin API | Plugin advisory |
+| **OpenCode** | `.opencode/plugins/mcp-route-guard.js` | Plugin, loaded by OpenCode's flat glob over `.opencode/plugins/` | Native OpenCode plugin API | Plugin advisory |
 
 The three CommonJS adapters (`claude`, `codex`, `devin`) share one stdin parser, `../../shared/hook-adapter-shared.cjs`, which collects raw stdin and fail-open-parses the JSON. Cursor deliberately does not reimplement the decision: it reshapes its payload and shells out to the Claude adapter, so a future change to the advisory logic lands in both without a second edit.
 
@@ -74,7 +74,7 @@ mcp-route-guard/
 +-- devin/    mcp-route-guard.cjs  # Devin hook adapter
 +-- cursor/   mcp-route-guard.mjs  # beforeMCPExecution adapter (recombines + spawnSync)
 +-- pi/       mcp-route-guard.ts   # Pi tool_call extension (symlinked from .pi/extensions/)
-`-- opencode/ mcp-route-guard.js   # browsability symlink -> .skilled/plugins/mcp-route-guard.js
+`-- opencode/ mcp-route-guard.js   # browsability symlink -> .opencode/plugins/mcp-route-guard.js
 ```
 
 ---
@@ -89,7 +89,7 @@ mcp-route-guard/
 | `cursor/mcp-route-guard.mjs` | Cursor `beforeMCPExecution` adapter. Recombines the split server/tool fields into the packed shape, then `spawnSync`s the Claude adapter. |
 | `pi/mcp-route-guard.ts` | Pi `tool_call` extension. Prefix-filters, honors the kill-switch, dynamic-imports the core. |
 
-`.skilled/plugins/mcp-route-guard.js` is the OpenCode adapter; it imports this same `lib/` core.
+`.opencode/plugins/mcp-route-guard.js` is the OpenCode adapter; it imports this same `lib/` core.
 
 ---
 
@@ -127,7 +127,7 @@ node --test .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs
 Expected result: all tests pass.
 
 ```bash
-node -e "import('./.skilled/plugins/mcp-route-guard.js').then(()=>console.log('ok'))"
+node -e "import('./.opencode/plugins/mcp-route-guard.js').then(()=>console.log('ok'))"
 ```
 
 Expected result: `ok`, with no module-resolution error (confirms the OpenCode adapter still resolves this core).

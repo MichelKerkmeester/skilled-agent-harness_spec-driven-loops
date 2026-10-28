@@ -802,10 +802,10 @@ function buildContext(options, cwd, env) {
   const known = [...CHECK_IDS, ...loaded.merged.checks.map((entry) => entry.id),
     ...loaded.merged.generated.filter((row) => row.layer === 'repo').map((row) => row.id)];
   const skilledDir = realpathOrSelf(path.resolve(declHub, '..', '..'));
-  // The plugins link may reach outside .skilled/, and the files it reaches are still the
-  // hub's own code. A target that holds the hub would claim the whole repository, so it
-  // is not read as one.
-  const hubPlugins = realpathOrSelf(path.join(skilledDir, 'plugins'));
+  // The OpenCode plugins live in .opencode/plugins beside .skilled/, and they are still the
+  // hub's own code. A path that holds the hub would claim the whole repository, so it is
+  // not read as one.
+  const hubPlugins = realpathOrSelf(path.join(skilledDir, '..', '.opencode', 'plugins'));
   return {
     options, env, table, defaults, declHub, git, root, cwd: realCwd,
     merged: loaded.merged,

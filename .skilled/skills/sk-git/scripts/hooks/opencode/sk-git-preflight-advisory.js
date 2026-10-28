@@ -1,1 +1,1 @@
-../../../../../plugins/sk-git-preflight-advisory.js
+../../../../../../.opencode/plugins/sk-git-preflight-advisory.js

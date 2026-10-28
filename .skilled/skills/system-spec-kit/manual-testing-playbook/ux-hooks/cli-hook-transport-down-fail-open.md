@@ -1,7 +1,7 @@
 ---
 title: "433 -- CLI Hook Transport-Down Fail-Open"
 description: "Manual check that the skill-advisor prompt hook exits 0 and never blocks the prompt when the daemon socket is absent, with a status line or a brief in every case."
-version: 1.6.0.2
+version: 1.6.1.0
 id: ux-hooks-cli-hook-transport-down-fail-open
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -119,7 +119,7 @@ A non-zero exit breaks the fail-open contract: hooks must degrade output and nev
 |---|---|
 | `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Shared skill-advisor CLI fallback helper |
 | `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Claude advisor hook using the fallback |
-| `.skilled/plugins/system-skill-advisor.js` | OpenCode advisor plugin using the fallback |
+| `.opencode/plugins/system-skill-advisor.js` | OpenCode advisor plugin using the fallback |
 | `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts` | Cold-start window and local scorer |
 
 Provenance: manual only - run the scenario prompt: Validate hook transport-down fail-open: absent socket, exit 0, a status line or brief in every case, never a blocked prompt.

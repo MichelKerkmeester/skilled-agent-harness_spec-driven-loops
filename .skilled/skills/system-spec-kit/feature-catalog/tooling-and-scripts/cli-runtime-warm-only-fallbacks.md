@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli fallback hooks"
   - "transport-down fail-open"
   - "opencode plugin cli bridge"
-version: 1.6.0.1
+version: 1.6.1.0
 ---
 
 # CLI hook fallbacks and plugin bridges
@@ -45,7 +45,7 @@ The Claude allowlist lives in local-only settings by decision, and `AGENTS.md` c
 |---|---|---|
 | `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper | Shared skill-advisor CLI fallback |
 | `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Hook adapter | Claude advisor hook with CLI fallback |
-| `.skilled/plugins/system-skill-advisor.js` | OpenCode plugin | Advisor plugin with CLI fallback routing |
+| `.opencode/plugins/system-skill-advisor.js` | OpenCode plugin | Advisor plugin with CLI fallback routing |
 
 ### Validation And Tests
 

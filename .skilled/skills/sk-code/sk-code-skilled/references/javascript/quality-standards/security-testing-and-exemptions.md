@@ -8,7 +8,7 @@ trigger_phrases:
   - "javascript exemption tiers"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Security, Testing, Async & Exemption Tiers
@@ -253,7 +253,7 @@ OpenCode plugin entrypoints and helper modules are exempt from the CommonJS expo
 ### Scope
 
 This exemption applies to:
-- `.skilled/plugins/*.{js,mjs,ts}`
+- `.opencode/plugins/*.{js,mjs,ts}`
 
 ### Exempted Standards
 

@@ -1,1 +1,1 @@
-../../../plugins/mcp-route-guard.js
+../../../../.opencode/plugins/mcp-route-guard.js

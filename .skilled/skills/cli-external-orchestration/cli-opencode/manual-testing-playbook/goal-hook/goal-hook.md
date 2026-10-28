@@ -1,7 +1,7 @@
 ---
 title: "CO-039 -- Goal hook native opencode-goal validation"
 description: "Validates OpenCode goal actions, session isolation, fixed opaque state keys, lazy legacy migration, native token accounting, and system-prompt injection."
-version: 1.5.10.0
+version: 1.5.11.0
 ---
 
 # CO-039 -- Goal hook native opencode-goal validation
@@ -14,7 +14,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 This scenario validates the OpenCode-native `opencode-goal` plugin for `CO-039`. It focuses on the `/goal-opencode` command's action set (`bind`, `resent`, `packet`, `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, `resume`), the `opencode_goal` / `opencode_goal_status` tool contract those actions route through, per-OpenCode-session goal state, native OpenCode token accounting, and the `experimental.chat.system.transform` injection that steers the model with a passive `[active_goal]` block.
 
-`opencode-goal` (`.skilled/plugins/opencode-goal.js`) is a separate system from the runtime-neutral Pi/Cursor core under `.skilled/hooks/goal/` (see `CE-P03` in the hub playbook). It stores one file per OpenCode session as `<full-sha256-of-session-id>.json`, so filenames are fixed-length and do not expose a reversible session identifier. When a digest-keyed file is absent, a valid earlier hex-keyed file is adopted lazily only after its embedded session id is validated; an occupied digest target remains authoritative. Native `message.updated` events remain the source of `tokens_used`, not a turn-count estimate. Full contract: `.skilled/hooks/goal/goal-plugin.md`.
+`opencode-goal` (`.opencode/plugins/opencode-goal.js`) is a separate system from the runtime-neutral Pi/Cursor core under `.skilled/hooks/goal/` (see `CE-P03` in the hub playbook). It stores one file per OpenCode session as `<full-sha256-of-session-id>.json`, so filenames are fixed-length and do not expose a reversible session identifier. When a digest-keyed file is absent, a valid earlier hex-keyed file is adopted lazily only after its embedded session id is validated; an occupied digest target remains authoritative. Native `message.updated` events remain the source of `tokens_used`, not a turn-count estimate. Full contract: `.skilled/hooks/goal/goal-plugin.md`.
 
 ### Why This Matters
 
@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `CO-039` and confirm the
 - Objective: Confirm the native `opencode-goal` plugin's action set, two-session isolation, fixed opaque state keys, validated lazy migration, long-session persistence, native token accounting, and passive `[active_goal]` injection by driving the shipped hooks directly against scratch state.
 - Real user request: `Does /goal-opencode actually work end to end -- can I set a goal, see it reflected correctly, and does it stay scoped to my session without leaking into someone else's chat?`
 - Prompt: `As an OpenCode plugin validator, exercise the shipped opencode-goal hooks against scratch state. Verify the full /goal-opencode action set, two-session isolation, fixed 64-character SHA-256 state keys, long-session persistence, validated lazy migration of a legacy hex-keyed file, native message.updated token accounting, one [active_goal] injection, and fail-closed disable behavior. Return the exact envelope lines, state filenames, and a PASS/FAIL verdict.`
-- Expected execution process: Import `.skilled/plugins/opencode-goal.js`, instantiate it with a temporary `stateDir`, drive `tool.opencode_goal`, `tool.opencode_goal_status`, `event`, and `experimental.chat.system.transform` across two normal session ids plus one long id, rename one validated digest file into the earlier hex layout and trigger lazy adoption, then run all eight committed unit suites.
+- Expected execution process: Import `.opencode/plugins/opencode-goal.js`, instantiate it with a temporary `stateDir`, drive `tool.opencode_goal`, `tool.opencode_goal_status`, `event`, and `experimental.chat.system.transform` across two normal session ids plus one long id, rename one validated digest file into the earlier hex layout and trigger lazy adoption, then run all eight committed unit suites.
 - Expected signals: the packet-rendered brief carries the `criteria:` field with one line per completion criterion; `set` returns `STATUS=OK ACTION=set`, `mutation=created`, and a populated RICCE `goal_prompt`; every new basename matches `^[a-f0-9]{64}\.json$`; a 140-character session suffix persists successfully; a valid legacy file moves back to the digest path on read without changing its goal; the two normal sessions remain isolated; native input/output tokens sum exactly to `tokens_used=160` with `usage_source=opencode-native-tokens`; the transform appends one matching `[active_goal:<id>]` block; all actions return their documented success envelopes; the disable switch returns `code=PLUGIN_DISABLED`; and the focused suite passes 166/166.
 - Evidence requirements: Capture the import exit status, scratch-script JSON result and state filename list, exact goal/status envelopes, migration source-and-target checks, injection assertion, and final TAP summary.
 - Desired user-visible outcome: A concise PASS or FAIL verdict citing the exact captured envelope lines with no fabricated output, plus the turn 1 tool envelopes and the turn 2 canary quote when the optional live `opencode run` check in Section 3 is run.
@@ -43,9 +43,9 @@ Operators run the exact prompt and command sequence for `CO-039` and confirm the
 ### Recommended Orchestration Process
 
 1. Restate the user request and confirm the scenario ID.
-2. Confirm `.skilled/plugins/opencode-goal.js` and the 8 `.skilled/plugins/tests/opencode-goal-*.test.cjs` suites exist, and that the plugin resolves `.skilled/hooks/goal/lib/goal-slice.cjs` (a missing slice module fails the whole plugin load).
+2. Confirm `.opencode/plugins/opencode-goal.js` and the 8 `.opencode/plugins/tests/opencode-goal-*.test.cjs` suites exist, and that the plugin resolves `.skilled/hooks/goal/lib/goal-slice.cjs` (a missing slice module fails the whole plugin load).
 2a. Drive `opencode_goal({ action: "bind", packetPath })` against a scratch packet with a `goal.md`, confirm `packet_bound=true` and `resend_pending=true`, confirm the transform output carries the packet objective, no frontmatter and a `[goal_resend_pending]` line, then `resent` and confirm the line is gone.
-3. Confirm `node -e "import('./.skilled/plugins/opencode-goal.js')"` succeeds from the repository root; do not add temporary dependency links.
+3. Confirm `node -e "import('./.opencode/plugins/opencode-goal.js')"` succeeds from the repository root; do not add temporary dependency links.
 4. In a scratch script, instantiate the plugin with a fresh `stateDir` and drive the full action set against two normal session ids plus one 140-character id.
 5. Assert every new state basename is a 64-character lowercase SHA-256 digest plus `.json`, with no raw or legacy hex session id present.
 6. Rename one digest-keyed record to the earlier hex-keyed name, read it through `opencode_goal_status`, and prove the validated record returns to the digest path while the source disappears.
@@ -55,7 +55,7 @@ Operators run the exact prompt and command sequence for `CO-039` and confirm the
 
 ### Exact Command Sequence
 
-Run `node -e "import('./.skilled/plugins/opencode-goal.js')"`, execute the scratch script below as `node co-039-opencode-goal-live.mjs`, then run `node --test .skilled/plugins/tests/opencode-goal-*.test.cjs`.
+Run `node -e "import('./.opencode/plugins/opencode-goal.js')"`, execute the scratch script below as `node co-039-opencode-goal-live.mjs`, then run `node --test .opencode/plugins/tests/opencode-goal-*.test.cjs`.
 
 Scratch script (real invocation, no mocks -- imports the shipped plugin file unmodified):
 
@@ -66,9 +66,9 @@ import { tmpdir } from 'node:os';
 import { basename, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-const pluginUrl = pathToFileURL('.skilled/plugins/opencode-goal.js').href;
+const pluginUrl = pathToFileURL('.opencode/plugins/opencode-goal.js').href;
 const stateDir = await mkdtemp(join(tmpdir(), 'co-039-goal-'));
-const coreUrl = pathToFileURL('.skilled/plugins/lib/opencode-goal-core.js').href;
+const coreUrl = pathToFileURL('.opencode/plugins/lib/opencode-goal-core.js').href;
 const { default: MkGoalPlugin } = await import(pluginUrl);
 const { getGoalCore } = await import(coreUrl);
 const hooks = await MkGoalPlugin.server({}, { stateDir });
@@ -138,12 +138,12 @@ console.log(JSON.stringify({ verdict: 'PASS', stateFiles, migrated: true, tokens
 
 || Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 ||---|---|---|---|---|---|---|---|---|
-|| CO-039 | Goal hook native opencode-goal validation | Verify actions, opaque persistence, lazy migration, isolation, native accounting, and injection | `As an OpenCode plugin validator, exercise the shipped opencode-goal hooks against scratch state. Verify the full /goal-opencode action set, two-session isolation, fixed 64-character SHA-256 state keys, long-session persistence, validated lazy migration of a legacy hex-keyed file, native message.updated token accounting, one [active_goal] injection, and fail-closed disable behavior. Return the exact envelope lines, state filenames, and a PASS/FAIL verdict.` | 1. `node -e "import('./.skilled/plugins/opencode-goal.js')"` -> 2. `node co-039-opencode-goal-live.mjs` using the scratch script above -> 3. `node --test .skilled/plugins/tests/opencode-goal-*.test.cjs` | Import succeeds; three opaque 64-hex state names are observed; the long id persists; validated legacy state migrates to its digest path; A/B remain isolated; `tokens_used=160`; one matching injection block appears; every disabled action returns `code=PLUGIN_DISABLED`; all 166 tests pass | Scratch-script assertion output, state filename list, exact status envelopes, and TAP summary | PASS only when every storage, migration, isolation, accounting, injection, action, and disable assertion passes with 166/166 tests | Check native session identity and embedded legacy `sessionId` first; an occupied digest target must win without source deletion; token drift means inspect `properties.info.tokens`, never substitute generic usage |
+|| CO-039 | Goal hook native opencode-goal validation | Verify actions, opaque persistence, lazy migration, isolation, native accounting, and injection | `As an OpenCode plugin validator, exercise the shipped opencode-goal hooks against scratch state. Verify the full /goal-opencode action set, two-session isolation, fixed 64-character SHA-256 state keys, long-session persistence, validated lazy migration of a legacy hex-keyed file, native message.updated token accounting, one [active_goal] injection, and fail-closed disable behavior. Return the exact envelope lines, state filenames, and a PASS/FAIL verdict.` | 1. `node -e "import('./.opencode/plugins/opencode-goal.js')"` -> 2. `node co-039-opencode-goal-live.mjs` using the scratch script above -> 3. `node --test .opencode/plugins/tests/opencode-goal-*.test.cjs` | Import succeeds; three opaque 64-hex state names are observed; the long id persists; validated legacy state migrates to its digest path; A/B remain isolated; `tokens_used=160`; one matching injection block appears; every disabled action returns `code=PLUGIN_DISABLED`; all 166 tests pass | Scratch-script assertion output, state filename list, exact status envelopes, and TAP summary | PASS only when every storage, migration, isolation, accounting, injection, action, and disable assertion passes with 166/166 tests | Check native session identity and embedded legacy `sessionId` first; an occupied digest target must win without source deletion; token drift means inspect `properties.info.tokens`, never substitute generic usage |
 
 ### Optional Supplemental Checks
 
 - **Dependency resolution.** The tracked `.skilled/node_modules/@opencode-ai/plugin` dependency resolves in this checkout. Treat import failure as install-state drift; do not create an untracked cache symlink as part of the playbook.
-- **Unit-test suite run.** `node --test .skilled/plugins/tests/opencode-goal-*.test.cjs` passes 166/166 across nine suite files. Re-measure with the command above rather than trusting this number; it has gone stale once already.
+- **Unit-test suite run.** `node --test .opencode/plugins/tests/opencode-goal-*.test.cjs` passes 166/166 across nine suite files. Re-measure with the command above rather than trusting this number; it has gone stale once already.
 - **Live headless `opencode run` check (optional).** Headless `opencode run` exposes `opencode_goal` and `opencode_goal_status` to the model, and `experimental.chat.system.transform` fires on a resumed `--session`. The check runs two turns against a scratch `OPENCODE_GOAL_STATE_DIR`, each with an explicit `-m <provider/model>` and stdin redirected from `/dev/null`. In turn 1 the model calls `opencode_goal` with `set` and then `opencode_goal_status`, and the scratch state file for that session id holds the objective. Between the turns, bind that session id in-process to a scratch packet whose `goal.md` carries a random canary the model never sees. Turn 2 resumes with `--session <id>`, calls no tool and asks the model to copy the `[active_goal]` objective and criteria lines from its system prompt. PASS when turn 2 quotes the canary and carries no frontmatter or log-row canary. A passing live run is recorded in `specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/runtime-verification/opencode/a3-live-summary.md`. It supersedes an earlier finding that reported the tools hidden and the transform silent in headless runs.
 
 ---
@@ -161,16 +161,16 @@ console.log(JSON.stringify({ verdict: 'PASS', stateFiles, migrated: true, tokens
 
 || File | Role |
 ||---|---|
-|| `.skilled/plugins/opencode-goal.js` | The OpenCode-native goal plugin: `tool.opencode_goal` / `tool.opencode_goal_status`, `event`, `experimental.chat.system.transform` |
-|| `.skilled/commands/goal-opencode.md` | The `/goal-opencode` command router whose action set this plugin implements |
-|| `.skilled/plugins/tests/opencode-goal-state.test.cjs` | State-store, fixed-key, long-id, and active migration coverage (33 tests) |
-|| `.skilled/plugins/tests/opencode-goal-lifecycle.test.cjs` | Lifecycle, archive migration, and status-transition coverage (37 tests) |
-|| `.skilled/plugins/tests/opencode-goal-supervisor.test.cjs` | Heuristic / LLM verifier unit coverage (14 tests) |
-|| `.skilled/plugins/tests/opencode-goal-continuation.test.cjs` | Guarded auto-continuation unit coverage (24 tests) |
-|| `.skilled/plugins/tests/opencode-goal-export-contract.test.cjs` | Plugin export-shape unit coverage (3 tests) |
-|| `.skilled/plugins/tests/opencode-goal-capabilities.test.cjs` | Env/capability-flag coverage (8 tests) |
-|| `.skilled/plugins/tests/opencode-goal-tool-path.test.cjs` | Tool-context session-id resolution and packet-bind path coverage (16 tests) |
-|| `.skilled/plugins/tests/opencode-goal-render-parity.test.cjs` | Brief render parity with the shared goal core (3 tests) |
+|| `.opencode/plugins/opencode-goal.js` | The OpenCode-native goal plugin: `tool.opencode_goal` / `tool.opencode_goal_status`, `event`, `experimental.chat.system.transform` |
+|| `.opencode/commands/goal-opencode.md` | The `/goal-opencode` command router whose action set this plugin implements |
+|| `.opencode/plugins/tests/opencode-goal-state.test.cjs` | State-store, fixed-key, long-id, and active migration coverage (33 tests) |
+|| `.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs` | Lifecycle, archive migration, and status-transition coverage (37 tests) |
+|| `.opencode/plugins/tests/opencode-goal-supervisor.test.cjs` | Heuristic / LLM verifier unit coverage (14 tests) |
+|| `.opencode/plugins/tests/opencode-goal-continuation.test.cjs` | Guarded auto-continuation unit coverage (24 tests) |
+|| `.opencode/plugins/tests/opencode-goal-export-contract.test.cjs` | Plugin export-shape unit coverage (3 tests) |
+|| `.opencode/plugins/tests/opencode-goal-capabilities.test.cjs` | Env/capability-flag coverage (8 tests) |
+|| `.opencode/plugins/tests/opencode-goal-tool-path.test.cjs` | Tool-context session-id resolution and packet-bind path coverage (16 tests) |
+|| `.opencode/plugins/tests/opencode-goal-render-parity.test.cjs` | Brief render parity with the shared goal core (3 tests) |
 || `.skilled/hooks/goal/goal-plugin.md` | Operator contract for the plugin: runtime surfaces, environment variables, output fields, cross-runtime relationship |
 || `specs/hooks/004-goal-hook-playbooks-and-validation/evidence/opencode-mkgoal-finding.txt` | An earlier headless-run finding that reported the goal tools hidden and the transform silent, superseded by the live run below |
 || `specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/runtime-verification/opencode/a3-live-summary.md` | The live headless `opencode run` evidence cited in Section 3 Optional Supplemental Checks |

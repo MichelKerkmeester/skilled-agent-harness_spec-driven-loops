@@ -1,1 +1,1 @@
-../../../../../plugins/system-spec-gate.js
+../../../../../../.opencode/plugins/system-spec-gate.js

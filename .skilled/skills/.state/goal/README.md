@@ -5,7 +5,7 @@ trigger_phrases:
   - "goal runtime state"
   - "active session goals"
   - "goal state archive"
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Goal Runtime State
@@ -16,7 +16,7 @@ version: 1.1.1.0
 
 ## 1. OVERVIEW
 
-This folder stores machine-specific state for the [`opencode-goal.js`](../../../plugins/opencode-goal.js) plugin. The plugin reads and writes goal records for each OpenCode session, records continuation decisions and archives inactive goals.
+This folder stores machine-specific state for the [`opencode-goal.js`](../../../../.opencode/plugins/opencode-goal.js) plugin. The plugin reads and writes goal records for each OpenCode session, records continuation decisions and archives inactive goals.
 
 This store is a per-session index, not the directive. A session binds to a spec packet, and that packet's `goal.md` is the single source of the goal; each record here keeps the packet pointer, an operator copy derived from the file, liveness, telemetry and the hash of the durable slice last resent in chat. The directive is never duplicated into a record as its own truth: rendering reads the packet file every time.
 
@@ -45,7 +45,7 @@ The plugin encodes each session ID as hexadecimal for the JSON filename. It seri
 
 ## 3. PLUGIN WORKFLOW
 
-The [`/goal` command](../../../commands/goal-opencode.md) is a state-free router. It sends `set`, `clear`, `complete`, `pause`, `resume`, `history`, `doctor` and `health` actions to the plugin's `opencode_goal` tool. Empty arguments and `show` use `opencode_goal_status`. The command does not read or edit this folder directly because plugin tool context supplies the current session ID.
+The [`/goal` command](../../../../.opencode/commands/goal-opencode.md) is a state-free router. It sends `set`, `clear`, `complete`, `pause`, `resume`, `history`, `doctor` and `health` actions to the plugin's `opencode_goal` tool. Empty arguments and `show` use `opencode_goal_status`. The command does not read or edit this folder directly because plugin tool context supplies the current session ID.
 
 When a caller sets a goal, the plugin sanitizes the objective, creates a model-facing `goalPrompt` and stores prompt-enhancement metadata with the new active record. Setting the same active or paused objective refreshes the record. Setting a different objective, or reusing an objective from a terminal state, replaces it with a fresh goal record. Optional token budgets remain part of the per-session state.
 
@@ -118,7 +118,7 @@ Other skills can invoke the plugin tools through the command surface, but they d
 
 ## 7. RELATED
 
-- [`opencode-goal.js`](../../../plugins/opencode-goal.js) reads, writes, archives and cleans this state.
-- [`/goal` command](../../../commands/goal-opencode.md) routes user actions to the plugin tools without handling state.
+- [`opencode-goal.js`](../../../../.opencode/plugins/opencode-goal.js) reads, writes, archives and cleans this state.
+- [`/goal` command](../../../../.opencode/commands/goal-opencode.md) routes user actions to the plugin tools without handling state.
 - [OpenCode Goal Plugin Contract](../../../hooks/goal/goal-plugin.md) documents the operator contract, environment controls and verification surfaces.
 - [System Spec Kit](../../system-spec-kit/) documents the wider runtime-injection and continuity system while keeping goal state outside Spec Kit Memory.

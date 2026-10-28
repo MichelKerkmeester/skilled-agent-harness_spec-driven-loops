@@ -8,7 +8,7 @@ trigger_phrases:
   - "completion sentinel plugin"
   - "completion-evidence-sentinel"
   - "stop hook advisory"
-version: 1.0.1.0
+version: 1.0.2.0
 id: plugins-and-hooks-completion-evidence-sentinel
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -20,7 +20,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-`system-completion-sentinel` is an OpenCode plugin (`.skilled/plugins/system-completion-sentinel.js`) that
+`system-completion-sentinel` is an OpenCode plugin (`.opencode/plugins/system-completion-sentinel.js`) that
 adapts the runtime-neutral core `completion-evidence-sentinel.cjs`
 (`.skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs`) onto
 OpenCode's `session.idle` and `session.created` events. The identical core is also consumed by a
@@ -101,7 +101,7 @@ an agent in a live Claude Code or OpenCode session ends a turn with a
 ### 1. OpenCode plugin unit test (session.created sweep, kill switch, throttling, unrelated event)
 
 ```bash
-node .skilled/plugins/tests/system-completion-sentinel.test.cjs
+node .opencode/plugins/tests/system-completion-sentinel.test.cjs
 ```
 
 Expected: `# tests 4`, `# pass 4`, `# fail 0`.
@@ -219,7 +219,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import { pathToFileURL } from 'node:url';
 
-const pluginUrl = pathToFileURL(path.resolve(process.cwd(), '.skilled/plugins/system-completion-sentinel.js')).href;
+const pluginUrl = pathToFileURL(path.resolve(process.cwd(), '.opencode/plugins/system-completion-sentinel.js')).href;
 const { default: MkCompletionSentinelPlugin } = await import(pluginUrl);
 const projectDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sentinel-adapter-live-'));
 
@@ -343,8 +343,8 @@ Capture, for every step in the Commands sequence above:
 
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- OpenCode plugin (adapter): `.skilled/plugins/system-completion-sentinel.js`
-- OpenCode plugin unit test: `.skilled/plugins/tests/system-completion-sentinel.test.cjs`
+- OpenCode plugin (adapter): `.opencode/plugins/system-completion-sentinel.js`
+- OpenCode plugin unit test: `.opencode/plugins/tests/system-completion-sentinel.test.cjs`
 - Runtime-neutral core: `.skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs`
 - Core vitest suite: `.skilled/skills/system-spec-kit/runtime/tests/completion-evidence-sentinel.vitest.ts`
 - Claude Stop hook (adapter): `.skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs`
@@ -353,7 +353,7 @@ Capture, for every step in the Commands sequence above:
 - Checklist evaluator script: `.skilled/skills/system-spec-kit/runtime/cli/spec/check-completion.sh`
 - Claude hook wiring: `.claude/settings.json` (`hooks.Stop`)
 
-Provenance: .skilled/plugins/tests/system-completion-sentinel.test.cjs
+Provenance: .opencode/plugins/tests/system-completion-sentinel.test.cjs
 
 ---
 

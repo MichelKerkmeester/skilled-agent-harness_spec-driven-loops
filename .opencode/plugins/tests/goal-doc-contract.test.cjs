@@ -55,9 +55,9 @@ test('the plugin suite count a playbook states matches the suite it names', () =
   const stated = [...playbook.matchAll(/(\d+)\/\1\b/g)].map((m) => Number(m[1]));
   assert.ok(stated.length > 0, 'the playbook states a suite count');
 
-  const files = readdirSync(join(REPO_ROOT, '.skilled', 'plugins', 'tests'))
+  const files = readdirSync(join(REPO_ROOT, '.opencode', 'plugins', 'tests'))
     .filter((name) => /^opencode-goal-.*\.test\.cjs$/.test(name))
-    .map((name) => join(REPO_ROOT, '.skilled', 'plugins', 'tests', name));
+    .map((name) => join(REPO_ROOT, '.opencode', 'plugins', 'tests', name));
   // The tap reporter's summary is a stable machine surface; the default
   // reporter's is decorated and has already changed shape once.
   const out = execFileSync(
@@ -84,7 +84,7 @@ test('the disable variable a goal surface names is the concern its canonical nam
   const canonical = (resolver.match(/goal:\s*"([A-Z_]+)"/) || [])[1];
   assert.ok(canonical, 'the shared resolver declares a canonical name for the goal concern');
 
-  for (const rel of ['.skilled/hooks/goal/lib/goal-core.cjs', '.skilled/plugins/opencode-goal.js']) {
+  for (const rel of ['.skilled/hooks/goal/lib/goal-core.cjs', '.opencode/plugins/opencode-goal.js']) {
     const named = (read(rel).match(/const DISABLED_ENV = '([A-Z_]+)';/) || [])[1];
     assert.equal(named, canonical, `${rel} prints ${named} where an operator must set ${canonical}`);
   }
@@ -97,7 +97,7 @@ test('the disable variable a goal surface names is the concern its canonical nam
 
 test('every goal environment variable the code reads is documented', () => {
   const SOURCES = [
-    '.skilled/plugins/opencode-goal.js',
+    '.opencode/plugins/opencode-goal.js',
     '.skilled/hooks/goal/lib/goal-core.cjs',
     '.skilled/hooks/goal/lib/goal-slice.cjs',
     '.skilled/hooks/goal/bin/goal.cjs',
@@ -126,7 +126,7 @@ test('every goal kill-switch name a document teaches actually disables something
 
   const ROSTERS = [
     '.env.example',
-    '.skilled/plugins/README.md',
+    '.opencode/plugins/README.md',
     '.skilled/hooks/goal/README.md',
     '.skilled/hooks/goal/goal-plugin.md',
   ];

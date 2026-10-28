@@ -50,7 +50,7 @@ Every runtime adapter imports the **same** `spec-gate-core.mjs` and calls `class
 | **Cursor** | `cursor/spec-gate-prebind.mjs`, `cursor/spec-gate-classify.mjs`, `cursor/spec-gate-enforce.mjs` | `sessionStart` (prebind) + `beforeSubmitPrompt` (classify) + `preToolUse` (enforce) in `.cursor/hooks.json`; timeout 10s | Cursor does not deliver its prompt-classification event reliably under the CLI, so `sessionStart` is the confirmed place to establish state: `prebind` satisfies the gate immediately when `SYSTEM_SPEC_FOLDER` names a valid spec folder (source `flags`, never `prior_answer`), or opens it when `SYSTEM_SPEC_GATE_ENFORCE=1`. `classify` runs the shared classifier when the prompt event does fire. `enforce` evaluates mutations | Prebind: `permission: allow` JSON. Classify: silent. Enforce: `agent_message` carries the once-per-session notice on advise; deny/allow as elsewhere |
 | **Devin** | `devin/spec-gate-classify.mjs`, `devin/spec-gate-enforce.mjs` | `UserPromptSubmit` (classify, matcher `""`) + `PreToolUse` (enforce, matchers `^exec$` and `^(edit\|write)$`) in `.devin/hooks.v1.json`; timeout 5-10s | Same shape as Claude over Devin's `exec`/`edit`/`write` tools; `cd "${DEVIN_PROJECT_DIR:-$PWD}"` | Same silent classify, once-per-session advise notice, and deny JSON |
 | **Pi** | `pi/spec-gate-classify.ts`, `pi/spec-gate-enforce.ts` (real files; `.pi/extensions/` symlinks here) | `input` (classify) + `tool_call` (enforce, tools `bash`/`write`/`edit`) via `.pi/extensions/` | Imports the core in-process. Classify sanitizes the prompt (`sanitizePromptForClassify`) and keys state via `resolveSessionKey({ sessionId, sessionFile })`. Enforce keys state identically so classify's answer reaches enforce's lookup | Classify: leaves the turn untouched when `ctx.hasUI`; appends the one-shot deferral instruction only when it is false. Enforce: at the first in-gate Write/Edit opens an interactive `ctx.ui.select` + path-input dialog, binds the answer programmatically, and blocks that single call with a retry reason; `block: true` + `reason` on deny |
-| **OpenCode** | `.skilled/plugins/system-spec-gate.js` (mirrored at `opencode/` via browsability symlink) | Plugin. `experimental.chat.system.transform` (classify), `tool.execute.before` for mutating tools + `bash` (enforce), `event` for session lifecycle | `experimental.chat.system.transform`'s typed input carries no `prompt` field, so the adapter best-effort fetches the session's last user message via `ctx.client` (guarded, fail-open) when `extractPrompt(input)` comes up empty. Enforce throws `system-spec-gate: <detail>` on deny (OpenCode's deny signal); the plugin's catch re-throws only that message and swallows everything else | Classify: one-shot deferral instruction appended to `output.system` (never the menu). Enforce: throw on deny (blocks the tool call); advise and would-deny telemetry logged to the state dir, never stdout/stderr. `event`: sweeps stale state on `session.created`, advances the lifecycle epoch and re-arms the delivery marker on `session.resumed`/`compacted`/`compact`, evicts on `session.deleted` |
+| **OpenCode** | `.opencode/plugins/system-spec-gate.js` (mirrored at `opencode/` via browsability symlink) | Plugin. `experimental.chat.system.transform` (classify), `tool.execute.before` for mutating tools + `bash` (enforce), `event` for session lifecycle | `experimental.chat.system.transform`'s typed input carries no `prompt` field, so the adapter best-effort fetches the session's last user message via `ctx.client` (guarded, fail-open) when `extractPrompt(input)` comes up empty. Enforce throws `system-spec-gate: <detail>` on deny (OpenCode's deny signal); the plugin's catch re-throws only that message and swallows everything else | Classify: one-shot deferral instruction appended to `output.system` (never the menu). Enforce: throw on deny (blocks the tool call); advise and would-deny telemetry logged to the state dir, never stdout/stderr. `event`: sweeps stale state on `session.created`, advances the lifecycle epoch and re-arms the delivery marker on `session.resumed`/`compacted`/`compact`, evicts on `session.deleted` |
 
 OpenCode discovers plugins solely from `.opencode/plugins/`, so `system-spec-gate.js` must live there; `opencode/system-spec-gate.js` is a relative symlink back into that folder for browsability: nothing loads through it. Pi loads in the other direction: the real `pi/spec-gate-*.ts` files live here, and `.pi/extensions/spec-gate-*.ts` are the symlinks Pi discovers.
 
@@ -69,7 +69,7 @@ cursor/spec-gate-prebind.mjs       # Cursor-only sessionStart state prebind
 pi/spec-gate-classify.ts           # real Pi extension (.pi/extensions/ symlinks here)
 pi/spec-gate-enforce.ts            # real Pi extension
 runtime/tests/spec-gate-pi-extension.vitest.ts  # fake-ExtensionAPI suite for both Pi extensions
-.skilled/plugins/system-spec-gate.js  # OpenCode plugin
+.opencode/plugins/system-spec-gate.js  # OpenCode plugin
 ```
 
 The hooks-tree index at `.skilled/hooks/spec-gate/` mirrors these per runtime via relative symlinks; this README is the symlink target.
@@ -87,7 +87,7 @@ The hooks-tree index at `.skilled/hooks/spec-gate/` mirrors these per runtime vi
 | `cursor/spec-gate-prebind.mjs` | Cursor-only `sessionStart` adapter. Satisfies the gate immediately when `SYSTEM_SPEC_FOLDER` names a valid spec folder (source `flags`), or opens it when `SYSTEM_SPEC_GATE_ENFORCE=1`. Disabled/child/malformed cases write no state. |
 | `pi/spec-gate-classify.ts`, `pi/spec-gate-enforce.ts` | Native Pi extensions importing the core in-process. Classify sanitizes the prompt and relays the one-shot deferral only when `ctx.hasUI` is false; enforce opens the interactive dialog at the first undelivered Write/Edit (`ctx.ui.select` + path input, then `bindGate3Answer`) and returns `block: true` on deny. |
 | `runtime/tests/spec-gate-pi-extension.vitest.ts` | Fake-`ExtensionAPI` suite driving both Pi extensions through their production event handlers: no turn-time menu, dialog at the first write, one-time block, repeat suppression, cancel fail-open. |
-| `.skilled/plugins/system-spec-gate.js` | OpenCode plugin. `experimental.chat.system.transform` classifies (best-effort fetches the last user message via `ctx.client`) and relays the one-shot deferral; `tool.execute.before` enforces (throws `system-spec-gate:` on deny) and logs would-deny telemetry; `event` sweeps, advances the epoch, re-arms the delivery marker, and evicts state. All policy and persistence live in the core; this file only maps OpenCode's transport onto it. |
+| `.opencode/plugins/system-spec-gate.js` | OpenCode plugin. `experimental.chat.system.transform` classifies (best-effort fetches the last user message via `ctx.client`) and relays the one-shot deferral; `tool.execute.before` enforces (throws `system-spec-gate:` on deny) and logs would-deny telemetry; `event` sweeps, advances the epoch, re-arms the delivery marker, and evicts state. All policy and persistence live in the core; this file only maps OpenCode's transport onto it. |
 | `shared/dist/gate-3-classifier.js` | The compiled classifier the core imports from `shared/`. |
 
 ---
@@ -145,7 +145,7 @@ node --test .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-prebin
 Expected result: all per-runtime adapter tests pass.
 
 ```bash
-env -u AI_SESSION_CHILD -u SYSTEM_SPEC_GATE_ENFORCE node .skilled/plugins/tests/system-spec-gate.test.cjs
+env -u AI_SESSION_CHILD -u SYSTEM_SPEC_GATE_ENFORCE node .opencode/plugins/tests/system-spec-gate.test.cjs
 ```
 
 Expected result: 11 pass, 0 fail (OpenCode plugin, including the one-shot deferral relay and the session-key fallback).
@@ -159,7 +159,7 @@ Expected result: the Pi extension suite passes (turn untouched, dialog at the fi
 ```bash
 node --check .skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs
 node --check .skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs
-node --check .skilled/plugins/system-spec-gate.js
+node --check .opencode/plugins/system-spec-gate.js
 ```
 
 Expected result: no syntax errors (repeat for the codex/cursor/devin siblings).
@@ -174,4 +174,4 @@ Expected result: no syntax errors (repeat for the codex/cursor/devin siblings).
 - [`../../../README.md`](../../../README.md): the owning skill's hook contract.
 - [`.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md`](../../../../../../skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md): the manual scenario validating this core end to end.
 - [`.skilled/hooks/README.md`](../../../../../../hooks/README.md): the unified hooks tree with the kill-switch index and coverage matrix.
-- [`.skilled/plugins/README.md`](../../../../../../plugins/README.md): the OpenCode plugins folder that loads `system-spec-gate.js`.
+- [`.opencode/plugins/README.md`](../../../../../../../.opencode/plugins/README.md): the OpenCode plugins folder that loads `system-spec-gate.js`.

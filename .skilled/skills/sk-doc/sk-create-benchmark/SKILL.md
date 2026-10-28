@@ -69,7 +69,7 @@ Use another `sk-doc` packet when:
 - A re-run confirms the same headline; update the existing `benchmark-report.md` with a re-run note instead.
 - The result mixes data from different MCP stacks and asks for a single comparative verdict.
 - The task defines scoring (rubric, evaluator or reviewer verdict). Scoring stays lane-local; this packet authors inputs, indexes, and reports.
-- A one-off experiment fits none of the families, such as a one-off vision-audit benchmark kept beside the skill that ran it. Keep it lane-local; there is no "misc" family.
+- A one-off experiment fits none of the families, such as a one-off image-audit benchmark kept beside the skill that ran it. Keep it lane-local; there is no "misc" family.
 
 If unsure, default to "not yet." Promote after rigor.
 

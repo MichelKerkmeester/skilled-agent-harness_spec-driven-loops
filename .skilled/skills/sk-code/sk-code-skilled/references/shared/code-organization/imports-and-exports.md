@@ -8,7 +8,7 @@ trigger_phrases:
   - "python public api exports"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.17
+version: 1.0.1.0
 ---
 
 # Import Ordering & Export Patterns
@@ -154,7 +154,7 @@ module.exports = {
 };
 ```
 
-Do not use this pattern for `.mjs` or `.skilled/plugins/`; those are
+Do not use this pattern for `.mjs` or `.opencode/plugins/`; those are
 ESM surfaces.
 
 ### TypeScript ES Module Exports

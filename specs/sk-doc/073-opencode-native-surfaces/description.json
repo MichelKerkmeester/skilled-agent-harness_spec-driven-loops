@@ -1,0 +1,24 @@
+{
+  "specFolder": "sk-doc/073-opencode-native-surfaces",
+  "description": "Move goal-opencode command into .opencode only and remove the .skilled/plugins symlink",
+  "keywords": [
+    "move",
+    "goal-opencode",
+    "command",
+    "opencode",
+    "only",
+    "remove",
+    "skilled",
+    "plugins",
+    "symlink"
+  ],
+  "lastUpdated": "2026-10-28T15:46:18.131Z",
+  "specId": "073",
+  "folderSlug": "opencode-native-surfaces",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

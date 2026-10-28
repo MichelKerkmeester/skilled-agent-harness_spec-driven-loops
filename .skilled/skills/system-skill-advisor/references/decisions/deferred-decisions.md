@@ -7,7 +7,7 @@ trigger_phrases:
   - "skill-advisor architectural deferrals"
 importance_tier: "normal"
 contextType: "general"
-version: 0.8.0.11
+version: 0.8.1.0
 ---
 
 # Deferred Decisions (Tier D)
@@ -97,7 +97,7 @@ Mid-window audit while preparing for the 2026-08-16 removal:
 **Runtime configs — ALL migrated to NEW:**
 - `.claude/settings.local.json` — no hook entries (Claude consumes MCP only).
 - `opencode.json` — no hook entries.
-- OpenCode plugin (`.skilled/plugins/spec-kit-skill-advisor.js`) — owns its own loading, not affected.
+- OpenCode plugin (`.opencode/plugins/spec-kit-skill-advisor.js`) — owns its own loading, not affected.
 - Cross-runtime grep for `system-spec-kit/runtime/hooks/`: zero hits in active runtime config files. Two hits in documentation (`README.md` lines 767, 769 and `DEPLOYMENT.md` line 7). Remaining hits are historical research/impl logs.
 
 **Compiled NEW dist is self-contained:**
@@ -154,7 +154,7 @@ Mark OLD as deprecated with a 90-day migration window. Concrete steps:
    | Claude | `.claude/settings.local.json` hooks block | yes | Update Claude config |
    | OpenCode | `opencode.json` hooks section | yes | Update OpenCode config |
    | Devin | `.devin/hooks.v1.json` | partial (session-start.js missing) | Resolve F4 first |
-   | OpenCode plugin | `.skilled/plugins/system-skill-advisor.js` | n/a (plugin owns its loading) | No change needed |
+   | OpenCode plugin | `.opencode/plugins/system-skill-advisor.js` | n/a (plugin owns its loading) | No change needed |
 
 3. After all runtime configs are migrated plus the 90-day window passes, delete the OLD location in a separate cleanup packet.
 

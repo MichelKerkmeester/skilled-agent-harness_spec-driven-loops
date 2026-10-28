@@ -64,5 +64,5 @@ Expected result: valid JSON output for the most recent line.
 
 ## 4. RELATED
 
-- [`../plugins/README.md`](../plugins/README.md): the plugin adapters and native plugins behind `cli-dispatch-audit.log`, `completion-sentinel-advisories.log`, and `dist-freshness-guard.log`
+- [`../../.opencode/plugins/README.md`](../../.opencode/plugins/README.md): the plugin adapters and native plugins behind `cli-dispatch-audit.log`, `completion-sentinel-advisories.log`, and `dist-freshness-guard.log`
 - [`../scripts/git-hooks/README.md`](../scripts/git-hooks/README.md): the git hook family that writes `autostash-orphan-alerts.log`

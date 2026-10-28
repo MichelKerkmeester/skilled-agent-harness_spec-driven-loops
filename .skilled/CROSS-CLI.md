@@ -47,7 +47,7 @@ Every runtime also authors its own `SYNC.md`, and every `hooks/` directory autho
 
 ## 3. WHY EACH ONE DIFFERS
 
-**`.opencode/` links almost everything** because its dialect *is* the authored dialect. Nothing needs translating, so nothing is copied. The exception is `plugins/`, which is authored here: the plugins are OpenCode's own extension surface, so no other runtime loads them, and `package.json` here supplies the plugin SDK's type definitions they reference. `.skilled/plugins` is one link back to this directory, so the older path still resolves. The plugin files are real files here, so they open where people read the repository.
+**`.opencode/` links almost everything** because its dialect *is* the authored dialect. Nothing needs translating, so nothing is copied. The exception is `plugins/`, which is authored here: the plugins are OpenCode's own extension surface, so no other runtime loads them, and `package.json` here supplies the plugin SDK's type definitions they reference. `.opencode/plugins` is one link back to this directory, so the older path still resolves. The plugin files are real files here, so they open where people read the repository.
 
 **`.opencode/` serves OpenCode 2 and OpenCode 1 from the same files.** Each plugin default-exports one `{ id, setup, server }` object: OpenCode 2 runs `setup`, which wraps the same `server` that OpenCode 1 runs, so 2.1.4 and 1.19.4 load the same 17 plugins. Both versions register every `*.md` file under a `commands/` folder as a command, at any depth, so markdown in `.skilled/commands/` that is not a command is named `.markdown`. In CI, the OpenCode Dual-Version Battery runs on both versions and OpenCode Plugin Tests runs the plugin unit tests.
 

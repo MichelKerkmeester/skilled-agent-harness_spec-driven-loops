@@ -18,7 +18,7 @@ contextType: "reference"
 `session-cleanup/` is the index for the concern that runs bounded startup guards and teardown cleanup. It has two faces that share one teardown script:
 
 - **Shell script** (`.skilled/scripts/session-cleanup.sh`) backs the editor runtimes at session teardown. It kills only MCP helper processes it can **prove** are descendants of an explicit session PID, re-proving ancestry immediately before each kill, so a teardown never reaches into a sibling session's transports. There is deliberately no fallback to the hook's PPID: under a shared terminal that PPID can resolve to an ancestor common to many live sessions.
-- **OpenCode plugin** (`.skilled/plugins/session-cleanup.js`) runs the same teardown script on dispose, and additionally runs startup guards (worktree-guard, check-git-hooks, git-live-follow `--start`) plus a backgrounded primary-reconcile on `session.created`, surfacing any guard warnings once per session through the system context.
+- **OpenCode plugin** (`.opencode/plugins/session-cleanup.js`) runs the same teardown script on dispose, and additionally runs startup guards (worktree-guard, check-git-hooks, git-live-follow `--start`) plus a backgrounded primary-reconcile on `session.created`, surfacing any guard warnings once per session through the system context.
 
 Both faces are bounded and fail-open: subprocesses wait at most eight seconds (plugin) or run inline (shell), and any failure is a no-op that never blocks session start or teardown. Neither writes into spec docs.
 
@@ -60,7 +60,7 @@ The plugin never writes stdout/stderr (OpenCode's TUI paints plugin console outp
 | **Codex** | `codex/session-cleanup.sh` (symlink) | Session teardown | Same |
 | **Cursor** | `cursor/session-cleanup.sh` (symlink) | Session teardown | Same |
 | **Devin** | `devin/session-cleanup.sh` (symlink) | Session teardown | Same |
-| **OpenCode** | `.skilled/plugins/session-cleanup.js` (mirrored at `opencode/`) | Plugin `event` on `session.created` / `session.deleted`; `experimental.chat.system.transform`; `dispose` | Startup guards + backgrounded primary-reconcile on start; one-shot warning injection; teardown script on dispose (kill disabled by design) |
+| **OpenCode** | `.opencode/plugins/session-cleanup.js` (mirrored at `opencode/`) | Plugin `event` on `session.created` / `session.deleted`; `experimental.chat.system.transform`; `dispose` | Startup guards + backgrounded primary-reconcile on start; one-shot warning injection; teardown script on dispose (kill disabled by design) |
 | **Pi** | — | — | Not applicable. |
 
 The hub holds relative symlinks for the editor runtimes and a browsability symlink for the OpenCode plugin.
@@ -76,7 +76,7 @@ session-cleanup/
 +-- codex/    session-cleanup.sh (symlink)
 +-- cursor/   session-cleanup.sh (symlink)
 +-- devin/    session-cleanup.sh (symlink)
-`-- opencode/ session-cleanup.js (browsability symlink -> .skilled/plugins/session-cleanup.js)
+`-- opencode/ session-cleanup.js (browsability symlink -> .opencode/plugins/session-cleanup.js)
 ```
 
 ---
@@ -86,7 +86,7 @@ session-cleanup/
 | File | Responsibility |
 |---|---|
 | `.skilled/scripts/session-cleanup.sh` | The teardown script. Session-scoped descendant walk, target-command matching, re-proven-ancestry kill (TERM), orphan-sweep fallback, bounded rotated log. Never uses PPID. |
-| `.skilled/plugins/session-cleanup.js` | The OpenCode plugin. Startup guards + backgrounded primary-reconcile on `session.created`, one-shot warning injection, teardown script on `dispose`. Bounded (8s subprocess timeout), fail-open, never writes to the TUI. |
+| `.opencode/plugins/session-cleanup.js` | The OpenCode plugin. Startup guards + backgrounded primary-reconcile on `session.created`, one-shot warning injection, teardown script on `dispose`. Bounded (8s subprocess timeout), fail-open, never writes to the TUI. |
 | `.skilled/scripts/orphan-mcp-sweeper.sh` | The ownerless-MCP sweeper the no-session-PID fallback delegates to (reaps only reparented MCP processes). Not in this folder. |
 | `.skilled/hooks/shared/hook-flags.sh` | The shared shell kill-switch resolver (`hook_enabled session-cleanup`). Sourced fail-open. |
 
@@ -119,7 +119,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 | No spec writes | Sweeps runtime/MCP state only; never touches spec-folder docs. |
 | OpenCode kill disabled by design | The plugin's `dispose` runs the teardown script with no session PID, so the kill path is a no-op on OpenCode; the startup guards + primary-reconcile are the active parts. |
 | Imports | Shell: bash only, sources `hook-flags.sh` fail-open. Plugin: Node builtins only. Nothing outside the repo. |
-| Real code | Stays in `.skilled/scripts/` and `.skilled/plugins/`; the hub entries are relative symlinks. |
+| Real code | Stays in `.skilled/scripts/` and `.opencode/plugins/`; the hub entries are relative symlinks. |
 
 ---
 
@@ -127,7 +127,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 
 ```bash
 # Verify the OpenCode plugin loads without error
-node -e "import('./.skilled/plugins/session-cleanup.js').then(m => console.log('ok', typeof m.default))"
+node -e "import('./.opencode/plugins/session-cleanup.js').then(m => console.log('ok', typeof m.default))"
 ```
 
 Expected result: `ok object`, the dual plugin export.
@@ -154,4 +154,4 @@ Expected result: `exit: 0`, no output (kill-switch short-circuits before any wal
 - [`../session-lifecycle/README.md`](../session-lifecycle/README.md): the related session start/stop continuity hooks.
 - [`../git-primary-reconcile/README.md`](../git-primary-reconcile/README.md): the reconcile script the OpenCode plugin background-spawns on `session.created`.
 - [`../git-worktree-guard/README.md`](../git-worktree-guard/README.md), [`../git-hooks-check/README.md`](../git-hooks-check/README.md): the startup guards the OpenCode plugin runs on `session.created`.
-- [`../../scripts/session-cleanup.sh`](../../scripts/session-cleanup.sh), [`../../plugins/session-cleanup.js`](../../plugins/session-cleanup.js): the two faces' real homes.
+- [`../../scripts/session-cleanup.sh`](../../scripts/session-cleanup.sh), [`../../../.opencode/plugins/session-cleanup.js`](../../../.opencode/plugins/session-cleanup.js): the two faces' real homes.

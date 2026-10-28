@@ -1,1 +1,1 @@
-../../../plugins/system-dist-freshness-guard.js
+../../../../.opencode/plugins/system-dist-freshness-guard.js

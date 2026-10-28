@@ -90,11 +90,11 @@ def test_undeclared_command_mode_fails(repo: Path) -> None:
 
 
 def test_top_level_command_takes_a_mode(repo: Path) -> None:
-    write(repo / ".skilled" / "commands" / "vision.md", '---\nargument-hint: "[:auto|:confirm]"\n---\n')
-    found = resolve(repo, "Run `/vision:auto`, not `/vision:typo`, `/visoin:auto` or `/create:auto`.\n")
-    assert_passes(found, "/vision:auto")
-    assert_fails(found, "/vision:typo")
-    assert_fails(found, "/visoin:auto")
+    write(repo / ".skilled" / "commands" / "notes.md", '---\nargument-hint: "[:auto|:confirm]"\n---\n')
+    found = resolve(repo, "Run `/notes:auto`, not `/notes:typo`, `/ntoes:auto` or `/create:auto`.\n")
+    assert_passes(found, "/notes:auto")
+    assert_fails(found, "/notes:typo")
+    assert_fails(found, "/ntoes:auto")
     # A group folder is read first, so its missing command is not taken for a mode.
     assert_fails(found, "/create:auto")
 

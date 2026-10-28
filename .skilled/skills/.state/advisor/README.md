@@ -5,7 +5,7 @@ trigger_phrases:
   - "skill advisor runtime state"
   - "advisor generation metadata"
   - "skill graph daemon lease"
-version: 1.0.0.1
+version: 1.0.1.0
 ---
 
 # Skill Advisor Runtime State
@@ -16,7 +16,7 @@ version: 1.0.0.1
 
 ## 1. OVERVIEW
 
-The [`system-skill-advisor.js`](../../../plugins/system-skill-advisor.js) OpenCode plugin requests a Skill Advisor brief for a user prompt before the model runs. It sends the prompt and routing thresholds to the advisor bridge, injects the returned brief into system context and falls back to a fixed safety directive when the advisor cannot return a brief. This prompt-time routing supports Gate 2, where the advisor recommends a matching skill before that skill handles the task.
+The [`system-skill-advisor.js`](../../../../.opencode/plugins/system-skill-advisor.js) OpenCode plugin requests a Skill Advisor brief for a user prompt before the model runs. It sends the prompt and routing thresholds to the advisor bridge, injects the returned brief into system context and falls back to a fixed safety directive when the advisor cannot return a brief. This prompt-time routing supports Gate 2, where the advisor recommends a matching skill before that skill handles the task.
 
 The plugin keeps its prompt cache in memory. Its cache key includes the session, prompt, thresholds, workspace and a source signature computed from advisor implementation files, skill metadata and graph artifacts. That signature invalidates cached recommendations when the routing inputs change. The plugin does not read or write `.state/advisor` directly. The related [`system-skill-advisor`](../../system-skill-advisor/SKILL.md) server and daemon own the state documented here, while the plugin reaches that logic by spawning the advisor CLI at `.skilled/bin/skill-advisor.cjs`.
 
@@ -189,7 +189,7 @@ This state supports routing but does not replace the recommended skill. For exam
 
 | Resource | Purpose |
 |---|---|
-| [`system-skill-advisor.js`](../../../plugins/system-skill-advisor.js) | OpenCode plugin that requests Skill Advisor briefs and tracks advisor source signatures. |
+| [`system-skill-advisor.js`](../../../../.opencode/plugins/system-skill-advisor.js) | OpenCode plugin that requests Skill Advisor briefs and tracks advisor source signatures. |
 | [`system-skill-advisor/SKILL.md`](../../system-skill-advisor/SKILL.md) | Gate 2 routing contract and daemon-backed advisor CLI overview. |
 | [`skill-advisor.cjs`](../../../bin/skill-advisor.cjs) | The CLI front door the OpenCode plugin spawns for advisor status and recommendations. |
 | [`generation.ts`](../../system-skill-advisor/runtime/lib/freshness/generation.ts) | Reads, validates and atomically publishes generation metadata. |

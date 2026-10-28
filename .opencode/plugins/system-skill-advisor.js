@@ -80,9 +80,8 @@ const pluginRequire = createRequire(import.meta.url);
 const { isHookEnabled } = pluginRequire('../hooks/shared/hook-flags.cjs');
 
 // The compiled-routing helper resolves from whichever adapter root actually
-// carries it: this plugin loads from either .skilled/plugins or .opencode/plugins
-// (symlink or copy, checkout-dependent), so a single relative ../bin probe would
-// spawn a broken module pair in a half-migrated tree.
+// carries it: .opencode/bin is a link that a copied tree may lack, so a single
+// relative ../bin probe would spawn a broken module pair in a half-migrated tree.
 function resolveCompiledRouteStatusModule() {
   const here = dirname(fileURLToPath(import.meta.url));
   for (const candidate of [
@@ -705,8 +704,8 @@ function advisorCliArgs() {
 // character beside the request's fixed part. The prompt keeps at most
 // ADVISOR_PROMPT_MAX_CHARS characters and is clamped by its escaped size, because JSON
 // writes a quote or newline as two bytes and a control character as six.
-// The hub's own `.skilled` directory, resolved once. The plugin loads from `.opencode/plugins`
-// or `.skilled/plugins`, and both sit one level below the repository root.
+// The hub's own `.skilled` directory, resolved once. The plugin loads from `.opencode/plugins`,
+// one level below the repository root.
 let hubSkilledRoot;
 function resolveHubSkilledRoot() {
   if (hubSkilledRoot === undefined) {

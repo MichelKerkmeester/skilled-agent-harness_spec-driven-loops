@@ -7,7 +7,7 @@ trigger_phrases:
   - "SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP"
   - "SPECKIT_PI_DIRECTIVE_DEDUP"
   - "advisor directive repetition"
-version: 1.7.0.3
+version: 1.7.1.0
 ---
 
 # Cross-runtime directive-lifecycle dedup
@@ -60,7 +60,7 @@ Kill switches:
 | `.skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts` | Canonical trusted-boundary target. |
 | `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Prompt adapter applying the canonical decision. |
 | `.skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts` | Registered runtime-to-advisor boundary bridge. |
-| `.skilled/plugins/system-skill-advisor.js` | OpenCode identity, generation, epoch, and directive-delivery mirror. |
+| `.opencode/plugins/system-skill-advisor.js` | OpenCode identity, generation, epoch, and directive-delivery mirror. |
 | `.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts` | Pi lifecycle delivery. |
 
 ### Validation And Evidence

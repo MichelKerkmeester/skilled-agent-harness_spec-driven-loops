@@ -21,7 +21,7 @@ const { pathToFileURL } = require('node:url');
 const { afterEach, describe, test } = require('node:test');
 
 const REPO_ROOT = resolve(__dirname, '..', '..', '..');
-const PLUGIN_PATH = join(REPO_ROOT, '.skilled/plugins/session-cleanup.js');
+const PLUGIN_PATH = join(REPO_ROOT, '.opencode/plugins/session-cleanup.js');
 const CLEANUP_PATH = join(REPO_ROOT, '.skilled/scripts/session-cleanup.sh');
 const WORKTREE_GUARD_PATH = join(REPO_ROOT, '.skilled/bin/worktree-guard.sh');
 const HOOK_GUARD_PATH = join(REPO_ROOT, '.skilled/bin/check-git-hooks.sh');

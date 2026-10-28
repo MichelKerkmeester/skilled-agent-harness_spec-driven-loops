@@ -6,7 +6,7 @@ trigger_phrases:
   - "plugin bridge"
   - "system-skill-advisor plugin"
   - "skill advisor plugin"
-version: 0.8.2.0
+version: 0.8.3.0
 ---
 
 # OpenCode Plugin
@@ -21,7 +21,7 @@ Give OpenCode a first-class plugin that surfaces advisor output at prompt time w
 
 ### Core Behavior
 
-`.skilled/plugins/system-skill-advisor.js` exports the plugin. It spawns `.skilled/bin/skill-advisor.cjs` for each advisor call, bounded at a 64 KiB stdin request, a 256 KiB stdout cap and a 2 KiB brief cap. The request carries at most the first 10,000 prompt characters, the most `advisor_recommend` accepts. A budget too small for any prompt spawns nothing. Cache TTL is 5 minutes. The live threshold pair is `confidenceThreshold: 0.8` and `uncertaintyThreshold: 0.35`. The CLI call times out after 2500 ms with SIGKILL escalation. Opt-out via `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` or `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED=1` (with legacy `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` and `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED=1` aliases) or `enabled: false` in plugin config. The plugin renders through the shared `renderAdvisorBrief` contract loaded from the compiled package instead of pinning private handler paths. A degraded CLI answer, returned when the daemon is unreachable, is labeled `route: "cli-local-scorer"` and otherwise renders like any other recommendation.
+`.opencode/plugins/system-skill-advisor.js` exports the plugin. It spawns `.skilled/bin/skill-advisor.cjs` for each advisor call, bounded at a 64 KiB stdin request, a 256 KiB stdout cap and a 2 KiB brief cap. The request carries at most the first 10,000 prompt characters, the most `advisor_recommend` accepts. A budget too small for any prompt spawns nothing. Cache TTL is 5 minutes. The live threshold pair is `confidenceThreshold: 0.8` and `uncertaintyThreshold: 0.35`. The CLI call times out after 2500 ms with SIGKILL escalation. Opt-out via `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` or `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED=1` (with legacy `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` and `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED=1` aliases) or `enabled: false` in plugin config. The plugin renders through the shared `renderAdvisorBrief` contract loaded from the compiled package instead of pinning private handler paths. A degraded CLI answer, returned when the daemon is unreachable, is labeled `route: "cli-local-scorer"` and otherwise renders like any other recommendation.
 
 ### Fallback Directive
 
@@ -43,7 +43,7 @@ Directive-lifecycle dedup reduces a repeated block to its status line in a known
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/plugins/system-skill-advisor.js` | Implementation | Plugin entry: spawns the advisor CLI, caches results and renders the prompt-safe brief |
+| `.opencode/plugins/system-skill-advisor.js` | Implementation | Plugin entry: spawns the advisor CLI, caches results and renders the prompt-safe brief |
 | `.skilled/bin/skill-advisor.cjs` | Script | CLI front door the plugin spawns for every advisor call |
 | `.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/render.js` | Compiled library | Shared `renderAdvisorBrief` implementation the plugin loads |
 | `.skilled/skills/system-skill-advisor/runtime/lib/render.ts` | Library | Hook-side fallback rule the plugin mirrors (parity is tested in the plugin vitest suite under Validation And Tests) |
@@ -52,7 +52,7 @@ Directive-lifecycle dedup reduces a repeated block to its status line in a known
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/plugins/tests/system-skill-advisor.test.cjs` | Automated test | Validation reference |
+| `.opencode/plugins/tests/system-skill-advisor.test.cjs` | Automated test | Validation reference |
 | `.skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts` | Automated test | Validation reference |
 | `Playbook scenario [CL-005](../../manual-testing-playbook/cli-hooks-and-plugin/opencode-plugin-bridge.md).` | Manual playbook | Source reference |
 

@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.skilled/plugins/tests/` contains the Node built-in test-runner suites for the plugin entrypoints in the parent directory. Tests are **hermetic**: they use temporary directories (`os.tmpdir()`), in-process `import()` of the plugin module under test, stubbed `ctx.client` / bridge / subprocess seams, and per-test env var save/restore. No live OpenCode session, daemon, or network is required.
+`.opencode/plugins/tests/` contains the Node built-in test-runner suites for the plugin entrypoints in the parent directory. Tests are **hermetic**: they use temporary directories (`os.tmpdir()`), in-process `import()` of the plugin module under test, stubbed `ctx.client` / bridge / subprocess seams, and per-test env var save/restore. No live OpenCode session, daemon, or network is required.
 
 The suites pin three contracts above all: the **kill-switch ordering** (a disabled plugin must be a genuine full no-op, checked before any `output` read or mutation: not just a no-emit no-op that still normalizes `output.system`), the **fail-open boundary** (a missing payload, a subprocess timeout, a parse failure, or any internal error resolves to a no-op), and the **hook behavior** (correct injection / deny / advise / cache / lifecycle) when the kill-switch is off. The export-contract suite reaches the goal plugin's internal helpers through `getGoalCore(plugin.server)` rather than an extra test-only export on the default export, so no stray named export is mistaken for a second plugin.
 
@@ -138,7 +138,7 @@ Tests manage their own env per test (save/restore). The kill-switch env each sui
 Run the Node test runner from the repository root:
 
 ```bash
-node --test .skilled/plugins/tests/*.test.cjs
+node --test .opencode/plugins/tests/*.test.cjs
 ```
 
 Expected result: Node discovers every current CJS test file and reports the suite result. Any failing test blocks validation.
@@ -146,7 +146,7 @@ Expected result: Node discovers every current CJS test file and reports the suit
 To run a single suite:
 
 ```bash
-node --test .skilled/plugins/tests/system-spec-gate.test.cjs
+node --test .opencode/plugins/tests/system-spec-gate.test.cjs
 ```
 
 Expected result: that suite's tests pass.

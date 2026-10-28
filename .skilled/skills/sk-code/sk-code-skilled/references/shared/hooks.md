@@ -8,7 +8,7 @@ trigger_phrases:
   - "claude cursor opencode copilot hooks"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Runtime Hooks - Entrypoint Authoring, Wiring, and Maintenance
@@ -44,7 +44,7 @@ This reference documents the runtime-hook entrypoint pattern for OpenCode-family
 | Claude settings | `.claude/settings.json` | Live checked-in Claude hook wiring |
 | Cursor hooks | `.cursor/hooks.json` | Live checked-in Cursor CLI/editor hook wiring |
 | Cursor hook contract | `.skilled/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md` | Cursor-specific hook schema, discovery order, and event-delivery caveats |
-| OpenCode skill-advisor plugin | `.skilled/plugins/system-skill-advisor.js` | OpenCode prompt-time advisor plugin using `experimental.chat.system.transform` |
+| OpenCode skill-advisor plugin | `.opencode/plugins/system-skill-advisor.js` | OpenCode prompt-time advisor plugin using `experimental.chat.system.transform` |
 | Advisor CLI front door | `.skilled/bin/skill-advisor.cjs` | The nine-command CLI the plugin spawns for every advisor call |
 
 ---
@@ -177,10 +177,10 @@ The removed `system-spec-kit/runtime/hooks/opencode/` suite is not present in th
 
 | Component | Path | Runtime surface |
 |---|---|---|
-| Skill advisor plugin | `.skilled/plugins/system-skill-advisor.js` | Exposes `experimental.chat.system.transform`, an `event` handler, and `spec_kit_skill_advisor_status`. |
+| Skill advisor plugin | `.opencode/plugins/system-skill-advisor.js` | Exposes `experimental.chat.system.transform`, an `event` handler, and `spec_kit_skill_advisor_status`. |
 | Advisor CLI front door | `.skilled/bin/skill-advisor.cjs` | The CLI the plugin spawns per call; JSON in, a single JSON response out. |
 
-`system-spec-kit/runtime/hooks/README.md` is explicit: OpenCode prompt-time advice is delivered by the OpenCode plugin, not by a subfolder in that directory. `hook-system.md` also describes OpenCode plugin-based transport through `.skilled/plugins/system-skill-advisor.js` and `.skilled/plugins/opencode-goal.js`.
+`system-spec-kit/runtime/hooks/README.md` is explicit: OpenCode prompt-time advice is delivered by the OpenCode plugin, not by a subfolder in that directory. `hook-system.md` also describes OpenCode plugin-based transport through `.opencode/plugins/system-skill-advisor.js` and `.opencode/plugins/opencode-goal.js`.
 
 Deprecated/stale references to `system-spec-kit/runtime/hooks/opencode/*` should be treated as legacy documentation until the authoritative hook contract names a new migration path. The plugin now spawns `.skilled/bin/skill-advisor.cjs` directly; the bridge module it used to call was deleted.
 
@@ -246,7 +246,7 @@ Hooks are RUNTIME-SPECIFIC. Adding `compact-inject` to Claude does NOT auto-add 
 - Current helper inventory: `system-spec-kit/runtime/hooks/README.md`
 - Current hook contract: `system-spec-kit/references/config/hook-system.md`
 - Live Claude wiring: `.claude/settings.json`
-- OpenCode advisor plugin: `.skilled/plugins/system-skill-advisor.js` -> `.skilled/bin/skill-advisor.cjs`
+- OpenCode advisor plugin: `.opencode/plugins/system-skill-advisor.js` -> `.skilled/bin/skill-advisor.cjs`
 
 ### Runtime-Specific Deep-Dives (do not duplicate)
 

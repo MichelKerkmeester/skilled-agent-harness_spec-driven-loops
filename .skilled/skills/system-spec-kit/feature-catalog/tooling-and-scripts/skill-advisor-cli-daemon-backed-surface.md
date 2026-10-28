@@ -6,7 +6,7 @@ trigger_phrases:
   - "skill-advisor cli"
   - "advisor_recommend warm-only cli"
   - "trusted mutation gate"
-version: 1.6.0.1
+version: 1.6.1.0
 ---
 
 # Daemon-backed skill-advisor CLI surface
@@ -36,7 +36,7 @@ Hook and plugin integrations use `--warm-only` so no prompt-time cold spawn occu
 | `.skilled/bin/skill-advisor.cjs` | Script | Stable executable shim for the skill-advisor CLI |
 | `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts` | CLI entrypoint | IPC command execution, output rendering, and warm-only behavior |
 | `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts` | CLI manifest | Command definitions and trusted-mutation classification |
-| `.skilled/plugins/system-skill-advisor.js` | Plugin bridge | OpenCode bridge using warm CLI fallback |
+| `.opencode/plugins/system-skill-advisor.js` | Plugin bridge | OpenCode bridge using warm CLI fallback |
 
 ### Validation And Tests
 

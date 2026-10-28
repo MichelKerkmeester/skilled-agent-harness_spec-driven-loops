@@ -552,7 +552,7 @@ test('every runtime with a preflight adapter has it registered', () => {
     assert.equal(bindings[0].script, adapters[runtime], `${runtime} binding points elsewhere`);
   }
   // OpenCode enforces in-process rather than through a registered command hook.
-  const ocPlugin = fs.readFileSync(path.join(REPO, '.skilled/plugins/cli-dispatch-audit.js'), 'utf8');
+  const ocPlugin = fs.readFileSync(path.join(REPO, '.opencode/plugins/cli-dispatch-audit.js'), 'utf8');
   assert.match(ocPlugin, /tool\.execute\.before/, 'the opencode plugin has no pre-execution hook');
 });
 

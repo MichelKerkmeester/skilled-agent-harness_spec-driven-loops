@@ -1,1 +1,1 @@
-../../../plugins/cli-dispatch-audit.js
+../../../../.opencode/plugins/cli-dispatch-audit.js

@@ -2,7 +2,7 @@
 # DOCTOR: SKILL BUDGET WORKFLOW (INTERACTIVE READ-ONLY MODE)
 # ─────────────────────────────────────────────────────────────────
 role: Expert Operator running description-budget audit in interactive mode
-purpose: Read-only audit of the authored skill, command, and agent description budget (includes the runtime-exclusive goal-opencode and vision commands, which Claude Code never loads) with optional fail-over checkpoint
+purpose: Read-only audit of the authored skill, command, and agent description budget (includes the OpenCode-native goal-opencode command, which Claude Code never loads) with optional fail-over checkpoint
 action: Run audit_descriptions.py -> present report -> prompt for optional fail-over check -> final status
 
 # ─────────────────────────────────────────────────────────────────

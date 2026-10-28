@@ -11,7 +11,7 @@ on:
     branches: [main, 'skilled/**']
     paths:
       - '.opencode/plugins/**'
-      - '.skilled/plugins/**'
+      - '.opencode/plugins/**'
       - '.skilled/agents/**'
       - '.opencode/agents/**'
       - '.skilled/hooks/dispatch/**'
@@ -38,7 +38,7 @@ on:
     branches: [main, 'skilled/**']
     paths:
       - '.opencode/plugins/**'
-      - '.skilled/plugins/**'
+      - '.opencode/plugins/**'
       - '.skilled/agents/**'
       - '.opencode/agents/**'
       - '.skilled/hooks/dispatch/**'

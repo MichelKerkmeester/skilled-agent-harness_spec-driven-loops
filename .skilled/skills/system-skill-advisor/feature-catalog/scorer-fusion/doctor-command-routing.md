@@ -7,7 +7,7 @@ trigger_phrases:
   - "runnable doctor command line"
   - "doctor setup hint"
   - "/doctor:setup"
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # Doctor Command Routing
@@ -53,7 +53,7 @@ The renderer reads a generated lookup of runnable strings, so a doctor bridge sh
 | `.skilled/skills/system-skill-advisor/runtime/lib/render.ts` | Shared | Runnable doctor line, second line and setup hint |
 | `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Handler | Setup-wording flag for the no-match hint |
 | `.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts` | Handler | Passes the setup flag on Pi's deadline path |
-| `.skilled/plugins/lib/skill-advisor-render.js` | Shared | OpenCode copy of the setup check |
+| `.opencode/plugins/lib/skill-advisor-render.js` | Shared | OpenCode copy of the setup check |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Script | Python slash markers and the native wrapper order |
 | `.skilled/commands/doctor/scripts/doctor-phrase-reach.cjs` | Script | Doctor reach probe |
 

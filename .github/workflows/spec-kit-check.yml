@@ -26,7 +26,7 @@ on:
       - '.skilled/package-lock.json'
       # The plugins-folder purity test imports every plugin entrypoint.
       - '.opencode/plugins/**'
-      - '.skilled/plugins/**'
+      - '.opencode/plugins/**'
       - '.codex/**'
       - '.claude/**'
       - '.cursor/**'
@@ -57,7 +57,7 @@ on:
       - '.skilled/package-lock.json'
       # The plugins-folder purity test imports every plugin entrypoint.
       - '.opencode/plugins/**'
-      - '.skilled/plugins/**'
+      - '.opencode/plugins/**'
       - '.codex/**'
       - '.claude/**'
       - '.cursor/**'
