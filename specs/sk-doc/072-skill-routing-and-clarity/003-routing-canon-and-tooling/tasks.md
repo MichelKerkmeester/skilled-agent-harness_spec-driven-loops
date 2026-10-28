@@ -48,6 +48,7 @@ contextType: "planning"
 - [x] T008 Record the decision on the no-match name and glossary location. Evidence: `implementation-summary.md` Key Decisions.
 - [x] T011 Make sk-create-skill produce the new shape by default (`.skilled/skills/sk-doc/sk-create-skill/assets/`, `sk-create-skill/references/`, `.skilled/commands/create/`). Verify: a skill scaffolded through `/create:skill` and one through `/create:skill-parent` pass `package_skill.py --strict` in the new shape. Evidence: `scratch/after.md` §3 AC-004.
 - [x] T012 Extend the existing creation check to reject the old shape: a SMART ROUTING section over the agreed length, a machine router block that is not the final appendix, a `ROUTER.md` inside a mode packet. Verify: the new test fails before the change and passes after it. Evidence: `scratch/after.md` §3 AC-002, AC-006, AC-007.
+- [x] T014 Fix the 3 P1 and 9 P2 findings of the fresh review, each with a test that fails before the fix where a check changed. Verify: `scratch/after.md` §4 fail-before runs and the gate rerun. Evidence: `scratch/after.md` §4; finding-by-finding status in `implementation-summary.md` Review Fixes.
 - [x] T013 Run the extended check over the whole fleet. Verify: every existing skill in the old shape is listed as known debt for phases 005 to 009, and the CI run exits 0. Evidence: `scratch/after.md` §3 AC-005.
 <!-- /ANCHOR:phase-2 -->
 
@@ -109,9 +110,9 @@ contextType: "planning"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Every changed script passes its own tests (evidence: pytest 256, psc 113, csk 71)
-- [x] CHK-011 [P0] Every gate in scope passes (evidence: scratch/after.md §1)
-- [x] CHK-012 [P1] No operator-local surface is named in a tracked file (evidence: debt ledger and diffs grep clean of private names)
+- [x] CHK-010 [P0] Every changed script passes its own tests (evidence: after the review fixes pytest 266, psc 113, csk 76; scratch/after.md §4.2)
+- [x] CHK-011 [P0] Every gate in scope passes (evidence: scratch/after.md §1 and §4.1)
+- [x] CHK-012 [P1] No operator-local surface is named in a tracked file (evidence: the first pass was false, since `scratch/baseline.md` named an absolute operator path and the scratch docs cited logs outside the repository. Fixed in the review pass: those lines now cite `scratch/gates.sh` and commands, and `rg "/Users/|scratch-dc90"` over this phase folder and the changed skill files returns nothing. Phase 001's lineage `findings-registry.json` files still hold absolute `inboxPath` values; they are phase 001's generated state, outside this phase.)
 - [x] CHK-013 [P1] Changes follow the phase 003 canon (evidence: scratch/routing-shape-contract.md)
 <!-- /ANCHOR:code-quality -->
 
@@ -132,7 +133,7 @@ contextType: "planning"
 ## Security
 
 - [x] CHK-030 [P0] No secrets in any changed file (evidence: no secrets in the diff)
-- [x] CHK-031 [P1] N/A unless a script changes: input handling is tested (evidence: test_routing_shape.py and the psc test cover malformed and missing ledgers)
+- [x] CHK-031 [P1] N/A unless a script changes: input handling is tested (evidence: the first pass tested only an absent ledger. The review pass added invalid-JSON and old-integer-entry cases to test_routing_shape.py and the psc test; scratch/after.md §4.3)
 <!-- /ANCHOR:security -->
 
 ---

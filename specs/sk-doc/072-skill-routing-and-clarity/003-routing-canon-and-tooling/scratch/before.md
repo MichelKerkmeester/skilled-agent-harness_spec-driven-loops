@@ -4,7 +4,7 @@ Recorded 2026-10-28 on `fca978fd29`, before the first edit of this phase.
 
 ## Gate set
 
-The full gate set, run through `.scratch-dc90/072-003/gates.sh`, is in `baseline.md` in this folder: every gate exits 0. That table is the "before" column for the gate rerun in `after.md`.
+The full gate set, run through `scratch/gates.sh`, is in `baseline.md` in this folder: every gate exits 0. That table is the "before" column for the gate rerun in `after.md`.
 
 ## Suites this phase touches, outside the gate set
 
@@ -17,7 +17,7 @@ The full gate set, run through `.scratch-dc90/072-003/gates.sh`, is in `baseline
 
 Two failures predate this phase:
 
-1. **`create-journey-proof.test.cjs` fails.** A fresh `/create:skill-parent` scaffold fails `parent-skill-check` check 3j: `hub SKILL.md grants tool(s) no mode declares: ["[Read, Glob]"]`. The hub scaffold writes `allowed-tools: "{{ALLOWED_TOOLS}}"`, and the quotes turn the tool list into one string. Reproduced by hand with both `python3` and `/usr/bin/python3` in `.scratch-dc90/072-003/repro/`. This blocks AC-004 ("parent-skill-check.cjs passes for the parent"), so this phase fixes it at the scaffold.
+1. **`create-journey-proof.test.cjs` fails.** A fresh `/create:skill-parent` scaffold fails `parent-skill-check` check 3j: `hub SKILL.md grants tool(s) no mode declares: ["[Read, Glob]"]`. The hub scaffold writes `allowed-tools: "{{ALLOWED_TOOLS}}"`, and the quotes turn the tool list into one string. Reproduced by hand with both `python3` and `/usr/bin/python3` on a fresh `init_skill.py --kind parent` scaffold outside the repository. This blocks AC-004 ("parent-skill-check.cjs passes for the parent"), so this phase fixes it at the scaffold.
 2. **`sk-code/sk-code-review` fails `package_skill --strict`** with `SKILL.md exceeds word limit (5676 words, max: 5000)`. It is not in the gate set, which runs only the 14 roots. Its size is phase 005's work; this phase leaves it alone.
 
-Logs: `.scratch-dc90/072-003/before-extra/`.
+The commands above reproduce every row; the raw logs were not kept in the repository.

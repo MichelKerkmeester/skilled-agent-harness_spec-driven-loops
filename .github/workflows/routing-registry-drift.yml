@@ -60,6 +60,8 @@ on:
       - '.skilled/skills/*/graph-metadata.json'
       - '.opencode/skills/sk-doc/sk-create-skill/scripts/**'
       - '.skilled/skills/sk-doc/sk-create-skill/scripts/**'
+      - '.opencode/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json'
+      - '.skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json'
       - '.opencode/bin/compiled-route*'
       - '.skilled/bin/compiled-route*'
       - '.opencode/bin/lib/compiled-route*'
@@ -107,6 +109,8 @@ on:
       - '.skilled/skills/*/graph-metadata.json'
       - '.opencode/skills/sk-doc/sk-create-skill/scripts/**'
       - '.skilled/skills/sk-doc/sk-create-skill/scripts/**'
+      - '.opencode/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json'
+      - '.skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json'
       - '.opencode/bin/compiled-route*'
       - '.skilled/bin/compiled-route*'
       - '.opencode/bin/lib/compiled-route*'
@@ -191,6 +195,12 @@ jobs:
             echo "── parent-skill-check: $hub"
             node .opencode/commands/doctor/scripts/parent-skill-check.cjs "$hub"
           done
+      - name: Routing-shape known-debt ratchet
+        # The ledger may only shrink: an entry may be lowered or removed, never
+        # raised, and the frozen snapshot is the ceiling every live count faces.
+        run: |
+          set -euo pipefail
+          node --test .opencode/skills/sk-doc/sk-create-skill/scripts/tests/routing-shape-known-debt-ratchet.test.cjs
       - name: Skill-root metadata class contract — every root, hub or standalone
         # The per-hub loop above enrolls only registry-bearing hubs, which is exactly
         # how standalone roots drifted unnoticed. This gate discovers every root from

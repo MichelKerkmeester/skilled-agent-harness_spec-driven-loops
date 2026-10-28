@@ -43,6 +43,8 @@
       "scratch/routing-shape-contract.md",
       ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
       ".skilled/skills/sk-doc/scripts/tests/test_routing_shape.py",
+      ".github/workflows/routing-registry-drift.yml",
+      "scratch/gates.sh",
       "scratch/after.md",
       ".skilled/skills/sk-doc/scripts/package_skill.py",
       ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
@@ -97,6 +99,18 @@
         "name": "test_routing_shape.py",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/scripts/tests/test_routing_shape.py",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "gates.sh",
+        "kind": "script",
+        "path": "scratch/gates.sh",
         "source": "derived"
       },
       {
@@ -182,23 +196,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Change",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Canon",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The templates and checks that shape every skill still teach the long inline routing section",
     "created_at": "2026-10-28T06:38:44Z",
-    "last_save_at": "2026-10-28T08:50:09.070Z",
+    "last_save_at": "2026-10-28T09:33:31.354Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +210,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b994651ebb234f0fafe4cbca8762e5df323f066223088fa20334d5eca7b10d0d",
+    "source_fingerprint": "sha256:eb12599375b5e9b43b9525c01f176570623c69e83762a9ca72fa489d8e211f59",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d4b44b7682c206245f78abe36d85bc86292014b61bc47436c5dc6dbac7062162",
       "plan.md": "7f13680daaf21f473bfd34c7f870bbd1bb6bda57f2e346531591845dfa05c7cd",
-      "tasks.md": "07ba7377fb17a665de832a287ecd69af9814f1673546db80ed9c63538191d787",
-      "implementation-summary.md": "7b133b5dd05351ef8f21bf61680e5ae3757c144e76f2ce71e7a63d3686d4e816"
+      "tasks.md": "43f9a65846fc710286537a648308208f2b06c1b39270f62a385136f95467fc65",
+      "implementation-summary.md": "f232845952c67fdb8cd6a9afea09040978ec08d286cc055ad893516bd80d45bf"
     },
     "last_active_at": null
   }

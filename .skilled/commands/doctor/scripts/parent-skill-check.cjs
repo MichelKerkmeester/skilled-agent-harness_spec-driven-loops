@@ -1839,20 +1839,62 @@ function checkRootRouter(ctx) {
   }
 }
 
-// The known-debt ledger lists skills still in the old routing shape together
-// with the SMART ROUTING line count each was listed with. An unreadable or
-// absent ledger means every skill must meet the canon today. The env override
-// lets a test point at its own ledger instead of the live one.
+// The known-debt ledger records, per skill, the shape that skill may keep
+// while it migrates: how many SMART ROUTING lines and words it carries, how
+// many machine blocks sit outside the appendix, and which finding codes it is
+// allowed to raise at all. Recording the codes is what keeps an entry from
+// becoming a blanket exemption — a packet recorded for length alone still
+// fails the day it grows a ROUTER.md. An unreadable or absent ledger means
+// every skill must meet the canon today. The env override lets a test point at
+// its own ledger instead of the live one.
 const ROUTING_SHAPE_DEBT_FILE = path.join(SK_CREATE_SKILL_SCRIPTS, 'routing-shape-known-debt.json');
 const ROUTING_SHAPE_MAX_LINES = 12;
+const ROUTING_SHAPE_MAX_WORDS = 180;
+// A fenced or indented block holding any of these is a machine router, not
+// prose: the two maps and the checklist are router data, the two functions are
+// router helpers, so none of them may sit in the routing prose.
 const ROUTING_SHAPE_MACHINE_LINE =
-  /^\s*(?:INTENT_SIGNALS|RESOURCE_MAP)\s*=|^\s*def\s+(?:discover_markdown_resources|_guard_in_skill)\b/;
+  /^\s*(?:INTENT_SIGNALS|RESOURCE_MAP|UNKNOWN_FALLBACK_CHECKLIST)\s*=|^\s*def\s+(?:discover_markdown_resources|_guard_in_skill)\b/;
+
+// The finding codes a debt entry may record. An entry naming anything else is
+// ignored outright rather than partially honoured, so a typo cannot widen it.
+const ROUTING_SHAPE_CODES = ['RS-001', 'RS-002', 'RS-003', 'RS-004'];
+const ROUTING_SHAPE_DEBT_FIELDS = ['lines', 'words', 'machineBlocks', 'codes'];
+// The unit each recorded limit is counted in, named in the "grew past" message.
+const ROUTING_SHAPE_DEBT_UNITS = { lines: 'lines', words: 'words', machineBlocks: 'machine block(s)' };
+
+// A ledger key is a path relative to the skills root, so a same-named folder
+// anywhere else can never inherit the debt recorded for a real skill. The env
+// override lets a test audit its fixture tree as if it were the skills root.
+const ROUTING_SHAPE_SKILLS_ROOT = process.env.ROUTING_SHAPE_SKILLS_ROOT
+  ? path.resolve(process.env.ROUTING_SHAPE_SKILLS_ROOT)
+  : path.join(REPO_ROOT, '.skilled', 'skills');
+
+// A debt entry must state every limit, so a half-written entry cannot silently
+// fall back to a default and excuse a skill; anything else is ignored and the
+// skill stays held to the canon.
+function isRoutingShapeDebtEntry(recorded) {
+  if (!isPlainObject(recorded)) return false;
+  if (Object.keys(recorded).length !== ROUTING_SHAPE_DEBT_FIELDS.length) return false;
+  for (const field of ROUTING_SHAPE_DEBT_FIELDS) {
+    if (!Object.prototype.hasOwnProperty.call(recorded, field)) return false;
+  }
+  for (const field of ['lines', 'words', 'machineBlocks']) {
+    if (!Number.isInteger(recorded[field]) || recorded[field] < 0) return false;
+  }
+  return Array.isArray(recorded.codes)
+    && recorded.codes.every((code) => ROUTING_SHAPE_CODES.includes(code));
+}
 
 function loadRoutingShapeDebt() {
   const file = process.env.ROUTING_SHAPE_DEBT_FILE
     ? path.resolve(process.env.ROUTING_SHAPE_DEBT_FILE)
     : ROUTING_SHAPE_DEBT_FILE;
-  const config = { maxSmartRoutingLines: ROUTING_SHAPE_MAX_LINES, debt: new Map() };
+  const config = {
+    maxSmartRoutingLines: ROUTING_SHAPE_MAX_LINES,
+    maxSmartRoutingWords: ROUTING_SHAPE_MAX_WORDS,
+    debt: new Map(),
+  };
   let parsed;
   try {
     parsed = readJson(file);
@@ -1863,9 +1905,12 @@ function loadRoutingShapeDebt() {
   if (Number.isInteger(parsed.maxSmartRoutingLines) && parsed.maxSmartRoutingLines > 0) {
     config.maxSmartRoutingLines = parsed.maxSmartRoutingLines;
   }
+  if (Number.isInteger(parsed.maxSmartRoutingWords) && parsed.maxSmartRoutingWords > 0) {
+    config.maxSmartRoutingWords = parsed.maxSmartRoutingWords;
+  }
   if (isPlainObject(parsed.debt)) {
     for (const [key, recorded] of Object.entries(parsed.debt)) {
-      if (Number.isInteger(recorded) && recorded >= 0) config.debt.set(key, recorded);
+      if (isRoutingShapeDebtEntry(recorded)) config.debt.set(key, recorded);
     }
   }
   return config;
@@ -1882,9 +1927,19 @@ function routingShapeTitle(line) {
     .toUpperCase();
 }
 
-// Frontmatter, fences and H2s are read in one pass because only a fence's
-// state decides whether a `## ` line is a heading: templates inside a fenced
-// block routinely carry their own `##` headings, and those are not sections.
+// Frontmatter, fences, H2s and machine blocks are read in one pass because
+// only a fence's state decides whether a `## ` line is a heading and whether
+// an assignment is a machine block: a template inside a fenced block routinely
+// carries its own `##` headings and shorter nested fences, and those are not
+// sections or block boundaries.
+//
+// A fence opens on a run of three or more backticks or tildes and closes only
+// on a run of the same character at least as long, so a four-backtick fence
+// wrapping a three-backtick block keeps the inner block as text. A router
+// assignment with no fence around it is still a machine block, because markdown
+// renders an indented block as code just as it renders a fenced one; it runs
+// until a line that is neither blank, indented nor another assignment, and an
+// H2 or a fence opening ends it.
 function parseRoutingShape(source) {
   const lines = source.split(/\r?\n/);
   let first = 0;
@@ -1893,38 +1948,56 @@ function parseRoutingShape(source) {
     if (close !== -1) first = close + 1;
   }
 
+  const fenceOpen = /^(`{3,}|~{3,})/;
+  const fenceClose = /^(`{3,}|~{3,})\s*$/;
   const h2s = [];
   const machineLines = [];
   let fence = null;
+  let unfenced = false;
   for (let i = first; i < lines.length; i += 1) {
     const stripped = lines[i].trim();
-    if (stripped.startsWith('```') || stripped.startsWith('~~~')) {
-      if (fence === null) {
-        fence = { open: i, inner: [] };
-      } else {
+    if (fence !== null) {
+      const close = stripped.match(fenceClose);
+      if (close !== null && close[1][0] === fence.char && close[1].length >= fence.length) {
         if (fence.inner.some((line) => ROUTING_SHAPE_MACHINE_LINE.test(line))) machineLines.push(fence.open + 1);
         fence = null;
+      } else {
+        fence.inner.push(lines[i]);
       }
       continue;
     }
-    if (fence !== null) {
-      fence.inner.push(lines[i]);
-    } else if (lines[i].startsWith('## ')) {
-      h2s.push({ index: i, title: routingShapeTitle(lines[i]) });
+    const open = stripped.match(fenceOpen);
+    if (open !== null) {
+      unfenced = false;
+      fence = { open: i, char: open[1][0], length: open[1].length, inner: [] };
+      continue;
     }
+    if (lines[i].startsWith('## ')) {
+      unfenced = false;
+      h2s.push({ index: i, title: routingShapeTitle(lines[i]) });
+      continue;
+    }
+    const isMachine = ROUTING_SHAPE_MACHINE_LINE.test(lines[i]);
+    if (unfenced && (stripped === '' || /^[ \t]/.test(lines[i]) || isMachine)) continue;
+    unfenced = isMachine;
+    if (unfenced) machineLines.push(i + 1);
   }
 
   const smartIndex = h2s.findIndex((h2) => h2.title.startsWith('SMART ROUTING'));
   const appendixIndex = h2s.findIndex((h2) => h2.title === 'MACHINE ROUTER');
 
   let smartLineCount = null;
+  let smartWordCount = null;
   if (smartIndex !== -1) {
     const from = h2s[smartIndex].index + 1;
     const to = smartIndex + 1 < h2s.length ? h2s[smartIndex + 1].index : lines.length;
     smartLineCount = 0;
+    smartWordCount = 0;
     for (let i = from; i < to; i += 1) {
       const stripped = lines[i].trim();
-      if (stripped !== '' && stripped !== '---') smartLineCount += 1;
+      if (stripped === '' || stripped === '---') continue;
+      smartLineCount += 1;
+      smartWordCount += stripped.split(/\s+/).length;
     }
   }
 
@@ -1937,16 +2010,28 @@ function parseRoutingShape(source) {
     };
   }
 
-  return { smartLineCount, machineLines, appendix };
+  return { smartLineCount, smartWordCount, machineLines, appendix };
 }
 
 // The four routing-shape rules, reported in the order the contract lists them.
-function routingShapeFindings(shape, { isPacket, carriesOwnRouter, maxLines }) {
+// Each finding names the ledger metric it is measured against, so a recorded
+// limit tolerates exactly that finding and nothing else.
+function routingShapeFindings(shape, { isPacket, carriesOwnRouter, maxLines, maxWords }) {
   const findings = [];
   if (shape.smartLineCount !== null && shape.smartLineCount > maxLines) {
     findings.push({
       code: 'RS-001',
+      metric: 'lines',
+      value: shape.smartLineCount,
       message: `routing shape RS-001: SMART ROUTING section has ${shape.smartLineCount} lines (max ${maxLines})`,
+    });
+  }
+  if (shape.smartWordCount !== null && shape.smartWordCount > maxWords) {
+    findings.push({
+      code: 'RS-001',
+      metric: 'words',
+      value: shape.smartWordCount,
+      message: `routing shape RS-001: SMART ROUTING section has ${shape.smartWordCount} words (max ${maxWords})`,
     });
   }
   for (const line of shape.machineLines) {
@@ -1955,6 +2040,7 @@ function routingShapeFindings(shape, { isPacket, carriesOwnRouter, maxLines }) {
     if (!inAppendix) {
       findings.push({
         code: 'RS-002',
+        metric: 'machineBlocks',
         message: `routing shape RS-002: machine router block at line ${line} is outside a final '## MACHINE ROUTER' section`,
       });
     }
@@ -1962,31 +2048,67 @@ function routingShapeFindings(shape, { isPacket, carriesOwnRouter, maxLines }) {
   if (shape.appendix !== null && !shape.appendix.isLast) {
     findings.push({
       code: 'RS-003',
+      metric: null,
       message: "routing shape RS-003: '## MACHINE ROUTER' is not the last H2 section",
     });
   }
   if (isPacket && carriesOwnRouter) {
     findings.push({
       code: 'RS-004',
+      metric: null,
       message: 'routing shape RS-004: mode packet carries its own ROUTER.md; the hub root ROUTER.md is the only router file',
     });
   }
   return findings;
 }
 
-// A packet's key names its hub, so a ledger entry for one hub can never be
-// satisfied by a same-named folder in another.
+// The suffix a debt failure carries, or null when the recorded entry tolerates
+// the finding. RS-003 and RS-004 are presence-only, so recording the code is
+// the whole test; RS-002 is judged as a group, so every one of its findings
+// shares the group verdict.
+function routingShapeDebtSuffix(finding, recorded, machineBlockCount) {
+  if (!recorded.codes.includes(finding.code)) return ' (not recorded in its known debt)';
+  if (finding.metric === null) return null;
+  const observed = finding.metric === 'machineBlocks' ? machineBlockCount : finding.value;
+  if (observed <= recorded[finding.metric]) return null;
+  return ` (grew past its recorded known debt of ${recorded[finding.metric]} ${ROUTING_SHAPE_DEBT_UNITS[finding.metric]})`;
+}
+
+// realpath collapses a symlinked directory onto its target, so a key can only
+// be satisfied by the skill it names. A path that does not resolve is compared
+// lexically, which is still enough to decide containment.
+function routingShapeRealPath(target) {
+  try {
+    return fs.realpathSync(target);
+  } catch {
+    return path.resolve(target);
+  }
+}
+
+// A key is the skill's path inside the skills root, so one ledger entry names
+// exactly one skill. A directory outside that root has no key, and a null key
+// can never be debt.
 function routingShapeKey(dir) {
-  const parent = path.dirname(dir);
-  return fs.existsSync(path.join(parent, 'mode-registry.json'))
-    ? `${path.basename(parent)}/${path.basename(dir)}`
+  const relative = path.relative(routingShapeRealPath(ROUTING_SHAPE_SKILLS_ROOT), routingShapeRealPath(dir));
+  if (relative === '' || relative === '..' || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) {
+    return null;
+  }
+  return relative.split(path.sep).join('/');
+}
+
+// The label a message uses when a skill has no key: its own name, prefixed by
+// its hub's name for a packet, so the line still says which skill it is about.
+function routingShapeLabel(dir, isPacket) {
+  return isPacket
+    ? `${path.basename(path.dirname(dir))}/${path.basename(dir)}`
     : path.basename(dir);
 }
 
 // 12b-routing-shape: the hub root and every mode packet share one routing
-// canon. A skill in the known-debt ledger keeps its current shape while it does
-// not grow; a finding past the recorded count is a real failure, so a ledger
-// entry can only ever shrink.
+// canon. A skill in the known-debt ledger keeps its recorded shape while that
+// shape does not grow and only raises the codes it recorded; a finding past a
+// recorded limit, or for a code the entry never recorded, is a real failure, so
+// a ledger entry can only ever shrink.
 function checkRoutingShape(ctx) {
   const config = loadRoutingShapeDebt();
   const packets = [...new Set(ctx.modes
@@ -2013,36 +2135,43 @@ function checkRoutingShape(ctx) {
     if (isPacket) auditedPackets += 1;
 
     const key = routingShapeKey(dir);
+    const label = key !== null ? key : routingShapeLabel(dir, isPacket);
     const shape = parseRoutingShape(source);
     const findings = routingShapeFindings(shape, {
       isPacket,
       carriesOwnRouter: isPacket && fs.existsSync(path.join(dir, 'ROUTER.md')),
       maxLines: config.maxSmartRoutingLines,
+      maxWords: config.maxSmartRoutingWords,
     });
-    const recorded = config.debt.get(key);
+    // A skill outside the skills root has no key, so no entry can name it and
+    // it can never be debt.
+    const recorded = key === null ? undefined : config.debt.get(key);
 
     if (recorded === undefined) {
       for (const finding of findings) {
-        softFail(`12b-routing-shape: ${key}: ${finding.message}`);
+        softFail(`12b-routing-shape: ${label}: ${finding.message}`);
         violations += 1;
       }
       continue;
     }
 
+    const machineBlockCount = findings.filter((finding) => finding.code === 'RS-002').length;
     const tolerated = [];
     for (const finding of findings) {
-      if (finding.code === 'RS-001' && shape.smartLineCount > recorded) {
-        softFail(`12b-routing-shape: ${key}: ${finding.message} (grew past its recorded known debt of ${recorded})`);
+      const suffix = routingShapeDebtSuffix(finding, recorded, machineBlockCount);
+      if (suffix !== null) {
+        softFail(`12b-routing-shape: ${label}: ${finding.message}${suffix}`);
         violations += 1;
       } else {
         tolerated.push(finding.code);
       }
     }
-    if (tolerated.length > 0) {
+    const toleratedCodes = [...new Set(tolerated)];
+    if (toleratedCodes.length > 0) {
       knownDebt += 1;
-      info(`12b-routing-shape: ${key}: routing shape: known debt, ${tolerated.join(', ')} (migrate to the routing canon)`);
+      info(`12b-routing-shape: ${label}: routing shape: known debt, ${toleratedCodes.join(', ')} (migrate to the routing canon)`);
     } else if (findings.length === 0) {
-      info(`12b-routing-shape: ${key}: routing shape: known-debt entry is stale; remove ${key}`);
+      info(`12b-routing-shape: ${label}: routing shape: known-debt entry is stale; remove ${label}`);
     }
   }
 

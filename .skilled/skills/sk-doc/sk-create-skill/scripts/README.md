@@ -5,7 +5,7 @@ trigger_phrases:
   - "create-skill scripts"
   - "leaf manifest generator"
   - "skill package validation"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Create-skill scripts
@@ -34,7 +34,7 @@ version: 1.0.1.0
 | `validate-playbook-topology.cjs` | Validates manual playbook topology. |
 | `validate_skill_package.py` | Runs skill and parent-hub package validation. |
 
-`package_skill.py --check` also enforces the routing canon: a short SMART ROUTING section, any machine router block in a final `## MACHINE ROUTER` section, and no packet-owned `ROUTER.md`. Skills still in the old shape are recorded in `routing-shape-known-debt.json`, which tolerates each recorded SMART ROUTING line count until it grows, and `--strict` promotes a new routing-shape finding to an error.
+`package_skill.py --check` also enforces the routing canon: a short SMART ROUTING section, any machine router block in a final `## MACHINE ROUTER` section, and no packet-owned `ROUTER.md`. Skills still in the old shape are recorded in `routing-shape-known-debt.json`, keyed by the skill's path relative to `.skilled/skills` (for example `sk-code/sk-code-review`); a folder outside that root is never debt. Each entry records `{"lines", "words", "machineBlocks", "codes"}`, and a listed skill fails only when one of those counts grows or it shows a code the entry does not record; `--strict` promotes a new routing-shape finding to an error.
 
 ---
 

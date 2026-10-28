@@ -2,7 +2,7 @@
 name: "{{PACKET_NAME}}"
 description: TODO — the primary workflow packet for the {{HUB_NAME}} hub (fill in ≤130 chars).
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # {{PACKET_TITLE}}
@@ -88,7 +88,7 @@ The machine router is the final MACHINE ROUTER section.
 
 ---
 
-## MACHINE ROUTER
+## 8. MACHINE ROUTER
 
 The router below selects packet-local resources when the workflow grows; it stays illustrative until the selection logic is authored.
 

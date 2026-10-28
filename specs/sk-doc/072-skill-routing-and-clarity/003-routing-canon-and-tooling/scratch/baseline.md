@@ -27,4 +27,4 @@ This file lives in phase 003's `scratch/` rather than phase 002's: phase 002's `
 | capture-scorer-eval-baseline.mjs (no `--write`) | 0 | full corpus 155/195, holdout 49/66, ambiguity 19/24 |
 | validate.sh 072 --recursive --strict | 0 | `RESULT: PASSED` x 12, `Errors: 0 Warnings: 0` each |
 
-Runner: `/Users/michelkerkmeester/worktrees/public/.scratch-dc90/072-003/gates.sh <out-dir>`; the logs of this run are in `.scratch-dc90/072-003/baseline/`.
+Runner: `bash specs/sk-doc/072-skill-routing-and-clarity/003-routing-canon-and-tooling/scratch/gates.sh <log-dir>`, run from the repository root, writes one log per gate to a directory outside the repository and prints one `name|exit|last line` row per gate. Its gate set and commands are the ones this table lists. The raw logs were not kept in the repository; this table is the record.

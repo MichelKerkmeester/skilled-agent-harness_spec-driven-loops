@@ -29,7 +29,7 @@ import re
 import sys
 import zipfile
 from pathlib import Path
-from typing import Dict, List, NamedTuple, Optional, Tuple
+from typing import Any, Dict, List, NamedTuple, Optional, Tuple
 
 try:
     import yaml
@@ -187,14 +187,22 @@ SMART_ROUTER_MARKERS = [
 # Routing canon: a skill's SMART ROUTING section is short prose, any machine
 # router block belongs in a final `## MACHINE ROUTER` section, and a mode packet
 # never carries its own ROUTER.md. Skills still in the old shape are listed in
-# the known-debt ledger with the SMART ROUTING line count they were recorded at,
-# so the check fails only when that shape grows.
+# the known-debt ledger, keyed by their path relative to the skills root and
+# recording the line count, word count, machine-block count and finding codes
+# they were listed with, so the check fails only when that shape grows.
 ROUTING_SHAPE_DEBT_FILE_ENV = 'ROUTING_SHAPE_DEBT_FILE'
 ROUTING_SHAPE_DEBT_PATH = Path(__file__).resolve().parent / 'routing-shape-known-debt.json'
+ROUTING_SHAPE_SKILLS_ROOT_ENV = 'ROUTING_SHAPE_SKILLS_ROOT'
 ROUTING_SHAPE_MAX_LINES = 12
-# A fenced block holding either of these is a machine router, not prose.
+ROUTING_SHAPE_MAX_WORDS = 180
+# The finding codes a debt entry may record as tolerated.
+ROUTING_SHAPE_CODES = ('RS-001', 'RS-002', 'RS-003', 'RS-004')
+# A fenced or indented block holding any of these is a machine router, not
+# prose: the two maps and the checklist are router data, the two functions are
+# router helpers, so none of them may sit in the routing prose.
 ROUTING_SHAPE_MACHINE_LINE_RE = re.compile(
-    r'^(?:\s*(?:INTENT_SIGNALS|RESOURCE_MAP)\s*=|\s*def\s+(?:discover_markdown_resources|_guard_in_skill)\b)'
+    r'^(?:\s*(?:INTENT_SIGNALS|RESOURCE_MAP|UNKNOWN_FALLBACK_CHECKLIST)\s*='
+    r'|\s*def\s+(?:discover_markdown_resources|_guard_in_skill)\b)'
 )
 
 # 4-part version pattern X.Y.Z.W (frontmatter_versioning.md).
@@ -793,6 +801,7 @@ class RoutingShape(NamedTuple):
     smart_line_count: Optional[int]
     machine_block_lines: List[int]
     appendix: Optional[MachineRouterSection]
+    smart_word_count: Optional[int]
 
 
 def _routing_shape_title(line: str) -> str:
@@ -809,6 +818,11 @@ def parse_routing_shape(content: str) -> RoutingShape:
     Frontmatter, fences and H2s are read in one pass because only a fence's
     state decides whether a `## ` line is a heading: templates inside a fenced
     block routinely carry their own `##` headings, and those are not sections.
+    A fence closes only on a run of the character that opened it, at least as
+    long, so a triple-backtick block nested in a four-backtick one stays inner
+    text. A machine line outside every fence opens an indented machine block
+    that runs until a line that is neither blank, indented nor a machine line.
+    The SMART ROUTING word count covers the same lines as its line count.
     """
     lines = content.split('\n')
     first = 0
@@ -820,23 +834,44 @@ def parse_routing_shape(content: str) -> RoutingShape:
 
     headings: List[Tuple[int, str]] = []
     machine_block_lines: List[int] = []
+    fence_char: Optional[str] = None
+    fence_run = 0
     fence_open: Optional[int] = None
     inner: List[str] = []
+    unfenced_open = False
     for index in range(first, len(lines)):
         stripped = lines[index].strip()
-        if stripped.startswith('```') or stripped.startswith('~~~'):
-            if fence_open is None:
-                fence_open = index
-                inner = []
-            else:
+        run_char = stripped[:1] if stripped[:1] in ('`', '~') else ''
+        run_len = len(stripped) - len(stripped.lstrip(run_char)) if run_char else 0
+        if fence_char is not None:
+            if run_char == fence_char and run_len >= fence_run and not stripped[run_len:]:
                 if any(ROUTING_SHAPE_MACHINE_LINE_RE.match(line) for line in inner):
                     machine_block_lines.append(fence_open + 1)
+                fence_char = None
+                fence_run = 0
                 fence_open = None
+            else:
+                inner.append(lines[index])
             continue
-        if fence_open is not None:
-            inner.append(lines[index])
-        elif lines[index].startswith('## '):
+        if run_len >= 3:
+            fence_char = run_char
+            fence_run = run_len
+            fence_open = index
+            inner = []
+            unfenced_open = False
+            continue
+        if lines[index].startswith('## '):
             headings.append((index, _routing_shape_title(lines[index])))
+            unfenced_open = False
+            continue
+        if ROUTING_SHAPE_MACHINE_LINE_RE.match(lines[index]):
+            if not unfenced_open:
+                machine_block_lines.append(index + 1)
+                unfenced_open = True
+            continue
+        if unfenced_open and stripped and not lines[index][:1].isspace():
+            unfenced_open = False
+    machine_block_lines.sort()
 
     smart_index = next(
         (i for i, (_index, title) in enumerate(headings) if title.startswith('SMART ROUTING')),
@@ -848,10 +883,13 @@ def parse_routing_shape(content: str) -> RoutingShape:
     )
 
     smart_line_count: Optional[int] = None
+    smart_word_count: Optional[int] = None
     if smart_index != -1:
         start = headings[smart_index][0] + 1
         end = headings[smart_index + 1][0] if smart_index + 1 < len(headings) else len(lines)
-        smart_line_count = sum(1 for line in lines[start:end] if line.strip() not in ('', '---'))
+        counted = [line for line in lines[start:end] if line.strip() not in ('', '---')]
+        smart_line_count = len(counted)
+        smart_word_count = sum(len(line.split()) for line in counted)
 
     appendix = None
     if appendix_index != -1:
@@ -865,39 +903,57 @@ def parse_routing_shape(content: str) -> RoutingShape:
             is_last=appendix_index == len(headings) - 1,
         )
 
-    return RoutingShape(smart_line_count, machine_block_lines, appendix)
+    return RoutingShape(smart_line_count, machine_block_lines, appendix, smart_word_count)
 
 
-def load_routing_shape_debt() -> Tuple[int, Dict[str, int]]:
-    """Read the routing-shape known-debt ledger as (line limit, recorded counts).
+def load_routing_shape_debt() -> Tuple[int, int, Dict[str, Dict[str, Any]]]:
+    """Read the routing-shape known-debt ledger as (line limit, word limit, entries).
 
     An absent or unreadable ledger means the canon applies to every skill, so a
-    broken ledger can only tighten the check, never silently excuse a skill.
+    broken ledger can only tighten the check, never silently excuse a skill. An
+    entry that does not record every count and code the check reads is ignored
+    for the same reason.
     """
     path = Path(os.environ.get(ROUTING_SHAPE_DEBT_FILE_ENV) or ROUTING_SHAPE_DEBT_PATH)
     try:
         data = json.loads(path.read_text(encoding='utf-8'))
     except (OSError, ValueError):
-        return ROUTING_SHAPE_MAX_LINES, {}
+        return ROUTING_SHAPE_MAX_LINES, ROUTING_SHAPE_MAX_WORDS, {}
     if not isinstance(data, dict):
-        return ROUTING_SHAPE_MAX_LINES, {}
+        return ROUTING_SHAPE_MAX_LINES, ROUTING_SHAPE_MAX_WORDS, {}
 
-    limit = data.get('maxSmartRoutingLines')
-    if not isinstance(limit, int) or isinstance(limit, bool) or limit <= 0:
-        limit = ROUTING_SHAPE_MAX_LINES
+    line_limit = data.get('maxSmartRoutingLines')
+    if not isinstance(line_limit, int) or isinstance(line_limit, bool) or line_limit <= 0:
+        line_limit = ROUTING_SHAPE_MAX_LINES
+    word_limit = data.get('maxSmartRoutingWords')
+    if not isinstance(word_limit, int) or isinstance(word_limit, bool) or word_limit <= 0:
+        word_limit = ROUTING_SHAPE_MAX_WORDS
 
-    debt: Dict[str, int] = {}
-    recorded_counts = data.get('debt')
-    if isinstance(recorded_counts, dict):
-        for key, recorded in recorded_counts.items():
-            if isinstance(recorded, int) and not isinstance(recorded, bool) and recorded >= 0:
-                debt[str(key)] = recorded
-    return limit, debt
+    debt: Dict[str, Dict[str, Any]] = {}
+    recorded_entries = data.get('debt')
+    if isinstance(recorded_entries, dict):
+        for key, entry in recorded_entries.items():
+            if not isinstance(entry, dict) or set(entry) != {'lines', 'words', 'machineBlocks', 'codes'}:
+                continue
+            counts = [entry['lines'], entry['words'], entry['machineBlocks']]
+            if any(
+                not isinstance(count, int) or isinstance(count, bool) or count < 0
+                for count in counts
+            ):
+                continue
+            codes = entry['codes']
+            if not isinstance(codes, list) or any(
+                not isinstance(code, str) or code not in ROUTING_SHAPE_CODES for code in codes
+            ):
+                continue
+            debt[str(key)] = entry
+    return line_limit, word_limit, debt
 
 
 def routing_shape_findings(
     shape: RoutingShape,
     limit: int,
+    word_limit: int,
     is_packet: bool,
     carries_own_router: bool,
 ) -> List[Tuple[str, str]]:
@@ -908,6 +964,12 @@ def routing_shape_findings(
         findings.append((
             'RS-001',
             f"routing shape RS-001: SMART ROUTING section has {shape.smart_line_count} lines (max {limit})",
+        ))
+
+    if shape.smart_word_count is not None and shape.smart_word_count > word_limit:
+        findings.append((
+            'RS-001',
+            f"routing shape RS-001: SMART ROUTING section has {shape.smart_word_count} words (max {word_limit})",
         ))
 
     for line in shape.machine_block_lines:
@@ -944,19 +1006,31 @@ def _is_mode_packet(skill_path: Path) -> bool:
     return (skill_path.parent / 'mode-registry.json').is_file()
 
 
-def _routing_shape_key(skill_path: Path) -> str:
-    """Return the known-debt key for a skill; a packet's key also names its hub."""
-    if _is_mode_packet(skill_path):
-        return f'{skill_path.parent.name}/{skill_path.name}'
-    return skill_path.name
+def _routing_shape_key(skill_path: Path) -> Optional[str]:
+    """Return the known-debt key for a skill, or None when it sits outside the skills root.
+
+    The key is the skill's path relative to the skills root, so a folder that
+    only shares a debt skill's basename is not read as that skill, and a None
+    key never matches a ledger entry.
+    """
+    override = os.environ.get(ROUTING_SHAPE_SKILLS_ROOT_ENV)
+    root = Path(override).resolve() if override else Path(__file__).resolve().parents[3]
+    try:
+        relative = Path(skill_path).resolve().relative_to(root)
+    except ValueError:
+        return None
+    if relative == Path('.'):
+        return None
+    return relative.as_posix()
 
 
 def validate_routing_shape(skill_path: Path, content: str) -> Tuple[bool, str, List[str]]:
     """Check SKILL.md against the routing canon, tolerating recorded known debt.
 
-    A skill listed in the known-debt ledger keeps the shape it was recorded with
-    while that shape does not grow; every other finding is a warning that
-    --strict promotes to an error.
+    A skill recorded in the known-debt ledger keeps the shape it was listed with
+    while that shape does not grow: its line count, word count, machine-block
+    count and finding codes are each tolerated only up to the recorded value.
+    Every other finding is a warning that --strict promotes to an error.
 
     Args:
         skill_path: Path to the skill directory.
@@ -966,32 +1040,69 @@ def validate_routing_shape(skill_path: Path, content: str) -> Tuple[bool, str, L
         Tuple of (is_valid, message, warnings). Always valid=True.
     """
     warnings: List[str] = []
-    limit, debt = load_routing_shape_debt()
+    line_limit, word_limit, debt = load_routing_shape_debt()
     key = _routing_shape_key(skill_path)
     is_packet = _is_mode_packet(skill_path)
     shape = parse_routing_shape(content)
     findings = routing_shape_findings(
         shape,
-        limit,
+        line_limit,
+        word_limit,
         is_packet,
         is_packet and (skill_path / 'ROUTER.md').exists(),
     )
 
-    recorded = debt.get(key)
-    if recorded is None:
+    entry = debt.get(key) if key is not None else None
+    if entry is None:
         warnings.extend(message for _code, message in findings)
         return True, "Routing shape checked", warnings
 
-    tolerated = []
+    recorded_codes = entry['codes']
+    machine_block_findings = sum(1 for code, _message in findings if code == 'RS-002')
+    machine_blocks_tolerated = (
+        'RS-002' in recorded_codes and machine_block_findings <= entry['machineBlocks']
+    )
+
+    tolerated: List[str] = []
     for code, message in findings:
-        if code == 'RS-001' and (shape.smart_line_count or 0) > recorded:
-            warnings.append(f"{message} (grew past its recorded known debt of {recorded})")
-        else:
+        if code == 'RS-002':
+            if machine_blocks_tolerated:
+                tolerated.append(code)
+            elif 'RS-002' in recorded_codes:
+                warnings.append(
+                    f"{message} (grew past its recorded known debt of "
+                    f"{entry['machineBlocks']} machine block(s))"
+                )
+            else:
+                warnings.append(f"{message} (not recorded in its known debt)")
+            continue
+
+        if code != 'RS-001':
+            if code in recorded_codes:
+                tolerated.append(code)
+            else:
+                warnings.append(f"{message} (not recorded in its known debt)")
+            continue
+
+        # RS-001 covers two independent metrics, and the message names which one.
+        is_line_count = f"{shape.smart_line_count} lines (max" in message
+        recorded = entry['lines'] if is_line_count else entry['words']
+        unit = 'lines' if is_line_count else 'words'
+        actual = (shape.smart_line_count if is_line_count else shape.smart_word_count) or 0
+        if 'RS-001' in recorded_codes and actual <= recorded:
             tolerated.append(code)
+        elif 'RS-001' in recorded_codes:
+            warnings.append(f"{message} (grew past its recorded known debt of {recorded} {unit})")
+        else:
+            warnings.append(f"{message} (not recorded in its known debt)")
 
     if tolerated:
+        unique_codes: List[str] = []
+        for code in tolerated:
+            if code not in unique_codes:
+                unique_codes.append(code)
         warnings.append(
-            f"routing shape: known debt, {', '.join(tolerated)} (migrate to the routing canon)"
+            f"routing shape: known debt, {', '.join(unique_codes)} (migrate to the routing canon)"
         )
     elif not findings:
         warnings.append(f"routing shape: known-debt entry is stale; remove {key}")

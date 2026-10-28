@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill section guidance"
 importance_tier: normal
 contextType: general
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # SKILL.md File Templates - Creation Guide
@@ -405,7 +405,7 @@ Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md) when the skill has installat
 
 ---
 
-\## MACHINE ROUTER
+\## 9. MACHINE ROUTER
 
 The router for this skill. It is the last H2 in this file, and it holds the only pseudocode.
 
@@ -642,9 +642,9 @@ def route_[skill_name]_resources(user_request, task=None):
 | Mode packet | a packet folder inside a hub | what selects this packet, what it loads first, where the machine router is |
 | Standalone | neither hub file | the same as a mode packet, with the router inline |
 
-**The limit**: 12 non-blank lines is the hard ceiling the check enforces; aim for 8 to 12. A packet or standalone skill says three things: what selects it, what it loads first, and where the machine router is.
+**The limit**: 12 non-blank lines and 180 words are the hard ceilings the check enforces; aim for 8 to 12 lines. A packet or standalone skill says three things: what selects it, what it loads first, and where the machine router is.
 
-**The appendix**: any machine router block sits in a final `## MACHINE ROUTER` section, which is the last H2 in the file. The pseudocode never goes inside SMART ROUTING. A packet whose leaves the hub root `ROUTER.md` already names may carry no block at all.
+**The appendix**: any machine router block sits in a final `## MACHINE ROUTER` section, which is the last H2 in the file. Number it like every other H2, as the next section number (for example `## 8. MACHINE ROUTER`); the check reads the title with its number removed. The pseudocode never goes inside SMART ROUTING. A packet whose leaves the hub root `ROUTER.md` already names may carry no block at all.
 
 **One router file**: a mode packet never carries `ROUTER.md`. The hub root `ROUTER.md` is the only router file in the family.
 
@@ -654,12 +654,14 @@ def route_[skill_name]_resources(user_request, task=None):
 
 | Code | Finding |
 |------|---------|
-| `RS-001` | SMART ROUTING is longer than the limit (12 lines by default) |
+| `RS-001` | SMART ROUTING is longer than the limit (12 lines or 180 words by default) |
 | `RS-002` | a machine router block sits outside the final `## MACHINE ROUTER` section |
 | `RS-003` | `## MACHINE ROUTER` exists but is not the last H2 |
 | `RS-004` | a mode packet carries its own `ROUTER.md` |
 
-Skills still in the old shape are listed with the SMART ROUTING line count they were recorded at in `sk-create-skill/scripts/routing-shape-known-debt.json`. The check tolerates an entry until that count grows, so remove the entry once the skill moves to the canon.
+A machine router block is a fenced block, or an unfenced run of lines such as an indented one, that holds `INTENT_SIGNALS =`, `RESOURCE_MAP =`, `UNKNOWN_FALLBACK_CHECKLIST =`, `def discover_markdown_resources` or `def _guard_in_skill`; a fence closes only on a run of the same character at least as long as the one that opened it.
+
+**Known debt** is listed in `sk-create-skill/scripts/routing-shape-known-debt.json`, keyed by the skill's path relative to `.skilled/skills` (for example `sk-code/sk-code-review`); a folder outside that root is never debt. Each entry records `{"lines", "words", "machineBlocks", "codes"}`. A listed skill fails when its line count, word count or number of machine blocks outside the appendix grows past the record, or when it shows a code the entry does not record. An entry in any other form is ignored. Remove the entry once the skill moves to the canon.
 
 **Placement**: after Section 1 (WHEN TO USE) and before HOW IT WORKS. The `## MACHINE ROUTER` appendix goes at the end of the file.
 
@@ -678,7 +680,7 @@ The machine router is the final `## MACHINE ROUTER` section of this file.
 
 ---
 
-\## MACHINE ROUTER
+\## 3. MACHINE ROUTER
 
 ```python
 INTENT_MODEL = {"PRIMARY": {"keywords": [("[keyword]", 4), ("[phrase]", 3)]}}

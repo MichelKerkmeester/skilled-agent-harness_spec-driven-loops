@@ -2,7 +2,7 @@
 name: "{{HUB_NAME}}"
 description: TODO hub description — routes the {{MODE}} workflow packet via mode-registry.json (fill in ≤130 chars).
 allowed-tools: "{{ALLOWED_TOOLS}}"
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # {{HUB_TITLE}}
@@ -26,14 +26,7 @@ names the packet that `workflowMode` resolves to. Stage two picks the first leav
 `ROUTER.md` maps the selected mode's intent to the packet-local resources it loads first.
 The initial registry contains one mode, `{{MODE}}`, which routes to `{{PACKET}}/SKILL.md`.
 A request no registered mode matches returns `UNKNOWN_FALLBACK`, never a silent default.
-
-> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
-> ```bash
-> node .skilled/bin/compiled-route.cjs --hub {{HUB_NAME}} --prompt "<task>"
-> ```
-> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `{{HUB_NAME}}`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
-
-A fresh `{{HUB_NAME}}` ships without a compiled activation manifest, so the directive above returns the legacy sentinel until the hub is activated.
+The agent runs the compiled-routing directive in the final MACHINE ROUTER section first.
 
 ---
 
@@ -103,7 +96,15 @@ This is the hub's only glossary; its packets link here instead of defining routi
 
 ---
 
-## MACHINE ROUTER
+## 8. MACHINE ROUTER
+
+> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
+> ```bash
+> node .skilled/bin/compiled-route.cjs --hub {{HUB_NAME}} --prompt "<task>"
+> ```
+> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the registry routing in SMART ROUTING. The front door self-gates on serving-authority. Compiled routing is now the default for `{{HUB_NAME}}`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
+
+A fresh `{{HUB_NAME}}` ships without a compiled activation manifest, so the directive above returns the legacy sentinel until the hub is activated.
 
 The compiled router reads the fallback checklist below; the hub's leaf routing lives in the root ROUTER.md.
 

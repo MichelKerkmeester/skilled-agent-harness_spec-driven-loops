@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface packet scaffold"
 importance_tier: normal
 contextType: general
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Parent Skill Hub Template - Canonical Two-Axis Hub
@@ -163,15 +163,9 @@ Use this skill when the request belongs to the [family/domain] family and should
 Routing is registry-driven: `hub-router.json` scores the request and `mode-registry.json` names the packet that `workflowMode` resolves to, while the root `ROUTER.md` is the stage-two control document (`stage1-only` on a fresh hub until an author promotes it to `active`).
 `packetKind: "workflow"` is a process or lifecycle packet and `packetKind: "surface"` is a read-only evidence-base packet (`backendKind: "evidence-base"`, `routingClass: "metadata"`, `mutatesWorkspace: false`), with no separate surface array.
 The rule is short: read `hub-router.json`, score `routerSignals` and `vocabularyClasses`, apply `routerPolicy.tieBreak` with workflow modes first, read `mode-registry.json` for `packetKind`, `backendKind`, `toolSurface`, and `advisorRouting`, then load the selected packet or packets.
-The outcomes are `single` (one workflow mode), `orderedBundle` (several workflow modes in policy order), `surfaceBundle` (one workflow primary plus read-only surfaces), and `defer` (unclear or contradictory intent asks for disambiguation).
+The outcomes are `single` (one workflow mode), `orderedBundle` (several workflow modes in policy order), `surfaceBundle` (one workflow primary plus read-only surfaces), and `defer` (two or more modes tie or conflict, so the hub asks which one is meant). `defer` is never the no-match result.
 A request no registered mode matches returns `UNKNOWN_FALLBACK`, never a silent default.
-A fresh `{{HUB_NAME}}` ships without a compiled activation manifest, so the directive below returns the legacy sentinel until the hub is activated.
-
-> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
-> ```bash
-> node .skilled/bin/compiled-route.cjs --hub {{HUB_NAME}} --prompt "<task>"
-> ```
-> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `{{HUB_NAME}}`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
+The agent runs the compiled-routing directive in the final MACHINE ROUTER section first.
 
 ---
 
@@ -274,7 +268,15 @@ This is the hub's only glossary; packets link here instead of defining routing t
 
 ---
 
-## MACHINE ROUTER
+## 6. MACHINE ROUTER
+
+> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
+> ```bash
+> node .skilled/bin/compiled-route.cjs --hub {{HUB_NAME}} --prompt "<task>"
+> ```
+> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the registry routing in SMART ROUTING. The front door self-gates on serving-authority. Compiled routing is now the default for `{{HUB_NAME}}`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
+
+A fresh `{{HUB_NAME}}` ships without a compiled activation manifest, so the directive above returns the legacy sentinel until the hub is activated.
 
 The compiled router reads the fallback checklist below; the hub's leaf routing lives in the root ROUTER.md.
 

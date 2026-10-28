@@ -2,7 +2,7 @@
 name: "{{SKILL_NAME}}"
 description: TODO one-line description of what this skill does and when to use it (verb + domain noun + trigger phrase)
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # {{SKILL_TITLE}}
@@ -131,7 +131,7 @@ The task is complete when:
 
 ---
 
-## MACHINE ROUTER
+## 8. MACHINE ROUTER
 
 The router below selects the resources a request loads; it stays illustrative until the selection logic is authored.
 
