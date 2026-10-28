@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6cac139f4724724111880081c9c2bc3aab887be8fca940fb369585c940866a18",
+  "manifestHash": "55e13e2b9db185041ad8ac60c3868d0b61d95715cc536f2e1b17220b646505f9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -83024,6 +83024,9 @@
     ],
     "regeneration and verification acceptance criteria": [
       "regeneration and verification acceptance criteria"
+    ],
+    "regeneration and verification implementation summary": [
+      "regeneration and verification implementation summary"
     ],
     "regeneration and verification plan": [
       "regeneration and verification plan"

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "272971c79699ab5340a846a077d3b5f2fa90187efc18e19b4e44dd546749732e",
+  "corpusHash": "8468bfab0ffe0f72bc4e87b4fe0206c16aeeb244788a2ed5b90e8341e51c22e6",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26843,
+  "includedPathCount": 26844,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -13826,6 +13826,7 @@
     "specs/sk-doc/072-skill-routing-and-clarity/010-prose-clarity-pass/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/010-prose-clarity-pass/tasks.md",
     "specs/sk-doc/072-skill-routing-and-clarity/011-regeneration-and-verification/acceptance-criteria.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/011-regeneration-and-verification/implementation-summary.md",
     "specs/sk-doc/072-skill-routing-and-clarity/011-regeneration-and-verification/plan.md",
     "specs/sk-doc/072-skill-routing-and-clarity/011-regeneration-and-verification/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/011-regeneration-and-verification/tasks.md",
@@ -26874,7 +26875,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6cac139f4724724111880081c9c2bc3aab887be8fca940fb369585c940866a18",
+  "manifestHash": "55e13e2b9db185041ad8ac60c3868d0b61d95715cc536f2e1b17220b646505f9",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
