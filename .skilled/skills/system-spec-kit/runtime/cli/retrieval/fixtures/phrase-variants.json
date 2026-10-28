@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e662c16b035e94c127a07bbf4588f060ad3309b0e7c0a6222357ae5ec4ea3768",
+  "manifestHash": "49ed593e2177f42ec8495f4dbbea97cdb599ae4d058de1ee5f53ac007e1ffb96",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13746,6 +13746,9 @@
     "benchmark format to sk doc": [
       "benchmark format to sk-doc"
     ],
+    "benchmark keyword triggers": [
+      "benchmark keyword triggers"
+    ],
     "benchmark promotion errors": [
       "benchmark promotion errors"
     ],
@@ -17108,6 +17111,9 @@
     "chart interaction tasks": [
       "chart interaction tasks"
     ],
+    "chart keyword triggers": [
+      "chart keyword triggers"
+    ],
     "chart legend dim results": [
       "chart legend dim results"
     ],
@@ -19416,6 +19422,9 @@
     "cli classifier 0 8 2 0": [
       "cli-classifier 0.8.2.0"
     ],
+    "cli classifier 0 8 3 0": [
+      "cli-classifier 0.8.3.0"
+    ],
     "cli classifier audit findings": [
       "cli-classifier audit findings"
     ],
@@ -19565,6 +19574,9 @@
     ],
     "cli classifier v0 8 2 0": [
       "cli-classifier v0.8.2.0"
+    ],
+    "cli classifier v0 8 3 0": [
+      "cli-classifier v0.8.3.0"
     ],
     "cli claude code 1 0 0 0": [
       "cli-claude-code 1.0.0.0"
@@ -20559,6 +20571,9 @@
     "cli external orchestration 1 7 7 0": [
       "cli-external-orchestration 1.7.7.0"
     ],
+    "cli external orchestration 1 7 8 0": [
+      "cli-external-orchestration 1.7.8.0"
+    ],
     "cli external orchestration benchmark": [
       "cli-external-orchestration benchmark"
     ],
@@ -20657,6 +20672,9 @@
     ],
     "cli external orchestration v1 7 7 0": [
       "cli-external-orchestration v1.7.7.0"
+    ],
+    "cli external orchestration v1 7 8 0": [
+      "cli-external-orchestration v1.7.8.0"
     ],
     "cli fallback envelope normalization": [
       "cli fallback envelope normalization"
@@ -37545,6 +37563,9 @@
     "diagram import export index": [
       "diagram import export index"
     ],
+    "diagram keyword triggers": [
+      "diagram keyword triggers"
+    ],
     "diagram lookup": [
       "diagram lookup"
     ],
@@ -38456,6 +38477,9 @@
     ],
     "doc quality request": [
       "doc-quality request"
+    ],
+    "doc quality routing": [
+      "doc quality routing"
     ],
     "doc quality troubleshooting": [
       "doc quality troubleshooting"
@@ -54126,6 +54150,9 @@
     "hub repo folder exemption tasks": [
       "hub repo folder exemption tasks"
     ],
+    "hub router agreement": [
+      "hub router agreement"
+    ],
     "hub router json contract": [
       "hub-router json contract"
     ],
@@ -54143,6 +54170,9 @@
     ],
     "hub router target shape": [
       "hub-router target shape"
+    ],
+    "hub router vocabulary check": [
+      "hub router vocabulary check"
     ],
     "hub router vocabulary class": [
       "hub router vocabulary class"
@@ -54251,6 +54281,15 @@
     ],
     "hub versus standalone skill class": [
       "hub versus standalone skill class"
+    ],
+    "hub vocabulary check": [
+      "hub vocabulary check"
+    ],
+    "hub vocabulary drift check": [
+      "hub vocabulary drift check"
+    ],
+    "hub vocabulary source": [
+      "hub vocabulary source"
     ],
     "hue rotation for contrast": [
       "hue rotation for contrast"
@@ -57092,6 +57131,9 @@
     ],
     "keyword search workspace": [
       "keyword search workspace"
+    ],
+    "keyword triggers vocabulary": [
+      "keyword triggers vocabulary"
     ],
     "kill level dirs": [
       "kill level dirs"
@@ -61255,6 +61297,9 @@
     "mcp auto respawn watchdog spec": [
       "mcp auto-respawn watchdog spec"
     ],
+    "mcp bake off phrase removal": [
+      "mcp bake-off phrase removal"
+    ],
     "mcp benchmarks discoverability": [
       "mcp benchmarks discoverability"
     ],
@@ -62644,6 +62689,9 @@
     "mcp tooling 1 8 8 0": [
       "mcp-tooling 1.8.8.0"
     ],
+    "mcp tooling 1 8 9 0": [
+      "mcp-tooling 1.8.9.0"
+    ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
     ],
@@ -62763,6 +62811,9 @@
     ],
     "mcp tooling v1 8 8 0": [
       "mcp-tooling v1.8.8.0"
+    ],
+    "mcp tooling v1 8 9 0": [
+      "mcp-tooling v1.8.9.0"
     ],
     "mcp tools": [
       "mcp tools"
@@ -66646,6 +66697,9 @@
     "mode gate contract binding evidence": [
       "mode gate contract binding evidence"
     ],
+    "mode intent vocabulary": [
+      "mode intent vocabulary"
+    ],
     "mode one document quality": [
       "mode one document quality"
     ],
@@ -69792,6 +69846,9 @@
     "once per compaction rule hook": [
       "once per compaction rule hook"
     ],
+    "one authored mode vocabulary": [
+      "one authored mode vocabulary"
+    ],
     "one behavioral contract five schemas": [
       "one behavioral contract five schemas"
     ],
@@ -69849,6 +69906,9 @@
     "one mode hub rule tasks": [
       "one-mode hub rule tasks"
     ],
+    "one mode vocabulary": [
+      "one mode vocabulary"
+    ],
     "one page carrying every chart form twice once": [
       "one page carrying every chart form twice once"
     ],
@@ -69878,6 +69938,9 @@
     ],
     "one validation verdict": [
       "one validation verdict"
+    ],
+    "one vocabulary source": [
+      "one vocabulary source"
     ],
     "one voice for every skill readme": [
       "One Voice for Every Skill README"
@@ -80456,6 +80519,9 @@
     "quality hygiene policy tasks": [
       "quality hygiene policy tasks"
     ],
+    "quality keyword triggers": [
+      "quality keyword triggers"
+    ],
     "quality level tiers": [
       "quality level tiers"
     ],
@@ -89342,6 +89408,9 @@
     "router intent card rows": [
       "router intent card rows"
     ],
+    "router intent terms": [
+      "router intent terms"
+    ],
     "router keeps its own version": [
       "router keeps its own version"
     ],
@@ -89795,6 +89864,9 @@
     ],
     "routing telemetry stress test": [
       "routing-telemetry stress test"
+    ],
+    "routing vocabulary": [
+      "routing vocabulary"
     ],
     "routing weight sweep": [
       "routing weight sweep"
@@ -95330,6 +95402,9 @@
     "single manifest drift review": [
       "single manifest drift review"
     ],
+    "single mode vocabulary source": [
+      "single mode vocabulary source"
+    ],
     "single ordered shutdown path decision": [
       "single ordered shutdown path decision"
     ],
@@ -95380,6 +95455,9 @@
     ],
     "single vocabulary source per hub acceptance criteria": [
       "single vocabulary source per hub acceptance criteria"
+    ],
+    "single vocabulary source per hub implementation summary": [
+      "single vocabulary source per hub implementation summary"
     ],
     "single vocabulary source per hub plan": [
       "single vocabulary source per hub plan"
@@ -95614,6 +95692,9 @@
     ],
     "sk code 3 9 18 0": [
       "sk-code 3.9.18.0"
+    ],
+    "sk code 3 9 19 0": [
+      "sk-code 3.9.19.0"
     ],
     "sk code 3 9 2 0": [
       "sk-code 3.9.2.0"
@@ -96416,6 +96497,9 @@
     "sk code quality 1 13 11 0": [
       "sk-code-quality 1.13.11.0"
     ],
+    "sk code quality 1 13 12 0": [
+      "sk-code-quality 1.13.12.0"
+    ],
     "sk code quality 1 13 2 0": [
       "sk-code-quality 1.13.2.0"
     ],
@@ -96532,6 +96616,9 @@
     ],
     "sk code quality v1 13 11 0": [
       "sk-code-quality v1.13.11.0"
+    ],
+    "sk code quality v1 13 12 0": [
+      "sk-code-quality v1.13.12.0"
     ],
     "sk code quality v1 13 2 0": [
       "sk-code-quality v1.13.2.0"
@@ -97337,6 +97424,9 @@
     "sk code v3 9 18 0": [
       "sk-code v3.9.18.0"
     ],
+    "sk code v3 9 19 0": [
+      "sk-code v3.9.19.0"
+    ],
     "sk code v3 9 2 0": [
       "sk-code v3.9.2.0"
     ],
@@ -97448,6 +97538,9 @@
     "sk create benchmark 1 6 0 0": [
       "sk-create-benchmark 1.6.0.0"
     ],
+    "sk create benchmark 1 6 1 0": [
+      "sk-create-benchmark 1.6.1.0"
+    ],
     "sk create benchmark playbook": [
       "sk-create-benchmark playbook"
     ],
@@ -97471,6 +97564,9 @@
     ],
     "sk create benchmark v1 6 0 0": [
       "sk-create-benchmark v1.6.0.0"
+    ],
+    "sk create benchmark v1 6 1 0": [
+      "sk-create-benchmark v1.6.1.0"
     ],
     "sk create changelog 1 0 0 0": [
       "sk-create-changelog 1.0.0.0"
@@ -97985,6 +98081,9 @@
     "sk create quality control 1 0 4 0": [
       "sk-create-quality-control 1.0.4.0"
     ],
+    "sk create quality control 1 0 5 0": [
+      "sk-create-quality-control 1.0.5.0"
+    ],
     "sk create quality control playbook": [
       "sk-create-quality-control playbook"
     ],
@@ -98005,6 +98104,9 @@
     ],
     "sk create quality control v1 0 4 0": [
       "sk-create-quality-control v1.0.4.0"
+    ],
+    "sk create quality control v1 0 5 0": [
+      "sk-create-quality-control v1.0.5.0"
     ],
     "sk create readme 1 0 0 0": [
       "sk-create-readme 1.0.0.0"
@@ -98180,6 +98282,9 @@
     "sk create skill 1 6 0 0": [
       "sk-create-skill 1.6.0.0"
     ],
+    "sk create skill 1 7 0 0": [
+      "sk-create-skill 1.7.0.0"
+    ],
     "sk create skill authoring errors": [
       "sk-create-skill authoring errors"
     ],
@@ -98246,6 +98351,9 @@
     "sk create skill v1 6 0 0": [
       "sk-create-skill v1.6.0.0"
     ],
+    "sk create skill v1 7 0 0": [
+      "sk-create-skill v1.7.0.0"
+    ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
     ],
@@ -98290,6 +98398,9 @@
     ],
     "sk design 2 0 5 0": [
       "sk-design 2.0.5.0"
+    ],
+    "sk design 2 0 6 0": [
+      "sk-design 2.0.6.0"
     ],
     "sk design advisor identity": [
       "sk-design advisor identity"
@@ -98402,6 +98513,9 @@
     "sk design chart 0 23 1 0": [
       "sk-design-chart 0.23.1.0"
     ],
+    "sk design chart 0 23 2 0": [
+      "sk-design-chart 0.23.2.0"
+    ],
     "sk design chart 0 3 0 0": [
       "sk-design-chart 0.3.0.0"
     ],
@@ -98477,6 +98591,9 @@
     "sk design chart v0 23 1 0": [
       "sk-design-chart v0.23.1.0"
     ],
+    "sk design chart v0 23 2 0": [
+      "sk-design-chart v0.23.2.0"
+    ],
     "sk design chart v0 3 0 0": [
       "sk-design-chart v0.3.0.0"
     ],
@@ -98543,6 +98660,9 @@
     "sk design diagram 1 2 5 0": [
       "sk-design-diagram 1.2.5.0"
     ],
+    "sk design diagram 1 2 6 0": [
+      "sk-design-diagram 1.2.6.0"
+    ],
     "sk design diagram review verdict": [
       "sk-design-diagram review verdict"
     ],
@@ -98572,6 +98692,9 @@
     ],
     "sk design diagram v1 2 5 0": [
       "sk-design-diagram v1.2.5.0"
+    ],
+    "sk design diagram v1 2 6 0": [
+      "sk-design-diagram v1.2.6.0"
     ],
     "sk design doc and routing check acceptance criteria": [
       "sk design doc and routing check acceptance criteria"
@@ -98756,6 +98879,9 @@
     "sk design v2 0 5 0": [
       "sk-design v2.0.5.0"
     ],
+    "sk design v2 0 6 0": [
+      "sk-design v2.0.6.0"
+    ],
     "sk doc 1 5 0 0": [
       "sk-doc 1.5.0.0"
     ],
@@ -98857,6 +98983,9 @@
     ],
     "sk doc 2 3 25 0": [
       "sk-doc 2.3.25.0"
+    ],
+    "sk doc 2 3 26 0": [
+      "sk-doc 2.3.26.0"
     ],
     "sk doc 2 3 3 0": [
       "sk-doc 2.3.3.0"
@@ -99247,6 +99376,9 @@
     ],
     "sk doc v2 3 25 0": [
       "sk-doc v2.3.25.0"
+    ],
+    "sk doc v2 3 26 0": [
+      "sk-doc v2.3.26.0"
     ],
     "sk doc v2 3 3 0": [
       "sk-doc v2.3.3.0"
@@ -108518,6 +108650,9 @@
     "system deep loop 1 6 15 0": [
       "system-deep-loop 1.6.15.0"
     ],
+    "system deep loop 1 6 16 0": [
+      "system-deep-loop 1.6.16.0"
+    ],
     "system deep loop 1 6 2 0": [
       "system-deep-loop 1.6.2.0"
     ],
@@ -108688,6 +108823,9 @@
     ],
     "system deep loop v1 6 15 0": [
       "system-deep-loop v1.6.15.0"
+    ],
+    "system deep loop v1 6 16 0": [
+      "system-deep-loop v1.6.16.0"
     ],
     "system deep loop v1 6 2 0": [
       "system-deep-loop v1.6.2.0"
@@ -116443,11 +116581,17 @@
     "vocabulary class ownership": [
       "vocabulary class ownership"
     ],
+    "vocabulary drift gate": [
+      "vocabulary drift gate"
+    ],
     "vocabulary invariance": [
       "vocabulary invariance"
     ],
     "vocabulary phase checklist": [
       "vocabulary phase checklist"
+    ],
+    "vocabulary source check": [
+      "vocabulary source check"
     ],
     "voice category flag verdict": [
       "voice category flag verdict"
