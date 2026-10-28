@@ -20,7 +20,7 @@ contextType: "planning"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-28 |
 | **Branch** | `worktrees/254-skill-routing-and-clarity` |
 | **Parent Spec** | ../spec.md |
@@ -61,8 +61,26 @@ Bring the remaining sk-doc packets and the hub routing section to the canon shap
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
 ```text
-N/A: this phase is Planned. Its first task records the measured behavior before any edit.
+$ git -c core.fsmonitor=false show 00018303dc:.skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json \
+    | python3 -c "import json,sys;d=json.load(sys.stdin);ks=[k for k in d['debt'] if k=='sk-doc' or k.startswith('sk-doc/')];print(len(ks),'entries');[print(k, json.dumps(d['debt'][k])) for k in ks]"
+15 entries
+sk-doc {"lines": 58, "words": 816, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-doc/sk-create-agent {"lines": 78, "words": 497, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-doc/sk-create-benchmark {"lines": 66, "words": 430, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-doc/sk-create-changelog {"lines": 78, "words": 520, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-doc/sk-create-command {"lines": 31, "words": 297, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-doc/sk-create-diff {"lines": 64, "words": 379, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-doc/sk-create-feature-catalog {"lines": 89, "words": 600, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-doc/sk-create-frontmatter {"lines": 81, "words": 475, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-doc/sk-create-goal {"lines": 46, "words": 370, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-doc/sk-create-manual-testing-playbook {"lines": 73, "words": 384, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-doc/sk-create-quality-control {"lines": 68, "words": 397, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-doc/sk-create-readme {"lines": 87, "words": 585, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-doc/sk-create-repo-rule {"lines": 90, "words": 539, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-doc/sk-create-skill {"lines": 143, "words": 696, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
+sk-doc/sk-create-with-human-voice {"lines": 89, "words": 555, "machineBlocks": 1, "codes": ["RS-001", "RS-002"]}
 ```
+The ledger's fifteen sk-doc entries are the debt this phase closes: the hub at 58 lines and 816 words, and every packet with one machine block and a SMART ROUTING section between 31 and 143 lines. The spec counted five packets with machine blocks; the ledger counts all fourteen, because the nine others carry call-sequence blocks (`def discover_markdown_resources`, `def _guard_in_skill`) that are machine lines under the canon. All fourteen are in scope. `scratch/before.md` holds the full gate set: 35 of 35 exit 0, accuracy 155/195, 49/66, 19/24.
 <!-- /ANCHOR:measured-behavior -->
 
 ---

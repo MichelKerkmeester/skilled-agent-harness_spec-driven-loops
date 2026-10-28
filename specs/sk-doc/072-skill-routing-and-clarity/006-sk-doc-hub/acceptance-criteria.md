@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/072-skill-routing-and-clarity/006-sk-doc-hub"
-    last_updated_at: "2026-10-28T06:50:00Z"
+    last_updated_at: "2026-10-28T13:30:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Planned the phase from the phase 001 research"
-    next_safe_action: "Run /speckit:plan on this phase before implementation"
+    recent_action: "Verified every criterion against the final gate run"
+    next_safe_action: "Conductor landing"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "skill-routing-and-clarity-planning"
+      session_id: "skill-routing-and-clarity-phase-006"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** `sk-doc/072-skill-routing-and-clarity/006-sk-doc-hub`
 **Level:** 2
-**Status:** Planned
+**Status:** Complete
 **Date:** 2026-10-28
 <!-- /ANCHOR:metadata -->
 
@@ -51,8 +51,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the phase is implemented, When its gates run, Then: `parent-skill-check.cjs`, `package_skill.py --strict` and `compiled-route-guard.cjs` pass after the change. | Recorded in `scratch/after.md` | Unmet | - |
-| AC-002 | REQ-002 | Given the phase is implemented, When its gates run, Then: The separation rationale appears once, and every other copy links to it. | Recorded in `scratch/after.md` | Unmet | - |
+| AC-001 | REQ-001 | Given the phase is implemented, When its gates run, Then: `parent-skill-check.cjs`, `package_skill.py --strict` and `compiled-route-guard.cjs` pass after the change. | At the final state all three pass: `parent-skill-check` on sk-doc prints `PASS: 12b-routing-shape: hub and 14 packet(s) follow the routing canon (0 known debt)` and `OK: parent-skill-check — all hard invariants passed, 0 warnings`; `package_skill.py --check --strict` prints `Result: PASS` for sk-doc and for each of the 14 packets; `compiled-route-guard.cjs --json` reports 7 of 7 `fresh`, failures 0. The full gate set is `scratch/after.md` §1. `scratch/after.md:28`, `scratch/after.md:53`, `scratch/after.md:124`, `scratch/after.md:126`, `scratch/after.md:132` | Met | - |
+| AC-002 | REQ-002 | Given the phase is implemented, When its gates run, Then: The separation rationale appears once, and every other copy links to it. | `rg -n "must not move into" .skilled/skills --glob 'SKILL.md'` finds nothing. The one full statement is the `### Why the leaf router stays in ROUTER.md` section of `sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`, and the four hubs that used to restate it link to its anchor: `sk-doc`, `cli-external-orchestration`, `system-deep-loop` and `sk-design` `SKILL.md`. The line numbers are in `scratch/after.md` §6. `scratch/after.md:168`, `scratch/after.md:172`, `scratch/after.md:173`, `scratch/after.md:174`, `scratch/after.md:175` | Met | - |
 
 ### Status values
 
@@ -77,7 +77,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-The phase is Planned and no criterion is met yet.
+Both criteria are Met with observed evidence from the final gate run.
 <!-- /ANCHOR:closure -->

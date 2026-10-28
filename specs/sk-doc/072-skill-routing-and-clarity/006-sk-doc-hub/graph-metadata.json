@@ -15,7 +15,8 @@
       "skill routing phase 6",
       "sk-doc hub and mode packets plan",
       "sk-doc hub and mode packets tasks",
-      "sk-doc hub and mode packets acceptance criteria"
+      "sk-doc hub and mode packets acceptance criteria",
+      "sk-doc hub and mode packets implementation summary"
     ],
     "key_topics": [
       "sk-doc",
@@ -29,16 +30,20 @@
       "tasks",
       "acceptance",
       "criteria",
-      "feature"
+      "implementation"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      ".skilled/skills/sk-doc/SKILL.md"
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/SKILL.md",
+      "scratch/gates.sh",
+      "scratch/before.md",
+      "scratch/after.md"
     ],
     "entities": [
       {
@@ -66,9 +71,33 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "gates.sh",
+        "kind": "script",
+        "path": "scratch/gates.sh",
+        "source": "derived"
+      },
+      {
+        "name": "before.md",
+        "kind": "doc",
+        "path": "scratch/before.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.md",
+        "kind": "doc",
+        "path": "scratch/after.md",
         "source": "derived"
       },
       {
@@ -160,49 +189,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "sk-doc has 14 packets",
     "created_at": "2026-10-28T06:38:47Z",
-    "last_save_at": "2026-10-28T06:42:24.275Z",
+    "last_save_at": "2026-10-28T12:22:48.272Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d18cb060187e5cc7635d3b8baf9fb7c618e6d08bd4eecb6df40e642c5ac39c08",
+    "source_fingerprint": "sha256:975be5ae951fbca6b929001b20ecfa1b4435e1f81338187656fcaf9671c3d193",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ff7ef955b96378e0d880e91ce2c9bbc22dde260129bd277c9be2f0de907c3ec1",
+      "spec.md": "2751783f1fc9a0090c6b59781d1bc073fbc8a37a529cd6f032c9c400db40ab67",
       "plan.md": "d57aaba9d61d8338cebb32ea5ab11bf83c729996c19a36f2cda07e5026a22a2e",
-      "tasks.md": "1a2aee0b7c2e929c4c2eb345247b56bce30c04167a352d83962e97adfc00d8d0"
+      "tasks.md": "aaa2b39c797d2819cdcb096dd8e932359fdfe32bc4b4cb2919412bef10363e28",
+      "implementation-summary.md": "c25d988c9e14352a37738ac85a1a518906367854c87700d5e5afcf31383a0a5a"
     },
     "last_active_at": null
   }
