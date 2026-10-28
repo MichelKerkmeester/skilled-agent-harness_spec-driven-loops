@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4432a9aaee67882d990261f1f7e04585e6e0102b56a46e402033bfc2cd6d282c",
+  "corpusHash": "795191ac4ce942ee7f4e8cbc59e2f650d28d9a244441460a31dd02fc60ee8c00",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26702,
+  "includedPathCount": 26710,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6255,9 +6255,11 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.4.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.5.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.6.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.7.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/prepare-release-notes.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/extend-open-release.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/never-infer-release-line.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/route-skilled-release-entry.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/skip-release-for-component.md",
@@ -6437,6 +6439,7 @@
     ".skilled/skills/sk-doc/sk-create-quality-control/changelog/v1.0.1.1.md",
     ".skilled/skills/sk-doc/sk-create-quality-control/changelog/v1.0.2.0.md",
     ".skilled/skills/sk-doc/sk-create-quality-control/changelog/v1.0.3.0.md",
+    ".skilled/skills/sk-doc/sk-create-quality-control/changelog/v1.0.4.0.md",
     ".skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/audit-and-validation/assess-batch-snapshot.md",
     ".skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/audit-and-validation/leave-creation-requests-alone.md",
     ".skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/audit-and-validation/run-a-report-only-audit.md",
@@ -26695,6 +26698,11 @@
     "specs/system-speckit/054-weak-model-spec-authoring/027-alignment-preexisting-gaps/plan.md",
     "specs/system-speckit/054-weak-model-spec-authoring/027-alignment-preexisting-gaps/spec.md",
     "specs/system-speckit/054-weak-model-spec-authoring/027-alignment-preexisting-gaps/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/028-changelog-release-extension/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/028-changelog-release-extension/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/028-changelog-release-extension/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/028-changelog-release-extension/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/028-changelog-release-extension/tasks.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-001-template-drift-census-and-baseline.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-002-template-and-example-defect-repair.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-003-versioned-placeholder-gate.md",
@@ -26733,7 +26741,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "2d2f6a4f2a45900eaeb1eaa575bfd439ed1878adb1889a9ad4caf061129b06d8",
+  "manifestHash": "07ed0beba3f31f5cc8a97436b6b2a1c0a1c782d5f34d5a9487289f6770004292",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -34185,6 +34193,10 @@
     },
     {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/027-alignment-preexisting-gaps/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/028-changelog-release-extension/scratch",
       "reason": "excluded directory"
     },
     {

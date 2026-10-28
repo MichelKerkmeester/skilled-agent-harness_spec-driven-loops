@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2d2f6a4f2a45900eaeb1eaa575bfd439ed1878adb1889a9ad4caf061129b06d8",
+  "manifestHash": "07ed0beba3f31f5cc8a97436b6b2a1c0a1c782d5f34d5a9487289f6770004292",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -16495,6 +16495,21 @@
     ],
     "changelog readme conformance": [
       "changelog readme conformance"
+    ],
+    "changelog release extension": [
+      "changelog release extension"
+    ],
+    "changelog release extension acceptance criteria": [
+      "changelog release extension acceptance criteria"
+    ],
+    "changelog release extension implementation summary": [
+      "changelog release extension implementation summary"
+    ],
+    "changelog release extension plan": [
+      "changelog release extension plan"
+    ],
+    "changelog release extension tasks": [
+      "changelog release extension tasks"
     ],
     "changelog research plan": [
       "changelog research plan"
@@ -38291,6 +38306,9 @@
     "doc quality references": [
       "doc quality references"
     ],
+    "doc quality request": [
+      "doc-quality request"
+    ],
     "doc quality troubleshooting": [
       "doc quality troubleshooting"
     ],
@@ -43387,6 +43405,9 @@
     ],
     "extend the existing citation scanner to spec": [
       "extend the existing citation scanner to spec"
+    ],
+    "extend the open release": [
+      "extend the open release"
     ],
     "extended bake off plan": [
       "extended bake-off plan"
@@ -74369,6 +74390,9 @@
     "phase 27 opencode2 models provider check": [
       "phase 27 opencode2 models provider check"
     ],
+    "phase 28 changelog release extension": [
+      "phase 28 changelog release extension"
+    ],
     "phase 28 goal rebind live proof and docs": [
       "phase 28 goal rebind live proof and docs"
     ],
@@ -96832,6 +96856,9 @@
     "sk create changelog 1 3 6 0": [
       "sk-create-changelog 1.3.6.0"
     ],
+    "sk create changelog 1 3 7 0": [
+      "sk-create-changelog 1.3.7.0"
+    ],
     "sk create changelog playbook": [
       "sk-create-changelog playbook"
     ],
@@ -96879,6 +96906,9 @@
     ],
     "sk create changelog v1 3 6 0": [
       "sk-create-changelog v1.3.6.0"
+    ],
+    "sk create changelog v1 3 7 0": [
+      "sk-create-changelog v1.3.7.0"
     ],
     "sk create changelog v4 style changelog": [
       "sk create changelog v4 style changelog"
@@ -97276,6 +97306,9 @@
     "sk create quality control 1 0 3 0": [
       "sk-create-quality-control 1.0.3.0"
     ],
+    "sk create quality control 1 0 4 0": [
+      "sk-create-quality-control 1.0.4.0"
+    ],
     "sk create quality control playbook": [
       "sk-create-quality-control playbook"
     ],
@@ -97293,6 +97326,9 @@
     ],
     "sk create quality control v1 0 3 0": [
       "sk-create-quality-control v1.0.3.0"
+    ],
+    "sk create quality control v1 0 4 0": [
+      "sk-create-quality-control v1.0.4.0"
     ],
     "sk create readme 1 0 0 0": [
       "sk-create-readme 1.0.0.0"
@@ -113098,6 +113134,9 @@
     ],
     "untag task": [
       "untag task"
+    ],
+    "untagged release": [
+      "untagged release"
     ],
     "untouched resource map entries": [
       "untouched resource map entries"

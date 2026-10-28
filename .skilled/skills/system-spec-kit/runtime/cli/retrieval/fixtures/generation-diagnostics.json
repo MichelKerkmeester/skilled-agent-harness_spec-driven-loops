@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7347,
-    "ok": 15807,
+    "missing-frontmatter": 7348,
+    "ok": 15814,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26702,
+  "documentsScanned": 26710,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "2d2f6a4f2a45900eaeb1eaa575bfd439ed1878adb1889a9ad4caf061129b06d8",
+  "manifestHash": "07ed0beba3f31f5cc8a97436b6b2a1c0a1c782d5f34d5a9487289f6770004292",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 38836,
+      "ok": 38849,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -28766,6 +28766,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/prepare-release-notes.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/extend-open-release.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -76415,6 +76421,10 @@
     },
     {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/027-alignment-preexisting-gaps/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/028-changelog-release-extension/scratch",
       "reason": "excluded directory"
     },
     {
