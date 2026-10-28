@@ -1,5 +1,5 @@
 {
-  "corpusHash": "41c8ad30672ba248b75698654427b3f693406d6ef63523984c663c8cf60b173a",
+  "corpusHash": "1bf7733618e7479a7e321223eaec916c4c9bae2b7521e40d2891c86baeb8d70b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26866,
+  "includedPathCount": 26871,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2783,6 +2783,7 @@
     ".skilled/skills/sk-code/changelog/v3.9.18.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.19.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.2.0.md",
+    ".skilled/skills/sk-code/changelog/v3.9.20.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.3.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.4.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.5.0.md",
@@ -2891,6 +2892,7 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.10.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.11.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.12.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.13.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.2.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.3.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.4.0.md",
@@ -2970,6 +2972,7 @@
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.0.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.1.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.10.0.md",
+    ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.11.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.2.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.3.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.4.0.md",
@@ -3088,6 +3091,7 @@
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.1.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.10.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.11.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.12.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.2.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.3.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.4.0.md",
@@ -13830,6 +13834,7 @@
     "specs/sk-doc/072-skill-routing-and-clarity/004-single-vocabulary-source/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/004-single-vocabulary-source/tasks.md",
     "specs/sk-doc/072-skill-routing-and-clarity/005-sk-code-hub/acceptance-criteria.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/005-sk-code-hub/implementation-summary.md",
     "specs/sk-doc/072-skill-routing-and-clarity/005-sk-code-hub/plan.md",
     "specs/sk-doc/072-skill-routing-and-clarity/005-sk-code-hub/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/005-sk-code-hub/tasks.md",
@@ -26897,7 +26902,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "25b90ede4b0259b16e882317e7003ad8aa04b76bb19ff97c5643e8385e2590b9",
+  "manifestHash": "bf9cee0f75eb2219b6b61c4846c5be0043314ce69b6b600177e4ada0557e51b9",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

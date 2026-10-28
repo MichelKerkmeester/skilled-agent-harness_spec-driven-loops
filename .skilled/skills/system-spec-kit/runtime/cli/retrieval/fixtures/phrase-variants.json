@@ -1,5 +1,5 @@
 {
-  "manifestHash": "25b90ede4b0259b16e882317e7003ad8aa04b76bb19ff97c5643e8385e2590b9",
+  "manifestHash": "bf9cee0f75eb2219b6b61c4846c5be0043314ce69b6b600177e4ada0557e51b9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -58177,6 +58177,9 @@
     "leaf route replay tasks": [
       "leaf route replay tasks"
     ],
+    "leaf set authority": [
+      "leaf-set authority"
+    ],
     "leaf set f1 replay": [
       "leaf-set f1 replay"
     ],
@@ -66727,11 +66730,11 @@
     "mode registry json entry": [
       "mode-registry.json entry"
     ],
-    "mode registry json single source of truth": [
-      "mode-registry.json single source of truth"
-    ],
     "mode registry json ten modes": [
       "mode-registry.json ten modes"
+    ],
+    "mode registry mode and packet list": [
+      "mode-registry mode and packet list"
     ],
     "mode registry readme navigation": [
       "mode registry readme navigation"
@@ -69917,6 +69920,9 @@
     ],
     "one question rule interactive runs": [
       "one-question rule interactive runs"
+    ],
+    "one routing statement": [
+      "one routing statement"
     ],
     "one runtime database path documented": [
       "One Runtime Database Path Documented"
@@ -80621,6 +80627,9 @@
     "quality review before indexing": [
       "quality review before indexing"
     ],
+    "quality routing canon": [
+      "quality routing canon"
+    ],
     "quality row declaration": [
       "quality row declaration"
     ],
@@ -86785,6 +86794,9 @@
     "resolvequestionconflicts": [
       "resolveQuestionConflicts"
     ],
+    "resolver algorithm reference": [
+      "resolver algorithm reference"
+    ],
     "resolver and hook improvements": [
       "resolver and hook improvements"
     ],
@@ -88529,6 +88541,9 @@
     "review rollback followup": [
       "review rollback followup"
     ],
+    "review routing canon shape": [
+      "review routing canon shape"
+    ],
     "review rows reconciliation": [
       "review rows reconciliation"
     ],
@@ -89696,6 +89711,9 @@
     ],
     "routing canon proof packet": [
       "routing canon proof packet"
+    ],
+    "routing canon shape": [
+      "routing canon shape"
     ],
     "routing clarify default": [
       "routing clarify default"
@@ -95699,6 +95717,9 @@
     "sk code 3 9 2 0": [
       "sk-code 3.9.2.0"
     ],
+    "sk code 3 9 20 0": [
+      "sk-code 3.9.20.0"
+    ],
     "sk code 3 9 3 0": [
       "sk-code 3.9.3.0"
     ],
@@ -96168,6 +96189,9 @@
     "sk code hub and mode packets acceptance criteria": [
       "sk-code hub and mode packets acceptance criteria"
     ],
+    "sk code hub and mode packets implementation summary": [
+      "sk-code hub and mode packets implementation summary"
+    ],
     "sk code hub and mode packets plan": [
       "sk-code hub and mode packets plan"
     ],
@@ -96500,6 +96524,9 @@
     "sk code quality 1 13 12 0": [
       "sk-code-quality 1.13.12.0"
     ],
+    "sk code quality 1 13 13 0": [
+      "sk-code-quality 1.13.13.0"
+    ],
     "sk code quality 1 13 2 0": [
       "sk-code-quality 1.13.2.0"
     ],
@@ -96619,6 +96646,9 @@
     ],
     "sk code quality v1 13 12 0": [
       "sk-code-quality v1.13.12.0"
+    ],
+    "sk code quality v1 13 13 0": [
+      "sk-code-quality v1.13.13.0"
     ],
     "sk code quality v1 13 2 0": [
       "sk-code-quality v1.13.2.0"
@@ -96779,6 +96809,9 @@
     "sk code review 1 9 10 0": [
       "sk-code-review 1.9.10.0"
     ],
+    "sk code review 1 9 11 0": [
+      "sk-code-review 1.9.11.0"
+    ],
     "sk code review 1 9 2 0": [
       "sk-code-review 1.9.2.0"
     ],
@@ -96895,6 +96928,9 @@
     ],
     "sk code review v1 9 10 0": [
       "sk-code-review v1.9.10.0"
+    ],
+    "sk code review v1 9 11 0": [
+      "sk-code-review v1.9.11.0"
     ],
     "sk code review v1 9 2 0": [
       "sk-code-review v1.9.2.0"
@@ -97067,6 +97103,9 @@
     "sk code skilled 2 1 11 0": [
       "sk-code-skilled 2.1.11.0"
     ],
+    "sk code skilled 2 1 12 0": [
+      "sk-code-skilled 2.1.12.0"
+    ],
     "sk code skilled 2 1 2 0": [
       "sk-code-skilled 2.1.2.0"
     ],
@@ -97207,6 +97246,9 @@
     ],
     "sk code skilled v2 1 11 0": [
       "sk-code-skilled v2.1.11.0"
+    ],
+    "sk code skilled v2 1 12 0": [
+      "sk-code-skilled v2.1.12.0"
     ],
     "sk code skilled v2 1 2 0": [
       "sk-code-skilled v2.1.2.0"
@@ -97429,6 +97471,9 @@
     ],
     "sk code v3 9 2 0": [
       "sk-code v3.9.2.0"
+    ],
+    "sk code v3 9 20 0": [
+      "sk-code v3.9.20.0"
     ],
     "sk code v3 9 3 0": [
       "sk-code v3.9.3.0"
