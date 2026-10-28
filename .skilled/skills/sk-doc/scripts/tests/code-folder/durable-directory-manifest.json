@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 765,
+  "derived_count": 767,
   "directories": [
     ".",
     ".claude/hooks",
@@ -29,6 +29,7 @@
     ".skilled/commands/design/assets",
     ".skilled/commands/doctor/assets",
     ".skilled/commands/doctor/scripts",
+    ".skilled/commands/doctor/scripts/lib",
     ".skilled/commands/scripts",
     ".skilled/commands/speckit/assets",
     ".skilled/hooks",
@@ -376,6 +377,7 @@
     ".skilled/skills/sk-code/sk-code-quality/scripts",
     ".skilled/skills/sk-code/sk-code-quality/scripts/hooks",
     ".skilled/skills/sk-code/sk-code-quality/scripts/lib",
+    ".skilled/skills/sk-code/sk-code-quality/scripts/lib/comment_hygiene",
     ".skilled/skills/sk-code/sk-code-review",
     ".skilled/skills/sk-code/sk-code-review/benchmark/reports",
     ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-07-10--live-mode-b--live",
