@@ -1036,7 +1036,7 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
 
 ## 11. ⌨️ COMMAND LIBRARY
 
-40 commands: 37 in six groups plus three utilities. Each one is a Markdown file under `.skilled/commands/`, and most hand their steps to a YAML workflow beside it.
+39 commands: 38 in six groups plus one utility. Each one is a Markdown file under `.skilled/commands/`, and most hand their steps to a YAML workflow beside it.
 
 #### SPEC KIT
 
@@ -1294,10 +1294,6 @@ Eleven commands check and repair the setup, one per area.
 
 - Binds the OpenCode session goal to a packet's `goal.md`, or sets a plain objective the agent keeps working toward across turns
 - Claude Code and Codex use their built-in `/goal` instead. See [Goal Plugin](#goal-plugin) above for the full contract
-
-**`/vision`**
-
-- On-device read of your latest image: scene, caption and exact OCR, or a direct answer, with no model switch
 
 &nbsp;
 

@@ -69,7 +69,7 @@ const ROOT_GROUP = 'root';
 // one. The same grammar the metadata schema enforces.
 const COMMAND_ID_RE = /^\/[a-z][a-z0-9-]*(:[a-z][a-z0-9-]*)?$/;
 
-// Namespaced command ids mentioned in prose. Root-form ids (/vision) are not
+// Namespaced command ids mentioned in prose. Root-form ids (/goal-opencode) are not
 // scanned for orphans: a bare slash-word is too easily a path or a fragment, and
 // a false orphan trains the reader to ignore this output.
 const NAMESPACED_MENTION_RE = /\/[a-z][a-z0-9-]*:[a-z][a-z0-9-]*/g;
