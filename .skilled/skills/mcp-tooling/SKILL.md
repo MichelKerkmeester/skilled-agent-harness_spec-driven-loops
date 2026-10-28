@@ -1,17 +1,17 @@
 ---
 name: mcp-tooling
-description: "Parent hub for nine MCP tool bridges: five workflow modes and four read-only design transports routed by workflowMode."
+description: "Parent hub for eight modes: five workflow modes and three read-only design transports routed by workflowMode."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.8.9.0
+version: 1.9.0.0
 metadata:
   family: mcp
 ---
 
-<!-- Keywords: mcp-tooling, mode-registry, hub-router, workflowMode, packetKind, transport-axis, mcp-chrome-devtools, chrome-devtools, cdp, browser-debugger-cli, bdg, mcp-click-up, clickup, cupt, task-management, mcp-obsidian, obsidian, obsidian-vault, notesmd-cli, obsidian-mcp, note-management, markdown-notes, mcp-aside-devtools, aside, aside-browser, agentic-browser, aside-mcp, mcp-notion, notion, notion-mcp, notion-api, mcp-refero, refero, mcp-mobbin, mobbin, app-design-research, mcp-figma, figma-cli, figma-ds-cli, figma-desktop, mcp-magicpath, magicpath, magicpath-ai, mcp-code-mode, mcp-tooling smart routing, mcp tool bridge surface router, mcp tool leaf routing, mcp tool bridge resource map -->
+<!-- Keywords: mcp-tooling, mode-registry, hub-router, workflowMode, packetKind, transport-axis, mcp-chrome-devtools, chrome-devtools, cdp, browser-debugger-cli, bdg, mcp-click-up, clickup, cupt, task-management, mcp-obsidian, obsidian, obsidian-vault, notesmd-cli, obsidian-mcp, note-management, markdown-notes, mcp-aside-devtools, aside, aside-browser, agentic-browser, aside-mcp, mcp-notion, notion, notion-mcp, notion-api, mcp-refero, refero, design-reference, mcp-mobbin, mobbin, app-design-research, mcp-figma, figma-cli, figma-ds-cli, figma-desktop, mcp-code-mode, mcp-tooling smart routing, mcp tool bridge surface router, mcp tool leaf routing, mcp tool bridge resource map -->
 
 # MCP Tooling Hub (mcp-tooling)
 
-One skill, five workflow bridges, four read-only design transports, and one shared `family: mcp` identity. `mcp-tooling` is the public advisor-routable home for every MCP tool bridge in this repository. Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`. The hub holds no per-mode logic. Each mode keeps its contract in its packet.
+One skill, eight modes (five workflow bridges and three read-only design transports), and one shared `family: mcp` identity. `mcp-tooling` is the public advisor-routable home for every MCP tool bridge in this repository. Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`. The hub holds no per-mode logic. Each mode keeps its contract in its packet.
 
 `mcp-code-mode` remains the shared MCP execution substrate for the modes that use Code Mode. It is external infrastructure, not a hub member.
 
@@ -21,7 +21,7 @@ One skill, five workflow bridges, four read-only design transports, and one shar
 
 ## 1. WHEN TO USE
 
-Use this hub for any request that names one of its nine tool-bridge surfaces. The hub classifies the request, resolves a mode key, and loads the matching nested packet.
+Use this hub for any request that names one of its eight tool-bridge surfaces. The hub classifies the request, resolves a mode key, and loads the matching nested packet.
 
 | Mode | Kind | Use it for | Packet |
 |------|------|-----------|--------|
@@ -33,14 +33,13 @@ Use this hub for any request that names one of its nine tool-bridge surfaces. Th
 | **mcp-figma** _(transport)_ | transport | Figma Desktop reads and explicit-path exports | `mcp-tooling/mcp-figma/` |
 | **mcp-refero** _(transport)_ | transport | Real-app web UI reference search through Refero MCP | `mcp-tooling/mcp-refero/` |
 | **mcp-mobbin** _(transport)_ | transport | Mobile app screen, flow, and UX pattern research through Mobbin MCP | `mcp-tooling/mcp-mobbin/` |
-| **mcp-magicpath** _(transport)_ | transport | MagicPath component and design-system lookup through its read-only UTCP CLI manual | `mcp-tooling/mcp-magicpath/` |
 
 ### When NOT to Use
 
 - A quick read or edit has no MCP tool-bridge need. Use the relevant skill directly.
 - Shared MCP execution infrastructure is needed without a vendor bridge. Use `mcp-code-mode` directly.
 - Chrome/CDP debugging belongs to `mcp-chrome-devtools`. Generic agentic browser work belongs to `mcp-aside-devtools`. Orca CLI work belongs to the standalone `cli-orca` skill.
-- A measured Style Reference belongs to `sk-design-md-generator` for Figma, Refero, and Mobbin material. MagicPath themes already provide named variables and fonts, so its transport pairs with `sk-design` for design judgment.
+- A measured Style Reference belongs to `sk-design-md-generator` for Figma, Refero, and Mobbin material.
 
 ---
 
@@ -66,8 +65,8 @@ The root `ROUTER.md` machine block keeps `INTENT_SIGNALS` and `RESOURCE_MAP` in 
 ## 3. TWO-AXIS MODEL
 
 - `packetKind: workflow` — `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, and `mcp-notion` can change workspace or external workflow state and use explicit safety gates.
-- `packetKind: transport` — `mcp-figma`, `mcp-refero`, `mcp-mobbin`, and `mcp-magicpath` bridge external read or export surfaces and remain `mutatesWorkspace:false` in this workspace.
-- Design transports never decide design on their own. Figma, Refero, and Mobbin pair with `sk-design-md-generator` for measured references. MagicPath themes already carry named variables and fonts, so its packet pairs with `sk-design` for judgment.
+- `packetKind: transport` — `mcp-figma`, `mcp-refero`, and `mcp-mobbin` bridge external read or export surfaces and remain `mutatesWorkspace:false` in this workspace.
+- Design transports never decide design on their own. Figma, Refero, and Mobbin pair with `sk-design-md-generator` for measured references.
 
 ---
 
@@ -97,7 +96,6 @@ mcp-tooling/
   mcp-figma/
   mcp-refero/
   mcp-mobbin/
-  mcp-magicpath/
 ```
 
 ### Companion metadata
@@ -110,7 +108,7 @@ mcp-tooling/
 
 ### Mode boundaries
 
-`mcp-magicpath` remains a read-only synchronous UTCP CLI transport. Its unregistered vendor write commands stay unreachable from the registered surface. Existing workflow and transport packets retain their own safety contracts.
+Existing workflow and transport packets retain their own safety contracts: workflow packets keep explicit gates and transport packets stay read-only.
 
 ---
 
@@ -148,4 +146,3 @@ mcp-tooling/
 - [`README.md`](README.md) — operator-facing hub overview.
 - [`manual-testing-playbook/manual-testing-playbook.md`](manual-testing-playbook/manual-testing-playbook.md) — live hub routing scenarios.
 - [`feature-catalog/feature-catalog.md`](feature-catalog/feature-catalog.md) — current capability inventory.
-- [`mcp-magicpath/SKILL.md`](mcp-magicpath/SKILL.md) — read-only vendor CLI transport contract.

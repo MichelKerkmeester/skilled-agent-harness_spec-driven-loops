@@ -5,7 +5,7 @@ description: "How .cursor derives from .skilled and .claude: symlinked agents an
 
 # Cursor CLI Sync Manifest
 
-> Almost everything Cursor consumes is a **symlink** onto a canonical file, so those mirrors cannot drift from their source. Authored in this directory: `hooks.json`, `rules/`, and the two native commands `commands/goal-cursor.md` and `commands/vision.md`, which have no canonical counterpart to point at.
+> Almost everything Cursor consumes is a **symlink** onto a canonical file, so those mirrors cannot drift from their source. Authored in this directory: `hooks.json`, `rules/`, and the native command `commands/goal-cursor.md`, which has no canonical counterpart to point at.
 
 ---
 

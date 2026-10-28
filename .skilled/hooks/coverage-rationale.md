@@ -99,10 +99,6 @@ Claude, Codex, Cursor and Devin run `shared/git-message-gate.mjs` through the ho
 **OpenCode and Pi run both `.sh` scripts too — one bundled into a session-start extension, one launched by a plugin — instead of a discrete folder per runtime.**
 Claude, Codex, Cursor and Devin each hold a relative symlink per script and wire it at SessionStart (`git-live-follow.sh --start`; `git-primary-reconcile.sh` detached in the background). Pi runs both inside `session-start-advisories.ts` via `ctx.exec()`; OpenCode launches both from its `session-cleanup` plugin. Hermes runs both as session-start guards in its `repo-guards` plugin. Not a coverage gap — a factoring artifact. The two scripts are the follow and converge legs of the same live-sync loop, so they share this rationale.
 
-### `sk-vision` — folder only on **devin**
-**Only Devin needs a prompt-time hook; the other runtimes either run the same runtime in process or read images natively.**
-Devin has no in-process plugin, so its hook injects `<SK-VISION EVIDENCE>` at `UserPromptSubmit`. OpenCode and Pi run the local runtime in process (plugin tools plus `input.images` auto-inspect); Cursor runs the CLI from its `/vision` command because it delivers no prompt-time event. Claude Code and Codex run vision-capable models that read images natively (the `Read` tool and `view_image`), so the runtime built for text-only models is not wired there. Hermes drives the same Devin adapter from its `pre_tool_call` guard.
-
 ### `git` (commit hooks) — **no runtime subfolders**
 **They fire from git itself, independent of any AI runtime.**
 `pre-commit`/`pre-push`/`commit-msg` install into `.git/hooks` (or `core.hooksPath`), so there is no per-runtime axis to populate.

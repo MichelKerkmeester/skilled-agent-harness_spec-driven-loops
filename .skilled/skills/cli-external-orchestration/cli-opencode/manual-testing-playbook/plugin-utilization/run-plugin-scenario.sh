@@ -14,7 +14,7 @@
 #                 in this checkout, gitignored, so two worktrees never share it)
 #   CFG_EXTRA     JSON merged into the inline config, e.g. an MCP server
 #   RUN_ALARM     whole seconds before the run is killed (default: 600)
-#   Any plugin switch (AI_SESSION_CHILD, SK_VISION_AUTOINSPECT, ...) passes through.
+#   Any plugin switch (AI_SESSION_CHILD, ...) passes through.
 #
 # Writes: <name>.<ver>.events.jsonl, .capture.jsonl, .effects.txt, .exit
 #

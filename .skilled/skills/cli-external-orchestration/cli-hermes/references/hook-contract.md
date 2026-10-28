@@ -9,7 +9,7 @@ trigger_phrases:
   - "hermes repo-guards plugin"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Hermes Hook Contract
@@ -37,7 +37,7 @@ Native plugins load from `./.hermes/plugins/<name>/` when `HERMES_ENABLE_PROJECT
 | Hermes hook | Repo guard core | Effect |
 |---|---|---|
 | `pre_llm_call` | skill advisor CLI; spec-gate classifier | Appends the advisor brief every turn and classifies the prompt for the Gate 3 spec-folder gate; the question itself is delivered at the first mutation, not on the turn; the classification is skipped for an orchestrated leaf |
-| `pre_tool_call` | self-dispatch refusal; read-only refusal; spec-gate enforcement; dispatch preflight lint; task-dispatch guard; MCP route guard; sk-git advisory; sk-vision | Refuses a nested `hermes chat`; refuses the write and command tools when `SPECKIT_HERMES_READ_ONLY=1`; blocks a `write_file` or `patch` the enforced spec gate has not been bound for yet; blocks a `cli-*` dispatch or a `delegate_task` the guards reject; stages the sk-git, MCP-route and vision advisories |
+| `pre_tool_call` | self-dispatch refusal; read-only refusal; spec-gate enforcement; dispatch preflight lint; task-dispatch guard; MCP route guard; sk-git advisory | Refuses a nested `hermes chat`; refuses the write and command tools when `SPECKIT_HERMES_READ_ONLY=1`; blocks a `write_file` or `patch` the enforced spec gate has not been bound for yet; blocks a `cli-*` dispatch or a `delegate_task` the guards reject; stages the sk-git and MCP-route advisories |
 | `transform_tool_result` | the Gate 3 notice for an un-enforced write; the staged advisories; post-edit quality | Appends the Gate 3 notice to the first write of an open-gate session, the staged advisories, and the post-edit quality warning for `write_file` and `patch` (the core runs here because post and transform hooks run on separate bounded threads) |
 | `on_session_start` | shared goal core | Binds the packet named by `HERMES_SPEC_FOLDER` to the session id |
 | `pre_verify` | completion-evidence stop | Returns a continue nudge when a completion claim names no evidence |

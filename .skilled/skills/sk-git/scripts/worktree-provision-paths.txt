@@ -24,10 +24,6 @@
 # that import a plugin fail on import.
 .opencode
 
-# sk-vision's runtime. The OpenCode plugin folder links its bundle, which bun
-# builds, so without it the sk-vision plugin test cannot import the plugin.
-.skilled/skills/sk-vision/vision-runtime  dist/plugin.js
-
 # Spec-kit, its shared library, and the two builds that the validation
 # orchestrator and the spec CLI are compiled into. Each build pulls in the
 # shared library through its project references. Without the runtime output,
@@ -72,9 +68,6 @@
 # other reader of this file sees a comment. List a path only when a build or install
 # restores it exactly. A database or a session-state folder can hold work that nothing
 # rebuilds, so neither belongs here.
-#
-# regenerable: .skilled/skills/sk-vision/hooks/opencode/sk-vision.js
-# The OpenCode adapter bundle that sk-vision's build writes beside its source.
 #
 # regenerable: .skilled/skills/system-spec-kit/.node-version-marker
 # The Node version stamp spec-kit's postinstall records.

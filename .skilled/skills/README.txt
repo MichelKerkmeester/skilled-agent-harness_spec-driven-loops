@@ -62,7 +62,6 @@ Each skill name links to its own README. One-line descriptions reflect current b
 | [`sk-git`](sk-git/README.md) | Git workflow in one skill: numbered worktrees, Conventional Commits, PRs, merge/rebase and finish |
 | [`sk-design-md-generator`](sk-design/sk-design-md-generator/README.md) | Extracts a live website's real, measured CSS into a v3 Style Reference DESIGN.md (named tokens, type scale, components, Quick Start CSS/Tailwind) — measured ground truth for sk-code to build against, plus a condensed general design-knowledge layer |
 | [`sk-prompt`](sk-prompt/README.md) | Prompt engineering: turns a request into a structured, scored prompt via 7 frameworks, DEPTH thinking and CLEAR scoring; owns the canonical CLI prompt-quality card |
-| [`sk-vision`](sk-vision/README.md) | Local vision for text-only coding models: grounded OCR, inspect, detect and pixel analysis from a private Moondream runtime |
 
 ### system-*: Deep Loops and the Runtime Foundation
 

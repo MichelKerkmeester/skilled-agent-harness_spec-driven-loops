@@ -1,7 +1,7 @@
 ---
 title: "HERMES-019 -- MCP code_mode reach"
 description: "Confirm a configured MCP server is reachable only when its name appears in the `-t` list, proving the toolset list gates MCP as well as built-in toolsets for `HERMES-019`."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # HERMES-019 -- MCP code_mode reach
@@ -71,7 +71,7 @@ cat neg.txt
 
 ### Recorded Result
 
-**Executed 2026-09-14, second pass** (`-t file,todo,code_mode`): enabled run exit 0 in 30 s (session `20260914_230102_cd03b6`), reporting ten tool names from `search_tools`, beginning `magicpath.inspect_component` and `magnific.magnific.flows_list`. Control on `-t file,todo` exit 0 in 25 s with exactly `NO_CODE_MODE` (session `20260914_230136_8b68fb`). Verdict PASS.
+**Executed 2026-09-14, second pass** (`-t file,todo,code_mode`): enabled run exit 0 in 30 s (session `20260914_230102_cd03b6`), reporting ten tool names from `search_tools`, among them `magnific.magnific.flows_list`. Control on `-t file,todo` exit 0 in 25 s with exactly `NO_CODE_MODE` (session `20260914_230136_8b68fb`). Verdict PASS.
 
 ---
 

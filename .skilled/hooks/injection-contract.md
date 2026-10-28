@@ -80,26 +80,6 @@ Do not stop to ask it now; ask it once when you are about to write, then continu
 - **Owning module:** `system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` (`classifyIntent` opens the gate; `evaluateMutation` composes `GATE_3_MUTATION_NOTICE`; `recordGate3NoticeDelivered` persists the once-per-session marker).
 - **Channel per runtime:** Claude/Codex/Devin `[SYS]` (`spec-gate-enforce.mjs` -> `additionalContext` on the first in-gate advise; a deny reason is `GATE_3_DENY_DETAIL`, which embeds the same notice). Cursor `[SYS]` (`agent_message` on advise, `user_message` on deny). OpenCode `[SYS]` (`system-spec-gate.js` pushes the deferral instruction through `experimental.chat.system.transform` once; its thrown deny reason carries `GATE_3_DENY_DETAIL`). Pi `[MSG]` only when the session has no UI (`spec-gate-classify.ts` appends the deferral instruction to the visible prompt); a dialog-capable Pi session gets an interactive dialog instead of any text, and its one blocked call carries the notice in the retry reason.
 
-### sk-vision Evidence (Devin / OpenCode / Pi)
-
-**Injects:** a `<SK-VISION EVIDENCE>` block carrying scene, caption and exact OCR for an image the prompt names, so a text-only model can answer about a picture it cannot see.
-
-```text
-<SK-VISION EVIDENCE>
-[SCENE] source: /path/to/error.png
-...
-[OCR] source: /path/to/error.png
-text:
-DEPLOY FAILED: exit code 137
-</SK-VISION EVIDENCE>
-```
-
-- **Trigger:** a user prompt naming an image path that resolves to a file on disk. A path that does not resolve produces nothing, deliberately, so a filename mentioned in passing never spins a local GPU.
-- **Owning module:** `.skilled/skills/sk-vision/hooks/devin/sk-vision.mjs`, over the shared core at `vision-runtime/src/evidence/prompt-evidence.ts`.
-- **Channel per runtime:** Devin `[SYS]` (`UserPromptSubmit` -> `hookSpecificOutput.additionalContext`). OpenCode and Pi carry the same runtime in process instead of through a hook: OpenCode's `sk-vision.js` plugin appends a text part to the user message on `chat.message` and exposes the 13 tools on OpenCode 1, and on OpenCode 2 it appends the same evidence to the prompt text through `session.hook("prompt")`, without the tools, and Pi's `sk-vision.ts` registers the same tools and appends the `<SK-VISION>` block onto the visible prompt on `input.images`. Cursor runs the CLI from its `/vision` command. Claude Code and Codex are not wired: both run vision-capable models that read images natively (the `Read` tool and `view_image`), so the runtime built for text-only models adds nothing there.
-- **Why Cursor is absent:** a live probe against build `2026.09.02-c22c1a3` confirmed Cursor does not deliver `beforeSubmitPrompt`, with a `sessionStart` positive control firing on the same runs. Injection is impossible there, so Cursor's `/vision` command and always-apply rule invoke `vision-runtime/dist/vision-cli.js` instead. The same probe is why the two spec-kit hooks registered on that event are dormant.
-- **Kill-switch:** `SYSTEM_SK_VISION_DISABLED`, plus the master `SYSTEM_HOOKS_DISABLED`. Fail-open on every path, including an unbuilt runtime.
-
 ### Goal / Dist-Freshness Context (OpenCode only)
 
 **Injects:** active-goal guidance or a stale-dist warning, each bounded and each appended independently.

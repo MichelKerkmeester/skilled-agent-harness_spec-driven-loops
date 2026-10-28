@@ -153,21 +153,6 @@
       }
     },
     {
-      "id": "magicpath-single",
-      "prompt": "magicpath component",
-      "expectedAction": "route",
-      "expectedSelectionKind": "single",
-      "expectedModes": [
-        "mcp-magicpath"
-      ],
-      "gold": {
-        "expectedIntents": [
-          "mcp-magicpath"
-        ],
-        "expectedResources": []
-      }
-    },
-    {
       "id": "ambiguous-transport-bundle",
       "prompt": "refero mobbin",
       "expectedAction": "route",

@@ -46,17 +46,6 @@
     },
     {
       "leaves": [
-        "assets/utcp-magicpath-manual.md",
-        "references/credential-setup.md",
-        "references/design-authority.md",
-        "references/mutation-boundary.md",
-        "references/tool-surface.md"
-      ],
-      "packet": "mcp-magicpath",
-      "workflowMode": "mcp-magicpath"
-    },
-    {
-      "leaves": [
         "assets/utcp-mobbin-manual.md",
         "references/discovery-fixture-2026-07-16.json",
         "references/mcp-wiring.md",

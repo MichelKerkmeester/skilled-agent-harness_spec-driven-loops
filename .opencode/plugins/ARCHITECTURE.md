@@ -48,13 +48,13 @@ The dual-version proof was captured on 2026-10-19 on OpenCode 1.19.3 (`opencode`
                                   └──────────────────────────────┘
 ```
 
-The diagram shows the bridged plugins, every entry file except sk-vision. `sk-vision.js` exports its own `setup`, which registers its OpenCode 2 command without going through the bridge; with a kill switch set, that `setup` returns a no-op cleanup and registers nothing. It adds the prompt hook only when a project `/vision` template exists or auto-inspection is on (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:429-433`), and it adds the tools only with auto-inspection on (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:496-500`, Section 4).
+The diagram shows the bridged plugins. Every entry file in the folder is one.
 
 ---
 
 ## 2. PACKAGE TOPOLOGY
 
-`lib/` holds the modules the entry files import and `tests/` holds the regression suites. Every entry file except sk-vision builds its export with `dualPlugin(id, server)` from `lib/v2-bridge.js`, which puts `lib/` on their load path.
+`lib/` holds the modules the entry files import and `tests/` holds the regression suites. Every entry file builds its export with `dualPlugin(id, server)` from `lib/v2-bridge.js`, which puts `lib/` on its load path.
 
 ```text
 .opencode/plugins/
@@ -74,7 +74,6 @@ The diagram shows the bridged plugins, every entry file except sk-vision. `sk-vi
 ├── system-skill-advisor.js
 ├── system-spec-gate.js
 ├── system-speckit-completion.js
-├── sk-vision.js               # the one unbridged entry, a symlink to ../skills/sk-vision/vision-runtime/dist/plugin.js
 ├── lib/                       # shared modules the entry files import, never plugin sources
 │   ├── classifier-injection-screen-core.js
 │   ├── completion-sentinel-core.js
@@ -102,8 +101,6 @@ Allowed dependency direction:
 - `lib/ ──▶ shared cores under .skilled/skills/`
 - `tests/ ──▶ entry files and lib/`
 
-`sk-vision.js` builds from `.skilled/skills/sk-vision/vision-runtime/src/plugin.ts` and ships as the compiled bundle the symlink points to. Its source therefore sits outside this folder even though the loader discovers the file here.
-
 ---
 
 ## 3. CANONICAL FLOWS
@@ -121,7 +118,7 @@ Allowed dependency direction:
 
 ## 4. RUNTIME SUBSYSTEMS
 
-**Dual export.** `dualPlugin(id, server)` returns `{ id, server, setup }` (`lib/v2-bridge.js` (`dualPlugin`)) and leaves `server`, the v1 factory, unchanged. Every entry file except sk-vision builds its export with it. `sk-vision.js` instead builds its own `{ id: 'sk-vision', server, setup }` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:542`). Every default export therefore carries exactly the keys `id`, `server` and `setup`, and each host calls only its own entry.
+**Dual export.** `dualPlugin(id, server)` returns `{ id, server, setup }` (`lib/v2-bridge.js` (`dualPlugin`)) and leaves `server`, the v1 factory, unchanged. Every entry file builds its export with it. Every default export therefore carries exactly the keys `id`, `server` and `setup`, and each host calls only its own entry.
 
 **Hook mapping.** The bridge maps the v1 hook keys a factory returns onto OpenCode 2 registrations, driven by the `MAPPED_HOOKS` set (`lib/v2-bridge.js` (`MAPPED_HOOKS`)). The table is the full mapping.
 
@@ -151,8 +148,6 @@ The once-per-session events are `session.idle` and `session.compacted` (`lib/v2-
 
 **v1 client and tool-context adapters.** `createV1Client(ctx)` maps `session.messages`, `session.promptAsync` with queued delivery, `session.create`, `session.prompt` and `session.delete` onto the v2 session methods (`lib/v2-bridge.js` (`createV1Client`)), and a missing v2 method throws through `requireV2SessionMethod` (`lib/v2-bridge.js` (`requireV2SessionMethod`)). `toV1ToolContext` builds the per-call v1 tool context (`lib/v2-bridge.js` (`toV1ToolContext`)), where `abort` is the v2 signal, `directory` and `worktree` come from the location, `metadata(update)` calls `progress` and `ask` throws `ask is not available on OpenCode 2` (`lib/v2-bridge.js` (`toV1ToolContext`)). The client adapter has no `tui` member, so `client.tui.showToast` is unavailable to bridged plugins on OpenCode 2.
 
-**sk-vision's own path.** `sk-vision.js` skips the bridge and builds its own `{ id, server, setup }` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:542`). On OpenCode 1 its `server` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:164`) returns `command.execute.before`, which runs `/vision` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:188-190`), unless the plugin option `enabled: false` is set, in which case it returns only `dispose` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:174-176`). The same `dispose`-only result follows when `visionHooksEnabled()` is false (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:174-176`), and `setup` then registers nothing (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:379-380`). With `SK_VISION_AUTOINSPECT=1` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:179`) it also returns `event`, `chat.message`, the 13 `sk_vision_*` tools and `dispose` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:213-238`), with progress messages through `client.tui.showToast` when present (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:195-200`). On OpenCode 2, `createSetup` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:372`) registers the `vision` command through `ctx.command.transform` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:383`) and a `ctx.session.hook('prompt')` hook (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:433`) that expands the project `/vision` template and, with the flag on, adds image evidence to the prompt, where a model off the text-only list gets a 2-second grace and a listed text-only model waits for the full analysis (`.skilled/skills/sk-vision/vision-runtime/src/opencode/attachments.ts:51`, `.skilled/skills/sk-vision/vision-runtime/src/opencode/attachments.ts:96-101`). The 13 tools register through `ctx.tool.transform` after the prompt hook (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:496-500`), only with `SK_VISION_AUTOINSPECT=1` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:524`), a failed tool registration fails open and the model reaches the tools through OpenCode 2's code-mode `execute` tool.
-
 **Kill switches.** The master switch is `SYSTEM_HOOKS_DISABLED` (`.skilled/hooks/shared/hook-flags.cjs` (`MASTER_FLAG`)), with the older `MK_HOOKS_DISABLED` still honored (`.skilled/hooks/shared/hook-flags.cjs` (`MASTER_ALIASES`)), and a truthy value is `1`, `true`, `yes` or `on` (`.skilled/hooks/shared/hook-flags.cjs` (`isTruthy`)). The default per-concern name is `SYSTEM_<CONCERN>_DISABLED`, six concerns use another canonical name in `CONCERN_CANONICAL` (`.skilled/hooks/shared/hook-flags.cjs` (`CONCERN_CANONICAL`)) and older names survive in `LEGACY_ALIASES` (`.skilled/hooks/shared/hook-flags.cjs` (`LEGACY_ALIASES`)).
 
 | Concern | Canonical switch |
@@ -164,21 +159,21 @@ The once-per-session events are `session.idle` and `session.compacted` (`lib/v2-
 | `git-preflight` | `SK_GIT_PREFLIGHT_DISABLED` |
 | `post-edit-quality` | `SK_CODE_POST_EDIT_QUALITY_DISABLED` |
 
-`sk-git-message-gate.js` is the one plugin with no switch. `system-speckit-completion.js` uses the `completion` concern (`.opencode/plugins/system-speckit-completion.js:56`) and sk-vision the `sk-vision` concern (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:156`). `session-relaunch.js` is the one plugin that ships off: its concern sits in `DEFAULT_OFF` (`.skilled/hooks/shared/hook-flags.cjs` (`DEFAULT_OFF`)), so it runs only when a non-empty `SYSTEM_SESSION_RELAUNCH_OPENCODE_ENABLED` is truthy or, with that flag empty, `SYSTEM_SESSION_RELAUNCH_ENABLED` is (`.skilled/hooks/shared/hook-flags.cjs` (`runtimeEnableFlag`)). The kill switches above still win.
+`sk-git-message-gate.js` is the one plugin with no switch. `system-speckit-completion.js` uses the `completion` concern (`.opencode/plugins/system-speckit-completion.js:56`). `session-relaunch.js` is the one plugin that ships off: its concern sits in `DEFAULT_OFF` (`.skilled/hooks/shared/hook-flags.cjs` (`DEFAULT_OFF`)), so it runs only when a non-empty `SYSTEM_SESSION_RELAUNCH_OPENCODE_ENABLED` is truthy or, with that flag empty, `SYSTEM_SESSION_RELAUNCH_ENABLED` is (`.skilled/hooks/shared/hook-flags.cjs` (`runtimeEnableFlag`)). The kill switches above still win.
 
 ---
 
 ## 5. HOOK AND PLUGIN INTEGRATION
 
-Most entry files are transport adapters that translate OpenCode events into the shared policy cores under `.skilled/skills/` and `.skilled/hooks/`. `opencode-goal.js` is the exception: it implements the goal state machine and goal tools itself and shares only selected helpers. Every plugin except sk-vision calls its core inside the one v1 factory, so the same core serves the OpenCode 1 hooks and, through the bridge, the OpenCode 2 registrations. sk-vision calls its core from its own `server` and `setup` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:164`, `.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:535-540`). Nothing under `lib/` or `tests/` is a plugin source.
+Most entry files are transport adapters that translate OpenCode events into the shared policy cores under `.skilled/skills/` and `.skilled/hooks/`. `opencode-goal.js` is the exception: it implements the goal state machine and goal tools itself and shares only selected helpers. Every plugin calls its core inside the one v1 factory, so the same core serves the OpenCode 1 hooks and, through the bridge, the OpenCode 2 registrations. Nothing under `lib/` or `tests/` is a plugin source.
 
 Four capabilities have no OpenCode 2 equivalent:
 
 | Capability | OpenCode 2 status | Workaround or effect |
 |---|---|---|
-| Server-side toast | the v2 `Context` has no `tui` member and the event domain is subscribe-only | sk-vision's toast calls are skipped on v2 |
+| Server-side toast | the v2 `Context` has no `tui` member and the event domain is subscribe-only | a bridged plugin cannot show one on OpenCode 2 |
 | Agent `temperature` | no effect on 2.0.32 with the `openai-compatible` provider package, the only one tested | no effect observed on the one provider tested |
-| A global `command.execute.before` observer | v2 has none | sk-vision instead owns its command through `ctx.command.transform` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:383`) |
+| A global `command.execute.before` observer | v2 has none | a plugin that needs a command owns it through `ctx.command.transform` instead |
 | Tool `ask` inside a bridged tool | `ask` throws `ask is not available on OpenCode 2` (`lib/v2-bridge.js` (`toV1ToolContext`)) | a bridged plugin cannot raise a permission prompt |
 
 ### Adding a plugin
@@ -191,7 +186,7 @@ Four capabilities have no OpenCode 2 equivalent:
 6. Add the file to the inventory table and directory tree in `README.md` and to the topology in Section 2 here, and update the dated file count in both documents. The inventory in `tests/helpers/plugin-inventory.cjs` is the source of truth for which plugins the v2 suites cover.
 7. Run the plugin suite and both battery families.
 
-A plugin that needs an OpenCode 2 registration the bridge does not map, such as a command, skips steps 2 and 3. It default-exports its own `{ id, setup, server }` the way sk-vision does (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:542`), and it goes in `nativeDual` in `tests/plugin-inventory.json` with its reason, and its v2 check goes in `PLUGINS` in `tests/v2-hard-plugins.test.cjs`.
+A plugin that needs an OpenCode 2 registration the bridge does not map, such as a command, skips steps 2 and 3. It default-exports its own `{ id, setup, server }`, and it goes in `nativeDual` in `tests/plugin-inventory.json` with its reason, and its v2 check goes in `PLUGINS` in `tests/v2-hard-plugins.test.cjs`.
 
 ---
 
@@ -205,11 +200,11 @@ node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2
 
 **Plugin suite.** The first command runs every suite under `tests/`, including the three v2 suites and the inventory test. It passed 397 of 397 on main at `8c9a14bd59` on 2026-10-20, before the inventory test was added, and the v2 suites cover every plugin file the inventory finds. After the bridge gained tool aliases, the session announcement and the inbox mapping it passed 453 of 453 on 2026-10-20.
 
-**Purity test.** `.skilled/skills/system-spec-kit/runtime/tests/opencode-plugins-folder-purity.vitest.ts` imports every entry file, symlinks included. For `sk-vision.js` it first checks that the link is relative, stays inside the repository and resolves to a built bundle, then applies the same export contract as any other entry. Spec-Kit Check builds the sk-vision bundle with bun before it runs the test, because the bundle is a build output git ignores.
+**Purity test.** `.skilled/skills/system-spec-kit/runtime/tests/opencode-plugins-folder-purity.vitest.ts` imports every entry file, symlinks included. For a symlinked entry it first checks that the link is relative, stays inside the repository and resolves to a built bundle, then applies the same export contract as any other entry.
 
 **Doctor battery.** The next two commands check both versions, and the v2 run starts a private server on its own port. On 2026-10-19, after main added `session-relaunch.js`, the battery discovered all 17 plugin files on OpenCode 1.19.3 and reported all 17 active on OpenCode 2.0.32. In a worktree nested inside another checkout, OpenCode 2 also loads the outer checkout's plugin folder, so the battery's v2 read turns that walk off with `OPENCODE_CONFIG_PROJECT_DISABLE=1`, sets `OPENCODE_CONFIG_DIR` to the root's own `.opencode`, and names each outer folder in an `isolated:` line of the plugin-active result. A plain checkout and CI keep OpenCode 2's normal discovery.
 
-**CI workflow.** `.github/workflows/opencode-dual-version.yml` runs the battery per family plus a job with both versions installed, on pushes and pull requests to `main` and `skilled/**` that touch the plugin, sk-vision, agent or dispatch-hook trees, the package manifests and lockfiles, the battery script and its test, the config-shape test, `opencode.json` or the workflow itself. Each job first puts the pinned `bun` 1.3.9 on `PATH` and provisions every dependency tree the plugins import, including the sk-vision bundle. The first run with all three jobs green was on main at `793b50ccbf` on 2026-10-19. The runs before it failed at the sk-vision bundle build or the battery step.
+**CI workflow.** `.github/workflows/opencode-dual-version.yml` runs the battery per family plus a job with both versions installed, on pushes and pull requests to `main` and `skilled/**` that touch the plugin, agent or dispatch-hook trees, the package manifests and lockfiles, the battery script and its test, the config-shape test, `opencode.json` or the workflow itself. Each job first provisions every dependency tree the plugins import. The first run with all three jobs green was on main at `793b50ccbf` on 2026-10-19.
 
 ---
 
@@ -219,7 +214,6 @@ node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2
 |---|---|---|
 | ADR-001 | One default export `{ id, setup, server }` per plugin file rather than an env-selected entry | Accepted |
 | ADR-002 | The v1 factory stays the single implementation and `setup` is derived by the bridge | Accepted |
-| ADR-003 | sk-vision builds its own `setup` instead of using the bridge | Accepted |
 | ADR-004 | Hook keys the bridge cannot map are skipped and reported, not failed | Accepted |
 
 ### Known limits
@@ -239,6 +233,5 @@ node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2
 - [tests/README.md](./tests/README.md): the regression suite index.
 - [lib/v2-bridge.js](./lib/v2-bridge.js): the dual export builder and hook mapping.
 - [hook-flags.cjs](../../.skilled/hooks/shared/hook-flags.cjs): the kill-switch resolver.
-- [plugin.ts](../../.skilled/skills/sk-vision/vision-runtime/src/plugin.ts): the sk-vision source, built into the `sk-vision.js` bundle.
 - [opencode-dual-version.yml](../../.github/workflows/opencode-dual-version.yml): the dual-version CI workflow.
 - [opencode-version-battery.cjs](../../.skilled/commands/doctor/scripts/opencode-version-battery.cjs): the doctor battery.

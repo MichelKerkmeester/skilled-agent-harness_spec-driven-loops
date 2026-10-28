@@ -43,7 +43,6 @@
 .skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook
 .skilled/skills/sk-git/manual-testing-playbook
 .skilled/skills/sk-prompt/manual-testing-playbook
-.skilled/skills/sk-vision/manual-testing-playbook
 .skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook
 .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook
 .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook

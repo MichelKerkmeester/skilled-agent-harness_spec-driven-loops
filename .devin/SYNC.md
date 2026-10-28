@@ -130,7 +130,7 @@ A command missing from `devin skills list` while present on disk is almost alway
 ## 8. KNOWN GAPS
 
 - **`hooks.v1.json` is hand-authored and unmirrorable.** Its event set is genuinely different — `PermissionRequest` and `PostCompaction` exist nowhere else.
-- **`mcp_config.json` is Devin's own file.** It was a symlink into `sk-vision` while that skill shipped an MCP server, which meant a vision skill owned Devin's entire MCP configuration including `code_mode`. Retiring that server moved ownership here, matching the resolution Cursor reached earlier for the same reason.
+- **`mcp_config.json` is Devin's own file.**
 - **No strict-YAML gate.** Nothing blocks a colon-bearing unquoted `description:` from being committed to a canonical file; it only surfaces as a silently missing command in Devin.
 - **`PostCompaction` has never been observed firing.** It needs a session long enough to trigger real compaction, which a scenario-sized dispatch cannot force.
 - **`PermissionRequest` is inert under `bypass`**, the mode this repo uses. Documented rather than worked around, because `PreToolUse` still covers the guard path.

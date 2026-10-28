@@ -83,7 +83,7 @@ The hermetic suite reported 18 of 18 tests, the fourteen matrix cells plus three
 Two product defects, both in the Hermes project plugin and both fixed and re-verified live in this pass:
 
 - Three advisories were computed in `pre_tool_call` and stashed under an exact string key for `transform_tool_result` to pop. The hand-off does not survive a live session, so the sk-git advisory never reached the terminal result. All three now compute inside the transform hook and the staging dict is gone.
-- The sk-vision core ran on `pre_tool_call`, the one hook Hermes fails closed on timeout, while needing about 12.5 s against a 15-second budget. It now runs on the fail-open transform hook with its own 25-second budget.
+- The vision core ran on `pre_tool_call`, the one hook Hermes fails closed on timeout, while needing about 12.5 s against a 15-second budget. It now runs on the fail-open transform hook with its own 25-second budget.
 
 Two documentation claims were false and are corrected: `hermes skills list` does enumerate the project skills, and a quarantined copy is not reachable through `-s`. Two scenarios could not fail honestly and were rewritten: `HERMES-022`'s control self-heals, and `HERMES-014` never created the condition its rule reports on.
 

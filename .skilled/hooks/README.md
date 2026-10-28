@@ -62,7 +62,6 @@ This table is the single source of truth for repo-authored hook kill-switch name
 | `primary-reconcile` | `SYSTEM_PRIMARY_RECONCILE_DISABLED` | none | enabled | reconcile | wired |
 | `dist-freshness` | `SYSTEM_DIST_FRESHNESS_DISABLED` | none | enabled | warn / rebuild | wired |
 | `session-cleanup` | `SYSTEM_SESSION_CLEANUP_DISABLED` | none | enabled | teardown | wired |
-| `sk-vision` | `SYSTEM_SK_VISION_DISABLED` | none | enabled | inject | wired |
 | `hook-install` | `SYSTEM_HOOK_INSTALL_DISABLED` | none | enabled | cleanup / check | wired |
 | `git-commit-hooks` | `SYSTEM_GIT_COMMIT_HOOKS_DISABLED` | none | enabled | deny | wired |
 | `injection-screen` | `SYSTEM_INJECTION_SCREEN_DISABLED` | `JEV_FEATURE_INJECTION_SCREEN=0` and `JEV_FEATURES=0` (Jev feature switches, read the other way round) | enabled when a Jev credential is stored | inject (advisory) | wired |
@@ -294,7 +293,6 @@ Beyond the guard-core concerns above, the hub also indexes every remaining repo-
 | `session-cleanup` | claude, codex, cursor, devin + opencode plugin + hermes plugin | `.skilled/scripts/session-cleanup.sh`, `.skilled/plugins/session-cleanup.js` |
 | `hook-install` | claude, cursor, devin (Codex's user-global file is the cleanup target) | `.skilled/bin/install-codex-hooks.mjs` |
 | `dist-freshness` (per-runtime `.sh`) | claude, codex, cursor, devin + hermes plugin | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` |
-| `sk-vision` | devin + opencode plugin + pi extension + hermes plugin, cursor runs the CLI from `/vision`, and claude and codex read images natively | `.skilled/skills/sk-vision/hooks/devin/sk-vision.mjs` |
 
 Each runtime's `session-lifecycle/` and `skill-advisor/` subfolders also carry the deployed `.js` entrypoint alongside its `.ts` source: a relative symlink into `system-spec-kit`'s built `dist/hooks/`, so the actually-executed file is browsable too. Those dist symlinks resolve after a build, exactly like the deployed `.<runtime>/hooks/*.js` symlinks the runtimes already use.
 

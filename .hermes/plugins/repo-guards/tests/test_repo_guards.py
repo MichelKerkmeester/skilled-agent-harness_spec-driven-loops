@@ -946,45 +946,6 @@ class RepoGuardsTests(unittest.TestCase):
                 self.assertEqual(run.call_count, 1, answer)
                 self.assertEqual(run.call_args[0][0][2], "show", answer)
 
-    def test_vision_advisory_reaches_the_result_under_the_image_path(self):
-        seen = {}
-
-        def fake_core(script, payload, timeout=None):
-            seen["script"] = script
-            seen["payload"] = payload
-            seen["timeout"] = timeout
-            return {"hookSpecificOutput": {"additionalContext": "sk-vision: zoom the error text and OCR it"}}
-
-        args = {"image_url": "screens/error.png", "question": "what failed?"}
-        with mock.patch.object(self.plugin, "_run_core", side_effect=fake_core):
-            out = self.plugin.transform_tool_result("vision_analyze", args, "native analysis")
-        self.assertEqual(out, "native analysis\n\nsk-vision: zoom the error text and OCR it")
-        self.assertEqual(seen["script"], self.plugin.SK_VISION)
-        self.assertEqual(seen["payload"], {"prompt": "screens/error.png", "cwd": os.getcwd()})
-        # The model call behind this core earns a budget of its own: it runs on the fail-open
-        # result hook rather than the one that blocks the tool on an overrun.
-        self.assertEqual(seen["timeout"], self.plugin.VISION_CORE_TIMEOUT_SECONDS)
-        self.assertGreater(self.plugin.VISION_CORE_TIMEOUT_SECONDS, self.plugin.CORE_TIMEOUT_SECONDS)
-
-    def test_vision_advisory_stays_quiet_when_the_core_stays_silent_or_fails(self):
-        args = {"image_url": "screens/error.png", "question": "what failed?"}
-        with mock.patch.object(self.plugin, "_run_core", return_value={"hookSpecificOutput": {}}):
-            self.assertIsNone(self.plugin.transform_tool_result("vision_analyze", args, "native analysis"))
-        with mock.patch.object(self.plugin, "_run_core", side_effect=RuntimeError("boom")):
-            self.assertIsNone(self.plugin.transform_tool_result("vision_analyze", args, "native analysis"))
-        # The blocking pre hook spends nothing on a core whose answer is guidance.
-        with mock.patch.object(self.plugin, "_run_core") as core:
-            self.assertIsNone(self.plugin.pre_tool_call("vision_analyze", args, session_id="s3"))
-            core.assert_not_called()
-
-    def test_vision_call_without_an_image_never_reaches_the_core(self):
-        with mock.patch.object(self.plugin, "_run_core") as core:
-            self.assertIsNone(self.plugin.pre_tool_call("vision_analyze", {"question": "what failed?"}))
-            self.assertIsNone(
-                self.plugin.transform_tool_result("vision_analyze", {"question": "what failed?"}, "native analysis")
-            )
-        core.assert_not_called()
-
     def test_injection_screen_advisory_reaches_the_fetched_page_result(self):
         seen = {}
 
@@ -1051,10 +1012,8 @@ class RepoGuardsTests(unittest.TestCase):
             self.assertIsNone(self.plugin.pre_tool_call("terminal", {"command": "devin -p x"}))
             self.assertIsNone(self.plugin.pre_tool_call("delegate_task", {"goal": "x"}))
             self.assertIsNone(self.plugin.pre_tool_call("acme_add_row", {"row": 1}))
-            self.assertIsNone(self.plugin.pre_tool_call("vision_analyze", {"image_url": "x.png"}))
             self.assertIsNone(self.plugin.transform_tool_result("write_file", {"path": "x"}, "wrote x"))
             self.assertIsNone(self.plugin.transform_tool_result("terminal", {"command": "git status"}, "clean"))
-            self.assertIsNone(self.plugin.transform_tool_result("vision_analyze", {"image_url": "x.png"}, "seen"))
             self.assertIsNone(self.plugin.transform_tool_result("acme_add_row", {"row": 1}, "added"))
             self.assertIsNone(self.plugin.transform_tool_result("delegate_task", {"goal": "x"}, "delegated"))
             self.assertIsNone(

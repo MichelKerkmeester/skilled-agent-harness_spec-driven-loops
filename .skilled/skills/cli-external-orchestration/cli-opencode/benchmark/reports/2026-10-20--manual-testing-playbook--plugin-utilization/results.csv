@@ -19,8 +19,8 @@ CO-048-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flas
 CO-048-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,FAIL,the shell tool is named shell; only the git commit-msg hook refused; HEAD unchanged
 CO-049-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,add-pathspec-matches-nothing advisory injected
 CO-049-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,FAIL,the shell tool is named shell; no advisory
-CO-050-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,sk_vision_status returned provider photon
-CO-050-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,sk_vision_status returned provider photon through execute
+CO-050-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,the vision status tool returned provider photon
+CO-050-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,the vision status tool returned provider photon through execute
 CO-051-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,advisory logged for the repeated completion claim
 CO-051-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,advisory logged for the repeated completion claim
 CO-052-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,refused the mode-mismatched deep-research dispatch

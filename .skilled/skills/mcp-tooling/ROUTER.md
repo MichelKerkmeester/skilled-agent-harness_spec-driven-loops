@@ -8,7 +8,7 @@ trigger_phrases:
   - "mcp tool bridge resource map"
 importance_tier: important
 contextType: general
-version: 1.8.5.0
+version: 1.8.6.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -21,8 +21,9 @@ This is mcp-tooling's second-layer (surface) router, first-class at the hub root
 as `ROUTER.md`. The hub selects a workflow
 mode in [`hub-router.json`](hub-router.json) (`mcp-chrome-devtools`,
 `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion`,
-`mcp-figma`, `mcp-refero`, `mcp-mobbin`, or `mcp-magicpath`); this doc maps a request's tool-bridge intent to the exact
-packet-local leaf resources that mode should load. Every path is
+`mcp-figma`, `mcp-refero`, or `mcp-mobbin`); this doc maps a request's
+tool-bridge intent to the exact packet-local leaf resources that mode
+should load. Every path is
 packet-qualified (`<packet>/references|assets/…`, where `<packet>` is the mode's
 `mode-registry.json` `packet` field) and converts to the canonical
 `(workflowMode, leafResourceId)` pair at the one contract boundary
@@ -63,10 +64,6 @@ emits leaf paths, and this router never re-decides the mode.
 - **mcp-mobbin leaves** — the Mobbin tool-surface catalog and the MCP-wiring
   guide a request to research mobile-app UX flows and design patterns from real
   iOS / Android apps loads.
-- **mcp-magicpath leaves** — the MagicPath tool-surface catalog and the
-  credential-setup guide a request to look up a MagicPath component or design
-  system loads. The transport ships no MCP server of its own, so the pair covers
-  what the UTCP cli manual exposes and the token it needs.
 
 A bare tool-bridge phrase that names no tool (e.g. "use the MCP tool bridge for
 this") names no mode, so it fires no intent and falls back to the hub default
@@ -100,7 +97,6 @@ INTENT_SIGNALS = {
     "FIGMA":           {"weight": 4, "keywords": ["figma", "figma cli", "figma-ds-cli", "figma desktop", "render in figma", "figma tokens", "extract design.md", "figma mcp", "figma daemon", "export from figma", "design file", "connect to figma", "figma variables", "figma export"]},
     "REFERO":          {"weight": 4, "keywords": ["refero", "refero mcp", "refero.design", "design reference search", "ui reference", "real app screens", "reference styles", "web products", "real app screen search", "ui screens from real apps", "design inspiration search", "user flow references"]},
     "MOBBIN":          {"weight": 4, "keywords": ["mobbin", "mobbin mcp", "app design research", "ux flow references", "mobile design patterns", "mobile ux research", "onboarding flow examples", "ios app examples", "phone apps", "real app ux patterns", "screen examples", "real app screenshots", "app screen gallery", "design pattern research"]},
-    "MAGICPATH":       {"weight": 4, "keywords": ["magicpath", "magicpath ai", "magicpath component", "magicpath canvas", "magicpath design system", "magicpath.ai"]},
 }
 
 RESOURCE_MAP = {
@@ -136,10 +132,6 @@ RESOURCE_MAP = {
         "mcp-mobbin/references/tool-surface.md",
         "mcp-mobbin/references/mcp-wiring.md"
     ],
-    "MAGICPATH": [
-        "mcp-magicpath/references/tool-surface.md",
-        "mcp-magicpath/references/credential-setup.md"
-    ],
 }
 ```
 
@@ -157,4 +149,4 @@ RESOURCE_MAP = {
   first slice.
 - No keyword match is the hub's `defer` fallback: confirm the target tool
   (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-aside-devtools`, `mcp-notion`,
-  `mcp-figma`, `mcp-refero`, `mcp-mobbin`, or `mcp-magicpath`) before loading anything.
+  `mcp-figma`, `mcp-refero`, or `mcp-mobbin`) before loading anything.

@@ -1,6 +1,6 @@
 ---
 title: mcp-tooling
-description: "One advisor identity routes nine MCP tool bridges: five workflow modes and four read-only design transports."
+description: "One advisor identity routes eight MCP tool bridges: five workflow modes and three read-only design transports."
 trigger_phrases:
   - "chrome devtools"
   - "clickup task"
@@ -8,24 +8,23 @@ trigger_phrases:
   - "aside browser"
   - "notion mcp"
   - "figma cli"
-  - "magicpath components"
   - "mcp tool bridge"
-version: 1.8.3.0
+version: 1.8.4.0
 ---
 
 # mcp-tooling
 
-> One advisor identity routes nine MCP tool bridges through the right workflow packet: five workflow bridges and four read-only design transports.
+> One advisor identity routes eight MCP tool bridges through the right workflow packet: five workflow bridges and three read-only design transports.
 
 ## 1. AT A GLANCE
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Browser debugging, ClickUp, Obsidian, Aside, Notion, Figma Desktop, Refero, Mobbin, and MagicPath |
+| **Use it for** | Browser debugging, ClickUp, Obsidian, Aside, Notion, Figma Desktop, Refero, and Mobbin |
 | **Invoke with** | Plain-language tool-specific requests through the hub and its two-stage router |
-| **Routes to** | Nine packet directories via `mode-registry.json`, `hub-router.json`, and root `ROUTER.md` |
+| **Routes to** | Eight packet directories via `mode-registry.json`, `hub-router.json`, and root `ROUTER.md` |
 | **Workflow modes** | `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion` |
-| **Transport modes** | `mcp-figma`, `mcp-refero`, `mcp-mobbin`, `mcp-magicpath` |
+| **Transport modes** | `mcp-figma`, `mcp-refero`, `mcp-mobbin` |
 | **Produces** | External-tool evidence and state changes owned by the selected packet, with explicit safety boundaries |
 
 ---
@@ -52,7 +51,6 @@ The hub selects a `workflowMode` through `mode-registry.json` and `hub-router.js
 | [`mcp-figma`](./mcp-figma/README.md) | Figma Desktop transport through `figma-ds-cli`, with explicit-path local exports and design-reference handoff |
 | [`mcp-refero`](./mcp-refero/README.md) | Read-only real-app web UI reference search through Refero MCP |
 | [`mcp-mobbin`](./mcp-mobbin/README.md) | Read-only mobile app screen, flow, and UX pattern research through Mobbin MCP |
-| [`mcp-magicpath`](./mcp-magicpath/README.md) | Read-only MagicPath component, project, team, theme, and canvas lookup through the vendor CLI over a UTCP `cli` manual |
 
 ---
 
@@ -68,8 +66,6 @@ Mark the ClickUp task done and add a shipping note.
 Create a daily note in my Obsidian vault.
 
 Query my Notion roadmap data source for in-progress rows.
-
-Search MagicPath for the saved button component and show its source.
 ```
 
 The hub routes a browser/CDP request to Chrome and a generic agentic browser request to Aside. Orca CLI work is owned by the standalone `cli-orca` skill, which keeps a bare `orca` mention out of routing because unrelated OpenOrca model traffic and the GNOME screen reader share the token.
@@ -96,7 +92,7 @@ Workflow packets may change local or external workflow state. Their packet contr
 
 ### Transport modes
 
-Transport packets bridge external tool surfaces and remain `mutatesWorkspace:false` in this workspace. Figma, Refero, and Mobbin use `sk-design-md-generator` when measured design-reference extraction is required. MagicPath is different: its read-only theme data already includes named CSS variables and fonts, so it pairs with `sk-design` for design judgment. Its vendor write commands remain unregistered.
+Transport packets bridge external tool surfaces and remain `mutatesWorkspace:false` in this workspace. Figma, Refero, and Mobbin use `sk-design-md-generator` when measured design-reference extraction is required.
 
 ### Shared Code Mode
 
@@ -143,6 +139,5 @@ python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled
 | `sk-git` | Generic Git worktree, branch, and commit owner |
 | `cli-orca` | Orca CLI owner: managed worktrees, terminals, automations, publishing, and the embedded browser |
 | `sk-design-md-generator` | Measured-reference partner for Figma, Refero, and Mobbin |
-| `sk-design` | Design authority for MagicPath theme and component evidence |
 | `sk-code` | Consumes external-tool evidence as implementation input |
 | `sk-doc` | Documentation and nested-packet authoring precedent |

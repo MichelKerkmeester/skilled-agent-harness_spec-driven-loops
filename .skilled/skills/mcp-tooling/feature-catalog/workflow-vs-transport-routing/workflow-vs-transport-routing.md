@@ -1,19 +1,19 @@
 ---
 title: "Workflow-Vs-Transport Two-Axis Routing"
-description: "How the mcp-tooling hub scores and dispatches ten MCP-bridge packets across six workflow modes and four read-only transports."
+description: "How the mcp-tooling hub scores and dispatches eight MCP-bridge packets across five workflow modes and three read-only transports."
 trigger_phrases:
   - "workflow vs transport two-axis routing"
   - "mcp-tooling hub-router scoring"
-  - "mode-registry.json ten modes"
+  - "mode-registry.json eight modes"
   - "mcp-tooling smart routing"
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # Workflow-Vs-Transport Two-Axis Routing (mcp-tooling)
 
 ## 1. OVERVIEW
 
-`mcp-tooling` is registry-driven: `mode-registry.json` lists ten packets in one `modes[]` array, and `hub-router.json` decides whether a request resolves to a single mode, an ordered bundle, or deferred disambiguation.
+`mcp-tooling` is registry-driven: `mode-registry.json` lists eight packets in one `modes[]` array, and `hub-router.json` decides whether a request resolves to a single mode, an ordered bundle, or deferred disambiguation.
 
 The hub's discriminator is `packetKind`, which separates workflow packets that may change local or external workflow state from transports that only bridge an external design surface.
 
@@ -23,9 +23,9 @@ The hub's discriminator is `packetKind`, which separates workflow packets that m
 
 ### Two-Axis Model
 
-`packetKind: "workflow"` covers `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, and `mcp-notion`. `packetKind: "transport"` covers `mcp-figma`, `mcp-refero`, `mcp-mobbin`, and `mcp-magicpath`; all remain `mutatesWorkspace: false` in this workspace.
+`packetKind: "workflow"` covers `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, and `mcp-notion`. `packetKind: "transport"` covers `mcp-figma`, `mcp-refero`, and `mcp-mobbin`; all remain `mutatesWorkspace: false` in this workspace.
 
-Figma, Refero, and Mobbin use `sk-design-md-generator` when measured reference extraction is required. MagicPath theme evidence already carries named variables and fonts and therefore pairs with `sk-design` for design judgment. A transport never supplies the design verdict itself.
+Figma, Refero, and Mobbin use `sk-design-md-generator` when measured reference extraction is required. A transport never supplies the design verdict itself.
 
 ### Routing Rule
 
@@ -44,7 +44,7 @@ The router resolves to `single` for one dominant signal, `orderedBundle` for mul
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/mcp-tooling/SKILL.md` | Shared | States the two-axis model and packet boundaries. |
-| `.skilled/skills/mcp-tooling/mode-registry.json` | Shared | Declarative registry for all ten packets. |
+| `.skilled/skills/mcp-tooling/mode-registry.json` | Shared | Declarative registry for all eight packets. |
 | `.skilled/skills/mcp-tooling/hub-router.json` | Shared | Router signals, vocabulary classes, and tie-break policy. |
 | `.skilled/skills/mcp-tooling/ROUTER.md` | Shared | Stage-two leaf resource map. |
 

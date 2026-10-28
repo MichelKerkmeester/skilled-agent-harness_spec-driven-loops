@@ -6,8 +6,8 @@
 """
 Audit the total description-budget consumption across the authored skill,
 command and agent surfaces. The total is the authoring surface, not exactly
-the list Claude Code loads: it includes the runtime-exclusive commands
-goal-opencode.md and vision.md, which are never mirrored into .claude/commands.
+the list Claude Code loads: it includes the runtime-exclusive command
+goal-opencode.md, which is never mirrored into .claude/commands.
 
 Surfaces walked:
 - .skilled/skills/<name>/SKILL.md            (YAML frontmatter)

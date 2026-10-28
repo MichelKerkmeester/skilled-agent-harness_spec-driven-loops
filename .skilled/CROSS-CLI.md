@@ -33,13 +33,13 @@ A real file is therefore not automatically authored content — most of them are
 
 | Runtime | Reads from here | Symlinked | Generated | Authored only here |
 |---|---|---|---|---|
-| `.opencode/` | skills, commands, agents, plugins, hooks, bin, scripts, repo-rules | everything except the plugins: `skills`, `commands`, `agents`, `hooks`, `bin`, `scripts`, `repo-rules`, playbook | — | **`plugins/` (16, plus the `sk-vision.js` link)**, `package.json`, `package-lock.json`, `README.md` |
+| `.opencode/` | skills, commands, agents, plugins, hooks, bin, scripts, repo-rules | everything except the plugins: `skills`, `commands`, `agents`, `hooks`, `bin`, `scripts`, `repo-rules`, playbook | — | **`plugins/` (16)**, `package.json`, `package-lock.json`, `README.md` |
 | `.claude/` | skills, commands, agents, hooks | `skills`, 38 commands, 27 hooks, `repo-rules`, playbook, `.utcp_config.json` | — | **`agents/` (11 forked)**, `agents/Explore.md`, `agents/README.txt`, `mcp.json`, `settings.json`, `statusline-command.sh` |
 | `.codex/` | agents, prompts, hooks | 22 hooks, `repo-rules`, playbook | `agents/` (11 TOML), `prompts/` (38) | `config.toml`, `hooks.json` |
 | `.cursor/` | agents, commands, rules, hooks | `agents/` (11), 38 commands, 22 hooks, 1 rule, `repo-rules`, playbook | — | `hooks.json`, `mcp.json`, `rules/skill-routing.md`, 2 commands |
 | `.devin/` | agents, skills, hooks | `agents/*/AGENT.md` (11), `skills`, 25 hooks, `repo-rules`, playbook | — | `config.json`, `hooks.v1.json`, `mcp_config.json` |
-| `.hermes/` | skills, plugins | `agents`, `repo-rules`, playbook | `skills/` (68 copies), `prompts/` (38) | `plugins/` (1: `repo-guards`) |
-| `.pi/` | agents, prompts, skills, extensions | `skills`, 19 extensions plus one shared adapter under `extensions/lib/`, `repo-rules`, playbook | `agents/` (11), `prompts/` (38) | `models.json`, `settings.json`, `mcp.json`, `PLUGINS.md`, `custom-providers.md`, `statusline.sh`, `prompts/goal-pi.md`, `prompts/vision.md`, `extensions/README.md`, `extensions/lib/README.md`, `pi-blackhole-config.json`, `pi-cache-optimizer-config.json`, `types/`, `npm/`, `git/`, 2 authored extension directories (pi-cache-optimizer, pi-fast-mode-w-subagent-support) |
+| `.hermes/` | skills, plugins | `agents`, `repo-rules`, playbook | `skills/` (65 copies), `prompts/` (38) | `plugins/` (1: `repo-guards`) |
+| `.pi/` | agents, prompts, skills, extensions | `skills`, 18 extensions plus one shared adapter under `extensions/lib/`, `repo-rules`, playbook | `agents/` (11), `prompts/` (38) | `models.json`, `settings.json`, `mcp.json`, `PLUGINS.md`, `custom-providers.md`, `statusline.sh`, `prompts/goal-pi.md`, `extensions/README.md`, `extensions/lib/README.md`, `pi-blackhole-config.json`, `pi-cache-optimizer-config.json`, `types/`, `npm/`, `git/`, 2 authored extension directories (pi-cache-optimizer, pi-fast-mode-w-subagent-support) |
 
 Every runtime also authors its own `SYNC.md`, and every `hooks/` directory authors its own `README.md`. `.claude/settings.local.json` is a per-machine file that git ignores, so it is not part of the map.
 
@@ -47,7 +47,7 @@ Every runtime also authors its own `SYNC.md`, and every `hooks/` directory autho
 
 ## 3. WHY EACH ONE DIFFERS
 
-**`.opencode/` links almost everything** because its dialect *is* the authored dialect. Nothing needs translating, so nothing is copied. The exception is `plugins/`, which is authored here: the plugins are OpenCode's own extension surface, so no other runtime loads them, and `package.json` here supplies the plugin SDK's type definitions they reference. `.skilled/plugins` is one link back to this directory, so the older path still resolves. The plugin files are real files here, so they open where people read the repository; the one link inside is `sk-vision.js`, which points at the built bundle under `.skilled/skills/sk-vision/vision-runtime/dist/`.
+**`.opencode/` links almost everything** because its dialect *is* the authored dialect. Nothing needs translating, so nothing is copied. The exception is `plugins/`, which is authored here: the plugins are OpenCode's own extension surface, so no other runtime loads them, and `package.json` here supplies the plugin SDK's type definitions they reference. `.skilled/plugins` is one link back to this directory, so the older path still resolves. The plugin files are real files here, so they open where people read the repository.
 
 **`.opencode/` serves OpenCode 2 and OpenCode 1 from the same files.** Each plugin default-exports one `{ id, setup, server }` object: OpenCode 2 runs `setup`, which wraps the same `server` that OpenCode 1 runs, so 2.1.4 and 1.19.4 load the same 17 plugins. Both versions register every `*.md` file under a `commands/` folder as a command, at any depth, so markdown in `.skilled/commands/` that is not a command is named `.markdown`. In CI, the OpenCode Dual-Version Battery runs on both versions and OpenCode Plugin Tests runs the plugin unit tests.
 

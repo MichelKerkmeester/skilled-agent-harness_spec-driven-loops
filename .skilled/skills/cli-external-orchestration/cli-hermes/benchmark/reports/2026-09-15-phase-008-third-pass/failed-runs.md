@@ -21,7 +21,7 @@ Two separate causes, found one after the other. The first attempt used `--only .
 
 ### HERMES-029 — vision evidence (real defect, fixed)
 
-The first attempt returned `NO_EVIDENCE`. The sk-vision core makes a real vision-model call, about 12.5 s on its own against the plugin's 15-second core budget, so under concurrent load its advisory was lost. It also ran on `pre_tool_call`, the one hook Hermes fails closed on timeout, so a slow core risked blocking the vision tool outright rather than merely dropping guidance. The core now runs inside `transform_tool_result`, which fails open, on its own 25-second budget.
+The first attempt returned `NO_EVIDENCE`. The vision core makes a real vision-model call, about 12.5 s on its own against the plugin's 15-second core budget, so under concurrent load its advisory was lost. It also ran on `pre_tool_call`, the one hook Hermes fails closed on timeout, so a slow core risked blocking the vision tool outright rather than merely dropping guidance. The core now runs inside `transform_tool_result`, which fails open, on its own 25-second budget.
 
 ### HERMES-017 — skills listing (stale contract, corrected)
 

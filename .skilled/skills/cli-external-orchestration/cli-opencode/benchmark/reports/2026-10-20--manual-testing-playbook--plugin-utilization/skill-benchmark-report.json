@@ -327,29 +327,29 @@
     {
       "scenarioId": "CO-050-V1",
       "verdict": "PASS",
-      "reason": "sk_vision_status returned provider photon",
+      "reason": "the vision status tool returned provider photon",
       "stage": "plugin-utilization",
       "classKind": "manual",
       "providerModel": "llmgateway/deepseek-v4.1-flash",
       "variant": "high",
-      "plugin": "sk-vision",
+      "plugin": "vision",
       "openCode": "1.19.3",
       "evidence": [
-        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/sk-vision.v1.txt"
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/"
       ]
     },
     {
       "scenarioId": "CO-050-V2",
       "verdict": "PASS",
-      "reason": "sk_vision_status returned provider photon through execute",
+      "reason": "the vision status tool returned provider photon through execute",
       "stage": "plugin-utilization",
       "classKind": "manual",
       "providerModel": "llmgateway/deepseek-v4.1-flash",
       "variant": "high",
-      "plugin": "sk-vision",
+      "plugin": "vision",
       "openCode": "2.0.32",
       "evidence": [
-        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/sk-vision.v2.txt"
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/"
       ]
     },
     {

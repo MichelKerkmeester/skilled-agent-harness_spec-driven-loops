@@ -1,1 +1,0 @@
-../../.skilled/hooks/sk-vision/devin/sk-vision.mjs

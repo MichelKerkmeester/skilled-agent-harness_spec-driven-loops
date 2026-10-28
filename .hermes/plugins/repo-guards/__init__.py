@@ -40,7 +40,6 @@ SESSION_START = REPO_ROOT / ".skilled" / "skills" / "system-spec-kit" / "runtime
 SESSION_STOP = REPO_ROOT / ".skilled" / "skills" / "system-spec-kit" / "runtime" / "dist" / "hooks" / "devin" / "session-stop.js"
 GIT_PREFLIGHT_ADVISORY = REPO_ROOT / ".skilled" / "hooks" / "git-preflight" / "shared" / "git-preflight-advisory.mjs"
 GIT_MESSAGE_GATE = REPO_ROOT / ".skilled" / "hooks" / "git-message-gate" / "shared" / "git-message-gate.mjs"
-SK_VISION = REPO_ROOT / ".skilled" / "hooks" / "sk-vision" / "devin" / "sk-vision.mjs"
 POST_EDIT_QUALITY = (
     REPO_ROOT / ".skilled" / "hooks" / "post-edit-quality" / "devin" / "post-edit-quality.cjs"
 )
@@ -186,12 +185,6 @@ DEVIN_FETCH_TOOL = "webfetch"
 DELEGATE_TOOL = "delegate_task"
 DELEGATE_CORE_TOOL = "run_subagent"
 
-# Hermes's vision tool takes its image as `image_url` -- a URL, a local path or a data URL -- and
-# the shared vision core reads the image path from its prompt, so the guard payload carries the same
-# value the call did.
-VISION_TOOL = "vision_analyze"
-VISION_IMAGE_ARG = "image_url"
-
 # The fetched web text the injection screen reads arrives as a tool result and not as an argument,
 # so this bridge branches on the tool name alone; Hermes fetches a page with this one tool.
 WEB_EXTRACT_TOOL = "web_extract"
@@ -238,11 +231,8 @@ SELF_DISPATCH_MESSAGE = (
 
 # Bounded so a hung core cannot stall a tool call; the cores themselves finish in well under this.
 CORE_TIMEOUT_SECONDS = 15
-# The vision core answers through a model call and takes tens of seconds on a loaded machine, so it
-# carries a budget of its own rather than the one the verdict cores finish inside.
-VISION_CORE_TIMEOUT_SECONDS = 25
 # The injection screen answers through classifier calls over the fetched text, which take longer
-# than the verdict cores but well under the vision core's model call.
+# than the verdict cores, so it carries a budget of its own.
 INJECTION_SCREEN_TIMEOUT_SECONDS = 30
 # The adapter honors these too, but checking them here spares a switched-off session the parse of
 # every fetched page and a child process per fetch. The hook-flags file stays the adapter's to read.
@@ -342,19 +332,6 @@ def _mcp_route_advisory(tool_name: str, args: Dict[str, Any]) -> Optional[str]:
         return None
     payload = {"tool_name": tool_name, "tool_input": args, "cwd": os.getcwd()}
     context = _hook_output(_run_core(MCP_ROUTE_GUARD, payload)).get("additionalContext")
-    return context.strip() if isinstance(context, str) and context.strip() else None
-
-
-def _vision_image(args: Dict[str, Any]) -> Optional[str]:
-    """The image a Hermes vision call analyzes, or None when the argument names none."""
-    image = args.get(VISION_IMAGE_ARG)
-    return image if isinstance(image, str) and image.strip() else None
-
-
-def _vision_advisory(image: str) -> Optional[str]:
-    """The shared vision core's guidance for one image path, or None when it stays silent."""
-    payload = {"prompt": image, "cwd": os.getcwd()}
-    context = _hook_output(_run_core(SK_VISION, payload, VISION_CORE_TIMEOUT_SECONDS)).get("additionalContext")
     return context.strip() if isinstance(context, str) and context.strip() else None
 
 
@@ -539,9 +516,6 @@ def _result_advisory(tool_name: str, args: Dict[str, Any], session_id: str) -> O
     command = _command_of(tool_name, args)
     if command is not None:
         return _git_advisory(command)
-    if tool_name == VISION_TOOL:
-        image = _vision_image(args)
-        return _vision_advisory(image) if image is not None else None
     if tool_name == DELEGATE_TOOL:
         return _dispatch_advisory(args, session_id)
     return _mcp_route_advisory(tool_name, args)
@@ -556,7 +530,7 @@ def transform_tool_result(
 ) -> Optional[str]:
     """Append this call's advisory to its result: the Gate-3 notice for a write the session has
     not been asked about yet, the post-edit quality pass for a file write, the sk-git line for a
-    git command, the vision guidance for an image, the injection screen's warning for fetched web
+    git command, the injection screen's warning for fetched web
     text, the dispatch guard's notes for a delegated batch, or the MCP route guard for an external
     server's tool. None leaves the result as it came in, which is also what a silent or failing
     core does."""

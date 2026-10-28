@@ -59,11 +59,6 @@ const PLUGINS = [
       ['tool', 'transform'],
     ],
   },
-  {
-    name: 'sk-vision',
-    file: 'sk-vision.js',
-    registrations: [['command', 'transform']],
-  },
 ];
 
 after(() => {

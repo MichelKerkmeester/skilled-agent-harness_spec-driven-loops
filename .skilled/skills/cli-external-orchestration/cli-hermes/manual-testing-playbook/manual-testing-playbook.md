@@ -287,7 +287,7 @@ This category checks the plugin's system-prompt section surface, which is how th
 
 ---
 
-## 16. SKILLS AND PLUGINS (`HERMES-016..HERMES-018`, `HERMES-024`, `HERMES-025`, `HERMES-026`, `HERMES-027`, `HERMES-029`)
+## 16. SKILLS AND PLUGINS (`HERMES-016..HERMES-018`, `HERMES-024`, `HERMES-025`, `HERMES-026`, `HERMES-027`)
 
 This category covers project-skill preloading with its negative control, the deliberate absence of project rows from `hermes skills list`, and the plugin's self-dispatch refusal.
 
@@ -298,7 +298,6 @@ This category covers project-skill preloading with its negative control, the del
 - `HERMES-025`: [Task-dispatch guard blocks a mismatched delegation](skills-and-plugins/task-dispatch-guard-blocks-delegation.md)
 - `HERMES-026`: [MCP route guard stays silent for the Code Mode server](skills-and-plugins/mcp-route-guard-negative-control.md)
 - `HERMES-027`: [Session-start advisories reach the session prompt](skills-and-plugins/session-start-advisories-section.md)
-- `HERMES-029`: [Vision evidence appended to an image analysis](skills-and-plugins/vision-evidence-on-image-analysis.md)
 
 ---
 
@@ -394,7 +393,6 @@ No `feature-catalog/` package exists for `cli-hermes`, so no scenario carries a 
 - HERMES-025: [Task-dispatch guard blocks a mismatched delegation](skills-and-plugins/task-dispatch-guard-blocks-delegation.md)
 - HERMES-026: [MCP route guard stays silent for the Code Mode server](skills-and-plugins/mcp-route-guard-negative-control.md)
 - HERMES-027: [Session-start advisories reach the session prompt](skills-and-plugins/session-start-advisories-section.md)
-- HERMES-029: [Vision evidence appended to an image analysis](skills-and-plugins/vision-evidence-on-image-analysis.md)
 
 ---
 

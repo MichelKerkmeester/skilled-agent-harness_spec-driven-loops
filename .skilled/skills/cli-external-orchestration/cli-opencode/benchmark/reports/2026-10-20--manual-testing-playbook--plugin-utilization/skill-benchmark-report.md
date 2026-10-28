@@ -40,8 +40,8 @@ _Derived after the fact from this run's stored record, not written at run time._
 | `CO-048-V2` | `sk-git-message-gate` | 2.0.32 | FAIL | the shell tool is named shell; only the git commit-msg hook refused; HEAD unchanged |
 | `CO-049-V1` | `sk-git-preflight-advisory` | 1.19.3 | PASS | add-pathspec-matches-nothing advisory injected |
 | `CO-049-V2` | `sk-git-preflight-advisory` | 2.0.32 | FAIL | the shell tool is named shell; no advisory |
-| `CO-050-V1` | `sk-vision` | 1.19.3 | PASS | sk_vision_status returned provider photon |
-| `CO-050-V2` | `sk-vision` | 2.0.32 | PASS | sk_vision_status returned provider photon through execute |
+| `CO-050-V1` | `vision` | 1.19.3 | PASS | the vision status tool returned provider photon |
+| `CO-050-V2` | `vision` | 2.0.32 | PASS | the vision status tool returned provider photon through execute |
 | `CO-051-V1` | `system-completion-sentinel` | 1.19.3 | PASS | advisory logged for the repeated completion claim |
 | `CO-051-V2` | `system-completion-sentinel` | 2.0.32 | PASS | advisory logged for the repeated completion claim |
 | `CO-052-V1` | `system-deep-loop-guard` | 1.19.3 | PASS | refused the mode-mismatched deep-research dispatch |

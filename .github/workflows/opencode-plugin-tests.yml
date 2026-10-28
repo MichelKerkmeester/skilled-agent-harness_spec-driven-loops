@@ -3,7 +3,7 @@ name: OpenCode Plugin Tests
 # The OpenCode plugin suites under .opencode/plugins/tests ran in no workflow, so a
 # plugin regression, or a broken inventory or registration guard, reached main
 # unseen. The suites import the plugins, the shared hook libraries, compiled
-# spec-kit and advisor runtimes and the sk-vision bundle, and read skill, command
+# spec-kit and advisor runtimes and read skill, command
 # and Pi files to check what the plugins cite, so the job provisions every listed
 # tree and runs on any change under the three source roots, the runtime and spec
 # files the goal checks read, or the root files that tell a project checkout from
@@ -86,8 +86,7 @@ jobs:
           node-version: '22'
 
       # The suites import trees git ignores, so the repository's own worktree
-      # provisioning installs and builds every tree it lists, the sk-vision bundle
-      # among them.
+      # provisioning installs and builds every tree it lists.
       - name: Provision the dependency trees the plugin tests import
         uses: ./.github/actions/setup
         with:

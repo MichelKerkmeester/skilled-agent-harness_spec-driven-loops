@@ -50,7 +50,6 @@ const HOOKS = [
   { id: 'task-dispatch/claude fable', file: 'task-dispatch/claude/fable-subagent-guard.mjs', failOpen: '' },
   { id: 'git-preflight/shared', file: 'git-preflight/shared/git-preflight-advisory.mjs', failOpen: '' },
   { id: 'git-message-gate/shared', file: 'git-message-gate/shared/git-message-gate.mjs', failOpen: '' },
-  { id: 'sk-vision/devin', file: 'sk-vision/devin/sk-vision.mjs', failOpen: '{}' },
 ];
 
 // No kill-switch may leak in: a disabled hook exits at once without reading

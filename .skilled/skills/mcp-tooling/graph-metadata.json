@@ -8,14 +8,14 @@
       {
         "target": "mcp-code-mode",
         "weight": 0.7,
-        "context": "External cross-skill dependency: mcp-code-mode is the shared execution substrate for the nine Code Mode-backed members (mcp-chrome-devtools, mcp-click-up, mcp-obsidian, mcp-aside-devtools, mcp-notion, mcp-figma, mcp-refero, mcp-mobbin, and mcp-magicpath). mcp-code-mode serves consumers beyond this hub and is not a hub member."
+        "context": "External cross-skill dependency: mcp-code-mode is the shared execution substrate for the eight Code Mode-backed members (mcp-chrome-devtools, mcp-click-up, mcp-obsidian, mcp-aside-devtools, mcp-notion, mcp-figma, mcp-refero, and mcp-mobbin). mcp-code-mode serves consumers beyond this hub and is not a hub member."
       }
     ],
     "enhances": [
       {
         "target": "sk-code",
         "weight": 0.5,
-        "context": "Union of all nine mode contributions to sk-code implementation: browser debugging from mcp-chrome-devtools, task-management context from mcp-click-up, Obsidian vault and markdown-note context from mcp-obsidian, agentic-browser evidence from mcp-aside-devtools, Notion workspace and data-source context from mcp-notion, Figma exports from mcp-figma, and real-app UI reference research from mcp-refero and mcp-mobbin. mcp-magicpath supplies read-only component and design-system evidence."
+        "context": "Union of all eight mode contributions to sk-code implementation: browser debugging from mcp-chrome-devtools, task-management context from mcp-click-up, Obsidian vault and markdown-note context from mcp-obsidian, agentic-browser evidence from mcp-aside-devtools, Notion workspace and data-source context from mcp-notion, Figma exports from mcp-figma, and real-app UI reference research from mcp-refero and mcp-mobbin."
       }
     ],
     "siblings": [
@@ -115,9 +115,6 @@
     "app design research",
     "screen examples",
     "ux flow references",
-    "magicpath",
-    "magicpath ai",
-    "magicpath canvas",
     "obsidian",
     "obsidian vault",
     "notesmd-cli",
@@ -167,8 +164,6 @@
     "onboarding flow examples",
     "ios app examples",
     "phone apps",
-    "magicpath component",
-    "magicpath design system",
     "mcp tools",
     "console errors",
     "capture browser screenshots",
@@ -261,12 +256,7 @@
       "iconic",
       "iconic rulebook",
       "icon rules",
-      "icon automation",
-      "mcp-magicpath",
-      "magicpath",
-      "magicpath ai",
-      "magicpath component",
-      "magicpath canvas"
+      "icon automation"
     ],
     "key_topics": [
       "devtools",
@@ -460,7 +450,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "mcp-tooling is the single public advisor identity for nine MCP tool bridges: five workflow modes and four read-only design transports, folded into one parent hub. mcp-chrome-devtools routes developer-driven browser debugging through bdg and its Code Mode fallback. mcp-click-up routes ClickUp task management through cupt and the official MCP. mcp-obsidian routes vault and markdown-note management plus Iconic automation through its CLI and MCP lanes. mcp-aside-devtools drives generic agentic browser work. mcp-notion operates Notion through Code Mode and direct API gap fills. mcp-figma drives Figma Desktop, mcp-refero searches real shipped web-product references, mcp-mobbin researches mobile app patterns, and mcp-magicpath looks up components and design systems through a read-only UTCP CLI manual. Figma, Refero, and Mobbin pair with sk-design-md-generator for measured references, while MagicPath theme evidence pairs with sk-design for judgment. The nine Code Mode-backed members share mcp-code-mode as external infrastructure rather than dissolving that substrate into the hub.",
+    "causal_summary": "mcp-tooling is the single public advisor identity for eight MCP tool bridges: five workflow modes and three read-only design transports, folded into one parent hub. mcp-chrome-devtools routes developer-driven browser debugging through bdg and its Code Mode fallback. mcp-click-up routes ClickUp task management through cupt and the official MCP. mcp-obsidian routes vault and markdown-note management plus Iconic automation through its CLI and MCP lanes. mcp-aside-devtools drives generic agentic browser work. mcp-notion operates Notion through Code Mode and direct API gap fills. mcp-figma drives Figma Desktop, mcp-refero searches real shipped web-product references, and mcp-mobbin researches mobile app patterns. Figma, Refero, and Mobbin pair with sk-design-md-generator for measured references. The eight Code Mode-backed members share mcp-code-mode as external infrastructure rather than dissolving that substrate into the hub.",
     "source_docs": [
       "SKILL.md",
       "mode-registry.json",

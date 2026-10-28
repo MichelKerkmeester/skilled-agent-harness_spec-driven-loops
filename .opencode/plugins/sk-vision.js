@@ -1,1 +1,0 @@
-../skills/sk-vision/vision-runtime/dist/plugin.js

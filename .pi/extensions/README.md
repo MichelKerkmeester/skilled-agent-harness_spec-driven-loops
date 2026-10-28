@@ -26,7 +26,6 @@ trigger_phrases:
 | `lib/claude-hook-adapter.ts` | `.skilled/skills/system-spec-kit/runtime/hooks/pi/lib/` |
 | `prompt-advisor.ts` | `.skilled/skills/system-skill-advisor/hooks/pi/` |
 | `git-preflight-advisory.ts`, `git-message-gate.ts` | `.skilled/skills/sk-git/scripts/hooks/pi/` |
-| `sk-vision.ts` | `.skilled/skills/sk-vision/hooks/pi/sk-vision.ts` |
 | `goal-context.ts` | `.skilled/hooks/goal/pi/goal-context.ts` |
 
 Each file is a thin adapter: it registers a handler against one of Pi's lifecycle events (`pi.on(event, handler)`). `goal-context.ts` is the one exception to the adapter shape: it registers a command as well as lifecycle handlers, because Pi is the only runtime here where the goal surface is both an injection and a management command in the same extension. The 8 tool_call/tool_result/input adapters delegate to the same shared, runtime-neutral guard-core modules `cli-cursor`'s `hooks.json` and `cli-devin`'s `hooks.v1.json` already call. Four of the five session-lifecycle adapters (`session-start-context.ts`, `session-start-advisories.ts`, `session-stop-context.ts`, `session-compact-context.ts`) proxy into the Claude lifecycle-hook dist files under `system-spec-kit/runtime/dist/hooks/claude/` via `lib/claude-hook-adapter.ts` -- the same lifecycle owner devin and cursor already proxy into via their own runtime-specific `spawnSync` adapters, so state and transcript semantics never drift across runtimes. `prompt-advisor.ts` is the exception: it imports the compiled advisor lifecycle module (`system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js`) directly and calls `handleClaudeUserPromptSubmit()` in-process, because Pi awaits `input` handlers before agent processing begins and the old two-process `spawnSync` bridge blocked every send. Its visible contribution is lifecycle-deduped: the advisor brief and Pi dispatch reminder render in full on the first message and after `session_start`/`session_compact`, while a proven same-content repeat returns no transform and leaves the raw turn byte-identical (`SPECKIT_PI_DIRECTIVE_DEDUP`, default ON; `0`/`false`/`off` restores always-full). The separate tool-call preflight still enforces dispatch authorization on every turn. Every handler wraps its call in try/catch and fails open: a guard-core or lifecycle-bridge bug must never block or alter work it only observes. `git-message-gate.ts` is the one deliberate blocker beside the dispatch preflight: it returns `{ block: true, reason }` when the shared sk-git gate refuses a commit message, PR description or branch name, and it fails open only when the gate itself cannot load.
@@ -52,7 +51,6 @@ extensions/
 +-- session-compact-context.ts  # Rehydrates spec-folder continuity after a compaction
 +-- git-preflight-advisory.ts   # Warn-only git-outcome advisories on bash git commands
 +-- git-message-gate.ts         # Blocks a commit message, PR description or branch name that breaks the sk-git templates
-+-- sk-vision.ts                # Registers 13 sk_vision_* tools backed by the shared Python runtime
 +-- lib/
 |   `-- claude-hook-adapter.ts  # Pi-specific spawnSync proxy into the Claude lifecycle-hook dist files
 `-- README.md                   # (this file and lib/README.md are the only real files here; all *.ts are symlinks)
@@ -77,7 +75,6 @@ extensions/
 | `session-stop-context.ts` | `session_shutdown` (reason `quit`) | `system-spec-kit/runtime/dist/hooks/claude/session-stop.js` (via `lib/claude-hook-adapter.ts`) |
 | `prompt-advisor.ts` | `input` | `system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js` `handleClaudeUserPromptSubmit()` (in-process dynamic import); full first + boundaries, no transform on proven repeats (`SPECKIT_PI_DIRECTIVE_DEDUP`) |
 | `session-compact-context.ts` | `session_compact` | Native port of `system-spec-kit/runtime/hooks/devin/post-compaction.cjs`'s recovery chain (shared tmpdir state file) |
-| `sk-vision.ts` | `registerTool` (13 `sk_vision_*`); bounded `input.images` auto-inspect; `session_shutdown` | `.skilled/skills/sk-vision/hooks/pi/sk-vision.ts` — `session_shutdown` stops the Python runtime; `input.images` auto-injects `<SK-VISION>` evidence after a 2s grace window (extension-sourced traffic and mid-stream steers are passed through untouched) |
 
 Paths without a leading `.skilled/` are relative to `.skilled/skills/`. The four `.skilled/hooks/` cores are the fully-portable guard cores relocated out of their owning skill; see [`../../.skilled/hooks/README.md`](../../.skilled/hooks/README.md) for why those four moved and the rest did not.
 

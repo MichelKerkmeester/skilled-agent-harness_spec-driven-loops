@@ -1,1 +1,0 @@
-../../../skills/sk-vision/hooks/pi/sk-vision.ts

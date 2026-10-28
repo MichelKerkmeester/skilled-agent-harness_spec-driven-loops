@@ -47,7 +47,7 @@ This is **Phase 43** of the `system-speckit-v4` parent specification, focusing o
 - Authoring standards: `sk-create-readme` and `sk-create-with-human-voice` (HVR).
 
 **Deliverables**:
-- Refreshed root `README.md` with improved readability, zero empty FAQ items, correct agent roster (12 agents), complete 13-skill inventory (including `sk-vision` and `sk-communication`), properly unnested Git Worktree section, eliminated dated v3 references, and HVR punctuation compliance.
+- Refreshed root `README.md` with improved readability, zero empty FAQ items, correct agent roster (12 agents), complete 13-skill inventory (including `sk-communication`), properly unnested Git Worktree section, eliminated dated v3 references, and HVR punctuation compliance.
 - Completed Phase 43 spec packet with validated tasks, criteria, and implementation summary.
 
 **Changelog**:
@@ -66,7 +66,7 @@ The root `README.md` has accumulated structural inconsistencies, stale migration
 2. Two empty FAQ entries with questions and no answers (`How many MCP tools are there...` and `What is the feature catalog?`).
 3. Misplaced sections: `Git Worktree / Continuous Integration` is incorrectly nested as an H4 under `### 🔌 Code Mode MCP`, and a paragraph about `stress-test/` is dropped under `#### CREATE` commands.
 4. Duplicate agent listing: `Context Retrieval` is listed twice under different headings, causing 13 entries in a list introducing 12 agents.
-5. Incomplete skill listings: `sk-vision` and `sk-communication` are omitted from the skills library and stack customization tables despite being active shipped skills.
+5. Incomplete skill listings: `sk-communication` is omitted from the skills library and stack customization tables despite being an active shipped skill.
 6. Stale v3 migration residue: references to v3.3/v3.4 migrations, legacy `/doctor:mcp_install` notes, and dated remarks like "created after 2026-08-30".
 7. Heavy punctuation tells: over 70 semicolons in prose, numerous Oxford commas, and instances of blocked words violating Human Voice Rules.
 
@@ -88,7 +88,7 @@ Deliver a clean, scannable, authoritative root `README.md` reflecting current v4
 - Re-home `Git Worktree / Continuous Integration` to its own appropriate feature section.
 - Relocate the misplaced `stress-test/` note out of the create command section to runtime verification context.
 - Correct the agent network section to accurately reflect the 12 specialist agents without duplicate context entries.
-- Add `sk-vision` and `sk-communication` to the skills library and stack customization tables.
+- Add `sk-communication` to the skills library and stack customization tables.
 - Remove obsolete v3 migration bookkeeping and historical cutoff dates.
 - Clean up prose punctuation: replace semicolons and Oxford commas, eliminate word blockers like `harness` in prose.
 - Validate `README.md` using `validate_document.py` and run HVR scans.

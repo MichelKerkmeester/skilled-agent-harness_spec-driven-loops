@@ -5,9 +5,9 @@
 'use strict';
 
 // A few commands must live in exactly one runtime instead of being mirrored to
-// all of them. Goal and vision are per-runtime because each host reaches the
-// feature differently: OpenCode uses a plugin hook, Cursor and Devin use an MCP
-// tool, and Pi uses a hidden extension tool. Claude has no sk-vision integration.
+// all of them. The goal command is per-runtime because each host reaches the
+// feature differently: OpenCode uses a plugin hook, Cursor and Devin inject the
+// bound goal from a hook, and Pi registers a hidden extension tool.
 // OpenCode reads its native commands directly, while Claude receives filtered
 // mirrors and Cursor and Pi each own hand-authored runtime-native commands.
 //
@@ -18,15 +18,15 @@
 
 // Canonical .skilled/commands/ paths (relative to that root) that must NOT be
 // mirrored into any generated runtime tree.
-const CANONICAL_MIRROR_EXCLUDES = new Set(['goal-opencode.md', 'vision.md']);
+const CANONICAL_MIRROR_EXCLUDES = new Set(['goal-opencode.md']);
 
 // Real, hand-authored command entries a generator must leave in place — never
 // prune, never flag as a real-file-where-a-symlink-belongs. Keyed by the mirror
 // directory the generator writes into; the value is the entry basename (a file
 // for flat trees, a directory name for Devin's nested skill tree).
 const RUNTIME_NATIVE_COMMANDS = {
-  '.cursor/commands': new Set(['goal-cursor.md', 'vision.md']),
-  '.pi/prompts': new Set(['goal-pi.md', 'vision.md']),
+  '.cursor/commands': new Set(['goal-cursor.md']),
+  '.pi/prompts': new Set(['goal-pi.md']),
 };
 
 function isCanonicalMirrorExcluded(relativePath) {

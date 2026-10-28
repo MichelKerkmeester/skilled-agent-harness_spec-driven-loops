@@ -20,7 +20,7 @@ The current registration is live under `devin -p` when events are top-level arra
 |-------|-------|
 | Session lifecycle | `session-start.js`, `session-stop.js`, `user-prompt-submit.js`, `post-compaction.cjs`, `completion-evidence-stop.cjs`, `session-cleanup.sh`, `goal-inject.mjs` |
 | Spec and dispatch gates | `spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `task-dispatch-guard.cjs` |
-| Tool and quality adapters | `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `post-edit-quality.cjs`, `mcp-route-guard.cjs`, `permission-request-policy.mjs`, `sk-vision.mjs`, `classifier-injection-screen-posttooluse.mjs` |
+| Tool and quality adapters | `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `post-edit-quality.cjs`, `mcp-route-guard.cjs`, `permission-request-policy.mjs`, `classifier-injection-screen-posttooluse.mjs` |
 | Repository hygiene | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh`, `install-codex-hooks.mjs`, `git-preflight-advisory.mjs`, `git-message-gate.mjs`, `git-live-follow.sh`, `git-primary-reconcile.sh` |
 
 The three `.js` links target the spec-kit runtime's compiled `runtime/dist/` output. A fresh checkout must build that package before those links resolve.

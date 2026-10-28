@@ -78,7 +78,7 @@ The framework extends each runtime through plugins, hooks and extensions rather 
 - **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches, alongside `pi-fast-mode-w-subagent-support` for fast mode with subagent support
 - **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories - thin runtime adapters over shared policy cores in `.skilled/hooks/`
 
-Behind them: 14 on-demand skills, 40 command entry points and the Code Mode MCP server, each detailed in its own section below.
+Behind them: 13 on-demand skills, 40 command entry points and the Code Mode MCP server, each detailed in its own section below.
 
 &nbsp;
 
@@ -123,7 +123,7 @@ From request to documented result:
                  ▼                             ▼
          ┌───────────────┐          ┌──────────────────┐
          │ AGENT NETWORK │          │  SKILLS LIBRARY  │
-         │ 11 specialized│          │ 14 domain skills │
+         │ 11 specialized│          │ 13 domain skills │
          │ agents with   │◄────────►│ auto-loaded by   │
          │ routing logic │          │ task keywords    │
          └───────┬───────┘          └────────┬─────────┘
@@ -204,7 +204,7 @@ Another clone is checked only after `git config --local skilled.trustRepoHooks t
 
 ### Make It Yours
 
-Only `sk-code` carries stack-specific patterns, so start there when you fork. The other 13 skills work in any codebase, and the [customization guide](#customizing-for-your-stack) walks through adapting it. `/doctor:sk-code setup` then checks the result.
+Only `sk-code` carries stack-specific patterns, so start there when you fork. The other 12 skills work in any codebase, and the [customization guide](#customizing-for-your-stack) walks through adapting it. `/doctor:sk-code setup` then checks the result.
 
 Every setting has a working default. To change one, see [Environment Settings](#environment-settings), or run `/doctor:env`, which lists them all and saves a change after your yes.
 
@@ -726,7 +726,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 
 ## 8. 🧰 SKILL LIBRARY
 
-14 skills in `.skilled/skills/`. Gate 2 loads them on demand when the advisor matches a task (confidence >= 0.8 means the skill must be loaded). By default, no skills are excluded from advisor routing.
+13 skills in `.skilled/skills/`. Gate 2 loads them on demand when the advisor matches a task (confidence >= 0.8 means the skill must be loaded). By default, no skills are excluded from advisor routing.
 
 #### SYSTEM
 
@@ -812,7 +812,7 @@ When a decision needs a number rather than prose, this hub asks the hosted Jev c
 
 **`mcp-tooling`** - parent hub for MCP tool bridges
 
-One advisor identity routing to nine modes through `mode-registry.json`: five workflow modes (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion`) and four design transports (`mcp-figma`, `mcp-refero`, `mcp-mobbin`, `mcp-magicpath`).
+One advisor identity routing to eight modes through `mode-registry.json`: five workflow modes (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion`) and three design transports (`mcp-figma`, `mcp-refero`, `mcp-mobbin`).
 
 - **`mcp-chrome-devtools`:** drive a real Chrome browser, through the `bdg` CLI in the terminal or through MCP for multi-tool flows
 - **`mcp-click-up`:** manage ClickUp tasks through the `cupt` CLI for daily work and the official MCP for documents, search and chat
@@ -821,7 +821,6 @@ One advisor identity routing to nine modes through `mode-registry.json`: five wo
 - **`mcp-notion`:** work in a Notion workspace through the official Notion MCP, with direct API calls where the MCP falls short
 - **`mcp-figma` _(transport)_:** read, author and export Figma designs through Figma Desktop and the `figma-ds-cli`. Reads and exports run freely, while authoring and destructive commands are gated
 - **`mcp-refero` and `mcp-mobbin` _(transports)_:** read-only search of UI references and app screens and flows
-- **`mcp-magicpath` _(transport)_:** read-only lookup of components, projects and design systems through the `magicpath-ai` CLI
 
 &nbsp;
 #### DESIGN
@@ -855,11 +854,6 @@ One advisor identity routing to nine modes through `mode-registry.json`: five wo
 
 &nbsp;
 #### OTHER
-
-**`sk-vision`**
-
-- **Local vision for text-only models.** OCR, inspect, detect and pixel analysis on screenshots through a private Moondream runtime
-- **No keys, no cloud, no per-image cost:** OpenCode leaves the tools unregistered by default, Pi registers them hidden, Devin gets evidence through a prompt-time hook and Cursor runs the CLI
 
 **`cli-orca`** - Orca terminal CLI orchestrator
 
@@ -1034,7 +1028,7 @@ Hermes keeps shell hooks in your user-level config, so a repository cannot ship 
 
 - `goal`, `dispatch`, `spec-gate`, `completion`, `mcp-route-guard`, `permission-policy`, `post-edit-quality`, `classifier-injection-screen`
 - `git`, `git-hooks-check`, `git-preflight`, `git-message-gate`, `git-live-follow`, `git-primary-reconcile`, `git-worktree-guard`, `hook-install`
-- `session-cleanup`, `session-lifecycle`, `session-relaunch`, `sk-vision`, `skill-advisor`, `task-dispatch`, `directive-lifecycle`, `dist-freshness`, `codex-watchdog`, plus `shared` for the helpers they all use
+- `session-cleanup`, `session-lifecycle`, `session-relaunch`, `skill-advisor`, `task-dispatch`, `directive-lifecycle`, `dist-freshness`, `codex-watchdog`, plus `shared` for the helpers they all use
 
 The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which runtime runs each hook, and why a runtime that skips one cannot carry it. Codex runs a repository hook only after you approve that entry, so open `/hooks` after an update and approve every entry it lists as needing review. Its shell matchers name both `exec` and `Bash`, the tool's name from Codex 0.160 on.
 
@@ -1342,7 +1336,6 @@ Code Mode reads each key under its manual's name: the manual name with every und
 - **`github`** (MCP/stdio) - issues, pull requests, commits. Requires `github_GITHUB_PERSONAL_ACCESS_TOKEN`
 - **`webflow`** (MCP/stdio) - sites, CMS collections. Requires `webflow_WEBFLOW_TOKEN`
 - **`aside`**, **`mobbin`**, **`notion`**, **`obsidian`**, **`refero`** (MCP/stdio) - each backs the `mcp-tooling` mode of the same name
-- **`magicpath`** (CLI) - backs the `mcp-magicpath` mode
 - **`magnific`** and **`gitkraken`** (MCP/stdio) - registered with no mode packet of their own
 
 #### Performance
@@ -1421,10 +1414,6 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 
 - Prompt-engineering framework. Works for any project
 
-**`sk-vision`** - ✅ codebase-agnostic
-
-- Local OCR and image inspection through a private Moondream runtime. Works for any project
-
 **`cli-external-orchestration`** - ✅ codebase-agnostic
 
 - Parent hub for external CLI dispatch: routes to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes`. Stack-independent
@@ -1435,7 +1424,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 
 **`mcp-tooling`** - ✅ codebase-agnostic
 
-- Parent hub for nine MCP tool bridges, each described under [MCP Integration](#mcp-integration). Stack-independent
+- Parent hub for eight MCP tool bridges, each described under [MCP Integration](#mcp-integration). Stack-independent
 
 &nbsp;
 #### Adding Your Own Skills
@@ -1552,7 +1541,7 @@ Nothing to configure.
 
 &nbsp;
 
-**Q: Do I need all 14 skills installed to use the framework?**
+**Q: Do I need all 13 skills installed to use the framework?**
 
 No. Skills are loaded on demand by Gate 2, so you only need the ones relevant to your work.
 

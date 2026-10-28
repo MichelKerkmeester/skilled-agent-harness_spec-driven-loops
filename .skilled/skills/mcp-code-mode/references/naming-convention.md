@@ -9,7 +9,7 @@ trigger_phrases:
   - "namespace dot notation"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.10
+version: 1.0.1.0
 ---
 
 # Tool Naming Convention - Complete Guide
@@ -49,16 +49,16 @@ The prefixing rule this document describes applies to **`mcp` manuals only**.
 | `call_template_type` | Callable form | Example |
 |----------------------|---------------|---------|
 | `mcp` | `{manual}.{manual}_{tool}` — the prefix is added | `aside.aside_repl()` |
-| `cli` | `{manual}.{tool}` — the manual declares its own tool names, so there is nothing to prefix | `magicpath.info()` |
+| `cli` | `{manual}.{tool}` — the manual declares its own tool names, so there is nothing to prefix | `<manual>.<tool>()` |
 
 **❌ Wrong** — double-prefixing a `cli` manual:
 ```typescript
-await magicpath.magicpath_info({});   // throws
+await <manual>.<manual>_<tool>({});   // throws
 ```
 
 **✅ Correct:**
 ```typescript
-await magicpath.info({});
+await <manual>.<tool>({});
 ```
 
 **Why this one is missed.** Nearly every registered manual is `mcp`, so the exception is

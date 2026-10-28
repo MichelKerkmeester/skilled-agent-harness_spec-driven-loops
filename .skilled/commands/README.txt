@@ -28,9 +28,9 @@ Commands are organized into six groups plus root-level utilities:
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
 | **speckit** | `commands/speckit/` | 7 | Spec folder workflows (plan, implement, resume and complete), context save (save), lexical search (search) and the manual trigger for the session relaunch loop (handoff) |
-| **root** | `commands/` | 2 | Standalone `/goal-opencode` and `/vision` utilities |
+| **root** | `commands/` | 1 | Standalone `/goal-opencode` utilities |
 
-Standalone commands live at the root level: `goal-opencode.md` manages the passive session goal via the `opencode-goal` plugin, and `vision.md` reads your most recent image on-device. The prompt-improvement surface lives in the `prompt` group as `prompt/improve.md` (invoked `/prompt:improve`).
+Standalone commands live at the root level: `goal-opencode.md` manages the passive session goal via the `opencode-goal` plugin. The prompt-improvement surface lives in the `prompt` group as `prompt/improve.md` (invoked `/prompt:improve`).
 
 Each group's command count above is the number of command files in that folder. When a command is added, update the count and its row in section 4. A group whose file set outgrew this index is the failure mode this document has hit before.
 
@@ -49,7 +49,6 @@ This file is descriptive only. The executable contract for any workflow lives in
 ```text
 command/
 ├── goal-opencode.md          # Session-goal router for the opencode-goal plugin (OpenCode only)
-├── vision.md                 # On-device read of your most recent image
 ├── prompt/                   # Prompt engineering command group
 │   └── improve.md            # Canonical prompt improvement command (/prompt:improve)
 ├── create/                   # Component creation commands, see create/README.txt for the
@@ -174,7 +173,6 @@ Root commands have no group prefix.
 |---------|------------|---------|
 | Prompt | `/prompt:improve <prompt_or_topic> [:auto\|:confirm]` | Create or improve prompts using frameworks, DEPTH thinking, and CLEAR scoring |
 | Goal (OpenCode) | `/goal-opencode <condition>` | Set/show/pause/clear/complete a durable session-completion goal via the `opencode-goal` plugin |
-| Vision | `/vision [question about your most recent image]` | On-device scene read, caption and OCR of your most recent image. Omit the question for a full read |
 
 ### Spec Kit Commands
 
@@ -195,7 +193,7 @@ Structured workflows for the spec folder development lifecycle, plus packet cont
 ## 5. INSTRUCTIONS
 
 1. Choose the command group that matches your intent: `create`, `deep`, `design`, `doctor`, `prompt` or `speckit`.
-2. Use the canonical slash-command form `/<group>:<command>` unless the command is a root utility such as `/goal-opencode` or `/vision`.
+2. Use the canonical slash-command form `/<group>:<command>` unless the command is a root utility such as `/goal-opencode`.
 3. Prefer the unified commands over historical split commands.
 4. When a command supports `:auto` and `:confirm`, pick the mode that matches how much checkpointing you want.
 5. Follow the family-specific index under `commands/<group>/README.txt` when one exists and you need detailed routing help.

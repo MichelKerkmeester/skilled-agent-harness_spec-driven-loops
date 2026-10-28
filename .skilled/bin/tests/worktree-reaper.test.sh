@@ -293,10 +293,10 @@ done
 # reason it stays. 002-ok is the one that qualifies; 001-lockref qualifies too, but a
 # ref lock file makes `branch -d` refuse, and it sorts first so a run that aborted on the
 # refusal would leave 002-ok behind.
-# Two ignored files that the repository's build and install write into every checkout. The
-# provisioning list names both as regenerable, so neither may keep a worktree. Each sits
-# beside a tracked file, which makes git report the file itself rather than its folder.
-REGEN_BUNDLE=".skilled/skills/sk-vision/hooks/opencode/sk-vision.js"
+# Two ignored files that the repository's build and install write into every checkout, so
+# neither may keep a worktree: one sits under a dist folder, the provisioning list names the
+# other, and each sits beside a tracked file so git reports that file, never its folder.
+REGEN_BUNDLE="fixture-pkg/dist/bundle.js"
 REGEN_MARKER=".skilled/skills/system-spec-kit/.node-version-marker"
 git -C "$NUM_REPO" init -q
 mkdir -p "$NUM_REPO/.nohooks" "$NUM_REPO/specs/a" "$NUM_REPO/$(dirname "$REGEN_BUNDLE")" "$NUM_REPO/$(dirname "$REGEN_MARKER")"
@@ -309,7 +309,7 @@ printf 'readme\n' > "$NUM_REPO/README"
 printf 'spec\n' > "$NUM_REPO/specs/a/spec.md"
 printf 'tracked\n' > "$NUM_REPO/$(dirname "$REGEN_BUNDLE")/index.js"
 printf 'tracked\n' > "$NUM_REPO/$(dirname "$REGEN_MARKER")/package.json"
-git -C "$NUM_REPO" add .gitignore README specs "$(dirname "$REGEN_BUNDLE")/index.js" "$(dirname "$REGEN_MARKER")/package.json"
+git -C "$NUM_REPO" add -f .gitignore README specs "$(dirname "$REGEN_BUNDLE")/index.js" "$(dirname "$REGEN_MARKER")/package.json"
 git -C "$NUM_REPO" commit -q -m init
 NUM_REPO_REAL="$(cd "$NUM_REPO" && pwd -P)"
 NUM_COMMON="$NUM_REPO_REAL/.git"
@@ -354,9 +354,9 @@ git -C "$NUM_REPO" worktree add -q -b worktrees/011-mismatch "$NUM_REPO/.worktre
 git -C "$NUM_REPO" worktree add -q --detach "$NUM_REPO/.worktrees/012-detached" HEAD
 num_add 013-ignored
 printf 'private\n' > "$NUM_REPO/.worktrees/013-ignored/local-note.txt"
-# Regenerable ignored files: both listed paths, then a listed path beside an unlisted
-# one. The unlisted file sorts after the listed one, so a run that stopped at the listed
-# path would name the wrong file.
+# Regenerable ignored files: both kinds, then a regenerable one followed by an unlisted
+# file. The unlisted file sorts after the regenerable one, so a run that stopped at the
+# first would name the wrong file.
 num_add 014-regen
 mkdir -p "$NUM_REPO/.worktrees/014-regen/$(dirname "$REGEN_BUNDLE")" "$NUM_REPO/.worktrees/014-regen/$(dirname "$REGEN_MARKER")"
 printf 'bundle\n' > "$NUM_REPO/.worktrees/014-regen/$REGEN_BUNDLE"
@@ -364,7 +364,7 @@ printf 'v24\n' > "$NUM_REPO/.worktrees/014-regen/$REGEN_MARKER"
 num_add 015-regen-mixed
 mkdir -p "$NUM_REPO/.worktrees/015-regen-mixed/$(dirname "$REGEN_BUNDLE")"
 printf 'bundle\n' > "$NUM_REPO/.worktrees/015-regen-mixed/$REGEN_BUNDLE"
-printf 'trace\n' > "$NUM_REPO/.worktrees/015-regen-mixed/$(dirname "$REGEN_BUNDLE")/trace.log"
+printf 'trace\n' > "$NUM_REPO/.worktrees/015-regen-mixed/$(dirname "$(dirname "$REGEN_BUNDLE")")/trace.log"
 # A database or a .state folder inside an otherwise rebuildable folder is still state
 # someone could lose: git reports only the folder, so the reaper has to look inside it.
 num_add 018-sqlite-dist

@@ -1,7 +1,7 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.20.0
+version: 1.4.21.0
 ---
 
 # cli-opencode: Manual Testing Playbook
@@ -870,7 +870,6 @@ Validator support: the shared `validate_document.py` validates this root playboo
 - CO-047: [sk-code post-edit quality](../manual-testing-playbook/plugin-utilization/sk-code-post-edit-quality.md)
 - CO-048: [sk-git message gate](../manual-testing-playbook/plugin-utilization/sk-git-message-gate.md)
 - CO-049: [sk-git preflight advisory](../manual-testing-playbook/plugin-utilization/sk-git-preflight-advisory.md)
-- CO-050: [sk-vision](../manual-testing-playbook/plugin-utilization/sk-vision.md)
 - CO-051: [System completion sentinel](../manual-testing-playbook/plugin-utilization/system-completion-sentinel.md)
 - CO-052: [System deep-loop guard](../manual-testing-playbook/plugin-utilization/system-deep-loop-guard.md)
 - CO-053: [System dist freshness guard](../manual-testing-playbook/plugin-utilization/system-dist-freshness-guard.md)
@@ -953,7 +952,6 @@ Run results live in the skill's `benchmark/reports/` folder; the first run is `2
 - `CO-047`: [sk-code post-edit quality](plugin-utilization/sk-code-post-edit-quality.md)
 - `CO-048`: [sk-git message gate](plugin-utilization/sk-git-message-gate.md)
 - `CO-049`: [sk-git preflight advisory](plugin-utilization/sk-git-preflight-advisory.md)
-- `CO-050`: [sk-vision](plugin-utilization/sk-vision.md)
 - `CO-051`: [System completion sentinel](plugin-utilization/system-completion-sentinel.md)
 - `CO-052`: [System deep-loop guard](plugin-utilization/system-deep-loop-guard.md)
 - `CO-053`: [System dist freshness guard](plugin-utilization/system-dist-freshness-guard.md)

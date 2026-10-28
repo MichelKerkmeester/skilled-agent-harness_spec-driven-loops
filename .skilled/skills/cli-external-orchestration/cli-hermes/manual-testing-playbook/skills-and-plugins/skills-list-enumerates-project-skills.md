@@ -1,7 +1,7 @@
 ---
 title: "HERMES-017 -- Skills list enumerates the loadable project skills"
 description: "Confirm `hermes skills list` enumerates the generated project skill copies as `local` rows and omits exactly the ones the scanner quarantined, for `HERMES-017`."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # HERMES-017 -- Skills list enumerates the loadable project skills
@@ -65,7 +65,7 @@ grep "quarantined" ~/.hermes/logs/errors.log | sed 's/.*\.hermes\/skills\///;s/ 
 
 ### Recorded Result
 
-**Executed 2026-09-15**: exit 0, 125 lines, footer `0 hub-installed, 57 builtin, 61 local — 118 enabled, 0 disabled`, `grep -c 'cli-hermes'` returned `1`, and the seven absences (`cli-cursor`, `cli-devin`, `cli-opencode`, `deep-research`, `mcp-aside-devtools`, `mcp-magicpath`, `sk-create-repo-rule`) each carry a quarantine line, so 68 copies minus 7 quarantined equals the 61 local rows. The scenario previously asserted the opposite boundary, that the listing never shows project skills; that reading came from the symlink design, under which every skill was quarantined, and was corrected when this run contradicted it.
+**Executed 2026-09-15**: exit 0, 125 lines, footer `0 hub-installed, 57 builtin, 61 local — 118 enabled, 0 disabled`, `grep -c 'cli-hermes'` returned `1`, and each of the seven absences, among them `cli-cursor`, `cli-devin`, `cli-opencode`, `deep-research`, `mcp-aside-devtools` and `sk-create-repo-rule`, carries a quarantine line, so 68 copies minus 7 quarantined equals the 61 local rows. The scenario previously asserted the opposite boundary, that the listing never shows project skills; that reading came from the symlink design, under which every skill was quarantined, and was corrected when this run contradicted it.
 
 ---
 

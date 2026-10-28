@@ -1,7 +1,5 @@
 {
-  "nativeDual": [
-    { "file": "sk-vision.js", "reason": "Registers command.transform, which the bridge does not map, so it exports its own { id, setup, server }." }
-  ],
+  "nativeDual": [],
   "skippedHooks": [],
   "unscannedEventChecks": [
     { "file": "opencode-goal.js", "check": "eventType.endsWith('.disposed')", "events": ["server.instance.disposed", "global.disposed"], "reason": "Matches any event ending in .disposed. OpenCode 2.0.32 delivers neither server.instance.disposed nor global.disposed, so the branch runs only on OpenCode 1." }

@@ -9,7 +9,7 @@ trigger_phrases:
   - "five field frontmatter block"
 importance_tier: important
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # YAML Frontmatter Templates - Document Type Reference
@@ -302,7 +302,7 @@ The trimmed version retains every routing-keyword the advisor cares about (`codi
 
 **Validation at create-time**: `quick_validate.py` warns when descriptions exceed the soft target and hard-fails at 1,536 chars. Run `/doctor:skill-advisor skill-budget` periodically to detect accumulated drift across the project.
 
-**What the audit counts**: the total is the authored surface, not exactly the list Claude Code loads. It sums every `.skilled/skills/*/SKILL.md`, every `.skilled/commands/**/*.md` and the agents in `.skilled/agents/` and `.claude/agents/` (deduped by name), so it includes the runtime-exclusive commands `goal-opencode.md` and `vision.md`, which are never mirrored into `.claude/commands`. The Claude Code budget it reports is read from `SLASH_COMMAND_TOOL_CHAR_BUDGET` when that variable is set, and falls back to 8,000.
+**What the audit counts**: the total is the authored surface, not exactly the list Claude Code loads. It sums every `.skilled/skills/*/SKILL.md`, every `.skilled/commands/**/*.md` and the agents in `.skilled/agents/` and `.claude/agents/` (deduped by name), so it includes the runtime-exclusive command `goal-opencode.md`, which is never mirrored into `.claude/commands`. The Claude Code budget it reports is read from `SLASH_COMMAND_TOOL_CHAR_BUDGET` when that variable is set, and falls back to 8,000.
 
 ### `allowed-tools` Field
 

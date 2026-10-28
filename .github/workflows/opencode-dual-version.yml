@@ -12,8 +12,6 @@ on:
     paths:
       - '.opencode/plugins/**'
       - '.skilled/plugins/**'
-      - '.skilled/skills/sk-vision/**'
-      - '.opencode/skills/sk-vision/**'
       - '.skilled/agents/**'
       - '.opencode/agents/**'
       - '.skilled/hooks/dispatch/**'
@@ -41,8 +39,6 @@ on:
     paths:
       - '.opencode/plugins/**'
       - '.skilled/plugins/**'
-      - '.skilled/skills/sk-vision/**'
-      - '.opencode/skills/sk-vision/**'
       - '.skilled/agents/**'
       - '.opencode/agents/**'
       - '.skilled/hooks/dispatch/**'
@@ -126,17 +122,6 @@ jobs:
             .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs \
             .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs \
             .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs
-
-      # The sk-vision TypeScript suite and type check need the provisioned trees, so they
-      # ride the v1 leg rather than a second provisioning job. The Python handler suite
-      # under python/ is left out because it needs Pillow, which the runner lacks.
-      - name: Run the sk-vision runtime suite
-        if: matrix.family == 'v1'
-        working-directory: .skilled/skills/sk-vision/vision-runtime
-        run: |
-          set -euo pipefail
-          bun test tests
-          bunx tsc --noEmit
 
       # Both packages claim the `opencode` name, so each family owns its prefix
       # and the battery reaches the binary by its full path.

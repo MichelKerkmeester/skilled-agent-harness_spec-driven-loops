@@ -8,13 +8,13 @@ This pass was the first to run every scenario in one sitting, and it earned its 
 
 ## 1. Advisories must be computed where the result is final (fixed)
 
-Three advisories — sk-git, MCP route guard and sk-vision — were computed in `pre_tool_call` and stashed in a module-level dict keyed by an exact string, then popped in `transform_tool_result`. The pair works when both halves run in one process and fails in a live session, silently. The post-edit-quality core had already been moved to the transform hook for the same reason earlier in the packet; the other three had not. All three now compute in the transform, the staging dict is gone, and `pre_tool_call` keeps only its blocking duties.
+Three advisories — sk-git, the MCP route guard and the vision advisory — were computed in `pre_tool_call` and stashed in a module-level dict keyed by an exact string, then popped in `transform_tool_result`. The pair works when both halves run in one process and fails in a live session, silently. The post-edit-quality core had already been moved to the transform hook for the same reason earlier in the packet; the other three had not. All three now compute in the transform, the staging dict is gone, and `pre_tool_call` keeps only its blocking duties.
 
 Recommendation, already applied: treat any advisory that must reach a tool result as transform-hook work. A pre-hook may block, but it may not leave state behind for another bounded hook to find.
 
 ## 2. The vision core does not belong on a fail-closed hook (fixed)
 
-`pre_tool_call` is the one hook Hermes fails closed on timeout: a callback that overruns blocks the tool. The sk-vision core makes a model call and needs about 12.5 s, against a 15-second budget. That is a latent hazard well beyond the lost advisory, because a slower day would have blocked image analysis outright. It now runs on the fail-open transform hook with its own 25-second budget.
+`pre_tool_call` is the one hook Hermes fails closed on timeout: a callback that overruns blocks the tool. The vision core makes a model call and needs about 12.5 s, against a 15-second budget. That is a latent hazard well beyond the lost advisory, because a slower day would have blocked image analysis outright. It now runs on the fail-open transform hook with its own 25-second budget.
 
 ## 3. Two documented claims were false (corrected)
 

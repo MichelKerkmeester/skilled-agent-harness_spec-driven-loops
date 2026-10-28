@@ -137,16 +137,6 @@
             }
         },
         {
-            "name": "magicpath",
-            "call_template_type": "cli",
-            "commands": [
-                {
-                    "command": "node .skilled/bin/magicpath-utcp-manual.cjs",
-                    "append_to_final_output": true
-                }
-            ]
-        },
-        {
             "name": "magnific",
             "call_template_type": "mcp",
             "config": {
