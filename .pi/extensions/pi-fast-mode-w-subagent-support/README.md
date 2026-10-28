@@ -70,6 +70,7 @@ Fast Mode starts enabled and only applies to exact configured provider/model pai
     { "provider": "openai", "model": "gpt-6-sol", "serviceTier": "priority" },
     { "provider": "openai", "model": "gpt-5.6-terra", "serviceTier": "priority" },
     { "provider": "openai", "model": "gpt-6-luna", "serviceTier": "priority" },
+    { "provider": "openai", "model": "gpt-6.1-terra", "serviceTier": "priority" },
     { "provider": "openai-codex", "model": "gpt-5.4", "serviceTier": "priority" },
     { "provider": "openai-codex", "model": "gpt-5.5", "serviceTier": "priority" },
     { "provider": "openai-codex", "model": "gpt-5.6", "serviceTier": "priority" },

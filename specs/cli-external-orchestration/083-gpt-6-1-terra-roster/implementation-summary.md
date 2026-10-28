@@ -88,7 +88,7 @@ The model id came from the Codex catalog and was then dispatched once on each CL
 |----------|-----|
 | Keep `gpt-5.6-terra` on cli-codex | The request was to add the newest Terra, and Codex still lists the older one |
 | Add both OpenCode Terra tiers but only the base Pi id | OpenCode's catalog lists a `-fast` slug, and Pi exposes base persona slugs only |
-| Leave the Pi fast-mode extension's model list alone | It pins a priority service tier for Sol and Luna, and Terra there would change billing behavior nobody asked for |
+| Leave the Pi fast-mode extension's model list alone (reversed 2026-10-28) | It pins a priority service tier for Sol and Luna, and Terra there would change billing behavior nobody asked for. On 2026-10-28 the operator asked for Terra at high, fast, so `openai/gpt-6.1-terra` joined the extension's built-in targets in `src/config.ts`, its test and README; the config file alone could not do it, because the extension resets its targets to the built-in list at session start. `npm run check` passes 81/81. The legacy `openai-codex` provider is gone in Pi 1.0, so Terra was added under `openai` only. Pi's JSON events do not show the request payload, so a live priority-tier request is inferred from the tested matcher, not observed |
 <!-- /ANCHOR:decisions -->
 
 ---
