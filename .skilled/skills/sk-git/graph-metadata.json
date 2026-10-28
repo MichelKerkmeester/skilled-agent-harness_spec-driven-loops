@@ -79,7 +79,10 @@
     "worktree reaper",
     "numbered worktree sweep",
     "speckit_worktree_autoreap",
-    "worktree autoreap"
+    "worktree autoreap",
+    "fsmonitor daemon",
+    "fsmonitor daemons",
+    "fsmonitor daemon reaper"
   ],
   "derived": {
     "trigger_phrases": [
@@ -137,7 +140,10 @@
       "worktree reaper",
       "numbered worktree sweep",
       "speckit_worktree_autoreap",
-      "worktree autoreap"
+      "worktree autoreap",
+      "fsmonitor daemon",
+      "fsmonitor daemons",
+      "fsmonitor daemon reaper"
     ],
     "key_topics": [
       "git",
