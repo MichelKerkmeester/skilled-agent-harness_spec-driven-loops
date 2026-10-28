@@ -187,7 +187,7 @@
     ],
     "causal_summary": "cli-external-orchestration, cli-classifier and mcp-tooling carry executor vocabulary that drifts between the registry and `ROUTER.md`, and the seven cli packets repeat the same six-step call sequence",
     "created_at": "2026-10-28T06:38:49Z",
-    "last_save_at": "2026-10-28T06:42:24.267Z",
+    "last_save_at": "2026-10-28T06:54:03.457Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,10 +196,10 @@
       "tasks.md",
       "acceptance-criteria.md"
     ],
-    "source_fingerprint": "sha256:7581e7513b974aa32e93c91e1c8a4a1ef212f0c766071d7269361c1bc823382c",
+    "source_fingerprint": "sha256:9f209147c7870c8776d4c08752dd20302b1787b201f0b82df93c1c2a9673a07e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3b9c43e756228552814a52f300c5184e7d7c5c5cb46736d3ec0e1c71f48925ae",
+      "spec.md": "330864670d2b55067caa7438bbd13c920ad61e802a1430fd25cf58b90d6ae6e0",
       "plan.md": "17cbb1ff6a0f3e0d7a19d0918f98e1aabd2a0c2b1445318707c531d85f6388b5",
       "tasks.md": "f318c58f8b781520c758baf03e961e08efee801e1677ce1543476139e15541c0"
     },

@@ -71,12 +71,13 @@ N/A: this phase is Planned. Its first task records the measured behavior before 
 ## 3. SCOPE
 
 ### In Scope
-- Apply the standalone shape to cli-orca, mcp-code-mode, sk-git, sk-prompt, sk-vision, system-skill-advisor and system-spec-kit.
+- Apply the standalone shape to cli-orca, mcp-code-mode, sk-git, sk-prompt, system-skill-advisor and system-spec-kit.
 - Shrink the Python block where it does not choose among leaves.
 - Regenerate each skill's `leaf-manifest.json` and `leaf-aliases.json`.
 
 ### Out of Scope
 - Hub files for standalone skills - the class contract forbids them
+- sk-vision - another session is deprecating it, so restructuring it would be wasted work
 
 ### Files to Change
 

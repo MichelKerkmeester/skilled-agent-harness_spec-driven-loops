@@ -85,6 +85,7 @@ Give every skill one source per routing decision, a routing shape that fits its 
 ### Out of Scope
 - Advisor scoring changes beyond removing restated routing vocabulary.
 - Operator-local surfaces, which are not tracked here.
+- sk-vision and the mcp-magicpath mode, which another session is deprecating.
 
 ### Files to Change
 

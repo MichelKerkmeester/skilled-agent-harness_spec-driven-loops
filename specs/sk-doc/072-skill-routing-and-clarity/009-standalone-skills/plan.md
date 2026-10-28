@@ -68,7 +68,7 @@ Edit one file or skill, run its gates, record the output, then move to the next.
 
 Steps, in order:
 
-1. Restructure sk-vision and cli-orca first, the two smallest routers.
+1. Restructure cli-orca first, the smallest router.
 2. Restructure sk-git, sk-prompt and mcp-code-mode.
 3. Restructure system-skill-advisor and system-spec-kit.
 4. Regenerate the leaf manifests and aliases.

@@ -41,7 +41,7 @@ contextType: "planning"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Restructure sk-vision and cli-orca first, the two smallest routers.
+- [ ] T004 Restructure cli-orca first, the smallest router.
 - [ ] T005 Restructure sk-git, sk-prompt and mcp-code-mode.
 - [ ] T006 Restructure system-skill-advisor and system-spec-kit.
 - [ ] T007 Regenerate the leaf manifests and aliases.

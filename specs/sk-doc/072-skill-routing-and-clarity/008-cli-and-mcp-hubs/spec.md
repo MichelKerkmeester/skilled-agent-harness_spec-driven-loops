@@ -77,6 +77,7 @@ N/A: this phase is Planned. Its first task records the measured behavior before 
 
 ### Out of Scope
 - Executor runtime behavior
+- The mcp-magicpath mode of mcp-tooling - another session is deprecating it, so it keeps its current shape until it is removed
 
 ### Files to Change
 
