@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/005-reaper-hardening"
-    last_updated_at: "2026-10-27T21:30:00Z"
-    last_updated_by: "claude"
-    recent_action: "Hardened the reaper, added --orphans and bounded the hook and launch git calls"
-    next_safe_action: "Operator picks the checkout fsmonitor setting from the timing table"
+    last_updated_at: "2026-10-27T22:15:15Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Recorded the permanent core.fsmonitor=false decision and closed the Known Limitations"
+    next_safe_action: "None"
     blockers: []
     key_files:
       - ".skilled/bin/fsmonitor-daemon-reaper.sh"
@@ -182,10 +182,10 @@ With fsmonitor off, `git status --porcelain` here takes about a quarter of a sec
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The real-daemon case in the reaper suite needs a daemon that answers.** Phase 006 traced the earlier `via=term` failure: git's stop returned at once while the daemon lived on, and a fresh daemon in a clean scratch repo wedged the same way, so a longer stop bound changed nothing. The case now runs only when its daemon completes a bounded `git status`, and prints `SKIP` otherwise. It asserts that the reaper attributes and ends the daemon by either git's stop or the SIGTERM fallback, and prints a `NOTE` when the fallback ran, because git 2.50.1's stop can return while an answering daemon lives on.
-2. **`--orphans --apply` acts on the whole machine.** It ends every daemon whose root is gone, not just this repository's. Run the dry run first. A root on an unmounted volume also reads as missing.
-3. **A stranded client is still invisible to the reaper.** Phase 003's item 1 stands: a `git commit` waiting on git's cookie wait is freed only by its caller's timeout, which the hooks and the launcher now have.
-4. **Other `git` calls in the launcher and the hooks stay unbounded.** `rev-parse`, `config`, `symbolic-ref`, `cat-file` and `log` do not read the index, so they were left alone. `post-commit` has none that read it.
+1. **The real-daemon case in the reaper suite needs a daemon that answers.** Phase 006 traced the earlier `via=term` failure: git's stop returned at once while the daemon lived on, and a fresh daemon in a clean scratch repo wedged the same way, so a longer stop bound changed nothing. The case now runs only when its daemon completes a bounded `git status`, and prints `SKIP` otherwise. It asserts that the reaper attributes and ends the daemon by either git's stop or the SIGTERM fallback, and prints a `NOTE` when the fallback ran, because git 2.50.1's stop can return while an answering daemon lives on. Accepted: the limit is git 2.50.1's own `stop`, which has no upstream fix, and the case skips rather than fails while the stub cases still cover the reaper's logic.
+2. **`--orphans --apply` acts on the whole machine.** It ends every daemon whose root is gone, not just this repository's. Run the dry run first. A root on an unmounted volume also reads as missing. Accepted: the flag is opt-in, the dry run lists every orphan first, and the root is checked again just before each signal.
+3. **A stranded client is invisible to the reaper.** Phase 003's item 1 described a `git commit` waiting on git's cookie wait, freed only by its caller's timeout. Resolved by the fsmonitor decision in `spec.md` section 10: with `core.fsmonitor=false` no git call in this checkout or its worktrees talks to a daemon, so none can be stranded on its cookie wait.
+4. **Other `git` calls in the launcher and the hooks stay unbounded.** `rev-parse`, `config`, `symbolic-ref`, `cat-file` and `log` do not read the index, so they were left alone. `post-commit` has none that read it. Resolved by the same decision: with fsmonitor off, none of these calls can wait on a daemon.
 
 The false catalog line in the eleven other playbook files, phase 003's stale Known Limitations items 2 and 4, and the README rows for `bounded-git.sh`, `--orphans`, `SPECKIT_GIT_TIMEOUT` and `SPECKIT_WORKTREE_ADD_TIMEOUT` were left open here and are done in phase 006.
 <!-- /ANCHOR:limitations -->

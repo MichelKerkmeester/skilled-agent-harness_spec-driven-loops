@@ -83,9 +83,9 @@ Shell variables used in the verify commands, all relative to the repository root
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed: T017 and T019 print their expected output
+- [x] All tasks marked `[x]`. Evidence 2026-10-27: T001 to T024 are all `[x]`.
+- [x] No `[B]` blocked tasks remaining. Evidence 2026-10-27: no task line carries `[B]`.
+- [x] Manual verification passed: T017 and T019 print their expected output. Evidence: both are `[x]` with their output recorded.
 <!-- /ANCHOR:completion -->
 
 ---

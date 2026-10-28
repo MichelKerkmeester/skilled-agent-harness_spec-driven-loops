@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Each git worktree that reads its index starts its own `git fsmonitor--daemon`, and macOS never retires one on its own",
     "created_at": "2026-10-27T08:12:32Z",
-    "last_save_at": "2026-10-27T23:04:54.304Z",
+    "last_save_at": "2026-10-28T04:42:33.934Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:957fa422baf35b5ecc8bf53b623dce30e37a1038680ff4c95fd4a622151b03ee",
+    "source_fingerprint": "sha256:bf0aae7ce790b7383431cee0dd4f4d100822881d23f43fc1ca975e8368347383",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5e738a3b4db9ec98dafd0cd4a181a244a392a8d9700983815845dbe1e40c11d2",
+      "spec.md": "b252bed805a0a848cbee8668a51d0d43aa47e558561634064862c33b1ae363ae",
       "plan.md": "10b4389353ceb97cccce4f99e6af530a6c13869a3e3321ba5623fbeda7841bd7",
-      "tasks.md": "5379fe605805e35f6ca4a2f658f68c746829ba2fe71ea3caa56ae6b50a669bec",
-      "implementation-summary.md": "35f1fc2783e9e27ff19674195595cf318eb13025a006d5057c8cc9052d8245c9"
+      "tasks.md": "a6f67f286806392323e021a39b582e3fe04e08d0747c89e42c5ac5644c1412aa",
+      "implementation-summary.md": "e6ad91f771c30128885a8ca0b71d93f944bbc68a6af14a6f52e699c714f84ad4"
     },
     "last_active_at": null
   }

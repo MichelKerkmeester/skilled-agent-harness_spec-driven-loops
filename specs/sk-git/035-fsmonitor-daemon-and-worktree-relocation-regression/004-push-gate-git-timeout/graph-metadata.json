@@ -3,7 +3,6 @@
   "packet_id": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/004-push-gate-git-timeout",
   "spec_folder": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/004-push-gate-git-timeout",
   "parent_id": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -200,7 +199,7 @@
     ],
     "causal_summary": "The pre-push skill gate runs `git check-ignore` with no time limit and no opt-out from the file system monitor",
     "created_at": "2026-10-27T08:12:33Z",
-    "last_save_at": "2026-10-27T11:17:15.534Z",
+    "last_save_at": "2026-10-27T22:19:24.640Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +209,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3a524f6e58f919127682278232d10e5a79cd1fb6ac06f5a6cdd302a421d8ce5",
+    "source_fingerprint": "sha256:face2aa2ff82992baa44319033d2cba166bd4d273e096baa89e7590bc77087c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "91a5a2c512c37f320fa546643abf13fab0d81705ff7d958551f0743b8b7bc145",
+      "spec.md": "e62406fb7921adbf87dddac1a5cad68d86f7ce2eba7b972a40204a5b494dea94",
       "plan.md": "6e8f46d8a23ea5bf00be122350bf706cd0ae20ec1d218267352f6e0283adf1c3",
-      "tasks.md": "d0d937119cb017da9b3e0534e923cd9f60b957febdf9d86423d04b0f67617715",
-      "implementation-summary.md": "e97eec796fb414fbe31c755c2ba5d8e38da1e7c4dda22be2a0104b7ec923e613"
+      "tasks.md": "b06bda4f4e07a340d78d43b8bca82ae08a80862e5850b3dc3827ca25594424fa",
+      "implementation-summary.md": "d86ce94b1671d7456cda854ccecae14a5e5f68bd3874d9f9428011d72da8fdc8"
     },
     "last_active_at": null
   }

@@ -24,9 +24,9 @@ contextType: "general"
 | **Created** | 2026-10-27 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 4 |
+| **Phase** | 4 of 6 |
 | **Predecessor** | 003-fsmonitor-daemon-lifecycle |
-| **Successor** | None |
+| **Successor** | 005-reaper-hardening |
 | **Handoff Criteria** | Every row in `acceptance-criteria.md` is Met, and the stopped-daemon run in AC-004 ends within 40 seconds. |
 <!-- /ANCHOR:metadata -->
 

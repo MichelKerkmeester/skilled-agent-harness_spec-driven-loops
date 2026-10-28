@@ -24,9 +24,9 @@ contextType: "general"
 | **Created** | 2026-10-27 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 5 |
+| **Phase** | 5 of 6 |
 | **Predecessor** | 004-push-gate-git-timeout |
-| **Successor** | None |
+| **Successor** | 006-numbered-worktree-cleanup |
 | **Handoff Criteria** | Every row in `acceptance-criteria.md` is Met, the reaper suite and the hook suites pass, and the GIT-047 run is recorded in `implementation-summary.md`. |
 <!-- /ANCHOR:metadata -->
 
@@ -108,7 +108,7 @@ Recorded observation, quoted from phase 003 `implementation-summary.md` Known Li
 - The post-commit hook, `post-merge`, `post-rewrite`, `commit-msg` and `prepare-commit-msg` - their git calls are `rev-parse`, `config` and object reads, none of which reads the index or the working tree.
 - `rev-parse`, `symbolic-ref` and `config` calls in `worktree-session.sh` - they do not read the index.
 - The same false catalog line in the other eleven files of `owner-first-worktree-tooling/` - listed in `implementation-summary.md`, not changed here.
-- Changing the checkout's `core.fsmonitor` setting - the timing in `implementation-summary.md` is for the operator's decision.
+- Changing the checkout's `core.fsmonitor` setting - this phase writes no config. The setting is decided in section 10.
 - Any `README.md` - the changes it needs are listed in `implementation-summary.md`.
 
 ### Files to Change
@@ -234,7 +234,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Should the checkout keep `core.fsmonitor=true`? The timing table in `implementation-summary.md` is the input; the decision is the operator's and this phase changes no config.
+- Decided 2026-10-27: this checkout keeps `core.fsmonitor=false` permanently. `.git/config:8` reads `fsmonitor = false`, and no `extensions.worktreeConfig` is set, so every linked worktree inherits it. The timing table in `implementation-summary.md` is the reason: `git status --porcelain` took a 0.282 s median with fsmonitor off, and five of five calls with it on were killed at the 60 second cap. The installed git is 2.50.1, the 2.51, 2.52 and 2.53 release notes carry no fsmonitor entry (`../001-deep-research/research/research.md:110`), and upgrading git is not being done. This phase wrote no config; the setting was changed outside it, and no fsmonitor daemon was running on 2026-10-27 (`pgrep -fl 'fsmonitor--daemon'` printed nothing).
 <!-- /ANCHOR:questions -->
 
 ---

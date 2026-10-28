@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-27T21:30:00Z"
     last_updated_by: "claude"
     recent_action: "Hardened the fsmonitor daemon reaper and bounded the hook and launch git calls"
-    next_safe_action: "Operator decides the checkout's core.fsmonitor setting from the timing table"
+    next_safe_action: "None"
     blockers: []
     key_files:
       - ".skilled/bin/fsmonitor-daemon-reaper.sh"

@@ -64,6 +64,7 @@ Every command in this list runs with `GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.f
 - [x] T013 Read the doctor battery against this checkout, read-only. Verify: `node .skilled/commands/doctor/scripts/git-setup-check.cjs --json` prints a `worktrees` row with result DEGRADED, because the base sits inside the checkout and 11 linked worktrees exist. Done 2026-10-27: exit 3; the only non-passing row is `worktrees`, DEGRADED, "base is inside the main checkout with 4 linked worktrees".
 - [x] T014 Check CI for an exit-code gate on the doctor battery before merge. Verify: `grep -rln 'git-setup-check' .github 2>/dev/null || true` prints nothing, or each file it names is read and its exit-code use is written in `spec.md` section 10. Done 2026-10-27: no reference under `.github`. Local consumers are the doctor command workflows, which report DEGRADED as a status, and docs that list check names only.
 - [ ] T015 [Operator] Confirm in writing, for each idle worktree, that no runtime session is live in it. Verify: `ls "$(git rev-parse --git-common-dir)/worktree-sessions/" 2>/dev/null` lists the session markers, and `kill -0 "$PID"` fails for each marker's PID. A worktree without a marker can still be in use, so also check `lsof -nP -d cwd -Fpn` for any process whose cwd is inside it. Record the output of `ps -axo pid,command | grep 'fsmonitor--daemon' | grep -v grep` in the notes. Do not stop any daemon here.
+  - Status 2026-10-27: checked for 145 and 218 before their moves (see T019). Not done for 217 and not needed: its session is live and its branch is unmerged, so it is never moved. It leaves when moved, or removed by the reaper after it merges (the numbered sweep removes a merged, clean worktree idle for 48 hours, `.skilled/bin/worktree-reaper.sh:58`).
 - [x] T016 [Operator] Save the rollback snapshot outside the checkout. Verify: `git worktree list --porcelain > "$HOME/worktrees-before-move.txt"` exits 0, and `wc -l < "$HOME/worktrees-before-move.txt"` prints a count above 0.
   - Evidence 2026-10-27: exit 0, 16 lines. Taken after the 145 move, so it lists 145 at its new path.
 - [x] T017 [Operator] Create the target folder and confirm it shares a device with the checkout, so each move is a rename. Set `CHECKOUT="$(git rev-parse --show-toplevel)"` first. Verify: `mkdir -p "$HOME/worktrees/public" && df -P "$HOME" "$CHECKOUT" | awk 'NR>1 {print $1}' | sort -u | wc -l` prints 1.
@@ -73,7 +74,9 @@ Every command in this list runs with `GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.f
 - [ ] T019 [Operator] Move each confirmed idle worktree, one at a time, then repair it. Verify: `git worktree move "$OLD" "$NEW"` exits 0, `git worktree repair "$NEW"` exits 0, where `OLD` is the worktree's current path and `NEW` is its folder under `$HOME/worktrees/public` (both taken from the T016 list), and `git worktree list --porcelain` lists the new path. Before each move, end the worktree's daemon with `bash .skilled/bin/fsmonitor-daemon-reaper.sh --apply --worktree "$OLD"`; after it, a dry run of the reaper must name no daemon at `$OLD`. A session that cached the old path, such as a runtime's history keyed by folder, loses track of it, so move only idle worktrees.
   - Progress 2026-10-27: 145-sk-code-surface-consistency-research moved to `$HOME/worktrees/public/` with `git worktree move`, exit 0. It had no cwd user, no open file, no session marker and no daemon, and it kept its branch and its two uncommitted edits. Its links are all relative and inside the worktree. 231 was removed by its own session. 217 and 218 wait for their sessions to end. T016 and T018 had not run yet; to undo the move, run `git worktree move "$HOME/worktrees/public/145-sk-code-surface-consistency-research" .worktrees/145-sk-code-surface-consistency-research`.
   - Progress 2026-10-27 17:11:59: 218-ci-efficiency-build moved to `$HOME/worktrees/public/` at the operator's go-ahead. Move and repair exited 0, the reaper found no daemon for it, and its branch and eight uncommitted paths came through. It had no cwd user, no open file and no session marker, but it was not idle: its session committed at 17:11:58 and pushed from the new path at 17:12:15 (origin/main `07e97bec21`). A session that starts a fresh shell for each command holds no cwd between commands, so the T015 cwd check cannot see it. Before a move, also check the branch reflog for recent entries. 217 stays: three Node servers have run in it since 16:40.
+  - Remaining 2026-10-27: 217-weak-model-spec-authoring is not moved. Its session is live and its branch is 6 commits ahead of `main` and not merged. It leaves the checkout when moved, or removed by the reaper after it merges.
 - [ ] T020 [Operator] Verify the end state after the last move. Verify: `git worktree list --porcelain | grep -c '^worktree .*/\.worktrees/'` prints 0, and each moved worktree still lists its branch.
+  - Pending 2026-10-27: the command prints `1`, for 217, and is expected to print `0` once 217 is moved, or removed by the reaper after it merges. 145 and 218 still list their branches at `$HOME/worktrees/public/`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +84,9 @@ Every command in this list runs with `GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.f
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`, except the operator tasks T015 to T020, which close with their evidence or with a recorded deferral
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Verification passed: T010, T011, T012 and T013 each show their expected output
+- [x] All tasks marked `[x]`, except the operator tasks T015 to T020, which close with their evidence or with a recorded deferral. Evidence 2026-10-27: T001 to T014, T016, T017 and T018 are `[x]`; T015, T019 and T020 stay open with the 217 reason recorded on each.
+- [x] No `[B]` blocked tasks remaining. Evidence 2026-10-27: no task line carries `[B]`.
+- [x] Verification passed: T010, T011, T012 and T013 each show their expected output. Evidence: each records its output above.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -115,9 +118,9 @@ Every command in this list runs with `GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.f
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] `spec.md` and `plan.md` name the same files and line ranges (`grep -n 'worktree-session.sh' spec.md plan.md` shows the same ranges).
-- [ ] CHK-002 [P0] The research amendment in `spec.md` section 10 is accepted, or the wording in `research.md` section 6 is corrected before implementation.
-- [ ] CHK-003 [P1] Baselines from T002 and T003 are recorded in the notes.
+- [x] CHK-001 [P0] `spec.md` and `plan.md` name the same files and line ranges (`grep -n 'worktree-session.sh' spec.md plan.md` shows the same ranges). Evidence 2026-10-27: `spec.md:108` and `plan.md:59-60` both name lines 219-227 and 293-295. The live file has since moved: the write-back now sits at `worktree-session.sh:314-315`.
+- [x] CHK-002 [P0] The research amendment in `spec.md` section 10 is accepted, or the wording in `research.md` section 6 is corrected before implementation. Evidence 2026-10-27: accepted and built as written. No `--base` flag exists (`grep -n -- '--base' .skilled/bin/worktree-session.sh` prints nothing), and the negative default-path case is at `worktree-session.test.sh:174-195`.
+- [x] CHK-003 [P1] Baselines from T002 and T003 are recorded in the notes. Evidence 2026-10-27: T002 records `PASS=54 FAIL=0`; T003 records `# pass 66`, `# fail 0` and `PASS=171 FAIL=0`.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -125,10 +128,10 @@ Every command in this list runs with `GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.f
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] `bash -n .skilled/bin/worktree-session.sh` and `node --check .skilled/commands/doctor/scripts/git-setup-check.cjs` both exit 0.
-- [ ] CHK-011 [P0] The explicit-env path prints no new warning on stderr. Verify: the env-base case in the wrapper suite still passes.
-- [ ] CHK-012 [P1] The doctor change stays read-only. Verify: `grep -n "'config'" .skilled/commands/doctor/scripts/git-setup-check.cjs` shows only `--get` reads in the new code.
-- [ ] CHK-013 [P1] The new result uses the existing DEGRADED vocabulary, and the repair string matches `WORKTREE_REPAIR` (`git-setup-check.cjs:86`).
+- [x] CHK-010 [P0] `bash -n .skilled/bin/worktree-session.sh` and `node --check .skilled/commands/doctor/scripts/git-setup-check.cjs` both exit 0. Evidence 2026-10-27: rerun, both exit 0.
+- [x] CHK-011 [P0] The explicit-env path prints no new warning on stderr. Verify: the env-base case in the wrapper suite still passes. Evidence 2026-10-27: `env-base launch persists the base into repo config` (`worktree-session.test.sh:172`) passes in the run that printed `PASS=76 FAIL=0`, exit 0.
+- [x] CHK-012 [P1] The doctor change stays read-only. Verify: `grep -n "'config'" .skilled/commands/doctor/scripts/git-setup-check.cjs` shows only `--get` reads in the new code. Evidence 2026-10-27: the grep prints lines 425, 498, 627 and 855. Each is a read (`--get`, `--get-all`, or a key with no value), and the new code's read is line 627.
+- [x] CHK-013 [P1] The new result uses the existing DEGRADED vocabulary, and the repair string matches `WORKTREE_REPAIR` (`git-setup-check.cjs:86`). Evidence 2026-10-27: DEGRADED with `WORKTREE_REPAIR` at `git-setup-check.cjs:811-818`, and the four-inside case asserts the repair `git config speckit.worktreeBase <dir>` (`git-setup-check.test.cjs:1115-1124`).
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -136,10 +139,10 @@ Every command in this list runs with `GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.f
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] The wrapper suite ends `FAIL=0` with the default-path case included (`spec.md` SC-001).
-- [ ] CHK-021 [P0] The doctor suite prints `# fail 0` (`spec.md` SC-002).
-- [ ] CHK-022 [P1] Matrix rows 1, 3 and 5 in `plan.md` section 5 each have a test that names the row.
-- [ ] CHK-023 [P1] The path containment cases in T009 pass: inside, outside, prefix sibling, and symlink.
+- [x] CHK-020 [P0] The wrapper suite ends `FAIL=0` with the default-path case included (`spec.md` SC-001). Evidence 2026-10-27: `PASS=76 FAIL=0`, exit 0, with the default-path case at `worktree-session.test.sh:177-195`.
+- [x] CHK-021 [P0] The doctor suite prints `# fail 0` (`spec.md` SC-002). Evidence 2026-10-27: `# pass 77`, `# fail 0`, exit 0.
+- [x] CHK-022 [P1] Matrix rows 1, 3 and 5 in `plan.md` section 5 each have a test that names the row. Evidence 2026-10-27: the matrix sits in the `plan.md` FIX ADDENDUM (lines 88-99), and lines 92-96 name the case for each row: row 1 is the default case (`worktree-session.test.sh:177`), row 3 the F4 case (`:151`) and row 5 the empty-variable case (`:197`). The case names describe the row's condition, not its number.
+- [x] CHK-023 [P1] The path containment cases in T009 pass: inside, outside, prefix sibling, and symlink. Evidence 2026-10-27: the five cases at `git-setup-check.test.cjs:1115`, `:1126`, `:1134`, `:1143` and `:1152` pass in the `# fail 0` run.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,13 +150,13 @@ Every command in this list runs with `GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.f
 <!-- ANCHOR:fix-completeness -->
 ## FIX ADDENDUM: FIX COMPLETENESS
 
-- [ ] CHK-FIX-001 [P0] The finding class is `class-of-bug`: any launch path that persists a defaulted value to config (research.md section 5 Q1).
-- [ ] CHK-FIX-002 [P0] The same-class producer inventory is complete. Verify: `grep -rn 'speckit.worktreeBase' .skilled/bin .skilled/skills/sk-git/scripts .skilled/commands/doctor` shows `worktree-session.sh:294` as the only config write.
-- [ ] CHK-FIX-003 [P0] The consumer inventory is complete for the resolver, the reaper, the doctor and the docs (`plan.md` FIX ADDENDUM table).
-- [ ] CHK-FIX-004 [P0] The path containment cases are tested: base equal to the checkout root, prefix sibling, outside root, and symlink into the checkout (T009).
-- [ ] CHK-FIX-005 [P1] The matrix rows are listed in `plan.md` section 5 before implementation, with six rows.
-- [ ] CHK-FIX-006 [P1] The hostile environment variants run in T011: an empty value and a value of `../escape`.
-- [ ] CHK-FIX-007 [P1] The evidence is pinned to the fix commit SHA in `implementation-summary.md` once the change is committed, not to a moving branch range.
+- [x] CHK-FIX-001 [P0] The finding class is `class-of-bug`: any launch path that persists a defaulted value to config (research.md section 5 Q1). Evidence 2026-10-27: the guard covers the class at its only producer: a launch writes the key only for an `env` source (`worktree-session.sh:314-315`).
+- [x] CHK-FIX-002 [P0] The same-class producer inventory is complete. Verify: `grep -rn 'speckit.worktreeBase' .skilled/bin .skilled/skills/sk-git/scripts .skilled/commands/doctor` shows `worktree-session.sh:294` as the only config write. Evidence 2026-10-27: outside the test files the only config write is `worktree-session.sh:315` (moved from `:294` by later phases). The other matches are reads, a comment, and the repair string at `git-setup-check.cjs:86`.
+- [x] CHK-FIX-003 [P0] The consumer inventory is complete for the resolver, the reaper, the doctor and the docs (`plan.md` FIX ADDENDUM table). Evidence 2026-10-27: `plan.md:74-82` lists the wrapper, the naming helper, the reaper, the doctor, the F4 test, the two READMEs and `.git/config`.
+- [ ] CHK-FIX-004 [P0] The path containment cases are tested: base equal to the checkout root, prefix sibling, outside root, and symlink into the checkout (T009). Evidence 2026-10-27: still open. Prefix sibling, outside and symlink are tested (`git-setup-check.test.cjs:1134`, `:1143`, `:1152`). A base equal to the checkout root is handled in code (`child === top`, `git-setup-check.cjs:803`) but has no test case.
+- [x] CHK-FIX-005 [P1] The matrix rows are listed in `plan.md` section 5 before implementation, with six rows. Evidence 2026-10-27: six rows at `plan.md:90-97`, in the FIX ADDENDUM rather than section 5.
+- [x] CHK-FIX-006 [P1] The hostile environment variants run in T011: an empty value and a value of `../escape`. Evidence 2026-10-27: rerun with `SPECKIT_WORKTREE_BASE=''` and with `'../escape'`; each printed `# pass 77`, `# fail 0`, and the `'../escape'` run exited 0.
+- [x] CHK-FIX-007 [P1] The evidence is pinned to the fix commit SHA in `implementation-summary.md` once the change is committed, not to a moving branch range. Evidence 2026-10-27: `dc79b967df` is recorded in the `implementation-summary.md` Verification table.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -161,8 +164,8 @@ Every command in this list runs with `GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.f
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No credential is read or written. The config key holds a directory path only.
-- [ ] CHK-031 [P0] The doctor and the wrapper resolve the env value with the existing expansion rules (`~` and `~/`), and no new shell evaluation is added.
+- [x] CHK-030 [P0] No credential is read or written. The config key holds a directory path only. Evidence 2026-10-27: the key reads `~/worktrees/public`.
+- [x] CHK-031 [P0] The doctor and the wrapper resolve the env value with the existing expansion rules (`~` and `~/`), and no new shell evaluation is added. Evidence 2026-10-27: the wrapper expands `~/` by parameter expansion (`worktree-session.sh:241`), the doctor at `git-setup-check.cjs:635-636`, and `grep -n -i eval .skilled/bin/worktree-session.sh` prints nothing.
 
 N/A for auth and authz: this is a local git tool that runs as the local user, with no auth surface.
 <!-- /ANCHOR:security -->
@@ -172,9 +175,9 @@ N/A for auth and authz: this is a local git tool that runs as the local user, wi
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` name the same REQ and AC ids.
-- [ ] CHK-041 [P1] Any code comment added names only the durable reason (why an explicit base is the only one persisted). It names no spec path, phase number or REQ id.
-- [ ] CHK-042 [P2] The sk-git README needs no change: `.skilled/skills/sk-git/README.md:125` describes the override and the default, not the write-back.
+- [x] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` name the same REQ and AC ids. Evidence 2026-10-27: `spec.md` and `acceptance-criteria.md` both name REQ-001 to REQ-005, `plan.md` names a subset, and `tasks.md` names none, so no doc names an id the others lack.
+- [x] CHK-041 [P1] Any code comment added names only the durable reason (why an explicit base is the only one persisted). It names no spec path, phase number or REQ id. Evidence 2026-10-27: `grep -n -E 'specs/|REQ-|phase [0-9]|035'` on `worktree-session.sh` and `git-setup-check.cjs` prints nothing.
+- [x] CHK-042 [P2] The sk-git README needs no change: `.skilled/skills/sk-git/README.md:125` describes the override and the default, not the write-back. Evidence 2026-10-27: line 125 still describes the override and the default, and names no write-back.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -182,8 +185,8 @@ N/A for auth and authz: this is a local git tool that runs as the local user, wi
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Test fixtures live under the suites' temp roots, not in the checkout.
-- [ ] CHK-051 [P1] The rollback snapshot from T016 stays outside the checkout.
+- [x] CHK-050 [P1] Test fixtures live under the suites' temp roots, not in the checkout. Evidence 2026-10-27: the wrapper suite uses `mktemp -d` (`worktree-session.test.sh:43-44`) and the doctor suite `fs.mkdtempSync(os.tmpdir())` (`git-setup-check.test.cjs:72`).
+- [x] CHK-051 [P1] The rollback snapshot from T016 stays outside the checkout. Evidence 2026-10-27: `$HOME/worktrees-before-move.txt` exists, 16 lines.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -193,9 +196,9 @@ N/A for auth and authz: this is a local git tool that runs as the local user, wi
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 12 | 0/12 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 11/12 |
+| P1 Items | 12 | 12/12 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-10-27
 <!-- /ANCHOR:summary -->

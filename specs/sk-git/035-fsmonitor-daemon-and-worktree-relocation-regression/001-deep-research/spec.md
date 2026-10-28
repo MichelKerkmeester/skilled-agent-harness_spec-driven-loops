@@ -25,7 +25,7 @@ contextType: "research"
 | **Created** | 2026-10-27 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 1 of 4 |
+| **Phase** | 1 of 6 |
 | **Predecessor** | None |
 | **Successor** | 002-worktree-relocation-restore |
 | **Handoff Criteria** | All five questions in `../scratch/findings.md` section 8 are answered in `research/research.md`, with a fix design per layer |

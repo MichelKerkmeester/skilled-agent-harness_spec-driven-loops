@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-27T13:42:51Z"
     last_updated_by: "generate-context"
     recent_action: "Fixed the review P1s and P2s in the daemon reaper"
-    next_safe_action: "Await the 217 and 218 sessions, then move those worktrees"
+    next_safe_action: "None"
     blockers: []
     key_files:
       - ".skilled/bin/fsmonitor-daemon-reaper.sh"
@@ -133,9 +133,9 @@ A the operator-local alignment command run over the nine commits of this session
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **A stranded client is invisible to the probe.** One `git commit` in a scratch repository started one second after its daemon and waited forever, while later probes of that daemon answered. Git's cookie wait has no deadline, so only the caller's own timeout, as in phase 004, frees such a call.
+1. **A stranded client is invisible to the probe.** One `git commit` in a scratch repository started one second after its daemon and waited forever, while later probes of that daemon answered. Git's cookie wait has no deadline, so only the caller's own timeout, as in phase 004, frees such a call. Resolved by the fsmonitor decision: this checkout keeps `core.fsmonitor=false` permanently (`../005-reaper-hardening/spec.md` section 10), so no git call here talks to a daemon and none can be stranded on its cookie wait.
 2. **Daemons of a deleted repository are swept only on request.** Daemons whose whole repository was deleted with `rm -rf` kept running, and the reaper only saw one repository's daemons. Phase 005 added `--orphans`, which lists them and, with `--apply`, ends every one on the machine. A worktree removed through git still loses its daemon within seconds. Six such daemons, left by this phase's own tests, were ended by hand.
-3. **Two worktrees are still inside the checkout.** The main daemon on this checkout wedged six times on 2026-10-27. 145 moved out on 2026-10-27, and 217 and 218 wait for their sessions to end (phase 002, T015 to T020).
+3. **One worktree is still inside the checkout.** The main daemon on this checkout wedged six times on 2026-10-27. 145 and 218 moved out that day. 217 stays, live and unmerged, until the numbered reaper removes it after it merges (phase 002, AC-006). With fsmonitor off, no main daemon watches it meanwhile.
 4. **Three review findings were left open as low cost, and phase 005 closed them.** The reaper now rechecks a PID's start time as well as its command line before each signal, so a recycled PID is skipped. It skips git's `stop` while a second daemon watches the same worktree, because `stop` ends whichever daemon owns the socket. It reads a fresh worktree list before ending a stray, so a worktree registered mid-run keeps its daemon. See `../005-reaper-hardening/implementation-summary.md`.
 <!-- /ANCHOR:limitations -->
 

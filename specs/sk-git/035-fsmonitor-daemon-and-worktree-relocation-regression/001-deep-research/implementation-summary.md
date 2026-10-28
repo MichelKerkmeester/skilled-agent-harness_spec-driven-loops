@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-27T10:23:40Z"
     last_updated_by: "generate-context"
     recent_action: "Merged three lanes into research.md and planned phases 002 to 004"
-    next_safe_action: "Implement 004-push-gate-git-timeout first, then 002 and 003"
+    next_safe_action: "None"
     blockers: []
     key_files:
       - "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research/research/research.md"
@@ -115,8 +115,8 @@ During the run the main checkout's daemon wedged twice more and blocked the fan-
 ## Known Limitations
 
 1. **Lane two is not independent.** It read lane one's synthesis first. The git source claims it shares were checked by hand, so the fix design does not rest on its agreement.
-2. **The trigger is inferred.** That a lost cookie event under load sets off the wedge is not confirmed. A `GIT_TRACE_FSMONITOR=1` run during a heavy install in a nested worktree would confirm it.
-3. **The call-site inventory is a sample.** It covers the JavaScript spawn sites near the hung path, not every shell `git` line in the hooks.
+2. **The trigger is inferred.** That a lost cookie event under load sets off the wedge is not confirmed. A `GIT_TRACE_FSMONITOR=1` run during a heavy install in a nested worktree would confirm it. Resolved by the fsmonitor decision: this checkout keeps `core.fsmonitor=false` permanently (`../005-reaper-hardening/spec.md` section 10), so no git call here reaches a daemon and confirming the trigger changes no fix.
+3. **The call-site inventory is a sample.** It covers the JavaScript spawn sites near the hung path, not every shell `git` line in the hooks. Resolved by the same decision: with fsmonitor off, no call site, sampled or not, waits on a daemon. Phase 005 also bounded the hook and launcher call lines that read the index.
 <!-- /ANCHOR:limitations -->
 
 ---

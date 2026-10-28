@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/002-worktree-relocation-restore"
-    last_updated_at: "2026-10-27T10:11:47Z"
-    last_updated_by: "planning"
-    recent_action: "Filled the planning docs for the worktree base write-back phase"
-    next_safe_action: "Review the spec and plan, then implement T005 to T009"
+    last_updated_at: "2026-10-27T22:15:15Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Reworded AC-006 to close on a move or on the reaper removing worktree 217 after it merges"
+    next_safe_action: "Mark AC-006 Met once the numbered reaper has removed worktree 217 and the count prints 0"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "planning-002-worktree-relocation-restore"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 83
     open_questions: []
     answered_questions: []
 ---
@@ -56,7 +56,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-003 | REQ-003 | Given `SPECKIT_WORKTREE_BASE` is set to a non-empty absolute path and the key is unset, When a wrapper launch runs, Then `git -C "$FIXTURE" config --get speckit.worktreeBase` prints that path | Ran 2026-10-27: env-base case unchanged at `.skilled/bin/tests/worktree-session.test.sh:167`, suite `FAIL=0` | Met | - |
 | AC-004 | REQ-004 | Given the resolved base sits inside the checkout and four linked worktrees exist, When the doctor runs, Then `node --test --test-reporter=tap .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs` prints `# fail 0`, and the in-checkout case reports DEGRADED | Ran 2026-10-27: `# pass 71`, `# fail 0`; case at `.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:1115`, check at `.skilled/commands/doctor/scripts/git-setup-check.cjs:744` | Met | - |
 | AC-005 | REQ-004 | Given the resolved base sits outside the checkout, or three or fewer linked worktrees exist, When the doctor runs, Then `node --test --test-reporter=tap .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs` prints `# fail 0`, and the outside and at-threshold cases report PASS | Ran 2026-10-27: cases at `.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:1126`, `:1134` and `:1143` pass | Met | - |
-| AC-006 | REQ-005 | Given the operator has confirmed each idle worktree in writing and the key is set to `~/worktrees/public`, When each worktree is moved and repaired, Then `git worktree list --porcelain \| grep -c '^worktree .*/\.worktrees/'` prints `0` | The output is recorded in `implementation-summary.md` at closure, with the rollback snapshot from `tasks.md` T016 | Unmet | - |
+| AC-006 | REQ-005 | Given the operator has confirmed each idle worktree in writing and the key is set to `~/worktrees/public`, When each worktree is moved, or removed by the reaper after it merges, Then `git worktree list --porcelain \| grep -c '^worktree .*/\.worktrees/'` prints `0` | Pending on 2026-10-27: the command prints `1`, for `.worktrees/217-weak-model-spec-authoring`, whose session is live and whose branch is 6 commits ahead of `main` and not merged, so it is not moved. The numbered reaper's session-start sweep (`.skilled/bin/worktree-guard.sh:53-73`) removes it once it is merged, clean and idle for 48 hours (`.skilled/bin/worktree-reaper.sh:58`). 145 and 218 were moved (`tasks.md` T019), after the rollback snapshot in T016 | Unmet | - |
 
 ### Status values
 
@@ -83,5 +83,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** No
 
-No. AC-006 is unmet: the operator moves the worktrees out of the checkout.
+No. AC-006 is unmet for one reason: worktree 217 is still inside the checkout, live and unmerged. It leaves when the numbered reaper removes it after it merges and sits idle for 48 hours, and AC-006 is then rechecked with its command.
 <!-- /ANCHOR:closure -->

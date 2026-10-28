@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-27T19:44:35Z"
     last_updated_by: "claude"
     recent_action: "Recorded the guard, the ratchet cause and the inventory fix"
-    next_safe_action: "None; the five private-skill suites are the operator's call"
+    next_safe_action: "None"
     blockers: []
     key_files: []
     session_dedup:
@@ -136,10 +136,10 @@ A second follow-up fixed the calendar drift in the scorer baseline. The derived 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Split handoffs are bounded, not free text.** "delegate" or "hand" must reach the executor through a `to` within six object words and no sentence punctuation. A phrasing like "get codex to take this refactor" still depends on the older cue or alias paths.
-2. **The guard names two owners.** A third workflow-owning skill would need adding to `WORKFLOW_OWNER_SKILL_IDS`.
+1. **Split handoffs are bounded, not free text.** "delegate" or "hand" must reach the executor through a `to` within six object words and no sentence punctuation. A phrasing like "get codex to take this refactor" still depends on the older cue or alias paths. Accepted: the bound is what keeps "delegate the decision to the team" and an executor named only inside the object from reading as a handoff (`runtime/lib/scorer/executor-delegation.ts:94-101`).
+2. **The guard names two owners.** A third workflow-owning skill would need adding to `WORKFLOW_OWNER_SKILL_IDS`. Accepted: adding an owner is a one-entry change to the set at `runtime/lib/scorer/executor-delegation.ts:62`.
 3. **Daemon and dist freshness.** `advisor_rebuild` refused while the status was live, and a stale shared daemon kept the old order until it restarted. Touching any runtime source, even to restore identical content, marks `dist/` stale and makes the CLI tests report `daemon launcher exited with code 1` until `npm run build` runs again.
-4. **Moving the scoring date is manual.** The pinned date stays `2026-10-11` until someone exports `SPECKIT_EVAL_BASELINE_SCORING_DATE` for a capture; the baseline then measures the derived lane's age haircut at that date, and the prose in `references/scoring/validation-baselines.md` (dated 2026-07-30) is a separate snapshot this packet did not touch.
+4. **Moving the scoring date is manual.** The pinned date stays `2026-10-11` until someone exports `SPECKIT_EVAL_BASELINE_SCORING_DATE` for a capture; the baseline then measures the derived lane's age haircut at that date, and the prose in `references/scoring/validation-baselines.md` (dated 2026-07-30) is a separate snapshot this packet did not touch. Accepted: the fixed date is deliberate, so a recapture on a later day does not move the numbers through the age discount (`changelog/v0.17.11.0.md:27`).
 <!-- /ANCHOR:limitations -->
 
 ---

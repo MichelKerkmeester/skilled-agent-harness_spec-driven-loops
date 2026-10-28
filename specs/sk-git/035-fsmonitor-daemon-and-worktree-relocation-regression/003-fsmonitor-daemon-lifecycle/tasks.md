@@ -204,9 +204,9 @@ A task that cannot run stays open, with its blocker named in its own line, and i
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 17 | [ ]/17 |
-| P1 Items | 12 | [ ]/12 |
-| P2 Items | 1 | [ ]/1 |
+| P0 Items | 17 | 17/17 |
+| P1 Items | 12 | 12/12 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-10-27
 <!-- /ANCHOR:summary -->

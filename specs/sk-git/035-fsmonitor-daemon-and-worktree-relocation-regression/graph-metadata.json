@@ -54,7 +54,8 @@
       ".skilled/bin/worktree-guard.sh",
       ".skilled/commands/doctor/scripts/git-setup-check.cjs",
       "005-reaper-hardening/acceptance-criteria.md",
-      "006-numbered-worktree-cleanup/acceptance-criteria.md"
+      "006-numbered-worktree-cleanup/acceptance-criteria.md",
+      "005-reaper-hardening/spec.md"
     ],
     "entities": [
       {
@@ -174,16 +175,16 @@
     ],
     "causal_summary": "On 2026-10-27 a `git push` sat in the pre-push hook for about 30 minutes",
     "created_at": "2026-10-27T08:12:30Z",
-    "last_save_at": "2026-10-27T21:26:03.985Z",
+    "last_save_at": "2026-10-27T22:19:14.715Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:dca82960378044c72595b7e9c4be00036cc2356b09290ea978090c4e75b4b305",
+    "source_fingerprint": "sha256:eef508397316d2cc70ac444b8fbdd6cbc32d73687b639e7fcaad34c49f837475",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4afa9d2531bdac75afad3917e244737c9c05ddfa776cede65a6085653fe95917"
+      "spec.md": "fde68f584b0ac0623221d2afce6f853263c5c10ecef35f679311a0bbfeab4abf"
     },
     "last_active_child_id": "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/003-fsmonitor-daemon-lifecycle",
     "last_active_at": "2026-10-27T13:42:51.523Z"

@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-27T06:59:33Z"
     last_updated_by: "generate-context"
     recent_action: "Added GPT-6.1 Terra to three CLI rosters and the cli-pi fan-out allowlist"
-    next_safe_action: "Review the uncommitted diff, then commit it"
+    next_safe_action: "None"
     blockers: []
     key_files:
       - ".skilled/skills/cli-external-orchestration/cli-codex/references/providers-and-models.md"
@@ -113,10 +113,10 @@ The model id came from the Codex catalog and was then dispatched once on each CL
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **OpenCode's Terra effort range is unmeasured.** OpenCode does not report variant ranges, so the roster names the Codex catalog range and says so.
-2. **The `-fast` OpenCode slug is list-verified only.** The base slug was dispatched, and the `-fast` one was seen in the catalog.
-3. **The runtime `node_modules` lags its pin.** Run `npm install` in `.skilled/skills/system-deep-loop/runtime` to clear the zod check.
-4. **npm audit flags the Pi extension trees.** The extension update reported 3 vulnerabilities in one tree and 10 in the other. They were left alone, since fixing them is a separate dependency change.
+1. **OpenCode's Terra effort range is unmeasured.** OpenCode does not report variant ranges, so the roster names the Codex catalog range and says so. Accepted: OpenCode exposes no range to measure, and the roster labels the borrowed range as unmeasured.
+2. **The `-fast` OpenCode slug is list-verified only.** The base slug was dispatched, and the `-fast` one was seen in the catalog. Accepted: the slug comes from OpenCode's own catalog, and the base slug of the same model dispatched as expected.
+3. **Done: the runtime `node_modules` matches its pin.** On 2026-10-27 `.skilled/skills/system-deep-loop/runtime/package.json:18` pins `zod` `4.6.7`, the installed `node_modules/zod/package.json` reads `4.6.7`, and `npm ls zod` prints `zod@4.6.7`.
+4. **npm audit flags the Pi extension trees.** Fixed on 2026-10-28 with `npm audit fix`, no `--force`, on the operator's go-ahead. In `~/.pi/agent/npm` it cleared `body-parser`, `fast-uri` and `qs`; in the `pi-cache-optimizer` clone it cleared `brace-expansion` and `zod`. Accepted: `undici` 8.10.2 (high, an EventSource parser memory DoS) stays, because `@earendil-works/pi-coding-agent` 1.4.0, the latest release, pins that exact version, so no non-forced fix can move it, and the Pi CLI itself ships the same pin. Pi still answers `OK` with exit 0 on `--model openai/gpt-6.1-terra` after the fix. The clone's updated `package-lock.json` is left uncommitted in that repository for the operator.
 <!-- /ANCHOR:limitations -->
 
 ---

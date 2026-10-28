@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-27T11:17:15Z"
     last_updated_by: "generate-context"
     recent_action: "Bounded seven git calls on the push gate path and its siblings"
-    next_safe_action: "Build phase 002, the worktree base write-back"
+    next_safe_action: "None"
     blockers: []
     key_files:
       - ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs"
@@ -119,9 +119,9 @@ DeepSeek V4.1 Flash 1017 at `max` built five units through `cli-opencode`, one a
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Other git calls are still unbounded.** This phase fixed the proven path and its close siblings, not all of the roughly 59 git-spawning files. Phase 003's wedge probe covers the rest from the daemon side.
+1. **Other git calls are still unbounded.** This phase fixed the proven path and its close siblings, not all of the roughly 59 git-spawning files. Phase 003's wedge probe covers the rest from the daemon side. Resolved by the fsmonitor decision: this checkout keeps `core.fsmonitor=false` permanently (`../005-reaper-hardening/spec.md` section 10), so no git call here waits on a daemon. Phase 005 also bounded the hook and launcher call lines that read the index.
 2. **The stopped-daemon run used a copy.** Three roots failed in the copy because `.skilled/commands/` was not copied. The real tree passes all 14.
-3. **One consumer test already fails.** `skill-root-reader-inventory.test.cjs` reports `router-replay-lib.cjs:520`. Neither file differs from HEAD, and the reported file was last changed in `f431355ac2`, so the failure predates this phase. It is outside this phase.
+3. **One consumer test already fails.** `skill-root-reader-inventory.test.cjs` reports `router-replay-lib.cjs:520`. Neither file differs from HEAD, and the reported file was last changed in `f431355ac2`, so the failure predates this phase. It is outside this phase. Resolved: on 2026-10-27 `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-reader-inventory.test.cjs` prints `tests 1`, `pass 1`, `fail 0` and exits 0.
 <!-- /ANCHOR:limitations -->
 
 ---

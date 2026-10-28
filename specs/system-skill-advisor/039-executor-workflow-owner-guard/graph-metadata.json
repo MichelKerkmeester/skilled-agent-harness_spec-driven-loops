@@ -203,7 +203,7 @@
     ],
     "causal_summary": "A prompt such as \"run a deep research loop with the cli-pi executor\" made the advisor rank `cli-external-orchestration` (confidence 0.95) above `system-deep-loop` (0.9248)",
     "created_at": "2026-10-27T19:44:35Z",
-    "last_save_at": "2026-10-27T21:47:06.759Z",
+    "last_save_at": "2026-10-27T22:19:28.622Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:301909319675f263038591de8d115a420c9bde8c54fdcfec88e332ff14c8c04b",
+    "source_fingerprint": "sha256:b42af3fd06789166cc2e6418787969ddf2dcb7c3b0e2b22b8b55907824ad057c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4b287896c2eecaa4d2376cf4cbaa11a82e6f417244c8834211297e85e52a88d4",
       "plan.md": "d215143e98facda8400e69f530423e5048da2193b8955b5847bef277e8df29e1",
       "tasks.md": "4e9630f7c329ea37f6c951f7e995f7fd5e7617a42210fcc2637b3362641199be",
-      "implementation-summary.md": "d4259455f9fbd4c3bc06ac1a06f50459287ac2951ebf381beb1352befc5cc318"
+      "implementation-summary.md": "7d309b5fea2e48338076485a7c988313cfe405d24f97b89aac0dd1690fa42179"
     },
     "last_active_at": null
   }

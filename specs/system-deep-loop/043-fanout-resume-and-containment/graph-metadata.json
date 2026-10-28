@@ -204,7 +204,7 @@
     ],
     "causal_summary": "A deep-research fan-out lane that was interrupted (the network dropped mid-run) could not be resumed: two resume attempts exited 1 before the executor ran, and the lane had to be rerun as a new lineage",
     "created_at": "2026-10-27T19:44:36Z",
-    "last_save_at": "2026-10-27T20:47:17.066Z",
+    "last_save_at": "2026-10-27T22:19:30.805Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d323206d413ca30d106e80f6d0087e6c5e11602cef8488c91742e04b98090b46",
+    "source_fingerprint": "sha256:3887fefafca80d94499b5e77f33b593fc83f4d586e9abbca78dbfc8798318b7e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3c7b89c9f3704870ba8e62e569dfda2334e7ad4dc6506e2c9a4fe16bd5321df0",
       "plan.md": "61c22216bf8a688bee026463c13adc942165184b54c28591d8178dbbfa2e70be",
       "tasks.md": "3015a844c9808b3b8f593a98dea032edbd05850302013c9f81f8ea421aeb614d",
-      "implementation-summary.md": "2419dbcd25c1a5f6a1d0f9bb5cc1ac18f0a7e2d3a85cc6f0388bd621d3db6183"
+      "implementation-summary.md": "4c9bab9a02fe7ca65eb4d8401210f080b58f659fa9da94a8f4e8d0cfa57beafe"
     },
     "last_active_at": null
   }

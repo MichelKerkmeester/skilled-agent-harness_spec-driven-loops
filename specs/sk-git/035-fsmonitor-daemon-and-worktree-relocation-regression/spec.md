@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression"
-    last_updated_at: "2026-10-27T13:00:00Z"
+    last_updated_at: "2026-10-27T22:15:15Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Shipped phases 002 code, 003 and 004; phase 002 waits on the operator's worktree move"
-    next_safe_action: "Operator moves the worktrees out of the checkout, phase 002 tasks T015 to T020"
+    recent_action: "Recorded the permanent core.fsmonitor=false decision and closed the open questions"
+    next_safe_action: "Mark phase 002 AC-006 Met once the numbered reaper has removed worktree 217 after it merges"
     blockers: []
     key_files:
       - "scratch/findings.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "62098141-a640-42f2-be0a-f0b9b06d61df"
       parent_session_id: null
-    completion_pct: 75
+    completion_pct: 97
     open_questions: []
     answered_questions: []
 ---
@@ -129,6 +129,8 @@ Make an unanswered fsmonitor daemon cost seconds instead of half an hour, stop o
 
 Phase 004 has no dependency on 002 or 003. It is the cheapest change and removes the push stall on its own, so it can ship first.
 
+The parent stays In Progress for one reason only: phase 002's AC-006. On 2026-10-27 `git worktree list --porcelain | grep -c '^worktree .*/\.worktrees/'` prints `1`, for `.worktrees/217-weak-model-spec-authoring`, whose session is live and whose branch is 6 commits ahead of `main` and not merged. It is not moved. The numbered reaper's session-start sweep (`.skilled/bin/worktree-guard.sh:53-73`) removes it once it is merged, clean and idle for 48 hours (`.skilled/bin/worktree-reaper.sh:58`), and AC-006 then reads `0`.
+
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -152,9 +154,9 @@ Phase 004 has no dependency on 002 or 003. It is the cheapest change and removes
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- After the worktrees move out, should the main checkout keep fsmonitor, or also opt out with `extensions.worktreeConfig` as a second safeguard? Decide in phase 002 once the relocation is measured.
-- What unset `speckit.worktreeBase`? UNKNOWN. The key is unversioned local config, so only a `.git/config` backup or shell history can answer it. Phase 002 removes the silent re-pin either way.
-- Is a lost cookie event under event load the actual trigger of the wedge? INFERRED. A `GIT_TRACE_FSMONITOR=1` run during a heavy install in a nested worktree would confirm it. Load is not required: on 2026-10-27 a `git commit` in a one-file scratch repository, started one second after its daemon, waited forever while later calls to that daemon answered.
+- Decided 2026-10-27: this checkout keeps `core.fsmonitor=false` permanently. `.git/config:8` reads `fsmonitor = false`, and no `extensions.worktreeConfig` is set, so every linked worktree inherits it. The reasons and the timing are in `005-reaper-hardening/spec.md` section 10: `git status --porcelain` took a 0.282 s median with fsmonitor off, and five of five calls with it on were killed at the 60 second cap. Git stays at 2.50.1, and the 2.51 to 2.53 release notes carry no fsmonitor fix.
+- Closed as UNKNOWN: what unset `speckit.worktreeBase`. The key is unversioned local config, and on 2026-10-27 neither `~/.zsh_history` nor `~/.bash_history` holds a line naming `worktreeBase`, and `.git/` holds no config backup, so it cannot be recovered from disk. Phase 002's guard prevents it going forward: a launch writes the key only for an explicit `SPECKIT_WORKTREE_BASE` (`.skilled/bin/worktree-session.sh:314-315`). The key now reads `~/worktrees/public`.
+- Moot after the decision: whether a lost cookie event under event load is the actual trigger of the wedge. It stays INFERRED, and a `GIT_TRACE_FSMONITOR=1` run during a heavy install in a nested worktree would confirm it, but with fsmonitor off no git call here reaches a daemon, so the answer changes no fix. Load was not required: on 2026-10-27 a `git commit` in a one-file scratch repository, started one second after its daemon, waited forever while later calls to that daemon answered.
 <!-- /ANCHOR:questions -->
 
 ---

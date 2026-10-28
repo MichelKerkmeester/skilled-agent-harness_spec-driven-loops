@@ -74,6 +74,7 @@ Current state:
 ## 8. Questions for the research phase
 
 1. What unset `speckit.worktreeBase` and removed the reaper's daemon handling, and does anything still create worktrees under `.worktrees/` by default?
+   - Closed 2026-10-27: what unset the key is UNKNOWN and not recoverable from disk, since the key is unversioned local config and no shell history line or `.git/config` backup names it. Phase 002's guard prevents a repeat: a launch writes the key only for an explicit `SPECKIT_WORKTREE_BASE`. The default base is still `.worktrees`, but the key now reads `~/worktrees/public`, so new launches land outside the checkout.
 2. What is git 2.50.1's documented daemon lifecycle on macOS? Does a daemon ever exit on its own, and how do `fsmonitor.socketDir`, idle shutdown and `git fsmonitor--daemon stop` behave when the daemon is wedged?
 3. Is event overload the real cause of the hang, or is there a known daemon deadlock in this git version, for example around `--ipc-threads` or the cookie-file handshake?
 4. Which call sites in the repo's hooks and scripts run git without a timeout, and which of them should opt out of fsmonitor?

@@ -8,12 +8,12 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/002-worktree-relocation-restore"
-    last_updated_at: "2026-10-27T13:00:00Z"
+    last_updated_at: "2026-10-27T22:15:15Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Shipped the explicit-only base write-back and the doctor in-checkout check"
-    next_safe_action: "Operator moves the worktrees out, tasks T015 to T020"
+    recent_action: "Moved 145 and 218 out; 217 stays until the reaper removes it after it merges"
+    next_safe_action: "Mark AC-006 Met once the numbered reaper has removed worktree 217 and the count prints 0"
     blockers:
-      - "Operator-run worktree move, AC-006"
+      - "Worktree 217 is still inside the checkout, live and unmerged, AC-006"
     key_files:
       - ".skilled/bin/worktree-session.sh"
       - ".skilled/commands/doctor/scripts/git-setup-check.cjs"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "62098141-a640-42f2-be0a-f0b9b06d61df"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 83
     open_questions: []
     answered_questions: []
 ---
@@ -57,7 +57,7 @@ A session launch can no longer quietly move every future worktree back inside th
 
 The doctor's `worktrees` row now compares the base with the main checkout as real paths. It reports DEGRADED when the base is inside the checkout and more than three linked worktrees exist, because the main checkout's fsmonitor then sees every file in them. Run against this checkout, it reports exactly that, for 4 worktrees.
 
-Moving the existing worktrees out (T015 to T020) is the operator's step. 145 moved on 2026-10-27, and 217 and 218 remain.
+Moving the existing worktrees out (T015 to T020) is the operator's step. 145 and 218 moved on 2026-10-27. 217 stays, because its session is live and its branch is unmerged, until the numbered reaper removes it after it merges.
 
 ### Files Changed
 
@@ -105,6 +105,8 @@ DeepSeek V4.1 Flash 1017 at `max` built two units through `cli-opencode`, one at
 | Doctor after the 145 move | `worktrees` PASS, two linked worktrees left, `fsmonitor daemons: 1 main, 1 worktree, 0 stray` |
 | `git config --get speckit.worktreeBase` after both units | exit 1, still unset |
 | CI reference to `git-setup-check` | None |
+| Fix commit | `dc79b967df` (fix(sk-git): persist only an explicitly chosen worktree base), found with `git log -S'WT_BASE_SOURCE' -- .skilled/bin/worktree-session.sh` |
+| Rerun 2026-10-27 | `worktree-session.test.sh` `PASS=76 FAIL=0`, exit 0; `git-setup-check.test.cjs` `# pass 77`, `# fail 0` with `SPECKIT_WORKTREE_BASE=''` and with `'../escape'` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -112,9 +114,9 @@ DeepSeek V4.1 Flash 1017 at `max` built two units through `cli-opencode`, one at
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Two worktrees are still inside the checkout.** 145 moved out on 2026-10-27 and 231 was removed by its own session. Until 217 and 218 move, the main daemon still watches them. With two worktrees left, the doctor's three-worktree limit no longer reports DEGRADED.
-2. **New sessions still default inside the checkout.** The default base is unchanged. Setting `speckit.worktreeBase` to `~/worktrees/public` (T018) is what moves new worktrees out.
-3. **What unset the key earlier is unknown.** The new guard stops the default from being written again, whatever caused it.
+1. **One worktree is still inside the checkout.** 145 and 218 moved out on 2026-10-27, and 231 was removed by its own session. 217 stays because its session is live and its branch is unmerged. The numbered reaper's session-start sweep removes it once it is merged, clean and idle for 48 hours, and AC-006 closes then. With `core.fsmonitor=false` kept in this checkout (`../005-reaper-hardening/spec.md` section 10), no main daemon watches it meanwhile.
+2. **Resolved: new sessions land outside the checkout.** The default base is still `.worktrees`, but T018 set `speckit.worktreeBase` to `~/worktrees/public`, and `git config --get speckit.worktreeBase` still prints that on 2026-10-27.
+3. **Closed as UNKNOWN: what unset the key earlier.** It cannot be recovered from disk: no shell history line or `.git/config` backup names it. The guard stops the default from being written again, whatever caused it.
 <!-- /ANCHOR:limitations -->
 
 ---

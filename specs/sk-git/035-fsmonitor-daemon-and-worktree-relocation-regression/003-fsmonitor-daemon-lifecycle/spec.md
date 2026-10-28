@@ -24,7 +24,7 @@ contextType: "general"
 | **Created** | 2026-10-27 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 3 of 4 |
+| **Phase** | 3 of 6 |
 | **Predecessor** | 002-worktree-relocation-restore |
 | **Successor** | 004-push-gate-git-timeout |
 | **Handoff Criteria** | Removing a worktree leaves no fsmonitor daemon attributed to its path, and the dry-run lists no daemon for that path afterwards |

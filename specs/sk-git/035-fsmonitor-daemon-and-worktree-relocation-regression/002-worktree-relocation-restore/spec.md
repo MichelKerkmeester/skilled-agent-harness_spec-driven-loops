@@ -24,7 +24,7 @@ contextType: "general"
 | **Created** | 2026-10-27 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 2 of 4 |
+| **Phase** | 2 of 6 |
 | **Predecessor** | 001-deep-research |
 | **Successor** | 003-fsmonitor-daemon-lifecycle |
 | **Handoff Criteria** | The wrapper and doctor suites pass with their new default-path cases, and the operator has recorded the migration decision in `acceptance-criteria.md`. |
@@ -211,8 +211,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - Answered: "more than three linked worktrees" is the trigger for REQ-004. The operator confirmed it on 2026-10-27.
 - Decision: no `--base` flag in this phase. `SPECKIT_WORKTREE_BASE` is the only explicit source. research.md section 6 names "environment variable or a flag", so that line needs the amendment below.
 - Amendment to research.md section 6, Layer 2: `.skilled/bin/tests/worktree-session.test.sh` asserts persistence only in the env-base case (lines 146-167). That case stays, because the env base is explicit. The default path has no assertion today, so this phase adds a negative one. The research text says the test "asserts the write-back", which is true only for the env case.
-- Does any CI step gate on the doctor battery's exit code? UNKNOWN until `tasks.md` T014 greps the CI config.
-- Which action unset `speckit.worktreeBase`? UNKNOWN. Out of scope for this phase (see section 3).
+- Answered 2026-10-27 (`tasks.md` T014): no CI step gates on the doctor battery's exit code. `grep -rln 'git-setup-check' .github` finds nothing.
+- Closed as UNKNOWN: which action unset `speckit.worktreeBase`. It cannot be recovered from disk: the key is unversioned local config, and no shell history line or `.git/config` backup names it. The guard at `.skilled/bin/worktree-session.sh:314-315` prevents a repeat.
+- Decided 2026-10-27: worktree 217 is not moved. Its session is live and its branch is unmerged, so AC-006 closes when each worktree is moved, or removed by the reaper after it merges. With `core.fsmonitor=false` kept in this checkout (`../005-reaper-hardening/spec.md` section 10), no main daemon watches 217 meanwhile.
 <!-- /ANCHOR:questions -->
 
 ---

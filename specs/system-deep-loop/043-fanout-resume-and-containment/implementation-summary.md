@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-27T19:44:36Z"
     last_updated_by: "claude"
     recent_action: "Fixed both bugs and verified the runtime suite"
-    next_safe_action: "Maintainer applies the follow-ups listed under Known Limitations"
+    next_safe_action: "None"
     blockers: []
     key_files: []
     session_dedup:
@@ -131,9 +131,9 @@ Each bug was reproduced from the interrupted lineage's on-disk facts (its ledger
 ## Known Limitations
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **A lane write to a file an operator already had open is reported only as contested.** The ledger event, the lineage output and the note name it; no copy is made. Compare the file with the pre-dispatch bytes in the lineage's `containment/baseline/` before trusting either writer.
-2. **A brand-new file a second session creates mid-run is still a preserved advisory under the lane.** git status cannot tell it from a lane write, and attribution would need the executor's own write log. The file is never deleted and the advisory is non-fatal.
-3. **The library README has no row for `fanout-effect-dispatch.ts`.** Its `write-containment.ts` row now names the contested class, but the redispatch id has no row to live in. Adding one is a separate README change.
+1. **A lane write to a file an operator already had open is reported only as contested.** The ledger event, the lineage output and the note name it; no copy is made. Compare the file with the pre-dispatch bytes in the lineage's `containment/baseline/` before trusting either writer. Accepted: git status shows that bytes changed, not who wrote them (`runtime/lib/deep-loop/write-containment.ts:292`), so the run reports both writers rather than guess.
+2. **A brand-new file a second session creates mid-run is still a preserved advisory under the lane.** git status cannot tell it from a lane write, and attribution would need the executor's own write log. The file is never deleted and the advisory is non-fatal. Accepted: nothing is lost, and attribution would need a write log the executor does not keep.
+3. **Done: the library README has a row for `fanout-effect-dispatch.ts`.** `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/README.md:43` names it, with the `:redispatch-<n>` effect id a resumed lineage gets.
 <!-- /ANCHOR:limitations -->
 
 ---

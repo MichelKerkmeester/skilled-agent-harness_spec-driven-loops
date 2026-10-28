@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The reaper checks only a pid's command line before it signals, so a pid recycled into another daemon during one run is signalled",
     "created_at": "2026-10-27T19:44:42Z",
-    "last_save_at": "2026-10-27T21:47:01.909Z",
+    "last_save_at": "2026-10-27T22:19:26.603Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:50389faa0359686cf964a51e1d10fce37f03e4042117a0a51a977b4f189a8fbf",
+    "source_fingerprint": "sha256:63591045dd8231e6b8bbb58219e4096f78c8d2169fbd206e3e6b1a124c318482",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8cc5341db37c3c5e2ca569fa0b8c9ee461e56c6827caae147d8bd57f3c008d23",
+      "spec.md": "cda1e886cfb652788c933be65cd66ca4bd9614210933985dc42ac67ecf6befdf",
       "plan.md": "534ee9381c6a4e23627b34db71fa4ce652d7caf5a09ac22b0b69c9d9525ff031",
       "tasks.md": "0f74a9e3a7ee950b75c8388e91bdc9df016adbf9ba292ce652444c06033fba9c",
-      "implementation-summary.md": "9d57ab4a818b34bdcc3d244b6d668aa199b7d915f6e23141dbfe32a0a8a3d89a"
+      "implementation-summary.md": "34777536b022ad50919c65ceb9aa2b2cd9f6f4a6e6206add63b3580a20672e61"
     },
     "last_active_at": null
   }

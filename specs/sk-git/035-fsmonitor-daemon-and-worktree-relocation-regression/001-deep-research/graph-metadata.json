@@ -203,7 +203,7 @@
     ],
     "causal_summary": "A `git push` stalled for about 30 minutes because a `git check-ignore` waited on an fsmonitor daemon that never answered, and two more main daemons wedged the same morning",
     "created_at": "2026-10-27T08:12:30Z",
-    "last_save_at": "2026-10-27T10:23:40.488Z",
+    "last_save_at": "2026-10-27T22:19:17.673Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:356bdfd4a54fa0a4d1524b3511899d8277db99271c6040e47e6d91e5c592cb1e",
+    "source_fingerprint": "sha256:f3e3d8eb6018922f825bb805ec910fb0d317901b735e43572a2ce80871a1644c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d0fee61e053edb06b7e548720c1759bdab2080b367f07e89036c5a567b39847b",
+      "spec.md": "d4b85bc0d0bfdf1850565d6fbe78d5c64ddf78568e30020075b3f36affe5627b",
       "plan.md": "397572c2af35a1d3660c38e090a97b90319656106e519dc6204803caac47ea64",
       "tasks.md": "b2fec7034e91560c07348c3026f97762401d1397264e0e8c76efe677095e0bdb",
-      "implementation-summary.md": "dad27fa7d1260e6a34caf20f8bc9af5d84940a5a2368505bc298c6e19b66f147",
+      "implementation-summary.md": "da3dfab2a76a3b70c50abf11fd8d019baa249d596c000165fd5803342ebdbe32",
       "research/research.md": "f0718d123453e33a728a6ced442b6bd3316f7758738ee7c12cadacc49a663548"
     },
     "last_active_at": null
