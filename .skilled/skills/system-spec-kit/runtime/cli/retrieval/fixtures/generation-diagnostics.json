@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7357,
-    "ok": 15996,
+    "missing-frontmatter": 7275,
+    "ok": 15936,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26901,
+  "documentsScanned": 26759,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,27 +27,27 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "fd7a4da3ddf8da702d12e8d648b9b1a1f40f1d523166e2af3c5d715fc3e12eff",
+  "manifestHash": "cb9a8316e13859f866726d75b33d3bbbc16d5cebe911b5b0f0a4c0b874cc710b",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
       "editor-fallback": 1,
-      "folder-token-fallback": 50,
+      "folder-token-fallback": 49,
       "generic-workflow-word": 77,
       "numeric-only": 40,
       "prose-sentence": 10,
-      "single-token": 366,
+      "single-token": 364,
       "stop-word-only": 9,
       "template-default": 22
     },
     "phrases": {
       "editor-fallback": 1,
-      "folder-token-fallback": 33,
+      "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 39292,
+      "ok": 39087,
       "prose-sentence": 19,
-      "single-token": 162,
+      "single-token": 161,
       "stop-word-only": 1,
       "template-default": 19
     }
@@ -4970,12 +4970,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/skills-and-plugins/vision-evidence-on-image-analysis.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/stress/auth-failure.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -6807,12 +6801,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/sk-git-preflight-advisory.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/sk-vision.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -8784,12 +8772,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/magicpath-component-lookup.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/mobbin-app-research.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -9619,12 +9601,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/mcp-tooling/mcp-figma/scripts/README.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-magicpath/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -30285,474 +30261,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/unknown-fallback-checklist.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-16--manual-testing-playbook--ocr-live-run/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-16--manual-testing-playbook--ocr-live-run/failed-runs.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-16--manual-testing-playbook--ocr-live-run/findings-and-recommendations.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-16--manual-testing-playbook--ocr-live-run/skill-benchmark-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-16--manual-testing-playbook--ocr-live-run/source.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-16--manual-testing-playbook--status-live-run/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-16--manual-testing-playbook--status-live-run/failed-runs.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-16--manual-testing-playbook--status-live-run/findings-and-recommendations.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-16--manual-testing-playbook--status-live-run/skill-benchmark-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-16--manual-testing-playbook--status-live-run/source.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-017-standalone/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-017-standalone/failed-runs.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-017-standalone/findings-and-recommendations.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-017-standalone/skill-benchmark-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-017-standalone/source.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-018-cursor-status/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-018-cursor-status/failed-runs.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-018-cursor-status/findings-and-recommendations.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-018-cursor-status/skill-benchmark-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-018-cursor-status/source.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-019-devin-status-pass/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-019-devin-status-pass/failed-runs.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-019-devin-status-pass/findings-and-recommendations.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-019-devin-status-pass/skill-benchmark-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-019-devin-status-pass/source.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-019-devin-status/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-019-devin-status/failed-runs.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-019-devin-status/findings-and-recommendations.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-019-devin-status/skill-benchmark-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-019-devin-status/source.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-cursor-vision-blind-pass/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-cursor-vision-blind-pass/failed-runs.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-cursor-vision-blind-pass/findings-and-recommendations.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-cursor-vision-blind-pass/skill-benchmark-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-cursor-vision-blind-pass/source.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-cursor-vision-blind/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-cursor-vision-blind/failed-runs.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-cursor-vision-blind/findings-and-recommendations.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-cursor-vision-blind/skill-benchmark-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-cursor-vision-blind/source.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-devin-vision-blind-pass/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-devin-vision-blind-pass/failed-runs.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-devin-vision-blind-pass/findings-and-recommendations.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-devin-vision-blind-pass/skill-benchmark-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-devin-vision-blind-pass/source.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-devin-vision-blind/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-devin-vision-blind/failed-runs.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-devin-vision-blind/findings-and-recommendations.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-devin-vision-blind/skill-benchmark-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-devin-vision-blind/source.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/hooks/cursor/vision-rule.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/hooks/devin/vision-rule.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/guaranteed-vision/auto-inspect-guarantee.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/guaranteed-vision/classifier-and-env.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/guaranteed-vision/cursor-rule.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/guaranteed-vision/devin-note.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/host-adapters/devin-hook.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/host-adapters/opencode-plugin.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/host-adapters/opencode-vision-command.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/host-adapters/pi-extension.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/host-adapters/pi-vision-command.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/host-adapters/vision-blind-model.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/host-adapters/vision-cli.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/pixel-analysis/annotate.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/pixel-analysis/colors.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/pixel-analysis/crop.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/pixel-analysis/diff.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/pixel-analysis/metadata.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/pixel-analysis/zoom.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/runtime-core/runtime-lifecycle.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/scene-understanding/detect.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/scene-understanding/inspect.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/scene-understanding/ocr.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/scene-understanding/point.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/scene-understanding/segment.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/system-health/reverse.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-vision/manual-testing-playbook/system-health/status.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -69378,18 +68886,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".skilled/hooks/sk-vision/devin/sk-vision.mjs",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/sk-vision/opencode/sk-vision.ts",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/sk-vision/pi/sk-vision.ts",
-      "reason": "symlink not followed"
-    },
-    {
       "path": ".skilled/hooks/skill-advisor/README.md",
       "reason": "duplicate of an already-indexed document"
     },
@@ -70247,6 +69743,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/083-gpt-6-1-terra-roster/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/084-remove-llmgateway-luna-route/scratch",
       "reason": "excluded directory"
     },
     {

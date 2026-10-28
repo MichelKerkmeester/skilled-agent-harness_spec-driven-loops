@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fd7a4da3ddf8da702d12e8d648b9b1a1f40f1d523166e2af3c5d715fc3e12eff",
+  "manifestHash": "cb9a8316e13859f866726d75b33d3bbbc16d5cebe911b5b0f0a4c0b874cc710b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7858,9 +7858,6 @@
     "active memory projection repoint": [
       "active memory projection repoint"
     ],
-    "active project magicpath": [
-      "active project magicpath"
-    ],
     "active purgeable partial index split": [
       "active purgeable partial index split"
     ],
@@ -11125,9 +11122,6 @@
     "annotation callout": [
       "annotation callout"
     ],
-    "annotation overlay sk vision annotate": [
-      "Annotation overlay (sk_vision_annotate)"
-    ],
     "annotation sketchy terminal icons": [
       "annotation sketchy terminal icons"
     ],
@@ -12413,9 +12407,6 @@
     ],
     "attach url": [
       "attach url"
-    ],
-    "attached image": [
-      "attached image"
     ],
     "attachment metadata": [
       "attachment metadata"
@@ -17667,9 +17658,6 @@
     "check the notion integration identity": [
       "check the Notion integration identity"
     ],
-    "check the vision runtime health": [
-      "check the vision runtime health"
-    ],
     "checker debt closeout": [
       "checker debt closeout"
     ],
@@ -22153,6 +22141,9 @@
     "cli transition doc cleanup tasks": [
       "cli transition doc cleanup tasks"
     ],
+    "cli transport design pairing": [
+      "CLI Transport Design Pairing"
+    ],
     "cli unknown command suggestion": [
       "cli unknown command suggestion"
     ],
@@ -22595,6 +22586,9 @@
     "close the routing findings": [
       "close the routing findings"
     ],
+    "closed five model gateway roster": [
+      "closed five-model gateway roster"
+    ],
     "closed gate replay": [
       "closed-gate replay"
     ],
@@ -22603,9 +22597,6 @@
     ],
     "closed roster": [
       "closed roster"
-    ],
-    "closed seven model gateway roster": [
-      "closed seven-model gateway roster"
     ],
     "closed status discovery": [
       "closed status discovery"
@@ -25170,9 +25161,6 @@
     "collision rejection plan": [
       "collision rejection plan"
     ],
-    "color analysis sk vision colors": [
-      "Color analysis (sk_vision_colors)"
-    ],
     "color frequency interpretation": [
       "color frequency interpretation"
     ],
@@ -26091,9 +26079,6 @@
     ],
     "compare two files directly": [
       "compare two files directly"
-    ],
-    "compare two images": [
-      "compare two images"
     ],
     "comparetext crash fix": [
       "compareText crash fix"
@@ -29607,9 +29592,6 @@
     "cron trigger cannot block": [
       "cron trigger cannot block"
     ],
-    "crop this area of the screenshot": [
-      "crop this area of the screenshot"
-    ],
     "cross ai delegation": [
       "cross-ai delegation"
     ],
@@ -30481,9 +30463,6 @@
     "cursor validation pipeline": [
       "cursor validation pipeline"
     ],
-    "cursor vision command": [
-      "cursor vision command"
-    ],
     "cursor workspace isolation": [
       "cursor workspace isolation"
     ],
@@ -30504,9 +30483,6 @@
     ],
     "customize obsidian theme": [
       "customize obsidian theme"
-    ],
-    "cut out the logo from this image": [
-      "cut out the logo from this image"
     ],
     "cutoff calendar date check": [
       "cutoff calendar date check"
@@ -36696,9 +36672,6 @@
     "describe cdp domain": [
       "describe cdp domain"
     ],
-    "describe this image": [
-      "describe this image"
-    ],
     "description budget implementation summary": [
       "description budget implementation summary"
     ],
@@ -36760,9 +36733,6 @@
     "design authored remediation": [
       "design authored remediation"
     ],
-    "design authority binding": [
-      "Design Authority Binding"
-    ],
     "design build manifest": [
       "design build manifest"
     ],
@@ -36781,11 +36751,14 @@
     "design extractor backend": [
       "design extractor backend"
     ],
-    "design gen magicpath keyword": [
-      "design_gen magicpath keyword"
+    "design gen tool keyword removed": [
+      "design_gen tool keyword removed"
     ],
     "design generation patterns reference": [
       "design-generation-patterns reference"
+    ],
+    "design generation skill removed": [
+      "design-generation skill removed"
     ],
     "design hub compiled router": [
       "design hub compiled router"
@@ -37329,9 +37302,6 @@
     "devin handoff command": [
       "devin handoff command"
     ],
-    "devin hook stdin deadline": [
-      "devin hook stdin deadline"
-    ],
     "devin hooks migration": [
       "devin hooks migration"
     ],
@@ -37400,9 +37370,6 @@
     ],
     "devin prompt templates": [
       "devin prompt templates"
-    ],
-    "devin prompt time injection hook sk vision mjs": [
-      "Devin prompt-time injection hook (sk-vision.mjs)"
     ],
     "devin providers and models": [
       "devin providers and models"
@@ -37481,9 +37448,6 @@
     ],
     "devin userpromptsubmit goal inject": [
       "devin userpromptsubmit goal inject"
-    ],
-    "devin userpromptsubmit vision": [
-      "devin UserPromptSubmit vision"
     ],
     "devin vm offload": [
       "devin vm offload"
@@ -40353,9 +40317,6 @@
     "draw io mermaid extraction": [
       "draw.io mermaid extraction"
     ],
-    "draw the detected boxes on this image": [
-      "draw the detected boxes on this image"
-    ],
     "drawio extract": [
       "drawio_extract"
     ],
@@ -41202,6 +41163,9 @@
     ],
     "eight grok 4 7 ids": [
       "eight grok 4.7 ids"
+    ],
+    "eight mcp modes": [
+      "eight mcp modes"
     ],
     "eight mode gates event ledger": [
       "eight mode gates event ledger"
@@ -42148,9 +42112,6 @@
     "enhances edge propagation": [
       "enhances edge propagation"
     ],
-    "enlarge small text": [
-      "enlarge small text"
-    ],
     "enrichment cap review verdict": [
       "enrichment cap review verdict"
     ],
@@ -42744,9 +42705,6 @@
     ],
     "error handling with fallbacks": [
       "error handling with fallbacks"
-    ],
-    "error png": [
-      "error.png"
     ],
     "escalate to prompt improver": [
       "escalate to prompt improver"
@@ -46159,14 +46117,8 @@
     "find notes by title": [
       "find notes by title"
     ],
-    "find similar images locally": [
-      "find similar images locally"
-    ],
     "find source root function": [
       "find source root function"
-    ],
-    "find the submit button in this screenshot": [
-      "find the submit button in this screenshot"
     ],
     "findadvisorworkspaceroot bare sentinel": [
       "findAdvisorWorkspaceRoot bare sentinel"
@@ -46398,9 +46350,6 @@
     ],
     "first changelog version": [
       "first changelog version"
-    ],
-    "first release": [
-      "First Release"
     ],
     "first rule in a repository": [
       "first rule in a repository"
@@ -49406,9 +49355,6 @@
     "get task": [
       "get task"
     ],
-    "get theme magicpath": [
-      "get theme magicpath"
-    ],
     "getcanonicalfallback helper": [
       "getCanonicalFallback helper"
     ],
@@ -51287,9 +51233,6 @@
     "gpt 6 luna cutover": [
       "gpt-6 luna cutover"
     ],
-    "gpt 6 luna default": [
-      "gpt-6 luna default"
-    ],
     "gpt 6 luna devin roster": [
       "gpt-6 luna devin roster"
     ],
@@ -51298,9 +51241,6 @@
     ],
     "gpt 6 luna max": [
       "gpt-6 luna max"
-    ],
-    "gpt 6 luna sol": [
-      "gpt-6 luna sol"
     ],
     "gpt 6 prompting guide": [
       "gpt-6 prompting guide"
@@ -53078,6 +53018,9 @@
     "hermes roster": [
       "hermes roster"
     ],
+    "hermes roster gpt 5 6 ids": [
+      "hermes roster gpt-5.6 ids"
+    ],
     "hermes run budget margin seconds": [
       "HERMES_RUN_BUDGET_MARGIN_SECONDS"
     ],
@@ -54018,15 +53961,6 @@
     "how do repo rules work": [
       "how do repo rules work"
     ],
-    "how does sk vision integrate with opencode": [
-      "how does sk-vision integrate with OpenCode"
-    ],
-    "how does sk vision integrate with pi": [
-      "how does sk-vision integrate with Pi"
-    ],
-    "how does the vision runtime work": [
-      "how does the vision runtime work"
-    ],
     "how is the version field derived": [
       "how is the version field derived"
     ],
@@ -54876,15 +54810,6 @@
     "ikigai frame": [
       "ikigai frame"
     ],
-    "image diffing sk vision diff": [
-      "Image diffing (sk_vision_diff)"
-    ],
-    "image inspection sk vision inspect": [
-      "Image inspection (sk_vision_inspect)"
-    ],
-    "image metadata sk vision metadata": [
-      "Image metadata (sk_vision_metadata)"
-    ],
     "immutable lineage config": [
       "immutable lineage config"
     ],
@@ -55656,14 +55581,8 @@
     "input validation exit code deep loop": [
       "input validation exit code deep loop"
     ],
-    "inspect a screenshot": [
-      "inspect a screenshot"
-    ],
     "inspect clickup task": [
       "inspect clickup task"
-    ],
-    "inspect component magicpath": [
-      "inspect component magicpath"
     ],
     "inspectdispatch classification": [
       "inspectDispatch classification"
@@ -56100,9 +56019,6 @@
     "is phase parent helper": [
       "is_phase_parent helper"
     ],
-    "is the vision model loaded": [
-      "is the vision model loaded"
-    ],
     "is this rule worth loading": [
       "is this rule worth loading"
     ],
@@ -56153,9 +56069,6 @@
     ],
     "isolate ai sessions git worktree": [
       "isolate ai sessions git worktree"
-    ],
-    "isolate an element": [
-      "isolate an element"
     ],
     "isolated browser instances": [
       "isolated browser instances"
@@ -57038,9 +56951,6 @@
     ],
     "json prompt output mode": [
       "json prompt output mode"
-    ],
-    "json rpc runtime python runtime py": [
-      "JSON-RPC runtime (python/runtime.py)"
     ],
     "json section headers": [
       "json section headers"
@@ -59375,9 +59285,6 @@
     "list comments mcp": [
       "list comments mcp"
     ],
-    "list components magicpath": [
-      "list components magicpath"
-    ],
     "list data source templates": [
       "List data source templates"
     ],
@@ -59387,20 +59294,11 @@
     "list doc pages": [
       "list doc pages"
     ],
-    "list installed magicpath": [
-      "list installed magicpath"
-    ],
-    "list members magicpath": [
-      "list members magicpath"
-    ],
     "list my tasks": [
       "list my tasks"
     ],
     "list notion workspace users": [
       "list Notion workspace users"
-    ],
-    "list projects magicpath": [
-      "list projects magicpath"
     ],
     "list spaces": [
       "list spaces"
@@ -59420,14 +59318,8 @@
     "list teams": [
       "list teams"
     ],
-    "list teams magicpath": [
-      "list teams magicpath"
-    ],
     "list the data sources inside a notion database": [
       "list the data sources inside a Notion database"
-    ],
-    "list themes magicpath": [
-      "list themes magicpath"
     ],
     "list tools compact names only": [
       "list-tools compact names-only"
@@ -59835,9 +59727,6 @@
     "llmgateway image input omitted": [
       "llmgateway image input omitted"
     ],
-    "llmgateway luna sol": [
-      "llmgateway luna sol"
-    ],
     "llmgateway mimo v2 6 pro": [
       "llmgateway mimo-v2.6-pro"
     ],
@@ -60045,20 +59934,11 @@
     "local skill link discovery": [
       "local skill link discovery"
     ],
-    "local vision": [
-      "local vision"
-    ],
     "local vision skill": [
       "local vision skill"
     ],
     "local webflow local obsidian": [
       "local-webflow local-obsidian"
-    ],
-    "locate a click target": [
-      "locate a click target"
-    ],
-    "locate ui elements": [
-      "locate UI elements"
     ],
     "location based validation": [
       "location-based validation"
@@ -60316,257 +60196,8 @@
     "mad noise floor": [
       "mad noise floor"
     ],
-    "magicpath": [
-      "magicpath"
-    ],
-    "magicpath active project": [
-      "magicpath active project"
-    ],
-    "magicpath active project tool": [
-      "magicpath active project tool"
-    ],
-    "magicpath add code image clone": [
-      "magicpath add code image clone"
-    ],
-    "magicpath ai": [
-      "magicpath-ai"
-    ],
-    "magicpath auth": [
-      "magicpath auth"
-    ],
-    "magicpath canvas": [
-      "magicpath canvas"
-    ],
-    "magicpath canvas selection": [
-      "magicpath canvas selection"
-    ],
-    "magicpath capabilities": [
-      "magicpath capabilities"
-    ],
-    "magicpath cli commands": [
-      "magicpath cli commands"
-    ],
-    "magicpath cli manual": [
-      "magicpath cli manual"
-    ],
-    "magicpath cli version": [
-      "magicpath cli version"
-    ],
-    "magicpath component source": [
-      "magicpath component source"
-    ],
-    "magicpath components": [
-      "magicpath components"
-    ],
-    "magicpath credential": [
-      "magicpath credential"
-    ],
-    "magicpath css variables": [
-      "magicpath css variables"
-    ],
-    "magicpath current user": [
-      "magicpath current user"
-    ],
-    "magicpath design authority": [
-      "magicpath design authority"
-    ],
-    "magicpath design judgment": [
-      "magicpath design judgment"
-    ],
-    "magicpath design pairing": [
-      "MagicPath Design Pairing"
-    ],
-    "magicpath design persona": [
-      "magicpath design persona"
-    ],
-    "magicpath design system": [
-      "magicpath design system"
-    ],
-    "magicpath design systems": [
-      "magicpath design systems"
-    ],
-    "magicpath env var": [
-      "magicpath env var"
-    ],
-    "magicpath feature catalog": [
-      "magicpath feature catalog"
-    ],
-    "magicpath find component": [
-      "magicpath find component"
-    ],
-    "magicpath get theme": [
-      "magicpath get theme"
-    ],
-    "magicpath get theme tool": [
-      "magicpath get theme tool"
-    ],
-    "magicpath info": [
-      "magicpath info"
-    ],
-    "magicpath info tool": [
-      "magicpath info tool"
-    ],
-    "magicpath inspect component": [
-      "magicpath inspect component"
-    ],
-    "magicpath inspect component tool": [
-      "magicpath inspect component tool"
-    ],
-    "magicpath installed": [
-      "magicpath installed"
-    ],
-    "magicpath installed components": [
-      "magicpath installed components"
-    ],
-    "magicpath list components": [
-      "magicpath list components"
-    ],
-    "magicpath list components projects teams themes": [
-      "magicpath list components projects teams themes"
-    ],
-    "magicpath list components tool": [
-      "magicpath list components tool"
-    ],
-    "magicpath list installed": [
-      "magicpath list installed"
-    ],
-    "magicpath list installed tool": [
-      "magicpath list installed tool"
-    ],
-    "magicpath list members": [
-      "magicpath list members"
-    ],
-    "magicpath list members tool": [
-      "magicpath list members tool"
-    ],
-    "magicpath list projects": [
-      "magicpath list projects"
-    ],
-    "magicpath list projects tool": [
-      "magicpath list projects tool"
-    ],
-    "magicpath list teams": [
-      "magicpath list teams"
-    ],
-    "magicpath list teams tool": [
-      "magicpath list teams tool"
-    ],
-    "magicpath list themes": [
-      "magicpath list themes"
-    ],
-    "magicpath list themes tool": [
-      "magicpath list themes tool"
-    ],
-    "magicpath login": [
-      "magicpath login"
-    ],
-    "magicpath manual snippet": [
-      "magicpath manual snippet"
-    ],
-    "magicpath members": [
-      "magicpath members"
-    ],
-    "magicpath mutation boundary": [
-      "magicpath mutation boundary"
-    ],
-    "magicpath not authenticated": [
-      "magicpath not authenticated"
-    ],
-    "magicpath open projects": [
-      "magicpath open projects"
-    ],
-    "magicpath project components": [
-      "magicpath project components"
-    ],
-    "magicpath projects": [
-      "magicpath projects"
-    ],
-    "magicpath projects inventory": [
-      "magicpath projects inventory"
-    ],
-    "magicpath reachability": [
-      "magicpath reachability"
-    ],
-    "magicpath read only": [
-      "magicpath read only"
-    ],
-    "magicpath search components": [
-      "magicpath search components"
-    ],
-    "magicpath search components inspect": [
-      "magicpath search components inspect"
-    ],
-    "magicpath search components tool": [
-      "magicpath search components tool"
-    ],
-    "magicpath selection": [
-      "magicpath selection"
-    ],
-    "magicpath selection tool": [
-      "magicpath selection tool"
-    ],
-    "magicpath session": [
-      "magicpath session"
-    ],
-    "magicpath share link": [
-      "magicpath share link"
-    ],
-    "magicpath share link tool": [
-      "magicpath share link tool"
-    ],
-    "magicpath shareable url": [
-      "magicpath shareable url"
-    ],
-    "magicpath signed in user": [
-      "magicpath signed in user"
-    ],
-    "magicpath sk design pairing": [
-      "magicpath sk-design pairing"
-    ],
-    "magicpath styling prompt": [
-      "magicpath styling prompt"
-    ],
-    "magicpath team members": [
-      "magicpath team members"
-    ],
-    "magicpath teams": [
-      "magicpath teams"
-    ],
-    "magicpath teams role": [
-      "magicpath teams role"
-    ],
-    "magicpath themes": [
-      "magicpath themes"
-    ],
-    "magicpath token": [
-      "magicpath token"
-    ],
-    "magicpath tool surface": [
-      "magicpath tool surface"
-    ],
-    "magicpath tools": [
-      "magicpath tools"
-    ],
-    "magicpath trigger phrases": [
-      "magicpath trigger phrases"
-    ],
-    "magicpath unregistered commands": [
-      "magicpath unregistered commands"
-    ],
-    "magicpath utcp config": [
-      "magicpath utcp config"
-    ],
-    "magicpath who decides": [
-      "magicpath who decides"
-    ],
-    "magicpath whoami": [
-      "magicpath whoami"
-    ],
-    "magicpath whoami tool": [
-      "magicpath whoami tool"
-    ],
-    "magicpath write surface": [
-      "magicpath write surface"
+    "magicpath mode removal": [
+      "magicpath mode removal"
     ],
     "main ci regenerations": [
       "main ci regenerations"
@@ -62103,42 +61734,6 @@
     "mcp leak prevention summary": [
       "mcp leak prevention summary"
     ],
-    "mcp magicpath 1 0 0 0": [
-      "mcp-magicpath 1.0.0.0"
-    ],
-    "mcp magicpath 1 1 0 0": [
-      "mcp-magicpath 1.1.0.0"
-    ],
-    "mcp magicpath 1 1 1 0": [
-      "mcp-magicpath 1.1.1.0"
-    ],
-    "mcp magicpath 1 1 2 0": [
-      "mcp-magicpath 1.1.2.0"
-    ],
-    "mcp magicpath 1 1 3 0": [
-      "mcp-magicpath 1.1.3.0"
-    ],
-    "mcp magicpath cli manual": [
-      "mcp-magicpath cli manual"
-    ],
-    "mcp magicpath skill removed": [
-      "mcp-magicpath skill removed"
-    ],
-    "mcp magicpath v1 0 0 0": [
-      "mcp-magicpath v1.0.0.0"
-    ],
-    "mcp magicpath v1 1 0 0": [
-      "mcp-magicpath v1.1.0.0"
-    ],
-    "mcp magicpath v1 1 1 0": [
-      "mcp-magicpath v1.1.1.0"
-    ],
-    "mcp magicpath v1 1 2 0": [
-      "mcp-magicpath v1.1.2.0"
-    ],
-    "mcp magicpath v1 1 3 0": [
-      "mcp-magicpath v1.1.3.0"
-    ],
     "mcp mobbin 1 0 0 0": [
       "mcp-mobbin 1.0.0.0"
     ],
@@ -62767,6 +62362,9 @@
     "mcp tooling 1 8 9 0": [
       "mcp-tooling 1.8.9.0"
     ],
+    "mcp tooling 1 9 0 0": [
+      "mcp-tooling 1.9.0.0"
+    ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
     ],
@@ -62889,6 +62487,9 @@
     ],
     "mcp tooling v1 8 9 0": [
       "mcp-tooling v1.8.9.0"
+    ],
+    "mcp tooling v1 9 0 0": [
+      "mcp-tooling v1.9.0.0"
     ],
     "mcp tools": [
       "mcp tools"
@@ -66679,9 +66280,6 @@
     "mobile viewport testing cli": [
       "mobile viewport testing cli"
     ],
-    "mockup": [
-      "mockup"
-    ],
     "mode": [
       "mode"
     ],
@@ -66802,11 +66400,11 @@
     "mode projection contracts tasks": [
       "mode projection contracts tasks"
     ],
+    "mode registry json eight modes": [
+      "mode-registry.json eight modes"
+    ],
     "mode registry json entry": [
       "mode-registry.json entry"
-    ],
-    "mode registry json ten modes": [
-      "mode-registry.json ten modes"
     ],
     "mode registry mode and packet list": [
       "mode-registry mode and packet list"
@@ -69091,12 +68689,6 @@
     "ob scenario task breakdown": [
       "OB scenario task breakdown"
     ],
-    "object detection sk vision detect": [
-      "Object detection (sk_vision_detect)"
-    ],
-    "object segmentation sk vision segment": [
-      "Object segmentation (sk_vision_segment)"
-    ],
     "objective slice": [
       "objective slice"
     ],
@@ -69539,9 +69131,6 @@
     ],
     "obsolete reference cleanup": [
       "obsolete reference cleanup"
-    ],
-    "ocr text extraction sk vision ocr": [
-      "OCR text extraction (sk_vision_ocr)"
     ],
     "off baseline audit": [
       "off baseline audit"
@@ -70498,9 +70087,6 @@
     "opencode plugin": [
       "opencode plugin"
     ],
-    "opencode plugin adapter sk vision js": [
-      "OpenCode plugin adapter (sk-vision.js)"
-    ],
     "opencode plugin auth null": [
       "opencode plugin auth null"
     ],
@@ -70821,9 +70407,6 @@
     ],
     "opencode version drift": [
       "opencode version drift"
-    ],
-    "opencode vision plugin": [
-      "opencode vision plugin"
     ],
     "opencode vs sibling cli skills": [
       "opencode vs sibling cli skills"
@@ -72574,9 +72157,6 @@
     ],
     "paired allowlist copies": [
       "paired allowlist copies"
-    ],
-    "palette and luminance check": [
-      "palette and luminance check"
     ],
     "palette block amendment": [
       "palette block amendment"
@@ -76232,6 +75812,9 @@
     "pi blackhole dispatched child": [
       "pi-blackhole dispatched child"
     ],
+    "pi blackhole luna compaction": [
+      "pi-blackhole luna compaction"
+    ],
     "pi blackhole passive": [
       "pi blackhole passive"
     ],
@@ -76533,9 +76116,6 @@
     ],
     "pi event list probe": [
       "pi event list probe"
-    ],
-    "pi extension adapter sk vision ts": [
-      "Pi extension adapter (sk-vision.ts)"
     ],
     "pi extension benchmark runs": [
       "pi extension benchmark runs"
@@ -77126,9 +76706,6 @@
     ],
     "pi vision adapter": [
       "pi vision adapter"
-    ],
-    "pi vision extension": [
-      "pi vision extension"
     ],
     "pi vision registertool": [
       "pi vision registerTool"
@@ -78053,9 +77630,6 @@
     ],
     "point cloud chart": [
       "point cloud chart"
-    ],
-    "point location sk vision point": [
-      "Point location (sk_vision_point)"
     ],
     "point table": [
       "point table"
@@ -80345,9 +79919,6 @@
     "python regression suite": [
       "python regression suite"
     ],
-    "python runtime py": [
-      "python/runtime.py"
-    ],
     "python shebang docstring check": [
       "python shebang docstring check"
     ],
@@ -81349,9 +80920,6 @@
     ],
     "read task notes": [
       "read task notes"
-    ],
-    "read the text in this image": [
-      "read the text in this image"
     ],
     "read time event upcaster": [
       "read-time event upcaster"
@@ -83124,12 +82692,6 @@
     "regex miss census tasks": [
       "regex miss census tasks"
     ],
-    "region cropping sk vision crop": [
-      "Region cropping (sk_vision_crop)"
-    ],
-    "region zoom sk vision zoom": [
-      "Region zoom (sk_vision_zoom)"
-    ],
     "register an obsidian vault": [
       "register an Obsidian vault"
     ],
@@ -84881,6 +84443,18 @@
     "remove llm reranking keep mmr": [
       "remove llm reranking keep mmr"
     ],
+    "remove llmgateway luna route": [
+      "remove llmgateway luna route"
+    ],
+    "remove llmgateway luna route implementation summary": [
+      "remove llmgateway luna route implementation summary"
+    ],
+    "remove llmgateway luna route plan": [
+      "remove llmgateway luna route plan"
+    ],
+    "remove llmgateway luna route tasks": [
+      "remove llmgateway luna route tasks"
+    ],
     "remove markdown from cocoindex": [
       "remove markdown from cocoindex"
     ],
@@ -84946,6 +84520,9 @@
     ],
     "remove task mcp": [
       "remove task mcp"
+    ],
+    "remove the llmgateway gpt 6 luna route": [
+      "remove the llmgateway gpt 6 luna route"
     ],
     "remove track narrowing scorer": [
       "remove track narrowing scorer"
@@ -87882,9 +87459,6 @@
     ],
     "reveal wipe tasks": [
       "reveal wipe tasks"
-    ],
-    "reverse image search sk vision reverse": [
-      "Reverse image search (sk_vision_reverse)"
     ],
     "reverse parent folders implementation": [
       "reverse parent folders implementation"
@@ -91026,9 +90600,6 @@
     "runtime status cli recovery payload and readiness": [
       "runtime status cli recovery payload and readiness"
     ],
-    "runtime status sk vision status": [
-      "Runtime status (sk_vision_status)"
-    ],
     "runtime stress test": [
       "runtime/stress-test"
     ],
@@ -91070,9 +90641,6 @@
     ],
     "runtime sync manifest template": [
       "runtime sync manifest template"
-    ],
-    "runtime teardown": [
-      "runtime teardown"
     ],
     "runtime test helpers": [
       "runtime test helpers"
@@ -91401,14 +90969,8 @@
     "saturation threshold enforcement": [
       "saturation threshold enforcement"
     ],
-    "save a cropped region": [
-      "save a cropped region"
-    ],
     "save advisory lock": [
       "save advisory lock"
-    ],
-    "save an annotated screenshot": [
-      "save an annotated screenshot"
     ],
     "save and resume freshness": [
       "save and resume freshness"
@@ -92511,9 +92073,6 @@
     "screenshot decisions": [
       "screenshot decisions"
     ],
-    "screenshot ocr": [
-      "screenshot OCR"
-    ],
     "screenshot without puppeteer": [
       "screenshot without puppeteer"
     ],
@@ -92702,9 +92261,6 @@
     ],
     "search clickup": [
       "search clickup"
-    ],
-    "search components magicpath": [
-      "search components magicpath"
     ],
     "search decision envelope": [
       "search decision envelope"
@@ -93155,9 +92711,6 @@
     ],
     "selectable maintainer mode": [
       "selectable maintainer mode"
-    ],
-    "selection magicpath": [
-      "selection magicpath"
     ],
     "selector shared socket implementation summary": [
       "selector shared socket implementation summary"
@@ -94311,9 +93864,6 @@
     ],
     "sharded test runner": [
       "sharded test runner"
-    ],
-    "share link magicpath": [
-      "share link magicpath"
     ],
     "share url": [
       "share url"
@@ -100451,33 +100001,6 @@
     "sk vision": [
       "sk-vision"
     ],
-    "sk vision 0 2 0 0": [
-      "sk-vision 0.2.0.0"
-    ],
-    "sk vision 0 3 0 0": [
-      "sk-vision 0.3.0.0"
-    ],
-    "sk vision 0 3 1 0": [
-      "sk-vision 0.3.1.0"
-    ],
-    "sk vision 0 3 2 0": [
-      "sk-vision 0.3.2.0"
-    ],
-    "sk vision 0 3 3 0": [
-      "sk-vision 0.3.3.0"
-    ],
-    "sk vision 0 3 4 0": [
-      "sk-vision 0.3.4.0"
-    ],
-    "sk vision 0 3 5 0": [
-      "sk-vision 0.3.5.0"
-    ],
-    "sk vision 0 3 6 0": [
-      "sk-vision 0.3.6.0"
-    ],
-    "sk vision 0 3 7 0": [
-      "sk-vision 0.3.7.0"
-    ],
     "sk vision 006 001 summary": [
       "sk-vision 006-001 summary"
     ],
@@ -100520,9 +100043,6 @@
     "sk vision adr": [
       "sk-vision ADR"
     ],
-    "sk vision annotate": [
-      "sk_vision_annotate"
-    ],
     "sk vision attachment injector": [
       "sk-vision attachment injector"
     ],
@@ -100532,20 +100052,11 @@
     "sk vision base64 padding fix": [
       "sk-vision base64 padding fix"
     ],
-    "sk vision benchmark": [
-      "sk-vision benchmark"
-    ],
-    "sk vision benchmark reports": [
-      "sk-vision benchmark reports"
-    ],
     "sk vision benchmark scaffold": [
       "sk-vision benchmark scaffold"
     ],
     "sk vision bun build": [
       "sk-vision bun build"
-    ],
-    "sk vision bun setup": [
-      "sk-vision bun setup"
     ],
     "sk vision bun test": [
       "sk-vision bun test"
@@ -100574,9 +100085,6 @@
     "sk vision class s": [
       "sk-vision class S"
     ],
-    "sk vision cli": [
-      "sk-vision cli"
-    ],
     "sk vision code alignment": [
       "sk-vision code alignment"
     ],
@@ -100588,12 +100096,6 @@
     ],
     "sk vision code alignment tasks": [
       "sk-vision code alignment tasks"
-    ],
-    "sk vision colors": [
-      "sk_vision_colors"
-    ],
-    "sk vision command entry": [
-      "sk-vision command entry"
     ],
     "sk vision command gated activation": [
       "sk-vision command-gated activation"
@@ -100615,9 +100117,6 @@
     ],
     "sk vision copy dump": [
       "sk-vision copy dump"
-    ],
-    "sk vision crop": [
-      "sk_vision_crop"
     ],
     "sk vision cursor devin hook entries plan": [
       "sk-vision cursor devin hook entries plan"
@@ -100670,12 +100169,6 @@
     "sk vision cursor support": [
       "sk-vision cursor support"
     ],
-    "sk vision detect": [
-      "sk_vision_detect"
-    ],
-    "sk vision devin hook": [
-      "sk-vision devin hook"
-    ],
     "sk vision devin hook adapter": [
       "sk-vision devin hook adapter"
     ],
@@ -100684,9 +100177,6 @@
     ],
     "sk vision devin support": [
       "sk-vision devin support"
-    ],
-    "sk vision diff": [
-      "sk_vision_diff"
     ],
     "sk vision dist plugin": [
       "sk-vision dist plugin"
@@ -100739,9 +100229,6 @@
     "sk vision hook adapter tasks": [
       "sk-vision hook adapter tasks"
     ],
-    "sk vision hooks": [
-      "sk-vision hooks"
-    ],
     "sk vision hooks four hosts": [
       "sk-vision hooks four hosts"
     ],
@@ -100763,23 +100250,14 @@
     "sk vision host adapter findings fixes tasks": [
       "sk-vision host-adapter findings fixes tasks"
     ],
-    "sk vision host adapters": [
-      "sk-vision host adapters"
-    ],
     "sk vision host registration scope": [
       "sk-vision host registration scope"
-    ],
-    "sk vision injection adapter": [
-      "sk-vision injection adapter"
     ],
     "sk vision inline comments": [
       "sk-vision inline comments"
     ],
     "sk vision input images": [
       "sk-vision input images"
-    ],
-    "sk vision inspect": [
-      "sk_vision_inspect"
     ],
     "sk vision js": [
       "sk-vision.js"
@@ -100790,9 +100268,6 @@
     "sk vision kill switch": [
       "sk-vision kill switch"
     ],
-    "sk vision lane c": [
-      "sk-vision Lane C"
-    ],
     "sk vision leaf manifest": [
       "sk-vision leaf manifest"
     ],
@@ -100801,9 +100276,6 @@
     ],
     "sk vision manual scenarios": [
       "sk-vision manual scenarios"
-    ],
-    "sk vision manual testing playbook": [
-      "sk-vision manual testing playbook"
     ],
     "sk vision mcp orphan watchdog": [
       "sk-vision mcp orphan watchdog"
@@ -100847,9 +100319,6 @@
     "sk vision mcp server zombie processes": [
       "sk-vision mcp server zombie processes"
     ],
-    "sk vision metadata": [
-      "sk_vision_metadata"
-    ],
     "sk vision metadata reconciliation": [
       "sk-vision metadata reconciliation"
     ],
@@ -100858,9 +100327,6 @@
     ],
     "sk vision non vision model allowlist": [
       "sk-vision non-vision model allowlist"
-    ],
-    "sk vision ocr": [
-      "sk_vision_ocr"
     ],
     "sk vision ocr task guard": [
       "sk-vision ocr task guard"
@@ -100894,9 +100360,6 @@
     ],
     "sk vision opencode plugin runtime unavailable": [
       "sk-vision opencode plugin runtime unavailable"
-    ],
-    "sk vision operator scenarios": [
-      "sk-vision operator scenarios"
     ],
     "sk vision package hygiene": [
       "sk-vision package hygiene"
@@ -100940,9 +100403,6 @@
     "sk vision plugins readme": [
       "sk-vision plugins readme"
     ],
-    "sk vision point": [
-      "sk_vision_point"
-    ],
     "sk vision publishconfig": [
       "sk-vision publishConfig"
     ],
@@ -100957,9 +100417,6 @@
     ],
     "sk vision registertool": [
       "sk-vision registerTool"
-    ],
-    "sk vision release validation": [
-      "sk-vision release validation"
     ],
     "sk vision reporoot runtime py resolution": [
       "sk-vision repoRoot runtime.py resolution"
@@ -100991,12 +100448,6 @@
     "sk vision resume": [
       "sk-vision resume"
     ],
-    "sk vision reverse": [
-      "sk_vision_reverse"
-    ],
-    "sk vision run index": [
-      "sk-vision run index"
-    ],
     "sk vision runtime fixes": [
       "sk vision runtime fixes"
     ],
@@ -101020,12 +100471,6 @@
     ],
     "sk vision runtime teardown memory creep": [
       "sk-vision runtime teardown memory creep"
-    ],
-    "sk vision scenario run": [
-      "sk-vision scenario run"
-    ],
-    "sk vision segment": [
-      "sk_vision_segment"
     ],
     "sk vision session handover": [
       "sk-vision session handover"
@@ -101057,9 +100502,6 @@
     "sk vision standalone skill": [
       "sk-vision standalone skill"
     ],
-    "sk vision status": [
-      "sk_vision_status"
-    ],
     "sk vision symlink purity": [
       "sk-vision symlink purity"
     ],
@@ -101068,36 +100510,6 @@
     ],
     "sk vision testing playbook": [
       "sk-vision testing playbook"
-    ],
-    "sk vision ts": [
-      "sk-vision.ts"
-    ],
-    "sk vision v0 2 0 0": [
-      "sk-vision v0.2.0.0"
-    ],
-    "sk vision v0 3 0 0": [
-      "sk-vision v0.3.0.0"
-    ],
-    "sk vision v0 3 1 0": [
-      "sk-vision v0.3.1.0"
-    ],
-    "sk vision v0 3 2 0": [
-      "sk-vision v0.3.2.0"
-    ],
-    "sk vision v0 3 3 0": [
-      "sk-vision v0.3.3.0"
-    ],
-    "sk vision v0 3 4 0": [
-      "sk-vision v0.3.4.0"
-    ],
-    "sk vision v0 3 5 0": [
-      "sk-vision v0.3.5.0"
-    ],
-    "sk vision v0 3 6 0": [
-      "sk-vision v0.3.6.0"
-    ],
-    "sk vision v0 3 7 0": [
-      "sk-vision v0.3.7.0"
     ],
     "sk vision v2 prompt hook": [
       "sk vision v2 prompt hook"
@@ -101158,9 +100570,6 @@
     ],
     "sk vision when to use": [
       "sk-vision when to use"
-    ],
-    "sk vision zoom": [
-      "sk_vision_zoom"
     ],
     "skcode qualityconfig": [
       "skcode.qualityConfig"
@@ -112844,9 +112253,6 @@
     "transactional remint tasks": [
       "transactional remint tasks"
     ],
-    "transcribe the error message": [
-      "transcribe the error message"
-    ],
     "transcript high water mark": [
       "transcript high-water mark"
     ],
@@ -113018,6 +112424,9 @@
     ],
     "transport switch status": [
       "transport switch status"
+    ],
+    "transport without an mcp server": [
+      "transport without an mcp server"
     ],
     "trapezoid layer diagram": [
       "trapezoid layer diagram"
@@ -114795,6 +114204,9 @@
     "userpromptsubmit": [
       "userpromptsubmit"
     ],
+    "utcp cli transport": [
+      "utcp cli transport"
+    ],
     "utcp config json setup": [
       "utcp config json setup"
     ],
@@ -116380,9 +115792,6 @@
     "verifier tail window arm": [
       "verifier tail-window arm"
     ],
-    "verify a downloaded image": [
-      "verify a downloaded image"
-    ],
     "verify alignment drift baseline delta": [
       "verify alignment drift baseline delta"
     ],
@@ -116676,18 +116085,6 @@
     ],
     "viewport emulation": [
       "viewport emulation"
-    ],
-    "vision cli vision cli js": [
-      "Vision CLI (vision-cli.js)"
-    ],
-    "vision command opt in": [
-      "vision command opt-in"
-    ],
-    "vision evidence for devin and cursor": [
-      "Vision Evidence for Devin and Cursor"
-    ],
-    "vision runtime protocol": [
-      "vision runtime protocol"
     ],
     "vision without mcp": [
       "vision without MCP"
@@ -117474,23 +116871,14 @@
     "what adapting sk code looks like": [
       "what adapting sk-code looks like"
     ],
-    "what are the dimensions of this image": [
-      "what are the dimensions of this image"
-    ],
     "what cdp domains exist": [
       "what cdp domains exist"
     ],
     "what changed about goals": [
       "what changed about goals"
     ],
-    "what changed between these two screenshots": [
-      "what changed between these two screenshots"
-    ],
     "what changed in v4": [
       "what changed in v4"
-    ],
-    "what colors are in this design": [
-      "what colors are in this design"
     ],
     "what does ai council index": [
       "what does AI council index"
@@ -117620,12 +117008,6 @@
     ],
     "where does this content belong": [
       "where does this content belong"
-    ],
-    "where does this image come from": [
-      "where does this image come from"
-    ],
-    "where is the search bar in this screenshot": [
-      "where is the search bar in this screenshot"
     ],
     "where plugins keep data": [
       "where plugins keep data"
@@ -118843,9 +118225,6 @@
     ],
     "zombie daemon prevention code graph spec memory": [
       "zombie daemon prevention code-graph spec-memory"
-    ],
-    "zoom into this part of the image": [
-      "zoom into this part of the image"
     ],
     "zvec semantic lane retired": [
       "zvec semantic lane retired"
