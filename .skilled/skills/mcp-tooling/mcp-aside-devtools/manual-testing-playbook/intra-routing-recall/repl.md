@@ -8,7 +8,7 @@ expected_intent: REPL
 expected_resources:
   - references/aside-cli-reference.md
   - references/session-management.md
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # AD-R02: REPL routing
@@ -22,7 +22,7 @@ This document captures the routing-recall contract, execution process, source an
 This scenario validates that the `mcp-aside-devtools` Smart Router's `REPL` intent signal fires on a
 deterministic, evidence-oriented browser-automation request, and that the router loads exactly
 `RESOURCE_MAP["REPL"]` — the same two resources as `TASK`, `references/aside-cli-reference.md` and
-`references/session-management.md` — per `SKILL.md` §2.
+`references/session-management.md` — per `SKILL.md` §9.
 
 ### Why This Matters
 
@@ -36,7 +36,7 @@ happen to overlap with `TASK`.
 
 ## 2. SCENARIO CONTRACT
 
-Operators confirm the exact prompt scores `REPL` under `SKILL.md` §2's weighted keyword model and
+Operators confirm the exact prompt scores `REPL` under `SKILL.md` §9's weighted keyword model and
 that the router's `RESOURCE_MAP["REPL"]` entry matches this scenario's declared `expected_resources`.
 
 - Objective: confirm the prompt's keyword overlap with `INTENT_SIGNALS["REPL"]` selects `REPL` as the
@@ -52,12 +52,12 @@ Use the deterministic repl with playwright helpers to openTab the page, take a s
 - Expected execution process: the router scores every intent's keyword set against the lowercased
   prompt and selects `REPL` because `repl`, `deterministic`, `playwright`, `open tab`, `snapshot`,
   `screenshot`, and `evidence` are all literal `INTENT_SIGNALS["REPL"]` keywords at weight 4 each.
-- Expected signals: `SKILL.md` §2 lists `REPL` in `INTENT_SIGNALS` with those keywords;
+- Expected signals: `SKILL.md` §9 lists `REPL` in `INTENT_SIGNALS` with those keywords;
   `RESOURCE_MAP["REPL"]` names exactly `references/aside-cli-reference.md` and
   `references/session-management.md`; both files exist.
 - Desired user-visible outcome: the router states plainly that this request routes to `REPL` and
   bundles the CLI reference plus the session-management model before answering.
-- Pass/fail: PASS if `SKILL.md` §2 names the matched `REPL` keywords and both mapped resources exist;
+- Pass/fail: PASS if `SKILL.md` §9 names the matched `REPL` keywords and both mapped resources exist;
   FAIL if the keyword weights or `RESOURCE_MAP["REPL"]` entry in `SKILL.md` no longer matches this
   scenario's frontmatter, or either resource path is missing.
 
@@ -91,7 +91,7 @@ steps 2-3 with the matched keywords highlighted.
 
 ### Pass / Fail
 
-- **Pass**: `SKILL.md` §2 names the matched `REPL` keywords and `RESOURCE_MAP["REPL"]` lists both
+- **Pass**: `SKILL.md` §9 names the matched `REPL` keywords and `RESOURCE_MAP["REPL"]` lists both
   resources, and both resource paths exist.
 - **Fail**: the keyword set or resource map in `SKILL.md` no longer matches this scenario's
   frontmatter, or a resource path does not resolve.
@@ -118,7 +118,7 @@ steps 2-3 with the matched keywords highlighted.
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` §2 | The `REPL` `INTENT_SIGNALS` keywords and `RESOURCE_MAP` entry this scenario verifies |
+| `../../SKILL.md` §9 | The `REPL` `INTENT_SIGNALS` keywords and `RESOURCE_MAP` entry this scenario verifies |
 
 ---
 

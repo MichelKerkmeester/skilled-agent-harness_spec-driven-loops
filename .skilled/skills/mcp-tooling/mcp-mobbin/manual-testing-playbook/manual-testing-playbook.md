@@ -1,7 +1,7 @@
 ---
 title: "mcp-mobbin: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review and orchestration guidance, execution expectations, and per-scenario validation for the mcp-mobbin skill. Covers registered-state wiring reporting, discovery-first callable confirmation, the read-only single-tool research contract, platform-filter discipline, rate-limit and paid-gate handling, the config-mutation refusal gate, and the mandatory sk-design-md-generator measured-reference pairing."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # mcp-mobbin: Manual Testing Playbook
@@ -350,7 +350,7 @@ Prompt: `"Use Mobbin to pick the best onboarding design for our app and apply it
 
 ## 12. INTRA-ROUTING RECALL (`MB-R01`..`MB-R06`, `MB-H01`, `MB-H02`, `MB-N01`) -- BENCHMARK-FACING, NOT PART OF THE 9-SCENARIO COUNT
 
-This category validates the `mcp-mobbin` smart router itself (`SKILL.md` §2 `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP`), independent of any live Mobbin call or auth state. Every scenario is a static, read-only check: does the exact prompt classify to the declared intent, and does every path in `expected_resources` exist on disk. Six scenarios (`MB-R01`-`MB-R06`) are fitted to each of the six declared intents, two (`MB-H01`, `MB-H02`) are natural-phrasing holdouts that decontaminate `MB-R02` and `MB-R03` (each with one recorded `blindExceptions` keyword), and one (`MB-N01`) is a negative control proving an out-of-domain prompt scores zero across every intent. As noted in Section 1, this set is benchmark-facing and intentionally excluded from the 9-scenario operator count above, but every file is still linked here so nothing is orphaned from this root index.
+This category validates the `mcp-mobbin` smart router itself (`SKILL.md` §10 MACHINE ROUTER `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP`), independent of any live Mobbin call or auth state. Every scenario is a static, read-only check: does the exact prompt classify to the declared intent, and does every path in `expected_resources` exist on disk. Six scenarios (`MB-R01`-`MB-R06`) are fitted to each of the six declared intents, two (`MB-H01`, `MB-H02`) are natural-phrasing holdouts that decontaminate `MB-R02` and `MB-R03` (each with one recorded `blindExceptions` keyword), and one (`MB-N01`) is a negative control proving an out-of-domain prompt scores zero across every intent. As noted in Section 1, this set is benchmark-facing and intentionally excluded from the 9-scenario operator count above, but every file is still linked here so nothing is orphaned from this root index.
 
 ### Scenario Summary
 

@@ -9,7 +9,7 @@ expected_resources:
   - references/figma-cli-reference.md
   - references/tool-surface.md
 blindToRouterKeywords: true
-version: 1.0.0.1
+version: 1.0.1.0
 ---
 
 # FG-H01: Blind holdout: build a screen
@@ -20,7 +20,7 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario is the natural-phrasing holdout for `FG-R01` (`blindToRouterKeywords: true`). It focuses on confirming that a prompt phrased the way a real user would ask for a new screen -- not the router's own vocabulary -- still classifies as `CREATE_RENDER` per `SKILL.md` §2 and resolves the same `RESOURCE_MAP["CREATE_RENDER"]` set as `FG-R01`, not on actually building the screen.
+This scenario is the natural-phrasing holdout for `FG-R01` (`blindToRouterKeywords: true`). It focuses on confirming that a prompt phrased the way a real user would ask for a new screen -- not the router's own vocabulary -- still classifies as `CREATE_RENDER` per `SKILL.md` §8 and resolves the same `RESOURCE_MAP["CREATE_RENDER"]` set as `FG-R01`, not on actually building the screen.
 
 ### Why This Matters
 
@@ -41,7 +41,7 @@ Operators confirm the exact holdout prompt for `FG-H01` classifies as `CREATE_RE
 Build me a new screen with a call-to-action and a set of navigation links laid out in columns.
 ```
 
-- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`SKILL.md` §2); "build" is the one literal `CREATE_RENDER` keyword hit, and no other intent's keyword list matches any word in the prompt, so `CREATE_RENDER` remains the sole scoring intent and `RESOURCE_MAP["CREATE_RENDER"]` loads both declared paths
+- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`SKILL.md` §8); "build" is the one literal `CREATE_RENDER` keyword hit, and no other intent's keyword list matches any word in the prompt, so `CREATE_RENDER` remains the sole scoring intent and `RESOURCE_MAP["CREATE_RENDER"]` loads both declared paths
 - Expected signals: every path in `expected_resources` exists under `mcp-figma/`, the frontmatter intent is `CREATE_RENDER`, and the resolved set matches `FG-R01`'s
 - Desired user-visible outcome: the bundled workflow classifies the natural-phrasing request the same way it classifies the keyword-heavy `FG-R01` prompt, loading the same CLI/daemon baseline and tool-surface gating taxonomy
 - Pass/fail: PASS if every listed path exists, the frontmatter intent is `CREATE_RENDER`, and the resolved set matches `FG-R01`; FAIL if any listed path is missing or the frontmatter disagrees
@@ -92,7 +92,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §2 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §8 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §1 | Activation triggers this scenario's prompt assumes |
 
 ---

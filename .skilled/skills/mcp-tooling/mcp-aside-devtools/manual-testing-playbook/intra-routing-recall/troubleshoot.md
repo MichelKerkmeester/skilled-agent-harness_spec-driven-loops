@@ -8,7 +8,7 @@ expected_intent: TROUBLESHOOT
 expected_resources:
   - references/troubleshooting.md
   - references/session-management.md
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # AD-R05: Troubleshoot routing
@@ -22,7 +22,7 @@ This document captures the routing-recall contract, execution process, source an
 This scenario validates that the `mcp-aside-devtools` Smart Router's `TROUBLESHOOT` intent signal
 fires on a realistic failure-report request, and that the router loads exactly
 `RESOURCE_MAP["TROUBLESHOOT"]` — `references/troubleshooting.md` and `references/session-management.md`
-— per `SKILL.md` §2.
+— per `SKILL.md` §9.
 
 ### Why This Matters
 
@@ -37,7 +37,7 @@ debugging a stalled session would be pointed at the wrong reference pair.
 
 ## 2. SCENARIO CONTRACT
 
-Operators confirm the exact prompt scores `TROUBLESHOOT` under `SKILL.md` §2's weighted keyword model
+Operators confirm the exact prompt scores `TROUBLESHOOT` under `SKILL.md` §9's weighted keyword model
 and that the router's `RESOURCE_MAP["TROUBLESHOOT"]` entry matches this scenario's declared
 `expected_resources`.
 
@@ -55,13 +55,13 @@ My aside run failed with a "not bound to a browser profile" error and now the da
   prompt and selects `TROUBLESHOOT` because `failed`, `error`, `not bound`, `daemon`, `won't connect`,
   `troubleshoot`, and `root cause` are all literal `INTENT_SIGNALS["TROUBLESHOOT"]` keywords at weight
   4 each.
-- Expected signals: `SKILL.md` §2 lists `TROUBLESHOOT` in `INTENT_SIGNALS` with those keywords;
+- Expected signals: `SKILL.md` §9 lists `TROUBLESHOOT` in `INTENT_SIGNALS` with those keywords;
   `RESOURCE_MAP["TROUBLESHOOT"]` names exactly `references/troubleshooting.md` and
   `references/session-management.md`; both files exist.
 - Desired user-visible outcome: the router states plainly that this request routes to
   `TROUBLESHOOT` and bundles the troubleshooting guide plus the session-management model (for the
   binding-state explanation) before answering.
-- Pass/fail: PASS if `SKILL.md` §2 names the matched `TROUBLESHOOT` keywords and both mapped
+- Pass/fail: PASS if `SKILL.md` §9 names the matched `TROUBLESHOOT` keywords and both mapped
   resources exist; FAIL if the keyword weights or `RESOURCE_MAP["TROUBLESHOOT"]` entry in `SKILL.md`
   no longer matches this scenario's frontmatter, or either resource path is missing.
 
@@ -95,7 +95,7 @@ excerpts from steps 2-3 with the matched keywords highlighted.
 
 ### Pass / Fail
 
-- **Pass**: `SKILL.md` §2 names the matched `TROUBLESHOOT` keywords and
+- **Pass**: `SKILL.md` §9 names the matched `TROUBLESHOOT` keywords and
   `RESOURCE_MAP["TROUBLESHOOT"]` lists both resources, and both resource paths exist.
 - **Fail**: the keyword set or resource map in `SKILL.md` no longer matches this scenario's
   frontmatter, or a resource path does not resolve.
@@ -123,7 +123,7 @@ excerpts from steps 2-3 with the matched keywords highlighted.
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` §2 | The `TROUBLESHOOT` `INTENT_SIGNALS` keywords and `RESOURCE_MAP` entry this scenario verifies |
+| `../../SKILL.md` §9 | The `TROUBLESHOOT` `INTENT_SIGNALS` keywords and `RESOURCE_MAP` entry this scenario verifies |
 
 ---
 

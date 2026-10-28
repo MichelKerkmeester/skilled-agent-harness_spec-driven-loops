@@ -9,12 +9,12 @@ trigger_phrases:
   - "resource map scoring"
 importance_tier: normal
 contextType: implementation
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Shared Smart-Router Helpers (cli-* family)
 
-The seven cli-* sibling skills (`cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-hermes`, `cli-opencode`, `cli-pi`) share an identical smart-router structure. The helper bodies below are byte-identical across all seven files (except the `route_<provider>_resources` function name). Each cli-* SKILL.md provides its own provider-specific dictionaries (`INTENT_SIGNALS`, `RESOURCE_MAP`, `LOADING_LEVELS`, `UNKNOWN_FALLBACK_CHECKLIST`) inline; this reference holds the shared procedural code.
+None of the seven packet `SKILL.md` files defines `_task_text()`, `_guard_in_skill()`, `discover_markdown_resources()`, `keyword_present()`, `score_intents()`, `select_intents()` or `get_routing_key()`. Every packet names `discover_markdown_resources()` and `_guard_in_skill()`. Only `cli-hermes` names `score_intents()` and `select_intents()`, while `cli-hermes` and `cli-opencode` name `load_if_available()` and `get_routing_key()`.
 
 > Pattern: see [sk-doc smart-router resilience template](../../../sk-doc/sk-create-skill/assets/skill/skill-smart-router.md).
 
@@ -136,7 +136,7 @@ def route_<PROVIDER>_resources(task):
     return result
 ```
 
-Replace `<PROVIDER>` with the provider slug (`claude_code`, `codex`, `cursor`, `devin`, `opencode`, `pi`).
+Replace `<PROVIDER>` with the provider slug (`claude_code`, `codex`, `cursor`, `devin`, `hermes`, `opencode`, `pi`).
 
 ---
 
@@ -176,6 +176,6 @@ Each cli-* SKILL.md provides its own:
 - `LOADING_LEVELS` — provider-specific `ALWAYS` / `ON_DEMAND_KEYWORDS` / `ON_DEMAND` lists
 - `UNKNOWN_FALLBACK_CHECKLIST` — provider-specific disambiguation prompts
 
-See each skill's SKILL.md §2 Smart Routing for these inline dictionaries.
+See each skill's final `MACHINE ROUTER` section for these inline dictionaries.
 
 ---

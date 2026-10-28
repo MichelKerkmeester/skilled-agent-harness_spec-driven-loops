@@ -11,7 +11,7 @@ blindExceptions:
   - "quarterly objective"
   - "objective"
   - "write-up page"
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # CU-H02: Blind holdout — advanced feature
@@ -43,7 +43,7 @@ blind before that binding, and the binding is the honest anchor recorded in this
 ## 2. SCENARIO CONTRACT
 
 Operators confirm the exact prompt, despite its keyword-blind authoring, still scores `MCP_ADVANCED`
-under `SKILL.md` §2's weighted keyword model via the recorded `blindExceptions`, and that the
+under `SKILL.md` §9's weighted keyword model via the recorded `blindExceptions`, and that the
 router's `RESOURCE_MAP["MCP_ADVANCED"]` entry matches this scenario's declared `expected_resources`.
 
 - Objective: confirm the prompt's narrower keyword overlap with `INTENT_SIGNALS["MCP_ADVANCED"]` —
@@ -67,12 +67,12 @@ Set up a new quarterly objective for the team and spin up a shared write-up page
   `INTENT_SIGNALS["MCP_ADVANCED"]` keywords present. The prompt's `Set up` phrasing does not match
   `INSTALL`'s `setup` keyword (no space), so no tie-break competitor fires, and
   `max(scores, key=scores.get)` selects `MCP_ADVANCED`.
-- Expected signals: `SKILL.md` §2 lists `quarterly objective`, `objective`, and `write-up page` under
+- Expected signals: `SKILL.md` §9 lists `quarterly objective`, `objective`, and `write-up page` under
   `INTENT_SIGNALS["MCP_ADVANCED"]`; `RESOURCE_MAP["MCP_ADVANCED"]` names exactly
   `references/mcp-tools.md`; the file exists.
 - Desired user-visible outcome: the router states plainly that this request routes to `MCP_ADVANCED`
   and bundles the MCP tool reference, despite the prompt never naming the tool or intent.
-- Pass/fail: PASS if `SKILL.md` §2 confirms all three matched keywords under `MCP_ADVANCED` and the
+- Pass/fail: PASS if `SKILL.md` §9 confirms all three matched keywords under `MCP_ADVANCED` and the
   mapped resource exists; FAIL if any of those keywords is removed from `MCP_ADVANCED`, the
   `RESOURCE_MAP["MCP_ADVANCED"]` entry in `SKILL.md` no longer matches this scenario's frontmatter, or
   the resource path is missing.
@@ -108,7 +108,7 @@ body carries no other obvious router keyword.
 
 ### Pass / Fail
 
-- **Pass**: `SKILL.md` §2 still lists all three `blindExceptions` keywords under `MCP_ADVANCED`, the
+- **Pass**: `SKILL.md` §9 still lists all three `blindExceptions` keywords under `MCP_ADVANCED`, the
   prompt body carries no other obvious router keyword, and `RESOURCE_MAP["MCP_ADVANCED"]`'s resource
   path exists.
 - **Fail**: any of the three keywords is removed from `MCP_ADVANCED`'s list, the resource map no
@@ -137,7 +137,7 @@ body carries no other obvious router keyword.
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` §2 | The `MCP_ADVANCED` `INTENT_SIGNALS` keywords and `RESOURCE_MAP` entry this scenario verifies |
+| `../../SKILL.md` §9 | The `MCP_ADVANCED` `INTENT_SIGNALS` keywords and `RESOURCE_MAP` entry this scenario verifies |
 
 ---
 

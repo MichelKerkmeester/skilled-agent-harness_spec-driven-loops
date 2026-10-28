@@ -1,7 +1,7 @@
 ---
 title: "MCP Chrome DevTools: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the mcp-chrome-devtools skill."
-version: 1.0.0.6
+version: 1.0.1.0
 ---
 
 # MCP Chrome DevTools: Manual Testing Playbook
@@ -467,7 +467,7 @@ Expected signals: Step 1: pre-session Chrome count baseline; Step 2: post-sessio
 
 ## 15. INTRA-ROUTING RECALL (`CD-R01`..`CD-R05`, `CD-H01`, `CD-H02`, `CD-N01`) -- BENCHMARK-FACING, NOT PART OF THE 22-SCENARIO COUNT
 
-This category validates the `mcp-chrome-devtools` smart router itself (`SKILL.md` §2 `INTENT_SIGNALS` and `RESOURCE_MAP`), independent of any live `bdg` session or Chrome instance. Every scenario is a static, read-only check: does the exact prompt classify to the declared intent, and does every path in `expected_resources` exist on disk. Five scenarios (`CD-R01`-`CD-R05`) are fitted to each of the five declared intents, two (`CD-H01`, `CD-H02`) are natural-phrasing holdouts that decontaminate `CD-R04` and `CD-R01` (`CD-H01` also resolves a near-tie against the incidental `CLI` keyword "headless"), and one (`CD-N01`) is a negative control proving an out-of-domain prompt scores zero across every intent. This set is benchmark-facing and intentionally outside the 22-scenario count above, but every file is still linked here so nothing is orphaned from this root index.
+This category validates the `mcp-chrome-devtools` smart router itself (`SKILL.md` §9 `INTENT_SIGNALS` and `RESOURCE_MAP`), independent of any live `bdg` session or Chrome instance. Every scenario is a static, read-only check: does the exact prompt classify to the declared intent, and does every path in `expected_resources` exist on disk. Five scenarios (`CD-R01`-`CD-R05`) are fitted to each of the five declared intents, two (`CD-H01`, `CD-H02`) are natural-phrasing holdouts that decontaminate `CD-R04` and `CD-R01` (`CD-H01` also resolves a near-tie against the incidental `CLI` keyword "headless"), and one (`CD-N01`) is a negative control proving an out-of-domain prompt scores zero across every intent. This set is benchmark-facing and intentionally outside the 22-scenario count above, but every file is still linked here so nothing is orphaned from this root index.
 
 ### Scenario Summary
 

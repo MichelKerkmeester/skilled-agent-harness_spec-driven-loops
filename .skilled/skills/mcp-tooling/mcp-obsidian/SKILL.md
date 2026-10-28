@@ -2,7 +2,7 @@
 name: mcp-obsidian
 description: Runs Obsidian vault and note work across notesmd-cli, the obsidian CLI and the cyanheads MCP, plus plugin and theme knowledge.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 0.24.2.0
+version: 0.24.3.0
 ---
 
 <!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, local rest api, health-md, health data, iconic, icon rules, iconic rulebook, icon automation, file icons, folder icons, iconic data json, iconic ruleset, iconic-rules.full.json, iconic-rules.full.md, data.json, obsidian theme, theme system, css theme, css snippet, css variables, theme development, plugin development -->
@@ -44,6 +44,289 @@ The skill that makes AI use inside Obsidian effective. It operates notes and vau
 ---
 
 ## 2. SMART ROUTING
+
+`mcp-tooling` routes an Obsidian vault or note request here when the request names Obsidian, a vault, `notesmd-cli`, the cyanheads MCP, or one of the two documented plugins.
+The hub's `mcp-obsidian` mode signal selects this packet, and generic markdown authoring does not.
+
+A scored route loads the documents its intent maps to. `references/obsidian-cli-commands.md` is the default resource, offered as a fallback suggestion and never loaded on a scored route.
+
+Which surface runs the work, which CLI profile, the operation-to-tool table, the loading levels and the intent scoring sit in the final `MACHINE ROUTER` section of this file.
+
+---
+
+## 3. HOW IT WORKS
+
+### Surface Comparison
+
+| Dimension | Headless CLI (`notesmd-cli`) | App-backed CLI (`obsidian`) | Cyanheads MCP |
+|---|---|---|---|
+| **Activation** | `notesmd-cli <command>` in Bash | `obsidian <command> key=value` in Bash | Code Mode `call_tool_chain()` |
+| **Running app** | Not required — filesystem only | Required, and NOT launched for you (exit 1 when down) | Required + Local REST API |
+| **Best for** | Daily note ops anywhere | In-app open / URI actions | Structured reads/writes, tags, search |
+| **Auth** | None — reads the vault directory | None — controls the local app | `OBSIDIAN_API_KEY` bearer token |
+| **Install** | `brew install yakitrak/yakitrak/notesmd-cli` | Ships with Obsidian desktop v1.12.4+ | `npx -y obsidian-mcp-server@latest` |
+| **Config store** | `~/.config/obsidian/obsidian.json` | In-app: Settings → Command line interface | `.utcp_config.json` manual `obsidian` |
+| **Output** | Human-readable text | Human-readable text on stdout, exit 0 even on failure | Structured JSON |
+
+### Headless CLI — `notesmd-cli` (Default Path)
+
+Yakitrak's `notesmd-cli` (binary `notesmd-cli`, renamed from "obsidian-cli" to avoid confusion with the official one) operates directly on the vault filesystem, so it works with **no running app**.
+
+**Step 1: Verify installation**
+```bash
+notesmd-cli --version
+notesmd-cli list-vaults        # Shows registered vaults + default
+```
+
+**Step 2: Install if missing**
+```bash
+bash .skilled/skills/mcp-tooling/mcp-obsidian/scripts/install.sh
+# or directly:
+brew tap yakitrak/yakitrak && brew install yakitrak/yakitrak/notesmd-cli
+```
+
+**Step 3: Register a vault (one-time)**
+```bash
+notesmd-cli add-vault "/path/to/Vault"    # writes ~/.config/obsidian/obsidian.json
+notesmd-cli set-default-vault "Vault"
+```
+
+**Step 4: Daily note operations**
+```bash
+notesmd-cli list                          # List notes in the default vault
+notesmd-cli search "meeting"              # Search by note name
+notesmd-cli search-content "action item" # Full-text content search
+notesmd-cli print "Inbox"                # Print a note to stdout
+notesmd-cli create "New Idea"            # Create a note
+notesmd-cli daily                        # Open/append today's daily note
+```
+
+### App-backed CLI — official `obsidian` (Live-App Path)
+
+The official `obsidian` CLI shipped GA in Obsidian desktop **v1.12.4** (Feb 2026). It is a **remote control for an already-running app**, not a headless tool and not a launcher: with the app down it prints `The CLI is unable to find Obsidian` to stderr and exits 1. There is no npm/brew package — it ships with the desktop app.
+
+**Enable in-app:** Settings → General → Command line interface → toggle on → "Register CLI" (auto-adds `obsidian` to PATH on macOS/Linux; on macOS this symlinks `/usr/local/bin/obsidian` into the app bundle).
+
+**Syntax is `obsidian <command> key=value`,** with no POSIX flags: `obsidian version`, not `obsidian --version`. Use it for outcomes only the live app can produce — the resolved link graph, the computed tag and task index, Bases queries, sync and file history, plugin and theme state, and in-app opens.
+
+**Two contracts before scripting it.** Preflight with `obsidian version | grep -qE '^[0-9]+\.[0-9]+'` (a version number means registered AND running, where exit 0 does not, because a starting app answers 0 with an error). Then stop trusting `$?`: once the app is up the CLI exits 0 even on failure and prints `Error: ...` to stdout. Both, plus the 106-command surface and the active-file hazard, are in `references/official-cli-agent-usage.md`.
+
+### Cyanheads MCP — `obsidian-mcp-server` (Structured Path)
+
+The default MCP is cyanheads' `obsidian-mcp-server` (npm **@3.5.0**), launched over **stdio** via `npx -y obsidian-mcp-server@latest` (it also supports http on `127.0.0.1:3010/mcp`). It talks to the vault through the **Local REST API plugin v4.0.0+**, so it needs a **running Obsidian + the plugin enabled + an API key**.
+
+**Prerequisites:**
+- Code Mode MCP configured, with the `obsidian` manual in `.utcp_config.json` (not `opencode.json`, that file is for native/non-Code-Mode MCP tools)
+- Obsidian running with the Local REST API plugin enabled and an API key generated
+- `obsidian_OBSIDIAN_API_KEY` (required), `obsidian_OBSIDIAN_BASE_URL` (default `http://127.0.0.1:27123`), `obsidian_OBSIDIAN_VERIFY_SSL` (default `false`) available to Code Mode
+
+**Configuration** (`.utcp_config.json`, `manual_call_templates`):
+```json
+{
+  "name": "obsidian",
+  "call_template_type": "mcp",
+  "config": {
+    "mcpServers": {
+      "obsidian": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "obsidian-mcp-server@latest"],
+        "env": {
+          "OBSIDIAN_API_KEY": "${obsidian_OBSIDIAN_API_KEY}",
+          "OBSIDIAN_BASE_URL": "${obsidian_OBSIDIAN_BASE_URL}",
+          "OBSIDIAN_VERIFY_SSL": "${obsidian_OBSIDIAN_VERIFY_SSL}"
+        }
+      }
+    }
+  }
+}
+```
+
+The `obsidian_` env prefix matches the manual name `obsidian`, so `${obsidian_OBSIDIAN_API_KEY}` resolves correctly. This registration is already in place: the `obsidian` manual lives in `.utcp_config.json` and the `obsidian_OBSIDIAN_*` keys in `.env.example`. This skill documents that wiring; it does not rewrite those files.
+
+**Tools:** the server exposes **14 `obsidian_*` tools**. The core five are `obsidian_get_note`, `obsidian_write_note`, `obsidian_search_notes`, `obsidian_manage_tags`, `obsidian_delete_note`; the full 14-tool catalog with per-tool inputs lives in `references/mcp-tools.md`. Confirm every name with `tool_info()`/`list_tools()` before calling — never guess it from a description.
+
+**Invocation via Code Mode** (`call_tool_chain` takes a single `code` string):
+```typescript
+// Tool naming: obsidian.obsidian_{tool_name}
+const result = await call_tool_chain({
+  code: `
+    const note = await obsidian.obsidian_get_note({ path: "Inbox/Idea.md" });
+    return note;
+  `,
+});
+```
+
+**When to prefer the MCP:**
+- Structured note reads/writes where you need JSON back, not terminal text
+- Tag management (`obsidian_manage_tags`) across a live vault
+- Global or semantic search over an active, plugin-backed vault
+
+**Limitations:**
+- Requires a running Obsidian + Local REST API plugin + API key (headless CLI has none of these needs)
+- Requires Code Mode MCP to be configured
+- `OBSIDIAN_VERIFY_SSL` defaults to `false`; only enable it behind a trusted TLS endpoint
+
+**Alternative MCP servers (two exist — do not conflate the tool names):** (1) **Local REST API's own built-in MCP** — the `obsidian-local-rest-api` plugin (v5.1.0+) serves a Streamable HTTP MCP at `https://127.0.0.1:27124/mcp/` exposing **16 `vault_*` tools** (`vault_read`/`vault_write`/`vault_patch`/`search_simple`/`tag_list`/…) — validated working, needs no extra npm package, and is a DIFFERENT surface from the cyanheads `obsidian_*` tools. (2) StevenStavrakis' `obsidian-mcp` (npm @1.0.6) is filesystem-based — treat its no-app/no-token claim as `VERIFY`.
+
+---
+
+## 4. RULES
+
+### ✅ ALWAYS
+
+1. **Resolve the execution profile before acting** — headless `notesmd-cli` is the default; only route to the app-backed `obsidian` CLI or the MCP when a live app (and, for the MCP, Local REST API + `OBSIDIAN_API_KEY`) is actually available. Probe, do not assume.
+2. **Register and confirm the vault first** — run `notesmd-cli list-vaults` and, if empty, `notesmd-cli add-vault <path>` + `set-default-vault <name>` before any note operation.
+3. **Preview destructive note ops** — for `move` and `delete`, confirm the exact note name with `notesmd-cli list` / `search` before running the write; deletions are hard to reverse.
+4. **Quote note names and paths** — note titles and vault paths contain spaces; always wrap them in quotes in Bash.
+5. **Run `notesmd-cli --version` (and, for the MCP path, confirm the Local REST API is reachable) as preflight** before starting an Obsidian session.
+6. **Treat empty `notesmd-cli list` / `search` results as valid** — an empty vault or no-match search is not an error. Verify the default vault and query spelling before escalating.
+7. **Confirm MCP tool names with `tool_info()`** before calling `obsidian.obsidian_*` — the callable form is `obsidian.obsidian_{tool_name}`.
+
+### ⛔ NEVER
+
+1. **Never assume a running app for the default path** — `notesmd-cli` is filesystem-only and needs no app; do not launch Obsidian just to run a headless note op.
+2. **Never confuse the two CLIs** — `notesmd-cli` (Yakitrak, headless) and `obsidian` (official, app-backed) are different binaries with different behavior. The official one requires and controls a running app.
+3. **Never use the StevenStavrakis `obsidian-mcp` as the default MCP** — this skill's MCP path is the cyanheads `obsidian-mcp-server`. The Stavrakis server is only the documented headless alternative.
+4. **Never auto-modify `.utcp_config.json`, `.env.example`, `opencode.json`, or hub files** — the `obsidian` manual is already registered there; this skill only documents it. If the wiring ever needs changing, print the config for the user; never write these files programmatically.
+5. **Never hardcode the API key or base URL in commands or notes** — read them from `obsidian_OBSIDIAN_API_KEY` / `obsidian_OBSIDIAN_BASE_URL` in the Code Mode environment.
+6. **Never fabricate notes** — if `notesmd-cli list`/`search` returns empty, the vault or query is genuinely empty. Report it clearly.
+7. **Never enable `OBSIDIAN_VERIFY_SSL` blindly** — it defaults to `false`; only turn it on behind a trusted TLS endpoint.
+
+### ⚠️ ESCALATE IF
+
+- `notesmd-cli` is not installed and `scripts/install.sh` fails → report the OS/package-manager (brew/scoop/AUR) and Go toolchain state
+- `notesmd-cli list-vaults` shows no vault or no default → direct to `add-vault` + `set-default-vault`
+- The MCP connection fails → verify the `obsidian` manual in `.utcp_config.json` launches `npx -y obsidian-mcp-server@latest` over stdio, that Obsidian is running with Local REST API v4.0.0+ enabled, and that `obsidian_OBSIDIAN_API_KEY` / `obsidian_OBSIDIAN_BASE_URL` are set
+- A `401`/`403` from the MCP → the API key is missing, wrong, or the Local REST API plugin is disabled
+- A connection-refused / SSL error on `OBSIDIAN_BASE_URL` → the plugin is not listening on the expected port, or `OBSIDIAN_VERIFY_SSL` is mismatched with the endpoint
+
+---
+
+## 5. SUCCESS CRITERIA
+
+- [ ] `notesmd-cli --version` prints a version string
+- [ ] `notesmd-cli list-vaults` shows at least one registered vault with a default
+- [ ] `notesmd-cli list` returns notes for the default vault (empty list is valid)
+- [ ] `notesmd-cli search-content "<query>"` returns body matches (title `search` is broken in v0.3.6 — use `list` + filter for names)
+- [ ] For app-backed work: `obsidian version` exits 0 before any other official-CLI call, and each result is checked for a leading `Error:` on stdout rather than by exit status
+- [ ] For MCP work: a Code Mode `obsidian.obsidian_get_note` call returns note content as JSON
+
+---
+
+## 6. INTEGRATION POINTS
+
+**Gate 2 (Skill Routing):** This skill activates at ≥0.8 confidence for Obsidian note/vault requests. The skill advisor matches on: `obsidian`, `notesmd-cli`, `obsidian vault`, `note management`, `markdown notes`, `local rest api`.
+
+**Code Mode MCP:** The cyanheads MCP tools are invoked via `mcp__code_mode__call_tool_chain`. Tool naming convention: `obsidian.obsidian_{tool_name}`. See `references/mcp-tools.md` for the full 14-tool catalog.
+
+**Memory:** Save Obsidian workflow context (default vault name, base URL, active plugin set) using `/speckit:save` when switching sessions.
+
+**Tool Usage:** Use Bash for `notesmd-cli` and the official `obsidian` CLI. Use `mcp__code_mode__call_tool_chain` for cyanheads MCP operations. Use Read to load references on demand.
+
+---
+
+## 7. QUICK REFERENCE
+
+### notesmd-cli Command Cheat Sheet (headless)
+
+| Category | Command | Description |
+|---|---|---|
+| **Vaults** | `notesmd-cli add-vault "<path>"` | Register a vault |
+| | `notesmd-cli remove-vault "<name>"` | Unregister a vault |
+| | `notesmd-cli list-vaults` | List registered vaults + default |
+| | `notesmd-cli set-default-vault "<name>"` | Set the default vault |
+| **Read** | `notesmd-cli list` | List notes in the default vault |
+| | `notesmd-cli search "<query>"` | Search by note name |
+| | `notesmd-cli search-content "<query>"` | Full-text content search |
+| | `notesmd-cli print "<name>"` | Print a note to stdout |
+| **Write** | `notesmd-cli create "<name>"` | Create a note |
+| | `notesmd-cli daily` | Open/append today's daily note |
+| | `notesmd-cli move "<a>" "<b>"` | Move / rename a note |
+| | `notesmd-cli delete "<name>"` | Delete a note |
+| | `notesmd-cli frontmatter "<name>"` | Edit a note's frontmatter |
+| **Open** | `notesmd-cli open "<name>"` | Open a note |
+
+### Official `obsidian` CLI (app-backed)
+
+Syntax is `obsidian <command> key=value`. No POSIX flags. Global option `vault=<name>`, accepted before or after the command.
+
+| Command | Description |
+|---|---|
+| `obsidian version` | Preflight. Exit 0 means registered AND app running; exit 1 means the app is down |
+| `obsidian help` | The authoritative 106-command list from the installed binary |
+| `obsidian read file="<name>"` | Print note content. **Always pass a target**, or it reads the human's open note |
+| `obsidian create name="<name>" content="..."` | Create a note. On a name collision it makes `<name> 1.md` rather than failing |
+| `obsidian append file="<name>" content="..."` | Append to a named note |
+| `obsidian search query="..." format=json` | Search; JSON returns an array of paths |
+| `obsidian search:context query="..." format=json` | Search with matching lines |
+| `obsidian property:set file="<n>" name=k value=v` | Set a frontmatter property |
+| `obsidian backlinks file="<name>"` | Resolved backlinks — no filesystem equivalent |
+| `obsidian tags` / `obsidian tasks` | The app's computed vault-wide index |
+| `obsidian base:query file="<base>" format=json` | Query a Base |
+
+*(Enable first: Settings → General → Command line interface → Register CLI. Ships with Obsidian desktop v1.12.4+. Every command above exits 0 even when it fails — check stdout for a leading `Error:`.)*
+
+### Cyanheads MCP Call Pattern (Code Mode)
+
+```typescript
+// Tool naming: obsidian.obsidian_{tool_name}  — 14 tools total
+await call_tool_chain({
+  code: `
+    const hit  = await obsidian.obsidian_search_notes({ query: "roadmap" });
+    const note = await obsidian.obsidian_get_note({ path: hit[0].path });
+    await obsidian.obsidian_manage_tags({ path: hit[0].path, add: ["reviewed"] });
+    return note;
+  `,
+});
+```
+
+---
+
+## 8. REFERENCES AND RELATED RESOURCES
+
+**Reference Files (load on demand via router):**
+- `references/obsidian-cli-commands.md` — Full `notesmd-cli` + official `obsidian` CLI command reference with agent patterns
+- `references/official-cli-agent-usage.md` — Official app-backed CLI: preflight, the exit-0 failure contract, `key=value` syntax, the 106-command surface, safety invariants, and where the vendor docs disagree with the binary
+- `references/mcp-tools.md` — Cyanheads `obsidian-mcp-server` 14-tool catalog, priorities, and `call_tool_chain()` invocation
+- `references/troubleshooting.md` — Install, vault, auth, Local REST API and MCP failures
+- `references/notion-migration.md` — Notion→Obsidian migration reconstruction method: 8-step method, division of labor, relation/rollup/formula recovery, comment reconstruction, verification protocol
+- `references/plugins/plugin-operation-logic.md` — How plugin-driven note automation is operated
+- `references/plugins/iconic/iconic.md` — Iconic icon/color rulebook plugin index (usage companion: `assets/plugins/iconic/iconic-rules.full.md`; canonical full rule payload: `assets/plugins/iconic/iconic-rules.full.json`, 21 file + 11 folder rules)
+- `references/plugins/iconic/data-model.md` — Iconic `data.json` keys, rule schema, and the merge-only rulebook contract
+- `references/plugins/iconic/workflows.md` — Iconic file-layer recipes: add/edit/disable rules, flip toggles, apply the canonical rulebook
+- `references/plugins/iconic/troubleshooting.md` — Iconic failure and recovery recipes
+- `references/plugins/installed-plugins.md` — Roster of all 24 enabled vault plugins in three classes: the two documented file-layer plugins, the thirteen file-layer plugins whose dedicated docs were removed, and the nine UI/automatic plugins that never had any
+
+Install guide (front door): [INSTALL-GUIDE.md](INSTALL-GUIDE.md) — condensed top-level install doc for both CLI profiles and the MCP; `references/troubleshooting.md` is the router's INSTALL/TROUBLESHOOT-intent target.
+
+**Scripts:**
+- `scripts/install.sh` — Installs `notesmd-cli` and prints the MCP config snippet
+- `scripts/doctor.sh` — Diagnoses the CLI + MCP setup, including a live `obsidian version` probe that separates "not registered" from "registered but the app is down"
+
+**Embedded Servers:**
+- `mcp-servers/obsidian-cli/README.md` — `notesmd-cli` install pointer (brew/scoop/AUR/source); run `setup.sh`
+- `mcp-servers/obsidian-mcp/README.md` — Cyanheads `obsidian-mcp-server` configuration notes (stdio via `npx -y obsidian-mcp-server@latest`, `OBSIDIAN_API_KEY`/`OBSIDIAN_BASE_URL`/`OBSIDIAN_VERIFY_SSL`)
+
+**Examples:**
+- `examples/README.md` — Guide to the example note-workflow scripts
+- `examples/headless-notes-workflow.sh` — `notesmd-cli` round trip with no running app
+- `examples/official-cli-workflow.sh` — Official app-backed CLI round trip with the preflight and the exit-0 result wrapper
+
+**Related Skills:**
+- `mcp-click-up` — Structural sibling; same two-path (CLI + MCP) orchestrator pattern
+- `mcp-code-mode` — Code Mode MCP orchestration (used for cyanheads MCP invocation)
+
+**External:**
+- notesmd-cli repository: https://github.com/Yakitrak/obsidian-cli
+- cyanheads obsidian-mcp-server: https://github.com/cyanheads/obsidian-mcp-server
+- Obsidian Local REST API plugin: https://github.com/coddingtonbear/obsidian-local-rest-api
+
+---
+
+## 9. MACHINE ROUTER
+
+The routing detail that does not fit the short summary: the resource loading levels, the two surface decisions, the execution-profile probe, the operation-to-tool table and the intent-scoring pseudocode that reads them.
 
 ### Resource Loading Levels
 
@@ -367,273 +650,3 @@ def route_obsidian_resources(request: str) -> dict:
 
     return {"intent": intent, "resources": loaded}
 ```
-
----
-
-## 3. HOW IT WORKS
-
-### Surface Comparison
-
-| Dimension | Headless CLI (`notesmd-cli`) | App-backed CLI (`obsidian`) | Cyanheads MCP |
-|---|---|---|---|
-| **Activation** | `notesmd-cli <command>` in Bash | `obsidian <command> key=value` in Bash | Code Mode `call_tool_chain()` |
-| **Running app** | Not required — filesystem only | Required, and NOT launched for you (exit 1 when down) | Required + Local REST API |
-| **Best for** | Daily note ops anywhere | In-app open / URI actions | Structured reads/writes, tags, search |
-| **Auth** | None — reads the vault directory | None — controls the local app | `OBSIDIAN_API_KEY` bearer token |
-| **Install** | `brew install yakitrak/yakitrak/notesmd-cli` | Ships with Obsidian desktop v1.12.4+ | `npx -y obsidian-mcp-server@latest` |
-| **Config store** | `~/.config/obsidian/obsidian.json` | In-app: Settings → Command line interface | `.utcp_config.json` manual `obsidian` |
-| **Output** | Human-readable text | Human-readable text on stdout, exit 0 even on failure | Structured JSON |
-
-### Headless CLI — `notesmd-cli` (Default Path)
-
-Yakitrak's `notesmd-cli` (binary `notesmd-cli`, renamed from "obsidian-cli" to avoid confusion with the official one) operates directly on the vault filesystem, so it works with **no running app**.
-
-**Step 1: Verify installation**
-```bash
-notesmd-cli --version
-notesmd-cli list-vaults        # Shows registered vaults + default
-```
-
-**Step 2: Install if missing**
-```bash
-bash .skilled/skills/mcp-tooling/mcp-obsidian/scripts/install.sh
-# or directly:
-brew tap yakitrak/yakitrak && brew install yakitrak/yakitrak/notesmd-cli
-```
-
-**Step 3: Register a vault (one-time)**
-```bash
-notesmd-cli add-vault "/path/to/Vault"    # writes ~/.config/obsidian/obsidian.json
-notesmd-cli set-default-vault "Vault"
-```
-
-**Step 4: Daily note operations**
-```bash
-notesmd-cli list                          # List notes in the default vault
-notesmd-cli search "meeting"              # Search by note name
-notesmd-cli search-content "action item" # Full-text content search
-notesmd-cli print "Inbox"                # Print a note to stdout
-notesmd-cli create "New Idea"            # Create a note
-notesmd-cli daily                        # Open/append today's daily note
-```
-
-### App-backed CLI — official `obsidian` (Live-App Path)
-
-The official `obsidian` CLI shipped GA in Obsidian desktop **v1.12.4** (Feb 2026). It is a **remote control for an already-running app**, not a headless tool and not a launcher: with the app down it prints `The CLI is unable to find Obsidian` to stderr and exits 1. There is no npm/brew package — it ships with the desktop app.
-
-**Enable in-app:** Settings → General → Command line interface → toggle on → "Register CLI" (auto-adds `obsidian` to PATH on macOS/Linux; on macOS this symlinks `/usr/local/bin/obsidian` into the app bundle).
-
-**Syntax is `obsidian <command> key=value`,** with no POSIX flags: `obsidian version`, not `obsidian --version`. Use it for outcomes only the live app can produce — the resolved link graph, the computed tag and task index, Bases queries, sync and file history, plugin and theme state, and in-app opens.
-
-**Two contracts before scripting it.** Preflight with `obsidian version | grep -qE '^[0-9]+\.[0-9]+'` (a version number means registered AND running, where exit 0 does not, because a starting app answers 0 with an error). Then stop trusting `$?`: once the app is up the CLI exits 0 even on failure and prints `Error: ...` to stdout. Both, plus the 106-command surface and the active-file hazard, are in `references/official-cli-agent-usage.md`.
-
-### Cyanheads MCP — `obsidian-mcp-server` (Structured Path)
-
-The default MCP is cyanheads' `obsidian-mcp-server` (npm **@3.5.0**), launched over **stdio** via `npx -y obsidian-mcp-server@latest` (it also supports http on `127.0.0.1:3010/mcp`). It talks to the vault through the **Local REST API plugin v4.0.0+**, so it needs a **running Obsidian + the plugin enabled + an API key**.
-
-**Prerequisites:**
-- Code Mode MCP configured, with the `obsidian` manual in `.utcp_config.json` (not `opencode.json`, that file is for native/non-Code-Mode MCP tools)
-- Obsidian running with the Local REST API plugin enabled and an API key generated
-- `obsidian_OBSIDIAN_API_KEY` (required), `obsidian_OBSIDIAN_BASE_URL` (default `http://127.0.0.1:27123`), `obsidian_OBSIDIAN_VERIFY_SSL` (default `false`) available to Code Mode
-
-**Configuration** (`.utcp_config.json`, `manual_call_templates`):
-```json
-{
-  "name": "obsidian",
-  "call_template_type": "mcp",
-  "config": {
-    "mcpServers": {
-      "obsidian": {
-        "transport": "stdio",
-        "command": "npx",
-        "args": ["-y", "obsidian-mcp-server@latest"],
-        "env": {
-          "OBSIDIAN_API_KEY": "${obsidian_OBSIDIAN_API_KEY}",
-          "OBSIDIAN_BASE_URL": "${obsidian_OBSIDIAN_BASE_URL}",
-          "OBSIDIAN_VERIFY_SSL": "${obsidian_OBSIDIAN_VERIFY_SSL}"
-        }
-      }
-    }
-  }
-}
-```
-
-The `obsidian_` env prefix matches the manual name `obsidian`, so `${obsidian_OBSIDIAN_API_KEY}` resolves correctly. This registration is already in place: the `obsidian` manual lives in `.utcp_config.json` and the `obsidian_OBSIDIAN_*` keys in `.env.example`. This skill documents that wiring; it does not rewrite those files.
-
-**Tools:** the server exposes **14 `obsidian_*` tools**. The core five are `obsidian_get_note`, `obsidian_write_note`, `obsidian_search_notes`, `obsidian_manage_tags`, `obsidian_delete_note`; the full 14-tool catalog with per-tool inputs lives in `references/mcp-tools.md`. Confirm every name with `tool_info()`/`list_tools()` before calling — never guess it from a description.
-
-**Invocation via Code Mode** (`call_tool_chain` takes a single `code` string):
-```typescript
-// Tool naming: obsidian.obsidian_{tool_name}
-const result = await call_tool_chain({
-  code: `
-    const note = await obsidian.obsidian_get_note({ path: "Inbox/Idea.md" });
-    return note;
-  `,
-});
-```
-
-**When to prefer the MCP:**
-- Structured note reads/writes where you need JSON back, not terminal text
-- Tag management (`obsidian_manage_tags`) across a live vault
-- Global or semantic search over an active, plugin-backed vault
-
-**Limitations:**
-- Requires a running Obsidian + Local REST API plugin + API key (headless CLI has none of these needs)
-- Requires Code Mode MCP to be configured
-- `OBSIDIAN_VERIFY_SSL` defaults to `false`; only enable it behind a trusted TLS endpoint
-
-**Alternative MCP servers (two exist — do not conflate the tool names):** (1) **Local REST API's own built-in MCP** — the `obsidian-local-rest-api` plugin (v5.1.0+) serves a Streamable HTTP MCP at `https://127.0.0.1:27124/mcp/` exposing **16 `vault_*` tools** (`vault_read`/`vault_write`/`vault_patch`/`search_simple`/`tag_list`/…) — validated working, needs no extra npm package, and is a DIFFERENT surface from the cyanheads `obsidian_*` tools. (2) StevenStavrakis' `obsidian-mcp` (npm @1.0.6) is filesystem-based — treat its no-app/no-token claim as `VERIFY`.
-
----
-
-## 4. RULES
-
-### ✅ ALWAYS
-
-1. **Resolve the execution profile before acting** — headless `notesmd-cli` is the default; only route to the app-backed `obsidian` CLI or the MCP when a live app (and, for the MCP, Local REST API + `OBSIDIAN_API_KEY`) is actually available. Probe, do not assume.
-2. **Register and confirm the vault first** — run `notesmd-cli list-vaults` and, if empty, `notesmd-cli add-vault <path>` + `set-default-vault <name>` before any note operation.
-3. **Preview destructive note ops** — for `move` and `delete`, confirm the exact note name with `notesmd-cli list` / `search` before running the write; deletions are hard to reverse.
-4. **Quote note names and paths** — note titles and vault paths contain spaces; always wrap them in quotes in Bash.
-5. **Run `notesmd-cli --version` (and, for the MCP path, confirm the Local REST API is reachable) as preflight** before starting an Obsidian session.
-6. **Treat empty `notesmd-cli list` / `search` results as valid** — an empty vault or no-match search is not an error. Verify the default vault and query spelling before escalating.
-7. **Confirm MCP tool names with `tool_info()`** before calling `obsidian.obsidian_*` — the callable form is `obsidian.obsidian_{tool_name}`.
-
-### ⛔ NEVER
-
-1. **Never assume a running app for the default path** — `notesmd-cli` is filesystem-only and needs no app; do not launch Obsidian just to run a headless note op.
-2. **Never confuse the two CLIs** — `notesmd-cli` (Yakitrak, headless) and `obsidian` (official, app-backed) are different binaries with different behavior. The official one requires and controls a running app.
-3. **Never use the StevenStavrakis `obsidian-mcp` as the default MCP** — this skill's MCP path is the cyanheads `obsidian-mcp-server`. The Stavrakis server is only the documented headless alternative.
-4. **Never auto-modify `.utcp_config.json`, `.env.example`, `opencode.json`, or hub files** — the `obsidian` manual is already registered there; this skill only documents it. If the wiring ever needs changing, print the config for the user; never write these files programmatically.
-5. **Never hardcode the API key or base URL in commands or notes** — read them from `obsidian_OBSIDIAN_API_KEY` / `obsidian_OBSIDIAN_BASE_URL` in the Code Mode environment.
-6. **Never fabricate notes** — if `notesmd-cli list`/`search` returns empty, the vault or query is genuinely empty. Report it clearly.
-7. **Never enable `OBSIDIAN_VERIFY_SSL` blindly** — it defaults to `false`; only turn it on behind a trusted TLS endpoint.
-
-### ⚠️ ESCALATE IF
-
-- `notesmd-cli` is not installed and `scripts/install.sh` fails → report the OS/package-manager (brew/scoop/AUR) and Go toolchain state
-- `notesmd-cli list-vaults` shows no vault or no default → direct to `add-vault` + `set-default-vault`
-- The MCP connection fails → verify the `obsidian` manual in `.utcp_config.json` launches `npx -y obsidian-mcp-server@latest` over stdio, that Obsidian is running with Local REST API v4.0.0+ enabled, and that `obsidian_OBSIDIAN_API_KEY` / `obsidian_OBSIDIAN_BASE_URL` are set
-- A `401`/`403` from the MCP → the API key is missing, wrong, or the Local REST API plugin is disabled
-- A connection-refused / SSL error on `OBSIDIAN_BASE_URL` → the plugin is not listening on the expected port, or `OBSIDIAN_VERIFY_SSL` is mismatched with the endpoint
-
----
-
-## 5. SUCCESS CRITERIA
-
-- [ ] `notesmd-cli --version` prints a version string
-- [ ] `notesmd-cli list-vaults` shows at least one registered vault with a default
-- [ ] `notesmd-cli list` returns notes for the default vault (empty list is valid)
-- [ ] `notesmd-cli search-content "<query>"` returns body matches (title `search` is broken in v0.3.6 — use `list` + filter for names)
-- [ ] For app-backed work: `obsidian version` exits 0 before any other official-CLI call, and each result is checked for a leading `Error:` on stdout rather than by exit status
-- [ ] For MCP work: a Code Mode `obsidian.obsidian_get_note` call returns note content as JSON
-
----
-
-## 6. INTEGRATION POINTS
-
-**Gate 2 (Skill Routing):** This skill activates at ≥0.8 confidence for Obsidian note/vault requests. The skill advisor matches on: `obsidian`, `notesmd-cli`, `obsidian vault`, `note management`, `markdown notes`, `local rest api`.
-
-**Code Mode MCP:** The cyanheads MCP tools are invoked via `mcp__code_mode__call_tool_chain`. Tool naming convention: `obsidian.obsidian_{tool_name}`. See `references/mcp-tools.md` for the full 14-tool catalog.
-
-**Memory:** Save Obsidian workflow context (default vault name, base URL, active plugin set) using `/speckit:save` when switching sessions.
-
-**Tool Usage:** Use Bash for `notesmd-cli` and the official `obsidian` CLI. Use `mcp__code_mode__call_tool_chain` for cyanheads MCP operations. Use Read to load references on demand.
-
----
-
-## 7. QUICK REFERENCE
-
-### notesmd-cli Command Cheat Sheet (headless)
-
-| Category | Command | Description |
-|---|---|---|
-| **Vaults** | `notesmd-cli add-vault "<path>"` | Register a vault |
-| | `notesmd-cli remove-vault "<name>"` | Unregister a vault |
-| | `notesmd-cli list-vaults` | List registered vaults + default |
-| | `notesmd-cli set-default-vault "<name>"` | Set the default vault |
-| **Read** | `notesmd-cli list` | List notes in the default vault |
-| | `notesmd-cli search "<query>"` | Search by note name |
-| | `notesmd-cli search-content "<query>"` | Full-text content search |
-| | `notesmd-cli print "<name>"` | Print a note to stdout |
-| **Write** | `notesmd-cli create "<name>"` | Create a note |
-| | `notesmd-cli daily` | Open/append today's daily note |
-| | `notesmd-cli move "<a>" "<b>"` | Move / rename a note |
-| | `notesmd-cli delete "<name>"` | Delete a note |
-| | `notesmd-cli frontmatter "<name>"` | Edit a note's frontmatter |
-| **Open** | `notesmd-cli open "<name>"` | Open a note |
-
-### Official `obsidian` CLI (app-backed)
-
-Syntax is `obsidian <command> key=value`. No POSIX flags. Global option `vault=<name>`, accepted before or after the command.
-
-| Command | Description |
-|---|---|
-| `obsidian version` | Preflight. Exit 0 means registered AND app running; exit 1 means the app is down |
-| `obsidian help` | The authoritative 106-command list from the installed binary |
-| `obsidian read file="<name>"` | Print note content. **Always pass a target**, or it reads the human's open note |
-| `obsidian create name="<name>" content="..."` | Create a note. On a name collision it makes `<name> 1.md` rather than failing |
-| `obsidian append file="<name>" content="..."` | Append to a named note |
-| `obsidian search query="..." format=json` | Search; JSON returns an array of paths |
-| `obsidian search:context query="..." format=json` | Search with matching lines |
-| `obsidian property:set file="<n>" name=k value=v` | Set a frontmatter property |
-| `obsidian backlinks file="<name>"` | Resolved backlinks — no filesystem equivalent |
-| `obsidian tags` / `obsidian tasks` | The app's computed vault-wide index |
-| `obsidian base:query file="<base>" format=json` | Query a Base |
-
-*(Enable first: Settings → General → Command line interface → Register CLI. Ships with Obsidian desktop v1.12.4+. Every command above exits 0 even when it fails — check stdout for a leading `Error:`.)*
-
-### Cyanheads MCP Call Pattern (Code Mode)
-
-```typescript
-// Tool naming: obsidian.obsidian_{tool_name}  — 14 tools total
-await call_tool_chain({
-  code: `
-    const hit  = await obsidian.obsidian_search_notes({ query: "roadmap" });
-    const note = await obsidian.obsidian_get_note({ path: hit[0].path });
-    await obsidian.obsidian_manage_tags({ path: hit[0].path, add: ["reviewed"] });
-    return note;
-  `,
-});
-```
-
----
-
-## 8. REFERENCES AND RELATED RESOURCES
-
-**Reference Files (load on demand via router):**
-- `references/obsidian-cli-commands.md` — Full `notesmd-cli` + official `obsidian` CLI command reference with agent patterns
-- `references/official-cli-agent-usage.md` — Official app-backed CLI: preflight, the exit-0 failure contract, `key=value` syntax, the 106-command surface, safety invariants, and where the vendor docs disagree with the binary
-- `references/mcp-tools.md` — Cyanheads `obsidian-mcp-server` 14-tool catalog, priorities, and `call_tool_chain()` invocation
-- `references/troubleshooting.md` — Install, vault, auth, Local REST API and MCP failures
-- `references/notion-migration.md` — Notion→Obsidian migration reconstruction method: 8-step method, division of labor, relation/rollup/formula recovery, comment reconstruction, verification protocol
-- `references/plugins/plugin-operation-logic.md` — How plugin-driven note automation is operated
-- `references/plugins/iconic/iconic.md` — Iconic icon/color rulebook plugin index (usage companion: `assets/plugins/iconic/iconic-rules.full.md`; canonical full rule payload: `assets/plugins/iconic/iconic-rules.full.json`, 21 file + 11 folder rules)
-- `references/plugins/iconic/data-model.md` — Iconic `data.json` keys, rule schema, and the merge-only rulebook contract
-- `references/plugins/iconic/workflows.md` — Iconic file-layer recipes: add/edit/disable rules, flip toggles, apply the canonical rulebook
-- `references/plugins/iconic/troubleshooting.md` — Iconic failure and recovery recipes
-- `references/plugins/installed-plugins.md` — Roster of all 24 enabled vault plugins in three classes: the two documented file-layer plugins, the thirteen file-layer plugins whose dedicated docs were removed, and the nine UI/automatic plugins that never had any
-
-Install guide (front door): [INSTALL-GUIDE.md](INSTALL-GUIDE.md) — condensed top-level install doc for both CLI profiles and the MCP; `references/troubleshooting.md` is the router's INSTALL/TROUBLESHOOT-intent target.
-
-**Scripts:**
-- `scripts/install.sh` — Installs `notesmd-cli` and prints the MCP config snippet
-- `scripts/doctor.sh` — Diagnoses the CLI + MCP setup, including a live `obsidian version` probe that separates "not registered" from "registered but the app is down"
-
-**Embedded Servers:**
-- `mcp-servers/obsidian-cli/README.md` — `notesmd-cli` install pointer (brew/scoop/AUR/source); run `setup.sh`
-- `mcp-servers/obsidian-mcp/README.md` — Cyanheads `obsidian-mcp-server` configuration notes (stdio via `npx -y obsidian-mcp-server@latest`, `OBSIDIAN_API_KEY`/`OBSIDIAN_BASE_URL`/`OBSIDIAN_VERIFY_SSL`)
-
-**Examples:**
-- `examples/README.md` — Guide to the example note-workflow scripts
-- `examples/headless-notes-workflow.sh` — `notesmd-cli` round trip with no running app
-- `examples/official-cli-workflow.sh` — Official app-backed CLI round trip with the preflight and the exit-0 result wrapper
-
-**Related Skills:**
-- `mcp-click-up` — Structural sibling; same two-path (CLI + MCP) orchestrator pattern
-- `mcp-code-mode` — Code Mode MCP orchestration (used for cyanheads MCP invocation)
-
-**External:**
-- notesmd-cli repository: https://github.com/Yakitrak/obsidian-cli
-- cyanheads obsidian-mcp-server: https://github.com/cyanheads/obsidian-mcp-server
-- Obsidian Local REST API plugin: https://github.com/coddingtonbear/obsidian-local-rest-api

@@ -7,7 +7,7 @@ description: "This scenario validates STYLES routing for `RF-R01`. It focuses on
 expected_intent: STYLES
 expected_resources:
   - references/tool-surface.md
-version: 1.0.0.1
+version: 1.0.1.0
 ---
 
 # RF-R01: Styles routing
@@ -18,7 +18,7 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario validates STYLES routing for `RF-R01`. It focuses on confirming that a prompt searching Refero for a bold editorial aesthetic to ground a landing page scores highest against `INTENT_MODEL["STYLES"]` in `SKILL.md` §2 and resolves the `RESOURCE_MAP["STYLES"]` set, not on actually running the Refero search, since this scenario only exercises which intent and resources the router selects.
+This scenario validates STYLES routing for `RF-R01`. It focuses on confirming that a prompt searching Refero for a bold editorial aesthetic to ground a landing page scores highest against `INTENT_MODEL["STYLES"]` in `SKILL.md` §10 and resolves the `RESOURCE_MAP["STYLES"]` set, not on actually running the Refero search, since this scenario only exercises which intent and resources the router selects.
 
 ### Why This Matters
 
@@ -39,8 +39,8 @@ Operators confirm the exact prompt for `RF-R01` classifies as `STYLES` and resol
 Search Refero styles for a bold editorial aesthetic to ground a saas landing page.
 ```
 
-- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`SKILL.md` §2); "style", "aesthetic", and "landing page" each match `STYLES` keywords and no other intent scores as high, so `STYLES` becomes the primary intent and `RESOURCE_MAP["STYLES"]` loads the declared path
-- Expected signals: the `expected_resources` path exists under `mcp-refero/`, and it documents `STYLES` routing per `SKILL.md` §2
+- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`SKILL.md` §10); "style", "aesthetic", and "landing page" each match `STYLES` keywords and no other intent scores as high, so `STYLES` becomes the primary intent and `RESOURCE_MAP["STYLES"]` loads the declared path
+- Expected signals: the `expected_resources` path exists under `mcp-refero/`, and it documents `STYLES` routing per `SKILL.md` §10
 - Desired user-visible outcome: the bundled workflow loads the tool-surface taxonomy and runs the editorial-aesthetic style search as a read-only Refero query
 - Pass/fail: PASS if the listed path exists and the frontmatter intent is `STYLES`; FAIL if the listed path is missing or the frontmatter disagrees
 
@@ -74,7 +74,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 ### Failure Triage
 
 1. Re-run step 3 for `references/tool-surface.md` and confirm whether it was renamed or removed under `references/`.
-2. Diff this scenario's `expected_resources` against the step-2 `INTENT_MODEL["STYLES"]` excerpt and the `RESOURCE_MAP["STYLES"]` entry in `SKILL.md` §2 to see whether the drift is a stale scenario file or a stale `SKILL.md` map.
+2. Diff this scenario's `expected_resources` against the step-2 `INTENT_MODEL["STYLES"]` excerpt and the `RESOURCE_MAP["STYLES"]` entry in `SKILL.md` §10 to see whether the drift is a stale scenario file or a stale `SKILL.md` map.
 
 ---
 
@@ -90,7 +90,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §2 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §10 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §1 | Activation triggers this scenario's prompt assumes |
 
 ---

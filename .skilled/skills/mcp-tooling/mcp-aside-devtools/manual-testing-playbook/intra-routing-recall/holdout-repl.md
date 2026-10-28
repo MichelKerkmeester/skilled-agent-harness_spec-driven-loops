@@ -9,7 +9,7 @@ expected_resources:
   - references/aside-cli-reference.md
   - references/session-management.md
 blindToRouterKeywords: true
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # AD-H01: Blind holdout: scripted evidence
@@ -38,7 +38,7 @@ narrower, more natural keyword surface.
 ## 2. SCENARIO CONTRACT
 
 Operators confirm the exact prompt, despite avoiding obvious tool-name keywords, still scores
-`REPL` under `SKILL.md` §2's weighted keyword model, and that the router's `RESOURCE_MAP["REPL"]`
+`REPL` under `SKILL.md` §9's weighted keyword model, and that the router's `RESOURCE_MAP["REPL"]`
 entry matches this scenario's declared `expected_resources`.
 
 - Objective: confirm the prompt's narrower keyword overlap with `INTENT_SIGNALS["REPL"]` — via
@@ -56,13 +56,13 @@ Step through the page in exact scripted order and snapshot every state so the ru
   prompt; `snapshot` is the sole literal `INTENT_SIGNALS["REPL"]` keyword present, so `REPL` scores
   above every zero-scoring intent and is selected without needing `repl`, `playwright`, or `aside` in
   the text.
-- Expected signals: `SKILL.md` §2 lists `snapshot` under `INTENT_SIGNALS["REPL"]`;
+- Expected signals: `SKILL.md` §9 lists `snapshot` under `INTENT_SIGNALS["REPL"]`;
   `RESOURCE_MAP["REPL"]` names exactly `references/aside-cli-reference.md` and
   `references/session-management.md`; both files exist.
 - Desired user-visible outcome: the router states plainly that this request routes to `REPL` and
   bundles the CLI reference plus the session-management model, despite the prompt never naming the
   tool.
-- Pass/fail: PASS if `SKILL.md` §2 confirms `snapshot` under `REPL` and both mapped resources exist;
+- Pass/fail: PASS if `SKILL.md` §9 confirms `snapshot` under `REPL` and both mapped resources exist;
   FAIL if `snapshot` is no longer a `REPL` keyword, the `RESOURCE_MAP["REPL"]` entry in `SKILL.md` no
   longer matches this scenario's frontmatter, or either resource path is missing.
 
@@ -96,7 +96,7 @@ highlighted; step 3's confirmation that the prompt body carries no obvious tool-
 
 ### Pass / Fail
 
-- **Pass**: `SKILL.md` §2 still lists `snapshot` under `REPL`, the prompt body carries no obvious
+- **Pass**: `SKILL.md` §9 still lists `snapshot` under `REPL`, the prompt body carries no obvious
   tool-name keyword, and both `RESOURCE_MAP["REPL"]` resource paths exist.
 - **Fail**: `snapshot` is removed from `REPL`'s keyword list, the resource map no longer matches this
   scenario's frontmatter, or a resource path does not resolve.
@@ -124,7 +124,7 @@ highlighted; step 3's confirmation that the prompt body carries no obvious tool-
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` §2 | The `REPL` `INTENT_SIGNALS` keywords and `RESOURCE_MAP` entry this scenario verifies |
+| `../../SKILL.md` §9 | The `REPL` `INTENT_SIGNALS` keywords and `RESOURCE_MAP` entry this scenario verifies |
 
 ---
 

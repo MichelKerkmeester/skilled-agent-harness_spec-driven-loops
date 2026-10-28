@@ -2,7 +2,7 @@
 name: cli-devin
 description: "Devin CLI executor for Cognition-backed coding, cloud handoff, subagent delegation, and cross-AI validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.4.8.0
+version: 1.4.9.0
 ---
 
 <!-- Keywords: devin, devin-cli, cognition, cross-ai, cloud-handoff, subagent-delegation, code-generation, code-review, second-opinion, multi-model, session-management, handoff, swe -->
@@ -11,7 +11,7 @@ version: 1.4.8.0
 
 > **CRITICAL — SELF-INVOCATION PROHIBITED**
 >
-> This skill dispatches to the Cognition CLI binary (`devin`). If the agent currently reading this skill is itself running inside Devin (detection signals listed in §2), the skill MUST refuse to load and return the documented error message instead of generating any `devin` invocation.
+> This skill dispatches to the Cognition CLI binary (`devin`). If the agent currently reading this skill is itself running inside Devin (detection signals listed in §9), the skill MUST refuse to load and return the documented error message instead of generating any `devin` invocation.
 >
 > A running CLI skill never dispatches itself. The cli-X skills are for **cross-AI delegation only** — never self-invocation.
 
@@ -44,106 +44,11 @@ Orchestrate Cognition's Devin CLI for tasks that benefit from a second AI perspe
 
 ## 2. SMART ROUTING
 
-### Prerequisite Detection
+The hub's `cli-devin` mode signal routes a Devin CLI dispatch here when a request names `devin`, Cognition, an autonomous SWE dispatch, a cloud handoff or a subagent.
 
-```bash
-# Verify Devin CLI is available before routing
-command -v devin || echo "Not installed. Run: devin setup or curl -fsSL https://devin.ai/install | bash"
-```
+`references/cli-reference.md` and `assets/prompt-quality-card.md` load on every invocation; the hub `ROUTER.md` names the mode's first leaves.
 
-### Self-Invocation Guard
-
-```python
-def detect_self_invocation():
-    """Returns a non-None signal when the orchestrator is already running inside Devin."""
-    # Layer 1: env var lookup — Devin sets DEVIN_PROJECT_DIR on session start
-    if os.environ.get('DEVIN_PROJECT_DIR'):
-        return ('env', 'DEVIN_PROJECT_DIR')
-    # Layer 2: process ancestry — devin in parent tree
-    try:
-        ancestry = subprocess.check_output(['ps', '-o', 'command=', '-p', str(os.getppid())]).decode()
-        if '/devin' in ancestry or 'devin ' in ancestry or ancestry.strip().endswith('devin'):
-            return ('ancestry', 'devin')
-    except subprocess.SubprocessError:
-        pass
-    # Layer 3: active-session credentials probe (session-in-flight heuristic)
-    creds = os.path.expanduser('~/.local/share/devin/credentials.toml')
-    if os.path.exists(creds):
-        # Credentials file existing alone is not conclusive (persists after logout),
-        # but paired with DEVIN_PROJECT_DIR or ancestry it confirms an active session.
-        pass
-    return None
-
-if detect_self_invocation():
-    refuse(
-        "Self-invocation refused: this agent is already running inside Devin. "
-        "Use a sibling cli-* skill or a fresh shell session in a different runtime to dispatch a different model."
-    )
-```
-
-### Resource Loading Levels
-
-| Level       | When to Load            | Resources                      |
-| ----------- | ----------------------- | ------------------------------ |
-| ALWAYS      | Every skill invocation  | `references/cli-reference.md`, `assets/prompt-quality-card.md` |
-| CONDITIONAL | If intent signals match | Intent-mapped reference docs   |
-| ON_DEMAND   | Only on explicit request| Extended templates and patterns |
-
-### Smart Router
-
-Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md)):
-
-```python
-INTENT_SIGNALS = {
-    "GENERATION":        {"weight": 4, "keywords": ["generate", "create", "build", "write code", "devin create"]},
-    "REVIEW":            {"weight": 4, "keywords": ["review", "audit", "security", "bug", "second opinion", "cross-validate"]},
-    "RESEARCH":          {"weight": 4, "keywords": ["search", "latest", "current", "what's new", "web research", "browse", "explore"]},
-    "ARCHITECTURE":      {"weight": 3, "keywords": ["architecture", "codebase", "investigate", "dependencies", "analyze project"]},
-    "AGENT_DELEGATION":  {"weight": 4, "keywords": ["delegate", "subagent", "agent", "background", "parallel", "offload", "run_subagent"]},
-    "CLOUD_HANDOFF":     {"weight": 5, "keywords": ["handoff", "hand off", "cloud devin", "long-running", "ci validation", "browser", "vm"]},
-    "TEMPLATES":         {"weight": 3, "keywords": ["template", "prompt", "how to ask", "devin prompt"]},
-    "PATTERNS":          {"weight": 3, "keywords": ["pattern", "workflow", "orchestrate", "session", "resume", "continue"]},
-    # WHY: DESIGN is an intent signal only. The durable sk-design-md-generator loading contract lives in the
-    # always-fires Design Standards Loading rule and the dispatch manifest; RESOURCE_MAP stays
-    # limited to same-skill markdown paths.
-    "DESIGN":            {"weight": 4, "keywords": ["sk-design-md-generator", "extract design system", "generate design.md", "style reference", "design tokens", "css extraction", "tokens.json"]},
-}
-
-RESOURCE_MAP = {
-    "GENERATION":        ["references/cli-reference.md", "assets/prompt-templates.md"],
-    "REVIEW":            ["references/integration-patterns.md", "references/agent-delegation.md"],
-    "RESEARCH":          ["references/devin-tools.md", "assets/prompt-templates.md"],
-    "ARCHITECTURE":      ["references/devin-tools.md", "references/agent-delegation.md"],
-    "AGENT_DELEGATION":  ["references/agent-delegation.md", "references/integration-patterns.md"],
-    "CLOUD_HANDOFF":     ["references/cloud-handoff.md", "references/cli-reference.md"],
-    "TEMPLATES":         ["assets/prompt-templates.md", "references/cli-reference.md"],
-    "PATTERNS":          ["references/integration-patterns.md", "references/cli-reference.md"],
-}
-
-LOADING_LEVELS = {
-    "ALWAYS": ["references/cli-reference.md", "assets/prompt-quality-card.md"],
-    "ON_DEMAND_KEYWORDS": ["full reference", "all templates", "deep dive", "complete guide", "devin agent", "devin prompt", "cloud handoff", "subagent", "review command", "continue session"],
-    "ON_DEMAND": ["references/devin-tools.md", "references/cloud-handoff.md", "assets/prompt-templates.md"],
-}
-
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "Is the user asking about Devin CLI specifically?",
-    "Does the task benefit from a second AI perspective?",
-    "Is cloud handoff or subagent delegation needed?",
-    "Would a specific model available through Devin fit the task?",
-]
-```
-
-**Call sequence** (using shared helpers from `shared-smart-router.md`):
-
-1. `discover_markdown_resources()` — recursively enumerate current `.md` files under existing `references/` and `assets/` folders at routing time.
-2. `_guard_in_skill()` + `load_if_available()` — sandbox paths to this skill, reject non-markdown loads, skip missing files, and suppress duplicates.
-3. `score_intents(task)` and `select_intents(scores, ambiguity_delta=1.0)` — preserve provider-specific weighted intent scoring and top-2 ambiguity handling.
-4. `get_routing_key(task, intents)` — derive the provider routing key from task/provider context, then fall back to `devin`.
-5. ALWAYS-load `LOADING_LEVELS["ALWAYS"]`, then return `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST` when max score is 0.
-6. CONDITIONAL-load `RESOURCE_MAP[intent]`, ON_DEMAND-load keyword matches, and return a notice when no provider-specific knowledge base is available beyond always-load resources.
-
-The `route_devin_resources(task)` function body lives in [`shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md) — substitute `<PROVIDER>` = `devin`.
+The probe, the guard, the loading levels, the intent map and the call sequence sit in the final `MACHINE ROUTER` section.
 
 ---
 
@@ -386,7 +291,7 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
 
 ### Reference Loading Notes
 
-- Load only references needed for current intent; Smart Routing (Section 2) is the single routing authority.
+- Load only references needed for current intent; Smart Routing (Section 2) and the final MACHINE ROUTER section are the single routing authority.
 - `cli-reference.md` is ALWAYS loaded as baseline.
 
 ---
@@ -404,7 +309,7 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
 
 ### Skill Quality
 
-- All 8 sections present with proper anchor comments.
+- All 9 sections present with proper anchor comments.
 - Smart routing covers all intent signals with UNKNOWN_FALLBACK.
 - Reference files provide deep-dive content without duplication.
 
@@ -431,3 +336,103 @@ Key integrations:
 The router discovers reference, asset, and script docs dynamically (Section 5 is the authored index). Start with the ALWAYS-loaded `references/cli-reference.md` and `assets/prompt-quality-card.md`, then load task-specific resources per Smart Routing.
 
 Related skills: `cli-codex` for OpenAI-backed dispatch, `cli-claude-code` for extended reasoning, `cli-opencode` for full OpenCode runtime dispatch, `cli-cursor` for Composer/shared-editor-config dispatch, `sk-code` for code-quality contracts, `mcp-code-mode` for external MCP work, and `system-spec-kit` for packet handback.
+
+---
+
+## 9. MACHINE ROUTER
+
+This section holds the packet's probe, guard, loading levels, intent map and call sequence.
+
+### Prerequisite Detection
+
+```bash
+# Verify Devin CLI is available before routing
+command -v devin || echo "Not installed. Run: devin setup or curl -fsSL https://devin.ai/install | bash"
+```
+
+### Self-Invocation Guard
+
+```python
+def detect_self_invocation():
+    """Returns a non-None signal when the orchestrator is already running inside Devin."""
+    # Layer 1: env var lookup — Devin sets DEVIN_PROJECT_DIR on session start
+    if os.environ.get('DEVIN_PROJECT_DIR'):
+        return ('env', 'DEVIN_PROJECT_DIR')
+    # Layer 2: process ancestry — devin in parent tree
+    try:
+        ancestry = subprocess.check_output(['ps', '-o', 'command=', '-p', str(os.getppid())]).decode()
+        if '/devin' in ancestry or 'devin ' in ancestry or ancestry.strip().endswith('devin'):
+            return ('ancestry', 'devin')
+    except subprocess.SubprocessError:
+        pass
+    # Layer 3: active-session credentials probe (session-in-flight heuristic)
+    creds = os.path.expanduser('~/.local/share/devin/credentials.toml')
+    if os.path.exists(creds):
+        # Credentials file existing alone is not conclusive (persists after logout),
+        # but paired with DEVIN_PROJECT_DIR or ancestry it confirms an active session.
+        pass
+    return None
+
+if detect_self_invocation():
+    refuse(
+        "Self-invocation refused: this agent is already running inside Devin. "
+        "Use a sibling cli-* skill or a fresh shell session in a different runtime to dispatch a different model."
+    )
+```
+
+### Resource Loading Levels
+
+| Level       | When to Load            | Resources                      |
+| ----------- | ----------------------- | ------------------------------ |
+| ALWAYS      | Every skill invocation  | `references/cli-reference.md`, `assets/prompt-quality-card.md` |
+| CONDITIONAL | If intent signals match | Intent-mapped reference docs   |
+| ON_DEMAND   | Only on explicit request| Extended templates and patterns |
+
+### Call Sequence
+
+The `discover_markdown_resources()` and `_guard_in_skill()` helpers, the six steps they run and `route_devin_resources(task)` are documented once in [`shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md); substitute `<PROVIDER>` = `devin`, whose routing key falls back to `devin`.
+
+### Smart Router
+
+Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md)):
+
+```python
+INTENT_SIGNALS = {
+    "GENERATION":        {"weight": 4, "keywords": ["generate", "create", "build", "write code", "devin create"]},
+    "REVIEW":            {"weight": 4, "keywords": ["review", "audit", "security", "bug", "second opinion", "cross-validate"]},
+    "RESEARCH":          {"weight": 4, "keywords": ["search", "latest", "current", "what's new", "web research", "browse", "explore"]},
+    "ARCHITECTURE":      {"weight": 3, "keywords": ["architecture", "codebase", "investigate", "dependencies", "analyze project"]},
+    "AGENT_DELEGATION":  {"weight": 4, "keywords": ["delegate", "subagent", "agent", "background", "parallel", "offload", "run_subagent"]},
+    "CLOUD_HANDOFF":     {"weight": 5, "keywords": ["handoff", "hand off", "cloud devin", "long-running", "ci validation", "browser", "vm"]},
+    "TEMPLATES":         {"weight": 3, "keywords": ["template", "prompt", "how to ask", "devin prompt"]},
+    "PATTERNS":          {"weight": 3, "keywords": ["pattern", "workflow", "orchestrate", "session", "resume", "continue"]},
+    # WHY: DESIGN is an intent signal only. The durable sk-design-md-generator loading contract lives in the
+    # always-fires Design Standards Loading rule and the dispatch manifest; RESOURCE_MAP stays
+    # limited to same-skill markdown paths.
+    "DESIGN":            {"weight": 4, "keywords": ["sk-design-md-generator", "extract design system", "generate design.md", "style reference", "design tokens", "css extraction", "tokens.json"]},
+}
+
+RESOURCE_MAP = {
+    "GENERATION":        ["references/cli-reference.md", "assets/prompt-templates.md"],
+    "REVIEW":            ["references/integration-patterns.md", "references/agent-delegation.md"],
+    "RESEARCH":          ["references/devin-tools.md", "assets/prompt-templates.md"],
+    "ARCHITECTURE":      ["references/devin-tools.md", "references/agent-delegation.md"],
+    "AGENT_DELEGATION":  ["references/agent-delegation.md", "references/integration-patterns.md"],
+    "CLOUD_HANDOFF":     ["references/cloud-handoff.md", "references/cli-reference.md"],
+    "TEMPLATES":         ["assets/prompt-templates.md", "references/cli-reference.md"],
+    "PATTERNS":          ["references/integration-patterns.md", "references/cli-reference.md"],
+}
+
+LOADING_LEVELS = {
+    "ALWAYS": ["references/cli-reference.md", "assets/prompt-quality-card.md"],
+    "ON_DEMAND_KEYWORDS": ["full reference", "all templates", "deep dive", "complete guide", "devin agent", "devin prompt", "cloud handoff", "subagent", "review command", "continue session"],
+    "ON_DEMAND": ["references/devin-tools.md", "references/cloud-handoff.md", "assets/prompt-templates.md"],
+}
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Is the user asking about Devin CLI specifically?",
+    "Does the task benefit from a second AI perspective?",
+    "Is cloud handoff or subagent delegation needed?",
+    "Would a specific model available through Devin fit the task?",
+]
+```

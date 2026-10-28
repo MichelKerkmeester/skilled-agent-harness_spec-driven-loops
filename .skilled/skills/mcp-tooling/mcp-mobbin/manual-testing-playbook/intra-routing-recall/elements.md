@@ -7,7 +7,7 @@ description: "This scenario validates ELEMENTS routing for `MB-R04`. It focuses 
 expected_intent: ELEMENTS
 expected_resources:
   - references/tool-surface.md
-version: 1.0.0.1
+version: 1.0.1.0
 ---
 
 # MB-R04: Elements routing
@@ -18,7 +18,7 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario validates ELEMENTS routing for `MB-R04`. It focuses on confirming that a prompt about a specific UI component (a bottom sheet confirmation dialog with button-state variations) scores highest against `INTENT_MODEL["ELEMENTS"]` in `SKILL.md` §2 and resolves the `RESOURCE_MAP["ELEMENTS"]` set, not on actually pulling the element references, since this scenario only exercises which intent and resources the router selects.
+This scenario validates ELEMENTS routing for `MB-R04`. It focuses on confirming that a prompt about a specific UI component (a bottom sheet confirmation dialog with button-state variations) scores highest against `INTENT_MODEL["ELEMENTS"]` in `SKILL.md` §10 MACHINE ROUTER and resolves the `RESOURCE_MAP["ELEMENTS"]` set, not on actually pulling the element references, since this scenario only exercises which intent and resources the router selects.
 
 ### Why This Matters
 
@@ -39,8 +39,8 @@ Operators confirm the exact prompt for `MB-R04` classifies as `ELEMENTS` and res
 Show me the element in context on Mobbin: a bottom sheet confirmation dialog and its button state variations.
 ```
 
-- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`SKILL.md` §2); "element", "bottom sheet", "confirmation dialog", and "button state" each match `ELEMENTS` keywords and no other intent scores as high, so `ELEMENTS` becomes the primary intent and `RESOURCE_MAP["ELEMENTS"]` loads the declared path
-- Expected signals: the `expected_resources` path exists under `mcp-mobbin/`, and it documents `ELEMENTS` routing per `SKILL.md` §2
+- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`SKILL.md` §10 MACHINE ROUTER); "element", "bottom sheet", "confirmation dialog", and "button state" each match `ELEMENTS` keywords and no other intent scores as high, so `ELEMENTS` becomes the primary intent and `RESOURCE_MAP["ELEMENTS"]` loads the declared path
+- Expected signals: the `expected_resources` path exists under `mcp-mobbin/`, and it documents `ELEMENTS` routing per `SKILL.md` §10 MACHINE ROUTER
 - Desired user-visible outcome: the bundled workflow loads the tool-surface taxonomy and runs the component-level search as a read-only Mobbin query
 - Pass/fail: PASS if the listed path exists and the frontmatter intent is `ELEMENTS`; FAIL if the listed path is missing or the frontmatter disagrees
 
@@ -74,7 +74,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 ### Failure Triage
 
 1. Re-run step 3 for `references/tool-surface.md` and confirm whether it was renamed or removed under `references/`.
-2. Diff this scenario's `expected_resources` against the step-2 `INTENT_MODEL["ELEMENTS"]` excerpt and the `RESOURCE_MAP["ELEMENTS"]` entry in `SKILL.md` §2 to see whether the drift is a stale scenario file or a stale `SKILL.md` map.
+2. Diff this scenario's `expected_resources` against the step-2 `INTENT_MODEL["ELEMENTS"]` excerpt and the `RESOURCE_MAP["ELEMENTS"]` entry in `SKILL.md` §10 MACHINE ROUTER to see whether the drift is a stale scenario file or a stale `SKILL.md` map.
 
 ---
 
@@ -90,7 +90,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §2 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §10 MACHINE ROUTER | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §1 | Activation triggers this scenario's prompt assumes |
 
 ---

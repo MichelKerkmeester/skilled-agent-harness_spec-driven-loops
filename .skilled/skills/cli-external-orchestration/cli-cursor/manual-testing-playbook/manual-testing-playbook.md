@@ -1,14 +1,14 @@
 ---
 title: "cli-cursor: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-scenario validation files for the cli-cursor skill."
-version: 1.4.3.0
+version: 1.4.4.0
 ---
 
 # cli-cursor: Manual Testing Playbook
 
 > **EXECUTION POLICY**: Every executable scenario MUST be executed for real - not mocked, not stubbed, not classified as "unautomatable". AI agents executing these scenarios must run the actual `cursor-agent -p` invocations, inspect real outputs, capture real exit codes and verify real behavior. CU-020 is documentation-only by design; it uses source and documentation inspection instead of a live dispatch and defaults to `SKIP` with its named blocker. The only acceptable classifications are PASS, FAIL or SKIP (with a specific blocker documented). "UNAUTOMATABLE" is not a valid status, and neither is "PARTIAL" - this playbook uses strict 3-state PASS/FAIL/SKIP discipline throughout, including the Review Protocol.
 
-> **SELF-INVOCATION GUARD**: This playbook validates the `cli-cursor` skill from a non-Cursor runtime (Claude Code, Codex, OpenCode or shell). Operators MUST NOT execute these scenarios from inside Cursor CLI itself. The skill refuses to load when Cursor env vars (`CURSOR_AGENT`/`CURSOR_CONVERSATION_ID`) or process ancestry are detected. See SKILL.md §2 Self-Invocation Guard.
+> **SELF-INVOCATION GUARD**: This playbook validates the `cli-cursor` skill from a non-Cursor runtime (Claude Code, Codex, OpenCode or shell). Operators MUST NOT execute these scenarios from inside Cursor CLI itself. The skill refuses to load when Cursor env vars (`CURSOR_AGENT`/`CURSOR_CONVERSATION_ID`) or process ancestry are detected. See SKILL.md §9 Self-Invocation Guard.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
@@ -68,7 +68,7 @@ Coverage note (2026-07-27): Covers the canonical default invocation (`composer-2
 2. Cursor CLI is installed and on PATH: `command -v cursor-agent` returns a non-empty path. If not installed, run `curl https://cursor.com/install -fsS | bash` first.
 3. Cursor CLI is authenticated via Cursor account OAuth: `cursor-agent login` has succeeded. This machine's account is confirmed authenticated at Pro tier (`cursor-agent about` → `mkerkmeester@proton.me`, live-verified in phase 005 of this creation packet) - do not re-run `login` unless the operator reports a session change.
 4. **Standing precondition-check warning (Cursor-specific gotcha).** `cursor-agent -p` without valid auth exits `0` even on an authentication failure - the exit code is NEVER a reliable availability or auth signal for this CLI. Every precondition check and every scenario in this playbook MUST inspect `cursor-agent about` output text (looking for `User Email: Not logged in` vs a real email) or a dispatch's own output text, never the exit code alone.
-5. The active runtime is NOT Cursor CLI itself - the self-invocation guard in SKILL.md §2 must not trip. Verify by running `env | grep -i cursor_` and confirming no `CURSOR_AGENT`/`CURSOR_CONVERSATION_ID` vars are set.
+5. The active runtime is NOT Cursor CLI itself - the self-invocation guard in SKILL.md §9 must not trip. Verify by running `env | grep -i cursor_` and confirming no `CURSOR_AGENT`/`CURSOR_CONVERSATION_ID` vars are set.
 6. The skill's reference and asset files exist at `.skilled/skills/cli-external-orchestration/cli-cursor/{references,assets}/` so prompt-quality, hook-contract, and template scenarios resolve.
 7. **Enforced model allowlist.** `composer-2.5` (Cursor's own native model, confirmed live at Pro tier) is the documented default; dispatch is otherwise scoped to exactly 29 ids — `composer-2.5`/`composer-2.5-fast`, `cursor-grok-4.5-{low,medium,high}[-fast]` (6 ids), `cursor-grok-4.6-{low,medium,high,xhigh}[-fast]` (8 ids), `grok-4.7-{low,medium,high,xhigh}[-fast]` (8 ids), `gemini-3.8-flash-high` (1 id), `glm-5.2-{high,max}`, and `gpt-5.6-luna-{max,max-fast}` (2 ids) — enforced by `CURSOR_SUPPORTED_MODELS` in `executor-config.ts` and checked in both `fanout-run.cjs` and `dispatch-model.cjs`. `auto` and every hosted GPT/Claude/other-Gemini/Kimi id are OUT OF SCOPE for this skill, not merely undocumented. Effort tiers are reached by exact enumerated id, never a `[effort=...]` bracket (confirmed rejected: `Error: Cannot use this model`). Use the model a scenario names; do not substitute IDs outside this allowlist.
 8. **Shared `.cursor/` config caveat.** Unlike every sibling CLI, `cursor-agent` reads the exact same `.cursor/`/`~/.cursor/` config the Cursor **editor** reads (`hooks.json`, `mcp.json`, `rules/`, `cli-config.json`). Every dispatched scenario in this playbook silently inherits the operator's live editor-level configuration on this machine unless a scenario explicitly notes an isolation flag (`--workspace`/`--add-dir`/`--plugin-dir`). See `references/shared-editor-config.md`.
@@ -278,9 +278,9 @@ Verify `--mode ask` answers an architecture/explanation question without any fil
 
 #### Scenario Contract
 
-Prompt: `Explain how the self-invocation guard works in cli-cursor/SKILL.md §2 - what signals does it check and in what order?`
+Prompt: `Explain how the self-invocation guard works in cli-cursor/SKILL.md §9 - what signals does it check and in what order?`
 
-Expected signals: `cursor-agent --mode ask` exits 0. Output correctly describes the env-var-then-ancestry-then-state-probe layering from SKILL.md §2. `git status --porcelain` stays clean. The dispatched command line includes `--mode ask`.
+Expected signals: `cursor-agent --mode ask` exits 0. Output correctly describes the env-var-then-ancestry-then-state-probe layering from SKILL.md §9. `git status --porcelain` stays clean. The dispatched command line includes `--mode ask`.
 
 Desired user-visible outcome: An accurate explanation of real repo content, demonstrating `--mode ask` as a genuine read-only Q&A surface.
 

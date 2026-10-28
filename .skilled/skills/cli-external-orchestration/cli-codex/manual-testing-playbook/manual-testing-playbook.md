@@ -1,14 +1,14 @@
 ---
 title: "cli-codex: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-codex skill."
-version: 1.9.3.0
+version: 1.9.4.0
 ---
 
 # cli-codex: Manual Testing Playbook
 
 > **EXECUTION POLICY**: Every scenario MUST be executed for real - not mocked, not stubbed, not classified as "unautomatable". AI agents executing these scenarios must run the actual `codex exec` invocations, inspect real outputs, capture real exit codes and verify real behavior. The only acceptable classifications are PASS, FAIL or SKIP (with a specific sandbox blocker documented). "UNAUTOMATABLE" is not a valid status.
 
-> **SELF-INVOCATION GUARD**: This playbook validates the `cli-codex` skill from a non-Codex runtime (Claude Code, OpenCode, Copilot or shell). Operators MUST NOT execute these scenarios from inside Codex CLI itself. The skill refuses to load when Codex env vars or process ancestry are detected. See SKILL.md §2 Self-Invocation Guard.
+> **SELF-INVOCATION GUARD**: This playbook validates the `cli-codex` skill from a non-Codex runtime (Claude Code, OpenCode, Copilot or shell). Operators MUST NOT execute these scenarios from inside Codex CLI itself. The skill refuses to load when Codex env vars or process ancestry are detected. See SKILL.md §9 Self-Invocation Guard.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
@@ -67,7 +67,7 @@ Coverage note (2026-04-26): Covers the canonical default invocation (`gpt-5.5` +
 1. Working directory is project root and contains `.git/`.
 2. Codex CLI is installed and on PATH: `command -v codex` returns a non-empty path. If not installed, run `npm i -g @openai/codex` first.
 3. Codex CLI is authenticated via ChatGPT OAuth: `codex login` has succeeded (ChatGPT Plus/Pro/Business/Edu/Enterprise account).
-4. The active runtime is NOT Codex CLI itself - the self-invocation guard in SKILL.md §2 must not trip. Verify by running `env | grep -i codex_` and confirming no `CODEX_SESSION_ID` or `CODEX_*` vars are set.
+4. The active runtime is NOT Codex CLI itself - the self-invocation guard in SKILL.md §9 must not trip. Verify by running `env | grep -i codex_` and confirming no `CODEX_SESSION_ID` or `CODEX_*` vars are set.
 5. The skill's reference and asset files exist at `.skilled/skills/cli-external-orchestration/cli-codex/{references,assets}/` so prompt-quality and template scenarios resolve.
 6. `gpt-5.5` is the documented default model; `gpt-6-luna`, `gpt-5.6-terra`, `gpt-6.1-terra`, and `gpt-6-sol` are the documented alternates (each with its own reasoning-effort ceiling — see SKILL.md §3 / `references/cli-reference.md` §5). Use the model a scenario names; do not substitute IDs outside this roster.
 7. `service_tier="fast"` MUST be passed explicitly on every `codex exec` invocation in this playbook (per the auto-memory rule). Never rely on a global config default.

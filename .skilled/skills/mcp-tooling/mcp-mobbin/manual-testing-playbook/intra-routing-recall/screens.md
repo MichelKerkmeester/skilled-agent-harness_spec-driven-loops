@@ -7,7 +7,7 @@ description: "This scenario validates SCREENS routing for `MB-R02`. It focuses o
 expected_intent: SCREENS
 expected_resources:
   - references/tool-surface.md
-version: 1.0.0.1
+version: 1.0.1.0
 ---
 
 # MB-R02: Screens routing
@@ -18,7 +18,7 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario validates SCREENS routing for `MB-R02`. It focuses on confirming that a prompt asking for real shipped screen examples of an empty-state dashboard scores highest against `INTENT_MODEL["SCREENS"]` in `SKILL.md` §2 and resolves the `RESOURCE_MAP["SCREENS"]` set, not on actually running the Mobbin search, since this scenario only exercises which intent and resources the router selects.
+This scenario validates SCREENS routing for `MB-R02`. It focuses on confirming that a prompt asking for real shipped screen examples of an empty-state dashboard scores highest against `INTENT_MODEL["SCREENS"]` in `SKILL.md` §10 MACHINE ROUTER and resolves the `RESOURCE_MAP["SCREENS"]` set, not on actually running the Mobbin search, since this scenario only exercises which intent and resources the router selects.
 
 ### Why This Matters
 
@@ -39,8 +39,8 @@ Operators confirm the exact prompt for `MB-R02` classifies as `SCREENS` and reso
 Find screen examples of an empty state dashboard from real shipped web apps on Mobbin.
 ```
 
-- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`SKILL.md` §2); "screen examples", "empty state", and "dashboard" each match `SCREENS` keywords, outweighing the bare "apps" mention that alone would not score `APPS`, so `SCREENS` becomes the primary intent and `RESOURCE_MAP["SCREENS"]` loads the declared path
-- Expected signals: the `expected_resources` path exists under `mcp-mobbin/`, and it documents `SCREENS` routing per `SKILL.md` §2
+- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`SKILL.md` §10 MACHINE ROUTER); "screen examples", "empty state", and "dashboard" each match `SCREENS` keywords, outweighing the bare "apps" mention that alone would not score `APPS`, so `SCREENS` becomes the primary intent and `RESOURCE_MAP["SCREENS"]` loads the declared path
+- Expected signals: the `expected_resources` path exists under `mcp-mobbin/`, and it documents `SCREENS` routing per `SKILL.md` §10 MACHINE ROUTER
 - Desired user-visible outcome: the bundled workflow loads the tool-surface taxonomy and runs the screen-example search as a read-only Mobbin query
 - Pass/fail: PASS if the listed path exists and the frontmatter intent is `SCREENS`; FAIL if the listed path is missing or the frontmatter disagrees
 
@@ -74,7 +74,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 ### Failure Triage
 
 1. Re-run step 3 for `references/tool-surface.md` and confirm whether it was renamed or removed under `references/`.
-2. Diff this scenario's `expected_resources` against the step-2 `INTENT_MODEL["SCREENS"]` excerpt and the `RESOURCE_MAP["SCREENS"]` entry in `SKILL.md` §2 to see whether the drift is a stale scenario file or a stale `SKILL.md` map.
+2. Diff this scenario's `expected_resources` against the step-2 `INTENT_MODEL["SCREENS"]` excerpt and the `RESOURCE_MAP["SCREENS"]` entry in `SKILL.md` §10 MACHINE ROUTER to see whether the drift is a stale scenario file or a stale `SKILL.md` map.
 
 ---
 
@@ -90,7 +90,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §2 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §10 MACHINE ROUTER | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §1 | Activation triggers this scenario's prompt assumes |
 
 ---

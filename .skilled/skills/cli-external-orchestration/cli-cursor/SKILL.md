@@ -2,7 +2,7 @@
 name: cli-cursor
 description: "Cursor CLI executor for cursor-agent coding, plan/ask read-only modes and worktree-isolated cloud worker dispatch."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.5.5.0
+version: 1.5.6.0
 ---
 
 <!-- Keywords: cursor, cursor-agent, cursor-cli, composer, cross-ai, agent-delegation, worktree, cloud-worker, plugin-marketplace, shared-editor-config, plan-mode, ask-mode -->
@@ -11,7 +11,7 @@ version: 1.5.5.0
 
 > **CRITICAL — SELF-INVOCATION PROHIBITED**
 >
-> This skill dispatches to the Cursor CLI binary (`cursor-agent`). If the agent currently reading this skill is itself running inside `cursor-agent` (detection signals listed in §2), the skill MUST refuse to load and return the documented error message instead of generating any `cursor-agent` invocation.
+> This skill dispatches to the Cursor CLI binary (`cursor-agent`). If the agent currently reading this skill is itself running inside `cursor-agent` (detection signals listed in §9), the skill MUST refuse to load and return the documented error message instead of generating any `cursor-agent` invocation.
 >
 > A running CLI skill never dispatches itself. The cli-X skills are for **cross-AI delegation only** — never self-invocation.
 
@@ -43,115 +43,11 @@ Orchestrate Cursor's terminal coding agent (`cursor-agent`) for tasks that benef
 
 ## 2. SMART ROUTING
 
-### Prerequisite Detection
+The hub's `cli-cursor` mode signal routes a Cursor CLI dispatch here when a request names `cursor-agent`, Composer, a Cursor plan or ask exploration, or Cursor's worktree and cloud-worker surfaces.
 
-```bash
-# Verify Cursor CLI is available before routing
-command -v cursor-agent || echo "Not installed. Run: curl https://cursor.com/install -fsS | bash"
-```
+`references/cli-reference.md` and `assets/prompt-quality-card.md` load on every invocation; the hub `ROUTER.md` names the mode's first leaves.
 
-### Self-Invocation Guard
-
-```python
-def detect_self_invocation():
-    """Returns a non-None signal when the orchestrator is already running inside cursor-agent."""
-    # Layer 1: env var lookup — CURSOR_AGENT=1 is set unconditionally whenever the
-    # current process runs under cursor-agent (confirmed live); CURSOR_CONVERSATION_ID
-    # is the confirmed session-id marker (matches --output-format json's session_id).
-    if os.environ.get('CURSOR_AGENT') == '1':
-        return ('env', 'CURSOR_AGENT')
-    if os.environ.get('CURSOR_CONVERSATION_ID'):
-        return ('env', 'CURSOR_CONVERSATION_ID')
-    # Layer 2: process ancestry — cursor-agent (the canonical binary, never the
-    # bare "agent" alias, which would false-positive on unrelated commands) in
-    # the parent tree.
-    try:
-        ancestry = subprocess.check_output(['ps', '-o', 'command=', '-p', str(os.getppid())]).decode()
-        if '/cursor-agent' in ancestry or 'cursor-agent ' in ancestry:
-            return ('ancestry', 'cursor-agent')
-    except subprocess.SubprocessError:
-        pass
-    # Layer 3: best-effort session probe. No lock-file convention is documented
-    # for Cursor CLI (unlike Codex's ~/.codex/state/<id>/lock) — this layer is
-    # honestly weaker than the siblings' layer 3. Absence of a detected signal
-    # here is NOT proof no session is active.
-    state_dir = os.path.expanduser('~/.cursor')
-    if os.path.isdir(state_dir) and os.environ.get('CURSOR_INVOKED_AS'):
-        return ('state-probe', 'CURSOR_INVOKED_AS')
-    return None
-
-if detect_self_invocation():
-    refuse(
-        "Self-invocation refused: this agent is already running inside Cursor CLI. "
-        "Use a sibling cli-* skill or a fresh shell session in a different runtime to dispatch a different model."
-    )
-```
-
-### Resource Loading Levels
-
-| Level       | When to Load            | Resources                      |
-| ----------- | ------------------------ | ------------------------------- |
-| ALWAYS      | Every skill invocation   | `references/cli-reference.md`, `assets/prompt-quality-card.md` |
-| CONDITIONAL | If intent signals match  | Intent-mapped reference docs   |
-| ON_DEMAND   | Only on explicit request | Extended templates and patterns |
-
-### Smart Router
-
-Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md)):
-
-```python
-INTENT_SIGNALS = {
-    "GENERATION":        {"weight": 4, "keywords": ["generate", "create", "build", "write code", "cursor create"]},
-    "REVIEW":            {"weight": 4, "keywords": ["review", "audit", "bug", "second opinion", "cross-validate"]},
-    "COMPOSER":          {"weight": 4, "keywords": ["composer", "cursor's own model", "auto router", "cursor native model"]},
-    "PLAN_ASK":          {"weight": 4, "keywords": ["plan mode", "ask mode", "read-only", "just explore", "don't write anything"]},
-    "AGENT_DELEGATION":  {"weight": 4, "keywords": ["delegate", "agent", "background", "cursor agent", "subagent"]},
-    "TEMPLATES":         {"weight": 3, "keywords": ["template", "prompt", "how to ask", "cursor prompt"]},
-    "PATTERNS":          {"weight": 3, "keywords": ["pattern", "workflow", "orchestrate", "session", "resume", "continue"]},
-    "HOOKS":             {"weight": 4, "keywords": ["hook", "hooks", "hooks.json", "startup context", "sessionstart", "beforesubmitprompt"]},
-    "UNIQUE_SURFACES":   {"weight": 3, "keywords": ["worktree", "cloud worker", "plugin marketplace", "shared config", "editor config"]},
-    # WHY: DESIGN is an intent signal only. The durable sk-design-md-generator loading contract lives in the
-    # always-fires Design Standards Loading rule and the dispatch manifest; RESOURCE_MAP stays
-    # limited to same-skill markdown paths.
-    "DESIGN":            {"weight": 4, "keywords": ["sk-design-md-generator", "extract design system", "generate design.md", "style reference", "design tokens", "css extraction", "tokens.json"]},
-}
-
-RESOURCE_MAP = {
-    "GENERATION":        ["references/cli-reference.md", "assets/prompt-templates.md"],
-    "REVIEW":            ["references/integration-patterns.md", "references/agent-delegation.md"],
-    "COMPOSER":          ["references/cli-reference.md", "assets/prompt-quality-card.md"],
-    "PLAN_ASK":          ["references/cli-reference.md", "references/agent-delegation.md"],
-    "AGENT_DELEGATION":  ["references/agent-delegation.md", "references/integration-patterns.md"],
-    "TEMPLATES":         ["assets/prompt-templates.md", "references/cli-reference.md"],
-    "PATTERNS":          ["references/integration-patterns.md", "references/cli-reference.md"],
-    "HOOKS":             ["references/hook-contract.md", "references/shared-editor-config.md"],
-    "UNIQUE_SURFACES":   ["references/cursor-tools.md", "references/shared-editor-config.md"],
-}
-
-LOADING_LEVELS = {
-    "ALWAYS": ["references/cli-reference.md", "assets/prompt-quality-card.md"],
-    "ON_DEMAND_KEYWORDS": ["full reference", "all templates", "deep dive", "worktree", "cloud worker", "plugin marketplace", "hook contract", "shared config"],
-    "ON_DEMAND": ["references/cursor-tools.md", "references/shared-editor-config.md", "assets/prompt-templates.md"],
-}
-
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "Is the user asking about Cursor CLI specifically?",
-    "Does the task benefit from a second AI perspective or Cursor's own Composer model?",
-    "Does the task want read-only plan/ask exploration instead of a write-capable dispatch?",
-    "Would Cursor's worktree isolation or cloud worker genuinely help (opt-in, not default)?",
-]
-```
-
-**Call sequence** (using shared helpers from `shared-smart-router.md`):
-
-1. `discover_markdown_resources()` — recursively enumerate current `.md` files under existing `references/` and `assets/` folders at routing time.
-2. `_guard_in_skill()` + `load_if_available()` — sandbox paths to this skill, reject non-markdown loads, skip missing files, and suppress duplicates.
-3. `score_intents(task)` and `select_intents(scores, ambiguity_delta=1.0)` — preserve provider-specific weighted intent scoring and top-2 ambiguity handling.
-4. `get_routing_key(task, intents)` — derive the provider routing key from task/provider context, then fall back to `cursor-agent`.
-5. ALWAYS-load `LOADING_LEVELS["ALWAYS"]`, then return `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST` when max score is 0.
-6. CONDITIONAL-load `RESOURCE_MAP[intent]`, ON_DEMAND-load keyword matches, and return a notice when no provider-specific knowledge base is available beyond always-load resources.
-
-The `route_cursor_resources(task)` function body lives in [`shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md) — substitute `<PROVIDER>` = `cursor`.
+The probe, the guard, the loading levels, the intent map and the call sequence sit in the final `MACHINE ROUTER` section.
 
 ---
 
@@ -364,7 +260,7 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
 
 ### Reference Loading Notes
 
-- Load only references needed for current intent; Smart Routing (Section 2) is the single routing authority.
+- Load only references needed for current intent; Smart Routing (Section 2) and the final MACHINE ROUTER section are the single routing authority.
 - `cli-reference.md` is ALWAYS loaded as baseline.
 
 ---
@@ -381,7 +277,7 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
 
 ### Skill Quality
 
-- All 8 sections present with proper anchor comments.
+- All 9 sections present with proper anchor comments.
 - Smart routing covers all intent signals with UNKNOWN_FALLBACK.
 - Reference files provide deep-dive content without duplication.
 
@@ -408,3 +304,112 @@ Key integrations:
 The router discovers reference, asset, and script docs dynamically (Section 5 is the authored index). Start with the ALWAYS-loaded `references/cli-reference.md` and `assets/prompt-quality-card.md`, then load task-specific resources per Smart Routing.
 
 Related skills: `cli-codex` for OpenAI-backed delegation, `cli-claude-code` for extended reasoning, `cli-opencode` for full OpenCode runtime dispatch, `sk-code` for code-quality contracts, `mcp-code-mode` for external MCP work, and `system-spec-kit` for packet handback.
+
+---
+
+## 9. MACHINE ROUTER
+
+This section holds the packet's probe, guard, loading levels, intent map and call sequence.
+
+### Prerequisite Detection
+
+```bash
+# Verify Cursor CLI is available before routing
+command -v cursor-agent || echo "Not installed. Run: curl https://cursor.com/install -fsS | bash"
+```
+
+### Self-Invocation Guard
+
+```python
+def detect_self_invocation():
+    """Returns a non-None signal when the orchestrator is already running inside cursor-agent."""
+    # Layer 1: env var lookup — CURSOR_AGENT=1 is set unconditionally whenever the
+    # current process runs under cursor-agent (confirmed live); CURSOR_CONVERSATION_ID
+    # is the confirmed session-id marker (matches --output-format json's session_id).
+    if os.environ.get('CURSOR_AGENT') == '1':
+        return ('env', 'CURSOR_AGENT')
+    if os.environ.get('CURSOR_CONVERSATION_ID'):
+        return ('env', 'CURSOR_CONVERSATION_ID')
+    # Layer 2: process ancestry — cursor-agent (the canonical binary, never the
+    # bare "agent" alias, which would false-positive on unrelated commands) in
+    # the parent tree.
+    try:
+        ancestry = subprocess.check_output(['ps', '-o', 'command=', '-p', str(os.getppid())]).decode()
+        if '/cursor-agent' in ancestry or 'cursor-agent ' in ancestry:
+            return ('ancestry', 'cursor-agent')
+    except subprocess.SubprocessError:
+        pass
+    # Layer 3: best-effort session probe. No lock-file convention is documented
+    # for Cursor CLI (unlike Codex's ~/.codex/state/<id>/lock) — this layer is
+    # honestly weaker than the siblings' layer 3. Absence of a detected signal
+    # here is NOT proof no session is active.
+    state_dir = os.path.expanduser('~/.cursor')
+    if os.path.isdir(state_dir) and os.environ.get('CURSOR_INVOKED_AS'):
+        return ('state-probe', 'CURSOR_INVOKED_AS')
+    return None
+
+if detect_self_invocation():
+    refuse(
+        "Self-invocation refused: this agent is already running inside Cursor CLI. "
+        "Use a sibling cli-* skill or a fresh shell session in a different runtime to dispatch a different model."
+    )
+```
+
+### Resource Loading Levels
+
+| Level       | When to Load            | Resources                      |
+| ----------- | ------------------------ | ------------------------------- |
+| ALWAYS      | Every skill invocation   | `references/cli-reference.md`, `assets/prompt-quality-card.md` |
+| CONDITIONAL | If intent signals match  | Intent-mapped reference docs   |
+| ON_DEMAND   | Only on explicit request | Extended templates and patterns |
+
+### Call Sequence
+
+The `discover_markdown_resources()` and `_guard_in_skill()` helpers, the six steps they run and `route_cursor_resources(task)` are documented once in [`shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md); substitute `<PROVIDER>` = `cursor`, whose routing key falls back to `cursor-agent`.
+
+### Smart Router
+
+Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md)):
+
+```python
+INTENT_SIGNALS = {
+    "GENERATION":        {"weight": 4, "keywords": ["generate", "create", "build", "write code", "cursor create"]},
+    "REVIEW":            {"weight": 4, "keywords": ["review", "audit", "bug", "second opinion", "cross-validate"]},
+    "COMPOSER":          {"weight": 4, "keywords": ["composer", "cursor's own model", "auto router", "cursor native model"]},
+    "PLAN_ASK":          {"weight": 4, "keywords": ["plan mode", "ask mode", "read-only", "just explore", "don't write anything"]},
+    "AGENT_DELEGATION":  {"weight": 4, "keywords": ["delegate", "agent", "background", "cursor agent", "subagent"]},
+    "TEMPLATES":         {"weight": 3, "keywords": ["template", "prompt", "how to ask", "cursor prompt"]},
+    "PATTERNS":          {"weight": 3, "keywords": ["pattern", "workflow", "orchestrate", "session", "resume", "continue"]},
+    "HOOKS":             {"weight": 4, "keywords": ["hook", "hooks", "hooks.json", "startup context", "sessionstart", "beforesubmitprompt"]},
+    "UNIQUE_SURFACES":   {"weight": 3, "keywords": ["worktree", "cloud worker", "plugin marketplace", "shared config", "editor config"]},
+    # WHY: DESIGN is an intent signal only. The durable sk-design-md-generator loading contract lives in the
+    # always-fires Design Standards Loading rule and the dispatch manifest; RESOURCE_MAP stays
+    # limited to same-skill markdown paths.
+    "DESIGN":            {"weight": 4, "keywords": ["sk-design-md-generator", "extract design system", "generate design.md", "style reference", "design tokens", "css extraction", "tokens.json"]},
+}
+
+RESOURCE_MAP = {
+    "GENERATION":        ["references/cli-reference.md", "assets/prompt-templates.md"],
+    "REVIEW":            ["references/integration-patterns.md", "references/agent-delegation.md"],
+    "COMPOSER":          ["references/cli-reference.md", "assets/prompt-quality-card.md"],
+    "PLAN_ASK":          ["references/cli-reference.md", "references/agent-delegation.md"],
+    "AGENT_DELEGATION":  ["references/agent-delegation.md", "references/integration-patterns.md"],
+    "TEMPLATES":         ["assets/prompt-templates.md", "references/cli-reference.md"],
+    "PATTERNS":          ["references/integration-patterns.md", "references/cli-reference.md"],
+    "HOOKS":             ["references/hook-contract.md", "references/shared-editor-config.md"],
+    "UNIQUE_SURFACES":   ["references/cursor-tools.md", "references/shared-editor-config.md"],
+}
+
+LOADING_LEVELS = {
+    "ALWAYS": ["references/cli-reference.md", "assets/prompt-quality-card.md"],
+    "ON_DEMAND_KEYWORDS": ["full reference", "all templates", "deep dive", "worktree", "cloud worker", "plugin marketplace", "hook contract", "shared config"],
+    "ON_DEMAND": ["references/cursor-tools.md", "references/shared-editor-config.md", "assets/prompt-templates.md"],
+}
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Is the user asking about Cursor CLI specifically?",
+    "Does the task benefit from a second AI perspective or Cursor's own Composer model?",
+    "Does the task want read-only plan/ask exploration instead of a write-capable dispatch?",
+    "Would Cursor's worktree isolation or cloud worker genuinely help (opt-in, not default)?",
+]
+```

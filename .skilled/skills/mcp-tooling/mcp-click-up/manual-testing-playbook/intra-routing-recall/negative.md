@@ -6,7 +6,7 @@ title: 'Negative — out of domain'
 description: "This scenario validates the SKILL.md Smart Router's UNKNOWN_FALLBACK path for `CU-N01`. It confirms an out-of-domain prompt scores zero on every intent and loads no resources, only the disambiguation checklist and a suggested (not loaded) fallback."
 expected_intent: none
 expected_resources: []
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # CU-N01: Negative — out of domain
@@ -21,7 +21,7 @@ This scenario validates that the `mcp-click-up` Smart Router's out-of-domain pat
 `UNKNOWN_FALLBACK` on a request that has nothing to do with ClickUp tasks, `cupt`, or the ClickUp
 MCP. It confirms every `INTENT_SIGNALS` intent scores zero, no resource is loaded, and the router
 instead returns the disambiguation checklist plus a suggested (never auto-loaded) default resource,
-per `SKILL.md` §2's `route_clickup_resources()`.
+per `SKILL.md` §9's `route_clickup_resources()`.
 
 ### Why This Matters
 
@@ -34,7 +34,7 @@ unrelated code-refactoring request to ClickUp's CLI/MCP references.
 
 ## 2. SCENARIO CONTRACT
 
-Operators confirm the exact prompt scores zero on every `INTENT_SIGNALS` entry under `SKILL.md` §2's
+Operators confirm the exact prompt scores zero on every `INTENT_SIGNALS` entry under `SKILL.md` §9's
 weighted keyword model, and that the router returns `UNKNOWN_FALLBACK` with no resources loaded.
 
 - Objective: confirm the prompt has no keyword overlap with any `INTENT_SIGNALS` entry, so `scores`
@@ -54,13 +54,13 @@ Refactor this Python function to use async and await, then add unit tests for th
   prompt; none of `CUPT_DAILY`, `MCP_ADVANCED`, `INSTALL`, or `TROUBLESHOOT`'s keywords appear, so
   `scores` stays empty (`if not scores:`), and the function returns `load_level: "UNKNOWN_FALLBACK"`,
   `needs_disambiguation: true`, and `resources: []`.
-- Expected signals: `SKILL.md` §2's `INTENT_SIGNALS` table shows no keyword from any intent present
+- Expected signals: `SKILL.md` §9's `INTENT_SIGNALS` table shows no keyword from any intent present
   in the prompt; the `UNKNOWN_FALLBACK_CHECKLIST` and `DEFAULT_RESOURCE`
-  (`references/cupt-commands.md`, suggested only, never loaded) are both defined in `SKILL.md` §2.
+  (`references/cupt-commands.md`, suggested only, never loaded) are both defined in `SKILL.md` §9.
 - Desired user-visible outcome: the router asks the disambiguation questions
   (`UNKNOWN_FALLBACK_CHECKLIST`) instead of answering the refactor request with ClickUp guidance, and
   states the suggested fallback without loading it.
-- Pass/fail: PASS if no `INTENT_SIGNALS` keyword matches the prompt and `SKILL.md` §2 still defines
+- Pass/fail: PASS if no `INTENT_SIGNALS` keyword matches the prompt and `SKILL.md` §9 still defines
   the `UNKNOWN_FALLBACK` branch with a `fallback-only` suggested resource; FAIL if a keyword
   incidentally matches (a false-positive route) or the router loads a resource despite an empty
   `scores` dict.
@@ -96,11 +96,11 @@ overlap with the prompt; the `UNKNOWN_FALLBACK` branch excerpt from step 4 showi
 
 ### Pass / Fail
 
-- **Pass**: no `INTENT_SIGNALS` keyword from any intent matches the exact prompt, and `SKILL.md` §2
+- **Pass**: no `INTENT_SIGNALS` keyword from any intent matches the exact prompt, and `SKILL.md` §9
   still returns the `UNKNOWN_FALLBACK` branch with an empty `resources` list on an empty `scores`
   dict.
 - **Fail**: a keyword incidentally matches the prompt (false-positive route), or the
-  `UNKNOWN_FALLBACK` branch in `SKILL.md` §2 no longer keeps `resources: []` on an empty score.
+  `UNKNOWN_FALLBACK` branch in `SKILL.md` §9 no longer keeps `resources: []` on an empty score.
 
 ### Failure Triage
 
@@ -125,7 +125,7 @@ overlap with the prompt; the `UNKNOWN_FALLBACK` branch excerpt from step 4 showi
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` §2 | The `INTENT_SIGNALS` table and `UNKNOWN_FALLBACK` branch this scenario verifies |
+| `../../SKILL.md` §9 | The `INTENT_SIGNALS` table and `UNKNOWN_FALLBACK` branch this scenario verifies |
 
 ---
 

@@ -8,7 +8,7 @@ expected_intent: WIRING_AUTH
 expected_resources:
   - references/mcp-wiring.md
   - assets/utcp-refero-manual.md
-version: 1.0.0.1
+version: 1.0.1.0
 ---
 
 # RF-R04: Wiring and auth routing
@@ -19,7 +19,7 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario validates WIRING_AUTH routing for `RF-R04`. It focuses on confirming that a prompt about the UTCP manual wiring and `mcp-remote` OAuth authentication scores highest against `INTENT_MODEL["WIRING_AUTH"]` in `SKILL.md` §2 and resolves the `RESOURCE_MAP["WIRING_AUTH"]` set, not on actually registering the manual, since this scenario only exercises which intent and resources the router selects.
+This scenario validates WIRING_AUTH routing for `RF-R04`. It focuses on confirming that a prompt about the UTCP manual wiring and `mcp-remote` OAuth authentication scores highest against `INTENT_MODEL["WIRING_AUTH"]` in `SKILL.md` §10 and resolves the `RESOURCE_MAP["WIRING_AUTH"]` set, not on actually registering the manual, since this scenario only exercises which intent and resources the router selects.
 
 ### Why This Matters
 
@@ -40,8 +40,8 @@ Operators confirm the exact prompt for `RF-R04` classifies as `WIRING_AUTH` and 
 Verify the refero utcp manual wiring and explain how the mcp-remote oauth authentication works.
 ```
 
-- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`SKILL.md` §2); "utcp", "wiring", "oauth", "mcp-remote", and "authenticate" each match `WIRING_AUTH` keywords and no other intent scores as high, so `WIRING_AUTH` becomes the primary intent and `RESOURCE_MAP["WIRING_AUTH"]` loads both declared paths
-- Expected signals: every path in `expected_resources` exists under `mcp-refero/`, and each documents `WIRING_AUTH` routing per `SKILL.md` §2
+- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`SKILL.md` §10); "utcp", "wiring", "oauth", "mcp-remote", and "authenticate" each match `WIRING_AUTH` keywords and no other intent scores as high, so `WIRING_AUTH` becomes the primary intent and `RESOURCE_MAP["WIRING_AUTH"]` loads both declared paths
+- Expected signals: every path in `expected_resources` exists under `mcp-refero/`, and each documents `WIRING_AUTH` routing per `SKILL.md` §10
 - Desired user-visible outcome: the bundled workflow loads the MCP wiring reference and the paste-ready UTCP manual snippet before walking through registration and OAuth/bearer authentication
 - Pass/fail: PASS if every listed path exists and the frontmatter intent is `WIRING_AUTH`; FAIL if any listed path is missing or the frontmatter disagrees
 
@@ -75,7 +75,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 ### Failure Triage
 
 1. Re-run step 3 for the specific path that failed and confirm whether it was renamed or removed under `references/` or `assets/`.
-2. Diff this scenario's `expected_resources` against the step-2 `INTENT_MODEL["WIRING_AUTH"]` excerpt and the `RESOURCE_MAP["WIRING_AUTH"]` entry in `SKILL.md` §2 to see whether the drift is a stale scenario file or a stale `SKILL.md` map.
+2. Diff this scenario's `expected_resources` against the step-2 `INTENT_MODEL["WIRING_AUTH"]` excerpt and the `RESOURCE_MAP["WIRING_AUTH"]` entry in `SKILL.md` §10 to see whether the drift is a stale scenario file or a stale `SKILL.md` map.
 
 ---
 
@@ -91,7 +91,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §2 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §10 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §1 | Activation triggers this scenario's prompt assumes |
 
 ---

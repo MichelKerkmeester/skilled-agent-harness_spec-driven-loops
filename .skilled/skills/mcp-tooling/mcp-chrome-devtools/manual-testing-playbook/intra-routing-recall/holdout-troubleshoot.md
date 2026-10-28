@@ -11,7 +11,7 @@ blindToRouterKeywords: true
 blindExceptions:
   - "keeps dropping"
   - "work out the cause"
-version: 1.0.0.1
+version: 1.0.1.0
 ---
 
 # CD-H01: Blind holdout: session drop
@@ -22,7 +22,7 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario is the natural-phrasing holdout for `CD-R04` (`blindToRouterKeywords: true`). It focuses on confirming that a prompt describing a session that keeps dropping mid-run, phrased the way a real user would, still classifies as `TROUBLESHOOT` per `SKILL.md` §2 and resolves the same `RESOURCE_MAP["TROUBLESHOOT"]` set as `CD-R04`, not on actually diagnosing the drop.
+This scenario is the natural-phrasing holdout for `CD-R04` (`blindToRouterKeywords: true`). It focuses on confirming that a prompt describing a session that keeps dropping mid-run, phrased the way a real user would, still classifies as `TROUBLESHOOT` per `SKILL.md` §9 and resolves the same `RESOURCE_MAP["TROUBLESHOOT"]` set as `CD-R04`, not on actually diagnosing the drop.
 
 ### Route Binding
 
@@ -47,7 +47,7 @@ Operators confirm the exact holdout prompt for `CD-H01` classifies as `TROUBLESH
 The headless page-debugging session keeps dropping halfway through a run and I cannot work out the cause.
 ```
 
-- Expected execution process: the router scores the prompt against `INTENT_SIGNALS` (`SKILL.md` §2); "keeps dropping" and "work out the cause" are the two recorded-exception `TROUBLESHOOT` keyword hits, outscoring the single incidental `CLI` hit on "headless", so `TROUBLESHOOT` becomes the primary intent and `RESOURCE_MAP["TROUBLESHOOT"]` loads the declared path
+- Expected execution process: the router scores the prompt against `INTENT_SIGNALS` (`SKILL.md` §9); "keeps dropping" and "work out the cause" are the two recorded-exception `TROUBLESHOOT` keyword hits, outscoring the single incidental `CLI` hit on "headless", so `TROUBLESHOOT` becomes the primary intent and `RESOURCE_MAP["TROUBLESHOOT"]` loads the declared path
 - Expected signals: the `expected_resources` path exists under `mcp-chrome-devtools/`, the frontmatter intent is `TROUBLESHOOT`, and the resolved set matches `CD-R04`'s
 - Desired user-visible outcome: the bundled workflow classifies the natural-phrasing request the same way it classifies the keyword-heavy `CD-R04` prompt, loading the same troubleshooting reference despite the incidental `headless` term
 - Pass/fail: PASS if the listed path exists, the frontmatter intent is `TROUBLESHOOT`, and the resolved set matches `CD-R04`; FAIL if the listed path is missing or the frontmatter disagrees
@@ -83,7 +83,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_S
 
 1. Re-run step 3 for `references/troubleshooting.md` and confirm whether it was renamed or removed under `references/`.
 2. Compare this file's `expected_resources`/`expected_intent` against `troubleshoot.md` (`CD-R04`) directly -- a divergence between the fitted and holdout scenario for the same intent points to a routing regression, not a stale path.
-3. If the near-tie flips to `CLI`, confirm whether a keyword-weight change in `SKILL.md` §2 caused it before treating this as a scenario-file defect.
+3. If the near-tie flips to `CLI`, confirm whether a keyword-weight change in `SKILL.md` §9 caused it before treating this as a scenario-file defect.
 
 ---
 
@@ -99,7 +99,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_S
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §2 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §9 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §1 | Activation triggers this scenario's prompt assumes |
 
 ---

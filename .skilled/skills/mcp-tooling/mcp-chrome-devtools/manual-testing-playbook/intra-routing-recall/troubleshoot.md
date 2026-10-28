@@ -7,7 +7,7 @@ description: "This scenario validates TROUBLESHOOT routing for `CD-R04`. It focu
 expected_intent: TROUBLESHOOT
 expected_resources:
   - references/troubleshooting.md
-version: 1.0.0.1
+version: 1.0.1.0
 ---
 
 # CD-R04: Troubleshoot routing
@@ -18,11 +18,11 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario validates TROUBLESHOOT routing for `CD-R04`. It focuses on confirming that a prompt reporting a mid-run connection error and a session issue scores highest against `INTENT_SIGNALS["TROUBLESHOOT"]` in `SKILL.md` §2 and resolves the `RESOURCE_MAP["TROUBLESHOOT"]` set, not on actually diagnosing the live failure, since this scenario only exercises which intent and resources the router selects.
+This scenario validates TROUBLESHOOT routing for `CD-R04`. It focuses on confirming that a prompt reporting a mid-run connection error and a session issue scores highest against `INTENT_SIGNALS["TROUBLESHOOT"]` in `SKILL.md` §9 and resolves the `RESOURCE_MAP["TROUBLESHOOT"]` set, not on actually diagnosing the live failure, since this scenario only exercises which intent and resources the router selects.
 
 ### Why This Matters
 
-TROUBLESHOOT has the largest keyword list of the five intents (`SKILL.md` §2), covering everything from "crash" to "flaky" to "root cause". Confirming a straightforward failure report like this one resolves `TROUBLESHOOT` and not `INSTALL` is the baseline case the two holdouts (`CD-H01`, `CD-H02`) later stress with less literal phrasing.
+TROUBLESHOOT has the largest keyword list of the five intents (`SKILL.md` §9), covering everything from "crash" to "flaky" to "root cause". Confirming a straightforward failure report like this one resolves `TROUBLESHOOT` and not `INSTALL` is the baseline case the two holdouts (`CD-H01`, `CD-H02`) later stress with less literal phrasing.
 
 ---
 
@@ -39,8 +39,8 @@ Operators confirm the exact prompt for `CD-R04` classifies as `TROUBLESHOOT` and
 The debug session failed with a connection error mid-run; help me troubleshoot the session issue.
 ```
 
-- Expected execution process: the router scores the prompt against `INTENT_SIGNALS` (`SKILL.md` §2); "failed", "error", "troubleshoot", and "session issue" each match `TROUBLESHOOT` keywords and no other intent scores as high, so `TROUBLESHOOT` becomes the primary intent and `RESOURCE_MAP["TROUBLESHOOT"]` loads the declared path
-- Expected signals: the `expected_resources` path exists under `mcp-chrome-devtools/`, and it documents `TROUBLESHOOT` routing per `SKILL.md` §2
+- Expected execution process: the router scores the prompt against `INTENT_SIGNALS` (`SKILL.md` §9); "failed", "error", "troubleshoot", and "session issue" each match `TROUBLESHOOT` keywords and no other intent scores as high, so `TROUBLESHOOT` becomes the primary intent and `RESOURCE_MAP["TROUBLESHOOT"]` loads the declared path
+- Expected signals: the `expected_resources` path exists under `mcp-chrome-devtools/`, and it documents `TROUBLESHOOT` routing per `SKILL.md` §9
 - Desired user-visible outcome: the bundled workflow loads the troubleshooting reference and diagnoses the mid-run connection failure rather than treating it as a fresh install
 - Pass/fail: PASS if the listed path exists and the frontmatter intent is `TROUBLESHOOT`; FAIL if the listed path is missing or the frontmatter disagrees
 
@@ -74,7 +74,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_S
 ### Failure Triage
 
 1. Re-run step 3 for `references/troubleshooting.md` and confirm whether it was renamed or removed under `references/`.
-2. Diff this scenario's `expected_resources` against the step-2 `INTENT_SIGNALS["TROUBLESHOOT"]` excerpt and the `RESOURCE_MAP["TROUBLESHOOT"]` entry in `SKILL.md` §2 to see whether the drift is a stale scenario file or a stale `SKILL.md` map.
+2. Diff this scenario's `expected_resources` against the step-2 `INTENT_SIGNALS["TROUBLESHOOT"]` excerpt and the `RESOURCE_MAP["TROUBLESHOOT"]` entry in `SKILL.md` §9 to see whether the drift is a stale scenario file or a stale `SKILL.md` map.
 
 ---
 
@@ -90,7 +90,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_S
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §2 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §9 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §1 | Activation triggers this scenario's prompt assumes |
 
 ---

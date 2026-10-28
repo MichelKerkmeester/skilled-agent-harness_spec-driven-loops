@@ -7,7 +7,7 @@ description: "This scenario validates the SKILL.md Smart Router's UNKNOWN_FALLBA
 expected_intent: none
 expected_resources: []
 blindToRouterKeywords: false
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # AD-N01: Negative: out of domain
@@ -22,7 +22,7 @@ This scenario validates that the `mcp-aside-devtools` Smart Router's out-of-doma
 `UNKNOWN_FALLBACK` on a request that has nothing to do with Aside, browser automation, or Code Mode.
 It confirms every `INTENT_SIGNALS` intent scores zero, no resource is loaded, and the router instead
 returns the disambiguation checklist plus a suggested (never auto-loaded) default resource, per
-`SKILL.md` §2's `route_aside_devtools_resources()`.
+`SKILL.md` §9's `route_aside_devtools_resources()`.
 
 ### Why This Matters
 
@@ -35,7 +35,7 @@ unrelated email-drafting request to Aside's CLI/REPL/MCP references.
 
 ## 2. SCENARIO CONTRACT
 
-Operators confirm the exact prompt scores zero on every `INTENT_SIGNALS` entry under `SKILL.md` §2's
+Operators confirm the exact prompt scores zero on every `INTENT_SIGNALS` entry under `SKILL.md` §9's
 weighted keyword model, and that the router returns `UNKNOWN_FALLBACK` with no resources loaded.
 
 - Objective: confirm the prompt has no keyword overlap with any `INTENT_SIGNALS` entry, so
@@ -53,13 +53,13 @@ Draft a two-paragraph welcome email for the new marketing hire starting on Monda
   prompt; none of `TASK`, `REPL`, `MCP`, `INSTALL`, or `TROUBLESHOOT`'s keywords appear, so every
   score is `0.0`, `max(scores.values() or [0]) < 0.5` is true, and the function returns
   `load_level: "UNKNOWN_FALLBACK"`, `needs_disambiguation: true`, and `resources: []`.
-- Expected signals: `SKILL.md` §2's `INTENT_SIGNALS` table shows no keyword from any intent present
+- Expected signals: `SKILL.md` §9's `INTENT_SIGNALS` table shows no keyword from any intent present
   in the prompt; the `UNKNOWN_FALLBACK_CHECKLIST` and `DEFAULT_RESOURCE` (`references/aside-cli-reference.md`,
-  suggested only, never loaded) are both defined in `SKILL.md` §2.
+  suggested only, never loaded) are both defined in `SKILL.md` §9.
 - Desired user-visible outcome: the router asks the three disambiguation questions
   (`UNKNOWN_FALLBACK_CHECKLIST`) instead of answering the email-drafting request with Aside guidance,
   and states the suggested fallback without loading it.
-- Pass/fail: PASS if no `INTENT_SIGNALS` keyword matches the prompt and `SKILL.md` §2 still defines
+- Pass/fail: PASS if no `INTENT_SIGNALS` keyword matches the prompt and `SKILL.md` §9 still defines
   the `UNKNOWN_FALLBACK` branch with a `fallback-only` suggested resource; FAIL if a keyword
   incidentally matches (a false-positive route) or the router loads a resource despite a zero score.
 
@@ -93,10 +93,10 @@ overlap with the prompt; the `UNKNOWN_FALLBACK` branch excerpt from step 4 showi
 
 ### Pass / Fail
 
-- **Pass**: no `INTENT_SIGNALS` keyword from any intent matches the exact prompt, and `SKILL.md` §2
+- **Pass**: no `INTENT_SIGNALS` keyword from any intent matches the exact prompt, and `SKILL.md` §9
   still returns the `UNKNOWN_FALLBACK` branch with an empty `resources` list on a sub-`0.5` score.
 - **Fail**: a keyword incidentally matches the prompt (false-positive route), or the `UNKNOWN_FALLBACK`
-  branch in `SKILL.md` §2 no longer keeps `resources: []` on a zero score.
+  branch in `SKILL.md` §9 no longer keeps `resources: []` on a zero score.
 
 ### Failure Triage
 
@@ -120,7 +120,7 @@ overlap with the prompt; the `UNKNOWN_FALLBACK` branch excerpt from step 4 showi
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` §2 | The `INTENT_SIGNALS` table and `UNKNOWN_FALLBACK` branch this scenario verifies |
+| `../../SKILL.md` §9 | The `INTENT_SIGNALS` table and `UNKNOWN_FALLBACK` branch this scenario verifies |
 
 ---
 

@@ -8,7 +8,7 @@ expected_intent: DESIGN_SYSTEM_TOKENS
 expected_resources:
   - references/figma-cli-reference.md
   - references/tool-surface.md
-version: 1.0.0.1
+version: 1.0.1.0
 ---
 
 # FG-R02: Design system tokens routing
@@ -19,11 +19,11 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario validates DESIGN_SYSTEM_TOKENS routing for `FG-R02`. It focuses on confirming that a prompt about tokens, variables, and shadcn collections scores highest against `INTENT_MODEL["DESIGN_SYSTEM_TOKENS"]` in `SKILL.md` §2 and resolves the `RESOURCE_MAP["DESIGN_SYSTEM_TOKENS"]` set, not on actually building the collection, since this scenario only exercises which intent and resources the router selects.
+This scenario validates DESIGN_SYSTEM_TOKENS routing for `FG-R02`. It focuses on confirming that a prompt about tokens, variables, and shadcn collections scores highest against `INTENT_MODEL["DESIGN_SYSTEM_TOKENS"]` in `SKILL.md` §8 and resolves the `RESOURCE_MAP["DESIGN_SYSTEM_TOKENS"]` set, not on actually building the collection, since this scenario only exercises which intent and resources the router selects.
 
 ### Why This Matters
 
-DESIGN_SYSTEM_TOKENS is also a mutating, design-affecting phase (`SKILL.md` §2 Phase 3) and `SKILL.md` §4 requires grounding token and variable choices in a measured Style Reference before authoring. Loading `tool-surface.md` alongside `figma-cli-reference.md` is what tells a bundled workflow that creating a token collection or binding `var:name` is a gated mutation, not a read.
+DESIGN_SYSTEM_TOKENS is also a mutating, design-affecting phase (`SKILL.md` §8 Phase 3) and `SKILL.md` §4 requires grounding token and variable choices in a measured Style Reference before authoring. Loading `tool-surface.md` alongside `figma-cli-reference.md` is what tells a bundled workflow that creating a token collection or binding `var:name` is a gated mutation, not a read.
 
 ---
 
@@ -40,8 +40,8 @@ Operators confirm the exact prompt for `FG-R02` classifies as `DESIGN_SYSTEM_TOK
 Extract the design system color tokens and variables into a shadcn collection.
 ```
 
-- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`SKILL.md` §2); "token", "variable" ("variables" contains it), "design system", and "collection" each match `DESIGN_SYSTEM_TOKENS` keywords and no other intent scores as high, so `DESIGN_SYSTEM_TOKENS` becomes the primary intent and `RESOURCE_MAP["DESIGN_SYSTEM_TOKENS"]` loads both declared paths
-- Expected signals: every path in `expected_resources` exists under `mcp-figma/`, and each documents `DESIGN_SYSTEM_TOKENS` routing per `SKILL.md` §2
+- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`SKILL.md` §8); "token", "variable" ("variables" contains it), "design system", and "collection" each match `DESIGN_SYSTEM_TOKENS` keywords and no other intent scores as high, so `DESIGN_SYSTEM_TOKENS` becomes the primary intent and `RESOURCE_MAP["DESIGN_SYSTEM_TOKENS"]` loads both declared paths
+- Expected signals: every path in `expected_resources` exists under `mcp-figma/`, and each documents `DESIGN_SYSTEM_TOKENS` routing per `SKILL.md` §8
 - Desired user-visible outcome: the bundled workflow loads the CLI/daemon baseline and the tool-surface gating taxonomy before proposing any token or variable-collection change, and treats it as a gated, design-affecting mutation
 - Pass/fail: PASS if every listed path exists and the frontmatter intent is `DESIGN_SYSTEM_TOKENS`; FAIL if any listed path is missing or the frontmatter disagrees
 
@@ -75,7 +75,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 ### Failure Triage
 
 1. Re-run step 3 for the specific path that failed and confirm whether it was renamed or removed under `references/`.
-2. Diff this scenario's `expected_resources` against the step-2 `INTENT_MODEL["DESIGN_SYSTEM_TOKENS"]` excerpt and the `RESOURCE_MAP["DESIGN_SYSTEM_TOKENS"]` entry in `SKILL.md` §2 to see whether the drift is a stale scenario file or a stale `SKILL.md` map.
+2. Diff this scenario's `expected_resources` against the step-2 `INTENT_MODEL["DESIGN_SYSTEM_TOKENS"]` excerpt and the `RESOURCE_MAP["DESIGN_SYSTEM_TOKENS"]` entry in `SKILL.md` §8 to see whether the drift is a stale scenario file or a stale `SKILL.md` map.
 
 ---
 
@@ -91,7 +91,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §2 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §8 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §1 | Activation triggers this scenario's prompt assumes |
 
 ---

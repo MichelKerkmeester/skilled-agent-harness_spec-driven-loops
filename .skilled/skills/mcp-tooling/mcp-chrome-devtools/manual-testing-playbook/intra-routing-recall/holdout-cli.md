@@ -9,7 +9,7 @@ expected_resources:
   - references/cdp-patterns.md
   - references/session-management.md
 blindToRouterKeywords: true
-version: 1.0.0.1
+version: 1.0.1.0
 ---
 
 # CD-H02: Blind holdout: shell-driven
@@ -20,7 +20,7 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario is the natural-phrasing holdout for `CD-R01` (`blindToRouterKeywords: true`). It focuses on confirming that a prompt phrased the way a real user would describe running the debugger from their own shell -- not the router's own vocabulary -- still classifies as `CLI` per `SKILL.md` §2 and resolves the same `RESOURCE_MAP["CLI"]` set as `CD-R01`, not on actually running the capture.
+This scenario is the natural-phrasing holdout for `CD-R01` (`blindToRouterKeywords: true`). It focuses on confirming that a prompt phrased the way a real user would describe running the debugger from their own shell -- not the router's own vocabulary -- still classifies as `CLI` per `SKILL.md` §9 and resolves the same `RESOURCE_MAP["CLI"]` set as `CD-R01`, not on actually running the capture.
 
 ### Why This Matters
 
@@ -41,7 +41,7 @@ Operators confirm the exact holdout prompt for `CD-H02` classifies as `CLI` and 
 Drive the page debugger straight from my shell prompt to snapshot the request waterfall.
 ```
 
-- Expected execution process: the router scores the prompt against `INTENT_SIGNALS` (`SKILL.md` §2); "shell" is the one literal `CLI` keyword hit, and no other intent's keyword list matches any word in the prompt, so `CLI` remains the sole scoring intent and `RESOURCE_MAP["CLI"]` loads both declared paths
+- Expected execution process: the router scores the prompt against `INTENT_SIGNALS` (`SKILL.md` §9); "shell" is the one literal `CLI` keyword hit, and no other intent's keyword list matches any word in the prompt, so `CLI` remains the sole scoring intent and `RESOURCE_MAP["CLI"]` loads both declared paths
 - Expected signals: every path in `expected_resources` exists under `mcp-chrome-devtools/`, the frontmatter intent is `CLI`, and the resolved set matches `CD-R01`'s
 - Desired user-visible outcome: the bundled workflow classifies the natural-phrasing request the same way it classifies the keyword-heavy `CD-R01` prompt, loading the same CDP patterns and session-management references
 - Pass/fail: PASS if every listed path exists, the frontmatter intent is `CLI`, and the resolved set matches `CD-R01`; FAIL if any listed path is missing or the frontmatter disagrees
@@ -92,7 +92,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_S
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §2 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §9 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §1 | Activation triggers this scenario's prompt assumes |
 
 ---

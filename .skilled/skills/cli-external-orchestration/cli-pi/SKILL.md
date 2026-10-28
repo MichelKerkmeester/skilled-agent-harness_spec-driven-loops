@@ -2,7 +2,7 @@
 name: cli-pi
 description: "Pi CLI executor for guarded headless coding, JSON/RPC integration, native skills/extensions, and community-package delegation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.5.17.0
+version: 1.5.18.0
 ---
 
 <!-- Keywords: pi cli, pi agent, pi.dev cli, pi coding agent, delegate to pi, cross-ai, headless dispatch, json event stream, rpc mode, native skills, extensions, pi packages -->
@@ -43,78 +43,12 @@ Orchestrate Pi's terminal coding agent for headless coding, read-only tool-const
 ---
 
 ## 2. SMART ROUTING
-> **Fan-out fallback:** a deep-loop lineage that pins no model runs **DeepSeek V4.1 Flash**. The family is named here on purpose, without a version or an effort tier, so this line does not go stale when the family ships a point release; the runner resolves the current id. A drift test keeps the two in the same family.
 
-### Prerequisite Detection
-
-Run this probe before every dispatch. Do not build a command when it fails.
-
-~~~bash
-command -v pi || echo "Not installed. Install @earendil-works/pi-coding-agent before dispatch."
-~~~
-
-The pinned contract confirms the binary version used for the contract run and the headless entry point. For exact flags and observed failure behavior, load [cli-reference.md](./references/cli-reference.md).
-
-### Resource Loading Levels
-
-| Level | Load when | Resources |
-|---|---|---|
-| ALWAYS | Every Pi route | references/cli-reference.md, assets/prompt-quality-card.md |
-| CONDITIONAL | Task names the matching surface | One or more intent-mapped references |
-| ON_DEMAND | The operator asks for templates or package detail | assets/prompt-templates.md, native-skills-and-extensions.md, mcp-and-third-party-packages.md |
-
-### Smart Router
-
-Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md)):
-
-```python
-INTENT_SIGNALS = {
-    "GENERATION": {"weight": 4, "keywords": ["generate", "create", "build", "write code", "pi coding agent"]},
-    "REVIEW": {"weight": 4, "keywords": ["review", "audit", "bug", "second opinion", "cross-validate"]},
-    "HEADLESS": {"weight": 4, "keywords": ["pi cli", "pi agent", "headless", "print mode", "json event"]},
-    "RPC": {"weight": 4, "keywords": ["rpc", "stdin", "stdout", "jsonl", "persistent process"]},
-    "AGENT_DELEGATION": {"weight": 4, "keywords": ["delegate", "built-in tools", "tool allowlist", "agent bridge"]},
-    "NATIVE_RESOURCES": {"weight": 4, "keywords": ["skill", "prompt template", "extension", "pi-mcp-extension", "package"]},
-    "CLASSIFIER": {"weight": 4, "keywords": ["classify", "classifier", "typed judgment", "choice question"]},
-    "PATTERNS": {"weight": 3, "keywords": ["pattern", "workflow", "session", "resume", "continue"]},
-    "TEMPLATES": {"weight": 3, "keywords": ["template", "prompt", "how to ask", "pi prompt"]},
-}
-
-RESOURCE_MAP = {
-    "GENERATION": ["references/cli-reference.md", "assets/prompt-templates.md"],
-    "REVIEW": ["references/integration-patterns.md", "references/cli-reference.md"],
-    "HEADLESS": ["references/cli-reference.md", "assets/prompt-templates.md"],
-    "RPC": ["references/cli-reference.md", "references/integration-patterns.md"],
-    "AGENT_DELEGATION": ["references/agent-delegation.md", "references/integration-patterns.md"],
-    "NATIVE_RESOURCES": ["references/native-skills-and-extensions.md", "references/mcp-and-third-party-packages.md"],
-    "PATTERNS": ["references/integration-patterns.md", "references/cli-reference.md"],
-    "TEMPLATES": ["assets/prompt-templates.md", "assets/prompt-quality-card.md"],
-}
-
-LOADING_LEVELS = {
-    "ALWAYS": ["references/cli-reference.md", "assets/prompt-quality-card.md"],
-    "ON_DEMAND_KEYWORDS": ["full reference", "all templates", "deep dive", "mcp extension", "native skills"],
-    "ON_DEMAND": ["references/native-skills-and-extensions.md", "references/mcp-and-third-party-packages.md", "assets/prompt-templates.md"],
-}
-
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm that the user wants Pi rather than another cli-X mode",
-    "Confirm whether the task is print, JSON, RPC, or interactive",
-    "Confirm whether project-local resources may be trusted",
-    "Confirm the required verification command before dispatch",
-]
-```
-
-**Call sequence** (using shared helpers from `shared-smart-router.md`):
-
-1. `discover_markdown_resources()` — recursively enumerate current `.md` files under existing `references/` and `assets/` folders at routing time.
-2. `_guard_in_skill()` + `load_if_available()` — sandbox paths to this skill, reject non-markdown loads, skip missing files, and suppress duplicates.
-3. `score_intents(task)` and `select_intents(scores, ambiguity_delta=1.0)` — preserve provider-specific weighted intent scoring and top-2 ambiguity handling.
-4. `get_routing_key(task, intents)` — derive the provider routing key from task/provider context, then fall back to `cli-pi`.
-5. ALWAYS-load `LOADING_LEVELS["ALWAYS"]`, then return `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST` when max score is 0.
-6. CONDITIONAL-load `RESOURCE_MAP[intent]`, ON_DEMAND-load keyword matches, and return a notice when no provider-specific knowledge base is available beyond always-load resources.
-
-The `route_pi_resources(task)` function body lives in [`shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md) — substitute `<PROVIDER>` = `pi`.
+The `cli-external-orchestration` hub routes a Pi dispatch here: the request names Pi, pi.dev or the Pi coding agent, or needs Pi's JSON event stream, an RPC client, an independent second opinion, or Pi-native skills, extensions and packages.
+`hub-router.json` scores that request, the winning `workflowMode` is `cli-pi`, and the hub loads this `SKILL.md` first.
+The hub root `ROUTER.md` names this packet's first leaves, so leaf selection stays in the hub router rather than in this file.
+`command -v pi` decides whether the route exists at all, and the probe runs before every dispatch.
+The fan-out fallback, the loading levels, the intent dictionaries and the call sequence sit in the final `MACHINE ROUTER` section of this file.
 
 ---
 
@@ -314,3 +248,72 @@ The router discovers markdown resources dynamically. Start with the CLI referenc
 
 Related skills: cli-opencode, cli-claude-code, cli-codex, cli-cursor, and cli-devin for sibling CLI dispatch; sk-code for code standards; system-deep-loop for execution; and system-spec-kit for packet handback.
 
+---
+
+## 9. MACHINE ROUTER
+
+The packet's deterministic routing detail: the fan-out fallback, the prerequisite probe, the loading levels, the provider-specific intent dictionaries and the call sequence that reads them.
+
+> **Fan-out fallback:** a deep-loop lineage that pins no model runs **DeepSeek V4.1 Flash**. The family is named here on purpose, without a version or an effort tier, so this line does not go stale when the family ships a point release; the runner resolves the current id. A drift test keeps the two in the same family.
+
+### Prerequisite Detection
+
+Run this probe before every dispatch. Do not build a command when it fails.
+
+~~~bash
+command -v pi || echo "Not installed. Install @earendil-works/pi-coding-agent before dispatch."
+~~~
+
+The pinned contract confirms the binary version used for the contract run and the headless entry point. For exact flags and observed failure behavior, load [cli-reference.md](./references/cli-reference.md).
+
+### Resource Loading Levels
+
+| Level | Load when | Resources |
+|---|---|---|
+| ALWAYS | Every Pi route | references/cli-reference.md, assets/prompt-quality-card.md |
+| CONDITIONAL | Task names the matching surface | One or more intent-mapped references |
+| ON_DEMAND | The operator asks for templates or package detail | assets/prompt-templates.md, native-skills-and-extensions.md, mcp-and-third-party-packages.md |
+
+### Smart Router
+
+Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md)):
+
+```python
+INTENT_SIGNALS = {
+    "GENERATION": {"weight": 4, "keywords": ["generate", "create", "build", "write code", "pi coding agent"]},
+    "REVIEW": {"weight": 4, "keywords": ["review", "audit", "bug", "second opinion", "cross-validate"]},
+    "HEADLESS": {"weight": 4, "keywords": ["pi cli", "pi agent", "headless", "print mode", "json event"]},
+    "RPC": {"weight": 4, "keywords": ["rpc", "stdin", "stdout", "jsonl", "persistent process"]},
+    "AGENT_DELEGATION": {"weight": 4, "keywords": ["delegate", "built-in tools", "tool allowlist", "agent bridge"]},
+    "NATIVE_RESOURCES": {"weight": 4, "keywords": ["skill", "prompt template", "extension", "pi-mcp-extension", "package"]},
+    "CLASSIFIER": {"weight": 4, "keywords": ["classify", "classifier", "typed judgment", "choice question"]},
+    "PATTERNS": {"weight": 3, "keywords": ["pattern", "workflow", "session", "resume", "continue"]},
+    "TEMPLATES": {"weight": 3, "keywords": ["template", "prompt", "how to ask", "pi prompt"]},
+}
+
+RESOURCE_MAP = {
+    "GENERATION": ["references/cli-reference.md", "assets/prompt-templates.md"],
+    "REVIEW": ["references/integration-patterns.md", "references/cli-reference.md"],
+    "HEADLESS": ["references/cli-reference.md", "assets/prompt-templates.md"],
+    "RPC": ["references/cli-reference.md", "references/integration-patterns.md"],
+    "AGENT_DELEGATION": ["references/agent-delegation.md", "references/integration-patterns.md"],
+    "NATIVE_RESOURCES": ["references/native-skills-and-extensions.md", "references/mcp-and-third-party-packages.md"],
+    "PATTERNS": ["references/integration-patterns.md", "references/cli-reference.md"],
+    "TEMPLATES": ["assets/prompt-templates.md", "assets/prompt-quality-card.md"],
+}
+
+LOADING_LEVELS = {
+    "ALWAYS": ["references/cli-reference.md", "assets/prompt-quality-card.md"],
+    "ON_DEMAND_KEYWORDS": ["full reference", "all templates", "deep dive", "mcp extension", "native skills"],
+    "ON_DEMAND": ["references/native-skills-and-extensions.md", "references/mcp-and-third-party-packages.md", "assets/prompt-templates.md"],
+}
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm that the user wants Pi rather than another cli-X mode",
+    "Confirm whether the task is print, JSON, RPC, or interactive",
+    "Confirm whether project-local resources may be trusted",
+    "Confirm the required verification command before dispatch",
+]
+```
+
+**Call sequence** — `route_pi_resources(task)` runs on the shared helpers `discover_markdown_resources()` and `_guard_in_skill()`, documented once in [`shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md) with `<PROVIDER>` = `pi`.

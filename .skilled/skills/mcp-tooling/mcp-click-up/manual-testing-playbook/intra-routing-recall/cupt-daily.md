@@ -7,7 +7,7 @@ description: "This scenario validates the SKILL.md Smart Router's CUPT_DAILY int
 expected_intent: CUPT_DAILY
 expected_resources:
   - references/cupt-commands.md
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # CU-R01: CUPT daily routing
@@ -20,7 +20,7 @@ This document captures the routing-recall contract, execution process, source an
 
 This scenario validates that the `mcp-click-up` Smart Router's `CUPT_DAILY` intent signal fires on a
 realistic daily task-queue request, and that the router loads exactly `RESOURCE_MAP["CUPT_DAILY"]` —
-`references/cupt-commands.md` alone — per `SKILL.md` §2's `INTENT_SIGNALS`/`RESOURCE_MAP` tables.
+`references/cupt-commands.md` alone — per `SKILL.md` §9's `INTENT_SIGNALS`/`RESOURCE_MAP` tables.
 
 ### Why This Matters
 
@@ -34,7 +34,7 @@ it, resolves to `CUPT_DAILY` cleanly rather than being pulled off course by that
 
 ## 2. SCENARIO CONTRACT
 
-Operators confirm the exact prompt scores `CUPT_DAILY` under `SKILL.md` §2's weighted keyword model
+Operators confirm the exact prompt scores `CUPT_DAILY` under `SKILL.md` §9's weighted keyword model
 and that the router's `RESOURCE_MAP["CUPT_DAILY"]` entry matches this scenario's declared
 `expected_resources`.
 
@@ -52,13 +52,13 @@ Show me my task list for today, mark the ones I finished as done, then log time 
 - Expected execution process: the router scores every intent's keyword set (weight 5 per hit) against
   the lowercased prompt; `show`, `list`, `done`, `log time`, and `tag` are all literal
   `INTENT_SIGNALS["CUPT_DAILY"]` keywords, none of `TROUBLESHOOT`'s or `INSTALL`'s keywords appear, so
-  the tie-break at `SKILL.md` §2 falls through to `max(scores, key=scores.get)` and selects
+  the tie-break at `SKILL.md` §9 falls through to `max(scores, key=scores.get)` and selects
   `CUPT_DAILY`.
-- Expected signals: `SKILL.md` §2 lists `CUPT_DAILY` in `INTENT_SIGNALS` with those keywords;
+- Expected signals: `SKILL.md` §9 lists `CUPT_DAILY` in `INTENT_SIGNALS` with those keywords;
   `RESOURCE_MAP["CUPT_DAILY"]` names exactly `references/cupt-commands.md`; the file exists.
 - Desired user-visible outcome: the router states plainly that this request routes to `CUPT_DAILY`
   and bundles the `cupt` command reference before answering.
-- Pass/fail: PASS if `SKILL.md` §2 names the matched `CUPT_DAILY` keywords, no `TROUBLESHOOT`/`INSTALL`
+- Pass/fail: PASS if `SKILL.md` §9 names the matched `CUPT_DAILY` keywords, no `TROUBLESHOOT`/`INSTALL`
   keyword is present in the prompt, and the mapped resource exists; FAIL if the keyword weights or
   `RESOURCE_MAP["CUPT_DAILY"]` entry in `SKILL.md` no longer matches this scenario's frontmatter, or
   the resource path is missing.
@@ -93,7 +93,7 @@ excerpts from steps 2-3 with the matched keywords highlighted.
 
 ### Pass / Fail
 
-- **Pass**: `SKILL.md` §2 names the matched `CUPT_DAILY` keywords, no tie-break keyword from
+- **Pass**: `SKILL.md` §9 names the matched `CUPT_DAILY` keywords, no tie-break keyword from
   `TROUBLESHOOT`/`INSTALL` appears in the prompt, `RESOURCE_MAP["CUPT_DAILY"]` lists the resource, and
   the resource path exists.
 - **Fail**: the keyword set or resource map in `SKILL.md` no longer matches this scenario's
@@ -105,7 +105,7 @@ excerpts from steps 2-3 with the matched keywords highlighted.
 1. Re-run step 2 and diff the current `INTENT_SIGNALS["CUPT_DAILY"]` keyword list against this
    scenario's quoted matches to see which keyword moved or was reworded.
 2. Re-run step 4 and confirm whether `references/cupt-commands.md` was renamed or removed.
-3. If the prompt instead scored `TROUBLESHOOT` or `INSTALL`, re-read `SKILL.md` §2's tie-break rule
+3. If the prompt instead scored `TROUBLESHOOT` or `INSTALL`, re-read `SKILL.md` §9's tie-break rule
    (`scores.get("TROUBLESHOOT", 0) > 3` / `scores.get("INSTALL", 0) > 4`) for an unexpected keyword hit.
 
 ---
@@ -123,7 +123,7 @@ excerpts from steps 2-3 with the matched keywords highlighted.
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` §2 | The `CUPT_DAILY` `INTENT_SIGNALS` keywords, `RESOURCE_MAP` entry, and tie-break rule this scenario verifies |
+| `../../SKILL.md` §9 | The `CUPT_DAILY` `INTENT_SIGNALS` keywords, `RESOURCE_MAP` entry, and tie-break rule this scenario verifies |
 
 ---
 
