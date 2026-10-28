@@ -2,7 +2,7 @@
 name: sk-create-with-human-voice
 description: Apply the Human Voice Rules to prose, or score prose against them, with a scope gate first and a re-scan after the rewrite.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 <!-- Keywords: create-with-human-voice, /create:with-human-voice, human voice rules, apply human voice, rewrite in human voice, make this sound human, sounds ai-generated, reads like ai wrote it, remove ai tells, ai writing tells, voice pass, hvr_scan -->
@@ -43,6 +43,125 @@ Keyword triggers: `human voice rules`, `apply human voice`, `rewrite in human vo
 ---
 
 ## 2. SMART ROUTING
+
+`sk-doc` routes voice work here: the request names the Human Voice Rules, a voice pass, a rewrite in human voice or `/create:with-human-voice`.
+The hub's mode signal selects this packet.
+Two operations route here: `apply`, which edits, and `score`, which reports and does not.
+The operation decides which resources load, and the scope gate decides which spans any edit may touch.
+
+`references/scope-and-exemptions.md` loads first on every path, because what may be touched comes before what to change.
+`references/hvr-rules.md` is the standard the scanner parses on every run, so it is read rather than copied.
+
+The family boundary, the resource domains, the loading levels, the prompt-intent projection and the call sequence sit in the final `MACHINE ROUTER` section of this file.
+
+---
+
+## 3. HOW IT WORKS
+
+### Score
+
+1. **Gate the scope.** Run `references/scope-and-exemptions.md` over the target. Name every exempt span before reading for findings. A document about the standard scores catastrophically against itself, so confirm the target is not one.
+2. **Run the mechanical pass.**
+
+```bash
+python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target>
+```
+
+The scanner parses the term lists out of the standard on every run, so it never carries a
+stale copy. Exit 0 means no hard blocker, 1 means at least one, 2 means it could not read
+the standard and refuses to report a clean scan.
+
+3. **Read the mechanical findings as candidates.** Word sense decides, not spelling. `harness` the noun is fine, `harness` the verb is not, and the scanner reports both.
+4. **Run the judgment pass.** Structure, sentence habits, content habits and voice. The scanner prints this list on every run precisely because it cannot check any of it.
+5. **Compute the score** under the precedence rule and the point table in `references/hvr-publish-supplement.md`, using the point arithmetic in `references/scoring-and-verification.md`, or report hard blockers and density on a long document. The category weights in the publish supplement's sections 1 and 3 describe where attention goes, not a second arithmetic, and no run combines the two.
+6. **Report** using `assets/voice-report-template.md`. Do not edit.
+
+### Apply
+
+Steps 1 through 5 above, then:
+
+7. **Edit only in-scope spans.** Fix hard blockers first, then soft deductions, then the judgment findings. Leave every exempt span untouched.
+8. **Re-run the scanner on the rewritten text.** Rewriting introduces new tells: the sentence that loses `leverage` reaches for `utilise`, and the three-item list becomes a four-item list whose fourth item says nothing.
+9. **Report both numbers.** A single after-score proves nothing about what the pass did.
+
+### Draft
+
+Writing new prose is the same workflow with the passes moved earlier. Load the standard
+before the first sentence, write, then run steps 2 through 9 on what came out. The order
+is what changes, never the checks.
+
+---
+
+## 4. RULES
+
+### ✅ ALWAYS
+
+1. Gate the scope before the first finding, and record every exemption in the report.
+2. Run the mechanical pass before the judgment pass.
+3. Treat a scanner finding as a candidate. Word sense decides whether it is a defect.
+4. Re-run the scanner after any rewrite and report the before and after numbers.
+5. State the length basis when quoting a number: an absolute score, or hard blockers plus density.
+6. Keep an accepted exception in the report, with the reason it was kept.
+
+### ⛔ NEVER
+
+1. Change what a sentence claims to satisfy a word ban. Accuracy outranks the standard, and the exception gets recorded instead.
+2. Edit a quotation, an error string, a command, a generated file, a released changelog entry or a byte-pinned fixture.
+3. Score a document that is about the standard, including the standard itself, without saying that is what it is.
+4. Copy any part of `references/hvr-rules.md` into another file, whether a sibling packet, a command asset or a repo rule. Reference the path.
+5. Report a clean scan the scanner refused to produce. Exit 2 is a failure, not a pass.
+6. Quote an absolute score for a document long enough that length alone drove it negative.
+
+### ⚠️ ESCALATE IF
+
+1. The standard and accuracy conflict on something load-bearing, and the right call is the author's rather than yours.
+2. The target is frozen, generated or byte-pinned, and the request is to edit it anyway.
+3. The scanner exits 2, meaning the standard's shape moved and the parser needs updating before any scan can be trusted.
+
+---
+
+## 5. SUCCESS CRITERIA
+
+- Every exempt span is named in the report rather than silently skipped.
+- Both scan numbers appear on any run that edited text.
+- No quotation, code sample, generated file or fixture changed.
+- The judgment findings are answered by a reader, not implied by a clean mechanical result.
+- Nothing from the standard was copied into another file.
+
+---
+
+## 6. INTEGRATION POINTS
+
+| Consumer | What it takes from here |
+|---|---|
+| `sk-create-quality-control` | Its HVR review step. The audit owns structure, DQI and validators, this mode owns the voice finding it reports |
+| Every `sk-create-*` sibling | The voice pass over the prose their templates produce |
+
+---
+
+## 7. REFERENCES
+
+Routed by [`references/README.md`](references/README.md). Load
+`references/scope-and-exemptions.md` first on every path. The standard itself is
+[`references/hvr-rules.md`](references/hvr-rules.md), read rather than copied.
+
+---
+
+## 8. RELATED RESOURCES
+
+| Resource | Purpose |
+|---|---|
+| [`references/hvr-rules.md`](references/hvr-rules.md) | The base. Voice directives, punctuation bans, structural patterns, term lists |
+| [`references/hvr-publish-supplement.md`](references/hvr-publish-supplement.md) | The supplement. Scoring, precedence, the pre-publish checklist and related resources |
+| [`README.md`](README.md) | What the mode does, why the scanner over-reports, and how to verify it |
+| [`scripts/hvr_scan.py`](scripts/hvr_scan.py) | The mechanical pass, parsed from the standard at run time |
+| [`../sk-create-quality-control/SKILL.md`](../sk-create-quality-control/SKILL.md) | The file-level audit whose HVR step this mode performs |
+
+---
+
+## 9. MACHINE ROUTER
+
+The packet's family boundary, its resource domains, its loading levels, its prompt-intent projection and the call sequence that reads them.
 
 ### Family Boundary
 
@@ -152,106 +271,3 @@ def route_voice_request(request):
 An unclear operation returns the checklist with the scope gate already loaded, because
 the question of what may be touched is worth answering even when the operation is not yet
 settled.
-
----
-
-## 3. HOW IT WORKS
-
-### Score
-
-1. **Gate the scope.** Run `references/scope-and-exemptions.md` over the target. Name every exempt span before reading for findings. A document about the standard scores catastrophically against itself, so confirm the target is not one.
-2. **Run the mechanical pass.**
-
-```bash
-python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target>
-```
-
-The scanner parses the term lists out of the standard on every run, so it never carries a
-stale copy. Exit 0 means no hard blocker, 1 means at least one, 2 means it could not read
-the standard and refuses to report a clean scan.
-
-3. **Read the mechanical findings as candidates.** Word sense decides, not spelling. `harness` the noun is fine, `harness` the verb is not, and the scanner reports both.
-4. **Run the judgment pass.** Structure, sentence habits, content habits and voice. The scanner prints this list on every run precisely because it cannot check any of it.
-5. **Compute the score** under the precedence rule and the point table in `references/hvr-publish-supplement.md`, using the point arithmetic in `references/scoring-and-verification.md`, or report hard blockers and density on a long document. The category weights in the publish supplement's sections 1 and 3 describe where attention goes, not a second arithmetic, and no run combines the two.
-6. **Report** using `assets/voice-report-template.md`. Do not edit.
-
-### Apply
-
-Steps 1 through 5 above, then:
-
-7. **Edit only in-scope spans.** Fix hard blockers first, then soft deductions, then the judgment findings. Leave every exempt span untouched.
-8. **Re-run the scanner on the rewritten text.** Rewriting introduces new tells: the sentence that loses `leverage` reaches for `utilise`, and the three-item list becomes a four-item list whose fourth item says nothing.
-9. **Report both numbers.** A single after-score proves nothing about what the pass did.
-
-### Draft
-
-Writing new prose is the same workflow with the passes moved earlier. Load the standard
-before the first sentence, write, then run steps 2 through 9 on what came out. The order
-is what changes, never the checks.
-
----
-
-## 4. RULES
-
-### ✅ ALWAYS
-
-1. Gate the scope before the first finding, and record every exemption in the report.
-2. Run the mechanical pass before the judgment pass.
-3. Treat a scanner finding as a candidate. Word sense decides whether it is a defect.
-4. Re-run the scanner after any rewrite and report the before and after numbers.
-5. State the length basis when quoting a number: an absolute score, or hard blockers plus density.
-6. Keep an accepted exception in the report, with the reason it was kept.
-
-### ⛔ NEVER
-
-1. Change what a sentence claims to satisfy a word ban. Accuracy outranks the standard, and the exception gets recorded instead.
-2. Edit a quotation, an error string, a command, a generated file, a released changelog entry or a byte-pinned fixture.
-3. Score a document that is about the standard, including the standard itself, without saying that is what it is.
-4. Copy any part of `references/hvr-rules.md` into another file, whether a sibling packet, a command asset or a repo rule. Reference the path.
-5. Report a clean scan the scanner refused to produce. Exit 2 is a failure, not a pass.
-6. Quote an absolute score for a document long enough that length alone drove it negative.
-
-### ⚠️ ESCALATE IF
-
-1. The standard and accuracy conflict on something load-bearing, and the right call is the author's rather than yours.
-2. The target is frozen, generated or byte-pinned, and the request is to edit it anyway.
-3. The scanner exits 2, meaning the standard's shape moved and the parser needs updating before any scan can be trusted.
-
----
-
-## 5. SUCCESS CRITERIA
-
-- Every exempt span is named in the report rather than silently skipped.
-- Both scan numbers appear on any run that edited text.
-- No quotation, code sample, generated file or fixture changed.
-- The judgment findings are answered by a reader, not implied by a clean mechanical result.
-- Nothing from the standard was copied into another file.
-
----
-
-## 6. INTEGRATION POINTS
-
-| Consumer | What it takes from here |
-|---|---|
-| `sk-create-quality-control` | Its HVR review step. The audit owns structure, DQI and validators, this mode owns the voice finding it reports |
-| Every `sk-create-*` sibling | The voice pass over the prose their templates produce |
-
----
-
-## 7. REFERENCES
-
-Routed by [`references/README.md`](references/README.md). Load
-`references/scope-and-exemptions.md` first on every path. The standard itself is
-[`references/hvr-rules.md`](references/hvr-rules.md), read rather than copied.
-
----
-
-## 8. RELATED RESOURCES
-
-| Resource | Purpose |
-|---|---|
-| [`references/hvr-rules.md`](references/hvr-rules.md) | The base. Voice directives, punctuation bans, structural patterns, term lists |
-| [`references/hvr-publish-supplement.md`](references/hvr-publish-supplement.md) | The supplement. Scoring, precedence, the pre-publish checklist and related resources |
-| [`README.md`](README.md) | What the mode does, why the scanner over-reports, and how to verify it |
-| [`scripts/hvr_scan.py`](scripts/hvr_scan.py) | The mechanical pass, parsed from the standard at run time |
-| [`../sk-create-quality-control/SKILL.md`](../sk-create-quality-control/SKILL.md) | The file-level audit whose HVR step this mode performs |

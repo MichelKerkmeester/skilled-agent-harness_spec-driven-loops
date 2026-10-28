@@ -1,7 +1,7 @@
 ---
 title: "sk-doc: Manual Testing Playbook"
 description: "Operator-facing index for sk-doc smart-router validation: intent detection, resource loading, unknown-fallback, cross-CLI dispatch, and token-cost baselines."
-version: 2.1.1.0
+version: 2.1.2.0
 ---
 
 # sk-doc: Manual Testing Playbook
@@ -10,7 +10,7 @@ version: 2.1.1.0
 
 This document is the operator directory for the sk-doc manual testing playbook. Per-scenario execution detail lives in the category folders below; each scenario file ships a YAML contract (id, expected_intent, expected_resources, token ranges) plus setup, expected behavior, cross-CLI variants, and success criteria.
 
-Source of truth for routing behavior: `.skilled/skills/sk-doc/SKILL.md` §2 Smart Routing, resolved at runtime through `mode-registry.json` / `hub-router.json` (the retired flat RESOURCE_MAP is no longer the source of record), plus UNKNOWN_FALLBACK_CHECKLIST, AMBIGUITY_DELTA, and ON_DEMAND_KEYWORDS.
+Source of truth for routing behavior: `.skilled/skills/sk-doc/SKILL.md` §2 Smart Routing, resolved at runtime through `mode-registry.json` / `hub-router.json` (the retired flat RESOURCE_MAP is no longer the source of record), plus the UNKNOWN_FALLBACK_CHECKLIST in §6 MACHINE ROUTER, AMBIGUITY_DELTA, and ON_DEMAND_KEYWORDS.
 
 ---
 
@@ -94,7 +94,7 @@ All 10 carry `stage: holdout`: excluded from the fitted routing aggregate, score
 
 ## Global Preconditions
 
-1. `.skilled/skills/sk-doc/SKILL.md` is at HEAD-of-main and contains the §2 Smart Routing block resolved through `mode-registry.json` / `hub-router.json` (UNKNOWN_FALLBACK_CHECKLIST, AMBIGUITY_DELTA, ON_DEMAND_KEYWORDS), and both `mode-registry.json` and `hub-router.json` resolve on disk.
+1. `.skilled/skills/sk-doc/SKILL.md` is at HEAD-of-main and contains the §2 Smart Routing block and the §6 MACHINE ROUTER block (`UNKNOWN_FALLBACK_CHECKLIST`), and both `mode-registry.json` and `hub-router.json` resolve on disk.
 2. All `references/*.md`, `references/*.md`, `assets/skill/*.md`, `assets/readme/*.md`, `assets/flowcharts/*.md`, `assets/command/*.md`, and `sk-create-agent/assets/agent-template.md` resolve on disk.
 3. Skill advisor binary callable: `python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --help` exits 0.
 4. Each of the 2 CLI runtimes (cli-opencode, cli-claude-code) is installed and authenticated.

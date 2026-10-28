@@ -1,6 +1,6 @@
 ---
 name: system-deep-loop
-version: 1.6.16.0
+version: 1.6.17.0
 description: "Routes research, review, and AI Council modes through registry-selected packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]
 ---
@@ -47,7 +47,7 @@ Routing is **registry-driven** (invokable-hub, Option E) in two stages. Stage 1 
 
 Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-mode leaf-intent model (the research loop protocol/state/convergence leaves, the review loop protocol/completion/convergence leaves, and the ai-council loop protocol/scoring/output-schema leaves), the machine-readable `DEFAULT_RESOURCE` / `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union; no keyword match → hub `defer`, never a silent default to a mode). Every `RESOURCE_MAP` path is packet-qualified and converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
 
-`ROUTER.md` stays a separate document on purpose: the router-replay contract resolves the hub's mode from `hub-router.json` and reads the leaf sets from the surface document — the machine block must not move into `SKILL.md` (the replay would treat it as the hub's own router and lose the mode projection) or into `hub-router.json` (schema handoff-ambiguity rule).
+`ROUTER.md` stays a separate document on purpose; [the parent-skill reference](../sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md#why-the-leaf-router-stays-in-routermd) gives the reason once.
 
 This hub is an intent/registry router, not a keyed resource-discovery router: at runtime it omits `discover_markdown_resources` and only guards registry-selected packet loads, never selecting hub-level `references/<key>/` or `assets/<key>/` resources by runtime key. It does carry a second-layer surface router at the root `ROUTER.md` — a benchmark/replay artifact (mirroring sk-prompt/sk-code) that maps a resolved mode's intent to packet-qualified child leaves so router-replay can emit canonical `{workflowMode, leafResourceId}` typed pairs against `leaf-manifest.json`. That surface layer never re-decides the mode and is not a runtime hub discovery surface; the hub still routes by `workflowMode` through `mode-registry.json` alone.
 

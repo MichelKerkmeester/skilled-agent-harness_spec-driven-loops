@@ -2,7 +2,7 @@
 name: sk-design
 description: "Design parent hub. Routes one design identity to the mode that owns the decision, starting with sk-design-fundamentals."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.0.6.0
+version: 2.0.7.0
 metadata:
   family: sk-design
 ---
@@ -70,9 +70,7 @@ intent takes one leaf set, near-tied intents take a deduped union, and no keywor
 UNKNOWN fallback rather than a silent default. Every `RESOURCE_MAP` path resolves on disk and
 dual-reads to a canonical `(workflowMode, leafResourceId)` pair through `leaf-manifest.json`.
 
-`ROUTER.md` stays a separate document on purpose. The machine block must not move into this file,
-where a replay would read it as the hub's own router and lose the mode projection, nor into
-`hub-router.json`, which is a different schema.
+`ROUTER.md` stays a separate document on purpose; [the parent-skill reference](../sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md#why-the-leaf-router-stays-in-routermd) gives the reason once.
 
 ### The discriminator
 

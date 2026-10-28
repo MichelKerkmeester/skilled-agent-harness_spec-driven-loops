@@ -2,7 +2,7 @@
 name: sk-create-changelog
 description: Author global component changelogs in the v4 narrative style, with placement, versioning, lean content and release notes.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.3.8.0
+version: 1.3.9.0
 ---
 
 <!-- Keywords: create-changelog, /create:changelog, changelog, release notes, global changelog, packet-local changelog, semantic version, nested changelog -->
@@ -42,100 +42,17 @@ Keyword triggers: `create changelog`, `/create:changelog`, `changelog`, `changel
 
 ## 2. SMART ROUTING
 
-### Family Boundary
+The `sk-doc` hub resolves a changelog-authoring request through `mode-registry.json`.
+`hub-router.json` scores the request, the winning `workflowMode` is `sk-create-changelog`, and the hub loads this `SKILL.md` first.
+A request to create a global component changelog, write release notes, calculate the next four-part version or resolve a changed source selects this packet.
+A packet-local changelog request that lands here is refused as deprecated and offered a global entry.
+The packet has one output mode, the global component entry.
 
-This is a nested workflow packet under `sk-doc` and owns changelog authoring only. The single advisor identity lives at the `sk-doc` hub root, so never add a packet-local `graph-metadata.json`.
+`references/README.md` is the route map and the fallback load, and `assets/changelog-template.md` owns what an entry says and how it reads.
 
-### Router Resilience
+The family boundary, the router-resilience rules and the discovery pseudocode sit in the final `MACHINE ROUTER` section.
 
-The packet has one output mode, the global component entry (section 6). The advisor does not guarantee that a packet-local request lands here. When one does, the router refuses it as deprecated and offers a global entry. Its references are flat, so it uses no `references/<key>/` discovery.
-
-- Load an optional resource only after resolving it under this packet and confirming it exists.
-- Treat `references/README.md` as the fallback route map when the topology or output mode is unclear.
-- Ask for the missing source type, target or version intent instead of silently loading nothing.
-- Add a `references/<key>/` runtime-key router only if the packet gains keyed subdirectories.
-
-### Smart Router Pseudocode
-
-The resilient router discovers resources at call time, loads only what exists, scores the global intent against the deprecated packet-local one, refuses a packet-local request without writing and returns a disambiguation checklist rather than loading nothing:
-
-```python
-from pathlib import Path
-
-SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/README.md"
-
-# Two intents, one output mode. Keywords come from this packet's activation triggers.
-INTENT_MODEL = {
-    "global_component": {"weight": 4, "keywords": ["global changelog", "release notes", "component", "--release", "--bump"]},
-    # Deprecated: kept so a packet-local request that lands here is refused and offered a global entry.
-    "packet_local": {"weight": 4, "keywords": ["packet-local changelog", "nested changelog", "--nested"]},
-}
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm the change source (component hint, git history, or spec folder)",
-    "Confirm the global component the change belongs to",
-    "Confirm the four-part version and whether --bump/--release applies",
-]
-
-def discover_markdown_resources() -> set[str]:
-    docs = []
-    for base in RESOURCE_BASES:
-        if base.exists():
-            docs.extend(path for path in base.rglob("*.md") if path.is_file())
-    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
-
-def _guard_in_skill(relative_path: str) -> str:
-    resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)
-    if resolved.suffix.lower() != ".md":
-        raise ValueError(f"Only markdown resources are routable: {relative_path}")
-    return resolved.relative_to(SKILL_ROOT).as_posix()
-
-def load_if_available(relative_path, inventory, loaded, seen) -> None:
-    guarded = _guard_in_skill(relative_path)
-    if guarded in inventory and guarded not in seen:
-        load(guarded)
-        loaded.append(guarded)
-        seen.add(guarded)
-
-def score_intents(request) -> dict:
-    text = request.text.lower()
-    scores = {intent: 0 for intent in INTENT_MODEL}
-    for intent, cfg in INTENT_MODEL.items():
-        for kw in cfg["keywords"]:
-            if kw in text:
-                scores[intent] += cfg["weight"]
-    return scores
-
-def route_changelog_request(request):
-    inventory = discover_markdown_resources()
-    loaded, seen = [], set()
-    scores = score_intents(request)
-
-    if max(scores.values() or [0]) < 4:                      # Tier 1: unclear source/mode
-        load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
-        return {
-            "load_level": "UNKNOWN_FALLBACK",
-            "needs_disambiguation": True,
-            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
-            "resources": loaded,
-        }
-
-    output_mode = max(scores, key=scores.get)                # Tier 2: pick the intent
-    if output_mode == "packet_local":                        # Deprecated: refuse and write nothing
-        return {
-            "output_mode": "refused",
-            "writes": [],
-            "message": "Packet-local changelogs are deprecated. Spec folders no longer get changelogs.",
-            "offer": "Write a global component entry under .skilled/changelog/ instead (section 4)",
-        }
-    # Flat resource topology: no references/<key>/ subdirectories. The mode selects the
-    # generator target documented below, not a keyed subtree; load the flat refs that exist.
-    for path in sorted(inventory):
-        load_if_available(path, inventory, loaded, seen)
-    return {"output_mode": output_mode, "resources": loaded}
-```
+A request that matches no registered mode returns `UNKNOWN_FALLBACK`, never a silent default.
 
 ---
 
@@ -384,3 +301,104 @@ The workflow succeeds when:
 4. A release body, when requested, uses the entry and appends the full changelog path.
 5. Validation passes, or the remaining issue is escalated with exact evidence.
 6. No other file changes unless the user asked for it.
+
+---
+
+## 13. MACHINE ROUTER
+
+The routing detail that does not fit the short summary: the family boundary, the router-resilience rules and the resource-discovery pseudocode.
+
+### Family Boundary
+
+This is a nested workflow packet under `sk-doc` and owns changelog authoring only. The single advisor identity lives at the `sk-doc` hub root, so never add a packet-local `graph-metadata.json`.
+
+### Router Resilience
+
+The packet has one output mode, the global component entry (section 6). The advisor does not guarantee that a packet-local request lands here. When one does, the router refuses it as deprecated and offers a global entry. Its references are flat, so it uses no `references/<key>/` discovery.
+
+- Load an optional resource only after resolving it under this packet and confirming it exists.
+- Treat `references/README.md` as the fallback route map when the topology or output mode is unclear.
+- Ask for the missing source type, target or version intent instead of silently loading nothing.
+- Add a `references/<key>/` runtime-key router only if the packet gains keyed subdirectories.
+
+### Smart Router Pseudocode
+
+The resilient router discovers resources at call time, loads only what exists, scores the global intent against the deprecated packet-local one, refuses a packet-local request without writing and returns a disambiguation checklist rather than loading nothing:
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/README.md"
+
+# Two intents, one output mode. Keywords come from this packet's activation triggers.
+INTENT_MODEL = {
+    "global_component": {"weight": 4, "keywords": ["global changelog", "release notes", "component", "--release", "--bump"]},
+    # Deprecated: kept so a packet-local request that lands here is refused and offered a global entry.
+    "packet_local": {"weight": 4, "keywords": ["packet-local changelog", "nested changelog", "--nested"]},
+}
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm the change source (component hint, git history, or spec folder)",
+    "Confirm the global component the change belongs to",
+    "Confirm the four-part version and whether --bump/--release applies",
+]
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def load_if_available(relative_path, inventory, loaded, seen) -> None:
+    guarded = _guard_in_skill(relative_path)
+    if guarded in inventory and guarded not in seen:
+        load(guarded)
+        loaded.append(guarded)
+        seen.add(guarded)
+
+def score_intents(request) -> dict:
+    text = request.text.lower()
+    scores = {intent: 0 for intent in INTENT_MODEL}
+    for intent, cfg in INTENT_MODEL.items():
+        for kw in cfg["keywords"]:
+            if kw in text:
+                scores[intent] += cfg["weight"]
+    return scores
+
+def route_changelog_request(request):
+    inventory = discover_markdown_resources()
+    loaded, seen = [], set()
+    scores = score_intents(request)
+
+    if max(scores.values() or [0]) < 4:                      # Tier 1: unclear source/mode
+        load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
+    output_mode = max(scores, key=scores.get)                # Tier 2: pick the intent
+    if output_mode == "packet_local":                        # Deprecated: refuse and write nothing
+        return {
+            "output_mode": "refused",
+            "writes": [],
+            "message": "Packet-local changelogs are deprecated. Spec folders no longer get changelogs.",
+            "offer": "Write a global component entry under .skilled/changelog/ instead (section 4)",
+        }
+    # Flat resource topology: no references/<key>/ subdirectories. The mode selects the
+    # generator target documented above, not a keyed subtree; load the flat refs that exist.
+    for path in sorted(inventory):
+        load_if_available(path, inventory, loaded, seen)
+    return {"output_mode": output_mode, "resources": loaded}
+```

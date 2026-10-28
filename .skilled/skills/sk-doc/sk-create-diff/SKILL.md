@@ -2,7 +2,7 @@
 name: sk-create-diff
 description: Local, Git-free before/after review of an edited document (text, Markdown, HTML, DOCX, text PDF) as a self-contained HTML report.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.1.5.0
+version: 1.1.6.0
 ---
 <!-- Keywords: create-diff, document diff, before after review, before/after document, local html diff report, document snapshot, ai edit review, docx diff, pdf diff, markdown diff, multi-file diff, aggregate file boundaries -->
 
@@ -44,82 +44,17 @@ If the target document or output path is unknown and acting would be a guess, as
 
 ## 2. SMART ROUTING
 
-This packet ships a flat `references/` route-map and worked-example fixtures under `assets/`; there are no `references/<key>/` or `assets/<key>/` subdirectories to infer. Routing is intent-based:
+The `sk-doc` hub resolves a document before/after review through `mode-registry.json`.
+`hub-router.json` scores the request, the winning `workflowMode` is `sk-create-diff`, and the hub loads this `SKILL.md` first.
+A request to review what an AI or a person changed in a locally edited document, to capture a baseline before an edit or to compare two explicit versions selects this packet.
+Two shapes exist: an automatic snapshot-backed baseline and an explicit pair.
+The comparison reads extracted text only, so a visual or design comparison is out of scope.
 
-- If the request clearly asks for a before/after document review, route here and pick the workflow shape in section 3 (automatic baseline vs. explicit pair).
-- If the target document, baseline state, or output path is unclear, use `UNKNOWN_FALLBACK`: confirm the document, whether a baseline exists, and the report path before acting.
-- If a referenced resource is missing, do not invent a path — use the nearest guidance in `references/README.md` and report the gap.
-- Do not hijack routing from functional siblings when the intent is not clearly a document before/after review.
+`references/README.md` is the route map and the fallback load, and `references/cli-reference.md` holds the commands and exit codes.
 
-### Smart Router Pseudocode
+The intent bullets, the flat resource topology and the discovery pseudocode sit in the final `MACHINE ROUTER` section.
 
-```python
-from pathlib import Path
-
-SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/README.md"
-
-# Two workflow shapes for one intent: automatic (snapshot-backed) or explicit pair.
-INTENT_MODEL = {
-    "auto_capture_compare": {"weight": 4, "keywords": ["review edits", "before/after", "before after review", "document change report", "what changed"]},
-    "explicit_pair": {"weight": 4, "keywords": ["compare two files", "old and new", "before and after files", "explicit pair"]},
-}
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm the target document (and its format)",
-    "Confirm whether a baseline snapshot already exists",
-    "Confirm the output report path",
-]
-
-def discover_markdown_resources() -> set[str]:
-    docs = []
-    for base in RESOURCE_BASES:
-        if base.exists():
-            docs.extend(path for path in base.rglob("*.md") if path.is_file())
-    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
-
-def _guard_in_skill(relative_path: str) -> str:
-    resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)
-    if resolved.suffix.lower() != ".md":
-        raise ValueError(f"Only markdown resources are routable: {relative_path}")
-    return resolved.relative_to(SKILL_ROOT).as_posix()
-
-def load_if_available(relative_path, inventory, loaded, seen) -> None:
-    guarded = _guard_in_skill(relative_path)
-    if guarded in inventory and guarded not in seen:
-        load(guarded)
-        loaded.append(guarded)
-        seen.add(guarded)
-
-def score_intents(request) -> dict:
-    text = request.text.lower()
-    scores = {intent: 0 for intent in INTENT_MODEL}
-    for intent, cfg in INTENT_MODEL.items():
-        for kw in cfg["keywords"]:
-            if kw in text:
-                scores[intent] += cfg["weight"]
-    return scores
-
-def route_diff_request(request):
-    inventory = discover_markdown_resources()
-    loaded, seen = [], set()
-    scores = score_intents(request)
-
-    if max(scores.values() or [0]) < 4:                      # Tier 1: target/baseline/output unclear
-        load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
-        return {
-            "load_level": "UNKNOWN_FALLBACK",
-            "needs_disambiguation": True,
-            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
-            "resources": loaded,
-        }
-
-    shape = max(scores, key=scores.get)                       # Tier 2: workflow shape resolved
-    for path in sorted(inventory):
-        load_if_available(path, inventory, loaded, seen)
-    return {"shape": shape, "resources": loaded}
-```
+A request that matches no registered mode returns `UNKNOWN_FALLBACK`, never a silent default.
 
 ---
 
@@ -295,3 +230,86 @@ The task is successful when:
 - `references/workflow.md` — baseline-capture, explicit-pair, and snapshot lifecycle.
 - `references/accessibility-contract.md` — the report's accessibility guarantees.
 - `references/worked-example.md` — an end-to-end walkthrough using the shipped fixtures.
+
+---
+
+## 11. MACHINE ROUTER
+
+The routing detail that does not fit the short summary: the intent bullets, the flat resource topology and the resource-discovery pseudocode.
+
+This packet ships a flat `references/` route-map and worked-example fixtures under `assets/`; there are no `references/<key>/` or `assets/<key>/` subdirectories to infer. Routing is intent-based:
+
+- If the request clearly asks for a before/after document review, route here and pick the workflow shape in section 3 (automatic baseline vs. explicit pair).
+- If the target document, baseline state, or output path is unclear, use `UNKNOWN_FALLBACK`: confirm the document, whether a baseline exists, and the report path before acting.
+- If a referenced resource is missing, do not invent a path — use the nearest guidance in `references/README.md` and report the gap.
+- Do not hijack routing from functional siblings when the intent is not clearly a document before/after review.
+
+### Smart Router Pseudocode
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/README.md"
+
+# Two workflow shapes for one intent: automatic (snapshot-backed) or explicit pair.
+INTENT_MODEL = {
+    "auto_capture_compare": {"weight": 4, "keywords": ["review edits", "before/after", "before after review", "document change report", "what changed"]},
+    "explicit_pair": {"weight": 4, "keywords": ["compare two files", "old and new", "before and after files", "explicit pair"]},
+}
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm the target document (and its format)",
+    "Confirm whether a baseline snapshot already exists",
+    "Confirm the output report path",
+]
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def load_if_available(relative_path, inventory, loaded, seen) -> None:
+    guarded = _guard_in_skill(relative_path)
+    if guarded in inventory and guarded not in seen:
+        load(guarded)
+        loaded.append(guarded)
+        seen.add(guarded)
+
+def score_intents(request) -> dict:
+    text = request.text.lower()
+    scores = {intent: 0 for intent in INTENT_MODEL}
+    for intent, cfg in INTENT_MODEL.items():
+        for kw in cfg["keywords"]:
+            if kw in text:
+                scores[intent] += cfg["weight"]
+    return scores
+
+def route_diff_request(request):
+    inventory = discover_markdown_resources()
+    loaded, seen = [], set()
+    scores = score_intents(request)
+
+    if max(scores.values() or [0]) < 4:                      # Tier 1: target/baseline/output unclear
+        load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
+    shape = max(scores, key=scores.get)                       # Tier 2: workflow shape resolved
+    for path in sorted(inventory):
+        load_if_available(path, inventory, loaded, seen)
+    return {"shape": shape, "resources": loaded}
+```

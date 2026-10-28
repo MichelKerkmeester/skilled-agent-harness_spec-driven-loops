@@ -9,7 +9,7 @@ trigger_phrases:
   - "surface packet workflow packet"
 importance_tier: normal
 contextType: implementation
-version: 1.2.6.0
+version: 1.2.7.0
 ---
 
 # Parent Skills with Nested Mode Packets
@@ -132,6 +132,10 @@ Tie-break order lists workflow modes first and surface packets after them. `surf
 ### Two-stage authoring: `hub-router.json` then root `ROUTER.md`
 
 Stage one and stage two are separate authoring acts. `hub-router.json` selects a workflow mode. The root `ROUTER.md` then owns stage-two leaf selection when `active` — mapping request intent to the exact packet-local leaf resources that mode loads — or declares `stage1-only` and leaves the whole routing story to stage one. A fresh hub scaffolds `stage1-only` with empty maps, a root `SKILL.md` pointer, and a four-part `version`. Promotion to `active` is the deliberate act of authoring non-empty equal-key maps with resolvable, typed leaf paths; the authoring tooling never fabricates those maps. See [`parent-skill-root-router-template.md`](../../assets/parent-skill/parent-skill-root-router-template.md) for both states.
+
+### Why the leaf router stays in `ROUTER.md`
+
+`ROUTER.md` stays a separate document on purpose. The router-replay contract resolves the hub's mode from `hub-router.json` and reads the leaf sets from the surface document. The machine block must not move into the hub `SKILL.md`, because the replay would then treat it as the hub's own router and lose the mode projection. It must not move into `hub-router.json` either, because the schema's handoff-ambiguity rule forbids it. A hub `SKILL.md` links here rather than restating this.
 
 ---
 

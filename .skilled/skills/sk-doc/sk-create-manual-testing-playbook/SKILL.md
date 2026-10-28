@@ -2,7 +2,7 @@
 name: sk-create-manual-testing-playbook
 description: Author manual testing playbook packages with deterministic scenarios, evidence collection, and multi-agent execution planning.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 <!-- Keywords: manual testing playbook, testing playbook, deterministic scenario, evidence collection, operator validation, multi-agent execution, release readiness, create:manual-testing-playbook -->
@@ -55,95 +55,11 @@ Use another `sk-doc` packet when:
 
 ## 2. SMART ROUTING
 
-### Decision Rule
+The `sk-doc` hub routes manual validation here: the request names a manual testing playbook, a deterministic scenario, evidence collection or operator validation, and the hub's `sk-create-manual-testing-playbook` mode signal selects this packet.
+It creates a playbook only when reusable manual validation needs captured evidence, not when test steps fit a spec-folder checklist.
 
-Decision rule:
-
-```text
-Need reusable manual validation with captured evidence?
-YES -> Create a playbook package
-NO  -> Keep test steps in spec/checklist docs
-```
-
-### Family Boundary
-
-This packet owns manual testing playbook packages only. It consumes shared `sk-doc` standards from `../shared`, but the advisor identity lives at the `sk-doc` hub root. Do not add a packet-local `graph-metadata.json`.
-
-### Smart Router Pseudocode
-
-For this flat-reference packet, the canonical resilient router discovers resources at call
-time, guards and loads only what exists, scores the two authoring scopes, and returns a
-disambiguation checklist rather than silently loading nothing:
-
-```python
-from pathlib import Path
-
-SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/README.md"
-
-# Two authoring scopes; keywords come from this packet's activation triggers.
-INTENT_MODEL = {
-    "root_playbook": {"weight": 4, "keywords": ["manual testing playbook", "/create:manual-testing-playbook", "testing playbook", "release readiness"]},
-    "per_feature_scenario": {"weight": 4, "keywords": ["deterministic scenario", "evidence collection", "operator validation", "multi-agent execution"]},
-}
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm the target skill or system and the feature set under test",
-    "Confirm root playbook index scope vs per-feature scenario file scope",
-    "Confirm the evidence and pass/fail validation expectations",
-]
-
-def discover_markdown_resources() -> set[str]:
-    docs = []
-    for base in RESOURCE_BASES:
-        if base.exists():
-            docs.extend(path for path in base.rglob("*.md") if path.is_file())
-    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
-
-def _guard_in_skill(relative_path: str) -> str:
-    resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)
-    if resolved.suffix.lower() != ".md":
-        raise ValueError(f"Only markdown resources are routable: {relative_path}")
-    return resolved.relative_to(SKILL_ROOT).as_posix()
-
-def load_if_available(relative_path, inventory, loaded, seen) -> None:
-    guarded = _guard_in_skill(relative_path)
-    if guarded in inventory and guarded not in seen:
-        load(guarded)
-        loaded.append(guarded)
-        seen.add(guarded)
-
-def score_intents(request) -> dict:
-    text = request.text.lower()
-    scores = {intent: 0 for intent in INTENT_MODEL}
-    for intent, cfg in INTENT_MODEL.items():
-        for kw in cfg["keywords"]:
-            if kw in text:
-                scores[intent] += cfg["weight"]
-    return scores
-
-def route_manual_testing_playbook_request(request):
-    inventory = discover_markdown_resources()
-    loaded, seen = [], set()
-    scores = score_intents(request)
-
-    if max(scores.values() or [0]) < 4:                      # Tier 1: unclear scope
-        load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
-        return {
-            "load_level": "UNKNOWN_FALLBACK",
-            "needs_disambiguation": True,
-            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
-            "resources": loaded,
-        }
-
-    scope = max(scores, key=scores.get)                       # Tier 2: happy path
-    # Flat resource topology: no references/<key>/ subdirectories. The scope selects the
-    # authoring target documented above, not a keyed subtree; load the flat refs that exist.
-    for path in sorted(inventory):
-        load_if_available(path, inventory, loaded, seen)
-    return {"scope": scope, "resources": loaded}
-```
+`references/README.md` is the fallback route map, and authoring starts from `assets/manual-testing-playbook-template.md` for the root playbook and `assets/manual-testing-playbook-snippet-template.md` for each per-feature file.
+The decision rule, the family boundary and the router pseudocode sit in the final `MACHINE ROUTER` section of this file.
 
 ---
 
@@ -560,3 +476,99 @@ The core executable workflow lives in this `SKILL.md`. Use these only for overfl
 - `../shared/references/evergreen-packet-id-rule.md` - evergreen current-state wording.
 
 The source assets keep the filenames `manual-testing-playbook-template.md` and `manual-testing-playbook-snippet-template.md` until their separate source-file migration. Those filenames are authoring inputs, not emitted package names.
+
+---
+
+## 11. MACHINE ROUTER
+
+The packet's decision rule, family boundary and the resilient router pseudocode that reads them.
+
+### Decision Rule
+
+Decision rule:
+
+```text
+Need reusable manual validation with captured evidence?
+YES -> Create a playbook package
+NO  -> Keep test steps in spec/checklist docs
+```
+
+### Family Boundary
+
+This packet owns manual testing playbook packages only. It consumes shared `sk-doc` standards from `../shared`, but the advisor identity lives at the `sk-doc` hub root. Do not add a packet-local `graph-metadata.json`.
+
+### Smart Router Pseudocode
+
+For this flat-reference packet, the canonical resilient router discovers resources at call
+time, guards and loads only what exists, scores the two authoring scopes, and returns a
+disambiguation checklist rather than silently loading nothing:
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/README.md"
+
+# Two authoring scopes; keywords come from this packet's activation triggers.
+INTENT_MODEL = {
+    "root_playbook": {"weight": 4, "keywords": ["manual testing playbook", "/create:manual-testing-playbook", "testing playbook", "release readiness"]},
+    "per_feature_scenario": {"weight": 4, "keywords": ["deterministic scenario", "evidence collection", "operator validation", "multi-agent execution"]},
+}
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm the target skill or system and the feature set under test",
+    "Confirm root playbook index scope vs per-feature scenario file scope",
+    "Confirm the evidence and pass/fail validation expectations",
+]
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def load_if_available(relative_path, inventory, loaded, seen) -> None:
+    guarded = _guard_in_skill(relative_path)
+    if guarded in inventory and guarded not in seen:
+        load(guarded)
+        loaded.append(guarded)
+        seen.add(guarded)
+
+def score_intents(request) -> dict:
+    text = request.text.lower()
+    scores = {intent: 0 for intent in INTENT_MODEL}
+    for intent, cfg in INTENT_MODEL.items():
+        for kw in cfg["keywords"]:
+            if kw in text:
+                scores[intent] += cfg["weight"]
+    return scores
+
+def route_manual_testing_playbook_request(request):
+    inventory = discover_markdown_resources()
+    loaded, seen = [], set()
+    scores = score_intents(request)
+
+    if max(scores.values() or [0]) < 4:                      # Tier 1: unclear scope
+        load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
+    scope = max(scores, key=scores.get)                       # Tier 2: happy path
+    # Flat resource topology: no references/<key>/ subdirectories. The scope selects the
+    # authoring target documented above, not a keyed subtree; load the flat refs that exist.
+    for path in sorted(inventory):
+        load_if_available(path, inventory, loaded, seen)
+    return {"scope": scope, "resources": loaded}
+```

@@ -2,7 +2,7 @@
 name: cli-external-orchestration
 description: "Parent hub for external CLI dispatch: routes to seven workflow modes through mode-registry.json; dispatches by workflowMode."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.7.8.0
+version: 1.7.9.0
 metadata:
   family: cli
 ---
@@ -79,7 +79,7 @@ read hub-router.json
 
 Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-mode leaf-intent model (every mode in `mode-registry.json`, plus the deliberate absence: a bare CLI-dispatch phrase that names no executor fires no intent and defers at the hub), the machine-readable `DEFAULT_RESOURCE` / `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay parses, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union, the `orderedBundle` outcome; no keyword match → hub `defer`, never a silent default to `cli-opencode`). Every `RESOURCE_MAP` path is packet-qualified and converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
 
-`ROUTER.md` stays a separate document on purpose: the router-replay contract resolves the hub's mode from `hub-router.json` and reads the leaf sets from the surface document — the machine block must not move into `SKILL.md` (the replay would treat it as the hub's own router and lose the mode projection) or into `hub-router.json` (schema handoff-ambiguity rule).
+`ROUTER.md` stays a separate document on purpose; [the parent-skill reference](../../../.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md#why-the-leaf-router-stays-in-routermd) gives the reason once.
 
 ### Executor Delegation
 
