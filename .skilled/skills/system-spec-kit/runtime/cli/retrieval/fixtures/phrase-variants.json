@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a2100859e2a5e1724808e8c10028a4b1e437f68611a4e2b45e615b4b23119a66",
+  "manifestHash": "509618c02e0fd94a15741ad7d32e5fc46c4c6af8b86dade540b744d54ab3f4e1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10203,6 +10203,9 @@
     "agent routing documentation": [
       "agent routing documentation"
     ],
+    "agent routing prose": [
+      "agent routing prose"
+    ],
     "agent safe output flag": [
       "agent-safe output flag"
     ],
@@ -13826,6 +13829,9 @@
     ],
     "benchmark report worked example": [
       "benchmark report worked example"
+    ],
+    "benchmark routing section": [
+      "benchmark routing section"
     ],
     "benchmark the default off features": [
       "benchmark the default-off features"
@@ -20574,6 +20580,9 @@
     "cli external orchestration 1 7 8 0": [
       "cli-external-orchestration 1.7.8.0"
     ],
+    "cli external orchestration 1 7 9 0": [
+      "cli-external-orchestration 1.7.9.0"
+    ],
     "cli external orchestration benchmark": [
       "cli-external-orchestration benchmark"
     ],
@@ -20675,6 +20684,9 @@
     ],
     "cli external orchestration v1 7 8 0": [
       "cli-external-orchestration v1.7.8.0"
+    ],
+    "cli external orchestration v1 7 9 0": [
+      "cli-external-orchestration v1.7.9.0"
     ],
     "cli fallback envelope normalization": [
       "cli fallback envelope normalization"
@@ -25459,6 +25471,9 @@
     "command router template": [
       "command router template"
     ],
+    "command routing prose": [
+      "command routing prose"
+    ],
     "command runtime mirrors": [
       "command runtime mirrors"
     ],
@@ -29495,6 +29510,9 @@
     ],
     "create skill library": [
       "create-skill library"
+    ],
+    "create skill routing prose": [
+      "create-skill routing prose"
     ],
     "create skill script tests": [
       "create-skill script tests"
@@ -45322,6 +45340,9 @@
     "feature catalog rollup": [
       "feature catalog rollup"
     ],
+    "feature catalog routing section": [
+      "feature catalog routing section"
+    ],
     "feature catalog shape audit": [
       "feature catalog shape audit"
     ],
@@ -54198,6 +54219,9 @@
     "hub routing benchmark": [
       "hub routing benchmark"
     ],
+    "hub routing canon": [
+      "hub routing canon"
+    ],
     "hub routing integration acceptance criteria": [
       "hub routing integration acceptance criteria"
     ],
@@ -58180,6 +58204,12 @@
     "leaf route replay tasks": [
       "leaf route replay tasks"
     ],
+    "leaf router rationale": [
+      "leaf router rationale"
+    ],
+    "leaf router reason in one place": [
+      "leaf router reason in one place"
+    ],
     "leaf set authority": [
       "leaf-set authority"
     ],
@@ -60236,6 +60266,9 @@
     ],
     "machine readable task list": [
       "machine-readable task list"
+    ],
+    "machine router section": [
+      "machine router section"
     ],
     "macos daemon ipc sock einval": [
       "macOS daemon-ipc.sock einval"
@@ -77631,6 +77664,9 @@
     "playbook root structure": [
       "playbook root structure"
     ],
+    "playbook routing section": [
+      "playbook routing section"
+    ],
     "playbook run environment setup": [
       "playbook run environment setup"
     ],
@@ -81785,6 +81821,9 @@
     "readme rewritten purpose first": [
       "README rewritten purpose-first"
     ],
+    "readme routing section moved": [
+      "readme routing section moved"
+    ],
     "readme schema v30 front proxy doc plan": [
       "readme schema v30 front-proxy doc plan"
     ],
@@ -85382,6 +85421,9 @@
     ],
     "repo rule routed from link": [
       "repo rule routed from link"
+    ],
+    "repo rule routing section moved": [
+      "repo rule routing section moved"
     ],
     "repo rule structure": [
       "repo rule structure"
@@ -89882,6 +89924,9 @@
     ],
     "routing shape known debt": [
       "routing shape known debt"
+    ],
+    "routing summary is short prose": [
+      "routing summary is short prose"
     ],
     "routing telemetry stress test": [
       "routing-telemetry stress test"
@@ -94928,6 +94973,9 @@
     "short registry reconstruction plan": [
       "short registry reconstruction plan"
     ],
+    "short smart routing summary": [
+      "short smart routing summary"
+    ],
     "shorter repo rules": [
       "shorter repo rules"
     ],
@@ -97547,6 +97595,9 @@
     "sk create agent 1 0 2 0": [
       "sk-create-agent 1.0.2.0"
     ],
+    "sk create agent 1 0 3 0": [
+      "sk-create-agent 1.0.3.0"
+    ],
     "sk create agent playbook": [
       "sk-create-agent playbook"
     ],
@@ -97564,6 +97615,9 @@
     ],
     "sk create agent v1 0 2 0": [
       "sk-create-agent v1.0.2.0"
+    ],
+    "sk create agent v1 0 3 0": [
+      "sk-create-agent v1.0.3.0"
     ],
     "sk create benchmark 1 0 0 0": [
       "sk-create-benchmark 1.0.0.0"
@@ -97588,6 +97642,9 @@
     ],
     "sk create benchmark 1 6 1 0": [
       "sk-create-benchmark 1.6.1.0"
+    ],
+    "sk create benchmark 1 6 2 0": [
+      "sk-create-benchmark 1.6.2.0"
     ],
     "sk create benchmark playbook": [
       "sk-create-benchmark playbook"
@@ -97615,6 +97672,9 @@
     ],
     "sk create benchmark v1 6 1 0": [
       "sk-create-benchmark v1.6.1.0"
+    ],
+    "sk create benchmark v1 6 2 0": [
+      "sk-create-benchmark v1.6.2.0"
     ],
     "sk create changelog 1 0 0 0": [
       "sk-create-changelog 1.0.0.0"
@@ -97663,6 +97723,9 @@
     ],
     "sk create changelog 1 3 8 0": [
       "sk-create-changelog 1.3.8.0"
+    ],
+    "sk create changelog 1 3 9 0": [
+      "sk-create-changelog 1.3.9.0"
     ],
     "sk create changelog playbook": [
       "sk-create-changelog playbook"
@@ -97717,6 +97780,9 @@
     ],
     "sk create changelog v1 3 8 0": [
       "sk-create-changelog v1.3.8.0"
+    ],
+    "sk create changelog v1 3 9 0": [
+      "sk-create-changelog v1.3.9.0"
     ],
     "sk create changelog v4 style changelog": [
       "sk create changelog v4 style changelog"
@@ -97784,6 +97850,9 @@
     "sk create command 1 0 6 0": [
       "sk-create-command 1.0.6.0"
     ],
+    "sk create command 1 0 7 0": [
+      "sk-create-command 1.0.7.0"
+    ],
     "sk create command playbook": [
       "sk-create-command playbook"
     ],
@@ -97810,6 +97879,9 @@
     ],
     "sk create command v1 0 6 0": [
       "sk-create-command v1.0.6.0"
+    ],
+    "sk create command v1 0 7 0": [
+      "sk-create-command v1.0.7.0"
     ],
     "sk create diagram benchmark index": [
       "sk-create-diagram benchmark index"
@@ -97838,6 +97910,9 @@
     "sk create diff 1 1 5 0": [
       "sk-create-diff 1.1.5.0"
     ],
+    "sk create diff 1 1 6 0": [
+      "sk-create-diff 1.1.6.0"
+    ],
     "sk create diff v1 0 0 0": [
       "sk-create-diff v1.0.0.0"
     ],
@@ -97858,6 +97933,9 @@
     ],
     "sk create diff v1 1 5 0": [
       "sk-create-diff v1.1.5.0"
+    ],
+    "sk create diff v1 1 6 0": [
+      "sk-create-diff v1.1.6.0"
     ],
     "sk create feature catalog 1 0 0 0": [
       "sk-create-feature-catalog 1.0.0.0"
@@ -97888,6 +97966,9 @@
     ],
     "sk create feature catalog 1 0 6 0": [
       "sk-create-feature-catalog 1.0.6.0"
+    ],
+    "sk create feature catalog 1 0 7 0": [
+      "sk-create-feature-catalog 1.0.7.0"
     ],
     "sk create feature catalog playbook": [
       "sk-create-feature-catalog playbook"
@@ -97922,6 +98003,9 @@
     "sk create feature catalog v1 0 6 0": [
       "sk-create-feature-catalog v1.0.6.0"
     ],
+    "sk create feature catalog v1 0 7 0": [
+      "sk-create-feature-catalog v1.0.7.0"
+    ],
     "sk create frontmatter 1 0 0 0": [
       "sk-create-frontmatter 1.0.0.0"
     ],
@@ -97936,6 +98020,9 @@
     ],
     "sk create frontmatter 1 0 4 0": [
       "sk-create-frontmatter 1.0.4.0"
+    ],
+    "sk create frontmatter 1 0 5 0": [
+      "sk-create-frontmatter 1.0.5.0"
     ],
     "sk create frontmatter mode": [
       "sk-create-frontmatter mode"
@@ -97961,6 +98048,9 @@
     "sk create frontmatter v1 0 4 0": [
       "sk-create-frontmatter v1.0.4.0"
     ],
+    "sk create frontmatter v1 0 5 0": [
+      "sk-create-frontmatter v1.0.5.0"
+    ],
     "sk create frontmatter value list": [
       "sk-create-frontmatter value list"
     ],
@@ -97984,6 +98074,9 @@
     ],
     "sk create goal 1 4 3 0": [
       "sk-create-goal 1.4.3.0"
+    ],
+    "sk create goal 1 4 4 0": [
+      "sk-create-goal 1.4.4.0"
     ],
     "sk create goal acceptance criteria": [
       "sk-create-goal acceptance criteria"
@@ -98066,6 +98159,9 @@
     "sk create goal v1 4 3 0": [
       "sk-create-goal v1.4.3.0"
     ],
+    "sk create goal v1 4 4 0": [
+      "sk-create-goal v1.4.4.0"
+    ],
     "sk create manual testing playbook 1 0 0 0": [
       "sk-create-manual-testing-playbook 1.0.0.0"
     ],
@@ -98086,6 +98182,9 @@
     ],
     "sk create manual testing playbook 1 0 4 0": [
       "sk-create-manual-testing-playbook 1.0.4.0"
+    ],
+    "sk create manual testing playbook 1 0 5 0": [
+      "sk-create-manual-testing-playbook 1.0.5.0"
     ],
     "sk create manual testing playbook playbook": [
       "sk-create-manual-testing-playbook playbook"
@@ -98111,6 +98210,9 @@
     "sk create manual testing playbook v1 0 4 0": [
       "sk-create-manual-testing-playbook v1.0.4.0"
     ],
+    "sk create manual testing playbook v1 0 5 0": [
+      "sk-create-manual-testing-playbook v1.0.5.0"
+    ],
     "sk create quality control 1 0 0 0": [
       "sk-create-quality-control 1.0.0.0"
     ],
@@ -98131,6 +98233,9 @@
     ],
     "sk create quality control 1 0 5 0": [
       "sk-create-quality-control 1.0.5.0"
+    ],
+    "sk create quality control 1 0 6 0": [
+      "sk-create-quality-control 1.0.6.0"
     ],
     "sk create quality control playbook": [
       "sk-create-quality-control playbook"
@@ -98155,6 +98260,9 @@
     ],
     "sk create quality control v1 0 5 0": [
       "sk-create-quality-control v1.0.5.0"
+    ],
+    "sk create quality control v1 0 6 0": [
+      "sk-create-quality-control v1.0.6.0"
     ],
     "sk create readme 1 0 0 0": [
       "sk-create-readme 1.0.0.0"
@@ -98188,6 +98296,9 @@
     ],
     "sk create readme 1 3 7 0": [
       "sk-create-readme 1.3.7.0"
+    ],
+    "sk create readme 1 3 8 0": [
+      "sk-create-readme 1.3.8.0"
     ],
     "sk create readme lacks the writing style rules": [
       "sk create readme lacks the writing style rules"
@@ -98231,6 +98342,9 @@
     "sk create readme v1 3 7 0": [
       "sk-create-readme v1.3.7.0"
     ],
+    "sk create readme v1 3 8 0": [
+      "sk-create-readme v1.3.8.0"
+    ],
     "sk create readme writing style": [
       "sk create readme writing style"
     ],
@@ -98258,6 +98372,9 @@
     "sk create repo rule 1 1 2 0": [
       "sk-create-repo-rule 1.1.2.0"
     ],
+    "sk create repo rule 1 1 3 0": [
+      "sk-create-repo-rule 1.1.3.0"
+    ],
     "sk create repo rule shape parity": [
       "sk-create-repo-rule shape parity"
     ],
@@ -98272,6 +98389,9 @@
     ],
     "sk create repo rule v1 1 2 0": [
       "sk-create-repo-rule v1.1.2.0"
+    ],
+    "sk create repo rule v1 1 3 0": [
+      "sk-create-repo-rule v1.1.3.0"
     ],
     "sk create skill 1 0 0 0": [
       "sk-create-skill 1.0.0.0"
@@ -98332,6 +98452,9 @@
     ],
     "sk create skill 1 7 0 0": [
       "sk-create-skill 1.7.0.0"
+    ],
+    "sk create skill 1 7 1 0": [
+      "sk-create-skill 1.7.1.0"
     ],
     "sk create skill authoring errors": [
       "sk-create-skill authoring errors"
@@ -98402,6 +98525,9 @@
     "sk create skill v1 7 0 0": [
       "sk-create-skill v1.7.0.0"
     ],
+    "sk create skill v1 7 1 0": [
+      "sk-create-skill v1.7.1.0"
+    ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
     ],
@@ -98410,6 +98536,9 @@
     ],
     "sk create with human voice 1 2 2 0": [
       "sk-create-with-human-voice 1.2.2.0"
+    ],
+    "sk create with human voice 1 2 3 0": [
+      "sk-create-with-human-voice 1.2.3.0"
     ],
     "sk create with human voice testing": [
       "sk-create-with-human-voice testing"
@@ -98422,6 +98551,9 @@
     ],
     "sk create with human voice v1 2 2 0": [
       "sk-create-with-human-voice v1.2.2.0"
+    ],
+    "sk create with human voice v1 2 3 0": [
+      "sk-create-with-human-voice v1.2.3.0"
     ],
     "sk deep research cli codex dispatch": [
       "sk-deep-research cli-codex dispatch"
@@ -98449,6 +98581,9 @@
     ],
     "sk design 2 0 6 0": [
       "sk-design 2.0.6.0"
+    ],
+    "sk design 2 0 7 0": [
+      "sk-design 2.0.7.0"
     ],
     "sk design advisor identity": [
       "sk-design advisor identity"
@@ -98930,6 +99065,9 @@
     "sk design v2 0 6 0": [
       "sk-design v2.0.6.0"
     ],
+    "sk design v2 0 7 0": [
+      "sk-design v2.0.7.0"
+    ],
     "sk doc 1 5 0 0": [
       "sk-doc 1.5.0.0"
     ],
@@ -99034,6 +99172,9 @@
     ],
     "sk doc 2 3 26 0": [
       "sk-doc 2.3.26.0"
+    ],
+    "sk doc 2 3 27 0": [
+      "sk-doc 2.3.27.0"
     ],
     "sk doc 2 3 3 0": [
       "sk-doc 2.3.3.0"
@@ -99182,6 +99323,9 @@
     "sk doc hub and mode packets acceptance criteria": [
       "sk-doc hub and mode packets acceptance criteria"
     ],
+    "sk doc hub and mode packets implementation summary": [
+      "sk-doc hub and mode packets implementation summary"
+    ],
     "sk doc hub and mode packets plan": [
       "sk-doc hub and mode packets plan"
     ],
@@ -99211,6 +99355,9 @@
     ],
     "sk doc link repair tasks": [
       "sk-doc link repair tasks"
+    ],
+    "sk doc machine router": [
+      "sk-doc machine router"
     ],
     "sk doc mode count": [
       "sk-doc mode count"
@@ -99427,6 +99574,9 @@
     ],
     "sk doc v2 3 26 0": [
       "sk-doc v2.3.26.0"
+    ],
+    "sk doc v2 3 27 0": [
+      "sk-doc v2.3.27.0"
     ],
     "sk doc v2 3 3 0": [
       "sk-doc v2.3.3.0"
@@ -108704,6 +108854,9 @@
     "system deep loop 1 6 16 0": [
       "system-deep-loop 1.6.16.0"
     ],
+    "system deep loop 1 6 17 0": [
+      "system-deep-loop 1.6.17.0"
+    ],
     "system deep loop 1 6 2 0": [
       "system-deep-loop 1.6.2.0"
     ],
@@ -108877,6 +109030,9 @@
     ],
     "system deep loop v1 6 16 0": [
       "system-deep-loop v1.6.16.0"
+    ],
+    "system deep loop v1 6 17 0": [
+      "system-deep-loop v1.6.17.0"
     ],
     "system deep loop v1 6 2 0": [
       "system-deep-loop v1.6.2.0"
@@ -116667,6 +116823,9 @@
     ],
     "voice report template": [
       "voice report template"
+    ],
+    "voice routing section moved": [
+      "voice routing section moved"
     ],
     "voice scanner": [
       "voice scanner"
