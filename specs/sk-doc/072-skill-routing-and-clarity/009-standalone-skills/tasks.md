@@ -45,6 +45,7 @@ contextType: "planning"
 - [ ] T005 Restructure sk-git, sk-prompt and mcp-code-mode.
 - [ ] T006 Restructure system-skill-advisor and system-spec-kit.
 - [ ] T007 Regenerate the leaf manifests and aliases.
+- [ ] T010 Add standalone leaf scopes or an extension filter for system-skill-advisor `hooks/`, then regenerate its manifest and aliases (`.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs`). Verify: the manifest and aliases include the routed hook markdown and no non-markdown hooks, and `generate-leaf-manifest.cjs --check` passes.
 <!-- /ANCHOR:phase-2 -->
 
 ---

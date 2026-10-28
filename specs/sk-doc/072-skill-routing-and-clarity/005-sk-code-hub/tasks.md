@@ -46,6 +46,7 @@ contextType: "planning"
 - [ ] T006 Restructure sk-code-skilled and run the gates.
 - [ ] T007 Restructure sk-code-review, keeping the pinned lines, and run the gates.
 - [ ] T008 Shorten the hub routing statement, re-mint and run the guard.
+- [ ] T011 Align section 2 with the section 9 authority and remove the stale `testing` boost (`.skilled/skills/sk-code/ROUTER.md`). Verify: section 2 is generated from section 9 or points to it without a keyword table, and the boost no longer names `testing`.
 <!-- /ANCHOR:phase-2 -->
 
 ---

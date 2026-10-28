@@ -73,6 +73,7 @@ N/A: this phase is Planned. Its first task records the measured behavior before 
 ### In Scope
 - Apply the standalone shape to cli-orca, mcp-code-mode, sk-git, sk-prompt, system-skill-advisor and system-spec-kit.
 - Shrink the Python block where it does not choose among leaves.
+- Limit system-skill-advisor's `hooks/` leaf root to `*.md` through standalone leaf scopes or an extension filter, then regenerate the manifests and aliases. The standalone path in `generate-leaf-manifest.cjs` does not read `leaf-scopes.json` today, so this requires code.
 - Regenerate each skill's `leaf-manifest.json` and `leaf-aliases.json`.
 
 ### Out of Scope
@@ -85,6 +86,8 @@ N/A: this phase is Planned. Its first task records the measured behavior before 
 |-----------|-------------|-------------|
 | `.skilled/skills/<standalone>/SKILL.md` | Modify | Short router, block last |
 | `.skilled/skills/<standalone>/leaf-manifest.json` | Modify | Regenerated |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs` | Modify | Support the standalone hooks filter or leaf scopes |
+| `.skilled/skills/<standalone>/leaf-aliases.json` | Modify | Regenerated |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -104,6 +107,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement |
 |----|-------------|
 | REQ-002 | Each skill's first instruction appears before its machine block. |
+| REQ-003 | Limit system-skill-advisor `hooks/` leaves to `*.md` through standalone leaf scopes or an extension filter, and regenerate its manifest and aliases. The standalone generator path does not currently read `leaf-scopes.json`, so code must change. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

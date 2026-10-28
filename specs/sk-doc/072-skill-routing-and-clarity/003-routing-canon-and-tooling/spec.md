@@ -76,7 +76,7 @@ N/A: this phase is Planned. Its first task records the measured behavior before 
 - Adjust `package_skill.py`, `router-replay-lib.cjs` or `verify-router-sync.cjs` only where the proof shows they reject the shape, including leg 2's empty `SHARED_CONTROL_RESOURCES` case.
 - Pick one name for the no-match outcome and one glossary location per hub.
 - Make sk-create-skill produce the new shape by default: its skill and parent-skill templates and scaffolds (`.skilled/skills/sk-doc/sk-create-skill/assets/`), the reference docs that teach skill creation (`sk-create-skill/references/`), and the `/create:skill` and `/create:skill-parent` command workflows and presentation assets (`.skilled/commands/create/`).
-- Make a check that already runs on skill creation reject a new or changed `SKILL.md` in the old shape: a SMART ROUTING section over the agreed length, a machine router block that is not the final appendix, or a `ROUTER.md` inside a mode packet. Extend `package_skill.py --strict` or the create-skill CI checks rather than adding a new check. Existing skills are listed as known debt for phases 005 to 009, so the fleet run does not break CI.
+- Make a check that already runs on skill creation reject a new or changed `SKILL.md` in the old shape: a SMART ROUTING section over the agreed length, a machine router block that is not the final appendix, or a `ROUTER.md` inside a mode packet. Extend `package_skill.py --strict` for `/create:skill` and `parent-skill-check.cjs` for `/create:skill-parent`; the parent flow gates on the latter and does not run the former. Existing skills are listed as known debt for phases 005 to 009, so the fleet run does not break CI.
 
 ### Out of Scope
 - Rolling the shape out to more than the proof packet - phases 005 to 009 do that
@@ -112,7 +112,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 |----|-------------|
 | REQ-003 | The templates describe the new shape in plain words with one example. |
 | REQ-004 | sk-create-skill produces the new shape by default, through its templates, scaffolds, reference docs and the `/create:skill` and `/create:skill-parent` workflows. |
-| REQ-005 | A check that already runs on skill creation rejects a new or changed `SKILL.md` in the old shape, proven by a test that fails before the change, and a fleet run lists existing skills as known debt without failing CI. |
+| REQ-005 | Both default creation checks reject a new or changed `SKILL.md` in the old shape: `package_skill.py --strict` for `/create:skill` and `parent-skill-check.cjs` for `/create:skill-parent`. Tests prove each check rejects an old-shape fixture, and a fleet run lists existing skills as known debt without failing CI. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

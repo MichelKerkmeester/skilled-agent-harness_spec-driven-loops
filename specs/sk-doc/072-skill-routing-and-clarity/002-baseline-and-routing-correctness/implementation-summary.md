@@ -75,6 +75,7 @@ Each fix closes a finding in `../001-deep-research/research/research.md` §5.
 | Five compiled-route manifests, runtime and authored copies | Regenerated | cli-classifier, cli-external-orchestration, mcp-tooling, sk-code, sk-doc |
 | Seven `.hermes/skills/*/SKILL.md` copies | Regenerated | Mirror of the changed `SKILL.md` files |
 | `scratch/baseline.md`, `scratch/after.md` | Created | The gate record |
+| `skill-graph.json` | Re-exported | Also picked up three pending sk-git signals from an earlier commit: worktree reaper, worktree cleanup and numbered worktree sweep; accuracy stayed 155/195. |
 | `../003-routing-canon-and-tooling/`, `../010-prose-clarity-pass/` spec, plan, tasks and acceptance criteria, and `../spec.md` | Modified | The operator's scope amendment for sk-create-skill, described below |
 <!-- /ANCHOR:what-built -->
 
@@ -129,9 +130,10 @@ Detail, commands and the intermediate failures are in `scratch/after.md`.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The `hooks/` leaf root walks every file under it.** The system-skill-advisor manifest gained 14 leaves, including the hook source files (`.ts`, `.py`, `.json`), because a standalone manifest walks whole roots. Only `hooks/skill-advisor-hook.md` is routed. Phase 009 can narrow it if a leaf-scope file is added for standalone skills.
+1. **The `hooks/` leaf root walks every file under it.** The system-skill-advisor manifest gained 14 leaves, including the hook source files (`.ts`, `.py`, `.json`), because a standalone manifest walks whole roots. Only `hooks/skill-advisor-hook.md` is routed. Phase 009 must add standalone leaf-scope support or an extension filter; the standalone generator does not currently read `leaf-scopes.json`.
 2. **Most stage-one terms still have no stage-two intent.** mcp-tooling has 62 left and cli-external-orchestration 36 (`scratch/baseline.md` §2). Phase 004 owns them.
 3. **sk-code `ROUTER.md` §4 still has a `LANGUAGE_STANDARDS` row** in its intent overlay. It was outside the §2 and §9 fix. Phase 005 rewrites that hub.
+4. **sk-code `ROUTER.md` §2 and §9 still differ on keywords.** Intent names agree, but §2 includes DEBUGGING `fix`, `bug`, `error`; VERIFICATION `done`, `complete`, `works`, `fixed`, `build`; IMPLEMENTATION `script`; and CONFIG `json`, `config`, which are absent from §9. The phase boost also still names `testing`, which is no longer an intent. Phase 005 owns the alignment.
 <!-- /ANCHOR:limitations -->
 
 ---

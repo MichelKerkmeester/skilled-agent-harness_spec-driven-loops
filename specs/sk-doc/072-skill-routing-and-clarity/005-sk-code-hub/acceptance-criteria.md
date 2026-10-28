@@ -54,6 +54,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-001 | REQ-001 | Given the phase is implemented, When its gates run, Then: `verify-router-sync.cjs`, `package_skill.py --strict`, `check-rule-copies.js` and `compiled-route-guard.cjs` pass after each packet. | Recorded in `scratch/after.md` | Unmet | - |
 | AC-002 | REQ-002 | Given the phase is implemented, When its gates run, Then: Each packet's first instruction appears before its machine-router appendix. | Recorded in `scratch/after.md` | Unmet | - |
 | AC-003 | REQ-003 | Given the phase is implemented, When its gates run, Then: One document names the routing authority, and the other two point at it. | Recorded in `scratch/after.md` | Unmet | - |
+| AC-004 | REQ-004 | Given the sk-code router, When section 2 and the phase boost are inspected, Then: section 2 is generated from section 9 or points to it without a keyword table, and the boost does not name `testing`. | Inspection recorded in `scratch/after.md` | Unmet | - |
 
 ### Status values
 

@@ -17,6 +17,7 @@ Recorded 2026-10-28 on `worktrees/254-skill-routing-and-clarity`, after every fi
 | skill-root metadata | 0, 14/14 | 0, 14/14 | none |
 | leaf-manifest freshness | 0, 14/14 fresh | 0, 14/14 fresh | none |
 | router-sync and router-replay tests (8 files) | 0, 40/40 | 0, 40/40 | none |
+| capture-scorer-eval-baseline.mjs | full corpus 155/195, holdout 49/66, ambiguity 19/24 | full corpus 155/195, holdout 49/66, ambiguity 19/24 | none |
 | leaf-resource-contract unit test | not in baseline | 0, passed | new test, fails on the old contract |
 | validate.sh `--recursive --strict` | 0, PASSED x 12 | PASSED x 12 after `repair-derived.cjs` refreshed the generated metadata of the edited folders | none |
 

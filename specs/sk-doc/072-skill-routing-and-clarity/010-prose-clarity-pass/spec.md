@@ -74,8 +74,9 @@ N/A: this phase is Planned. Its first task records the measured behavior before 
 - Apply the clarity rules from the research: instructions first, each fact once, one idea per sentence, one glossary per hub, second person, no history in instructions, code blocks only for what a person runs or a parser reads.
 - Split overlong lines and define each term once.
 - Leave pinned lines and machine blocks unchanged.
-- Land the same clarity rules in sk-create-skill, so a new skill is written that way from the start: its templates, its writing guidance, and the authoring step of the `/create:skill` workflow.
-- Make the default create flow run the human-voice check (`sk-create-with-human-voice` scoring) on the generated `SKILL.md` and `README.md`, instead of leaving it as a later pass.
+- Correct stale CLI reference prose: `system-spec-kit/references/cli/memory-handback.md` lines 3, 16 and 22 call the siblings six although cli-hermes is the seventh; `references/cli/shared-smart-router.md` line 17 says the helper bodies are byte-identical across seven files although sibling `SKILL.md` files no longer inline them.
+- Land the same clarity rules in sk-create-skill, so a new skill is written that way from the start: its templates, its writing guidance, and the authoring steps of the `/create:skill` and `/create:skill-parent` workflows.
+- Make both default create flows run the human-voice check (`sk-create-with-human-voice` scoring) on the generated `SKILL.md` and `README.md`, instead of leaving it as a later pass.
 
 ### Out of Scope
 - Routing structure - phases 003 to 009
@@ -88,7 +89,8 @@ N/A: this phase is Planned. Its first task records the measured behavior before 
 | `.skilled/commands/` | Modify | Routing prose |
 | `.skilled/agents/` | Modify | Routing prose |
 | `.skilled/skills/sk-doc/sk-create-skill/assets/`, `sk-create-skill/references/` | Modify | Templates and writing guidance carry the clarity rules |
-| `.skilled/commands/create/` | Modify | The `/create:skill` authoring step applies the rules and runs the human-voice check |
+| `.skilled/commands/create/` | Modify | Both creation workflows apply the rules and run the human-voice check |
+| `.skilled/skills/system-spec-kit/references/cli/memory-handback.md`, `shared-smart-router.md` | Modify | Correct stale sibling count and helper-body claims |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -108,8 +110,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement |
 |----|-------------|
 | REQ-002 | No line in a skill `SKILL.md` exceeds 400 characters outside code blocks and tables. |
-| REQ-003 | sk-create-skill's templates, writing guidance and `/create:skill` authoring step carry the clarity rules, so a new skill is written that way from the start. |
-| REQ-004 | The default create flow runs the `sk-create-with-human-voice` check on the generated `SKILL.md` and `README.md`. |
+| REQ-003 | sk-create-skill's templates, writing guidance and both `/create:skill` and `/create:skill-parent` authoring steps carry the clarity rules, so a new skill is written that way from the start. |
+| REQ-004 | Both default create flows, `/create:skill` and `/create:skill-parent`, run the `sk-create-with-human-voice` scoring check on the generated `SKILL.md` and `README.md`. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

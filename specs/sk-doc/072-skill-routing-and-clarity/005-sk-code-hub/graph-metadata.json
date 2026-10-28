@@ -38,7 +38,8 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      ".skilled/skills/sk-code/SKILL.md"
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/sk-code/ROUTER.md"
     ],
     "entities": [
       {
@@ -69,6 +70,12 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/ROUTER.md",
         "source": "derived"
       },
       {
@@ -178,17 +185,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Routing prose fills 37 to 54 percent of the sk-code mode `SKILL.md` files, and three of its documents each claim a different routing authority",
     "created_at": "2026-10-28T06:38:46Z",
-    "last_save_at": "2026-10-28T06:42:24.267Z",
+    "last_save_at": "2026-10-28T07:43:23.130Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +198,12 @@
       "tasks.md",
       "acceptance-criteria.md"
     ],
-    "source_fingerprint": "sha256:acf7ef41d4fbb95b39a54889db8887ce1d2a6be4fc5bf881a059c376cd1daa9c",
+    "source_fingerprint": "sha256:528578f8de1ce527f42aaf5fc380bf2222b244e273b0c86e631786ce1280022f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "00eb4955f67e5fecd07e0315af7b1a966fbb347721f90e573b95454f2b09e994",
+      "spec.md": "80eee7680afdd45513f787095ab759ba2e4a64c031669d9a9d8f5679245349db",
       "plan.md": "c35f4b1f81c8bd89c94d62f875948844d622c7c3eeffa5f37970900cb0eeb788",
-      "tasks.md": "076d413d40bfe26286e56a2e3fbafadb364e389943c21c2f180f9131adbd276c"
+      "tasks.md": "5e7e6192541deb05cd6ccbf6aed2797ce56001ee05c5f1f99953c16ba0a4e482"
     },
     "last_active_at": null
   }

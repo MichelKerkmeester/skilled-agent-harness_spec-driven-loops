@@ -32,7 +32,7 @@ contextType: "planning"
 ## Phase 1: Setup
 
 - [x] T001 Read the phase 001 research findings this phase acts on (`../001-deep-research/research/research.md`). Verify: each finding used here is marked Confirmed or rechecked. Evidence: findings 1, 8, 10, 11, 12 and 13 re-read at the cited lines; finding 4's count of 17 rechecked by script (`scratch/baseline.md` §2).
-- [x] T002 Record the starting output of every gate in scope (`scratch/before.md`). Verify: the file lists each gate with its exit status. Evidence: `scratch/baseline.md` §1 is the before record, every gate with its exit status.
+- [x] T002 Record the starting output of every gate in scope (`scratch/baseline.md`). Verify: the file lists each gate with its exit status. Evidence: `scratch/baseline.md` §1 is the before record, every gate with its exit status.
 - [x] T003 Detail these tasks with `/speckit:plan` before implementation. Verify: each task below names its file and its verify command. Evidence: the six fixes were briefed one file each with a verify command; `implementation-summary.md` lists each with file:line.
 <!-- /ANCHOR:phase-1 -->
 
@@ -54,7 +54,7 @@ contextType: "planning"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T010 Rerun every gate in scope (`scratch/after.md`). Verify: no gate is worse than in `scratch/before.md`. Evidence: `scratch/after.md` §1, every gate exit 0 and the same result as before.
+- [x] T010 Rerun every gate in scope (`scratch/after.md`). Verify: no gate is worse than in `scratch/baseline.md`. Evidence: `scratch/after.md` §1, every gate exit 0 and the same result as before.
 - [x] T011 Validate this folder. Verify: `validate.sh --strict` prints `RESULT: PASSED`. Evidence: `validate.sh specs/sk-doc/072-skill-routing-and-clarity --recursive --strict` printed `RESULT: PASSED` for this folder.
 <!-- /ANCHOR:phase-3 -->
 

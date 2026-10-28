@@ -53,6 +53,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given the phase is implemented, When its gates run, Then: `package_skill.py --strict` and `generate-leaf-manifest.cjs --check` pass for each skill. | Recorded in `scratch/after.md` | Unmet | - |
 | AC-002 | REQ-002 | Given the phase is implemented, When its gates run, Then: Each skill's first instruction appears before its machine block. | Recorded in `scratch/after.md` | Unmet | - |
+| AC-003 | REQ-003 | Given system-skill-advisor hooks include markdown and non-markdown files, When its manifest and aliases are regenerated, Then: the routed hook markdown is present, non-markdown hooks are absent, and the manifest freshness check passes. | Fixture and generated output recorded in `scratch/after.md` | Unmet | - |
 
 ### Status values
 

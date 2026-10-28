@@ -37,7 +37,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "references/cli/shared-smart-router.md",
+      ".skilled/skills/system-spec-kit/references/cli/memory-handback.md"
     ],
     "entities": [
       {
@@ -62,6 +64,18 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "shared-smart-router.md",
+        "kind": "doc",
+        "path": "references/cli/shared-smart-router.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-handback.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/cli/memory-handback.md",
         "source": "derived"
       },
       {
@@ -171,23 +185,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Verification",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Skill docs use terms before defining them, mix project history into instructions, and carry single lines of 1,000 to 2,200 characters",
     "created_at": "2026-10-28T06:38:51Z",
-    "last_save_at": "2026-10-28T07:28:49.907Z",
+    "last_save_at": "2026-10-28T07:42:56.840Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,10 +198,10 @@
       "tasks.md",
       "acceptance-criteria.md"
     ],
-    "source_fingerprint": "sha256:d75ec9b3c94061f504c999f1720c7a1399e7f2246f65420a94c4136bb1058ecf",
+    "source_fingerprint": "sha256:4cab76d0cc4f546aab727c4a768b97a1f4bc020816d22ac5f0292e97214323f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c3dd33c131b3d7f0f77955fa1f2d895b18549bee3fad4b2a6827d03cf1a2f9b7",
+      "spec.md": "48612fa8250f602b8bd53e980a531d78646c75b97fa4d930ceece0f4c188b1d2",
       "plan.md": "3a8d0f83100c7a97f69c6bb6bcf154d5636fff537f44844c5d0c22050d338a3e",
       "tasks.md": "ef8cff19db31b2ba9c1f0b19a47cf7ac189a560ddb3c59f7afa2a0756ade9a46"
     },

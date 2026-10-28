@@ -105,6 +105,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement |
 |----|-------------|
 | REQ-003 | One document names the routing authority, and the other two point at it. |
+| REQ-004 | Generate `ROUTER.md` section 2 from section 9, or replace section 2's keyword table with prose pointing to section 9, and remove the stale `testing` boost. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

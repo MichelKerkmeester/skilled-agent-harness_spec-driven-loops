@@ -25,6 +25,7 @@ This file is the "before" record that `tasks.md` T002 and T004 name. `after.md` 
 | skill-root metadata | `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | 0 | `checked=14 passed=14 failed=0 fixed=0` |
 | leaf-manifest freshness | `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs` | 0 | `checked=14 fresh=14 failed=0` |
 | router-sync and router-replay tests | `node --test` over the eight files below | 0 | `tests 40, pass 40, fail 0` |
+| capture-scorer-eval-baseline.mjs | `capture-scorer-eval-baseline.mjs` | Not recorded | Full corpus 155/195, holdout 49/66, ambiguity 19/24 |
 | spec validation | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/072-skill-routing-and-clarity --recursive --strict` | 0 | `RESULT: PASSED` for all 12 folders, `Errors: 0 Warnings: 0` each |
 
 The router-sync and router-replay test set, named here so the rerun uses the same files:
