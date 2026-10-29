@@ -1,5 +1,5 @@
 {
-  "manifestHash": "63572ebe548c31e6abfbdc9422ce51d80d2d864db27af7a1821ae68939ae5c31",
+  "manifestHash": "5055e84a3c4dcb921e7ef38db2c8f37fc5249a8b0118e288e68d7d778db189dd",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -19776,6 +19776,9 @@
     "cli claude code 1 5 7 0": [
       "cli-claude-code 1.5.7.0"
     ],
+    "cli claude code 1 5 8 0": [
+      "cli-claude-code 1.5.8.0"
+    ],
     "cli claude code benchmark": [
       "cli-claude-code benchmark"
     ],
@@ -19811,6 +19814,12 @@
     ],
     "cli claude code review executor": [
       "cli-claude-code review executor"
+    ],
+    "cli claude code router": [
+      "cli-claude-code router"
+    ],
+    "cli claude code routing": [
+      "cli-claude-code routing"
     ],
     "cli claude code skill benchmark artifacts": [
       "cli-claude-code skill-benchmark artifacts"
@@ -19889,6 +19898,9 @@
     ],
     "cli claude code v1 5 7 0": [
       "cli-claude-code v1.5.7.0"
+    ],
+    "cli claude code v1 5 8 0": [
+      "cli-claude-code v1.5.8.0"
     ],
     "cli codex 1 0 0 0": [
       "cli-codex 1.0.0.0"
@@ -19973,6 +19985,9 @@
     ],
     "cli codex 1 9 12 0": [
       "cli-codex 1.9.12.0"
+    ],
+    "cli codex 1 9 13 0": [
+      "cli-codex 1.9.13.0"
     ],
     "cli codex 1 9 2 0": [
       "cli-codex 1.9.2.0"
@@ -20073,6 +20088,12 @@
     "cli codex review executor": [
       "cli-codex review executor"
     ],
+    "cli codex router": [
+      "cli-codex router"
+    ],
+    "cli codex routing": [
+      "cli-codex routing"
+    ],
     "cli codex sandbox eperm evidence": [
       "cli codex sandbox eperm evidence"
     ],
@@ -20159,6 +20180,9 @@
     ],
     "cli codex v1 9 12 0": [
       "cli-codex v1.9.12.0"
+    ],
+    "cli codex v1 9 13 0": [
+      "cli-codex v1.9.13.0"
     ],
     "cli codex v1 9 2 0": [
       "cli-codex v1.9.2.0"
@@ -20277,6 +20301,9 @@
     "cli cursor 1 5 8 0": [
       "cli-cursor 1.5.8.0"
     ],
+    "cli cursor 1 5 9 0": [
+      "cli-cursor 1.5.9.0"
+    ],
     "cli cursor benchmark": [
       "cli-cursor benchmark"
     ],
@@ -20306,6 +20333,12 @@
     ],
     "cli cursor readme rewrite": [
       "cli-cursor readme rewrite"
+    ],
+    "cli cursor router": [
+      "cli-cursor router"
+    ],
+    "cli cursor routing": [
+      "cli-cursor routing"
     ],
     "cli cursor v1 0 0 0": [
       "cli-cursor v1.0.0.0"
@@ -20354,6 +20387,9 @@
     ],
     "cli cursor v1 5 8 0": [
       "cli-cursor v1.5.8.0"
+    ],
+    "cli cursor v1 5 9 0": [
+      "cli-cursor v1.5.9.0"
     ],
     "cli decommission orphan removal": [
       "cli decommission orphan removal"
@@ -20450,6 +20486,9 @@
     ],
     "cli devin 1 4 11 0": [
       "cli-devin 1.4.11.0"
+    ],
+    "cli devin 1 4 12 0": [
+      "cli-devin 1.4.12.0"
     ],
     "cli devin 1 4 2 0": [
       "cli-devin 1.4.2.0"
@@ -20550,6 +20589,12 @@
     "cli devin readme template": [
       "cli-devin readme template"
     ],
+    "cli devin router": [
+      "cli-devin router"
+    ],
+    "cli devin routing": [
+      "cli-devin routing"
+    ],
     "cli devin rule rewording plan": [
       "cli-devin rule rewording plan"
     ],
@@ -20585,6 +20630,9 @@
     ],
     "cli devin v1 4 11 0": [
       "cli-devin v1.4.11.0"
+    ],
+    "cli devin v1 4 12 0": [
+      "cli-devin v1.4.12.0"
     ],
     "cli devin v1 4 2 0": [
       "cli-devin v1.4.2.0"
@@ -20994,6 +21042,9 @@
     "cli hermes 1 0 10 0": [
       "cli-hermes 1.0.10.0"
     ],
+    "cli hermes 1 0 11 0": [
+      "cli-hermes 1.0.11.0"
+    ],
     "cli hermes 1 0 2 0": [
       "cli-hermes 1.0.2.0"
     ],
@@ -21096,6 +21147,12 @@
     "cli hermes research scope": [
       "cli-hermes research scope"
     ],
+    "cli hermes router": [
+      "cli-hermes router"
+    ],
+    "cli hermes routing": [
+      "cli-hermes routing"
+    ],
     "cli hermes skill packet": [
       "cli-hermes skill packet"
     ],
@@ -21119,6 +21176,9 @@
     ],
     "cli hermes v1 0 10 0": [
       "cli-hermes v1.0.10.0"
+    ],
+    "cli hermes v1 0 11 0": [
+      "cli-hermes v1.0.11.0"
     ],
     "cli hermes v1 0 2 0": [
       "cli-hermes v1.0.2.0"
@@ -21194,6 +21254,9 @@
     ],
     "cli jev 0 1 8 0": [
       "cli-jev 0.1.8.0"
+    ],
+    "cli jev 0 1 9 0": [
+      "cli-jev 0.1.9.0"
     ],
     "cli jev 0 2 0 0": [
       "cli-jev 0.2.0.0"
@@ -21345,6 +21408,12 @@
     "cli jev route replay plan": [
       "cli-jev route replay plan"
     ],
+    "cli jev router": [
+      "cli-jev router"
+    ],
+    "cli jev routing": [
+      "cli-jev routing"
+    ],
     "cli jev run keyword": [
       "cli-jev run keyword"
     ],
@@ -21389,6 +21458,9 @@
     ],
     "cli jev v0 1 8 0": [
       "cli-jev v0.1.8.0"
+    ],
+    "cli jev v0 1 9 0": [
+      "cli-jev v0.1.9.0"
     ],
     "cli jev v0 2 0 0": [
       "cli-jev v0.2.0.0"
@@ -21579,6 +21651,9 @@
     "cli opencode 1 5 6 0": [
       "cli-opencode 1.5.6.0"
     ],
+    "cli opencode 1 5 7 0": [
+      "cli-opencode 1.5.7.0"
+    ],
     "cli opencode authoring complete": [
       "cli-opencode authoring complete"
     ],
@@ -21668,6 +21743,12 @@
     ],
     "cli opencode reference frontmatter": [
       "cli-opencode reference frontmatter"
+    ],
+    "cli opencode router": [
+      "cli-opencode router"
+    ],
+    "cli opencode routing": [
+      "cli-opencode routing"
     ],
     "cli opencode subagent contract": [
       "cli-opencode subagent contract"
@@ -21801,6 +21882,9 @@
     "cli opencode v1 5 6 0": [
       "cli-opencode v1.5.6.0"
     ],
+    "cli opencode v1 5 7 0": [
+      "cli-opencode v1.5.7.0"
+    ],
     "cli opencode version detection": [
       "cli-opencode version detection"
     ],
@@ -21824,6 +21908,9 @@
     ],
     "cli orca 0 1 6 0": [
       "cli-orca 0.1.6.0"
+    ],
+    "cli orca 0 1 7 0": [
+      "cli-orca 0.1.7.0"
     ],
     "cli orca audit surfaces": [
       "cli-orca audit surfaces"
@@ -21879,6 +21966,12 @@
     "cli orca readme": [
       "cli-orca readme"
     ],
+    "cli orca router": [
+      "cli-orca router"
+    ],
+    "cli orca routing": [
+      "cli-orca routing"
+    ],
     "cli orca routing vocabulary": [
       "cli-orca routing vocabulary"
     ],
@@ -21911,6 +22004,9 @@
     ],
     "cli orca v0 1 6 0": [
       "cli-orca v0.1.6.0"
+    ],
+    "cli orca v0 1 7 0": [
+      "cli-orca v0.1.7.0"
     ],
     "cli orchestration ram overload": [
       "CLI orchestration RAM overload"
@@ -22016,6 +22112,9 @@
     ],
     "cli pi 1 5 2 0": [
       "cli-pi 1.5.2.0"
+    ],
+    "cli pi 1 5 20 0": [
+      "cli-pi 1.5.20.0"
     ],
     "cli pi 1 5 3 0": [
       "cli-pi 1.5.3.0"
@@ -22137,6 +22236,12 @@
     "cli pi opencode go route timeline": [
       "cli pi opencode go route timeline"
     ],
+    "cli pi router": [
+      "cli-pi router"
+    ],
+    "cli pi routing": [
+      "cli-pi routing"
+    ],
     "cli pi self dispatch": [
       "cli-pi self dispatch",
       "cli-pi self-dispatch"
@@ -22203,6 +22308,9 @@
     ],
     "cli pi v1 5 2 0": [
       "cli-pi v1.5.2.0"
+    ],
+    "cli pi v1 5 20 0": [
+      "cli-pi v1.5.20.0"
     ],
     "cli pi v1 5 3 0": [
       "cli-pi v1.5.3.0"
@@ -31969,6 +32077,9 @@
     "dedicated plugin support reduced": [
       "dedicated plugin support reduced"
     ],
+    "dedicated router file": [
+      "dedicated router file"
+    ],
     "dedicated sk code mode": [
       "dedicated sk-code mode"
     ],
@@ -32297,6 +32408,9 @@
     "deep ai council 1 8 8 0": [
       "deep-ai-council 1.8.8.0"
     ],
+    "deep ai council 1 8 9 0": [
+      "deep-ai-council 1.8.9.0"
+    ],
     "deep ai council anti patterns": [
       "deep-ai-council anti-patterns"
     ],
@@ -32513,6 +32627,12 @@
     "deep ai council rollback window": [
       "deep-ai-council rollback window"
     ],
+    "deep ai council router": [
+      "deep-ai-council router"
+    ],
+    "deep ai council routing": [
+      "deep-ai-council routing"
+    ],
     "deep ai council run certificate": [
       "deep-ai-council run certificate"
     ],
@@ -32665,6 +32785,9 @@
     ],
     "deep ai council v1 8 8 0": [
       "deep-ai-council v1.8.8.0"
+    ],
+    "deep ai council v1 8 9 0": [
+      "deep-ai-council v1.8.9.0"
     ],
     "deep ai council verified sealed reads": [
       "deep ai council verified sealed reads"
@@ -34404,6 +34527,9 @@
     "deep research 1 15 10 0": [
       "deep-research 1.15.10.0"
     ],
+    "deep research 1 15 11 0": [
+      "deep-research 1.15.11.0"
+    ],
     "deep research 1 15 2 0": [
       "deep-research 1.15.2.0"
     ],
@@ -34929,6 +35055,12 @@
     "deep research rollback switch tasks": [
       "deep-research rollback switch tasks"
     ],
+    "deep research router": [
+      "deep-research router"
+    ],
+    "deep research routing": [
+      "deep-research routing"
+    ],
     "deep research routing summary": [
       "deep-research routing summary"
     ],
@@ -35090,6 +35222,9 @@
     "deep research v1 15 10 0": [
       "deep-research v1.15.10.0"
     ],
+    "deep research v1 15 11 0": [
+      "deep-research v1.15.11.0"
+    ],
     "deep research v1 15 2 0": [
       "deep-research v1.15.2.0"
     ],
@@ -35204,6 +35339,9 @@
     ],
     "deep review 1 11 12 0": [
       "deep-review 1.11.12.0"
+    ],
+    "deep review 1 11 13 0": [
+      "deep-review 1.11.13.0"
     ],
     "deep review 1 11 3 0": [
       "deep-review 1.11.3.0"
@@ -35764,6 +35902,12 @@
     "deep review rollout fallback decision": [
       "deep review rollout fallback decision"
     ],
+    "deep review router": [
+      "deep-review router"
+    ],
+    "deep review routing": [
+      "deep-review routing"
+    ],
     "deep review routing summary": [
       "deep-review routing summary"
     ],
@@ -35948,6 +36092,9 @@
     ],
     "deep review v1 11 12 0": [
       "deep-review v1.11.12.0"
+    ],
+    "deep review v1 11 13 0": [
+      "deep-review v1.11.13.0"
     ],
     "deep review v1 11 2 0": [
       "deep-review v1.11.2.0"
@@ -37226,6 +37373,9 @@
     ],
     "design mode and command rename tasks": [
       "design mode and command rename tasks"
+    ],
+    "design no load intent": [
+      "DESIGN no load intent"
     ],
     "design operating register": [
       "design operating register"
@@ -46152,6 +46302,9 @@
     ],
     "figma render jsx": [
       "figma render jsx"
+    ],
+    "figma router file": [
+      "Figma router file"
     ],
     "figma safe connect example": [
       "figma safe connect example"
@@ -60597,14 +60750,47 @@
     "machine readable task list": [
       "machine-readable task list"
     ],
+    "machine router": [
+      "machine router"
+    ],
+    "machine router file": [
+      "machine router file"
+    ],
+    "machine router in router md": [
+      "machine router in ROUTER.md"
+    ],
+    "machine router location": [
+      "machine router location"
+    ],
+    "machine router move": [
+      "machine router move"
+    ],
+    "machine router moved to router md": [
+      "machine router moved to ROUTER.md"
+    ],
+    "machine router moves": [
+      "machine router moves"
+    ],
+    "machine router moves to router md": [
+      "machine router moves to ROUTER.md"
+    ],
     "machine router out of skill md": [
       "machine router out of skill md"
+    ],
+    "machine router placement": [
+      "machine router placement"
+    ],
+    "machine router reference": [
+      "machine router reference"
     ],
     "machine router section": [
       "machine router section"
     ],
     "machine router section in the deep loop hub": [
       "machine router section in the deep-loop hub"
+    ],
+    "machine routing moves": [
+      "machine routing moves"
     ],
     "macos daemon ipc sock einval": [
       "macOS daemon-ipc.sock einval"
@@ -61189,6 +61375,9 @@
     "manual testing playbooks cleanup tasks": [
       "manual-testing-playbooks cleanup tasks"
     ],
+    "manual testing router file": [
+      "manual testing router file"
+    ],
     "manual time entry": [
       "manual time entry"
     ],
@@ -61405,6 +61594,15 @@
     "mcp aside devtools 1 1 5 1": [
       "mcp-aside-devtools 1.1.5.1"
     ],
+    "mcp aside devtools 1 1 6 0": [
+      "mcp-aside-devtools 1.1.6.0"
+    ],
+    "mcp aside devtools router": [
+      "mcp-aside-devtools router"
+    ],
+    "mcp aside devtools routing": [
+      "mcp-aside-devtools routing"
+    ],
     "mcp aside devtools v1 0 0 0": [
       "mcp-aside-devtools v1.0.0.0"
     ],
@@ -61428,6 +61626,9 @@
     ],
     "mcp aside devtools v1 1 5 1": [
       "mcp-aside-devtools v1.1.5.1"
+    ],
+    "mcp aside devtools v1 1 6 0": [
+      "mcp-aside-devtools v1.1.6.0"
     ],
     "mcp aside devtools workflow mode": [
       "mcp-aside-devtools workflow mode"
@@ -61486,6 +61687,9 @@
     "mcp chrome devtools 1 0 18 0": [
       "mcp-chrome-devtools 1.0.18.0"
     ],
+    "mcp chrome devtools 1 0 19 0": [
+      "mcp-chrome-devtools 1.0.19.0"
+    ],
     "mcp chrome devtools 1 0 2 0": [
       "mcp-chrome-devtools 1.0.2.0"
     ],
@@ -61509,6 +61713,12 @@
     ],
     "mcp chrome devtools reference frontmatter": [
       "mcp-chrome-devtools reference frontmatter"
+    ],
+    "mcp chrome devtools router": [
+      "mcp-chrome-devtools router"
+    ],
+    "mcp chrome devtools routing": [
+      "mcp-chrome-devtools routing"
     ],
     "mcp chrome devtools v1 0 0 0": [
       "mcp-chrome-devtools v1.0.0.0"
@@ -61545,6 +61755,9 @@
     ],
     "mcp chrome devtools v1 0 18 0": [
       "mcp-chrome-devtools v1.0.18.0"
+    ],
+    "mcp chrome devtools v1 0 19 0": [
+      "mcp-chrome-devtools v1.0.19.0"
     ],
     "mcp chrome devtools v1 0 2 0": [
       "mcp-chrome-devtools v1.0.2.0"
@@ -61615,6 +61828,9 @@
     "mcp click up 1 2 7 0": [
       "mcp-click-up 1.2.7.0"
     ],
+    "mcp click up 1 2 8 0": [
+      "mcp-click-up 1.2.8.0"
+    ],
     "mcp click up frontmatter alignment": [
       "mcp-click-up frontmatter alignment"
     ],
@@ -61629,6 +61845,12 @@
     ],
     "mcp click up reference frontmatter": [
       "mcp-click-up reference frontmatter"
+    ],
+    "mcp click up router": [
+      "mcp-click-up router"
+    ],
+    "mcp click up routing": [
+      "mcp-click-up routing"
     ],
     "mcp click up standards alignment": [
       "mcp-click-up standards alignment"
@@ -61665,6 +61887,9 @@
     ],
     "mcp click up v1 2 7 0": [
       "mcp-click-up v1.2.7.0"
+    ],
+    "mcp click up v1 2 8 0": [
+      "mcp-click-up v1.2.8.0"
     ],
     "mcp client reconnect": [
       "mcp client reconnect"
@@ -61738,6 +61963,9 @@
     "mcp code mode 1 0 14 0": [
       "mcp-code-mode 1.0.14.0"
     ],
+    "mcp code mode 1 0 15 0": [
+      "mcp-code-mode 1.0.15.0"
+    ],
     "mcp code mode 1 0 2 0": [
       "mcp-code-mode 1.0.2.0"
     ],
@@ -61792,6 +62020,12 @@
     "mcp code mode reference frontmatter": [
       "mcp-code-mode reference frontmatter"
     ],
+    "mcp code mode router": [
+      "mcp-code-mode router"
+    ],
+    "mcp code mode routing": [
+      "mcp-code-mode routing"
+    ],
     "mcp code mode scripts": [
       "mcp-code-mode scripts"
     ],
@@ -61818,6 +62052,9 @@
     ],
     "mcp code mode v1 0 14 0": [
       "mcp-code-mode v1.0.14.0"
+    ],
+    "mcp code mode v1 0 15 0": [
+      "mcp-code-mode v1.0.15.0"
     ],
     "mcp code mode v1 0 2 0": [
       "mcp-code-mode v1.0.2.0"
@@ -62079,6 +62316,9 @@
     "mcp figma 1 1 1 0": [
       "mcp-figma 1.1.1.0"
     ],
+    "mcp figma 1 1 10 0": [
+      "mcp-figma 1.1.10.0"
+    ],
     "mcp figma 1 1 2 0": [
       "mcp-figma 1.1.2.0"
     ],
@@ -62103,6 +62343,12 @@
     "mcp figma 1 1 9 0": [
       "mcp-figma 1.1.9.0"
     ],
+    "mcp figma router": [
+      "mcp-figma router"
+    ],
+    "mcp figma routing": [
+      "mcp-figma routing"
+    ],
     "mcp figma standards alignment": [
       "mcp-figma standards alignment"
     ],
@@ -62117,6 +62363,9 @@
     ],
     "mcp figma v1 1 1 0": [
       "mcp-figma v1.1.1.0"
+    ],
+    "mcp figma v1 1 10 0": [
+      "mcp-figma v1.1.10.0"
     ],
     "mcp figma v1 1 2 0": [
       "mcp-figma v1.1.2.0"
@@ -62247,11 +62496,20 @@
     "mcp mobbin 1 1 5 0": [
       "mcp-mobbin 1.1.5.0"
     ],
+    "mcp mobbin 1 1 6 0": [
+      "mcp-mobbin 1.1.6.0"
+    ],
     "mcp mobbin delivered outcome pitch": [
       "mcp-mobbin delivered-outcome pitch"
     ],
     "mcp mobbin design transport": [
       "mcp-mobbin design transport"
+    ],
+    "mcp mobbin router": [
+      "mcp-mobbin router"
+    ],
+    "mcp mobbin routing": [
+      "mcp-mobbin routing"
     ],
     "mcp mobbin three tool search surface": [
       "mcp-mobbin three-tool search surface"
@@ -62277,6 +62535,9 @@
     "mcp mobbin v1 1 5 0": [
       "mcp-mobbin v1.1.5.0"
     ],
+    "mcp mobbin v1 1 6 0": [
+      "mcp-mobbin v1.1.6.0"
+    ],
     "mcp mutation regex blind": [
       "mcp mutation regex blind"
     ],
@@ -62298,6 +62559,15 @@
     "mcp notion 0 1 3 0": [
       "mcp-notion 0.1.3.0"
     ],
+    "mcp notion 0 1 4 0": [
+      "mcp-notion 0.1.4.0"
+    ],
+    "mcp notion router": [
+      "mcp-notion router"
+    ],
+    "mcp notion routing": [
+      "mcp-notion routing"
+    ],
     "mcp notion v0 1 0 0": [
       "mcp-notion v0.1.0.0"
     ],
@@ -62309,6 +62579,9 @@
     ],
     "mcp notion v0 1 3 0": [
       "mcp-notion v0.1.3.0"
+    ],
+    "mcp notion v0 1 4 0": [
+      "mcp-notion v0.1.4.0"
     ],
     "mcp obsidian 0 1 0 0": [
       "mcp-obsidian 0.1.0.0"
@@ -62370,6 +62643,9 @@
     "mcp obsidian 0 24 5 0": [
       "mcp-obsidian 0.24.5.0"
     ],
+    "mcp obsidian 0 24 6 0": [
+      "mcp-obsidian 0.24.6.0"
+    ],
     "mcp obsidian 0 3 0 0": [
       "mcp-obsidian 0.3.0.0"
     ],
@@ -62403,8 +62679,14 @@
     "mcp obsidian readme rewrite": [
       "mcp-obsidian readme rewrite"
     ],
+    "mcp obsidian router": [
+      "mcp-obsidian router"
+    ],
     "mcp obsidian router intents": [
       "mcp-obsidian router intents"
+    ],
+    "mcp obsidian routing": [
+      "mcp-obsidian routing"
     ],
     "mcp obsidian six plugin support": [
       "mcp-obsidian six plugin support"
@@ -62468,6 +62750,9 @@
     ],
     "mcp obsidian v0 24 5 0": [
       "mcp-obsidian v0.24.5.0"
+    ],
+    "mcp obsidian v0 24 6 0": [
+      "mcp-obsidian v0.24.6.0"
     ],
     "mcp obsidian v0 3 0 0": [
       "mcp-obsidian v0.3.0.0"
@@ -62565,8 +62850,17 @@
     "mcp refero 1 1 6 0": [
       "mcp-refero 1.1.6.0"
     ],
+    "mcp refero 1 1 7 0": [
+      "mcp-refero 1.1.7.0"
+    ],
     "mcp refero design transport": [
       "mcp-refero design transport"
+    ],
+    "mcp refero router": [
+      "mcp-refero router"
+    ],
+    "mcp refero routing": [
+      "mcp-refero routing"
     ],
     "mcp refero v1 0 0 0": [
       "mcp-refero v1.0.0.0"
@@ -62591,6 +62885,9 @@
     ],
     "mcp refero v1 1 6 0": [
       "mcp-refero v1.1.6.0"
+    ],
+    "mcp refero v1 1 7 0": [
+      "mcp-refero v1.1.7.0"
     ],
     "mcp remote mobbin": [
       "mcp-remote mobbin"
@@ -66807,6 +67104,9 @@
     ],
     "mobbin registered manual": [
       "mobbin registered manual"
+    ],
+    "mobbin router file": [
+      "Mobbin router file"
     ],
     "mobbin screen examples": [
       "mobbin screen examples"
@@ -88426,6 +88726,9 @@
     "review convergence report": [
       "review convergence report"
     ],
+    "review core reference": [
+      "review-core reference"
+    ],
     "review coverage ledger": [
       "review coverage ledger"
     ],
@@ -89804,14 +90107,23 @@
     "router consistency hardening tasks": [
       "router consistency hardening tasks"
     ],
+    "router contract": [
+      "router contract"
+    ],
     "router derived file regeneration criteria": [
       "router derived file regeneration criteria"
+    ],
+    "router details move": [
+      "router details move"
     ],
     "router edit freshness": [
       "router edit freshness"
     ],
     "router fallback pattern": [
       "router fallback pattern"
+    ],
+    "router file": [
+      "router file"
     ],
     "router file resolver": [
       "router file resolver"
@@ -89833,6 +90145,9 @@
     ],
     "router final report": [
       "router-final report"
+    ],
+    "router in its own file": [
+      "router in its own file"
     ],
     "router intent card rows": [
       "router intent card rows"
@@ -89866,6 +90181,12 @@
     ],
     "router mode lane c": [
       "router-mode Lane-C"
+    ],
+    "router moved to router md": [
+      "router moved to ROUTER.md"
+    ],
+    "router moves to a sibling file": [
+      "router moves to a sibling file"
     ],
     "router orphan docs": [
       "router orphan docs"
@@ -89941,6 +90262,9 @@
     ],
     "router read recount": [
       "router read recount"
+    ],
+    "router references": [
+      "router references"
     ],
     "router replay detection order": [
       "router replay detection order"
@@ -90107,6 +90431,12 @@
     ],
     "routing baseline recapture tasks": [
       "routing-baseline-recapture tasks"
+    ],
+    "routing behavior": [
+      "routing behavior"
+    ],
+    "routing behavior unchanged": [
+      "routing behavior unchanged"
     ],
     "routing benchmark": [
       "routing benchmark"
@@ -90293,6 +90623,12 @@
     ],
     "routing ratchet fixed": [
       "routing ratchet fixed"
+    ],
+    "routing reference update": [
+      "routing reference update"
+    ],
+    "routing references": [
+      "routing references"
     ],
     "routing refresh tasks": [
       "routing refresh tasks"
@@ -96366,6 +96702,9 @@
     "sk code ci 1 1 12 0": [
       "sk-code-ci 1.1.12.0"
     ],
+    "sk code ci 1 1 13 0": [
+      "sk-code-ci 1.1.13.0"
+    ],
     "sk code ci 1 1 2 0": [
       "sk-code-ci 1.1.2.0"
     ],
@@ -96404,6 +96743,12 @@
     ],
     "sk code ci research": [
       "sk-code-ci research"
+    ],
+    "sk code ci router": [
+      "sk-code-ci router"
+    ],
+    "sk code ci routing": [
+      "sk-code-ci routing"
     ],
     "sk code ci surface": [
       "sk code ci surface",
@@ -96444,6 +96789,9 @@
     ],
     "sk code ci v1 1 12 0": [
       "sk-code-ci v1.1.12.0"
+    ],
+    "sk code ci v1 1 13 0": [
+      "sk-code-ci v1.1.13.0"
     ],
     "sk code ci v1 1 2 0": [
       "sk-code-ci v1.1.2.0"
@@ -97014,6 +97362,9 @@
     "sk code quality 1 13 15 0": [
       "sk-code-quality 1.13.15.0"
     ],
+    "sk code quality 1 13 16 0": [
+      "sk-code-quality 1.13.16.0"
+    ],
     "sk code quality 1 13 2 0": [
       "sk-code-quality 1.13.2.0"
     ],
@@ -97092,6 +97443,12 @@
     "sk code quality research synthesis": [
       "sk-code-quality research synthesis"
     ],
+    "sk code quality router": [
+      "sk-code-quality router"
+    ],
+    "sk code quality routing": [
+      "sk-code-quality routing"
+    ],
     "sk code quality runner": [
       "sk-code quality runner"
     ],
@@ -97142,6 +97499,9 @@
     ],
     "sk code quality v1 13 15 0": [
       "sk-code-quality v1.13.15.0"
+    ],
+    "sk code quality v1 13 16 0": [
+      "sk-code-quality v1.13.16.0"
     ],
     "sk code quality v1 13 2 0": [
       "sk-code-quality v1.13.2.0"
@@ -97311,6 +97671,9 @@
     "sk code review 1 9 13 0": [
       "sk-code-review 1.9.13.0"
     ],
+    "sk code review 1 9 14 0": [
+      "sk-code-review 1.9.14.0"
+    ],
     "sk code review 1 9 2 0": [
       "sk-code-review 1.9.2.0"
     ],
@@ -97389,6 +97752,12 @@
     "sk code review research synthesis": [
       "sk-code-review research synthesis"
     ],
+    "sk code review router": [
+      "sk-code-review router"
+    ],
+    "sk code review routing": [
+      "sk-code-review routing"
+    ],
     "sk code review v1 0 0 0": [
       "sk-code-review v1.0.0.0"
     ],
@@ -97436,6 +97805,9 @@
     ],
     "sk code review v1 9 13 0": [
       "sk-code-review v1.9.13.0"
+    ],
+    "sk code review v1 9 14 0": [
+      "sk-code-review v1.9.14.0"
     ],
     "sk code review v1 9 2 0": [
       "sk-code-review v1.9.2.0"
@@ -97617,6 +97989,9 @@
     "sk code skilled 2 1 15 0": [
       "sk-code-skilled 2.1.15.0"
     ],
+    "sk code skilled 2 1 16 0": [
+      "sk-code-skilled 2.1.16.0"
+    ],
     "sk code skilled 2 1 2 0": [
       "sk-code-skilled 2.1.2.0"
     ],
@@ -97670,6 +98045,12 @@
     ],
     "sk code skilled rename review": [
       "sk-code-skilled rename review"
+    ],
+    "sk code skilled router": [
+      "sk-code-skilled router"
+    ],
+    "sk code skilled routing": [
+      "sk-code-skilled routing"
     ],
     "sk code skilled rule overrides section": [
       "sk-code-skilled rule overrides section"
@@ -97769,6 +98150,9 @@
     ],
     "sk code skilled v2 1 15 0": [
       "sk-code-skilled v2.1.15.0"
+    ],
+    "sk code skilled v2 1 16 0": [
+      "sk-code-skilled v2.1.16.0"
     ],
     "sk code skilled v2 1 2 0": [
       "sk-code-skilled v2.1.2.0"
@@ -98085,8 +98469,17 @@
     "sk create agent 1 0 5 0": [
       "sk-create-agent 1.0.5.0"
     ],
+    "sk create agent 1 0 6 0": [
+      "sk-create-agent 1.0.6.0"
+    ],
     "sk create agent playbook": [
       "sk-create-agent playbook"
+    ],
+    "sk create agent router": [
+      "sk-create-agent router"
+    ],
+    "sk create agent routing": [
+      "sk-create-agent routing"
     ],
     "sk create agent v1 0 0 0": [
       "sk-create-agent v1.0.0.0"
@@ -98111,6 +98504,9 @@
     ],
     "sk create agent v1 0 5 0": [
       "sk-create-agent v1.0.5.0"
+    ],
+    "sk create agent v1 0 6 0": [
+      "sk-create-agent v1.0.6.0"
     ],
     "sk create benchmark 1 0 0 0": [
       "sk-create-benchmark 1.0.0.0"
@@ -98142,8 +98538,17 @@
     "sk create benchmark 1 6 3 0": [
       "sk-create-benchmark 1.6.3.0"
     ],
+    "sk create benchmark 1 6 4 0": [
+      "sk-create-benchmark 1.6.4.0"
+    ],
     "sk create benchmark playbook": [
       "sk-create-benchmark playbook"
+    ],
+    "sk create benchmark router": [
+      "sk-create-benchmark router"
+    ],
+    "sk create benchmark routing": [
+      "sk-create-benchmark routing"
     ],
     "sk create benchmark v1 0 0 0": [
       "sk-create-benchmark v1.0.0.0"
@@ -98175,6 +98580,9 @@
     "sk create benchmark v1 6 3 0": [
       "sk-create-benchmark v1.6.3.0"
     ],
+    "sk create benchmark v1 6 4 0": [
+      "sk-create-benchmark v1.6.4.0"
+    ],
     "sk create changelog 1 0 0 0": [
       "sk-create-changelog 1.0.0.0"
     ],
@@ -98205,6 +98613,9 @@
     "sk create changelog 1 3 10 0": [
       "sk-create-changelog 1.3.10.0"
     ],
+    "sk create changelog 1 3 11 0": [
+      "sk-create-changelog 1.3.11.0"
+    ],
     "sk create changelog 1 3 2 0": [
       "sk-create-changelog 1.3.2.0"
     ],
@@ -98231,6 +98642,12 @@
     ],
     "sk create changelog playbook": [
       "sk-create-changelog playbook"
+    ],
+    "sk create changelog router": [
+      "sk-create-changelog router"
+    ],
+    "sk create changelog routing": [
+      "sk-create-changelog routing"
     ],
     "sk create changelog template rewrite": [
       "sk-create-changelog template rewrite"
@@ -98264,6 +98681,9 @@
     ],
     "sk create changelog v1 3 10 0": [
       "sk-create-changelog v1.3.10.0"
+    ],
+    "sk create changelog v1 3 11 0": [
+      "sk-create-changelog v1.3.11.0"
     ],
     "sk create changelog v1 3 2 0": [
       "sk-create-changelog v1.3.2.0"
@@ -98361,8 +98781,17 @@
     "sk create command 1 0 8 0": [
       "sk-create-command 1.0.8.0"
     ],
+    "sk create command 1 0 9 0": [
+      "sk-create-command 1.0.9.0"
+    ],
     "sk create command playbook": [
       "sk-create-command playbook"
+    ],
+    "sk create command router": [
+      "sk-create-command router"
+    ],
+    "sk create command routing": [
+      "sk-create-command routing"
     ],
     "sk create command v1 0 0 0": [
       "sk-create-command v1.0.0.0"
@@ -98393,6 +98822,9 @@
     ],
     "sk create command v1 0 8 0": [
       "sk-create-command v1.0.8.0"
+    ],
+    "sk create command v1 0 9 0": [
+      "sk-create-command v1.0.9.0"
     ],
     "sk create diagram benchmark index": [
       "sk-create-diagram benchmark index"
@@ -98430,6 +98862,15 @@
     "sk create diff 1 1 8 0": [
       "sk-create-diff 1.1.8.0"
     ],
+    "sk create diff 1 1 9 0": [
+      "sk-create-diff 1.1.9.0"
+    ],
+    "sk create diff router": [
+      "sk-create-diff router"
+    ],
+    "sk create diff routing": [
+      "sk-create-diff routing"
+    ],
     "sk create diff v1 0 0 0": [
       "sk-create-diff v1.0.0.0"
     ],
@@ -98460,6 +98901,9 @@
     "sk create diff v1 1 8 0": [
       "sk-create-diff v1.1.8.0"
     ],
+    "sk create diff v1 1 9 0": [
+      "sk-create-diff v1.1.9.0"
+    ],
     "sk create feature catalog 1 0 0 0": [
       "sk-create-feature-catalog 1.0.0.0"
     ],
@@ -98474,6 +98918,9 @@
     ],
     "sk create feature catalog 1 0 1 3": [
       "sk-create-feature-catalog 1.0.1.3"
+    ],
+    "sk create feature catalog 1 0 10 0": [
+      "sk-create-feature-catalog 1.0.10.0"
     ],
     "sk create feature catalog 1 0 2 0": [
       "sk-create-feature-catalog 1.0.2.0"
@@ -98502,6 +98949,12 @@
     "sk create feature catalog playbook": [
       "sk-create-feature-catalog playbook"
     ],
+    "sk create feature catalog router": [
+      "sk-create-feature-catalog router"
+    ],
+    "sk create feature catalog routing": [
+      "sk-create-feature-catalog routing"
+    ],
     "sk create feature catalog v1 0 0 0": [
       "sk-create-feature-catalog v1.0.0.0"
     ],
@@ -98516,6 +98969,9 @@
     ],
     "sk create feature catalog v1 0 1 3": [
       "sk-create-feature-catalog v1.0.1.3"
+    ],
+    "sk create feature catalog v1 0 10 0": [
+      "sk-create-feature-catalog v1.0.10.0"
     ],
     "sk create feature catalog v1 0 2 0": [
       "sk-create-feature-catalog v1.0.2.0"
@@ -98565,6 +99021,9 @@
     "sk create frontmatter 1 0 7 0": [
       "sk-create-frontmatter 1.0.7.0"
     ],
+    "sk create frontmatter 1 0 8 0": [
+      "sk-create-frontmatter 1.0.8.0"
+    ],
     "sk create frontmatter mode": [
       "sk-create-frontmatter mode"
     ],
@@ -98573,6 +99032,12 @@
     ],
     "sk create frontmatter remediation": [
       "sk-create-frontmatter remediation"
+    ],
+    "sk create frontmatter router": [
+      "sk-create-frontmatter router"
+    ],
+    "sk create frontmatter routing": [
+      "sk-create-frontmatter routing"
     ],
     "sk create frontmatter v1 0 0 0": [
       "sk-create-frontmatter v1.0.0.0"
@@ -98597,6 +99062,9 @@
     ],
     "sk create frontmatter v1 0 7 0": [
       "sk-create-frontmatter v1.0.7.0"
+    ],
+    "sk create frontmatter v1 0 8 0": [
+      "sk-create-frontmatter v1.0.8.0"
     ],
     "sk create frontmatter value list": [
       "sk-create-frontmatter value list"
@@ -98627,6 +99095,9 @@
     ],
     "sk create goal 1 4 5 0": [
       "sk-create-goal 1.4.5.0"
+    ],
+    "sk create goal 1 4 6 0": [
+      "sk-create-goal 1.4.6.0"
     ],
     "sk create goal acceptance criteria": [
       "sk-create-goal acceptance criteria"
@@ -98666,6 +99137,12 @@
     ],
     "sk create goal phase goal": [
       "sk-create-goal phase goal"
+    ],
+    "sk create goal router": [
+      "sk-create-goal router"
+    ],
+    "sk create goal routing": [
+      "sk-create-goal routing"
     ],
     "sk create goal runtime mirrors": [
       "sk-create-goal runtime mirrors"
@@ -98715,6 +99192,9 @@
     "sk create goal v1 4 5 0": [
       "sk-create-goal v1.4.5.0"
     ],
+    "sk create goal v1 4 6 0": [
+      "sk-create-goal v1.4.6.0"
+    ],
     "sk create manual testing playbook 1 0 0 0": [
       "sk-create-manual-testing-playbook 1.0.0.0"
     ],
@@ -98745,8 +99225,17 @@
     "sk create manual testing playbook 1 0 7 0": [
       "sk-create-manual-testing-playbook 1.0.7.0"
     ],
+    "sk create manual testing playbook 1 0 8 0": [
+      "sk-create-manual-testing-playbook 1.0.8.0"
+    ],
     "sk create manual testing playbook playbook": [
       "sk-create-manual-testing-playbook playbook"
+    ],
+    "sk create manual testing playbook router": [
+      "sk-create-manual-testing-playbook router"
+    ],
+    "sk create manual testing playbook routing": [
+      "sk-create-manual-testing-playbook routing"
     ],
     "sk create manual testing playbook v1 0 0 0": [
       "sk-create-manual-testing-playbook v1.0.0.0"
@@ -98778,6 +99267,9 @@
     "sk create manual testing playbook v1 0 7 0": [
       "sk-create-manual-testing-playbook v1.0.7.0"
     ],
+    "sk create manual testing playbook v1 0 8 0": [
+      "sk-create-manual-testing-playbook v1.0.8.0"
+    ],
     "sk create quality control 1 0 0 0": [
       "sk-create-quality-control 1.0.0.0"
     ],
@@ -98805,8 +99297,17 @@
     "sk create quality control 1 0 7 0": [
       "sk-create-quality-control 1.0.7.0"
     ],
+    "sk create quality control 1 0 8 0": [
+      "sk-create-quality-control 1.0.8.0"
+    ],
     "sk create quality control playbook": [
       "sk-create-quality-control playbook"
+    ],
+    "sk create quality control router": [
+      "sk-create-quality-control router"
+    ],
+    "sk create quality control routing": [
+      "sk-create-quality-control routing"
     ],
     "sk create quality control v1 0 0 0": [
       "sk-create-quality-control v1.0.0.0"
@@ -98835,6 +99336,9 @@
     "sk create quality control v1 0 7 0": [
       "sk-create-quality-control v1.0.7.0"
     ],
+    "sk create quality control v1 0 8 0": [
+      "sk-create-quality-control v1.0.8.0"
+    ],
     "sk create readme 1 0 0 0": [
       "sk-create-readme 1.0.0.0"
     ],
@@ -98852,6 +99356,9 @@
     ],
     "sk create readme 1 3 10 0": [
       "sk-create-readme 1.3.10.0"
+    ],
+    "sk create readme 1 3 11 0": [
+      "sk-create-readme 1.3.11.0"
     ],
     "sk create readme 1 3 2 0": [
       "sk-create-readme 1.3.2.0"
@@ -98886,6 +99393,12 @@
     "sk create readme problem section decision": [
       "sk-create-readme problem section decision"
     ],
+    "sk create readme router": [
+      "sk-create-readme router"
+    ],
+    "sk create readme routing": [
+      "sk-create-readme routing"
+    ],
     "sk create readme v1 0 0 0": [
       "sk-create-readme v1.0.0.0"
     ],
@@ -98903,6 +99416,9 @@
     ],
     "sk create readme v1 3 10 0": [
       "sk-create-readme v1.3.10.0"
+    ],
+    "sk create readme v1 3 11 0": [
+      "sk-create-readme v1.3.11.0"
     ],
     "sk create readme v1 3 2 0": [
       "sk-create-readme v1.3.2.0"
@@ -98964,6 +99480,15 @@
     "sk create repo rule 1 1 5 0": [
       "sk-create-repo-rule 1.1.5.0"
     ],
+    "sk create repo rule 1 1 6 0": [
+      "sk-create-repo-rule 1.1.6.0"
+    ],
+    "sk create repo rule router": [
+      "sk-create-repo-rule router"
+    ],
+    "sk create repo rule routing": [
+      "sk-create-repo-rule routing"
+    ],
     "sk create repo rule shape parity": [
       "sk-create-repo-rule shape parity"
     ],
@@ -98987,6 +99512,9 @@
     ],
     "sk create repo rule v1 1 5 0": [
       "sk-create-repo-rule v1.1.5.0"
+    ],
+    "sk create repo rule v1 1 6 0": [
+      "sk-create-repo-rule v1.1.6.0"
     ],
     "sk create skill 1 0 0 0": [
       "sk-create-skill 1.0.0.0"
@@ -99069,11 +99597,20 @@
     "sk create skill 1 8 0 0": [
       "sk-create-skill 1.8.0.0"
     ],
+    "sk create skill 1 9 0 0": [
+      "sk-create-skill 1.9.0.0"
+    ],
     "sk create skill authoring errors": [
       "sk-create-skill authoring errors"
     ],
     "sk create skill playbook": [
       "sk-create-skill playbook"
+    ],
+    "sk create skill router": [
+      "sk-create-skill router"
+    ],
+    "sk create skill routing": [
+      "sk-create-skill routing"
     ],
     "sk create skill v1 0 0 0": [
       "sk-create-skill v1.0.0.0"
@@ -99159,6 +99696,9 @@
     "sk create skill v1 8 0 0": [
       "sk-create-skill v1.8.0.0"
     ],
+    "sk create skill v1 9 0 0": [
+      "sk-create-skill v1.9.0.0"
+    ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
     ],
@@ -99170,6 +99710,15 @@
     ],
     "sk create with human voice 1 2 3 0": [
       "sk-create-with-human-voice 1.2.3.0"
+    ],
+    "sk create with human voice 1 2 4 0": [
+      "sk-create-with-human-voice 1.2.4.0"
+    ],
+    "sk create with human voice router": [
+      "sk-create-with-human-voice router"
+    ],
+    "sk create with human voice routing": [
+      "sk-create-with-human-voice routing"
     ],
     "sk create with human voice testing": [
       "sk-create-with-human-voice testing"
@@ -99185,6 +99734,9 @@
     ],
     "sk create with human voice v1 2 3 0": [
       "sk-create-with-human-voice v1.2.3.0"
+    ],
+    "sk create with human voice v1 2 4 0": [
+      "sk-create-with-human-voice v1.2.4.0"
     ],
     "sk deep research cli codex dispatch": [
       "sk-deep-research cli-codex dispatch"
@@ -99348,6 +99900,9 @@
     "sk design chart 0 23 4 0": [
       "sk-design-chart 0.23.4.0"
     ],
+    "sk design chart 0 23 5 0": [
+      "sk-design-chart 0.23.5.0"
+    ],
     "sk design chart 0 3 0 0": [
       "sk-design-chart 0.3.0.0"
     ],
@@ -99371,6 +99926,12 @@
     ],
     "sk design chart review verdict": [
       "sk-design-chart review verdict"
+    ],
+    "sk design chart router": [
+      "sk-design-chart router"
+    ],
+    "sk design chart routing": [
+      "sk-design-chart routing"
     ],
     "sk design chart v0 1 0 0": [
       "sk-design-chart v0.1.0.0"
@@ -99431,6 +99992,9 @@
     ],
     "sk design chart v0 23 4 0": [
       "sk-design-chart v0.23.4.0"
+    ],
+    "sk design chart v0 23 5 0": [
+      "sk-design-chart v0.23.5.0"
     ],
     "sk design chart v0 3 0 0": [
       "sk-design-chart v0.3.0.0"
@@ -99507,8 +100071,17 @@
     "sk design diagram 1 2 8 0": [
       "sk-design-diagram 1.2.8.0"
     ],
+    "sk design diagram 1 2 9 0": [
+      "sk-design-diagram 1.2.9.0"
+    ],
     "sk design diagram review verdict": [
       "sk-design-diagram review verdict"
+    ],
+    "sk design diagram router": [
+      "sk-design-diagram router"
+    ],
+    "sk design diagram routing": [
+      "sk-design-diagram routing"
     ],
     "sk design diagram scripts": [
       "sk-design-diagram scripts"
@@ -99546,6 +100119,9 @@
     "sk design diagram v1 2 8 0": [
       "sk-design-diagram v1.2.8.0"
     ],
+    "sk design diagram v1 2 9 0": [
+      "sk-design-diagram v1.2.9.0"
+    ],
     "sk design doc and routing check acceptance criteria": [
       "sk design doc and routing check acceptance criteria"
     ],
@@ -99567,8 +100143,17 @@
     "sk design fundamentals 1 0 3 0": [
       "sk-design-fundamentals 1.0.3.0"
     ],
+    "sk design fundamentals 1 0 4 0": [
+      "sk-design-fundamentals 1.0.4.0"
+    ],
     "sk design fundamentals reads as a ui skill": [
       "sk design fundamentals reads as a ui skill"
+    ],
+    "sk design fundamentals router": [
+      "sk-design-fundamentals router"
+    ],
+    "sk design fundamentals routing": [
+      "sk-design-fundamentals routing"
     ],
     "sk design fundamentals v1 0 0 0": [
       "sk-design-fundamentals v1.0.0.0"
@@ -99581,6 +100166,9 @@
     ],
     "sk design fundamentals v1 0 3 0": [
       "sk-design-fundamentals v1.0.3.0"
+    ],
+    "sk design fundamentals v1 0 4 0": [
+      "sk-design-fundamentals v1.0.4.0"
     ],
     "sk design hub routing replay": [
       "sk-design hub routing replay"
@@ -99606,6 +100194,9 @@
     "sk design md generator 1 1 1 0": [
       "sk-design-md-generator 1.1.1.0"
     ],
+    "sk design md generator 1 1 10 0": [
+      "sk-design-md-generator 1.1.10.0"
+    ],
     "sk design md generator 1 1 2 0": [
       "sk-design-md-generator 1.1.2.0"
     ],
@@ -99627,6 +100218,12 @@
     "sk design md generator 1 1 9 0": [
       "sk-design-md-generator 1.1.9.0"
     ],
+    "sk design md generator router": [
+      "sk-design-md-generator router"
+    ],
+    "sk design md generator routing": [
+      "sk-design-md-generator routing"
+    ],
     "sk design md generator v1 0 0 0": [
       "sk-design-md-generator v1.0.0.0"
     ],
@@ -99635,6 +100232,9 @@
     ],
     "sk design md generator v1 1 1 0": [
       "sk-design-md-generator v1.1.1.0"
+    ],
+    "sk design md generator v1 1 10 0": [
+      "sk-design-md-generator v1.1.10.0"
     ],
     "sk design md generator v1 1 2 0": [
       "sk-design-md-generator v1.1.2.0"
@@ -100416,6 +101016,9 @@
     "sk git 1 11 5 0": [
       "sk-git 1.11.5.0"
     ],
+    "sk git 1 11 6 0": [
+      "sk-git 1.11.6.0"
+    ],
     "sk git 1 2 0 0": [
       "sk-git 1.2.0.0"
     ],
@@ -100572,6 +101175,12 @@
     "sk git required a commit body only": [
       "sk git required a commit body only"
     ],
+    "sk git router": [
+      "sk-git router"
+    ],
+    "sk git routing": [
+      "sk-git routing"
+    ],
     "sk git script exit codes": [
       "sk-git script exit codes"
     ],
@@ -100655,6 +101264,9 @@
     ],
     "sk git v1 11 5 0": [
       "sk-git v1.11.5.0"
+    ],
+    "sk git v1 11 6 0": [
+      "sk-git v1.11.6.0"
     ],
     "sk git v1 2 0 0": [
       "sk-git v1.2.0.0"
@@ -100793,6 +101405,9 @@
     ],
     "sk prompt 3 0 10 0": [
       "sk-prompt 3.0.10.0"
+    ],
+    "sk prompt 3 0 11 0": [
+      "sk-prompt 3.0.11.0"
     ],
     "sk prompt 3 0 2 0": [
       "sk-prompt 3.0.2.0"
@@ -101031,6 +101646,12 @@
     "sk prompt rollout plan": [
       "sk-prompt rollout plan"
     ],
+    "sk prompt router": [
+      "sk-prompt router"
+    ],
+    "sk prompt routing": [
+      "sk-prompt routing"
+    ],
     "sk prompt routing baseline recapture": [
       "sk-prompt routing-baseline-recapture"
     ],
@@ -101105,6 +101726,9 @@
     ],
     "sk prompt v3 0 10 0": [
       "sk-prompt v3.0.10.0"
+    ],
+    "sk prompt v3 0 11 0": [
+      "sk-prompt v3.0.11.0"
     ],
     "sk prompt v3 0 2 0": [
       "sk-prompt v3.0.2.0"
@@ -109920,6 +110544,9 @@
     "system skill advisor 0 17 24 0": [
       "system-skill-advisor 0.17.24.0"
     ],
+    "system skill advisor 0 17 25 0": [
+      "system-skill-advisor 0.17.25.0"
+    ],
     "system skill advisor 0 17 3 0": [
       "system-skill-advisor 0.17.3.0"
     ],
@@ -110015,6 +110642,12 @@
     ],
     "system skill advisor plugin": [
       "system-skill-advisor plugin"
+    ],
+    "system skill advisor router": [
+      "system-skill-advisor router"
+    ],
+    "system skill advisor routing": [
+      "system-skill-advisor routing"
     ],
     "system skill advisor runtime": [
       "system skill advisor runtime"
@@ -110171,6 +110804,9 @@
     ],
     "system skill advisor v0 17 24 0": [
       "system-skill-advisor v0.17.24.0"
+    ],
+    "system skill advisor v0 17 25 0": [
+      "system-skill-advisor v0.17.25.0"
     ],
     "system skill advisor v0 17 3 0": [
       "system-skill-advisor v0.17.3.0"
@@ -110502,6 +111138,9 @@
     "system spec kit 2 12 24 0": [
       "system-spec-kit 2.12.24.0"
     ],
+    "system spec kit 2 12 25 0": [
+      "system-spec-kit 2.12.25.0"
+    ],
     "system spec kit 2 12 3 0": [
       "system-spec-kit 2.12.3.0"
     ],
@@ -110711,6 +111350,12 @@
     ],
     "system spec kit references drift": [
       "system-spec-kit references drift"
+    ],
+    "system spec kit router": [
+      "system-spec-kit router"
+    ],
+    "system spec kit routing": [
+      "system-spec-kit routing"
     ],
     "system spec kit runtime tests description": [
       "system-spec-kit runtime/tests/description"
@@ -111014,6 +111659,9 @@
     ],
     "system spec kit v2 12 24 0": [
       "system-spec-kit v2.12.24.0"
+    ],
+    "system spec kit v2 12 25 0": [
+      "system-spec-kit v2.12.25.0"
     ],
     "system spec kit v2 12 3 0": [
       "system-spec-kit v2.12.3.0"
