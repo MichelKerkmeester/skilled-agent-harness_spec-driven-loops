@@ -50,9 +50,9 @@ _memory:
 
 All 47 remaining skills now keep their machine router beside them instead of inside them. Each of the 41 mode packets and the six standalone skills owns a sibling `ROUTER.md` with `router_state: active` and `skill_pointer: SKILL.md`, holding an overview, an intent model and a final `## 3. MACHINE ROUTER` section that carries the body the old section carried. Each `SKILL.md` keeps short SMART ROUTING prose and ends with one line that links to the sibling file, and no `SKILL.md` in the tree holds a MACHINE ROUTER heading any more.
 
-The routing is untouched, and that is measured rather than asserted. `parseRouter` in `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs` returns identical output for all 47 skills against `main`, 47 same and 0 different. The leaf replay prints the baseline total, `total gold=64 scored=56 tied=3 mean_f1=0.9161 exact=49`. The stripped compiled policy of all seven hubs diffs by 0 lines, and the alignment scan reports `Findings: 0`.
+The routing is untouched, and that is measured rather than asserted. `parseRouter` in `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs` returns identical output for all 47 skills against `8bc18283904`, the parent of move commit `ca10a236d2`: 47 same and 0 different. The leaf replay prints the baseline total, `total gold=64 scored=56 tied=3 mean_f1=0.9161 exact=49`. The stripped compiled policy of all seven hubs diffs by 0 lines, and the alignment scan reports `Findings: 0`.
 
-What a skill load carries fell by 34,272 words, from 160,204 to 125,932 across the 47, which is 21.4 percent or about 45,600 tokens. That text now loads only when a request reaches the router. Both debt ledgers held exactly these 47 skills when the phase started and hold 0 entries now.
+The token CSV at `scratch/router-token-after.csv` records 34,272 fewer words in the skill load, from 160,204 to 125,932 across the 47. That is a 21.4 percent reduction, or about 45,600 tokens. The moved text now loads only when a request reaches the router. Both debt ledgers held exactly these 47 skills when the phase started and hold 0 entries now.
 
 ### Phase 5: packet-and-standalone-migration
 
@@ -67,11 +67,11 @@ The move itself was mechanical and the passage was not. Once the routers became 
 | `changelog/v<edition>.md` under the same 47 folders | Created | One release note per skill, each reported with 0 issues by `validate_document.py` |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json` and `scripts/tests/fixtures/routing-shape-known-debt-frozen.json` | Modified | Both ledgers drop from the 47 moved skills to 0 entries |
 | `.hermes/skills/*/SKILL.md` and `.hermes/skills/*/ROUTER.md` (94 files) | Modified/Created | Regenerated copies of the 47 changed pairs |
-| `.skilled/bin/lib/compiled-routing/013-live-activation/activation/*/manifest.json` (8 files) | Modified | Manifests re-minted for the new `SKILL.md` bytes |
+| 4 live manifests under `.skilled/bin/lib/compiled-routing/013-live-activation/activation/` and 4 matching twins under `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/` (8 files) | Modified | Manifests re-minted for the new `SKILL.md` bytes |
 | `.skilled/commands/doctor/scripts/parent-skill-check.cjs` | Modified | Passes a `resolveInOwnRoot` probe so a declared root resource resolves in the router's own folder and never falls back to the hub |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs` and `scripts/tests/root-router-contract.test.cjs` | Modified | `NO_LOAD_INTENTS`, the own-root `ROOT_RESOURCES` rule and the `INTENT_SIGNALS`/`INTENT_MODEL` mirror rule, with six new cases |
 | `.skilled/skills/sk-doc/sk-create-skill/references/shared/overview.md`, `assets/skill/skill-md-template.md` and its own `SKILL.md` | Modified | Four canon lines now place the router in `ROUTER.md`: the routing-authority paragraph, the checklist line, the `RS-003` row and rule 21 |
-| 146 manual testing playbooks, feature catalogs, references and assets under `.skilled/skills` | Modified | Each sentence that placed the router inside `SKILL.md` now names `ROUTER.md` |
+| 160 manual testing playbooks, feature catalogs, references and assets under `.skilled/skills` | Modified | Each sentence that placed the router inside `SKILL.md` now names `ROUTER.md` |
 | `.skilled/scripts/git-hooks/pre-commit` and `.skilled/scripts/git-hooks/tests/pre-commit.test.sh` | Modified | The doc-version raise runs before mirror parity and the route re-mint, and a case pins that order |
 | `scratch/router-replay-baseline.txt`, `scratch/router-replay-after.txt`, `scratch/router-token-after.csv` | Created | The replay before and after, and one token row per skill with a before, an after, a saved and a router word column plus a `TOTAL` row |
 <!-- /ANCHOR:what-built -->
@@ -105,7 +105,7 @@ The move then exposed work the plan had not foreseen, in the order it appeared. 
 | Move the file before deleting the ledger entry | The entry is the only tolerance the skill has between the phase 003 rule change and the move, so removing it first would reopen the old shape with no gate on it |
 | Read name lists and intent maps the way the runtime reads them | A commented-out name, an apostrophe in a comment or a declaration quoted in prose is not something the router runs, so the check strips comments outside quotes and reads name lists from fenced code only |
 | Keep the map-less relaxation for non-hub routers | Seven `sk-doc` mode routers declare an intent map and route through their own tables with no `RESOURCE_MAP`; requiring one would change their content and their parse |
-| Leave the seven hubs untouched | Phase 004 owns them; no hub `SKILL.md` and no hub `ROUTER.md` changed, and the eight re-minted activation manifests live under the compiled-routing tree |
+| Leave the seven hubs untouched | Phase 004 owns them; no hub `SKILL.md` and no hub `ROUTER.md` changed, and four live activation manifests under `.skilled` have four matching `z_archive` twins |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -118,9 +118,9 @@ The move then exposed work the plan had not foreseen, in the order it appeared. 
 | MACHINE ROUTER headings left in `SKILL.md` | 0 across `.skilled/skills` |
 | `ROUTER.md` count | 54, one beside each `SKILL.md`, and all 47 moved routers carry `router_state: active`, `skill_pointer: SKILL.md`, `## 1. OVERVIEW`, `## 2. INTENT MODEL` and a final `## 3. MACHINE ROUTER` |
 | Pointer line | 47 `SKILL.md` files carry `before selecting skill-local resources`, and each prints 0 for `MACHINE ROUTER` |
-| Parsed routers against `main` | 47 same, 0 different, through `parseRouter` in `router-replay-lib.cjs` |
+| Parsed routers against `8bc18283904` | 47 same, 0 different, through `parseRouter` in `router-replay-lib.cjs` |
 | Replay | `total gold=64 scored=56 tied=3 mean_f1=0.9161 exact=49`, and `scratch/router-replay-after.txt` equals `scratch/router-replay-baseline.txt` byte for byte |
-| Compiled policy of the seven hubs | Stripped of source hashes, 0 lines of diff against `main` |
+| Compiled policy of the seven hubs | Stripped of source hashes, 0 lines of diff against `8bc18283904` |
 | Alignment drift | `verify_alignment_drift.py --root .skilled/skills --check-router` scans 5,426 files and prints `Findings: 0`, `Errors: 0`, `Warnings: 0`, `Violations: 0` |
 | `package_skill.py --check --strict` | `Result: PASS` on all 54 skill folders, 0 failing |
 | Debt ledgers | Both print 0 entries, and the ratchet prints pass 4 fail 0 |
@@ -131,7 +131,7 @@ The move then exposed work the plan had not foreseen, in the order it appeared. 
 | Hook suite | `pre-commit gates: 153 passed, 0 failed`, including the case that fails if the doc-version raise moves below the two regeneration gates |
 | Markdown links | `7631 files, 14219 links checked, 0 broken` |
 | Changelog documents | Each of the 47 carries one entry that `validate_document.py` reports with `Total issues: 0` |
-| Token result | `scratch/router-token-after.csv` totals 160,204 words before, 125,932 after, 34,272 saved, 54,675 router words; the `o200k_base` command over the 47 moved routers prints 84,640 |
+| Token result | `scratch/router-token-after.csv` totals 160,204 words before, 125,932 after, 34,272 saved, 54,675 router words; the `o200k_base` command over the 47 moved routers prints 84,664 at move commit `ca10a236d2` |
 | Spec validation | `Summary: Errors: 0  Warnings: 0` and `RESULT: PASSED` |
 | Goal check | `[check-goal] RESULT: PASSED (5/5 checks)` |
 <!-- /ANCHOR:verification -->
@@ -142,8 +142,8 @@ The move then exposed work the plan had not foreseen, in the order it appeared. 
 ## Known Limitations
 
 1. **The five gated batches became two waves, and the per-batch evidence is missing.** `scratch/batch-00.txt` to `scratch/batch-05.txt` do not exist, so the cumulative figures in the plan's batch table, 21 then 29 then 37 then 48 then 54 routers and 33 then 25 then 17 then 6 then 0 ledger entries and the five token sums, were never captured one batch at a time. The final-state gate covers every leg those files would have shown, but a reader cannot see the tree as it stood after batch 3.
-2. **The token figures use an O200K proxy.** The authoritative tokenizer for gpt-6-luna is UNKNOWN, so this phase counts with installed tiktoken `o200k_base`. The measured router text is also larger than the plan projected: the same command that the batch table expected to print 82,439 prints 84,640 over the 47 moved routers, so the phase's saving is claimed from the measured `SKILL.md` word delta rather than from that projection. Phase 006 recaptures the token table with the authoritative tokenizer.
-3. **Three moved bodies are reviewed near-copies.** `sk-code-review`, `sk-design-diagram` and `sk-design-fundamentals` do not hold a byte-identical copy of the section that left `SKILL.md`. The differences are one retained line and two dropped self-references, each reviewed, and none of them reaches a declaration a parser reads.
+2. **The token figures use an O200K proxy.** The authoritative tokenizer for gpt-6-luna is UNKNOWN, so this phase counts with installed tiktoken `o200k_base`. The measured router text is also larger than the plan projected: the same command that the batch table expected to print 82,439 prints 84,664 over the 47 moved routers at move commit `ca10a236d2`, so the phase's saving is claimed from the measured `SKILL.md` word delta rather than from that projection. Phase 006 recaptures the token table with the authoritative tokenizer.
+3. **Three moved bodies were reviewed near-copies at the move commit.** `sk-code-review`, `sk-design-diagram` and `sk-design-fundamentals` do not hold a byte-identical copy of the section that left `SKILL.md`. The differences are one retained line and two dropped self-references, each reviewed, and none of them reaches a declaration a parser reads. The current tree also includes later router-reference fixes in `mcp-obsidian` and `sk-prompt`. They update the `ALWAYS` resource entries to name `ROUTER.md`, bringing the current count to five bodies that differ beyond the shared two-line header.
 4. **The phase changed four surfaces its scope had excluded.** A check (`parent-skill-check.cjs` and `root-router-contract.cjs` with its test), a template row, the create-skill canon and the commit hook were pulled in by three findings. `AC-006` records the passage, and `T013` to `T015` record what each one was for.
 5. **The replay's prose arm still covers 0 of 56 rows.** The after capture reads `replay verdict: stop (prose arm covers 0 of 56 rows)`, so the proof here is that parsed routing and the replay total did not change, not a prose score.
 6. **The `sk-code` surface slice is not replayed.** Its line reads `hub=sk-code gold=8 unscored=8 surface slice not replayed`, as it did before the move, so the move is proved on the other rows.

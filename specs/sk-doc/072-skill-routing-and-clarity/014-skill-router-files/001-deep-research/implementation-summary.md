@@ -94,7 +94,7 @@ The `/deep:research` loop ran through its fan-out path, one lineage at a time in
 | DeepSeek lineage | 1 iteration, exit 0 |
 | Merge | `merged_lineages: 2`, 40 findings |
 | Citation checks | Hermes copy step, replay fallback, RS-004, advisor and plugin signatures, watcher targets: all match |
-| Closeout gateway | `"ok":true` |
+| Closeout gateway | `research/observability-events.jsonl` records `metadata_refresh_ok` with status `ok` |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -15,7 +15,7 @@ Source audit, not an implementation test. The luna lineage traced parser call si
 ## 3. Current Shape and Baseline
 
 - 54 skills and modes carry a final `## MACHINE ROUTER` section; the luna count of 57 SKILL.md files includes three template or fixture files with no section.
-- Router share: 22% of all SKILL.md words, median 627 words, 59% of system-skill-advisor; system-spec-kit (4,999 words), sk-design-md-generator (4,997) and mcp-mobbin (4,981) sit against the 5,000-word cap.
+- Router share: 22% of all SKILL.md words, median 624 words, 59% of system-skill-advisor; five skills sit against the 5,000-word cap: system-spec-kit (5,000 words), sk-design-md-generator (4,998), cli-opencode (4,994), cli-devin (4,988) and mcp-mobbin (4,982).
 - Advisor accuracy baseline: 155/195, 49/66 and 19/24. Its evaluator is `system-skill-advisor/runtime/scripts/routing-accuracy/capture-scorer-eval-baseline.mjs`, and `scorer-eval-baseline.json` pins the corpus, holdout and ambiguity sha256 values, so it can be recaptured. The luna lineage could not locate it; the deepseek lineage and the coordinator did.
 
 ## 4. RQ-1: Readers of the Machine Router
@@ -24,11 +24,11 @@ Direct parsers, each confirmed at the cited lines:
 
 | Reader | Location | Change |
 |---|---|---|
-| Router replay | `sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:365-421` | Reads SKILL.md, falls back only to `references/*.md` and `hub-router.json`; add sibling `ROUTER.md` resolution |
-| Router sync | `sk-code-skilled/assets/scripts/verify-router-sync.cjs:47,194-205` | Uses the replay parser; follows it |
-| Dead-route scan | `sk-code-skilled/assets/scripts/verify_alignment_drift.py:815-879` | Read declarations from `ROUTER.md`, keep paths rooted at the skill |
-| Package check | `sk-doc/sk-create-skill/scripts/package_skill.py:187-209,791-1010` | Shape, markers, RS-004; move to the new shape |
-| Doctor check 12b | `commands/doctor/scripts/parent-skill-check.cjs:1850-2170` | Duplicate of the package check; change in step |
+| Router replay | `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:365-421` | Reads SKILL.md, falls back only to `references/*.md` and `hub-router.json`; add sibling `ROUTER.md` resolution |
+| Router sync | `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:47,194-205` | Uses the replay parser; follows it |
+| Dead-route scan | `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py:815-879` | Read declarations from `ROUTER.md`, keep paths rooted at the skill |
+| Package check | `.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:187-209,791-1010` | Shape, markers, RS-004; move to the new shape |
+| Doctor check 12b | `.skilled/commands/doctor/scripts/parent-skill-check.cjs:1850-2170` | Duplicate of the package check; change in step |
 
 Producers and fixtures: the create-skill workflows (`create-skill-auto.yaml`, `create-skill-parent-auto.yaml`), `skill-smart-router.md`, the skill template, and the routing-shape, package and create-skill test suites. Not router readers: `generate-leaf-manifest.cjs` (walks leaf roots), `smart-router-measurement.ts` (reads SMART ROUTING), the compiled registry (hashes source bytes for provenance only).
 

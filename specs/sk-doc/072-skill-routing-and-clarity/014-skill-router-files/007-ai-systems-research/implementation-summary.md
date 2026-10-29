@@ -91,11 +91,11 @@ The `/deep:research` loop ran through its fan-out path with one lineage, finishi
 
 | Check | Result |
 |-------|--------|
-| DeepSeek lineage | 3 iterations, run `completed`, exit 0 |
+| DeepSeek lineage | 3 iterations, run `completed`, exit 0; one `containment_contested` warning at 11:45:32Z |
 | Merge | `merged_lineages: 1`, 38 findings |
 | Citation checks | `check_hub.py:58`, `differential.py:268`, `agent-router.md:329`, the Product Owner router headings, `check-route-table.py:35`: all match; `AGENTS.md` corrected from line 119 to 123 |
 | AI Systems working tree | Only the two earlier untracked files under `Product Context/Collab Phases/` |
-| Closeout gateway | `"ok":true` |
+| Closeout gateway | `"status":"ok"` |
 <!-- /ANCHOR:verification -->
 
 ---

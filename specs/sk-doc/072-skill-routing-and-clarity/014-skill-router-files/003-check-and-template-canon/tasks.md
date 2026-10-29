@@ -33,7 +33,7 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Record the four baselines in `scratch/before.txt` and copy the current `sk-git` folder to `scratch/old-shape/sk-git` (`scratch/before.txt`). Verify: `cat scratch/before.txt` prints the 54 and 7 counts, the `Result: PASS` line and both the 12a and 12b lines, and `ls scratch/old-shape/sk-git/SKILL.md` prints the path. Observed: `scratch/before.txt` records `rg MACHINE ROUTER SKILL.md: 54`, `ROUTER.md files: 7`, `sk-git strict: Result: PASS`, the 12a line reporting `root ROUTER.md conforms to the two-state contract (active)`, and the 12b line reporting `hub and 14 packet(s) follow the routing canon (0 known debt)`. `ls scratch/old-shape/sk-git/SKILL.md` prints the copied path.
+- [x] T001 Record the four baselines in `scratch/before.txt` and copy the current `sk-git` folder to `scratch/old-shape/sk-git` (`scratch/before.txt`). Verify: `cat scratch/before.txt` prints the 54 and 7 counts, the `Result: PASS` line and both the 12a and 12b lines, and `ls scratch/old-shape/sk-git/SKILL.md` prints the path. Observed: `scratch/before.txt` records `rg MACHINE ROUTER SKILL.md: 54`, `ROUTER.md files: 7`, `sk-git strict: Result: PASS`, the 12a line reporting `root ROUTER.md conforms to the two-state contract (active)`, and the 12b line reporting `hub and 14 packet(s) follow the routing canon (0 known debt)`. `ls scratch/old-shape/sk-git/SKILL.md` prints the copied path. The copy was removed before commit; its recorded result is at `implementation-summary.md:88`.
 - [x] T002 Run the nine changed suites and record each pass count in `scratch/before.txt` (`scratch/before.txt`). Verify: the file lists 20 for the routing-shape suite, 64 across the other three Python files, and 1, 1, 4, 1 and 1 for the five JS suites. Observed: `scratch/before.txt` records `pytest4: 84 passed in 1.43s`, which is the 20 and 64 the plan expected added together, so the file records the four-file total and not the per-file split. It records `root-router-contract.test.cjs: pass 1`, `skill-root-metadata-contract.test.cjs: pass 1`, `routing-shape-known-debt-ratchet.test.cjs: pass 4`, `parent-skill-check-root-router.test.cjs: pass 1` and `parent-skill-check-routing-shape.test.cjs: pass 1`, each with `fail 0`.
 - [x] T003 Compare the live skill set with the frozen snapshot (`routing-shape-known-debt-frozen.json`). Verify: the frozen file holds 52 entries against 54 live keys, and `mcp-tooling` plus `sk-code/sk-code-ci` are the two absent keys. Observed: at setup the frozen file held 52 entries against 54 live keys, and the change that ends this phase adds exactly those two entries to the frozen file and removes none, so the snapshot now holds 54.
 <!-- /ANCHOR:phase-1 -->
@@ -73,7 +73,7 @@ contextType: "general"
 - [x] T024 Run the four Python files from the final tree. Verify: at least `84 passed`. Observed: `106 passed`, and all sk-doc Python tests print `290 passed` with the create asset tests at `15 passed`.
 - [x] T025 Run the five JS suites from the final tree. Verify: `fail 0` on each. Observed: every sk-create-skill JS suite prints `fail 0`, 23 of them, and `doctor run-all` prints `7 suite(s) passed, 0 failed` over a `node:test` run of 548 passes.
 - [x] T026 Prove the old shape is rejected with the check that proves the new one (`scratch/old-shape/sk-git`, `scratch/after.txt`). Verify: `python3 $PS scratch/old-shape/sk-git --check --strict` prints RS-002, RS-004 and RS-005, and the live `sk-git` folder prints none. Observed: the old-shape copy reports `RS-002`, `RS-004` and `RS-005`, and the live `sk-git` folder prints `Result: PASS`, so the two runs separate a rejection from an acceptance. `scratch/after.txt` records the same pair.
-- [x] T027 Run the spec validator on this packet. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/003-check-and-template-canon --strict` prints `RESULT: PASSED`. Observed: the strict run reports `RESULT: FAILED` with two errors and one warning, and all three are recomputable rather than authored: `GENERATED_METADATA_INTEGRITY`, `GENERATED_METADATA_DRIFT` and `DESCRIPTION_SHAPE`. Every authored rule passes, `AC_COVERAGE` at 9/9 included. `repair-derived.cjs` in report mode prints that it would correct the description level from 1 to 2 and re-derive the graph metadata, which clears all three.
+- [x] T027 Run the spec validator on this packet. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/003-check-and-template-canon --strict` prints `RESULT: PASSED`. Observed: the earlier strict run reported `RESULT: FAILED` with two errors and one warning on `GENERATED_METADATA_INTEGRITY`, `GENERATED_METADATA_DRIFT` and `DESCRIPTION_SHAPE`; `repair-derived.cjs --apply` re-derived the graph metadata. The strict run after repair printed `RESULT: PASSED`, with `AC_COVERAGE` at 9/9.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -131,7 +131,7 @@ This packet runs no task under `[B]`. A blocked task keeps its line pending, nam
 ## Code Quality
 
 - [x] CHK-010 [P0] Every changed script parses: `node --check` exits 0 for the changed CommonJS files, and `python3 -c 'import ast, pathlib'` with `ast.parse` over `package_skill.py` and `init_skill.py` exits 0.
-- [x] CHK-011 [P0] Both gates report no failure: `.skilled/commands/doctor/run-all.sh` prints `7 suite(s) passed, 0 failed` and `ci-skill-root-metadata.cjs` prints `failed=0`.
+- [x] CHK-011 [P0] Both gates report no failure: `.skilled/commands/doctor/scripts/tests/run-all.sh` prints `7 suite(s) passed, 0 failed` and `ci-skill-root-metadata.cjs` prints `failed=0`.
 - [x] CHK-012 [P1] One ledger reader serves both checks: `rg -lc 'loadRoutingShapeDebt' .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs .skilled/commands/doctor/scripts/parent-skill-check.cjs` prints both paths.
 - [x] CHK-013 [P1] A read failure is reported, not thrown: `rg -n 'could not read ROUTER.md' .skilled/commands/doctor/scripts/parent-skill-check.cjs` prints the soft-failure line that names the packet.
 <!-- /ANCHOR:code-quality -->
@@ -173,7 +173,7 @@ This packet runs no task under `[B]`. A blocked task keeps its line pending, nam
 ## File Organization
 
 - [x] CHK-050 [P1] Both baselines sit in the packet's own scratch folder: `ls scratch/before.txt scratch/after.txt` exits 0.
-- [x] CHK-051 [P1] No fixture leaks into a live skill folder: `ls scratch/old-shape/sk-git/SKILL.md` prints the copied path, and `ls -A scratch` prints `.gitkeep`, `after.txt`, `before.txt` and `old-shape`.
+- [x] CHK-051 [P1] No fixture leaks into a live skill folder: `ls scratch/old-shape/sk-git/SKILL.md` prints the copied path, and `ls -A scratch` prints `.gitkeep`, `after.txt`, `before.txt` and `old-shape`. The copy was removed before commit; its recorded result is at `implementation-summary.md:88`.
 <!-- /ANCHOR:file-org -->
 
 ---

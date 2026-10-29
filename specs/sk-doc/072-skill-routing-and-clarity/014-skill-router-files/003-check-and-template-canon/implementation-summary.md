@@ -115,7 +115,7 @@ Two smaller settlements came with those three. A fresh mode packet is scaffolded
 | All sk-doc Python tests | `290 passed` |
 | The create asset tests | `15 passed` |
 | All 23 sk-create-skill JS suites | `fail 0` each, `create-journey-proof` included |
-| `.skilled/commands/doctor/run-all.sh` | `7 suite(s) passed, 0 failed`, `node:test` at 548 passes |
+| `.skilled/commands/doctor/scripts/tests/run-all.sh` | `7 suite(s) passed, 0 failed`, `node:test` at 548 passes |
 | `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | `checked=13 passed=13 failed=0 fixed=0` |
 | `parent-skill-check.cjs` on the seven hubs | All hard invariants passed. 12b known debt: cli-classifier 2, cli-external-orchestration 8, mcp-tooling 9, sk-code 5, sk-design 5, sk-doc 15, system-deep-loop 4 |
 | `routing-shape-parity.test.cjs` | `27 fixture(s) matched on both checks`, each against the code set the rule states |

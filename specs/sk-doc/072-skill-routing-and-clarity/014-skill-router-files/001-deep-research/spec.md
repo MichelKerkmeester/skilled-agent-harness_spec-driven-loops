@@ -52,7 +52,7 @@ This is **Phase 1** of the skill router files phase. Its findings set the scope 
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The machine router takes 22% of all SKILL.md words, and three skills sit within 25 words of the 5,000-word cap. Moving it to a sibling `ROUTER.md` touches router replay, the reach check, compiled routing, the leaf manifest, both routing-shape checks and seven runtimes, and no one has mapped all of them.
+The machine router takes 22% of all SKILL.md words, and five skills sit within 25 words of the 5,000-word cap. Moving it to a sibling `ROUTER.md` touches router replay, the reach check, compiled routing, the leaf manifest, both routing-shape checks and seven runtimes, and no one has mapped all of them.
 
 ### Purpose
 Answer the five research questions well enough that phases 002 to 006 can be scoped without guessing.
@@ -62,11 +62,11 @@ Answer the five research questions well enough that phases 002 to 006 can be sco
 ### Measured Behavior
 Measured on `main` at `6a9946a800` over the 54 SKILL.md files under `.skilled/skills`:
 ```text
-54 files, machine-router words 39159 of 176952 (22%)
+54 files, machine-router words 39159 of 176999 (22%)
   system-skill-advisor: 2068 of 3481 words (59%)
-  mcp-tooling/mcp-obsidian: 1711 of 4633 words (37%)
-  system-spec-kit: 1619 of 4999 words (32%)
-  median MR words: 627
+  mcp-tooling/mcp-obsidian: 1711 of 4634 words (37%)
+  system-spec-kit: 1619 of 5000 words (32%)
+  median MR words: 624
 ```
 <!-- /ANCHOR:measured-behavior -->
 

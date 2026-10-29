@@ -52,7 +52,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the DeepSeek lineage, When it runs on `deepseek-v4.1-flash-1017` through cli-pi, Then three iteration files exist and the run ends `completed` | `research/lineages/deepseek/iterations/iteration-001.md` to `-003.md`; `orchestration-status.log` | Met | - |
+| AC-001 | REQ-001 | Given the DeepSeek lineage, When it runs on `deepseek-v4.1-flash-1017` through cli-pi, Then three iteration files exist and the run ends `completed` | `research/lineages/deepseek/iterations/iteration-001.md` to `-003.md`; `research/observability-events.jsonl` records the run `completed` | Met | - |
 | AC-002 | REQ-002 | Given the synthesis, When it is written, Then RQ-1 to RQ-5 each have an answer covering all 16 skills, with cited lines or an unconfirmed mark | `research/research.md` sections 6 to 10; the RQ-1 table has 16 rows | Met | - |
 | AC-003 | REQ-002 | Given the load-bearing claims, When their cited lines are read in the AI Systems checkout, Then each matches | `research/research.md` "Verification by the conductor"; one line number corrected | Met | - |
 | AC-004 | REQ-003 | Given the Claude Project question, When the synthesis recommends a way, Then it names one and says why the others lose | `research/research.md` section 10.2 | Met | - |

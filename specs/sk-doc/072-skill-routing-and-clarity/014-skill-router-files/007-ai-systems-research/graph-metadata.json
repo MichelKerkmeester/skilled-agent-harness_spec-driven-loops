@@ -48,6 +48,7 @@
       "research/research.md",
       "research/findings-registry.json",
       "research/lineages/deepseek/iterations/iteration-001.md",
+      "research/observability-events.jsonl",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
@@ -107,6 +108,12 @@
         "name": "iteration-001.md",
         "kind": "doc",
         "path": "research/lineages/deepseek/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "observability-events.jsonl",
+        "kind": "file",
+        "path": "research/observability-events.jsonl",
         "source": "derived"
       },
       {
@@ -192,17 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 16 AI Systems skills carry their routing inside the SMART ROUTING section of SKILL.md as pseudocode, resource lists and a few assignment blocks, and none has a `## MACHINE ROUTER` section",
     "created_at": "2026-10-29T11:37:24Z",
-    "last_save_at": "2026-10-29T13:26:25.936Z",
+    "last_save_at": "2026-10-29T16:44:14.258Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +215,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:dac579c19c90a6f34d4ea86c6bd0464396c49a87d672962d30c8cd10c99f2275",
+    "source_fingerprint": "sha256:dc3d28faa60c9702ff62d461a55ff1b21b4a28a1a8b97382436bc7f3340cde27",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5e8be7457cdeae25113f76132bb23688b1055382780569dd31de395ca2ba6463",
       "plan.md": "cdbeb7deabc6004451cb7bce628f507fa2ac22a514d06b4748d972b760ba5186",
-      "tasks.md": "15be8934de80e8b78cc5bc5152ebd6afb20a54b542c50f44c9161aab5e9a69ba",
-      "implementation-summary.md": "f2e01ff9ca9754a9d8ac7f7b9514e71346d267685b35082406faf3675df4df81",
-      "research/research.md": "8b1df1e9176ea63390ac5d5f0282bdb90a6f3d3763650e744bcb2adf2b5fab81"
+      "tasks.md": "3187b1628788f8ec1b969255ef4004bab47cf725b75ac5f600a7700958190dad",
+      "implementation-summary.md": "9a2511ff85c103690be63ee9fd442e4253b46f0f28818425e4a6407be225654f",
+      "research/research.md": "d52b95ec6a1203a4a783f924dbd5c7d69345142cde2bf37a6cd9ab5fbd038eb2"
     },
     "last_active_at": null
   }

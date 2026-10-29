@@ -52,7 +52,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the Luna lineage, When it runs on `gpt-6-luna` through cli-codex, Then three iteration files exist and the ledger ends `completed` | `research/lineages/luna/iterations/iteration-001.md` to `-003.md`; `orchestration-status.log` | Met | - |
+| AC-001 | REQ-001 | Given the Luna lineage, When it runs on `gpt-6-luna` through cli-codex, Then three iteration files exist and the ledger ends `completed` | `research/lineages/luna/iterations/iteration-001.md` to `-003.md`; `research/observability-events.jsonl` | Met | - |
 | AC-002 | REQ-002 | Given both lineages, When the synthesis is written, Then RQ-1 to RQ-6 each have an answer with cited lines or an UNKNOWN mark | `research/research.md` sections 4 to 9 and 12 | Met | - |
 | AC-003 | REQ-002 | Given the load-bearing claims, When their cited lines are read, Then each matches | Hermes generator writes only SKILL.md; replay fallback; RS-004 in `package_skill.py`; advisor and plugin signatures probe two files | Met | - |
 | AC-004 | REQ-003 | Given the findings, When the synthesis recommends a design, Then it names one design and what would change it | `research/research.md` sections 10, 11 and 12 | Met | - |

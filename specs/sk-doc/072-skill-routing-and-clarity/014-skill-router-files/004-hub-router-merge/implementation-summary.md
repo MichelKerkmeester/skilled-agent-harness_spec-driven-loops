@@ -53,7 +53,7 @@ Each of the seven parent hubs now keeps its routing prose in one place. SMART RO
 
 ### Phase 4: hub-router-merge
 
-The section that moved deleted 43 to 114 lines from each SKILL.md and added 40 to 112 lines to each ROUTER.md, all of them appends. Self-references inside the moved prose were rebased to the new file, so `cli-classifier` and `cli-external-orchestration` now say stage two lives in section 3 of this file, the two lines of `sk-design`'s SKILL.md that named section 6 now name section 5 of `ROUTER.md`, and the contributor checklist in `system-deep-loop/README.md` points at the MACHINE ROUTER section of ROUTER.md.
+The section that moved deleted 42 to 114 lines from each SKILL.md and added 41 to 113 lines to each ROUTER.md. Each ROUTER.md also deletes its old version line as it appends the moved prose. Self-references inside the moved prose were rebased to the new file, so `cli-classifier` and `cli-external-orchestration` now say stage two lives in section 3 of this file, the two lines of `sk-design`'s SKILL.md that named section 6 now name section 5 of `ROUTER.md`, and the contributor checklist in `system-deep-loop/README.md` points at the MACHINE ROUTER section of ROUTER.md.
 
 Two hubs needed a compiler change before they would build again. `sk-code` and `sk-design` read the fallback checklist from SKILL.md alone, so the move left them failing with `FALLBACK_CHECKLIST_MISSING`; both now read it from the ROUTER.md machine section when it is present. Two compiled-route tests built their `sk-code` fixture from SKILL.md alone for the same reason and now include ROUTER.md.
 
@@ -62,7 +62,7 @@ Two hubs needed a compiler change before they would build again. `sk-code` and `
 | File | Action | Purpose |
 |------|--------|---------|
 | `.skilled/skills/cli-classifier/SKILL.md` and the six other hub SKILL.md files | Modified | SMART ROUTING ends with the pointer line, the MACHINE ROUTER section is gone, the edition is raised |
-| `.skilled/skills/cli-classifier/ROUTER.md` and the six other hub ROUTER.md files | Modified | The moved prose is appended under `## 5. MACHINE ROUTER`, or `## 11. MACHINE ROUTER` in `sk-code`, with 0 deletions on every file |
+| `.skilled/skills/cli-classifier/ROUTER.md` and the six other hub ROUTER.md files | Modified | The moved prose is appended under `## 5. MACHINE ROUTER`, or `## 11. MACHINE ROUTER` in `sk-code`, with 1 deleted version line on every file |
 | `description.json`, `hub-router.json` and `mode-registry.json` in the seven hub roots | Modified | Edition parity: `0.8.6.0`, `1.7.12.0`, `1.9.3.0`, `3.9.24.0`, `2.0.10.0`, `2.3.32.0` and `1.6.20.0` |
 | `changelog/v<edition>.md` under the seven hub roots | Created | One release note per hub |
 | `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs` and `.../009-sk-design/lib/registry-compiler.cjs`, with their authored mirrors under `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/` | Modified | Read the fallback checklist from the ROUTER.md machine section and hash ROUTER.md |
@@ -119,7 +119,7 @@ The run captured first: the replay lines, one compiled route per hub and the sha
 | `package_skill.py --check --strict` | `Result: PASS` on all seven, which named the stale known-debt entries that were then removed |
 | Routing suites | `290 passed` under pytest, and 1, 22, 1, 4, 48 and 13 passing with 0 failing under `node --test` |
 | Hermes copies | `PASS: 65 Hermes skill copies in sync` |
-| Remaining `sk-code` compiler tests and the Hermes router test | pass 8, 11 and 13 with 0 failing under `node --test`, and 2 of 2 under vitest |
+| Remaining `sk-code` compiler tests and the Hermes router test | pass 8 and 11 with 0 failing under `node --test`, and 2 of 2 under vitest |
 | Spec validation | `Summary: Errors: 0  Warnings: 0` and `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
 
@@ -128,7 +128,7 @@ The run captured first: the replay lines, one compiled route per hub and the sha
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The remaining 47 skills and modes are phase 005's.** They stay on the old routing shape, in batches behind the debt ledger, which now reads 47 entries after this phase's seven were removed.
+1. **The remaining 47 skills and modes are phase 005's.** They stay on the old routing shape, in batches behind the debt ledger, which read 47 entries at commit `1af3e7aa58` after this phase's seven were removed.
 2. **The leaf replay does not score the `sk-code` surface slice.** Its line reads `hub=sk-code gold=8 unscored=8 surface slice not replayed`, as it did before this phase, so the move is proved on the other six hubs' rows.
 3. **The replay's prose arm covers 0 of 56 rows.** Its verdict line reads `prose arm covers 0 of 56 rows`, so the proof here is that routing behavior did not change, not a prose score.
 <!-- /ANCHOR:limitations -->

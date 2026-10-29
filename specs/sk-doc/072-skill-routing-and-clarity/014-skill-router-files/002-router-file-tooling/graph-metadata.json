@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A skill's machine router sits at the end of its `SKILL.md`, and every reader that needs it reads that file",
     "created_at": "2026-10-29T07:52:42Z",
-    "last_save_at": "2026-10-29T13:26:20.881Z",
+    "last_save_at": "2026-10-29T16:41:24.973Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a657417af9ee116fd597009d46b426cce833b20917da05c69f06b1b4ecae97af",
+    "source_fingerprint": "sha256:4f0777423b004bc41ea3d97e08acbf71a308aee5ad41ecdaa0f8ae6254063507",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d717de0f46228624e65714cbf084910dfba34768938eed3728f47d20720fb792",

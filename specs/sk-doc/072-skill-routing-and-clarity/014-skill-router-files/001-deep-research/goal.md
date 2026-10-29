@@ -54,10 +54,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `research/lineages/luna/iterations/` holds `iteration-001.md` to `iteration-003.md`.
-- [ ] `research/lineages/deepseek/iterations/` holds `iteration-001.md`, and `fanout-merge.cjs` prints `merged_lineages: 2`.
-- [ ] `research/research.md` answers RQ-1 to RQ-6 with cited file and line references or unconfirmed marks.
-- [ ] `research/research.md` recommends one design and names what would change that recommendation.
+- [x] `research/lineages/luna/iterations/` holds `iteration-001.md` to `iteration-003.md`.
+- [x] `research/lineages/deepseek/iterations/` holds `iteration-001.md`, and `fanout-merge.cjs` prints `merged_lineages: 2`.
+- [x] `research/research.md` answers RQ-1 to RQ-6 with cited file and line references or unconfirmed marks.
+- [x] `research/research.md` recommends one design and names what would change that recommendation.
 <!-- /ANCHOR:completion -->
 
 ---

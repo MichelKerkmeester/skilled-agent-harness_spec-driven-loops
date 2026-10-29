@@ -210,7 +210,7 @@
     ],
     "causal_summary": "All seven parent hubs keep their stage-two routing in the root `ROUTER.md`, yet each SKILL.md still ends with a MACHINE ROUTER section that repeats the compiled-routing directive, the discriminator and the routing rule",
     "created_at": "2026-10-29T07:52:43Z",
-    "last_save_at": "2026-10-29T14:06:33.153Z",
+    "last_save_at": "2026-10-29T16:51:51.278Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2096b6445d180acab5cc88a6d8bd3052f2d9214d6e2287cd778e746ae75aee7c",
+    "source_fingerprint": "sha256:e10db3ae7eb7bdf19b3128cc48d6ed9a2e51dd13892fddd75d995018c591e307",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2cdca58484502a19a9e48c485ae5a7b36d5c4dbbe2bbbf5b940d1be354b349ef",
       "plan.md": "bc37eb8e686d87ccf67c471a7cdda358141f65d9192c54aa13cfa2b38e4af11a",
-      "tasks.md": "56cc91058fbb3cc8a075148ceae7d3de1dea99a2b82f8e9c6e6371e57461c88d",
-      "implementation-summary.md": "bb39bfd762dc07670f21f890f94f3a2c105877713edb15b45fe301688b37bd01"
+      "tasks.md": "78e7252c7076519f591c3f2e262d09de391f15c908a9600f2ab475b24595d3be",
+      "implementation-summary.md": "82fa0c4852de7c49e9a5a16d219700179e8ab1941f648f9216a33f748eb52931"
     },
     "last_active_at": null
   }

@@ -42,7 +42,7 @@ contextType: "research"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Lineage
 
-- [x] T003 Run the DeepSeek lineage on RQ-1 to RQ-5 (`R/lineages/deepseek/`). Verify: `ls R/lineages/deepseek/iterations` lists three files and `orchestration-status.log` ends with a terminal `completed` record.
+- [x] T003 Run the DeepSeek lineage on RQ-1 to RQ-5 (`R/lineages/deepseek/`). Verify: `ls R/lineages/deepseek/iterations` lists three files and `R/observability-events.jsonl` records the run `completed`.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -54,7 +54,7 @@ contextType: "research"
 - [x] T005 Emit the resource map (`R/resource-map.md`). Verify: the reducer prints `deltaSourceCount: 3`.
 - [x] T006 Write the root synthesis (`R/research.md`). Verify: it has sections 1 to 11, the conductor's verification section, Eliminated Alternatives and Divergence Map.
 - [x] T007 Check the load-bearing citations in the AI Systems checkout. Verify: `check_hub.py:58`, `differential.py:268`, `agent-router.md:329`, the `Product Owner/ROUTER.md` headings and `check-route-table.py:35` match; the `AGENTS.md` citation moves from line 119 to 123.
-- [x] T008 Record the closeout and mark the config complete. Verify: the gateway prints `"ok":true` and the config `status` is `complete`.
+- [x] T008 Record the closeout and mark the config complete. Verify: the gateway prints `"status":"ok"` and the config `status` is `complete`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -126,7 +126,7 @@ contextType: "research"
 ## Security
 
 - [x] CHK-030 [P0] No credential file read in either repository
-- [x] CHK-031 [P0] Lineage writes stayed inside `research/`, and the AI Systems working tree still shows only its two earlier untracked files
+- [x] CHK-031 [P0] Lineage writes stayed inside `research/`, and the AI Systems working tree still shows only its two earlier untracked files; one `containment_contested` warning fired at 11:45:32Z (iteration 1)
 <!-- /ANCHOR:security -->
 
 ---

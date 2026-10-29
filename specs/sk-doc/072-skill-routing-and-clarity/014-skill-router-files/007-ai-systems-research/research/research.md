@@ -126,7 +126,7 @@ Their code numbers are not portable either. In the vendored copy `RS-004` is the
 | `Moneybird Accountant/sk-moneybird-accountant/ROUTER.md` | 2,435 / 261 | `## 2. SMART ROUTING`, fence 100-254 | Same, and the generator must emit the new heading |
 
 - All four carry `router_state: active` and `skill_pointer: SKILL.md`, the two fields `check_hub.py` pins. [SOURCE: AI Systems/Product Owner/ROUTER.md:11]
-- None has a `## MACHINE ROUTER` heading, so all four fail the destination rule. [SOURCE: AI Systems/Moneybird Accountant/cli-jortt/ROUTER.md:88]
+- None has a `## MACHINE ROUTER` heading, so all four fail the destination rule. [SOURCE: AI Systems/Moneybird Accountant/cli-jortt/ROUTER.md:88] The three Moneybird rows were measured from the working tree: that folder is gitignored (`.gitignore:112`) with 0 tracked files, so its numbers cannot be rechecked from git.
 - `check-route-table.py --write` regenerates the router block, so a hand-edited heading reverts on the generator's next run unless the generator changes first. [SOURCE: AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/check-route-table.py:35]
 - The pointer half is already satisfied in exactly four skills - `cli-jortt/SKILL.md:45`, `cli-moneybird/SKILL.md:47`, `sk-moneybird-accountant/SKILL.md:42`, `Product Owner/SKILL.md:38` - and absent in the other twelve. [SOURCE: AI Systems/Moneybird Accountant/cli-jortt/SKILL.md:45]
 
@@ -179,7 +179,7 @@ Against that, twelve pointer lines cost about 15 tokens each, roughly 180 tokens
 
 ### 10.4 Order that avoids other sessions' edits
 
-At `8e4573b8f` the working tree is clean apart from two untracked files under `Product Context/Collab Phases/`; no skill folder is dirty. Activity decides the order:
+At `8e4573b8f` the working tree is clean apart from two untracked files under `Product Context/Collab Phases/`; no skill folder is dirty. That reading is `git status`, which cannot see the gitignored `AI Systems/Moneybird Accountant` tree (`.gitignore:112`). Activity decides the order:
 
 1. **Media Editor** - quiet since 2026-10-05, no benchmark gate, 258 machine words. Pilot.
 2. **Prompt Improver** - quiet since 2026-10-18, no benchmark gate.

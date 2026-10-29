@@ -46,6 +46,7 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
+      "scratch/router-token-after.csv",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json",
       ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
@@ -53,7 +54,6 @@
       ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
       "scratch/router-replay-baseline.txt",
       "scratch/router-replay-after.txt",
-      "scratch/router-token-after.csv",
       "ROUTER.md",
       ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
       ".skilled/skills/cli-orca/SKILL.md",
@@ -104,6 +104,12 @@
         "source": "derived"
       },
       {
+        "name": "router-token-after.csv",
+        "kind": "file",
+        "path": "scratch/router-token-after.csv",
+        "source": "derived"
+      },
+      {
         "name": "routing-shape-known-debt.json",
         "kind": "config",
         "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json",
@@ -143,12 +149,6 @@
         "name": "router-replay-after.txt",
         "kind": "file",
         "path": "scratch/router-replay-after.txt",
-        "source": "derived"
-      },
-      {
-        "name": "router-token-after.csv",
-        "kind": "file",
-        "path": "scratch/router-token-after.csv",
         "source": "derived"
       },
       {
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "After phase 004, 47 of the 54 skills still carry their machine router inside `SKILL.md`: 41 mode packets and the six standalone skills",
     "created_at": "2026-10-29T07:52:44Z",
-    "last_save_at": "2026-10-29T16:20:59.952Z",
+    "last_save_at": "2026-10-29T16:51:56.451Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98852cc14ee945b2748a5a93fc0a9124e4238880fa6f55c8010fb205dd1e9725",
+    "source_fingerprint": "sha256:e6f9ad12e308f0fa40388238ec092e1c0bfd1a470d5504ebd7d9925dec4f92b3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "62ab798f094f18f76fae26dbd82ec01d1c84642eb4920def286ce1a476d911f2",
       "plan.md": "16349f63617dc2768865cf638f324ea06f7fe84d5165cfcb9cd02096cd21e1db",
-      "tasks.md": "38e727b211de238c79b1044f7ac70dde5c4589053908201836bcf49fb733f3ce",
-      "implementation-summary.md": "bb5d46d37d7ce6742732cf1a7c89f924b8382acb666f3d164dd27283f88f16c4"
+      "tasks.md": "88ebaa3c171448813422ac5fc24e0259bd3a384aa5b0b2d4d01dcb5df512a580",
+      "implementation-summary.md": "98b21b1b3bbf657fb597b9cf87d7d761bb3e161bc5de0bd16fc7d147da66f8da"
     },
     "last_active_at": null
   }

@@ -1,0 +1,54 @@
+# Router reader inventory (T004), AI Systems main at 8e4573b8f
+
+## tasks.md T004 command (respects ignore files)
+Barter - Copywriter/benchmark/loop/gauntlet.py
+Barter - Copywriter/benchmark/router/differential.py
+Barter - Deal Templates/benchmark/router/differential.py
+Media Editor/benchmark/router/differential.py
+Product Owner/benchmark/gates/check_hub.py
+Product Owner/benchmark/gates/check_leaf_map_parity.py
+Product Owner/benchmark/router/differential.py
+Prompt Improver/benchmark/router/kernel_parity.py
+Prompt Improver/benchmark/router/run_fixtures.sh
+Sales - Direct Communication/benchmark/router/differential.py
+Sales - Direct Communication/benchmark/router/kernel_parity.py
+Sales - HubSpot & Automation/benchmark/router/kernel_parity.py
+z — Claude Project Sync Loop/episodes/hand-run/000-packet-record/research/dispatch.sh
+z — Claude Project Sync Loop/systems.py
+
+## same pattern with --no-ignore --hidden, plus *.cjs
+./Barter - Copywriter/benchmark/loop/gauntlet.py
+./Barter - Copywriter/benchmark/router/differential.py
+./Barter - Deal Templates/benchmark/router/differential.py
+./Media Editor/benchmark/router/differential.py
+./Moneybird Accountant/cli-moneybird/scripts/exit-code-parity-test.sh
+./Moneybird Accountant/cli-moneybird/scripts/exit-code-parity.sh
+./Moneybird Accountant/sk-moneybird-accountant/scripts/build-reference-index.py
+./Moneybird Accountant/sk-moneybird-accountant/scripts/check-regression-trailer.py
+./Moneybird Accountant/sk-moneybird-accountant/scripts/check-route-table.py
+./Moneybird Accountant/sk-moneybird-accountant/scripts/check-skill-words-test.sh
+./Moneybird Accountant/sk-moneybird-accountant/scripts/check-skill-words.py
+./Moneybird Accountant/sk-moneybird-accountant/scripts/cli-failure-handoff-test.sh
+./Moneybird Accountant/sk-moneybird-accountant/scripts/route-replay/route-replay-test.sh
+./Moneybird Accountant/sk-moneybird-accountant/scripts/route-replay/route-replay.py
+./Moneybird Accountant/sk-moneybird-accountant/scripts/route-table-test.sh
+./Moneybird Accountant/sk-moneybird-accountant/scripts/run-evals-test.sh
+./Moneybird Accountant/sk-moneybird-accountant/scripts/run-evals.py
+./Moneybird Accountant/sk-moneybird-accountant/scripts/session-context-test.sh
+./Moneybird Accountant/sk-moneybird-accountant/scripts/source-library-test.sh
+./Moneybird Accountant/sk-moneybird-accountant/scripts/token-baseline.py
+./Moneybird Accountant/sk-moneybird-accountant/scripts/token-canary-test.sh
+./Moneybird Accountant/sk-moneybird-accountant/scripts/write-contract-check.py
+./Moneybird Accountant/sk-moneybird-accountant/scripts/write-contract-test.sh
+./Product Owner/benchmark/format/validate-output-format.cjs
+./Product Owner/benchmark/gates/check_hub.py
+./Product Owner/benchmark/gates/check_leaf_map_parity.py
+./Product Owner/benchmark/router/differential.py
+./Prompt Improver/benchmark/router/kernel_parity.py
+./Prompt Improver/benchmark/router/run_fixtures.sh
+./Sales - Direct Communication/benchmark/router/differential.py
+./Sales - Direct Communication/benchmark/router/kernel_parity.py
+./Sales - HubSpot & Automation/benchmark/router/kernel_parity.py
+./z — Claude Project Sync Loop/episodes/hand-run/000-packet-record/research/dispatch.sh
+./z — Claude Project Sync Loop/systems.cjs
+./z — Claude Project Sync Loop/systems.py

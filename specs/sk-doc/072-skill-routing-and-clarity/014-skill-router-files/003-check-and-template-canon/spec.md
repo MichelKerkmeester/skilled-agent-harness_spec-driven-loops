@@ -153,6 +153,27 @@ PASS: 12b-routing-shape: hub and 14 packet(s) follow the routing canon (0 known 
 | `.skilled/skills/sk-doc/sk-create-skill/SKILL.md` | Modify | Version carrier and routing note |
 | `.skilled/skills/sk-doc/sk-create-skill/changelog/v1.8.0.0.md` | Create | Release entry and upgrade steps |
 | `.skilled/skills/sk-doc/leaf-manifest.json` | Modify | Regenerated after the new asset |
+| `.hermes/skills/sk-create-skill/SKILL.md` | Modify | Hermes mirror of the updated skill version and router template |
+| `.hermes/skills/sk-doc/SKILL.md` | Modify | Hermes mirror of the updated sk-doc version |
+| `.skilled/bin/lib/compiled-route-manifest.cjs` | Modify | Compiled routing reads the fallback checklist from `ROUTER.md` |
+| `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs` | Modify | Keep the served compiler aligned with its authored implementation |
+| `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json` | Modify | Regenerated active sk-doc routing manifest |
+| `.skilled/commands/create/assets/create-skill-parent-presentation.txt` | Modify | Present the sibling router shape in the parent summary |
+| `.skilled/commands/create/skill-parent.md` | Modify | Describe each mode packet's sibling router |
+| `.skilled/commands/create/skill.md` | Modify | Describe the generated skill's sibling router and pointer |
+| `.skilled/commands/doctor/scripts/tests/parent-skill-check-command-column.test.cjs` | Modify | Keep the command-column fixture valid with the router shape |
+| `.skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs` | Modify | Update invariant fixtures to point at the sibling router |
+| `.skilled/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs` | Modify | Update packet fixtures for packet-owned router leaves |
+| `.skilled/commands/doctor/scripts/tests/routing-shape-parity.test.cjs` | Create | Compare the Python and JavaScript routing-shape findings |
+| `.skilled/skills/sk-doc/SKILL.md` | Modify | sk-doc version carrier and router pointer |
+| `.skilled/skills/sk-doc/changelog/v2.3.31.0.md` | Create | Record the sk-doc router-shape release |
+| `.skilled/skills/sk-doc/description.json` | Modify | Update sk-doc release metadata |
+| `.skilled/skills/sk-doc/hub-router.json` | Modify | Refresh the hub router manifest |
+| `.skilled/skills/sk-doc/mode-registry.json` | Modify | Refresh the mode registry for the new routing shape |
+| `.skilled/skills/sk-doc/sk-create-skill/README.md` | Modify | Document the sibling router template |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/lib/README.md` | Modify | Document the shared routing-debt reader |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py` | Modify | Validate compiled routing directives from the sibling router |
+| `.skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs` | Modify | Allow the router pointer placeholder in rendered scaffolds |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -237,7 +258,7 @@ This packet is two offline check scripts, one JSON ledger and their suites. It r
 
 - Empty input: a skill folder that carries no `ROUTER.md` and no link to one reports RS-004 and RS-005, so an empty shape fails rather than passing for want of anything to read. The 47 skills still in that shape pass only through the ledger entry that records both codes.
 - Maximum input: the fleet run, `package_skill.py --check --strict` over all 54 live skills, reported 0 failures, and 12b covered the sk-doc hub and its 14 packets with 15 recorded findings.
-- Failure path: `package_skill.py --check --strict` on `scratch/old-shape/sk-git` reports RS-002, RS-004 and RS-005, while the live `sk-git` folder prints `Result: PASS`. The evidence records those finding codes and not the process exit status.
+- Failure path: `package_skill.py --check --strict` on `scratch/old-shape/sk-git` reports RS-002, RS-004 and RS-005, while the live `sk-git` folder prints `Result: PASS`. The copy was removed before commit; its recorded result is at `implementation-summary.md:88`, which preserves the finding codes and not the process exit status.
 <!-- /ANCHOR:edge-cases -->
 
 <!-- ANCHOR:complexity -->
