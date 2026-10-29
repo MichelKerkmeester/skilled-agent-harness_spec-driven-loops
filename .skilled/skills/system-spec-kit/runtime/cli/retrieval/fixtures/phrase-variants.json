@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0e1b8fde7659b724522da417921a48c93c8d73b5f4c24ecb3c26a3fe4f686779",
+  "manifestHash": "85cb189eefdf4576c05f6c55c32f0d3f3d811294e4d9d8e6bb06cd4fec8fa056",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -79762,6 +79762,9 @@
     "prompt improve command": [
       "prompt improve command"
     ],
+    "prompt improve command surface": [
+      "prompt-improve command surface"
+    ],
     "prompt improve implementation plan": [
       "prompt-improve implementation plan"
     ],
@@ -79797,6 +79800,9 @@
     ],
     "prompt improver agent repoint": [
       "prompt-improver agent repoint"
+    ],
+    "prompt improver command path": [
+      "prompt improver command path"
     ],
     "prompt improver eligibility plan": [
       "prompt improver eligibility plan"
@@ -100463,6 +100469,9 @@
     "sk prompt 3 0 1 0": [
       "sk-prompt 3.0.1.0"
     ],
+    "sk prompt 3 0 10 0": [
+      "sk-prompt 3.0.10.0"
+    ],
     "sk prompt 3 0 2 0": [
       "sk-prompt 3.0.2.0"
     ],
@@ -100771,6 +100780,9 @@
     ],
     "sk prompt v3 0 1 0": [
       "sk-prompt v3.0.1.0"
+    ],
+    "sk prompt v3 0 10 0": [
+      "sk-prompt v3.0.10.0"
     ],
     "sk prompt v3 0 2 0": [
       "sk-prompt v3.0.2.0"
