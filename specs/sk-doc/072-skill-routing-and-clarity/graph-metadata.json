@@ -16,7 +16,8 @@
     "sk-doc/072-skill-routing-and-clarity/010-prose-clarity-pass",
     "sk-doc/072-skill-routing-and-clarity/011-regeneration-and-verification",
     "sk-doc/072-skill-routing-and-clarity/012-alignment-remediation",
-    "sk-doc/072-skill-routing-and-clarity/013-mcp-tooling-routing-canon"
+    "sk-doc/072-skill-routing-and-clarity/013-mcp-tooling-routing-canon",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files"
   ],
   "manual": {
     "depends_on": [],
@@ -44,7 +45,7 @@
       "skilled"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "001-deep-research/research/research.md",
@@ -78,6 +79,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -100,26 +107,20 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Purpose Give",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Skill docs under `.skilled/skills/` are hard to read",
     "created_at": "2026-10-28T06:21:53Z",
-    "last_save_at": "2026-10-29T06:50:01.363Z",
+    "last_save_at": "2026-10-29T09:18:24.061Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e6e4b2207738097363548a568298cd526546cc5d603564ce0a51e4f28e8ed069",
+    "source_fingerprint": "sha256:d7670cf2ee8dbd4b8b257527408d90fd08218373463ce1ada01345000b6ab040",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fe85f02b42ddf46d738bc0a3efd0213112c95e581e1ae4c262da9994f7583f45"
+      "spec.md": "92bddd68e5a067e10200d4830ad59f27795c6f84641772a37420274bf8809e02"
     },
     "last_active_at": null
   }

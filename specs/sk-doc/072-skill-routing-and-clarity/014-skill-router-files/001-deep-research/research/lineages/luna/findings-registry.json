@@ -1,0 +1,423 @@
+{
+  "sessionId": "fanout-luna-1793260568789-n4qwe0",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 3,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-10-29T08:41:52.952Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-rq-1-which-scripts-tests-generators-runtime-adapters-and-other-tools-read-a-skil",
+      "inboxId": null,
+      "text": "RQ-1: Which scripts, tests, generators, runtime adapters and other tools read a SKILL.md MACHINE ROUTER section or its markers, and what sibling ROUTER.md change does each require?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-2-rq-2-how-do-claude-code-opencode-codex-cursor-pi-devin-and-hermes-load-a-skill-a",
+      "inboxId": null,
+      "text": "RQ-2: How do Claude Code, OpenCode, Codex, Cursor, Pi, Devin and Hermes load a skill, and do they load sibling files automatically? What does the Hermes copy step include?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-rq-3-which-machine-router-facts-does-an-agent-need-in-context-at-runtime-which-f",
+      "inboxId": null,
+      "text": "RQ-3: Which machine-router facts does an agent need in context at runtime, which facts only scripts need, and what pointer must remain in SKILL.md?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-rq-4-how-can-a-hub-machine-router-join-its-existing-root-router-md-without-chang",
+      "inboxId": null,
+      "text": "RQ-4: How can a hub MACHINE ROUTER join its existing root ROUTER.md without changing the router replay mode projection?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-5-rq-5-what-migration-preserves-advisor-accuracy-155-195-49-66-and-19-24-router-re",
+      "inboxId": null,
+      "text": "RQ-5: What migration preserves advisor accuracy 155/195, 49/66 and 19/24, router replay and compiled-route hashes while measuring token savings per skill and tracking debt?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-rq-1-which-scripts-tests-generators-runtime-adapters-and-other-tools-read-a-skil",
+      "inboxId": null,
+      "text": "RQ-1: Which scripts, tests, generators, runtime adapters and other tools read a SKILL.md MACHINE ROUTER section or its markers, and what sibling ROUTER.md change does each require?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-2-rq-2-how-do-claude-code-opencode-codex-cursor-pi-devin-and-hermes-load-a-skill-a",
+      "inboxId": null,
+      "text": "RQ-2: How do Claude Code, OpenCode, Codex, Cursor, Pi, Devin and Hermes load a skill, and do they load sibling files automatically? What does the Hermes copy step include?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-rq-3-which-machine-router-facts-does-an-agent-need-in-context-at-runtime-which-f",
+      "inboxId": null,
+      "text": "RQ-3: Which machine-router facts does an agent need in context at runtime, which facts only scripts need, and what pointer must remain in SKILL.md?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-rq-4-how-can-a-hub-machine-router-join-its-existing-root-router-md-without-chang",
+      "inboxId": null,
+      "text": "RQ-4: How can a hub MACHINE ROUTER join its existing root ROUTER.md without changing the router replay mode projection?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-5-rq-5-what-migration-preserves-advisor-accuracy-155-195-49-66-and-19-24-router-re",
+      "inboxId": null,
+      "text": "RQ-5: What migration preserves advisor accuracy 155/195, 49/66 and 19/24, router replay and compiled-route hashes while measuring token savings per skill and tracking debt?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "RQ-5: measure per-skill token savings and specify a migration that preserves the advisor baseline, router replay, and compiled hashes.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "RQ-4: determine how a hub router joins root ROUTER.md without changing replay projection.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "RQ-1: enumerate every MACHINE ROUTER reader, test and generator with exact file:line migration actions.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-5-both-skill-generation-workflows-still-instruct-authors-to-put-packet-machine-rou",
+      "text": "Both skill-generation workflows still instruct authors to put packet machine routing in the final SKILL.md section, while both structural gates forbid a ROUTER.md inside mode packets. This conflicts with a blanket move of every skill to a sibling ROUTER.md. LOGIC-SYNC REQUIRED is recorded: the migration needs an explicit canon change or a narrowed eligibility rule. [SOURCE: .skilled/commands/create/assets/create-skill-auto.yaml:347] [SOURCE: .skilled/commands/create/assets/create-skill-parent-auto.yaml:476] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:1004-1009]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:41-50, 373-417",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:47-53",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py:815-879",
+        ".skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement.ts:517-544",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:815-906, 975-1009, 1162-1169",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1943-2013, 2037-2069",
+        ".skilled/skills/sk-doc/scripts/tests/test_routing_shape.py:455-490",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-routing-shape.test.cjs:328-349",
+        ".skilled/commands/create/assets/create-skill-auto.yaml:347",
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:476",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:192-230",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs:68-92",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/009-sk-design/lib/registry-compiler.cjs:291-315"
+      ]
+    },
+    {
+      "id": "finding-1-2-router-replay-reads-skill-md-and-parses-intent-signals-resource-map-and-default-",
+      "text": "Router replay reads SKILL.md and parses INTENT_SIGNALS, RESOURCE_MAP and DEFAULT_RESOURCE from its text. Its fallback follows a references/ markdown pointer, then tries hub-router.json, but it does not currently resolve a root sibling ROUTER.md. verify-router-sync calls this same parser. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:41-50] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:373-417] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:47-53]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:41-50, 373-417",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:47-53",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py:815-879",
+        ".skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement.ts:517-544",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:815-906, 975-1009, 1162-1169",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1943-2013, 2037-2069",
+        ".skilled/skills/sk-doc/scripts/tests/test_routing_shape.py:455-490",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-routing-shape.test.cjs:328-349",
+        ".skilled/commands/create/assets/create-skill-auto.yaml:347",
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:476",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:192-230",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs:68-92",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/009-sk-design/lib/registry-compiler.cjs:291-315"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-doctor-parent-check-independently-parses-the-same-final-section-and-rejects-",
+      "text": "The doctor parent check independently parses the same final section and rejects a packet-local ROUTER.md. The routing-shape tests also assert appendix location, finality and marker discovery, so the package gate, doctor gate and their fixtures must move together. [SOURCE: .skilled/commands/doctor/scripts/parent-skill-check.cjs:1943-2013] [SOURCE: .skilled/commands/doctor/scripts/parent-skill-check.cjs:2037-2069] [SOURCE: .skilled/skills/sk-doc/scripts/tests/test_routing_shape.py:455-490] [SOURCE: .skilled/commands/doctor/scripts/tests/parent-skill-check-routing-shape.test.cjs:328-349]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:41-50, 373-417",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:47-53",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py:815-879",
+        ".skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement.ts:517-544",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:815-906, 975-1009, 1162-1169",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1943-2013, 2037-2069",
+        ".skilled/skills/sk-doc/scripts/tests/test_routing_shape.py:455-490",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-routing-shape.test.cjs:328-349",
+        ".skilled/commands/create/assets/create-skill-auto.yaml:347",
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:476",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:192-230",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs:68-92",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/009-sk-design/lib/registry-compiler.cjs:291-315"
+      ]
+    },
+    {
+      "id": "finding-1-6-the-leaf-manifest-generator-walks-configured-resource-roots-and-does-not-parse-s",
+      "text": "The leaf-manifest generator walks configured resource roots and does not parse SKILL.md router declarations. Compiled-routing inputs do attest whole source bytes, so the relocated ROUTER.md must enter the source identity and hash set even when the selected route projection stays unchanged. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:192-230] [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs:68-92] [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/009-sk-design/lib/registry-compiler.cjs:291-315]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:41-50, 373-417",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:47-53",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py:815-879",
+        ".skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement.ts:517-544",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:815-906, 975-1009, 1162-1169",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1943-2013, 2037-2069",
+        ".skilled/skills/sk-doc/scripts/tests/test_routing_shape.py:455-490",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-routing-shape.test.cjs:328-349",
+        ".skilled/commands/create/assets/create-skill-auto.yaml:347",
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:476",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:192-230",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs:68-92",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/009-sk-design/lib/registry-compiler.cjs:291-315"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-optional-dead-route-check-reads-each-live-skill-md-and-extracts-fenced-resou",
+      "text": "The optional dead-route check reads each live SKILL.md and extracts fenced RESOURCE_MAP or DEFAULT_RESOURCE paths. The measurement parser also reads SKILL.md before extracting the router model, so both need a sibling-file resolver if those declarations leave the skill body. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py:815-839] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py:842-879] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement.ts:517-544]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:41-50, 373-417",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:47-53",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py:815-879",
+        ".skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement.ts:517-544",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:815-906, 975-1009, 1162-1169",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1943-2013, 2037-2069",
+        ".skilled/skills/sk-doc/scripts/tests/test_routing_shape.py:455-490",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-routing-shape.test.cjs:328-349",
+        ".skilled/commands/create/assets/create-skill-auto.yaml:347",
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:476",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:192-230",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs:68-92",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/009-sk-design/lib/registry-compiler.cjs:291-315"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-package-checker-parses-h2-sections-and-fenced-machine-assignments-from-skill",
+      "text": "The package checker parses H2 sections and fenced machine assignments from SKILL.md. It requires the MACHINE ROUTER appendix to be final, and the SMART ROUTING marker check includes the appendix body. Moving the block therefore changes both structural and marker validation. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:815-906] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:1162-1169]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:41-50, 373-417",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:47-53",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py:815-879",
+        ".skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement.ts:517-544",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:815-906, 975-1009, 1162-1169",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1943-2013, 2037-2069",
+        ".skilled/skills/sk-doc/scripts/tests/test_routing_shape.py:455-490",
+        ".skilled/commands/doctor/scripts/tests/parent-skill-check-routing-shape.test.cjs:328-349",
+        ".skilled/commands/create/assets/create-skill-auto.yaml:347",
+        ".skilled/commands/create/assets/create-skill-parent-auto.yaml:476",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:192-230",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs:68-92",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/009-sk-design/lib/registry-compiler.cjs:291-315"
+      ]
+    },
+    {
+      "id": "finding-2-5-agents-still-need-the-intent-selection-rule-exact-route-destinations-load-levels",
+      "text": "Agents still need the intent-selection rule, exact route destinations, load levels, and low-confidence or ambiguity fallback when they choose skill resources; the canonical smart-router template explicitly describes discovery, path guards, conditional loads, a runtime key, and fallback as router behavior. Literal delimiters and assignment shapes are also consumed by replay, validation, measurement, and package tooling, but those parsers should read the sidecar directly instead of requiring the script syntax to remain inside SKILL.md. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md:20-26,32-57] [SOURCE: .skilled/skills/system-skill-advisor/SKILL.md:266-285,323-330,480-488] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:388-417]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-keep-a-short-pointer-in-skill-md-that-names-sibling-router-md-says-to-read-it-be",
+      "text": "Keep a short pointer in SKILL.md that names sibling ROUTER.md, says to read it before selecting or loading skill-local resources, and resolves it from the skill directory. This preserves progressive loading while keeping the route available on demand. The pointer policy conflicts with the current authoring template statement that mode packets never carry ROUTER.md, so the authoring template, creation workflows, parser checks, and tests must be revised together before migration. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md:24-26] [SOURCE: .skilled/commands/create/assets/create-skill-auto.yaml:347,430] [SOURCE: .skilled/commands/create/assets/create-skill-parent-auto.yaml:476,518,527] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:975-1009] [SOURCE: .skilled/commands/doctor/scripts/parent-skill-check.cjs:2037-2069]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-the-hermes-sync-walks-only-files-named-skill-md-writes-one-generated-markdown-fi",
+      "text": "The Hermes sync walks only files named SKILL.md, writes one generated markdown file per skill, and rewrites relative Markdown links to point back to the canonical skill directory. It deliberately excludes references, scripts, assets, and other sibling files, so a relocated ROUTER.md will not be in the Hermes preload copy; the generator must either add that one sidecar or rewrite the pointer to its canonical .skilled path. [SOURCE: .hermes/SYNC.md:16,24,51,65-67] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs:51-70,89-100,142-160]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-the-skill-runtimes-use-progressive-loading-they-advertise-metadata-or-a-descript",
+      "text": "The skill runtimes use progressive loading: they advertise metadata or a description, then load SKILL.md when selected; supporting-file contents are read only when the instructions call for them. OpenCode states this explicitly, while Claude, Pi, Cursor, and Codex document the same on-demand pattern. A sibling ROUTER.md therefore needs an explicit path and read instruction in SKILL.md; directory presence alone does not put its text in the model context. [SOURCE: https://code.claude.com/docs/en/skills] [SOURCE: https://opencode.ai/v2/docs/skills] [SOURCE: https://cursor.com/docs/skills] [SOURCE: https://pi.dev/docs/latest/skills] [SOURCE: https://developers.openai.com/blog/skills-agents-sdk/]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-this-checkout-does-not-provision-a-codex-native-skills-directory-its-codex-sync-",
+      "text": "This checkout does not provision a Codex-native skills directory: its Codex sync manifest says there is no .codex/skills, and the root AGENTS.md routes through the skill-advisor hook or explicit advisor CLI. OpenAI documents repo-local Codex skills under .agents/skills, but that root is not present in this checkout; treat Codex loading here as explicit canonical-path routing, not automatic project skill discovery. [SOURCE: .codex/SYNC.md:14-35] [SOURCE: AGENTS.md:66-67] [SOURCE: https://developers.openai.com/blog/skills-agents-sdk/]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-workspace-delivery-differs-by-runtime-claude-opencode-pi-and-devin-expose-the-ca",
+      "text": "Workspace delivery differs by runtime: Claude, OpenCode, Pi, and Devin expose the canonical skills tree through directory symlinks; Hermes builds standalone SKILL.md copies; Codex has no .codex/skills tree; Cursor has no .cursor/skills tree but current Cursor docs also discover .claude/skills, which this checkout links to .skilled/skills. The local Cursor manifest records only its own skills location, so refresh that description alongside the migration. [SOURCE: .claude/SYNC.md:14,27] [SOURCE: .opencode/SYNC.md:14,26] [SOURCE: .codex/SYNC.md:14-35] [SOURCE: .cursor/SYNC.md:39] [SOURCE: .pi/SYNC.md:34] [SOURCE: .devin/SYNC.md:20,34] [SOURCE: .hermes/SYNC.md:16,24,27] [SOURCE: https://cursor.com/docs/skills]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-direct-readers-are-the-replay-parser-router-sync-check-dead-resource-path-scanne",
+      "text": "Direct readers are the replay parser, router-sync check, dead-resource-path scanner, and two routing-shape validators; the skill-creation template and Hermes mirror are migration producers, while the measurement harness only extracts SMART ROUTING. [SOURCE: router-replay-lib.cjs:78-79,365-421,763-765; verify-router-sync.cjs:47; verify_alignment_drift.py:815-879; package_skill.py:791-909,975-1010; parent-skill-check.cjs:1857,1943-2013,2019-2072,2147-2155; smart-router-measurement.ts:373-381,517-545]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-7-exact-compiled-hash-preservation-conflicts-with-the-current-byte-provenance-cont",
+      "text": "Exact compiled hash preservation conflicts with the current byte-provenance contract: moved text changes SKILL.md or ROUTER.md source hashes, which feed effectivePolicyHash and projectionHash; the accuracy dataset behind 155/195, 49/66, and 19/24 also needs a frozen fixture before parity can be proven. [SOURCE: registry-compiler.cjs:291-315,419-467; canonical.cjs:113-130; spec.md:79-83; system-skill-advisor/changelog/v0.17.23.0.md:16; smart-router-measurement.vitest.ts:120-150]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-seven-hubs-already-have-root-router-md-files-and-their-moved-machine-router-sect",
+      "text": "Seven hubs already have root ROUTER.md files, and their moved MACHINE ROUTER sections contain no INTENT_SIGNALS, INTENT_MODEL, RESOURCE_MAP, or DEFAULT_RESOURCE assignment rows; merge the hub instructions into a separate named section and retain the existing stage-two map as the sole projection source. [SOURCE: sk-design/SKILL.md:154-173; sk-design/ROUTER.md:17-60; router-replay-lib.cjs:652-676; leaf-route-replay.cjs:117-128,323-345; root-router-contract.cjs:578-613; registry-compiler.cjs:327-348]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-seven-runtime-surfaces-discover-or-copy-skill-md-through-distinct-paths-and-none",
+      "text": "Seven runtime surfaces discover or copy SKILL.md through distinct paths, and none automatically adds an arbitrary sibling ROUTER.md to model context; a short pointer in SKILL.md must direct an on-demand read. [SOURCE: .claude/SYNC.md:14,27; .opencode/SYNC.md:14,26; .codex/SYNC.md:35; .cursor/SYNC.md:39; .pi/SYNC.md:34; .devin/SYNC.md:20,34; .hermes/SYNC.md:16,24,27; https://code.claude.com/docs/en/skills; https://opencode.ai/v2/docs/skills; https://cursor.com/docs/skills; https://pi.dev/docs/latest/skills; https://developers.openai.com/blog/skills-agents-sdk/]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-the-agent-needs-the-route-decision-rule-resource-destinations-load-levels-and-am",
+      "text": "The agent needs the route decision rule, resource destinations, load levels, and ambiguity fallback; scripts need literal assignment grammar, delimiters, and path-resolution rules, so keep the decision rule in the short skill prose and use the sidecar as the detailed source. [SOURCE: skill-smart-router.md:22-26; system-skill-advisor/SKILL.md:100-115,220-240; router-replay-lib.cjs:72-129,388-421; verify_alignment_drift.py:815-879]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-the-current-package-validator-doctor-check-smart-router-template-and-parent-crea",
+      "text": "The current package validator, doctor check, smart-router template, and parent creation workflow forbid a mode packet's own ROUTER.md, so RS-004 and the authoring contract must be revised before the requested sibling-file migration can pass. [SOURCE: package_skill.py:187-193,1004-1009; parent-skill-check.cjs:2065-2069,2150-2152; skill-smart-router.md:24-26; create-skill-parent-auto.yaml:437,476,627,634]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-the-current-tree-has-57-skill-md-files-and-54-router-sections-totaling-39-159-wo",
+      "text": "The current tree has 57 SKILL.md files and 54 router sections totaling 39,159 words and 89,931 local O200K-export tokens; a standardized 23-token pointer leaves 88,689 initial-load token units, with exact gpt-6-luna counts unverified. [SOURCE: spec.md:63-70; token-savings.csv; local tiktoken O200K-compatible export measurement]",
+      "addedAtIteration": 3,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-f3029a939789",
+      "text": "Treating every root ROUTER.md parser as a current reader of the SKILL.md appendix. The root-router checks read the separate stage-two router; their merge behavior is examined in RQ-4.",
+      "contentHash": "f3029a939789",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-aa6ac3829a4a",
+      "text": "Treating the leaf-manifest generator as a direct MACHINE ROUTER reader. Its source walks configured leaf roots and does not parse SKILL.md.",
+      "contentHash": "aa6ac3829a4a",
+      "addedAtIteration": 1
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 3,
+    "keyFindings": 19,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.76,
+    "coverageBySources": {
+      "code": 30,
+      "code.claude.com": 1,
+      "cursor.com": 1,
+      "developers.openai.com": 1,
+      "opencode.ai": 1,
+      "pi.dev": 1
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/269-skill-router-files/specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research/research/lineages/luna/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

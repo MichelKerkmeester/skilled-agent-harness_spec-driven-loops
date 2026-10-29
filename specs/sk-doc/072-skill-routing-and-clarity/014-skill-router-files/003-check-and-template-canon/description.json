@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/003-check-and-template-canon",
+  "description": "Phase 3: check-and-template-canon",
+  "keywords": [
+    "phase",
+    "check-and-template-canon"
+  ],
+  "lastUpdated": "2026-10-29T07:52:43.167Z",
+  "specId": "003",
+  "folderSlug": "check-and-template-canon",
+  "parentChain": [
+    "sk-doc",
+    "072-skill-routing-and-clarity",
+    "014-skill-router-files"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

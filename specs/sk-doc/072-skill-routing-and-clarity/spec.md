@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-doc/072-skill-routing-and-clarity"
     last_updated_at: "2026-10-28T21:55:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Closed phase 012: every alignment finding fixed and the nine failing rows rerun green"
-    next_safe_action: "None: the program is complete"
+    recent_action: "Closed the phase 014 deep research and planned its five build phases"
+    next_safe_action: "Implement 014-skill-router-files/002-router-file-tooling"
     blockers: []
     key_files:
       - "001-deep-research/research/research.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "skill-routing-and-clarity-orchestrator"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 93
     open_questions: []
     answered_questions: []
 ---
@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-10-28 |
 | **Branch** | `worktrees/254-skill-routing-and-clarity` |
 | **Parent Spec** | None |
@@ -122,6 +122,7 @@ Give every skill one source per routing decision, a routing shape that fits its 
 | 11 | 011-regeneration-and-verification/ | Regenerate every mirror and generated file; rerun the phase 002 baseline and report the delta | Complete |
 | 12 | 012-alignment-remediation/ | The alignment run over the program's own range: close its 34 findings, from the two red CI gates to the documentation debt, and rerun the battery rows that failed | Complete |
 | 13 | 013-mcp-tooling-routing-canon/ | Move the mcp-tooling hub, the last SKILL.md without a final MACHINE ROUTER section, to the canon, and make the check fail any SKILL.md that lacks the section | Complete |
+| 14 | 014-skill-router-files/ | Move every skill's machine router out of SKILL.md into a sibling `ROUTER.md`, a phase parent with six children opening on three deep-research iterations | In Progress |
 
 ### Phase Transition Rules
 
@@ -146,6 +147,7 @@ Give every skill one source per routing decision, a routing shape that fits its 
 | 010-prose-clarity-pass | 011-regeneration-and-verification | Prose pass complete | check-rule-copies, package_skill and verify-doc-claims pass |
 | 011-regeneration-and-verification | 012-alignment-remediation | Every generator writes nothing and the alignment run has a range to check | The alignment battery and lanes run over the program range |
 | 012-alignment-remediation | 013-mcp-tooling-routing-canon | The alignment findings closed and one hub still in the older shape | Every SKILL.md has the section and package_skill --strict enforces it |
+| 013-mcp-tooling-routing-canon | 014-skill-router-files | Every SKILL.md ends with a MACHINE ROUTER section the check enforces | The router move starts from one shape across all 54 skills |
 <!-- /ANCHOR:phase-map -->
 
 ---

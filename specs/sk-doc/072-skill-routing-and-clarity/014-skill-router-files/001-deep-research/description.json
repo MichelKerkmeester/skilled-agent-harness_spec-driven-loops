@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research",
+  "description": "The machine router takes 22% of all SKILL.md words, and three skills sit within 25 words of the 5,000-word cap",
+  "keywords": [
+    "machine",
+    "router",
+    "takes",
+    "skill",
+    "words",
+    "three",
+    "skills",
+    "sit",
+    "within",
+    "000-word",
+    "cap"
+  ],
+  "lastUpdated": "2026-10-29T08:29:52.374Z",
+  "specId": "001",
+  "folderSlug": "deep-research",
+  "parentChain": [
+    "sk-doc",
+    "072-skill-routing-and-clarity",
+    "014-skill-router-files"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

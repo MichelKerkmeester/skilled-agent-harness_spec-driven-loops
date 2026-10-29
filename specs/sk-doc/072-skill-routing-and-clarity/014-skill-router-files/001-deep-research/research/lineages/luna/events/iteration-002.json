@@ -1,0 +1,65 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "run": 2,
+  "runId": "fanout-luna-1793260568789-n4qwe0",
+  "sessionId": "fanout-luna-1793260568789-n4qwe0",
+  "lineageId": "fanout-luna-1793260568789-n4qwe0",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "status": "complete",
+  "focus": "RQ-2 and RQ-3: seven runtime loaders, Hermes copy contents, and runtime versus parser context",
+  "findingsCount": 6,
+  "newInfoRatio": 0.82,
+  "noveltyJustification": "This iteration maps each runtime packaging path and distinguishes skill instructions loaded by the agent from structures parsed by tools.",
+  "keyQuestions": [
+    "RQ-2",
+    "RQ-3"
+  ],
+  "answeredQuestions": [
+    "RQ-2: How do Claude Code, OpenCode, Codex, Cursor, Pi, Devin and Hermes load a skill, and do they load sibling files automatically? What does the Hermes copy step include?",
+    "RQ-3: Which machine-router facts does an agent need in context at runtime, which facts only scripts need, and what pointer must remain in SKILL.md?"
+  ],
+  "ruledOut": [
+    "Assuming that a sibling ROUTER.md is automatically added to model context merely because it sits beside SKILL.md."
+  ],
+  "focusTrack": "runtime-loader-context",
+  "edgeCase": "repo-specific skill discovery differs from native runtime discovery",
+  "toolsUsed": [
+    "Read",
+    "Grep",
+    "Bash",
+    "WebSearch",
+    "WebFetch"
+  ],
+  "sourcesQueried": [
+    ".claude/SYNC.md:14,27",
+    ".opencode/SYNC.md:14,26",
+    ".codex/SYNC.md:14-35",
+    ".cursor/SYNC.md:39",
+    ".pi/SYNC.md:34",
+    ".devin/SYNC.md:20,34",
+    ".hermes/SYNC.md:16,24,27",
+    "AGENTS.md:66-67",
+    ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs:51-70,89-100,142-160",
+    ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md:20-26",
+    ".skilled/skills/system-skill-advisor/SKILL.md:266-285,323-330,480-488",
+    ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:388-417",
+    "https://code.claude.com/docs/en/skills",
+    "https://opencode.ai/v2/docs/skills",
+    "https://cursor.com/docs/skills",
+    "https://pi.dev/docs/latest/skills",
+    "https://developers.openai.com/blog/skills-agents-sdk/"
+  ],
+  "timestamp": "2026-10-29T08:14:21Z",
+  "durationMs": 285000,
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast"
+  },
+  "graphEvents": []
+}

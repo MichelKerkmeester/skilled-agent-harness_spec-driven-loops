@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files",
+  "spec_folder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files",
+  "parent_id": "sk-doc/072-skill-routing-and-clarity",
+  "children_ids": [
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/002-router-file-tooling",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/003-check-and-template-canon",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/004-hub-router-merge",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/005-packet-and-standalone-migration",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill router files",
+      "sibling router md",
+      "machine router out of skill md",
+      "phase 14 skill router files"
+    ],
+    "key_topics": [
+      "skill",
+      "router",
+      "files",
+      "sibling",
+      "machine",
+      "phase",
+      "every",
+      "ends",
+      "section",
+      "loads",
+      "whenever",
+      "feature"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Router Files",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every SKILL.md ends with a `## MACHINE ROUTER` section, and that section loads whenever the skill does",
+    "created_at": "2026-10-29T07:52:39Z",
+    "last_save_at": "2026-10-29T09:20:22.950Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:b4b11f0bb31fcbd403a28821133cbba1b6a6328c7a12cbe693438c55bb72bb21",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "028cc4d588cc45a305e298b6c8f7867abbe567070045f6223ad7961c9ca0fd21"
+    },
+    "last_active_at": null
+  }
+}

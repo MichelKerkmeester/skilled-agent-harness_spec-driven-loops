@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/002-router-file-tooling",
+  "description": "Phase 2: router-file-tooling",
+  "keywords": [
+    "phase",
+    "router-file-tooling"
+  ],
+  "lastUpdated": "2026-10-29T07:52:42.508Z",
+  "specId": "002",
+  "folderSlug": "router-file-tooling",
+  "parentChain": [
+    "sk-doc",
+    "072-skill-routing-and-clarity",
+    "014-skill-router-files"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

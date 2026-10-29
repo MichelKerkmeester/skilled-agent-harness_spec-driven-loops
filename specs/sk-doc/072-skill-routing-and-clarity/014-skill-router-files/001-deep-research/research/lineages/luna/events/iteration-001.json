@@ -1,0 +1,52 @@
+{
+  "type": "iteration",
+  "iteration": 1,
+  "run": 1,
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "status": "complete",
+  "focus": "RQ-1: inventory machine-router readers and their relocation impacts",
+  "findingsCount": 6,
+  "newInfoRatio": 1,
+  "noveltyJustification": "All six findings add previously unmapped parser, validator, generator, manifest, or source-hash behavior.",
+  "keyQuestions": [
+    "RQ-1",
+    "RQ-4",
+    "RQ-5"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "The leaf-manifest generator is not a machine-router parser; it enumerates declared leaf roots."
+  ],
+  "focusTrack": "reader-inventory",
+  "edgeCase": "contradictory-evidence",
+  "toolsUsed": [
+    "Read",
+    "Grep",
+    "Bash"
+  ],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:41-50",
+    ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:388-417",
+    ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:47-53",
+    ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py:815-879",
+    ".skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement.ts:517-544",
+    ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:815-906",
+    ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:975-1009",
+    ".skilled/commands/doctor/scripts/parent-skill-check.cjs:1943-2013",
+    ".skilled/commands/doctor/scripts/parent-skill-check.cjs:2037-2069",
+    ".skilled/commands/create/assets/create-skill-auto.yaml:347",
+    ".skilled/commands/create/assets/create-skill-parent-auto.yaml:476",
+    ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:192-230",
+    ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs:68-92",
+    ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/009-sk-design/lib/registry-compiler.cjs:291-315"
+  ],
+  "timestamp": "2026-10-29T08:06:41Z",
+  "durationMs": 280000,
+  "graphEvents": [],
+  "sessionId": "fanout-luna-1793260568789-n4qwe0",
+  "runId": "fanout-luna-1793260568789-n4qwe0",
+  "lineageId": "fanout-luna-1793260568789-n4qwe0"
+}
