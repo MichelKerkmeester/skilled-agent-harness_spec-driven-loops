@@ -341,6 +341,12 @@ function advisorSourceSignature(workspaceRoot) {
       const skillDir = join(skillRoot, skillSlug);
       addFileSignature(hash, `skill:${skillSlug}:SKILL.md`, join(skillDir, 'SKILL.md'));
       addFileSignature(hash, `skill:${skillSlug}:graph-metadata.json`, join(skillDir, 'graph-metadata.json'));
+      // ROUTER.md is optional, so a skill without one keeps the signature it had
+      // before this probe existed; only a skill that carries the file adds a part.
+      const routerMdPath = join(skillDir, 'ROUTER.md');
+      if (existsSync(routerMdPath)) {
+        addFileSignature(hash, `skill:${skillSlug}:ROUTER.md`, routerMdPath);
+      }
     }
   } catch {
     hash.update(`${SKILL_ROOT_RELATIVE_PATH}\u001fmissing\u001e`);
@@ -1729,4 +1735,13 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
   };
 }
 
-export default dualPlugin('system-skill-advisor', MkSkillAdvisorPlugin);
+// The host reads the plugin from the module's default export and a loader guard holds
+// the module to that one key, so the signature reaches the parity suite as a hidden
+// property of the plugin object instead of a second named export.
+const skillAdvisorPlugin = dualPlugin('system-skill-advisor', MkSkillAdvisorPlugin);
+Object.defineProperty(skillAdvisorPlugin, 'advisorSourceSignature', {
+  value: advisorSourceSignature,
+  enumerable: false,
+});
+
+export default skillAdvisorPlugin;

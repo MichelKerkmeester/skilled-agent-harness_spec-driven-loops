@@ -44,7 +44,9 @@ const DEFAULT_RESOURCE_BLOCK = /DEFAULT_RESOURCES?\s*=\s*\[([\s\S]*?)\]/;
 const NON_CONTRACT_CATEGORIES = new Set(['holdout', 'unknown_fallback', 'surface_detection', 'token_cost_baseline', 'resource_loading', 'cross_cli_dispatch']);
 
 const norm = (p) => p.replace(/^\.\//, '');
-const readSkillRouter = (dir) => lib.parseRouter(fs.readFileSync(path.join(dir, 'SKILL.md'), 'utf8'), dir);
+// The replay parser asks the resolver which document declares the router, so the guard hands it the
+// skill root and never picks a document itself.
+const readSkillRouter = (dir) => lib.parseRouter(null, dir);
 
 // Same list grammar the root-router contract uses for these blocks, read here so the guard keeps
 // no copy of the list.

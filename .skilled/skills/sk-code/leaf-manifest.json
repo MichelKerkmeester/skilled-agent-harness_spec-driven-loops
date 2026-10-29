@@ -64,6 +64,7 @@
         "assets/checklists/typescript-checklist.md",
         "assets/checklists/universal-checklist.md",
         "assets/scripts/README.md",
+        "assets/scripts/router-file-resolver.cjs",
         "assets/scripts/router-replay-lib.cjs",
         "assets/scripts/test_verify_alignment_drift.py",
         "assets/scripts/test_verify_stack_folders.py",

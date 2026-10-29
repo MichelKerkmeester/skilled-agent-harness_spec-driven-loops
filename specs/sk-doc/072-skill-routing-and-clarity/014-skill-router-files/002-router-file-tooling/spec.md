@@ -7,11 +7,19 @@ trigger_phrases:
   - "router file resolver"
 importance_tier: "normal"
 contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/002-router-file-tooling"
+    last_updated_at: "2026-10-29T10:56:00Z"
+    last_updated_by: "pi"
+    recent_action: "Built the router file resolver and moved its readers onto it"
+    next_safe_action: "Build 003-check-and-template-canon"
+    completion_pct: 100
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
 # Feature Specification: Phase 2: router-file-tooling
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 ---
 
 <!-- ANCHOR:metadata -->
@@ -19,9 +27,9 @@ contextType: "general"
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
+| **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-29 |
 | **Branch** | `worktrees/269-skill-router-files` |
 | **Parent Spec** | ../spec.md |
@@ -175,8 +183,45 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 ---
 
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+Every line below is N/A. This phase builds library modules and their tests, and nothing it ships runs as a service.
+
+### Performance
+- **NFR-P01**: N/A. No process answers a request, so there is no response time to hold to a target.
+- **NFR-P02**: N/A. No process handles concurrent work, so throughput has no meaning here.
+
+### Security
+- **NFR-S01**: N/A. The resolver opens files under the skill root its caller names, so there is no authentication surface.
+- **NFR-S02**: N/A. No data leaves the working tree, so nothing is transmitted or stored to protect.
+
+### Reliability
+- **NFR-R01**: N/A. No service starts, so there is no uptime to measure.
+- **NFR-R02**: N/A. No long-running process accumulates failures, so there is no error rate to hold.
+<!-- /ANCHOR:nfr -->
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+- Empty input: a skill root whose `SKILL.md` and `ROUTER.md` both declare nothing resolves to the `none` verdict with no source and no text, and the resolver unit set covers that shape in its fourth case.
+- Maximum input: the dead-route scan reads the whole `.skilled/skills` tree, 5420 files under `--check-router`, and printed `Findings: 0`.
+- Failure path: a skill that declares assignments in both documents returns the `dual-declaration` verdict with no text, the scan prints `[ROUTER-DUAL-DECLARATION]` and exits 1, and replay reports `parseable` false instead of routing from one side.
+<!-- /ANCHOR:edge-cases -->
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | 8/25 | 14 files, one new module of 105 lines, three readers moved onto it and five producers taught the new probe |
+| Risk | 6/25 | No auth, no API and no persisted data. The one shared contract is the machine-router heading that phase 003 has to write |
+| Research | 7/20 | Phase 1's research named every reader, so the build needed no further investigation |
+| **Total** | **21/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
+
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 10. OPEN QUESTIONS
 
 - None blocks this phase. The parent phase map also names the reach check, compiled routing and the leaf manifest for this phase, and research section 4 records that the registry compiler hashes `ROUTER.md` as source bytes already, that the root-router gate reads the hub root, and that the leaf manifest walks leaf roots without parsing `SKILL.md`. Those three need no change, and the parent row reads as stale once this phase closes.
 <!-- /ANCHOR:questions -->

@@ -213,10 +213,11 @@ class VerifyAlignmentDriftTests(unittest.TestCase):
             self.assertIn("[RUST-PANIC-BOUNDARY] [WARN]", result.stdout)
 
     def _write_router_fixture(self, root: Path, resource_rel: str, create_target: bool) -> None:
-        # A minimal SKILL.md whose fenced router block names one RESOURCE_MAP leaf.
+        # A minimal SKILL.md whose machine-router section names one RESOURCE_MAP leaf.
         self.write_file(
             root / "SKILL.md",
             "# skill\n\n"
+            "## 6. MACHINE ROUTER\n\n"
             "```python\n"
             "DEFAULT_RESOURCE = []\n"
             f'RESOURCE_MAP = {{ "IMPLEMENTATION": ["{resource_rel}"] }}\n'
@@ -292,6 +293,145 @@ class VerifyAlignmentDriftTests(unittest.TestCase):
             result = self.run_cli(root)
             self.assertEqual(0, result.returncode)
             self.assertNotIn("ROUTER-DEAD-PATH", result.stdout)
+
+    def test_check_router_reads_a_router_declared_in_router_md(self) -> None:
+        # The router lives in a sibling ROUTER.md once it moves out of SKILL.md, so
+        # a leaf named there still has no file and is the same dead route.
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self.write_file(root / "SKILL.md", "# skill\n\nRouter: `ROUTER.md`.\n")
+            self.write_file(
+                root / "ROUTER.md",
+                "# router\n\n"
+                "## 3. MACHINE ROUTER\n\n"
+                "```python\n"
+                'RESOURCE_MAP = { "IMPLEMENTATION": ["references/shared/missing.md"] }\n'
+                "```\n",
+            )
+
+            result = self.run_cli(root, ["--check-router"])
+            self.assertEqual(1, result.returncode, result.stdout)
+            dead = [line for line in result.stdout.splitlines() if "[ROUTER-DEAD-PATH]" in line]
+            self.assertEqual(1, len(dead), result.stdout)
+            self.assertIn("ROUTER.md:1", dead[0])
+            self.assertIn("references/shared/missing.md", dead[0])
+
+    def test_check_router_reports_a_router_declared_in_two_documents(self) -> None:
+        # Two declarers make the resolver's verdict a refusal, so the scan reports
+        # the conflict once and reads neither document. A dead leaf on either side
+        # would otherwise read as the router that is live.
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self.write_file(
+                root / "SKILL.md",
+                "# skill\n\n"
+                "## 6. MACHINE ROUTER\n\n"
+                "```python\n"
+                'RESOURCE_MAP = { "IMPLEMENTATION": ["references/shared/skill-missing.md"] }\n'
+                "```\n",
+            )
+            self.write_file(
+                root / "ROUTER.md",
+                "# router\n\n"
+                "## 3. MACHINE ROUTER\n\n"
+                "```python\n"
+                'RESOURCE_MAP = { "IMPLEMENTATION": ["references/shared/router-missing.md"] }\n'
+                "```\n",
+            )
+
+            result = self.run_cli(root, ["--check-router"])
+            self.assertEqual(1, result.returncode, result.stdout)
+            dual = [line for line in result.stdout.splitlines() if "[ROUTER-DUAL-DECLARATION]" in line]
+            self.assertEqual(1, len(dual), result.stdout)
+            self.assertIn("SKILL.md:1", dual[0])
+            self.assertNotIn("ROUTER-DEAD-PATH", result.stdout)
+
+    def test_check_router_reads_a_router_declared_only_by_default_resource(self) -> None:
+        # A mode that names one default resource and no intent signals or resource
+        # map still points at a leaf, so the default header is what declares it and
+        # the leaf it names is still checked.
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self.write_file(
+                root / "SKILL.md",
+                "# skill\n\n"
+                "## 6. MACHINE ROUTER\n\n"
+                "```python\n"
+                'DEFAULT_RESOURCE = "references/shared/missing.md"\n'
+                "```\n",
+            )
+
+            result = self.run_cli(root, ["--check-router"])
+            self.assertEqual(1, result.returncode, result.stdout)
+            dead = [line for line in result.stdout.splitlines() if "[ROUTER-DEAD-PATH]" in line]
+            self.assertEqual(1, len(dead), result.stdout)
+            self.assertIn("SKILL.md:1", dead[0])
+            self.assertIn("references/shared/missing.md", dead[0])
+
+    def test_check_router_reads_a_skill_without_a_router_heading(self) -> None:
+        # A router block that predates the machine-router heading still names leaves,
+        # so the whole SKILL.md is read and a leaf it points at is still checked.
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self.write_file(
+                root / "SKILL.md",
+                "# skill\n\n"
+                "## 2. SMART ROUTING\n\n"
+                "```python\n"
+                'RESOURCE_MAP = { "IMPLEMENTATION": ["references/shared/legacy.md"] }\n'
+                "```\n",
+            )
+
+            result = self.run_cli(root, ["--check-router"])
+            self.assertEqual(1, result.returncode, result.stdout)
+            dead = [line for line in result.stdout.splitlines() if "[ROUTER-DEAD-PATH]" in line]
+            self.assertEqual(1, len(dead), result.stdout)
+            self.assertIn("references/shared/legacy.md", dead[0])
+
+    def test_router_section_needs_a_heading_at_the_start_of_a_newline_line(self) -> None:
+        # The resolver splits on newline alone, so a heading after a Unicode line
+        # separator or a fence closed by a vertical tab reads the same in both readers.
+        self.assertIsNone(
+            self.module.router_declaration_section(
+                "x\u2028## MACHINE ROUTER\nINTENT_SIGNALS = {}\n"
+            )
+        )
+        self.assertIsNone(
+            self.module.router_declaration_section(
+                "```\n```\u000b\n## MACHINE ROUTER\nINTENT_SIGNALS = {}\n"
+            )
+        )
+
+    def test_check_router_ignores_a_heading_shown_in_a_fenced_example(self) -> None:
+        # A skill documents the grammar in a fenced example, so the heading inside
+        # that example opens no section and its dead leaf is no declaration. Only
+        # ROUTER.md declares, and its live leaf is what the scan checks.
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self.write_file(
+                root / "SKILL.md",
+                "# skill\n\n"
+                "The router lives in `ROUTER.md`. A mode declares one like this:\n\n"
+                "~~~markdown\n"
+                "## MACHINE ROUTER\n"
+                'RESOURCE_MAP = { "IMPLEMENTATION": ["references/shared/missing.md"] }\n'
+                "~~~\n",
+            )
+            self.write_file(
+                root / "ROUTER.md",
+                "# router\n\n"
+                "## 3. MACHINE ROUTER\n\n"
+                "```python\n"
+                'RESOURCE_MAP = { "IMPLEMENTATION": ["references/shared/live.md"] }\n'
+                "```\n",
+            )
+            self.write_file(root / "references" / "shared" / "live.md", "# resource\n")
+
+            result = self.run_cli(root, ["--check-router"])
+            self.assertEqual(0, result.returncode, result.stdout)
+            self.assertNotIn("ROUTER-DUAL-DECLARATION", result.stdout)
+            self.assertNotIn("ROUTER-DEAD-PATH", result.stdout)
+            self.assertIn("Findings: 0", result.stdout)
 
     def _long_ts(self, body_line: str = "export const value = 1;\n") -> str:
         return "// MODULE: fixture\n" + body_line * 160

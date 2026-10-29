@@ -5,8 +5,9 @@
 
 /**
  * Replays the sk-code router for a task string. The router keeps its intent
- * signals and resource map in a fenced block of its SKILL.md, so this module
- * extracts those dictionaries and reproduces the router's substring scoring:
+ * signals and resource map in the document that declares them, SKILL.md or its
+ * sibling ROUTER.md, so this module extracts those dictionaries and reproduces
+ * the router's substring scoring:
  * lowercase the task, score each intent by whether each keyword appears in it,
  * keep the intents within an ambiguity delta of the top score, and assemble the
  * resource map entries for the selected intents.
@@ -27,6 +28,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { resolveMachineRouter } = require('./router-file-resolver.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -385,25 +387,50 @@ function findReferencedRouterDoc(skillMdText, skillRoot) {
   return fs.existsSync(conventional) ? conventional : null;
 }
 
+// Which document declares a skill's machine router is one decision, and the resolver beside this
+// module owns it. Asking it here keeps this parser's call sites on one signature while the router
+// moves out of SKILL.md.
+
 /**
  * Extract the in-skill router (INTENT_SIGNALS + RESOURCE_MAP + DEFAULT_RESOURCE)
- * from SKILL.md, falling back to a referenced router doc when the inline block
- * is absent.
+ * from the document that declares it, falling back to a referenced router doc and
+ * then to a hub router when no document declares one.
  *
- * @param {string} skillMdText - The SKILL.md text.
- * @param {string} skillRoot - Skill root dir (for resolving referenced docs).
+ * @param {string|null} skillMdText - The SKILL.md text, or null to read it from skillRoot.
+ * @param {string} skillRoot - Skill root dir the resolver probes (for that file and referenced docs).
  * @returns {{intentSignals:Object,resourceMap:Object,defaultResource:string[],parseable:boolean,routerSource:string}} Parsed router.
  */
 function parseRouter(skillMdText, skillRoot) {
-  let intentSignals = parseIntentSignals(extractIntentDictBody(skillMdText));
-  let resourceMap = parseResourceMap(extractDictBody(skillMdText, 'RESOURCE_MAP'));
-  let defaultResource = parseDefaultResource(skillMdText);
-  let defaultResourceSemantics = parseDefaultResourceSemantics(skillMdText);
-  let routerSource = 'inline';
+  if (typeof skillMdText !== 'string' && !skillRoot) {
+    throw new Error('parseRouter needs SKILL.md text or a skill root');
+  }
+  const skillText = typeof skillMdText === 'string' ? skillMdText : readSkillMd(skillRoot);
+  const resolved = skillRoot ? resolveMachineRouter({ skillRoot, skillMdText: skillText }) : null;
+
+  // Two documents declaring the same router is a fault to report, not a precedence to settle: a
+  // reader that picked one would bypass the map the other declares.
+  if (resolved && resolved.verdict === 'dual-declaration') {
+    return {
+      intentSignals: {}, resourceMap: {}, defaultResource: [], defaultResourceSemantics: null,
+      parseable: false, routerSource: 'dual-declaration',
+    };
+  }
+
+  // Only a declaration in ROUTER.md supplies the text to parse. A skill that still declares in
+  // SKILL.md, or in neither document, keeps parsing the file the caller holds, so its source and
+  // every fallback below stay exactly as they were.
+  const fromRouterFile = Boolean(resolved && resolved.verdict === 'router-md');
+  const routerText = fromRouterFile ? resolved.text : skillText;
+
+  let intentSignals = parseIntentSignals(extractIntentDictBody(routerText));
+  let resourceMap = parseResourceMap(extractDictBody(routerText, 'RESOURCE_MAP'));
+  let defaultResource = parseDefaultResource(routerText);
+  let defaultResourceSemantics = parseDefaultResourceSemantics(routerText);
+  let routerSource = fromRouterFile ? path.relative(skillRoot, resolved.source) : 'inline';
 
   const inlineEmpty = Object.keys(intentSignals).length === 0 && Object.keys(resourceMap).length === 0;
   if (inlineEmpty && skillRoot) {
-    const refDoc = findReferencedRouterDoc(skillMdText, skillRoot);
+    const refDoc = findReferencedRouterDoc(routerText, skillRoot);
     if (refDoc) {
       const refText = fs.readFileSync(refDoc, 'utf8');
       const refSignals = parseIntentSignals(extractIntentDictBody(refText));

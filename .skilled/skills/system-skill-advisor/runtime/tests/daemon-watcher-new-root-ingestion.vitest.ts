@@ -151,6 +151,30 @@ describe('new-root ingestion: the skills root announces newborn skills', () => {
     await watcher.close();
   });
 
+  it('discovers a skill\'s ROUTER.md as a router-md target', async () => {
+    const root = workspace('skill-graph-router-md');
+    writeSkill(root, 'alpha');
+    writeSkill(root, 'beta');
+    write(join(skillDir(root, 'alpha'), 'ROUTER.md'), ['# alpha', '', '## MACHINE ROUTER', ''].join('\n'));
+    const harness = createCapturingHarness();
+
+    const watcher = createSkillGraphWatcher({
+      workspaceRoot: root,
+      watchFactory: harness.watchFactory,
+      reindexSkill: vi.fn(async () => ({ indexedFiles: 1 })),
+      backpressure: { debounceMs: 20, stableWriteMs: 5 },
+    });
+
+    // Only the skill that ships the file gets the target; the sibling without
+    // one keeps the SKILL.md-only shape.
+    expect(watcher.targets.filter((target) => target.reason === 'router-md')).toEqual([
+      { path: join(skillDir(root, 'alpha'), 'ROUTER.md'), skillSlug: 'alpha', reason: 'router-md' },
+    ]);
+    expect(harness.watchedPaths).toContain(join(skillDir(root, 'alpha'), 'ROUTER.md'));
+
+    await watcher.close();
+  });
+
   it('ingests a skill created after startup and promotes its files to targets', async () => {
     const root = workspace('skill-graph-new-root');
     writeSkill(root, 'alpha');

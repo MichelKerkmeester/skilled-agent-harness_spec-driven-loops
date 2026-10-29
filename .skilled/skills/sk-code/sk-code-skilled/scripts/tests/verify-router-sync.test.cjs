@@ -34,7 +34,7 @@ function buildHub(t) {
   const hub = path.join(skills, 'sk-code');
   const scripts = path.join(hub, 'sk-code-skilled', 'assets', 'scripts');
   fs.mkdirSync(scripts, { recursive: true });
-  for (const name of ['verify-router-sync.cjs', 'router-replay-lib.cjs']) {
+  for (const name of ['verify-router-sync.cjs', 'router-replay-lib.cjs', 'router-file-resolver.cjs']) {
     fs.copyFileSync(path.join(SCRIPTS, name), path.join(scripts, name));
   }
   write(path.join(skills, CONTRACT), fs.readFileSync(path.join(LIVE_SKILLS, CONTRACT), 'utf8'));
@@ -92,6 +92,59 @@ test('a run without --checks includes leg 1b', (t) => {
   const { guard } = buildHub(t);
   const { out } = runGuard(guard, []);
   assert.match(out, /check 1b:/);
+});
+
+// The resolver reads a hub's router from ROUTER.md, so leg 1b routes a doc that only that file
+// names. The same doc is an orphan while the file carries no machine-router section, which is what
+// pins the section rather than the file as the source.
+test('leg 1b reads the machine router from a ROUTER.md section', (t) => {
+  const { hub, guard } = buildHub(t);
+  write(path.join(hub, 'SKILL.md'), '# sk-code\n\nThe router lives in ROUTER.md.\n');
+  write(path.join(hub, 'shared', 'references', 'hub-only.md'), '# hub only\n');
+  write(path.join(hub, 'ROUTER.md'), ['## 3. LOAD TIERS', '', 'No declarations here.', ''].join('\n'));
+
+  const proseOnly = runGuard(guard, ['--checks', '1b']);
+  assert.equal(proseOnly.status, 1, proseOnly.out);
+  assert.match(proseOnly.out, /orphan \(routable doc no router names\): shared\/references\/hub-only\.md/);
+
+  write(path.join(hub, 'ROUTER.md'), [
+    '## 3. LOAD TIERS',
+    '',
+    '## 7. MACHINE ROUTER',
+    '',
+    'RESOURCE_MAP = {',
+    '  "DEMO": ["shared/references/hub-only.md"],',
+    '}',
+    '',
+  ].join('\n'));
+
+  const resolved = runGuard(guard, ['--checks', '1b']);
+  assert.equal(resolved.status, 0, resolved.out);
+  assert.match(resolved.out, /PASS check 1b/);
+  assert.doesNotMatch(resolved.out, /hub-only/);
+});
+
+// Two declarations disagree about the same intents, so the resolver reports the pair instead of
+// picking a side. Neither document's paths are routed, so a reader that chose one would leave the
+// other's orphan unreported.
+test('leg 1b routes nothing from a skill that declares its router twice', (t) => {
+  const { hub, guard } = buildHub(t);
+  write(path.join(hub, 'SKILL.md'), '## MACHINE ROUTER\n\nRESOURCE_MAP = {\n  "DEMO": ["shared/references/skill-side.md"],\n}\n');
+  write(path.join(hub, 'ROUTER.md'), [
+    '## MACHINE ROUTER',
+    '',
+    'RESOURCE_MAP = {',
+    '  "DEMO": ["shared/references/router-side.md"],',
+    '}',
+    '',
+  ].join('\n'));
+  write(path.join(hub, 'shared', 'references', 'skill-side.md'), '# skill side\n');
+  write(path.join(hub, 'shared', 'references', 'router-side.md'), '# router side\n');
+
+  const { status, out } = runGuard(guard, ['--checks', '1b']);
+  assert.equal(status, 1, out);
+  assert.match(out, /orphan \(routable doc no router names\): shared\/references\/skill-side\.md/);
+  assert.match(out, /orphan \(routable doc no router names\): shared\/references\/router-side\.md/);
 });
 
 // Leg 2 reads the hub-level shared controls from the ROUTER.md list and preamble, so this hub gets

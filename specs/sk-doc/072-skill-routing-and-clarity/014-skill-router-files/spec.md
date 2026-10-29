@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files"
     last_updated_at: "2026-10-29T08:40:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Closed the deep research and planned phases 002 to 006 from its findings"
-    next_safe_action: "Implement 002-router-file-tooling, then 003 before any router file moves"
+    recent_action: "Built the router file resolver and moved its readers onto it"
+    next_safe_action: "Build 003-check-and-template-canon"
     blockers: []
     key_files:
       - ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "0269-skill-router-files"
       parent_session_id: null
-    completion_pct: 17
+    completion_pct: 33
     open_questions: []
     answered_questions: []
 ---
@@ -102,7 +102,7 @@ Set per phase from the research findings; each child's `spec.md` lists its files
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-deep-research/ | Three Luna iterations on RQ-1 to RQ-5 and one DeepSeek iteration on RQ-6: every reader of the machine router, how each runtime loads a skill, the advisor changes and the design that keeps accuracy | Complete |
-| 2 | 002-router-file-tooling/ | One shared resolver for a sibling `ROUTER.md` with a SKILL.md fallback; router replay, router sync, the dead-route scan and the Hermes generator use it; the advisor freshness signature, its plugin copy and the daemon watcher see `ROUTER.md` | Pending |
+| 2 | 002-router-file-tooling/ | One shared resolver for a sibling `ROUTER.md` with a SKILL.md fallback. Router replay, router sync, the dead-route scan and the Hermes generator use it, and the advisor freshness signature, its plugin copy and the daemon watcher see `ROUTER.md` | Complete |
 | 3 | 003-check-and-template-canon/ | RS-004 reversed, RS-005 rewritten to require a pointer, RS-002 restated so a section left in SKILL.md fails, the root-router gate widened, a known-debt ledger; both shape checks, the templates, the create-skill workflows and the canon docs | Pending |
 | 4 | 004-hub-router-merge/ | Each hub's MACHINE ROUTER joins its existing root `ROUTER.md` | Pending |
 | 5 | 005-packet-and-standalone-migration/ | The 47 mode packets and standalone skills each get their own `ROUTER.md`, in batches, until the debt ledger is empty | Pending |

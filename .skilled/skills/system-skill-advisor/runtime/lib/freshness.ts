@@ -166,7 +166,13 @@ function buildSourceSnapshot(workspaceRoot: string): SourceSnapshot {
       continue;
     }
     const graphMetadata = fileProbe(join(skillDirectory, 'graph-metadata.json'));
-    maxSourceMtimeMs = Math.max(maxSourceMtimeMs, skillMd.mtimeMs, graphMetadata?.mtimeMs ?? 0);
+    const routerMd = fileProbe(join(skillDirectory, 'ROUTER.md'));
+    maxSourceMtimeMs = Math.max(
+      maxSourceMtimeMs,
+      skillMd.mtimeMs,
+      graphMetadata?.mtimeMs ?? 0,
+      routerMd?.mtimeMs ?? 0,
+    );
     skillFingerprints.set(skillSlug, {
       skillMdMtime: skillMd.mtimeMs,
       skillMdSize: skillMd.size,
@@ -176,6 +182,11 @@ function buildSourceSnapshot(workspaceRoot: string): SourceSnapshot {
     });
     addSignaturePart(hash, `skill:${skillSlug}:SKILL.md`, skillMd);
     addSignaturePart(hash, `skill:${skillSlug}:graph-metadata.json`, graphMetadata);
+    // ROUTER.md is optional, so a skill without one keeps the signature it had
+    // before this probe existed; only a skill that carries the file adds a part.
+    if (routerMd) {
+      addSignaturePart(hash, `skill:${skillSlug}:ROUTER.md`, routerMd);
+    }
   }
 
   if (skillSlugs.length === 0 || skillFingerprints.size === 0) {

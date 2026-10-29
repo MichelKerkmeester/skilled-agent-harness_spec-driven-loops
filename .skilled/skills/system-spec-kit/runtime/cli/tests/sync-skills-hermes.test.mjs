@@ -119,6 +119,38 @@ test('--check passes when in sync, fails on drift, and write mode prunes stale f
   }
 });
 
+test('copies a source ROUTER.md beside SKILL.md and reports drift when the copy differs or is missing', () => {
+  const env = fixture();
+  try {
+    const routerText = '## MACHINE ROUTER\n\nINTENT_SIGNALS = ["read [guide](references/guide.md)"]\n';
+    writeFileSync(join(env.source, 'hub', 'ROUTER.md'), routerText);
+    const failedCheck = () => {
+      try {
+        run(env, ['--check']);
+      } catch (error) {
+        return String(error.stdout || '');
+      }
+      return '';
+    };
+    run(env);
+    assert.equal(readFileSync(join(env.output, 'hub', 'ROUTER.md'), 'utf8'), routerText);
+    assert.ok(!existsSync(join(env.output, 'mode-a', 'ROUTER.md')));
+    assert.match(run(env, ['--check']), /PASS: 4/);
+
+    writeFileSync(join(env.output, 'hub', 'ROUTER.md'), 'stale\n');
+    assert.match(failedCheck(), /DRIFT hub/);
+    run(env);
+    assert.equal(readFileSync(join(env.output, 'hub', 'ROUTER.md'), 'utf8'), routerText);
+
+    rmSync(join(env.output, 'hub', 'ROUTER.md'));
+    assert.match(failedCheck(), /DRIFT hub/);
+    run(env);
+    assert.equal(readFileSync(join(env.output, 'hub', 'ROUTER.md'), 'utf8'), routerText);
+  } finally {
+    rmSync(env.root, { recursive: true, force: true });
+  }
+});
+
 test('rewrites relative links to reach the canonical files and leaves URLs, anchors and code alone', () => {
   const env = fixture();
   try {

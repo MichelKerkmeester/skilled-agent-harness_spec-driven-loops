@@ -33,7 +33,7 @@ import {
 export interface WatchTarget {
   readonly path: string;
   readonly skillSlug: string;
-  readonly reason: 'skill-md' | 'graph-metadata' | 'derived-key-file' | 'doc-frontmatter';
+  readonly reason: 'skill-md' | 'router-md' | 'graph-metadata' | 'derived-key-file' | 'doc-frontmatter';
 }
 
 export interface ReindexRequest {
@@ -115,6 +115,7 @@ export interface SkillGraphWatcher {
 // ───────────────────────────────────────────────────────────────────
 
 const SKILL_MD = 'SKILL.md';
+const ROUTER_MD = 'ROUTER.md';
 const GRAPH_METADATA = 'graph-metadata.json';
 const DEFAULT_DEBOUNCE_MS = 2_000;
 const DEFAULT_STABLE_WRITE_MS = 1_000;
@@ -268,9 +269,16 @@ export function discoverWatchTargets(
   for (const skillDir of walkSkillDirectories(skillsRoot)) {
     const skillSlug = basename(skillDir);
     const skillMd = join(skillDir, SKILL_MD);
+    const routerMd = join(skillDir, ROUTER_MD);
     const graphMetadata = join(skillDir, GRAPH_METADATA);
     if (existsSync(skillMd)) {
       targets.push({ path: skillMd, skillSlug, reason: 'skill-md' });
+    }
+    // The machine router is optional and sits next to SKILL.md. Editing it
+    // changes how the skill is routed without touching SKILL.md, so it needs
+    // its own target to reach the same reindex path.
+    if (existsSync(routerMd)) {
+      targets.push({ path: routerMd, skillSlug, reason: 'router-md' });
     }
     if (existsSync(graphMetadata)) {
       targets.push({ path: graphMetadata, skillSlug, reason: 'graph-metadata' });

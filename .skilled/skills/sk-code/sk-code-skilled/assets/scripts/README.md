@@ -7,7 +7,7 @@ trigger_phrases:
   - "opencode script maintenance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # sk code assets scripts
@@ -30,7 +30,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 7 |
+| Code files | 8 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 
@@ -70,6 +70,7 @@ Run individual scripts from the repository root with the documented arguments.
 
 | File | Purpose |
 |---|---|
+| `router-file-resolver.cjs` | Decides which document declares a skill's machine router: its sibling `ROUTER.md`, its `SKILL.md`, both (a fault) or neither. Library only, no CLI. |
 | `router-replay-lib.cjs` | Replays the sk-code router (intent signals, resource maps, default resources) for the router-sync guard. Library only, no CLI. |
 | `test_verify_alignment_drift.py` | Unit-style coverage for alignment drift file discovery, language checks, severity behavior, and CLI exit codes. |
 | `test_verify_stack_folders.py` | Builds a temporary references tree and proves `verify_stack_folders.py` exits 1 on an orphan folder and 0 on a clean tree. |

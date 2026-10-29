@@ -33,7 +33,7 @@ function buildHub(t) {
   const hub = path.join(skills, 'sk-code');
   const scripts = path.join(hub, 'sk-code-skilled', 'assets', 'scripts');
   fs.mkdirSync(scripts, { recursive: true });
-  for (const name of ['verify-router-sync.cjs', 'router-replay-lib.cjs']) {
+  for (const name of ['verify-router-sync.cjs', 'router-replay-lib.cjs', 'router-file-resolver.cjs']) {
     fs.copyFileSync(path.join(SCRIPTS, name), path.join(scripts, name));
   }
   write(path.join(skills, CONTRACT), fs.readFileSync(path.join(LIVE_SKILLS, CONTRACT), 'utf8'));

@@ -9,7 +9,7 @@ contextType: "general"
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
 # Implementation Plan: Phase 2: router-file-tooling
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -35,15 +35,15 @@ One new module decides which document holds a skill's machine router and refuses
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` prints `router-sync: 5/5 checks passed`
-- [ ] `python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .skilled/skills --check-router` prints `Findings: 0` over 5419 files
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` prints `router-sync: 5/5 checks passed`
+- [x] `python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .skilled/skills --check-router` prints `Findings: 0` over 5420 files
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -107,5 +107,21 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 - **Trigger**: the source probe returns anything other than `{"hub-router.json":7,"inline":6}`, or `verify-router-sync.cjs` reports fewer than 5 checks passing.
 - **Procedure**: revert the phase commit. Nothing outside the working tree changes, because this phase writes no generated copy and recaptures no baseline. Regenerate the Hermes copies with `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs` if the revert leaves copies carrying a `ROUTER.md`.
 <!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+```
+Setup ──► Implementation ──► Verification
+```
+
+| Phase | Depends On | Blocks |
+|-------|------------|--------|
+| Setup | None | Implementation |
+| Implementation | Setup | Verification |
+| Verification | Implementation | Closure of the phase |
+<!-- /ANCHOR:phase-deps -->
 
 ---

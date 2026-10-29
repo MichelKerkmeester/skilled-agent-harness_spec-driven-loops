@@ -218,7 +218,10 @@ function buildExpected() {
     if (expected.has(name)) {
       throw new Error(`duplicate skill name '${name}': ${expected.get(name).source} and ${relativePath}`);
     }
-    expected.set(name, { source: relativePath, text });
+    // The machine router is read as data by tooling, so the copy keeps it verbatim: the
+    // link rewriting above exists for prose a reader follows, not for declarations.
+    const routerText = readIfExists(path.join(SOURCE_DIR, path.posix.dirname(relativePath), 'ROUTER.md'));
+    expected.set(name, { source: relativePath, text, routerText });
   }
   for (const fileName of listAgentFiles(AGENTS_DIR)) {
     const content = fs.readFileSync(path.join(AGENTS_DIR, fileName), 'utf8');
@@ -226,7 +229,7 @@ function buildExpected() {
     if (expected.has(name)) {
       throw new Error(`agent skill name '${name}' collides with a skill`);
     }
-    expected.set(name, { source: `agents/${fileName}`, text });
+    expected.set(name, { source: `agents/${fileName}`, text, routerText: null });
   }
   return expected;
 }
@@ -236,18 +239,26 @@ function sync({ check }) {
   const existing = new Set(listOutputDirs());
   const stale = [...existing].filter((name) => !expected.has(name));
   const drift = [];
-  for (const [name, { text }] of expected) {
+  for (const [name, { text, routerText }] of expected) {
     const target = path.join(OUTPUT_DIR, name, 'SKILL.md');
+    const routerTarget = path.join(OUTPUT_DIR, name, 'ROUTER.md');
     const entryPath = path.join(OUTPUT_DIR, name);
     let current = null;
+    let currentRouter = null;
     try {
       // A directory symlink from an earlier layout is replaced by the generated folder.
       if (fs.lstatSync(entryPath).isSymbolicLink()) current = null;
-      else current = readIfExists(target);
+      else {
+        current = readIfExists(target);
+        currentRouter = readIfExists(routerTarget);
+      }
     } catch {
       current = null;
+      currentRouter = null;
     }
-    if (current !== text) drift.push(name);
+    // A copy holds a router if and only if its source does, so a source router that was
+    // removed cannot leave a stale copy for Hermes to read.
+    if (current !== text || currentRouter !== routerText) drift.push(name);
   }
   if (check) {
     if (drift.length === 0 && stale.length === 0) {
@@ -263,11 +274,15 @@ function sync({ check }) {
   for (const name of stale) fs.rmSync(path.join(OUTPUT_DIR, name), { recursive: true, force: true });
   for (const name of drift) {
     const entryPath = path.join(OUTPUT_DIR, name);
+    const { text, routerText } = expected.get(name);
     try {
       if (fs.lstatSync(entryPath).isSymbolicLink()) fs.unlinkSync(entryPath);
     } catch { /* absent */ }
     fs.mkdirSync(entryPath, { recursive: true });
-    fs.writeFileSync(path.join(entryPath, 'SKILL.md'), expected.get(name).text, 'utf8');
+    fs.writeFileSync(path.join(entryPath, 'SKILL.md'), text, 'utf8');
+    const routerTarget = path.join(entryPath, 'ROUTER.md');
+    if (routerText === null) fs.rmSync(routerTarget, { force: true });
+    else fs.writeFileSync(routerTarget, routerText, 'utf8');
   }
   console.log(`Wrote ${drift.length} of ${expected.size} Hermes skill copies; pruned ${stale.length}`);
   return 0;
