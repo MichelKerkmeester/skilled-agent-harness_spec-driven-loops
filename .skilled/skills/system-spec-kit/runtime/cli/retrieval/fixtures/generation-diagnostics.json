@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7293,
-    "ok": 16067,
+    "missing-frontmatter": 7296,
+    "ok": 16098,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26908,
+  "documentsScanned": 26942,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "ad23cc17bf45c0d4109f91e8ca15c3c3f840edf961cfc2d54f505526d56c2d47",
+  "manifestHash": "f592b2b1b0cf1b1d387c5ba4e93b0cff3ecf2e4f62cdc13281598f509ae9260a",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 39407,
+      "ok": 39448,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -40637,6 +40637,24 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/sk-git/028-crawlable-commit-history/001-research/research/dispatch-prompt.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -72355,6 +72373,38 @@
     },
     {
       "path": "specs/sk-doc/072-skill-routing-and-clarity/013-mcp-tooling-routing-canon/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/002-router-file-tooling/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/003-check-and-template-canon/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/004-hub-router-merge/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/005-packet-and-standalone-migration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/scratch",
       "reason": "excluded directory"
     },
     {

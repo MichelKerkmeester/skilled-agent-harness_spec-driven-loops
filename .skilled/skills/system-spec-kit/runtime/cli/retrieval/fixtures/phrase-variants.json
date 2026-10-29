@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ad23cc17bf45c0d4109f91e8ca15c3c3f840edf961cfc2d54f505526d56c2d47",
+  "manifestHash": "f592b2b1b0cf1b1d387c5ba4e93b0cff3ecf2e4f62cdc13281598f509ae9260a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17461,6 +17461,21 @@
     ],
     "check anchors compare": [
       "check-anchors compare"
+    ],
+    "check and template canon": [
+      "check and template canon"
+    ],
+    "check and template canon acceptance criteria": [
+      "check and template canon acceptance criteria"
+    ],
+    "check and template canon implementation summary": [
+      "check and template canon implementation summary"
+    ],
+    "check and template canon plan": [
+      "check and template canon plan"
+    ],
+    "check and template canon tasks": [
+      "check and template canon tasks"
     ],
     "check architecture boundaries": [
       "check-architecture-boundaries"
@@ -40929,6 +40944,9 @@
     "dual compat drift research": [
       "dual compat drift research"
     ],
+    "dual declaration rejection": [
+      "dual declaration rejection"
+    ],
     "dual executor deep research": [
       "dual executor deep research"
     ],
@@ -54429,6 +54447,21 @@
     "hub router json signals": [
       "hub-router.json signals"
     ],
+    "hub router merge": [
+      "hub router merge"
+    ],
+    "hub router merge acceptance criteria": [
+      "hub router merge acceptance criteria"
+    ],
+    "hub router merge implementation summary": [
+      "hub router merge implementation summary"
+    ],
+    "hub router merge plan": [
+      "hub router merge plan"
+    ],
+    "hub router merge tasks": [
+      "hub router merge tasks"
+    ],
     "hub router schema": [
       "hub router schema"
     ],
@@ -60485,6 +60518,9 @@
     ],
     "machine readable task list": [
       "machine-readable task list"
+    ],
+    "machine router out of skill md": [
+      "machine router out of skill md"
     ],
     "machine router section": [
       "machine router section"
@@ -72479,6 +72515,21 @@
     "packet acceptance status": [
       "packet acceptance status"
     ],
+    "packet and standalone migration": [
+      "packet and standalone migration"
+    ],
+    "packet and standalone migration acceptance criteria": [
+      "packet and standalone migration acceptance criteria"
+    ],
+    "packet and standalone migration implementation summary": [
+      "packet and standalone migration implementation summary"
+    ],
+    "packet and standalone migration plan": [
+      "packet and standalone migration plan"
+    ],
+    "packet and standalone migration tasks": [
+      "packet and standalone migration tasks"
+    ],
     "packet authored registry projected routing": [
       "packet-authored registry-projected routing"
     ],
@@ -74277,6 +74328,9 @@
     "phase 1 deep research": [
       "phase 1 deep research"
     ],
+    "phase 1 deep research router files": [
+      "phase 1 deep research router files"
+    ],
     "phase 1 doc version contract": [
       "phase 1 doc version contract"
     ],
@@ -74538,6 +74592,9 @@
     "phase 14 skill authoring ux research": [
       "phase 14 skill authoring ux research"
     ],
+    "phase 14 skill router files": [
+      "phase 14 skill router files"
+    ],
     "phase 14 spec auto healing research": [
       "phase 14 spec auto healing research"
     ],
@@ -74784,6 +74841,9 @@
     "phase 2 review mode research": [
       "phase 2 review mode research"
     ],
+    "phase 2 router file tooling": [
+      "phase 2 router file tooling"
+    ],
     "phase 2 skill and routing rename": [
       "phase 2 skill and routing rename"
     ],
@@ -74975,6 +75035,12 @@
     ],
     "phase 3 changelog omissions": [
       "phase 3 changelog omissions"
+    ],
+    "phase 3 check and template canon": [
+      "phase 3 check and template canon"
+    ],
+    "phase 3 check and template canon closure": [
+      "phase 3 check and template canon closure"
     ],
     "phase 3 codex mirror gate": [
       "phase 3 codex mirror gate"
@@ -75168,6 +75234,9 @@
     "phase 4 hub doc pointers": [
       "phase 4 hub doc pointers"
     ],
+    "phase 4 hub router merge": [
+      "phase 4 hub router merge"
+    ],
     "phase 4 integration review and docs closure": [
       "phase 4 integration review and docs closure"
     ],
@@ -75293,6 +75362,9 @@
     ],
     "phase 5 opencode and guards": [
       "phase 5 opencode and guards"
+    ],
+    "phase 5 packet and standalone migration": [
+      "phase 5 packet and standalone migration"
     ],
     "phase 5 persisted hops validation": [
       "phase 5 persisted hops validation"
@@ -75440,6 +75512,12 @@
     ],
     "phase 6 plan": [
       "phase 6 plan"
+    ],
+    "phase 6 regeneration acceptance criteria": [
+      "phase 6 regeneration acceptance criteria"
+    ],
+    "phase 6 regeneration and verification": [
+      "phase 6 regeneration and verification"
     ],
     "phase 6 relaunch coverage gaps": [
       "phase 6 relaunch coverage gaps"
@@ -89624,8 +89702,29 @@
     "router consistency hardening tasks": [
       "router consistency hardening tasks"
     ],
+    "router derived file regeneration criteria": [
+      "router derived file regeneration criteria"
+    ],
     "router fallback pattern": [
       "router fallback pattern"
+    ],
+    "router file resolver": [
+      "router file resolver"
+    ],
+    "router file tooling": [
+      "router file tooling"
+    ],
+    "router file tooling acceptance criteria": [
+      "router file tooling acceptance criteria"
+    ],
+    "router file tooling implementation summary": [
+      "router file tooling implementation summary"
+    ],
+    "router file tooling plan": [
+      "router file tooling plan"
+    ],
+    "router file tooling tasks": [
+      "router file tooling tasks"
     ],
     "router final report": [
       "router-final report"
@@ -89752,6 +89851,9 @@
     ],
     "router replay slug rename": [
       "router-replay slug rename"
+    ],
+    "router resolver closure": [
+      "router resolver closure"
     ],
     "router scope boundary": [
       "router scope boundary"
@@ -95281,6 +95383,9 @@
     ],
     "sibling route regression probe": [
       "sibling route regression probe"
+    ],
+    "sibling router md": [
+      "sibling router md"
     ],
     "sibling shape parity check": [
       "sibling shape parity check"
@@ -102975,6 +103080,24 @@
     ],
     "skill root package manifest": [
       "skill root package manifest"
+    ],
+    "skill router files": [
+      "skill router files"
+    ],
+    "skill router files research": [
+      "skill router files research"
+    ],
+    "skill router files research acceptance criteria": [
+      "skill router files research acceptance criteria"
+    ],
+    "skill router files research implementation summary": [
+      "skill router files research implementation summary"
+    ],
+    "skill router files research plan": [
+      "skill router files research plan"
+    ],
+    "skill router files research tasks": [
+      "skill router files research tasks"
     ],
     "skill routing and clarity phase parent spec": [
       "skill routing and clarity phase parent spec"

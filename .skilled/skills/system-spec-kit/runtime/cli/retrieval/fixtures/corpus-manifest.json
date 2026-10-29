@@ -1,5 +1,5 @@
 {
-  "corpusHash": "c71d2ab2a2384011d1ca5b0c580e0c47c1e872f3200466a7f0328c855533c36c",
+  "corpusHash": "ff78674731c2c67d59b109c6e9b04b16ff546fab104866ce89bc53ead8aef1b0",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26908,
+  "includedPathCount": 26942,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -13890,6 +13890,40 @@
     "specs/sk-doc/072-skill-routing-and-clarity/013-mcp-tooling-routing-canon/plan.md",
     "specs/sk-doc/072-skill-routing-and-clarity/013-mcp-tooling-routing-canon/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/013-mcp-tooling-routing-canon/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research/acceptance-criteria.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research/research/fanout-attribution.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research/research/research.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research/research/resource-map.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/002-router-file-tooling/acceptance-criteria.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/002-router-file-tooling/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/002-router-file-tooling/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/002-router-file-tooling/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/002-router-file-tooling/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/003-check-and-template-canon/acceptance-criteria.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/003-check-and-template-canon/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/003-check-and-template-canon/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/003-check-and-template-canon/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/003-check-and-template-canon/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/004-hub-router-merge/acceptance-criteria.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/004-hub-router-merge/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/004-hub-router-merge/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/004-hub-router-merge/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/004-hub-router-merge/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/005-packet-and-standalone-migration/acceptance-criteria.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/005-packet-and-standalone-migration/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/005-packet-and-standalone-migration/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/005-packet-and-standalone-migration/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/005-packet-and-standalone-migration/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification/acceptance-criteria.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/spec.md",
     "specs/sk-doc/073-opencode-native-surfaces/acceptance-criteria.md",
     "specs/sk-doc/073-opencode-native-surfaces/implementation-summary.md",
@@ -26939,7 +26973,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ad23cc17bf45c0d4109f91e8ca15c3c3f840edf961cfc2d54f505526d56c2d47",
+  "manifestHash": "f592b2b1b0cf1b1d387c5ba4e93b0cff3ecf2e4f62cdc13281598f509ae9260a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30655,6 +30689,38 @@
     },
     {
       "path": "specs/sk-doc/072-skill-routing-and-clarity/013-mcp-tooling-routing-canon/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/002-router-file-tooling/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/003-check-and-template-canon/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/004-hub-router-merge/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/005-packet-and-standalone-migration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/scratch",
       "reason": "excluded directory"
     },
     {
