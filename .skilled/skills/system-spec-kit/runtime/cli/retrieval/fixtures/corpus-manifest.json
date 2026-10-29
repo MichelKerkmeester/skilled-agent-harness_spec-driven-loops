@@ -1,5 +1,5 @@
 {
-  "corpusHash": "722ed3bd48a8a34f8070920d9882f0a8654af022b5796803a238e4e59cabd929",
+  "corpusHash": "60f2cec502e9e887faded73f3764f06f41d99cb200e5c6e293b23b791c8d1d62",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -81,7 +81,6 @@
     ".skilled/changelog/skilled/v4.0.0.14.md",
     ".skilled/changelog/skilled/v4.0.0.15.md",
     ".skilled/changelog/skilled/v4.0.0.16.md",
-    ".skilled/changelog/skilled/v4.0.0.17.md",
     ".skilled/changelog/skilled/v4.0.0.2.md",
     ".skilled/changelog/skilled/v4.0.0.3.md",
     ".skilled/changelog/skilled/v4.0.0.4.md",
@@ -90,6 +89,7 @@
     ".skilled/changelog/skilled/v4.0.0.7.md",
     ".skilled/changelog/skilled/v4.0.0.8.md",
     ".skilled/changelog/skilled/v4.0.0.9.md",
+    ".skilled/changelog/skilled/v4.0.1.0.md",
     ".skilled/hooks/README.md",
     ".skilled/hooks/classifier-injection-screen/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -27167,7 +27167,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "00c851b9b7b9daa7252826b8476643696299b239e2dfe5267adce947423f9c38",
+  "manifestHash": "e7b8037543b126a58c658e376d120283318e47b81e77b88b6591b576c69bfccd",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

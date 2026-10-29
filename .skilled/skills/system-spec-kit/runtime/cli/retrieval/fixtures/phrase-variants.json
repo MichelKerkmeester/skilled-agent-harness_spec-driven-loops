@@ -1,5 +1,5 @@
 {
-  "manifestHash": "00c851b9b7b9daa7252826b8476643696299b239e2dfe5267adce947423f9c38",
+  "manifestHash": "e7b8037543b126a58c658e376d120283318e47b81e77b88b6591b576c69bfccd",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -70584,6 +70584,9 @@
     "one catalog for providers and models": [
       "One Catalog for Providers and Models"
     ],
+    "one checked mode vocabulary": [
+      "one checked mode vocabulary"
+    ],
     "one classifier behind the scans": [
       "one classifier behind the scans"
     ],
@@ -77735,9 +77738,6 @@
     ],
     "pi spec gate dialog": [
       "pi spec gate dialog"
-    ],
-    "pi starts in worktrees": [
-      "pi starts in worktrees"
     ],
     "pi stdio": [
       "pi stdio"
@@ -88270,6 +88270,9 @@
     "retired jev features removed": [
       "retired jev features removed"
     ],
+    "retired magicpath and vision": [
+      "retired magicpath and vision"
+    ],
     "retired prefix criterion restated": [
       "retired prefix criterion restated"
     ],
@@ -90340,6 +90343,9 @@
     ],
     "router file": [
       "router file"
+    ],
+    "router file per skill": [
+      "router file per skill"
     ],
     "router file resolver": [
       "router file resolver"
@@ -104105,9 +104111,6 @@
     "skill routing and clarity phase parent spec": [
       "skill routing and clarity phase parent spec"
     ],
-    "skill routing canon": [
-      "skill routing canon"
-    ],
     "skill routing council": [
       "skill routing council"
     ],
@@ -104678,9 +104681,6 @@
     "skilled v4 0 0 16": [
       "skilled v4.0.0.16"
     ],
-    "skilled v4 0 0 17": [
-      "skilled v4.0.0.17"
-    ],
     "skilled v4 0 0 2": [
       "skilled v4.0.0.2"
     ],
@@ -104704,6 +104704,9 @@
     ],
     "skilled v4 0 0 9": [
       "skilled v4.0.0.9"
+    ],
+    "skilled v4 0 1 0": [
+      "skilled v4.0.1.0"
     ],
     "skilled verification phase goal": [
       "skilled verification phase goal"
@@ -116779,9 +116782,6 @@
     "v4 0 0 16 release notes": [
       "v4.0.0.16 release notes"
     ],
-    "v4 0 0 17 release notes": [
-      "v4.0.0.17 release notes"
-    ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"
     ],
@@ -116874,6 +116874,9 @@
     ],
     "v4 0 0 9 release notes": [
       "v4.0.0.9 release notes"
+    ],
+    "v4 0 1 0 release notes": [
+      "v4.0.1.0 release notes"
     ],
     "v4 changelog": [
       "v4 changelog"

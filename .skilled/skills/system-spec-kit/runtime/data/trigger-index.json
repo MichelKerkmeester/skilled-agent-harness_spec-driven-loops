@@ -1,5 +1,5 @@
 {
-  "manifestHash": "00c851b9b7b9daa7252826b8476643696299b239e2dfe5267adce947423f9c38",
+  "manifestHash": "e7b8037543b126a58c658e376d120283318e47b81e77b88b6591b576c69bfccd",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -62,7 +62,6 @@
     ".skilled/changelog/skilled/v4.0.0.14.md",
     ".skilled/changelog/skilled/v4.0.0.15.md",
     ".skilled/changelog/skilled/v4.0.0.16.md",
-    ".skilled/changelog/skilled/v4.0.0.17.md",
     ".skilled/changelog/skilled/v4.0.0.2.md",
     ".skilled/changelog/skilled/v4.0.0.3.md",
     ".skilled/changelog/skilled/v4.0.0.4.md",
@@ -71,6 +70,7 @@
     ".skilled/changelog/skilled/v4.0.0.7.md",
     ".skilled/changelog/skilled/v4.0.0.8.md",
     ".skilled/changelog/skilled/v4.0.0.9.md",
+    ".skilled/changelog/skilled/v4.0.1.0.md",
     ".skilled/hooks/README.md",
     ".skilled/hooks/classifier-injection-screen/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -32112,7 +32112,7 @@
       1862
     ],
     "bundled runtime security patches": [
-      55
+      54
     ],
     "bundlerules canon reconciled": [
       5037
@@ -42501,7 +42501,7 @@
       1173
     ],
     "code reviews say what they skipped": [
-      57
+      56
     ],
     "code sk code remediation": [
       13300
@@ -52551,7 +52551,7 @@
       7914
     ],
     "deep loop runs three modes": [
-      58
+      57
     ],
     "deep loop runtime 1 0 0 0": [
       2289
@@ -59122,7 +59122,7 @@
       15726
     ],
     "doctor update command": [
-      54,
+      53,
       11647
     ],
     "doctor update compat docs": [
@@ -59748,7 +59748,7 @@
       5466
     ],
     "drift guard warnings": [
-      57
+      56
     ],
     "drift guard wired into ci": [
       2461
@@ -62782,7 +62782,7 @@
       8705
     ],
     "every skill doc carries its own version": [
-      60
+      59
     ],
     "every turn injection": [
       14535
@@ -67907,7 +67907,7 @@
       9457
     ],
     "fresh clone install steps": [
-      59
+      58
     ],
     "fresh clone onboarding": [
       5755
@@ -89829,7 +89829,7 @@
       2735
     ],
     "nested anchors now fail validation": [
-      56
+      55
     ],
     "nested changelog backfill": [
       10163
@@ -91890,6 +91890,9 @@
     ],
     "one catalog for providers and models": [
       386
+    ],
+    "one checked mode vocabulary": [
+      60
     ],
     "one classifier behind the scans": [
       1511
@@ -99772,9 +99775,6 @@
     ],
     "pi spec gate dialog": [
       15364
-    ],
-    "pi starts in worktrees": [
-      52
     ],
     "pi stdio": [
       456
@@ -111024,6 +111024,9 @@
     "retired jev features removed": [
       112
     ],
+    "retired magicpath and vision": [
+      60
+    ],
     "retired prefix criterion restated": [
       14735
     ],
@@ -113246,6 +113249,9 @@
     "router file": [
       1597
     ],
+    "router file per skill": [
+      60
+    ],
     "router file resolver": [
       1220,
       7295
@@ -113680,7 +113686,7 @@
       6816
     ],
     "routing ignores skill names in paths": [
-      58
+      57
     ],
     "routing integration acceptance": [
       6743
@@ -116573,7 +116579,7 @@
       5247
     ],
     "scripts refuse unknown options": [
-      59
+      58
     ],
     "scripts workspace resolution": [
       14763
@@ -116921,7 +116927,7 @@
       32
     ],
     "searchable changelogs": [
-      53,
+      52,
       7087
     ],
     "searchable commit messages": [
@@ -117529,7 +117535,7 @@
       15496
     ],
     "series parent packets": [
-      55
+      54
     ],
     "series parent review and hardening research": [
       15495
@@ -126326,7 +126332,7 @@
       12193
     ],
     "skill advisor prompt hook": [
-      53
+      52
     ],
     "skill advisor py": [
       2502
@@ -126582,7 +126588,7 @@
       1192
     ],
     "skill authoring checks": [
-      60
+      59
     ],
     "skill authoring contract": [
       1501
@@ -127579,9 +127585,6 @@
     "skill routing and clarity phase parent spec": [
       7394
     ],
-    "skill routing canon": [
-      52
-    ],
     "skill routing council": [
       2102
     ],
@@ -128158,31 +128161,31 @@
     "skilled v4 0 0 16": [
       51
     ],
-    "skilled v4 0 0 17": [
+    "skilled v4 0 0 2": [
       52
     ],
-    "skilled v4 0 0 2": [
+    "skilled v4 0 0 3": [
       53
     ],
-    "skilled v4 0 0 3": [
+    "skilled v4 0 0 4": [
       54
     ],
-    "skilled v4 0 0 4": [
+    "skilled v4 0 0 5": [
       55
     ],
-    "skilled v4 0 0 5": [
+    "skilled v4 0 0 6": [
       56
     ],
-    "skilled v4 0 0 6": [
+    "skilled v4 0 0 7": [
       57
     ],
-    "skilled v4 0 0 7": [
+    "skilled v4 0 0 8": [
       58
     ],
-    "skilled v4 0 0 8": [
+    "skilled v4 0 0 9": [
       59
     ],
-    "skilled v4 0 0 9": [
+    "skilled v4 0 1 0": [
       60
     ],
     "skilled verification phase goal": [
@@ -136828,7 +136831,7 @@
       7522
     ],
     "template driven message checks": [
-      54
+      53
     ],
     "template driven message enforcement": [
       1926
@@ -140699,7 +140702,7 @@
       15441
     ],
     "upgrades can be undone": [
-      56
+      55
     ],
     "upload a file to notion": [
       844
@@ -141254,11 +141257,8 @@
     "v4 0 0 16 release notes": [
       51
     ],
-    "v4 0 0 17 release notes": [
-      52
-    ],
     "v4 0 0 2 release notes": [
-      53
+      52
     ],
     "v4 0 0 2 to v4 0 0 3 review": [
       15452
@@ -141294,7 +141294,7 @@
       15448
     ],
     "v4 0 0 3 release notes": [
-      54
+      53
     ],
     "v4 0 0 3 release notes accuracy": [
       15938
@@ -141333,21 +141333,24 @@
       5731
     ],
     "v4 0 0 4 release notes": [
-      55
+      54
     ],
     "v4 0 0 5 release notes": [
-      56
+      55
     ],
     "v4 0 0 6 release notes": [
-      57
+      56
     ],
     "v4 0 0 7 release notes": [
-      58
+      57
     ],
     "v4 0 0 8 release notes": [
-      59
+      58
     ],
     "v4 0 0 9 release notes": [
+      59
+    ],
+    "v4 0 1 0 release notes": [
       60
     ],
     "v4 changelog": [
