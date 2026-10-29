@@ -1,5 +1,5 @@
 {
-  "manifestHash": "315facdb8d75d5f031492bf48c5992ac01d4c01a6bd79b0c2338fd6b34545169",
+  "manifestHash": "ad23cc17bf45c0d4109f91e8ca15c3c3f840edf961cfc2d54f505526d56c2d47",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -16120,7 +16120,11 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/implementation-summary.md",
     "specs/system-speckit/055-ci-efficiency-release-docs/plan.md",
     "specs/system-speckit/055-ci-efficiency-release-docs/spec.md",
-    "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
+    "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md",
+    "specs/system-speckit/056-orphan-sweep-temp-processes/implementation-summary.md",
+    "specs/system-speckit/056-orphan-sweep-temp-processes/plan.md",
+    "specs/system-speckit/056-orphan-sweep-temp-processes/spec.md",
+    "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "phrases": {
     "0 05 ambiguity window": [
@@ -92846,6 +92850,9 @@
       13547,
       13548
     ],
+    "orphan sweep launchagent install": [
+      16113
+    ],
     "orphan sweep launchagent template": [
       11631
     ],
@@ -92867,6 +92874,18 @@
     "orphan sweep stop hook tasks": [
       11612
     ],
+    "orphan sweep temp processes": [
+      16113
+    ],
+    "orphan sweep temp processes implementation summary": [
+      16111
+    ],
+    "orphan sweep temp processes plan": [
+      16112
+    ],
+    "orphan sweep temp processes tasks": [
+      16114
+    ],
     "orphan sweep time budget": [
       13472,
       13474,
@@ -92883,6 +92902,9 @@
     ],
     "orphan sweeper next session": [
       11170
+    ],
+    "orphan sweeper reap abandoned temp and scratch processes": [
+      16113
     ],
     "orphan sweeper rollout summary": [
       11171
@@ -134913,6 +134935,9 @@
     ],
     "tem": [
       10187
+    ],
+    "temp path orphan": [
+      16113
     ],
     "tempdir singular plural": [
       9651

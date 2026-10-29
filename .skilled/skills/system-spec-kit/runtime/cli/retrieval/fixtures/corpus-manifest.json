@@ -1,5 +1,5 @@
 {
-  "corpusHash": "801c5006f6de5b7cdda0282bb8d5db4b3cf8c7cef5c2d8a7ef39916667cf67b8",
+  "corpusHash": "c71d2ab2a2384011d1ca5b0c580e0c47c1e872f3200466a7f0328c855533c36c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26904,
+  "includedPathCount": 26908,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -26932,10 +26932,14 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/implementation-summary.md",
     "specs/system-speckit/055-ci-efficiency-release-docs/plan.md",
     "specs/system-speckit/055-ci-efficiency-release-docs/spec.md",
-    "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
+    "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md",
+    "specs/system-speckit/056-orphan-sweep-temp-processes/implementation-summary.md",
+    "specs/system-speckit/056-orphan-sweep-temp-processes/plan.md",
+    "specs/system-speckit/056-orphan-sweep-temp-processes/spec.md",
+    "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "315facdb8d75d5f031492bf48c5992ac01d4c01a6bd79b0c2338fd6b34545169",
+  "manifestHash": "ad23cc17bf45c0d4109f91e8ca15c3c3f840edf961cfc2d54f505526d56c2d47",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -34479,6 +34483,10 @@
     },
     {
       "path": "specs/system-speckit/055-ci-efficiency-release-docs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/056-orphan-sweep-temp-processes/scratch",
       "reason": "excluded directory"
     },
     {

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7293,
-    "ok": 16063,
+    "ok": 16067,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26904,
+  "documentsScanned": 26908,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "315facdb8d75d5f031492bf48c5992ac01d4c01a6bd79b0c2338fd6b34545169",
+  "manifestHash": "ad23cc17bf45c0d4109f91e8ca15c3c3f840edf961cfc2d54f505526d56c2d47",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 39400,
+      "ok": 39407,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -76183,6 +76183,10 @@
     },
     {
       "path": "specs/system-speckit/055-ci-efficiency-release-docs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/056-orphan-sweep-temp-processes/scratch",
       "reason": "excluded directory"
     },
     {

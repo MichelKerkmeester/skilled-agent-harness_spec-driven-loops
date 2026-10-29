@@ -1,5 +1,5 @@
 {
-  "manifestHash": "315facdb8d75d5f031492bf48c5992ac01d4c01a6bd79b0c2338fd6b34545169",
+  "manifestHash": "ad23cc17bf45c0d4109f91e8ca15c3c3f840edf961cfc2d54f505526d56c2d47",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -71764,6 +71764,9 @@
     "orphan sweep discoverer not deleter": [
       "orphan sweep discoverer not deleter"
     ],
+    "orphan sweep launchagent install": [
+      "orphan sweep launchagent install"
+    ],
     "orphan sweep launchagent template": [
       "orphan-sweep launchagent template"
     ],
@@ -71785,6 +71788,18 @@
     "orphan sweep stop hook tasks": [
       "orphan sweep stop hook tasks"
     ],
+    "orphan sweep temp processes": [
+      "orphan sweep temp processes"
+    ],
+    "orphan sweep temp processes implementation summary": [
+      "orphan sweep temp processes implementation summary"
+    ],
+    "orphan sweep temp processes plan": [
+      "orphan sweep temp processes plan"
+    ],
+    "orphan sweep temp processes tasks": [
+      "orphan sweep temp processes tasks"
+    ],
     "orphan sweep time budget": [
       "orphan sweep time budget"
     ],
@@ -71799,6 +71814,9 @@
     ],
     "orphan sweeper next session": [
       "orphan sweeper next session"
+    ],
+    "orphan sweeper reap abandoned temp and scratch processes": [
+      "orphan sweeper reap abandoned temp and scratch processes"
     ],
     "orphan sweeper rollout summary": [
       "orphan sweeper rollout summary"
@@ -111141,6 +111159,9 @@
     ],
     "tem": [
       "tem"
+    ],
+    "temp path orphan": [
+      "temp-path orphan"
     ],
     "tempdir singular plural": [
       "tempDir singular plural"
