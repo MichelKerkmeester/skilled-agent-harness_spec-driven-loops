@@ -1200,5 +1200,52 @@ for ROUTER_REL in "ROUTER.md" "mode-a/ROUTER.md"; do
   check "staged $ROUTER_REL re-mints the hub" 0 "$RC" "re-minted $HUB"
 done
 
+# ── 86-88. the deep command contracts recompile when a deep-loop source is staged ──
+# Stub check: drifts until the stub compiler has written its contract, or always
+# under STUB_CONTRACT_STUCK. Stub compiler: writes one contract and prints its path.
+setup_contract_stubs() {
+  local dir="$TMP/.opencode/skills/system-deep-loop/runtime/scripts"
+  mkdir -p "$dir" "$TMP/.opencode/skills/system-deep-loop/references" "$TMP/.opencode/commands/deep/assets/compiled"
+  cat > "$dir/check-contract-drift.cjs" <<'CHECK'
+const fs = require('fs');
+const out = '.opencode/commands/deep/assets/compiled/deep-x.contract.markdown';
+if (process.env.STUB_CONTRACT_STUCK === '1' || !fs.existsSync(out)) { console.log('[CONTRACT DRIFT] stale'); process.exit(1); }
+console.log('[CONTRACT DRIFT] OK commands=1');
+CHECK
+  cat > "$dir/compile-command-contracts.cjs" <<'COMPILE'
+const fs = require('fs');
+const COMMANDS = { 'deep/x': {} };
+module.exports = { COMMANDS };
+if (require.main === module) {
+  const out = '.opencode/commands/deep/assets/compiled/deep-x.contract.markdown';
+  fs.writeFileSync(out, 'compiled\n');
+  console.log(out);
+}
+COMPILE
+  echo "doc" > "$TMP/.opencode/skills/system-deep-loop/references/doc.md"
+  git -C "$TMP" add -A >/dev/null; git -C "$TMP" commit -qm stubs
+}
+
+setup_fixture; setup_contract_stubs
+echo "edited" > "$TMP/.opencode/skills/system-deep-loop/references/doc.md"
+git -C "$TMP" add ".opencode/skills/system-deep-loop/references/doc.md"
+run_hook; RC=$?
+check "a drifting contract is recompiled" 0 "$RC" "recompiled the deep command contracts"
+if git -C "$TMP" diff --cached --name-only | grep -q 'deep-x.contract.markdown'; then
+  echo "PASS  the recompiled contract reached the index"; PASS=$((PASS + 1))
+else echo "FAIL  the recompiled contract was not staged"; FAIL=$((FAIL + 1)); fi
+
+setup_fixture; setup_contract_stubs
+echo "unrelated" > "$TMP/notes.md"; git -C "$TMP" add notes.md
+run_hook; RC=$?
+check "no deep-loop source staged is a silent no-op" 0 "$RC"
+grep -q 'contract-recompile' "$TMP/out.log" && { echo "FAIL  contract gate spoke on an unrelated commit"; FAIL=$((FAIL + 1)); }
+
+setup_fixture; setup_contract_stubs
+echo "edited" > "$TMP/.opencode/skills/system-deep-loop/references/doc.md"
+git -C "$TMP" add ".opencode/skills/system-deep-loop/references/doc.md"
+STUB_CONTRACT_STUCK=1 run_hook; RC=$?
+check "a contract that still drifts blocks" 1 "$RC" "still drift after a recompile"
+
 echo "pre-commit gates: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]

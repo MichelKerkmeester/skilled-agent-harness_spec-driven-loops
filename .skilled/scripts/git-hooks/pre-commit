@@ -843,6 +843,55 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
   fi
 fi
 
+# --- Deep command contract auto recompile (blocking only when it cannot fix it) ---
+# Each compiled deep command contract records a digest of every source it was built
+# from: the deep-loop skill docs and the deep command assets. The doc-version gate
+# above rewrites those docs, so a contract compiled before the commit is stale by the
+# time the commit lands, and CI's contract drift check then fails. Recompile only when
+# a deep-loop source is staged and the drift check reports a difference.
+# Bypass: SPECKIT_SKIP_CONTRACT_RECOMPILE=1 git commit ...
+if [[ "${SPECKIT_SKIP_CONTRACT_RECOMPILE:-0}" != "1" ]] && command -v node >/dev/null 2>&1; then
+  CONTRACT_COMPILER="$SOURCE_ROOT/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs"
+  CONTRACT_CHECK="$SOURCE_ROOT/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs"
+  CONTRACT_REL="${SOURCE_ROOT#"$REPO_ROOT"/}"
+  if [[ -f "$CONTRACT_COMPILER" && -f "$CONTRACT_CHECK" ]] \
+     && [[ -n "$(git_bounded diff --cached --name-only --diff-filter=ACMR -- \
+          "$CONTRACT_REL/skills/system-deep-loop/" "$CONTRACT_REL/commands/deep/" 2>/dev/null)" ]] \
+     && ! node "$CONTRACT_CHECK" >/dev/null 2>&1; then
+    # The compiler owns the command list, so a fourth deep command needs no hook edit.
+    if ! CONTRACT_COMMANDS="$(node -e 'console.log(Object.keys(require(process.argv[1]).COMMANDS).join("\n"))' \
+         "$CONTRACT_COMPILER" 2>&1)"; then
+      echo "" >&2
+      echo "BLOCKED [gate:contract-recompile]: could not read the command list from compile-command-contracts.cjs:" >&2
+      printf '%s\n' "$CONTRACT_COMMANDS" | sed 's/^/  /' >&2
+      echo "Bypass: SPECKIT_SKIP_CONTRACT_RECOMPILE=1 git commit ..." >&2
+      exit 1
+    fi
+    for CONTRACT_COMMAND in $CONTRACT_COMMANDS; do
+      # The compiler prints each file it wrote, one path per line, so those are what
+      # gets staged.
+      if ! CONTRACT_OUT="$(node "$CONTRACT_COMPILER" --command "$CONTRACT_COMMAND" --write 2>&1)"; then
+        echo "" >&2
+        echo "BLOCKED [gate:contract-recompile]: compiling $CONTRACT_COMMAND failed." >&2
+        printf '%s\n' "$CONTRACT_OUT" | sed 's/^/  /' >&2
+        echo "Bypass: SPECKIT_SKIP_CONTRACT_RECOMPILE=1 git commit ..." >&2
+        exit 1
+      fi
+      while IFS= read -r CONTRACT_FILE; do
+        [[ -n "$CONTRACT_FILE" && -f "$REPO_ROOT/$CONTRACT_FILE" ]] && git_bounded add -- "$REPO_ROOT/$CONTRACT_FILE"
+      done <<< "$CONTRACT_OUT"
+    done
+    if ! CONTRACT_AFTER="$(node "$CONTRACT_CHECK" 2>&1)"; then
+      echo "" >&2
+      echo "BLOCKED [gate:contract-recompile]: the deep command contracts still drift after a recompile:" >&2
+      printf '%s\n' "$CONTRACT_AFTER" | tail -6 | sed 's/^/  /' >&2
+      echo "Bypass: SPECKIT_SKIP_CONTRACT_RECOMPILE=1 git commit ..." >&2
+      exit 1
+    fi
+    echo "[gate:contract-recompile] recompiled the deep command contracts and staged them." >&2
+  fi
+fi
+
 # --- Spec derived-metadata auto re-mint (blocking only when it cannot fix it) ---
 # A packet's graph-metadata.json stores a fingerprint of the spec documents it was
 # derived from, plus fields summarised out of them. Editing spec.md or any sibling

@@ -112,7 +112,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md",
-      "sha256": "4f5c9b87fb2767198fb697d0b75e37799dac2e85e15b9cc92ac92172f01de071",
+      "sha256": "b84a420c5f2c331a76b9dcb52a581fd226a186eb2afddede04b05b1c3af73a07",
       "section": "full"
     },
     {
