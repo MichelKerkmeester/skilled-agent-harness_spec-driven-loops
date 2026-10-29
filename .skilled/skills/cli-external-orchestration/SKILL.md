@@ -2,7 +2,7 @@
 name: cli-external-orchestration
 description: "Parent hub for external CLI dispatch: routes to seven workflow modes through mode-registry.json; dispatches by workflowMode."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.7.11.0
+version: 1.7.12.0
 metadata:
   family: cli
 ---
@@ -54,7 +54,7 @@ The advisor routes external CLI dispatch to the single identity `cli-external-or
 Resolve a mode with `node .skilled/bin/compiled-route.cjs --hub cli-external-orchestration --prompt "<task>"`.
 Follow the decision: `route` loads `targets`, `clarify` and `defer` ask for disambiguation, and `reject` refuses.
 `routerPolicy.defaultMode` is `null`, so a request with no dominant executor defers for clarification rather than selecting a default.
-The directive and remaining routing detail live in the final `MACHINE ROUTER` section.
+Run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) before selecting hub resources.
 
 ---
 
@@ -207,62 +207,3 @@ The layers that bound a spawn chain, fan-out lineage and dispatch stack apply to
 - Executor-delegation scorer (hub-aware, sources from this hub's registry): `../system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`.
 - Constitutional CLI dispatch skill-preload rule: the retired constitutional rule docs.
 - Persona-injection contract (canonical): `../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection" — every mode attaches the resolved agent persona on dispatch.
-
----
-
-## 6. MACHINE ROUTER
-
-The compiled-routing directive and remaining routing detail live here.
-
-> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
-> ```bash
-> node .skilled/bin/compiled-route.cjs --hub cli-external-orchestration --prompt "<task>"
-> ```
-> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `cli-external-orchestration`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
-
-### Two-Axis Model
-
-- `packetKind: "workflow"`:
-  - `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes` orchestrate a CLI binary.
-  - Their dispatched writes land in THIS repo's workspace (`mutatesWorkspace:true`).
-  - None is a transport packet. All classify intent, choose/confirm a provider, and conduct the dispatched session.
-  - `cli-cursor`'s native worktree/cloud-worker surfaces are opt-in escape hatches, not its default dispatch shape.
-- No extension is declared: the `transport-axis` left with the `cli-jev` transport, no mode here is read-only evidence, and none converges on a loop. The seven workflows stay primary, independently-routable dispatch modes.
-
-### Routing Rule
-
-```text
-read hub-router.json
-  -> score routerSignals and vocabularyClasses
-  -> apply routerPolicy.tieBreak
-  -> read mode-registry.json for packetKind, backendKind, toolSurface, and advisorRouting
-  -> load the selected packet(s)
-```
-
-### Outcomes
-
-- `single`: one dominant executor signal routes to one mode.
-- `orderedBundle`: multiple explicitly requested executors route in tie-break order.
-- `defer`: unclear or contradictory dispatch intent asks for disambiguation — the router does not silently default to `cli-opencode` on genuine ambiguity.
-
-### Surface Router — per-mode leaf sets
-
-Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines three things:
-- The per-mode leaf-intent model. It covers every mode in `mode-registry.json`, plus one deliberate absence: a bare CLI-dispatch phrase that names no executor fires no intent and defers at the hub.
-- The machine-readable `DEFAULT_RESOURCE` / `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay parses.
-- The how-to-read rules: a dominant intent → one leaf set; near-tied intents → deduped union, the `orderedBundle` outcome; no keyword match → hub `defer`, never a silent default to `cli-opencode`.
-
-Every `RESOURCE_MAP` path is packet-qualified and converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
-
-`ROUTER.md` stays a separate document on purpose; [the parent-skill reference](../sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md#why-the-leaf-router-stays-in-routermd) gives the reason once.
-
-### Executor Delegation
-
-A specific-executor prompt is resolved by the system-skill-advisor's executor-delegation scorer. Examples include:
-- "use cli-opencode", "delegate to opencode", and "get a claude code second opinion".
-- "delegate to codex", "delegate to cursor", "delegate to devin", and "delegate to pi".
-- A small model that dispatches through one.
-
-The scorer sources its alias table from THIS hub's `mode-registry.json`, keyed by each mode's `packetSkillName`.
-It resolves to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, or `cli-hermes`.
-See `system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`.

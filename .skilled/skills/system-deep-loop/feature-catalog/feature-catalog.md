@@ -7,7 +7,7 @@ trigger_phrases:
   - "deep-loop mode classification"
   - "system-deep-loop compiled routing"
 last_updated: "2026-07-21"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # system-deep-loop: Feature Catalog
@@ -64,7 +64,7 @@ See [fanout-write-containment/fanout-write-containment.md](fanout-write-containm
 
 #### Description
 
-A default-on, flag-gated, additive directive in `system-deep-loop`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to the deep-loop mode classification above.
+A default-on, flag-gated, additive directive in `system-deep-loop`'s `ROUTER.md` asks the compiled per-hub router contract to resolve the mode before falling through to the deep-loop mode classification above.
 
 #### Current Reality
 

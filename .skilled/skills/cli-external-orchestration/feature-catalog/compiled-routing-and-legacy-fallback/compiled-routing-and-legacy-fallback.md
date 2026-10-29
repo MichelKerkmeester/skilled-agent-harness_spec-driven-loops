@@ -1,19 +1,19 @@
 ---
 title: "Compiled Routing And Legacy Fallback"
-description: "A default-on, flag-gated directive in `cli-external-orchestration`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to registry-driven dispatch."
+description: "A default-on, flag-gated directive in `cli-external-orchestration`'s `ROUTER.md` asks the compiled per-hub router contract to resolve the mode before falling through to registry-driven dispatch."
 trigger_phrases:
   - "compiled routing and legacy fallback"
   - "SPECKIT_COMPILED_ROUTING"
   - "compiled route front door"
   - "cli-external-orchestration compiled routing"
-version: 1.4.0.2
+version: 1.4.1.0
 ---
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)
 
 ## 1. OVERVIEW
 
-`cli-external-orchestration`'s `SKILL.md` carries a default-on, flag-gated, additive directive that asks the compiled per-hub router contract to resolve the mode before falling through to the mode-registry-driven routing described in [`cli-executor-dispatch-routing.md`](../cli-executor-dispatch-routing/cli-executor-dispatch-routing.md).
+`cli-external-orchestration`'s `ROUTER.md` carries a default-on, flag-gated, additive directive that asks the compiled per-hub router contract to resolve the mode before falling through to the mode-registry-driven routing described in [`cli-executor-dispatch-routing.md`](../cli-executor-dispatch-routing/cli-executor-dispatch-routing.md).
 
 The directive is on by default for `cli-external-orchestration` (a member of the per-hub default-on cohort): the compiled front door resolves and `cli-external-orchestration` follows the returned decision directly. Because compiled routing is verified byte-identical to legacy on every recorded scenario (`compiledRouting.subVerdict: 'compiled-serving'`), this is a transparent implementation swap, not a behavior change. Setting `SPECKIT_COMPILED_ROUTING=0` is the explicit kill-switch: it forces `cli-external-orchestration` (and every eligible hub) back to legacy registry-driven routing.
 
@@ -45,7 +45,7 @@ A served compiled decision returns one of four actions — `route` (use the retu
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/cli-external-orchestration/SKILL.md` | Shared | Carries the default-on compiled-routing directive `cli-external-orchestration` follows. |
+| `.skilled/skills/cli-external-orchestration/ROUTER.md` | Shared | Carries the default-on compiled-routing directive `cli-external-orchestration` follows; `SKILL.md` points at it. |
 | `.skilled/bin/compiled-route.cjs` | Script | Promoted CLI front door the directive shells out to. |
 | `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` | Shared | Tri-state flag parsing and the manifest serving-authority gate. |
 | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json` | Shared | `cli-external-orchestration`'s promoted activation manifest (serving authority, shadow status, selected policy). |

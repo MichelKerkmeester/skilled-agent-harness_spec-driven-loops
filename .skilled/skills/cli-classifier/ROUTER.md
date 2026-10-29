@@ -8,7 +8,7 @@ trigger_phrases:
   - "typed judgment routing"
 importance_tier: important
 contextType: implementation
-version: 0.8.2.0
+version: 0.8.3.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -102,3 +102,44 @@ RESOURCE_MAP = {
 - [`hub-router.json`](./hub-router.json) - first-stage mode selection.
 - [`mode-registry.json`](./mode-registry.json) - the packet registry and discriminator source.
 - [`SKILL.md`](./SKILL.md) - the hub's public routing entry point.
+
+---
+
+## 5. MACHINE ROUTER
+
+The hub's routing prose, moved here from `SKILL.md` so the skill body keeps only the pointer. It sits last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 3 stays the only replay source.
+
+> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
+> ```bash
+> node .skilled/bin/compiled-route.cjs --hub cli-classifier --prompt "<task>"
+> ```
+> Follow the returned decision: `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `cli-classifier`. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide. That is the explicit kill-switch.
+
+### Surface Router — per-intent leaf sets
+
+Stage 2 of routing lives in section 3 of this file, which ships `router_state: active`.
+It maps Jev judgment, question-shaping, provider and MCP intents to the exact packet-local leaf resources that mode loads.
+A future classifier mode can add its own intent and leaves.
+The two layers stay separate: the hub never emits leaf paths, and the surface router never re-decides the mode.
+
+### Two-Axis Model
+
+- `packetKind: "transport"` marks a bridge to an external tool. It selects a value and never mutates this workspace.
+- A transport declares `mutatesWorkspace: false`, forbids `Write`, `Edit` and `Task` and is registered under the `transport-axis` extension.
+- The advisor resolves the hub identity and stays blind to the transports (`routingClass: "metadata"`). The hub owns the resolution.
+
+### Routing Rule
+
+```text
+read hub-router.json
+  -> score routerSignals and vocabularyClasses
+  -> apply routerPolicy.tieBreak (currently cli-jev)
+  -> read mode-registry.json for packetKind, backendKind, toolSurface and advisorRouting
+  -> load the selected packet
+```
+
+### Outcomes
+
+- `single`: one dominant judgment intent routes to the registered transport, currently `cli-jev`.
+- `orderedBundle`: a request that explicitly names multiple registered modes routes to them in `tieBreak` order when a matching bundle rule is configured.
+- `defer`: unclear intent asks for disambiguation rather than guessing a value. A request that names only the hub defers, because the hub name does not choose a backend.

@@ -6,7 +6,7 @@ trigger_phrases:
   - "deep loop workflows"
   - "deep research review council"
   - "deep-loop hub routing"
-version: 1.6.3.0
+version: 1.6.4.0
 ---
 
 # system-deep-loop
@@ -116,7 +116,7 @@ Adding another active mode (a new packet beyond `deep-research`, `deep-review`, 
 
 - [ ] **`mode-registry.json`**: add the mode's registry entry: `workflowMode`, `runtimeLoopType` (or explicit `null`), `backendKind`, `packet`, `packetKind`, `toolSurface`, `advisorRouting`, and `aliases`.
 - [ ] **`hub-router.json`**: add a `routerSignals` entry for the new mode's vocabulary classes, and add it to `routerPolicy.tieBreak`.
-- [ ] **`SKILL.md`**, add a row to the §1 WHEN TO USE mode table (mode, use-it-for, packet, command, agent), and update the frontmatter `allowed-tools` if the new mode's `toolSurface.allowed` introduces a tool no existing mode grants (keep it equal to the union, see §9 MACHINE ROUTER).
+- [ ] **`SKILL.md`**, add a row to the §1 WHEN TO USE mode table (mode, use-it-for, packet, command, agent), and update the frontmatter `allowed-tools` if the new mode's `toolSurface.allowed` introduces a tool no existing mode grants (keep it equal to the union, see the final MACHINE ROUTER section of `ROUTER.md`).
 - [ ] **`README.md`** (this document): add the mode to §1 AT A GLANCE / §4 HOW IT WORKS as applicable, and to the Layout table if it changes the directory listing.
 - [ ] **Drift-guard test**: `system-skill-advisor/runtime/tests/routing-registry-drift-guard.vitest.ts` asserts the advisor's hardcoded projection maps equal the registry projection; update the maps it checks against or the test fails on the next run.
 - [ ] **`node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-deep-loop`**: re-run after all of the above; it validates registry shape, alias uniqueness, tool-surface union (3j), and hub-router consistency in one pass.

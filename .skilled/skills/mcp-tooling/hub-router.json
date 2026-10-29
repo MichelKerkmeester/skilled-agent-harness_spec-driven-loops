@@ -1,6 +1,6 @@
 {
   "skill": "mcp-tooling",
-  "version": "1.9.2.0",
+  "version": "1.9.3.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,

@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface router pattern"
 importance_tier: important
 contextType: implementation
-version: 2.3.12.0
+version: 2.3.13.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -18,7 +18,7 @@ skill_pointer: SKILL.md
 ## 1. OVERVIEW
 
 This is sk-doc's second-layer (surface) router, first-class at the hub root as
-`ROUTER.md`. The hub selects a workflow mode in [`hub-router.json`](hub-router.json)
+`ROUTER.md`. The hub selects a workflow mode in [`hub-router.json`](../../../.skilled/skills/sk-doc/hub-router.json)
 (sk-create-skill, sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command,
 sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark,
 sk-create-goal, sk-create-with-human-voice, or sk-create-quality-control);
@@ -405,3 +405,91 @@ RESOURCE_MAP = {
 - No keyword match is UNKNOWN_FALLBACK: confirm the target artifact and intent
   before loading anything.
 - `FULL_INVENTORY` fires only on an explicit "show the whole toolkit" request.
+
+---
+
+## 5. MACHINE ROUTER
+
+The hub's routing prose, moved here from `SKILL.md` so the skill body keeps only the pointer. It sits last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 3 stays the only replay source.
+
+> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
+> ```bash
+> node .skilled/bin/compiled-route.cjs --hub sk-doc --prompt "<task>"
+> ```
+> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `sk-doc`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
+
+### Surface Router — per-intent leaf sets
+
+Stage 2 of routing lives in section 3 of this file.
+It defines three things:
+- The per-intent leaf model: document quality, optimization, skill creation, parent-hub creation, agent creation, command creation, the paired agent-plus-command lane, flowcharts, the human-voice pass, playbooks, feature catalogs, READMEs, changelogs, benchmarks, diffs, packet goals, repo rules, and the explicit full-toolkit intent.
+- The machine-readable `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse.
+- The how-to-read rules: a dominant intent gives one leaf set, near-tied intents give a deduped union, and no keyword match gives the hub UNKNOWN fallback, never a silent default.
+
+Every `RESOURCE_MAP` path is packet-qualified or an authored shared-alias disk path, and each converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
+
+The reason this file stays a separate document from `SKILL.md` and from `hub-router.json` is in [the parent-skill reference](../../../.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md#why-the-leaf-router-stays-in-routermd).
+
+### The discriminator
+- **`workflowMode`** — the public packet key (e.g. `sk-create-skill`, `sk-create-quality-control`). `sk-create-skill-parent` is a second mode over the same `sk-create-skill` packet.
+- **`packetKind`** — `workflow` for every sk-doc packet (there is no surface axis; the sk-create-quality-control pipeline is universal doctrine in `shared/`, not orthogonal stack-evidence).
+- **`backendKind`** — `template-scaffold` for the create-* generators, `sk-create-quality-control` for the sk-create-quality-control mode.
+
+### Routing rule
+```
+SKILL_ROOT = path containing this ROUTER.md and its SKILL.md
+REGISTRY = SKILL_ROOT / "mode-registry.json"
+HUB_ROUTER = SKILL_ROOT / "hub-router.json"
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm whether this is sk-create-skill, sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-changelog, sk-create-diff, sk-create-repo-rule, sk-create-frontmatter, sk-create-goal, sk-create-with-human-voice, or sk-create-quality-control work",
+    "Confirm the target document or component being authored, scaffolded, or reviewed",
+    "Provide the available inputs: existing doc, source material, or scaffold parameters",
+    "Confirm the validation expectations before completion (DQI/HVR scoring, validate.sh, or packet-specific checks)",
+]
+
+def _guard_in_skill(relative_path):
+  resolved = (SKILL_ROOT / relative_path).resolve()
+  resolved.relative_to(SKILL_ROOT)
+  if resolved.suffix.lower() not in {".md", ".json"}:
+    raise ValueError("only skill-local markdown/json router resources are routable")
+  return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def load_if_available(relative_path, seen):
+  guarded = _guard_in_skill(relative_path)
+  if guarded not in seen and (SKILL_ROOT / guarded).exists():
+    load(guarded)
+    seen.add(guarded)
+    return True
+  return False
+
+seen = set()
+if not REGISTRY.exists() or not HUB_ROUTER.exists():
+  return defer("router metadata missing; inspect sk-doc/mode-registry.json and sk-doc/hub-router.json")
+
+read mode-registry.json and hub-router.json
+classify the request to one or more workflowMode values using hub-router.json
+  (dominant authoring/quality intent; a command like /create:agent resolves directly)
+
+if confidence is low, intent is contradictory, or routerPolicy.defaultMode is null and no mode wins:
+  for resource in hub_router.routerPolicy.defaultResource:   # the ordered defer set, never hardcoded here
+    load_if_available(resource, seen)
+  return UNKNOWN_FALLBACK with disambiguation_checklist = UNKNOWN_FALLBACK_CHECKLIST
+
+for each resolved workflowMode:
+  entry = the matching mode-registry.json modes[] item
+  if entry is missing or entry.packetKind != "workflow":
+    return defer("unknown sk-doc workflowMode; extend mode-registry.json and create a packet first")
+  if not load_if_available(f"{entry.packet}/SKILL.md", seen):
+    return defer("registered packet SKILL.md is missing; repair the packet before routing")
+
+return single or orderedBundle according to hub-router.json routerPolicy.outcomes
+```
+`routerPolicy.defaultMode` is `null`: an unclear documentation intent asks for disambiguation rather than forcing a stale default. `hub-router.json` carries the router signals, vocabulary classes, default fallback resource, and bundle rules. Outcomes are `single`, `orderedBundle`, or `defer` — there is no `surfaceBundle` (no surface axis).
+
+Per-packet behavior is **not flattened**: each packet keeps its own authoring contract, references, assets, scripts, and templates.
+
+This hub does **not** use keyed resource discovery (`references/<key>/` or `assets/<key>/`) at the hub root.
+There are no hub-root `references/` or `assets/` directories, and packet resources stay inside their owning packet or the shared backbone.
+If a future workflow needs keyed resource subdirectories, add that behavior inside the owning packet using guarded runtime discovery.
+Do not hardcode resource inventories in this hub.

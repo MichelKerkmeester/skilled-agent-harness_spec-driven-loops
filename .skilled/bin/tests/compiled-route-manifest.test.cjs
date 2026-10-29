@@ -48,7 +48,9 @@ const PRIMARY_HUB = `manifest-test-${process.pid}`;
 const RACE_HUB = `manifest-race-${process.pid}`;
 const FIXED_HUBS = Object.keys(engine.HUB_CHILD).sort();
 const HUB_COUNT = sync.HUBS.length;
-const ROUTER_INPUTS = ['SKILL.md', 'mode-registry.json', 'hub-router.json'];
+// The hub keeps its fallback checklist in the final machine-router section of
+// its root ROUTER.md, so that file is a hashed router input like the other three.
+const ROUTER_INPUTS = ['SKILL.md', 'ROUTER.md', 'mode-registry.json', 'hub-router.json'];
 const GENERATED_HUBS = new Set([PRIMARY_HUB, RACE_HUB]);
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -76,6 +78,10 @@ function createParentFixture(hubId, options = {}) {
   registry.skill = options.registrySkill || hubId;
   hubRouter.skill = options.routerSkill || hubId;
   fs.writeFileSync(path.join(fixtureRoot, 'SKILL.md'), skillMarkdown);
+  // A compiler-invalid fixture carries no router file, so no checklist reaches the compiler.
+  if (!options.compilerInvalid) {
+    fs.copyFileSync(path.join(SOURCE_ROOT, 'ROUTER.md'), path.join(fixtureRoot, 'ROUTER.md'));
+  }
   fs.writeFileSync(path.join(fixtureRoot, 'mode-registry.json'), `${JSON.stringify(registry, null, 2)}\n`);
   fs.writeFileSync(path.join(fixtureRoot, 'hub-router.json'), `${JSON.stringify(hubRouter, null, 2)}\n`);
   return fixtureRoot;

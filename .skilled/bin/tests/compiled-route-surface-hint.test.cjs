@@ -83,12 +83,20 @@ function hubWithAddedSurface() {
 
 function compileHub({ registry, hubRouter }) {
   const skillMarkdown = fs.readFileSync(path.join(SK_CODE_ROOT, 'SKILL.md'), 'utf8');
+  // The hub's fallback checklist lives in the final machine-router section of
+  // its root ROUTER.md, which the compiler reads in place of SKILL.md.
+  const rootRouter = fs.readFileSync(path.join(SK_CODE_ROOT, 'ROUTER.md'), 'utf8');
+  const machineRouterStart = rootRouter.search(/^## \d+\. MACHINE ROUTER$/m);
+  assert.ok(machineRouterStart >= 0, 'sk-code ROUTER.md must end with a MACHINE ROUTER section');
+  const routerMarkdown = rootRouter.slice(machineRouterStart);
   return compileRegistry({
     activationGeneration: 1,
     hubRouter,
     registry,
+    routerMarkdown,
     skillMarkdown,
     sourceBytes: {
+      'ROUTER.md': Buffer.from(rootRouter, 'utf8'),
       'SKILL.md': Buffer.from(skillMarkdown, 'utf8'),
       'hub-router.json': Buffer.from(JSON.stringify(hubRouter), 'utf8'),
       'mode-registry.json': Buffer.from(JSON.stringify(registry), 'utf8'),

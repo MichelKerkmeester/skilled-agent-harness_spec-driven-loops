@@ -8,7 +8,7 @@ trigger_phrases:
   - "mcp tool bridge resource map"
 importance_tier: important
 contextType: general
-version: 1.8.6.0
+version: 1.8.7.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -150,3 +150,43 @@ RESOURCE_MAP = {
 - No keyword match is the hub's `defer` fallback: confirm the target tool
   (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-aside-devtools`, `mcp-notion`,
   `mcp-figma`, `mcp-refero`, or `mcp-mobbin`) before loading anything.
+
+---
+
+## 5. MACHINE ROUTER
+
+The hub's routing prose, moved here from `SKILL.md` so the skill body keeps only the pointer. It sits last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 3 stays the only replay source.
+
+> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode through the compiled router first:
+> ```bash
+> node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"
+> ```
+> Follow `route` targets. On `clarify` or `defer`, ask for the missing tool identity. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the legacy hub-router contract. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide.
+
+### Two-Axis Model
+
+- `packetKind: workflow` — `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, and `mcp-notion` can change workspace or external workflow state and use explicit safety gates.
+- `packetKind: transport` — `mcp-figma`, `mcp-refero`, and `mcp-mobbin` bridge external read or export surfaces and remain `mutatesWorkspace:false` in this workspace.
+- Design transports never decide design on their own. Figma, Refero, and Mobbin pair with `sk-design-md-generator` for measured references.
+
+### Routing Rule
+
+```text
+read hub-router.json
+  -> score routerSignals and vocabularyClasses
+  -> apply routerPolicy.tieBreak
+  -> read mode-registry.json for packetKind, backendKind, toolSurface, and advisorRouting
+  -> load the selected packet(s)
+```
+
+### Outcomes
+
+- `single`: one dominant tool signal routes to one mode.
+- `orderedBundle`: several explicitly requested tools route in tie-break order.
+- `defer`: unclear or contradictory tool intent asks for disambiguation.
+
+A scored route loads only the selected mode's resources. The default resource is fallback-only and must not be unioned into a scored route.
+
+### Surface Router
+
+The machine block in section 3 of this file keeps `INTENT_SIGNALS` and `RESOURCE_MAP` in sync. Every resource path is packet-qualified, resolves on disk, and is represented in the generated leaf manifest.

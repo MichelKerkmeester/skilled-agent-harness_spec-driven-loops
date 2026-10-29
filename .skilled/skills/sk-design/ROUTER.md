@@ -7,7 +7,7 @@ trigger_phrases:
   - "design intent routing"
 importance_tier: important
 contextType: implementation
-version: 2.0.5.0
+version: 2.0.6.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -113,3 +113,94 @@ RESOURCE_MAP = {
 - No keyword match is the hub's UNKNOWN fallback: report the gap and confirm the target mode before
   loading anything. An intent that matches nothing here is a gap to report, not a reason to load
   everything.
+
+---
+
+## 5. MACHINE ROUTER
+
+The hub's routing prose, moved here from `SKILL.md` so the skill body keeps only the pointer. It sits
+last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and
+`RESOURCE_MAP` block in section 3 stays the only replay source.
+
+> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
+>
+> node .skilled/bin/compiled-route.cjs --hub sk-design --prompt "<task>"
+>
+> Follow the returned decision. A `route` names its targets, a `clarify` or `defer` asks for disambiguation, and a `reject` refuses. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving authority. Compiled routing is now the default for this hub. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide, the explicit kill-switch.
+
+### Surface Router, per-intent leaf sets
+
+Stage 2 lives in section 3 of this file. It defines the five-intent leaf
+model (VALUES, REVIEW, CHART, FLOWCHART, EXTRACT), the machine-readable `INTENT_SIGNALS` and
+`RESOURCE_MAP` block the deterministic router-replay parses, and the how-to-read rules: a dominant
+intent takes one leaf set, near-tied intents take a deduped union, and no keyword match is the hub's
+UNKNOWN fallback rather than a silent default. Every `RESOURCE_MAP` path resolves on disk and
+dual-reads to a canonical `(workflowMode, leafResourceId)` pair through `leaf-manifest.json`.
+
+This router stays a separate document from `SKILL.md` on purpose; [the parent-skill reference](../sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md#why-the-leaf-router-stays-in-routermd) gives the reason once.
+
+### The discriminator
+
+- **`workflowMode`** — the public mode key: `sk-design-fundamentals`, `sk-design-md-generator`,
+  `sk-design-chart`, `sk-design-diagram`.
+- **`packetKind`** — `workflow` for all four. There is no surface axis on this hub.
+- **`backendKind`** — `surface-router` for fundamentals and the generator, which resolve leaves from
+  a reference set; `template-scaffold` for chart and diagram, which build an artifact from a form.
+
+### Routing rule
+
+```
+SKILL_ROOT  = path containing this ROUTER.md and its SKILL.md
+REGISTRY    = SKILL_ROOT / "mode-registry.json"
+HUB_ROUTER  = SKILL_ROOT / "hub-router.json"
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm whether this decides a value, reviews a surface, measures an existing surface, or builds a chart or diagram",
+    "Confirm the surface: screen UI, slide deck, printed page, document layout, or a chart or diagram canvas",
+    "For a measure request, provide the live URL or path; there is nothing to read without one",
+    "For a canvas request, state the question the artifact must answer, not the form you want",
+]
+
+def _guard_in_skill(relative_path):
+  resolved = (SKILL_ROOT / relative_path).resolve()
+  resolved.relative_to(SKILL_ROOT)
+  if resolved.suffix.lower() not in {".md", ".json", ".css"}:
+    raise ValueError("only skill-local markdown/json/css router resources are routable")
+  return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def load_if_available(relative_path, seen):
+  guarded = _guard_in_skill(relative_path)
+  if guarded not in seen and (SKILL_ROOT / guarded).exists():
+    load(guarded)
+    seen.add(guarded)
+    return True
+  return False
+
+seen = set()
+if not REGISTRY.exists() or not HUB_ROUTER.exists():
+  return defer("router metadata missing; inspect sk-design/mode-registry.json and sk-design/hub-router.json")
+
+read mode-registry.json and hub-router.json
+classify the request to one or more workflowMode values using hub-router.json
+  (dominant design intent; a command like /design:chart resolves directly)
+
+if two intents tie within routerPolicy.ambiguityDelta:
+  apply routerPolicy.tieBreak, then take the deduped union of their leaf sets
+  VALUES and REVIEW resolving together is not ambiguity: they are one mode loading both sets
+
+if confidence is low or the intent is contradictory:
+  return UNKNOWN_FALLBACK with disambiguation_checklist = UNKNOWN_FALLBACK_CHECKLIST
+
+for each resolved workflowMode:
+  entry = the matching mode-registry.json modes[] item
+  if entry is missing or entry.packetKind != "workflow":
+    return defer("unknown sk-design workflowMode; extend mode-registry.json and create the mode first")
+  if not load_if_available(f"{entry.packet}/SKILL.md", seen):
+    return defer("registered mode SKILL.md is missing; repair the mode before routing")
+
+return single or ambiguous according to hub-router.json routerPolicy.outcomes
+```
+
+`routerPolicy.defaultMode` is `sk-design-fundamentals`: a design question with no clearer owner is a
+values question. That differs from `sk-doc`, whose default is `null` because an unclear documentation
+intent has no safe default. Outcomes are `single`, `ambiguous` or `none`.

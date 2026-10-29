@@ -3,14 +3,6 @@
   "maxSmartRoutingLines": 12,
   "maxSmartRoutingWords": 180,
   "debt": {
-    "cli-classifier": {
-      "lines": 11,
-      "words": 140,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-002"
-      ]
-    },
     "cli-classifier/cli-jev": {
       "lines": 5,
       "words": 130,
@@ -19,14 +11,6 @@
         "RS-002",
         "RS-004",
         "RS-005"
-      ]
-    },
-    "cli-external-orchestration": {
-      "lines": 10,
-      "words": 139,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-002"
       ]
     },
     "cli-external-orchestration/cli-claude-code": {
@@ -119,14 +103,6 @@
         "RS-005"
       ]
     },
-    "mcp-tooling": {
-      "lines": 8,
-      "words": 121,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-002"
-      ]
-    },
     "mcp-tooling/mcp-aside-devtools": {
       "lines": 4,
       "words": 92,
@@ -207,14 +183,6 @@
         "RS-005"
       ]
     },
-    "sk-code": {
-      "lines": 7,
-      "words": 145,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-002"
-      ]
-    },
     "sk-code/sk-code-ci": {
       "lines": 3,
       "words": 99,
@@ -255,14 +223,6 @@
         "RS-005"
       ]
     },
-    "sk-design": {
-      "lines": 12,
-      "words": 148,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-002"
-      ]
-    },
     "sk-design/sk-design-chart": {
       "lines": 5,
       "words": 102,
@@ -301,14 +261,6 @@
         "RS-002",
         "RS-004",
         "RS-005"
-      ]
-    },
-    "sk-doc": {
-      "lines": 12,
-      "words": 176,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-002"
       ]
     },
     "sk-doc/sk-create-agent": {
@@ -469,14 +421,6 @@
         "RS-002",
         "RS-004",
         "RS-005"
-      ]
-    },
-    "system-deep-loop": {
-      "lines": 10,
-      "words": 159,
-      "machineBlocks": 1,
-      "codes": [
-        "RS-002"
       ]
     },
     "system-deep-loop/deep-ai-council": {

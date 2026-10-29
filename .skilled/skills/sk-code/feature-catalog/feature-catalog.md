@@ -9,7 +9,7 @@ trigger_phrases:
   - "sk-code quality gate"
   - "sk-code doctor commands"
 last_updated: "2026-10-28"
-version: 1.0.8.1
+version: 1.0.9.0
 ---
 
 # sk-code: Feature Catalog
@@ -48,7 +48,7 @@ See [`two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`](two
 
 #### Description
 
-A default-on, flag-gated, additive directive in `sk-code`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to the two-axis registry-driven routing above.
+A default-on, flag-gated, additive directive in `sk-code`'s `ROUTER.md` asks the compiled per-hub router contract to resolve the mode before falling through to the two-axis registry-driven routing above.
 
 #### Current Reality
 

@@ -35,14 +35,14 @@ The seven hub SKILL.md files trade their MACHINE ROUTER section and the SMART RO
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `diff scratch/replay-before.txt scratch/replay-after.txt` prints nothing and `compiled-route-guard.cjs` reports seven fresh hubs
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `diff scratch/replay-before.txt scratch/replay-after.txt` prints nothing and `compiled-route-guard.cjs` reports seven fresh hubs
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

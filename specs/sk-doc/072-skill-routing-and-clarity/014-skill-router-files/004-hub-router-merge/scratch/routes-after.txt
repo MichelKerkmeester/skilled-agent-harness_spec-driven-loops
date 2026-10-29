@@ -1,0 +1,7 @@
+cli-classifier {"action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-jev","packetKind":"transport","skillId":"cli-classifier","workflowMode":"cli-jev"}]}
+cli-external-orchestration {"action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-codex","packetKind":"workflow","skillId":"cli-external-orchestration","workflowMode":"cli-codex"}]}
+mcp-tooling {"action":"route","selectionKind":"single","targets":[{"backendKind":"figma-desktop-transport","packetId":"mcp-figma","packetKind":"transport","skillId":"mcp-tooling","workflowMode":"mcp-figma"}]}
+sk-code {"action":"route","selectionKind":"single","targets":[{"backendKind":"review-cache","packetId":"sk-code-review","packetKind":"workflow","skillId":"sk-code","workflowMode":"sk-code-review"}]}
+sk-design {"action":"route","selectionKind":"single","targets":[{"backendKind":"template-scaffold","packetId":"sk-design-chart","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-chart"}]}
+sk-doc {"action":"route","selectionKind":"single","targets":[{"backendKind":"template-scaffold","packetId":"sk-create-readme","packetKind":"workflow","skillId":"sk-doc","workflowMode":"sk-create-readme"}]}
+system-deep-loop {"action":"route","selectionKind":"single","targets":[{"backendKind":"runtime-loop-type","packetId":"deep-research","packetKind":"workflow","runtimeDiscriminator":"research","skillId":"system-deep-loop","workflowMode":"research"}]}

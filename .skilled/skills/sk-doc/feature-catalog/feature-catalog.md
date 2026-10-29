@@ -11,7 +11,7 @@ trigger_phrases:
   - "citation drift census across doc families"
   - "shared frontmatter value warning"
 last_updated: "2026-10-04"
-version: 2.2.0.12
+version: 2.2.1.0
 ---
 
 # sk-doc: Feature Catalog
@@ -64,7 +64,7 @@ See [`packet-authored-registry-routing/leaf-route-replay.md`](packet-authored-re
 
 #### Description
 
-A default-on, flag-gated, additive directive in `sk-doc`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to the packet routing above.
+A default-on, flag-gated, additive directive in `sk-doc`'s `ROUTER.md` asks the compiled per-hub router contract to resolve the mode before falling through to the packet routing above.
 
 #### Current Reality
 

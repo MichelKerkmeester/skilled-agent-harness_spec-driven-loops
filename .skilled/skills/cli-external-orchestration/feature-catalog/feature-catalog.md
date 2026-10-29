@@ -11,7 +11,7 @@ trigger_phrases:
   - "cross-runtime goal isolation"
   - "cli-hermes dispatch"
 last_updated: "2026-09-20"
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # cli-external-orchestration: Feature Catalog
@@ -50,7 +50,7 @@ See [`cli-executor-dispatch-routing/cli-executor-dispatch-routing.md`](cli-execu
 
 #### Description
 
-A default-on, flag-gated directive in `cli-external-orchestration`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to registry-driven dispatch.
+A default-on, flag-gated directive in `cli-external-orchestration`'s `ROUTER.md` asks the compiled per-hub router contract to resolve the mode before falling through to registry-driven dispatch.
 
 #### Current Reality
 

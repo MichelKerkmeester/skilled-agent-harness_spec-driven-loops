@@ -218,9 +218,16 @@ function buildExpected() {
     if (expected.has(name)) {
       throw new Error(`duplicate skill name '${name}': ${expected.get(name).source} and ${relativePath}`);
     }
-    // The machine router is read as data by tooling, so the copy keeps it verbatim: the
-    // link rewriting above exists for prose a reader follows, not for declarations.
-    const routerText = readIfExists(path.join(SOURCE_DIR, path.posix.dirname(relativePath), 'ROUTER.md'));
+    // The router sits beside SKILL.md, so its prose links get the same rewrite. Fences and
+    // inline code spans are copied byte for byte, which keeps every machine-read declaration
+    // (the router maps and the backticked resource paths) identical to the source.
+    const skillDir = path.posix.dirname(relativePath);
+    const sourceRouter = readIfExists(path.join(SOURCE_DIR, skillDir, 'ROUTER.md'));
+    const routerText = sourceRouter === null ? null : rewriteRelativeLinks(
+      sourceRouter,
+      toPosix(path.join(SOURCE_DIR, skillDir)),
+      toPosix(path.join(OUTPUT_DIR, name)),
+    );
     expected.set(name, { source: relativePath, text, routerText });
   }
   for (const fileName of listAgentFiles(AGENTS_DIR)) {

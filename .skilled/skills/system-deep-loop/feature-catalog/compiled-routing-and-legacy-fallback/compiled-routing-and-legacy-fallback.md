@@ -1,19 +1,19 @@
 ---
 title: "Compiled Routing And Legacy Fallback"
-description: "A default-on, flag-gated, additive directive in `system-deep-loop`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to the deep-loop mode classification above."
+description: "A default-on, flag-gated, additive directive in `system-deep-loop`'s `ROUTER.md` asks the compiled per-hub router contract to resolve the mode before falling through to the deep-loop mode classification above."
 trigger_phrases:
   - "compiled routing and legacy fallback"
   - "SPECKIT_COMPILED_ROUTING"
   - "compiled route front door"
   - "system-deep-loop compiled routing"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)
 
 ## 1. OVERVIEW
 
-`system-deep-loop`'s `SKILL.md` carries a default-on, flag-gated, additive directive that asks the compiled per-hub router contract to resolve the mode before falling through to the mode-registry-driven routing described in [`deep-loop-mode-classification.md`](../deep-loop-mode-classification/deep-loop-mode-classification.md).
+`system-deep-loop`'s `ROUTER.md` carries a default-on, flag-gated, additive directive that asks the compiled per-hub router contract to resolve the mode before falling through to the mode-registry-driven routing described in [`deep-loop-mode-classification.md`](../deep-loop-mode-classification/deep-loop-mode-classification.md).
 
 The directive is on by default for `system-deep-loop` (a member of the per-hub default-on cohort): the compiled front door resolves and `system-deep-loop` follows the returned decision directly. Because compiled routing is verified byte-identical to legacy on every scenario (`compiledRouting.subVerdict: 'compiled-serving'`), this is a transparent implementation swap, not a behavior change. Setting `SPECKIT_COMPILED_ROUTING=0` is the explicit kill-switch: it forces `system-deep-loop` (and every eligible hub) back to legacy registry-driven routing.
 
@@ -45,7 +45,7 @@ A served compiled decision returns one of four actions — `route` (use the retu
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/system-deep-loop/SKILL.md` | Shared | Carries the default-on compiled-routing directive `system-deep-loop` follows. |
+| `.skilled/skills/system-deep-loop/ROUTER.md` | Shared | Carries the default-on compiled-routing directive `system-deep-loop` follows; `SKILL.md` points at it. |
 | `.skilled/bin/compiled-route.cjs` | Script | Promoted CLI front door the directive shells out to. |
 | `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` | Shared | Tri-state flag parsing and the manifest serving-authority gate. |
 | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json` | Shared | `system-deep-loop`'s promoted activation manifest (serving authority, shadow status, selected policy). |

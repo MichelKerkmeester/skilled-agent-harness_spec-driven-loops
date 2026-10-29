@@ -1,19 +1,19 @@
 ---
 title: "Compiled Routing And Legacy Fallback"
-description: "A default-on, flag-gated, additive directive in `sk-doc`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to the packet routing above."
+description: "A default-on, flag-gated, additive directive in `sk-doc`'s `ROUTER.md` asks the compiled per-hub router contract to resolve the mode before falling through to the packet routing above."
 trigger_phrases:
   - "compiled routing and legacy fallback"
   - "SPECKIT_COMPILED_ROUTING"
   - "compiled route front door"
   - "sk-doc compiled routing"
-version: 2.1.0.4
+version: 2.1.1.0
 ---
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)
 
 ## 1. OVERVIEW
 
-`sk-doc`'s `SKILL.md` carries a default-on, flag-gated, additive directive that asks the compiled per-hub router contract to resolve the mode before falling through to the mode-registry-driven routing described in [`packet-authored-registry-routing.md`](../packet-authored-registry-routing/packet-authored-registry-routing.md).
+`sk-doc`'s `ROUTER.md` carries a default-on, flag-gated, additive directive that asks the compiled per-hub router contract to resolve the mode before falling through to the mode-registry-driven routing described in [`packet-authored-registry-routing.md`](../packet-authored-registry-routing/packet-authored-registry-routing.md).
 
 The directive is on by default for `sk-doc` (a member of the per-hub default-on cohort): the compiled front door resolves and `sk-doc` follows the returned decision directly. Because compiled routing was verified byte-identical to legacy on every scenario (Lane C parity, `compiledRouting.subVerdict: 'compiled-serving'`, measured before that harness was retired), this is a transparent implementation swap, not a behavior change. Setting `SPECKIT_COMPILED_ROUTING=0` is the explicit kill-switch: it forces `sk-doc` (and every eligible hub) back to legacy registry-driven routing.
 
@@ -45,7 +45,7 @@ A served compiled decision returns one of four actions — `route` (use the retu
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/sk-doc/SKILL.md` | Shared | Carries the default-on compiled-routing directive `sk-doc` follows. |
+| `.skilled/skills/sk-doc/ROUTER.md` | Shared | Carries the default-on compiled-routing directive `sk-doc` follows; `SKILL.md` points at it. |
 | `.skilled/bin/compiled-route.cjs` | Script | Promoted CLI front door the directive shells out to. |
 | `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` | Shared | Tri-state flag parsing and the manifest serving-authority gate. |
 | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json` | Shared | `sk-doc`'s promoted activation manifest (serving authority, shadow status, selected policy). |

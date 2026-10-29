@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-29 |
 | **Branch** | `worktrees/269-skill-router-files` |
 | **Parent Spec** | ../spec.md |
@@ -179,7 +179,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- The exact pointer shape that phase 003's rewritten RS-005 requires is UNKNOWN until 003 lands. The plan puts one line at the end of SMART ROUTING and follows the check if it names a different place.
+- Nothing remains open. The pointer shape that phase 003's rewritten RS-005 requires resolved to one line at the end of SMART ROUTING: Run the compiled-routing directive in `ROUTER.md` before selecting hub resources. All seven hubs carry it, and check 12b accepts it.
 <!-- /ANCHOR:questions -->
 
 ---

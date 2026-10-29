@@ -2,7 +2,7 @@
 name: sk-code
 description: "Implement, debug and verify code: TypeScript, Python, shell, JSON; quality and review workflow modes with stack surface packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 3.9.23.0
+version: 3.9.24.0
 metadata:
   family: sk-code
 ---
@@ -79,9 +79,10 @@ Stage 2 (mode → leaves) uses the root [`ROUTER.md`](../../../.skilled/skills/s
 Both files point back here instead of restating the split.
 
 The advisor routes every code query to the single identity `sk-code`. Resolve the mode with `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<task>"` and follow the decision: `route` loads its `targets`, `clarify` and `defer` ask, `reject` refuses.
-Compiled routing is the default. The legacy fallback, the kill-switch and the `UNKNOWN_FALLBACK_CHECKLIST` live in the final MACHINE ROUTER section.
+Compiled routing is the default. The legacy fallback, the kill-switch and the `UNKNOWN_FALLBACK_CHECKLIST` live in the compiled-routing section of [`ROUTER.md`](../../../.skilled/skills/sk-code/ROUTER.md).
 
 A bare implement, debug or verify request with no workflow mode becomes a pure surface bundle, and an unclear code intent asks for disambiguation. Neither path forces a stale default.
+Run the compiled-routing directive in [`ROUTER.md`](../../../.skilled/skills/sk-code/ROUTER.md) before selecting hub resources.
 
 ---
 
@@ -171,115 +172,3 @@ It must never gain per-mode workflow contracts.
 - Surface router and shared controls: `ROUTER.md`.
 - Parent-skill pattern: `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`.
 - Sibling example: `.skilled/skills/sk-prompt/`.
-
----
-
-## 6. MACHINE ROUTER
-
-The hub's compiled-routing directive, its fallback route and its disambiguation checklist. A hub keeps them here so the routing prose above stays short.
-
-> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
-> ```bash
-> node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<task>"
-> ```
-> Follow the returned decision: `route` (use its `targets`), `clarify`/`defer` (disambiguate) or `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `sk-code`. Set `SPECKIT_COMPILED_ROUTING=0`, the explicit kill-switch, to force legacy routing fleet-wide.
-
-**Session surface hint.** Before you call the front door, run the surface detection in [`stack-detection.md`](../../../.skilled/skills/sk-code/shared/references/stack-detection.md) on the session's working directory and the files it is editing.
-Then add its result as `--surface-hint <SURFACE>`, for example `--surface-hint SKILLED`.
-When the prompt's keywords tie between surfaces, a hinted specific surface leads them.
-Workflow modes keep first place, and the targets and the bundle kind stay the same.
-`SKILLED` is the fallback surface and always ranks last, so a `SKILLED` hint changes nothing.
-With `UNKNOWN`, no hint or a surface the prompt did not match, the `routerPolicy.tieBreak` order applies.
-
-### Surface Router: per-intent leaf sets
-
-Root `ROUTER.md` owns the second-stage `INTENT_SIGNALS` / `RESOURCE_MAP`, while packet-owned resources stay typed through `leaf-manifest.json`.
-The hub-level shared controls are declared once, in `ROUTER.md` §9: the `SHARED_CONTROL_RESOURCES` list plus the always-loaded `DEFAULT_RESOURCE` preamble. They resolve on disk but never project as leaves.
-The hub router keeps stage-one mode selection and its `shared/README.md` fallback.
-
-### The discriminator
-- **`workflowMode`** - the public mode/packet key: `sk-code-quality`, `sk-code-review` (workflow) or `sk-code-ci`, `sk-code-skilled` (surface).
-- **`packetKind`** - the axis: `workflow` (a mode that acts) or `surface` (read-only evidence bundled alongside a mode).
-- **`backendKind`** - which backend runs the packet: `surface-router` or `review-cache` for workflow modes, `evidence-base` for surface packets.
-
-Surface packets are advisor-invisible (`routingClass: metadata`, read-only `toolSurface`).
-The advisor still routes the single identity `sk-code`, and the hub bundles zero-or-more surfaces as evidence via `routerPolicy.outcomes.surfaceBundle`.
-The workflow mode comes first, followed by surfaces.
-"review my typescript module for jank" → `[sk-code-review, sk-code-skilled]`.
-Bundled surfaces follow the `routerPolicy.tieBreak` order. It ranks `sk-code-ci` ahead of `sk-code-skilled`, so the surface that wins a keyword tie comes first.
-
-### Surface detection
-
-Surface detection lives once in the hub's `shared/` layer and every mode and surface consumes it.
-It tries every declared specific surface first, then the `SKILLED` fallback, then `UNKNOWN`.
-When a specific surface and `SKILLED` both match, the specific one leads and `SKILLED` comes along as second evidence.
-Each surface declares its markers in a `surfaceDetection` block in `mode-registry.json`, or in its own `graph-metadata.json` when it lives outside the hub.
-Modes own workflow contracts, not surface identity.
-`sk-code-ci` is the one surface that stack detection does not select. The hub bundles it from request vocabulary alone (`code-ci-aliases` and `code-ci-runtime` in `hub-router.json`).
-
-### Fallback route
-
-When no workflow mode dominates (a bare implement/debug/verify request), the router defers to a pure surface bundle: it detects the surface, loads that surface's evidence and workflow doctrine, and the agent acts. `routerPolicy.defaultMode` is `null`, so the hub does not force a stale default. An unclear code intent asks for disambiguation.
-
-Per-mode behavior is **not flattened**: each packet keeps its own code-work contract, standards, evidence rules, and tool-permission guards.
-
-### Routing rule
-```python
-from pathlib import Path
-
-SKILL_ROOT = Path(__file__).resolve().parent
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm whether this is sk-code-quality, sk-code-review, sk-code-ci or sk-code-skilled work",
-    "Confirm the target files or runtime surface",
-    "Confirm the expected action: implement, debug, verify, quality gate, or review",
-    "Confirm the verification command set before completion",
-]
-
-def _guard_in_skill(relative_path: str) -> str:
-    resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)
-    if resolved.name != "SKILL.md" and resolved.suffix.lower() != ".md":
-        raise ValueError(f"Only markdown skill resources are routable: {relative_path}")
-    return resolved.relative_to(SKILL_ROOT).as_posix()
-
-def load_if_available(relative_path: str, loaded: list[str], seen: set[str]) -> None:
-    guarded = _guard_in_skill(relative_path)
-    path = SKILL_ROOT / guarded
-    if path.exists() and guarded not in seen:
-        load(guarded)
-        loaded.append(guarded)
-        seen.add(guarded)
-
-def route(task):
-    loaded, seen = [], set()
-    registry = read_json(SKILL_ROOT / "mode-registry.json")
-    workflow_mode = explicit_mode_hint(task) or classify_workflow_mode(task)
-
-    if not workflow_mode:
-        load_if_available("shared/README.md", loaded, seen)
-        return {
-            "load_level": "UNKNOWN_FALLBACK",
-            "needs_disambiguation": True,
-            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
-            "resources": loaded,
-        }
-
-    entry = find_registry_entry(registry, workflowMode=workflow_mode)
-    if not entry:
-        load_if_available("shared/README.md", loaded, seen)
-        return {"load_level": "UNKNOWN_FALLBACK", "unknown_mode": workflow_mode, "resources": loaded}
-
-    packet_skill = f"{entry['packet']}/SKILL.md"
-    load_if_available(packet_skill, loaded, seen)
-
-    for surface_mode in surface_bundle_from_hub_router(task):
-        surface_entry = find_registry_entry(registry, workflowMode=surface_mode)
-        if surface_entry:
-            load_if_available(f"{surface_entry['packet']}/SKILL.md", loaded, seen)
-
-    if not loaded:
-        load_if_available("shared/README.md", loaded, seen)
-        return {"load_level": "UNKNOWN_FALLBACK", "notice": "matched registry but no packet SKILL.md was available", "resources": loaded}
-
-    return {"workflowMode": workflow_mode, "backendKind": entry["backendKind"], "resources": loaded}
-```

@@ -1,7 +1,7 @@
 ---
 title: "cli-external-orchestration: Manual Testing Playbook"
 description: "Operator-facing index for cli-external-orchestration hub-routing validation: does the advisor resolve cli-opencode vs cli-claude-code correctly through mode-registry.json and hub-router.json."
-version: 1.4.3.0
+version: 1.4.4.0
 ---
 
 # cli-external-orchestration: Manual Testing Playbook
@@ -10,7 +10,7 @@ version: 1.4.3.0
 
 This document is the hub-level operator directory for `cli-external-orchestration`'s routing behavior. It covers the NEW routing surface introduced by the parent-hub fold-in (packet `125-cli-external-orchestration-parent`) — resolving `cli-opencode` vs `cli-claude-code` — not the internal dispatch behavior of either packet, which each packet's own testing material already covers (`cli-opencode/manual-testing-playbook/`, `cli-claude-code/manual-testing-playbook/`, unchanged by the fold-in).
 
-Source of truth for routing behavior: `.skilled/skills/cli-external-orchestration/SKILL.md` §2 Smart Routing and §6 Machine Router, `.skilled/skills/cli-external-orchestration/hub-router.json`.
+Source of truth for routing behavior: `.skilled/skills/cli-external-orchestration/SKILL.md` §2 Smart Routing, `.skilled/skills/cli-external-orchestration/ROUTER.md` §5 Machine Router, `.skilled/skills/cli-external-orchestration/hub-router.json`.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Manual scenario completion**: a scenario is incomplete until its `PASS`, `FAIL`, or `SKIP` outcome, the

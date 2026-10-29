@@ -47,6 +47,32 @@ function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
+// The first `## MACHINE ROUTER` heading outside any fenced block, sliced to the
+// end of the file, or null. The end-of-line anchor keeps a hub's stage-two
+// `MACHINE-READABLE ROUTER` map out, and a heading inside a code sample is an
+// example of the grammar rather than a section.
+const MACHINE_ROUTER_HEADING_RE = /^##\s+(?:\d+\.\s+)?MACHINE ROUTER\s*$/;
+const FENCE_OPEN_RE = /^ {0,3}(`{3,}|~{3,})/;
+const FENCE_CLOSE_RE = /^ {0,3}(`{3,}|~{3,})[ \t]*\r?$/;
+
+function machineRouterSection(text) {
+  if (typeof text !== 'string') return null;
+  let fence = null;
+  let offset = 0;
+  for (const line of text.split('\n')) {
+    if (fence === null) {
+      const opener = FENCE_OPEN_RE.exec(line);
+      if (opener) fence = opener[1];
+      else if (MACHINE_ROUTER_HEADING_RE.test(line)) return text.slice(offset);
+    } else {
+      const closer = FENCE_CLOSE_RE.exec(line);
+      if (closer && closer[1][0] === fence[0] && closer[1].length >= fence.length) fence = null;
+    }
+    offset += line.length + 1;
+  }
+  return null;
+}
+
 function loadSnapshot() {
   const fixture = readJson(path.join(PHASE_ROOT, 'fixtures', 'canary-cases.v1.json'));
   const registryPath = path.join(SKILL_ROOT, 'mode-registry.json');
@@ -57,12 +83,21 @@ function loadSnapshot() {
     'hub-router.json': fs.readFileSync(routerPath),
     'mode-registry.json': fs.readFileSync(registryPath),
   };
+  // A hub that moved its routing prose declares the fallback checklist in the
+  // final machine-router section of its root ROUTER.md, so that section is the
+  // compiler's checklist source and the file joins the hashed sources. A hub
+  // that has not moved reads SKILL.md exactly as before.
+  const rootRouterPath = path.join(SKILL_ROOT, 'ROUTER.md');
+  const rootRouterBytes = fs.existsSync(rootRouterPath) ? fs.readFileSync(rootRouterPath) : null;
+  const routerMarkdown = rootRouterBytes ? machineRouterSection(rootRouterBytes.toString('utf8')) : null;
+  if (routerMarkdown !== null) sourceBytes['ROUTER.md'] = rootRouterBytes;
   return {
     fixture,
     snapshot: compileRegistry({
       activationGeneration: fixture.activationGeneration,
       hubRouter: JSON.parse(sourceBytes['hub-router.json'].toString('utf8')),
       registry: JSON.parse(sourceBytes['mode-registry.json'].toString('utf8')),
+      ...(routerMarkdown !== null ? { routerMarkdown } : {}),
       skillMarkdown: sourceBytes['SKILL.md'].toString('utf8'),
       sourceBytes,
     }),

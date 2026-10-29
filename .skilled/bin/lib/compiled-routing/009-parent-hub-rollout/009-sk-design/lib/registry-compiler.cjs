@@ -88,6 +88,41 @@ function qualifiedAuthority(prefix, id) {
   return `authority:${prefix}:${qualifiedDestinationId(id)}`;
 }
 
+// The first `## MACHINE ROUTER` heading outside any fenced block, sliced to the
+// end of the file, or null. The end-of-line anchor keeps a hub's stage-two
+// `MACHINE-READABLE ROUTER` map out, and a heading inside a code sample is an
+// example of the grammar rather than a section.
+const MACHINE_ROUTER_HEADING_RE = /^##\s+(?:\d+\.\s+)?MACHINE ROUTER\s*$/;
+const FENCE_OPEN_RE = /^ {0,3}(`{3,}|~{3,})/;
+const FENCE_CLOSE_RE = /^ {0,3}(`{3,}|~{3,})[ \t]*\r?$/;
+
+function machineRouterSection(text) {
+  if (typeof text !== 'string') return null;
+  let fence = null;
+  let offset = 0;
+  for (const line of text.split('\n')) {
+    if (fence === null) {
+      const opener = FENCE_OPEN_RE.exec(line);
+      if (opener) fence = opener[1];
+      else if (MACHINE_ROUTER_HEADING_RE.test(line)) return text.slice(offset);
+    } else {
+      const closer = FENCE_CLOSE_RE.exec(line);
+      if (closer && closer[1][0] === fence[0] && closer[1].length >= fence.length) fence = null;
+    }
+    offset += line.length + 1;
+  }
+  return null;
+}
+
+// The root router owns the checklist once it carries a final machine-router
+// section, so a hub that moved its routing prose is read there and one that has
+// not is read from SKILL.md exactly as before. The router text wins outright
+// rather than merging the two, so one checklist compiles.
+function fallbackChecklistText(input) {
+  const section = machineRouterSection(input.routerMarkdown);
+  return section !== null ? section : input.skillMarkdown;
+}
+
 function extractFallbackChecklist(skillMarkdown) {
   const match = /UNKNOWN_FALLBACK_CHECKLIST\s*=\s*\[([\s\S]*?)\]/m.exec(skillMarkdown);
   if (!match) fail('FALLBACK_CHECKLIST_MISSING', 'fallback checklist is absent from authored skill');
@@ -471,7 +506,7 @@ function compileRegistry(input) {
   return Object.freeze({
     advisorProjection: Object.freeze(advisorProjection),
     aliases: Object.freeze(aliases),
-    fallbackChecklist: Object.freeze(extractFallbackChecklist(input.skillMarkdown)),
+    fallbackChecklist: Object.freeze(extractFallbackChecklist(fallbackChecklistText(input))),
     intentModel: Object.freeze({ entries: Object.freeze(resolved.entries.map((entry) => Object.freeze(entry))) }),
     manifestResources: Object.freeze(resolved.manifestResources.map((entry) => Object.freeze(entry))),
     policy: Object.freeze(policy),
