@@ -91,13 +91,13 @@ class VerifyAlignmentDriftTests(unittest.TestCase):
                 "/* line 1\n"
                 "line 2 */\n"
                 "{\n"
-                '  "a": 1,\n'
+                '  "a": ,\n'
                 "}\n",
             )
 
             findings = self.module.check_file(str(file_path))
             finding = next(item for item in findings if item.rule_id == "JSONC-PARSE")
-            self.assertEqual(5, finding.line)
+            self.assertEqual(4, finding.line)
 
     def test_mjs_skips_use_strict_enforcement(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
