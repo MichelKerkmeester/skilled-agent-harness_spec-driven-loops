@@ -663,8 +663,10 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
   # toolchain a missing module still blocks below, naming the module.
   if [[ -n "$(git_bounded diff --cached --name-only --diff-filter=ACMR -- \
         '.opencode/skills/*/SKILL.md' '.opencode/skills/*/*/SKILL.md' \
+        '.opencode/skills/*/ROUTER.md' '.opencode/skills/*/*/ROUTER.md' \
         '.opencode/skills/*/hub-router.json' '.opencode/skills/*/mode-registry.json' \
         '.skilled/skills/*/SKILL.md' '.skilled/skills/*/*/SKILL.md' \
+        '.skilled/skills/*/ROUTER.md' '.skilled/skills/*/*/ROUTER.md' \
         '.skilled/skills/*/hub-router.json' '.skilled/skills/*/mode-registry.json' 2>/dev/null)" ]] \
      && { [[ -f "$ROUTE_GUARD" && -f "$ROUTE_LAYOUT" ]] || _in_toolchain_repo; }; then
   # The hub list and the activation root both already exist in the modules the guard
@@ -711,7 +713,8 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
   ROUTE_AUTHORED="$REPO_ROOT/$ROUTE_AUTHORED_DIR/${ROUTE_RUNTIME#"$ROUTE_SOURCE/bin/lib/compiled-routing/"}"
   for ROUTE_HUB in $ROUTE_HUBS; do
     # mode-registry.json and hub-router.json are read directly by the hash. Every
-    # SKILL.md under the hub reaches it through the leaves the registry declares.
+    # SKILL.md under the hub reaches it through the leaves the registry declares, and
+    # so does the ROUTER.md beside each one, which holds that skill's machine router.
     # A git pathspec glob crosses "/", so the last pattern matches a SKILL.md at any
     # depth. That is wider than the two levels that exist today and is the safe
     # direction: a hub that grows a deeper mode keeps its manifest minted.
@@ -726,10 +729,14 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
       ".opencode/skills/$ROUTE_HUB/hub-router.json"
       ".opencode/skills/$ROUTE_HUB/mode-registry.json"
       ".opencode/skills/$ROUTE_HUB/*/SKILL.md"
+      ".opencode/skills/$ROUTE_HUB/ROUTER.md"
+      ".opencode/skills/$ROUTE_HUB/*/ROUTER.md"
       ".skilled/skills/$ROUTE_HUB/SKILL.md"
       ".skilled/skills/$ROUTE_HUB/hub-router.json"
       ".skilled/skills/$ROUTE_HUB/mode-registry.json"
       ".skilled/skills/$ROUTE_HUB/*/SKILL.md"
+      ".skilled/skills/$ROUTE_HUB/ROUTER.md"
+      ".skilled/skills/$ROUTE_HUB/*/ROUTER.md"
     )
     ROUTE_STAGED="$(git_bounded diff --cached --name-only --diff-filter=ACMR -- "${ROUTE_PATHS[@]}" 2>/dev/null)"
     [[ -z "$ROUTE_STAGED" ]] && continue

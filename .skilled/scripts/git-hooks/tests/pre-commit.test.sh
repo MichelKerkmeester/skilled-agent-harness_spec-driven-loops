@@ -1188,5 +1188,17 @@ else
   echo "FAIL  the doc-version raise must run before mirror parity and the route re-mint (lines: $DOCV_LINE, $MIRROR_LINE, $REMINT_LINE)"; FAIL=$((FAIL + 1))
 fi
 
+# ── 85. a staged ROUTER.md re-mints its hub, at the hub root and inside a mode ──
+# The compiled hash reads the machine router, which lives in ROUTER.md beside each
+# SKILL.md, so a router-only edit must re-mint as a SKILL.md edit does.
+for ROUTER_REL in "ROUTER.md" "mode-a/ROUTER.md"; do
+  setup_fixture
+  mkdir -p "$(dirname "$TMP/.opencode/skills/$HUB/$ROUTER_REL")"
+  echo "router" > "$TMP/.opencode/skills/$HUB/$ROUTER_REL"
+  git -C "$TMP" add ".opencode/skills/$HUB/$ROUTER_REL"
+  run_hook; RC=$?
+  check "staged $ROUTER_REL re-mints the hub" 0 "$RC" "re-minted $HUB"
+done
+
 echo "pre-commit gates: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]
