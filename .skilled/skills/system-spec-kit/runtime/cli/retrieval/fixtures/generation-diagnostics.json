@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7293,
-    "ok": 16055,
+    "ok": 16063,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26896,
+  "documentsScanned": 26904,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "85cb189eefdf4576c05f6c55c32f0d3f3d811294e4d9d8e6bb06cd4fec8fa056",
+  "manifestHash": "fbbc47966141a39ddd6f546bc928973088ccf202957a8569dc69dfe4d037ff6f",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 39385,
+      "ok": 39400,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -72351,6 +72351,10 @@
     },
     {
       "path": "specs/sk-doc/072-skill-routing-and-clarity/012-alignment-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/013-mcp-tooling-routing-canon/scratch",
       "reason": "excluded directory"
     },
     {

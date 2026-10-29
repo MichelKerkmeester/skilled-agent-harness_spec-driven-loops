@@ -1,5 +1,5 @@
 {
-  "manifestHash": "85cb189eefdf4576c05f6c55c32f0d3f3d811294e4d9d8e6bb06cd4fec8fa056",
+  "manifestHash": "fbbc47966141a39ddd6f546bc928973088ccf202957a8569dc69dfe4d037ff6f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -62794,6 +62794,9 @@
     "mcp tooling 1 9 1 0": [
       "mcp-tooling 1.9.1.0"
     ],
+    "mcp tooling 1 9 2 0": [
+      "mcp-tooling 1.9.2.0"
+    ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
     ],
@@ -62847,6 +62850,21 @@
     ],
     "mcp tooling readme moves to the purpose first narrative voice": [
       "mcp-tooling README moves to the purpose-first narrative voice"
+    ],
+    "mcp tooling routing canon": [
+      "mcp tooling routing canon"
+    ],
+    "mcp tooling routing canon acceptance criteria": [
+      "mcp tooling routing canon acceptance criteria"
+    ],
+    "mcp tooling routing canon implementation summary": [
+      "mcp tooling routing canon implementation summary"
+    ],
+    "mcp tooling routing canon plan": [
+      "mcp tooling routing canon plan"
+    ],
+    "mcp tooling routing canon tasks": [
+      "mcp tooling routing canon tasks"
     ],
     "mcp tooling smart routing": [
       "mcp-tooling smart routing"
@@ -62922,6 +62940,9 @@
     ],
     "mcp tooling v1 9 1 0": [
       "mcp-tooling v1.9.1.0"
+    ],
+    "mcp tooling v1 9 2 0": [
+      "mcp-tooling v1.9.2.0"
     ],
     "mcp tools": [
       "mcp tools"
@@ -74465,6 +74486,9 @@
     ],
     "phase 13 live hop and notice reason": [
       "phase 13 live hop and notice reason"
+    ],
+    "phase 13 mcp tooling routing canon": [
+      "phase 13 mcp tooling routing canon"
     ],
     "phase 13 python advisor native and parity": [
       "phase 13 python advisor native and parity"
@@ -90054,8 +90078,14 @@
     "routing scenarios can fail": [
       "routing scenarios can fail"
     ],
+    "routing shape check": [
+      "routing shape check"
+    ],
     "routing shape known debt": [
       "routing shape known debt"
+    ],
+    "routing shape rs 005": [
+      "routing shape rs-005"
     ],
     "routing summary and machine router": [
       "routing summary and machine router"
@@ -98777,6 +98807,9 @@
     "sk create skill 1 7 5 0": [
       "sk-create-skill 1.7.5.0"
     ],
+    "sk create skill 1 7 6 0": [
+      "sk-create-skill 1.7.6.0"
+    ],
     "sk create skill authoring errors": [
       "sk-create-skill authoring errors"
     ],
@@ -98860,6 +98893,9 @@
     ],
     "sk create skill v1 7 5 0": [
       "sk-create-skill v1.7.5.0"
+    ],
+    "sk create skill v1 7 6 0": [
+      "sk-create-skill v1.7.6.0"
     ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
@@ -99581,6 +99617,9 @@
     "sk doc 2 3 3 0": [
       "sk-doc 2.3.3.0"
     ],
+    "sk doc 2 3 30 0": [
+      "sk-doc 2.3.30.0"
+    ],
     "sk doc 2 3 4 0": [
       "sk-doc 2.3.4.0"
     ],
@@ -99988,6 +100027,9 @@
     ],
     "sk doc v2 3 3 0": [
       "sk-doc v2.3.3.0"
+    ],
+    "sk doc v2 3 30 0": [
+      "sk-doc v2.3.30.0"
     ],
     "sk doc v2 3 4 0": [
       "sk-doc v2.3.4.0"
@@ -102692,6 +102734,9 @@
     ],
     "skill local benchmarks format": [
       "skill-local benchmarks format"
+    ],
+    "skill machine router section": [
+      "skill machine router section"
     ],
     "skill maintenance workflow": [
       "skill maintenance workflow"

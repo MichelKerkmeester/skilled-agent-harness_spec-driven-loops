@@ -1,5 +1,5 @@
 {
-  "corpusHash": "45e9925633ec0c74a02c962f9b91bb61a13cd3ec5c7d18cdc1654f150856c5a8",
+  "corpusHash": "95268351df07a695b42765946115684fc71bb7c0e828f3eaedab5b7bd657662d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26896,
+  "includedPathCount": 26904,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1998,6 +1998,7 @@
     ".skilled/skills/mcp-tooling/changelog/v1.8.9.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.0.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.1.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.9.2.0.md",
     ".skilled/skills/mcp-tooling/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/mcp-tooling/feature-catalog/feature-catalog.md",
     ".skilled/skills/mcp-tooling/feature-catalog/workflow-vs-transport-routing/workflow-vs-transport-routing.md",
@@ -6212,6 +6213,7 @@
     ".skilled/skills/sk-doc/changelog/v2.3.28.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.29.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.3.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.30.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.4.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.5.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.6.0.md",
@@ -6709,6 +6711,7 @@
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.7.3.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.7.4.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.7.5.0.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.7.6.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/author-a-two-axis-parent-hub.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/keep-one-parent-identity.md",
@@ -13882,6 +13885,11 @@
     "specs/sk-doc/072-skill-routing-and-clarity/012-alignment-remediation/plan.md",
     "specs/sk-doc/072-skill-routing-and-clarity/012-alignment-remediation/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/012-alignment-remediation/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/013-mcp-tooling-routing-canon/acceptance-criteria.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/013-mcp-tooling-routing-canon/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/013-mcp-tooling-routing-canon/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/013-mcp-tooling-routing-canon/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/013-mcp-tooling-routing-canon/tasks.md",
     "specs/sk-doc/072-skill-routing-and-clarity/spec.md",
     "specs/sk-doc/073-opencode-native-surfaces/acceptance-criteria.md",
     "specs/sk-doc/073-opencode-native-surfaces/implementation-summary.md",
@@ -26927,7 +26935,7 @@
     "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "85cb189eefdf4576c05f6c55c32f0d3f3d811294e4d9d8e6bb06cd4fec8fa056",
+  "manifestHash": "fbbc47966141a39ddd6f546bc928973088ccf202957a8569dc69dfe4d037ff6f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30639,6 +30647,10 @@
     },
     {
       "path": "specs/sk-doc/072-skill-routing-and-clarity/012-alignment-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/013-mcp-tooling-routing-canon/scratch",
       "reason": "excluded directory"
     },
     {
