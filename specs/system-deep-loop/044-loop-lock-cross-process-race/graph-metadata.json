@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/044-loop-lock-cross-process-race",
+  "spec_folder": "system-deep-loop/044-loop-lock-cross-process-race",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "loop lock cross process race",
+      "fix the flaky cross process loop lock race",
+      "exactly one fresh cross-process acquire",
+      "loop lock two winners",
+      "loop lock cross process race plan",
+      "loop lock cross process race tasks",
+      "loop lock cross process race implementation summary"
+    ],
+    "key_topics": [
+      "loop",
+      "lock",
+      "cross",
+      "process",
+      "race",
+      "flaky",
+      "exactly",
+      "one",
+      "fresh",
+      "cross-process",
+      "acquire",
+      "two"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/loop-lock.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop-lock.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/loop-lock.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "loop-lock.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Runtime Tests",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "exit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "CI run 40957459754 (\"Deep-Loop Runtime Tests\", commit `c82a9aaa57`) failed one test: `tests/unit/loop-lock.vitest.ts` \"allows exactly one fresh cross-process acquire to win\", where `expect(results.filter(r => r.acquired)).toHaveLength(1)` got 2",
+    "created_at": "2026-10-29T21:59:10Z",
+    "last_save_at": "2026-10-29T22:00:37.118Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c89d4a79cc42e168be738b34feb1b55d13e40bae15693c50b5e4ab0b68a1c334",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "21d512441c5be25f31fdef9af18ad151cf696a3b4d207cc1488f14e0727804ed",
+      "plan.md": "0edef73c3937cc18f7f222de2665c06ffb5fe829799ae2d35d1b7fa4379d57a3",
+      "tasks.md": "8e779bdfdb8272687f970d7868ced968091992cf6609aae4add122f472c4695a",
+      "implementation-summary.md": "930cb60cab476c664dfbb1a761d816b88703d3dd92ec3323a06e9e86881cdcfd"
+    },
+    "last_active_at": null
+  }
+}

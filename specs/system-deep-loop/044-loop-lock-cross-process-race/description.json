@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/044-loop-lock-cross-process-race",
+  "description": "Fix the flaky cross-process loop-lock race test: the winner exited before its rival tried, so the test now holds both children alive",
+  "keywords": [
+    "flaky",
+    "cross-process",
+    "loop-lock",
+    "race",
+    "test",
+    "winner",
+    "exited",
+    "rival",
+    "tried",
+    "now",
+    "holds",
+    "children",
+    "alive"
+  ],
+  "lastUpdated": "2026-10-29T22:00:37.048Z",
+  "specId": "044",
+  "folderSlug": "loop-lock-cross-process-race",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

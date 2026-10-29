@@ -100,23 +100,41 @@ afterEach(() => {
 
 type ChildLockResult = {
   acquired: boolean;
+  reclaimed: boolean;
   packetId: string;
 };
 
+type LockChild = {
+  /** Settles once the child has reported its acquire result, while it is still running. */
+  result: Promise<ChildLockResult>;
+  /** Settles with the exit code once the child has exited. */
+  exited: Promise<number | null>;
+};
+
 /**
- * Spawns a child process that acquires a loop lock after a barrier is released.
+ * Spawns a child process that acquires a loop lock after a start barrier is
+ * released, reports the result, then stays alive until a release barrier
+ * appears.
+ *
+ * Holding the process open keeps a winner's pid alive while its rival
+ * attempts. A winner that exited first would leave a dead-owner record, and
+ * reclaiming that record is correct lock behavior, so the rival would win too
+ * without any mutual-exclusion failure.
  */
-function runLockChild(lockPath: string, barrierPath: string, packetId: string): Promise<ChildLockResult> {
+function runLockChild(lockPath: string, barrierPath: string, releasePath: string, packetId: string): LockChild {
   const moduleUrl = new URL('../../lib/deep-loop/loop-lock.ts', import.meta.url).href;
   const script = `
-    import { existsSync } from 'node:fs';
+    import { existsSync, writeSync } from 'node:fs';
     import { acquireLoopLock } from ${JSON.stringify(moduleUrl)};
-    const [lockPath, barrierPath, packetId] = process.argv.slice(1);
-    const deadline = Date.now() + 2000;
-    while (!existsSync(barrierPath)) {
-      if (Date.now() > deadline) throw new Error('barrier timeout');
-      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 5);
-    }
+    const [lockPath, barrierPath, releasePath, packetId] = process.argv.slice(1);
+    const waitForFile = (path, timeoutMs, label) => {
+      const deadline = Date.now() + timeoutMs;
+      while (!existsSync(path)) {
+        if (Date.now() > deadline) throw new Error(label + ' timeout');
+        Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 5);
+      }
+    };
+    waitForFile(barrierPath, 2000, 'barrier');
     const now = new Date().toISOString();
     const result = acquireLoopLock(lockPath, {
       ownerPid: process.pid,
@@ -126,33 +144,50 @@ function runLockChild(lockPath: string, barrierPath: string, packetId: string): 
       packetId,
       runtimeKind: 'cli-claude-code',
     });
-    process.stdout.write(JSON.stringify({ acquired: result.acquired, packetId }) + '\\n');
+    const reclaimed = result.acquired && result.reclaimed !== undefined;
+    // A synchronous write, because the blocking wait below would hold back an async pipe flush.
+    writeSync(1, JSON.stringify({ acquired: result.acquired, reclaimed, packetId }) + '\\n');
+    waitForFile(releasePath, 10000, 'release');
   `;
 
-  return new Promise((resolve, reject) => {
-    const child = spawn(process.execPath, ['--experimental-strip-types', '--input-type=module', '-e', script, lockPath, barrierPath, packetId], {
-      cwd: join(process.cwd()),
-      stdio: ['ignore', 'pipe', 'pipe'],
+  const child = spawn(process.execPath, ['--experimental-strip-types', '--input-type=module', '-e', script, lockPath, barrierPath, releasePath, packetId], {
+    cwd: join(process.cwd()),
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  let stdout = '';
+  let stderr = '';
+  let resolveResult: (value: ChildLockResult) => void = () => {};
+  let rejectResult: (error: Error) => void = () => {};
+  const result = new Promise<ChildLockResult>((resolve, reject) => {
+    resolveResult = resolve;
+    rejectResult = reject;
+  });
+
+  child.stdout.setEncoding('utf8');
+  child.stderr.setEncoding('utf8');
+  child.stdout.on('data', (chunk: string) => {
+    stdout += chunk;
+    const newline = stdout.indexOf('\n');
+    if (newline >= 0) {
+      resolveResult(JSON.parse(stdout.slice(0, newline)) as ChildLockResult);
+    }
+  });
+  child.stderr.on('data', (chunk: string) => {
+    stderr += chunk;
+  });
+
+  const exited = new Promise<number | null>((resolve) => {
+    child.on('error', (error) => {
+      rejectResult(error);
+      resolve(null);
     });
-    let stdout = '';
-    let stderr = '';
-    child.stdout.setEncoding('utf8');
-    child.stderr.setEncoding('utf8');
-    child.stdout.on('data', (chunk: string) => {
-      stdout += chunk;
-    });
-    child.stderr.on('data', (chunk: string) => {
-      stderr += chunk;
-    });
-    child.on('error', reject);
     child.on('close', (code) => {
-      if (code !== 0) {
-        reject(new Error(stderr || `lock child exited ${code}`));
-        return;
-      }
-      resolve(JSON.parse(stdout.trim()) as ChildLockResult);
+      rejectResult(new Error(stderr || `lock child exited ${code} before reporting a result`));
+      resolve(code);
     });
   });
+
+  return { result, exited };
 }
 
 describe('loop-lock', () => {
@@ -197,23 +232,31 @@ describe('loop-lock', () => {
 
   it('allows exactly one fresh cross-process acquire to win', async () => {
     const tempDir = mkdtempSync(join(tmpdir(), 'loop-lock-'));
+    const lockPath = join(tempDir, '.deep-loop.lock');
+    const barrierPath = join(tempDir, 'go');
+    const releasePath = join(tempDir, 'release');
+    const children = [
+      runLockChild(lockPath, barrierPath, releasePath, 'packet-004-a'),
+      runLockChild(lockPath, barrierPath, releasePath, 'packet-004-b'),
+    ];
     try {
-      const lockPath = join(tempDir, '.deep-loop.lock');
-      const barrierPath = join(tempDir, 'go');
-      const children = [
-        runLockChild(lockPath, barrierPath, 'packet-004-a'),
-        runLockChild(lockPath, barrierPath, 'packet-004-b'),
-      ];
-
       await new Promise((resolve) => setTimeout(resolve, 50));
-      await import('node:fs').then(({ writeFileSync }) => writeFileSync(barrierPath, 'go', 'utf8'));
-      const results = await Promise.all(children);
+      writeFileSync(barrierPath, 'go', 'utf8');
+      const results = await Promise.all(children.map((child) => child.result));
 
+      // Both children are still running here, so a second win can only mean a
+      // live, fresh holder lost the lock, never a dead winner's record reclaimed.
       expect(results.filter((result) => result.acquired)).toHaveLength(1);
       expect(results.filter((result) => !result.acquired)).toHaveLength(1);
+      expect(results.filter((result) => result.reclaimed)).toHaveLength(0);
       const winner = results.find((result) => result.acquired);
       expect(JSON.parse(readFileSync(lockPath, 'utf8')).packet_id).toBe(winner?.packetId);
+
+      writeFileSync(releasePath, 'done', 'utf8');
+      expect(await Promise.all(children.map((child) => child.exited))).toEqual([0, 0]);
     } finally {
+      writeFileSync(releasePath, 'done', 'utf8');
+      await Promise.all(children.map((child) => child.exited));
       rmSync(tempDir, { recursive: true, force: true });
     }
   });

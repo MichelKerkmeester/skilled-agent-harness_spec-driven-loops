@@ -11,7 +11,8 @@
     "system-deep-loop/040-cli-pi-worktree-extension-clash",
     "system-deep-loop/041-writer-lock-stale-reclaim-race",
     "system-deep-loop/042-fanout-review-focus",
-    "system-deep-loop/043-fanout-resume-and-containment"
+    "system-deep-loop/043-fanout-resume-and-containment",
+    "system-deep-loop/044-loop-lock-cross-process-race"
   ],
   "manual": {
     "depends_on": [],
