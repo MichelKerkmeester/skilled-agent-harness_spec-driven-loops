@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface packet scaffold"
 importance_tier: normal
 contextType: general
-version: 1.2.4.0
+version: 1.2.4.1
 ---
 
 # Parent Skill Hub Template - Canonical Two-Axis Hub
@@ -84,7 +84,7 @@ Surface packets have these required properties:
 | Hub | `SKILL.md` | Yes | Thin routing entry point with no packet-local logic |
 | Hub | `mode-registry.json` | Yes | Single packet array with `packetKind`, `toolSurface`, and `advisorRouting` |
 | Hub | `hub-router.json` | Yes | Router policy, tie-breaks, outcomes, signals, vocabulary classes |
-| Hub | `ROUTER.md` | Yes | Stage-two control document. `router_state: stage1-only` on a fresh hub, `active` only with an authored leaf map |
+| Hub | `ROUTER.md` | Yes | Stage-two control document plus the hub's routing prose in a final `## MACHINE ROUTER` section. `router_state: stage1-only` on a fresh hub, `active` only with an authored leaf map |
 | Hub | `description.json` | Yes | Hub-doctor metadata and triggers |
 | Hub | `graph-metadata.json` | Yes | One skill-graph identity node for the whole hub |
 | Hub | `command-metadata.json` | Conditional | Add only when the hub owns slash commands, one entry per owned command |
@@ -94,15 +94,17 @@ Surface packets have these required properties:
 | Hub | `manual-testing-playbook/` | Yes | Baseline manual validation package |
 | Hub | `benchmark/` | Yes | Baseline benchmark or evidence package |
 | Workflow packet | `SKILL.md` | Yes | Self-contained workflow contract |
+| Workflow packet | `ROUTER.md` | Yes | The packet's own machine router, linked from its `SKILL.md` |
 | Workflow packet | `README.md` | Yes | Human orientation for the packet |
 | Workflow packet | `changelog/` | Yes | Real changelog files for the packet |
 | Surface packet | `SKILL.md` | Yes | Read-only evidence-base contract |
+| Surface packet | `ROUTER.md` | Yes | The packet's own machine router, linked from its `SKILL.md` |
 | Surface packet | `README.md` | Yes | Human orientation for the evidence base |
 | Surface packet | `references/` | Conditional | Add when the packet carries read-only source material |
 | Surface packet | `assets/` | Conditional | Add when the packet carries reusable snippets or examples |
 | Surface packet | `changelog/` | Yes | Real changelog files for the packet |
 
-Packets inside the hub follow the mode-packet shape: a short SMART ROUTING section of 8 to 12 non-blank lines of plain prose, any machine router in a final `## MACHINE ROUTER` section, and no `ROUTER.md` of their own. The hub root `ROUTER.md` is the only router file in the family. See [`skill-md-template.md`](../skill/skill-md-template.md) for the packet scaffold.
+Packets inside the hub follow the mode-packet shape: a short SMART ROUTING section of 8 to 12 non-blank lines of plain prose, its own `ROUTER.md` beside its `SKILL.md` holding that packet's machine router, and one relative markdown link from the packet's Section 2 to that file. The hub root `ROUTER.md` owns the hub's stage two; each packet's `ROUTER.md` owns the selections that stay inside that packet. See [`skill-md-template.md`](../skill/skill-md-template.md) for the packet `SKILL.md` shape and [`skill-router-template.md`](../skill/skill-router-template.md) for its router file.
 
 ---
 
@@ -127,7 +129,7 @@ version: 1.0.0.0
 ## 5. COPY-PASTE HUB SCAFFOLD
 
 Copy the block below into the hub `SKILL.md` and fill every `[bracketed]` placeholder.
-Keep the final `## MACHINE ROUTER` section and fill its three placeholders for `UNKNOWN_FALLBACK_CHECKLIST`.
+The compiled-routing directive, the sentinel note and the fallback checklist live in the hub's `ROUTER.md`: this scaffold names that file and links to it, and never repeats them.
 
 ````markdown
 ---
@@ -167,7 +169,7 @@ Use this skill when the request belongs to the [family/domain] family and should
 
 `hub-router.json` scores the request and selects a `workflowMode`.
 `mode-registry.json` maps that mode to its packet.
-The root `ROUTER.md` selects the first resources the packet loads.
+The root [`ROUTER.md`](./ROUTER.md) selects the first resources the packet loads.
 `packetKind` identifies each packet as `workflow`, `surface` or `transport`.
 `routerPolicy` defines the available outcomes.
 It returns `single` when one workflow mode wins.
@@ -176,7 +178,7 @@ It returns `surfaceBundle` for one workflow mode with read-only surfaces.
 It returns `defer` when modes tie or conflict.
 Ask which mode the reader means when the router returns `defer`.
 When no mode matches, return `UNKNOWN_FALLBACK`.
-You run the compiled-routing directive in the final MACHINE ROUTER section first.
+You run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) first.
 
 ---
 
@@ -189,7 +191,7 @@ You run the compiled-routing directive in the final MACHINE ROUTER section first
 | `[parent-skill-name]/SKILL.md` | Hub instructions |
 | `[parent-skill-name]/mode-registry.json` | Packet registry |
 | `[parent-skill-name]/hub-router.json` | Routing policy |
-| `[parent-skill-name]/ROUTER.md` | Stage-two control document |
+| `[parent-skill-name]/ROUTER.md` | Stage-two control document and the hub's routing prose |
 | `[parent-skill-name]/description.json` | Hub-doctor metadata |
 | `[parent-skill-name]/graph-metadata.json` | Hub identity |
 | `[parent-skill-name]/command-metadata.json` | Optional command metadata |
@@ -210,7 +212,7 @@ You run the compiled-routing directive in the final MACHINE ROUTER section first
 
 - `mode-registry.json` owns `workflowMode`, `packetKind`, `backendKind`, `toolSurface`, packet folder identity, alias phrases, and `advisorRouting`.
 - `hub-router.json` owns `routerPolicy`, `routerSignals`, `vocabularyClasses`, and bundle rules.
-- `ROUTER.md` is the stage-two control document: `router_state: active` declares non-empty equal-key `INTENT_SIGNALS`/`RESOURCE_MAP`, while `router_state: stage1-only` keeps all stage-two collections empty and delegates to stage one. Promote to `active` only after authoring concrete, resolvable leaf paths, never placeholder intents.
+- `ROUTER.md` is the stage-two control document: `router_state: active` declares non-empty equal-key `INTENT_SIGNALS`/`RESOURCE_MAP`, while `router_state: stage1-only` keeps all stage-two collections empty and delegates to stage one. Promote to `active` only after authoring concrete, resolvable leaf paths, never placeholder intents. Its final `## MACHINE ROUTER` section holds the compiled-routing directive and the fallback checklist, so the hub `SKILL.md` never repeats them.
 - `description.json` owns hub-doctor metadata fields and optional hub-specific arrays.
 - `graph-metadata.json` owns the one skill-graph identity node.
 
@@ -269,6 +271,7 @@ This is the hub's only glossary. Packets link here instead of defining routing t
 
 - Registry: `mode-registry.json`.
 - Router: `hub-router.json`.
+- Root router: [`ROUTER.md`](./ROUTER.md).
 - Hub-doctor metadata: `description.json`.
 - Skill graph identity: `graph-metadata.json`.
 - Workflow packets: `[workflow-packet-a]/SKILL.md`, `[workflow-packet-b]/SKILL.md`.
@@ -276,31 +279,6 @@ This is the hub's only glossary. Packets link here instead of defining routing t
 
 ---
 
-## 6. MACHINE ROUTER
-
-> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
-> ```bash
-> node .skilled/bin/compiled-route.cjs --hub {{HUB_NAME}} --prompt "<task>"
-> ```
-> Follow the returned decision: `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the registry routing in SMART ROUTING. The front door self-gates on serving-authority. Compiled routing is now the default for `{{HUB_NAME}}`. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide. That variable is the explicit kill-switch.
-
-A fresh `{{HUB_NAME}}` ships without a compiled activation manifest, so the directive above returns the legacy sentinel until the hub is activated.
-
-The compiled router reads the fallback checklist below. The hub's leaf routing lives in the root ROUTER.md.
-
-```python
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "[placeholder: name the requested workflow outcome]",
-    "[placeholder: name the target component or document]",
-    "[placeholder: confirm whether the request may mutate workspace files]",
-]
-UNKNOWN_FALLBACK = {
-    "load_level": "UNKNOWN_FALLBACK",
-    "needs_disambiguation": True,
-    "resources": [],
-    "checklist": UNKNOWN_FALLBACK_CHECKLIST,
-}
-```
 ````
 
 ---
@@ -315,6 +293,9 @@ Before claiming the hub complete:
 - [ ] Every surface is read-only, `backendKind: "evidence-base"`, and `routingClass: "metadata"`.
 - [ ] `hub-router.json` has base outcomes (`single`, `orderedBundle`, `defer`), plus `surfaceBundle` iff surface packets exist, workflow-first `tieBreak`, bidirectional mode keys, and defined vocabulary classes.
 - [ ] Root `ROUTER.md` exists with `router_state: stage1-only` or `active`, a root `SKILL.md` pointer, and a four-part `version`. `active` maps are non-empty and equal-keyed, `stage1-only` maps are empty.
+- [ ] The hub `SKILL.md` carries no `## MACHINE ROUTER` section, and its Section 2 links to [`ROUTER.md`](./ROUTER.md).
+- [ ] The hub `ROUTER.md` ends with a `## MACHINE ROUTER` section carrying the compiled-routing directive and the fallback checklist, after the `MACHINE-READABLE ROUTER` map.
+- [ ] Every packet owns `ROUTER.md` beside its `SKILL.md`, and the packet's Section 2 links to it.
 - [ ] `description.json` has the required hub-doctor fields and a four-part version.
 - [ ] `graph-metadata.json` is the only advisor identity node for the hub.
 - [ ] Changelog directories use real files, not symlinks.
@@ -330,4 +311,5 @@ Before claiming the hub complete:
 - `parent-skill-graph-metadata-template.json` - companion `graph-metadata.json` scaffold.
 - [`skill-root-metadata-contract.md`](../../references/shared/skill-root-metadata-contract.md) - complete root metadata matrix and authored/generated ownership.
 - `skill-md-template.md` - packet-level `SKILL.md` template.
+- [`skill-router-template.md`](../skill/skill-router-template.md) - sibling `ROUTER.md` template for a packet or a standalone skill.
 - Canonical example: `sk-code` hub metadata files.

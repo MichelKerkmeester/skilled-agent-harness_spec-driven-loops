@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill section guidance"
 importance_tier: normal
 contextType: general
-version: 1.2.5.0
+version: 1.2.5.1
 ---
 
 # SKILL.md File Templates - Creation Guide
@@ -34,7 +34,7 @@ This guide provides **one comprehensive SKILL template** (Section 3) that covers
 
 **The template is flexible:**
 - **Simple skills**: Use required core sections only (WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES)
-- **Skills with bundled resources**: Say in Section 2 what selects the skill and what it loads first, and put the router pseudocode in the final `## MACHINE ROUTER` section. Use `references/`, `assets/`, and `scripts/`
+- **Skills with bundled resources**: Say in Section 2 what selects the skill and what it loads first, and put the router in the sibling `ROUTER.md`. Use `references/`, `assets/`, and `scripts/`
 - **Multi-mode skills**: Expand WHEN TO USE and HOW IT WORKS sections by mode
 - **All skills**: Section 2 (SMART ROUTING) is required: 8 to 12 non-blank lines of plain prose
 
@@ -192,7 +192,7 @@ Then load what the matched intent maps to: [intent A] reads `references/[domain]
 Keep every path inside this skill folder, and load a file only when it exists.
 When two intents score close together, follow both in rank order.
 When nothing matches, report `UNKNOWN_FALLBACK` with the checklist from the machine router instead of guessing.
-The machine router is the final `## MACHINE ROUTER` section of this file. The pseudocode lives there, not here.
+The machine router lives in [`ROUTER.md`](./ROUTER.md). Read it before selecting a resource; the pseudocode stays there, not here.
 
 ---
 
@@ -324,7 +324,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 ### Reference Loading Notes
 
 - Load only references needed for current intent.
-- Keep `SMART ROUTING` as the plain-word summary of what loads, and `MACHINE ROUTER` as the router that does it.
+- Keep `SMART ROUTING` as the plain-word summary of what loads, and the sibling `ROUTER.md` as the router that does it.
 - Use combined heading `SMART ROUTING & REFERENCES` only if both concerns stay clear.
 
 ---
@@ -397,7 +397,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 \## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/[primary].md`, `assets/[template].md`, and any skill-specific automation under `scripts/`, then load task-specific resources according to Section 2.
+The router in `ROUTER.md` discovers reference, asset, and script docs dynamically. Start with `references/[primary].md`, `assets/[template].md`, and any skill-specific automation under `scripts/`, then load task-specific resources according to Section 2.
 
 Scripts: `scripts/[primary-helper]` when the skill ships automation. Omit this line when no scripts exist.
 
@@ -407,142 +407,9 @@ Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md) when the skill has installat
 
 ---
 
-\## 9. MACHINE ROUTER
-
-The router for this skill. It is the last H2 in this file, and it holds the only pseudocode.
-
-> Pattern: see [sk-doc smart-router resilience template](./skill-smart-router.md) for the full runtime discovery, guarded load, routing-key, and fallback reference.
-
-New skills fill in the domain-specific `INTENT_MODEL`, `RESOURCE_MAP`, loading levels, and routing key detector while keeping the resilience mechanics unchanged: discover resources at runtime, guard every path before loading, derive a routing key from the task or runtime, and return an `UNKNOWN_FALLBACK` checklist when confidence is too low.
-
-```python
-from pathlib import Path
-
-SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/[default].md"
-
-INTENT_MODEL = {
-    "PRIMARY": {"keywords": [("[primary keyword]", 4), ("[phrase]", 3)]},
-    "DEBUGGING": {"keywords": [("error", 4), ("failed", 4), ("debug", 3)]},
-    "VERIFICATION": {"keywords": [("verify", 4), ("done", 3), ("complete", 3)]},
-}
-
-RESOURCE_MAP = {
-    "PRIMARY": ["references/[domain]/[primary].md"],
-    "DEBUGGING": ["assets/[domain]/checklists/debugging-checklist.md"],
-    "VERIFICATION": ["assets/[domain]/checklists/verification-checklist.md"],
-}
-
-LOAD_LEVELS = {
-    "PRIMARY": "STANDARD",
-    "DEBUGGING": "DEBUGGING",
-    "VERIFICATION": "MINIMAL",
-}
-
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm the routing key or runtime surface",
-    "Confirm the task intent",
-    "Provide one concrete input, error, or expected output",
-    "Confirm verification expectations before completion",
-]
-
-AMBIGUITY_DELTA = 1
-
-def _guard_in_skill(relative_path: str) -> str:
-    resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)
-    if resolved.suffix.lower() != ".md":
-        raise ValueError(f"Only markdown resources are routable: {relative_path}")
-    return resolved.relative_to(SKILL_ROOT).as_posix()
-
-def discover_markdown_resources() -> set[str]:
-    docs = []
-    for base in RESOURCE_BASES:
-        if base.exists():
-            docs.extend(path for path in base.rglob("*.md") if path.is_file())
-    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
-
-def get_routing_key(task, intents: list[str]) -> str:
-    override = str(getattr(task, "routing_key", "")).strip().lower()
-    if override:
-        return override
-    return (intents[0] if intents else "unknown").lower()
-
-def classify_intents(user_request, task=None):
-    text = (user_request or "").lower()
-    scores = {intent: 0 for intent in INTENT_MODEL}
-    for intent, cfg in INTENT_MODEL.items():
-        for keyword, weight in cfg["keywords"]:
-            if keyword in text:
-                scores[intent] += weight
-
-    ranked = sorted(scores.items(), key=lambda pair: pair[1], reverse=True)
-    primary, primary_score = ranked[0]
-    if primary_score == 0:
-        return ("PRIMARY", None, scores)
-
-    secondary, secondary_score = ranked[1]
-    if secondary_score > 0 and (primary_score - secondary_score) <= AMBIGUITY_DELTA:
-        return (primary, secondary, scores)
-    return (primary, None, scores)
-
-def route_[skill_name]_resources(user_request, task=None):
-    inventory = discover_markdown_resources()
-    primary, secondary, scores = classify_intents(user_request, task)
-    intents = [primary] + ([secondary] if secondary else [])
-    routing_key = get_routing_key(task, intents)
-    reference_prefix = f"references/{routing_key}/"
-    asset_prefix = f"assets/{routing_key}/"
-    keyed_refs = sorted(path for path in inventory if path.startswith(reference_prefix))
-    keyed_assets = sorted(path for path in inventory if path.startswith(asset_prefix))
-    loaded = []
-    seen = set()
-
-    def load_if_available(relative_path: str):
-        guarded = _guard_in_skill(relative_path)
-        if guarded in inventory and guarded not in seen:
-            load(guarded)
-            loaded.append(guarded)
-            seen.add(guarded)
-
-    load_if_available(DEFAULT_RESOURCE)
-    baseline_count = len(loaded)
-    if max(scores.values() or [0]) < 0.5:
-        return {
-            "routing_key": routing_key,
-            "intents": intents,
-            "intent_scores": scores,
-            "load_level": "UNKNOWN_FALLBACK",
-            "needs_disambiguation": True,
-            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
-            "resources": loaded,
-        }
-
-    for intent in intents:
-        for relative_path in RESOURCE_MAP.get(intent, []):
-            load_if_available(relative_path)
-
-    for relative_path in keyed_refs:
-        load_if_available(relative_path)
-    for relative_path in keyed_assets:
-        load_if_available(relative_path)
-
-    if routing_key == "unknown" or (len(loaded) == baseline_count and not keyed_refs):
-        return {
-            "routing_key": routing_key,
-            "intents": intents,
-            "intent_scores": scores,
-            "notice": f"No keyed knowledge base found for routing key '{routing_key}'",
-            "resources": loaded,
-        }
-
-    return {"routing_key": routing_key, "intents": intents, "intent_scores": scores, "resources": loaded}
-```
-
 **Word Count Targets**:
 - Section 1 (WHEN TO USE): 150-200 lines
-- Section 2 (SMART ROUTING): 8-12 non-blank lines of plain prose (the router block lives in the final `## MACHINE ROUTER` section)
+- Section 2 (SMART ROUTING): 8-12 non-blank lines of plain prose (the router block lives in the sibling `ROUTER.md`)
 - Section 3 (HOW IT WORKS): 200-300 lines
 - Section 4 (RULES): 150-200 lines
 - Section 5 (REFERENCES): 40-120 lines
@@ -641,45 +508,47 @@ def route_[skill_name]_resources(user_request, task=None):
 | Kind | How to tell | What Section 2 says |
 |------|-------------|---------------------|
 | Hub | the folder holds `mode-registry.json` and `hub-router.json` | how a prompt reaches a mode, and where the root `ROUTER.md` is |
-| Mode packet | a packet folder inside a hub | what selects this packet, what it loads first, where the machine router is |
-| Standalone | neither hub file | the same as a mode packet, with the router inline |
+| Mode packet | a packet folder inside a hub | what selects this packet, what it loads first, and where its own `ROUTER.md` is |
+| Standalone | neither hub file | the same as a mode packet, with the router in its own `ROUTER.md` |
 
 **The limit**: 12 non-blank lines and 180 words are the hard ceilings the check enforces. Aim for 8 to 12 lines. A packet or standalone skill says three things: what selects it, what it loads first, and where the machine router is.
 
-**The appendix**: Put any machine router block in a final `## MACHINE ROUTER` section. It must be the last H2 in the file.
-Number it like every other H2, as the next section number. For example, use `## 8. MACHINE ROUTER`.
-The check ignores the section number. Keep pseudocode out of SMART ROUTING.
-A packet needs no block when the hub root `ROUTER.md` already names all its leaves.
+**The sibling router**: the machine router lives in `ROUTER.md` beside `SKILL.md`, under a final `## MACHINE ROUTER` heading.
+That heading is the one every reader parses. Its section number is optional, so `## MACHINE ROUTER` and `## 9. MACHINE ROUTER` both count, and the check ignores the number.
+Keep pseudocode out of SMART ROUTING and put it in that section.
+`SKILL.md` carries no `## MACHINE ROUTER` section of its own: two homes for one router is the dual declaration the check reports.
 
-**One router file**: a mode packet never carries `ROUTER.md`. The hub root `ROUTER.md` is the only router file in the family.
+**The link line**: Section 2 names the router file with a relative markdown link, [`ROUTER.md`](./ROUTER.md), and its target resolves on disk. A sentence that mentions the name without a link fails, because a reader cannot follow it to a file that is not there.
+
+**One router per folder**: every skill and every mode packet owns `ROUTER.md` inside its own folder, linked from its own `SKILL.md`. A router file whose real path leaves the folder is not that skill's router.
 
 **The no-match outcome** is named `UNKNOWN_FALLBACK` everywhere. Low confidence returns a disambiguation checklist, never an empty result and never a guess.
 
-**Validation**: `package_skill.py --strict` rejects the old shape with five codes:
+**Validation**: `package_skill.py --strict` reports the routing shape with five codes:
 
 | Code | Finding |
 |------|---------|
 | `RS-001` | SMART ROUTING is longer than the limit (12 lines or 180 words by default) |
-| `RS-002` | a machine router block sits outside the final `## MACHINE ROUTER` section |
-| `RS-003` | `## MACHINE ROUTER` exists but is not the last H2 |
-| `RS-004` | a mode packet carries its own `ROUTER.md` |
-| `RS-005` | the SKILL.md has no `## MACHINE ROUTER` section |
+| `RS-002` | `SKILL.md` carries a `## MACHINE ROUTER` section, with or without a code block |
+| `RS-003` | `## MACHINE ROUTER` exists in `SKILL.md` but is not the last H2 |
+| `RS-004` | the skill has no sibling `ROUTER.md`, or its real path leaves the skill folder |
+| `RS-005` | `SKILL.md` has no relative markdown link to `./ROUTER.md` that resolves |
 
-A machine router block is a fenced block or an unfenced run of indented lines.
-It contains one of these markers: `INTENT_SIGNALS =`, `RESOURCE_MAP =`, `UNKNOWN_FALLBACK_CHECKLIST =`, `def discover_markdown_resources` or `def _guard_in_skill`.
+The machine block itself is a fenced block or an unfenced run of indented lines.
+It declares the router with one of these markers: `INTENT_SIGNALS =`, `RESOURCE_MAP =`, `DEFAULT_RESOURCE =`, `UNKNOWN_FALLBACK_CHECKLIST =`, `def discover_markdown_resources` or `def _guard_in_skill`.
 A fence closes only on a run of the same character that is at least as long as its opening run.
 
 **Known debt** is listed in `sk-create-skill/scripts/routing-shape-known-debt.json`.
 Entries use skill paths relative to `.skilled/skills`, such as `sk-code/sk-code-review`.
 A folder outside that root is never debt.
 Each entry records `{"lines", "words", "machineBlocks", "codes"}`.
-A listed skill fails if its line count, word count or machine blocks outside the appendix exceed the record, or if it adds an unrecorded code.
+A listed skill fails if its line count, word count or machine blocks left in `SKILL.md` exceed the record, or if it adds an unrecorded code.
 The checker ignores entries in any other form.
 Remove an entry when the skill follows the canon.
 
-**Placement**: after Section 1 (WHEN TO USE) and before HOW IT WORKS. The `## MACHINE ROUTER` appendix goes at the end of the file.
+**Placement**: the SMART ROUTING section sits after Section 1 (WHEN TO USE) and before HOW IT WORKS, and `ROUTER.md` sits beside `SKILL.md` at the skill root.
 
-**Worked example** (a canon Section 2 and its appendix, nothing else):
+**Worked example** (a canon Section 2 and its sibling router, nothing else):
 
 \## 2. SMART ROUTING
 
@@ -690,14 +559,17 @@ Then load what the matched intent maps to: [intent A] reads `references/[domain]
 Keep every path inside this skill folder and load a file only when it exists.
 When two intents score close together, follow both in rank order.
 When nothing matches, report `UNKNOWN_FALLBACK` with the checklist from the machine router instead of guessing.
-The machine router is the final `## MACHINE ROUTER` section of this file.
+The machine router lives in [`ROUTER.md`](./ROUTER.md); read it before selecting a resource.
 
 ---
 
-\## 3. MACHINE ROUTER
+The link resolves to the sibling file, whose one heading the readers parse is:
+
+\## MACHINE ROUTER
 
 ```python
-INTENT_MODEL = {"PRIMARY": {"keywords": [("[keyword]", 4), ("[phrase]", 3)]}}
+DEFAULT_RESOURCE = "references/[default].md"
+INTENT_SIGNALS = {"PRIMARY": {"weight": 4, "keywords": [("[keyword]", 4), ("[phrase]", 3)]}}
 RESOURCE_MAP = {"PRIMARY": ["references/[domain]/[primary].md"]}
 UNKNOWN_FALLBACK_CHECKLIST = ["Confirm the routing key", "Confirm the intent", "Provide one concrete input"]
 
@@ -714,9 +586,9 @@ The full resilience pattern (guarded paths, recursive discovery, routing keys) i
 **Writing Tips**:
 - Open Section 2 with the signal that actually picks this skill's files.
 - Name the first file to load, so a reader knows where to start.
-- Say where the machine router is. Do not paste it into Section 2.
+- Name the router file with a markdown link, so a reader can open it.
 - Keep `UNKNOWN_FALLBACK` as the named no-match outcome.
-- Edit `INTENT_MODEL` and `RESOURCE_MAP` in the appendix when the skill gains a domain.
+- Edit `INTENT_SIGNALS` and `RESOURCE_MAP` in `ROUTER.md` when the skill gains a domain.
 - Avoid duplicate lookup tables, static file inventories, and unguarded `load()` calls.
 
 **Word Budget**: 8-12 non-blank lines of prose
@@ -1062,9 +934,10 @@ Content - Routing Canon:
 □ SMART ROUTING section exists (Section 2 - REQUIRED for all skills)
 □ Section 2 is 8-12 non-blank lines of plain prose: what selects this skill, what it loads first, where the machine router is
 □ Section 2 names the no-match outcome `UNKNOWN_FALLBACK`
-□ Any machine router block sits in a final `## MACHINE ROUTER` section, never inside SMART ROUTING
-□ MACHINE ROUTER is the last H2 when a block exists
-□ A mode packet carries no `ROUTER.md` (the hub root `ROUTER.md` is the only router file)
+□ Any machine router block sits in the sibling `ROUTER.md`, never inside SMART ROUTING
+□ `SKILL.md` carries no `## MACHINE ROUTER` section of its own
+□ Section 2 links to [`ROUTER.md`](./ROUTER.md) with a relative markdown link that resolves
+□ `ROUTER.md` sits beside `SKILL.md`, and every path in it stays inside the skill folder
 □ Flowchart supplements added to complex logic blocks in Section 3 (where applicable)
 □ Python/YAML code preserved (supplements, not replacements)
 □ Mermaid diagrams use valid syntax (when used)
@@ -1078,7 +951,7 @@ Quality:
 □ All code blocks specify language
 □ Links work correctly
 □ Section 1 contains ONLY triggers/use cases (NO file references)
-□ MACHINE ROUTER pseudocode guards every path and checks that the file exists
+□ `MACHINE ROUTER` pseudocode guards every path and checks that the file exists
 
 ### Quick Reference Table
 
@@ -1091,7 +964,7 @@ Quality:
 | **H2 Format**         | Number + ALL CAPS          | ✅ `## 1. WHEN TO USE`                                                                            |
 | **TOC**               | Forbidden in SKILL.md      | ❌ No table of contents                                                                             |
 | **Sections**          | 5 required + 3 recommended | Required: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES (or combined `SMART ROUTING & REFERENCES`). Recommended: SUCCESS CRITERIA, INTEGRATION POINTS, REFERENCES AND RELATED RESOURCES |
-| **Router Appendix**   | Final `## MACHINE ROUTER` H2 | Last H2 in the file and the only place router pseudocode lives |
+| **Sibling Router**   | `ROUTER.md` beside `SKILL.md` | Its `## MACHINE ROUTER` section holds the only router pseudocode, and Section 2 links to the file |
 | **File Size**         | <5k words (<3k preferred)  | Move details to references/                                                                        |
 | **Rules Format**      | ALWAYS, NEVER, ESCALATE IF | All caps headers, specific rules                                                                   |
 | **Examples**          | Concrete and realistic     | Show actual use cases                                                                              |
@@ -1117,7 +990,7 @@ python .skilled/skills/sk-doc/scripts/package_skill.py .skilled/skills/[skill-na
 # - Frontmatter: name (hyphen-case), description (no <>), allowed-tools (array format), version
 # - Required sections: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES
 # - RULES subsections: ✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF
-# - Routing shape: SMART ROUTING 8-12 non-blank lines, MACHINE ROUTER present and the last H2 (RS-001 to RS-005 under --strict)
+# - Routing shape: SMART ROUTING 8-12 non-blank lines, a sibling ROUTER.md with a final `## MACHINE ROUTER` section, and a relative link to it from SKILL.md (RS-001 to RS-005 under --strict)
 # - Size constraints: max 5000 words, max 3000 lines
 
 # Native discovery:
@@ -1134,6 +1007,7 @@ python .skilled/skills/sk-doc/scripts/package_skill.py .skilled/skills/[skill-na
 - [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter by document type
 - [skill-asset-template.md](./skill-asset-template.md) - Asset file creation guide
 - [skill-reference-template.md](./skill-reference-template.md) - Reference file templates
+- [skill-router-template.md](./skill-router-template.md) - Sibling `ROUTER.md` scaffold and its machine router
 
 ### Standards
 - [core-standards.md](../../../shared/references/core-standards.md) - Document type rules

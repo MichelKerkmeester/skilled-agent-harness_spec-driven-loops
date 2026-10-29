@@ -8,7 +8,7 @@ trigger_phrases:
   - "router fallback pattern"
 importance_tier: normal
 contextType: general
-version: 1.2.1.0
+version: 1.2.1.1
 ---
 
 # Skill Smart Router - Resilience Pattern
@@ -23,7 +23,7 @@ Smart routers fail when resource paths drift, reference folders are deleted, sta
 
 ### Usage
 
-Copy the four pseudocode patterns from §2 into the final `## MACHINE ROUTER` section of your skill's `SKILL.md`. The pseudocode never goes inside SMART ROUTING, which stays 8 to 12 non-blank lines of plain prose. A packet never carries a `ROUTER.md` of its own; the hub root `ROUTER.md` is the only router file in the family. Adapt the routing key (e.g., git remote → project; intent label → workflow; stack marker → tooling; env var → runtime mode) per §3 Generalization Guide. Preserve your skill's domain-specific `INTENT_MODEL`, `RESOURCE_MAP`, and load levels — only swap the **discovery + load + fallback** mechanics. Apply the structural safeguards from §4 to every router-driven `load()` call. Audit your draft against §5 Anti-Patterns before merging.
+Copy the four pseudocode patterns from §2 into the `## MACHINE ROUTER` section of your skill's sibling `ROUTER.md`. That file is the router: `SKILL.md` keeps only smart-routing prose of 8 to 12 non-blank lines and a relative markdown link to the router file, and it never carries a `## MACHINE ROUTER` section of its own. Every skill and every mode packet owns one such file inside its own folder, and the hub root `ROUTER.md` is the hub's own router rather than its packets'. Adapt the routing key (e.g., git remote → project; intent label → workflow; stack marker → tooling; env var → runtime mode) per §3 Generalization Guide. Preserve your skill's domain-specific `INTENT_MODEL`, `RESOURCE_MAP`, and load levels — only swap the **discovery + load + fallback** mechanics. Apply the structural safeguards from §4 to every router-driven `load()` call. Audit your draft against §5 Anti-Patterns before merging.
 
 ---
 
@@ -187,6 +187,7 @@ def _filter_paths(paths: list[str], keywords: list[str]) -> list[str]:
 ## 5. ANTI-PATTERNS
 
 - Hardcoded file inventories that must be updated after every resource move
+- Router pseudocode left in `SKILL.md` instead of the sibling `ROUTER.md`, or a `SKILL.md` that names the router file without linking to it
 - Raw `load("references/file.md")` calls without guard, inventory check, or duplicate suppression
 - Pseudocode with absolute paths or hardcoded project names where a runtime routing key belongs
 - Routing that returns an empty result on low confidence instead of an `UNKNOWN_FALLBACK` checklist
@@ -198,6 +199,6 @@ def _filter_paths(paths: list[str], keywords: list[str]) -> list[str]:
 
 ## 6. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference and asset docs dynamically. Start with `skill-md-template.md`, `skill-asset-template.md`, and `skill-reference-template.md`, then load task-specific examples or source patterns only when needed.
+The router discovers reference and asset docs dynamically from the skill's sibling `ROUTER.md`. Start with `skill-router-template.md`, then `skill-md-template.md`, `skill-asset-template.md`, and `skill-reference-template.md`, and load task-specific examples or source patterns only when needed.
 
 Related skills: `sk-doc` owns this template set and package validation; `system-spec-kit` governs packet documentation when skill updates are part of implementation work.

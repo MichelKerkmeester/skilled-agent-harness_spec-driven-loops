@@ -9,7 +9,9 @@
  *
  * Classifies every skill root, then enforces that root's class contract:
  * required files present, forbidden files absent, overlays scoped, one advisor
- * identity per root, and every generated manifest byte-fresh.
+ * identity per root, one sibling ROUTER.md per root, and every generated
+ * manifest byte-fresh. A root the routing-shape ledger records as unmoved may
+ * keep a missing router until it migrates.
  *
  * The ordering matters. The freshness scanner this gate fronts discovers work by
  * walking committed manifests, so a root that never committed one is invisible
@@ -66,6 +68,9 @@ try {
 }
 
 const commandSchema = require('./lib/command-metadata-schema.cjs');
+// The shared reader of the routing-shape ledger. A root recorded there keeps
+// its current shape until it migrates, so this gate never parses that file.
+const routingShapeDebt = require('./lib/routing-shape-debt.cjs');
 
 // Keep this closed: an ignored top-level block hid authored routing data for
 // months because no consumer rejected unknown keys.
@@ -630,13 +635,159 @@ function checkGraphMetadata(skillDir) {
   return { violations, notes };
 }
 
+/**
+ * The routing-shape ledger entry that records a root as not yet moved.
+ *
+ * A root listed with RS-004 has not moved its machine router into the sibling
+ * document, so a missing ROUTER.md is migration debt rather than a regression.
+ * The key is the root's own name because discovery only ever visits direct
+ * children of the skills directory.
+ */
+function routingShapeDebtEntry(skillId) {
+  const { debt } = routingShapeDebt.loadRoutingShapeDebt();
+  const entry = debt.get(skillId);
+  return entry && entry.codes.includes('RS-004') ? entry : null;
+}
+
+/**
+ * Run the root-router contract for a hub or a standalone skill root.
+ *
+ * Both classes own a sibling ROUTER.md, so both run the same contract; the
+ * class decides which states are legal and where the leaf identity comes from.
+ * A hub reads its mode registry and hub router. A standalone root has neither,
+ * so its generated manifest supplies the mode list and its generated alias
+ * projection supplies the identity bridge. A root the ledger records as
+ * unmoved keeps the missing file as recorded debt instead of a failure.
+ */
+function checkRootRouter(skillDir, skillClass, options = {}) {
+  const skillId = path.basename(skillDir);
+  const isHub = skillClass === rootContract.CLASS_HUB;
+  const violations = [];
+  const notes = [];
+
+  let routerText = null;
+  let routerReadError = null;
+  const routerPath = path.join(skillDir, 'ROUTER.md');
+  // lstat, so a dangling symlink is read and fails as unreadable instead of
+  // passing as a router that was never written.
+  if (fs.lstatSync(routerPath, { throwIfNoEntry: false }) !== undefined) {
+    try {
+      routerText = fs.readFileSync(routerPath, 'utf8');
+    } catch (error) {
+      routerReadError = error;
+    }
+  }
+
+  if (routerReadError) {
+    violations.push({
+      code: 'RRC-UNKNOWN',
+      file: 'ROUTER.md',
+      message: `${skillId}: could not read ROUTER.md: ${routerReadError.message}`,
+    });
+    return { violations, notes };
+  }
+
+  let registryModes = [];
+  if (isHub) {
+    try {
+      const registry = readJson(path.join(skillDir, 'mode-registry.json'));
+      registryModes = Array.isArray(registry.modes) ? registry.modes : [];
+    } catch {
+      // The class and manifest checks own malformed registry findings; the
+      // router contract still runs with no declared modes and fails closed.
+    }
+  }
+
+  let aliasEntries = [];
+  try {
+    const data = readJson(path.join(skillDir, 'leaf-aliases.json'));
+    aliasEntries = Array.isArray(data) ? data : (Array.isArray(data && data.aliases) ? data.aliases : []);
+  } catch {
+    // An unreadable alias file cannot authorize a mapped leaf resource.
+  }
+
+  let manifestObject = null;
+  try {
+    manifestObject = readJson(path.join(skillDir, 'leaf-manifest.json'));
+  } catch {
+    // An unreadable manifest cannot authorize a mapped leaf resource.
+  }
+
+  let hubDefaultResource = [];
+  if (isHub) {
+    try {
+      const hubRouter = readJson(path.join(skillDir, 'hub-router.json'));
+      if (hubRouter && hubRouter.routerPolicy && Array.isArray(hubRouter.routerPolicy.defaultResource)) {
+        hubDefaultResource = hubRouter.routerPolicy.defaultResource;
+      }
+    } catch {
+      // The root metadata checks own malformed hub-router findings.
+    }
+  }
+
+  // A standalone root has no registry, so its own manifest is its mode list.
+  const declaredModes = isHub
+    ? registryModes
+    : ((manifestObject && Array.isArray(manifestObject.modes)) ? manifestObject.modes : []);
+
+  const legacyFiles = rootRouterContract.LEGACY_ROUTER_PATHS
+    .filter((relativePath) => fs.existsSync(path.join(skillDir, relativePath)));
+
+  try {
+    const routerEvaluation = rootRouterContract.validateRootRouter({
+      routerText,
+      targetClass: skillClass,
+      targetName: skillId,
+      declaredModes,
+      aliasEntries,
+      manifest: manifestObject,
+      hubRouterDefaultResource: hubDefaultResource,
+      legacyFiles,
+      // Keep disk resolution closed to this root even if a malformed router
+      // supplies an absolute path or a parent-segment escape.
+      resolveOnDisk: (relativePath) => {
+        const resolved = path.resolve(skillDir, relativePath);
+        const rootPrefix = `${path.resolve(skillDir)}${path.sep}`;
+        return resolved.startsWith(rootPrefix) && fs.existsSync(resolved);
+      },
+    });
+    for (const violation of routerEvaluation.violations) {
+      if (options.toleratesMissingRouter
+          && violation.code === rootRouterContract.CODES.MISSING_ROOT_ROUTER) {
+        continue;
+      }
+      violations.push(violation);
+    }
+    if (options.toleratesMissingRouter && routerText === null) {
+      notes.push({
+        code: 'RS-004',
+        message: `${skillId}: ROUTER.md is missing; the known-debt ledger records RS-004 until the router moves`,
+      });
+    }
+  } catch (error) {
+    violations.push({
+      code: 'RRC-UNKNOWN',
+      file: 'ROUTER.md',
+      message: `${skillId}: root-router contract failed unexpectedly: ${error.message}`,
+    });
+  }
+
+  return { violations, notes };
+}
+
 /** Evaluate one root end to end: class, presence, identity, freshness. */
 function checkRoot(skillDir, options = {}) {
   const fix = Boolean(options.fix);
   const skillId = path.basename(skillDir);
   const presence = readPresence(skillDir);
   const evaluation = rootContract.evaluateRoot(skillId, presence);
-  const violations = [...evaluation.violations];
+  const routerDebt = routingShapeDebtEntry(skillId);
+  const toleratesMissingRouter = routerDebt !== null && !presence['ROUTER.md'];
+  const violations = evaluation.violations.filter((violation) => !(
+    toleratesMissingRouter
+    && violation.code === 'MISSING_REQUIRED_FILE'
+    && violation.file === 'ROUTER.md'
+  ));
   const notes = [];
   let fixed = false;
   let digest = null;
@@ -687,96 +838,15 @@ function checkRoot(skillDir, options = {}) {
   // resources and command definition files against the disk.
   if (evaluation.skillClass === rootContract.CLASS_HUB) {
     violations.push(...checkCommandMetadata(skillDir));
+  }
 
-    const routerPath = path.join(skillDir, 'ROUTER.md');
-    let routerText = null;
-    let routerReadError = null;
-    if (presence['ROUTER.md']) {
-      try {
-        routerText = fs.readFileSync(routerPath, 'utf8');
-      } catch (error) {
-        routerReadError = error;
-      }
-    }
-
-    let registry = null;
-    if (presence['mode-registry.json']) {
-      try {
-        registry = readJson(path.join(skillDir, 'mode-registry.json'));
-      } catch {
-        // The class and manifest checks own malformed registry findings; the
-        // router contract still runs with no declared modes and fails closed.
-      }
-    }
-
-    let aliasEntries = [];
-    if (presence['leaf-aliases.json']) {
-      try {
-        const data = readJson(path.join(skillDir, 'leaf-aliases.json'));
-        aliasEntries = Array.isArray(data) ? data : (Array.isArray(data && data.aliases) ? data.aliases : []);
-      } catch {
-        // An unreadable alias file cannot authorize a mapped leaf resource.
-      }
-    }
-
-    let manifestObject = null;
-    if (presence['leaf-manifest.json']) {
-      try {
-        manifestObject = readJson(path.join(skillDir, 'leaf-manifest.json'));
-      } catch {
-        // An unreadable manifest cannot authorize a mapped leaf resource.
-      }
-    }
-
-    let hubRouterObject = null;
-    if (presence['hub-router.json']) {
-      try {
-        hubRouterObject = readJson(path.join(skillDir, 'hub-router.json'));
-      } catch {
-        // The root metadata checks own malformed hub-router findings.
-      }
-    }
-
-    if (routerReadError) {
-      violations.push({
-        code: 'RRC-UNKNOWN',
-        file: 'ROUTER.md',
-        message: `${skillId}: could not read ROUTER.md: ${routerReadError.message}`,
-      });
-    } else {
-      const legacyFiles = rootRouterContract.LEGACY_ROUTER_PATHS
-        .filter((relativePath) => fs.existsSync(path.join(skillDir, relativePath)));
-      const hubDefaultResource = (hubRouterObject
-        && hubRouterObject.routerPolicy
-        && Array.isArray(hubRouterObject.routerPolicy.defaultResource))
-        ? hubRouterObject.routerPolicy.defaultResource
-        : [];
-
-      try {
-        const routerEvaluation = rootRouterContract.validateRootRouter({
-          routerText,
-          declaredModes: (registry && Array.isArray(registry.modes)) ? registry.modes : [],
-          aliasEntries,
-          manifest: manifestObject,
-          hubRouterDefaultResource: hubDefaultResource,
-          legacyFiles,
-          // Keep disk resolution closed to this hub even if a malformed router
-          // supplies an absolute path or a parent-segment escape.
-          resolveOnDisk: (relativePath) => {
-            const resolved = path.resolve(skillDir, relativePath);
-            const rootPrefix = `${path.resolve(skillDir)}${path.sep}`;
-            return resolved.startsWith(rootPrefix) && fs.existsSync(resolved);
-          },
-        });
-        violations.push(...routerEvaluation.violations);
-      } catch (error) {
-        violations.push({
-          code: 'RRC-UNKNOWN',
-          file: 'ROUTER.md',
-          message: `${skillId}: root-router contract failed unexpectedly: ${error.message}`,
-        });
-      }
-    }
+  // Every class owns a sibling ROUTER.md, so the router contract runs for a
+  // standalone root as well as a hub.
+  if (evaluation.skillClass === rootContract.CLASS_HUB
+      || evaluation.skillClass === rootContract.CLASS_STANDALONE) {
+    const router = checkRootRouter(skillDir, evaluation.skillClass, { toleratesMissingRouter });
+    violations.push(...router.violations);
+    notes.push(...router.notes);
   }
 
   return {
@@ -878,6 +948,7 @@ module.exports = {
   checkDerivedAliases,
   checkGraphMetadata,
   checkCommandMetadata,
+  checkRootRouter,
   checkRoot,
   run,
 };

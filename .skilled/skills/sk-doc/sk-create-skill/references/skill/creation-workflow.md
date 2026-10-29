@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill frontmatter completion"
 importance_tier: normal
 contextType: implementation
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # Skill Creation Process
@@ -127,9 +127,9 @@ scripts/init_skill.py <skill-name> --path <output-directory>
 3. Creates example resource directories: `scripts/`, `references/`, `assets/`
 4. Adds example files that can be customized or deleted
 
-**Generated SKILL.md**: `init_skill.py` creates a starter SKILL.md. Normalize it to the required section order: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES and REFERENCES.
+**Generated SKILL.md**: `init_skill.py` creates a starter SKILL.md and a sibling `ROUTER.md`. Normalize SKILL.md to the required section order: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES and REFERENCES.
 Add recommended sections as the skill needs them. Keep SMART ROUTING to 8 to 12 lines of prose.
-Put the seeded router pseudocode in a final `## MACHINE ROUTER` section.
+Put the seeded router pseudocode in `ROUTER.md` under a final `## MACHINE ROUTER` heading, and link to it from SKILL.md.
 
 **After initialization**: Customize or remove generated files as needed.
 
@@ -140,7 +140,8 @@ scripts/init_skill.py markdown-optimizer --path .skilled/skill
 
 # Creates:
 # .skilled/skills/markdown-optimizer/
-# ├── SKILL.md (with TODO placeholders)
+# ├── SKILL.md (with TODO placeholders and a link to ./ROUTER.md)
+# ├── ROUTER.md (the seeded machine router)
 # ├── scripts/example_script.py
 # ├── references/example-reference.md
 # └── assets/example-asset.txt
@@ -155,7 +156,7 @@ scripts/init_skill.py markdown-optimizer --path .skilled/skill
 Use this checklist for `SKILL.md` instructions and README prose:
 
 - [ ] Put instructions before background.
-- [ ] Keep any machine router in the final H2 of `SKILL.md`.
+- [ ] Keep the machine router in the sibling `ROUTER.md`, and link to that file from `SKILL.md`.
 - [ ] State each fact once. Link to it instead of repeating it.
 - [ ] Keep one idea per sentence. Split sentences longer than about 30 words.
 - [ ] Address the reader as "you" in instructions.
@@ -256,14 +257,14 @@ Answer these questions in SKILL.md:
 
 3. **How will you route requests to the right resources?**
    - Section 2: SMART ROUTING
-   - Write 8 to 12 non-blank lines of plain prose. Say what selects this skill, what it loads first, and that the machine router sits in the final section. No pseudocode and no tables.
+   - Write 8 to 12 non-blank lines of plain prose. Say what selects this skill, what it loads first, and that the machine router sits in the sibling `ROUTER.md`. No pseudocode and no tables.
    - **Seed the pseudocode from the canonical resilience pattern** in [skill-smart-router.md](../../assets/skill/skill-smart-router.md) §2.
      Use runtime discovery, existence checks, an extensible routing key and multi-tier fallback.
      Adapt those patterns to this skill's resource map.
-     Keep the block in the final `## MACHINE ROUTER` section.
-     A packet needs no block when the hub `ROUTER.md` already names every leaf it loads, but it still ends with the section.
+     Write the block to `ROUTER.md` under a final `## MACHINE ROUTER` heading, and link to `./ROUTER.md` from SMART ROUTING.
+     A packet still needs its own `ROUTER.md` and link when the hub `ROUTER.md` already names every leaf it loads.
    - **Anti-pattern**: Do NOT duplicate routing logic in separate lookup tables. Do NOT put the router block inside SMART ROUTING.
-   - `package_skill.py --strict` rejects the old shape with codes RS-001 to RS-005: an oversized SMART ROUTING section, a router block outside the final section, a `## MACHINE ROUTER` section that is not last, a mode packet that carries its own `ROUTER.md`, and a SKILL.md with no `## MACHINE ROUTER` section.
+   - `package_skill.py --strict` rejects the old shape with codes RS-001 to RS-005: an oversized SMART ROUTING section, a `MACHINE ROUTER` section left in `SKILL.md`, a section that is not last, a missing sibling `ROUTER.md` or one whose real path leaves the skill folder, and a `SKILL.md` with no relative link to `./ROUTER.md`.
 
 4. **How should bundled resources be organized for routing clarity?**
    - Keep domain structure explicit (for example `references/backend/go/`)

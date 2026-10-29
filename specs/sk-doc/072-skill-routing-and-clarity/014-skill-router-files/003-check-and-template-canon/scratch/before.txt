@@ -1,0 +1,13 @@
+rg MACHINE ROUTER SKILL.md:       54
+ROUTER.md files:        7
+sk-git strict: Result: PASS
+PASS: 12a-router-contract: root ROUTER.md conforms to the two-state contract (active)
+PASS: 12b-routing-shape: hub and 14 packet(s) follow the routing canon (0 known debt)
+fleet: checked=13 passed=13 failed=0 fixed=0
+pytest4: 84 passed in 1.43s
+root-router-contract.test.cjs: ℹ pass 1 ℹ fail 0 
+skill-root-metadata-contract.test.cjs: ℹ pass 1 ℹ fail 0 
+routing-shape-known-debt-ratchet.test.cjs: ℹ pass 4 ℹ fail 0 
+parent-skill-check-root-router.test.cjs: ℹ pass 1 ℹ fail 0 
+parent-skill-check-routing-shape.test.cjs: ℹ pass 1 ℹ fail 0 
+run-all: [run-all] 7 suite(s) passed, 0 failed

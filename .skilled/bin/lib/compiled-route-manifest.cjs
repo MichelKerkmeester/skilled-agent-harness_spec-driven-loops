@@ -51,6 +51,15 @@ const HUB_ID_PATTERN = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/;
 const HASH_PATTERN = /^[a-f0-9]{64}$/;
 const MANIFEST_KEYS = ['schemaVersion', 'selectedPolicy', 'servingAuthority', 'shadowOnly'];
 const SELECTED_POLICY_KEYS = ['effectivePolicyHash', 'generation'];
+const ROUTER_FILE = 'ROUTER.md';
+
+// The heading that opens a machine-router section. The section number is optional, and the
+// end-of-line anchor keeps a hub's `MACHINE-READABLE ROUTER` stage-two map out: that heading
+// carries a different word, so a hub that keeps its map in ROUTER.md still reads its inline
+// section.
+const MACHINE_ROUTER_HEADING_RE = /^##\s+(?:\d+\.\s+)?MACHINE ROUTER\s*$/;
+const FENCE_OPEN_RE = /^ {0,3}(`{3,}|~{3,})/;
+const FENCE_CLOSE_RE = /^ {0,3}(`{3,}|~{3,})[ \t]*\r?$/;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -386,6 +395,41 @@ function readOwnedFile(realRoot, fileName) {
   return fs.readFileSync(realFile);
 }
 
+// A router the skill does not have yet is a skill still reading its checklist from SKILL.md,
+// so the probe answers null rather than failing the compile. A symlink, or a file whose real
+// path leaves the skill folder, is still a fault: a reader would hash bytes the hub does not own.
+function readOptionalOwnedFile(realRoot, fileName) {
+  try {
+    fs.lstatSync(path.join(realRoot, fileName));
+  } catch (error) {
+    if (error && error.code === 'ENOENT') return null;
+    throw contractError('invalid-input');
+  }
+  return readOwnedFile(realRoot, fileName);
+}
+
+// The first machine-router heading outside any fenced block, sliced to the end of the file,
+// or null. A heading inside a code sample is an example of the grammar rather than a section,
+// and stopping at the next heading would need a section-end rule every future author keeps in
+// step, so the declaring tail is handed back whole.
+function machineRouterSection(text) {
+  if (typeof text !== 'string') return null;
+  let fence = null;
+  let offset = 0;
+  for (const line of text.split('\n')) {
+    if (fence === null) {
+      const opener = FENCE_OPEN_RE.exec(line);
+      if (opener) fence = opener[1];
+      else if (MACHINE_ROUTER_HEADING_RE.test(line)) return text.slice(offset);
+    } else {
+      const closer = FENCE_CLOSE_RE.exec(line);
+      if (closer && closer[1][0] === fence[0] && closer[1].length >= fence.length) fence = null;
+    }
+    offset += line.length + 1;
+  }
+  return null;
+}
+
 function ensureActivationDirectory(directoryPath) {
   const currentActivationRoot = activationRoot();
   fs.mkdirSync(currentActivationRoot, { recursive: true, mode: 0o700 });
@@ -437,6 +481,13 @@ function loadCanonicalRouterInputs({ hubId, skillRoot }) {
     'hub-router.json': readOwnedFile(realRoot, 'hub-router.json'),
     'mode-registry.json': readOwnedFile(realRoot, 'mode-registry.json'),
   };
+  // The router file is probed first, the way the runtime resolver reads a skill: a skill that
+  // has moved its machine router declares the checklist there, and one that has not declares
+  // it in SKILL.md exactly as before. Whichever file supplied the section is hashed, so an
+  // edit to a moved checklist leaves the manifest stale just as an edit to SKILL.md does.
+  const routerBytes = readOptionalOwnedFile(realRoot, ROUTER_FILE);
+  const routerMarkdown = routerBytes ? machineRouterSection(routerBytes.toString('utf8')) : null;
+  if (routerMarkdown !== null) sourceBytes[ROUTER_FILE] = routerBytes;
   let registry;
   let hubRouter;
   try {
@@ -451,6 +502,7 @@ function loadCanonicalRouterInputs({ hubId, skillRoot }) {
   return {
     hubRouter,
     registry,
+    routerMarkdown,
     skillMarkdown: sourceBytes['SKILL.md'].toString('utf8'),
     sourceBytes,
   };

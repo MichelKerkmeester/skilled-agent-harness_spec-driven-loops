@@ -62,11 +62,58 @@ function makeTempHubDir() {
   return hubRoot;
 }
 
-function writePacketCompanions(packetDir, packetSkillName) {
+// A packet owns a router file and one relative link to it, so the routing
+// checks see a complete skill. Its map names the leaf from the packet folder,
+// the grammar the packet's SKILL.md sections use.
+function writePacketCompanions(packetDir, packetSkillName, leaf) {
   fs.mkdirSync(path.join(packetDir, 'changelog'), { recursive: true });
-  fs.writeFileSync(path.join(packetDir, 'SKILL.md'), `---\nname: ${packetSkillName}\n---\n# ${packetSkillName}\n`);
+  fs.writeFileSync(
+    path.join(packetDir, 'SKILL.md'),
+    `---\nname: ${packetSkillName}\n---\n# ${packetSkillName}\n\nRead [\`ROUTER.md\`](./ROUTER.md) before selecting packet resources.\n`,
+  );
+  fs.writeFileSync(path.join(packetDir, 'ROUTER.md'), packetRouter(packetSkillName, leaf));
   fs.writeFileSync(path.join(packetDir, 'README.md'), `# ${packetSkillName}\n`);
   fs.writeFileSync(path.join(packetDir, 'changelog', 'CHANGELOG.md'), '# Changelog\n');
+}
+
+// A packet owns no mode registry to stage against, so its router is active and
+// maps the leaf its mode loads. The path is relative to the packet folder, and
+// the maps sit under the final machine-router section the resolver reads.
+function packetRouter(name, leaf) {
+  return [
+    '---',
+    `title: ${name} Packet Router`,
+    'version: 1.0.0.0',
+    'router_state: active',
+    'skill_pointer: SKILL.md',
+    '---',
+    '',
+    `# ${name} Packet Router`,
+    '',
+    '## 1. OVERVIEW',
+    '',
+    `Second-layer router for the ${name} packet. The hub registry picks the mode;`,
+    'this file maps its intent to the leaves it loads.',
+    '',
+    '## 2. INTENT MODEL',
+    '',
+    '- **alpha leaves** — the resources an alpha request loads.',
+    '',
+    '## 3. MACHINE ROUTER',
+    '',
+    '```python',
+    'DEFAULT_RESOURCE = []',
+    '',
+    'INTENT_SIGNALS = {',
+    '    "ALPHA": {"weight": 4, "keywords": ["alpha intent"]},',
+    '}',
+    '',
+    'RESOURCE_MAP = {',
+    `    "ALPHA": ["references/${leaf}"],`,
+    '}',
+    '```',
+    '',
+  ].join('\n');
 }
 
 function baseRegistry() {
@@ -131,7 +178,7 @@ function buildCleanFixture() {
   // A hub declares its command surface even when empty; the class check
   // requires the file's presence, so the fixture carries the empty form.
   writeJson(path.join(hubRoot, 'command-metadata.json'), []);
-  fs.writeFileSync(path.join(hubRoot, 'SKILL.md'), '---\nname: demo-hub\nversion: 1.0.0.0\nallowed-tools: [Read]\n---\n# demo-hub\n');
+  fs.writeFileSync(path.join(hubRoot, 'SKILL.md'), '---\nname: demo-hub\nversion: 1.0.0.0\nallowed-tools: [Read]\n---\n# demo-hub\n\nRead [`ROUTER.md`](./ROUTER.md) before selecting hub resources.\n');
   // The root-router two-state check runs on every hub, so the clean fixture
   // ships the leafless stage1-only root router its fresh-scaffold twin would
   // carry; it stays out of the way of the leaf-manifest guards under test.
@@ -165,8 +212,8 @@ function buildCleanFixture() {
   fs.mkdirSync(path.join(packetB, 'references'), { recursive: true });
   fs.writeFileSync(path.join(packetA, 'references', 'hello.md'), '# hello\n');
   fs.writeFileSync(path.join(packetB, 'references', 'world.md'), '# world\n');
-  writePacketCompanions(packetA, 'create-skill');
-  writePacketCompanions(packetB, 'pkg-two');
+  writePacketCompanions(packetA, 'create-skill', 'hello.md');
+  writePacketCompanions(packetB, 'pkg-two', 'world.md');
 
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const generator = require(REAL_GENERATOR_PATH);

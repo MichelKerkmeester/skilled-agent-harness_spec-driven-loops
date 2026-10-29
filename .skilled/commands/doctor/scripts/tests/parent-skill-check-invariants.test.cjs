@@ -93,6 +93,8 @@ function hubSkillMd({ allowedTools = 'Read', rows = null } = {}) {
     '---',
     '# demo-hub',
     '',
+    'Read [`ROUTER.md`](./ROUTER.md) before selecting hub resources.',
+    '',
     '| Mode | Use it for | Packet | Command |',
     '|------|------------|--------|---------|',
     ...tableRows,
@@ -126,10 +128,54 @@ function writePacket(hubRoot, packet, leaf) {
   const dir = path.join(hubRoot, packet);
   fs.mkdirSync(path.join(dir, 'changelog'), { recursive: true });
   fs.mkdirSync(path.join(dir, 'references'), { recursive: true });
-  fs.writeFileSync(path.join(dir, 'SKILL.md'), `---\nname: ${packet}\n---\n# ${packet}\n`);
+  fs.writeFileSync(
+    path.join(dir, 'SKILL.md'),
+    `---\nname: ${packet}\n---\n# ${packet}\n\nRead [\`ROUTER.md\`](./ROUTER.md) before selecting packet resources.\n`,
+  );
+  fs.writeFileSync(path.join(dir, 'ROUTER.md'), packetRouter(packet, leaf));
   fs.writeFileSync(path.join(dir, 'README.md'), `# ${packet}\n`);
   fs.writeFileSync(path.join(dir, 'changelog', 'CHANGELOG.md'), '# Changelog\n');
   fs.writeFileSync(path.join(dir, 'references', leaf), `# ${leaf}\n`);
+}
+
+// A packet owns no mode registry to stage against, so its router is active and
+// maps the leaf its mode loads. The path is relative to the packet folder, and
+// the maps sit under the final machine-router section the resolver reads.
+function packetRouter(name, leaf) {
+  return [
+    '---',
+    `title: ${name} Packet Router`,
+    `version: ${VERSION}`,
+    'router_state: active',
+    'skill_pointer: SKILL.md',
+    '---',
+    '',
+    `# ${name} Packet Router`,
+    '',
+    '## 1. OVERVIEW',
+    '',
+    `Second-layer router for the ${name} packet. The hub registry picks the mode;`,
+    'this file maps its intent to the leaves it loads.',
+    '',
+    '## 2. INTENT MODEL',
+    '',
+    '- **alpha leaves** — the resources an alpha request loads.',
+    '',
+    '## 3. MACHINE ROUTER',
+    '',
+    '```python',
+    'DEFAULT_RESOURCE = []',
+    '',
+    'INTENT_SIGNALS = {',
+    '    "ALPHA": {"weight": 4, "keywords": ["alpha intent"]},',
+    '}',
+    '',
+    'RESOURCE_MAP = {',
+    `    "ALPHA": ["references/${leaf}"],`,
+    '}',
+    '```',
+    '',
+  ].join('\n');
 }
 
 function regenerateManifest(hubRoot) {

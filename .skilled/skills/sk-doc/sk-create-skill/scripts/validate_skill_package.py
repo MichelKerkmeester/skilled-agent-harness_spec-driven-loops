@@ -15,7 +15,7 @@ from typing import Dict, List, Optional
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'shared' / 'scripts'))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from validation_switch import exit_if_validation_off  # type: ignore  # noqa: E402
-from package_skill import skill_folder_id  # type: ignore  # noqa: E402
+from package_skill import parse_routing_shape, skill_folder_id  # type: ignore  # noqa: E402
 
 
 COMPILED_ROUTING_MARKERS = (
@@ -65,14 +65,32 @@ def run_check(name: str, command: List[str]) -> Dict[str, object]:
     }
 
 
+def compiled_routing_directive_text(skill_path: Path) -> str:
+    """Return the authored text that carries the compiled-routing directive.
+
+    The sibling router owns the machine router once it declares a
+    ``## MACHINE ROUTER`` section, so a skill that has moved its router is read
+    there; one still carrying that section in ``SKILL.md`` reads as before.
+    """
+    skill_content = (skill_path / 'SKILL.md').read_text(encoding='utf-8')
+    router_file = skill_path / 'ROUTER.md'
+    if router_file.is_file():
+        router_content = router_file.read_text(encoding='utf-8')
+        appendix = parse_routing_shape(router_content).appendix
+        if appendix is not None:
+            return '\n'.join(
+                router_content.split('\n')[appendix.body_from:appendix.body_to]
+            )
+    return skill_content
+
+
 def check_compiled_routing_state(
     skill_path: Path,
     opencode_root: Optional[Path],
 ) -> Dict[str, object]:
     """Verify the generated directive and canonical manifest readiness state."""
-    skill_md = skill_path / 'SKILL.md'
     try:
-        skill_content = skill_md.read_text(encoding='utf-8')
+        skill_content = compiled_routing_directive_text(skill_path)
     except (OSError, UnicodeError) as error:
         return {
             'name': 'compiled routing readiness',

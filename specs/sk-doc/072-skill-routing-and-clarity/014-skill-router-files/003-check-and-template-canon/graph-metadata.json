@@ -34,28 +34,28 @@
       "keeps"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-doc/leaf-manifest.json",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
       ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/routing-shape-debt.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/fixtures/routing-shape-known-debt-frozen.json",
-      ".skilled/skills/sk-doc/scripts/tests/test_routing_shape.py",
-      ".skilled/skills/sk-doc/scripts/tests/test_package_skill_regressions.py",
-      ".skilled/skills/sk-doc/scripts/tests/test_create_skill_contract.py",
-      ".skilled/commands/doctor/scripts/tests/parent-skill-check-routing-shape.test.cjs",
-      ".skilled/commands/doctor/scripts/tests/parent-skill-check-root-router.test.cjs",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs"
+      ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py",
+      ".skilled/bin/lib/compiled-route-manifest.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+      ".skilled/skills/sk-doc/leaf-manifest.json",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/manual-testing-playbook.md"
     ],
     "entities": [
       {
@@ -89,12 +89,6 @@
         "source": "derived"
       },
       {
-        "name": "leaf-manifest.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-doc/leaf-manifest.json",
-        "source": "derived"
-      },
-      {
         "name": "package_skill.py",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
@@ -125,6 +119,12 @@
         "source": "derived"
       },
       {
+        "name": "routing-shape-debt.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/routing-shape-debt.cjs",
+        "source": "derived"
+      },
+      {
         "name": "routing-shape-known-debt.json",
         "kind": "config",
         "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json",
@@ -137,45 +137,45 @@
         "source": "derived"
       },
       {
-        "name": "test_routing_shape.py",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/scripts/tests/test_routing_shape.py",
+        "name": "skill-router-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md",
         "source": "derived"
       },
       {
-        "name": "test_package_skill_regressions.py",
+        "name": "init_skill.py",
         "kind": "file",
-        "path": ".skilled/skills/sk-doc/scripts/tests/test_package_skill_regressions.py",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py",
         "source": "derived"
       },
       {
-        "name": "test_create_skill_contract.py",
+        "name": "compiled-route-manifest.cjs",
         "kind": "file",
-        "path": ".skilled/skills/sk-doc/scripts/tests/test_create_skill_contract.py",
+        "path": ".skilled/bin/lib/compiled-route-manifest.cjs",
         "source": "derived"
       },
       {
-        "name": "parent-skill-check-routing-shape.test.cjs",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/tests/parent-skill-check-routing-shape.test.cjs",
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "parent-skill-check-root-router.test.cjs",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/tests/parent-skill-check-root-router.test.cjs",
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/leaf-manifest.json",
         "source": "derived"
       },
       {
-        "name": "root-router-contract.test.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs",
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
         "source": "derived"
       },
       {
-        "name": "skill-root-metadata-contract.test.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs",
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The canon keeps the machine router inside `SKILL.md`",
     "created_at": "2026-10-29T07:52:42Z",
-    "last_save_at": "2026-10-29T09:17:59.499Z",
+    "last_save_at": "2026-10-29T12:06:06.303Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:92eddc805797b67430d427772755191cf13fca7746ebcb3a3c1ed8dd15508635",
+    "source_fingerprint": "sha256:b1fc4fe87f641bfb60b8c6a5460853608c5e7bcc80819da3a25b235c11bac9a5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "498001d1011c243a96b2ae4322c7e792f3eb9029de01f1df78e0ba48048b737e",
-      "plan.md": "af0abd8b5cc3b8a02fef1d109210ce2c8331174bb77754e2bec1ce5f37192e70",
-      "tasks.md": "0bab8d96763f7558b3d6b2ee3e8f160161ff080c33b93358e85cb42c02d09e02",
-      "implementation-summary.md": "b091c7c818b1fad81888c33a1c3101d298471ee9f0126efc7b9524ff1138cfc2"
+      "spec.md": "43dc2c04dc656a33859ce74d5c55acef5bce82bb68c64faf34851bef818b5d32",
+      "plan.md": "35bd2e95e4995d2aa4fb8536d069ad59ae350f093093bca68d389debce23e427",
+      "tasks.md": "a50038065780156587ddc4167ccf4fd26de386750df47433c00e68b3f719842c",
+      "implementation-summary.md": "3d302b1d5e28e61c0896f15accb80f1b2e01dca3ad523e67a571c473f50c5041"
     },
     "last_active_at": null
   }

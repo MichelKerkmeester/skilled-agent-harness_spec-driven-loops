@@ -9,7 +9,7 @@ trigger_phrases:
   - "vocabulary class ownership"
 importance_tier: important
 contextType: implementation
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # Parent Hub Router Schema
@@ -336,7 +336,7 @@ It validates:
 
 Treat check 5 warnings as schema drift. The parent hub may still route during migration, but the published contract is the shape above.
 
-`parent-skill-check` check 12 is the enforcement point for the root `ROUTER.md` two-state contract: the shared `root-router-contract.cjs` library validates the state declaration, stage-two map shape, root `SKILL.md` pointer, legacy coexistence, and typed leaf membership, and every failure reports a stable RRC code.
+`parent-skill-check` check 12 is the enforcement point for the `ROUTER.md` contract: the shared `root-router-contract.cjs` library validates the state declaration, stage-two map shape, the root `SKILL.md` pointer, legacy coexistence, and typed leaf membership, and every failure reports a stable RRC code. The gate runs for a hub root, a standalone skill root and every mode packet a hub declares, and its messages name the skill it checked. A standalone skill or a packet declares `router_state: active` with its own non-empty maps, because `stage1-only` is a hub state with no mode registry to stage against.
 
 ---
 

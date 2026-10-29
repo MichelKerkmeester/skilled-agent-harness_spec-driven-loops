@@ -2,7 +2,7 @@
 name: "{{HUB_NAME}}"
 description: TODO hub description — routes the {{MODE}} workflow packet via mode-registry.json (fill in ≤130 chars).
 allowed-tools: "{{ALLOWED_TOOLS}}"
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # {{HUB_TITLE}}
@@ -23,10 +23,10 @@ Do not put packet-specific workflow logic in this hub.
 
 Stage one picks the mode: `hub-router.json` scores the request and `mode-registry.json`
 names the packet that `workflowMode` resolves to. Stage two picks the first leaves: the root
-`ROUTER.md` maps the selected mode's intent to the packet-local resources it loads first.
+[`ROUTER.md`](./ROUTER.md) maps the selected mode's intent to the packet-local resources it loads first.
 The initial registry contains one mode, `{{MODE}}`, which routes to `{{PACKET}}/SKILL.md`.
 A request no registered mode matches returns `UNKNOWN_FALLBACK`, never a silent default.
-The agent runs the compiled-routing directive in the final MACHINE ROUTER section first.
+The agent runs the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) first.
 
 ---
 
@@ -73,10 +73,11 @@ This is the hub's only glossary. Its packets link here instead of defining routi
 
 ## 5. REFERENCES
 
-- `ROUTER.md`: stage-two control document, `stage1-only` on a fresh scaffold.
+- [`ROUTER.md`](./ROUTER.md): stage-two control document, `stage1-only` on a fresh scaffold.
 - `mode-registry.json`: workflow packet registry and tool surface.
 - `hub-router.json`: routing policy, signals and vocabulary.
 - `{{PACKET}}/SKILL.md`: the initial workflow packet contract.
+- `{{PACKET}}/ROUTER.md`: the packet's own machine router.
 
 ---
 
@@ -93,31 +94,3 @@ This is the hub's only glossary. Its packets link here instead of defining routi
 - Inputs: requests routed to the `{{HUB_NAME}}` hub.
 - Routing: `hub-router.json` selects a `workflowMode` registered in `mode-registry.json`.
 - Outputs: the selected packet's workflow result.
-
----
-
-## 8. MACHINE ROUTER
-
-> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
-> ```bash
-> node .skilled/bin/compiled-route.cjs --hub {{HUB_NAME}} --prompt "<task>"
-> ```
-> Follow the returned decision: `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the registry routing in SMART ROUTING. The front door self-gates on serving-authority. Compiled routing is now the default for `{{HUB_NAME}}`. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide. That variable is the explicit kill-switch.
-
-A fresh `{{HUB_NAME}}` ships without a compiled activation manifest, so the directive above returns the legacy sentinel until the hub is activated.
-
-The compiled router reads the fallback checklist below. The hub's leaf routing lives in the root ROUTER.md.
-
-```python
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "Name the requested workflow outcome.",
-    "Name the target component or document.",
-    "Confirm whether the request may mutate workspace files.",
-]
-UNKNOWN_FALLBACK = {
-    "load_level": "UNKNOWN_FALLBACK",
-    "needs_disambiguation": True,
-    "resources": [],
-    "checklist": UNKNOWN_FALLBACK_CHECKLIST,
-}
-```

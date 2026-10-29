@@ -12,9 +12,12 @@
  *
  * The fleet assertions run against the real skills tree rather than a fixture
  * so the committed contract cannot drift away from the fleet it governs: if a
- * root changes class or stops conforming, this test fails before any consumer
- * notices. Negative cases use synthetic roots in a temp dir, since the point is
- * to prove the gate rejects shapes that must never reach the fleet.
+ * root changes class or stops carrying its required files, this test fails
+ * before any consumer notices. A standalone root's missing sibling router is
+ * the one expected migration state, recorded in the routing-shape ledger and
+ * enforced by the gate, so the shape assertion tolerates only that finding.
+ * Negative cases use synthetic roots in a temp dir, since the point is to
+ * prove the gate rejects shapes that must never reach the fleet.
  */
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -58,13 +61,57 @@ const EXPECTED_CLASSES = {
 let tmpRoot = null;
 const HEALTHY_INTENT_SIGNALS = Array.from({ length: 8 }, (_value, index) => `fixture signal ${index + 1}`);
 
+// A standalone fixture root owns a sibling router with one active intent that
+// selects its one reference leaf, so the default fixture satisfies the canon.
+const STANDALONE_ROUTER = [
+  '---',
+  'title: fixture standalone router',
+  'version: 1.0.0.0',
+  'router_state: active',
+  'skill_pointer: SKILL.md',
+  '---',
+  '',
+  '# Fixture Standalone Router',
+  '',
+  '## 1. OVERVIEW',
+  '',
+  'The fixture skill routes one reference leaf.',
+  '',
+  '## 2. INTENT MODEL',
+  '',
+  '- **FIXTURE** — the reference an intent request loads.',
+  '',
+  '## 3. MACHINE-READABLE ROUTER',
+  '',
+  '```python',
+  'DEFAULT_RESOURCE = []',
+  '',
+  'INTENT_SIGNALS = {',
+  '    "FIXTURE": {"weight": 4, "keywords": ["fixture"]},',
+  '}',
+  '',
+  'RESOURCE_MAP = {',
+  '    "FIXTURE": ["references/a.md"],',
+  '}',
+  '',
+  'SHARED_CONTROL_RESOURCES = []',
+  '```',
+  '',
+].join('\n');
+
 function makeTmpSkillsDir() {
   if (!tmpRoot) tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'skill-root-contract-'));
   return fs.mkdtempSync(path.join(tmpRoot, 'skills-'));
 }
 
-/** Build a synthetic skill root with the named metadata files present. */
-function makeRoot(skillsDir, skillId, files) {
+/**
+ * Build a synthetic skill root with the named metadata files present.
+ *
+ * A fixture that declares neither half of the hub discriminator is a
+ * standalone root, and the canon requires a sibling router on every root, so
+ * it gets the fixture router unless it supplies its own or opts out.
+ */
+function makeRoot(skillsDir, skillId, files, options = {}) {
   const dir = path.join(skillsDir, skillId);
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, contract.SKILL_MARKER), `# ${skillId}\n`);
@@ -88,6 +135,11 @@ function makeRoot(skillsDir, skillId, files) {
       };
     }
     fs.writeFileSync(full, typeof content === 'string' ? content : `${JSON.stringify(content, null, 2)}\n`);
+  }
+  const declaresHub = Boolean(files && (files['mode-registry.json'] || files['hub-router.json']));
+  const suppliesRouter = Boolean(files && Object.hasOwn(files, 'ROUTER.md'));
+  if (options.standaloneRouter !== false && !declaresHub && !suppliesRouter) {
+    fs.writeFileSync(path.join(dir, 'ROUTER.md'), STANDALONE_ROUTER);
   }
   return dir;
 }
@@ -164,11 +216,25 @@ function testHubRequiresItsFullSet() {
 function testStandaloneRequiresItsFullSet() {
   const bare = contract.evaluateRoot('some-standalone', { 'graph-metadata.json': true });
   const files = bare.violations.map((v) => v.file).sort();
-  assert.deepEqual(files, ['leaf-aliases.json', 'leaf-manifest.config.json', 'leaf-manifest.json']);
+  assert.deepEqual(files, ['ROUTER.md', 'leaf-aliases.json', 'leaf-manifest.config.json', 'leaf-manifest.json']);
   // Generated absences are reported under their own code so --fix knows which
-  // findings it is allowed to resolve by writing.
+  // findings it is allowed to resolve by writing. The router is authored, so
+  // it stays a required-file finding.
   const generated = bare.violations.filter((v) => v.code === 'MISSING_GENERATED_FILE').map((v) => v.file).sort();
   assert.deepEqual(generated, ['leaf-aliases.json', 'leaf-manifest.json']);
+  const router = bare.violations.find((v) => v.file === 'ROUTER.md');
+  assert.equal(router.code, 'MISSING_REQUIRED_FILE');
+}
+
+function testStandaloneFullSetPasses() {
+  const result = contract.evaluateRoot('some-standalone', {
+    'graph-metadata.json': true,
+    'leaf-manifest.config.json': true,
+    'ROUTER.md': true,
+    'leaf-manifest.json': true,
+    'leaf-aliases.json': true,
+  });
+  assert.deepEqual(result.violations, []);
 }
 
 function testForbiddenFilesAreRejectedPerClass() {
@@ -190,6 +256,7 @@ function testForbiddenFilesAreRejectedPerClass() {
     'leaf-manifest.config.json': true,
     'leaf-manifest.json': true,
     'leaf-aliases.json': true,
+    'ROUTER.md': true,
     'description.json': true,
   });
   assert.deepEqual(codesOf(standaloneWithDescription), ['FORBIDDEN_FILE']);
@@ -201,6 +268,7 @@ function testForbiddenFilesAreRejectedPerClass() {
     'leaf-manifest.config.json': true,
     'leaf-manifest.json': true,
     'leaf-aliases.json': true,
+    'ROUTER.md': true,
     'command-metadata.json': true,
   });
   assert.deepEqual(codesOf(standaloneWithCommands), ['FORBIDDEN_FILE']);
@@ -257,13 +325,22 @@ function testFleetDiscoveryUsesTheAuthoredMarker() {
   assert.deepEqual(roots, Object.keys(EXPECTED_CLASSES).sort());
 }
 
-function testEveryFleetRootConformsToItsExpectedClass() {
+function testEveryFleetRootMeetsItsClassShape() {
   for (const [skillId, expectedClass] of Object.entries(EXPECTED_CLASSES)) {
-    const result = gate.checkRoot(path.join(SKILLS_DIR, skillId));
+    const presence = gate.readPresence(path.join(SKILLS_DIR, skillId));
+    const result = contract.evaluateRoot(skillId, presence);
     assert.equal(result.skillClass, expectedClass, `${skillId} class`);
+    // The router requirement is the one canon change an unmoved standalone
+    // root cannot meet yet; the ledger records it and the fleet gate enforces
+    // the file until the skill moves.
+    const unexpected = result.violations.filter((violation) => !(
+      expectedClass === contract.CLASS_STANDALONE
+      && violation.code === 'MISSING_REQUIRED_FILE'
+      && violation.file === 'ROUTER.md'
+    ));
     assert.deepEqual(
-      result.violations, [],
-      `${skillId} must conform: ${result.violations.map((v) => v.message).join('; ')}`,
+      unexpected, [],
+      `${skillId} must meet its class shape: ${unexpected.map((v) => v.message).join('; ')}`,
     );
   }
 }
@@ -753,18 +830,88 @@ function testGateRejectsNonDirectorySkillsDir() {
   assert.equal(code, 2);
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 6c. ROUTER MIGRATION DEBT
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** Point the shared ledger reader at a fixture ledger for one check. */
+function withDebtLedger(entries, fn) {
+  const dir = makeTmpSkillsDir();
+  const file = path.join(dir, 'routing-shape-known-debt.json');
+  fs.writeFileSync(file, `${JSON.stringify({
+    maxSmartRoutingLines: 12,
+    maxSmartRoutingWords: 180,
+    debt: entries,
+  }, null, 2)}\n`);
+  const previous = process.env.ROUTING_SHAPE_DEBT_FILE;
+  process.env.ROUTING_SHAPE_DEBT_FILE = file;
+  try {
+    return fn();
+  } finally {
+    if (previous === undefined) delete process.env.ROUTING_SHAPE_DEBT_FILE;
+    else process.env.ROUTING_SHAPE_DEBT_FILE = previous;
+  }
+}
+
+/** A conforming standalone root whose sibling router is still missing. */
+function makeUnmovedStandalone(skillsDir, skillId) {
+  const dir = makeRoot(skillsDir, skillId, {
+    'graph-metadata.json': { skill_id: skillId },
+    'leaf-manifest.config.json': { workflowMode: skillId },
+    'references/a.md': '# a\n',
+  }, { standaloneRouter: false });
+  withDebtLedger({}, () => gate.checkRoot(dir, { fix: true }));
+  return dir;
+}
+
+function testGateRequiresRouterWithoutRecordedDebt() {
+  const skillsDir = makeTmpSkillsDir();
+  const dir = makeUnmovedStandalone(skillsDir, 'router-missing');
+  const result = withDebtLedger({}, () => gate.checkRoot(dir));
+  assert.ok(codesOf(result).includes('MISSING_REQUIRED_FILE'), JSON.stringify(result.violations));
+  assert.ok(codesOf(result).includes('RRC-001'), JSON.stringify(result.violations));
+  assert.equal(result.notes.some((note) => note.code === 'RS-004'), false);
+}
+
+function testGateToleratesRouterRecordedAsDebt() {
+  const skillsDir = makeTmpSkillsDir();
+  const dir = makeUnmovedStandalone(skillsDir, 'router-debt');
+  const result = withDebtLedger({
+    'router-debt': { lines: 0, words: 0, machineBlocks: 1, codes: ['RS-002', 'RS-004'] },
+  }, () => gate.checkRoot(dir));
+  assert.equal(result.status, 'pass', JSON.stringify(result.violations));
+  assert.ok(!codesOf(result).includes('MISSING_REQUIRED_FILE'));
+  assert.ok(!codesOf(result).includes('RRC-001'));
+  const note = result.notes.find((entry) => entry.code === 'RS-004');
+  assert.ok(note, JSON.stringify(result.notes));
+  assert.match(note.message, /router-debt/);
+}
+
+function testGateRejectsRouterDebtWithoutTheRouterCode() {
+  // Length debt alone never excuses a missing router: the entry must record
+  // the code the missing file would raise.
+  const skillsDir = makeTmpSkillsDir();
+  const dir = makeUnmovedStandalone(skillsDir, 'router-length-debt');
+  const result = withDebtLedger({
+    'router-length-debt': { lines: 0, words: 0, machineBlocks: 1, codes: ['RS-001'] },
+  }, () => gate.checkRoot(dir));
+  assert.ok(codesOf(result).includes('MISSING_REQUIRED_FILE'));
+  assert.ok(codesOf(result).includes('RRC-001'));
+}
+
 try {
   testDiscriminatorDecidesClass();
   testClassificationIgnoresGeneratedOutput();
   testPresenceAcceptsIterableOrMap();
   testHubRequiresItsFullSet();
   testStandaloneRequiresItsFullSet();
+  testStandaloneFullSetPasses();
   testForbiddenFilesAreRejectedPerClass();
   testCommandMetadataIsUniformAcrossHubs();
   testGeneratedIsClassSensitive();
   testLegalFilesForClass();
   testFleetDiscoveryUsesTheAuthoredMarker();
-  testEveryFleetRootConformsToItsExpectedClass();
+  testEveryFleetRootMeetsItsClassShape();
   testFleetAliasProjectionsAreIdentityForStandaloneRoots();
   testHubAliasesStayAuthored();
   testGateFlagsUnclassifiableRoot();
@@ -796,6 +943,9 @@ try {
   testCommandSchemaRejectsWithinEntryDuplicateSignal();
   testFindSkillRootsSkipsPrivateSkills();
   testGateRejectsNonDirectorySkillsDir();
+  testGateRequiresRouterWithoutRecordedDebt();
+  testGateToleratesRouterRecordedAsDebt();
+  testGateRejectsRouterDebtWithoutTheRouterCode();
 } finally {
   if (tmpRoot) fs.rmSync(tmpRoot, { recursive: true, force: true });
 }

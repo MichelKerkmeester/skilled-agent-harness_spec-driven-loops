@@ -2,7 +2,7 @@
 name: "{{PACKET_NAME}}"
 description: TODO — the primary workflow packet for the {{HUB_NAME}} hub (fill in ≤130 chars).
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # {{PACKET_TITLE}}
@@ -24,13 +24,14 @@ Do not invoke it as a separate advisor identity. Routing belongs to the parent h
 The parent hub resolves this packet through `mode-registry.json`: `hub-router.json` scores the
 request, the winning `workflowMode` names this packet, and the hub loads this `SKILL.md` first.
 
-The hub's root `ROUTER.md` names this packet's first leaves, so leaf selection stays in the hub
-router rather than in this file. When the workflow grows, the packet's own `references/` and
-`assets/` hold the optional material those leaves name, and nothing loads before a leaf selects it.
+The hub's root `ROUTER.md` stops at the packet: it names this packet and its first leaves, and the
+packet's own `ROUTER.md` maps the intents that pick among the material this folder holds. That file,
+not the hub router, is where a packet-local resource selection is decided.
 
 A request that matches no registered mode returns `UNKNOWN_FALLBACK`, never a silent default.
 That fallback asks for disambiguation instead of guessing a packet.
-The machine router is the final MACHINE ROUTER section.
+The machine router, its intent signals and its resource map live in
+[`ROUTER.md`](./ROUTER.md). Read that file before loading a packet-local resource.
 
 ---
 
@@ -67,6 +68,7 @@ The machine router is the final MACHINE ROUTER section.
 
 ## 5. REFERENCES
 
+- `ROUTER.md`: this packet's machine router.
 - `README.md`: packet overview.
 - `../mode-registry.json`: authoritative packet registration.
 - `../hub-router.json`: parent routing policy.
@@ -85,47 +87,3 @@ The machine router is the final MACHINE ROUTER section.
 
 - Input: requests routed from the `{{HUB_NAME}}` hub.
 - Output: the verified primary workflow result.
-
----
-
-## 8. MACHINE ROUTER
-
-The router below selects packet-local resources when the workflow grows. It stays illustrative until the selection logic is authored.
-
-```python
-from pathlib import Path
-
-SKILL_ROOT = Path(__file__).resolve().parent
-UNKNOWN_FALLBACK = {
-    "load_level": "UNKNOWN_FALLBACK",
-    "needs_disambiguation": True,
-    "resources": [],
-}
-
-def discover_markdown_resources() -> set[str]:
-    return {
-        path.relative_to(SKILL_ROOT).as_posix()
-        for path in SKILL_ROOT.rglob("*.md")
-        if path.is_file()
-    }
-
-def _guard_in_skill(relative_path: str) -> str:
-    resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)
-    if resolved.suffix.lower() != ".md":
-        raise ValueError("Only packet-local markdown resources are routable")
-    return resolved.relative_to(SKILL_ROOT).as_posix()
-
-def route_resources(request):
-    inventory = discover_markdown_resources()
-    selected = select_resources_for_request(request, inventory)
-    if not selected:
-        return UNKNOWN_FALLBACK
-    return {
-        "resources": [
-            _guard_in_skill(path)
-            for path in selected
-            if _guard_in_skill(path) in inventory
-        ]
-    }
-```

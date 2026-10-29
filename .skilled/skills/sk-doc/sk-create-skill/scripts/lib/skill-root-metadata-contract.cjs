@@ -23,7 +23,9 @@
  *       a mode registry AND a hub router, and it projects one advisor identity
  *       through description.json.
  *   S — standalone routed-resource skill. One workflow mode, no registry, so it
- *       declares that single mode in a leaf-manifest config instead. Its
+ *       declares that single mode in a leaf-manifest config instead. It owns a
+ *       sibling ROUTER.md exactly as a hub does: the router is the skill's only
+ *       skill-local map, and no mode registry exists to hold one for it. Its
  *       identity reaches the advisor through graph metadata alone; nothing in
  *       production reads a skill-root description.json, so requiring one here
  *       would only add prose no consumer consults.
@@ -68,8 +70,10 @@ const CLASS_STANDALONE = 'S';
 const DISCRIMINATOR_FILES = Object.freeze(['mode-registry.json', 'hub-router.json']);
 
 /**
- * Required sets. `leaf-manifest.json` appears in both because it is generated
- * output either way — only its input differs (registry for H, config for S).
+ * Required sets. `ROUTER.md` is required for both classes because every skill
+ * root owns the sibling router that holds its machine-readable map.
+ * `leaf-manifest.json` appears in both because it is generated output either
+ * way — only its input differs (registry for H, config for S).
  */
 const REQUIRED_BY_CLASS = Object.freeze({
   [CLASS_HUB]: Object.freeze([
@@ -83,6 +87,7 @@ const REQUIRED_BY_CLASS = Object.freeze({
   [CLASS_STANDALONE]: Object.freeze([
     'graph-metadata.json',
     'leaf-manifest.config.json',
+    'ROUTER.md',
     'leaf-manifest.json',
     'leaf-aliases.json',
   ]),

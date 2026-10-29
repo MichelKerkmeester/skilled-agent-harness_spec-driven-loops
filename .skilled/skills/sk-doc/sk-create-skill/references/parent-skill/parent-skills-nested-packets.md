@@ -9,7 +9,7 @@ trigger_phrases:
   - "surface packet workflow packet"
 importance_tier: normal
 contextType: implementation
-version: 1.2.8.0
+version: 1.2.9.0
 ---
 
 # Parent Skills with Nested Mode Packets
@@ -38,9 +38,11 @@ The method has one physical shape:
 | `parent-hub/manual-testing-playbook/` | Manual test cases |
 | `parent-hub/benchmark/` | Benchmark baseline (parent-skill-check 9b warns if absent) |
 | `<workflow-packet>/SKILL.md` | Workflow instructions |
+| `<workflow-packet>/ROUTER.md` | Workflow router |
 | `<workflow-packet>/README.md` | Workflow overview |
 | `<workflow-packet>/changelog/` | Workflow changelogs |
 | `<surface-packet>/SKILL.md` | Surface instructions |
+| `<surface-packet>/ROUTER.md` | Surface router |
 | `<surface-packet>/README.md` | Surface overview |
 | `<surface-packet>/references/` | Surface evidence |
 | `<surface-packet>/assets/` | Surface assets |
@@ -63,8 +65,9 @@ Core rules:
   `ROUTER.md` is a control-plane companion, not a leaf, advisor identity or class discriminator.
 - **Named extensions only**: optional behavior is declared in top-level `extensions`; it never changes the physical layout.
 
-A hub has one root `ROUTER.md`, and a packet has none.
-Packets use short SMART ROUTING prose and keep any machine router in a final `## MACHINE ROUTER` section.
+Every hub and every packet owns the `ROUTER.md` in its own folder.
+The hub root `ROUTER.md` carries the hub's stage-two control document, and each packet's `ROUTER.md` carries that packet's machine router under a final `## MACHINE ROUTER` heading.
+Packets use short SMART ROUTING prose and link to their own `ROUTER.md`.
 The hub's only `### Terms` glossary sits under HOW IT WORKS.
 Use the [Prose Clarity Checklist](../skill/creation-workflow.md#prose-clarity-checklist) when you write packet prose.
 
@@ -150,6 +153,7 @@ See [`parent-skill-root-router-template.md`](../../assets/parent-skill/parent-sk
 Do not move the machine block into the hub `SKILL.md`. Replay would treat it as the hub router and lose the mode projection.
 Do not move it into `hub-router.json`. The schema's handoff-ambiguity rule forbids that.
 A hub `SKILL.md` links here instead of repeating this explanation.
+A packet follows the same rule in its own folder, and the packet `SKILL.md` links to its `ROUTER.md`.
 
 ---
 
@@ -313,7 +317,7 @@ Naming policy:
 Companion file policy:
 
 - Every hub has `SKILL.md`, `mode-registry.json`, `hub-router.json`, root `ROUTER.md`, `description.json`, `graph-metadata.json`, generated `leaf-manifest.json`, `changelog/`, `manual-testing-playbook/`, and `benchmark/`. Add authored `command-metadata.json` only when the hub owns slash commands.
-- Every packet has `README.md`, `SKILL.md`, and `changelog/`.
+- Every packet has `README.md`, `SKILL.md`, `ROUTER.md`, and `changelog/`.
 - Surface packets also carry `references/` and `assets/` when they need evidence material.
 - A class-H hub may carry authored `command-metadata.json` when it owns slash commands. The file has one entry per owned command and is validated when present; omit it for a command-less hub. See [skill-root-metadata-contract.md](../shared/skill-root-metadata-contract.md) for the complete matrix.
 - Shared directories may hold cross-packet vocabulary or synthesis, but never per-mode workflow logic and never their own `graph-metadata.json` or `description.json`.

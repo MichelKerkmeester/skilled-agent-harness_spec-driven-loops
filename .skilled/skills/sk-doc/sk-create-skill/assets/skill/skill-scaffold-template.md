@@ -2,7 +2,7 @@
 name: "{{SKILL_NAME}}"
 description: TODO one-line description of what this skill does and when to use it (verb + domain noun + trigger phrase)
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # {{SKILL_TITLE}}
@@ -41,10 +41,12 @@ pulls in afterwards.]
 [TODO: Name the signal that looks related but belongs to another skill, so the router refuses
 it instead of loading a near-miss resource.]
 
-Resources live under `references/`, `assets/` and `scripts/`. The router selects from that
-inventory and loads nothing before a signal matches.
+Resources live under `references/`, `assets/` and `scripts/`. The router discovers them at load
+time, guards every path, and loads nothing before a signal matches.
 
-The machine router is the final MACHINE ROUTER section.
+The machine router, its intent signals and resource map live in [`ROUTER.md`](./ROUTER.md), which
+calls `discover_markdown_resources()` and `_guard_in_skill()` and returns `UNKNOWN_FALLBACK` on no
+match. Read it before loading a skill-local resource.
 
 ---
 
@@ -128,54 +130,3 @@ The task is complete when:
 ### Related Workflows
 
 - [TODO: Name adjacent skills or workflows and their boundaries.]
-
----
-
-## 8. MACHINE ROUTER
-
-The router below selects the resources a request loads. It stays illustrative until the selection logic is authored.
-
-```python
-from pathlib import Path
-
-SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-UNKNOWN_FALLBACK = {
-    "load_level": "UNKNOWN_FALLBACK",
-    "needs_disambiguation": True,
-    "checklist": [
-        "Confirm the task intent",
-        "Provide one concrete input or expected output",
-    ],
-}
-
-def discover_markdown_resources() -> set[str]:
-    docs = []
-    for base in RESOURCE_BASES:
-        if base.exists():
-            docs.extend(path for path in base.rglob("*.md") if path.is_file())
-    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
-
-def _guard_in_skill(relative_path: str) -> str:
-    resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)
-    if resolved.suffix.lower() != ".md":
-        raise ValueError("Only skill-local markdown resources are routable")
-    return resolved.relative_to(SKILL_ROOT).as_posix()
-
-def route_resources(request):
-    inventory = discover_markdown_resources()
-    selected = select_resources_for_request(request, inventory)
-    if not selected:
-        return {**UNKNOWN_FALLBACK, "resources": []}
-
-    loaded = []
-    for relative_path in selected:
-        guarded = _guard_in_skill(relative_path)
-        if guarded in inventory and guarded not in loaded:
-            load(guarded)
-            loaded.append(guarded)
-    return {"resources": loaded}
-```
-
-[TODO: Replace `select_resources_for_request` with domain-specific routing logic.]

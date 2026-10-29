@@ -6,11 +6,13 @@
 
 /**
  * Covers the root-router contract library end to end: every positive shape
- * passes, every one of the eight negative codes (RRC-001..RRC-008) fires on
+ * passes, every one of the nine negative codes (RRC-001..RRC-009) fires on
  * exactly the fixture meant to trigger it, path identity goes through the
  * leaf-resource contract rather than a private re-implementation, and the
  * hub-shared control carve-out only ever exempts a declared, mapped, on-disk
- * `shared/` path from typed-pair enforcement.
+ * `shared/` path from typed-pair enforcement. The hub, standalone and packet
+ * profiles each run the same contract, with the non-hub classes held to the
+ * active state and every non-hub finding naming its own target.
  */
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -52,6 +54,14 @@ const ON_DISK = new Set([
   'shared/references/a.md',
   'shared/references/shared-standard.md',
   'shared/references/never-mapped.md',
+  'references/standalone-a.md',
+  'references/standalone-b.md',
+  'references/packet-a.md',
+  'manual-testing-playbook/manual-testing-playbook.md',
+  'feature-catalog/feature-catalog.md',
+  // The same stem under a folder that does not match it is an ordinary
+  // document, so the package-index exemption must never reach these.
+  'assets/feature-catalog.md',
   'SKILL.md',
 ]);
 
@@ -88,6 +98,34 @@ function routerText(state, { intents, resources, defaults = '[]', pointer = 'SKI
     '```\n';
 }
 
+// A standalone root has no registry, so its manifest is its mode list and its
+// generated alias projection is the identity bridge for its local leaves.
+const STANDALONE_MODES = [{ workflowMode: 'standalone', packet: '.' }];
+const STANDALONE_MANIFEST = {
+  resourceContractVersion: 1,
+  modes: [{ workflowMode: 'standalone', packet: '.', leaves: ['references/standalone-a.md'] }],
+};
+const STANDALONE_ALIASES = [
+  { workflowMode: 'standalone', leafResourceId: 'references/standalone-a.md', diskPath: 'references/standalone-a.md' },
+];
+
+// A packet names its leaves packet-locally too, and its hub supplies the mode
+// that owns them; the manifest's registered leaf is the identity source, so a
+// packet router needs no authored alias bridge of its own.
+const PACKET_MODES = [{ workflowMode: 'alpha', packet: 'pack-a' }];
+const PACKET_MANIFEST = {
+  resourceContractVersion: 1,
+  modes: [{ workflowMode: 'alpha', packet: 'pack-a', leaves: ['references/packet-a.md'] }],
+};
+
+/** A one-intent active router that maps one local leaf path. */
+function leafRouterText(leafPath) {
+  return routerText('active', {
+    intents: '{\n    "ALPHA": {"weight": 4, "keywords": ["alpha"]},\n}',
+    resources: `{\n    "ALPHA": ["${leafPath}"],\n}`,
+  });
+}
+
 const ACTIVE_INTENTS = `{
     "ALPHA": {"weight": 4, "keywords": ["alpha"]},
     "BETA": {"weight": 4, "keywords": ["beta"]},
@@ -102,6 +140,30 @@ function validate(options) {
   return routerContract.validateRootRouter({
     declaredModes: DECLARED_MODES,
     manifest: MANIFEST,
+    resolveOnDisk: diskProbe,
+    ...options,
+  });
+}
+
+function validateStandalone(options) {
+  return routerContract.validateRootRouter({
+    targetClass: routerContract.TARGET_CLASS_STANDALONE,
+    targetName: 'sk-standalone',
+    declaredModes: STANDALONE_MODES,
+    manifest: STANDALONE_MANIFEST,
+    aliasEntries: STANDALONE_ALIASES,
+    resolveOnDisk: diskProbe,
+    ...options,
+  });
+}
+
+function validatePacket(options) {
+  return routerContract.validateRootRouter({
+    targetClass: routerContract.TARGET_CLASS_PACKET,
+    targetName: 'pack-a',
+    declaredModes: PACKET_MODES,
+    manifest: PACKET_MANIFEST,
+    manifest: PACKET_MANIFEST,
     resolveOnDisk: diskProbe,
     ...options,
   });
@@ -126,6 +188,44 @@ function testActivePositive() {
   const result = validate({
     routerText: routerText('active', { intents: ACTIVE_INTENTS, resources: ACTIVE_RESOURCES }),
   });
+  assert.equal(result.ok, true, JSON.stringify(result));
+  assert.equal(result.state, 'active');
+  assert.deepEqual(result.violations, []);
+}
+
+function testStandaloneActivePositive() {
+  const result = validateStandalone({ routerText: leafRouterText('references/standalone-a.md') });
+  assert.equal(result.ok, true, JSON.stringify(result));
+  assert.equal(result.state, 'active');
+  assert.deepEqual(result.violations, []);
+}
+
+function testStandaloneRoutesToItsPackageIndex() {
+  // The generator leaves a package index out of the manifest, so a standalone
+  // router that names one passes, and a hub router that names it still fails.
+  for (const page of ['manual-testing-playbook/manual-testing-playbook.md', 'feature-catalog/feature-catalog.md']) {
+    const routed = validateStandalone({ routerText: leafRouterText(page) });
+    assert.equal(routed.ok, true, JSON.stringify(routed.violations));
+    const hub = validate({ routerText: leafRouterText(page) });
+    assert.equal(hub.ok, false, JSON.stringify(hub.violations));
+  }
+}
+
+// The exemption is the index page of the folder it sits in, so the same stem
+// under any other folder is a document with no typed pair.
+function testStandaloneAssetsFeatureCatalogIsNotAPackageIndex() {
+  const result = validateStandalone({ routerText: leafRouterText('assets/feature-catalog.md') });
+  assert.deepEqual(codesOf(result), ['RRC-006'], JSON.stringify(result.violations));
+}
+
+// A packet owns no root directory to index, so it is never exempt either.
+function testPacketPackageIndexIsNotAPackageIndex() {
+  const result = validatePacket({ routerText: leafRouterText('feature-catalog/feature-catalog.md') });
+  assert.deepEqual(codesOf(result), ['RRC-006'], JSON.stringify(result.violations));
+}
+
+function testPacketActivePositive() {
+  const result = validatePacket({ routerText: leafRouterText('references/packet-a.md') });
   assert.equal(result.ok, true, JSON.stringify(result));
   assert.equal(result.state, 'active');
   assert.deepEqual(result.violations, []);
@@ -634,6 +734,62 @@ function testActiveMalformedDefaultResource() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// 5b. TARGET CLASSES: STANDALONE AND PACKET
+// ─────────────────────────────────────────────────────────────────────────────
+
+function testStandaloneActiveEmptyMaps() {
+  const result = validateStandalone({ routerText: routerText('active') });
+  assert.ok(codesOf(result).includes('RRC-004'), JSON.stringify(result.violations));
+}
+
+function testStandaloneStage1OnlyRejected() {
+  const result = validateStandalone({ routerText: routerText('stage1-only') });
+  assert.deepEqual(codesOf(result), ['RRC-002'], JSON.stringify(result.violations));
+  const message = result.violations[0].message;
+  assert.match(message, /^sk-standalone: /);
+  assert.match(message, /standalone skill/);
+  assert.doesNotMatch(message, /hub root/);
+}
+
+function testPacketStage1OnlyRejected() {
+  const result = validatePacket({ routerText: routerText('stage1-only') });
+  assert.deepEqual(codesOf(result), ['RRC-002'], JSON.stringify(result.violations));
+  const message = result.violations[0].message;
+  assert.match(message, /^pack-a: /);
+  assert.match(message, /mode packet/);
+  assert.doesNotMatch(message, /hub root/);
+}
+
+function testStandaloneMissingRouterNamesTarget() {
+  const result = validateStandalone({ routerText: null });
+  assert.deepEqual(codesOf(result), ['RRC-001'], JSON.stringify(result.violations));
+  assert.match(result.violations[0].message, /^sk-standalone: /);
+  assert.doesNotMatch(result.violations[0].message, /hub root/);
+}
+
+function testPacketMissingRouterNamesTarget() {
+  const result = validatePacket({ routerText: null });
+  assert.deepEqual(codesOf(result), ['RRC-001'], JSON.stringify(result.violations));
+  assert.match(result.violations[0].message, /^pack-a: /);
+  assert.doesNotMatch(result.violations[0].message, /hub root/);
+}
+
+function testNonHubFindingsNeverNameTheHubRoot() {
+  const result = validateStandalone({
+    routerText: routerText('active', {
+      intents: '{\n    "ALPHA": {"weight": 4, "keywords": ["alpha"]},\n}',
+      resources: '{\n    "ALPHA": ["shared/references/shared-standard.md"],\n}',
+      sharedControls: '["pack-a/references/a.md"]',
+      pointer: 'nested/SKILL.md',
+    }),
+  });
+  assert.ok(result.violations.length >= 2, JSON.stringify(result.violations));
+  const messages = result.violations.map((violation) => violation.message).join('\n');
+  assert.match(messages, /^sk-standalone: /m);
+  assert.doesNotMatch(messages, /hub root/);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // 6. RUN
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -687,6 +843,17 @@ testMappedResourcePathAbsolute();
 testSharedControlTraversal();
 testActiveMalformedIntentSignals();
 testActiveMalformedDefaultResource();
+testStandaloneActivePositive();
+testStandaloneRoutesToItsPackageIndex();
+testStandaloneAssetsFeatureCatalogIsNotAPackageIndex();
+testPacketPackageIndexIsNotAPackageIndex();
+testPacketActivePositive();
+testStandaloneActiveEmptyMaps();
+testStandaloneStage1OnlyRejected();
+testPacketStage1OnlyRejected();
+testStandaloneMissingRouterNamesTarget();
+testPacketMissingRouterNamesTarget();
+testNonHubFindingsNeverNameTheHubRoot();
 
 function testMissingProseSectionRaisesRRC009() {
   // A router with a valid machine block but no orienting prose still parses and

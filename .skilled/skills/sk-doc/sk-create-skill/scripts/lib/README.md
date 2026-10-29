@@ -5,7 +5,7 @@ trigger_phrases:
   - "create-skill library"
   - "leaf-resource contract"
   - "skill-root metadata contract"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Create-skill scripts lib
@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`lib/` contains pure libraries used by the create-skill generators and tests. Callers own filesystem access and pass validated data into these modules.
+`lib/` contains libraries used by the create-skill generators and tests. Callers own filesystem access and pass validated data into these modules. The ledger reader is the one exception, since the ledger is its whole input.
 
 ---
 
@@ -25,6 +25,7 @@ version: 1.0.0.0
 | `command-metadata-schema.cjs` | Validates command metadata fields, owner modes, routing signals and choreography order. |
 | `leaf-resource-contract.cjs` | Normalizes resource paths and workflow modes into unique typed leaf identities. |
 | `root-router-contract.cjs` | Validates the two-state root ROUTER.md contract (active / stage1-only) with stable negative codes. |
+| `routing-shape-debt.cjs` | Reads the routing-shape known-debt ledger into the effective SMART ROUTING limits and the per-skill entries still allowed an older shape. |
 | `s-class-config-defaults.json` | Stores defaults for skill-root class configuration. |
 | `skill-root-metadata-contract.cjs` | Classifies skill roots and derives required, forbidden, overlay and generated metadata sets. |
 
@@ -32,7 +33,7 @@ version: 1.0.0.0
 
 ## 3. BOUNDARIES
 
-The modules do not read or write the filesystem. Existence probes and package traversal remain in the caller scripts.
+The modules do not write the filesystem, and only the ledger reader reads a file. Existence probes and package traversal remain in the caller scripts.
 
 ---
 

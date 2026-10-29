@@ -4,20 +4,20 @@
 'use strict';
 
 /**
- * root-router-contract.cjs — pure validator for the two-state root ROUTER.md
- * contract every class-H parent hub must satisfy.
+ * root-router-contract.cjs — pure validator for the root ROUTER.md contract a
+ * parent hub, a standalone skill and a mode packet each must satisfy.
  *
- * Every parent hub owns one root control document, ROUTER.md, that declares
- * exactly one of two routing postures:
+ * Every skill root owns one router document, ROUTER.md, that declares one or
+ * two routing postures, depending on the target:
  *
- *   active      — the hub owns stage-two leaf selection. INTENT_SIGNALS and
+ *   active      — the target owns leaf selection. INTENT_SIGNALS and
  *                 RESOURCE_MAP must both be non-empty, their key sets must be
  *                 identical, and every mapped resource path must be a
- *                 hub-contained relative path that resolves on disk and
+ *                 root-contained relative path that resolves on disk and
  *                 dual-reads to a typed (workflowMode, leafResourceId) pair
  *                 registered in leaf-manifest.json, unless the path is
  *                 deliberately declared in SHARED_CONTROL_RESOURCES as a
- *                 hub-shared control document and thus exempted from the
+ *                 shared control document and thus exempted from the
  *                 typed-pair check. A path whose packet maps to several modes
  *                 (an N-to-1 fan-out) is registered when the mode that
  *                 actually owns the leaf declares it, not merely when the
@@ -26,13 +26,18 @@
  *   stage1-only — the hub owns no second stage. INTENT_SIGNALS, RESOURCE_MAP,
  *                 the stage-two DEFAULT_RESOURCE and SHARED_CONTROL_RESOURCES
  *                 must all be declared and empty, and routing delegates to
- *                 hub-router.json plus mode-registry.json.
+ *                 hub-router.json plus mode-registry.json. Only a hub may
+ *                 declare it; a standalone skill or packet has no mode
+ *                 registry to stage against, so both must declare active with
+ *                 their own non-empty maps.
  *
  * Both states require the root file itself, a root SKILL.md pointer that is
  * exactly `SKILL.md` and resolves, one four-part numeric version, and the
  * absence of the two legacy router locations. The hub-router.json
  * defaultResource needs no ROUTER.md entry — it is only ever rejected when it
- * literally names a legacy smart-router path.
+ * literally names a legacy smart-router path. A hub target keeps the wording
+ * its findings have always printed; every other target names itself and the
+ * skill root instead.
  *
  * Failures use one frozen negative code each (RRC-001..RRC-009); an unexpected
  * internal failure is surfaced by the caller as RRC-UNKNOWN with a nonzero
@@ -47,7 +52,8 @@
  * the deterministic replay or any scorer module — those stay frozen
  * evaluation bytes. Path identity is delegated to leaf-resource-contract.cjs,
  * the single conversion boundary from a packet-qualified or shared-alias
- * resource string to a typed pair.
+ * resource string to a typed pair; for a non-hub target, the manifest also
+ * supplies the mode that owns a bare local leaf path.
  *
  * No filesystem access happens here. Callers own reading the ROUTER.md,
  * mode-registry.json, leaf-aliases.json, leaf-manifest.json and hub-router.json
@@ -97,6 +103,15 @@ const { parseFrontmatter } = loadSharedFrontmatterParser();
 const VALID_STATES = Object.freeze(['active', 'stage1-only']);
 
 /**
+ * The target classes the contract distinguishes. A hub keeps the stage-one
+ * posture because it has a registry to delegate to; a standalone skill and a
+ * mode packet own their leaves directly, so both must declare active.
+ */
+const TARGET_CLASS_HUB = 'H';
+const TARGET_CLASS_STANDALONE = 'S';
+const TARGET_CLASS_PACKET = 'P';
+
+/**
  * The two legacy router locations a hub may still carry before migration.
  * Root ROUTER.md must not coexist with either one (dual-source ambiguity), and
  * no live default resource may literally name either one after migration.
@@ -112,6 +127,20 @@ const LEGACY_ROUTER_PATHS = Object.freeze([
  * there is a shape violation and is never exempted from typed-pair checks.
  */
 const SHARED_CONTROL_PREFIX = 'shared/';
+// The package-index docs the leaf-manifest generator leaves out of a standalone
+// manifest: each one is the navigation page of its own root directory, so a
+// standalone skill may route to it while no manifest ever lists it as a leaf.
+// The folder name must equal the file stem, because that pairing is what makes
+// the page the index of its own directory; the same stem under any other folder
+// is an ordinary document that still needs a typed leaf pair.
+const PACKAGE_INDEX_DOCS = new Set([
+  'feature-catalog/feature-catalog.md',
+  'manual-testing-playbook/manual-testing-playbook.md',
+]);
+
+function isPackageIndexDoc(raw) {
+  return PACKAGE_INDEX_DOCS.has(toPosix(raw));
+}
 
 /** The one legal root skill pointer: the hub's own root SKILL.md. */
 const ROOT_POINTER = 'SKILL.md';
@@ -456,6 +485,8 @@ function pushLegacyDefaultResidue(violations, hubDefaultResource, stageTwoDefaul
  *
  * @param {Object} args - Validation inputs; the caller owns all filesystem reads.
  * @param {string|null} [args.routerText] - ROUTER.md file contents, or null when the file is missing.
+ * @param {string} [args.targetClass] - 'H' for a hub, 'S' for a standalone skill, 'P' for a mode packet.
+ * @param {string|null} [args.targetName] - Label every non-hub finding names, usually the skill or packet path.
  * @param {Array<{workflowMode:string, packet:string}>} [args.declaredModes] - mode-registry.json modes.
  * @param {Array<{workflowMode:string, leafResourceId:string, diskPath:string}>} [args.aliasEntries] - leaf-aliases.json entries.
  * @param {Object|null} [args.manifest] - leaf-manifest.json object, or null when absent.
@@ -468,6 +499,8 @@ function pushLegacyDefaultResidue(violations, hubDefaultResource, stageTwoDefaul
  */
 function validateRootRouter({
   routerText = null,
+  targetClass = TARGET_CLASS_HUB,
+  targetName = null,
   declaredModes = [],
   aliasEntries = [],
   manifest = null,
@@ -478,6 +511,22 @@ function validateRootRouter({
   const resolve = typeof resolveOnDisk === 'function' ? resolveOnDisk : () => true;
   const violations = [];
   const stateInfo = { state: null };
+  const isHub = targetClass === TARGET_CLASS_HUB;
+  const targetNoun = targetClass === TARGET_CLASS_PACKET ? 'mode packet' : 'standalone skill';
+  const targetStates = isHub ? VALID_STATES : ['active'];
+  const targetLabel = typeof targetName === 'string' && targetName.length > 0 ? `${targetName}: ` : '';
+
+  // A hub keeps the wording its findings have always printed. A standalone
+  // skill or a packet is not a hub, so every finding names that target and
+  // speaks of the skill root instead.
+  const applyTargetWording = () => {
+    if (isHub) return;
+    for (const violation of violations) {
+      violation.message = `${targetLabel}${violation.message
+        .replace(/\bhub root\b/g, 'skill root')
+        .replace(/\bhub-contained\b/g, 'skill-contained')}`;
+    }
+  };
 
   if (routerText == null) {
     // Nothing to parse without the file; the default-residue fact is still
@@ -485,13 +534,16 @@ function validateRootRouter({
     // the missing file is always the primary finding.
     violations.push({
       code: CODES.MISSING_ROOT_ROUTER,
-      message: 'no root ROUTER.md at the hub root',
+      message: isHub
+        ? 'no root ROUTER.md at the hub root'
+        : 'no sibling ROUTER.md at the skill root',
     });
     pushLegacyDefaultResidue(violations, hubRouterDefaultResource, []);
+    applyTargetWording();
     return { ok: false, state: null, violations };
   }
 
-  // Dual-source ambiguity stops before any other reading: a hub carrying a
+  // Dual-source ambiguity stops before any other reading: a target carrying a
   // legacy router alongside its root router has two answers to "which router
   // owns stage two", so no migration decision may proceed from it.
   if (legacyFiles.length > 0) {
@@ -502,22 +554,29 @@ function validateRootRouter({
   }
 
   // State: the discriminator that decides which set of map rules applies.
+  // A non-hub target may only be active: stage one belongs to the hub, and a
+  // skill or packet that declared stage1-only would carry no routing decision.
   const frontmatter = extractFrontmatter(routerText);
   const stateValues = frontmatterValues(frontmatter, 'router_state');
   if (stateValues.length === 0) {
     violations.push({
       code: CODES.MALFORMED_STATE,
-      message: 'router_state is absent from the ROUTER.md frontmatter (must be active or stage1-only)',
+      message: `router_state is absent from the ROUTER.md frontmatter (must be ${targetStates.join(' or ')})`,
     });
   } else if (stateValues.length > 1) {
     violations.push({
       code: CODES.MALFORMED_STATE,
       message: `router_state is declared more than once: ${stateValues.join(', ')}`,
     });
+  } else if (!isHub && stateValues[0] === 'stage1-only') {
+    violations.push({
+      code: CODES.MALFORMED_STATE,
+      message: `router_state "stage1-only" is reserved for a hub; a ${targetNoun} ROUTER.md must declare active with its own non-empty maps`,
+    });
   } else if (!VALID_STATES.includes(stateValues[0])) {
     violations.push({
       code: CODES.MALFORMED_STATE,
-      message: `router_state ${JSON.stringify(stateValues[0])} is not one of ${VALID_STATES.join(', ')}`,
+      message: `router_state ${JSON.stringify(stateValues[0])} is not one of ${targetStates.join(', ')}`,
     });
   } else {
     stateInfo.state = stateValues[0];
@@ -547,11 +606,11 @@ function validateRootRouter({
 
   // SKILL.md pointer: the root pointer is a resolvable entry point in both
   // states. The value must be exactly the root SKILL.md name — a pointer to
-  // any other path would name a foreign or nested document as the hub entry
+  // any other path would name a foreign or nested document as the skill entry
   // point, and an unrestricted disk probe would resolve `..`/absolute segments
-  // outside the hub. A missing pointer, a non-root pointer, or a pointer that
-  // does not resolve on disk is the same failure because an unreadable hub
-  // entry point cannot back the router.
+  // outside the skill root. A missing pointer, a non-root pointer, or a
+  // pointer that does not resolve on disk is the same failure because an
+  // unreadable skill entry point cannot back the router.
   const pointerValues = frontmatterValues(frontmatter, 'skill_pointer');
   if (pointerValues.length === 0) {
     violations.push({
@@ -705,17 +764,32 @@ function validateRootRouter({
           continue;
         }
         if (sharedExemptions.has(raw)) continue;
+        // A standalone skill may route to its own package index. The generator
+        // excludes that page from the manifest by design, so demanding a typed
+        // pair for it would fail every fresh skill whose router starts there. A
+        // hub has no such page and a packet owns no root directory of its own,
+        // so neither class is ever exempt.
+        if (targetClass === TARGET_CLASS_STANDALONE && isPackageIndexDoc(raw)) continue;
         const dual = leafContract.dualReadLegacyResource({ raw, declaredModes, aliasEntries });
-        if (!dual.ok) {
+        // A non-hub target names its leaves from its own root, so a local path
+        // arrives without a packet prefix. Its manifest is the identity source:
+        // a path the manifest already registers under a mode is that mode's
+        // leaf, exactly as an authored alias would say.
+        const owners = isHub ? null : leafOwners.get(toPosix(raw));
+        const manifestOwner = owners && owners.size > 0 ? owners.values().next().value : null;
+        const pair = dual.ok
+          ? dual.pair
+          : (manifestOwner ? { workflowMode: manifestOwner, leafResourceId: toPosix(raw) } : null);
+        if (!pair) {
           violations.push({
             code: CODES.UNRESOLVED_LEAF,
-            message: `resource path ${JSON.stringify(raw)} (intent ${key}) resolves to no declared mode or authored alias pair`,
+            message: `resource path ${JSON.stringify(raw)} (intent ${key}) resolves to no declared mode, authored alias or manifest leaf pair`,
           });
           continue;
         }
-        const pairKey = leafContract.compositeKey(dual.pair);
+        const pairKey = leafContract.compositeKey(pair);
         if (!manifestKeys.has(pairKey)
-            && !manifestOwnsLeafForPacket({ pair: dual.pair, declaredModes, leafOwners })) {
+            && !manifestOwnsLeafForPacket({ pair, declaredModes, leafOwners })) {
           violations.push({
             code: CODES.UNRESOLVED_LEAF,
             message: `resource path ${JSON.stringify(raw)} (intent ${key}) maps to typed pair ${pairKey} that is not present in leaf-manifest.json`,
@@ -792,6 +866,8 @@ function validateRootRouter({
     }
   }
 
+  applyTargetWording();
+
   return { ok: violations.length === 0, state: stateInfo.state, violations };
 }
 
@@ -801,6 +877,9 @@ function validateRootRouter({
 
 module.exports = {
   VALID_STATES,
+  TARGET_CLASS_HUB,
+  TARGET_CLASS_STANDALONE,
+  TARGET_CLASS_PACKET,
   LEGACY_ROUTER_PATHS,
   SHARED_CONTROL_PREFIX,
   ROOT_POINTER,

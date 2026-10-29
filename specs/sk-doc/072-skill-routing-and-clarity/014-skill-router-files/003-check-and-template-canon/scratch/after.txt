@@ -1,0 +1,11 @@
+AFTER (final tree):
+- four Python files (test_routing_shape, test_package_skill_regressions, test_create_skill_contract, test_skill_parent_router_parity) -> 95 passed
+- all sk-doc Python tests -> 279 passed. create asset tests -> 15 passed.
+- all 23 sk-create-skill JS suites -> fail 0 each (create-journey-proof included)
+- doctor run-all.sh -> 7 suites passed, 0 failed (node:test 547 pass)
+- ci-skill-root-metadata.cjs -> checked=13 passed=13 failed=0 fixed=0
+- parent-skill-check on all 7 hubs -> all hard invariants passed. 12b known debt: cli-classifier 2, cli-external-orchestration 8, mcp-tooling 9, sk-code 5, sk-design 5, sk-doc 15, system-deep-loop 4
+- package_skill.py --check --strict on all 54 skills -> 0 failures (unmoved skills carry their codes as recorded debt)
+- old-shape copy scratch/old-shape/sk-git -> reports RS-002, RS-004 and RS-005. Live sk-git -> Result: PASS (its debt is recorded)
+- ledger: 54 entries (rg -c '"lines":' prints 54), frozen snapshot raised to the same, ratchet suite fail 0
+- compiled-route-sync --check -> all 55 served copies match their authored files. compiled-route-guard -> 7 hubs fresh after the sk-doc re-mint at commit.

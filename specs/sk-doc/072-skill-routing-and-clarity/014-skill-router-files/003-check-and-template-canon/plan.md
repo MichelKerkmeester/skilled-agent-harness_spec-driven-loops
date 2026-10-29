@@ -9,7 +9,7 @@ contextType: "general"
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
 # Implementation Plan: Phase 3: check-and-template-canon
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -36,16 +36,16 @@ The routing-shape rules change in `package_skill.py` for a single skill and in t
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
-- [ ] The baseline commands in `tasks.md` T001 and T002 run on this tree
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
+- [x] The baseline commands in `tasks.md` T001 and T002 run on this tree
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `python3 -m pytest` over the four Python files prints at least 84 passed, and the five `node --test` suites print 0 fail
-- [ ] `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` prints `failed=0`
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `python3 -m pytest` over the four Python files prints at least 84 passed, and the five `node --test` suites print 0 fail
+- [x] `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` prints `failed=0`
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -119,5 +119,21 @@ Follow the ordered tasks in `tasks.md`. Setup records the baseline in `scratch/b
 - **Trigger**: A restated code fails a skill that should pass, or a hub's replay projection changes.
 - **Procedure**: Revert the phase commit, which restores the empty ledger and the prior frozen snapshot, then rerun the four suites and the fleet gate. Both ledger files are tracked, so the revert is exact.
 <!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+```
+Setup ──► Implementation ──► Verification
+```
+
+| Phase | Depends On | Blocks |
+|-------|------------|--------|
+| Setup | None | Implementation |
+| Implementation | Setup, and phase 002's shared resolver | Verification |
+| Verification | Implementation | Closure of the phase |
+<!-- /ANCHOR:phase-deps -->
 
 ---

@@ -206,6 +206,7 @@ template_sources:
   skill_reference: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md
   skill_asset: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md
   skill_smart_router: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md
+  skill_router: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md
   skill_readme: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md
 
 frontmatter_contract:
@@ -237,7 +238,7 @@ quality_standards:
   sk_doc_alignment: required
   section_boundary_rules:
     when_to_use: "activation and use-case logic only"
-    smart_routing: "8 to 12 lines of plain prose; any machine router block lives in the final '## MACHINE ROUTER' section"
+    smart_routing: "8 to 12 lines of plain prose, and the machine router lives in the sibling ROUTER.md under a final '## MACHINE ROUTER' heading"
   validation_pipeline:
     full_flows:
       - "python3 .skilled/skills/sk-doc/scripts/quick_validate.py [skill_path]/[skill_name] --json"
@@ -363,7 +364,7 @@ workflow:
             before writing SKILL.md and README.md.
           - Load SKILL.md template and populate required sections
           - Apply section boundary rules
-          - "Seed SKILL.md Section 2 (SMART ROUTING) as 8 to 12 lines of plain prose that say what selects this skill, what it loads first, and that the machine router is the final section. Take the machine router block (INTENT_SIGNALS and RESOURCE_MAP) from skill-smart-router.md, keep its four resilience patterns (runtime discovery, existence-check-before-load, extensible routing key, multi-tier fallback), adapt the routing key and resource map to this skill, and place the block in the final '## MACHINE ROUTER' section. A mode packet never carries ROUTER.md, and the hub keeps one root ROUTER.md. A SMART ROUTING section over 12 lines, or a machine router block outside the final appendix, fails this branch."
+          - "Seed SKILL.md Section 2 (SMART ROUTING) as 8 to 12 lines of plain prose that say what selects this skill, what it loads first, and that the machine router lives in the sibling ROUTER.md. Take the machine router block (INTENT_SIGNALS and RESOURCE_MAP) from skill-smart-router.md, keep its four resilience patterns (runtime discovery, existence-check-before-load, extensible routing key, multi-tier fallback), adapt the routing key and resource map to this skill, and write the block to ROUTER.md under a final '## MACHINE ROUTER' heading. Add the relative markdown link to ./ROUTER.md in SMART ROUTING. A SMART ROUTING section over 12 lines, a machine router section left in SKILL.md, or a missing ROUTER.md link fails this branch."
           - "Set SKILL.md frontmatter per frontmatter_contract.skill_md: name (==folder), description, allowed-tools, version (4-part X.Y.Z.W)"
           - "Create baseline references/assets/scripts from requested scope. Seed every references/*.md from skill_reference and every assets/*.md from skill_asset so each ships the full 5-field + version frontmatter; name non-exempt files in kebab-case. Create README.md from skill_readme if the initializer did not emit it, with title, description, and version."
           - Remove placeholders and sample-only content
@@ -454,7 +455,7 @@ workflow:
     activities:
       - Run operation-appropriate validation scripts
       - "Run the completion gate: python3 .skilled/skills/sk-doc/scripts/validate_skill_package.py [skill_path]/[skill_name] --strict . This is the authoritative structural gate (hard-fails missing/non-4-part version, name!=folder, or missing required sections). It MUST pass before completion, and the generated tree must contain no non-exempt underscore path segment."
-      - "Run python3 .skilled/skills/sk-doc/scripts/package_skill.py [skill_path]/[skill_name] --check --strict. The strict completion gate runs that check and rejects the old routing shape (RS-001 to RS-005): a SMART ROUTING section over 12 lines or 180 words, a machine router block outside the final '## MACHINE ROUTER' section, that section not last, a mode packet carrying ROUTER.md, or a SKILL.md with no '## MACHINE ROUTER' section."
+      - "Run python3 .skilled/skills/sk-doc/scripts/package_skill.py [skill_path]/[skill_name] --check --strict. The strict completion gate runs that check and rejects the old routing shape (RS-001 to RS-005): a SMART ROUTING section over 12 lines or 180 words, a '## MACHINE ROUTER' section left in SKILL.md, that section not last, a missing sibling ROUTER.md or one whose real path leaves the skill folder, and a SKILL.md with no relative link to ./ROUTER.md."
       - Capture DQI score and quality band
       - Enforce hard minimum threshold (75)
       - Compare against operation target score
@@ -492,7 +493,7 @@ workflow:
   step_5_skill_integration:
     purpose: Keep routing and references synchronized in SKILL.md
     activities:
-      - "Update SMART ROUTING references for new/changed docs, keeping the section at 8 to 12 lines of plain prose and any machine router block in the final '## MACHINE ROUTER' section"
+      - "Update SMART ROUTING references for new/changed docs, keeping the section at 8 to 12 lines of plain prose, the machine router in the sibling ROUTER.md, and the link to it current"
       - Keep WHEN TO USE free of file-path navigation content
       - Remove stale links and outdated references
       - Verify referenced files exist after update
@@ -635,7 +636,7 @@ rules:
     - "Pause for explicit checkpoint decisions"
     - "Load templates before writing"
     - "Seed every authored .md from its template so frontmatter is present by construction (frontmatter_contract)"
-    - "Seed SMART ROUTING as 8 to 12 lines of plain prose and the machine router block in the final '## MACHINE ROUTER' section, from skill-smart-router.md, on full-create"
+    - "Seed SMART ROUTING as 8 to 12 lines of plain prose with a link to ./ROUTER.md, and the machine router block in that sibling file under the final '## MACHINE ROUTER' heading, from skill-smart-router.md, on full-create"
     - "Pass validate_skill_package.py before completion"
     - "Run validation before completion"
     - "Preserve WHEN TO USE vs SMART ROUTING boundaries"
@@ -645,7 +646,7 @@ rules:
     - "Infer missing operation/type values"
     - "Bypass hard gates"
     - "Write a references/ or assets/ .md without the full 5-field + version frontmatter"
-    - "Ship a SMART ROUTING section over 12 lines, place a machine router block outside the final '## MACHINE ROUTER' section, or give a mode packet its own ROUTER.md"
+    - "Ship a SMART ROUTING section over 12 lines, leave a machine router section in SKILL.md, or omit the sibling ROUTER.md or its link"
     - "Use non-kebab-case filenames in references/ or assets/"
     - "Create memory files manually"
     - "Leave stale routing links in SKILL.md"

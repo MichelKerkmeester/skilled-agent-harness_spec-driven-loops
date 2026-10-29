@@ -68,5 +68,5 @@ The bound workflow YAML (`create-skill-auto.yaml` for `:auto`, `create-skill-con
 `:confirm` runs the same steps as an interactive checkpointed workflow.
 All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
 
-Generated routing follows the routing canon: `SMART ROUTING` is 8 to 12 lines of plain prose, any machine router block sits in the final `## MACHINE ROUTER` section, a mode packet never carries `ROUTER.md`, and the hub keeps one root `ROUTER.md`.
+Generated routing follows the routing canon: `SMART ROUTING` is 8 to 12 lines of plain prose, every generated skill and mode packet owns a sibling `ROUTER.md` inside its own folder, and that file holds the machine router under a final `## MACHINE ROUTER` heading. The `SKILL.md` links to its sibling router in relative markdown and carries no `## MACHINE ROUTER` section itself. For a hub, that sibling file is the root `ROUTER.md`.
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill installation steps"
 importance_tier: normal
 contextType: implementation
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # Skill Validation and Packaging
@@ -67,22 +67,21 @@ It reports non-kebab generated package paths as advisory findings so existing re
 
 `package_skill.py` also checks the routing shape of every SKILL.md it is given:
 
-- Every SKILL.md ends with a `## MACHINE ROUTER` section, the last H2. It holds the compiled-routing directive and the routing detail, and any router block sits there.
-- A hub keeps one root `ROUTER.md`. Its `SKILL.md` SMART ROUTING section is short prose that points at that file and at the final section.
-- A mode packet has no `ROUTER.md`. Its SMART ROUTING section is 8 to 12 non-blank lines of plain prose.
-- A standalone skill follows the packet shape, with its inline router in that final section.
+- Every skill and every mode packet keeps its machine router in a sibling `ROUTER.md` inside its own folder, under a final `## MACHINE ROUTER` heading.
+- `SKILL.md` carries a relative markdown link to `./ROUTER.md` that resolves on disk. Its SMART ROUTING section stays short prose, and a mode packet keeps it to 8 to 12 non-blank lines.
+- A `## MACHINE ROUTER` section left in `SKILL.md` is migration debt, because the router belongs in the sibling file.
 
 Five codes report a violation:
 
 - `RS-001`: SMART ROUTING is longer than the limit (12 non-blank lines or 180 words by default).
-- `RS-002`: a machine router block sits outside the final `## MACHINE ROUTER` section.
-- `RS-003`: `## MACHINE ROUTER` exists but is not the last H2.
-- `RS-004`: a mode packet carries its own `ROUTER.md`.
-- `RS-005`: the SKILL.md has no `## MACHINE ROUTER` section. Short prose with no router block passes the other four, so this code catches a skill that kept its routing detail inline.
+- `RS-002`: `SKILL.md` carries a `## [N. ]MACHINE ROUTER` section outside a fence. The router belongs in the sibling `ROUTER.md`.
+- `RS-003`: a `## MACHINE ROUTER` section is not the last H2 of the document that holds it.
+- `RS-004`: a skill or mode packet has no sibling `ROUTER.md` in its own folder, or its real path leaves that folder.
+- `RS-005`: `SKILL.md` carries no relative markdown link to `./ROUTER.md`, or the link does not resolve on disk.
 
-A machine router block is a fenced block, or an unfenced run of lines such as an indented one, that holds `INTENT_SIGNALS =`, `RESOURCE_MAP =`, `UNKNOWN_FALLBACK_CHECKLIST =`, `def discover_markdown_resources` or `def _guard_in_skill`; a fence closes only on a run of the same character at least as long as the one that opened it.
+A machine router block is a fenced block, or an unfenced run of lines such as an indented one, that holds `INTENT_SIGNALS =`, `RESOURCE_MAP =`, `UNKNOWN_FALLBACK_CHECKLIST =`, `def discover_markdown_resources` or `def _guard_in_skill`. A fence closes only on a run of the same character at least as long as the one that opened it. A `MACHINE ROUTER` section is an H2 heading that matches `## [N. ]MACHINE ROUTER` outside a fence. The heading alone is the finding, with or without a block below it, so a skill that kept only the prose still fails RS-002. A router block with no section around it reports the same code, because it declares routing in the same file.
 
-`--strict` promotes all five to errors. Known debt lives in `.skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json`, keyed by the skill's path relative to `.skilled/skills` (for example `sk-code/sk-code-review`); a folder outside that root is never debt. Each entry records `{"lines", "words", "machineBlocks", "codes"}`. A listed skill fails when its line count, word count or number of machine blocks outside the appendix grows past the record, or when it shows a code the entry does not record. An entry in any other form is ignored. Remove the entry once the skill is migrated. `/create:skill-parent` applies the same rule as `parent-skill-check.cjs` check `12b-routing-shape`.
+`--strict` promotes all five to errors. Known debt lives in `.skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json`, keyed by the skill's path relative to `.skilled/skills` (for example `sk-code/sk-code-review`). A folder outside that root is never debt. Each entry records `{"lines", "words", "machineBlocks", "codes"}`, and `machineBlocks` counts the RS-002 findings the entry tolerates, one per leftover section or stray block. A listed skill fails when its line count, word count or number of RS-002 findings grows past the record, or when it shows a code the entry does not record. An entry in any other form is ignored. Remove the entry once the skill is migrated. `/create:skill-parent` applies the same rule as `parent-skill-check.cjs` check `12b-routing-shape`.
 
 ### Fleet Class Gate (ci-skill-root-metadata.cjs)
 

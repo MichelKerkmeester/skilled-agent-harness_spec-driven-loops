@@ -147,7 +147,7 @@ Human Voice:
   - Exemptions: [summary or None]
   - Gate: [PASS only when all scans exit 0 and every absolute score is at least 85]
 
-Routing shape: SMART ROUTING is 8 to 12 lines of plain prose with any machine router block in the final ## MACHINE ROUTER section. A mode packet never carries ROUTER.md, and the hub keeps one root ROUTER.md.
+Routing shape: SMART ROUTING is 8 to 12 lines of plain prose with a link to ./ROUTER.md. The machine router lives in that sibling ROUTER.md under a final ## MACHINE ROUTER heading, in every skill and every mode packet.
 
 [When operation is full-create or full-update:]
 Advisor/Index Handoff (operator-owned; this command did not mutate advisor state; standalone scope - H-only fields omitted):

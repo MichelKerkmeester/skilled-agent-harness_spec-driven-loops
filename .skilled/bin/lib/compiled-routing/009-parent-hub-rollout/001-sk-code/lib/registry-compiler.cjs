@@ -87,8 +87,17 @@ function nonEmptySubsets(values) {
   return subsets;
 }
 
-function extractFallbackChecklist(skillMarkdown) {
-  const match = /UNKNOWN_FALLBACK_CHECKLIST\s*=\s*\[([\s\S]*?)\]/m.exec(skillMarkdown);
+// The sibling router owns the checklist once it declares a machine-router
+// section, so a moved skill is read there and one still carrying the checklist
+// in SKILL.md is read exactly as before. The router text wins outright rather
+// than merging the two: one checklist compiles, and a duplicate is a shape
+// finding the package check reports.
+function fallbackChecklistText(input) {
+  return typeof input.routerMarkdown === 'string' ? input.routerMarkdown : input.skillMarkdown;
+}
+
+function extractFallbackChecklist(authoredText) {
+  const match = /UNKNOWN_FALLBACK_CHECKLIST\s*=\s*\[([\s\S]*?)\]/m.exec(authoredText);
   if (!match) fail('FALLBACK_CHECKLIST_MISSING', 'fallback checklist is absent from authored skill');
   const items = [...match[1].matchAll(/["']([^"']+)["']/g)].map((entry) => entry[1]);
   if (items.length < 3) {
@@ -412,6 +421,15 @@ function assertSourceIdentity(input) {
     || skillBytes.toString('utf8') !== input.skillMarkdown) {
     fail('AUTHORED_SOURCE_IDENTITY_MISMATCH', 'parsed inputs do not match hashed authored bytes');
   }
+  // The router file's bytes are hashed whenever it supplied the checklist, so
+  // the section handed to the compiler must still sit inside those bytes.
+  if (typeof input.routerMarkdown === 'string') {
+    const routerFileBytes = input.sourceBytes?.['ROUTER.md'];
+    if (!Buffer.isBuffer(routerFileBytes)
+      || !routerFileBytes.toString('utf8').includes(input.routerMarkdown)) {
+      fail('AUTHORED_SOURCE_IDENTITY_MISMATCH', 'router text does not match hashed authored bytes');
+    }
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -491,7 +509,7 @@ function compileRegistry(input) {
   return Object.freeze({
     advisorProjection: Object.freeze(advisorProjection),
     aliases: Object.freeze(aliases),
-    fallbackChecklist: Object.freeze(extractFallbackChecklist(input.skillMarkdown)),
+    fallbackChecklist: Object.freeze(extractFallbackChecklist(fallbackChecklistText(input))),
     policy: Object.freeze(policy),
     routingModel: Object.freeze(routingModel),
     sourceHashes: Object.freeze(sourceHashes),

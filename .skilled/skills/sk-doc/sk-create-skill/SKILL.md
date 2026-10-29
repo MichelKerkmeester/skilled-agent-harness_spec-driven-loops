@@ -2,7 +2,7 @@
 name: sk-create-skill
 description: Scaffold OpenCode skills and two-axis sk-doc parent hubs, including standalone, nested workflow, and surface packets.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.7.6.0
+version: 1.8.0.0
 ---
 
 <!-- Keywords: create-skill, create-skill-parent, skill scaffolding, parent hub, nested workflow packet, package-skill, init-skill, /create:skill, /create:skill-parent -->
@@ -335,6 +335,7 @@ Use these only for overflow detail, exhaustive examples, or schema checks beyond
 - `assets/skill/skill-reference-template.md` - reference markdown template.
 - `assets/skill/skill-asset-template.md` - asset markdown template.
 - `assets/skill/skill-smart-router.md` - resilient smart-router pattern.
+- `assets/skill/skill-router-template.md` - sibling `ROUTER.md` template for a standalone skill or mode packet.
 - `assets/skill/skill-procedure-template.md` - private procedure card templates and guidelines.
 - `assets/parent-skill/parent-skill-*` - parent hub templates.
 - `scripts/init_skill.py` - standalone skill scaffold helper.
@@ -378,7 +379,7 @@ Ask one focused clarification before authoring if it is unclear whether the user
 
 | Domain | Core Resources | Use |
 | --- | --- | --- |
-| Scaffolding | `scripts/init_skill.py`, `assets/skill/skill-md-template.md`, `assets/skill/skill-readme-template.md` | Create or normalize standalone skill files. |
+| Scaffolding | `scripts/init_skill.py`, `assets/skill/skill-md-template.md`, `assets/skill/skill-readme-template.md`, `assets/skill/skill-router-template.md` | Create or normalize standalone skill files. |
 | Resource templates | `assets/skill/skill-reference-template.md`, `assets/skill/skill-asset-template.md`, `assets/skill/skill-smart-router.md` | Create routed references, assets, and resilient smart-router pseudocode. |
 | Runtime sync manifests | `assets/skill/skill-sync-manifest-template.md` | Document how a runtime config dir derives from the canonical `.skilled` tree (SYNC manifest). |
 | Procedure cards | `assets/skill/skill-procedure-template.md` | Add a private, triggerable internal procedure to a skill or mode without a new public identity. |
@@ -426,6 +427,7 @@ RESOURCE_MAP = {
         "assets/skill/skill-procedure-template.md",
         "assets/skill/skill-scaffold-template.md",
         "assets/skill/skill-smart-router.md",
+        "assets/skill/skill-router-template.md",
         "assets/skill/skill-sync-manifest-template.md",
     ],
     "PARENT_HUB": [

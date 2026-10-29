@@ -69,6 +69,14 @@ const ALLOWLIST = new Set([
   '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::./scripts/workflow_router.py',
   '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::../scripts/',
   '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::../assets/',
+  // router pointer placeholders — every scaffold links the sibling ROUTER.md that the author
+  // writes beside SKILL.md, so the target exists only in the rendered skill, never next to the
+  // template that carries the link
+  '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::./ROUTER.md',
+  '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-scaffold-template.md::./ROUTER.md',
+  '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md::./SKILL.md',
+  '.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md::./ROUTER.md',
+  '.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/scaffold/packet-skill-scaffold.md::./ROUTER.md',
   // runtime-generated, gitignored advisory log — written only when the sentinel emits one,
   // so it is never a committed file; the referring row itself says "when the log exists"
   '.skilled/skills/.state/completion-sentinel/README.md::../../logs/completion-sentinel-advisories.log',

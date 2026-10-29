@@ -184,12 +184,14 @@ SMART_ROUTER_MARKERS = [
     'UNKNOWN_FALLBACK',
 ]
 
-# Routing canon: a skill's SMART ROUTING section is short prose, any machine
-# router block belongs in a final `## MACHINE ROUTER` section, and a mode packet
-# never carries its own ROUTER.md. Skills still in the old shape are listed in
-# the known-debt ledger, keyed by their path relative to the skills root and
-# recording the line count, word count, machine-block count and finding codes
-# they were listed with, so the check fails only when that shape grows.
+# Routing canon: a skill's SMART ROUTING section is short prose, and the machine
+# router lives in the skill's own sibling ROUTER.md, which SKILL.md links to.
+# Every skill and mode packet owns that file, so a `## MACHINE ROUTER` section
+# left in SKILL.md is a second home for the router. Skills still in the old shape
+# are listed in the known-debt ledger, keyed by their path relative to the skills
+# root and recording the line count, word count, machine-block count and finding
+# codes they were listed with, so a recorded shape is tolerated while it stays the
+# shape the entry describes.
 ROUTING_SHAPE_DEBT_FILE_ENV = 'ROUTING_SHAPE_DEBT_FILE'
 ROUTING_SHAPE_DEBT_PATH = Path(__file__).resolve().parent / 'routing-shape-known-debt.json'
 ROUTING_SHAPE_SKILLS_ROOT_ENV = 'ROUTING_SHAPE_SKILLS_ROOT'
@@ -197,13 +199,34 @@ ROUTING_SHAPE_MAX_LINES = 12
 ROUTING_SHAPE_MAX_WORDS = 180
 # The finding codes a debt entry may record as tolerated.
 ROUTING_SHAPE_CODES = ('RS-001', 'RS-002', 'RS-003', 'RS-004', 'RS-005')
+# A recorded code is migration debt for the cause the ledger was written against:
+# a router file that has not moved yet, or the section it still keeps at the end
+# of SKILL.md. A machine block in the routing prose, a section left mid-file and
+# a router that leaves the folder are never that shape, so the entry's code
+# cannot excuse them.
+ROUTING_SHAPE_TOLERATED_CAUSES = {
+    'RS-002': ('trailing-section',),
+    'RS-004': ('missing-router',),
+}
+ROUTING_SHAPE_CAUSE_NOTES = {
+    'RS-002': "a recorded RS-002 tolerates only a trailing '## MACHINE ROUTER' section",
+    'RS-004': 'a recorded RS-004 tolerates only a missing ROUTER.md',
+}
+# The sibling document that owns a skill's machine router. SKILL.md points at it
+# with a relative link, so a runtime that selects the skill reaches the router
+# on demand instead of loading it with the skill.
+ROUTING_SHAPE_ROUTER_FILE = 'ROUTER.md'
 # A fenced or indented block holding any of these is a machine router, not
 # prose: the two maps and the checklist are router data, the two functions are
-# router helpers, so none of them may sit in the routing prose.
+# router helpers, so none of them belongs in SKILL.md at all.
 ROUTING_SHAPE_MACHINE_LINE_RE = re.compile(
     r'^(?:\s*(?:INTENT_SIGNALS|RESOURCE_MAP|UNKNOWN_FALLBACK_CHECKLIST)\s*='
     r'|\s*def\s+(?:discover_markdown_resources|_guard_in_skill)\b)'
 )
+# A markdown link's target, read from prose only: a fenced sample of the pattern
+# is not the link itself, an image is not a link, and the destination is compared
+# as written rather than read up to its first space.
+MARKDOWN_LINK_TARGET_RE = re.compile(r'(?<!!)\[[^\]]*\]\(\s*([^)]*?)\s*\)')
 
 # 4-part version pattern X.Y.Z.W (frontmatter_versioning.md).
 VERSION_4PART_RE = re.compile(r'^\d+\.\d+\.\d+\.\d+$')
@@ -804,6 +827,14 @@ class RoutingShape(NamedTuple):
     smart_word_count: Optional[int]
 
 
+class RoutingShapeFinding(NamedTuple):
+    """One routing-shape rule break and the ledger cause it may be tolerated under."""
+
+    code: str
+    message: str
+    cause: str
+
+
 def _routing_shape_title(line: str) -> str:
     """Return an H2's title with numbering and leading emoji or punctuation removed."""
     title = re.sub(r'^##\s+', '', line)
@@ -950,26 +981,183 @@ def load_routing_shape_debt() -> Tuple[int, int, Dict[str, Dict[str, Any]]]:
     return line_limit, word_limit, debt
 
 
+def _fenced_spans(content: str) -> List[Tuple[int, int]]:
+    """Return the (start, end) character offsets of every fenced block.
+
+    A fence opens on a run of at least three backticks or tildes and closes only
+    on a run of the same character at least as long, so a triple-backtick block
+    nested in a four-backtick one stays inner text. The rule is the one the
+    section scan applies line by line, because both read the same document and
+    must agree on which lines are the skill speaking and which are a sample.
+    """
+    spans: List[Tuple[int, int]] = []
+    fence_char: Optional[str] = None
+    fence_run = 0
+    fence_from = 0
+    offset = 0
+    for line in content.split('\n'):
+        stripped = line.strip()
+        run_char = stripped[:1] if stripped[:1] in ('`', '~') else ''
+        run_len = len(stripped) - len(stripped.lstrip(run_char)) if run_char else 0
+        if fence_char is not None:
+            if run_char == fence_char and run_len >= fence_run and not stripped[run_len:]:
+                spans.append((fence_from, offset + len(line)))
+                fence_char = None
+                fence_run = 0
+        elif run_len >= 3:
+            fence_char = run_char
+            fence_run = run_len
+            fence_from = offset
+        offset += len(line) + 1
+    if fence_char is not None:
+        spans.append((fence_from, offset))
+    return spans
+
+
+def _router_file_findings(skill_path: Path) -> List[RoutingShapeFinding]:
+    """Return the RS-004 finding when a skill owns no router file of its own.
+
+    Every skill and every mode packet carries a sibling ROUTER.md, so a missing
+    file is a router with nowhere to live. A directory, or a file whose real
+    path leaves the folder, is not that skill's router either: a link to a
+    parent's or a sibling's file would let two skills share one declaration and
+    hide which of them never moved.
+    """
+    router_file = skill_path / ROUTING_SHAPE_ROUTER_FILE
+    if not router_file.exists() and not router_file.is_symlink():
+        return [RoutingShapeFinding(
+            'RS-004',
+            f"routing shape RS-004: no sibling {ROUTING_SHAPE_ROUTER_FILE} beside SKILL.md; "
+            'every skill and mode packet owns one',
+            'missing-router',
+        )]
+    if not router_file.is_file():
+        return [RoutingShapeFinding(
+            'RS-004',
+            f"routing shape RS-004: sibling {ROUTING_SHAPE_ROUTER_FILE} is not a regular file "
+            f'({router_file})',
+            'router-structure',
+        )]
+    resolved = router_file.resolve()
+    try:
+        resolved.relative_to(skill_path.resolve())
+    except ValueError:
+        return [RoutingShapeFinding(
+            'RS-004',
+            f"routing shape RS-004: sibling {ROUTING_SHAPE_ROUTER_FILE} resolves outside "
+            f'the skill folder ({resolved})',
+            'router-structure',
+        )]
+    return []
+
+
+def _unfenced_body_lines(content: str) -> List[str]:
+    """Return SKILL.md's body lines outside every fenced block.
+
+    The frontmatter block is not body, and a fenced sample is text rather than
+    a link, so neither can place the pointer. The fence spans come from the
+    same scan the section parser trusts, so the two agree on what is prose.
+    """
+    lines = content.split('\n')
+    first = 0
+    if lines and lines[0].strip() == '---':
+        for index in range(1, len(lines)):
+            if lines[index].strip() == '---':
+                first = index + 1
+                break
+
+    body_lines = lines[first:]
+    fenced = _fenced_spans('\n'.join(body_lines))
+    body: List[str] = []
+    offset = 0
+    for line in body_lines:
+        line_start = offset
+        offset += len(line) + 1
+        if any(start <= line_start < end for start, end in fenced):
+            continue
+        body.append(line)
+    return body
+
+
+def _router_pointer_findings(skill_path: Path, content: str) -> List[RoutingShapeFinding]:
+    """Return the RS-005 finding when SKILL.md carries no pointer to its router.
+
+    The pointer is a markdown link, on one body line, whose destination is the
+    sibling ROUTER.md once a leading "./" and any "#anchor" are stripped. The
+    link may sit on a heading line. Nothing weaker counts: prose that merely
+    names the file loads it for nobody, an angle-bracketed or titled destination
+    is a different target, a label split across lines is not one link, a link in
+    the frontmatter is not in the body, and a path through a child folder names
+    that folder's file rather than the sibling. The target must also resolve to
+    a file inside the skill folder, because a stale path points at nothing.
+    """
+    named: List[str] = []
+    for line in _unfenced_body_lines(content):
+        for match in MARKDOWN_LINK_TARGET_RE.finditer(line):
+            raw = match.group(1).strip()
+            target = raw.split('#', 1)[0]
+            if target.startswith('./'):
+                target = target[2:]
+            if target != ROUTING_SHAPE_ROUTER_FILE:
+                continue
+            named.append(raw)
+            try:
+                pointer_target = (skill_path / target).resolve()
+                pointer_target.relative_to(skill_path.resolve())
+            except (OSError, ValueError):
+                continue
+            if pointer_target.is_file():
+                return []
+    if not named:
+        return [RoutingShapeFinding(
+            'RS-005',
+            f'routing shape RS-005: no relative markdown link to the sibling '
+            f'{ROUTING_SHAPE_ROUTER_FILE}',
+            'pointer',
+        )]
+    return [RoutingShapeFinding(
+        'RS-005',
+        f"routing shape RS-005: the link to '{named[0]}' does not resolve to a file "
+        'inside the skill folder',
+        'pointer',
+    )]
+
+
 def routing_shape_findings(
     shape: RoutingShape,
     limit: int,
     word_limit: int,
-    is_packet: bool,
-    carries_own_router: bool,
-) -> List[Tuple[str, str]]:
-    """Return the (code, message) pair for each routing-shape rule a skill breaks."""
-    findings: List[Tuple[str, str]] = []
+    skill_path: Path,
+    content: str,
+) -> List[RoutingShapeFinding]:
+    """Return a finding for each routing-shape rule a skill breaks."""
+    findings: List[RoutingShapeFinding] = []
 
     if shape.smart_line_count is not None and shape.smart_line_count > limit:
-        findings.append((
+        findings.append(RoutingShapeFinding(
             'RS-001',
             f"routing shape RS-001: SMART ROUTING section has {shape.smart_line_count} lines (max {limit})",
+            'lines',
         ))
 
     if shape.smart_word_count is not None and shape.smart_word_count > word_limit:
-        findings.append((
+        findings.append(RoutingShapeFinding(
             'RS-001',
             f"routing shape RS-001: SMART ROUTING section has {shape.smart_word_count} words (max {word_limit})",
+            'words',
+        ))
+
+    # The router has one home, and it is the sibling file. A section left in
+    # SKILL.md is a second declaration whether or not it holds a code block,
+    # because a reader that finds the section routes from it while the sibling
+    # file stays the declaration the checks trust. A machine block in the
+    # routing prose is the same declaration without the heading.
+    if shape.appendix is not None:
+        findings.append(RoutingShapeFinding(
+            'RS-002',
+            f"routing shape RS-002: '## MACHINE ROUTER' section at line "
+            f"{shape.appendix.body_from} belongs in the sibling {ROUTING_SHAPE_ROUTER_FILE}",
+            'trailing-section' if shape.appendix.is_last else 'appendix-order',
         ))
 
     for line in shape.machine_block_lines:
@@ -979,41 +1167,24 @@ def routing_shape_findings(
             and shape.appendix.body_from <= index < shape.appendix.body_to
         )
         if not in_appendix:
-            findings.append((
+            findings.append(RoutingShapeFinding(
                 'RS-002',
-                f"routing shape RS-002: machine router block at line {line} is outside a final "
-                "'## MACHINE ROUTER' section",
+                f"routing shape RS-002: machine router block at line {line} is outside any "
+                f"'## MACHINE ROUTER' section and belongs in the sibling {ROUTING_SHAPE_ROUTER_FILE}",
+                'machine-block',
             ))
 
     if shape.appendix is not None and not shape.appendix.is_last:
-        findings.append((
+        findings.append(RoutingShapeFinding(
             'RS-003',
             "routing shape RS-003: '## MACHINE ROUTER' is not the last H2 section",
+            'appendix-order',
         ))
 
-    # Without the appendix a skill can still pass on counts alone while keeping
-    # its routing detail inline, so the section itself is required. A file with
-    # no SMART ROUTING section is not routing prose, and the required-section
-    # check already rejects it.
-    if shape.smart_line_count is not None and shape.appendix is None:
-        findings.append((
-            'RS-005',
-            "routing shape RS-005: no '## MACHINE ROUTER' section; the routing detail belongs in a final one",
-        ))
-
-    if is_packet and carries_own_router:
-        findings.append((
-            'RS-004',
-            'routing shape RS-004: mode packet carries its own ROUTER.md; '
-            'the hub root ROUTER.md is the only router file',
-        ))
+    findings.extend(_router_file_findings(skill_path))
+    findings.extend(_router_pointer_findings(skill_path, content))
 
     return findings
-
-
-def _is_mode_packet(skill_path: Path) -> bool:
-    """Return whether a skill folder is a packet of the hub that contains it."""
-    return (skill_path.parent / 'mode-registry.json').is_file()
 
 
 def _routing_shape_key(skill_path: Path) -> Optional[str]:
@@ -1038,9 +1209,12 @@ def validate_routing_shape(skill_path: Path, content: str) -> Tuple[bool, str, L
     """Check SKILL.md against the routing canon, tolerating recorded known debt.
 
     A skill recorded in the known-debt ledger keeps the shape it was listed with
-    while that shape does not grow: its line count, word count, machine-block
-    count and finding codes are each tolerated only up to the recorded value.
-    Every other finding is a warning that --strict promotes to an error.
+    while that shape does not grow: its line and word counts are tolerated up to
+    the recorded values. A recorded RS-002 excuses only the router section still
+    left at the end of SKILL.md, and a recorded RS-004 only a router file that
+    has not moved yet; a machine block in the routing prose or a router outside
+    the folder is never that shape. Every other finding is a warning that
+    --strict promotes to an error.
 
     Args:
         skill_path: Path to the skill directory.
@@ -1052,59 +1226,50 @@ def validate_routing_shape(skill_path: Path, content: str) -> Tuple[bool, str, L
     warnings: List[str] = []
     line_limit, word_limit, debt = load_routing_shape_debt()
     key = _routing_shape_key(skill_path)
-    is_packet = _is_mode_packet(skill_path)
     shape = parse_routing_shape(content)
     findings = routing_shape_findings(
         shape,
         line_limit,
         word_limit,
-        is_packet,
-        is_packet and (skill_path / 'ROUTER.md').exists(),
+        skill_path,
+        content,
     )
 
     entry = debt.get(key) if key is not None else None
     if entry is None:
-        warnings.extend(message for _code, message in findings)
+        warnings.extend(finding.message for finding in findings)
         return True, "Routing shape checked", warnings
 
     recorded_codes = entry['codes']
-    machine_block_findings = sum(1 for code, _message in findings if code == 'RS-002')
-    machine_blocks_tolerated = (
-        'RS-002' in recorded_codes and machine_block_findings <= entry['machineBlocks']
-    )
-
     tolerated: List[str] = []
-    for code, message in findings:
-        if code == 'RS-002':
-            if machine_blocks_tolerated:
-                tolerated.append(code)
-            elif 'RS-002' in recorded_codes:
+    for finding in findings:
+        if finding.code == 'RS-001':
+            # RS-001 covers two independent metrics, and the cause names which one.
+            is_line_count = finding.cause == 'lines'
+            recorded = entry['lines'] if is_line_count else entry['words']
+            unit = 'lines' if is_line_count else 'words'
+            actual = (shape.smart_line_count if is_line_count else shape.smart_word_count) or 0
+            if 'RS-001' in recorded_codes and actual <= recorded:
+                tolerated.append(finding.code)
+            elif 'RS-001' in recorded_codes:
                 warnings.append(
-                    f"{message} (grew past its recorded known debt of "
-                    f"{entry['machineBlocks']} machine block(s))"
+                    f"{finding.message} (grew past its recorded known debt of {recorded} {unit})"
                 )
             else:
-                warnings.append(f"{message} (not recorded in its known debt)")
+                warnings.append(f"{finding.message} (not recorded in its known debt)")
             continue
 
-        if code != 'RS-001':
-            if code in recorded_codes:
-                tolerated.append(code)
-            else:
-                warnings.append(f"{message} (not recorded in its known debt)")
+        if finding.code not in recorded_codes:
+            warnings.append(f"{finding.message} (not recorded in its known debt)")
             continue
 
-        # RS-001 covers two independent metrics, and the message names which one.
-        is_line_count = f"{shape.smart_line_count} lines (max" in message
-        recorded = entry['lines'] if is_line_count else entry['words']
-        unit = 'lines' if is_line_count else 'words'
-        actual = (shape.smart_line_count if is_line_count else shape.smart_word_count) or 0
-        if 'RS-001' in recorded_codes and actual <= recorded:
-            tolerated.append(code)
-        elif 'RS-001' in recorded_codes:
-            warnings.append(f"{message} (grew past its recorded known debt of {recorded} {unit})")
+        tolerated_causes = ROUTING_SHAPE_TOLERATED_CAUSES.get(finding.code)
+        if tolerated_causes is None or finding.cause in tolerated_causes:
+            tolerated.append(finding.code)
         else:
-            warnings.append(f"{message} (not recorded in its known debt)")
+            warnings.append(
+                f"{finding.message} ({ROUTING_SHAPE_CAUSE_NOTES[finding.code]})"
+            )
 
     if tolerated:
         unique_codes: List[str] = []
@@ -1120,8 +1285,22 @@ def validate_routing_shape(skill_path: Path, content: str) -> Tuple[bool, str, L
     return True, "Routing shape checked", warnings
 
 
-def validate_smart_router(content: str) -> Tuple[bool, str, List[str]]:
-    """Validate SKILL.md Section 2 (SMART ROUTING) names the router markers.
+def _sibling_router_content(skill_path: Path) -> Optional[str]:
+    """Return the sibling ROUTER.md text, or None when the skill has no router file."""
+    router_file = skill_path / ROUTING_SHAPE_ROUTER_FILE
+    if not router_file.is_file():
+        return None
+    try:
+        return router_file.read_text(encoding='utf-8')
+    except OSError:
+        return None
+
+
+def validate_smart_router(
+    content: str,
+    router_content: Optional[str] = None,
+) -> Tuple[bool, str, List[str]]:
+    """Validate that the routing prose names the smart-router markers.
 
     Checks for the canonical smart-router resilience markers
     (discover_markdown_resources, _guard_in_skill, UNKNOWN_FALLBACK) per
@@ -1130,6 +1309,9 @@ def validate_smart_router(content: str) -> Tuple[bool, str, List[str]]:
 
     Args:
         content: Raw SKILL.md file content.
+        router_content: Raw sibling ROUTER.md content, when the skill declares
+            its router in that file. The pseudocode lives there once the router
+            moves out of SKILL.md, so the markers are read from it too.
 
     Returns:
         Tuple of (is_valid, message, warnings). Always valid=True.
@@ -1160,12 +1342,15 @@ def validate_smart_router(content: str) -> Tuple[bool, str, List[str]]:
         return True, "No SMART ROUTING section to validate", warnings
 
     section_body = section_match.group(1)
-    # A machine router may live in the final appendix instead of inline, so the
-    # markers are searched across the routing prose and that appendix body.
+    # A machine router may live in the final appendix of an unmoved skill or in
+    # the sibling ROUTER.md, so the markers are searched across the routing
+    # prose, that appendix body and the router document.
     appendix = parse_routing_shape(content).appendix
     if appendix is not None:
         lines = content.split('\n')
         section_body = section_body + '\n' + '\n'.join(lines[appendix.body_from:appendix.body_to])
+    if router_content:
+        section_body = section_body + '\n' + router_content
     missing = [marker for marker in SMART_ROUTER_MARKERS if marker not in section_body]
     if missing:
         warnings.append(
@@ -1294,18 +1479,23 @@ def validate_skill(skill_path: Path, strict: bool = False) -> Tuple[bool, str, L
 
     # A hub delegates routing to its root ROUTER.md, the stage-two control
     # document enforced by the root-router contract, so its SKILL.md carries no
-    # inline discovery pseudocode to find. Standalone skills own their router
-    # inline and are still checked.
-    routes_via_root_router = is_hub and (skill_path / 'ROUTER.md').is_file()
+    # inline discovery pseudocode to find. Every other skill is checked, and a
+    # skill that moved its router to its own ROUTER.md is checked through that
+    # file, where the pseudocode now lives.
+    routes_via_root_router = (
+        is_hub and (skill_path / ROUTING_SHAPE_ROUTER_FILE).is_file()
+    )
     if not is_surface and not routes_via_root_router:
-        valid, message, warnings = validate_smart_router(content)
+        valid, message, warnings = validate_smart_router(
+            content, _sibling_router_content(skill_path)
+        )
         all_warnings.extend(warnings)
         if not valid:
             return False, message, all_warnings
 
     # The routing canon binds every skill kind: a hub root, a mode packet, a
-    # surface packet and a standalone skill each keep their routing prose short
-    # and their machine block in the final appendix.
+    # surface packet and a standalone skill each keep their routing prose short,
+    # own a sibling ROUTER.md and point SKILL.md at it.
     valid, message, warnings = validate_routing_shape(skill_path, content)
     all_warnings.extend(warnings)
     if not valid:

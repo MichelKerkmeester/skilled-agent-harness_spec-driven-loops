@@ -1,471 +1,532 @@
 {
-  "description": "Skills still in the old routing shape, keyed by their path under .skilled/skills. Each entry records the SMART ROUTING line and word counts, the number of machine router blocks outside the final MACHINE ROUTER section, and the finding codes the skill was listed with. The check fails the skill if any count grows or a code appears that the entry does not record. Remove an entry when the skill moves to the routing canon; never raise one.",
+  "description": "Skills still in the old routing shape, keyed by their path under .skilled/skills. Each entry records the SMART ROUTING line and word counts, the machineBlocks count of MACHINE ROUTER sections left in SKILL.md, and the finding codes the skill was listed with. The check fails the skill if any count grows or a code appears that the entry does not record. Remove an entry when the skill moves to the routing canon; never raise one.",
   "maxSmartRoutingLines": 12,
   "maxSmartRoutingWords": 180,
   "debt": {
     "cli-classifier": {
-      "lines": 24,
-      "words": 334,
-      "machineBlocks": 0,
+      "lines": 11,
+      "words": 140,
+      "machineBlocks": 1,
       "codes": [
-        "RS-001"
+        "RS-002"
       ]
     },
     "cli-classifier/cli-jev": {
-      "lines": 136,
-      "words": 771,
+      "lines": 5,
+      "words": 130,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "cli-external-orchestration": {
-      "lines": 26,
-      "words": 586,
-      "machineBlocks": 0,
+      "lines": 10,
+      "words": 139,
+      "machineBlocks": 1,
       "codes": [
-        "RS-001"
+        "RS-002"
       ]
     },
     "cli-external-orchestration/cli-claude-code": {
-      "lines": 87,
-      "words": 808,
+      "lines": 6,
+      "words": 124,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "cli-external-orchestration/cli-codex": {
-      "lines": 86,
-      "words": 588,
+      "lines": 6,
+      "words": 124,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "cli-external-orchestration/cli-cursor": {
-      "lines": 94,
-      "words": 685,
+      "lines": 3,
+      "words": 65,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "cli-external-orchestration/cli-devin": {
-      "lines": 85,
-      "words": 605,
+      "lines": 3,
+      "words": 63,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "cli-external-orchestration/cli-hermes": {
-      "lines": 82,
-      "words": 610,
+      "lines": 6,
+      "words": 118,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "cli-external-orchestration/cli-opencode": {
-      "lines": 64,
-      "words": 1026,
+      "lines": 7,
+      "words": 125,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "cli-external-orchestration/cli-pi": {
-      "lines": 57,
-      "words": 492,
+      "lines": 5,
+      "words": 115,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "cli-orca": {
-      "lines": 103,
-      "words": 714,
+      "lines": 5,
+      "words": 116,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "mcp-code-mode": {
-      "lines": 129,
-      "words": 773,
+      "lines": 5,
+      "words": 118,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
+        "RS-002",
+        "RS-004",
+        "RS-005"
+      ]
+    },
+    "mcp-tooling": {
+      "lines": 8,
+      "words": 121,
+      "machineBlocks": 1,
+      "codes": [
         "RS-002"
       ]
     },
     "mcp-tooling/mcp-aside-devtools": {
-      "lines": 128,
-      "words": 754,
+      "lines": 4,
+      "words": 92,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "mcp-tooling/mcp-chrome-devtools": {
-      "lines": 128,
-      "words": 736,
+      "lines": 4,
+      "words": 77,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "mcp-tooling/mcp-click-up": {
-      "lines": 172,
-      "words": 1107,
+      "lines": 5,
+      "words": 115,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "mcp-tooling/mcp-figma": {
-      "lines": 142,
-      "words": 1276,
+      "lines": 6,
+      "words": 163,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "mcp-tooling/mcp-mobbin": {
-      "lines": 135,
-      "words": 1161,
+      "lines": 5,
+      "words": 132,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "mcp-tooling/mcp-notion": {
-      "lines": 177,
-      "words": 1069,
+      "lines": 5,
+      "words": 158,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "mcp-tooling/mcp-obsidian": {
-      "lines": 294,
-      "words": 1676,
+      "lines": 4,
+      "words": 96,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "mcp-tooling/mcp-refero": {
-      "lines": 132,
-      "words": 1100,
+      "lines": 4,
+      "words": 96,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-code": {
-      "lines": 67,
-      "words": 787,
+      "lines": 7,
+      "words": 145,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
         "RS-002"
+      ]
+    },
+    "sk-code/sk-code-ci": {
+      "lines": 3,
+      "words": 99,
+      "machineBlocks": 1,
+      "codes": [
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-code/sk-code-quality": {
-      "lines": 102,
-      "words": 1760,
+      "lines": 8,
+      "words": 147,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-code/sk-code-review": {
-      "lines": 312,
-      "words": 2104,
+      "lines": 8,
+      "words": 130,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-code/sk-code-skilled": {
-      "lines": 118,
-      "words": 327,
+      "lines": 3,
+      "words": 112,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-design": {
-      "lines": 88,
-      "words": 901,
+      "lines": 12,
+      "words": 148,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
         "RS-002"
       ]
     },
     "sk-design/sk-design-chart": {
-      "lines": 44,
-      "words": 297,
+      "lines": 5,
+      "words": 102,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-design/sk-design-diagram": {
-      "lines": 81,
-      "words": 617,
-      "machineBlocks": 0,
+      "lines": 7,
+      "words": 134,
+      "machineBlocks": 1,
       "codes": [
-        "RS-001"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-design/sk-design-fundamentals": {
-      "lines": 164,
-      "words": 902,
+      "lines": 8,
+      "words": 145,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-design/sk-design-md-generator": {
-      "lines": 145,
-      "words": 1183,
+      "lines": 5,
+      "words": 71,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-doc": {
-      "lines": 58,
-      "words": 816,
+      "lines": 12,
+      "words": 176,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
         "RS-002"
       ]
     },
     "sk-doc/sk-create-agent": {
-      "lines": 78,
-      "words": 497,
+      "lines": 5,
+      "words": 109,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-doc/sk-create-benchmark": {
-      "lines": 66,
-      "words": 430,
+      "lines": 4,
+      "words": 92,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-doc/sk-create-changelog": {
-      "lines": 78,
-      "words": 520,
+      "lines": 8,
+      "words": 125,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-doc/sk-create-command": {
-      "lines": 31,
-      "words": 297,
+      "lines": 5,
+      "words": 90,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-doc/sk-create-diff": {
-      "lines": 64,
-      "words": 379,
+      "lines": 8,
+      "words": 133,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-doc/sk-create-feature-catalog": {
-      "lines": 89,
-      "words": 600,
+      "lines": 4,
+      "words": 104,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-doc/sk-create-frontmatter": {
-      "lines": 81,
-      "words": 475,
+      "lines": 8,
+      "words": 133,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-doc/sk-create-goal": {
-      "lines": 46,
-      "words": 370,
+      "lines": 6,
+      "words": 111,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-doc/sk-create-manual-testing-playbook": {
-      "lines": 73,
-      "words": 384,
+      "lines": 4,
+      "words": 92,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-doc/sk-create-quality-control": {
-      "lines": 68,
-      "words": 397,
+      "lines": 5,
+      "words": 103,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-doc/sk-create-readme": {
-      "lines": 87,
-      "words": 585,
+      "lines": 7,
+      "words": 114,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-doc/sk-create-repo-rule": {
-      "lines": 90,
-      "words": 539,
+      "lines": 7,
+      "words": 104,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-doc/sk-create-skill": {
-      "lines": 143,
-      "words": 696,
+      "lines": 6,
+      "words": 119,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-doc/sk-create-with-human-voice": {
-      "lines": 89,
-      "words": 555,
+      "lines": 7,
+      "words": 119,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-git": {
-      "lines": 135,
-      "words": 639,
+      "lines": 6,
+      "words": 109,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "sk-prompt": {
-      "lines": 174,
-      "words": 1019,
+      "lines": 6,
+      "words": 121,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "system-deep-loop": {
-      "lines": 38,
-      "words": 974,
+      "lines": 10,
+      "words": 159,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
         "RS-002"
       ]
     },
     "system-deep-loop/deep-ai-council": {
-      "lines": 168,
-      "words": 911,
+      "lines": 9,
+      "words": 97,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "system-deep-loop/deep-research": {
-      "lines": 157,
-      "words": 842,
+      "lines": 6,
+      "words": 120,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "system-deep-loop/deep-review": {
-      "lines": 163,
-      "words": 723,
+      "lines": 8,
+      "words": 134,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "system-skill-advisor": {
-      "lines": 226,
-      "words": 1987,
+      "lines": 8,
+      "words": 90,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     },
     "system-spec-kit": {
-      "lines": 312,
-      "words": 1712,
+      "lines": 6,
+      "words": 102,
       "machineBlocks": 1,
       "codes": [
-        "RS-001",
-        "RS-002"
+        "RS-002",
+        "RS-004",
+        "RS-005"
       ]
     }
   }

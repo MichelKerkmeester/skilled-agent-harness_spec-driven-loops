@@ -95,9 +95,13 @@ def _write_valid_skill(
         "### ALWAYS\n- Keep the fixture deterministic.\n"
         "### NEVER\n- Use network access.\n"
         f"{escalate_rule}\n"
-        "## 5. REFERENCES\nNo external references.\n\n"
-        + recommended_sections
-        + "\n## 9. MACHINE ROUTER\nThe routing detail lives here.\n",
+        "## 5. REFERENCES\nNo external references.\n"
+        "\nStructured routing detail: [`ROUTER.md`](./ROUTER.md).\n\n"
+        + recommended_sections,
+        encoding="utf-8",
+    )
+    (skill_path / "ROUTER.md").write_text(
+        "# Demo Router\n\n## MACHINE ROUTER\n\nThe routing detail lives here, apart from SKILL.md.\n",
         encoding="utf-8",
     )
     return skill_path
@@ -152,6 +156,31 @@ def test_parent_scaffold_emits_kebab_storage_and_exact_tool_names(tmp_path):
     assert "manual_testing_playbook" not in emitted_paths
 
 
+def test_parent_scaffold_passes_strict_packaging_once_described(tmp_path):
+    # Every file the scaffold seeds is held to the strict package gate, so a
+    # fresh hub and its packet must pass once their description TODOs are filled.
+    module = _load_init_module()
+    skill_path = module.init_parent_skill("demo-hub", str(tmp_path))
+    for skill_md in skill_path.rglob("SKILL.md"):
+        text = skill_md.read_text(encoding="utf-8")
+        lines = [
+            "description: A demo skill that proves the scaffold passes strict packaging."
+            if line.startswith("description:") and "TODO" in line else line
+            for line in text.splitlines()
+        ]
+        skill_md.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+    script = Path(__file__).resolve().parents[1] / "package_skill.py"
+    for root in (skill_path, skill_path / "demo-hub-primary"):
+        result = subprocess.run(
+            [sys.executable, str(script), str(root), "--check", "--strict"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+        assert result.returncode == 0, result.stdout + result.stderr
+
+
 def test_parent_scaffold_defaults_to_legacy_without_manifest(tmp_path, capsys):
     init_module = _load_init_module()
     validator_module = _load_validator_module()
@@ -164,8 +193,10 @@ def test_parent_scaffold_defaults_to_legacy_without_manifest(tmp_path, capsys):
     assert "Compiled routing: legacy (no manifest)" in output
     assert "compiled-ready" not in output
     assert not _activation_dir(hub_name).exists()
-    directive = (skill_path / "SKILL.md").read_text(encoding="utf-8")
-    assert f"compiled-route.cjs --hub {hub_name}" in directive
+    router_md = (skill_path / "ROUTER.md").read_text(encoding="utf-8")
+    assert f"compiled-route.cjs --hub {hub_name}" in router_md
+    skill_md = (skill_path / "SKILL.md").read_text(encoding="utf-8")
+    assert "[`ROUTER.md`](./ROUTER.md)" in skill_md
     check = validator_module.check_compiled_routing_state(
         skill_path,
         Path(__file__).resolve().parents[4],
@@ -275,9 +306,11 @@ def test_parent_templates_carry_the_same_exact_directive():
     root = Path(__file__).resolve().parents[2] / "sk-create-skill/assets/parent-skill"
     scaffold = (root / "scaffold/hub-skill-scaffold.md").resolve()
     canonical = (root / "parent-skill-hub-template.md").resolve()
+    router_template = (root / "parent-skill-root-router-template.md").resolve()
+    init_module = _load_init_module()
 
-    def directive(path: Path) -> str:
-        lines = path.read_text(encoding="utf-8").splitlines()
+    def directive(text: str) -> str:
+        lines = text.splitlines()
         start = next(
             index for index, line in enumerate(lines)
             if line.startswith("> **Compiled routing (default-on, flag-gated, additive).**")
@@ -289,7 +322,17 @@ def test_parent_templates_carry_the_same_exact_directive():
             block.append(line)
         return "\n".join(block)
 
-    assert directive(scaffold) == directive(canonical)
+    # The directive moved into the hub's root ROUTER.md, so the authored template
+    # and the generated router must still carry the same exact block.
+    authored = directive(router_template.read_text(encoding="utf-8"))
+    generated = init_module.hub_compiled_routing_directive("demo-hub")
+    assert authored.replace("[parent-skill-name]", "demo-hub") == directive(generated)
+
+    # The skill-side templates name the router instead of repeating its directive.
+    for skill_doc in (scaffold, canonical):
+        content = skill_doc.read_text(encoding="utf-8")
+        assert "Compiled routing (default-on" not in content
+        assert "[`ROUTER.md`](./ROUTER.md)" in content
 
 
 def test_compiled_routing_option_is_parent_only(tmp_path):
@@ -331,6 +374,37 @@ def test_compiled_routing_validator_rejects_stale_manifest(tmp_path):
         router = json.loads(router_path.read_text(encoding="utf-8"))
         router["routerPolicy"]["ambiguityDelta"] = 2
         router_path.write_text(json.dumps(router, indent=2) + "\n", encoding="utf-8")
+
+        check = validator_module.check_compiled_routing_state(
+            skill_path,
+            Path(__file__).resolve().parents[4],
+        )
+        assert check["ok"] is False
+        assert "stale-manifest" in check["output"]
+    finally:
+        if activation_dir.exists():
+            shutil.rmtree(activation_dir)
+
+
+def test_compiled_routing_validator_rejects_stale_router_manifest(tmp_path):
+    init_module = _load_init_module()
+    validator_module = _load_validator_module()
+    hub_name = _temporary_hub_name()
+    activation_dir = _activation_dir(hub_name)
+
+    try:
+        skill_path = init_module.init_parent_skill(
+            hub_name,
+            str(tmp_path),
+            compiled_routing="ready",
+        )
+        # The checklist lives only in ROUTER.md, so a router-only edit must
+        # leave the manifest stale exactly as a SKILL.md edit would.
+        router_path = skill_path / "ROUTER.md"
+        router_path.write_text(
+            router_path.read_text(encoding="utf-8") + "\nA router-only edit.\n",
+            encoding="utf-8",
+        )
 
         check = validator_module.check_compiled_routing_state(
             skill_path,

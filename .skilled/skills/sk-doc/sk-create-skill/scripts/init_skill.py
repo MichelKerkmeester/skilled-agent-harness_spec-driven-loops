@@ -76,6 +76,35 @@ def with_initial_version(markdown: str) -> str:
     return re.sub(r'(?m)^version: .*$', f'version: {INITIAL_SKILL_VERSION}', markdown, count=1)
 
 
+# The markdown document a scaffold's router loads before intent scoring. Both paths
+# exist by the time the router is written, so a fresh router resolves instead of
+# naming a file the author has not created yet. An author replaces the maps once
+# the skill holds real references.
+STANDALONE_DEFAULT_RESOURCE = 'manual-testing-playbook/manual-testing-playbook.md'
+PACKET_DEFAULT_RESOURCE = 'references/workflow.md'
+
+
+def render_router_content(
+    template: str,
+    skill_name: str,
+    skill_title: str,
+    default_resource: str,
+) -> str:
+    """Render the sibling ROUTER.md a new skill or mode packet is born with.
+
+    A machine router lives beside SKILL.md and nowhere else, so a scaffold that
+    shipped without this file would emit a skill the packaging check rejects. The
+    router starts on the one document the scaffold itself writes, which keeps the
+    resource map resolvable while the skill is still empty.
+    """
+    return with_initial_version(
+        template
+        .replace('{{SKILL_NAME}}', skill_name)
+        .replace('{{SKILL_TITLE}}', skill_title)
+        .replace('{{DEFAULT_RESOURCE}}', default_resource)
+    )
+
+
 def title_case_skill_name(skill_name: str) -> str:
     """Convert hyphenated skill name to Title Case for display.
 
@@ -305,10 +334,21 @@ def init_skill(skill_name: str, path: str) -> Optional[Path]:
         / 'skill'
         / 'skill-scaffold-template.md'
     )
+    router_template_path = (
+        Path(__file__).resolve().parent.parent
+        / 'assets'
+        / 'skill'
+        / 'skill-router-template.md'
+    )
     try:
         skill_template = template_path.read_text(encoding='utf-8')
     except (OSError, UnicodeError) as exc:
         print(f"❌ Error reading scaffold template {template_path}: {exc}")
+        return None
+    try:
+        router_template = router_template_path.read_text(encoding='utf-8')
+    except (OSError, UnicodeError) as exc:
+        print(f"❌ Error reading router template {router_template_path}: {exc}")
         return None
 
     skill_title = title_case_skill_name(skill_name)
@@ -316,6 +356,12 @@ def init_skill(skill_name: str, path: str) -> Optional[Path]:
         skill_template
         .replace('{{SKILL_NAME}}', skill_name)
         .replace('{{SKILL_TITLE}}', skill_title)
+    )
+    router_content = render_router_content(
+        router_template,
+        skill_name,
+        skill_title,
+        STANDALONE_DEFAULT_RESOURCE,
     )
     timestamp = datetime.now(timezone.utc).isoformat()
     graph_metadata = {
@@ -392,7 +438,8 @@ def init_skill(skill_name: str, path: str) -> Optional[Path]:
     skill_md_path = skill_dir / 'SKILL.md'
     try:
         skill_md_path.write_text(skill_content, encoding='utf-8')
-        print("✅ Created SKILL.md")
+        (skill_dir / 'ROUTER.md').write_text(router_content, encoding='utf-8')
+        print("✅ Created SKILL.md and ROUTER.md")
         with (skill_dir / 'graph-metadata.json').open('w', encoding='utf-8') as handle:
             json.dump(graph_metadata, handle, indent=2)
             handle.write('\n')
@@ -412,8 +459,9 @@ def init_skill(skill_name: str, path: str) -> Optional[Path]:
     print(f"\n✅ Skill '{skill_name}' initialized successfully at {skill_dir}")
     print("\nNext steps:")
     print("1. Edit SKILL.md to complete the TODO items and update the description")
-    print("2. Add optional references/, assets/, or scripts/ directories as needed")
-    print("3. Run the validator when ready to check the skill structure")
+    print("2. Replace the scaffold intent and resource map in ROUTER.md with the skill's real routing")
+    print("3. Add optional references/, assets/, or scripts/ directories as needed")
+    print("4. Run the validator when ready to check the skill structure")
 
     return skill_dir
 
@@ -468,6 +516,25 @@ def _run_manifest_command(
     return False, payload, str(cause)
 
 
+def hub_compiled_routing_directive(skill_name: str) -> str:
+    """Return the compiled-routing directive a fresh hub documents in its ROUTER.md.
+
+    The directive is routing policy the agent follows before registry routing, so it
+    belongs beside the router rather than in the always-loaded skill body, where a
+    machine-router section reads as a second declaration of the same router.
+    """
+    return (
+        '> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:\n'
+        '> ```bash\n'
+        '> node .skilled/bin/compiled-route.cjs --hub ' + skill_name + ' --prompt "<task>"\n'
+        '> ```\n'
+        '> Follow the returned decision: `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). '
+        'On a `{"servingAuthority":"legacy"}` sentinel or any error, use the registry routing in SMART ROUTING. '
+        'The front door self-gates on serving-authority. Compiled routing is now the default for `' + skill_name + '`. '
+        'Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide. That variable is the explicit kill-switch.\n'
+    )
+
+
 def stage1_only_router_content(skill_name: str, skill_title: str) -> str:
     """Return the stage1-only root ROUTER.md a fresh parent hub is born with.
 
@@ -477,7 +544,8 @@ def stage1_only_router_content(skill_name: str, skill_title: str) -> str:
     routing to stage one (hub-router.json plus mode-registry.json). Promotion
     to `active` is an authored act that fills the maps with concrete,
     resolvable leaf paths; this generator never synthesizes placeholder paths
-    or fake intents.
+    or fake intents. The routing prose the hub `SKILL.md` used to carry closes the
+    file, so the skill body keeps only its pointer.
     """
     return (
         '---\n'
@@ -522,6 +590,32 @@ def stage1_only_router_content(skill_name: str, skill_title: str) -> str:
         'authoring non-empty equal-key `INTENT_SIGNALS` / `RESOURCE_MAP` entries whose\n'
         'packet-qualified or shared-alias paths resolve on disk and map to typed\n'
         '`(workflowMode, leafResourceId)` pairs in `leaf-manifest.json`.\n'
+        '\n'
+        '## 3. MACHINE ROUTER\n'
+        '\n'
+        'The hub routing prose, which `SKILL.md` no longer carries. It declares no map of its\n'
+        'own: the stage-two block in section 1 stays the only one.\n'
+        '\n'
+        + hub_compiled_routing_directive(skill_name) +
+        '\n'
+        f'A fresh {skill_name} ships without a compiled activation manifest, so the directive\n'
+        'above returns the legacy sentinel until the hub is activated.\n'
+        '\n'
+        'The compiled router reads the fallback checklist below.\n'
+        '\n'
+        '```python\n'
+        'UNKNOWN_FALLBACK_CHECKLIST = [\n'
+        '    "Name the requested workflow outcome.",\n'
+        '    "Name the target component or document.",\n'
+        '    "Confirm whether the request may mutate workspace files.",\n'
+        ']\n'
+        'UNKNOWN_FALLBACK = {\n'
+        '    "load_level": "UNKNOWN_FALLBACK",\n'
+        '    "needs_disambiguation": True,\n'
+        '    "resources": [],\n'
+        '    "checklist": UNKNOWN_FALLBACK_CHECKLIST,\n'
+        '}\n'
+        '```\n'
     )
 
 
@@ -553,11 +647,22 @@ def init_parent_skill(
     )
     hub_template_path = scaffold_dir / 'hub-skill-scaffold.md'
     packet_template_path = scaffold_dir / 'packet-skill-scaffold.md'
+    router_template_path = (
+        Path(__file__).resolve().parent.parent
+        / 'assets'
+        / 'skill'
+        / 'skill-router-template.md'
+    )
     try:
         hub_template = hub_template_path.read_text(encoding='utf-8')
         packet_template = packet_template_path.read_text(encoding='utf-8')
     except (OSError, UnicodeError) as exc:
         print(f"❌ Error reading parent scaffold template: {exc}")
+        return None
+    try:
+        router_template = router_template_path.read_text(encoding='utf-8')
+    except (OSError, UnicodeError) as exc:
+        print(f"❌ Error reading router template {router_template_path}: {exc}")
         return None
 
     skill_title = title_case_skill_name(skill_name)
@@ -584,6 +689,15 @@ def init_parent_skill(
         .replace('{{PACKET_NAME}}', packet_name)
         .replace('{{PACKET_TITLE}}', packet_title)
         .replace('{{HUB_NAME}}', skill_name)
+    )
+    # A packet owns its own router, so the scaffold writes the file its SMART
+    # ROUTING section links to. A packet without it is the shape the packaging
+    # check rejects.
+    packet_router_content = render_router_content(
+        router_template,
+        packet_name,
+        packet_title,
+        PACKET_DEFAULT_RESOURCE,
     )
 
     mode_registry = {
@@ -777,8 +891,25 @@ def init_parent_skill(
         # registry and the disk.
 
         (packet_dir / 'SKILL.md').write_text(packet_content, encoding='utf-8')
+        (packet_dir / 'ROUTER.md').write_text(packet_router_content, encoding='utf-8')
         (packet_dir / 'README.md').write_text(
             f"# {packet_title}\n\nPrimary workflow packet for the {skill_name} hub.\n",
+            encoding='utf-8',
+        )
+        # The packet router needs one real leaf to point at, and a README is not
+        # a leaf, so the scaffold seeds the workflow reference its router names.
+        (packet_dir / 'references').mkdir()
+        (packet_dir / PACKET_DEFAULT_RESOURCE).write_text(
+            "---\n"
+            f"title: {packet_title} Workflow\n"
+            f"description: The steps the {packet_name} packet runs. [TODO: describe them.]\n"
+            "trigger_phrases:\n"
+            f'  - "{packet_name} workflow"\n'
+            "importance_tier: normal\n"
+            "contextType: general\n"
+            "version: 1.0.0.0\n"
+            "---\n\n"
+            f"# {packet_title} Workflow\n\n[TODO: describe the steps this packet runs.]\n",
             encoding='utf-8',
         )
         (changelog_dir / '1.0.0.0.md').write_text(

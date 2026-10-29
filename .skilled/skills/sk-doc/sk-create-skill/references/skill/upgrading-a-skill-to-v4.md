@@ -9,7 +9,7 @@ trigger_phrases:
   - "remove repo parent skill"
 importance_tier: normal
 contextType: implementation
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # Upgrading a Customized Skill to v4
@@ -74,7 +74,7 @@ The repo now ships `sk-code` as a parent hub. Workflow packets `sk-code-quality`
 You have two legal outcomes:
 
 1. **Convert-to-parent.** Follow [Section 4](#4-convert-a-single-skill-into-a-parent-hub) so your customized stack becomes nested packets under one hub identity.
-2. **Remove-repo-and-keep-own-single.** Keep your customized standalone `.skilled/skills/sk-code/` (class S: `graph-metadata.json` plus `leaf-manifest.config.json`, no registry or router). When you take a framework update, do not replace that folder with the repo's parent-hub tree.
+2. **Remove-repo-and-keep-own-single.** Keep your customized standalone `.skilled/skills/sk-code/` (class S: `graph-metadata.json`, `leaf-manifest.config.json` and `ROUTER.md`, with no `mode-registry.json` or `hub-router.json`). When you take a framework update, do not replace that folder with the repo's parent-hub tree.
 
 There is no convert-in-place flag. Keeping your own single skill is a merge-time choice, not a `/create:*` operation.
 
@@ -194,7 +194,7 @@ If you need another mode later, use `/create:skill-parent <skill-name> update --
 
 Stay on class S when the skill still has one job.
 
-A standalone root keeps `SKILL.md`, `graph-metadata.json`, and `leaf-manifest.config.json`. It must not gain `mode-registry.json`, `hub-router.json`, `description.json`, or `command-metadata.json`. Repair that package with `/create:skill <skill-name> full-update` (or `reference-only` / `asset-only` for a scoped add). `/create:skill <skill-name> full-create` is only for a folder that does not exist yet.
+A standalone root keeps `SKILL.md`, `ROUTER.md`, `graph-metadata.json`, and `leaf-manifest.config.json`. Its `SKILL.md` links to `./ROUTER.md`. It must not gain `mode-registry.json`, `hub-router.json`, `description.json`, or `command-metadata.json`. Repair that package with `/create:skill <skill-name> full-update` (or `reference-only` / `asset-only` for a scoped add). `/create:skill <skill-name> full-create` is only for a folder that does not exist yet.
 
 **Keeping your own `sk-code` while the repo ships a parent hub.** Leave your customized `.skilled/skills/sk-code/` in place. Do not copy the repo hub's `mode-registry.json` or `hub-router.json` into it. Adding only one of those two files makes `validate_skill_package.py` report a partial hub declaration and refuse to classify the root.
 
@@ -232,7 +232,7 @@ Keep the compiled-routing directive block the hub template ships in `SKILL.md`. 
 python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/<skill-name>
 ```
 
-Pass prints `Detected kind: standalone` and `package_skill.py --check: PASS (exit 0)`. Do not run `parent-skill-check.cjs` on a single skill. That script audits hubs.
+Pass prints `Detected kind: standalone` and `package_skill.py --check: PASS (exit 0)`. The fleet gate `ci-skill-root-metadata.cjs` also runs the `ROUTER.md` contract on a standalone root and reports `RRC` codes, so a missing file or a missing link fails there. Do not run `parent-skill-check.cjs` on a single skill. That script audits hubs and their packets.
 
 `--strict` promotes noncanonical generated paths from advisory to blocking. Use it on a newly generated package.
 

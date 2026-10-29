@@ -6,11 +6,19 @@ trigger_phrases:
   - "phase 3 check and template canon"
 importance_tier: "normal"
 contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/003-check-and-template-canon"
+    last_updated_at: "2026-10-29T11:23:00Z"
+    last_updated_by: "pi"
+    recent_action: "Moved the routing canon, checks, ledger and templates to the sibling ROUTER.md"
+    next_safe_action: "Build 004-hub-router-merge"
+    completion_pct: 100
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
 # Feature Specification: Phase 3: check-and-template-canon
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 ---
 
 <!-- ANCHOR:metadata -->
@@ -18,9 +26,9 @@ contextType: "general"
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
+| **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-29 |
 | **Branch** | `worktrees/269-skill-router-files` |
 | **Parent Spec** | ../spec.md |
@@ -199,9 +207,48 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ---
 
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 10. OPEN QUESTIONS
 
 - None blocks this phase. Whether a packet's `ROUTER.md` owns its leaf map is decided in `plan.md` section 3 from research section 7, and phase 002's resolver can revise it.
 <!-- /ANCHOR:questions -->
+
+---
+
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+This packet is two offline check scripts, one JSON ledger and their suites. It runs no service, so each of the six limits below answers N/A with its own reason.
+
+### Performance
+- **NFR-P01**: N/A. This packet runs no service, so no call has a response time.
+- **NFR-P02**: N/A. This packet runs no service, so nothing serves a request rate.
+
+### Security
+- **NFR-S01**: N/A. This packet runs no service, so no caller is authenticated, and the checks only read files under the repository.
+- **NFR-S02**: N/A. This packet runs no service, so it holds no stored data to encrypt.
+
+### Reliability
+- **NFR-R01**: N/A. This packet runs no service, so it has no uptime to hold.
+- **NFR-R02**: N/A. This packet runs no service, so it answers no request that could fail at a rate.
+<!-- /ANCHOR:nfr -->
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+- Empty input: a skill folder that carries no `ROUTER.md` and no link to one reports RS-004 and RS-005, so an empty shape fails rather than passing for want of anything to read. The 47 skills still in that shape pass only through the ledger entry that records both codes.
+- Maximum input: the fleet run, `package_skill.py --check --strict` over all 54 live skills, reported 0 failures, and 12b covered the sk-doc hub and its 14 packets with 15 recorded findings.
+- Failure path: `package_skill.py --check --strict` on `scratch/old-shape/sk-git` reports RS-002, RS-004 and RS-005, while the live `sk-git` folder prints `Result: PASS`. The evidence records those finding codes and not the process exit status.
+<!-- /ANCHOR:edge-cases -->
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | 20/25 | Over 50 files under `.skilled`, in Python and Node, against one canon |
+| Risk | 14/25 | The shape gate covers 54 skills, so one wrong rule reds the fleet. No auth surface, no stored data, and a revert of the phase commit restores the prior ledger |
+| Research | 8/20 | Research and phase 002 settled the contract. The build had to census the unmoved skills and derive one ledger entry each |
+| **Total** | **42/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
 
 ---

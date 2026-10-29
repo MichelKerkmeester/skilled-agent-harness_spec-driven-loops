@@ -10,7 +10,9 @@ whole YAML and checking for tokens. The block must cover every classification
 state, map each state to exactly one create/migrate/unchanged action, and carry
 the stop-before-write, delete-legacy-after-validation, and machine-block
 byte-preservation invariants. A separate grep keeps every authoring surface
-from instructing creation of a legacy smart-routing.md path.
+from instructing creation of a legacy smart-routing.md path. The router lines
+are also compared across :auto and :confirm, and the moved canon surfaces must
+name the sibling ROUTER.md instead of forbidding it.
 
 Usage: python3 .skilled/commands/create/assets/tests/test_skill_parent_router_parity.py
 """
@@ -41,6 +43,38 @@ CLASSIFICATION_STATES = [
 ACTION_TOKENS = ["create", "migrate", "unchanged"]
 ACTION_LINE = "ROUTER.md: create|migrate|unchanged"
 
+STANDALONE_AUTO_YAML = ASSET_ROOT / "create-skill-auto.yaml"
+STANDALONE_CONFIRM_YAML = ASSET_ROOT / "create-skill-confirm.yaml"
+
+# The moved canon surfaces that state the routing shape: the four create
+# workflows, the presentation summary, and the reference docs. A stale
+# packet-prohibition phrase here would teach the old rule back to authors.
+CANON_SURFACES = [
+    ASSET_ROOT / "create-skill-auto.yaml",
+    ASSET_ROOT / "create-skill-confirm.yaml",
+    ASSET_ROOT / "create-skill-parent-auto.yaml",
+    ASSET_ROOT / "create-skill-parent-confirm.yaml",
+    ASSET_ROOT / "create-skill-presentation.txt",
+    REPO_ROOT / ".skilled/skills/sk-doc/sk-create-skill/references/shared/validation-and-packaging.md",
+    REPO_ROOT / ".skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md",
+    REPO_ROOT / ".skilled/skills/sk-doc/sk-create-skill/references/shared/common-pitfalls.md",
+    REPO_ROOT / ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+    REPO_ROOT / ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
+    REPO_ROOT / ".skilled/skills/sk-doc/sk-create-skill/references/skill/upgrading-a-skill-to-v4.md",
+]
+
+# A stale prohibition, expressed so the guard's own source never reads as the
+# rule it rejects. Each pattern brackets its last character.
+STALE_PACKET_ROUTER_RULES = [
+    r"packet carries no ROUTE[R]",
+    r"no ROUTER\.md of its ow[n]",
+    r"mode packet never carrie[s]",
+    r"packet carries its own ROUTE[R]\.md",
+    r"packet keeps non[e]",
+    r"only router file in the famil[y]",
+    r"give a mode packet its own ROUTE[R]\.md",
+]
+
 # Authoring surfaces that must never instruct an author to create the legacy
 # router path. The contract library and its fixtures deliberately name the
 # legacy paths (to reject them) and are excluded here.
@@ -59,6 +93,27 @@ CREATION_INSTRUCTION = re.compile(
     r"scaffold\s+(a|an|the)?\s*`?shared/references/smart-routing|"
     r"place\s+(a|an|the)?\s*`?shared/references/smart-routing)"
 )
+
+
+def _string_leaves(node):
+    if isinstance(node, dict):
+        for value in node.values():
+            yield from _string_leaves(value)
+    elif isinstance(node, list):
+        for value in node:
+            yield from _string_leaves(value)
+    elif isinstance(node, str):
+        yield node
+
+
+def router_lines(workflow):
+    """Return the ROUTER.md lines a workflow states, with the mode token normalized."""
+    lines = set()
+    for value in _string_leaves(workflow):
+        for line in value.splitlines():
+            if "ROUTER.md" in line:
+                lines.add(line.replace(":auto", ":mode").replace(":confirm", ":mode").strip())
+    return lines
 
 
 class SkillParentRouterParityTest(unittest.TestCase):
@@ -156,6 +211,30 @@ class SkillParentRouterParityTest(unittest.TestCase):
         for state in CLASSIFICATION_STATES:
             self.assertIn(state, router)
         self.assertIn("ROUTER.md: create|migrate|unchanged", router)
+
+    def test_router_lines_are_identical_between_workflows(self) -> None:
+        # Every ROUTER.md line a workflow states must match its sibling mode,
+        # so the packet router rule cannot drift between :auto and :confirm.
+        for label, auto_path, confirm_path in (
+            ("parent", AUTO_YAML, CONFIRM_YAML),
+            ("standalone", STANDALONE_AUTO_YAML, STANDALONE_CONFIRM_YAML),
+        ):
+            with self.subTest(workflow=label):
+                auto = router_lines(yaml.safe_load(auto_path.read_text(encoding="utf-8")))
+                confirm = router_lines(yaml.safe_load(confirm_path.read_text(encoding="utf-8")))
+                self.assertEqual(auto, confirm)
+
+    def test_moved_surfaces_state_the_sibling_packet_router(self) -> None:
+        for surface in CANON_SURFACES:
+            with self.subTest(surface=surface.name):
+                self.assertTrue(surface.is_file(), f"missing canon surface: {surface}")
+                text = surface.read_text(encoding="utf-8")
+                self.assertIn("ROUTER.md", text)
+                for stale in STALE_PACKET_ROUTER_RULES:
+                    self.assertIsNone(
+                        re.search(stale, text, re.IGNORECASE),
+                        f"{surface} still states the old packet rule: {stale}",
+                    )
 
 
 if __name__ == "__main__":

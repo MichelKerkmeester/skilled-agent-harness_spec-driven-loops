@@ -9,7 +9,7 @@ trigger_phrases:
   - "stage1-only router"
 importance_tier: normal
 contextType: general
-version: 1.2.0.11
+version: 1.2.0.12
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -27,6 +27,9 @@ that mode loads. It declares exactly one of two states:
 | `router_state: stage1-only` | The hub owns no leaf selection | Empty maps, empty stage-two default, and empty `SHARED_CONTROL_RESOURCES`. Routing delegates to `hub-router.json` plus `mode-registry.json` |
 
 Every `RESOURCE_MAP` path is either packet-qualified (`[packet]/references|assets/…`) or a shared-alias disk path (`shared/…` listed in `leaf-aliases.json`). Both convert to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary. Keep `INTENT_SIGNALS` and `RESOURCE_MAP` keys aligned. Delete `FULL_INVENTORY` if the hub has no show-everything intent. A root `skill_pointer: SKILL.md` and a four-part `version` are required in both states, and the router must never coexist with a legacy `smart-routing.md`.
+
+The hub's routing prose belongs here too: the compiled-routing directive and the fallback checklist the
+hub `SKILL.md` used to carry live in the final `## MACHINE ROUTER` section, after the stage-two map.
 
 ---
 
@@ -135,7 +138,41 @@ never placeholder intents.
 
 ---
 
-## RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 - [`parent-hub-router-schema.md`](../../references/parent-skill/parent-hub-router-schema.md) - The two-axis hub router schema and the path contract these paths obey.
 - [`parent-skill-hub-template.md`](./parent-skill-hub-template.md) - The first-layer hub scaffold this router pairs with.
+
+---
+
+## 6. MACHINE ROUTER
+
+The hub's routing prose, moved here from `SKILL.md` so the skill body keeps only the pointer. It sits
+last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and
+`RESOURCE_MAP` block in section 3 stays the only replay source.
+
+> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
+> ```bash
+> node .skilled/bin/compiled-route.cjs --hub [parent-skill-name] --prompt "<task>"
+> ```
+> Follow the returned decision: `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the registry routing in SMART ROUTING. The front door self-gates on serving-authority. Compiled routing is now the default for `[parent-skill-name]`. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide. That variable is the explicit kill-switch.
+
+A fresh `[parent-skill-name]` ships without a compiled activation manifest, so the directive above
+returns the legacy sentinel until the hub is activated.
+
+The compiled router reads the fallback checklist below. Stage-two leaf routing is the map in
+section 3, so no second map belongs in this section.
+
+```python
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "[placeholder: name the requested workflow outcome]",
+    "[placeholder: name the target component or document]",
+    "[placeholder: confirm whether the request may mutate workspace files]",
+]
+UNKNOWN_FALLBACK = {
+    "load_level": "UNKNOWN_FALLBACK",
+    "needs_disambiguation": True,
+    "resources": [],
+    "checklist": UNKNOWN_FALLBACK_CHECKLIST,
+}
+```

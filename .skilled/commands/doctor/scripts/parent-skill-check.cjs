@@ -153,6 +153,9 @@ const LEAF_CONTRACT_PATH = path.join(SK_CREATE_SKILL_SCRIPTS, 'lib', 'leaf-resou
 const CANARY_FIXTURE_ROOT = path.join(REPO_ROOT, '.skilled/bin/lib/compiled-routing/009-parent-hub-rollout');
 const ROOT_METADATA_CONTRACT_PATH = path.join(SK_CREATE_SKILL_SCRIPTS, 'lib', 'skill-root-metadata-contract.cjs');
 const ROOT_ROUTER_CONTRACT_PATH = path.join(SK_CREATE_SKILL_SCRIPTS, 'lib', 'root-router-contract.cjs');
+// The known-debt ledger reader is shared with the fleet gate, so both JS checks
+// read a skill's recorded shape the same way.
+const { loadRoutingShapeDebt } = require(path.join(SK_CREATE_SKILL_SCRIPTS, 'lib', 'routing-shape-debt.cjs'));
 
 // Bound commands resolve from here; the override lets a fixture supply them.
 const COMMANDS_DIR = process.env.PARENT_HUB_CHECK_COMMANDS_DIR
@@ -1782,10 +1785,22 @@ function checkRootMetadataClass(ctx) {
   }
 }
 
-// 12a: every hub owns one root ROUTER.md declaring router_state
-// active|stage1-only, a resolvable root SKILL.md pointer, and zero legacy
-// router coexistence. The shared library owns the stable RRC codes so the
+// The packets the hub's registry declares, deduplicated and sorted, so the two
+// routing checks audit one list in one order even when several modes share a
+// packet folder.
+function declaredPackets(ctx) {
+  return [...new Set(ctx.modes
+    .map((mode) => (typeof mode.packet === 'string' ? mode.packet.replace(/[\\/]+$/, '') : null))
+    .filter(Boolean))].sort();
+}
+
+// 12a: every skill root and every declared packet owns one ROUTER.md declaring
+// the router state its class allows, a resolvable SKILL.md pointer, and zero
+// legacy router coexistence. The shared library owns the stable RRC codes so the
 // doctor, package gate, and command workflows print the same failure set.
+// A packet runs the same contract rooted at its own folder, and its line names
+// the packet; a packet that has not gained its file yet, and whose ledger entry
+// records RS-004, is migration debt rather than a failure.
 function checkRootRouter(ctx) {
   const lib = loadModule(ROOT_ROUTER_CONTRACT_PATH);
   if (lib.missing) {
@@ -1796,72 +1811,103 @@ function checkRootRouter(ctx) {
     softFail(`12-lib: failed to load the root-router contract library: ${lib.error.message}`);
     return;
   }
-  const rootRouterPath = path.join(ctx.target, 'ROUTER.md');
+  auditRootRouter(lib, ctx, { dir: ctx.target, label: null, isPacket: false });
+
+  const debt = loadRoutingShapeDebt().debt;
+  for (const packet of declaredPackets(ctx)) {
+    const dir = path.join(ctx.target, packet);
+    if (!fs.existsSync(path.join(dir, 'SKILL.md'))) continue;
+    const label = routingShapeLabel(dir, true);
+    if (routingShapeMissingRouterTolerated(dir, debt)) {
+      info(`12a-router-contract: ${label}: ROUTER.md: known debt, RS-004 (migrate to the routing canon)`);
+      continue;
+    }
+    auditRootRouter(lib, ctx, { dir, label, isPacket: true });
+  }
+}
+
+// One ROUTER.md contract run. The caller owns the folder and the label, so a
+// hub root and a packet share one implementation. A packet is read from its own
+// folder, so its pointer resolves beside its own SKILL.md, and the hub facts it
+// merely inherits — the hub-router default resource above all — are not
+// attributed to it. The contract knows the target class, so a packet is held to
+// an active router and its findings speak of a skill root; the line's own prefix
+// already names the packet.
+function auditRootRouter(lib, ctx, { dir, label, isPacket }) {
+  const prefix = label === null ? '12a-router-contract: ' : `12a-router-contract: ${label}: `;
+  const subject = label === null ? 'root ROUTER.md' : 'ROUTER.md';
+  const routerPath = path.join(dir, 'ROUTER.md');
   let routerText = null;
-  if (fs.existsSync(rootRouterPath)) {
+  if (fs.existsSync(routerPath)) {
     try {
-      routerText = fs.readFileSync(rootRouterPath, 'utf8');
+      routerText = fs.readFileSync(routerPath, 'utf8');
     } catch (e) {
-      softFail(`12a-router-contract: could not read ROUTER.md: ${e.message}`);
+      softFail(`${prefix}could not read ROUTER.md: ${e.message}`);
       return;
     }
   }
-  const legacyFiles = lib.module.LEGACY_ROUTER_PATHS.filter((rel) => fs.existsSync(path.join(ctx.target, rel)));
-  const router = ctx.hubRouter.value;
-  const policy = router && isPlainObject(router.routerPolicy) ? router.routerPolicy : {};
-  const rootPrefix = `${path.resolve(ctx.target)}${path.sep}`;
+  const legacyFiles = lib.module.LEGACY_ROUTER_PATHS.filter((rel) => fs.existsSync(path.join(dir, rel)));
+  const router = ctx.hubRouter ? ctx.hubRouter.value : null;
+  const policy = !isPacket && router && isPlainObject(router.routerPolicy) ? router.routerPolicy : {};
+  const rootPrefix = `${path.resolve(dir)}${path.sep}`;
+  const hubPrefix = `${path.resolve(ctx.target)}${path.sep}`;
   try {
     const evaluation = lib.module.validateRootRouter({
       routerText,
+      targetClass: isPacket ? lib.module.TARGET_CLASS_PACKET : lib.module.TARGET_CLASS_HUB,
       declaredModes: ctx.modes,
       aliasEntries: ctx.leafAliases,
       manifest: ctx.leafManifest.value,
       hubRouterDefaultResource: Array.isArray(policy.defaultResource) ? policy.defaultResource : [],
       legacyFiles,
-      // The probe never resolves a path outside the hub: a `..`/absolute
-      // segment that exists on disk would otherwise hand a foreign file the
-      // identity of a hub leaf. The contract rejects such paths first; this
-      // keeps the probe itself closed as a second barrier.
+      // The probe never resolves a path outside the router's own tree: a
+      // `..`/absolute segment that exists on disk would otherwise hand a foreign
+      // file the identity of a skill leaf. The contract rejects such paths
+      // first; this keeps the probe itself closed as a second barrier. A
+      // packet's router names its leaves the way the hub registry and manifest
+      // name them, so a packet path resolves against the packet first and the
+      // hub second, while its pointer still names the SKILL.md beside it.
       resolveOnDisk: (rel) => {
-        const resolved = path.resolve(ctx.target, rel);
-        return resolved.startsWith(rootPrefix) && fs.existsSync(resolved);
+        const resolved = path.resolve(dir, rel);
+        if (resolved.startsWith(rootPrefix) && fs.existsSync(resolved)) return true;
+        if (!isPacket) return false;
+        const hubResolved = path.resolve(ctx.target, rel);
+        return hubResolved.startsWith(hubPrefix) && fs.existsSync(hubResolved);
       },
     });
     if (evaluation.violations.length === 0) {
-      pass(`12a-router-contract: root ROUTER.md conforms to the two-state contract (${evaluation.state})`);
+      pass(`${prefix}${subject} conforms to the two-state contract (${evaluation.state})`);
     } else {
       for (const violation of evaluation.violations) {
-        softFail(`12a-router-contract: ${violation.code} — ${violation.message}`);
+        softFail(`${prefix}${violation.code} — ${violation.message}`);
       }
     }
   } catch (e) {
-    softFail(`12a-router-contract: RRC-UNKNOWN — the root-router contract library failed unexpectedly: ${e.message}`);
+    softFail(`${prefix}RRC-UNKNOWN — the root-router contract library failed unexpectedly: ${e.message}`);
   }
 }
 
-// The known-debt ledger records, per skill, the shape that skill may keep
-// while it migrates: how many SMART ROUTING lines and words it carries, how
-// many machine blocks sit outside the appendix, and which finding codes it is
-// allowed to raise at all. Recording the codes is what keeps an entry from
-// becoming a blanket exemption — a packet recorded for length alone still
-// fails the day it grows a ROUTER.md. An unreadable or absent ledger means
-// every skill must meet the canon today. The env override lets a test point at
-// its own ledger instead of the live one.
-const ROUTING_SHAPE_DEBT_FILE = path.join(SK_CREATE_SKILL_SCRIPTS, 'routing-shape-known-debt.json');
-const ROUTING_SHAPE_MAX_LINES = 12;
-const ROUTING_SHAPE_MAX_WORDS = 180;
+// The unit each recorded limit is counted in, named in the "grew past" message.
+const ROUTING_SHAPE_DEBT_UNITS = { lines: 'lines', words: 'words' };
+// The one cause a recorded code covers, and the note a finding outside it
+// carries. A code the map does not name is covered wherever it appears; RS-002
+// covers only the router section still trailing SKILL.md, and RS-004 only a
+// router file that is simply not there yet.
+const ROUTING_SHAPE_TOLERATED_CAUSES = { 'RS-002': 'trailing-section', 'RS-004': 'missing' };
+const ROUTING_SHAPE_CAUSE_NOTES = {
+  'RS-002': "a recorded RS-002 tolerates only a trailing '## MACHINE ROUTER' section",
+  'RS-004': 'a recorded RS-004 tolerates only a missing ROUTER.md',
+};
 // A fenced or indented block holding any of these is a machine router, not
 // prose: the two maps and the checklist are router data, the two functions are
 // router helpers, so none of them may sit in the routing prose.
 const ROUTING_SHAPE_MACHINE_LINE =
   /^\s*(?:INTENT_SIGNALS|RESOURCE_MAP|UNKNOWN_FALLBACK_CHECKLIST)\s*=|^\s*def\s+(?:discover_markdown_resources|_guard_in_skill)\b/;
-
-// The finding codes a debt entry may record. An entry naming anything else is
-// ignored outright rather than partially honoured, so a typo cannot widen it.
-const ROUTING_SHAPE_CODES = ['RS-001', 'RS-002', 'RS-003', 'RS-004', 'RS-005'];
-const ROUTING_SHAPE_DEBT_FIELDS = ['lines', 'words', 'machineBlocks', 'codes'];
-// The unit each recorded limit is counted in, named in the "grew past" message.
-const ROUTING_SHAPE_DEBT_UNITS = { lines: 'lines', words: 'words', machineBlocks: 'machine block(s)' };
+// A markdown inline link's destination, read as written up to the closing
+// parenthesis, so a title or any trailing text keeps it from naming the router,
+// and an image is not a link at all. Only the destination can name the sibling
+// router, so the label is read and discarded.
+const ROUTING_SHAPE_LINK = /(?<!!)\[[^\]]*\]\(\s*([^)]*?)\s*\)/g;
 
 // A ledger key is a path relative to the skills root, so a same-named folder
 // anywhere else can never inherit the debt recorded for a real skill. The env
@@ -1869,52 +1915,6 @@ const ROUTING_SHAPE_DEBT_UNITS = { lines: 'lines', words: 'words', machineBlocks
 const ROUTING_SHAPE_SKILLS_ROOT = process.env.ROUTING_SHAPE_SKILLS_ROOT
   ? path.resolve(process.env.ROUTING_SHAPE_SKILLS_ROOT)
   : path.join(REPO_ROOT, '.skilled', 'skills');
-
-// A debt entry must state every limit, so a half-written entry cannot silently
-// fall back to a default and excuse a skill; anything else is ignored and the
-// skill stays held to the canon.
-function isRoutingShapeDebtEntry(recorded) {
-  if (!isPlainObject(recorded)) return false;
-  if (Object.keys(recorded).length !== ROUTING_SHAPE_DEBT_FIELDS.length) return false;
-  for (const field of ROUTING_SHAPE_DEBT_FIELDS) {
-    if (!Object.prototype.hasOwnProperty.call(recorded, field)) return false;
-  }
-  for (const field of ['lines', 'words', 'machineBlocks']) {
-    if (!Number.isInteger(recorded[field]) || recorded[field] < 0) return false;
-  }
-  return Array.isArray(recorded.codes)
-    && recorded.codes.every((code) => ROUTING_SHAPE_CODES.includes(code));
-}
-
-function loadRoutingShapeDebt() {
-  const file = process.env.ROUTING_SHAPE_DEBT_FILE
-    ? path.resolve(process.env.ROUTING_SHAPE_DEBT_FILE)
-    : ROUTING_SHAPE_DEBT_FILE;
-  const config = {
-    maxSmartRoutingLines: ROUTING_SHAPE_MAX_LINES,
-    maxSmartRoutingWords: ROUTING_SHAPE_MAX_WORDS,
-    debt: new Map(),
-  };
-  let parsed;
-  try {
-    parsed = readJson(file);
-  } catch {
-    return config;
-  }
-  if (!isPlainObject(parsed)) return config;
-  if (Number.isInteger(parsed.maxSmartRoutingLines) && parsed.maxSmartRoutingLines > 0) {
-    config.maxSmartRoutingLines = parsed.maxSmartRoutingLines;
-  }
-  if (Number.isInteger(parsed.maxSmartRoutingWords) && parsed.maxSmartRoutingWords > 0) {
-    config.maxSmartRoutingWords = parsed.maxSmartRoutingWords;
-  }
-  if (isPlainObject(parsed.debt)) {
-    for (const [key, recorded] of Object.entries(parsed.debt)) {
-      if (isRoutingShapeDebtEntry(recorded)) config.debt.set(key, recorded);
-    }
-  }
-  return config;
-}
 
 // A section title with its numbering and leading emoji or punctuation removed,
 // so `## 2. SMART ROUTING` and `## 🧭 Smart Routing` name the same section.
@@ -1927,11 +1927,21 @@ function routingShapeTitle(line) {
     .toUpperCase();
 }
 
-// Frontmatter, fences, H2s and machine blocks are read in one pass because
-// only a fence's state decides whether a `## ` line is a heading and whether
-// an assignment is a machine block: a template inside a fenced block routinely
-// carries its own `##` headings and shorter nested fences, and those are not
-// sections or block boundaries.
+// The target a pointer is judged on: one leading "./" and any #anchor removed,
+// so `./ROUTER.md` and `ROUTER.md#machine-router` both name this file, while
+// `child/ROUTER.md` names another folder's router. An angle-bracket or
+// trailing-text target never reaches this form, because the link pattern reads
+// only an unbroken target followed directly by the closing parenthesis.
+function routingShapePointerTarget(target) {
+  const bare = target.split('#')[0];
+  return bare.startsWith('./') ? bare.slice(2) : bare;
+}
+
+// Frontmatter, fences, H2s and markdown link targets are read in one pass
+// because only a fence's state decides whether a `## ` line is a heading and
+// whether a link is prose: a template inside a fenced block routinely carries
+// its own `##` headings and its own link examples, and those are text, not
+// sections or pointers.
 //
 // A fence opens on a run of three or more backticks or tildes and closes only
 // on a run of the same character at least as long, so a four-backtick fence
@@ -1951,7 +1961,8 @@ function parseRoutingShape(source) {
   const fenceOpen = /^(`{3,}|~{3,})/;
   const fenceClose = /^(`{3,}|~{3,})\s*$/;
   const h2s = [];
-  const machineLines = [];
+  const machineBlockLines = [];
+  const linkTargets = [];
   let fence = null;
   let unfenced = false;
   for (let i = first; i < lines.length; i += 1) {
@@ -1959,7 +1970,7 @@ function parseRoutingShape(source) {
     if (fence !== null) {
       const close = stripped.match(fenceClose);
       if (close !== null && close[1][0] === fence.char && close[1].length >= fence.length) {
-        if (fence.inner.some((line) => ROUTING_SHAPE_MACHINE_LINE.test(line))) machineLines.push(fence.open + 1);
+        if (fence.inner.some((line) => ROUTING_SHAPE_MACHINE_LINE.test(line))) machineBlockLines.push(fence.open + 1);
         fence = null;
       } else {
         fence.inner.push(lines[i]);
@@ -1972,6 +1983,10 @@ function parseRoutingShape(source) {
       fence = { open: i, char: open[1][0], length: open[1].length, inner: [] };
       continue;
     }
+    // The pointer rule reads the body line by line and cares only that one
+    // line carries the link, so a link written on a heading line counts the
+    // same as one in a paragraph.
+    for (const match of lines[i].matchAll(ROUTING_SHAPE_LINK)) linkTargets.push(match[1]);
     if (lines[i].startsWith('## ')) {
       unfenced = false;
       h2s.push({ index: i, title: routingShapeTitle(lines[i]) });
@@ -1980,7 +1995,7 @@ function parseRoutingShape(source) {
     const isMachine = ROUTING_SHAPE_MACHINE_LINE.test(lines[i]);
     if (unfenced && (stripped === '' || /^[ \t]/.test(lines[i]) || isMachine)) continue;
     unfenced = isMachine;
-    if (unfenced) machineLines.push(i + 1);
+    if (unfenced) machineBlockLines.push(i + 1);
   }
 
   const smartIndex = h2s.findIndex((h2) => h2.title.startsWith('SMART ROUTING'));
@@ -2004,19 +2019,68 @@ function parseRoutingShape(source) {
   let appendix = null;
   if (appendixIndex !== -1) {
     appendix = {
+      line: h2s[appendixIndex].index + 1,
       from: h2s[appendixIndex].index + 1,
       to: appendixIndex + 1 < h2s.length ? h2s[appendixIndex + 1].index : lines.length,
       isLast: appendixIndex === h2s.length - 1,
     };
   }
 
-  return { smartLineCount, smartWordCount, machineLines, appendix };
+  return { smartLineCount, smartWordCount, machineBlockLines, appendix, linkTargets };
 }
 
-// The five routing-shape rules, reported in the order the contract lists them.
+// Containment on real paths, so a link that leaves the folder through a symlink
+// is decided on the file a reader would actually open.
+function routingShapeInside(root, target) {
+  return target === root || target.startsWith(`${root}${path.sep}`);
+}
+
+// A stat answer that treats an absent path as an answer rather than a throw, so
+// a missing file is told apart from one that exists and is not a file.
+function routingShapeFileStat(file) {
+  try {
+    return fs.statSync(file);
+  } catch {
+    return null;
+  }
+}
+
+// Whether anything sits at the path, a dangling symlink included, so a link to
+// a file that is gone reads as a router that is not a file, not as no router.
+function routingShapePathPresent(file) {
+  return fs.lstatSync(file, { throwIfNoEntry: false }) !== undefined;
+}
+
+// The router file and the SKILL.md pointer, as the routing shape sees them. Only
+// a regular file can be a router: an absent path, a directory in its place and a
+// real path that leaves the skill folder are three causes of one absence, so
+// each is reported as itself and no file is ever read. The pointer counts only
+// when a link's target is exactly this folder's ROUTER.md and that file is a
+// regular file inside the folder, because prose naming the file loads it for
+// nobody and a link to a nested or foreign ROUTER.md points at a document the
+// skill does not own.
+function routingShapeRouter(dir, shape) {
+  const file = path.join(dir, 'ROUTER.md');
+  const root = routingShapeRealPath(dir);
+  const stat = routingShapeFileStat(file);
+  const real = stat === null ? null : routingShapeRealPath(file);
+  const escapedTo = real !== null && !routingShapeInside(root, real) ? real : null;
+  const isFile = stat !== null && stat.isFile();
+  const named = shape.linkTargets.filter((target) => routingShapePointerTarget(target) === 'ROUTER.md');
+  return {
+    present: stat !== null || routingShapePathPresent(file),
+    isFile,
+    escapedTo,
+    namedPointer: named.length > 0 ? named[0] : null,
+    resolves: named.length > 0 && isFile && escapedTo === null,
+  };
+}
+
+// The routing-shape rules, reported in the order the contract lists them.
 // Each finding names the ledger metric it is measured against, so a recorded
-// limit tolerates exactly that finding and nothing else.
-function routingShapeFindings(shape, { isPacket, carriesOwnRouter, maxLines, maxWords }) {
+// limit tolerates exactly that finding and nothing else, and names the cause a
+// code-restricted rule is judged by.
+function routingShapeFindings(shape, { router, maxLines, maxWords }) {
   const findings = [];
   if (shape.smartLineCount !== null && shape.smartLineCount > maxLines) {
     findings.push({
@@ -2034,14 +2098,29 @@ function routingShapeFindings(shape, { isPacket, carriesOwnRouter, maxLines, max
       message: `routing shape RS-001: SMART ROUTING section has ${shape.smartWordCount} words (max ${maxWords})`,
     });
   }
-  for (const line of shape.machineLines) {
+  // The router has one home, and it is the sibling file. A section left in
+  // SKILL.md is a second declaration whether or not it holds a code block,
+  // because a reader that finds the section routes from it while the sibling
+  // file stays the declaration the checks trust. A machine block in the routing
+  // prose is the same declaration without the heading, and its own cause keeps a
+  // debt entry from covering it.
+  if (shape.appendix !== null) {
+    findings.push({
+      code: 'RS-002',
+      metric: null,
+      cause: shape.appendix.isLast ? 'trailing-section' : 'appendix-order',
+      message: `routing shape RS-002: '## MACHINE ROUTER' section at line ${shape.appendix.line} belongs in the sibling ROUTER.md`,
+    });
+  }
+  for (const line of shape.machineBlockLines) {
     const index = line - 1;
     const inAppendix = shape.appendix !== null && index >= shape.appendix.from && index < shape.appendix.to;
     if (!inAppendix) {
       findings.push({
         code: 'RS-002',
-        metric: 'machineBlocks',
-        message: `routing shape RS-002: machine router block at line ${line} is outside a final '## MACHINE ROUTER' section`,
+        metric: null,
+        cause: 'machine-block',
+        message: `routing shape RS-002: machine router block at line ${line} is outside any '## MACHINE ROUTER' section and belongs in the sibling ROUTER.md`,
       });
     }
   }
@@ -2052,35 +2131,57 @@ function routingShapeFindings(shape, { isPacket, carriesOwnRouter, maxLines, max
       message: "routing shape RS-003: '## MACHINE ROUTER' is not the last H2 section",
     });
   }
-  // Without the appendix a skill can still pass on counts alone while keeping
-  // its routing detail inline, so the section itself is required. A file with
-  // no SMART ROUTING section is not routing prose, so the rule does not apply.
-  if (shape.smartLineCount !== null && shape.appendix === null) {
-    findings.push({
-      code: 'RS-005',
-      metric: null,
-      message: "routing shape RS-005: no '## MACHINE ROUTER' section; the routing detail belongs in a final one",
-    });
-  }
-  if (isPacket && carriesOwnRouter) {
+  if (!router.present) {
     findings.push({
       code: 'RS-004',
       metric: null,
-      message: 'routing shape RS-004: mode packet carries its own ROUTER.md; the hub root ROUTER.md is the only router file',
+      cause: 'missing',
+      message: 'routing shape RS-004: no sibling ROUTER.md beside SKILL.md; every skill and mode packet owns one',
+    });
+  } else if (router.escapedTo !== null) {
+    findings.push({
+      code: 'RS-004',
+      metric: null,
+      cause: 'outside',
+      message: `routing shape RS-004: sibling ROUTER.md resolves outside the skill folder (${router.escapedTo})`,
+    });
+  } else if (!router.isFile) {
+    findings.push({
+      code: 'RS-004',
+      metric: null,
+      cause: 'not-a-file',
+      message: 'routing shape RS-004: sibling ROUTER.md is not a regular file, so the skill owns no router it can read',
+    });
+  }
+  if (router.namedPointer === null) {
+    findings.push({
+      code: 'RS-005',
+      metric: null,
+      message: 'routing shape RS-005: no relative markdown link to the sibling ROUTER.md',
+    });
+  } else if (!router.resolves) {
+    findings.push({
+      code: 'RS-005',
+      metric: null,
+      message: `routing shape RS-005: the link to '${router.namedPointer}' does not resolve to a file inside the skill folder`,
     });
   }
   return findings;
 }
 
 // The suffix a debt failure carries, or null when the recorded entry tolerates
-// the finding. RS-003 and RS-004 are presence-only, so recording the code is
-// the whole test; RS-002 is judged as a group, so every one of its findings
-// shares the group verdict.
-function routingShapeDebtSuffix(finding, recorded, machineBlockCount) {
+// the finding. A recorded code covers a finding it names with no cause of its
+// own; RS-001 and the trailing section are covered up to their recorded count;
+// and a finding outside its code's one tolerated cause is never debt, because
+// the shape an entry records is a file that is simply not there yet.
+function routingShapeDebtSuffix(finding, recorded) {
   if (!recorded.codes.includes(finding.code)) return ' (not recorded in its known debt)';
+  const toleratedCause = ROUTING_SHAPE_TOLERATED_CAUSES[finding.code];
+  if (toleratedCause !== undefined && finding.cause !== toleratedCause) {
+    return ` (${ROUTING_SHAPE_CAUSE_NOTES[finding.code]})`;
+  }
   if (finding.metric === null) return null;
-  const observed = finding.metric === 'machineBlocks' ? machineBlockCount : finding.value;
-  if (observed <= recorded[finding.metric]) return null;
+  if (finding.value <= recorded[finding.metric]) return null;
   return ` (grew past its recorded known debt of ${recorded[finding.metric]} ${ROUTING_SHAPE_DEBT_UNITS[finding.metric]})`;
 }
 
@@ -2114,19 +2215,28 @@ function routingShapeLabel(dir, isPacket) {
     : path.basename(dir);
 }
 
+// A packet with no router file holds exactly the shape the ledger records under
+// RS-004, so its entry is what decides whether the missing file is a failure or
+// migration debt. A skill outside the skills root has no key and is never debt.
+function routingShapeMissingRouterTolerated(dir, debt) {
+  if (routingShapePathPresent(path.join(dir, 'ROUTER.md'))) return false;
+  const key = routingShapeKey(dir);
+  if (key === null) return false;
+  const recorded = debt.get(key);
+  return recorded !== undefined && recorded.codes.includes('RS-004');
+}
+
 // 12b-routing-shape: the hub root and every mode packet share one routing
-// canon. A skill in the known-debt ledger keeps its recorded shape while that
-// shape does not grow and only raises the codes it recorded; a finding past a
-// recorded limit, or for a code the entry never recorded, is a real failure, so
-// a ledger entry can only ever shrink.
+// canon: a sibling ROUTER.md, a relative pointer to it, short routing prose and
+// no router section left in SKILL.md. A skill in the known-debt ledger keeps its
+// recorded shape while that shape does not grow, raises only the codes it
+// recorded, and sits only in the one cause each of those codes covers; anything
+// else is a real failure, so a ledger entry can only ever shrink.
 function checkRoutingShape(ctx) {
   const config = loadRoutingShapeDebt();
-  const packets = [...new Set(ctx.modes
-    .map((mode) => (typeof mode.packet === 'string' ? mode.packet.replace(/[\\/]+$/, '') : null))
-    .filter(Boolean))].sort();
   const targets = [
     { dir: ctx.target, isPacket: false },
-    ...packets.map((packet) => ({ dir: path.join(ctx.target, packet), isPacket: true })),
+    ...declaredPackets(ctx).map((packet) => ({ dir: path.join(ctx.target, packet), isPacket: true })),
   ];
 
   let auditedPackets = 0;
@@ -2148,8 +2258,7 @@ function checkRoutingShape(ctx) {
     const label = key !== null ? key : routingShapeLabel(dir, isPacket);
     const shape = parseRoutingShape(source);
     const findings = routingShapeFindings(shape, {
-      isPacket,
-      carriesOwnRouter: isPacket && fs.existsSync(path.join(dir, 'ROUTER.md')),
+      router: routingShapeRouter(dir, shape),
       maxLines: config.maxSmartRoutingLines,
       maxWords: config.maxSmartRoutingWords,
     });
@@ -2165,10 +2274,9 @@ function checkRoutingShape(ctx) {
       continue;
     }
 
-    const machineBlockCount = findings.filter((finding) => finding.code === 'RS-002').length;
     const tolerated = [];
     for (const finding of findings) {
-      const suffix = routingShapeDebtSuffix(finding, recorded, machineBlockCount);
+      const suffix = routingShapeDebtSuffix(finding, recorded);
       if (suffix !== null) {
         softFail(`12b-routing-shape: ${label}: ${finding.message}${suffix}`);
         violations += 1;

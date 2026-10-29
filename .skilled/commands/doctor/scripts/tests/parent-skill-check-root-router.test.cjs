@@ -8,9 +8,13 @@
  * Covers the root-router two-state check (12) in parent-skill-check.cjs: a
  * canon-clean hub with a compliant stage1-only or active root ROUTER.md passes
  * at exit 0, and each of the eight negative shapes fails at exactly its stable
- * RRC code with a nonzero exit. The checker resolves the contract libraries
- * from the repository root, so the temp fixtures are audited against the same
- * code as a live hub, and nothing here touches one.
+ * RRC code with a nonzero exit. The check runs the same contract for every mode
+ * packet the registry declares: a compliant packet router passes under the
+ * packet's own name, a defect is reported against that name, and a packet with
+ * no router file is tolerated only when its ledger entry records RS-004. The
+ * checker resolves the contract libraries from the repository root, so the temp
+ * fixtures are audited against the same code as a live hub, and nothing here
+ * touches one.
  */
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -56,11 +60,61 @@ function makeTempHubDir() {
   return hubRoot;
 }
 
+// The packet whose router a fixture writes, and the leaf its mode loads.
+const PACKET_LEAF = { 'create-skill': 'hello.md', 'pkg-two': 'world.md' };
+
+// A packet owns a router file and one relative link to it, so both routing
+// checks see a complete skill. The router carries its own pointer back to the
+// packet's SKILL.md, which is the document the contract resolves.
 function writePacketCompanions(packetDir, packetSkillName) {
   fs.mkdirSync(path.join(packetDir, 'changelog'), { recursive: true });
-  fs.writeFileSync(path.join(packetDir, 'SKILL.md'), `---\nname: ${packetSkillName}\n---\n# ${packetSkillName}\n`);
+  fs.writeFileSync(
+    path.join(packetDir, 'SKILL.md'),
+    `---\nname: ${packetSkillName}\n---\n# ${packetSkillName}\n\nRead [\`ROUTER.md\`](./ROUTER.md) before selecting packet resources.\n`,
+  );
+  fs.writeFileSync(path.join(packetDir, 'ROUTER.md'), packetRouter(packetSkillName, PACKET_LEAF[packetSkillName]));
   fs.writeFileSync(path.join(packetDir, 'README.md'), `# ${packetSkillName}\n`);
   fs.writeFileSync(path.join(packetDir, 'changelog', 'CHANGELOG.md'), '# Changelog\n');
+}
+
+// A packet owns no mode registry to stage against, so its router is active and
+// maps the leaf its mode loads. The path is relative to the packet folder, the
+// grammar the packet's own SKILL.md sections use for their resources.
+function packetRouter(name, leaf) {
+  return [
+    '---',
+    `title: ${name} Packet Router`,
+    'version: 1.0.0.0',
+    'router_state: active',
+    'skill_pointer: SKILL.md',
+    '---',
+    '',
+    `# ${name} Packet Router`,
+    '',
+    '## 1. OVERVIEW',
+    '',
+    `Second-layer router for the ${name} packet. The hub registry picks the mode;`,
+    'this file maps its intent to the leaves it loads.',
+    '',
+    '## 2. INTENT MODEL',
+    '',
+    '- **alpha leaves** — the resources an alpha request loads.',
+    '',
+    '## 3. MACHINE-READABLE ROUTER',
+    '',
+    '```python',
+    'DEFAULT_RESOURCE = []',
+    '',
+    'INTENT_SIGNALS = {',
+    '    "ALPHA": {"weight": 4, "keywords": ["alpha intent"]},',
+    '}',
+    '',
+    'RESOURCE_MAP = {',
+    `    "ALPHA": ["references/${leaf}"],`,
+    '}',
+    '```',
+    '',
+  ].join('\n');
 }
 
 function baseRegistry() {
@@ -186,7 +240,7 @@ function buildCleanFixture({ routerContent = stage1Router() } = {}) {
   writeJson(path.join(hubRoot, 'hub-router.json'), baseHubRouter());
   writeJson(path.join(hubRoot, 'description.json'), { name: basename, description: 'fixture hub', version: '1.0.0.0', keywords: ['fixture', 'create-skill', 'pkg-two'] });
   writeJson(path.join(hubRoot, 'command-metadata.json'), []);
-  fs.writeFileSync(path.join(hubRoot, 'SKILL.md'), '---\nname: demo-hub\nversion: 1.0.0.0\nallowed-tools: [Read]\n---\n# demo-hub\n');
+  fs.writeFileSync(path.join(hubRoot, 'SKILL.md'), '---\nname: demo-hub\nversion: 1.0.0.0\nallowed-tools: [Read]\n---\n# demo-hub\n\nRead [`ROUTER.md`](./ROUTER.md) before selecting hub resources.\n');
   fs.writeFileSync(path.join(hubRoot, 'ROUTER.md'), routerContent);
   fs.mkdirSync(path.join(hubRoot, 'changelog'), { recursive: true });
   fs.writeFileSync(path.join(hubRoot, 'changelog', 'CHANGELOG.md'), '# Changelog\n');
@@ -213,10 +267,20 @@ function buildCleanFixture({ routerContent = stage1Router() } = {}) {
 // 4. RUNNER
 // ─────────────────────────────────────────────────────────────────────────────
 
-function runChecker(hubRoot) {
+// The ledger path is always overridden to a file that does not exist, and an
+// inherited skills root is cleared, so no case can pass or fail because of the
+// live ledger. 12a reads the ledger to tell a packet's missing router file from
+// recorded migration debt, so an unset override would let the live ledger decide
+// a fixture.
+function runChecker(hubRoot, envOverrides = {}) {
   const env = { ...process.env };
   delete env.PARENT_HUB_CHECK_STRICT;
-  const result = spawnSync(process.execPath, [CHECKER_PATH, hubRoot], { encoding: 'utf8', env });
+  delete env.ROUTING_SHAPE_SKILLS_ROOT;
+  env.ROUTING_SHAPE_DEBT_FILE = path.join(path.dirname(hubRoot), 'absent-routing-shape-debt.json');
+  const result = spawnSync(process.execPath, [CHECKER_PATH, hubRoot], {
+    encoding: 'utf8',
+    env: { ...env, ...envOverrides },
+  });
   return { status: result.status, stdout: `${result.stdout || ''}${result.stderr || ''}` };
 }
 
@@ -330,7 +394,68 @@ function testLegacyStageTwoDefaultFailsRRC008() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 7. TESTS: DECLARATION SHAPE, POINTER EXACTNESS, CONTAINMENT, KEY OWNERSHIP
+// 7. TESTS: PER-PACKET RUN
+// ─────────────────────────────────────────────────────────────────────────────
+
+// The contract runs for every declared packet, so a packet with no router file
+// fails on its own line and that line names the packet.
+function testPacketWithoutRouterFailsRRC001() {
+  const hubRoot = buildCleanFixture();
+  fs.rmSync(path.join(hubRoot, 'create-skill', 'ROUTER.md'));
+  const result = runChecker(hubRoot);
+  assertOnlyRouterViolation(result.stdout, 'RRC-001', 'packet without a router');
+  assert.match(result.stdout, /^FAIL: 12a-router-contract: demo-hub\/create-skill: RRC-001 — /m);
+  assert.match(result.stdout, /^PASS: 12a-router-contract: root ROUTER\.md conforms to the two-state contract /m);
+  assert.notEqual(result.status, 0);
+}
+
+function testPacketRouterDefectNamesThePacket() {
+  const hubRoot = buildCleanFixture();
+  const packet = path.join(hubRoot, 'create-skill', 'ROUTER.md');
+  fs.writeFileSync(packet, packetRouter('create-skill', 'hello.md').replace(/router_state: active\n/, ''));
+  const result = runChecker(hubRoot);
+  assertOnlyRouterViolation(result.stdout, 'RRC-002', 'packet router with no state');
+  assert.match(result.stdout, /^FAIL: 12a-router-contract: demo-hub\/create-skill: RRC-002 — /m);
+  assert.notEqual(result.status, 0);
+}
+
+// A packet has no router file until it migrates, so the ledger entry that
+// records RS-004 is what keeps 12a green for it.
+function testRecordedRouterDebtToleratesMissingPacketRouter() {
+  const hubRoot = buildCleanFixture();
+  fs.rmSync(path.join(hubRoot, 'create-skill', 'ROUTER.md'));
+  const debtFile = path.join(path.dirname(hubRoot), 'routing-shape-known-debt.json');
+  writeJson(debtFile, {
+    description: 'fixture ledger',
+    maxSmartRoutingLines: 12,
+    debt: { 'demo-hub/create-skill': { lines: 0, words: 0, machineBlocks: 0, codes: ['RS-004', 'RS-005'] } },
+  });
+  const result = runChecker(hubRoot, {
+    ROUTING_SHAPE_DEBT_FILE: debtFile,
+    ROUTING_SHAPE_SKILLS_ROOT: path.dirname(hubRoot),
+  });
+  assert.match(result.stdout, /^INFO: 12a-router-contract: demo-hub\/create-skill: ROUTER\.md: known debt, RS-004 /m);
+  assert.doesNotMatch(result.stdout, /FAIL: 12a-router-contract:/);
+  assert.equal(result.status, 0, `expected recorded migration debt to exit 0:\n${result.stdout}`);
+}
+
+// A packet names its leaves from its own folder, which is the grammar its
+// SKILL.md sections use, so 12a resolves the mapped path inside the packet
+// before the hub and accepts it.
+function testPacketRelativeLeafPathPasses() {
+  const hubRoot = buildCleanFixture();
+  fs.writeFileSync(path.join(hubRoot, 'create-skill', 'ROUTER.md'), packetRouter('create-skill', 'hello.md'));
+  // The hub root holds no references/ directory, so references/hello.md can
+  // only resolve inside the packet, never at the hub.
+  assert.equal(fs.existsSync(path.join(hubRoot, 'references')), false);
+  const result = runChecker(hubRoot);
+  assert.match(result.stdout, /^PASS: 12a-router-contract: demo-hub\/create-skill: ROUTER\.md conforms to the two-state contract \(active\)/m);
+  assert.doesNotMatch(result.stdout, /FAIL: 12a-router-contract:/);
+  assert.equal(result.status, 0, `expected a packet-relative leaf path to pass:\n${result.stdout}`);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 8. TESTS: DECLARATION SHAPE, POINTER EXACTNESS, CONTAINMENT, KEY OWNERSHIP
 // ─────────────────────────────────────────────────────────────────────────────
 
 function testStage1MissingIntentSignalsFailsRRC002() {
@@ -436,7 +561,7 @@ function testMappedPathTraversalFailsRRC006() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 8. RUN
+// 9. RUN
 // ─────────────────────────────────────────────────────────────────────────────
 
 testStage1OnlyPasses();
@@ -460,4 +585,8 @@ testSkillPointerNotRootFailsRRC007();
 testActiveEmptyResourceListFailsRRC004();
 testSharedControlTraversalFailsRRC004();
 testMappedPathTraversalFailsRRC006();
+testPacketWithoutRouterFailsRRC001();
+testPacketRouterDefectNamesThePacket();
+testRecordedRouterDebtToleratesMissingPacketRouter();
+testPacketRelativeLeafPathPasses();
 console.log('[parent-skill-check] root-router contract fixtures passed');

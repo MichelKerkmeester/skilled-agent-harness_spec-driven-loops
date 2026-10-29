@@ -175,7 +175,11 @@ def _write_valid_skill(
     ),
     with_recommended_sections=False,
 ):
-    """Write a minimal skill that passes hard validation; mutate per-test."""
+    """Write a minimal skill that passes hard validation; mutate per-test.
+
+    The skill owns its router in a sibling ROUTER.md and links it from
+    SKILL.md, which is the shape the routing canon requires.
+    """
     skill_path.mkdir(parents=True, exist_ok=True)
     router_body = (
         "Prose only, no markers.\n"
@@ -198,14 +202,18 @@ def _write_valid_skill(
         "## 3. HOW IT WORKS\nText.\n\n---\n\n"
         "## 4. RULES\n### ALWAYS\n- Do.\n### NEVER\n- Don't.\n### ESCALATE IF\n- Ask.\n\n---\n\n"
         "## 5. REFERENCES\nText.\n"
+        "\nStructured routing detail: [`ROUTER.md`](./ROUTER.md).\n"
         + (
             "\n## 6. SUCCESS CRITERIA\nText.\n"
             "\n## 7. INTEGRATION POINTS\nText.\n"
             "\n## 8. RELATED RESOURCES\nText.\n"
             if with_recommended_sections
             else ""
-        )
-        + "\n## 9. MACHINE ROUTER\nThe routing detail lives here.\n",
+        ),
+        encoding="utf-8",
+    )
+    (skill_path / "ROUTER.md").write_text(
+        "# Demo Router\n\n## MACHINE ROUTER\n\nThe routing detail lives here, apart from SKILL.md.\n",
         encoding="utf-8",
     )
     return skill_path
