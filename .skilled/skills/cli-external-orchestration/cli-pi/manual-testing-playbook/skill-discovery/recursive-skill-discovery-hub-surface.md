@@ -1,7 +1,7 @@
 ---
 title: "PI-004 -- Recursive skill discovery and hub surface"
 description: "This scenario checks the configured `.pi/settings.json` skills pointer and the documented recursive `SKILL.md` discovery shape for `PI-004`, without claiming a provider-gated live hub count."
-version: 1.5.0.1
+version: 1.5.1.0
 ---
 
 # PI-004 -- Recursive skill discovery and hub surface
@@ -59,7 +59,8 @@ The repository's advisor architecture depends on hub-level identity. A recursive
 | File | Role |
 |---|---|
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | Credential and discovery evidence rules |
-| `../../SKILL.md` | Native-resource routing and progressive loading boundary |
+| `../../SKILL.md` | Native-resource surfaces and discovery caveats |
+| `../../ROUTER.md#3-machine-router` | Machine router: intent map, resource map and loading levels |
 | `../../references/native-skills-and-extensions.md` | Recursive discovery guidance marked documented but unconfirmed |
 
 ### Implementation And Test Anchors

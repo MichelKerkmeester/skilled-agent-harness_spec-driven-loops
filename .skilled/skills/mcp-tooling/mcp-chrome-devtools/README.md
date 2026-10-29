@@ -7,7 +7,7 @@ trigger_phrases:
   - "bdg"
   - "screenshot"
   - "browser automation"
-version: 1.0.15.0
+version: 1.0.16.0
 ---
 
 # mcp-chrome-devtools
@@ -231,7 +231,8 @@ The manual testing playbook (`manual-testing-playbook/manual-testing-playbook.md
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the two-path router and the full rule set |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions and the full rule set |
+| [`ROUTER.md`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Step-by-step install for the CLI and the MCP server, with an AI-first prompt |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current-state inventory of every CLI and MCP capability |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate each catalog entry |

@@ -1,7 +1,7 @@
 ---
 title: "SP-008 -- UNKNOWN_FALLBACK with disambiguation checklist"
 description: "This scenario validates zero-keyword fallback for `SP-008`. It focuses on confirming the router defaults to TEXT_ENHANCE and surfaces UNKNOWN_FALLBACK_CHECKLIST."
-version: 2.3.2.0
+version: 2.3.3.0
 ---
 
 # SP-008 -- UNKNOWN_FALLBACK with disambiguation checklist
@@ -53,7 +53,7 @@ Default intent = TEXT_ENHANCE. Routing trace surfaces all 4 checklist items: enh
 
 ### Evidence
 
-Routing trace + checklist text. Compare against the canonical SKILL.md list.
+Routing trace + checklist text. Compare against the canonical ROUTER.md list.
 
 ### Pass / Fail
 

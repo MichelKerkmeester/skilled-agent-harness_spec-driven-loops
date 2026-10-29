@@ -2,7 +2,7 @@
 title: "SCG-001 -- Top-level goal"
 description: "This scenario validates the top-level goal for `SCG-001`. It focuses on authoring a goal for a single-folder packet that passes the goal check and fits the durable budget."
 stage: routing
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # SCG-001 -- Top-level goal
@@ -122,7 +122,8 @@ Run the same fixture with five acceptance criteria and confirm the criteria coun
 
 | File | Role |
 |---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Mode contract with the pre-write decisions and the handoff boundary |
+| [`../../SKILL.md`](../../SKILL.md) | Mode contract with the handoff boundary |
+| [`../../ROUTER.md`](../../ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`../../references/parent-and-nested-goals.md`](../../references/parent-and-nested-goals.md) | The top-level workflow this scenario drives |
 | [`../../references/authoring-standards.md`](../../references/authoring-standards.md) | Reader checks the authored objective and criteria are held to |
 | [`../../scripts/check-goal.cjs`](../../scripts/check-goal.cjs) | The five named checks read in step 7 |

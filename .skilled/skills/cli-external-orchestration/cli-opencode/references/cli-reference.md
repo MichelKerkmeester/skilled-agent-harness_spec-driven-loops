@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.25.0
+version: 1.4.26.0
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -420,4 +420,5 @@ This reference is pinned to OpenCode 2 at 2.1.4, the recommended target, and Ope
 - `./opencode-tools.md` - Unique capabilities (full plugin/skill/MCP runtime, parallel detached sessions)
 - `../assets/prompt-templates.md` - Copy-paste prompt templates per use case
 - `../assets/prompt-quality-card.md` - Framework selection and CLEAR 5-check
-- `../SKILL.md` - Skill entry point and smart router
+- `../SKILL.md` - Skill entry point and routing summary
+- `../ROUTER.md` §3 - Machine router: intent map, resource map and loading levels

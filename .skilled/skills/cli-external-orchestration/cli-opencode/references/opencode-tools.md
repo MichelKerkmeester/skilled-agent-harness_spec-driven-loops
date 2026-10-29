@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode vs sibling cli skills"
 importance_tier: normal
 contextType: general
-version: 1.4.13.0
+version: 1.4.14.0
 ---
 
 # OpenCode CLI - Unique Capabilities
@@ -251,4 +251,5 @@ The shared session database at `~/.local/share/opencode/` is what makes use case
 - `./integration-patterns.md` - Three use cases with prompt templates
 - `./agent-delegation.md` - Agent routing matrix
 - `../assets/prompt-templates.md` - Copy-paste templates per use case
-- `../SKILL.md` - Skill entry point and smart router
+- `../SKILL.md` - Skill entry point and routing summary
+- `../ROUTER.md` §3 - Machine router: intent map, resource map and loading levels

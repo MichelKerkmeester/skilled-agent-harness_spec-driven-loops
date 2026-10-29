@@ -5,7 +5,7 @@ trigger_phrases:
   - "opencode system code"
   - "opencode authoring"
   - "system code standards"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # opencode
@@ -59,7 +59,7 @@ These checks load only for a file the surface detection places in SKILLED, so a 
 
 **Step 1: Let the hub bundle it.** There is nothing to install and no command to run. When a task touches `.skilled/` system code, the sk-code hub bundles this surface alongside the active workflow mode and slices the evidence to the languages the task touches.
 
-**Step 2: Read the sliced evidence.** The workflow mode loads the standards for each detected language plus the shared tier. Confirm the slice against the resource map in `SKILL.md` section 2 before relying on it.
+**Step 2: Read the sliced evidence.** The workflow mode loads the standards for each detected language plus the shared tier. Confirm the slice against the resource map in `ROUTER.md` section 3 before relying on it.
 
 **Step 3: Run the drift guard before any completion claim.**
 
@@ -105,7 +105,7 @@ Use this surface when a task touches `.skilled/` system code, be it a skill, age
 | What you see | Why | Fix |
 |---|---|---|
 | The drift guard exits non-zero | A language reference or router map fell out of sync with the filesystem or the machine router | Re-run `scripts/run-all-drift-guards.sh`, fix the drifted route, then re-run until clean |
-| The expected language slice is missing | The touched extension has no entry in the surface reference map | Confirm the extension and its local markers, then check the resource map in `SKILL.md` section 2 |
+| The expected language slice is missing | The touched extension has no entry in the surface reference map | Confirm the extension and its local markers, then check the resource map in `ROUTER.md` section 3 |
 
 ---
 
@@ -117,7 +117,7 @@ A: The workflow modes stay lean by owning the edit, debug and verify workflow wh
 
 **Q: Can I invoke this surface directly?**
 
-A: No. The hub bundles it beside a workflow mode. It never routes as a primary. For the evidence on its own, read the resource map in `SKILL.md` or browse `references/`.
+A: No. The hub bundles it beside a workflow mode. It never routes as a primary. For the evidence on its own, read the resource map in `ROUTER.md` or browse `references/`.
 
 ---
 

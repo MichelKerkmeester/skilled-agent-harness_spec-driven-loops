@@ -3,7 +3,7 @@ id: AD-H01
 category: intra-routing-recall
 stage: holdout
 title: 'Blind holdout: scripted evidence'
-description: "This scenario validates the SKILL.md Smart Router's REPL intent generalizes to a prompt blind to obvious tool-name keywords for `AD-H01`. It confirms scripted, replayable-evidence phrasing still scores REPL without saying 'repl' or 'playwright'."
+description: "This scenario validates the ROUTER.md Smart Router's REPL intent generalizes to a prompt blind to obvious tool-name keywords for `AD-H01`. It confirms scripted, replayable-evidence phrasing still scores REPL without saying 'repl' or 'playwright'."
 expected_intent: REPL
 expected_resources:
   - references/aside-cli-reference.md

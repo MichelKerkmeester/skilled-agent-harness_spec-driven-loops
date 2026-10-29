@@ -9,7 +9,7 @@ trigger_phrases:
   - "code review"
   - "second opinion"
   - "cross-validate"
-version: 1.9.1.0
+version: 1.9.2.0
 ---
 
 # cli-codex
@@ -165,7 +165,8 @@ cli-codex authenticates through ChatGPT OAuth only. Before the first dispatch th
 
 ```text
 .skilled/skills/cli-external-orchestration/cli-codex/
-+-- SKILL.md                                # Runtime instructions, the smart router and the full rule set
++-- SKILL.md                                # Runtime instructions and the full rule set
++-- ROUTER.md                               # Machine router: intent map, resource map and loading levels (section 3)
 +-- README.md                               # This file
 +-- assets/                                 # Prompt-quality card and prompt templates
 |   +-- prompt-quality-card.md              # Fast-path prompt discipline and the CLEAR check
@@ -184,7 +185,8 @@ cli-codex authenticates through ChatGPT OAuth only. Before the first dispatch th
 
 | File | Role |
 |---|---|
-| `SKILL.md` | Runtime instructions, the smart router and the full rule set |
+| `SKILL.md` | Runtime instructions and the full rule set |
+| [`ROUTER.md`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | `README.md` | This file |
 | `references/agent-delegation.md` | Agent roster, routing table and invocation patterns |
 | `references/cli-reference.md` | Complete CLI subcommands, flags, sandbox modes and config reference |
@@ -282,7 +284,8 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions and the full rule set |
+| [`ROUTER.md`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`references/cli-reference.md`](./references/cli-reference.md) | Complete CLI subcommands, flags, sandbox modes and config reference |
 | [`references/providers-and-models.md`](./references/providers-and-models.md) | Single-source catalog of the OpenAI provider, the model roster and the effort ladder |
 | [`references/integration-patterns.md`](./references/integration-patterns.md) | Cross-AI orchestration patterns and workflows |

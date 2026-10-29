@@ -2,7 +2,7 @@
 title: "RRD-001 -- Always-loaded refusal"
 description: "This scenario validates the always-loaded refusal for `RRD-001`. It focuses on refusing a proposal whose content must bind on every turn, and naming the always-loaded document as its destination."
 stage: routing
-version: 1.1.0.3
+version: 1.1.1.0
 ---
 
 # RRD-001 -- Always-loaded refusal
@@ -91,7 +91,8 @@ Re-run with a proposal that genuinely does fire on a trigger, such as a conventi
 | File | Role |
 |---|---|
 | [`references/decision-tests.md`](../../references/decision-tests.md) | Primary implementation anchor, sections 1 and 5 |
-| [`SKILL.md`](../../SKILL.md) | Resource loading levels and the create ordering |
+| [`SKILL.md`](../../SKILL.md) | The create ordering |
+| [`ROUTER.md`](../../ROUTER.md) | Machine router: intent map, resource map and loading levels |
 
 ---
 

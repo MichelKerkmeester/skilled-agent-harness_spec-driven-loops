@@ -208,7 +208,7 @@
     ],
     "causal_summary": "After phase 004, 47 of the 54 skills still carry their machine router inside `SKILL.md`: 41 mode packets and the six standalone skills",
     "created_at": "2026-10-29T07:52:44Z",
-    "last_save_at": "2026-10-29T14:31:18.616Z",
+    "last_save_at": "2026-10-29T16:20:59.952Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,12 +219,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6e27651103e5b64345dfe4a867ae235b112ef036459f271c9f224619983901b9",
+    "source_fingerprint": "sha256:98852cc14ee945b2748a5a93fc0a9124e4238880fa6f55c8010fb205dd1e9725",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "62ab798f094f18f76fae26dbd82ec01d1c84642eb4920def286ce1a476d911f2",
       "plan.md": "16349f63617dc2768865cf638f324ea06f7fe84d5165cfcb9cd02096cd21e1db",
-      "tasks.md": "24a188d16550cbada31e6603affe65e4b925dccd6bfb1de962905c4bc2a6ac7c",
+      "tasks.md": "38e727b211de238c79b1044f7ac70dde5c4589053908201836bcf49fb733f3ce",
       "implementation-summary.md": "bb5d46d37d7ce6742732cf1a7c89f924b8382acb666f3d164dd27283f88f16c4"
     },
     "last_active_at": null

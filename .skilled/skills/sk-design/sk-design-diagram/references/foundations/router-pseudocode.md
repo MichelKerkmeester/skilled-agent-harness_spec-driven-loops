@@ -7,12 +7,12 @@ trigger_phrases:
   - "diagram smart router"
 importance_tier: "normal"
 contextType: "reference"
-version: 1.2.0.3
+version: 1.2.1.0
 ---
 
 # Diagram Router Pseudocode
 
-This is the reference implementation of the routing rules stated in `SKILL.md` § Smart Routing. The rules there are the contract; this is one way to hold them, kept whole here so the skill contract does not carry a fifth of its bytes as code.
+This is the reference implementation of the routing rules in [`../../ROUTER.md#3-machine-router`](../../ROUTER.md#3-machine-router) §3 (MACHINE ROUTER). The rules there are the contract; this is one way to hold them, kept whole here so the skill contract does not carry a fifth of its bytes as code.
 
 ---
 

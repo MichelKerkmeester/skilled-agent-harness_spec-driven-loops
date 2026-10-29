@@ -1,7 +1,7 @@
 ---
 title: "CP-049 -- PAUSE_SENTINEL_HALT command lifecycle stop **(SANDBOXED)**"
 description: "Validate that a packet-local .deep-research-pause sentinel halts the command between lifecycle turns and records userPaused without writing an iteration."
-version: 1.14.0.9
+version: 1.14.1.0
 ---
 
 # CP-049 -- PAUSE_SENTINEL_HALT command lifecycle stop **(SANDBOXED)**
@@ -106,7 +106,7 @@ diff /tmp/cp-049-pre.txt /tmp/cp-049-post.txt > /tmp/cp-049-tripwire.diff; echo 
 | `.skilled/commands/deep/assets/deep-research-auto.yaml:400-408` | pause sentinel check |
 | `.skilled/commands/deep/assets/deep-research-auto.yaml:513-521` | stop reason normalization |
 | `.skilled/commands/deep/assets/deep-research-auto.yaml:179-195` | lock cleanup applies to halt paths |
-| `.skilled/skills/system-deep-loop/deep-research/SKILL.md:287-309` | packet-local state location and sentinel |
+| `.skilled/skills/system-deep-loop/deep-research/SKILL.md:144-152` | packet-local state location and sentinel |
 | `.skilled/agents/deep-research.md:43-55` | leaf agent boundary stays unrelated to pause lifecycle |
 
 ---

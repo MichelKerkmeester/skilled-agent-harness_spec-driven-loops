@@ -7,7 +7,7 @@ description: "Verify a runtime-parity-shaped request scores the RUNTIME_PARITY i
 expected_intent: RUNTIME_PARITY
 expected_resources:
   - references/guides/capability-matrix.md
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # DR-R07: Deep research runtime parity routing
@@ -55,7 +55,7 @@ Check runtime capability parity between opencode and claude before dispatching t
 
 ### Commands
 
-1. `sed -n '332,351p' .skilled/skills/system-deep-loop/deep-research/SKILL.md` - confirm the `RUNTIME_PARITY` keyword list and resource map.
+1. `sed -n '/^## 3. MACHINE ROUTER$/,$p' .skilled/skills/system-deep-loop/deep-research/ROUTER.md` - confirm the `RUNTIME_PARITY` keyword list and resource map.
 2. `for p in references/guides/quick-reference.md references/guides/capability-matrix.md; do test -e ".skilled/skills/system-deep-loop/deep-research/$p" && echo "OK $p" || echo "MISS $p"; done` - confirm every expected resource resolves on disk.
 3. Dispatch the exact prompt into the deep-research packet's router and capture which intent and resource set it reports.
 

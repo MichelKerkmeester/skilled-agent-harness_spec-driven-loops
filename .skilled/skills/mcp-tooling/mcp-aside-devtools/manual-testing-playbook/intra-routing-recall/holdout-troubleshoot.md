@@ -3,7 +3,7 @@ id: AD-H02
 category: intra-routing-recall
 stage: holdout
 title: 'Blind holdout: stalled automation'
-description: "This scenario validates the SKILL.md Smart Router's TROUBLESHOOT intent generalizes to a prompt blind to obvious tool-name keywords for `AD-H02`. It confirms stalled-automation phrasing still scores TROUBLESHOOT without saying 'aside' or 'mcp'."
+description: "This scenario validates the ROUTER.md Smart Router's TROUBLESHOOT intent generalizes to a prompt blind to obvious tool-name keywords for `AD-H02`. It confirms stalled-automation phrasing still scores TROUBLESHOOT without saying 'aside' or 'mcp'."
 expected_intent: TROUBLESHOOT
 expected_resources:
   - references/troubleshooting.md

@@ -8,7 +8,7 @@ trigger_phrases:
   - "multi-seat planning"
   - "planning council"
   - "council convergence"
-version: 1.8.1.0
+version: 1.8.2.0
 ---
 
 # deep-ai-council
@@ -200,7 +200,8 @@ A: The run completes as `non-converged`. This is an honest answer: the evidence 
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full operating contract |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions and the full operating contract |
+| [`ROUTER.md §3`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`references/integration/quick-reference.md`](./references/integration/quick-reference.md) | Operator cheat sheet for commands, artifacts and validation |
 | [`references/integration/loop-protocol.md`](./references/integration/loop-protocol.md) | End-to-end council workflow from packet resolution through recovery |
 | [`references/structure/output-schema.md`](./references/structure/output-schema.md) | Required report sections the persistence parser enforces |

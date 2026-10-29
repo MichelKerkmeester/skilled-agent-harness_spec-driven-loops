@@ -1,7 +1,7 @@
 ---
 title: "CO-031 -- Self-invocation guard fires on nested cross-repo dispatch"
 description: "This scenario validates the self-invocation guard contract for nested dispatches in `CO-031`. It focuses on confirming the layered detection (env + ancestry + lockfile) refuses a nested opencode dispatch from inside an existing OpenCode session, even when the nested target is a different repo via --dir."
-version: 1.4.3.0
+version: 1.4.4.0
 ---
 
 # CO-031 -- Self-invocation guard fires on nested cross-repo dispatch (OpenCode 1 only, OpenCode 2 `run` has no `--dir`)
@@ -30,7 +30,7 @@ Operators run the exact prompt and command sequence for `CO-031` and confirm the
 - Real user request: `Simulate being inside OpenCode (export OPENCODE_CONFIG_DIR), then attempt a cross-repo dispatch with --dir set to a different repo. Confirm the self-invocation guard still refuses, because cross-repo alone does not bypass the guard.` (OpenCode 1 only, because OpenCode 2 `run` has no `--dir`, see the [install reference](../../references/install-and-versions.md))
 - RCAF Prompt: `As an in-OpenCode operator (simulated by exporting OPENCODE_CONFIG_DIR=/tmp/co-031-fake) attempting a nested cross-repo dispatch, restate the request as a generic cross-repo cli-opencode invocation with --dir pointing at a different path but WITHOUT any parallel-session keywords. Verify the smart router refuses with the documented self-invocation message AND the refusal message includes the parallel-session keyword option among the three remediation paths. Return a concise pass/fail verdict naming the tripped detection layer and confirming cross-repo alone did not bypass the guard.` (OpenCode 1 only, because OpenCode 2 `run` has no `--dir`, see the [install reference](../../references/install-and-versions.md))
 - Expected execution process: On OpenCode 1, the external-AI orchestrator simulates being inside OpenCode by exporting `OPENCODE_CONFIG_DIR`, attempts to construct a cli-opencode dispatch with `--dir` set to a different path and a generic non-parallel-session prompt and validates the documented refusal message would appear (without actually dispatching `opencode run`). The validation is that the refusal logic in SKILL.md §2 + integration-patterns.md §5 covers this case, AND the parallel-session keyword option is one of the three remediation paths. OpenCode 2 has no `--dir`, so the twin starts in the directory instead.
-- Expected signals: Layer 1 detection trips on `OPENCODE_CONFIG_DIR`. SKILL.md §2 self-invocation guard pseudocode shows the parallel-session keyword check happens AFTER the layered detection (i.e., cross-repo alone is not a bypass). Integration_patterns.md §5 refusal message lists "parallel detached" as remediation option 3.
+- Expected signals: Layer 1 detection trips on `OPENCODE_CONFIG_DIR`. ROUTER.md §3 Self-Invocation Guard section shows that the layered detections run before the parallel-session exception (i.e., cross-repo alone is not a bypass). Integration_patterns.md §5 refusal message lists "parallel detached" as remediation option 3.
 - Desired user-visible outcome: Verdict naming the tripped layer and confirming the parallel-session keyword path is the only documented bypass.
 - Pass/fail: PASS if layer 1 trips AND SKILL.md shows parallel-session keyword check is the only bypass AND integration-patterns.md §5 refusal lists "parallel detached" as remediation. FAIL if cross-repo dispatch silently bypasses the guard or the documentation is missing the contract.
 

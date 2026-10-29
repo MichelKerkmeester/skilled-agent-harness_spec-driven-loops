@@ -8,7 +8,7 @@ trigger_phrases:
   - "pull request"
   - "security review"
   - "code-review"
-version: 1.7.9.0
+version: 1.7.10.0
 ---
 
 # sk-code-review mode
@@ -227,7 +227,8 @@ A: Downstream automation reads the final line by exact string match to decide wh
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, smart router and the full rule set |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions and the full rule set |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`references/review-core.md`](./references/review-core.md) | Shared doctrine: severity taxonomy, evidence rules, the floor, the default lens and its rule ids, rule overrides and the `Rule sources:` line |
 | [`references/review-ux-single-pass.md`](./references/review-ux-single-pass.md) | Single-pass report flow and the next-action prompt |
 | [`../shared/references/universal/rule-overrides.md`](../shared/references/universal/rule-overrides.md) | The shared override format, rule ids, hard floor and precedence the review and quality modes both read |

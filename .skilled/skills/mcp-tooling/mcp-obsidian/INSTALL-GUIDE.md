@@ -1,7 +1,7 @@
 ---
 title: "mcp-obsidian Installation Guide"
 description: "Installation and configuration for Obsidian vault work through notesmd-cli, the official obsidian CLI and the MCP path."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # mcp-obsidian Installation Guide
@@ -250,7 +250,8 @@ Full diagnosis and recovery: [`references/troubleshooting.md`](references/troubl
 
 | Resource | Purpose |
 |---|---|
-| [`SKILL.md`](SKILL.md) | Router, agent invariants, and surface selection rules |
+| [`SKILL.md`](SKILL.md) | Agent invariants and operating rules |
+| [`ROUTER.md#3-machine-router`](ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`README.md`](README.md) | Human-facing overview, FAQ, and verification checklist |
 | [`references/obsidian-cli-commands.md`](references/obsidian-cli-commands.md) | Complete headless and app-backed CLI reference |
 | [`references/mcp-tools.md`](references/mcp-tools.md) | Cyanheads MCP tool inventory, prerequisites, and invocation pattern |

@@ -8,7 +8,7 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.0.36
+version: 1.11.1.0
 ---
 
 # deep-review
@@ -245,7 +245,8 @@ Expected output: zero issues reported.
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full operating contract |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions and the full operating contract |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`references/protocol/quick-reference.md`](./references/protocol/quick-reference.md) | One-page operator cheat sheet with commands, defaults, dimensions, verdicts and convergence rules |
 | [`references/protocol/loop-protocol.md`](./references/protocol/loop-protocol.md) | Four-phase lifecycle, dispatch contract and executor invariants |
 | [`references/protocol/loop-state-and-gates.md`](./references/protocol/loop-state-and-gates.md) | State transitions, error handling and binary quality gates |

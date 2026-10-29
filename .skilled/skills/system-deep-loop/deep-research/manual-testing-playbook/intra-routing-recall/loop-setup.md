@@ -11,7 +11,7 @@ expected_resources:
   - references/state/state-jsonl.md
   - references/protocol/spec-check-protocol.md
   - references/protocol/context-snapshot.md
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # DR-R01: Deep research loop setup routing
@@ -59,7 +59,7 @@ Start an autoresearch deep research loop and handle setup and init for this inve
 
 ### Commands
 
-1. `sed -n '332,351p' .skilled/skills/system-deep-loop/deep-research/SKILL.md` - confirm the `LOOP_SETUP` keyword list and resource map.
+1. `sed -n '/^## 3. MACHINE ROUTER$/,$p' .skilled/skills/system-deep-loop/deep-research/ROUTER.md` - confirm the `LOOP_SETUP` keyword list and resource map.
 2. `for p in references/guides/quick-reference.md references/protocol/loop-protocol.md references/state/state-format.md references/state/state-jsonl.md references/protocol/spec-check-protocol.md references/protocol/context-snapshot.md; do test -e ".skilled/skills/system-deep-loop/deep-research/$p" && echo "OK $p" || echo "MISS $p"; done` - confirm every expected resource resolves on disk.
 3. Dispatch the exact prompt into the deep-research packet's router and capture which intent and resource set it reports.
 

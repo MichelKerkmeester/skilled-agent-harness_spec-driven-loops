@@ -10,7 +10,7 @@ trigger_phrases:
   - "why was my frontmatter rejected"
 importance_tier: normal
 contextType: general
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # create-frontmatter
@@ -181,7 +181,8 @@ A: Yes, for now. They carry frontmatter and are governed separately. The version
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the router, and the always-and-never rules |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions and the always-and-never rules |
+| [`ROUTER.md`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`references/README.md`](./references/README.md) | Router for this mode's reference set |
 | [`assets/frontmatter-templates.md`](./assets/frontmatter-templates.md) | The field reference and the per-class templates. Eleven sections, one per concern |
 | [`assets/frontmatter-values.json`](./assets/frontmatter-values.json) | The `contextType` and `importance_tier` values and aliases every checker reads |

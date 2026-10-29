@@ -1,7 +1,7 @@
 ---
 title: "RMR-001 -- Skill README"
 description: "This scenario validates routing a skill folder to a general README with orientation first and evidence-backed reference detail."
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # RMR-001 -- Skill README
@@ -85,7 +85,8 @@ Capture the prompt, target inventory, audience, selected template, draft outline
 
 | File | Role |
 |---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Artifact routing and README workflow |
+| [`../../SKILL.md`](../../SKILL.md) | README authoring workflow |
+| [`../../ROUTER.md#3-machine-router`](../../ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`../../assets/readme-template.md`](../../assets/readme-template.md) | General README scaffold |
 | [`../../references/readme/types-and-voice.md`](../../references/readme/types-and-voice.md) | Skill README audience and voice |
 

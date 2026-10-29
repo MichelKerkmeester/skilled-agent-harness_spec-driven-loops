@@ -13,7 +13,7 @@ expected_resources:
   - references/state/state-reducer-registry.md
   - assets/deep-review-strategy.md
   - references/state/state-jsonl.md
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # DV-R01: Deep review setup routing
@@ -61,7 +61,7 @@ Start deep review in review mode for an audit spec workflow and prepare converge
 
 ### Commands
 
-1. `sed -n '299,342p' .skilled/skills/system-deep-loop/deep-review/SKILL.md` - confirm the `REVIEW_SETUP` keyword list and resource map.
+1. `sed -n '/^## 3. MACHINE ROUTER$/,$p' .skilled/skills/system-deep-loop/deep-review/ROUTER.md` - confirm the `REVIEW_SETUP` keyword list and resource map.
 2. `for p in references/protocol/quick-reference.md references/protocol/loop-protocol.md references/state/state-format.md references/state/state-outputs.md references/state/state-reducer-registry.md assets/deep-review-strategy.md references/state/state-jsonl.md; do test -e ".skilled/skills/system-deep-loop/deep-review/$p" && echo "OK $p" || echo "MISS $p"; done` - confirm every expected resource resolves on disk.
 3. Dispatch the exact prompt into the deep-review packet's router and capture which intent and resource set it reports.
 
@@ -81,7 +81,7 @@ Command transcript from steps 1-2; the router transcript from step 3, saved to `
 ### Failure Triage
 
 1. Re-run step 2 for the specific path that failed and confirm whether it was renamed or removed.
-2. If a different intent wins, compare keyword overlap: `REVIEW_SETUP` shares no keywords with `REVIEW_ITERATION`, `REVIEW_CONVERGENCE`, or `REVIEW_REPORT`, so an unexpected winner points to a keyword-list edit in `SKILL.md` rather than this scenario's prompt.
+2. If a different intent wins, compare keyword overlap: `REVIEW_SETUP` shares no keywords with `REVIEW_ITERATION`, `REVIEW_CONVERGENCE`, or `REVIEW_REPORT`, so an unexpected winner points to a keyword-list edit in `ROUTER.md` §3 rather than this scenario's prompt.
 
 ---
 

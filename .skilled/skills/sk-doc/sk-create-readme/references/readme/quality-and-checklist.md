@@ -9,12 +9,12 @@ trigger_phrases:
   - "readme review checklist"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 # README Quality and Pre-Publish Checklist
 
-Overflow detail behind `SKILL.md` Section 8 (validation and audit). Use it to review a drafted README before delivery. `SKILL.md` lists the short pre-publish checks; this file carries the DQI weighting, per-section checks and the full itemized checklist.
+Overflow detail behind `SKILL.md` Section 7 (validation and audit). Use it to review a drafted README before delivery. `SKILL.md` lists the short pre-publish checks; this file carries the DQI weighting, per-section checks and the full itemized checklist.
 
 ---
 

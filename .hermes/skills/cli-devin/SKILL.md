@@ -16,7 +16,7 @@ version: 1.4.12.0
 
 > **CRITICAL — SELF-INVOCATION PROHIBITED**
 >
-> This skill dispatches to the Cognition CLI binary (`devin`). If the agent currently reading this skill is itself running inside Devin (detection signals listed in §9), the skill MUST refuse to load and return the documented error message instead of generating any `devin` invocation.
+> This skill dispatches to the Cognition CLI binary (`devin`). If the agent currently reading this skill is itself running inside Devin (detection signals listed in [`ROUTER.md`](../../../.skilled/skills/cli-external-orchestration/cli-devin/ROUTER.md) §3), the skill MUST refuse to load and return the documented error message instead of generating any `devin` invocation.
 >
 > A running CLI skill never dispatches itself. The cli-X skills are for **cross-AI delegation only** — never self-invocation.
 

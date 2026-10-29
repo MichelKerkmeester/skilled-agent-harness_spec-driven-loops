@@ -3,7 +3,7 @@ id: CU-H02
 category: intra_routing_recall
 stage: holdout
 title: 'Blind holdout — advanced feature'
-description: "This scenario validates the SKILL.md Smart Router's MCP_ADVANCED intent generalizes to a prompt authored keyword-blind for `CU-H02`. It confirms plain OKR/documents phrasing still scores MCP_ADVANCED via the recorded blindExceptions vocabulary."
+description: "This scenario validates the ROUTER.md Smart Router's MCP_ADVANCED intent generalizes to a prompt authored keyword-blind for `CU-H02`. It confirms plain OKR/documents phrasing still scores MCP_ADVANCED via the recorded blindExceptions vocabulary."
 expected_intent: MCP_ADVANCED
 expected_resources:
   - references/mcp-tools.md

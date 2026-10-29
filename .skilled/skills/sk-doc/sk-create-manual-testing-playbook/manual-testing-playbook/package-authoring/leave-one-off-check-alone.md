@@ -1,7 +1,7 @@
 ---
 title: "MTP-002 -- Leave a one-off check alone"
 description: "This scenario validates the lightweight-workflow boundary for `MTP-002`. It focuses on a one-off check that does not need a reusable playbook corpus."
-version: 1.0.0.4
+version: 1.0.1.0
 ---
 
 # MTP-002 -- Leave a one-off check alone
@@ -84,7 +84,8 @@ Capture the prompt, the boundary text, the classification, the recommendation an
 
 | File | Role |
 |---|---|
-| [`SKILL.md`](../../SKILL.md) | When-not-to-use boundary and decision rule |
+| [`SKILL.md`](../../SKILL.md) | When-not-to-use boundary |
+| [`ROUTER.md`](../../ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`references/README.md`](../../references/README.md) | Resource map for the playbook authoring workflow |
 
 ---

@@ -8,7 +8,7 @@ trigger_phrases:
   - "composer"
   - "delegate to cursor"
   - "second opinion"
-version: 1.4.0.16
+version: 1.4.1.0
 ---
 
 # cli-cursor
@@ -140,7 +140,8 @@ cli-cursor authenticates through Cursor account OAuth (`cursor-agent login`) or 
 
 ```text
 .skilled/skills/cli-external-orchestration/cli-cursor/
-+-- SKILL.md                    # Routing contract, hard rules, smart router and dispatch gotchas
++-- SKILL.md                    # Runtime instructions, hard rules and dispatch gotchas
++-- ROUTER.md                   # Machine router in section 3: intent and resource maps, loading levels
 +-- README.md                   # This file
 +-- assets/                     # Prompt quality card and prompt templates
 |   +-- prompt-quality-card.md  # Fast-path prompt framework + CLEAR check (ALWAYS loaded)
@@ -160,7 +161,8 @@ cli-cursor authenticates through Cursor account OAuth (`cursor-agent login`) or 
 
 | File | Role |
 |---|---|
-| `SKILL.md` | The routing contract: hard rules, the smart router and dispatch-critical gotchas |
+| `SKILL.md` | The routing contract: hard rules and dispatch-critical gotchas |
+| [`ROUTER.md`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | `README.md` | This file: human-facing overview, quick start and troubleshooting |
 | `references/agent-delegation.md` | Cursor execution-mode roster (default/plan/ask) and delegation patterns |
 | `references/cli-reference.md` | Complete CLI subcommands, flags, auth and troubleshooting reference |
@@ -260,7 +262,8 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions and hard rules |
+| [`ROUTER.md`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`references/cli-reference.md`](./references/cli-reference.md) | Complete CLI subcommands, flags, auth and troubleshooting reference |
 | [`references/providers-and-models.md`](./references/providers-and-models.md) | Single-source catalog of the Cursor provider and the enforced 29-id model allowlist |
 | [`references/integration-patterns.md`](./references/integration-patterns.md) | Cross-AI orchestration patterns and workflows |

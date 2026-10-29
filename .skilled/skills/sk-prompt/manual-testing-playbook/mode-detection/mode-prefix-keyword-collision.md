@@ -1,7 +1,7 @@
 ---
 title: "SP-004 -- Mode prefix wins over keyword scoring"
 description: "This scenario validates prefix-vs-keyword precedence for `SP-004`. It focuses on confirming an explicit `$` prefix overrides keyword-weighted INTENT_MODEL scoring even when keyword density is high."
-version: 2.3.2.0
+version: 2.3.3.0
 ---
 
 # SP-004 -- Mode prefix wins over keyword scoring
@@ -45,7 +45,7 @@ $short improve and refine my prompt; verify the prefix overrides keyword scoring
 ### Commands
 
 1. `sk-prompt: $short Please improve and refine and enhance this prompt — make it tight and reusable.`
-2. `bash: rg 'STEP 0' .skilled/skills/sk-prompt/SKILL.md` (confirm prefix detection happens at STEP 0)
+2. `bash: rg 'STEP 0' .skilled/skills/sk-prompt/ROUTER.md` (confirm prefix detection happens at STEP 0)
 
 ### Expected
 

@@ -6,7 +6,7 @@ trigger_phrases:
   - "diagram primitives index"
   - "annotation sketchy terminal icons"
 contextType: general
-version: 1.2.0.7
+version: 1.2.1.0
 ---
 
 # references/primitives
@@ -17,7 +17,7 @@ Optional primitives layered onto a base diagram, loaded only when the request ca
 
 ## 1. OVERVIEW
 
-Every file here is `ON_DEMAND` in `SKILL.md`'s Resource Loading Levels: none load by default. Each documents one independent primitive that composes with any diagram type.
+`ROUTER.md` §3 marks every file here `ON_DEMAND`, so none load by default. Each documents one independent primitive that composes with any diagram type.
 
 ---
 
@@ -36,5 +36,6 @@ Every file here is `ON_DEMAND` in `SKILL.md`'s Resource Loading Levels: none loa
 
 | Document | Purpose |
 |---|---|
-| [`../../SKILL.md`](../../SKILL.md) | When each primitive loads. |
+| [`../../SKILL.md`](../../SKILL.md) | Core diagram workflow and design guidance. |
+| [`../../ROUTER.md#3-machine-router`](../../ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels. |
 | [`../foundations/style-guide.md`](../foundations/style-guide.md) | The base design tokens primitives layer onto. |

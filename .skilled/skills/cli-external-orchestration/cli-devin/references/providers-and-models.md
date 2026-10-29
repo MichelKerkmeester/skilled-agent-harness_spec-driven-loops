@@ -10,7 +10,7 @@ trigger_phrases:
   - "devin model alias reference"
 importance_tier: normal
 contextType: implementation
-version: 1.4.7.0
+version: 1.4.8.0
 ---
 
 # cli-devin Providers, Models & Invocation
@@ -169,4 +169,5 @@ Multi-lineage parallel dispatch is driven by `fanout-run.cjs` (executor kind `cl
 - [cli-reference.md](./cli-reference.md): full `devin` flags, subcommands, auth pre-flight, permission modes, troubleshooting
 - [integration-patterns.md](./integration-patterns.md): dispatch shapes + failure-mode matrix
 - [cloud-handoff.md](./cloud-handoff.md): `/handoff` cloud-session mechanics and state transfer
-- [../SKILL.md](../SKILL.md): cli-devin mode overview, routing, and self-invocation guard
+- [../SKILL.md](../SKILL.md): cli-devin mode overview, hard rules and dispatch gotchas
+- [../ROUTER.md](../ROUTER.md): machine router with the intent map, resource map, loading levels and the self-invocation guard

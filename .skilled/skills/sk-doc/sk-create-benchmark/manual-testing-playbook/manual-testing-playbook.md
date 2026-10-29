@@ -1,7 +1,7 @@
 ---
 title: "create-benchmark: Manual Testing Playbook"
 description: "Operator playbook for the create-benchmark workflow across MCP promotion and behavior inputs."
-version: 1.5.0.3
+version: 1.5.1.0
 ---
 
 # create-benchmark: Manual Testing Playbook
@@ -22,7 +22,7 @@ The key negative checks are refusal and boundary checks. A correct run leaves an
 ## 2. GLOBAL PRECONDITIONS
 
 1. Run commands from the repository root.
-2. Read the family table in `SKILL.md` before selecting a package shape.
+2. Read the family table in `ROUTER.md` section 3 before selecting a package shape.
 3. Use a completed benchmark only when testing MCP promotion. The promotion gate requires an accepted decision, a stable fixture and replay commands.
 4. Do not write into the playbook package during scenario execution. If a scenario creates a draft elsewhere, record the recovery path before running it.
 5. A `SKIP` verdict is valid only when a named sandbox or runtime blocker prevents the command from running.

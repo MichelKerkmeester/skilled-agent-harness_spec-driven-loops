@@ -8,7 +8,7 @@ trigger_phrases:
   - "extended thinking"
   - "deep reasoning"
   - "anthropic"
-version: 1.5.0.39
+version: 1.5.1.0
 ---
 
 # cli-claude-code
@@ -152,7 +152,8 @@ When the caller needs to keep a Claude Code session's context, a 7-step Memory H
 
 ```text
 cli-claude-code/
-+-- SKILL.md                      # Routing contract: smart router, dispatch rules and the full rule set
++-- SKILL.md                      # Runtime instructions, dispatch rules and the full rule set
++-- ROUTER.md                     # Section 3: machine router, intent map, resource map and loading levels
 +-- README.md                     # Overview and navigation front page
 +-- assets/                       # Dispatch-time prompt resources
 |   +-- prompt-quality-card.md    # Fast-path prompt discipline, the framework table and CLEAR check
@@ -170,7 +171,8 @@ cli-claude-code/
 
 | File | Role |
 |---|---|
-| `SKILL.md` | Routing contract: the smart router, dispatch rules and the full rule set |
+| `SKILL.md` | Runtime instructions, dispatch rules and the full rule set |
+| [`ROUTER.md`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | `README.md` | Overview and navigation front page |
 | `references/agent-delegation.md` | Agent roster, routing table and invocation patterns |
 | `references/claude-tools.md` | Unique capabilities and a comparison with OpenCode |
@@ -267,7 +269,8 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions, dispatch rules and the full rule set |
+| [`ROUTER.md`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`references/providers-and-models.md`](./references/providers-and-models.md) | Single-source catalog of Anthropic model ids, the default pin and the `--effort` mapping |
 | [`references/cli-reference.md`](./references/cli-reference.md) | Complete CLI flags, commands, models and authentication |
 | [`references/integration-patterns.md`](./references/integration-patterns.md) | Cross-AI orchestration patterns, where the external AI conducts and Claude Code executes |

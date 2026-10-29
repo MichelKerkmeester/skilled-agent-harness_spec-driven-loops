@@ -7,7 +7,7 @@ trigger_phrases:
   - "official orca skills package"
 importance_tier: normal
 contextType: general
-version: 0.1.2.0
+version: 0.1.3.0
 ---
 
 # cli-orca
@@ -40,7 +40,8 @@ What it deliberately does not own: generic Git worktrees and branch work stay wi
 
 The package is organized around the four leaf roots declared in `leaf-manifest.config.json`: `references`, `assets`, `feature-catalog` and `manual-testing-playbook`. The changelog tree sits outside the leaf roots on purpose, because it records history rather than a routing target.
 
-- **Routing contract** -- `SKILL.md` holds the lane table, the phase workflow, the rules and the escalation taxonomy. `graph-metadata.json` carries the advisor identity for the root, and `leaf-manifest.json` with its derived projection `leaf-aliases.json` declares the leaves the metadata gate emits.
+- **Skill workflow** -- `SKILL.md` holds the phase workflow, the rules and the escalation taxonomy. `graph-metadata.json` carries the advisor identity for the root, and `leaf-manifest.json` with its derived projection `leaf-aliases.json` declares the leaves the metadata gate emits.
+- **Machine router** -- [`ROUTER.md`](ROUTER.md#3-machine-router) holds the intent map, resource map and loading levels for this skill.
 - **Reference corpus** -- the four CLI references named by the SKILL.md reference table: `orca-cli-reference.md`, `session-and-runtime.md`, `mutation-and-browser-boundaries.md` and `troubleshooting.md`.
 - **Official skills layer** -- `references/orca-skills/overview.md` with the boundary matrix and install commands, one authored reference per official skill and the flat `assets/<name>.txt` snapshots.
 - **Feature catalog** -- `feature-catalog/feature-catalog.md` inventories the features behind this router.

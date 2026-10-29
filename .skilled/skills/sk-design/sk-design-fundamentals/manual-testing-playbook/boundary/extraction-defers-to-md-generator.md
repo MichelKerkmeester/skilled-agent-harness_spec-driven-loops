@@ -3,7 +3,7 @@ title: "SKD-030 -- Extraction routes to the measuring skill"
 description: "This scenario validates Extraction routes to the measuring skill for `SKD-030`. It focuses on confirm a request to measure a live site routes away from this skill."
 stage: negative
 id: "SKD-030"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # SKD-030 -- Extraction routes to the measuring skill
@@ -88,7 +88,8 @@ Read the boundary note in both skills; a wrong route here means one of the two b
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) | Value scales, hierarchy core, router and hard rules. Full method in [references/hierarchy.md](../../references/hierarchy.md) |
+| [SKILL.md](../../SKILL.md) | Value scales, hierarchy core and hard rules. Full method in [references/hierarchy.md](../../references/hierarchy.md) |
+| [ROUTER.md §3](../../ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [references/interaction-craft.md](../../references/interaction-craft.md) | Reference this scenario exercises |
 
 No feature catalog exists for this skill, so no catalog cross-reference applies.

@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.12.9.0
+version: 0.12.10.0
 ---
 
 # system-skill-advisor
@@ -244,7 +244,8 @@ A: `hooks/skill-advisor-hook.md` covers the prompt-time hook contract across eve
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime routing instructions, invariants and the smart router |
+| [`SKILL.md`](./SKILL.md) | Runtime routing instructions and invariants |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md) | System design, CLI front door, data flow and database layout |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Setup, runtime hooks, rollback and embedder selection |
 | [`references/runtime/tool-ids-reference.md`](./references/runtime/tool-ids-reference.md) | All nine tool ids with inputs and output shapes |

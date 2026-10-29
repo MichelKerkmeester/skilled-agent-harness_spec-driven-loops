@@ -7,7 +7,7 @@ trigger_phrases:
   - "notion workspace"
   - "notion database"
   - "notion page"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # mcp-notion
@@ -211,7 +211,8 @@ A: Most tools pin `2025-09-03`, the version that introduced data sources. The tw
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the operation router, dual-backend routing and the full agent safety invariants |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions, dual-backend routing and the full agent safety invariants |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Step-by-step setup for `NOTION_TOKEN`, the Code Mode registration and the dual-backend config with validation checkpoints |
 | [`references/mcp-tools.md`](./references/mcp-tools.md) | The 24-tool official MCP catalog by domain, with `call_tool_chain()` invocation |
 | [`references/api-gap-tools.md`](./references/api-gap-tools.md) | Direct Notion REST API calls for the five gap capabilities the MCP does not expose |

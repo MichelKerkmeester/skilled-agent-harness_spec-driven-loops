@@ -2,7 +2,7 @@
 title: "SCG-007 -- Route a session goal away"
 description: "This scenario validates the session-goal route-away for `SCG-007`. It focuses on a set-or-resend session objective request being redirected to the goal hooks with no goal file written and no session state touched."
 stage: negative
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # SCG-007 -- Route a session goal away
@@ -122,7 +122,8 @@ Run the resend variant with the prompt `Resend the goal so this session picks up
 
 | File | Role |
 |---|---|
-| [`../../SKILL.md`](../../SKILL.md) | The session-state boundary and the redirect rule in the routing decisions |
+| [`../../SKILL.md`](../../SKILL.md) | The session-state boundary the rules and integration points hold |
+| [`../../ROUTER.md`](../../ROUTER.md) | Machine router: intent map, resource map and loading levels, and the redirect rule in its routing decisions |
 | [`../../../../../hooks/goal/bin/goal.cjs`](../../../../../hooks/goal/bin/goal.cjs) | The packet report whose `PACKET_GOAL_NOT_FOUND` code step 9 reads |
 | [`../../../../../hooks/goal/lib/goal-slice.cjs`](../../../../../hooks/goal/lib/goal-slice.cjs) | The workspace containment rule behind the packet report |
 

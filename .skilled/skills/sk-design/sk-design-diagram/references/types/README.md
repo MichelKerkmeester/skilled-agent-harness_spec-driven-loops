@@ -6,7 +6,7 @@ trigger_phrases:
   - "diagram type conventions index"
   - "27 diagram types"
 contextType: general
-version: 1.2.0.8
+version: 1.2.1.0
 ---
 
 # references/types
@@ -59,6 +59,7 @@ The router loads exactly one of these files per generate request, selected by `S
 
 | Document | Purpose |
 |---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Type-selection guide and Smart Router. |
+| [`../../SKILL.md`](../../SKILL.md) | Type-selection guide. |
+| [`../../ROUTER.md#3-machine-router`](../../ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels. |
 | [`../foundations/style-guide.md`](../foundations/style-guide.md) | The shared design tokens every type draws against. |
 | [`../../assets/diagrams/`](../../assets/diagrams/) | One canonical rendered example per type. |

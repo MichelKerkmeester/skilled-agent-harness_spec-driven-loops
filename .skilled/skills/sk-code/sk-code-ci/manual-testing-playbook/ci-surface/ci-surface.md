@@ -10,7 +10,7 @@ expected_resources:
   - references/trigger-and-filter-rules.md
   - references/job-shape-rules.md
   - references/protected-set.md
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # CI workflow standards routing
@@ -129,7 +129,7 @@ Command transcript from steps 1 to 9, the resolved frontmatter block, the guard'
 ### Failure Triage
 
 1. Re-run step 4 for the path that failed and confirm whether it was renamed or removed under `references/`.
-2. Diff this scenario's `expected_resources` against the step 3 map to see whether the drift is a stale scenario or a stale `SKILL.md` map.
+2. Diff this scenario's `expected_resources` against the step 3 map to see whether the drift is a stale scenario or a stale `ROUTER.md` map.
 3. If step 5 prints a title that does not match its file, the rules moved between references. Re-read the reference and correct this scenario's expectation rather than the file.
 4. If step 9 disagrees with step 3, the hub registration drifted from the packet. Correct the hub file, because the packet's map is the source the guard reads.
 5. If step 6's first count is not `0`, the guard printed a problem for a `sk-code-ci` scenario. Read that line: it names the scenario and the resource the router does not emit. A `router-sync:` total below `1/1` whose problem lines all name another packet is that packet's finding, not this scenario's.

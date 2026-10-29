@@ -3,7 +3,7 @@ title: "SKD-021 -- Contrast failure offers both escape hatches"
 description: "This scenario validates Contrast failure offers both escape hatches for `SKD-021`. It focuses on confirm a brand color that cannot reach its ratio produces two options and an escalation, not a silent recolor."
 stage: routing
 id: "SKD-021"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # SKD-021 -- Contrast failure offers both escape hatches
@@ -88,7 +88,8 @@ Read `color-system.md` Section 6; a reply that only raises lightness has not rea
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) | Value scales, hierarchy core, router and hard rules. Full method in [references/hierarchy.md](../../references/hierarchy.md) |
+| [SKILL.md](../../SKILL.md) | Value scales, hierarchy core and hard rules. Full method in [references/hierarchy.md](../../references/hierarchy.md) |
+| [ROUTER.md §3](../../ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [references/color-system.md](../../references/color-system.md) | Reference this scenario exercises |
 
 No feature catalog exists for this skill, so no catalog cross-reference applies.

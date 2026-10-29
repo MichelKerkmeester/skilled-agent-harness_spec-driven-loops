@@ -9,7 +9,7 @@ expected_resources:
   - references/mcp-wiring.md
   - references/session-management.md
   - assets/utcp-aside-manual.md
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # AD-R03: MCP routing
@@ -99,7 +99,7 @@ steps 2-3 with the matched keywords and the full three-entry resource list highl
 
 - **Pass**: `../../ROUTER.md` §3 names the matched `MCP` keywords and `RESOURCE_MAP["MCP"]` lists all three
   resources in full, and all three resource paths exist.
-- **Fail**: the keyword set or resource map in `SKILL.md` no longer matches this scenario's
+- **Fail**: the keyword set or resource map in `../../ROUTER.md` §3 no longer matches this scenario's
   frontmatter, a resource path does not resolve, or only a partial subset of the three is loaded.
 
 ### Failure Triage

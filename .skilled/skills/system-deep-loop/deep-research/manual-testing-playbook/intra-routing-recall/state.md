@@ -11,7 +11,7 @@ expected_resources:
   - references/state/state-outputs.md
   - references/state/state-reducer-registry.md
   - assets/deep-research-strategy.md
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # DR-R05: Deep research state routing
@@ -59,7 +59,7 @@ Explain the state file, jsonl strategy, dashboard, registry, and lineage records
 
 ### Commands
 
-1. `sed -n '332,351p' .skilled/skills/system-deep-loop/deep-research/SKILL.md` - confirm the `STATE` keyword list and resource map.
+1. `sed -n '/^## 3. MACHINE ROUTER$/,$p' .skilled/skills/system-deep-loop/deep-research/ROUTER.md` - confirm the `STATE` keyword list and resource map.
 2. `for p in references/guides/quick-reference.md references/state/state-format.md references/state/state-jsonl.md references/state/state-outputs.md references/state/state-reducer-registry.md assets/deep-research-strategy.md; do test -e ".skilled/skills/system-deep-loop/deep-research/$p" && echo "OK $p" || echo "MISS $p"; done` - confirm every expected resource resolves on disk.
 3. Dispatch the exact prompt into the deep-research packet's router and capture which intent and resource set it reports.
 

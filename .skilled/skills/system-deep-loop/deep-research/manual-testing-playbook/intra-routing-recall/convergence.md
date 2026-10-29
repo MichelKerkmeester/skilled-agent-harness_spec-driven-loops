@@ -9,7 +9,7 @@ expected_resources:
   - references/convergence/convergence.md
   - references/convergence/convergence-signals.md
   - references/convergence/convergence-graph.md
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # DR-R03: Deep research convergence routing
@@ -57,7 +57,7 @@ Evaluate convergence, the stop condition, diminishing returns, and newInfoRatio 
 
 ### Commands
 
-1. `sed -n '332,351p' .skilled/skills/system-deep-loop/deep-research/SKILL.md` - confirm the `CONVERGENCE` keyword list and resource map.
+1. `sed -n '/^## 3. MACHINE ROUTER$/,$p' .skilled/skills/system-deep-loop/deep-research/ROUTER.md` - confirm the `CONVERGENCE` keyword list and resource map.
 2. `for p in references/guides/quick-reference.md references/convergence/convergence.md references/convergence/convergence-signals.md references/convergence/convergence-graph.md; do test -e ".skilled/skills/system-deep-loop/deep-research/$p" && echo "OK $p" || echo "MISS $p"; done` - confirm every expected resource resolves on disk.
 3. Dispatch the exact prompt into the deep-research packet's router and capture which intent and resource set it reports.
 

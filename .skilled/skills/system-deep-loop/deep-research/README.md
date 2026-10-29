@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.1.0
+version: 1.14.2.0
 ---
 
 # deep-research
@@ -189,7 +189,8 @@ Expected output: zero issues reported.
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router, the rules and the full operating contract |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions, the rules and the full operating contract |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`references/guides/quick-reference.md`](./references/guides/quick-reference.md) | One-page operator cheat sheet with commands, parameters, state files and the convergence tree |
 | [`references/protocol/loop-protocol.md`](./references/protocol/loop-protocol.md) | Iteration lifecycle, dispatch rules, reducer sequencing and the command-owned state flow |
 | [`references/protocol/spec-check-protocol.md`](./references/protocol/spec-check-protocol.md) | Bounded `spec.md` anchoring, `folder_state` rules and generated-fence write-back |
@@ -217,7 +218,7 @@ Expected output: zero issues reported.
 
 A feature change to this skill typically touches more than one surface. Before calling a change complete, check each:
 
-- [ ] **`SKILL.md`** -- routing rules and the resource list stay in sync with the new or changed behavior
+- [ ] **`ROUTER.md`** -- routing rules and the resource list stay in sync with the new or changed behavior
 - [ ] **`references/`** -- the owning protocol, state or convergence doc reflects the change (see section 9 table for which doc owns what)
 - [ ] **`feature-catalog/`** -- the feature's category package documents inputs, outputs, owner and acceptance criteria
 - [ ] **`manual-testing-playbook/`** -- a scenario exists (or is updated) with preconditions, expected signals and a pass/fail verdict

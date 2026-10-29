@@ -9,7 +9,7 @@ trigger_phrases:
   - "subagent delegation"
   - "second opinion"
   - "cross-validate"
-version: 1.4.0.11
+version: 1.4.1.0
 ---
 
 # cli-devin
@@ -37,7 +37,7 @@ A long generation, an independent review, a browser-heavy task or a security aud
 
 ### What It Does
 
-The skill routes a request through the smart router, picks a curated model and a permission mode, then dispatches with `devin -p`. It can delegate to Devin's native subagents through `run_subagent`, move a session to the cloud with `/handoff`, attach MCP servers with `devin mcp add` and continue or resume past sessions with `devin -c` and `devin -r`. Orchestrated dispatches run through the shared deep-loop runtime, which is the single execution adapter for this skill. Direct `devin -p` snippets in this README are operator reference and manual-testing examples. SKILL.md owns the routing contract and the hard rules.
+The skill routes a request through the smart router, picks a curated model and a permission mode, then dispatches with `devin -p`. It can delegate to Devin's native subagents through `run_subagent`, move a session to the cloud with `/handoff`, attach MCP servers with `devin mcp add` and continue or resume past sessions with `devin -c` and `devin -r`. Orchestrated dispatches run through the shared deep-loop runtime, which is the single execution adapter for this skill. Direct `devin -p` snippets in this README are operator reference and manual-testing examples. ROUTER.md owns the routing contract and SKILL.md the hard rules.
 
 ### The Delegation Layer
 
@@ -54,7 +54,7 @@ Subagents take a profile, not a model. `subagent_explore` runs on the cheap defa
 ### What This Skill Does Not Own
 
 - It does not replace the calling runtime. The calling AI stays the conductor and verifies every result.
-- It does not build a second execution adapter. The shared deep-loop runtime owns process construction. SKILL.md owns routing and prompt construction.
+- It does not build a second execution adapter. The shared deep-loop runtime owns process construction. ROUTER.md owns routing, and SKILL.md owns prompt construction.
 - It never dispatches into a session already running inside Devin. A running CLI skill never dispatches itself.
 - It does not own application-code standards. Dispatched sessions load `sk-code` for surface standards and verification.
 
@@ -142,8 +142,9 @@ The skill refuses to load when the calling session is itself running inside Devi
 
 ```text
 cli-devin/
-+-- SKILL.md                       # Routing contract: smart router, hard rules and the full rule set
++-- SKILL.md                       # Hard rules and the full rule set
 +-- README.md                      # Overview and navigation front page
++-- ROUTER.md                      # Machine router: intent map, resource map and loading levels
 +-- assets/                        # Prompt resources loaded at routing time
 |   +-- prompt-quality-card.md     # Fast-path prompt discipline and the CLEAR check, always loaded
 |   `-- prompt-templates.md        # Copy-paste prompt templates for common tasks
@@ -161,7 +162,8 @@ cli-devin/
 
 | File | Role |
 |---|---|
-| `SKILL.md` | Runtime router, hard rules and the full rule set |
+| `SKILL.md` | Hard rules and the full rule set |
+| `ROUTER.md` | Machine router: intent map, resource map and loading levels |
 | `README.md` | Overview and navigation front page |
 | `references/agent-delegation.md` | Subagent profile roster, routing table and custom AGENT.md patterns |
 | `references/cli-reference.md` | CLI subcommands, flags, permission modes, auth pre-flight and troubleshooting, always loaded |
@@ -247,7 +249,8 @@ A: Orchestrated dispatches run through the shared deep-loop runtime (`fanout-run
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime router, hard rules and the full rule set |
+| [`SKILL.md`](./SKILL.md) | Hard rules and the full rule set |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`references/cli-reference.md`](./references/cli-reference.md) | CLI subcommands, flags, permission modes, auth pre-flight and troubleshooting |
 | [`references/providers-and-models.md`](./references/providers-and-models.md) | Single-source catalog of the curated model families, aliases and defaults |
 | [`references/integration-patterns.md`](./references/integration-patterns.md) | Dispatch shapes and the failure-mode matrix |

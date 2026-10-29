@@ -11,7 +11,7 @@ trigger_phrases:
   - "council strategy count"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.1.0
+version: 1.7.2.0
 ---
 
 # AI Council Seat Diversity Patterns
@@ -53,7 +53,7 @@ Use different strategy lenses for each seat. The temperature values describe the
 
 > **Primary mode: in-CLI.** The default council run uses the CURRENT active runtime's own model bench as seats - no external dispatch needed. The "Vantage Target" below names *which CLI's models supply the round's seats*, whether that CLI is the active runtime (in-CLI mode) or an externally-dispatched one (via the `cli-*` skill family).
 >
-> **One-CLI-per-round invariant.** A single round MUST run all its seats through ONE CLI's models. Seat diversity inside a round comes from different models/reasoning lenses on that CLI (and from different strategy lenses). Multiple CLIs in the same deliberation are staged as MULTIPLE rounds, each with its own state event. See `SKILL.md §0` Operational Modes and `§4` ALWAYS rule 6 / NEVER rule 5.
+> **One-CLI-per-round invariant.** A single round MUST run all its seats through ONE CLI's models. Seat diversity inside a round comes from different models/reasoning lenses on that CLI (and from different strategy lenses). Multiple CLIs in the same deliberation are staged as MULTIPLE rounds, each with its own state event. See `SKILL.md §1` Operational Modes and `§5` ALWAYS rule 6 / NEVER rule 5.
 
 Vantage = the CLI whose model bench supplies the round's seats. Each row below is a complete round option:
 

@@ -3,7 +3,7 @@ title: "SKD-003 -- Motion band selection"
 description: "This scenario validates Motion band selection for `SKD-003`. It focuses on confirm a duration question is answered from the motion bands with the consistency rule attached."
 stage: routing
 id: "SKD-003"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # SKD-003 -- Motion band selection
@@ -88,7 +88,8 @@ Check `motion-principles.md` Section 5 for the three-way split; a reply citing a
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) | Value scales, hierarchy core, router and hard rules. Full method in [references/hierarchy.md](../../references/hierarchy.md) |
+| [SKILL.md](../../SKILL.md) | Value scales, hierarchy core and hard rules. Full method in [references/hierarchy.md](../../references/hierarchy.md) |
+| [ROUTER.md §3](../../ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [references/motion-principles.md](../../references/motion-principles.md) | Reference this scenario exercises |
 
 No feature catalog exists for this skill, so no catalog cross-reference applies.

@@ -1,7 +1,7 @@
 ---
 title: "deep-ai-council Feature Catalog"
 description: "Canonical capability inventory for the deep-ai-council planning skill: 33 features across 9 categories, each linked to its per-feature file and manual-testing scenario."
-version: 1.7.0.7
+version: 1.7.1.0
 ---
 
 # deep-ai-council Feature Catalog
@@ -147,5 +147,6 @@ Scenario IDs: DAC-027..DAC-032. Measured graph-vs-baseline comparisons that just
 ## RELATED RESOURCES
 
 - `manual-testing-playbook/manual-testing-playbook.md` - companion manual validation package (DAC-001..DAC-033)
-- `SKILL.md` - agent-facing router and operating contract
+- `SKILL.md` - agent-facing operating contract
+- `ROUTER.md §3` - machine router: intent map, resource map and loading levels
 - `README.md` - human-facing overview

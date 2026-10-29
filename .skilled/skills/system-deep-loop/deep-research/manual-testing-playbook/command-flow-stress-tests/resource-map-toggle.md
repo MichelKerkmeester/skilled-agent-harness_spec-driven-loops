@@ -1,7 +1,7 @@
 ---
 title: "CP-048 -- RESOURCE_MAP_TOGGLE no-resource-map fidelity **(SANDBOXED)**"
 description: "Validate that --no-resource-map is parsed by the command and honored by config, state, synthesis and artifact emission."
-version: 1.14.0.9
+version: 1.14.1.0
 ---
 
 # CP-048 -- RESOURCE_MAP_TOGGLE no-resource-map fidelity **(SANDBOXED)**
@@ -102,7 +102,7 @@ diff /tmp/cp-048-pre.txt /tmp/cp-048-post.txt > /tmp/cp-048-tripwire.diff; echo 
 | `.skilled/commands/deep/research.md:73-75` | `--no-resource-map` setup flag |
 | `.skilled/commands/deep/assets/deep-research-auto.yaml:238-267` | config and state persist resource-map settings |
 | `.skilled/commands/deep/assets/deep-research-auto.yaml:930-938` | reducer emits map unless disabled |
-| `.skilled/skills/system-deep-loop/deep-research/SKILL.md:443-448` | resource-map is expected unless disabled |
+| `.skilled/skills/system-deep-loop/deep-research/SKILL.md:262` | resource-map is expected unless disabled |
 | `.skilled/agents/deep-research.md:269-274` | progressive research output remains separate |
 
 ---

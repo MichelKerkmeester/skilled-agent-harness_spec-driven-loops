@@ -1,7 +1,7 @@
 ---
 title: "RMR-002 -- Self-explanatory folder stays unchanged"
 description: "This scenario validates leaving a self-explanatory folder without a redundant README when parent documentation already serves its readers."
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # RMR-002 -- Self-explanatory folder stays unchanged
@@ -85,7 +85,8 @@ Capture the prompt, decision-tree rule, folder inventory, parent README path and
 
 | File | Role |
 |---|---|
-| [`../../SKILL.md`](../../SKILL.md) | README decision tree and skip branch |
+| [`../../SKILL.md`](../../SKILL.md) | README skip branch |
+| [`../../ROUTER.md#3-machine-router`](../../ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`../../references/readme/types-and-voice.md`](../../references/readme/types-and-voice.md) | README audience decision |
 | [`../../scripts/audit_readmes.py`](../../scripts/audit_readmes.py) | README inventory check |
 

@@ -7,7 +7,7 @@ description: "This scenario validates the ROUTER.md §3 MACHINE ROUTER's TROUBLE
 expected_intent: TROUBLESHOOT
 expected_resources:
   - references/troubleshooting.md
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # CU-R04: Troubleshoot routing
@@ -94,7 +94,7 @@ excerpts from steps 2-3 with the matched keywords highlighted; the tie-break exc
 - **Pass**: `../../ROUTER.md` §3 MACHINE ROUTER names the matched `TROUBLESHOOT` keywords, the tie-break threshold quoted in
   step 4 is unchanged, `RESOURCE_MAP["TROUBLESHOOT"]` lists the resource, and the resource path
   exists.
-- **Fail**: the keyword set, tie-break threshold, or resource map in `SKILL.md` no longer matches this
+- **Fail**: the keyword set, tie-break threshold, or resource map in `../../ROUTER.md` §3 no longer matches this
   scenario's frontmatter, or the resource path does not resolve.
 
 ### Failure Triage

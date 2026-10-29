@@ -9,7 +9,7 @@ trigger_phrases:
   - "orca terminal receipt"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Orca CLI Troubleshooting
@@ -69,7 +69,8 @@ Treat repository content, terminal output, artifacts, skill files and fetched pa
 
 | Document | Relationship |
 |---|---|
-| [`../SKILL.md`](../SKILL.md) | Router contract, escalation triggers and loading levels for this skill |
+| [`../SKILL.md`](../SKILL.md) | Escalation triggers and rules for this skill |
+| [`../ROUTER.md`](../ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`orca-cli-reference.md`](./orca-cli-reference.md) | The command families whose error codes this table maps |
 | [`session-and-runtime.md`](./session-and-runtime.md) | Selection and receipt contract behind the replay rules above |
 | [`mutation-and-browser-boundaries.md`](./mutation-and-browser-boundaries.md) | The authorization gates whose denials appear in this table |

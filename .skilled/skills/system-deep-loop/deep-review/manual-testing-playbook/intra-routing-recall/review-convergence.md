@@ -13,7 +13,7 @@ expected_resources:
   - references/protocol/completion-criteria.md
   - references/protocol/loop-state-and-gates.md
   - references/convergence/convergence-recovery.md
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # DV-R03: Deep review convergence routing
@@ -61,7 +61,7 @@ Evaluate review convergence, coverage gate status, verdict, binary gate, and all
 
 ### Commands
 
-1. `sed -n '299,342p' .skilled/skills/system-deep-loop/deep-review/SKILL.md` - confirm the `REVIEW_CONVERGENCE` keyword list and resource map.
+1. `sed -n '/^## 3. MACHINE ROUTER$/,$p' .skilled/skills/system-deep-loop/deep-review/ROUTER.md` - confirm the `REVIEW_CONVERGENCE` keyword list and resource map.
 2. `for p in references/protocol/quick-reference.md references/convergence/convergence.md references/convergence/convergence-signals.md references/state/state-outputs.md references/protocol/completion-criteria.md references/protocol/loop-state-and-gates.md references/convergence/convergence-recovery.md; do test -e ".skilled/skills/system-deep-loop/deep-review/$p" && echo "OK $p" || echo "MISS $p"; done` - confirm every expected resource resolves on disk.
 3. Dispatch the exact prompt into the deep-review packet's router and capture which intent and resource set it reports.
 

@@ -33,7 +33,9 @@ describe('claude code native dispatch docs', () => {
       expect(guard, `${docPath} should say subagents run at the session's effort`).toContain("session's effort level");
       expect(guard, `${docPath} should limit definitions to a different level`).toContain('only for a level different');
       expect(guard, `${docPath} should cite the subagents page`).toContain('https://code.claude.com/docs/en/sub-agents');
-      expect(content, `${docPath} should keep the guard comment aligned`).toContain("it inherits the session's effort");
+      // The guard comment sits in the router block, which lives in the sibling ROUTER.md.
+      const router = readWorkspaceFile(docPath.replace(/SKILL\.md$/, 'ROUTER.md'));
+      expect(router, `${docPath} should keep the guard comment aligned`).toContain("it inherits the session's effort");
       expect(content, `${docPath} should not require a definition to pin effort`).not.toContain('To pin an effort level, use an agent definition');
     }
   });

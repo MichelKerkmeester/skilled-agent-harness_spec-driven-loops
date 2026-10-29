@@ -1,7 +1,7 @@
 ---
 title: "CP-046 -- SETUP_YAML_HANDOFF command binding fidelity **(SANDBOXED)**"
 description: "Validate that /deep:research resolves setup inputs before loading the auto YAML workflow and leaves grep-checkable state evidence."
-version: 1.14.0.9
+version: 1.14.1.0
 ---
 
 # CP-046 -- SETUP_YAML_HANDOFF command binding fidelity **(SANDBOXED)**
@@ -102,7 +102,7 @@ diff /tmp/cp-046-pre.txt /tmp/cp-046-post.txt > /tmp/cp-046-tripwire.diff; echo 
 | `.skilled/commands/deep/research.md:7-23` | Markdown setup must resolve inputs before YAML load |
 | `.skilled/commands/deep/research.md:46-149` | single setup prompt and required bindings |
 | `.skilled/commands/deep/assets/deep-research-auto.yaml:143-150` | preflight rejects missing bindings |
-| `.skilled/skills/system-deep-loop/deep-research/SKILL.md:46-64` | command-owned workflow is mandatory |
+| `.skilled/skills/system-deep-loop/deep-research/SKILL.md:86` | command-owned workflow is mandatory |
 | `.skilled/agents/deep-research.md:34-39` | agent body hard-blocks missing state |
 
 ---

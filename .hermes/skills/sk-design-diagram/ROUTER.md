@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-design-diagram routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.2.0.0
 router_state: active
 skill_pointer: SKILL.md
 ---

@@ -10,7 +10,7 @@ trigger_phrases:
   - "file layer over ui principle"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Reference — Plugin operation logic (file-layer model)
@@ -107,4 +107,4 @@ Write the data, then tell the user (or a smoke step) to open/reload the relevant
 
 ## 6. RELATION TO THE MODE
 
-These references are loaded on demand by the `mcp-obsidian` SKILL.md router when a request mentions health data or icon rules. See `assets/workflows.md` for end-to-end procedures.
+These references are loaded on demand by the `mcp-obsidian` router in [`ROUTER.md` §3](../../ROUTER.md#3-machine-router) when a request mentions health data or icon rules. See `assets/workflows.md` for end-to-end procedures.

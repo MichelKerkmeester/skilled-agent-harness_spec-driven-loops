@@ -3,7 +3,7 @@ title: "SKD-011 -- Runtime shade generation is refused"
 description: "This scenario validates Runtime shade generation is refused for `SKD-011`. It focuses on confirm a request for a derived hover shade is answered from a defined ramp instead of a runtime function."
 stage: routing
 id: "SKD-011"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # SKD-011 -- Runtime shade generation is refused
@@ -88,7 +88,8 @@ Check that the hard rules in `SKILL.md` Section 4 were loaded; the rule is in th
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) | Value scales, hierarchy core, router and hard rules. Full method in [references/hierarchy.md](../../references/hierarchy.md) |
+| [SKILL.md](../../SKILL.md) | Value scales, hierarchy core and hard rules. Full method in [references/hierarchy.md](../../references/hierarchy.md) |
+| [ROUTER.md §3](../../ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [references/color-system.md](../../references/color-system.md) | Reference this scenario exercises |
 
 No feature catalog exists for this skill, so no catalog cross-reference applies.

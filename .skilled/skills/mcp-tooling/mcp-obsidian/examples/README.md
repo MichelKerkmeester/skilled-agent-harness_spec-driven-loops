@@ -5,7 +5,7 @@ trigger_phrases:
   - "obsidian examples"
   - "notesmd-cli workflow"
   - "obsidian mcp roundtrip"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # mcp-obsidian - Example Scripts
@@ -281,7 +281,8 @@ If the app is closed or the plugin is disabled, switch the actual note operation
 
 **mcp-obsidian:**
 
-- [`../SKILL.md`](../SKILL.md). Routing rules, safety invariants, and resource map
+- [`../SKILL.md`](../SKILL.md). Safety invariants and skill guidance
+- [`../ROUTER.md#3-machine-router`](../ROUTER.md#3-machine-router). Machine router: intent map, resource map and loading levels
 - [`../INSTALL-GUIDE.md`](../INSTALL-GUIDE.md). Install and configuration for both CLI profiles and the MCP
 - [`../references/obsidian-cli-commands.md`](../references/obsidian-cli-commands.md). Full CLI reference
 - [`../references/mcp-tools.md`](../references/mcp-tools.md). Cyanheads MCP invocation and tool inventory

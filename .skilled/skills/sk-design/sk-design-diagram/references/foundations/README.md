@@ -6,7 +6,7 @@ trigger_phrases:
   - "diagram foundations index"
   - "style guide onboarding output spec"
 contextType: general
-version: 1.2.0.7
+version: 1.2.1.0
 ---
 
 # references/foundations
@@ -35,5 +35,6 @@ The shared foundation docs every diagram build touches, directly or via one cond
 
 | Document | Purpose |
 |---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Resource Loading Levels: when each file loads. |
+| [`../../SKILL.md`](../../SKILL.md) | Core diagram workflow and design guidance. |
+| [`../../ROUTER.md#3-machine-router`](../../ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels. |
 | [`../types/`](../types/) | Per-type conventions that draw against `style-guide.md`'s tokens. |

@@ -8,7 +8,7 @@ expected_intent: INSTALL
 expected_resources:
   - INSTALL-GUIDE.md
   - references/troubleshooting.md
-version: 1.1.4.0
+version: 1.1.5.0
 ---
 
 # CU-R03: Install routing
@@ -63,7 +63,7 @@ Walk me through the cupt setup - install cupt and authenticate with my API token
   bundles the install guide plus the troubleshooting reference before answering.
 - Pass/fail: PASS if `../../ROUTER.md` §3 MACHINE ROUTER names the matched `INSTALL` keywords and both mapped resources
   exist at their declared paths; FAIL if the keyword weights or `RESOURCE_MAP["INSTALL"]` entry in
-  `SKILL.md` no longer matches this scenario's frontmatter, or either resource path is missing.
+  `../../ROUTER.md` §3 no longer matches this scenario's frontmatter, or either resource path is missing.
 
 ---
 
@@ -97,7 +97,7 @@ from steps 2-3 with the matched keywords and the exact `INSTALL-GUIDE.md` path h
 
 - **Pass**: `ROUTER.md` §3 MACHINE ROUTER names the matched `INSTALL` keywords and `RESOURCE_MAP["INSTALL"]` lists
   both resources at their declared paths, and both resource paths exist.
-- **Fail**: the keyword set or resource map in `SKILL.md` no longer matches this scenario's
+- **Fail**: the keyword set or resource map in `../../ROUTER.md` §3 no longer matches this scenario's
   frontmatter, or a resource path does not resolve (including a resource incorrectly expected under
   `references/`).
 

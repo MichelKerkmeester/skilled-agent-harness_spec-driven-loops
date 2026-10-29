@@ -11,7 +11,7 @@ expected_resources:
   - references/state/state-outputs.md
   - references/state/state-reducer-registry.md
   - assets/deep-review-dashboard.md
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # DV-R04: Deep review report routing
@@ -59,7 +59,7 @@ Prepare the review report with remediation, verdict, release readiness, and plan
 
 ### Commands
 
-1. `sed -n '299,342p' .skilled/skills/system-deep-loop/deep-review/SKILL.md` - confirm the `REVIEW_REPORT` keyword list and resource map.
+1. `sed -n '/^## 3. MACHINE ROUTER$/,$p' .skilled/skills/system-deep-loop/deep-review/ROUTER.md` - confirm the `REVIEW_REPORT` keyword list and resource map.
 2. `for p in references/protocol/quick-reference.md references/state/state-format.md references/state/state-outputs.md references/state/state-reducer-registry.md assets/deep-review-dashboard.md; do test -e ".skilled/skills/system-deep-loop/deep-review/$p" && echo "OK $p" || echo "MISS $p"; done` - confirm every expected resource resolves on disk.
 3. Dispatch the exact prompt into the deep-review packet's router and capture which intent and resource set it reports.
 

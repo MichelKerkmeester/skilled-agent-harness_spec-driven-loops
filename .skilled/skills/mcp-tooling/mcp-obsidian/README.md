@@ -7,7 +7,7 @@ trigger_phrases:
   - "notesmd-cli"
   - "obsidian mcp"
   - "local rest api"
-version: 0.18.1.0
+version: 0.18.2.0
 ---
 
 # mcp-obsidian
@@ -209,7 +209,8 @@ The manual testing playbook (`manual-testing-playbook/manual-testing-playbook.md
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime router, agent invariants, quick reference and resource map |
+| [`SKILL.md`](./SKILL.md) | Agent invariants and quick reference |
+| [`ROUTER.md#3-machine-router`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Step-by-step installation and configuration for both CLI profiles and the MCP |
 | [`feature-catalog/FEATURE-CATALOG.md`](./feature-catalog/FEATURE-CATALOG.md) | Current-state inventory of every CLI, MCP and plugin capability |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate each catalog entry |

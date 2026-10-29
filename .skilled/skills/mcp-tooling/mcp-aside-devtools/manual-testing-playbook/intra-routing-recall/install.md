@@ -7,7 +7,7 @@ description: "This scenario validates the ROUTER.md Smart Router's INSTALL inten
 expected_intent: INSTALL
 expected_resources:
   - references/troubleshooting.md
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # AD-R04: Install routing
@@ -90,7 +90,7 @@ from steps 2-3 with the matched keywords highlighted.
 
 - **Pass**: `../../ROUTER.md` §3 names the matched `INSTALL` keywords and `RESOURCE_MAP["INSTALL"]` lists the
   resource, and the resource path exists.
-- **Fail**: the keyword set or resource map in `SKILL.md` no longer matches this scenario's
+- **Fail**: the keyword set or resource map in `../../ROUTER.md` §3 no longer matches this scenario's
   frontmatter, or the resource path does not resolve.
 
 ### Failure Triage

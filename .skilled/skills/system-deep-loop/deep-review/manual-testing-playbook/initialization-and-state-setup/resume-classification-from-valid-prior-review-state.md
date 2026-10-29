@@ -1,7 +1,7 @@
 ---
 title: "DRV-005 -- Resume classification from valid prior review state"
 description: "Verify that resume detects existing review state and continues from the last completed iteration."
-version: 1.11.0.14
+version: 1.11.1.0
 ---
 
 # DRV-005 -- Resume classification from valid prior review state
@@ -27,7 +27,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Objective: Verify that resume detects existing review state and continues from the last completed iteration.
 - Real user request: My deep review was interrupted. When I re-run the command, does it pick up where it left off?
 - Prompt: `Validate deep-review resume classification from existing review state and report whether it skips directly to phase_loop.`
-- Expected execution process: Inspect the YAML classify step first for the resume classification logic, then the quick reference for resume behavior documentation, then the SKILL.md for phase detection guidance.
+- Expected execution process: Inspect the YAML classify step first for the resume classification logic, then the quick reference for resume behavior documentation, then ROUTER.md §3 for phase detection guidance.
 - Desired user-facing outcome: The user is told that re-running the command on a spec folder with existing review state will resume from the last iteration without re-initializing.
 - Expected signals: The classify step checks for config, JSONL, and strategy presence. Classifies as "resume" when all three exist and are consistent. And skips to phase_loop.
 - Pass/fail posture: PASS if the classify step reliably detects valid prior state and routes to phase_loop. FAIL if resume classification is missing or routes to re-initialization.
@@ -74,7 +74,7 @@ Verify the classify step inspects all three state files (config, JSONL, strategy
 | `.skilled/commands/deep/assets/deep-review-auto.yaml` | Session classification logic, inspect `step_classify_session` |
 | `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Session classification logic, inspect `step_classify_session` |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Resume behavior documentation, use `ANCHOR:troubleshooting` |
-| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Phase detection guidance |
+| `.skilled/skills/system-deep-loop/deep-review/ROUTER.md §3` | Phase detection guidance |
 
 ---
 

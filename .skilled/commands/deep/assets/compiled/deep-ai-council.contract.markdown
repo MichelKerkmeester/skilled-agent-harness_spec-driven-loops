@@ -112,12 +112,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md",
-      "sha256": "13c585c3369cf30b457e23c0cdb69403267461d330ceae1bf6bcecde47287d70",
+      "sha256": "d73c9deed8e0a1e26a5fca11e4df04323e4dfb6b576103436d2909c014d02ed7",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md",
-      "sha256": "4b4ab4b098a8bd0d21317a1b497c3d9110687804d4e20e5efb53826b0f2d4fcf",
+      "sha256": "228101a9858a0e7b241927e5234fb042b8be0d7886b66a3c24fd33ebd39d4f30",
       "section": "full"
     },
     {

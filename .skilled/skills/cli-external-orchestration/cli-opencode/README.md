@@ -8,7 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.4.19.0
+version: 1.4.20.0
 ---
 
 # cli-opencode
@@ -157,7 +157,8 @@ OpenCode resolves project-local agent files from `.opencode/agents/<slug>.md`, b
 
 ```text
 cli-opencode/
-  SKILL.md                                        # runtime instructions, the smart router and the full rule set
+  SKILL.md                                        # runtime instructions and the full rule set
+  ROUTER.md                                       # machine router: intent map, resource map and loading levels
   README.md                                       # this orientation document
   assets/                                         # dispatch templates and permissions-matrix configs
     permissions-matrix.example-packet-local.json  # example matrix: writes confined to the active packet
@@ -183,7 +184,8 @@ cli-opencode/
 
 | File | Role |
 |---|---|
-| `SKILL.md` | Routing contract: runtime instructions, the smart router and the full rule set |
+| `SKILL.md` | Runtime instructions and the full rule set |
+| `ROUTER.md` | Machine router: intent map, resource map and loading levels |
 | `README.md` | This orientation document for the packet folder |
 | [`references/agent-delegation.md`](./references/agent-delegation.md) | Agent roster with primary-versus-subagent routing and leaf-agent constraints |
 | [`references/cli-reference.md`](./references/cli-reference.md) | Subcommands, flags, provider auth pre-flight and version drift handling |
@@ -289,7 +291,8 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions and the full rule set |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`references/providers-and-models.md`](./references/providers-and-models.md) | Provider, model and dispatch-shape catalog: the `#level` model-id form on OpenCode 2 and `--variant` effort levels (OpenCode 1 only) |
 | [`references/cli-reference.md`](./references/cli-reference.md) | Complete CLI subcommands, flags, auth and version drift handling |
 | [`references/integration-patterns.md`](./references/integration-patterns.md) | The use cases, the self-invocation guard and the silent-stdin trap |

@@ -3,7 +3,7 @@ title: "SKD-022 -- One shadow system per project"
 description: "This scenario validates One shadow system per project for `SKD-022`. It focuses on confirm a shadow request names which of the three systems the project is on before giving values."
 stage: routing
 id: "SKD-022"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # SKD-022 -- One shadow system per project
@@ -88,7 +88,8 @@ Compare the returned alpha against the system it claims; roughly .2 belongs to a
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) | Value scales, hierarchy core, router and hard rules. Full method in [references/hierarchy.md](../../references/hierarchy.md) |
+| [SKILL.md](../../SKILL.md) | Value scales, hierarchy core and hard rules. Full method in [references/hierarchy.md](../../references/hierarchy.md) |
+| [ROUTER.md §3](../../ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [references/depth-and-detail.md](../../references/depth-and-detail.md) | Reference this scenario exercises |
 
 No feature catalog exists for this skill, so no catalog cross-reference applies.

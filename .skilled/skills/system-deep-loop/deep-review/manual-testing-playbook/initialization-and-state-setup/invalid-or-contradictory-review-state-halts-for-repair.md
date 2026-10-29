@@ -1,7 +1,7 @@
 ---
 title: "DRV-006 -- Invalid or contradictory review state halts for repair"
 description: "Verify that invalid state (missing JSONL, corrupted config, contradictory artifacts) halts with a repair message instead of proceeding."
-version: 1.11.0.13
+version: 1.11.1.0
 ---
 
 # DRV-006 -- Invalid or contradictory review state halts for repair
@@ -73,7 +73,7 @@ Enumerate all possible partial-state combinations (config only, JSONL only, stra
 |---|---|
 | `.skilled/commands/deep/assets/deep-review-auto.yaml` | Session classification and migration, inspect `step_classify_session` and `step_migrate_legacy_review_state` |
 | `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Session classification, inspect `step_classify_session` |
-| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Phase detection guidance |
+| `.skilled/skills/system-deep-loop/deep-review/ROUTER.md §3` | Phase detection guidance |
 
 ---
 

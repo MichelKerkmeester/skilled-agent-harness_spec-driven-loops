@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-prompt routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -90,7 +90,8 @@ assets/format-guide-yaml.md              - YAML format deep-dive
 
 | Level       | When to Load             | Resources                                                                  |
 | ----------- | ------------------------ | -------------------------------------------------------------------------- |
-| ALWAYS      | Every skill invocation   | SKILL.md (this file)                                                       |
+| ALWAYS      | Every skill invocation   | SKILL.md                                                                   |
+| ALWAYS      | Every skill invocation   | ROUTER.md: machine router, intent map, resource map and loading levels     |
 | CONDITIONAL | If intent signals match  | references/depth-framework.md, references/patterns-evaluation.md           |
 | CONDITIONAL | If design-generation signals match | references/patterns-evaluation.md                                 |
 | ON_DEMAND   | Only on explicit request | assets/format-guide-markdown.md, assets/format-guide-json.md, assets/format-guide-yaml.md |

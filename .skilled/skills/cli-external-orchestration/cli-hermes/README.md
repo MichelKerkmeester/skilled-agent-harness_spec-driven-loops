@@ -7,7 +7,7 @@ trigger_phrases:
   - "delegate to hermes"
   - "nous hermes"
   - "hermes chat"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # cli-hermes
@@ -99,7 +99,8 @@ The rule that follows: a dispatch given a write or terminal toolset passes `--yo
 
 ```text
 .skilled/skills/cli-external-orchestration/cli-hermes/
-+-- SKILL.md                    # Routing contract, hard rules, dispatch shape, gotchas
++-- SKILL.md                    # Hard rules, dispatch shape, gotchas
++-- ROUTER.md                   # Machine router: intent map, resource map and loading levels
 +-- README.md                   # This file
 +-- references/                 # CLI, providers, tools, patterns, delegation, hooks, MCP
 +-- assets/                     # Prompt quality card and prompt templates
@@ -117,7 +118,8 @@ The rule that follows: a dispatch given a write or terminal toolset passes `--yo
 
 | Path | Purpose |
 |---|---|
-| `SKILL.md` | The routing contract, eight hard rules, dispatch shape and gotchas |
+| `SKILL.md` | Eight hard rules, dispatch shape and gotchas |
+| `ROUTER.md` | Machine router: intent map, resource map and loading levels |
 | `references/cli-reference.md` | Flags, headless forms, exit codes, isolation flags, environment |
 | `references/providers-and-models.md` | The `llmgateway` provider contract and the closed roster |
 | `references/hermes-tools.md` | Toolsets, project skills and plugins, the `.hermes/` write guard |
@@ -217,7 +219,8 @@ Result: a lineage whose iterations run through `buildHermesLineageCommand`. Give
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | The routing contract this README summarizes |
+| [`SKILL.md`](./SKILL.md) | The hard rules, dispatch shape and gotchas this README summarizes |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`.hermes/SYNC.md`](../../../../.hermes/SYNC.md) | What the repo's Hermes surface derives from and how to resync it |
 | [Hermes Agent repository](https://github.com/NousResearch/hermes-agent) | Upstream source and documentation |
 

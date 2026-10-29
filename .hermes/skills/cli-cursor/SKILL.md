@@ -389,8 +389,8 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
 
 ### Skill Quality
 
-- All 9 sections present with proper anchor comments.
-- Smart routing covers all intent signals with UNKNOWN_FALLBACK.
+- All 8 sections present with proper anchor comments.
+- [ROUTER.md section 3](../../../.skilled/skills/cli-external-orchestration/cli-cursor/ROUTER.md#3-machine-router) covers all intent signals with UNKNOWN_FALLBACK.
 - Reference files provide deep-dive content without duplication.
 
 ---

@@ -6,7 +6,7 @@ trigger_phrases:
   - "authoring card"
   - "write a spec packet"
   - "fill a spec scaffold"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Spec authoring card
@@ -46,7 +46,8 @@ A model reads the card, scaffolds with `create.sh`, fills every section, removes
 | File | Layer | Role |
 |------|-------|------|
 | `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md` | Reference | The short authoring path |
-| `.skilled/skills/system-spec-kit/SKILL.md` | Router | Loads the card for the four authoring intents |
+| `.skilled/skills/system-spec-kit/SKILL.md` | Skill entry | Defines when the skill applies and points to the authoring card |
+| `.skilled/skills/system-spec-kit/ROUTER.md` | Machine router | Intent map, resource map and loading levels |
 | `.skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh` | Script | Compares the four surfaces and fails when any check disagrees |
 
 ### Validation And Tests

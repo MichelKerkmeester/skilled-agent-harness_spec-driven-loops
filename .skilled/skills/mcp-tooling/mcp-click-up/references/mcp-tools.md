@@ -12,7 +12,7 @@ trigger_phrases:
   - "mcp tools"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Official ClickUp MCP Tools Reference
@@ -30,7 +30,7 @@ version: 1.1.1.0
 The official MCP is the secondary surface in mcp-click-up. cupt handles daily task work. The MCP handles what cupt cannot do: creating tasks, documents and their pages, workspace search, lists and folders, task relations, comment threads, chat and reminders.
 
 Use this reference when:
-- Routing a request to the MCP based on the operation table in SKILL.md section 2
+- Routing a request to the MCP based on the operation table in `../ROUTER.md` section 3
 - Writing a Code Mode call
 - Checking whether ClickUp supports a capability through the MCP at all
 

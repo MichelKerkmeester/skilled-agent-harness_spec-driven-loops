@@ -7,7 +7,7 @@ trigger_phrases:
   - "framework"
   - "CLEAR scoring"
   - "/prompt:improve"
-version: 3.0.0.0
+version: 3.0.1.0
 ---
 
 # sk-prompt
@@ -210,7 +210,8 @@ A: No. An intent-preservation check runs during Prototype. The skill keeps the g
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router, the mode table, the agent contract and the full rule set |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions, the mode table, the agent contract and the full rule set |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`references/patterns-evaluation.md`](./references/patterns-evaluation.md) | The seven framework definitions, the selection algorithm and the CLEAR rubric |
 | [`references/depth-framework.md`](./references/depth-framework.md) | The DEPTH five-phase methodology, energy levels, round configuration and RICCE integration |
 | [`assets/framework-registry.json`](./assets/framework-registry.json) | Machine-readable scaffold registry with code-oriented slot templates for a subset of five frameworks |

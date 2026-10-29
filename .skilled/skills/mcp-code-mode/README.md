@@ -7,7 +7,7 @@ trigger_phrases:
   - "mcp tools"
   - "tool orchestration"
   - "context reduction"
-version: 1.0.0.32
+version: 1.0.1.0
 ---
 
 # mcp-code-mode
@@ -207,7 +207,8 @@ The skill ships a manual testing playbook covering the core tools, the naming co
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions and the full rule set |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Step-by-step install and configuration for `.utcp_config.json`, `.env` and per-client setup |
 | [`references/naming-convention.md`](./references/naming-convention.md) | The naming pattern guide and the number-one-error troubleshooting |
 | [`references/configuration.md`](./references/configuration.md) | `.utcp_config.json` and `.env` setup, server configs and environment variable prefixing |

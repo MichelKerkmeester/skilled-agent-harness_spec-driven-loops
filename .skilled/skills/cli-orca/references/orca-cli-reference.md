@@ -9,7 +9,7 @@ trigger_phrases:
   - "orca browser commands"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Orca CLI Reference
@@ -225,7 +225,8 @@ The handoff is done when the new worktree id and agent handle are reported and t
 
 | Document | Relationship |
 |---|---|
-| [`../SKILL.md`](../SKILL.md) | Router contract, loading levels and lane table for this skill |
+| [`../SKILL.md`](../SKILL.md) | Workflow, rules and escalation triggers for this skill |
+| [`../ROUTER.md`](../ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`session-and-runtime.md`](./session-and-runtime.md) | Executable selection, runtime state and the receipt contract behind the calls above |
 | [`mutation-and-browser-boundaries.md`](./mutation-and-browser-boundaries.md) | Authorization and mutation gates per command lane |
 | [`troubleshooting.md`](./troubleshooting.md) | Fail-closed recovery for the error codes this reference shows |

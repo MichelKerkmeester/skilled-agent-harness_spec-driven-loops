@@ -8,7 +8,7 @@ expected_intent: RECOVERY
 expected_resources:
   - references/convergence/convergence-recovery.md
   - references/state/state-reducer-registry.md
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # DR-R04: Deep research recovery routing
@@ -56,7 +56,7 @@ The research loop is stuck after a timeout; run recovery, reconstruct state, and
 
 ### Commands
 
-1. `sed -n '332,351p' .skilled/skills/system-deep-loop/deep-research/SKILL.md` - confirm the `RECOVERY` keyword list and resource map.
+1. `sed -n '/^## 3. MACHINE ROUTER$/,$p' .skilled/skills/system-deep-loop/deep-research/ROUTER.md` - confirm the `RECOVERY` keyword list and resource map.
 2. `for p in references/guides/quick-reference.md references/convergence/convergence-recovery.md references/state/state-reducer-registry.md; do test -e ".skilled/skills/system-deep-loop/deep-research/$p" && echo "OK $p" || echo "MISS $p"; done` - confirm every expected resource resolves on disk.
 3. Dispatch the exact prompt into the deep-research packet's router and capture which intent and resource set it reports.
 

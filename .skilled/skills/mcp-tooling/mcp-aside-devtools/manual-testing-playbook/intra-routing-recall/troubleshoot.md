@@ -8,7 +8,7 @@ expected_intent: TROUBLESHOOT
 expected_resources:
   - references/troubleshooting.md
   - references/session-management.md
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # AD-R05: Troubleshoot routing
@@ -97,7 +97,7 @@ excerpts from steps 2-3 with the matched keywords highlighted.
 
 - **Pass**: `../../ROUTER.md` §3 names the matched `TROUBLESHOOT` keywords and
   `RESOURCE_MAP["TROUBLESHOOT"]` lists both resources, and both resource paths exist.
-- **Fail**: the keyword set or resource map in `SKILL.md` no longer matches this scenario's
+- **Fail**: the keyword set or resource map in `../../ROUTER.md` §3 no longer matches this scenario's
   frontmatter, or a resource path does not resolve.
 
 ### Failure Triage

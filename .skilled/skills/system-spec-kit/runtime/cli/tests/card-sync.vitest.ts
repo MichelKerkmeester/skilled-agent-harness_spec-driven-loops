@@ -21,7 +21,7 @@ const scratch: string[] = [];
 function copySkillRoot(): string {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'card-sync-'));
   scratch.push(root);
-  for (const rel of ['SKILL.md', 'leaf-manifest.json', 'leaf-aliases.json', CARD, CHECKLIST]) {
+  for (const rel of ['SKILL.md', 'ROUTER.md', 'leaf-manifest.json', 'leaf-aliases.json', CARD, CHECKLIST]) {
     fs.mkdirSync(path.dirname(path.join(root, rel)), { recursive: true });
     fs.copyFileSync(path.join(SKILL_ROOT, rel), path.join(root, rel));
   }

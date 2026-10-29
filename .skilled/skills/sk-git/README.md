@@ -8,7 +8,7 @@ trigger_phrases:
   - "git workspace commit finish"
   - "pull request commit hygiene"
   - "commit id trailer"
-version: 1.8.13.0
+version: 1.8.14.0
 ---
 
 # sk-git
@@ -195,7 +195,8 @@ Use `gh` for simple PR creation and listing. Use the GitHub MCP when you need st
 
 ```text
 sk-git/
-+-- SKILL.md                       # Runtime instructions, smart router and rules
++-- SKILL.md                       # Runtime instructions and rules
++-- ROUTER.md                      # Machine router in Section 3
 +-- README.md                      # This file
 +-- scripts/                       # Allocators, stampers and validators, plus tests
 +-- references/                    # Phase workflows loaded by the router
@@ -282,7 +283,8 @@ The skill ships a manual testing playbook with scenarios across 9 categories and
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions and the full rule set |
+| [`ROUTER.md`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`scripts/README.md`](./scripts/README.md) | The allocator and validator surface |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Catalog of every capability and its entry point |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual validation scenarios across 9 categories |

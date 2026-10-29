@@ -1,7 +1,7 @@
 ---
 title: "CP-047 -- SPEC_FENCE_WRITEBACK bounded spec mutation **(SANDBOXED)**"
 description: "Validate that /deep:research uses the lock, spec_check_protocol and generated findings fence rather than freeform spec.md mutation."
-version: 1.14.0.9
+version: 1.14.1.0
 ---
 
 # CP-047 -- SPEC_FENCE_WRITEBACK bounded spec mutation **(SANDBOXED)**
@@ -102,7 +102,7 @@ diff /tmp/cp-047-pre.txt /tmp/cp-047-post.txt > /tmp/cp-047-tripwire.diff; echo 
 | `.skilled/commands/deep/research.md:35-38` | lock and spec_check_protocol note |
 | `.skilled/commands/deep/assets/deep-research-auto.yaml:298-360` | pre-init spec classification and validation |
 | `.skilled/commands/deep/assets/deep-research-auto.yaml:973-996` | generated findings fence writeback |
-| `.skilled/skills/system-deep-loop/deep-research/SKILL.md:343-350` | exact generated-fence contract |
+| `.skilled/skills/system-deep-loop/deep-research/SKILL.md:168-171` | exact generated-fence contract |
 | `.skilled/agents/deep-research.md:51-55` | agent may not repair reducer or control files |
 
 ---

@@ -7,7 +7,7 @@ description: "This scenario validates the ROUTER.md §3 MACHINE ROUTER's MCP_ADV
 expected_intent: MCP_ADVANCED
 expected_resources:
   - references/mcp-tools.md
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # CU-R02: MCP advanced routing
@@ -99,7 +99,7 @@ excerpts from steps 2-3 with the matched keywords highlighted.
 - **Pass**: `../../ROUTER.md` §3 MACHINE ROUTER names the matched `MCP_ADVANCED` keywords, no tie-break keyword from
   `TROUBLESHOOT`/`INSTALL` appears in the prompt, `RESOURCE_MAP["MCP_ADVANCED"]` lists the resource,
   and the resource path exists.
-- **Fail**: the keyword set or resource map in `SKILL.md` no longer matches this scenario's
+- **Fail**: the keyword set or resource map in `../../ROUTER.md` §3 no longer matches this scenario's
   frontmatter, a `TROUBLESHOOT`/`INSTALL` keyword unexpectedly fires the tie-break, or the resource
   path does not resolve.
 

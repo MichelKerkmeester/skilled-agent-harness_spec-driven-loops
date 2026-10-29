@@ -1,7 +1,7 @@
 ---
 title: "481 -- Authoring card loaded by four intents"
 description: "This scenario validates that the PLAN, IMPLEMENT, INTAKE and TEMPLATE_AUTHORING intents load the authoring card and leave the long guide on demand."
-version: 1.0.3.0
+version: 1.0.4.0
 id: template-authoring-authoring-card-router-intents
 ---
 
@@ -73,7 +73,7 @@ Step 1 prints `4`. Step 2 prints `0`. Step 3 prints `1`.
 - The `4` from step 1.
 - The `0` from step 2.
 - The `1` from step 3.
-- The four intent block headers from `SKILL.md`, quoted in the report.
+- The four intent block headers from [`ROUTER.md`](../../ROUTER.md) §3 MACHINE ROUTER, quoted in the report.
 
 ### Pass / Fail
 
@@ -90,9 +90,9 @@ A `3` on step 1 means one intent block still points elsewhere, so read the four 
 
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Feature catalog: [spec-authoring-card.md](../../feature-catalog/tooling-and-scripts/spec-authoring-card.md)
-- Implementation: [SKILL.md](../../SKILL.md)
+- Implementation: [ROUTER.md](../../ROUTER.md) §3 MACHINE ROUTER
 
-Provenance: manual only - awk over the four intent blocks in .skilled/skills/system-spec-kit/SKILL.md
+Provenance: manual only - awk over the four intent blocks in .skilled/skills/system-spec-kit/ROUTER.md §3
 
 ---
 

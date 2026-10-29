@@ -1805,8 +1805,12 @@ describe('fanout-run.cjs — unpinned lineage fallbacks match their packets', ()
     for (const [constant, packet, family, idPattern] of cases) {
       expect(runner[constant], `${constant} left the ${family} family its packet publishes`)
         .toMatch(idPattern);
-      const md = readFileSync(join(packetDir, packet, 'SKILL.md'), 'utf8');
-      const line = md.split('\n').find((l) => l.includes('Fan-out fallback:'));
+      // A packet states its fallback in SKILL.md or, once its router moved, in ROUTER.md.
+      const docs = ['SKILL.md', 'ROUTER.md']
+        .map((name) => join(packetDir, packet, name))
+        .filter((file) => existsSync(file))
+        .map((file) => readFileSync(file, 'utf8'));
+      const line = docs.join('\n').split('\n').find((l) => l.includes('Fan-out fallback:'));
       expect(line, `${packet} publishes no fan-out fallback line`).toBeTruthy();
       expect(line, `${packet} publishes a family the runner does not use`).toContain(family);
     }

@@ -4,7 +4,7 @@ description: "Turns a finished benchmark run into documentation an operator can 
 trigger_phrases:
   - "benchmark-report.md"
   - "behavior benchmark"
-version: 1.6.3.0
+version: 1.6.4.0
 ---
 
 # create-benchmark
@@ -141,7 +141,8 @@ A: Update the existing `benchmark-report.md` with a `Re-run YYYY-MM-DD` note ins
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Authoritative workflow contract, family router and every family section |
+| [`SKILL.md`](./SKILL.md) | Authoritative workflow contract and every family section |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`references/shared/README.md`](./references/shared/README.md) | Overflow route-map: case studies, the report worked example and common pitfalls |
 | [`references/behavior-benchmark/behavior-benchmark-guide.md`](./references/behavior-benchmark/behavior-benchmark-guide.md) | End-to-end guide for authoring a `behavior-benchmark` package |
 | [`assets/shared/benchmark-report-template.md`](./assets/shared/benchmark-report-template.md) | Template for the ten-section `benchmark-report.md` |

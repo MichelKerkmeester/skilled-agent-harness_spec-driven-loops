@@ -3,7 +3,7 @@ title: "SKD-031 -- Implementation routes to the code skill"
 description: "This scenario validates Implementation routes to the code skill for `SKD-031`. It focuses on confirm a pure implementation request is not answered as a design question."
 stage: negative
 id: "SKD-031"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # SKD-031 -- Implementation routes to the code skill
@@ -88,7 +88,8 @@ Read the When NOT to Use list in `SKILL.md` Section 1; a design answer here mean
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) | Value scales, hierarchy core, router and hard rules. Full method in [references/hierarchy.md](../../references/hierarchy.md) |
+| [SKILL.md](../../SKILL.md) | Value scales, hierarchy core and hard rules. Full method in [references/hierarchy.md](../../references/hierarchy.md) |
+| [ROUTER.md §3](../../ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [references/ux-laws.md](../../references/ux-laws.md) | Reference this scenario exercises |
 
 No feature catalog exists for this skill, so no catalog cross-reference applies.

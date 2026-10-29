@@ -6,7 +6,7 @@ trigger_phrases:
   - "make this look better"
   - "spacing and type scale"
   - "design review findings"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # sk-design
@@ -184,7 +184,8 @@ A: That skill measures what a live site already does. This one decides what a su
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the value scales, and routing logic |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions and the value scales |
+| [`ROUTER.md §3`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`references/build-procedure.md`](./references/build-procedure.md) | The seven-step order of work for something new |
 | [`references/diagnosis-table.md`](./references/diagnosis-table.md) | Symptom to cause to fix, for existing UI |
 | [`references/hierarchy.md`](./references/hierarchy.md) | The full hierarchy method: actions, labels, weight versus contrast |

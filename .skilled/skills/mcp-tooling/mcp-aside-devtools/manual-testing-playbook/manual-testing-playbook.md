@@ -1,7 +1,7 @@
 ---
 title: "MCP Aside Devtools: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review/orchestration guidance, execution expectations, and per-feature validation files for the mcp-aside-devtools skill."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # MCP Aside Devtools: Manual Testing Playbook
@@ -422,7 +422,7 @@ Expected signals: Step 2: post-kill requests fail with EOF/broken-pipe symptoms;
 
 ## 14. INTRA ROUTING RECALL
 
-Routing-recall contracts validate that the SKILL.md Smart Router's intent model routes realistic prompts to the right references. Routing-stage files may use router vocabulary; holdout files are blind to obvious tool-name keywords; the negative file must route nowhere.
+Routing-recall contracts validate that the ROUTER.md Smart Router's intent model routes realistic prompts to the right references. Routing-stage files may use router vocabulary; holdout files are blind to obvious tool-name keywords; the negative file must route nowhere.
 
 - AD-R01: [Task routing](intra-routing-recall/task.md)
 - AD-R02: [REPL routing](intra-routing-recall/repl.md)

@@ -7,7 +7,7 @@ description: "This scenario validates the ROUTER.md §3 MACHINE ROUTER's CUPT_DA
 expected_intent: CUPT_DAILY
 expected_resources:
   - references/cupt-commands.md
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # CU-R01: CUPT daily routing
@@ -96,7 +96,7 @@ excerpts from steps 2-3 with the matched keywords highlighted.
 - **Pass**: `../../ROUTER.md` §3 MACHINE ROUTER names the matched `CUPT_DAILY` keywords, no tie-break keyword from
   `TROUBLESHOOT`/`INSTALL` appears in the prompt, `RESOURCE_MAP["CUPT_DAILY"]` lists the resource, and
   the resource path exists.
-- **Fail**: the keyword set or resource map in `SKILL.md` no longer matches this scenario's
+- **Fail**: the keyword set or resource map in `../../ROUTER.md` §3 no longer matches this scenario's
   frontmatter, a `TROUBLESHOOT`/`INSTALL` keyword unexpectedly fires the tie-break, or the resource
   path does not resolve.
 

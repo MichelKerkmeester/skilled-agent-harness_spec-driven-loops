@@ -1,7 +1,7 @@
 ---
 title: "PI-005 -- Nested skill flattening risk"
 description: "This scenario isolates the unknown whether nested mode `SKILL.md` files surface as independent Pi skills rather than preserving the parent-hub design for `PI-005`."
-version: 1.5.0.1
+version: 1.5.1.0
 ---
 
 # PI-005 -- Nested skill flattening risk
@@ -58,7 +58,8 @@ Flattening every nested mode into an independent skill could create duplicate ro
 | File | Role |
 |---|---|
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | Credential and no-inference policy |
-| `../../SKILL.md` | Resource loading levels and routing boundary |
+| `../../SKILL.md` | Native-resource surfaces and discovery caveats |
+| `../../ROUTER.md#3-machine-router` | Machine router: intent map, resource map and loading levels |
 | `../../references/native-skills-and-extensions.md` | Explicit unconfirmed flattening guidance |
 
 ### Implementation And Test Anchors

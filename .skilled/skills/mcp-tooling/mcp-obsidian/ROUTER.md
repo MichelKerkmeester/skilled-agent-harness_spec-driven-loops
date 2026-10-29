@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-obsidian routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -55,7 +55,7 @@ The routing detail that does not fit the short summary: the resource loading lev
 ### Resource Loading Levels
 
 ```
-ALWAYS:    SKILL.md (this file)
+ALWAYS:    SKILL.md and this ROUTER.md
 ON_DEMAND: references/obsidian-cli-commands.md          (notesmd-cli + official obsidian CLI command details)
            references/official-cli-agent-usage.md       (official obsidian CLI: preflight, exit-0 contract, key=value syntax, 106-command surface)
            references/mcp-tools.md                      (cyanheads MCP tool catalog + invocation)

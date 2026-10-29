@@ -17,10 +17,10 @@ version: 1.0.11.0
 > **CRITICAL — SELF-INVOCATION PROHIBITED**
 >
 > This skill dispatches to the Hermes Agent binary (`hermes`). If the agent currently reading this
-> skill is itself running inside Hermes (detection signals in §9), the skill MUST refuse to load and
-> return the documented error instead of generating any `hermes` invocation. Hermes has in-process
-> delegation of its own (`delegate_task`), so a Hermes session hands work out through that, never by
-> re-dispatching this CLI.
+> skill is itself running inside Hermes (detection signals in [`ROUTER.md`](../../../.skilled/skills/cli-external-orchestration/cli-hermes/ROUTER.md) §3), the skill
+> MUST refuse to load and return the documented error instead of generating any `hermes` invocation.
+> Hermes has in-process delegation of its own (`delegate_task`), so a Hermes session hands work out
+> through that, never by re-dispatching this CLI.
 
 Orchestrate Hermes Agent (Nous Research's open-source, Python-based agent CLI) for quiet oneshot
 coding dispatch, cross-AI validation, and model routing through the operator's LLM Gateway

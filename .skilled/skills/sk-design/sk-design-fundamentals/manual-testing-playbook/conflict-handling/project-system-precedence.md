@@ -3,7 +3,7 @@ title: "SKD-020 -- An established project system wins"
 description: "This scenario validates An established project system wins for `SKD-020`. It focuses on confirm the skill defers to a project's own tokens rather than arguing for its defaults."
 stage: routing
 id: "SKD-020"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # SKD-020 -- An established project system wins
@@ -87,7 +87,8 @@ Check the ESCALATE list in `SKILL.md` Section 4; deference to an established sys
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) | Value scales, hierarchy core, router and hard rules. Full method in [references/hierarchy.md](../../references/hierarchy.md) |
+| [SKILL.md](../../SKILL.md) | Value scales, hierarchy core and hard rules. Full method in [references/hierarchy.md](../../references/hierarchy.md) |
+| [ROUTER.md §3](../../ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [assets/token-starter-set.md](../../assets/token-starter-set.md) | Reference this scenario exercises |
 
 No feature catalog exists for this skill, so no catalog cross-reference applies.

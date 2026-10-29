@@ -46,7 +46,7 @@ fi
 
 CARD_REL="references/workflows/spec-authoring-card.md"
 CARD="$SKILL_ROOT/$CARD_REL"
-ROUTER="$SKILL_ROOT/SKILL.md"
+ROUTER="$SKILL_ROOT/ROUTER.md"
 LEAVES="$SKILL_ROOT/leaf-manifest.json"
 ALIASES="$SKILL_ROOT/leaf-aliases.json"
 CHECKLIST_REL="references/workflows/spec-folder-authoring-checklist.md"
