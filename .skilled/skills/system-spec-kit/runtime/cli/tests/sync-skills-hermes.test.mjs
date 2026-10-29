@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
 import { mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync, existsSync, lstatSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 
@@ -124,6 +124,9 @@ test('copies a source ROUTER.md beside SKILL.md and reports drift when the copy 
   try {
     const routerText = '## MACHINE ROUTER\n\nINTENT_SIGNALS = ["read [guide](references/guide.md)"]\n';
     writeFileSync(join(env.source, 'hub', 'ROUTER.md'), routerText);
+    // The copy lives in another folder, so its relative links are rewritten to reach the canonical files.
+    const canonicalGuide = relative(join(env.output, 'hub'), join(env.source, 'hub', 'references', 'guide.md'));
+    const copiedText = routerText.replace('references/guide.md', canonicalGuide);
     const failedCheck = () => {
       try {
         run(env, ['--check']);
@@ -133,19 +136,19 @@ test('copies a source ROUTER.md beside SKILL.md and reports drift when the copy 
       return '';
     };
     run(env);
-    assert.equal(readFileSync(join(env.output, 'hub', 'ROUTER.md'), 'utf8'), routerText);
+    assert.equal(readFileSync(join(env.output, 'hub', 'ROUTER.md'), 'utf8'), copiedText);
     assert.ok(!existsSync(join(env.output, 'mode-a', 'ROUTER.md')));
     assert.match(run(env, ['--check']), /PASS: 4/);
 
     writeFileSync(join(env.output, 'hub', 'ROUTER.md'), 'stale\n');
     assert.match(failedCheck(), /DRIFT hub/);
     run(env);
-    assert.equal(readFileSync(join(env.output, 'hub', 'ROUTER.md'), 'utf8'), routerText);
+    assert.equal(readFileSync(join(env.output, 'hub', 'ROUTER.md'), 'utf8'), copiedText);
 
     rmSync(join(env.output, 'hub', 'ROUTER.md'));
     assert.match(failedCheck(), /DRIFT hub/);
     run(env);
-    assert.equal(readFileSync(join(env.output, 'hub', 'ROUTER.md'), 'utf8'), routerText);
+    assert.equal(readFileSync(join(env.output, 'hub', 'ROUTER.md'), 'utf8'), copiedText);
   } finally {
     rmSync(env.root, { recursive: true, force: true });
   }
