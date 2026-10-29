@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/012-align-cli-orca",
+  "description": "Phase 12: align-cli-orca",
+  "keywords": [
+    "phase",
+    "align-cli-orca"
+  ],
+  "lastUpdated": "2026-10-29T17:20:35.543Z",
+  "specId": "012",
+  "folderSlug": "align-cli-orca",
+  "parentChain": [
+    "sk-doc",
+    "072-skill-routing-and-clarity",
+    "014-skill-router-files"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

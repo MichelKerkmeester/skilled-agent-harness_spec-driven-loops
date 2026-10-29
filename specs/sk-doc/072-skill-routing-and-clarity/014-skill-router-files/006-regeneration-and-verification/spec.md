@@ -20,13 +20,13 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-29 |
 | **Branch** | `worktrees/269-skill-router-files` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 6 of 6 |
+| **Phase** | 6 of 22 |
 | **Predecessor** | 005-packet-and-standalone-migration |
-| **Successor** | None |
+| **Successor** | 007-ai-systems-research |
 | **Handoff Criteria** | Every freshness and route gate exits 0 on the final tree, the recaptured scorer baseline holds 155/195, 49/66 and 19/24, and the two replay reports match row for row |
 <!-- /ANCHOR:metadata -->
 

@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/011-align-cli-external-orchestration",
+  "description": "Phase 11: align-cli-external-orchestration",
+  "keywords": [
+    "phase",
+    "align-cli-external-orchestration"
+  ],
+  "lastUpdated": "2026-10-29T17:20:34.962Z",
+  "specId": "011",
+  "folderSlug": "align-cli-external-orchestration",
+  "parentChain": [
+    "sk-doc",
+    "072-skill-routing-and-clarity",
+    "014-skill-router-files"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

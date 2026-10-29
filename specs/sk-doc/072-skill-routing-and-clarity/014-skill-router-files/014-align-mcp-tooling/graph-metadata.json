@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/014-align-mcp-tooling",
+  "spec_folder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/014-align-mcp-tooling",
+  "parent_id": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "align mcp tooling",
+      "phase 14 align mcp tooling",
+      "align mcp tooling plan",
+      "align mcp tooling tasks",
+      "align mcp tooling implementation summary"
+    ],
+    "key_topics": [
+      "align",
+      "mcp",
+      "tooling",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "machine",
+      "router",
+      "mcp-tooling",
+      "hub"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "DeepSeek V4.1 Flash",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the A-08",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The machine router of the mcp-tooling hub and its eight modes moved from `SKILL.md` to `ROUTER.md`",
+    "created_at": "2026-10-29T17:20:36Z",
+    "last_save_at": "2026-10-29T20:13:57.018Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:35788408c8bcdeaf111abe4867009f2b09732cb9ca1fc69a7dbb8be5867d11ab",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cf4d3e9dceba08e15fd58ba0eda1baeb94816c24e07abdf4e3c13e4da48ffa26",
+      "plan.md": "954b2f2765c549aa67c04206a4feab084001eac96df8eddf82cbc24c70ef4522",
+      "tasks.md": "5bd50554add7b1e3a368c7f5dd1f98f0378825e28bda14d6dc5e57bb1070182d",
+      "implementation-summary.md": "7b87a13724dfecf21cdef3ed3d301df1fac6fb0f5ed8ebc529b77bec4a1becb4"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "cf520fc01b60a2925faf7f60c5d1de72c33d84d38f23a82499985ce9ae01c37b",
+  "corpusHash": "722ed3bd48a8a34f8070920d9882f0a8654af022b5796803a238e4e59cabd929",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27082,
+  "includedPathCount": 27136,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6360,6 +6360,8 @@
     ".skilled/skills/sk-doc/scripts/tests/security-policy-no-reporting/SECURITY.md",
     ".skilled/skills/sk-doc/scripts/tests/security-policy/SECURITY.md",
     ".skilled/skills/sk-doc/scripts/tests/single-dash-anchors.md",
+    ".skilled/skills/sk-doc/scripts/tests/skill-router-no-machine/ROUTER.md",
+    ".skilled/skills/sk-doc/scripts/tests/skill-router/ROUTER.md",
     ".skilled/skills/sk-doc/scripts/tests/specs/auto-detect-spec.md",
     ".skilled/skills/sk-doc/scripts/tests/structure/negative/missing-divider.md",
     ".skilled/skills/sk-doc/scripts/tests/structure/positive/all-dividers.md",
@@ -14062,6 +14064,58 @@
     "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/plan.md",
     "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/010-align-cli-classifier/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/010-align-cli-classifier/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/010-align-cli-classifier/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/010-align-cli-classifier/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/011-align-cli-external-orchestration/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/011-align-cli-external-orchestration/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/011-align-cli-external-orchestration/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/011-align-cli-external-orchestration/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/012-align-cli-orca/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/012-align-cli-orca/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/012-align-cli-orca/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/012-align-cli-orca/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/013-align-mcp-code-mode/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/013-align-mcp-code-mode/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/013-align-mcp-code-mode/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/013-align-mcp-code-mode/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/014-align-mcp-tooling/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/014-align-mcp-tooling/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/014-align-mcp-tooling/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/014-align-mcp-tooling/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/015-align-sk-code/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/015-align-sk-code/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/015-align-sk-code/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/015-align-sk-code/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/016-align-sk-design/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/016-align-sk-design/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/016-align-sk-design/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/016-align-sk-design/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/017-align-sk-doc/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/017-align-sk-doc/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/017-align-sk-doc/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/017-align-sk-doc/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/018-align-sk-git/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/018-align-sk-git/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/018-align-sk-git/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/018-align-sk-git/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/019-align-sk-prompt/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/019-align-sk-prompt/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/019-align-sk-prompt/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/019-align-sk-prompt/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/020-align-system-deep-loop/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/020-align-system-deep-loop/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/020-align-system-deep-loop/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/020-align-system-deep-loop/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/021-align-system-skill-advisor/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/021-align-system-skill-advisor/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/021-align-system-skill-advisor/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/021-align-system-skill-advisor/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/022-align-system-spec-kit/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/022-align-system-spec-kit/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/022-align-system-spec-kit/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/022-align-system-spec-kit/tasks.md",
     "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/goal.md",
     "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/spec.md",
@@ -27113,7 +27167,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "2e27c50068d53ab6dca14b7c688053f439d7049e3d1758db771e99ba38458314",
+  "manifestHash": "00c851b9b7b9daa7252826b8476643696299b239e2dfe5267adce947423f9c38",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30873,6 +30927,58 @@
     },
     {
       "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/010-align-cli-classifier/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/011-align-cli-external-orchestration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/012-align-cli-orca/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/013-align-mcp-code-mode/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/014-align-mcp-tooling/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/015-align-sk-code/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/016-align-sk-design/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/017-align-sk-doc/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/018-align-sk-git/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/019-align-sk-prompt/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/020-align-system-deep-loop/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/021-align-system-skill-advisor/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/022-align-system-spec-kit/scratch",
       "reason": "excluded directory"
     },
     {

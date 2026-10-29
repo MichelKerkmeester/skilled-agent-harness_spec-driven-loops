@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/012-align-cli-orca",
+  "spec_folder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/012-align-cli-orca",
+  "parent_id": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "align cli orca",
+      "phase 12 align cli orca",
+      "align cli orca plan",
+      "align cli orca tasks",
+      "align cli orca implementation summary"
+    ],
+    "key_topics": [
+      "align",
+      "cli",
+      "orca",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "machine",
+      "router",
+      "cli-orca",
+      "moved"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "DeepSeek V4.1 Flash",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "HEAD",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The machine router of cli-orca moved from SKILL.md to ROUTER.md",
+    "created_at": "2026-10-29T17:20:35Z",
+    "last_save_at": "2026-10-29T20:16:39.988Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:028a3b59bb4f0e5588765d8616b35fdc56ee6f31c8710cbbeb3b7863a8e06107",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a67ed540fce1d5bfd69a6a0a41c61299acbfe30f2e3aeff9f4875c5805c20c9c",
+      "plan.md": "cf2881c4fec05cc88cd471f292a379accbc999e9dbb9a9ad877248d59e9c5ceb",
+      "tasks.md": "7f8e328e45c0d18db856c97dde4628b557f1a835abd9eab81990a53ace6dac16",
+      "implementation-summary.md": "9b3dceee4a29073002b579a16eab43bf958a2bfb218c94b89d8338681bb02360"
+    },
+    "last_active_at": null
+  }
+}

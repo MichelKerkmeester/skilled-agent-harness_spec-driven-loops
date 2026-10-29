@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/014-align-mcp-tooling",
+  "description": "Phase 14: align-mcp-tooling",
+  "keywords": [
+    "phase",
+    "align-mcp-tooling"
+  ],
+  "lastUpdated": "2026-10-29T17:20:36.708Z",
+  "specId": "014",
+  "folderSlug": "align-mcp-tooling",
+  "parentChain": [
+    "sk-doc",
+    "072-skill-routing-and-clarity",
+    "014-skill-router-files"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

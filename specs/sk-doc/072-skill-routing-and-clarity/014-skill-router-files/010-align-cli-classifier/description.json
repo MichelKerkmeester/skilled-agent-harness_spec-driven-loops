@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/010-align-cli-classifier",
+  "description": "Phase 10: align-cli-classifier",
+  "keywords": [
+    "phase",
+    "align-cli-classifier"
+  ],
+  "lastUpdated": "2026-10-29T17:20:34.352Z",
+  "specId": "010",
+  "folderSlug": "align-cli-classifier",
+  "parentChain": [
+    "sk-doc",
+    "072-skill-routing-and-clarity",
+    "014-skill-router-files"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

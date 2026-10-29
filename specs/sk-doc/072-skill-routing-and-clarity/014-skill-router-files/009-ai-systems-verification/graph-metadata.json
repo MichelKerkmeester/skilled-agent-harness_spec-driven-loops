@@ -13,6 +13,8 @@
     "trigger_phrases": [
       "ai systems verification",
       "phase 9 ai systems verification",
+      "ai systems router resolver check",
+      "ai systems battery rerun",
       "ai systems verification plan",
       "ai systems verification tasks",
       "ai systems verification acceptance criteria",
@@ -26,25 +28,30 @@
       "systems",
       "verification",
       "phase",
+      "router",
+      "resolver",
+      "check",
+      "battery",
+      "rerun",
       "plan",
       "tasks",
       "acceptance",
-      "criteria",
-      "packet",
-      "goal",
-      "durable",
-      "directive",
-      "completion"
+      "criteria"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scratch/resolver-and-links.txt",
+      "scratch/pre-move-verdicts.txt",
+      "scratch/battery.txt",
+      "scratch/moneybird-resolve.txt",
+      "ROUTER.md"
     ],
     "entities": [
       {
@@ -84,13 +91,37 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "resolver-and-links.txt",
+        "kind": "file",
+        "path": "scratch/resolver-and-links.txt",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "pre-move-verdicts.txt",
+        "kind": "file",
+        "path": "scratch/pre-move-verdicts.txt",
+        "source": "derived"
+      },
+      {
+        "name": "battery.txt",
+        "kind": "file",
+        "path": "scratch/battery.txt",
+        "source": "derived"
+      },
+      {
+        "name": "moneybird-resolve.txt",
+        "kind": "file",
+        "path": "scratch/moneybird-resolve.txt",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": "ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -120,6 +151,12 @@
         "source": "derived"
       },
       {
+        "name": "Product Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -132,7 +169,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Nothing",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -144,21 +187,9 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Claude Project",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -166,35 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Phase 008 moved the machine router of 16 AI Systems skills into sibling `ROUTER.md` files and reran its own baseline, but the run that made the change also judged it",
     "created_at": "2026-10-29T11:37:25Z",
-    "last_save_at": "2026-10-29T13:25:51.524Z",
+    "last_save_at": "2026-10-29T17:21:40.592Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:815ae5cc1e08ba47154ff8f03359d03409d77dac41efc7ffcd5a4a7f2c4cdfa9",
+    "source_fingerprint": "sha256:b135e3ddfcb0462a86f2ba45d382fbae51ccd2b0f2aeeaadf1d56860b60d7991",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "13c33eb80cea5e88410f61b5e0963062740e0dde8d7a9498fea823bf1f8f3e7e",
-      "plan.md": "7be67db6496f5996049842d7bedf76bcf0bdd85b8ef59cc360522ddbeab5d241",
-      "tasks.md": "d1810acca6c71f0fa689be06cbf3cfdbd930bc8db63cac7086481d8fdb91bd73",
-      "implementation-summary.md": "6e349eb201d4f4e679f02b3fc7a4c687bfa11df20f239994a09ff7f0c45b4ffd"
+      "spec.md": "00b807bc70a03a51b1610b83ee2a4537db151c3b1de198bf38600d015089bd61",
+      "plan.md": "1d977320952fa5987bfa45f3f265f7e4335b225ee6d54de0f94cbeace498afcb",
+      "tasks.md": "4d20414132b9d0838fa89b085f34636ed31f65c808f57883d033ac909102fd48",
+      "implementation-summary.md": "7407f357895fe71b4742c0131367dd98a9df1649bcaed66c3c9593f6b976a54f"
     },
     "last_active_at": null
   }

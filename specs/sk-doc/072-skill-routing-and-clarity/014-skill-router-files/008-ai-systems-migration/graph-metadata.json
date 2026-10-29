@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The 16 AI Systems skills keep their machine router in `## 2",
     "created_at": "2026-10-29T11:37:24Z",
-    "last_save_at": "2026-10-29T16:51:41.379Z",
+    "last_save_at": "2026-10-29T17:22:12.569Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8434cfc3e15e1c8d3ce16a06be65cc70693393543f0fb4bec7df327334d7dec",
+    "source_fingerprint": "sha256:549713ef7636f1c71f4cc7d8448ce6b6bfb7e7b4c00b74c886eb4cbead70410f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "837075bdb0eee577e636af9a688a9e97aa9c326d0af82be563f1f6a078fa7232",
       "plan.md": "4c151492d06d3de8e0f46ccdea8b280024a4d9d70ff3ceae0afb311e256550ad",
       "tasks.md": "0968d20cd3fe109142c2937f72263dc734ce6c852e23491498ca389247969831",
       "decision-record.md": "0b646ceb8cb058a605ef458525b13eedf5620ff75b6dc608a0c7e1ef6d066536",
-      "implementation-summary.md": "2c532c13f58e135c82bc1c50db299d9faae3b0cb4a3cc88f5c70c11d5af7e697"
+      "implementation-summary.md": "f1527cbe47b4b381934ef044e11b573ee7b44d49f576c7ea9959344d20e3817b"
     },
     "last_active_at": null
   }

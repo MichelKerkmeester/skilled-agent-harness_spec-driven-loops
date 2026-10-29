@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/018-align-sk-git",
+  "spec_folder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/018-align-sk-git",
+  "parent_id": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "align sk git",
+      "phase 18 align sk git",
+      "align sk git plan",
+      "align sk git tasks",
+      "align sk git implementation summary"
+    ],
+    "key_topics": [
+      "align",
+      "git",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "router",
+      "move",
+      "changed",
+      "sk-git",
+      "machine"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-git/SKILL.md",
+      ".skilled/skills/sk-git/ROUTER.md",
+      ".skilled/skills/sk-git/README.md",
+      ".skilled/skills/sk-git/changelog/v1.11.6.0.md",
+      ".skilled/skills/sk-git/references/finish-workflows.md",
+      ".skilled/skills/sk-git/assets/pr-template.md",
+      ".skilled/skills/sk-git/leaf-manifest.config.json",
+      ".skilled/skills/sk-git/manual-testing-playbook/git-preflight-advisory/advisory-fires-on-silent-scope-drop.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.11.6.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/changelog/v1.11.6.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "finish-workflows.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/references/finish-workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "pr-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/assets/pr-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.config.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-git/leaf-manifest.config.json",
+        "source": "derived"
+      },
+      {
+        "name": "advisory-fires-on-silent-scope-drop.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/manual-testing-playbook/git-preflight-advisory/advisory-fires-on-silent-scope-drop.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The router move changed where the sk-git machine router lives, but the docs around it were written for the old place",
+    "created_at": "2026-10-29T17:20:38Z",
+    "last_save_at": "2026-10-29T20:17:25.437Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c45439cb89b109d5207f7533831f3d0b0afd941a113610260a47a9ed35d74515",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bcff8874e23a4b0f5a1a4abb1d8a476fc01bc19e22bfdc37bc5a22e4a59b85ae",
+      "plan.md": "6d643667ef78a7aada724aeffce4ba5d7017488425ffe7b0adc9404d20295bd9",
+      "tasks.md": "c8bb881d72d2575d5780b66e4689d0914fd3a5b5d4380da98809442bbdd67bf2",
+      "implementation-summary.md": "2caac601720dd735033cae57b3eaaeba8f57273600251d6a47ed002fc7d77dab"
+    },
+    "last_active_at": null
+  }
+}

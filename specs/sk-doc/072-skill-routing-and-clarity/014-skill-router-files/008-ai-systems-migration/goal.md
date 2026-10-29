@@ -85,7 +85,7 @@ and findings belong here.
 | Skill moves | 16 of 16, committed locally | 16 `ROUTER.md` with a final `## 3. MACHINE ROUTER`; the 3 vendored MCP packets arrived by `vendor-sync.py pull` at Public `ca10a236d2` and read `in step` |
 | Project routing documents | Superseded | Conductor option C: none ships; seven `SYNC.md` updated instead |
 | Rerun | Done | `scratch/after.md`: 37 rows, every passing row still passes with the same counts, row 1 improved |
-| Push | Waits on the operator | AI Systems `rev-list --count origin/main..main` prints 7, one per system; each nested repository is one commit ahead of its upstream |
+| Push | Waits on the operator | AI Systems `rev-list --count origin/main..main` prints 8, one per system plus the Copywriter lane-budget refresh; each nested repository is one commit ahead of its upstream |
 
 ### Deviations and findings
 
@@ -101,5 +101,6 @@ and findings belong here.
 | Readers the research missed | The baseline found five more gate readers of `SKILL.md` routing: the Barter - Copywriter, Product Owner and Media Editor `differential.py`, and the Prompt Improver and Sales - HubSpot & Automation `kernel_parity.py`. They are tasks T009 to T011. |
 | RS codes | The AI Systems `.skilled/skills` is a symlink to the Public main checkout, so the research note that the vendored RS codes differ is stale. |
 | Commits per system | The run first landed as one AI Systems commit; it was split into seven, one per system, so one `git revert` undoes one system (NFR-R01). Each system's gate edits ride in its own commit with its skill moves, and the split tree equals the combined one byte for byte. |
-| Barter - Copywriter differential | It already fails on a stale `lane-budget-baseline.md`, so the Copywriter router gate is not in criterion 2. Its route objects still compare `0/186` diverging. |
+| Moneybird token baseline | Phase 009 ran `token-baseline.py --check` with a seeded tiktoken cache, which this phase's baseline could not, and found the `units` rows stale after the move (the pre-move tree passes). `token-baseline.py` rewrote `benchmark/token-baseline.json`, the check now exits 0, and the file joined the unpushed Moneybird commit, now `b12930a`. |
+| Barter - Copywriter differential | It already failed on a stale `lane-budget-baseline.md`, so the Copywriter router gate is not in criterion 2. A phase 008 follow-up, found by the phase 009 battery, refreshed the baseline with `lane_budget.py --write` (each lane 434 tokens higher, all under their ceilings) in commit `66e69cbd2`, and the differential now passes `186/186`. |
 <!-- /ANCHOR:log -->

@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/021-align-system-skill-advisor",
+  "description": "Phase 21: align-system-skill-advisor",
+  "keywords": [
+    "phase",
+    "align-system-skill-advisor"
+  ],
+  "lastUpdated": "2026-10-29T17:20:40.829Z",
+  "specId": "021",
+  "folderSlug": "align-system-skill-advisor",
+  "parentChain": [
+    "sk-doc",
+    "072-skill-routing-and-clarity",
+    "014-skill-router-files"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

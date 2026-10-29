@@ -1,0 +1,12 @@
+pre-move SKILL.md: none      Barter - Copywriter/sk-barter-copywriter
+pre-move SKILL.md: none      Barter - Deal Templates/sk-barter-deal-templates
+pre-move SKILL.md: none      Media Editor/sk-media-editor
+pre-move SKILL.md: none      Product Owner/sk-create-figjam
+pre-move SKILL.md: none      Product Owner/sk-product-owner
+pre-move SKILL.md: none      Sales - Direct Communication/sk-sales-communication
+pre-move SKILL.md: none      Sales - HubSpot & Automation/sk-sales-hubspot-automation
+pre-move SKILL.md: none      Prompt Improver/sk-prompt-improver
+pre-move SKILL.md: none      Product Owner/mcp-figma
+pre-move SKILL.md: none      Product Owner/mcp-click-up
+pre-move SKILL.md: none      Product Owner/mcp-code-mode
+pre-move SKILL.md: none      Product Owner

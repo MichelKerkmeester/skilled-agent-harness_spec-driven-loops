@@ -1,0 +1,6 @@
+## leaf
+checked=13 fresh=13 failed=0
+## hermes
+FAIL: 1 drifted, 0 stale; run without --check to regenerate
+## guard
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.

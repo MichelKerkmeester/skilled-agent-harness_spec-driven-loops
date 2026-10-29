@@ -105,22 +105,21 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| 001-deep-research | Complete | Operator status. Child spec and acceptance criteria mark it Complete. |
-| 002-router-file-tooling | Complete | Operator status. Child spec and acceptance criteria mark it Complete. |
-| 003-check-and-template-canon | Complete | Operator status, on main. Child spec and acceptance criteria mark it Complete. |
-| 004-hub-router-merge | Committed, landing | Operator status. Child acceptance criteria still read Unmet. |
-| 005-packet-and-standalone-migration | In Progress | Operator status: all 47 skills moved and verified identical in routing. Child acceptance criteria still read Unmet. |
-| 006-regeneration-and-verification | Not started | Operator status. |
-| 007-ai-systems-research | Complete | Operator status, on main. Child spec and acceptance criteria mark it Complete. |
-| 008-ai-systems-migration | Not started | Operator status. Writes to a separate repository whose remote push needs operator approval. |
-| 009-ai-systems-verification | Not started | Operator status. |
+| 001 to 009 | Complete | Each child spec marks it Complete and each Level 2 child's acceptance rows read Met. 008's AC-008 is waived by its ADR-001. |
+| 010 to 022 | Complete | One operator-local alignment check per skill after the move, each with a fix lane and a recheck. Each folder passes strict validation with 0 warnings. |
+| Criterion 1 | Held | `package_skill.py --check --strict` prints `Result: PASS` for 54 of 54 skills, and the debt ledger's `debt` is `{}`. |
+| Criterion 2 | Held | `capture-scorer-eval-baseline.mjs` reads 155/195, 49/66 and 19/24 after the alignment edits. |
+| Criterion 3 | Held | The replay prints `gold=64 scored=56 tied=3 mean_f1=0.9161 exact=49`, and its report is byte-identical to the pre-regeneration report. |
+| Criterion 4 | Held | Seven hubs print `OK: parent-skill-check`, and `compiled-route-guard.cjs` prints seven `fresh` lines after `f031f07eba`. |
+| Criterion 5 | Held | 16 AI Systems routers resolve and their SKILL.md links pass; the battery passes. The remote push waits on the operator. |
+| Criterion 6 | Held | The recursive strict run on this folder ends with `RESULT: PASSED`. |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| Phase map status | The spec phase map reads 003 Pending, 004 Pending, 005 Pending and 007 In Progress. The child docs and the operator report 003 and 007 Complete, 004 committed and 005 in progress. The spec was not edited, because this packet's writable scope is goal files only. |
-| completion_pct | 44 is 4 of 9 phases Complete (001, 002, 003, 007). |
-| Child criteria rows | Child acceptance rows for 004 and 005 still read Unmet. This goal records operator status and does not mark them Met. |
-| Phases 008 and 009 | Their spec.md and acceptance-criteria.md are unfilled scaffolds. Their goals take criteria from this parent's phase map and Phase Handoff Criteria, the only filled sources. Re-derive them once the phase docs are authored. |
+| Routing parse | All 54 routers parse identically to the pre-move tree after every alignment edit, so D1 holds. |
+| Re-mint gate | The pre-commit re-mint gate ignored a staged ROUTER.md, so mcp-tooling's manifest went stale. `f031f07eba` adds ROUTER.md to the gate's paths with two hook tests and re-mints mcp-tooling. |
+| Leaf manifest under a hook | `generate-leaf-manifest.cjs` counted git-ignored files when a hook exported `GIT_DIR`. It now drops the hook's git variables, with a test. |
+| Follow-up work | Routing-data items go to `../015-routing-data-alignment/`, and the reference format debt goes to `specs/sk-doc/074-reference-template-debt/`. Both are recorded in the parent spec. |
 <!-- /ANCHOR:log -->

@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/013-align-mcp-code-mode",
+  "spec_folder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/013-align-mcp-code-mode",
+  "parent_id": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "align mcp code mode",
+      "phase 13 align mcp code mode",
+      "align mcp code mode plan",
+      "align mcp code mode tasks",
+      "align mcp code mode implementation summary"
+    ],
+    "key_topics": [
+      "align",
+      "mcp",
+      "code",
+      "mode",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "machine",
+      "router",
+      "mcp-code-mode"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/system-spec-kit/ROUTER.md",
+      ".skilled/skills/sk-doc/scripts/validate_document.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "DeepSeek V4.1 Flash",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The machine router of mcp-code-mode moved from SKILL.md to ROUTER.md",
+    "created_at": "2026-10-29T17:20:35Z",
+    "last_save_at": "2026-10-29T20:16:39.991Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:228150f2517bd61b325bd6d730c5cec6f5be2bee0b54cfd967785a77dae15554",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c66d1a8576510e0abfef847f44754bbc0637e4a891e4f8fc588a20516cc723ad",
+      "plan.md": "e6f71cd1fb3802b3840307e614434addfcd54bed62b57d30320688008515e900",
+      "tasks.md": "66e809fcfb1995d37a6cb1e736897690295b2dbb7b4014b2a6b77efe4d97d3cf",
+      "implementation-summary.md": "a51e79b3e6ffb3ed5e42a4e20737d60164e6231416463bb86944a78b01d6042d"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7300,
-    "ok": 16234,
+    "missing-frontmatter": 7302,
+    "ok": 16286,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27082,
+  "documentsScanned": 27136,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "2e27c50068d53ab6dca14b7c688053f439d7049e3d1758db771e99ba38458314",
+  "manifestHash": "00c851b9b7b9daa7252826b8476643696299b239e2dfe5267adce947423f9c38",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 39734,
+      "ok": 39801,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -28743,6 +28743,18 @@
       "line": 1,
       "path": ".skilled/skills/sk-doc/scripts/tests/single-dash-anchors.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/skill-router-no-machine/ROUTER.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/skill-router/ROUTER.md",
+      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
@@ -72441,6 +72453,58 @@
     },
     {
       "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/010-align-cli-classifier/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/011-align-cli-external-orchestration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/012-align-cli-orca/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/013-align-mcp-code-mode/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/014-align-mcp-tooling/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/015-align-sk-code/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/016-align-sk-design/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/017-align-sk-doc/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/018-align-sk-git/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/019-align-sk-prompt/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/020-align-system-deep-loop/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/021-align-system-skill-advisor/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/022-align-system-spec-kit/scratch",
       "reason": "excluded directory"
     },
     {

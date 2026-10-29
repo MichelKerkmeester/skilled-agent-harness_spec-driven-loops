@@ -1,0 +1,52 @@
+ROW 1 0 all 15 gates pass
+ROW 2 0 PASSED the hub, 4 registry packets and 51 gold rows
+ROW 3 0 PASS  the restored copy passes (the FAILED lines are the self-test's expected negatives)
+ROW 4 0 PASSED 9 router lanes and DEFAULT_RESOURCE match 4 packet manifests, including FLOW, and the FLOW keywords replay...
+ROW 5 0 PASSED 281/281 differential inputs (9 topics, 114 synonyms in parity, 61 routing.md triggers checked)
+ROW 6 0 PASSED 281/281 differential inputs (9 topics, 114 synonyms in parity, 61 routing.md triggers checked)
+ROW 7 1 FAILED differential gate: 0/186 inputs diverge; lane-budget-baseline.md is not what lane_budget.py produces
+ROW 8 0 PASSED 117/117 fixtures; PASSED 221/221 differential inputs (15 tables, 7 commands, 68 keywords); probes pass
+ROW 9 0 PASSED 132/132 differential checks (22 inputs x 6 host states, 11 commands, 6 modes in parity)
+ROW 10 0 PASSED kernel router parity: Custom Instructions.md fence under '## 8. ROUTER CODE' equals ROUTER.md's pseudocode
+ROW 11 0 EXPORT BLOCKER CHECK PASSED: 144 exports and 78 email samples clean
+ROW 12 0 PASSED kernel router parity: '## 11. ROUTER CODE' fence equals ROUTER.md's Smart Router Pseudocode minus comments
+ROW 13 1 FAILED differential gate: 0/186 inputs diverge; - lane budget: lane-budget-baseline.md is not what lane_budget.py produces
+ROW 14 0 PASSED 221/221 differential inputs (15 tables in parity, 7 commands and 68 keywords covered)
+ROW 15 0 PASSED 132/132 differential checks (22 inputs x 6 host states, 11 commands, 6 modes in parity)
+ROW 16 0 DIFFERENTIAL PASSED: 110 route objects compared, all guards green
+ROW 17 0 PASSED kernel router parity: Custom Instructions.md's '## 8. ROUTER CODE' fence equals ROUTER.md's pseudocode
+ROW 18 0 PASSED kernel router parity: '## 8. ROUTER CODE' = router-contract.md router minus comments (134 lines, same ASTs)
+ROW 19 0 PASSED kernel router parity: '## 11. ROUTER CODE' fence equals ROUTER.md's Smart Router Pseudocode minus comments
+ROW 20 0 all 4 gates pass
+ROW 21 0 all 7 gates pass
+ROW 22 0 Thresholds intact across 8 files: STEPS floors sum 37, SCRIPT floors sum 72, 3 surviving totals, 3 removed absent. OK
+ROW 23 0 PASSED 5 rules hold on both sides of every pair that teaches them
+ROW 24 0 PASSED 6 rules hold on both sides of every pair that teaches them
+ROW 25 0 PASSED 4 rules hold on both sides of every pair that teaches them
+ROW 26 0 check-skill-words: SKILL.md 479 words, ok; all 8 files ok (after.md 447/1938, now 479/1935)
+ROW 27 0 route-table: ok
+ROW 28 0 route-replay: ok, 31 replay rows passed; output written to a fresh temp dir
+ROW 29 2 route-replay: missing encoding cache cl100k_base (TIKTOKEN_CACHE_DIR is not set); the row unsets it by design
+ROW 30 0 exit-code-parity: ok (codes: 2 3 4 5 6 7 8 9)
+ROW 31 0 PASSED 18/18 declared pairs, seven checks (drift: 36 dated notes vs 35, Skill v1.5.17.0)
+ROW 32 0 PASSED 29/29 declared pairs, seven checks; PASSED 1 system(s), 29 pairs, anchors agree (84 notes vs 83)
+ROW 33 0 PASSED 7/7 declared pairs, seven checks (drift: 23 dated notes vs 22)
+ROW 34 0 PASSED 65/65 declared pairs, seven checks (drift: 101 dated notes vs 100)
+ROW 35 0 PASSED 13/13 declared pairs, seven checks (drift: 24 dated notes vs 23)
+ROW 36 0 PASSED 49/49 declared pairs, seven checks (drift: 24 notes vs 23, Skill v1.3.7.0)
+ROW 37 0 PASSED 27/27 declared pairs, seven checks (drift: 22 notes vs 21, Skill v1.2.6.0)
+EXTRA resolve 0 route-replay: ok, 445 rows passed (445 PASS verdicts in results.csv), output in run-009/mb-resolve
+EXTRA token-baseline 0 token-baseline: check ok, 476 files, 1427 sections; corpus o200k_base 2030902, cl100k_base 2136505
+TREE AI Systems root clean (HEAD 8171d5249, no working-tree change beyond the other session's entries listed below)
+TREE AI Systems/Product Owner clean
+TREE AI Systems/Media Editor clean
+TREE AI Systems/Prompt Improver clean
+TREE AI Systems/Moneybird Accountant clean
+SEPARATE (another session, pre-existing, not touched by these runs)
+  M "Product Context/Collab Phases/Chat Prompts - Creator/CC3 - Product Received-20261020193636.md"
+  M "Product Context/Collab Phases/Chat Prompts - Creator/CC4 - Content Reminder-20261020193634.md"
+  M "Product Context/Collab Phases/Chat Prompts - Partner/CB4 - Content in Production-20261026124156.md"
+  M "Product Context/Collab Phases/Collab Phase - Index.md"
+  ?? "Product Context/Collab Phases/Prompts - Escalation - Review.md"
+  ?? "Product Context/Collab Phases/Prompts - Escalation - Updated.md"
+COUNTS rows=37 exit0=34 nonzero=3

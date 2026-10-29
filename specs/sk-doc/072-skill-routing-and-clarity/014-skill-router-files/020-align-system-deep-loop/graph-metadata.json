@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/020-align-system-deep-loop",
+  "spec_folder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/020-align-system-deep-loop",
+  "parent_id": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "align system deep loop",
+      "phase 20 align system deep loop",
+      "align system deep loop plan",
+      "align system deep loop tasks",
+      "align system deep loop implementation summary"
+    ],
+    "key_topics": [
+      "align",
+      "system",
+      "deep",
+      "loop",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "router",
+      "move",
+      "changed"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/ROUTER.md",
+      ".skilled/skills/system-deep-loop/README.md",
+      ".skilled/skills/system-deep-loop/changelog/v1.6.20.0.md",
+      ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/deep-loop-mode-classification.md",
+      ".skilled/skills/system-deep-loop/manual-testing-playbook/runtime-and-backend/runtime-loop-council.md",
+      ".skilled/skills/system-deep-loop/manual-testing-playbook/runtime-and-backend/runtime-loop-research.md",
+      ".skilled/skills/system-deep-loop/manual-testing-playbook/runtime-and-backend/external-adapter.md",
+      ".skilled/skills/system-deep-loop/manual-testing-playbook/mode-routing/mode-hint-override.md",
+      ".skilled/skills/system-deep-loop/runtime/tests/helpers/spawn-cjs.ts",
+      ".skilled/skills/system-deep-loop/runtime/references/integration-points.md",
+      ".skilled/skills/system-deep-loop/runtime/references/script-interface-contract.md",
+      ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.14.0.md",
+      ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+      ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.13.0.md",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/leaf-only-nested-dispatch-refusal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.6.20.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/changelog/v1.6.20.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-mode-classification.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/deep-loop-mode-classification.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-loop-council.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/runtime-and-backend/runtime-loop-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-loop-research.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/runtime-and-backend/runtime-loop-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "external-adapter.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/runtime-and-backend/external-adapter.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-hint-override.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/mode-routing/mode-hint-override.md",
+        "source": "derived"
+      },
+      {
+        "name": "spawn-cjs.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/helpers/spawn-cjs.ts",
+        "source": "derived"
+      },
+      {
+        "name": "integration-points.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/references/integration-points.md",
+        "source": "derived"
+      },
+      {
+        "name": "script-interface-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/references/script-interface-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.9.14.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.14.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.11.13.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.13.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-only-nested-dispatch-refusal.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/leaf-only-nested-dispatch-refusal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The router move changed where the system-deep-loop machine router lives, but the docs around it were written for the old place",
+    "created_at": "2026-10-29T17:20:39Z",
+    "last_save_at": "2026-10-29T20:20:57.806Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:002b513d0fd28265af2bdb592f69ad1c3b15c9167bc3c415a920976339f79b4d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7c89a93f658f964fad7583807809cd1d32404a4794b1c6007b83edcf05ebb1cf",
+      "plan.md": "d490c9c13745456cc72379108cc6924000c3ce62bf359ac95f3ef9af7d9696c2",
+      "tasks.md": "5dd47cdb0951fb2de352f1fa22f642546ef05daa2c46e0d4068c33dff5be90c5",
+      "implementation-summary.md": "e760cc8b48ae9a5d622eeb4ee5a981ba81bb7bd435d3bf1cdab773424b523cd5"
+    },
+    "last_active_at": null
+  }
+}

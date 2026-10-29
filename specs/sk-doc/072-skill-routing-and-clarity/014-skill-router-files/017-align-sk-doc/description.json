@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/017-align-sk-doc",
+  "description": "Phase 17: align-sk-doc",
+  "keywords": [
+    "phase",
+    "align-sk-doc"
+  ],
+  "lastUpdated": "2026-10-29T17:20:38.449Z",
+  "specId": "017",
+  "folderSlug": "align-sk-doc",
+  "parentChain": [
+    "sk-doc",
+    "072-skill-routing-and-clarity",
+    "014-skill-router-files"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

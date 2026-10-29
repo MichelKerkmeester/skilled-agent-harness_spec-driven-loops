@@ -1,9 +1,11 @@
 ---
 title: "Feature Specification: Phase 9: ai-systems-verification"
-description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Phase 008 moved 16 AI Systems routers into sibling ROUTER.md files, but no run had yet proved that the moved tree resolves, links and passes its gates without this phase writing to it. This phase reruns the resolver, the link check, the 37-row battery, the Moneybird resolve and token checks and the seven parity runs read-only, and records the result."
 trigger_phrases:
   - "ai systems verification"
   - "phase 9 ai systems verification"
+  - "ai systems router resolver check"
+  - "ai systems battery rerun"
 importance_tier: "normal"
 contextType: "general"
 ---
@@ -15,20 +17,19 @@ contextType: "general"
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch `feat/rotate-logs-keep`. WEAK: Priority TBD. Status maybe. -->
 
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-10-29 |
-| **Branch** | `scaffold/009-ai-systems-verification` |
+| **Branch** | AI Systems `main` read only; planning docs on `worktrees/274-packet-router-migration` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 9 of 9 |
 | **Predecessor** | 008-ai-systems-migration |
 | **Successor** | None |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Every AI Systems check exits 0 once the noted cases are counted, each of the 16 routers resolves `router-md` or `none` (table form) and none resolves `skill-md` or `dual-declaration`, all 16 `SKILL.md` links to `./ROUTER.md` resolve, and the seven parity runs pass |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -38,33 +39,46 @@ contextType: "general"
 
 This is **Phase 9** of the Move the machine router of each skill in the AI Systems repository into a sibling ROUTER.md specification.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: This phase reads the AI Systems checkout at `/Users/michelkerkmeester/MEGA/Development/AI Systems` and writes none of its files (goal decision D1). Writes land only in this spec folder: the six spec documents and the evidence files under `scratch/`. The six foreign `Product Context/Collab Phases/` entries belong to another session and stay untouched.
 
 **Dependencies**:
-- [To be defined during planning]
+- `008-ai-systems-migration`: the 16 moved routers, committed locally and unpushed, and its `scratch/baseline.md` battery definition (37 rows).
+- The Public `router-file-resolver.cjs`, reached through the AI Systems `.skilled/skills` symlink to the Public main checkout.
+- A seeded tiktoken cache for the Moneybird resolve-mode replay and `token-baseline.py --check`, kept in the conductor's scratch outside both repositories.
 
 **Deliverables**:
-- [To be defined during planning]
+- `scratch/resolver-and-links.txt`: resolver verdict and link state for the 16 routers.
+- `scratch/pre-move-verdicts.txt`: the resolver over each readable pre-move `SKILL.md` at AI Systems `8e4573b8f`.
+- `scratch/battery.txt`: the 37-row battery rerun, the two Moneybird extras and the tree check.
+- `scratch/moneybird-resolve.txt`: the cached resolve-mode replay.
 <!-- /ANCHOR:phase-context -->
 
 ---
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
-<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The rotate-logs script never deletes old archives, so a host that copies `logs/archive` fills its disk. WEAK: The script has issues with output. -->
 
 ### Problem Statement
-[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Phase 008 moved the machine router of 16 AI Systems skills into sibling `ROUTER.md` files and reran its own baseline, but the run that made the change also judged it. Nothing yet showed, from a run that changed no AI Systems file, that every router resolves through the Public resolver, that every `SKILL.md` link lands, and that the Claude Project kernels still match their routers.
 
 ### Purpose
-[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
+A read-only rerun proves the moved tree resolves, links and passes its gates, and records any finding with the phase that owns its fix.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
-<!-- FILL: Run the command this change affects and paste the command and its verbatim output. Quote every number the spec states about current behavior from this block. Write `N/A:` and a reason when no command applies. GOOD: `bash scripts/rotate-logs.sh` with 10 archives, then `ls logs/archive | wc -l` prints 10. WEAK: The script deletes old logs. -->
+Captured read-only on 2026-10-29 against AI Systems `main` at `8171d5249`. Full output in `scratch/resolver-and-links.txt`, `scratch/battery.txt` and `scratch/moneybird-resolve.txt`.
 ```text
-[YOUR_VALUE_HERE: command and its verbatim output]
+$ node router-file-resolver.cjs <each of the 16 ROUTER.md folders>   # scratch/resolver-and-links.txt
+routers=16 router-md=8 links-resolve=16
+
+$ battery rerun                                                       # scratch/battery.txt
+ROW 7 1 FAILED differential gate: 0/186 inputs diverge; lane-budget-baseline.md is not what lane_budget.py produces
+ROW 13 1 FAILED differential gate: 0/186 inputs diverge; - lane budget: lane-budget-baseline.md is not what lane_budget.py produces
+ROW 29 2 route-replay: missing encoding cache cl100k_base (TIKTOKEN_CACHE_DIR is not set); the row unsets it by design
+EXTRA resolve 0 route-replay: ok, 445 rows passed (445 PASS verdicts in results.csv), output in run-009/mb-resolve
+EXTRA token-baseline 0 token-baseline: check ok, 476 files, 1427 sections; corpus o200k_base 2030902, cl100k_base 2136505
+COUNTS rows=37 exit0=34 nonzero=3
 ```
 <!-- /ANCHOR:measured-behavior -->
 
@@ -72,42 +86,50 @@ This is **Phase 9** of the Move the machine router of each skill in the AI Syste
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
-<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a `--keep <n>` option that deletes all but the newest n archives in `logs/archive/`. WEAK: Update the script and docs. -->
 
 ### In Scope
-- [YOUR_VALUE_HERE: Deliverable 1]
-- [YOUR_VALUE_HERE: Deliverable 2]
-- [YOUR_VALUE_HERE: Deliverable 3]
+- Run `router-file-resolver.cjs` over the 16 AI Systems `ROUTER.md` folders and check each `SKILL.md` link to `./ROUTER.md` on disk.
+- Run the same resolver over each pre-move `SKILL.md` at AI Systems `8e4573b8f` and compare verdicts.
+- Rerun the 37-row battery from `008-ai-systems-migration/scratch/baseline.md`, plus the Moneybird resolve-mode replay and `token-baseline.py --check` with a seeded tiktoken cache.
+- Prove the Claude Project mirrors through the seven `benchmark/parity/run_parity.sh` runs (rows 31 to 37).
+- Check each AI Systems working tree for changes after the runs.
 
 ### Out of Scope
-- [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
-- [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
+- Fixing any finding inside AI Systems - D1 bars writes; each fix goes to the phase that owns it, here phase 008.
+- Pushing the local AI Systems commits - the push waits for the operator's approval.
+- A CI run - no CI run exists until the operator approves the push.
+- A Claude Project routing knowledge document - option C, recorded in phase 008, ships none.
 
 ### Files to Change
 
+All paths are relative to this spec folder.
+
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
+| `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `implementation-summary.md`, `goal.md` | Modify | Fill the scaffolds with the observed evidence and amend the resolver criterion |
+| `scratch/resolver-and-links.txt`, `scratch/pre-move-verdicts.txt`, `scratch/battery.txt`, `scratch/moneybird-resolve.txt` | Create | Verbatim run evidence |
 <!-- /ANCHOR:scope -->
 
 ---
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
-<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With 10 archives, `bash scripts/rotate-logs.sh --keep 3` exits 0 and `ls logs/archive | wc -l` prints 3. WEAK: The option should work well. -->
 REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes the highest REQ id plus one. validate.sh does not link ids between files.
 
 ### P0 - Blockers (MUST complete)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [YOUR_VALUE_HERE: Requirement description] |
+| REQ-001 | Every AI Systems check exits 0, counting row 29 as the no-cache case that exits 2 by design with its cached run passing, and rows 7 and 13 as passing after the stale lane budget is refreshed outside this phase. |
+| REQ-002 | Each of the 16 routers resolves `router-md`, or `none` for a table-form router that declares no `INTENT_SIGNALS`, `RESOURCE_MAP` or `DEFAULT_RESOURCE` assignment; none resolves `skill-md` or `dual-declaration`. |
+| REQ-003 | Each of the 16 `SKILL.md` links to `./ROUTER.md` resolves on disk. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [YOUR_VALUE_HERE: Requirement description] |
+| REQ-004 | Each of the seven `benchmark/parity/run_parity.sh` runs exits 0 with its baseline pair count. |
+| REQ-005 | No AI Systems working tree changes because of this phase's runs. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -117,22 +139,20 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: With 10 archives in `logs/archive`, `bash scripts/rotate-logs.sh --keep 3` leaves 3. WEAK: The feature is successful. -->
 
-- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
-- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+- **SC-001**: `scratch/resolver-and-links.txt` ends `routers=16 router-md=8 links-resolve=16`, and its other 8 rows read `none`.
+- **SC-002**: `scratch/battery.txt` prints `COUNTS rows=37 exit0=34 nonzero=3`, the three nonzero rows are 7, 13 and 29, and both `EXTRA` lines exit 0.
 <!-- /ANCHOR:success-criteria -->
 
 ---
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
-<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A script that reads `--keep` with no value could delete every archive. Mitigation: reject a missing value with exit 2 and test it. WEAK: There may be some risk. -->
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
-| Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] |
+| Dependency | Seeded tiktoken cache | Without it the resolve replay and token check exit 2 and prove nothing | Seed the cache in the conductor's scratch and set `TIKTOKEN_CACHE_DIR` for the two extra runs only |
+| Risk | A check writes into the AI Systems tree, breaking D1 | Med | Run Python with `PYTHONDONTWRITEBYTECODE=1`, send replay output to a fresh temp dir, and check each tree's `git status` after the runs |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -142,56 +162,52 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
-<!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service, or delete the whole section. GOOD: The option adds under 5 ms to a run. WEAK: Performance is good. -->
+N/A for performance: the phase runs no service, only one-off checks.
 <!-- /ANCHOR:nfr -->
 
 ### Performance
-- **NFR-P01**: [YOUR_VALUE_HERE: Response time target - e.g., <200ms p95]
-- **NFR-P02**: [YOUR_VALUE_HERE: Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: N/A: one-off read-only checks with no latency target.
+- **NFR-P02**: N/A: no throughput to measure.
 
 ### Security
-- **NFR-S01**: [YOUR_VALUE_HERE: Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [YOUR_VALUE_HERE: Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: No `.env` file is opened and no check that needs credentials or network runs.
+- **NFR-S02**: The tiktoken cache lives outside both repositories, so no encoding file lands in a tracked tree.
 
 ### Reliability
-- **NFR-R01**: [YOUR_VALUE_HERE: Uptime target - e.g., 99.9%]
-- **NFR-R02**: [YOUR_VALUE_HERE: Error rate - e.g., <1%]
+- **NFR-R01**: Each AI Systems working tree shows no change from these runs (`scratch/battery.txt` TREE lines).
+- **NFR-R02**: Every claim in this packet cites a file under `scratch/` that holds the printed output.
 
 ---
 
 <!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
-<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: an empty `logs/archive/` deletes nothing and exits 0. Maximum: `--keep 3` over 10,000 archives keeps the newest 3. Failure path: a missing `--keep` value exits 2 with usage. WEAK: Handle edge cases. -->
 
-- Empty input: [YOUR_VALUE_HERE: How system handles]
-- Maximum input: [YOUR_VALUE_HERE: Limit and behavior]
-- Failure path: [YOUR_VALUE_HERE: Exit code and message]
+- Empty input: a router with no machine assignment (the eight table-form routers) resolves `none`, which is the resolver's answer for nothing to key on, and its pre-move `SKILL.md` resolved `none` too.
+- Maximum input: the Moneybird resolve replay runs 445 rows and prints `route-replay: ok, 445 rows passed`.
+- Failure path: row 29 unsets `TIKTOKEN_CACHE_DIR` by design and exits 2 with `missing encoding cache cl100k_base`.
 <!-- /ANCHOR:edge-cases -->
 
 ---
 
 <!-- ANCHOR:complexity -->
 ## L2: COMPLEXITY ASSESSMENT
-<!-- FILL: Score each row with the number the change earns. The total must match the level. Write `N/A` with one reason, or delete the whole section. GOOD: Scope 6/25: one option in `scripts/rotate-logs.sh`. Total 18/100. WEAK: Complexity is medium. -->
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Files, LOC, systems] |
-| Risk | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Auth, API, breaking changes] |
-| Research | [YOUR_VALUE_HERE: /20] | [YOUR_VALUE_HERE: Investigation needs] |
-| **Total** | **[YOUR_VALUE_HERE: /70]** | **Level 2** |
+| Scope | 6/25 | Read-only runs over 16 routers and 37 battery rows; writes only in this spec folder |
+| Risk | 5/25 | No AI Systems write; the one risk is a check that writes, guarded by the tree check |
+| Research | 6/20 | Explaining the eight `none` verdicts and the stale Moneybird token baseline |
+| **Total** | **17/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
-<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- [YOUR_VALUE_HERE: Question 1 requiring clarification]
-- [YOUR_VALUE_HERE: Question 2 requiring clarification]
+- Can the resolver criterion hold for table routers? Decision: no; it was amended on 2026-10-29 to accept `none` for a table-form router, in `goal.md` and in the parent's 008 to 009 handoff row.
+- None else blocks.
 <!-- /ANCHOR:questions -->
 
 ---
-
 

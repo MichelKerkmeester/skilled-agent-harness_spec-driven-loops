@@ -1,0 +1,41 @@
+## leaf manifests
+
+checked=13 fresh=13 failed=0
+exit 0
+## hermes copies
+PASS: 65 Hermes skill copies in sync
+exit 0
+## compiled-route guard
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+exit 0
+## compiled-route sync
+all 7 hubs resolve
+all 55 served copies match their authored files
+exit 0
+## router intent signals
+checked=7 hub(s), missing=0
+RESULT: PASSED
+exit 0
+## skill graph
+  STALE COMPILED: none (generated_at 2026-10-28T22:04:45.968032+00:00, newest source stamp 2026-10-26T00:00:00Z)
+  NULL derived timestamp: none
+  (report-only — the canonical reindex is operator-gated; nothing was written)
+exit 0
+## router sync
+PASS check 4: playbook expected_resource is emitted by the router
+router-sync: 5/5 checks passed
+exit 0
+## skill root metadata
+
+checked=13 passed=13 failed=0 fixed=0
+exit 0
+## hub vocabulary source
+checked=7 hub(s), drift=0
+RESULT: PASSED
+exit 0
+## leaf route replay
+total gold=64 scored=56 tied=3 mean_f1=0.9161 exact=49
+router reads: not measured
+replay verdict: stop (prose arm covers 0 of 56 rows) N=56 P=0 keyword_f1=n/a prose_f1=n/a
+exit 0

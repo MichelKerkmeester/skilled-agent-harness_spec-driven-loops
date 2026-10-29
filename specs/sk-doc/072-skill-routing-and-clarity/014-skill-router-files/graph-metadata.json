@@ -12,7 +12,20 @@
     "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification",
     "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research",
     "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration",
-    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification"
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/010-align-cli-classifier",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/011-align-cli-external-orchestration",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/012-align-cli-orca",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/013-align-mcp-code-mode",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/014-align-mcp-tooling",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/015-align-sk-code",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/016-align-sk-design",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/017-align-sk-doc",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/018-align-sk-git",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/019-align-sk-prompt",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/020-align-system-deep-loop",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/021-align-system-skill-advisor",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/022-align-system-spec-kit"
   ],
   "manual": {
     "depends_on": [],
@@ -99,12 +112,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -123,19 +130,31 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Decisions Frozen",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Phase Handoff Criteria",
-        "kind": "proper_noun",
+        "name": "checks",
+        "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "checks",
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "two",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -149,17 +168,17 @@
     ],
     "causal_summary": "Every SKILL.md ends with a `## MACHINE ROUTER` section, and that section loads whenever the skill does",
     "created_at": "2026-10-29T07:52:39Z",
-    "last_save_at": "2026-10-29T13:26:16.767Z",
+    "last_save_at": "2026-10-29T20:42:56.662Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:c0465666fe9be75ebcdb8ede1e004a1ae621a4c4e6a3e2b5cce762c3771be404",
+    "source_fingerprint": "sha256:1f4c9599c13e118ee659d43c27903a3008819511b79ca1f0c13f575016b67f30",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e21677797d9e83af34690ace7cace5dcbaf79ef526c9c63fb92b8a1caffb89f8"
+      "spec.md": "526e9b468b2f276bdde15859bd69221c9298f9e801c09971eff87eb567f0d9dd"
     },
     "last_active_at": null
   }

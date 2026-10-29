@@ -39,7 +39,7 @@
       "goal"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -49,7 +49,8 @@
       "implementation-summary.md",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json"
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+      "scratch/token-delta.txt"
     ],
     "entities": [
       {
@@ -104,6 +105,12 @@
         "name": "corpus-manifest.json",
         "kind": "config",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "token-delta.txt",
+        "kind": "file",
+        "path": "scratch/token-delta.txt",
         "source": "derived"
       },
       {
@@ -189,17 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The moves in phases 004 and 005 change authored bytes, and every derived artifact records those bytes",
     "created_at": "2026-10-29T07:52:44Z",
-    "last_save_at": "2026-10-29T13:25:39.334Z",
+    "last_save_at": "2026-10-29T20:42:57.924Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:42829c83be8a1a1b7d1e2aa5c92d93b0a857a37dd56b288d93d0a8b8a875ecee",
+    "source_fingerprint": "sha256:9d50dea1010c861ff75064b2aa9fe59ebc415452e9abb3b4ddf63ac53ddc3dfd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "86c3dedace0714b8bb54159809b7de97c09359a32b5ec87c05a2e603abe2df3a",
+      "spec.md": "7eb29c463803890459424554a3290268120f91faf67bc9d462a48667e20e959a",
       "plan.md": "13abdfd776bccd47418d48fde7e733cb43c6100e41a0f49c974e749d228a2b36",
-      "tasks.md": "b2898bf8b869b046f7168c7484e09b1e0f02668d5ff9cdf41ea0ea2856f07951",
-      "implementation-summary.md": "80dd97c0cdf79da7c84cdc5cdb4aa63f8fbc95f53604c99a14b4e43a2301cba2"
+      "tasks.md": "c97b4eb44759f53bf56a3b973f8652823394683c7fedfee7d38b797d9d4679e4",
+      "implementation-summary.md": "11e66c132610650edcf40aee99fe139138d6cff1a3d12f42290d1941f901e271"
     },
     "last_active_at": null
   }

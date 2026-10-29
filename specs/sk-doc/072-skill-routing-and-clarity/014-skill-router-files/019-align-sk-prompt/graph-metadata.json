@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/019-align-sk-prompt",
+  "spec_folder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/019-align-sk-prompt",
+  "parent_id": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "align sk prompt",
+      "phase 19 align sk prompt",
+      "align sk prompt plan",
+      "align sk prompt tasks",
+      "align sk prompt implementation summary"
+    ],
+    "key_topics": [
+      "align",
+      "prompt",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "router",
+      "move",
+      "changed",
+      "sk-prompt",
+      "machine"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-prompt/SKILL.md",
+      ".skilled/skills/sk-prompt/ROUTER.md",
+      ".skilled/skills/sk-prompt/README.md",
+      ".skilled/skills/sk-prompt/changelog/v3.0.11.0.md",
+      ".skilled/skills/sk-prompt/leaf-manifest.config.json",
+      ".skilled/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/ambiguity-delta-tiebreaker.md",
+      ".skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/unknown-fallback-checklist.md",
+      ".skilled/skills/sk-prompt/manual-testing-playbook/format-modes/format-guide-on-demand.md",
+      ".skilled/skills/sk-prompt/manual-testing-playbook/format-modes/format-mode-delivery.md",
+      ".skilled/skills/sk-prompt/manual-testing-playbook/mode-detection/mode-prefix-keyword-collision.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v3.0.11.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/changelog/v3.0.11.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.config.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-prompt/leaf-manifest.config.json",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "ambiguity-delta-tiebreaker.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/ambiguity-delta-tiebreaker.md",
+        "source": "derived"
+      },
+      {
+        "name": "unknown-fallback-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/unknown-fallback-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "format-guide-on-demand.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/manual-testing-playbook/format-modes/format-guide-on-demand.md",
+        "source": "derived"
+      },
+      {
+        "name": "format-mode-delivery.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/manual-testing-playbook/format-modes/format-mode-delivery.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-prefix-keyword-collision.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/manual-testing-playbook/mode-detection/mode-prefix-keyword-collision.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The router move changed where the sk-prompt machine router lives, but the docs around it were written for the old place",
+    "created_at": "2026-10-29T17:20:39Z",
+    "last_save_at": "2026-10-29T20:17:27.757Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:19884c08370b44babf8f83efa44d15bd75d20c78d3377b0f6856a7dcbe9c8d95",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4672ac87b56f4065a0b80d21a8818e6be62e9a3b29a05d799ad47ffdb66b2527",
+      "plan.md": "4ef652b1355fb64a879ee7b5849e2537768b0522cda6805e0c18366ea1a38f30",
+      "tasks.md": "690f363e11160b15427a244fbcf1324c03ea752e0fce2bbbe4fc1bf40cd83b86",
+      "implementation-summary.md": "55a8ea41ee869adf6afc25dfb50488e4ee70f99826cc329e024820ee01df83ef"
+    },
+    "last_active_at": null
+  }
+}

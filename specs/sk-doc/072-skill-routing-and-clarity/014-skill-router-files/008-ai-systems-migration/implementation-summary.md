@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-All sixteen AI Systems skill folders now hold a `ROUTER.md` whose last H2 is `## 3. MACHINE ROUTER`, every gate that passed before still passes with the same counts, and the Product Owner gate set went from three failing gates to none. Nothing is pushed. AI Systems holds one local commit per system, `e6973a1f7` (Copywriter) to `8171d5249` (HubSpot), and each nested repository holds one: Product Owner `3a15a4ef`, Media Editor `c0d2b1f`, Prompt Improver `0c5a7d8` and Moneybird Accountant `91e4282`.
+All sixteen AI Systems skill folders now hold a `ROUTER.md` whose last H2 is `## 3. MACHINE ROUTER`, every gate that passed before still passes with the same counts, and the Product Owner gate set went from three failing gates to none. Nothing is pushed. AI Systems holds one local commit per system, `e6973a1f7` (Copywriter) to `8171d5249` (HubSpot), and each nested repository holds one: Product Owner `3a15a4ef`, Media Editor `c0d2b1f`, Prompt Improver `0c5a7d8` and Moneybird Accountant `b12930a`, which also carries the token baseline phase 009 found stale.
 
 ### Phase 8: ai-systems-migration
 

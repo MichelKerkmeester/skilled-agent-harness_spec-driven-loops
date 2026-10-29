@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/021-align-system-skill-advisor",
+  "spec_folder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/021-align-system-skill-advisor",
+  "parent_id": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "align system skill advisor",
+      "phase 21 align system skill advisor",
+      "align system skill advisor plan",
+      "align system skill advisor tasks",
+      "align system skill advisor implementation summary"
+    ],
+    "key_topics": [
+      "align",
+      "system",
+      "skill",
+      "advisor",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "router",
+      "move",
+      "changed"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/SKILL.md",
+      ".skilled/skills/system-skill-advisor/ROUTER.md",
+      ".skilled/skills/system-skill-advisor/README.md",
+      ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+      ".skilled/skills/system-skill-advisor/changelog/v0.17.25.0.md",
+      ".skilled/skills/system-skill-advisor/references/runtime/freshness-contract.md",
+      ".skilled/skills/system-skill-advisor/references/graph/skill-graph-drift.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/watcher.md",
+      ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/watcher-narrow-scope.md",
+      ".skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/chokidar-narrow-scope-stress.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.17.25.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/changelog/v0.17.25.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "freshness-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/references/runtime/freshness-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-drift.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/references/graph/skill-graph-drift.md",
+        "source": "derived"
+      },
+      {
+        "name": "watcher.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/watcher.md",
+        "source": "derived"
+      },
+      {
+        "name": "watcher-narrow-scope.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/watcher-narrow-scope.md",
+        "source": "derived"
+      },
+      {
+        "name": "chokidar-narrow-scope-stress.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/chokidar-narrow-scope-stress.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The router move changed where the system-skill-advisor machine router lives, but the docs around it were written for the old place",
+    "created_at": "2026-10-29T17:20:40Z",
+    "last_save_at": "2026-10-29T20:21:00.168Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:640181d3b3ddff34f4fc232a9869515c44258782b20bedfe77172b801d6160b3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "65f4cdfcd3ebd472ac9b26462f18c36b8a9a873b9ce3bb6ba49b9cbfb830d638",
+      "plan.md": "f67c697617e04b3f652c1a349a732f15da449a1574e99b3c3f9df6407bed17af",
+      "tasks.md": "7c3476def6407f16617b4aa45d27a993b766487d85b13e8d0e3c8d2fe8703704",
+      "implementation-summary.md": "a7246f5ed27654d061d0d84daa6e1384ece06b5a611c62210c36a9e99ae7b1a5"
+    },
+    "last_active_at": null
+  }
+}

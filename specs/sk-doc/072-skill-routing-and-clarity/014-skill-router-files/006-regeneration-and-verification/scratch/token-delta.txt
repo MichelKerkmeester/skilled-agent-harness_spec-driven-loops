@@ -1,0 +1,36 @@
+Token delta: research table (001, measured at 6a9946a800 in SKILL.md) vs regenerated table (006, measured in ROUTER.md).
+Encoding: tiktoken 0.11.0 o200k_base. Section = from the last MACHINE ROUTER heading to end of file. Words = whitespace split.
+
+Totals over 54 routers
+  router words incl. heading : 39159 -> 41019
+  section tokens             : 89931 -> 92418
+  initial load after pointer : 88689 -> 90823
+
+Measured load saving (skill-md-tokens.csv): SKILL.md o200k tokens over the 54 skills, 328333 at 6a9946a800 -> 238406 now, 89927 saved (27.4%).
+That is the net of the move and every other SKILL.md edit since 6a9946a800.
+
+34 routers differ by exactly +33 words / +43 tokens: the shared two-line header under the heading
+  ("The one machine-readable projection of the intent model above, written as `## MACHINE ROUTER` so every
+  reader finds it. This section is the last in the file, and it holds the only pseudocode.").
+
+The other routers, words / tokens, and why:
+   +32 /  +40  cli-classifier/ROUTER.md: hub section: phase 004 heading prose
+   +32 /  +35  cli-external-orchestration/ROUTER.md: hub section: phase 004 heading prose
+   +49 /  +68  cli-external-orchestration/cli-claude-code/ROUTER.md: header plus NO_LOAD_INTENTS = ("DESIGN",)
+   +49 /  +68  cli-external-orchestration/cli-codex/ROUTER.md: header plus NO_LOAD_INTENTS = ("DESIGN",)
+   +49 /  +68  cli-external-orchestration/cli-cursor/ROUTER.md: header plus NO_LOAD_INTENTS = ("DESIGN",)
+   +49 /  +68  cli-external-orchestration/cli-devin/ROUTER.md: header plus NO_LOAD_INTENTS = ("DESIGN",)
+   +49 /  +68  cli-external-orchestration/cli-opencode/ROUTER.md: header plus NO_LOAD_INTENTS = ("DESIGN",)
+   +49 /  +69  cli-external-orchestration/cli-pi/ROUTER.md: header plus NO_LOAD_INTENTS = ("CLASSIFIER",)
+   +40 /  +55  mcp-tooling/ROUTER.md: hub section: phase 004 heading prose
+   +34 /  +45  mcp-tooling/mcp-obsidian/ROUTER.md: header; ALWAYS row names SKILL.md and this ROUTER.md
+   +22 /  +36  sk-code/ROUTER.md: hub section: phase 004 heading prose
+   +34 /  +46  sk-code/sk-code-ci/ROUTER.md: header plus one whitespace line split
+   +13 /   +4  sk-code/sk-code-review/ROUTER.md: header minus the related-skills footer, which stayed in SKILL.md
+   +24 /  +35  sk-design/ROUTER.md: hub section: phase 004 heading prose
+   +34 /  +48  sk-design/sk-design-diagram/ROUTER.md: header; the intro sentence names SKILL.md
+   +52 /  +82  sk-design/sk-design-fundamentals/ROUTER.md: header plus NO_LOAD_INTENTS = ("SCALES",) and an intro naming SKILL.md
+   +14 /  +16  sk-doc/ROUTER.md: hub section: phase 004 heading prose
+   +35 /  +64  sk-doc/sk-create-skill/ROUTER.md: header plus the skill-router-template.md resource row and map entry
+   +62 /  +89  sk-prompt/ROUTER.md: header plus an ALWAYS row for ROUTER.md and NO_LOAD_INTENTS = ("RAW",)
+   +16 /  +21  system-deep-loop/ROUTER.md: hub section: phase 004 heading prose

@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/020-align-system-deep-loop",
+  "description": "Phase 20: align-system-deep-loop",
+  "keywords": [
+    "phase",
+    "align-system-deep-loop"
+  ],
+  "lastUpdated": "2026-10-29T17:20:40.262Z",
+  "specId": "020",
+  "folderSlug": "align-system-deep-loop",
+  "parentChain": [
+    "sk-doc",
+    "072-skill-routing-and-clarity",
+    "014-skill-router-files"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

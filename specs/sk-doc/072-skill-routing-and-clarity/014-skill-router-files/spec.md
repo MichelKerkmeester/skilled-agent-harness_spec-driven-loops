@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files"
-    last_updated_at: "2026-10-29T08:40:00Z"
+    last_updated_at: "2026-10-29T21:45:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Built the router file resolver and moved its readers onto it"
-    next_safe_action: "Build 003-check-and-template-canon"
+    recent_action: "Closed phases 006 and 009 and the 13 per-skill alignment phases"
+    next_safe_action: "Build 015-routing-data-alignment"
     blockers: []
     key_files:
       - ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "0269-skill-router-files"
       parent_session_id: null
-    completion_pct: 33
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-29 |
 | **Branch** | `worktrees/269-skill-router-files` |
 | **Parent Spec** | `../spec.md` |
@@ -103,13 +103,26 @@ Set per phase from the research findings; each child's `spec.md` lists its files
 |-------|--------|-------|--------|
 | 1 | 001-deep-research/ | Three Luna iterations on RQ-1 to RQ-5 and one DeepSeek iteration on RQ-6: every reader of the machine router, how each runtime loads a skill, the advisor changes and the design that keeps accuracy | Complete |
 | 2 | 002-router-file-tooling/ | One shared resolver for a sibling `ROUTER.md` with a SKILL.md fallback. Router replay, router sync, the dead-route scan and the Hermes generator use it, and the advisor freshness signature, its plugin copy and the daemon watcher see `ROUTER.md` | Complete |
-| 3 | 003-check-and-template-canon/ | RS-004 reversed, RS-005 rewritten to require a pointer, RS-002 restated so a section left in SKILL.md fails, the root-router gate widened, a known-debt ledger; both shape checks, the templates, the create-skill workflows and the canon docs | Pending |
-| 4 | 004-hub-router-merge/ | Each hub's MACHINE ROUTER joins its existing root `ROUTER.md` | Pending |
-| 5 | 005-packet-and-standalone-migration/ | The 47 mode packets and standalone skills each get their own `ROUTER.md`, in batches, until the debt ledger is empty | Pending |
+| 3 | 003-check-and-template-canon/ | RS-004 reversed, RS-005 rewritten to require a pointer, RS-002 restated so a section left in SKILL.md fails, the root-router gate widened, a known-debt ledger; both shape checks, the templates, the create-skill workflows and the canon docs | Complete |
+| 4 | 004-hub-router-merge/ | Each hub's MACHINE ROUTER joins its existing root `ROUTER.md` | Complete |
+| 5 | 005-packet-and-standalone-migration/ | The 47 mode packets and standalone skills each get their own `ROUTER.md`, in batches, until the debt ledger is empty | Complete |
 | 6 | 006-regeneration-and-verification/ | Regenerate every derived file, recapture the advisor baseline, compare replay projections and regenerate the per-skill token table | Pending |
-| 7 | 007-ai-systems-research/ | Three DeepSeek research iterations over the 16 skills in the AI Systems repository: what each router holds, what loads them, which checks read them and how a Claude Project receives the router | In Progress |
-| 8 | 008-ai-systems-migration/ | Each AI Systems skill gets its own `ROUTER.md` and a link in SKILL.md, and its Claude Project knowledge files follow | Pending |
-| 9 | 009-ai-systems-verification/ | The AI Systems checks pass, every router resolves and the Claude Project mirrors match their skills | Pending |
+| 7 | 007-ai-systems-research/ | Three DeepSeek research iterations over the 16 skills in the AI Systems repository: what each router holds, what loads them, which checks read them and how a Claude Project receives the router | Complete |
+| 8 | 008-ai-systems-migration/ | Each AI Systems skill gets its own `ROUTER.md` and a link in SKILL.md, and its Claude Project knowledge files follow | Complete |
+| 9 | 009-ai-systems-verification/ | The AI Systems checks pass, every router resolves and the Claude Project mirrors match their skills | Complete |
+| 10 | 010-align-cli-classifier/ | An operator-local alignment check over cli-classifier after the move: the check battery, four review lanes, routing probes and a critic, then a fix lane for every upheld finding that changes no routing, and a recheck against the worktree | Complete |
+| 11 | 011-align-cli-external-orchestration/ | An operator-local alignment check over cli-external-orchestration after the move: the check battery, four review lanes, routing probes and a critic, then a fix lane for every upheld finding that changes no routing, and a recheck against the worktree | Complete |
+| 12 | 012-align-cli-orca/ | An operator-local alignment check over cli-orca after the move: the check battery, four review lanes, routing probes and a critic, then a fix lane for every upheld finding that changes no routing, and a recheck against the worktree | Complete |
+| 13 | 013-align-mcp-code-mode/ | An operator-local alignment check over mcp-code-mode after the move: the check battery, four review lanes, routing probes and a critic, then a fix lane for every upheld finding that changes no routing, and a recheck against the worktree | Complete |
+| 14 | 014-align-mcp-tooling/ | An operator-local alignment check over mcp-tooling after the move: the check battery, four review lanes, routing probes and a critic, then a fix lane for every upheld finding that changes no routing, and a recheck against the worktree | Complete |
+| 15 | 015-align-sk-code/ | An operator-local alignment check over sk-code after the move: the check battery, four review lanes, routing probes and a critic, then a fix lane for every upheld finding that changes no routing, and a recheck against the worktree | Complete |
+| 16 | 016-align-sk-design/ | An operator-local alignment check over sk-design after the move: the check battery, four review lanes, routing probes and a critic, then a fix lane for every upheld finding that changes no routing, and a recheck against the worktree | Complete |
+| 17 | 017-align-sk-doc/ | An operator-local alignment check over sk-doc after the move: the check battery, four review lanes, routing probes and a critic, then a fix lane for every upheld finding that changes no routing, and a recheck against the worktree | Complete |
+| 18 | 018-align-sk-git/ | An operator-local alignment check over sk-git after the move: the check battery, four review lanes, routing probes and a critic, then a fix lane for every upheld finding that changes no routing, and a recheck against the worktree | Complete |
+| 19 | 019-align-sk-prompt/ | An operator-local alignment check over sk-prompt after the move: the check battery, four review lanes, routing probes and a critic, then a fix lane for every upheld finding that changes no routing, and a recheck against the worktree | Complete |
+| 20 | 020-align-system-deep-loop/ | An operator-local alignment check over system-deep-loop after the move: the check battery, four review lanes, routing probes and a critic, then a fix lane for every upheld finding that changes no routing, and a recheck against the worktree | Complete |
+| 21 | 021-align-system-skill-advisor/ | An operator-local alignment check over system-skill-advisor after the move: the check battery, four review lanes, routing probes and a critic, then a fix lane for every upheld finding that changes no routing, and a recheck against the worktree | Complete |
+| 22 | 022-align-system-spec-kit/ | An operator-local alignment check over system-spec-kit after the move: the check battery, four review lanes, routing probes and a critic, then a fix lane for every upheld finding that changes no routing, and a recheck against the worktree | Complete |
 
 ### Phase Transition Rules
 
@@ -129,7 +142,28 @@ Set per phase from the research findings; each child's `spec.md` lists its files
 | 005-packet-and-standalone-migration | 006-regeneration-and-verification | Every skill and mode passes the new shape with an empty ledger | `package_skill.py --strict` passes on every skill |
 | 003-check-and-template-canon | 007-ai-systems-research | The canon and the scaffold write the new shape, so the second repository has a target to move to | Both routing-shape suites pass. Phases 007 to 009 do not wait on 004 to 006 |
 | 007-ai-systems-research | 008-ai-systems-migration | The research names a target shape for each of the 16 skills and the Claude Project path | `research/research.md` answers RQ-1 to RQ-5 |
-| 008-ai-systems-migration | 009-ai-systems-verification | Every AI Systems skill has its router in `ROUTER.md` and a link from SKILL.md | Each skill resolves `router-md` through the resolver |
+| 008-ai-systems-migration | 009-ai-systems-verification | Every AI Systems skill has its router in `ROUTER.md` and a link from SKILL.md | Each skill resolves `router-md` through the resolver, or `none` for a table-form router that declares no `INTENT_SIGNALS`, `RESOURCE_MAP` or `DEFAULT_RESOURCE` assignment; none resolves `skill-md` or `dual-declaration` (amended 2026-10-29: eight AI Systems routers are tables, and each resolved `none` before the move too) |
+| 009-ai-systems-verification | 010-align-cli-classifier | The previous skill's fixes are applied and its recheck failures are each fixed or classified as derived, pre-existing or by design | The previous phase folder passes `validate.sh --strict` and its routers parse the same as HEAD |
+| 010-align-cli-classifier | 011-align-cli-external-orchestration | The previous skill's fixes are applied and its recheck failures are each fixed or classified as derived, pre-existing or by design | The previous phase folder passes `validate.sh --strict` and its routers parse the same as HEAD |
+| 011-align-cli-external-orchestration | 012-align-cli-orca | The previous skill's fixes are applied and its recheck failures are each fixed or classified as derived, pre-existing or by design | The previous phase folder passes `validate.sh --strict` and its routers parse the same as HEAD |
+| 012-align-cli-orca | 013-align-mcp-code-mode | The previous skill's fixes are applied and its recheck failures are each fixed or classified as derived, pre-existing or by design | The previous phase folder passes `validate.sh --strict` and its routers parse the same as HEAD |
+| 013-align-mcp-code-mode | 014-align-mcp-tooling | The previous skill's fixes are applied and its recheck failures are each fixed or classified as derived, pre-existing or by design | The previous phase folder passes `validate.sh --strict` and its routers parse the same as HEAD |
+| 014-align-mcp-tooling | 015-align-sk-code | The previous skill's fixes are applied and its recheck failures are each fixed or classified as derived, pre-existing or by design | The previous phase folder passes `validate.sh --strict` and its routers parse the same as HEAD |
+| 015-align-sk-code | 016-align-sk-design | The previous skill's fixes are applied and its recheck failures are each fixed or classified as derived, pre-existing or by design | The previous phase folder passes `validate.sh --strict` and its routers parse the same as HEAD |
+| 016-align-sk-design | 017-align-sk-doc | The previous skill's fixes are applied and its recheck failures are each fixed or classified as derived, pre-existing or by design | The previous phase folder passes `validate.sh --strict` and its routers parse the same as HEAD |
+| 017-align-sk-doc | 018-align-sk-git | The previous skill's fixes are applied and its recheck failures are each fixed or classified as derived, pre-existing or by design | The previous phase folder passes `validate.sh --strict` and its routers parse the same as HEAD |
+| 018-align-sk-git | 019-align-sk-prompt | The previous skill's fixes are applied and its recheck failures are each fixed or classified as derived, pre-existing or by design | The previous phase folder passes `validate.sh --strict` and its routers parse the same as HEAD |
+| 019-align-sk-prompt | 020-align-system-deep-loop | The previous skill's fixes are applied and its recheck failures are each fixed or classified as derived, pre-existing or by design | The previous phase folder passes `validate.sh --strict` and its routers parse the same as HEAD |
+| 020-align-system-deep-loop | 021-align-system-skill-advisor | The previous skill's fixes are applied and its recheck failures are each fixed or classified as derived, pre-existing or by design | The previous phase folder passes `validate.sh --strict` and its routers parse the same as HEAD |
+| 021-align-system-skill-advisor | 022-align-system-spec-kit | The previous skill's fixes are applied and its recheck failures are each fixed or classified as derived, pre-existing or by design | The previous phase folder passes `validate.sh --strict` and its routers parse the same as HEAD |
+
+### Follow-up Work Recorded by the Alignment Phases
+
+The alignment phases found items this packet may not fix, because the packet decision is that no skill routes differently after the move and the completion criteria hold the routing numbers fixed. Each item has a home that is built once this packet closes:
+
+- **Routing data.** Vocabulary in `graph-metadata.json` intent signals, aliases and weights in `hub-router.json`, the sk-prompt `NO_LOAD_INTENTS` wiring, the sk-design-diagram theming route and the mcp-notion routing gold go to `../015-routing-data-alignment/`. That phase changes routing on purpose, records a new scorer and replay baseline, and refutes the items a review found to be correct behavior: cli-classifier D-05, mcp-tooling D-09, the sk-git router-reach allowlist entry and the YAML-frontmatter half of sk-prompt D-03.
+- **Reference format debt.** 56 tracked references fail the reference format at the base commit, 34 of them in sk-design-diagram (no `## 1. OVERVIEW`, lowercase numbered H2s). They go to `specs/sk-doc/074-reference-template-debt/`, which renumbers each file's sections and its section references with one script and changes no routing.
+
 <!-- /ANCHOR:phase-map -->
 
 ---

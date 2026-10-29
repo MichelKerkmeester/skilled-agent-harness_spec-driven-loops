@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/022-align-system-spec-kit",
+  "spec_folder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/022-align-system-spec-kit",
+  "parent_id": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "align system spec kit",
+      "phase 22 align system spec kit",
+      "align system spec kit plan",
+      "align system spec kit tasks",
+      "align system spec kit implementation summary"
+    ],
+    "key_topics": [
+      "align",
+      "system",
+      "spec",
+      "kit",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "router",
+      "move",
+      "changed"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "references/cli/daemon-cli-reference.md",
+      "references/structure/sub-folder-versioning.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "daemon-cli-reference.md",
+        "kind": "doc",
+        "path": "references/cli/daemon-cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "sub-folder-versioning.md",
+        "kind": "doc",
+        "path": "references/structure/sub-folder-versioning.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "D-04",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "DeepSeek V4.1 Flash",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "exit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The router move changed where the system-spec-kit machine router lives, but the docs and some scripts around it were written for the old place",
+    "created_at": "2026-10-29T17:20:40Z",
+    "last_save_at": "2026-10-29T20:34:10.465Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d909d1d3fc10c116146890843351e4e30b82a5774e861c65a0aa0b71877df964",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "420dd21a8fdcf6b9f1c3dae56a059d6513c81bc4390d2f00c4fa69f4e81d2a95",
+      "plan.md": "b1c8fa7ce5ec4e44dd4f411964c1f0da983690ad75ed1a543524847ea7d3b077",
+      "tasks.md": "9eba7dcca0b53b1467e7c6533ac75b5f77b7fc8f874b84497782bed202ab57db",
+      "implementation-summary.md": "cfd8f60a270ffa799519a6bbdb9322bd7b84358e0cfd646acb6fb6605733aa38"
+    },
+    "last_active_at": null
+  }
+}

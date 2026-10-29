@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2e27c50068d53ab6dca14b7c688053f439d7049e3d1758db771e99ba38458314",
+  "manifestHash": "00c851b9b7b9daa7252826b8476643696299b239e2dfe5267adce947423f9c38",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10506,6 +10506,9 @@
     "ai session child cli rule summary": [
       "AI_SESSION_CHILD cli rule summary"
     ],
+    "ai systems battery rerun": [
+      "ai systems battery rerun"
+    ],
     "ai systems canon waiver": [
       "ai systems canon waiver"
     ],
@@ -10551,6 +10554,9 @@
     "ai systems router move plan": [
       "ai systems router move plan"
     ],
+    "ai systems router resolver check": [
+      "ai systems router resolver check"
+    ],
     "ai systems verification": [
       "ai systems verification"
     ],
@@ -10587,11 +10593,71 @@
     "aliased spec roots": [
       "aliased spec roots"
     ],
+    "align cli classifier": [
+      "align cli classifier"
+    ],
+    "align cli classifier implementation summary": [
+      "align cli classifier implementation summary"
+    ],
+    "align cli classifier plan": [
+      "align cli classifier plan"
+    ],
+    "align cli classifier tasks": [
+      "align cli classifier tasks"
+    ],
+    "align cli external orchestration": [
+      "align cli external orchestration"
+    ],
+    "align cli external orchestration implementation summary": [
+      "align cli external orchestration implementation summary"
+    ],
+    "align cli external orchestration plan": [
+      "align cli external orchestration plan"
+    ],
+    "align cli external orchestration tasks": [
+      "align cli external orchestration tasks"
+    ],
+    "align cli orca": [
+      "align cli orca"
+    ],
+    "align cli orca implementation summary": [
+      "align cli orca implementation summary"
+    ],
+    "align cli orca plan": [
+      "align cli orca plan"
+    ],
+    "align cli orca tasks": [
+      "align cli orca tasks"
+    ],
     "align deep loop runtime with sk code": [
       "align deep-loop runtime with sk-code"
     ],
     "align docs playbooks catalogs and doctor text": [
       "align docs playbooks catalogs and doctor text"
+    ],
+    "align mcp code mode": [
+      "align mcp code mode"
+    ],
+    "align mcp code mode implementation summary": [
+      "align mcp code mode implementation summary"
+    ],
+    "align mcp code mode plan": [
+      "align mcp code mode plan"
+    ],
+    "align mcp code mode tasks": [
+      "align mcp code mode tasks"
+    ],
+    "align mcp tooling": [
+      "align mcp tooling"
+    ],
+    "align mcp tooling implementation summary": [
+      "align mcp tooling implementation summary"
+    ],
+    "align mcp tooling plan": [
+      "align mcp tooling plan"
+    ],
+    "align mcp tooling tasks": [
+      "align mcp tooling tasks"
     ],
     "align rerank sidecar cjs and sidecar worker with sk changelog": [
       "align rerank sidecar cjs and sidecar worker with sk changelog"
@@ -10605,8 +10671,104 @@
     "align runtime code with sk code skilled tasks": [
       "align runtime code with sk code skilled tasks"
     ],
+    "align sk code": [
+      "align sk code"
+    ],
+    "align sk code implementation summary": [
+      "align sk code implementation summary"
+    ],
+    "align sk code plan": [
+      "align sk code plan"
+    ],
+    "align sk code tasks": [
+      "align sk code tasks"
+    ],
+    "align sk design": [
+      "align sk design"
+    ],
+    "align sk design implementation summary": [
+      "align sk design implementation summary"
+    ],
+    "align sk design plan": [
+      "align sk design plan"
+    ],
+    "align sk design tasks": [
+      "align sk design tasks"
+    ],
+    "align sk doc": [
+      "align sk doc"
+    ],
+    "align sk doc implementation summary": [
+      "align sk doc implementation summary"
+    ],
+    "align sk doc plan": [
+      "align sk doc plan"
+    ],
+    "align sk doc tasks": [
+      "align sk doc tasks"
+    ],
+    "align sk git": [
+      "align sk git"
+    ],
+    "align sk git implementation summary": [
+      "align sk git implementation summary"
+    ],
+    "align sk git plan": [
+      "align sk git plan"
+    ],
+    "align sk git tasks": [
+      "align sk git tasks"
+    ],
+    "align sk prompt": [
+      "align sk prompt"
+    ],
+    "align sk prompt implementation summary": [
+      "align sk prompt implementation summary"
+    ],
+    "align sk prompt plan": [
+      "align sk prompt plan"
+    ],
+    "align sk prompt tasks": [
+      "align sk prompt tasks"
+    ],
     "align skill advisor graph id": [
       "align skill_advisor graph id"
+    ],
+    "align system deep loop": [
+      "align system deep loop"
+    ],
+    "align system deep loop implementation summary": [
+      "align system deep loop implementation summary"
+    ],
+    "align system deep loop plan": [
+      "align system deep loop plan"
+    ],
+    "align system deep loop tasks": [
+      "align system deep loop tasks"
+    ],
+    "align system skill advisor": [
+      "align system skill advisor"
+    ],
+    "align system skill advisor implementation summary": [
+      "align system skill advisor implementation summary"
+    ],
+    "align system skill advisor plan": [
+      "align system skill advisor plan"
+    ],
+    "align system skill advisor tasks": [
+      "align system skill advisor tasks"
+    ],
+    "align system spec kit": [
+      "align system spec kit"
+    ],
+    "align system spec kit implementation summary": [
+      "align system spec kit implementation summary"
+    ],
+    "align system spec kit plan": [
+      "align system spec kit plan"
+    ],
+    "align system spec kit tasks": [
+      "align system spec kit tasks"
     ],
     "alignment acceptance criteria": [
       "alignment acceptance criteria"
@@ -74814,6 +74976,9 @@
     "phase 1 unknowns and baseline": [
       "phase 1 unknowns and baseline"
     ],
+    "phase 10 align cli classifier": [
+      "phase 10 align cli classifier"
+    ],
     "phase 10 alignment audit": [
       "phase 10 alignment audit"
     ],
@@ -74862,6 +75027,9 @@
     "phase 10 verification and closeout": [
       "phase 10 verification and closeout"
     ],
+    "phase 11 align cli external orchestration": [
+      "phase 11 align cli external orchestration"
+    ],
     "phase 11 alignment fixes": [
       "phase 11 alignment fixes"
     ],
@@ -74900,6 +75068,9 @@
     ],
     "phase 12 advisor doc target and engines": [
       "phase 12 advisor doc target and engines"
+    ],
+    "phase 12 align cli orca": [
+      "phase 12 align cli orca"
     ],
     "phase 12 alignment fixes": [
       "phase 12 alignment fixes"
@@ -74952,6 +75123,9 @@
     "phase 13 addon removal and speed refinements": [
       "phase 13 addon removal and speed refinements"
     ],
+    "phase 13 align mcp code mode": [
+      "phase 13 align mcp code mode"
+    ],
     "phase 13 claude goal copy block": [
       "phase 13 claude goal copy block"
     ],
@@ -74975,6 +75149,9 @@
     ],
     "phase 13 sk vision v2 tools and loose": [
       "phase 13 sk vision v2 tools and loose"
+    ],
+    "phase 14 align mcp tooling": [
+      "phase 14 align mcp tooling"
     ],
     "phase 14 closure gate": [
       "phase 14 closure gate"
@@ -75012,6 +75189,9 @@
     "phase 15 advisor lease reclaim flake": [
       "phase 15 advisor lease reclaim flake"
     ],
+    "phase 15 align sk code": [
+      "phase 15 align sk code"
+    ],
     "phase 15 archive current location and ignored files": [
       "phase 15 archive current location and ignored files"
     ],
@@ -75045,6 +75225,9 @@
     "phase 15 v4 0 0 13 changelog": [
       "phase 15 v4 0 0 13 changelog"
     ],
+    "phase 16 align sk design": [
+      "phase 16 align sk design"
+    ],
     "phase 16 closure gate": [
       "phase 16 closure gate"
     ],
@@ -75072,6 +75255,9 @@
     "phase 16 tasks": [
       "phase 16 tasks"
     ],
+    "phase 17 align sk doc": [
+      "phase 17 align sk doc"
+    ],
     "phase 17 closure gate": [
       "phase 17 closure gate"
     ],
@@ -75096,6 +75282,9 @@
     "phase 17 tasks": [
       "phase 17 tasks"
     ],
+    "phase 18 align sk git": [
+      "phase 18 align sk git"
+    ],
     "phase 18 benchmark redesign and remeasure": [
       "phase 18 benchmark redesign and remeasure"
     ],
@@ -75116,6 +75305,9 @@
     ],
     "phase 18 tasks": [
       "phase 18 tasks"
+    ],
+    "phase 19 align sk prompt": [
+      "phase 19 align sk prompt"
     ],
     "phase 19 benchmark plan": [
       "phase 19 benchmark plan"
@@ -75267,6 +75459,9 @@
     "phase 2 worktree relocation restore": [
       "phase 2 worktree relocation restore"
     ],
+    "phase 20 align system deep loop": [
+      "phase 20 align system deep loop"
+    ],
     "phase 20 alignment audit fixes": [
       "phase 20 alignment audit fixes"
     ],
@@ -75300,6 +75495,9 @@
     "phase 20 tasks": [
       "phase 20 tasks"
     ],
+    "phase 21 align system skill advisor": [
+      "phase 21 align system skill advisor"
+    ],
     "phase 21 ci gate regressions": [
       "phase 21 ci gate regressions"
     ],
@@ -75332,6 +75530,9 @@
     ],
     "phase 22 advisor routing and local install": [
       "phase 22 advisor routing and local install"
+    ],
+    "phase 22 align system spec kit": [
+      "phase 22 align system spec kit"
     ],
     "phase 22 collapse plan": [
       "phase 22 collapse plan"

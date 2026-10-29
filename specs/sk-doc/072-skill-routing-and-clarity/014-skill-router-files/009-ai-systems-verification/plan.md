@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 9: ai-systems-verification"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "A read-only verification of the 16 moved AI Systems routers: the Public resolver and a link check over each router, a pre-move verdict comparison, the 37-row battery rerun, the cached Moneybird resolve and token checks, and a tree check that proves no AI Systems file changed."
 trigger_phrases:
   - "ai systems verification plan"
 importance_tier: "normal"
@@ -15,73 +15,69 @@ contextType: "general"
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
-<!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one `--keep <n>` option. Prove it with an archive count. WEAK: This plan describes the implementation. -->
 
 ### Technical Context
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
-| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
-| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
-| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
+| **Language/Stack** | Node (`router-file-resolver.cjs`), Python 3 gates, bash runners |
+| **Framework** | None |
+| **Storage** | None; evidence files under this folder's `scratch/` |
+| **Testing** | The AI Systems battery (37 rows), the Moneybird replay and token checks, `run_parity.sh` |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Nothing in AI Systems changes. The resolver and a link check run over the 16 `ROUTER.md` folders, the same resolver runs over each pre-move `SKILL.md` at `8e4573b8f`, and the 37-row battery reruns with the two cached Moneybird checks. A `git status` of each AI Systems tree after the runs proves D1.
 <!-- /ANCHOR:summary -->
 
 ---
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-<!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] [YOUR_VALUE_HERE: The test command and the output it must print]
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `scratch/battery.txt` prints `COUNTS rows=37 exit0=34 nonzero=3` with rows 7, 13 and 29 explained, and `scratch/resolver-and-links.txt` prints `routers=16 router-md=8 links-resolve=16`
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-<!-- FILL: Name the pattern in three words, then list the one component that changes. GOOD: Single script branch. The component is `scripts/rotate-logs.sh`. WEAK: Standard architecture. -->
 
 ### Pattern
-[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Other: read-only verification run.
 
 ### Key Components
-- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
-- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
+- **`router-file-resolver.cjs`**: the Public resolver; prints `router-md`, `skill-md`, `dual-declaration` or `none` per skill folder from its `INTENT_SIGNALS`, `RESOURCE_MAP` and `DEFAULT_RESOURCE` assignments.
+- **The 37-row battery**: the gate set defined in `008-ai-systems-migration/scratch/baseline.md`, including the seven `run_parity.sh` runs that compare each Claude Project kernel with its router.
 
 ### Data Flow
-[YOUR_VALUE_HERE: Brief description of how data moves through the system]
+Each check reads the AI Systems tree and prints one line; the runner writes that line with its exit code to a file under this folder's `scratch/`, and replay output goes to a temp dir outside both repositories.
 <!-- /ANCHOR:architecture -->
 
 ---
 
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
-<!-- FILL: Name each surface the change touches. Write `not a consumer` when it does not read the change. Write `N/A` or delete the whole addendum when no fix surface applies. GOOD: `scripts/rotate-logs.sh`: owns the deletion. Action: update. WEAK: Various files. -->
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+N/A: this phase fixes nothing. The two findings it raised, the stale Moneybird token baseline and the stale Copywriter lane budget, were fixed under phase 008.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [YOUR_VALUE_HERE: producer/helper/policy] | [YOUR_VALUE_HERE: what owns the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
-| [YOUR_VALUE_HERE: consumer/status/docs/tests] | [YOUR_VALUE_HERE: how it observes the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
+| AI Systems tree | Holds the moved routers and gates | unchanged | `scratch/battery.txt` TREE lines read `clean` |
+| This spec folder | Records the evidence | update | `validate.sh --strict` |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: N/A, no producer changes.
+- Consumers of changed symbols: N/A, no symbol changes.
+- Matrix axes: 16 routers x (resolver verdict, link), and 37 battery rows plus 2 extras.
+- Algorithm invariant: no router resolves `skill-md` or `dual-declaration`, so no router lives anywhere but `ROUTER.md`.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -89,43 +85,40 @@ Required inventories:
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-<!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup counts the archives. Implementation adds `--keep`. Verification counts 3. WEAK: See tasks. -->
 
-Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+Follow the ordered tasks in `tasks.md`. Setup confirms the start commit and cache, the run phase covers the resolver, pre-move comparison, battery, Moneybird extras, parity and tree check, and verification fills the docs.
 <!-- /ANCHOR:phases -->
 
 ---
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
-<!-- FILL: Name the one command you will run and the output it must print. GOOD: `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain run. WEAK: Test it manually. -->
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [YOUR_VALUE_HERE: Components/functions] | [YOUR_VALUE_HERE: Jest/pytest/etc.] |
-| Integration | [YOUR_VALUE_HERE: API endpoints/flows] | [YOUR_VALUE_HERE: Tools] |
-| Manual | [YOUR_VALUE_HERE: User journeys] | Browser |
+| Unit | Resolver verdict per router folder | `router-file-resolver.cjs` |
+| Integration | 37 battery rows, Moneybird resolve and token checks | AI Systems gates, `route-replay.py --mode resolve`, `token-baseline.py --check` |
+| Manual | Claude Project mirrors and tree state | `run_parity.sh` (seven), `git status --porcelain` |
 <!-- /ANCHOR:testing -->
 
 ---
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
-<!-- FILL: List each tool the change needs, or write `None`. GOOD: `bash` and `awk`. No new package. WEAK: Usual dependencies. -->
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [YOUR_VALUE_HERE: System/Library] | [YOUR_VALUE_HERE: Internal/External] | [YOUR_VALUE_HERE: Green/Yellow/Red] | [YOUR_VALUE_HERE: Impact] |
+| Phase 008 local commits on AI Systems `main` | Internal | Green | Nothing to verify |
+| Seeded tiktoken cache | External | Green | Resolve replay and token check exit 2 |
 <!-- /ANCHOR:dependencies -->
 
 ---
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
-<!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: `--keep 3` removes an archive newer than the three kept. Revert the one commit. WEAK: Roll back if needed. -->
 
-- **Trigger**: [YOUR_VALUE_HERE: Conditions requiring rollback]
-- **Procedure**: [YOUR_VALUE_HERE: How to revert changes]
+- **Trigger**: a run is found to have written into an AI Systems tree.
+- **Procedure**: `git -C <tree> checkout -- <path>` for a tracked file or delete the new untracked file, after naming it to the operator; this phase's own docs revert by restoring the six files.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -135,7 +128,6 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 <!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
-<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. Write `N/A` with one reason, or delete the whole section. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
 
 ```
 Setup ──► Implementation ──► Verification
@@ -143,10 +135,9 @@ Setup ──► Implementation ──► Verification
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| [YOUR_VALUE_HERE: Phase A] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase B] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase C] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
+| Setup | Phase 008 commits | Runs |
+| Implementation (runs) | Setup | Verification |
+| Verification (docs) | Runs | Close |
 <!-- /ANCHOR:phase-deps -->
 
 ---
-

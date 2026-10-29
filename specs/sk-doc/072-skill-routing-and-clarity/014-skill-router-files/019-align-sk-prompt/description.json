@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/019-align-sk-prompt",
+  "description": "Phase 19: align-sk-prompt",
+  "keywords": [
+    "phase",
+    "align-sk-prompt"
+  ],
+  "lastUpdated": "2026-10-29T17:20:39.664Z",
+  "specId": "019",
+  "folderSlug": "align-sk-prompt",
+  "parentChain": [
+    "sk-doc",
+    "072-skill-routing-and-clarity",
+    "014-skill-router-files"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

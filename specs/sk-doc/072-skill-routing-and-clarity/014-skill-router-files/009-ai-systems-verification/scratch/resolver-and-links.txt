@@ -1,0 +1,17 @@
+none       link=ok ./Barter - Copywriter/sk-barter-copywriter
+none       link=ok ./Barter - Deal Templates/sk-barter-deal-templates
+none       link=ok ./Media Editor/sk-media-editor
+none       link=ok ./Moneybird Accountant
+router-md  link=ok ./Moneybird Accountant/cli-jortt
+router-md  link=ok ./Moneybird Accountant/cli-moneybird
+router-md  link=ok ./Moneybird Accountant/sk-moneybird-accountant
+router-md  link=ok ./Product Owner
+router-md  link=ok ./Product Owner/mcp-click-up
+router-md  link=ok ./Product Owner/mcp-code-mode
+router-md  link=ok ./Product Owner/mcp-figma
+none       link=ok ./Product Owner/sk-create-figjam
+none       link=ok ./Product Owner/sk-product-owner
+router-md  link=ok ./Prompt Improver/sk-prompt-improver
+none       link=ok ./Sales - Direct Communication/sk-sales-communication
+none       link=ok ./Sales - HubSpot & Automation/sk-sales-hubspot-automation
+routers=16 router-md=8 links-resolve=16
