@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7302,
-    "ok": 16302,
+    "missing-frontmatter": 7303,
+    "ok": 16308,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27152,
+  "documentsScanned": 27159,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "ed5a5a2146194964a1ccb85a5d86ccf219f68b71d5eb86b179f7b89f643f74f6",
+  "manifestHash": "5665ac31960e4b3b202b1427456cdd82245ee907dc18f1f1e16f5ead37def0f7",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 39828,
+      "ok": 39838,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -8773,6 +8773,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/mobbin-app-research.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/notion-workspace-data.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -72509,6 +72515,10 @@
     },
     {
       "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/015-routing-data-alignment/scratch",
       "reason": "excluded directory"
     },
     {

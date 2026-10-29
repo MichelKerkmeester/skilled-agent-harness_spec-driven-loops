@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a0a2ba947dc7076c51af58eaf7527938898f160255a8bccf8581788098e12d0c",
+  "corpusHash": "21b7ac014eeddbeb0141663f548a9aaa3290dc4dd9ed18533be903ee7aeb0bf4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27152,
+  "includedPathCount": 27159,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2038,6 +2038,7 @@
     ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/holdout-task-tracking.md",
     ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/holdout-web-design-reference.md",
     ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/mobbin-app-research.md",
+    ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/notion-workspace-data.md",
     ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/obsidian-note-management.md",
     ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/refero-design-reference.md",
     ".skilled/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md",
@@ -14118,6 +14119,12 @@
     "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/022-align-system-spec-kit/tasks.md",
     "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/goal.md",
     "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/015-routing-data-alignment/acceptance-criteria.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/015-routing-data-alignment/decision-record.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/015-routing-data-alignment/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/015-routing-data-alignment/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/015-routing-data-alignment/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/015-routing-data-alignment/tasks.md",
     "specs/sk-doc/072-skill-routing-and-clarity/spec.md",
     "specs/sk-doc/073-opencode-native-surfaces/acceptance-criteria.md",
     "specs/sk-doc/073-opencode-native-surfaces/implementation-summary.md",
@@ -27183,7 +27190,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ed5a5a2146194964a1ccb85a5d86ccf219f68b71d5eb86b179f7b89f643f74f6",
+  "manifestHash": "5665ac31960e4b3b202b1427456cdd82245ee907dc18f1f1e16f5ead37def0f7",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30999,6 +31006,10 @@
     },
     {
       "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/015-routing-data-alignment/scratch",
       "reason": "excluded directory"
     },
     {

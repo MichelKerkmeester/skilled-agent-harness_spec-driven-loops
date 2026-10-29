@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ed5a5a2146194964a1ccb85a5d86ccf219f68b71d5eb86b179f7b89f643f74f6",
+  "manifestHash": "5665ac31960e4b3b202b1427456cdd82245ee907dc18f1f1e16f5ead37def0f7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -75267,6 +75267,9 @@
     "phase 15 results": [
       "phase 15 results"
     ],
+    "phase 15 routing data alignment": [
+      "phase 15 routing data alignment"
+    ],
     "phase 15 tasks": [
       "phase 15 tasks"
     ],
@@ -82154,6 +82157,9 @@
     "read only dist freshness": [
       "read-only dist freshness"
     ],
+    "read only explainer floor items": [
+      "read-only explainer floor items"
+    ],
     "read only figma inspect": [
       "read-only figma inspect"
     ],
@@ -83957,6 +83963,9 @@
     ],
     "refuted research finding record": [
       "refuted research finding record"
+    ],
+    "refuted routing items": [
+      "refuted routing items"
     ],
     "regenerable ignored files": [
       "regenerable ignored files"
@@ -90482,6 +90491,9 @@
     "router mode lane c": [
       "router-mode Lane-C"
     ],
+    "router move follow up routing fixes": [
+      "router move follow-up routing fixes"
+    ],
     "router moved to router md": [
       "router moved to ROUTER.md"
     ],
@@ -90785,6 +90797,24 @@
     ],
     "routing corpus proof commands": [
       "routing corpus proof commands"
+    ],
+    "routing data alignment": [
+      "routing data alignment"
+    ],
+    "routing data alignment acceptance criteria": [
+      "routing data alignment acceptance criteria"
+    ],
+    "routing data alignment decision record": [
+      "routing data alignment decision record"
+    ],
+    "routing data alignment implementation summary": [
+      "routing data alignment implementation summary"
+    ],
+    "routing data alignment plan": [
+      "routing data alignment plan"
+    ],
+    "routing data alignment tasks": [
+      "routing data alignment tasks"
     ],
     "routing decisions": [
       "routing decisions"
