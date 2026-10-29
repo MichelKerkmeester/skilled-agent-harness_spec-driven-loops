@@ -1,7 +1,7 @@
 ---
 title: "425 -- Orphan Sweep Stop-Hook Activation"
-description: "Manual check for the automated-test-backed Stop-hook orphan-sweep fallback that stays off by default and only sweeps stray launcher processes when the operator opts in via the environment flag."
-version: 1.6.0.2
+description: "Manual check for the automated-test-backed Stop-hook orphan-sweep fallback that stays off by default. When the operator opts in via the environment flag, the live fallback runs the full orphan sweeper, which reaps stale MCP helpers and temp-path orphans."
+version: 1.6.0.3
 id: tooling-and-scripts-orphan-sweep-stop-hook-activation
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -11,7 +11,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario verifies that the session-cleanup Stop hook ships an orphan-sweep fallback that is off by default and only runs when an operator explicitly opts in through the environment flag. The sweep reaps stray launcher processes that a previous session left behind, but it must stay opt-in so it never reaps a process that a concurrent live session still depends on.
+This scenario verifies that the session-cleanup Stop hook ships an orphan-sweep fallback that is off by default and only runs when an operator explicitly opts in through the environment flag. Once the flag is live, the fallback runs the full orphan sweeper with no class filter, so it reaps stale MCP helpers and temp-path orphans that a previous session left behind. The fallback must stay opt-in so it never reaps a process that a concurrent live session still depends on.
 
 The check is automated-test-backed. A human runs the shell syntax check, the Stop-hook orphan-sweep unit suite, and a grep that proves the fallback function and the controlling flag are defined and wired into the hook. Together they confirm the sweep defaults to off and activates only when the flag is set.
 

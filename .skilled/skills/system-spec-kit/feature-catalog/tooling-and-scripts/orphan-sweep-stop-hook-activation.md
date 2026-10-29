@@ -7,7 +7,7 @@ trigger_phrases:
   - "orphan-only MCP sweeper delegation"
   - "SPECKIT_STOP_HOOK_ORPHAN_SWEEP"
   - "stop hook reap ownerless daemon"
-version: 1.6.0.2
+version: 1.6.1.0
 ---
 
 # Orphan sweep stop-hook activation
@@ -16,7 +16,7 @@ version: 1.6.0.2
 
 The Stop hook runs `session-cleanup.sh`, which cleans up a session's descendants from `CLAUDE_SESSION_PID`. The harness never sets that variable, and guessing the session pid from PPID is deliberately refused because a wrong guess could kill another live session. So in practice the no-session-pid branch did nothing, and orphaned MCP daemons from prior sessions could pile up.
 
-This feature gives that no-session-pid branch a safe job. When enabled, it delegates to the orphan-only `orphan-mcp-sweeper.sh`, which reaps only ownerless MCP daemons that have already reparented away from their original owner. Because it targets only reparented orphans rather than guessing at session membership, it can never touch a live session. The feature is off by default and supports a dry-run mode that logs candidate reaps without mutating, plus a live mode that actually reaps.
+This feature gives that no-session-pid branch a safe job. When enabled, it delegates to `orphan-mcp-sweeper.sh`, which reaps processes that have already reparented away from their original owner rather than guessing at session membership, so it can never touch a live session. The sweep covers stale MCP helper processes, stale dispatch artifacts left in the temp directory, and temp-path orphans. A temp-path orphan is a process owned by the current user, parented by pid 1, not a zombie, at least `ORPHAN_TEMP_PROCESS_AGE_HOURS` old (6 by default), whose command line points into the user temp directory, `/tmp/claude-<uid>/` or a worktree scratch directory. A TCP listener does not preserve such a process, so a leftover fixture http server is a candidate too. The feature is off by default and supports a dry-run mode that logs candidate reaps without mutating, plus a live mode that actually reaps.
 
 ---
 
@@ -32,7 +32,7 @@ This feature gives that no-session-pid branch a safe job. When enabled, it deleg
 
 ### Orphan-only sweeper
 
-The branch delegates to `orphan-mcp-sweeper.sh`, which reaps only ownerless MCP processes that have reparented. Because it never targets a process that still belongs to a live session, the delegation cannot kill an active sibling, which is the exact safety property the PPID-guess refusal was protecting.
+The branch delegates to `orphan-mcp-sweeper.sh`, which reaps ownerless processes that have reparented away from their original owner. That class is wider than MCP daemons, because an opted-in live Stop-hook sweep also collects a leftover browser, http server or node fixture that has run from a temp or scratch root for six hours or more. Because the sweeper never targets a process that still belongs to a live session, the delegation cannot kill an active sibling, which is the exact safety property the PPID-guess refusal was protecting. The shared skill-advisor launcher is always preserved, since it retires itself on its own idle timeout.
 
 ### Test-overridable sweeper path
 
@@ -47,7 +47,7 @@ The branch delegates to `orphan-mcp-sweeper.sh`, which reaps only ownerless MCP 
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/scripts/session-cleanup.sh` | Script | Reads `CLAUDE_SESSION_PID`, refuses PPID guessing and in the no-session-pid branch delegates to the orphan sweeper based on `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` (off / dry-run / live) with the path override `SPECKIT_ORPHAN_SWEEPER_BIN` |
-| `.skilled/scripts/orphan-mcp-sweeper.sh` | Script | Reaps only ownerless reparented MCP daemons, supporting a dry-run mode that logs candidates without mutating |
+| `.skilled/scripts/orphan-mcp-sweeper.sh` | Script | Reaps ownerless reparented processes (stale MCP helpers and temp-path orphans) and stale temp dispatch artifacts, supporting a dry-run mode that logs candidates without mutating |
 
 ### Validation And Tests
 

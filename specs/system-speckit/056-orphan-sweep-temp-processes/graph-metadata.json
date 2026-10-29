@@ -42,7 +42,11 @@
       "implementation-summary.md",
       ".skilled/scripts/orphan-mcp-sweeper.sh",
       ".skilled/skills/system-spec-kit/runtime/tests/orphan-sweeper-temp-path.vitest.ts",
-      ".skilled/scripts/README.md"
+      ".skilled/scripts/README.md",
+      ".skilled/hooks/session-cleanup/README.md",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/skills/system-spec-kit/changelog/v2.12.22.0.md",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
     ],
     "entities": [
       {
@@ -85,6 +89,24 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.12.22.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/changelog/v2.12.22.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
         "source": "derived"
       },
       {
@@ -170,29 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Test Files",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pi",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Processes whose parent has exited keep running out of temp and scratch folders for days: two headless Chrome instances from a benchmark crawl (14 days, about 650 MB), a `python -m http.server`, `node -e` test fixtures and `node --check` children stuck on a FIFO",
     "created_at": "2026-10-29T08:25:14Z",
-    "last_save_at": "2026-10-29T08:35:35.203Z",
+    "last_save_at": "2026-10-29T10:47:28.381Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1f04b54c74fe8ffd940eb49e034b07b21317f777201305cbc656654c57129245",
+    "source_fingerprint": "sha256:a4af878069c0784b5a7bd453b5e33cb8e711c0fb425ad978f29226b2e7d54aa0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8ff3aff78d1ba2ee96fe7957b7c702f5f552316b5288d250e929cef810038086",
       "plan.md": "7aafaad8fc983bb2d7def32330271b6e861e1491751825f293222fe1968bc0ae",
-      "tasks.md": "1ac31d6e202d338b3db8b8b5a89694e1baba6455552dd263c1255783ede3a766",
-      "implementation-summary.md": "6650cb0342f876f265c28d42bb7c6ad5c02de6c8e51e2f848602677a75c4e5c1"
+      "tasks.md": "02762be74918a37a0c4d1c0c15b3326fbb86a68c71c4662a34f62e891c30d556",
+      "implementation-summary.md": "015e86ad80e33c8928dd3594a9c93b4d9f7404f10c9d8cb12d4db847ee982186"
     },
     "last_active_at": null
   }

@@ -1,0 +1,91 @@
+export OPENCODE_GOAL_STATE_DIR="$(mktemp -d /tmp/goal-devin.XXXXXX)"
+mktemp -d /tmp/goal-devin.XXXXXX
+PACKET=specs/system-speckit/033-system-speckit-v4/038-goal-unification
+node .skilled/hooks/goal/bin/goal.cjs bind "$PACKET" --runtime devin --session session-d --workspace "$PWD" | grep -E '^(STATUS|mutation|goal_present|packet_)'
+STATUS=OK ACTION=bind
+mutation=bound
+goal_present=true
+packet_path="specs/system-speckit/033-system-speckit-v4/038-goal-unification"
+packet_state=bound
+packet_bound=true
+packet_nested=true
+packet_durable_chars=3990
+packet_budget=ok
+packet_slice_hash="sha256:f93dba62b342d606ba0f7b8b4aa52feffc3a69408929b1d613e328de3fffc669"
+echo "EXIT=${PIPESTATUS[0]}"
+EXIT=0
+printf '%s' '{"session_id":"session-d","hook_event_name":"SessionStart","cwd":"'"$PWD"'"}' | node .skilled/hooks/goal/devin/goal-inject.mjs > /tmp/dv-1.json
+echo "EXIT=$?"
+EXIT=0
+printf '%s' '{"session_id":"session-d","hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'"}' | node .skilled/hooks/goal/devin/goal-inject.mjs > /tmp/dv-2.json
+echo "EXIT=$?"
+EXIT=0
+node .skilled/hooks/goal/bin/goal.cjs resent --runtime devin --session session-d --workspace "$PWD" | grep -E '^(STATUS|mutation|packet_)'
+STATUS=OK ACTION=resent
+mutation=resent
+packet_path="specs/system-speckit/033-system-speckit-v4/038-goal-unification"
+packet_state=bound
+packet_bound=true
+packet_slice_hash="sha256:f93dba62b342d606ba0f7b8b4aa52feffc3a69408929b1d613e328de3fffc669"
+echo "EXIT=${PIPESTATUS[0]}"
+EXIT=0
+printf '%s' '{"session_id":"session-d","hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'"}' | node .skilled/hooks/goal/devin/goal-inject.mjs > /tmp/dv-3.json
+echo "EXIT=$?"
+EXIT=0
+printf '%s' '{"hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'"}' | node .skilled/hooks/goal/devin/goal-inject.mjs
+{}echo " EXIT=$?"
+ EXIT=0
+printf 'not json' | node .skilled/hooks/goal/devin/goal-inject.mjs
+{}echo " EXIT=$?"
+ EXIT=0
+printf '%s' '{"session_id":"session-d","hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'"}' | OPENCODE_GOAL_DISABLED=1 node .skilled/hooks/goal/devin/goal-inject.mjs
+{}echo " EXIT=$?"
+ EXIT=0
+python3 -c 'import json;d=json.load(open(".devin/hooks.v1.json"));print(sum("goal-inject" in json.dumps(d[e]) for e in ("SessionStart","UserPromptSubmit")))'
+2
+echo "EXIT=$?"
+EXIT=0
+set +o verbose
+
+## Envelope analysis (1=SessionStart, 2=UserPromptSubmit before resent, 3=UserPromptSubmit after resent)
+--- envelope 1 raw:
+{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"[active_goal:goal-e774252e-6cef-48ef-b615-4b2b07580ecc]\nstatus: active\nobjective: Execute specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md. BINDING: read each phase's goal.md before working that phase; its criteria bind as if written here. PRECEDENCE: parent decisions outrank child detail; child detail outranks any summary of it.\ncriteria:\n- `goal.md.tmpl`, the set-string playbook and `spec-kit-docs.json` agree on the frontmatter-strip boundary and the 4000-character durable budget. (003)\n- (7 more in the goal file)\ngoal_prompt:\nRole: Focused Devin execution agent operating under the active session goal.\nObjective: Execute specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md. BINDING: read each phase's goal.md before working that phase; its criteria bind as if written here. PRECEDENCE: parent decisions outrank child detail; child detail outranks any summary of it.\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Make the smallest correct implementation that satisfies the requested behavior.\n- Run the relevant verification commands and report exact pass/fail evidence.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action.\nlast_check: not_evaluated ; reason: none\nusage: tokens n/a/none; time 0s; iteration 0 (source: turn-count-estimate)\ndirective: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.\n[/active_goal]\n[goal_resend_pending] The bound packet goal.md (specs/system-speckit/033-system-speckit-v4/038-goal-unification) changed above its log. Resend its chat slice in chat so the operator sees the change, then record it with: node .skilled/hooks/goal/bin/goal.cjs resent --runtime devin --session \"session-d\" --workspace \"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public\". The goal command's packet action prints that slice as chat_slice, with no frontmatter, comments, anchors, dividers or section numbers. Send it only when that report shows packet_budget=ok, which keeps it within 4000 characters, and cut the file first when it shows over. Keep working meanwhile."}}
+hookEventName: SessionStart
+starts [active_goal: true
+objective line: objective: Execute specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md. BINDING: read each phase's goal.md before working that phase; its criteria bind as if written here. PRECEDENCE: parent decisions outrank child detail; child detail outranks any summary of it.
+criteria: field present: true
+--- fence line present: false
+session_id: line present: false
+[goal_resend_pending] present: true
+reminder lines starting with marker: 1
+--- envelope 2 raw:
+{"hookSpecificOutput":{"hookEventName":"UserPromptSubmit","additionalContext":"[active_goal:goal-e774252e-6cef-48ef-b615-4b2b07580ecc]\nstatus: active\nobjective: Execute specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md. BINDING: read each phase's goal.md before working that phase; its criteria bind as if written here. PRECEDENCE: parent decisions outrank child detail; child detail outranks any summary of it.\ncriteria:\n- `goal.md.tmpl`, the set-string playbook and `spec-kit-docs.json` agree on the frontmatter-strip boundary and the 4000-character durable budget. (003)\n- (7 more in the goal file)\ngoal_prompt:\nRole: Focused Devin execution agent operating under the active session goal.\nObjective: Execute specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md. BINDING: read each phase's goal.md before working that phase; its criteria bind as if written here. PRECEDENCE: parent decisions outrank child detail; child detail outranks any summary of it.\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Make the smallest correct implementation that satisfies the requested behavior.\n- Run the relevant verification commands and report exact pass/fail evidence.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action.\nlast_check: not_evaluated ; reason: none\nusage: tokens n/a/none; time 0s; iteration 1 (source: turn-count-estimate)\ndirective: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.\n[/active_goal]\n[goal_resend_pending] The bound packet goal.md (specs/system-speckit/033-system-speckit-v4/038-goal-unification) changed above its log. Resend its chat slice in chat so the operator sees the change, then record it with: node .skilled/hooks/goal/bin/goal.cjs resent --runtime devin --session \"session-d\" --workspace \"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public\". The goal command's packet action prints that slice as chat_slice, with no frontmatter, comments, anchors, dividers or section numbers. Send it only when that report shows packet_budget=ok, which keeps it within 4000 characters, and cut the file first when it shows over. Keep working meanwhile."}}
+hookEventName: UserPromptSubmit
+starts [active_goal: true
+objective line: objective: Execute specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md. BINDING: read each phase's goal.md before working that phase; its criteria bind as if written here. PRECEDENCE: parent decisions outrank child detail; child detail outranks any summary of it.
+criteria: field present: true
+--- fence line present: false
+session_id: line present: false
+[goal_resend_pending] present: true
+reminder lines starting with marker: 1
+--- envelope 3 raw:
+{"hookSpecificOutput":{"hookEventName":"UserPromptSubmit","additionalContext":"[active_goal:goal-e774252e-6cef-48ef-b615-4b2b07580ecc]\nstatus: active\nobjective: Execute specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md. BINDING: read each phase's goal.md before working that phase; its criteria bind as if written here. PRECEDENCE: parent decisions outrank child detail; child detail outranks any summary of it.\ncriteria:\n- `goal.md.tmpl`, the set-string playbook and `spec-kit-docs.json` agree on the frontmatter-strip boundary and the 4000-character durable budget. (003)\n- (7 more in the goal file)\ngoal_prompt:\nRole: Focused Devin execution agent operating under the active session goal.\nObjective: Execute specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md. BINDING: read each phase's goal.md before working that phase; its criteria bind as if written here. PRECEDENCE: parent decisions outrank child detail; child detail outranks any summary of it.\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Make the smallest correct implementation that satisfies the requested behavior.\n- Run the relevant verification commands and report exact pass/fail evidence.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action.\nlast_check: not_evaluated ; reason: none\nusage: tokens n/a/none; time 0s; iteration 2 (source: turn-count-estimate)\ndirective: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.\n[/active_goal]"}}
+hookEventName: UserPromptSubmit
+starts [active_goal: true
+objective line: objective: Execute specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md. BINDING: read each phase's goal.md before working that phase; its criteria bind as if written here. PRECEDENCE: parent decisions outrank child detail; child detail outranks any summary of it.
+criteria: field present: true
+--- fence line present: false
+session_id: line present: false
+[goal_resend_pending] present: false
+reminder lines starting with marker: 0
+
+## Registration fallbacks
+SessionStart | has printf %s "{}" fallback: False | fallback: { printf "%s\n" "mk-hook-drift host=devin event=SessionStart adapter=goal-inject.mjs" >&2; printf %s "{\"hookSpecificOutput\":{\"hookEventName\":\"SessionStart\",\"additionalContext\":\"mk devin hook 
+UserPromptSubmit | has printf %s "{}" fallback: False | fallback: { printf "%s\n" "mk-hook-drift host=devin event=UserPromptSubmit adapter=goal-inject.mjs" >&2; printf %s "{\"hookSpecificOutput\":{\"hookEventName\":\"UserPromptSubmit\",\"additionalContext\":\"mk dev
+
+$ grep -n 'printf %s "{}"' .skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/goal-hook/goal-hook.md
+31:- Expected signals: the packet-rendered brief carries the `criteria:` field with one line per completion criterion; b
+EXIT=0
+$ grep -n goal-inject .devin/hooks.v1.json
+33:          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/goal/devin/goal-inject.mjs || { printf \"%s\\n\" 
+55:          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/goal/devin/goal-inject.mjs || { printf \"%s\\n\" 

@@ -48,6 +48,7 @@ MIN_AGES=()
 MIN_PIDS=()
 
 SESSION_TREE_PIDS=()
+SESSION_ROOT_PIDS=()
 
 # ───────────────────────────────────────────────────────────────
 # 2. CLI PARSING
@@ -384,22 +385,41 @@ EOF
 PGREP_ANCESTOR_FLAG=""
 [[ "$(uname -s)" = "Darwin" ]] && PGREP_ANCESTOR_FLAG="-a"
 
-# Build the live operator-session process tree across ALL AI CLI runtimes, not just
-# Claude Code. Any MCP helper descended from a live claude / opencode / codex
-# session belongs to an active operator session and must be preserved — most importantly
-# an operator's `opencode run`, which previously fell outside the Claude-only tree and
-# got swept after ORPHAN_AGE_MIN_SEC (a hard-rule violation).
+# Build the live operator-session process tree across all seven AI CLI runtimes the repo
+# drives (claude, opencode, codex, pi, hermes, devin and cursor-agent), not just Claude
+# Code. Any MCP helper descended from one of them belongs to an active operator session
+# and must be preserved. An operator's `opencode run` or `pi` session falls outside a
+# Claude-only tree and would otherwise be swept after ORPHAN_AGE_MIN_SEC.
 build_session_trees() {
   local pid
   while read -r pid; do
     [[ -n "$pid" ]] || continue
     if [[ "${#SESSION_TREE_PIDS[@]}" -eq 0 ]] || ! pid_in_list "$pid" "${SESSION_TREE_PIDS[@]}"; then
       SESSION_TREE_PIDS+=("$pid")
+      SESSION_ROOT_PIDS+=("$pid")
       append_descendants "$pid"
     fi
   done <<EOF
-$(pgrep $PGREP_ANCESTOR_FLAG -f '(^|/)(claude|opencode|codex)( |$)|Claude Code' 2>/dev/null || true)
+$(pgrep $PGREP_ANCESTOR_FLAG -f '(^|/)(claude|opencode|codex|pi|hermes|devin|cursor-agent)( |$)|Claude Code' 2>/dev/null || true)
 EOF
+}
+
+# A temp-path process that still drives a live session is the driver of that session, such as
+# a detached fan-out script, not a leftover, even though its own parent is gone.
+drives_live_session() {
+  local parent="$1"
+  local child
+  [[ "${#SESSION_ROOT_PIDS[@]}" -gt 0 ]] || return 1
+  while read -r child; do
+    [[ -n "$child" ]] || continue
+    if pid_in_list "$child" "${SESSION_ROOT_PIDS[@]}"; then
+      return 0
+    fi
+    drives_live_session "$child" && return 0
+  done <<EOF
+$(pgrep -P "$parent" 2>/dev/null || true)
+EOF
+  return 1
 }
 
 has_non_mcp_listener() {
@@ -458,14 +478,15 @@ preserve_reason() {
 
   # The advisor launcher retires itself after its own idle timeout, and hooks reach it
   # only for the length of one prompt, so a sweep between prompts finds no client on it.
-  # Its server is covered while that launcher is its parent; a server left behind by a
-  # dead launcher is the orphan this sweeper exists for and stays sweepable.
+  # Its servers, the advisor server and the model server, are covered while that launcher is
+  # their parent; a server left behind by a dead launcher is the orphan this sweeper exists for
+  # and stays sweepable.
   case "$class" in
     system-skill-advisor-launcher)
       printf '%s\n' "advisor-self-idle-timeout"
       return 0
       ;;
-    skill-advisor-server)
+    skill-advisor-server|hf-model-server)
       local parent_pid parent_cmd
       parent_pid="$(ps -p "$pid" -o ppid= 2>/dev/null | tr -d ' ' || true)"
       if [[ -n "$parent_pid" ]] && [[ "$parent_pid" != "1" ]]; then
@@ -483,10 +504,23 @@ preserve_reason() {
     return 0
   fi
 
+  # ORPHAN_AGE_MIN_SEC is a floor for every candidate, not only the newest one of its class.
+  # A helper younger than it may still be starting up under a session that has not finished
+  # spawning, so no instance is swept before it has lived that long.
+  if [[ "$age" -lt "$AGE_MIN_SEC" ]] 2>/dev/null; then
+    printf '%s\n' "younger-than-age-min"
+    return 0
+  fi
+
   freshest_pid="$(freshest_pid_for_class "$class" 2>/dev/null || true)"
   freshest_age="$(freshest_age_for_class "$class" 2>/dev/null || echo 999999)"
   if [[ "$pid" = "$freshest_pid" ]] && [[ "$freshest_age" -lt "$AGE_MIN_SEC" ]]; then
     printf '%s\n' "freshest-young-instance"
+    return 0
+  fi
+
+  if [[ "$class" = "$TEMP_PROCESS_CLASS" ]] && drives_live_session "$pid"; then
+    printf '%s\n' "drives-live-session"
     return 0
   fi
 

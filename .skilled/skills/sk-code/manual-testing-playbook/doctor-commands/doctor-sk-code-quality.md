@@ -1,9 +1,9 @@
 ---
 title: "DOC-395 -- Doctor sk-code quality"
 description: "Manual scenario validating that /doctor:sk-code quality reports the config source, its trust state and the rules the gate would apply read-only, refuses an existing config with CONFIG_EXISTS, and creates the config only after an approved plan."
-version: 1.0.0.0
+version: 1.0.1.0
 id: doctor-commands-doctor-sk-code-quality
-expected_workflow_mode: UNKNOWN
+expected_workflow_mode: sk-code-quality
 expected_leaf_resources: []
 ---
 

@@ -1630,7 +1630,7 @@ Everything is a file in your own repository.
 - **[→ Hooks README](.skilled/hooks/README.md)** - every runtime hook and plugin, which runtimes run each one and its off switch
 - **[→ Git Hooks README](.skilled/scripts/git-hooks/README.md)** - each git hook gate, what it blocks and how to bypass it
 - **[→ sk-code README](.skilled/skills/sk-code/README.md)** - the code skill and the step-by-step guide to adapting it to your stack
-- **[→ Repo Scripts Runbook](.skilled/scripts/README.md)** - dry-run orphan MCP sweeper, session cleanup and LaunchAgent template guidance
+- **[→ Repo Scripts Runbook](.skilled/scripts/README.md)** - dry-run orphan sweeper for stale MCP helpers and temp-path strays, session cleanup and LaunchAgent template guidance
 - **[→ Skill Advisor README](.skilled/skills/system-skill-advisor/README.md)** - daemon-backed CLI front door, nine advisor/skill-graph commands and routing docs
 - **[→ Architecture](.skilled/skills/system-spec-kit/ARCHITECTURE.md)** - API boundary contract
 - **[→ sk-doc Skill](.skilled/skills/sk-doc/SKILL.md)** - documentation standards, DQI scoring

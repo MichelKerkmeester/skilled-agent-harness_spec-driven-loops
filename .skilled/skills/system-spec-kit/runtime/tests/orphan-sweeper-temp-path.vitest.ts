@@ -130,7 +130,12 @@ describe('orphan sweeper session tree', () => {
   it('leaves -a off on Linux, where pgrep reads it as an output-format flag', () => {
     const args = pgrepArguments('Linux');
     expect(args.startsWith('-f')).toBe(true);
-    expect(args).not.toContain('-a');
+    expect(args.split(' ')).not.toContain('-a');
+  });
+
+  it('searches every session runtime the repo drives, not only Claude Code', () => {
+    const args = pgrepArguments('Darwin');
+    expect(args).toContain('pi|hermes|devin|cursor-agent');
   });
 });
 
@@ -162,6 +167,20 @@ describe('orphan sweeper advisor daemon', () => {
     expect(results).toEqual(['advisor-launcher-child']);
   });
 
+  it('preserves a model server that still names its launcher as parent', () => {
+    const results = runHarness([
+      'ps() {',
+      '  case "$*" in',
+      '    "-p 4242 -o ppid=") printf "80911\\n" ;;',
+      '    "-p 80911 -o command=") printf "node /Users/tester/.skilled/system-skill-advisor-launcher.cjs\\n" ;;',
+      '    *) printf "501\\n" ;;',
+      '  esac',
+      '}',
+      `preserve_reason 4242 hf-model-server ${SIX_HOURS} "node /Users/tester/.skilled/skills/hf-model-server/hf-model-server.cjs" || echo none`,
+    ]);
+    expect(results).toEqual(['advisor-launcher-child']);
+  });
+
   it('does not extend launcher coverage to a server reparented onto init', () => {
     const results = runHarness([
       'ps() {',
@@ -174,5 +193,104 @@ describe('orphan sweeper advisor daemon', () => {
     ]);
     expect(results).not.toContain('advisor-launcher-child');
     expect(results).toEqual(['active-non-mcp-tcp-listener']);
+  });
+});
+
+// Signalling is the last step, so the class the scan recorded is re-derived from live
+// process state first. A temp-path orphan is defined by its parent, age and state as much
+// as by its command, so each case states the `ps` line the recheck has to see.
+describe('orphan sweeper pre-signal recheck', () => {
+  function recheck(cmd: string, cls: string, psLine: string): string[] {
+    return [
+      'ps() {',
+      '  case "$*" in',
+      `    "-p 4242 -o ppid=,etime=,stat=") printf '%s\\n' ${JSON.stringify(psLine)} ;;`,
+      '    "-p 4242 -o uid=") printf "501\\n" ;;',
+      '    *) printf "501\\n" ;;',
+      '  esac',
+      '}',
+      `current_class_of 4242 ${JSON.stringify(cmd)} ${cls} || echo none`,
+    ];
+  }
+
+  const tempCmd = `node ${USER_TMP}/bench/fixture/server.js`;
+
+  it('reclassifies a temp-path orphan that still has every part of the shape', () => {
+    const results = runHarness(recheck(tempCmd, 'temp-path-orphan', '1 06:00:00 S'));
+    expect(results).toEqual(['temp-path-orphan']);
+  });
+
+  it('drops a temp-path candidate that has been reparented onto a live parent', () => {
+    const results = runHarness(recheck(tempCmd, 'temp-path-orphan', '4100 06:00:00 S'));
+    expect(results).toEqual(['none']);
+  });
+
+  it('drops a temp-path candidate that has not reached the age floor yet', () => {
+    const results = runHarness(recheck(tempCmd, 'temp-path-orphan', '1 05:59:59 S'));
+    expect(results).toEqual(['none']);
+  });
+
+  it('drops a temp-path candidate that has become a zombie', () => {
+    const results = runHarness(recheck(tempCmd, 'temp-path-orphan', '1 06:00:00 Z'));
+    expect(results).toEqual(['none']);
+  });
+
+  it('keeps an MCP server that its command alone classifies', () => {
+    const cmd = 'node /repo/.skilled/skills/system-skill-advisor/runtime/dist/advisor-server.js';
+    const results = runHarness(recheck(cmd, 'skill-advisor-server', '1 06:00:00 S'));
+    expect(results).toEqual(['skill-advisor-server']);
+  });
+});
+
+// A detached driver script outlives its own parent while the session below it keeps running,
+// so a temp-path candidate with a session root somewhere beneath it is that session's driver,
+// not a leftover. `pgrep` is redefined per case so each states the ancestry the walk should see.
+describe('orphan sweeper live-session driver', () => {
+  it('preserves a temp-path process that still drives a live session', () => {
+    const results = runHarness([
+      'pgrep() {',
+      '  case "$*" in',
+      '    "-P 4242") printf "5000\\n" ;;',
+      '    "-P 5000") printf "6000\\n" ;;',
+      '    *) : ;;',
+      '  esac',
+      '}',
+      'SESSION_ROOT_PIDS=(6000)',
+      `preserve_reason 4242 "$TEMP_PROCESS_CLASS" ${SIX_HOURS} "zsh ${HOME}/worktrees/public/.scratch-x/run-pi.zsh" || echo none`,
+    ]);
+    expect(results).toEqual(['drives-live-session']);
+  });
+
+  it('does not preserve a temp-path process with no session root below it', () => {
+    const results = runHarness([
+      'pgrep() {',
+      '  case "$*" in',
+      '    "-P 4242") printf "5000\\n" ;;',
+      '    *) : ;;',
+      '  esac',
+      '}',
+      'SESSION_ROOT_PIDS=(7777)',
+      `preserve_reason 4242 "$TEMP_PROCESS_CLASS" ${SIX_HOURS} "zsh ${HOME}/worktrees/public/.scratch-x/run-pi.zsh" || echo none`,
+    ]);
+    expect(results).toEqual(['none']);
+  });
+});
+
+// The age floor covers every candidate, not only the freshest one of its class: a helper still
+// starting up under a session that has not finished spawning must survive even when a steadier
+// sibling of the same class makes the freshest-instance rule miss it.
+describe('orphan sweeper age floor', () => {
+  it('preserves a candidate that is younger than the age floor', () => {
+    const results = runHarness([
+      'preserve_reason 4242 mcp-code-mode 120 "node mcp-code-mode/mcp-server/dist/index.js" || echo none',
+    ]);
+    expect(results).toEqual(['younger-than-age-min']);
+  });
+
+  it('lets a candidate past the age floor fall through to the other preservation rules', () => {
+    const results = runHarness([
+      'preserve_reason 4242 mcp-code-mode 600 "node mcp-code-mode/mcp-server/dist/index.js" || echo none',
+    ]);
+    expect(results).not.toContain('younger-than-age-min');
   });
 });

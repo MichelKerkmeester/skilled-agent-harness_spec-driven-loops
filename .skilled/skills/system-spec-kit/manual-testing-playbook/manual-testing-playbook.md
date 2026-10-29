@@ -1,8 +1,8 @@
 ---
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
-last_updated: "2026-10-25"
-version: 2.1.8.0
+last_updated: "2026-10-29"
+version: 2.1.9.0
 ---
 
 # Spec Kit: Manual Testing Playbook
@@ -216,6 +216,7 @@ Every row links a scenario file that exists on disk. The **Catalog Entry** colum
 | 152 | No symlinks in lib/ tree | [152](tooling-and-scripts/no-symlinks-in-lib-tree.md) | [architecture-boundary-enforcement](../feature-catalog/tooling-and-scripts/architecture-boundary-enforcement.md) |
 | 419 | Orphan MCP runtime lifecycle guardrails | [419](tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md) | [orphan-mcp-sweeper-and-launchagent-template](../feature-catalog/tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md) |
 | 425 | Orphan sweep stop-hook activation | [425](tooling-and-scripts/orphan-sweep-stop-hook-activation.md) | [orphan-sweep-stop-hook-activation](../feature-catalog/tooling-and-scripts/orphan-sweep-stop-hook-activation.md) |
+| 487 | Orphan sweep temp-path class | [487](tooling-and-scripts/orphan-sweep-temp-path-class.md) | [orphan-mcp-sweeper-and-launchagent-template](../feature-catalog/tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md) |
 | PHASE-005 | Phase command workflow | [PHASE-005](tooling-and-scripts/phase-command-workflow.md) | [phase-system-knowledge-node](../feature-catalog/tooling-and-scripts/phase-system-knowledge-node.md) |
 | PHASE-001 | Phase detection scoring | [PHASE-001](tooling-and-scripts/phase-detection-scoring.md) | [phase-system-knowledge-node](../feature-catalog/tooling-and-scripts/phase-system-knowledge-node.md) |
 | PHASE-002 | Phase folder creation | [PHASE-002](tooling-and-scripts/phase-folder-creation.md) | [spec-lifecycle-automation](../feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md) |

@@ -63,8 +63,13 @@ The advisor launcher exits by itself after 30 idle minutes, and hooks hold no co
 | File | Action | Purpose |
 |------|--------|---------|
 | `.skilled/scripts/orphan-mcp-sweeper.sh` | Modified | Temp-path orphan class and recheck, macOS ancestor flag, advisor preserve rule |
-| `.skilled/skills/system-spec-kit/runtime/tests/orphan-sweeper-temp-path.vitest.ts` | Created | Seven cases: class matrix, listener rule, pgrep flag per platform, advisor parentage |
-| `.skilled/scripts/README.md` | Modified | Sweeper row names the new class |
+| `.skilled/skills/system-spec-kit/runtime/tests/orphan-sweeper-temp-path.vitest.ts` | Created | Thirteen cases: class matrix, listener rule, pgrep flag per platform, advisor and model-server parentage, pre-signal recheck |
+| `.skilled/scripts/README.md`, `README.md`, `.skilled/hooks/session-cleanup/README.md` | Modified | Describe the sweep as covering temp-path strays, not only MCP helpers |
+| `.env.example`, `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` | Modified | List `ORPHAN_TEMP_PROCESS_AGE_HOURS` and the wider Stop-hook sweep scope |
+| `.skilled/skills/system-spec-kit/feature-catalog/` (root and two leaves) | Modified | Current reality, env vars and test row for the sweeper |
+| `.skilled/skills/system-spec-kit/manual-testing-playbook/` (index, scenario 425, new scenario 487) | Modified, Created | Manual check for the temp-path class and corrected stop-hook scope |
+| `.skilled/skills/system-spec-kit/changelog/v2.12.22.0.md`, `SKILL.md` | Created, Modified | Changelog entry and skill version 2.12.22.0 |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Modified | Research fixture uses the file's own `makeTempDir` helper |
 | `~/Library/LaunchAgents/com.michelkerkmeester.orphan-sweep.plist` | Created (outside repo) | Live copy of the template, without `--dry-run` and `--verbose` |
 <!-- /ANCHOR:what-built -->
 
@@ -97,7 +102,12 @@ The temp-path class was written in this session. The pgrep fix, the advisor pres
 | Check | Result |
 |-------|--------|
 | `/bin/bash -n` (bash 3.2.57) and `shellcheck -S warning` | PASS, exit 0 |
-| `npx vitest run orphan-sweeper launcher-stop-hook-orphan-sweep` | PASS, 3 files, 18 tests |
+| `npx vitest run orphan-sweeper launcher-stop-hook-orphan-sweep` | PASS, 3 files, 29 tests (18 at first ship, then model-server parentage, pre-signal recheck, seven-runtime pattern, live-session driver and age floor) |
+| `compiled-route-admission.cjs --all`, `compiled-route-guard.cjs`, `check-gate-inputs.sh` | PASS: every hub admits, all hubs fresh after the sk-code re-mint, gate inputs `failures=0` |
+| Dry run after the second pass | PASS: a live `hf-model-server` reads `reason=advisor-launcher-child`, `kills=0` |
+| `/local-skilled-alignment` over 6a9946a800..2c7d7b40f5, DeepSeek lanes A to C and an Opus critic | 20 findings, P0 0, P1 5, P2 15, 2 overturned; battery 23 pass |
+| Live agent log after the first ship | FAIL: six `TERM` lines for `class=hf-model-server` from 09:53 to 10:54, a launcher-supervised server; agent paused, rule widened, agent reloaded |
+| `npx vitest run tests/unit/fanout-run.vitest.ts` in system-deep-loop | PASS, 172 tests |
 | Dry run from inside this session, before the fixes | FAIL as expected: proposed TERM for this session's pids 86738 and 87191 and the advisor pair 80911 and 80912 |
 | Same dry run after the fixes | PASS: `reason=live-session-tree` for 86738 and 87191, `advisor-self-idle-timeout` and `advisor-launcher-child` for 80911 and 80912, `kills=0` |
 | `launchctl kickstart` of the installed agent | PASS: log shows `dry_run=false`, `candidates=12 kills=0 exit_code=0`; `LastExitStatus = 0` |
@@ -109,7 +119,7 @@ The temp-path class was written in this session. The pgrep fix, the advisor pres
 ## Known Limitations
 
 1. **No live kill of a temp-path orphan was observed.** The orphans that motivated this were killed by hand before the class existed, and the 6-hour floor rules out making a fresh one inside one session; the unit matrix covers the verdict. The first real kill will show up as `class=temp-path-orphan` in `~/.local/share/orphan-sweeper.log`.
-2. **Going live also enabled the older MCP-daemon kills.** They proposed nothing on this machine today. To stop the agent: `launchctl bootout gui/$(id -u)/com.michelkerkmeester.orphan-sweep`, then delete the plist.
+2. **Going live also enabled the older MCP-daemon kills, and one hurt.** For about an hour the agent killed a launcher-supervised `hf-model-server` each cycle, until the preserve rule covered it. A later dry run saw a live one preserved. The alignment pass also closed two older gaps: the session tree now covers all seven CLI runtimes, and `ORPHAN_AGE_MIN_SEC` is a floor for every candidate. To stop the agent: `launchctl bootout gui/$(id -u)/com.michelkerkmeester.orphan-sweep`, then delete the plist.
 <!-- /ANCHOR:limitations -->
 
 ---

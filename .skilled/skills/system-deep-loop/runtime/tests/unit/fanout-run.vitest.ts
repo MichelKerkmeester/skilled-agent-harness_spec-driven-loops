@@ -624,8 +624,7 @@ describe('fanout-run.cjs — max-iterations stop-reason tolerance', () => {
   // shape so the forced-depth validator is exercised through the artifact-completion fallback,
   // which is where a research run is actually judged.
   const makeResearchLineageDir = (iterations: number, withReport: boolean) => {
-    const dir = mkdtempSync(join(tmpdir(), 'fanout-research-forced-'));
-    tempDirs.push(dir);
+    const dir = makeTempDir('fanout-research-forced-');
     mkdirSync(join(dir, 'iterations'), { recursive: true });
     for (let i = 1; i <= iterations; i++) {
       writeFileSync(join(dir, 'iterations', `iteration-${String(i).padStart(3, '0')}.md`), 'x');

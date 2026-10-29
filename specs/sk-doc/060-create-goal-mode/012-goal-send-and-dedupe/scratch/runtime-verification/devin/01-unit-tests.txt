@@ -1,0 +1,13 @@
+$ node --test .skilled/hooks/goal/devin/goal-devin.test.mjs </dev/null
+✔ emits the brief as additionalContext for an active goal and keeps the event name (68.696375ms)
+✔ a bound packet renders from the file without frontmatter and carries the reminder while unresent (131.051875ms)
+✔ emits an empty object with no goal, with a paused goal, when disabled, and on malformed stdin (227.520084ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 476.345042
+EXIT=0

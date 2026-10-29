@@ -31,6 +31,10 @@ on:
       - '.cursor/**'
       - '.devin/**'
       - '.pi/**'
+      # The orphan sweeper and session cleanup scripts are tested by this
+      # workflow's runtime suite, so a change to them has to run it.
+      - '.opencode/scripts/**'
+      - '.skilled/scripts/**'
   pull_request:
     branches: [main]
     paths:
@@ -61,6 +65,10 @@ on:
       - '.cursor/**'
       - '.devin/**'
       - '.pi/**'
+      # The orphan sweeper and session cleanup scripts are tested by this
+      # workflow's runtime suite, so a change to them has to run it.
+      - '.opencode/scripts/**'
+      - '.skilled/scripts/**'
 
 permissions:
   contents: read

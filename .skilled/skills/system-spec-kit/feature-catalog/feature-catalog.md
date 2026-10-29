@@ -7,8 +7,8 @@ trigger_phrases:
   - "spec kit feature inventory"
   - "what does spec kit do"
   - "spec kit capability inventory"
-last_updated: "2026-10-25"
-version: 2.1.15.0
+last_updated: "2026-10-29"
+version: 2.1.16.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -363,11 +363,11 @@ See [`tooling-and-scripts/nested-changelog-generator.md`](tooling-and-scripts/ne
 
 #### Description
 
-Dry-run-first operator runbook and scripts for stale MCP helper cleanup, temporary dispatch artifact cleanup and session cleanup.
+Dry-run-first operator runbook and scripts for stale MCP helper cleanup, temporary dispatch artifact cleanup, temporary-path orphan reaping and session cleanup.
 
 #### Current Reality
 
-The sweeper serves the skill-advisor and code-mode launchers; its memory-daemon branches came out with the server.
+The sweeper serves the skill-advisor and code-mode launchers, and its memory-daemon branches came out with the server. It also reaps a temp-path orphan class: a process reparented to pid 1, owned by the current user, not a zombie, older than `ORPHAN_TEMP_PROCESS_AGE_HOURS` (default 6), whose command line points into the user temp dir, `/tmp/claude-<uid>/` or `~/worktrees/*/.scratch-*`. The shape is re-checked right before each signal, and a TCP listener does not preserve such a process. The skill-advisor launcher is always preserved because it retires itself on its own idle timeout, and its advisor server and hf-model server survive while that launcher is their parent.
 
 #### Source Files
 
@@ -383,7 +383,7 @@ The Stop hook's session-cleanup script no-ops without `CLAUDE_SESSION_PID`, beca
 
 #### Current Reality
 
-When enabled, the no-session-pid branch delegates to the orphan-only sweeper, which reaps only ownerless reparented daemons. Default off, with dry-run and live modes.
+When enabled, the no-session-pid branch delegates to the orphan-only sweeper, which reaps ownerless reparented daemons and temp-path orphans. Default off, with dry-run and live modes.
 
 #### Source Files
 

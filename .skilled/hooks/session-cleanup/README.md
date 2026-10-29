@@ -31,7 +31,7 @@ Both faces are bounded and fail-open: subprocesses wait at most eight seconds (p
 `session-cleanup.sh` runs at session teardown (Claude `SessionEnd`, OpenCode `dispose`), never per response. Session identity comes only from the environment (`SESSION_CLEANUP_PID` / `CLAUDE_SESSION_PID`), never from stdin, so the same script is correct from any teardown invocation point.
 
 1. Checks the shared kill-switch (`hook_enabled session-cleanup`, fail-open if the resolver is absent). Disabled → exit 0.
-2. With no session PID, runs the orphan-sweep fallback controlled by `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` (default `off` → skip no-op; `dry-run` → log candidate reaps; `1`/`on`/`live` → reap ownerless MCP processes via `orphan-mcp-sweeper.sh`, which can never touch a live sibling session). Then exits.
+2. With no session PID, runs the orphan-sweep fallback controlled by `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` (default `off` → skip no-op; `dry-run` → log candidate reaps; `1`/`on`/`live` → reap orphan processes via `orphan-mcp-sweeper.sh`: stale MCP helpers, and a parentless own-uid process 6+ hours old from the user temp dir, a Claude scratchpad or a worktree scratch folder. It can never touch a live sibling session). Then exits.
 3. With a session PID that is not alive → skip. Otherwise walks the descendant tree (`pgrep -P`) and, for each descendant whose command matches a known MCP helper target, **re-proves ancestry at kill time** by walking the live ppid chain upward (max 15 hops, stopping at `0`/`1` = launchd/init). Ancestry not confirmed → `skip-kill`. Confirmed → `kill -15` (TERM).
 4. Logs every action to `~/.local/share/session-cleanup.log` (10 MB, rotated through `.1`/`.2`/`.3`).
 
@@ -87,7 +87,7 @@ session-cleanup/
 |---|---|
 | `.skilled/scripts/session-cleanup.sh` | The teardown script. Session-scoped descendant walk, target-command matching, re-proven-ancestry kill (TERM), orphan-sweep fallback, bounded rotated log. Never uses PPID. |
 | `.opencode/plugins/session-cleanup.js` | The OpenCode plugin. Startup guards + backgrounded primary-reconcile on `session.created`, one-shot warning injection, teardown script on `dispose`. Bounded (8s subprocess timeout), fail-open, never writes to the TUI. |
-| `.skilled/scripts/orphan-mcp-sweeper.sh` | The ownerless-MCP sweeper the no-session-PID fallback delegates to (reaps only reparented MCP processes). Not in this folder. |
+| `.skilled/scripts/orphan-mcp-sweeper.sh` | The orphan sweeper the no-session-PID fallback delegates to (stale MCP helpers and parentless temp or scratch processes 6+ hours old). Not in this folder. |
 | `.skilled/hooks/shared/hook-flags.sh` | The shared shell kill-switch resolver (`hook_enabled session-cleanup`). Sourced fail-open. |
 
 ---
