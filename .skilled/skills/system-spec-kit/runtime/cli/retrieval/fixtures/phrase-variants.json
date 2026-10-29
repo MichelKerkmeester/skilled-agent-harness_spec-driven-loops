@@ -1,5 +1,5 @@
 {
-  "manifestHash": "da003317cd0706c1e714fa89b20de65b6f923ac05d671491f4c1314f392ba06e",
+  "manifestHash": "63572ebe548c31e6abfbdc9422ce51d80d2d864db27af7a1821ae68939ae5c31",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -19536,6 +19536,9 @@
     "cli classifier 0 8 5 0": [
       "cli-classifier 0.8.5.0"
     ],
+    "cli classifier 0 8 6 0": [
+      "cli-classifier 0.8.6.0"
+    ],
     "cli classifier audit findings": [
       "cli-classifier audit findings"
     ],
@@ -19694,6 +19697,9 @@
     ],
     "cli classifier v0 8 5 0": [
       "cli-classifier v0.8.5.0"
+    ],
+    "cli classifier v0 8 6 0": [
+      "cli-classifier v0.8.6.0"
     ],
     "cli claude code 1 0 0 0": [
       "cli-claude-code 1.0.0.0"
@@ -20754,6 +20760,9 @@
     "cli external orchestration 1 7 11 0": [
       "cli-external-orchestration 1.7.11.0"
     ],
+    "cli external orchestration 1 7 12 0": [
+      "cli-external-orchestration 1.7.12.0"
+    ],
     "cli external orchestration 1 7 2 0": [
       "cli-external-orchestration 1.7.2.0"
     ],
@@ -20864,6 +20873,9 @@
     ],
     "cli external orchestration v1 7 11 0": [
       "cli-external-orchestration v1.7.11.0"
+    ],
+    "cli external orchestration v1 7 12 0": [
+      "cli-external-orchestration v1.7.12.0"
     ],
     "cli external orchestration v1 7 2 0": [
       "cli-external-orchestration v1.7.2.0"
@@ -53345,6 +53357,9 @@
     "hermes reasoning level": [
       "hermes reasoning level"
     ],
+    "hermes relative links": [
+      "hermes relative links"
+    ],
     "hermes repo guards plugin": [
       "hermes repo-guards plugin"
     ],
@@ -53368,6 +53383,9 @@
     ],
     "hermes router copy": [
       "hermes router copy"
+    ],
+    "hermes router links": [
+      "hermes router links"
     ],
     "hermes run budget margin seconds": [
       "HERMES_RUN_BUDGET_MARGIN_SECONDS"
@@ -62893,6 +62911,9 @@
     "mcp tooling 1 9 2 0": [
       "mcp-tooling 1.9.2.0"
     ],
+    "mcp tooling 1 9 3 0": [
+      "mcp-tooling 1.9.3.0"
+    ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
     ],
@@ -63039,6 +63060,9 @@
     ],
     "mcp tooling v1 9 2 0": [
       "mcp-tooling v1.9.2.0"
+    ],
+    "mcp tooling v1 9 3 0": [
+      "mcp-tooling v1.9.3.0"
     ],
     "mcp tools": [
       "mcp tools"
@@ -90279,6 +90303,9 @@
     "routing resilience at the command surface": [
       "routing resilience at the command surface"
     ],
+    "routing rules move to router md": [
+      "routing rules move to ROUTER.md"
+    ],
     "routing scenarios can fail": [
       "routing scenarios can fail"
     ],
@@ -96159,6 +96186,9 @@
     "sk code 3 9 23 0": [
       "sk-code 3.9.23.0"
     ],
+    "sk code 3 9 24 0": [
+      "sk-code 3.9.24.0"
+    ],
     "sk code 3 9 3 0": [
       "sk-code 3.9.3.0"
     ],
@@ -97974,6 +98004,9 @@
     "sk code v3 9 23 0": [
       "sk-code v3.9.23.0"
     ],
+    "sk code v3 9 24 0": [
+      "sk-code v3.9.24.0"
+    ],
     "sk code v3 9 3 0": [
       "sk-code v3.9.3.0"
     ],
@@ -99165,6 +99198,9 @@
     "sk design 2 0 1 0": [
       "sk-design 2.0.1.0"
     ],
+    "sk design 2 0 10 0": [
+      "sk-design 2.0.10.0"
+    ],
     "sk design 2 0 2 0": [
       "sk-design 2.0.2.0"
     ],
@@ -99705,6 +99741,9 @@
     "sk design v2 0 1 0": [
       "sk-design v2.0.1.0"
     ],
+    "sk design v2 0 10 0": [
+      "sk-design v2.0.10.0"
+    ],
     "sk design v2 0 2 0": [
       "sk-design v2.0.2.0"
     ],
@@ -99851,6 +99890,9 @@
     ],
     "sk doc 2 3 31 0": [
       "sk-doc 2.3.31.0"
+    ],
+    "sk doc 2 3 32 0": [
+      "sk-doc 2.3.32.0"
     ],
     "sk doc 2 3 4 0": [
       "sk-doc 2.3.4.0"
@@ -100265,6 +100307,9 @@
     ],
     "sk doc v2 3 31 0": [
       "sk-doc v2.3.31.0"
+    ],
+    "sk doc v2 3 32 0": [
+      "sk-doc v2.3.32.0"
     ],
     "sk doc v2 3 4 0": [
       "sk-doc v2.3.4.0"
@@ -109503,6 +109548,9 @@
     "system deep loop 1 6 2 0": [
       "system-deep-loop 1.6.2.0"
     ],
+    "system deep loop 1 6 20 0": [
+      "system-deep-loop 1.6.20.0"
+    ],
     "system deep loop 1 6 3 0": [
       "system-deep-loop 1.6.3.0"
     ],
@@ -109685,6 +109733,9 @@
     ],
     "system deep loop v1 6 2 0": [
       "system-deep-loop v1.6.2.0"
+    ],
+    "system deep loop v1 6 20 0": [
+      "system-deep-loop v1.6.20.0"
     ],
     "system deep loop v1 6 3 0": [
       "system-deep-loop v1.6.3.0"
@@ -110448,6 +110499,9 @@
     "system spec kit 2 12 23 0": [
       "system-spec-kit 2.12.23.0"
     ],
+    "system spec kit 2 12 24 0": [
+      "system-spec-kit 2.12.24.0"
+    ],
     "system spec kit 2 12 3 0": [
       "system-spec-kit 2.12.3.0"
     ],
@@ -110957,6 +111011,9 @@
     ],
     "system spec kit v2 12 23 0": [
       "system-spec-kit v2.12.23.0"
+    ],
+    "system spec kit v2 12 24 0": [
+      "system-spec-kit v2.12.24.0"
     ],
     "system spec kit v2 12 3 0": [
       "system-spec-kit v2.12.3.0"

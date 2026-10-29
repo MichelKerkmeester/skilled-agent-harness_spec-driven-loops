@@ -1,5 +1,5 @@
 {
-  "corpusHash": "fa9b0624a7ac212a7a032fa4ab4cf4499429d267035588edaa9526de8a7d0b31",
+  "corpusHash": "3ac32b26e9f09b96dd08995aaa369d9f3a1d58b8f7c6a693b02dffa79affcf97",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26969,
+  "includedPathCount": 26977,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -150,6 +150,7 @@
     ".skilled/skills/cli-classifier/changelog/v0.8.3.0.md",
     ".skilled/skills/cli-classifier/changelog/v0.8.4.0.md",
     ".skilled/skills/cli-classifier/changelog/v0.8.5.0.md",
+    ".skilled/skills/cli-classifier/changelog/v0.8.6.0.md",
     ".skilled/skills/cli-classifier/cli-jev/README.md",
     ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
     ".skilled/skills/cli-classifier/cli-jev/assets/question-shaping-card.md",
@@ -252,6 +253,7 @@
     ".skilled/skills/cli-external-orchestration/changelog/v1.7.1.0.md",
     ".skilled/skills/cli-external-orchestration/changelog/v1.7.10.0.md",
     ".skilled/skills/cli-external-orchestration/changelog/v1.7.11.0.md",
+    ".skilled/skills/cli-external-orchestration/changelog/v1.7.12.0.md",
     ".skilled/skills/cli-external-orchestration/changelog/v1.7.2.0.md",
     ".skilled/skills/cli-external-orchestration/changelog/v1.7.3.0.md",
     ".skilled/skills/cli-external-orchestration/changelog/v1.7.4.0.md",
@@ -1999,6 +2001,7 @@
     ".skilled/skills/mcp-tooling/changelog/v1.9.0.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.1.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.2.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.9.3.0.md",
     ".skilled/skills/mcp-tooling/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/mcp-tooling/feature-catalog/feature-catalog.md",
     ".skilled/skills/mcp-tooling/feature-catalog/workflow-vs-transport-routing/workflow-vs-transport-routing.md",
@@ -2802,6 +2805,7 @@
     ".skilled/skills/sk-code/changelog/v3.9.21.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.22.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.23.0.md",
+    ".skilled/skills/sk-code/changelog/v3.9.24.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.3.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.4.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.5.0.md",
@@ -3210,6 +3214,7 @@
     ".skilled/skills/sk-design/benchmark/reports/2026-09-27--manual-testing-playbook--hub-routing-replay/skill-benchmark-report.md",
     ".skilled/skills/sk-design/changelog/v2.0.0.0.md",
     ".skilled/skills/sk-design/changelog/v2.0.1.0.md",
+    ".skilled/skills/sk-design/changelog/v2.0.10.0.md",
     ".skilled/skills/sk-design/changelog/v2.0.2.0.md",
     ".skilled/skills/sk-design/changelog/v2.0.3.0.md",
     ".skilled/skills/sk-design/changelog/v2.0.4.0.md",
@@ -6217,6 +6222,7 @@
     ".skilled/skills/sk-doc/changelog/v2.3.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.30.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.31.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.32.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.4.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.5.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.6.0.md",
@@ -7051,6 +7057,7 @@
     ".skilled/skills/system-deep-loop/changelog/v1.6.18.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.19.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.2.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v1.6.20.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.3.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.4.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.5.0.md",
@@ -8206,6 +8213,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.21.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.22.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.23.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.24.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
@@ -27000,7 +27008,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "da003317cd0706c1e714fa89b20de65b6f923ac05d671491f4c1314f392ba06e",
+  "manifestHash": "63572ebe548c31e6abfbdc9422ce51d80d2d864db27af7a1821ae68939ae5c31",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
