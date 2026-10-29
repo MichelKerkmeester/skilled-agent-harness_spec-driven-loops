@@ -204,7 +204,7 @@
     ],
     "causal_summary": "53 of the 54 SKILL.md files end with a `## MACHINE ROUTER` section",
     "created_at": "2026-10-29T06:35:59Z",
-    "last_save_at": "2026-10-29T06:49:59.925Z",
+    "last_save_at": "2026-10-29T07:25:35.825Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1ae0b30fb5dfaced6363a9835770d38f625c9ea3f6620a1542977947afadc5cb",
+    "source_fingerprint": "sha256:97d2d3edbb3f12c0439fe6b32b95bd840fdb69900091d83445330d61cac26e9f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1aa188428592c51636863ea75a7d1720a2696f663fd3ac7f68d295de5aa8876a",
+      "spec.md": "ffb8629694844d8ab44698c28625c9c1cea246f1ea2c3d4a0e36c40673b9f5f6",
       "plan.md": "61b145fa8980c81028ddf2caf7ec6562caa7eaeedaf8733a197d54fa9689e7f8",
       "tasks.md": "6b4df8cf498a0d78e1b76265bdc0c5834a5c733f81de37e641402607c34ae855",
-      "implementation-summary.md": "bf58382c4171b8bb37f1ec8e7dab3314781972fcfd7730e5617dcad1842760ae"
+      "implementation-summary.md": "a86d4142098291931dbde9f8b07e2dae5029aae0b5569129b10032a1f41df12a"
     },
     "last_active_at": null
   }

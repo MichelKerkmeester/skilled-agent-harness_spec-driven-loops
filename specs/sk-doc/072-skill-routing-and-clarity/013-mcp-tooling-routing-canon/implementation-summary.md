@@ -90,6 +90,7 @@ A scan of the 54 SKILL.md files found the hub without the section, and the stric
 | Decision | Why |
 |----------|-----|
 | Require the section in every SKILL.md, not only hubs | 53 of 54 files already had it, so the rule adds no debt and matches what the canon docs already describe |
+| RS-005 applies only where a SMART ROUTING section exists | The first landing failed Spec-Kit Check: other doctor suites build bare hub fixtures with no routing prose, and they are not skills in the canon's sense. RS-001 is scoped the same way, and the required-section check already rejects a SKILL.md with no SMART ROUTING |
 | RS-002 fixtures keep the appendix | They test a block in the wrong place, and dropping the appendix would now add RS-005 to a case meant to isolate RS-002 |
 | Keep the separate-router-file question out of scope | It changes the canon for every skill and the tooling that reads it, so it needs its own decision |
 <!-- /ANCHOR:decisions -->

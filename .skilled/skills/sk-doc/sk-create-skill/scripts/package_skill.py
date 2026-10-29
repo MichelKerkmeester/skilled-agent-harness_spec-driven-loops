@@ -992,8 +992,10 @@ def routing_shape_findings(
         ))
 
     # Without the appendix a skill can still pass on counts alone while keeping
-    # its routing detail inline, so the section itself is required.
-    if shape.appendix is None:
+    # its routing detail inline, so the section itself is required. A file with
+    # no SMART ROUTING section is not routing prose, and the required-section
+    # check already rejects it.
+    if shape.smart_line_count is not None and shape.appendix is None:
         findings.append((
             'RS-005',
             "routing shape RS-005: no '## MACHINE ROUTER' section; the routing detail belongs in a final one",

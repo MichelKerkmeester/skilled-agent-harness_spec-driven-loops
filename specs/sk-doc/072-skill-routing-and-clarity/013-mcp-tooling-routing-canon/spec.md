@@ -169,7 +169,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
 
-- Empty input: a SKILL.md with no H2 sections at all gets RS-005.
+- Empty input: a SKILL.md with no SMART ROUTING section is outside RS-005, the same as RS-001, because the required-section check already rejects it.
 - Maximum input: a heading `## MACHINE ROUTER` inside a fenced block is template text, so it does not count as the section.
 - Failure path: a known-debt entry that records RS-005 tolerates it; any other skill fails `--strict` with exit 1.
 <!-- /ANCHOR:edge-cases -->

@@ -2053,8 +2053,9 @@ function routingShapeFindings(shape, { isPacket, carriesOwnRouter, maxLines, max
     });
   }
   // Without the appendix a skill can still pass on counts alone while keeping
-  // its routing detail inline, so the section itself is required.
-  if (shape.appendix === null) {
+  // its routing detail inline, so the section itself is required. A file with
+  // no SMART ROUTING section is not routing prose, so the rule does not apply.
+  if (shape.smartLineCount !== null && shape.appendix === null) {
     findings.push({
       code: 'RS-005',
       metric: null,
