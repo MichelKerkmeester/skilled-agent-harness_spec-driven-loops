@@ -2,7 +2,7 @@
 name: mcp-tooling
 description: "Parent hub for eight modes: five workflow modes and three read-only design transports routed by workflowMode."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.9.1.0
+version: 1.9.2.0
 metadata:
   family: mcp
 ---
@@ -47,32 +47,19 @@ Use this hub for any request that names one of its eight tool-bridge surfaces. T
 
 ## 2. SMART ROUTING
 
-Routing is two-stage:
+Stage one scores `hub-router.json` `routerSignals` against `vocabularyClasses` and reads `mode-registry.json` to select one mode, an ordered bundle, or a defer outcome.
+Stage two lives in the root [`ROUTER.md`](./ROUTER.md), which maps each mode's tool intent to the packet-qualified leaf resources it loads.
+The hub selects a mode, and `ROUTER.md` selects that mode's leaves.
 
-1. Stage 1 uses `hub-router.json` and `mode-registry.json` to select one workflow mode, an ordered bundle, or a defer outcome.
-2. Stage 2 uses the root `ROUTER.md` surface map to select packet-qualified leaf resources within the chosen mode.
-
-> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode through the compiled router first:
-> ```bash
-> node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"
-> ```
-> Follow `route` targets. On `clarify` or `defer`, ask for the missing tool identity. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the legacy hub-router contract. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide.
-
-A scored route loads only the selected mode's resources. The default resource is fallback-only and must not be unioned into a scored route.
-
-The root `ROUTER.md` machine block keeps `INTENT_SIGNALS` and `RESOURCE_MAP` in sync. Every resource path is packet-qualified, resolves on disk, and is represented in the generated leaf manifest.
+The advisor routes every MCP tool-bridge request to the single identity `mcp-tooling`.
+Resolve a mode with `node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"`.
+Follow the decision: `route` loads `targets`, and `clarify` or `defer` asks for the missing tool identity.
+A scored route loads only the selected mode's resources, so the fallback resource is never added to it.
+The directive and remaining routing detail live in the final `MACHINE ROUTER` section.
 
 ---
 
-## 3. TWO-AXIS MODEL
-
-- `packetKind: workflow` — `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, and `mcp-notion` can change workspace or external workflow state and use explicit safety gates.
-- `packetKind: transport` — `mcp-figma`, `mcp-refero`, and `mcp-mobbin` bridge external read or export surfaces and remain `mutatesWorkspace:false` in this workspace.
-- Design transports never decide design on their own. Figma, Refero, and Mobbin pair with `sk-design-md-generator` for measured references.
-
----
-
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### Terms
 
@@ -129,7 +116,7 @@ Existing workflow and transport packets retain their own safety contracts: workf
 
 ---
 
-## 5. RULES
+## 4. RULES
 
 ### ALWAYS
 
@@ -155,7 +142,7 @@ Existing workflow and transport packets retain their own safety contracts: workf
 
 ---
 
-## 6. REFERENCES
+## 5. REFERENCES
 
 - [`mode-registry.json`](mode-registry.json) — canonical mode identity and safety metadata.
 - [`hub-router.json`](hub-router.json) — stage-one policy and signal classes.
@@ -163,3 +150,43 @@ Existing workflow and transport packets retain their own safety contracts: workf
 - [`README.md`](README.md) — operator-facing hub overview.
 - [`manual-testing-playbook/manual-testing-playbook.md`](manual-testing-playbook/manual-testing-playbook.md) — live hub routing scenarios.
 - [`feature-catalog/feature-catalog.md`](feature-catalog/feature-catalog.md) — current capability inventory.
+
+---
+
+## 6. MACHINE ROUTER
+
+The compiled-routing directive and remaining routing detail live here.
+
+> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode through the compiled router first:
+> ```bash
+> node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"
+> ```
+> Follow `route` targets. On `clarify` or `defer`, ask for the missing tool identity. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the legacy hub-router contract. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide.
+
+### Two-Axis Model
+
+- `packetKind: workflow` — `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, and `mcp-notion` can change workspace or external workflow state and use explicit safety gates.
+- `packetKind: transport` — `mcp-figma`, `mcp-refero`, and `mcp-mobbin` bridge external read or export surfaces and remain `mutatesWorkspace:false` in this workspace.
+- Design transports never decide design on their own. Figma, Refero, and Mobbin pair with `sk-design-md-generator` for measured references.
+
+### Routing Rule
+
+```text
+read hub-router.json
+  -> score routerSignals and vocabularyClasses
+  -> apply routerPolicy.tieBreak
+  -> read mode-registry.json for packetKind, backendKind, toolSurface, and advisorRouting
+  -> load the selected packet(s)
+```
+
+### Outcomes
+
+- `single`: one dominant tool signal routes to one mode.
+- `orderedBundle`: several explicitly requested tools route in tie-break order.
+- `defer`: unclear or contradictory tool intent asks for disambiguation.
+
+A scored route loads only the selected mode's resources. The default resource is fallback-only and must not be unioned into a scored route.
+
+### Surface Router
+
+The root `ROUTER.md` machine block keeps `INTENT_SIGNALS` and `RESOURCE_MAP` in sync. Every resource path is packet-qualified, resolves on disk, and is represented in the generated leaf manifest.

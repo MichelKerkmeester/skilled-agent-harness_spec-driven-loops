@@ -96,7 +96,8 @@ def _write_valid_skill(
         "### NEVER\n- Use network access.\n"
         f"{escalate_rule}\n"
         "## 5. REFERENCES\nNo external references.\n\n"
-        + recommended_sections,
+        + recommended_sections
+        + "\n## 9. MACHINE ROUTER\nThe routing detail lives here.\n",
         encoding="utf-8",
     )
     return skill_path

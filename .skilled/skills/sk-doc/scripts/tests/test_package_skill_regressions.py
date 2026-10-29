@@ -204,7 +204,8 @@ def _write_valid_skill(
             "\n## 8. RELATED RESOURCES\nText.\n"
             if with_recommended_sections
             else ""
-        ),
+        )
+        + "\n## 9. MACHINE ROUTER\nThe routing detail lives here.\n",
         encoding="utf-8",
     )
     return skill_path

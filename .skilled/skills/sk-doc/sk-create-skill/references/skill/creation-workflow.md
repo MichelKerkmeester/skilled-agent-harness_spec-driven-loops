@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill frontmatter completion"
 importance_tier: normal
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # Skill Creation Process
@@ -261,9 +261,9 @@ Answer these questions in SKILL.md:
      Use runtime discovery, existence checks, an extensible routing key and multi-tier fallback.
      Adapt those patterns to this skill's resource map.
      Keep the block in the final `## MACHINE ROUTER` section.
-     A packet needs no block when the hub `ROUTER.md` already names every leaf it loads.
+     A packet needs no block when the hub `ROUTER.md` already names every leaf it loads, but it still ends with the section.
    - **Anti-pattern**: Do NOT duplicate routing logic in separate lookup tables. Do NOT put the router block inside SMART ROUTING.
-   - `package_skill.py --strict` rejects the old shape with codes RS-001 to RS-004: an oversized SMART ROUTING section, a router block outside the final section, a `## MACHINE ROUTER` section that is not last, and a mode packet that carries its own `ROUTER.md`.
+   - `package_skill.py --strict` rejects the old shape with codes RS-001 to RS-005: an oversized SMART ROUTING section, a router block outside the final section, a `## MACHINE ROUTER` section that is not last, a mode packet that carries its own `ROUTER.md`, and a SKILL.md with no `## MACHINE ROUTER` section.
 
 4. **How should bundled resources be organized for routing clarity?**
    - Keep domain structure explicit (for example `references/backend/go/`)

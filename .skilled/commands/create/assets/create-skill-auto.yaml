@@ -427,7 +427,7 @@ workflow:
     activities:
     - Run operation-appropriate validation scripts
     - "Run the completion gate: python3 .skilled/skills/sk-doc/scripts/validate_skill_package.py [skill_path]/[skill_name] --strict . This is the authoritative structural gate (hard-fails missing/non-4-part version, name!=folder, or missing required sections). It MUST pass before completion, and the generated tree must contain no non-exempt underscore path segment."
-    - "Run python3 .skilled/skills/sk-doc/scripts/package_skill.py [skill_path]/[skill_name] --check --strict. The strict completion gate runs that check and rejects the old routing shape (RS-001 to RS-004): a SMART ROUTING section over 12 lines or 180 words, a machine router block outside the final '## MACHINE ROUTER' section, that section not last, or a mode packet carrying ROUTER.md."
+    - "Run python3 .skilled/skills/sk-doc/scripts/package_skill.py [skill_path]/[skill_name] --check --strict. The strict completion gate runs that check and rejects the old routing shape (RS-001 to RS-005): a SMART ROUTING section over 12 lines or 180 words, a machine router block outside the final '## MACHINE ROUTER' section, that section not last, a mode packet carrying ROUTER.md, or a SKILL.md with no '## MACHINE ROUTER' section."
     - Capture DQI score and quality band
     - Enforce hard minimum threshold (75)
     - Compare against operation target score

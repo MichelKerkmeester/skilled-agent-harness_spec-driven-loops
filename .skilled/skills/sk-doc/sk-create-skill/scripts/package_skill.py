@@ -196,7 +196,7 @@ ROUTING_SHAPE_SKILLS_ROOT_ENV = 'ROUTING_SHAPE_SKILLS_ROOT'
 ROUTING_SHAPE_MAX_LINES = 12
 ROUTING_SHAPE_MAX_WORDS = 180
 # The finding codes a debt entry may record as tolerated.
-ROUTING_SHAPE_CODES = ('RS-001', 'RS-002', 'RS-003', 'RS-004')
+ROUTING_SHAPE_CODES = ('RS-001', 'RS-002', 'RS-003', 'RS-004', 'RS-005')
 # A fenced or indented block holding any of these is a machine router, not
 # prose: the two maps and the checklist are router data, the two functions are
 # router helpers, so none of them may sit in the routing prose.
@@ -989,6 +989,14 @@ def routing_shape_findings(
         findings.append((
             'RS-003',
             "routing shape RS-003: '## MACHINE ROUTER' is not the last H2 section",
+        ))
+
+    # Without the appendix a skill can still pass on counts alone while keeping
+    # its routing detail inline, so the section itself is required.
+    if shape.appendix is None:
+        findings.append((
+            'RS-005',
+            "routing shape RS-005: no '## MACHINE ROUTER' section; the routing detail belongs in a final one",
         ))
 
     if is_packet and carries_own_router:

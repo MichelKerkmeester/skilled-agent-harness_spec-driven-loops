@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/072-skill-routing-and-clarity/013-mcp-tooling-routing-canon",
+  "spec_folder": "sk-doc/072-skill-routing-and-clarity/013-mcp-tooling-routing-canon",
+  "parent_id": "sk-doc/072-skill-routing-and-clarity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp tooling routing canon",
+      "phase 13 mcp tooling routing canon",
+      "routing shape rs-005",
+      "mcp tooling routing canon plan",
+      "mcp tooling routing canon tasks",
+      "mcp tooling routing canon acceptance criteria",
+      "mcp tooling routing canon implementation summary"
+    ],
+    "key_topics": [
+      "mcp",
+      "tooling",
+      "routing",
+      "canon",
+      "phase",
+      "shape",
+      "rs-005",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/mcp-tooling/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      ".skilled/skills/sk-doc/scripts/tests/test_routing_shape.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_create_skill_contract.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_package_skill_regressions.py",
+      ".skilled/commands/doctor/scripts/tests/parent-skill-check-routing-shape.test.cjs",
+      ".skilled/commands/create/assets/create-skill-auto.yaml",
+      ".hermes/skills/mcp-tooling/SKILL.md",
+      "scratch/before.txt",
+      "scratch/after.txt",
+      ".skilled/skills/sk-doc/sk-create-skill/references/shared/validation-and-packaging.md",
+      ".skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "test_routing_shape.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_routing_shape.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_create_skill_contract.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_create_skill_contract.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_package_skill_regressions.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_package_skill_regressions.py",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check-routing-shape.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/parent-skill-check-routing-shape.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "create-skill-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-skill-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validation-and-packaging.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/shared/validation-and-packaging.md",
+        "source": "derived"
+      },
+      {
+        "name": "creation-workflow.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-md-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "53 of the 54 SKILL.md files end with a `## MACHINE ROUTER` section",
+    "created_at": "2026-10-29T06:35:59Z",
+    "last_save_at": "2026-10-29T06:49:59.925Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1ae0b30fb5dfaced6363a9835770d38f625c9ea3f6620a1542977947afadc5cb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1aa188428592c51636863ea75a7d1720a2696f663fd3ac7f68d295de5aa8876a",
+      "plan.md": "61b145fa8980c81028ddf2caf7ec6562caa7eaeedaf8733a197d54fa9689e7f8",
+      "tasks.md": "6b4df8cf498a0d78e1b76265bdc0c5834a5c733f81de37e641402607c34ae855",
+      "implementation-summary.md": "bf58382c4171b8bb37f1ec8e7dab3314781972fcfd7730e5617dcad1842760ae"
+    },
+    "last_active_at": null
+  }
+}

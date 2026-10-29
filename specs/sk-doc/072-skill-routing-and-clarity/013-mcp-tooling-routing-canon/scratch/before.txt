@@ -1,0 +1,4 @@
+$ grep -c "MACHINE ROUTER" .skilled/skills/mcp-tooling/SKILL.md
+0
+$ python3 .skilled/skills/sk-doc/scripts/package_skill.py .skilled/skills/mcp-tooling --check --strict | tail -1
+Result: PASS

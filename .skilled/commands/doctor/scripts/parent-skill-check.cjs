@@ -1858,7 +1858,7 @@ const ROUTING_SHAPE_MACHINE_LINE =
 
 // The finding codes a debt entry may record. An entry naming anything else is
 // ignored outright rather than partially honoured, so a typo cannot widen it.
-const ROUTING_SHAPE_CODES = ['RS-001', 'RS-002', 'RS-003', 'RS-004'];
+const ROUTING_SHAPE_CODES = ['RS-001', 'RS-002', 'RS-003', 'RS-004', 'RS-005'];
 const ROUTING_SHAPE_DEBT_FIELDS = ['lines', 'words', 'machineBlocks', 'codes'];
 // The unit each recorded limit is counted in, named in the "grew past" message.
 const ROUTING_SHAPE_DEBT_UNITS = { lines: 'lines', words: 'words', machineBlocks: 'machine block(s)' };
@@ -2013,7 +2013,7 @@ function parseRoutingShape(source) {
   return { smartLineCount, smartWordCount, machineLines, appendix };
 }
 
-// The four routing-shape rules, reported in the order the contract lists them.
+// The five routing-shape rules, reported in the order the contract lists them.
 // Each finding names the ledger metric it is measured against, so a recorded
 // limit tolerates exactly that finding and nothing else.
 function routingShapeFindings(shape, { isPacket, carriesOwnRouter, maxLines, maxWords }) {
@@ -2050,6 +2050,15 @@ function routingShapeFindings(shape, { isPacket, carriesOwnRouter, maxLines, max
       code: 'RS-003',
       metric: null,
       message: "routing shape RS-003: '## MACHINE ROUTER' is not the last H2 section",
+    });
+  }
+  // Without the appendix a skill can still pass on counts alone while keeping
+  // its routing detail inline, so the section itself is required.
+  if (shape.appendix === null) {
+    findings.push({
+      code: 'RS-005',
+      metric: null,
+      message: "routing shape RS-005: no '## MACHINE ROUTER' section; the routing detail belongs in a final one",
     });
   }
   if (isPacket && carriesOwnRouter) {

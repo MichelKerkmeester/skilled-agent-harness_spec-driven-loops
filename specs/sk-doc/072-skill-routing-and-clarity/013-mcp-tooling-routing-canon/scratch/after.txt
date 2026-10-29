@@ -1,0 +1,6 @@
+$ grep -c "MACHINE ROUTER" .skilled/skills/mcp-tooling/SKILL.md
+2
+$ python3 .skilled/skills/sk-doc/scripts/package_skill.py .skilled/skills/mcp-tooling --check --strict | tail -1
+Result: PASS
+old SKILL.md under the new check: ["routing shape RS-005: no '## MACHINE ROUTER' section; the routing detail belongs in a final one"]
+new SKILL.md under the new check: []

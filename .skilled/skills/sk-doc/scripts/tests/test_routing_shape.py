@@ -215,7 +215,6 @@ def test_machine_block_inside_smart_routing_fails_strict(tmp_path):
         tmp_path,
         prose=prose,
         smart_extra=["", "```python", "INTENT_SIGNALS = {'demo': ['demo task']}", "```"],
-        appendix=False,
     )
 
     valid, message, _warnings = PACKAGE_SKILL.validate_skill(skill_path, strict=True)
@@ -235,6 +234,20 @@ def test_machine_router_followed_by_another_h2_fails_strict(tmp_path):
     assert valid is False
     assert "routing shape RS-003" in message
     assert "'## MACHINE ROUTER' is not the last H2 section" in message
+    assert "RS-001" not in message
+    assert "RS-002" not in message
+
+
+def test_skill_without_a_machine_router_section_fails_strict(tmp_path):
+    # Short prose with no machine block passes every count, so only the missing
+    # section itself can catch a skill that kept its routing detail inline.
+    skill_path = _write_skill(tmp_path, appendix=False)
+
+    valid, message, _warnings = PACKAGE_SKILL.validate_skill(skill_path, strict=True)
+
+    assert valid is False
+    assert "routing shape RS-005" in message
+    assert "no '## MACHINE ROUTER' section" in message
     assert "RS-001" not in message
     assert "RS-002" not in message
 
@@ -337,7 +350,6 @@ def test_recorded_machine_block_debt_tolerates_the_recorded_count(tmp_path, monk
         tmp_path,
         prose=[marker],
         smart_extra=_machine_block("INTENT_SIGNALS = {'demo': ['demo task']}"),
-        appendix=False,
     )
     valid, message, warnings = PACKAGE_SKILL.validate_skill(skill_path, strict=True)
     assert valid is True, message
@@ -351,7 +363,6 @@ def test_recorded_machine_block_debt_tolerates_the_recorded_count(tmp_path, monk
                 _machine_block("INTENT_SIGNALS = {'demo': ['demo task']}")
                 + _machine_block("RESOURCE_MAP = {'demo': ['references/demo.md']}")
             ),
-            appendix=False,
         ),
         encoding="utf-8",
     )

@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill section guidance"
 importance_tier: normal
 contextType: general
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # SKILL.md File Templates - Creation Guide
@@ -655,7 +655,7 @@ A packet needs no block when the hub root `ROUTER.md` already names all its leav
 
 **The no-match outcome** is named `UNKNOWN_FALLBACK` everywhere. Low confidence returns a disambiguation checklist, never an empty result and never a guess.
 
-**Validation**: `package_skill.py --strict` rejects the old shape with four codes:
+**Validation**: `package_skill.py --strict` rejects the old shape with five codes:
 
 | Code | Finding |
 |------|---------|
@@ -663,6 +663,7 @@ A packet needs no block when the hub root `ROUTER.md` already names all its leav
 | `RS-002` | a machine router block sits outside the final `## MACHINE ROUTER` section |
 | `RS-003` | `## MACHINE ROUTER` exists but is not the last H2 |
 | `RS-004` | a mode packet carries its own `ROUTER.md` |
+| `RS-005` | the SKILL.md has no `## MACHINE ROUTER` section |
 
 A machine router block is a fenced block or an unfenced run of indented lines.
 It contains one of these markers: `INTENT_SIGNALS =`, `RESOURCE_MAP =`, `UNKNOWN_FALLBACK_CHECKLIST =`, `def discover_markdown_resources` or `def _guard_in_skill`.
@@ -1116,7 +1117,7 @@ python .skilled/skills/sk-doc/scripts/package_skill.py .skilled/skills/[skill-na
 # - Frontmatter: name (hyphen-case), description (no <>), allowed-tools (array format), version
 # - Required sections: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES
 # - RULES subsections: ✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF
-# - Routing shape: SMART ROUTING 8-12 non-blank lines, MACHINE ROUTER the last H2 (RS-001 to RS-004 under --strict)
+# - Routing shape: SMART ROUTING 8-12 non-blank lines, MACHINE ROUTER present and the last H2 (RS-001 to RS-005 under --strict)
 # - Size constraints: max 5000 words, max 3000 lines
 
 # Native discovery:

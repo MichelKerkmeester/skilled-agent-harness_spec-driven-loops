@@ -105,6 +105,10 @@ function canonHubSkillMd() {
     '`mode-registry.json` to pick the mode. Stage two lives in root',
     '[`ROUTER.md`](./ROUTER.md).',
     '',
+    '## 3. MACHINE ROUTER',
+    '',
+    'The compiled-routing directive and the routing rule live here.',
+    '',
   ].join('\n');
 }
 
@@ -318,7 +322,7 @@ function testOverWordCapSmartRoutingFailsRS001() {
 
 function testMachineBlockInsideSmartRoutingFailsRS002() {
   const hubRoot = buildCleanFixture({
-    packetASkill: packetSkillMd(PACKET_A, { smartBlock: ['INTENT_SIGNALS = {}'], appendix: false }),
+    packetASkill: packetSkillMd(PACKET_A, { smartBlock: ['INTENT_SIGNALS = {}'] }),
   });
   const result = runChecker(hubRoot);
   assertOnlyRoutingShapeFailure(result.stdout, "RS-002: machine router block at line \\d+ is outside a final '## MACHINE ROUTER' section");
@@ -332,6 +336,17 @@ function testMachineRouterNotLastFailsRS003() {
   const result = runChecker(hubRoot);
   assertOnlyRoutingShapeFailure(result.stdout, "RS-003: '## MACHINE ROUTER' is not the last H2 section");
   assert.equal(result.status, 1, `expected a non-final MACHINE ROUTER to exit 1:\n${result.stdout}`);
+}
+
+// Short prose with no machine block passes every count, so only the missing
+// section itself can catch a skill that kept its routing detail inline.
+function testMissingMachineRouterFailsRS005() {
+  const hubRoot = buildCleanFixture({
+    packetASkill: packetSkillMd(PACKET_A, { appendix: false }),
+  });
+  const result = runChecker(hubRoot);
+  assertOnlyRoutingShapeFailure(result.stdout, "RS-005: no '## MACHINE ROUTER' section");
+  assert.equal(result.status, 1, `expected a SKILL.md without MACHINE ROUTER to exit 1:\n${result.stdout}`);
 }
 
 function testPacketOwnRouterFailsRS004() {
@@ -395,7 +410,7 @@ function testFourTickFencedRouterFailsRS002AtOpeningFence() {
 
 function testUnknownFallbackChecklistIsAMachineBlock() {
   const misplaced = buildCleanFixture({
-    packetASkill: packetSkillMd(PACKET_A, { smartBlock: ['UNKNOWN_FALLBACK_CHECKLIST = []'], appendix: false }),
+    packetASkill: packetSkillMd(PACKET_A, { smartBlock: ['UNKNOWN_FALLBACK_CHECKLIST = []'] }),
   });
   const misplacedResult = runChecker(misplaced);
   assertOnlyRoutingShapeFailure(misplacedResult.stdout, 'RS-002: machine router block at line \\d+ is outside a final');
@@ -568,7 +583,7 @@ function testRecordedLengthDebtDoesNotCoverOwnRouter() {
 
 function testRecordedMachineBlockDebtToleratesOne() {
   const hubRoot = buildCleanFixture({
-    packetASkill: packetSkillMd(PACKET_A, { smartBlock: ['INTENT_SIGNALS = {}'], appendix: false }),
+    packetASkill: packetSkillMd(PACKET_A, { smartBlock: ['INTENT_SIGNALS = {}'] }),
   });
   const debtFile = writeDebt(hubRoot, debtEntry({ machineBlocks: 1, codes: ['RS-002'] }));
   const result = runWithDebt(hubRoot, debtFile);
@@ -662,6 +677,7 @@ testOverBudgetSmartRoutingFailsRS001();
 testOverWordCapSmartRoutingFailsRS001();
 testMachineBlockInsideSmartRoutingFailsRS002();
 testMachineRouterNotLastFailsRS003();
+testMissingMachineRouterFailsRS005();
 testPacketOwnRouterFailsRS004();
 testIndentedRouterInSmartRoutingFailsRS002();
 testFourTickFencedRouterFailsRS002AtOpeningFence();

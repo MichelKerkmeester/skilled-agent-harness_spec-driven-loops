@@ -121,6 +121,7 @@ Give every skill one source per routing decision, a routing shape that fits its 
 | 10 | 010-prose-clarity-pass/ | Prose clarity over every skill doc and the command and agent docs that teach routing, and in sk-create-skill so new skills start clear | Complete |
 | 11 | 011-regeneration-and-verification/ | Regenerate every mirror and generated file; rerun the phase 002 baseline and report the delta | Complete |
 | 12 | 012-alignment-remediation/ | The alignment run over the program's own range: close its 34 findings, from the two red CI gates to the documentation debt, and rerun the battery rows that failed | Complete |
+| 13 | 013-mcp-tooling-routing-canon/ | Move the mcp-tooling hub, the last SKILL.md without a final MACHINE ROUTER section, to the canon, and make the check fail any SKILL.md that lacks the section | Complete |
 
 ### Phase Transition Rules
 
@@ -144,6 +145,7 @@ Give every skill one source per routing decision, a routing shape that fits its 
 | 009-standalone-skills | 010-prose-clarity-pass | Seven standalone skills at the canon shape | package_skill and leaf-manifest checks pass |
 | 010-prose-clarity-pass | 011-regeneration-and-verification | Prose pass complete | check-rule-copies, package_skill and verify-doc-claims pass |
 | 011-regeneration-and-verification | 012-alignment-remediation | Every generator writes nothing and the alignment run has a range to check | The alignment battery and lanes run over the program range |
+| 012-alignment-remediation | 013-mcp-tooling-routing-canon | The alignment findings closed and one hub still in the older shape | Every SKILL.md has the section and package_skill --strict enforces it |
 <!-- /ANCHOR:phase-map -->
 
 ---
