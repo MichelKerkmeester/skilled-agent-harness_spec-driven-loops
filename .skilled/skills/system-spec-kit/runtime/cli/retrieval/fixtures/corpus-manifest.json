@@ -1,5 +1,5 @@
 {
-  "corpusHash": "c22f7bbd8462d33027881eecd1be14d0b75ed78f8a069050cd021d31b2986568",
+  "corpusHash": "8e197d52e8f2c0e2b953cb956189d8437e7447758355312f1538d76c214bb30f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26945,
+  "includedPathCount": 26948,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2801,6 +2801,7 @@
     ".skilled/skills/sk-code/changelog/v3.9.20.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.21.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.22.0.md",
+    ".skilled/skills/sk-code/changelog/v3.9.23.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.3.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.4.0.md",
     ".skilled/skills/sk-code/changelog/v3.9.5.0.md",
@@ -8200,6 +8201,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.20.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.21.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.22.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.23.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
@@ -8377,6 +8379,7 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/no-symlinks-in-lib-tree.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-sweep-stop-hook-activation.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-sweep-temp-path-class.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/phase-command-workflow.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/phase-detection-scoring.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/phase-folder-creation.md",
@@ -26976,7 +26979,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f1c3c6f369b339dffe5a513151ba29d1c2df8c58cb1c6e9d769d757a5badcf32",
+  "manifestHash": "74f1e0f75ed24c2c8beedb9e9b5e585391172676187f3abc4e97cd2c2ccb7082",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

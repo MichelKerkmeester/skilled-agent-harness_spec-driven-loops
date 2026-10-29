@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f1c3c6f369b339dffe5a513151ba29d1c2df8c58cb1c6e9d769d757a5badcf32",
+  "manifestHash": "74f1e0f75ed24c2c8beedb9e9b5e585391172676187f3abc4e97cd2c2ccb7082",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -71866,6 +71866,12 @@
     "orphan sweeper rollout summary": [
       "orphan sweeper rollout summary"
     ],
+    "orphan temp process cleanup": [
+      "orphan temp process cleanup"
+    ],
+    "orphan temp process sweep": [
+      "orphan temp process sweep"
+    ],
     "orphan worker reaping": [
       "orphan worker reaping"
     ],
@@ -77595,6 +77601,9 @@
     "playbook 47 scenario test": [
       "playbook 47 scenario test"
     ],
+    "playbook admission check": [
+      "playbook admission check"
+    ],
     "playbook allowlist enrolment": [
       "playbook allowlist enrolment"
     ],
@@ -80689,6 +80698,9 @@
     ],
     "quality docs rule overrides": [
       "quality docs rule overrides"
+    ],
+    "quality doctor route drift": [
+      "quality doctor route drift"
     ],
     "quality fallback fts5 bm25 grep": [
       "quality fallback fts5 bm25 grep"
@@ -92100,6 +92112,9 @@
     "scheduled graph refresh": [
       "scheduled graph refresh"
     ],
+    "scheduled process cleanup": [
+      "scheduled process cleanup"
+    ],
     "schema audit": [
       "schema audit"
     ],
@@ -96083,6 +96098,9 @@
     "sk code 3 9 22 0": [
       "sk-code 3.9.22.0"
     ],
+    "sk code 3 9 23 0": [
+      "sk-code 3.9.23.0"
+    ],
     "sk code 3 9 3 0": [
       "sk-code 3.9.3.0"
     ],
@@ -97894,6 +97912,9 @@
     ],
     "sk code v3 9 22 0": [
       "sk-code v3.9.22.0"
+    ],
+    "sk code v3 9 23 0": [
+      "sk-code v3.9.23.0"
     ],
     "sk code v3 9 3 0": [
       "sk-code v3.9.3.0"
@@ -109064,6 +109085,9 @@
     "sweep stale mcp processes": [
       "sweep stale mcp processes"
     ],
+    "sweep temp path orphans": [
+      "sweep temp path orphans"
+    ],
     "sweep then gate": [
       "sweep then gate"
     ],
@@ -110342,6 +110366,9 @@
     "system spec kit 2 12 21 0": [
       "system-spec-kit 2.12.21.0"
     ],
+    "system spec kit 2 12 22 0": [
+      "system-spec-kit 2.12.22.0"
+    ],
     "system spec kit 2 12 23 0": [
       "system-spec-kit 2.12.23.0"
     ],
@@ -110848,6 +110875,9 @@
     ],
     "system spec kit v2 12 21 0": [
       "system-spec-kit v2.12.21.0"
+    ],
+    "system spec kit v2 12 22 0": [
+      "system-spec-kit v2.12.22.0"
     ],
     "system spec kit v2 12 23 0": [
       "system-spec-kit v2.12.23.0"
