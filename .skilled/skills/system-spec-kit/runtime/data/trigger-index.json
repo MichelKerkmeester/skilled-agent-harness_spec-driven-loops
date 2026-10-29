@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4b88542ed6125643f28a56403d6e531175ba38bfca175840624aa7545f6ce21b",
+  "manifestHash": "f1c3c6f369b339dffe5a513151ba29d1c2df8c58cb1c6e9d769d757a5badcf32",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -2622,7 +2622,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.20.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.21.0.md",
-    ".skilled/skills/system-spec-kit/changelog/v2.12.22.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.23.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
@@ -133968,7 +133968,7 @@
     "system spec kit 2 12 21 0": [
       2611
     ],
-    "system spec kit 2 12 22 0": [
+    "system spec kit 2 12 23 0": [
       2612
     ],
     "system spec kit 2 12 3 0": [
@@ -134477,7 +134477,7 @@
     "system spec kit v2 12 21 0": [
       2611
     ],
-    "system spec kit v2 12 22 0": [
+    "system spec kit v2 12 23 0": [
       2612
     ],
     "system spec kit v2 12 3 0": [

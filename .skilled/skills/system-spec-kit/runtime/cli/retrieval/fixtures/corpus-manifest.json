@@ -1,5 +1,5 @@
 {
-  "corpusHash": "14f92be0974c6d7c75f3a536253e99d564ac5366fba1f5a5f8c6f4f987976097",
+  "corpusHash": "c22f7bbd8462d33027881eecd1be14d0b75ed78f8a069050cd021d31b2986568",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -8200,7 +8200,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.20.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.21.0.md",
-    ".skilled/skills/system-spec-kit/changelog/v2.12.22.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.23.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
@@ -26976,7 +26976,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4b88542ed6125643f28a56403d6e531175ba38bfca175840624aa7545f6ce21b",
+  "manifestHash": "f1c3c6f369b339dffe5a513151ba29d1c2df8c58cb1c6e9d769d757a5badcf32",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
