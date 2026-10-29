@@ -4,7 +4,7 @@ description: "Turns a finished benchmark run into documentation an operator can 
 trigger_phrases:
   - "benchmark-report.md"
   - "behavior benchmark"
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # create-benchmark
@@ -32,7 +32,7 @@ A benchmark finishes inside a spec packet. The result lives three folders deep i
 
 ### What It Does
 
-`create-benchmark` authors documentation and input artifacts for two benchmark families. MCP promotion writes a `benchmark-report.md` and a `source.md` that move a shipped spec packet's results into a skill's `mcp-server/benchmarks/` tree. Behavior benchmarks get a `behavior-benchmark/` package of scenario contracts for a deep-loop mode. The skill never runs a benchmark and never writes a scorer or rubric. Those stay lane-owned. Start with the `/create:benchmark` command. The family router in `SKILL.md` section 12 decides which family shape applies. It is the required first stop before authoring anything.
+`create-benchmark` authors documentation and input artifacts for two benchmark families. MCP promotion writes a `benchmark-report.md` and a `source.md` that move a shipped spec packet's results into a skill's `mcp-server/benchmarks/` tree. Behavior benchmarks get a `behavior-benchmark/` package of scenario contracts for a deep-loop mode. The skill never runs a benchmark and never writes a scorer or rubric. Those stay lane-owned. Start with the `/create:benchmark` command. The family router in `ROUTER.md` section 3 decides which family shape applies. It is the required first stop before authoring anything.
 
 ### The Family Capability Layer
 
@@ -45,14 +45,14 @@ A benchmark finishes inside a spec packet. The result lives three folders deep i
 
 ## 3. QUICK START
 
-**Step 1: Invoke it.** Run `/create:benchmark` or read `SKILL.md` section 12 to route to a family first.
+**Step 1: Invoke it.** Run `/create:benchmark` or read `ROUTER.md` section 3 to route to a family first.
 
 **Step 2: Route before you write anything.**
 
 ```text
 Measurable MCP surface + shipped spec packet with accepted ADRs + stable fixture?
   YES -> MCP promotion (SKILL.md section 3-8)
-  NO  -> check behavior families (SKILL.md section 12 table)
+  NO  -> check behavior families (ROUTER.md section 3 table)
 ```
 
 The block is the family router in miniature. MCP promotion is the flagship command-driven family.
@@ -103,7 +103,7 @@ Skip it when the benchmark is still in-flight, is a single unreplayable data poi
 |---|---|---|
 | Validator flags a document-type mismatch | `benchmark-report.md` was checked with the wrong `--type` | Pass `--type readme` (or the closer-matching type) and re-run |
 | A re-run created a second dated folder | The re-run confirmed the same headline instead of updating in place | Delete the new folder. Add a `Re-run YYYY-MM-DD` note to the existing `benchmark-report.md` instead |
-| The wrong family template got copied | The family router in `SKILL.md` section 12 was skipped | Re-route through the family table before authoring anything |
+| The wrong family template got copied | The family router in `ROUTER.md` section 3 was skipped | Re-route through the family table before authoring anything |
 
 ---
 

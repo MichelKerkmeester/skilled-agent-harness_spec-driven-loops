@@ -9,7 +9,7 @@ expected_resources:
   - ../shared/references/universal/code-quality-standards.md
   - references/code-style-guide.md
 catalog_applicable: true
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # CQ-008: Restraint Prompt Routes To The Quality Gate
@@ -99,7 +99,7 @@ Command transcript from steps 1 to 6, the resolved frontmatter block, the stage-
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §9 | Thin `INTENT_SIGNALS`/`RESOURCE_MAP` projection this scenario reads |
+| [ROUTER.md](../../ROUTER.md) §3 | Thin `INTENT_SIGNALS`/`RESOURCE_MAP` projection this scenario reads |
 | [SKILL.md](../../SKILL.md) §4 | The workflow step that applies the Design Restraint Ladder |
 | [ROUTER.md](../../../ROUTER.md) §9 | The `CODE_QUALITY` keyword list stage two reads |
 | [code-quality-standards.md](../../../shared/references/universal/code-quality-standards.md) | The Design Restraint Ladder itself |

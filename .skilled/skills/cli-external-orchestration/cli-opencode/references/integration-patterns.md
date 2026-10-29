@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode run hang non-interactive"
 importance_tier: important
 contextType: implementation
-version: 1.4.13.0
+version: 1.4.14.0
 ---
 
 # OpenCode CLI - Integration Patterns
@@ -435,4 +435,5 @@ The full Memory Handback Protocol is shared with cli-claude-code and cli-opencod
 - `./opencode-tools.md` - Unique value props vs sibling cli-* skills
 - `./agent-delegation.md` - Agent routing matrix
 - `../assets/prompt-templates.md` - Copy-paste templates per use case
-- `../SKILL.md` - Skill entry point and smart router pseudocode
+- `../SKILL.md` - Skill entry point
+- `../ROUTER.md` - Smart router pseudocode

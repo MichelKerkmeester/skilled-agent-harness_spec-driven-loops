@@ -11,7 +11,7 @@ expected_resources:
   - assets/security-checklist.md
   - assets/code-quality-checklist.md
   - assets/fix-completeness-checklist.md
-version: 1.1.0.0
+version: 1.1.2.0
 ---
 
 # CR-R01: Security routing
@@ -26,7 +26,7 @@ This scenario validates SECURITY routing for `CR-R01`. It confirms that an auth/
 
 ### Why This Matters
 
-`SECURITY` carries the highest `INTENT_SIGNALS` weight (5) in `sk-code-review/SKILL.md` because a missed auth or injection defect defeats every other review dimension. `RESOURCE_MAP["SECURITY"]` points at `assets/security-checklist.md`, which is already one of the five `DEFAULT_RESOURCES`, so a path-existence check alone cannot tell a correct route from the always-loaded baseline. The discriminating evidence is the selected intent and its score, plus the disconfirming run where the prompt falls through to the `QUALITY` default with `needs_disambiguation` set. CR-R01 asserts that pair, so a dropped keyword, a changed weight or a dropped map entry fails the scenario instead of passing behind the baseline.
+`SECURITY` carries the highest `INTENT_SIGNALS` weight (5) in `../../ROUTER.md` because a missed auth or injection defect defeats every other review dimension. `RESOURCE_MAP["SECURITY"]` points at `assets/security-checklist.md`, which is already one of the five `DEFAULT_RESOURCES`, so a path-existence check alone cannot tell a correct route from the always-loaded baseline. The discriminating evidence is the selected intent and its score, plus the disconfirming run where the prompt falls through to the `QUALITY` default with `needs_disambiguation` set. CR-R01 asserts that pair, so a dropped keyword, a changed weight or a dropped map entry fails the scenario instead of passing behind the baseline.
 
 ---
 
@@ -37,7 +37,7 @@ Operators run the exact prompt and command sequence for `CR-R01` and confirm the
 - Objective: confirm the exact prompt selects `SECURITY` at its own score and the disconfirming prompt selects no intent.
 - Real user request: `Review target is an auth handler that needs a security-focused pass.`
 - Prompt: `Review this auth handler for injection, vulnerability, race, and secret-handling security issues.`
-- Expected execution process: run the shipped `MACHINE ROUTER` block from `SKILL.md` §10 over the exact prompt and over the disconfirming prompt, and compare the printed intents, scores and resource lists with the Expected block.
+- Expected execution process: run the shipped `MACHINE ROUTER` block from `../../ROUTER.md` §3 over the exact prompt and over the disconfirming prompt, and compare the printed intents, scores and resource lists with the Expected block.
 - Expected signals: the exact prompt prints `intents= ['SECURITY']`, `scores= {'SECURITY': 25.0}`, `needs_disambiguation= False` and the five `DEFAULT_RESOURCES`; the disconfirming prompt prints `intents= ['QUALITY']`, an empty score map and `needs_disambiguation= True`.
 - Desired user-visible outcome: a review that keeps the security checklist active and does not relax auth/injection findings because a narrower intent matched.
 - Pass/fail: PASS if the exact prompt selects `SECURITY` with score `25.0`, the disconfirming prompt selects `QUALITY` only through the low-score fallback, and every printed path is one of the five `DEFAULT_RESOURCES`; FAIL if the intent differs, the score differs, or the disconfirming prompt still selects `SECURITY`.
@@ -58,20 +58,20 @@ Review this auth handler for injection, vulnerability, race, and secret-handling
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-R01 | Security routing | Confirm an auth/injection-shaped prompt selects `SECURITY` at its own score, and that the same prompt without its security words selects no intent. | `Review this auth handler for injection, vulnerability, race, and secret-handling security issues.` | bash: run the shipped `SKILL.md` §10 router block over the exact prompt and the disconfirming prompt -> compare intents, scores, `needs_disambiguation` and the resource lists with the Expected block | The exact prompt prints `intents= ['SECURITY']`, `scores= {'SECURITY': 25.0}`, `needs_disambiguation= False` and the five `DEFAULT_RESOURCES`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}` and `needs_disambiguation= True` | Both router transcripts, with the intent, score, flag and resource list for each prompt | PASS iff the exact prompt selects `SECURITY` at `25.0`, the disconfirming prompt reaches `QUALITY` only through the low-score fallback, and every printed path is a `DEFAULT_RESOURCES` entry; FAIL on a different intent, a different score, or a disconfirming prompt that still selects `SECURITY` | 1. Confirm the §10 block was extracted from `SKILL.md` and not rewritten by hand; 2. Diff `INTENT_SIGNALS["SECURITY"]` against the keywords the exact prompt relies on; 3. Check the disconfirming prompt carries no security keyword |
+| CR-R01 | Security routing | Confirm an auth/injection-shaped prompt selects `SECURITY` at its own score, and that the same prompt without its security words selects no intent. | `Review this auth handler for injection, vulnerability, race, and secret-handling security issues.` | bash: run the shipped `../../ROUTER.md` §3 router block over the exact prompt and the disconfirming prompt -> compare intents, scores, `needs_disambiguation` and the resource lists with the Expected block | The exact prompt prints `intents= ['SECURITY']`, `scores= {'SECURITY': 25.0}`, `needs_disambiguation= False` and the five `DEFAULT_RESOURCES`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}` and `needs_disambiguation= True` | Both router transcripts, with the intent, score, flag and resource list for each prompt | PASS iff the exact prompt selects `SECURITY` at `25.0`, the disconfirming prompt reaches `QUALITY` only through the low-score fallback, and every printed path is a `DEFAULT_RESOURCES` entry; FAIL on a different intent, a different score, or a disconfirming prompt that still selects `SECURITY` | 1. Confirm the §3 block was extracted from `ROUTER.md` and not rewritten by hand; 2. Diff `INTENT_SIGNALS["SECURITY"]` against the keywords the exact prompt relies on; 3. Check the disconfirming prompt carries no security keyword |
 
 ### Commands
 
-Run from the repository root. The block is extracted from `SKILL.md` at run time, so the scenario tests the shipped router and not a copy of it.
+Run from the repository root. The block is extracted from `ROUTER.md` at run time, so the scenario tests the shipped router and not a copy of it.
 
 ```bash
 python3 - <<'PY'
 import re
 from pathlib import Path
 
-skill = Path('.skilled/skills/sk-code/sk-code-review/SKILL.md')
+skill = Path('.skilled/skills/sk-code/sk-code-review/ROUTER.md')
 text = skill.read_text()
-block = re.search(r"```python\n(.*?)\n```", text[text.index('## 10. MACHINE ROUTER'):], re.S).group(1)
+block = re.search(r"```python\n(.*?)\n```", text[text.index('## 3. MACHINE ROUTER'):], re.S).group(1)
 ns = {'__file__': str(skill), '__name__': 'machine_router', 'load': lambda path: None}
 exec(compile(block, 'machine-router', 'exec'), ns)
 
@@ -137,7 +137,7 @@ OK assets/fix-completeness-checklist.md
 
 ### Evidence
 
-Both router transcripts, the five-line path-existence output, and the `INTENT_SIGNALS["SECURITY"]` and `RESOURCE_MAP["SECURITY"]` excerpts from `SKILL.md` §10.
+Both router transcripts, the five-line path-existence output, and the `INTENT_SIGNALS["SECURITY"]` and `RESOURCE_MAP["SECURITY"]` excerpts from `../../ROUTER.md` §3.
 
 ### Pass / Fail
 
@@ -146,8 +146,8 @@ Both router transcripts, the five-line path-existence output, and the `INTENT_SI
 
 ### Failure Triage
 
-1. Confirm the extraction found the `## 10. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
-2. Compare the exact prompt word by word with `INTENT_SIGNALS["SECURITY"]` in `SKILL.md` §10. A reworded prompt that drops one of the five matched keywords lowers the score by `5` and is a prompt-equality failure.
+1. Confirm the extraction found the `## 3. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
+2. Compare the exact prompt word by word with `INTENT_SIGNALS["SECURITY"]` in `../../ROUTER.md` §3. A reworded prompt that drops one of the five matched keywords lowers the score by `5` and is a prompt-equality failure.
 3. A `MISS` line means the resource itself regressed rather than the routing, because every path in this scenario's set is also a `DEFAULT_RESOURCES` entry.
 4. If the disconfirming prompt still selects `SECURITY`, a keyword has become a substring of ordinary prose; name the keyword.
 
@@ -166,7 +166,7 @@ Both router transcripts, the five-line path-existence output, and the `INTENT_SI
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §10 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES` and the router block this scenario executes |
+| [ROUTER.md](../../ROUTER.md) §3 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES` and the router block this scenario executes |
 | [security-checklist.md](../../assets/security-checklist.md) | The checklist the `SECURITY` intent targets |
 | [review-core.md](../../references/review-core.md) | The security minimums the intent's findings are graded against |
 

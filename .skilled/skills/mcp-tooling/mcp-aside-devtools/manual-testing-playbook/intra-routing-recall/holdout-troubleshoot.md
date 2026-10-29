@@ -9,7 +9,7 @@ expected_resources:
   - references/troubleshooting.md
   - references/session-management.md
 blindToRouterKeywords: true
-version: 1.1.1.0
+version: 1.1.3.0
 ---
 
 # AD-H02: Blind holdout: stalled automation
@@ -38,7 +38,7 @@ obvious, so this scenario checks recall through natural failure-report language 
 ## 2. SCENARIO CONTRACT
 
 Operators confirm the exact prompt, despite avoiding obvious tool-name keywords, still scores
-`TROUBLESHOOT` under `SKILL.md` §9's weighted keyword model, and that the router's
+`TROUBLESHOOT` under `../../ROUTER.md` §3's weighted keyword model, and that the router's
 `RESOURCE_MAP["TROUBLESHOOT"]` entry matches this scenario's declared `expected_resources`.
 
 - Objective: confirm the prompt's keyword overlap with `INTENT_SIGNALS["TROUBLESHOOT"]` — via
@@ -56,15 +56,15 @@ My browser automation run hangs halfway and then the tool won't connect anymore;
   prompt; `hangs`, `won't connect`, and `root cause` are literal `INTENT_SIGNALS["TROUBLESHOOT"]`
   keywords, so `TROUBLESHOOT` scores above every other intent and is selected without needing
   `aside`, `mcp`, or `daemon` in the text.
-- Expected signals: `SKILL.md` §9 lists `hangs`, `won't connect`, and `root cause` under
+- Expected signals: `../../ROUTER.md` §3 lists `hangs`, `won't connect`, and `root cause` under
   `INTENT_SIGNALS["TROUBLESHOOT"]`; `RESOURCE_MAP["TROUBLESHOOT"]` names exactly
   `references/troubleshooting.md` and `references/session-management.md`; both files exist.
 - Desired user-visible outcome: the router states plainly that this request routes to
   `TROUBLESHOOT` and bundles the troubleshooting guide plus the session-management model, despite the
   prompt never naming the product.
-- Pass/fail: PASS if `SKILL.md` §9 confirms the three matched keywords under `TROUBLESHOOT` and both
+- Pass/fail: PASS if `../../ROUTER.md` §3 confirms the three matched keywords under `TROUBLESHOOT` and both
   mapped resources exist; FAIL if any of those keywords is removed from `TROUBLESHOOT`, the
-  `RESOURCE_MAP["TROUBLESHOOT"]` entry in `SKILL.md` no longer matches this scenario's frontmatter, or
+  `RESOURCE_MAP["TROUBLESHOOT"]` entry in `../../ROUTER.md` no longer matches this scenario's frontmatter, or
   either resource path is missing.
 
 ---
@@ -78,7 +78,7 @@ My browser automation run hangs halfway and then the tool won't connect anymore;
 ### Commands
 
 1. `sed -n '1,14p' .skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/holdout-troubleshoot.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/ROUTER.md`
 3. `sed -n '/^```text$/,/^```$/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/holdout-troubleshoot.md | grep -io 'aside\|mcp\|repl\|daemon' || echo "no obvious tool-name keyword in the prompt body"`
 4. `test -e .skilled/skills/mcp-tooling/mcp-aside-devtools/references/troubleshooting.md && echo "OK references/troubleshooting.md" || echo "MISS references/troubleshooting.md"`
 5. `test -e .skilled/skills/mcp-tooling/mcp-aside-devtools/references/session-management.md && echo "OK references/session-management.md" || echo "MISS references/session-management.md"`
@@ -98,7 +98,7 @@ obvious tool-name keyword.
 
 ### Pass / Fail
 
-- **Pass**: `SKILL.md` §9 still lists `hangs`, `won't connect`, and `root cause` under
+- **Pass**: `../../ROUTER.md` §3 still lists `hangs`, `won't connect`, and `root cause` under
   `TROUBLESHOOT`, the prompt body carries no obvious tool-name keyword, and both
   `RESOURCE_MAP["TROUBLESHOOT"]` resource paths exist.
 - **Fail**: any of the three matched keywords is removed from `TROUBLESHOOT`'s list, the resource map
@@ -127,7 +127,7 @@ obvious tool-name keyword.
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` §9 | The `TROUBLESHOOT` `INTENT_SIGNALS` keywords and `RESOURCE_MAP` entry this scenario verifies |
+| `../../ROUTER.md` §3 | The `TROUBLESHOOT` `INTENT_SIGNALS` keywords and `RESOURCE_MAP` entry this scenario verifies |
 
 ---
 

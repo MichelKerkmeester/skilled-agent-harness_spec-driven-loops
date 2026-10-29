@@ -8,7 +8,7 @@ expected_resources:
   - references/runner-contract.md
   - references/quality-config.md
 catalog_applicable: true
-version: 1.2.1.0
+version: 1.2.3.0
 ---
 
 # CQ-001: Quality Gate Routes To The Checklist
@@ -30,7 +30,7 @@ loads the set `DEFAULT_RESOURCE` names: the runner contract, the universal floor
 
 `sk-code-quality` sits between implementation and verification for every surface. If a quality-gate prompt
 is mis-routed away from its own checklist, an author-side pass could claim a gate ran without ever
-loading the P0/P1/P2 criteria that actually block completion, per `SKILL.md` §9's thin-router note.
+loading the P0/P1/P2 criteria that actually block completion, per [`ROUTER.md`](../../ROUTER.md) §3's thin-router note.
 
 ---
 
@@ -69,7 +69,7 @@ Run the comment hygiene quality gate and check P0/P1/P2 standards before marking
 ### Commands
 
 1. `sed -n '1,14p' .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md`
-2. `sed -n '/^INTENT_SIGNALS/,/^RESOURCE_MAP/p' .skilled/skills/sk-code/sk-code-quality/SKILL.md`
+2. `sed -n '/^INTENT_SIGNALS/,/^RESOURCE_MAP/p' .skilled/skills/sk-code/sk-code-quality/ROUTER.md`
 3. `for p in references/runner-contract.md ../shared/references/universal/code-quality-standards.md references/code-style-guide.md references/quality-config.md; do test -e ".skilled/skills/sk-code/sk-code-quality/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
@@ -93,8 +93,8 @@ excerpt.
 
 1. Re-run step 3 for the specific path that failed and confirm whether the file was renamed or
    removed under `references/`.
-2. Diff this scenario's `expected_resources` against `SKILL.md`'s `RESOURCE_MAP["QUALITY"]` and
-   `DEFAULT_RESOURCE` (§9) to see whether the drift is a stale scenario file or a stale router map.
+2. Diff this scenario's `expected_resources` against `ROUTER.md`'s `RESOURCE_MAP["QUALITY"]` and
+   `DEFAULT_RESOURCE` (§3) to see whether the drift is a stale scenario file or a stale router map.
    `RESOURCE_MAP["QUALITY"]` names the repository config reference, and
    `DEFAULT_RESOURCE` names the runner contract, the universal floor and the style guide. Step 3 checks
    the union of the two, which is the set `expected_resources` declares, so a rename in either list
@@ -115,7 +115,7 @@ excerpt.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §9 | Thin `INTENT_SIGNALS`/`RESOURCE_MAP` router this scenario exercises |
+| [ROUTER.md](../../ROUTER.md) §3 | Thin `INTENT_SIGNALS`/`RESOURCE_MAP` router this scenario exercises |
 | [SKILL.md](../../SKILL.md) §5 | The completion-claim rule this checklist gate must hold before hand-off |
 
 ---

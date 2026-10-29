@@ -1,7 +1,7 @@
 ---
 title: "SP-028 -- Format guide on-demand loading"
 description: "This scenario validates format-guide loading for `SP-028`. It focuses on loading `format_guide_*.md` only when format mode and ON_DEMAND keyword signals require it."
-version: 2.3.1.5
+version: 2.3.2.0
 ---
 
 # SP-028 -- Format guide on-demand loading
@@ -46,7 +46,7 @@ $yaml improve my CI/CD config prompt; verify YAML guide loading appears in the t
 
 1. `sk-prompt: $yaml improve my CI/CD config prompt — load the YAML format guide and apply YAML-specific structure.`
 2. `agent: @prompt-improver raw_task="Improve a CI/CD config prompt for YAML delivery and apply YAML format-guide rules." task_type=generation target_cli=opencode complexity_hint=6 constraints="Load YAML guide; output YAML-specific structure."`
-3. `bash: rg 'ON_DEMAND_KEYWORDS|format guide|format_guide_yaml' .skilled/skills/sk-prompt/SKILL.md .skilled/skills/sk-prompt/assets/format-guide-yaml.md`
+3. `bash: rg 'ON_DEMAND_KEYWORDS|format guide|format_guide_yaml' .skilled/skills/sk-prompt/ROUTER.md .skilled/skills/sk-prompt/assets/format-guide-yaml.md`
 
 ### Expected
 
@@ -64,7 +64,7 @@ Capture the routing trace, YAML guide reference, YAML enhanced prompt, and CLEAR
 ### Failure Triage
 
 1. Confirm `$yaml` prefix and `format guide` wording are both present in the operator request.
-2. Inspect SKILL.md ON_DEMAND_KEYWORDS and Resource Loading Levels.
+2. Inspect ROUTER.md ON_DEMAND_KEYWORDS and Resource Loading Levels.
 3. Re-run through `@prompt-improver` with `constraints="include resource-loading trace with format-guide-yaml.md"`.
 
 ### Optional Supplemental Checks
@@ -80,7 +80,8 @@ Run a `$yaml` request without `format guide` wording and verify the trace does n
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../SKILL.md` | sk-prompt skill source: §10 ON_DEMAND keywords and §7 `@prompt-improver` contract |
+| `../../SKILL.md` | sk-prompt skill source: §7 `@prompt-improver` contract |
+| `../../ROUTER.md` | sk-prompt router: §3 ON_DEMAND keywords |
 
 ### Implementation And Test Anchors
 

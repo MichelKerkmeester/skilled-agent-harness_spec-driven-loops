@@ -8,7 +8,7 @@ expected_intent: DEEP_REASONING
 expected_resources: 
   - references/cli-reference.md
   - references/claude-tools.md
-version: 1.5.0.6
+version: 1.5.1.0
 ---
 
 # CC-H01: Blind holdout — reasoning domain
@@ -24,7 +24,7 @@ This scenario validates the hub's `DEEP_REASONING` generalization contract for `
 ### Why This Matters
 
 Blind holdout scenarios are how this playbook proves the hub's smart router actually resolves the
-documented `INTENT_SIGNALS`/`RESOURCE_MAP` contract in SKILL.md, rather than assuming the router
+documented `INTENT_SIGNALS`/`RESOURCE_MAP` contract in ROUTER.md, rather than assuming the router
 matches its own documentation. A drift here means an operator prompt silently loads the wrong
 reference set or none at all.
 
@@ -32,7 +32,7 @@ reference set or none at all.
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: confirm SKILL.md's `INTENT_SIGNALS["DEEP_REASONING"]` entry matches this scenario's expected_intent, and RESOURCE_MAP["DEEP_REASONING"] resolves on disk.
+- Objective: confirm ROUTER.md's `INTENT_SIGNALS["DEEP_REASONING"]` entry matches this scenario's expected_intent, and RESOURCE_MAP["DEEP_REASONING"] resolves on disk.
 - Stage: `holdout` — T2 (blind holdout — prompt names no router keyword, intent key, skill id, or resource basename; tests generalization beyond keyword matching)
 - Prompt: `I'm stuck choosing between two database layouts for a high-traffic service. Ask the other AI assistant to weigh the long-term maintainability implications and walk me through its rationale one step at a time.`
 
@@ -42,9 +42,9 @@ I'm stuck choosing between two database layouts for a high-traffic service. Ask 
 ```
 
 - Expected execution process: the hub scores the prompt against every `INTENT_SIGNALS` keyword list and resolves `DEEP_REASONING` at its documented weight, then conditional-loads `RESOURCE_MAP["DEEP_REASONING"]`.
-- Expected signals: SKILL.md's `INTENT_SIGNALS["DEEP_REASONING"]` entry exists with its documented weight and keyword list, and `RESOURCE_MAP["DEEP_REASONING"]` names `references/cli-reference.md` and `references/claude-tools.md`; both resource paths resolve on disk.
+- Expected signals: ROUTER.md's `INTENT_SIGNALS["DEEP_REASONING"]` entry exists with its documented weight and keyword list, and `RESOURCE_MAP["DEEP_REASONING"]` names `references/cli-reference.md` and `references/claude-tools.md`; both resource paths resolve on disk.
 - Desired user-visible outcome: the bundled workflow states plainly which intent this prompt resolves and which resources it loaded, before any downstream execution happens.
-- Pass/fail: PASS if SKILL.md's `INTENT_SIGNALS["DEEP_REASONING"]` and `RESOURCE_MAP["DEEP_REASONING"]` entries match this scenario's frontmatter and both resource paths exist; FAIL if either entry has drifted from this scenario's frontmatter, or a resource path does not resolve.
+- Pass/fail: PASS if ROUTER.md's `INTENT_SIGNALS["DEEP_REASONING"]` and `RESOURCE_MAP["DEEP_REASONING"]` entries match this scenario's frontmatter and both resource paths exist; FAIL if either entry has drifted from this scenario's frontmatter, or a resource path does not resolve.
 
 ---
 
@@ -57,8 +57,8 @@ I'm stuck choosing between two database layouts for a high-traffic service. Ask 
 ### Commands
 
 1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/intra-routing-recall/holdout-reasoning.md`
-2. `grep -n '"DEEP_REASONING"' ../../SKILL.md` (confirms the `INTENT_SIGNALS` entry)
-3. `grep -A2 'RESOURCE_MAP = {' ../../SKILL.md | grep '"DEEP_REASONING"'` (confirms the `RESOURCE_MAP` entry)
+2. `grep -n '"DEEP_REASONING"' ../../ROUTER.md` (confirms the `INTENT_SIGNALS` entry)
+3. `grep -A2 'RESOURCE_MAP = {' ../../ROUTER.md | grep '"DEEP_REASONING"'` (confirms the `RESOURCE_MAP` entry)
 4. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md && echo "OK references/cli-reference.md" || echo "MISS references/cli-reference.md"`
 5. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md && echo "OK references/claude-tools.md" || echo "MISS references/claude-tools.md"`
 
@@ -73,7 +73,7 @@ live `INTENT_SIGNALS["DEEP_REASONING"]` entry.
 
 ### Pass / Fail
 
-- **Pass**: SKILL.md's `INTENT_SIGNALS["DEEP_REASONING"]` and `RESOURCE_MAP["DEEP_REASONING"]` entries match this scenario's frontmatter, and every resource path resolves.
+- **Pass**: ROUTER.md's `INTENT_SIGNALS["DEEP_REASONING"]` and `RESOURCE_MAP["DEEP_REASONING"]` entries match this scenario's frontmatter, and every resource path resolves.
 - **Fail**: the keyword/weight entry or the resource mapping has drifted from this scenario's frontmatter, or a resource path does not resolve.
 
 ### Failure Triage
@@ -96,7 +96,7 @@ live `INTENT_SIGNALS["DEEP_REASONING"]` entry.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) | The `DEEP_REASONING` entry in `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario verifies |
+| [ROUTER.md](../../ROUTER.md) | The `DEEP_REASONING` entry in `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario verifies |
 
 ---
 

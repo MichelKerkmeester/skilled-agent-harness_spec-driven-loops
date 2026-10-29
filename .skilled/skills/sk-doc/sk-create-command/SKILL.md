@@ -2,7 +2,7 @@
 name: sk-create-command
 description: Scaffold OpenCode slash commands with explicit argument hints, allowed tools, and router/presentation separation.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.8.0
+version: 1.0.9.0
 ---
 
 <!-- Keywords: create-command, slash command, opencode command, argument-hint, allowed-tools, command router, presentation contract, thin router, command scaffold -->
@@ -55,7 +55,7 @@ Execution-mode suffixes such as `:auto` and `:confirm` are command syntax, not p
 `references/README.md` is the route map, and the fallback when the command purpose or component surface is unclear.
 A resolved request loads this packet's flat references and its command templates under `assets/` first.
 
-The router resilience rules and the resource loading sequence sit in the final `MACHINE ROUTER` section of this file.
+Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
 
 ---
 
@@ -480,49 +480,3 @@ Use these only for overflow detail, long examples, and exact skeletons:
 - `../shared/references/validation.md` - shared validation expectations.
 - `../shared/scripts/validate_document.py` - blocking structure validation.
 - `../shared/scripts/extract_structure.py` - structure extraction for review.
-
----
-
-## 7. MACHINE ROUTER
-
-This section holds the packet's router resilience rules and its resource loading sequence.
-
-### Router Resilience
-
-This packet routes by command-authoring intent and the requested component surface. It does not use runtime keyed resource discovery through `references/<key>/` because its references are flat.
-
-- Load optional markdown resources only after resolving them under this packet and confirming they exist.
-- Treat `references/README.md` as the fallback route map when command intent or component surface is unclear.
-- Ask for the missing command purpose, invocation shape, or component type instead of silently loading no resources.
-- Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
-
-### Resource Loading Sequence
-
-The packet keeps its existing flat-resource routing while using the shared resilience call sequence:
-
-```python
-def discover_markdown_resources():
-    return flat markdown resources under this packet's `references/` and `assets/` folders
-
-def _guard_in_skill(relative_path):
-    # Keep packet-local markdown paths in scope; retain explicitly documented shared routes.
-    confirm the path is an allowed markdown resource for this packet
-
-def load_if_available(relative_path, inventory, seen):
-    guarded = _guard_in_skill(relative_path)
-    if guarded in inventory and guarded not in seen:
-        load(guarded)
-        seen.add(guarded)
-
-def route_create_command_request(request):
-    inventory = discover_markdown_resources()
-    intents = score_intents(request)  # command-authoring intent and component surface
-    selected = select_intents(intents)
-    routing_key = get_routing_key(request, selected)
-    if not selected or the command purpose or component surface is unclear:
-        load_if_available("references/README.md", inventory, seen)
-        return UNKNOWN_FALLBACK
-    return route by the existing command-authoring intent and component-surface rules
-```
-
-`UNKNOWN_FALLBACK` asks for the command purpose, invocation shape, or component type. The sequence discovers the current flat resources at routing time, guards and loads only available resources without duplicates, then applies the activation triggers and command-type rules already defined above.

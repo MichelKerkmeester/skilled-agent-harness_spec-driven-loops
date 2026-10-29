@@ -16,6 +16,10 @@
       "skill router files research plan",
       "skill router files research tasks",
       "skill router files research acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "skill router files research implementation summary"
     ],
     "key_topics": [
@@ -29,8 +33,8 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation",
-      "summary"
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -39,6 +43,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       "research/research.md",
       "research/findings-registry.json",
@@ -68,6 +73,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -183,17 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Eliminated Alternatives",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The machine router takes 22% of all SKILL.md words, and three skills sit within 25 words of the 5,000-word cap",
     "created_at": "2026-10-29T07:52:41Z",
-    "last_save_at": "2026-10-29T09:01:33.310Z",
+    "last_save_at": "2026-10-29T13:26:19.219Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +206,11 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:bd349a01d1d2e07a22288f55349f1de982b9ae780c3361edd05b573097ddb717",
+    "source_fingerprint": "sha256:bc1f78e940df448025bcb93c03855d1f254771ab38ce7d834b34f7916bb84e04",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9d369c2fc5ca83813c122b51cfaa7c9c5fcdce5cbf0aa282a8fca2ab8b97350c",

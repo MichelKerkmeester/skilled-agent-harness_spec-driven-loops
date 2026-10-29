@@ -18,6 +18,10 @@
       "regeneration and verification acceptance criteria",
       "phase 6 regeneration acceptance criteria",
       "router derived file regeneration criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "regeneration and verification implementation summary"
     ],
     "key_topics": [
@@ -31,8 +35,8 @@
       "router",
       "derived",
       "file",
-      "implementation",
-      "summary"
+      "packet",
+      "goal"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -41,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
@@ -69,6 +74,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -184,17 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The moves in phases 004 and 005 change authored bytes, and every derived artifact records those bytes",
     "created_at": "2026-10-29T07:52:44Z",
-    "last_save_at": "2026-10-29T09:16:00.930Z",
+    "last_save_at": "2026-10-29T13:25:39.334Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,9 +207,10 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:45bda23172df157a16c2c55049e5cb588b2a5b2fc76099eb0738d27c62625090",
+    "source_fingerprint": "sha256:42829c83be8a1a1b7d1e2aa5c92d93b0a857a37dd56b288d93d0a8b8a875ecee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "86c3dedace0714b8bb54159809b7de97c09359a32b5ec87c05a2e603abe2df3a",

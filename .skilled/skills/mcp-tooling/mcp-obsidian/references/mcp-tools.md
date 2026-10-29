@@ -10,7 +10,7 @@ trigger_phrases:
   - "obsidian rest api"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.1.1.0
+version: 0.1.2.0
 ---
 
 # Obsidian MCP Tools Reference
@@ -31,7 +31,7 @@ version: 0.1.1.0
 The Obsidian MCP server is the app-backed surface in mcp-obsidian, used when you want to operate a **running** vault through the Local REST API rather than the filesystem. Confirmed capabilities: read a note, write a note, search notes, manage tags, and delete a note.
 
 Use this reference when:
-- Routing a request to MCP (not the CLI) because a live app + Local REST API is available — see the router in SKILL.md §9
+- Routing a request to MCP (not the CLI) because a live app + Local REST API is available — see the router in `../ROUTER.md` §3 MACHINE ROUTER
 - Writing Code Mode `call_tool_chain({ code: "..." })` invocations
 - Confirming whether a capability is supported before routing to it (enumerate with `list_tools()`)
 
@@ -87,7 +87,7 @@ Use **`notesmd-cli`** (the headless CLI) when:
 - **No app is running** (servers, CI, unattended agents) — the CLI operates the filesystem directly
 - You want deterministic, greppable, diff-able file operations
 
-> The router in SKILL.md §9 picks between them by whether a live app/token is available: app present → MCP; headless → CLI.
+> The router in `../ROUTER.md` §3 MACHINE ROUTER picks between them by whether a live app/token is available: app present → MCP; headless → CLI.
 
 ---
 

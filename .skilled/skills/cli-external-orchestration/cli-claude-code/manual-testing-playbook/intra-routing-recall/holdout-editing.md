@@ -8,7 +8,7 @@ expected_intent: CODE_EDITING
 expected_resources: 
   - references/cli-reference.md
   - assets/prompt-templates.md
-version: 1.5.0.6
+version: 1.5.1.0
 ---
 
 # CC-H02: Blind holdout — editing domain
@@ -24,7 +24,7 @@ This scenario validates the hub's `CODE_EDITING` generalization contract for `CC
 ### Why This Matters
 
 Blind holdout scenarios are how this playbook proves the hub's smart router actually resolves the
-documented `INTENT_SIGNALS`/`RESOURCE_MAP` contract in SKILL.md, rather than assuming the router
+documented `INTENT_SIGNALS`/`RESOURCE_MAP` contract in ROUTER.md, rather than assuming the router
 matches its own documentation. A drift here means an operator prompt silently loads the wrong
 reference set or none at all.
 
@@ -32,7 +32,7 @@ reference set or none at all.
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: confirm SKILL.md's `INTENT_SIGNALS["CODE_EDITING"]` entry matches this scenario's expected_intent, and RESOURCE_MAP["CODE_EDITING"] resolves on disk.
+- Objective: confirm ROUTER.md's `INTENT_SIGNALS["CODE_EDITING"]` entry matches this scenario's expected_intent, and RESOURCE_MAP["CODE_EDITING"] resolves on disk.
 - Stage: `holdout` — T2 (blind holdout — prompt names no router keyword, intent key, skill id, or resource basename; tests generalization beyond keyword matching)
 - Prompt: `Have the external assistant rework the checkout module so the retry behavior is cleaner, and hand me back the smallest possible set of line changes.`
 
@@ -42,9 +42,9 @@ Have the external assistant rework the checkout module so the retry behavior is 
 ```
 
 - Expected execution process: the hub scores the prompt against every `INTENT_SIGNALS` keyword list and resolves `CODE_EDITING` at its documented weight, then conditional-loads `RESOURCE_MAP["CODE_EDITING"]`.
-- Expected signals: SKILL.md's `INTENT_SIGNALS["CODE_EDITING"]` entry exists with its documented weight and keyword list, and `RESOURCE_MAP["CODE_EDITING"]` names `references/cli-reference.md` and `assets/prompt-templates.md`; both resource paths resolve on disk.
+- Expected signals: ROUTER.md's `INTENT_SIGNALS["CODE_EDITING"]` entry exists with its documented weight and keyword list, and `RESOURCE_MAP["CODE_EDITING"]` names `references/cli-reference.md` and `assets/prompt-templates.md`; both resource paths resolve on disk.
 - Desired user-visible outcome: the bundled workflow states plainly which intent this prompt resolves and which resources it loaded, before any downstream execution happens.
-- Pass/fail: PASS if SKILL.md's `INTENT_SIGNALS["CODE_EDITING"]` and `RESOURCE_MAP["CODE_EDITING"]` entries match this scenario's frontmatter and both resource paths exist; FAIL if either entry has drifted from this scenario's frontmatter, or a resource path does not resolve.
+- Pass/fail: PASS if ROUTER.md's `INTENT_SIGNALS["CODE_EDITING"]` and `RESOURCE_MAP["CODE_EDITING"]` entries match this scenario's frontmatter and both resource paths exist; FAIL if either entry has drifted from this scenario's frontmatter, or a resource path does not resolve.
 
 ---
 
@@ -57,8 +57,8 @@ Have the external assistant rework the checkout module so the retry behavior is 
 ### Commands
 
 1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/intra-routing-recall/holdout-editing.md`
-2. `grep -n '"CODE_EDITING"' ../../SKILL.md` (confirms the `INTENT_SIGNALS` entry)
-3. `grep -A2 'RESOURCE_MAP = {' ../../SKILL.md | grep '"CODE_EDITING"'` (confirms the `RESOURCE_MAP` entry)
+2. `grep -n '"CODE_EDITING"' ../../ROUTER.md` (confirms the `INTENT_SIGNALS` entry)
+3. `grep -A2 'RESOURCE_MAP = {' ../../ROUTER.md | grep '"CODE_EDITING"'` (confirms the `RESOURCE_MAP` entry)
 4. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md && echo "OK references/cli-reference.md" || echo "MISS references/cli-reference.md"`
 5. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-templates.md && echo "OK assets/prompt-templates.md" || echo "MISS assets/prompt-templates.md"`
 
@@ -73,7 +73,7 @@ live `INTENT_SIGNALS["CODE_EDITING"]` entry.
 
 ### Pass / Fail
 
-- **Pass**: SKILL.md's `INTENT_SIGNALS["CODE_EDITING"]` and `RESOURCE_MAP["CODE_EDITING"]` entries match this scenario's frontmatter, and every resource path resolves.
+- **Pass**: ROUTER.md's `INTENT_SIGNALS["CODE_EDITING"]` and `RESOURCE_MAP["CODE_EDITING"]` entries match this scenario's frontmatter, and every resource path resolves.
 - **Fail**: the keyword/weight entry or the resource mapping has drifted from this scenario's frontmatter, or a resource path does not resolve.
 
 ### Failure Triage
@@ -96,7 +96,7 @@ live `INTENT_SIGNALS["CODE_EDITING"]` entry.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) | The `CODE_EDITING` entry in `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario verifies |
+| [ROUTER.md](../../ROUTER.md) | The `CODE_EDITING` entry in `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario verifies |
 
 ---
 

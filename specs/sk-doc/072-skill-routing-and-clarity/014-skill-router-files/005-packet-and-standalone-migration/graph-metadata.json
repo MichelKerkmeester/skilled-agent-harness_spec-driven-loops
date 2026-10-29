@@ -16,6 +16,10 @@
       "packet and standalone migration plan",
       "packet and standalone migration tasks",
       "packet and standalone migration acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "packet and standalone migration implementation summary"
     ],
     "key_topics": [
@@ -27,28 +31,34 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation",
-      "summary",
-      "skills",
-      "still"
+      "goal",
+      "durable",
+      "directive",
+      "completion"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/references/shared/overview.md",
+      ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+      "scratch/router-replay-baseline.txt",
+      "scratch/router-replay-after.txt",
+      "scratch/router-token-after.csv",
+      "ROUTER.md",
       ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
       ".skilled/skills/cli-orca/SKILL.md",
       ".skilled/skills/mcp-code-mode/SKILL.md",
-      ".skilled/skills/sk-git/SKILL.md",
-      ".skilled/skills/sk-prompt/SKILL.md",
-      ".skilled/skills/system-skill-advisor/SKILL.md",
-      ".skilled/skills/system-spec-kit/SKILL.md",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/routing-shape-known-debt-ratchet.test.cjs"
+      ".skilled/skills/sk-git/SKILL.md"
     ],
     "entities": [
       {
@@ -76,15 +86,21 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
+        "name": "router-replay-lib.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
         "source": "derived"
       },
       {
@@ -94,9 +110,57 @@
         "source": "derived"
       },
       {
-        "name": "routing-shape-known-debt-ratchet.test.cjs",
+        "name": "parent-skill-check.cjs",
         "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/routing-shape-known-debt-ratchet.test.cjs",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "root-router-contract.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overview.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/shared/overview.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "router-replay-baseline.txt",
+        "kind": "file",
+        "path": "scratch/router-replay-baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "router-replay-after.txt",
+        "kind": "file",
+        "path": "scratch/router-replay-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "router-token-after.csv",
+        "kind": "file",
+        "path": "scratch/router-token-after.csv",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": "ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
         "source": "derived"
       },
       {
@@ -140,65 +204,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Each",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Batched",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After phase 004, 47 of the 54 skills still carry their machine router inside `SKILL.md`: 41 mode packets and the six standalone skills",
     "created_at": "2026-10-29T07:52:44Z",
-    "last_save_at": "2026-10-29T09:13:54.080Z",
+    "last_save_at": "2026-10-29T14:31:18.616Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,15 +216,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4246ec32a6f073de2c43e8944edfa3796fb353c826d58ca1a9922474a77d7e6b",
+    "source_fingerprint": "sha256:6e27651103e5b64345dfe4a867ae235b112ef036459f271c9f224619983901b9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "de86135d14d0c036fc09f943b4479dc46a612d30894fd0aa07d30b32d71e46b8",
+      "spec.md": "62ab798f094f18f76fae26dbd82ec01d1c84642eb4920def286ce1a476d911f2",
       "plan.md": "16349f63617dc2768865cf638f324ea06f7fe84d5165cfcb9cd02096cd21e1db",
-      "tasks.md": "d3d3c1f423e9091cb9bda650993eef3599b8603ff5db98c41fd2621a731c61ff",
-      "implementation-summary.md": "dd27e0b1322fecb71667f7426857e51f64179275e00a4cc8ed0f01c0b071f74c"
+      "tasks.md": "24a188d16550cbada31e6603affe65e4b925dccd6bfb1de962905c4bc2a6ac7c",
+      "implementation-summary.md": "bb5d46d37d7ce6742732cf1a7c89f924b8382acb666f3d164dd27283f88f16c4"
     },
     "last_active_at": null
   }

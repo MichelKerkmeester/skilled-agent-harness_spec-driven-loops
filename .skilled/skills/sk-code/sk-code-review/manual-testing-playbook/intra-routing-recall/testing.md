@@ -12,7 +12,7 @@ expected_resources:
   - assets/code-quality-checklist.md
   - assets/fix-completeness-checklist.md
   - assets/test-quality-checklist.md
-version: 1.1.0.0
+version: 1.1.2.0
 ---
 
 # CR-R07: Testing routing
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `CR-R07` and confirm the
 - Objective: confirm the exact prompt selects `TESTING` at its own score and adds `assets/test-quality-checklist.md` beyond the baseline, and the disconfirming prompt adds nothing.
 - Real user request: `Review target is a test suite the author wants assessed for coverage, assertions and brittle cases.`
 - Prompt: `Review this test suite for testing coverage, assertions, mocks, stubs, fixtures, test quality, and brittle cases.`
-- Expected execution process: run the shipped `MACHINE ROUTER` block from `SKILL.md` §10 over the exact prompt and over the disconfirming prompt, resolve each printed path under the skill root, and compare with the Expected block.
+- Expected execution process: run the shipped `MACHINE ROUTER` block from `../../ROUTER.md` §3 over the exact prompt and over the disconfirming prompt, resolve each printed path under the skill root, and compare with the Expected block.
 - Expected signals: the exact prompt prints `intents= ['TESTING']`, `scores= {'TESTING': 15.0}` and six resources ending in `assets/test-quality-checklist.md`; the disconfirming prompt prints `intents= ['QUALITY']`, an empty score map and only the five `DEFAULT_RESOURCES`.
 - Desired user-visible outcome: a reviewer handed the test-quality checklist for a suite question, and no test route invented for a prompt that asks about naming and structure alone.
 - Pass/fail: PASS if the exact prompt selects `TESTING` with score `15.0` and its resource list is the five `DEFAULT_RESOURCES` plus `assets/test-quality-checklist.md`, the disconfirming prompt adds nothing, and every printed path exists under the skill root; FAIL if the intent differs, the score differs, the test-quality checklist is absent, or a printed path does not exist.
@@ -59,20 +59,20 @@ Review this test suite for testing coverage, assertions, mocks, stubs, fixtures,
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-R07 | Testing routing | Confirm a test-shaped prompt selects `TESTING` at its own score and adds `assets/test-quality-checklist.md` beyond the baseline, and that a prompt without test words adds nothing. | `Review this test suite for testing coverage, assertions, mocks, stubs, fixtures, test quality, and brittle cases.` | bash: run the shipped `SKILL.md` §10 router block over the exact prompt and the disconfirming prompt -> bash: test that every printed path exists under the skill root | The exact prompt prints `intents= ['TESTING']`, `scores= {'TESTING': 15.0}` and six resources ending in `assets/test-quality-checklist.md`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}` and the five `DEFAULT_RESOURCES` | Both router transcripts plus the path-existence output | PASS iff the exact prompt selects `TESTING` at `15.0`, its resource list is the five `DEFAULT_RESOURCES` plus `assets/test-quality-checklist.md`, the disconfirming prompt adds nothing, and every printed path exists; FAIL on a different intent or score, a missing test-quality checklist, or a path that does not resolve | 1. Confirm the §10 block was extracted from `SKILL.md`; 2. Diff `RESOURCE_MAP["TESTING"]` and re-run the path-existence step; 3. Compare the score against the five matched keywords before suspecting the map |
+| CR-R07 | Testing routing | Confirm a test-shaped prompt selects `TESTING` at its own score and adds `assets/test-quality-checklist.md` beyond the baseline, and that a prompt without test words adds nothing. | `Review this test suite for testing coverage, assertions, mocks, stubs, fixtures, test quality, and brittle cases.` | bash: run the shipped `../../ROUTER.md` §3 router block over the exact prompt and the disconfirming prompt -> bash: test that every printed path exists under the skill root | The exact prompt prints `intents= ['TESTING']`, `scores= {'TESTING': 15.0}` and six resources ending in `assets/test-quality-checklist.md`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}` and the five `DEFAULT_RESOURCES` | Both router transcripts plus the path-existence output | PASS iff the exact prompt selects `TESTING` at `15.0`, its resource list is the five `DEFAULT_RESOURCES` plus `assets/test-quality-checklist.md`, the disconfirming prompt adds nothing, and every printed path exists; FAIL on a different intent or score, a missing test-quality checklist, or a path that does not resolve | 1. Confirm the §3 block was extracted from `ROUTER.md`; 2. Diff `RESOURCE_MAP["TESTING"]` and re-run the path-existence step; 3. Compare the score against the five matched keywords before suspecting the map |
 
 ### Commands
 
-Run from the repository root. The block is extracted from `SKILL.md` at run time, so the scenario tests the shipped router and not a copy of it.
+Run from the repository root. The block is extracted from `ROUTER.md` at run time, so the scenario tests the shipped router and not a copy of it.
 
 ```bash
 python3 - <<'PY'
 import re
 from pathlib import Path
 
-skill = Path('.skilled/skills/sk-code/sk-code-review/SKILL.md')
+skill = Path('.skilled/skills/sk-code/sk-code-review/ROUTER.md')
 text = skill.read_text()
-block = re.search(r"```python\n(.*?)\n```", text[text.index('## 10. MACHINE ROUTER'):], re.S).group(1)
+block = re.search(r"```python\n(.*?)\n```", text[text.index('## 3. MACHINE ROUTER'):], re.S).group(1)
 ns = {'__file__': str(skill), '__name__': 'machine_router', 'load': lambda path: None}
 exec(compile(block, 'machine-router', 'exec'), ns)
 
@@ -137,7 +137,7 @@ OK assets/test-quality-checklist.md
 
 ### Evidence
 
-Both router transcripts, the six-line path-existence output, and the `INTENT_SIGNALS["TESTING"]` and `RESOURCE_MAP["TESTING"]` excerpts from `SKILL.md` §10.
+Both router transcripts, the six-line path-existence output, and the `INTENT_SIGNALS["TESTING"]` and `RESOURCE_MAP["TESTING"]` excerpts from `../../ROUTER.md` §3.
 
 ### Pass / Fail
 
@@ -146,7 +146,7 @@ Both router transcripts, the six-line path-existence output, and the `INTENT_SIG
 
 ### Failure Triage
 
-1. Confirm the extraction found the `## 10. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
+1. Confirm the extraction found the `## 3. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
 2. A score in steps of `3` below `15.0` means one of `test`, `testing`, `coverage`, `test quality` or `brittle` stopped matching. Quote `INTENT_SIGNALS["TESTING"]` and name it.
 3. A plural in the prompt is not evidence of a defect on its own: `assertions`, `mocks`, `stubs` and `fixtures` deliberately do not match. A review of their singular forms would raise the score, and this scenario fixes the observed one.
 4. A `MISS assets/test-quality-checklist.md` means the checklist moved; `RESOURCE_MAP["TESTING"]` carries the path and must move with it.
@@ -167,7 +167,7 @@ Both router transcripts, the six-line path-existence output, and the `INTENT_SIG
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §10 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES` and the router block this scenario executes |
+| [ROUTER.md](../../ROUTER.md) §3 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES` and the router block this scenario executes |
 | [test-quality-checklist.md](../../assets/test-quality-checklist.md) | The checklist this route adds |
 | [review-core.md](../../references/review-core.md) | The `review.test-*` lens rules the checklist items carry |
 

@@ -3,12 +3,12 @@ id: AD-R01
 category: intra-routing-recall
 stage: routing
 title: 'Task routing'
-description: "This scenario validates the SKILL.md Smart Router's TASK intent for `AD-R01`. It confirms a natural-language multi-step browser-agent prompt scores TASK and loads exactly RESOURCE_MAP['TASK']."
+description: "This scenario validates the ROUTER.md Smart Router's TASK intent for `AD-R01`. It confirms a natural-language multi-step browser-agent prompt scores TASK and loads exactly RESOURCE_MAP['TASK']."
 expected_intent: TASK
 expected_resources:
   - references/aside-cli-reference.md
   - references/session-management.md
-version: 1.1.1.0
+version: 1.1.3.0
 ---
 
 # AD-R01: Task routing
@@ -22,7 +22,7 @@ This document captures the routing-recall contract, execution process, source an
 This scenario validates that the `mcp-aside-devtools` Smart Router's `TASK` intent signal fires on a
 realistic multi-step, natural-language browser-agent request, and that the router loads exactly
 `RESOURCE_MAP["TASK"]` — `references/aside-cli-reference.md` and `references/session-management.md`
-— per `SKILL.md` §9's `INTENT_SIGNALS`/`RESOURCE_MAP` tables.
+— per `../../ROUTER.md` §3's `INTENT_SIGNALS`/`RESOURCE_MAP` tables.
 
 ### Why This Matters
 
@@ -36,7 +36,7 @@ one.
 
 ## 2. SCENARIO CONTRACT
 
-Operators confirm the exact prompt scores `TASK` under `SKILL.md` §9's weighted keyword model and
+Operators confirm the exact prompt scores `TASK` under `../../ROUTER.md` §3's weighted keyword model and
 that the router's `RESOURCE_MAP["TASK"]` entry matches this scenario's declared `expected_resources`.
 
 - Objective: confirm the prompt's keyword overlap with `INTENT_SIGNALS["TASK"]` selects `TASK` as the
@@ -52,13 +52,13 @@ Have the aside browser agent run a multi-step natural language task: sign in and
 - Expected execution process: the router lowercases the prompt, scores every intent's keyword set
   against it, and selects `TASK` because `aside`, `browser agent`, `natural language`, `multi-step`,
   and `sign in and` are all literal `INTENT_SIGNALS["TASK"]` keywords with weight 4 each.
-- Expected signals: `SKILL.md` §9 lists `TASK` in `INTENT_SIGNALS` with those keywords; `RESOURCE_MAP["TASK"]`
+- Expected signals: `../../ROUTER.md` §3 lists `TASK` in `INTENT_SIGNALS` with those keywords; `RESOURCE_MAP["TASK"]`
   names exactly `references/aside-cli-reference.md` and `references/session-management.md`; both files
   exist.
 - Desired user-visible outcome: the router states plainly that this request routes to `TASK` and
   bundles the CLI reference plus the session-management model before answering.
-- Pass/fail: PASS if `SKILL.md` §9 names the matched `TASK` keywords and both mapped resources exist;
-  FAIL if the keyword weights or `RESOURCE_MAP["TASK"]` entry in `SKILL.md` no longer matches this
+- Pass/fail: PASS if `../../ROUTER.md` §3 names the matched `TASK` keywords and both mapped resources exist;
+  FAIL if the keyword weights or `RESOURCE_MAP["TASK"]` entry in `../../ROUTER.md` no longer matches this
   scenario's frontmatter, or either resource path is missing.
 
 ---
@@ -72,8 +72,8 @@ Have the aside browser agent run a multi-step natural language task: sign in and
 ### Commands
 
 1. `sed -n '1,12p' .skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/task.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/ROUTER.md`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/ROUTER.md`
 4. `test -e .skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-cli-reference.md && echo "OK references/aside-cli-reference.md" || echo "MISS references/aside-cli-reference.md"`
 5. `test -e .skilled/skills/mcp-tooling/mcp-aside-devtools/references/session-management.md && echo "OK references/session-management.md" || echo "MISS references/session-management.md"`
 
@@ -91,7 +91,7 @@ steps 2-3 with the matched keywords highlighted.
 
 ### Pass / Fail
 
-- **Pass**: `SKILL.md` §9 names the matched `TASK` keywords and `RESOURCE_MAP["TASK"]` lists both
+- **Pass**: `../../ROUTER.md` §3 names the matched `TASK` keywords and `RESOURCE_MAP["TASK"]` lists both
   resources, and both resource paths exist.
 - **Fail**: the keyword set or resource map in `SKILL.md` no longer matches this scenario's
   frontmatter, or a resource path does not resolve.
@@ -117,7 +117,7 @@ steps 2-3 with the matched keywords highlighted.
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` §9 | The `TASK` `INTENT_SIGNALS` keywords and `RESOURCE_MAP` entry this scenario verifies |
+| `../../ROUTER.md` §3 | The `TASK` `INTENT_SIGNALS` keywords and `RESOURCE_MAP` entry this scenario verifies |
 
 ---
 

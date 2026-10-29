@@ -3,11 +3,11 @@ id: CU-R04
 category: intra_routing_recall
 stage: routing
 title: 'Troubleshoot routing'
-description: "This scenario validates the SKILL.md Smart Router's TROUBLESHOOT intent for `CU-R04`. It confirms a failure-report prompt scores TROUBLESHOOT and loads exactly RESOURCE_MAP['TROUBLESHOOT']."
+description: "This scenario validates the ROUTER.md §3 MACHINE ROUTER's TROUBLESHOOT intent for `CU-R04`. It confirms a failure-report prompt scores TROUBLESHOOT and loads exactly RESOURCE_MAP['TROUBLESHOOT']."
 expected_intent: TROUBLESHOOT
 expected_resources:
   - references/troubleshooting.md
-version: 1.1.1.0
+version: 1.1.3.0
 ---
 
 # CU-R04: Troubleshoot routing
@@ -20,7 +20,7 @@ This document captures the routing-recall contract, execution process, source an
 
 This scenario validates that the `mcp-click-up` Smart Router's `TROUBLESHOOT` intent signal fires on
 a realistic failure-report request, and that the router loads exactly
-`RESOURCE_MAP["TROUBLESHOOT"]` — `references/troubleshooting.md` alone — per `SKILL.md` §9.
+`RESOURCE_MAP["TROUBLESHOOT"]` — `references/troubleshooting.md` alone — per `ROUTER.md` §3 MACHINE ROUTER.
 
 ### Why This Matters
 
@@ -34,7 +34,7 @@ diluted by any competing `CUPT_DAILY`/`MCP_ADVANCED`/`INSTALL` keyword.
 
 ## 2. SCENARIO CONTRACT
 
-Operators confirm the exact prompt scores `TROUBLESHOOT` under `SKILL.md` §9's weighted keyword
+Operators confirm the exact prompt scores `TROUBLESHOOT` under `../../ROUTER.md` §3 MACHINE ROUTER's weighted keyword
 model, that the score exceeds the `> 3` tie-break threshold, and that the router's
 `RESOURCE_MAP["TROUBLESHOOT"]` entry matches this scenario's declared `expected_resources`.
 
@@ -51,14 +51,14 @@ The cupt command failed with a 403 error, it's not working, and every request is
 - Expected execution process: the router scores every intent's keyword set (weight 6 per hit) against
   the lowercased prompt; `failed`, `403`, `error`, `not working`, and `slow` are all literal
   `INTENT_SIGNALS["TROUBLESHOOT"]` keywords, giving a `TROUBLESHOOT` score of 30 (> 3), so
-  `SKILL.md` §9's tie-break selects `TROUBLESHOOT` directly, before any other intent's score is
+  `../../ROUTER.md` §3 MACHINE ROUTER's tie-break selects `TROUBLESHOOT` directly, before any other intent's score is
   compared.
-- Expected signals: `SKILL.md` §9 lists `TROUBLESHOOT` in `INTENT_SIGNALS` with those keywords;
+- Expected signals: `ROUTER.md` §3 MACHINE ROUTER lists `TROUBLESHOOT` in `INTENT_SIGNALS` with those keywords;
   `RESOURCE_MAP["TROUBLESHOOT"]` names exactly `references/troubleshooting.md`; the file exists.
 - Desired user-visible outcome: the router states plainly that this request routes to `TROUBLESHOOT`
   and bundles the troubleshooting reference before answering.
-- Pass/fail: PASS if `SKILL.md` §9 names the matched `TROUBLESHOOT` keywords and the mapped resource
-  exists; FAIL if the keyword weights or `RESOURCE_MAP["TROUBLESHOOT"]` entry in `SKILL.md` no longer
+- Pass/fail: PASS if `../../ROUTER.md` §3 MACHINE ROUTER names the matched `TROUBLESHOOT` keywords and the mapped resource
+  exists; FAIL if the keyword weights or `RESOURCE_MAP["TROUBLESHOOT"]` entry in `ROUTER.md` §3 MACHINE ROUTER no longer
   matches this scenario's frontmatter, or the resource path is missing.
 
 ---
@@ -72,9 +72,9 @@ The cupt command failed with a 403 error, it's not working, and every request is
 ### Commands
 
 1. `sed -n '1,10p' .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/troubleshoot.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
-4. `sed -n '/scores.get("TROUBLESHOOT"/,/intent = max/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/ROUTER.md`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/ROUTER.md`
+4. `sed -n '/scores.get("TROUBLESHOOT"/,/intent = max/p' .skilled/skills/mcp-tooling/mcp-click-up/ROUTER.md`
 5. `test -e .skilled/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md && echo "OK references/troubleshooting.md" || echo "MISS references/troubleshooting.md"`
 
 ### Expected
@@ -91,7 +91,7 @@ excerpts from steps 2-3 with the matched keywords highlighted; the tie-break exc
 
 ### Pass / Fail
 
-- **Pass**: `SKILL.md` §9 names the matched `TROUBLESHOOT` keywords, the tie-break threshold quoted in
+- **Pass**: `../../ROUTER.md` §3 MACHINE ROUTER names the matched `TROUBLESHOOT` keywords, the tie-break threshold quoted in
   step 4 is unchanged, `RESOURCE_MAP["TROUBLESHOOT"]` lists the resource, and the resource path
   exists.
 - **Fail**: the keyword set, tie-break threshold, or resource map in `SKILL.md` no longer matches this
@@ -119,7 +119,7 @@ excerpts from steps 2-3 with the matched keywords highlighted; the tie-break exc
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` §9 | The `TROUBLESHOOT` `INTENT_SIGNALS` keywords, `RESOURCE_MAP` entry, and tie-break rule this scenario verifies |
+| `../../ROUTER.md` §3 MACHINE ROUTER | The `TROUBLESHOOT` `INTENT_SIGNALS` keywords, `RESOURCE_MAP` entry, and tie-break rule this scenario verifies |
 
 ---
 

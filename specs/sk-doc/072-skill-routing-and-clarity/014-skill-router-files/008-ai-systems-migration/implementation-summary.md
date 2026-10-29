@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-ai-systems-migration"
+    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration"
     last_updated_at: "2026-10-29T11:37:25Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"

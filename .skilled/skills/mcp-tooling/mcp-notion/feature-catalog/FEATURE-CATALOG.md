@@ -7,7 +7,7 @@ trigger_phrases:
   - "notion 24 tools by domain"
   - "notion api gap fills"
 last_updated: "2026-08-21"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # mcp-notion: Feature Catalog
@@ -36,13 +36,13 @@ The `mcp-notion` mode routes Notion work across two backends (§2) and one direc
 | MCP invocation | `notion.notion_<tool_name>` via Code Mode — confirm every name with `tool_info()` / `list_tools()`, do not guess |
 | Env key | `notion_NOTION_TOKEN` (resolved into the manual's `NOTION_TOKEN`) |
 
-Routing is **operation-based**: CRUD operations go through the MCP (§3-§8); the 5 gap capabilities go through direct REST (§9). Backend selection and the full routing pseudocode live in §2 and `../SKILL.md`.
+Routing is **operation-based**: CRUD operations go through the MCP (§3-§8); the 5 gap capabilities go through direct REST (§9). Backend selection and the full routing pseudocode live in §2 and the `## 3. MACHINE ROUTER` section of `../ROUTER.md`.
 
 ---
 
 ## 2. BACKEND SELECTION
 
-Notion ships two backends. They split cleanly by runtime, and the mode routes between them. Smart-router selection: interactive + OAuth available → remote MCP; else headless + `NOTION_TOKEN` → local stdio plus direct API for the 5 gaps; else escalate to the install guide. See `../SKILL.md` for the full routing pseudocode.
+Notion ships two backends. They split cleanly by runtime, and the mode routes between them. Smart-router selection: interactive + OAuth available → remote MCP; else headless + `NOTION_TOKEN` → local stdio plus direct API for the 5 gaps; else escalate to the install guide. See the `## 3. MACHINE ROUTER` section of `../ROUTER.md` for the full routing pseudocode.
 
 ### Local stdio backend (registered)
 

@@ -19,7 +19,10 @@
       "router file tooling acceptance criteria",
       "router resolver closure",
       "dual declaration rejection",
-      "router file tooling implementation summary"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "router",
@@ -42,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       ".opencode/plugins/system-skill-advisor.js",
       ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-file-resolver.cjs",
@@ -56,8 +60,7 @@
       ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-hermes.test.mjs",
       ".skilled/skills/system-skill-advisor/runtime/lib/freshness.ts",
-      ".skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts",
-      ".skilled/skills/system-skill-advisor/runtime/tests/daemon-watcher-new-root-ingestion.vitest.ts"
+      ".skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts"
     ],
     "entities": [
       {
@@ -82,6 +85,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -175,12 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "daemon-watcher-new-root-ingestion.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skill-advisor/runtime/tests/daemon-watcher-new-root-ingestion.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -207,7 +210,7 @@
     ],
     "causal_summary": "A skill's machine router sits at the end of its `SKILL.md`, and every reader that needs it reads that file",
     "created_at": "2026-10-29T07:52:42Z",
-    "last_save_at": "2026-10-29T10:23:18.821Z",
+    "last_save_at": "2026-10-29T13:26:20.881Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,9 +218,10 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d01a1751c18a3d538f9b396369483ea79ba2aa7167364c8154318bd002c9211c",
+    "source_fingerprint": "sha256:a657417af9ee116fd597009d46b426cce833b20917da05c69f06b1b4ecae97af",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d717de0f46228624e65714cbf084910dfba34768938eed3728f47d20720fb792",

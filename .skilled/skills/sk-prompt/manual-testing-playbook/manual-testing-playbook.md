@@ -1,7 +1,7 @@
 ---
 title: "sk-prompt: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the sk-prompt skill."
-version: 2.3.1.0
+version: 2.3.2.0
 ---
 
 # sk-prompt: Manual Testing Playbook
@@ -31,7 +31,7 @@ Canonical package artifacts:
 
 This playbook provides 28 deterministic scenarios across 7 categories validating the `sk-prompt` skill surface and its escalation agent `@prompt-improver`. Each feature keeps its original ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-05-06): the playbook covers mode detection across 7 command prefixes, INTENT_MODEL keyword scoring, the DEPTH+CLEAR processing loop with phase exit gates, CLEAR five-dimension scoring with floors, framework selection across 7 frameworks, escalation routing to `@prompt-improver`, and on-demand format-guide loading for `$json` and `$yaml`. `sk-prompt` does not ship a `feature-catalog/`, so per-feature files anchor directly to `SKILL.md`, `references/`, and `assets/` on disk.
+Coverage note (2026-05-06): the playbook covers mode detection across 7 command prefixes, INTENT_MODEL keyword scoring, the DEPTH+CLEAR processing loop with phase exit gates, CLEAR five-dimension scoring with floors, framework selection across 7 frameworks, escalation routing to `@prompt-improver`, and on-demand format-guide loading for `$json` and `$yaml`. `sk-prompt` does not ship a `feature-catalog/`, so per-feature files anchor directly to `SKILL.md`, `../ROUTER.md`, `references/`, and `assets/` on disk.
 
 ### Realistic Test Model
 
@@ -53,7 +53,7 @@ Coverage note (2026-05-06): the playbook covers mode detection across 7 command 
 ## 2. GLOBAL PRECONDITIONS
 
 1. Working directory is project root.
-2. `.skilled/skills/sk-prompt/SKILL.md` is at HEAD-of-main and contains the final MACHINE ROUTER section's routing tables (INTENT_MODEL, RESOURCE_MAP, ON_DEMAND_KEYWORDS, AMBIGUITY_DELTA, UNKNOWN_FALLBACK_CHECKLIST), §3 operating modes table, and §7 agent invocation contract.
+2. `.skilled/skills/sk-prompt/ROUTER.md` is at HEAD-of-main and contains the `## 3. MACHINE ROUTER` section's routing tables (INTENT_MODEL, RESOURCE_MAP, ON_DEMAND_KEYWORDS, AMBIGUITY_DELTA, UNKNOWN_FALLBACK_CHECKLIST), and `.skilled/skills/sk-prompt/SKILL.md` holds the §3 operating modes table and §7 agent invocation contract.
 3. `.skilled/skills/sk-prompt/references/depth-framework.md`, `.skilled/skills/sk-prompt/references/patterns-evaluation.md`, `.skilled/skills/sk-prompt/assets/format-guide-markdown.md`, `.skilled/skills/sk-prompt/assets/format-guide-json.md`, and `.skilled/skills/sk-prompt/assets/format-guide-yaml.md` resolve on disk.
 4. `@prompt-improver` agent is canonical at `.skilled/agents/prompt-improver.md` (verify with `ls .skilled/agents/prompt-improver.md`).
 5. Destructive scenario: none in this playbook. All scenarios are read+score+return, no file mutation outside the operator's own evidence capture under `/tmp/`.

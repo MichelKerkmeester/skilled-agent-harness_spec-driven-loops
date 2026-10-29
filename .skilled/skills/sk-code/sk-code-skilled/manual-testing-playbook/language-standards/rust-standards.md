@@ -23,7 +23,7 @@ expected_resources:
   - references/rust/quick-reference/collections-imports-and-errors.md
   - references/rust/quick-reference/rustdoc-and-cargo.md
   - references/rust/quick-reference/determinism-parity-and-related.md
-version: 1.0.1.1
+version: 1.0.3.0
 ---
 
 # OC-009: Rust standards routing
@@ -36,7 +36,7 @@ This document captures the routing-recall contract, execution process, source an
 
 This scenario validates `RUST` routing for `OC-009`. It focuses on confirming that the exact prompt
 below classifies as `RUST` and loads the full 17-file resource set instead of a generic or mismatched
-resource set, per `SKILL.md` §6's machine-readable router.
+resource set, per `ROUTER.md` §3's machine-readable router.
 
 ### Why This Matters
 
@@ -63,7 +63,7 @@ For an OpenCode Rust napi-rs or WASM module, apply the Rust standards and TypeSc
   `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
   `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-skilled/`, and each one
-  documents `RUST` routing per `SKILL.md` §2 or §6.
+  documents `RUST` routing per `SKILL.md` §2 or `ROUTER.md` §3.
 - Desired user-visible outcome: the bundled workflow cites the routed `RUST` resources as the
   standards evidence, not a mismatched language or generic tier.
 - Pass/fail: PASS if every listed path exists and the frontmatter surface/intent are `SKILLED`/
@@ -80,8 +80,8 @@ For an OpenCode Rust napi-rs or WASM module, apply the Rust standards and TypeSc
 ### Commands
 
 1. `sed -n '/^---$/,/^---$/p' .skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/language-standards/rust-standards.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/SKILL.md | grep -F '"RUST"'`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/SKILL.md | sed -n '/"RUST": \[/,/\],/p'`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/ROUTER.md | grep -F '"RUST"'`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/ROUTER.md | sed -n '/"RUST": \[/,/\],/p'`
 4. `for p in references/rust/style-guide/overview-and-file-header.md references/rust/style-guide/toolchain-and-project-structure.md references/rust/style-guide/naming-conventions.md references/rust/style-guide/formatting-and-imports.md references/rust/style-guide/commenting-and-rustdoc.md references/rust/style-guide/interop-model.md references/rust/style-guide/interop-errors-and-parity.md references/rust/quality-standards/overview-and-data-ownership.md references/rust/quality-standards/modeling-collections-and-api.md references/rust/quality-standards/docs-errors-and-async.md references/rust/quality-standards/build-and-organization.md references/rust/quality-standards/determinism-and-parity.md references/rust/quick-reference/overview-and-boundary-template.md references/rust/quick-reference/naming-ordering-and-signatures.md references/rust/quick-reference/collections-imports-and-errors.md references/rust/quick-reference/rustdoc-and-cargo.md references/rust/quick-reference/determinism-parity-and-related.md; do test -e ".skilled/skills/sk-code/sk-code-skilled/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
@@ -122,7 +122,7 @@ excerpt.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §6 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [ROUTER.md](../../ROUTER.md) §3 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §2 | Reference-map prose entry for the `RUST` resource set |
 | [SKILL.md](../../SKILL.md) §3 | The Rust-preserves-the-TypeScript-contract rule this scenario's interop files enforce |
 

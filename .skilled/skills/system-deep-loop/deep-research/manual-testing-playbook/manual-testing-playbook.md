@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-research skill."
-version: 1.14.2.0
+version: 1.14.3.0
 ---
 
 # deep-research: Manual Testing Playbook
@@ -807,7 +807,7 @@ Expected signals: `if_absent` command unchanged; both fan-out steps have `skip_w
 ## 16. INTRA ROUTING RECALL
 
 This category covers 8 scenarios validating the `deep-research` packet's own intra-packet
-smart router (`SKILL.md` §9 `Smart Router Pseudocode`): each scenario confirms one
+smart router ([ROUTER.md](../ROUTER.md) §3 `MACHINE ROUTER`): each scenario confirms one
 `INTENT_SIGNALS` key scores as the dominant intent for a shaped prompt and loads the matching
 `RESOURCE_MAP` resource set.
 

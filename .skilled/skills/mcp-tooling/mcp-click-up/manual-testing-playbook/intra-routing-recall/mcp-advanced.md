@@ -3,11 +3,11 @@ id: CU-R02
 category: intra_routing_recall
 stage: routing
 title: 'MCP advanced routing'
-description: "This scenario validates the SKILL.md Smart Router's MCP_ADVANCED intent for `CU-R02`. It confirms a documents/goals/bulk-create prompt scores MCP_ADVANCED and loads exactly RESOURCE_MAP['MCP_ADVANCED']."
+description: "This scenario validates the ROUTER.md §3 MACHINE ROUTER's MCP_ADVANCED intent for `CU-R02`. It confirms a documents/goals/bulk-create prompt scores MCP_ADVANCED and loads exactly RESOURCE_MAP['MCP_ADVANCED']."
 expected_intent: MCP_ADVANCED
 expected_resources:
   - references/mcp-tools.md
-version: 1.1.1.0
+version: 1.1.3.0
 ---
 
 # CU-R02: MCP advanced routing
@@ -20,7 +20,7 @@ This document captures the routing-recall contract, execution process, source an
 
 This scenario validates that the `mcp-click-up` Smart Router's `MCP_ADVANCED` intent signal fires on
 a request naming ClickUp's document, goal, and bulk-create surfaces, and that the router loads
-exactly `RESOURCE_MAP["MCP_ADVANCED"]` — `references/mcp-tools.md` alone — per `SKILL.md` §9.
+exactly `RESOURCE_MAP["MCP_ADVANCED"]` — `references/mcp-tools.md` alone — per `ROUTER.md` §3 MACHINE ROUTER.
 
 ### Why This Matters
 
@@ -37,7 +37,7 @@ tie-break.
 
 ## 2. SCENARIO CONTRACT
 
-Operators confirm the exact prompt scores `MCP_ADVANCED` under `SKILL.md` §9's weighted keyword model
+Operators confirm the exact prompt scores `MCP_ADVANCED` under `../../ROUTER.md` §3 MACHINE ROUTER's weighted keyword model
 and that the router's `RESOURCE_MAP["MCP_ADVANCED"]` entry matches this scenario's declared
 `expected_resources`.
 
@@ -55,16 +55,16 @@ Create a ClickUp document, set quarterly OKR goals, and bulk-create the sprint t
 - Expected execution process: the router scores every intent's keyword set (weight 5 per hit) against
   the lowercased prompt; `document`, `goal`, `okr`, and `bulk` are all literal
   `INTENT_SIGNALS["MCP_ADVANCED"]` keywords, none of `TROUBLESHOOT`'s or `INSTALL`'s keywords appear,
-  so the tie-break at `SKILL.md` §9 falls through to `max(scores, key=scores.get)` and selects
+  so the tie-break at `../../ROUTER.md` §3 MACHINE ROUTER falls through to `max(scores, key=scores.get)` and selects
   `MCP_ADVANCED`.
-- Expected signals: `SKILL.md` §9 lists `MCP_ADVANCED` in `INTENT_SIGNALS` with those keywords;
+- Expected signals: `ROUTER.md` §3 MACHINE ROUTER lists `MCP_ADVANCED` in `INTENT_SIGNALS` with those keywords;
   `RESOURCE_MAP["MCP_ADVANCED"]` names exactly `references/mcp-tools.md`; the file exists.
 - Desired user-visible outcome: the router states plainly that this request routes to `MCP_ADVANCED`
   and bundles the MCP tool reference before answering. The answer creates the document and says
   that goals and bulk creation have no tool on the hosted server (`references/mcp-tools.md` §4).
-- Pass/fail: PASS if `SKILL.md` §9 names the matched `MCP_ADVANCED` keywords, no
+- Pass/fail: PASS if `../../ROUTER.md` §3 MACHINE ROUTER names the matched `MCP_ADVANCED` keywords, no
   `TROUBLESHOOT`/`INSTALL` keyword is present in the prompt, and the mapped resource exists; FAIL if
-  the keyword weights or `RESOURCE_MAP["MCP_ADVANCED"]` entry in `SKILL.md` no longer matches this
+  the keyword weights or `RESOURCE_MAP["MCP_ADVANCED"]` entry in `ROUTER.md` §3 MACHINE ROUTER no longer matches this
   scenario's frontmatter, or the resource path is missing.
 
 ---
@@ -78,8 +78,8 @@ Create a ClickUp document, set quarterly OKR goals, and bulk-create the sprint t
 ### Commands
 
 1. `sed -n '1,10p' .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/mcp-advanced.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/ROUTER.md`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/ROUTER.md`
 4. `test -e .skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md && echo "OK references/mcp-tools.md" || echo "MISS references/mcp-tools.md"`
 
 ### Expected
@@ -96,7 +96,7 @@ excerpts from steps 2-3 with the matched keywords highlighted.
 
 ### Pass / Fail
 
-- **Pass**: `SKILL.md` §9 names the matched `MCP_ADVANCED` keywords, no tie-break keyword from
+- **Pass**: `../../ROUTER.md` §3 MACHINE ROUTER names the matched `MCP_ADVANCED` keywords, no tie-break keyword from
   `TROUBLESHOOT`/`INSTALL` appears in the prompt, `RESOURCE_MAP["MCP_ADVANCED"]` lists the resource,
   and the resource path exists.
 - **Fail**: the keyword set or resource map in `SKILL.md` no longer matches this scenario's
@@ -108,7 +108,7 @@ excerpts from steps 2-3 with the matched keywords highlighted.
 1. Re-run step 2 and diff the current `INTENT_SIGNALS["MCP_ADVANCED"]` keyword list against this
    scenario's quoted matches to see which keyword moved or was reworded.
 2. Re-run step 4 and confirm whether `references/mcp-tools.md` was renamed or removed.
-3. If the prompt instead scored `TROUBLESHOOT` or `INSTALL`, re-read `SKILL.md` §9's tie-break rule
+3. If the prompt instead scored `TROUBLESHOOT` or `INSTALL`, re-read `../../ROUTER.md` §3 MACHINE ROUTER's tie-break rule
    for an unexpected keyword hit.
 
 ---
@@ -126,7 +126,7 @@ excerpts from steps 2-3 with the matched keywords highlighted.
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` §9 | The `MCP_ADVANCED` `INTENT_SIGNALS` keywords, `RESOURCE_MAP` entry, and tie-break rule this scenario verifies |
+| `../../ROUTER.md` §3 MACHINE ROUTER | The `MCP_ADVANCED` `INTENT_SIGNALS` keywords, `RESOURCE_MAP` entry, and tie-break rule this scenario verifies |
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "CR-023 -- Review-depth alias"
 description: "This scenario validates the review-depth alias for `CR-023`. It focuses on the reviewing agent honoring SK_CODE_REVIEW_DEPTH=lite|full|ultra as resolved env over default, with ultra resolving the ON_DEMAND deep-dive set and lite never relaxing a floor or skipping a sensitive path."
-version: 1.6.0.0
+version: 1.6.1.0
 ---
 
 # CR-023 -- Review-depth alias
@@ -48,7 +48,7 @@ Run a review with SK_CODE_REVIEW_DEPTH set to ultra, then lite, and confirm ultr
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-023 | Review-depth alias | Confirm `SK_CODE_REVIEW_DEPTH` resolves env over default with no config tier, ultra resolves the ON_DEMAND deep-dive set, and lite neither suppresses a review on its own nor skips a sensitive path. | `Run a review with SK_CODE_REVIEW_DEPTH set to ultra, then lite, and confirm ultra pulls in the on-demand deep-dive references while lite maps to the conservative skip, and that neither lowers the security and correctness floor or skips a sensitive-path diff.` | bash: run the `SKILL.md` §10 router over the prompt with and without an ON_DEMAND term to show the set ultra biases toward -> bash: grep the quality config for a depth key -> bash: export SK_CODE_REVIEW_DEPTH=ultra -> agent: @review the diff -> bash: export SK_CODE_REVIEW_DEPTH=lite with no M-2 threshold -> agent: @review the diff -> bash: export SK_CODE_REVIEW_DEPTH=lite and the M-2 threshold -> agent: @review a sensitive-path diff | The ON_DEMAND run resolves ten paths and the plain run five; the depth key appears in no quality config; the ultra transcript loads the deep-dive references; the lite run without the threshold reviews in full; the lite sensitive-path run reviews in full | The two router transcripts, the config grep, and the three review transcripts with their loaded-reference lists | PASS iff the alias resolves from the environment alone, ultra's transcript shows the deep-dive set, and lite neither suppresses a review without the M-2 threshold nor skips a sensitive path; FAIL if a depth value relaxes a baseline minimum, a review is suppressed on a sensitive diff, or a config key is read as a resolution tier | 1. Check that the export preceded the dispatch in the same shell; 2. Confirm the M-2 threshold state before reading a lite result; 3. Check the sensitive-path classification before calling a skip a defect |
+| CR-023 | Review-depth alias | Confirm `SK_CODE_REVIEW_DEPTH` resolves env over default with no config tier, ultra resolves the ON_DEMAND deep-dive set, and lite neither suppresses a review on its own nor skips a sensitive path. | `Run a review with SK_CODE_REVIEW_DEPTH set to ultra, then lite, and confirm ultra pulls in the on-demand deep-dive references while lite maps to the conservative skip, and that neither lowers the security and correctness floor or skips a sensitive-path diff.` | bash: run the `ROUTER.md` §3 router over the prompt with and without an ON_DEMAND term to show the set ultra biases toward -> bash: grep the quality config for a depth key -> bash: export SK_CODE_REVIEW_DEPTH=ultra -> agent: @review the diff -> bash: export SK_CODE_REVIEW_DEPTH=lite with no M-2 threshold -> agent: @review the diff -> bash: export SK_CODE_REVIEW_DEPTH=lite and the M-2 threshold -> agent: @review a sensitive-path diff | The ON_DEMAND run resolves ten paths and the plain run five; the depth key appears in no quality config; the ultra transcript loads the deep-dive references; the lite run without the threshold reviews in full; the lite sensitive-path run reviews in full | The two router transcripts, the config grep, and the three review transcripts with their loaded-reference lists | PASS iff the alias resolves from the environment alone, ultra's transcript shows the deep-dive set, and lite neither suppresses a review without the M-2 threshold nor skips a sensitive path; FAIL if a depth value relaxes a baseline minimum, a review is suppressed on a sensitive diff, or a config key is read as a resolution tier | 1. Check that the export preceded the dispatch in the same shell; 2. Confirm the M-2 threshold state before reading a lite result; 3. Check the sensitive-path classification before calling a skip a defect |
 
 ### Exact Commands
 
@@ -59,9 +59,9 @@ python3 - <<'PY'
 import re
 from pathlib import Path
 
-skill = Path('.skilled/skills/sk-code/sk-code-review/SKILL.md')
+skill = Path('.skilled/skills/sk-code/sk-code-review/ROUTER.md')
 text = skill.read_text()
-block = re.search(r"```python\n(.*?)\n```", text[text.index('## 10. MACHINE ROUTER'):], re.S).group(1)
+block = re.search(r"```python\n(.*?)\n```", text[text.index('## 3. MACHINE ROUTER'):], re.S).group(1)
 ns = {'__file__': str(skill), '__name__': 'machine_router', 'load': lambda path: None}
 exec(compile(block, 'machine-router', 'exec'), ns)
 
@@ -197,7 +197,8 @@ The two router transcripts from step 1, the step 2 grep, and the three review tr
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` | Section 9.3 `SK_CODE_REVIEW_DEPTH`, section 9.2 `SK_CODE_REVIEW_MIN_CHANGED_LINES` and the never-skip classes, and section 10 loading levels |
+| `../../SKILL.md` | Section 9.3 `SK_CODE_REVIEW_DEPTH`, section 9.2 `SK_CODE_REVIEW_MIN_CHANGED_LINES` and the never-skip classes |
+| `../../ROUTER.md` | Section 3 machine router and its loading levels |
 | `../../references/quick-reference.md` | The deep-dive index `ultra` biases toward |
 | `../../../sk-code-quality/references/quality-config.md` | The only config layer the mode reads, which carries no depth key |
 

@@ -231,6 +231,175 @@ function testPacketActivePositive() {
   assert.deepEqual(result.violations, []);
 }
 
+// A packet or standalone router written the way its own pseudocode reads it:
+// any machine lines, no hub-style map pair required.
+function nonHubRouterText(machineLines) {
+  return '---\ntitle: fixture router\nversion: 1.0.0.0\nrouter_state: active\nskill_pointer: SKILL.md\n---\n\n' +
+    '# Fixture Router\n\n## 1. OVERVIEW\n\nThe fixture packet router.\n\n' +
+    '## 2. INTENT MODEL\n\nThe fixture intents.\n\n## 3. MACHINE ROUTER\n\n```python\n' +
+    `${machineLines.join('\n')}\n` + '```\n';
+}
+
+const LOWER_INTENT_MODEL = 'INTENT_MODEL = {\n    "alpha": {"weight": 4, "keywords": ["alpha"]},\n}';
+
+function testPacketIntentModelWithResourceMapPasses() {
+  const result = validatePacket({
+    routerText: nonHubRouterText([
+      'INTENT_MODEL = {\n    "ALPHA": {"weight": 4, "keywords": ["alpha"]},\n}',
+      'RESOURCE_MAP = {\n    "ALPHA": ["references/packet-a.md"],\n}',
+    ]),
+  });
+  assert.deepEqual(result.violations, [], JSON.stringify(result.violations));
+}
+
+function testPacketLowerCaseIntentModelAlonePasses() {
+  const result = validatePacket({ routerText: nonHubRouterText(['DEFAULT_RESOURCE = "references/packet-a.md"', LOWER_INTENT_MODEL]) });
+  assert.deepEqual(result.violations, [], JSON.stringify(result.violations));
+}
+
+function testPacketWithNoMapPasses() {
+  const result = validatePacket({ routerText: nonHubRouterText(['UNKNOWN_FALLBACK = {"load_level": "UNKNOWN_FALLBACK"}']) });
+  assert.deepEqual(result.violations, [], JSON.stringify(result.violations));
+}
+
+function testPacketEmptyDeclaredResourceMapFails() {
+  const result = validatePacket({ routerText: nonHubRouterText([LOWER_INTENT_MODEL, 'RESOURCE_MAP = {}']) });
+  assert.ok(codesOf(result).includes('RRC-004'), JSON.stringify(result.violations));
+}
+
+function testPacketDeclaringBothIntentNamesFails() {
+  const result = validatePacket({
+    routerText: nonHubRouterText([
+      'INTENT_SIGNALS = {\n    "ALPHA": {"weight": 4, "keywords": ["alpha"]},\n}',
+      LOWER_INTENT_MODEL,
+    ]),
+  });
+  assert.ok(codesOf(result).includes('RRC-002'), JSON.stringify(result.violations));
+}
+
+function testPacketMismatchedKeysFailWhenBothMapsExist() {
+  const result = validatePacket({
+    routerText: nonHubRouterText([LOWER_INTENT_MODEL, 'RESOURCE_MAP = {\n    "BETA": ["references/packet-a.md"],\n}']),
+  });
+  assert.ok(codesOf(result).includes('RRC-004'), JSON.stringify(result.violations));
+}
+
+function testHubWithIntentModelStillNeedsSignals() {
+  const result = validate({ routerText: nonHubRouterText([LOWER_INTENT_MODEL]) });
+  assert.ok(codesOf(result).includes('RRC-004'), JSON.stringify(result.violations));
+}
+
+const SIGNALS_WITH_DESIGN = 'INTENT_SIGNALS = {\n    "ALPHA": {"weight": 4, "keywords": ["alpha"]},\n'
+  + '    "DESIGN": {"weight": 4, "keywords": ["design tokens"]},\n}';
+const ALPHA_MAP = 'RESOURCE_MAP = {\n    "ALPHA": ["references/packet-a.md"],\n}';
+const ALPHA_DESIGN_EMPTY_MAP = 'RESOURCE_MAP = {\n    "ALPHA": ["references/packet-a.md"],\n    "DESIGN": [],\n}';
+const NO_LOAD_DESIGN = 'NO_LOAD_INTENTS = ("DESIGN",)';
+
+// A signal-only intent passes only when NO_LOAD_INTENTS names it, whether it
+// is missing from RESOURCE_MAP or maps to an empty list.
+function testPacketNoLoadIntentPasses() {
+  for (const map of [ALPHA_MAP, ALPHA_DESIGN_EMPTY_MAP]) {
+    const listed = validatePacket({ routerText: nonHubRouterText([SIGNALS_WITH_DESIGN, NO_LOAD_DESIGN, map]) });
+    assert.deepEqual(listed.violations, [], JSON.stringify(listed.violations));
+    const unlisted = validatePacket({ routerText: nonHubRouterText([SIGNALS_WITH_DESIGN, map]) });
+    assert.deepEqual(codesOf(unlisted), ['RRC-004'], JSON.stringify(unlisted.violations));
+  }
+}
+
+function testNoLoadIntentMisuseFails() {
+  const unknown = validatePacket({
+    routerText: nonHubRouterText([SIGNALS_WITH_DESIGN, 'NO_LOAD_INTENTS = ("DESIGN", "GAMMA")', ALPHA_MAP]),
+  });
+  assert.ok(unknown.violations.some((v) => v.code === 'RRC-004' && /"GAMMA"/.test(v.message)), JSON.stringify(unknown.violations));
+  const mapped = validatePacket({
+    routerText: nonHubRouterText([SIGNALS_WITH_DESIGN, 'NO_LOAD_INTENTS = ("ALPHA", "DESIGN")', ALPHA_MAP]),
+  });
+  assert.ok(mapped.violations.some((v) => v.code === 'RRC-004' && /"ALPHA"/.test(v.message)), JSON.stringify(mapped.violations));
+  const hub = validate({
+    routerText: routerText('active', { intents: ACTIVE_INTENTS, resources: ACTIVE_RESOURCES }).replace('```python\n', `\`\`\`python\n${NO_LOAD_DESIGN}\n`),
+  });
+  assert.ok(hub.violations.some((v) => v.code === 'RRC-004' && /may not declare NO_LOAD_INTENTS/.test(v.message)), JSON.stringify(hub.violations));
+}
+
+const INSTALL_MAP = 'RESOURCE_MAP = {\n    "ALPHA": ["references/packet-a.md"],\n    "INSTALL": ["INSTALL-GUIDE.md"],\n}';
+const INSTALL_SIGNALS = 'INTENT_SIGNALS = {\n    "ALPHA": {"weight": 4, "keywords": ["alpha"]},\n'
+  + '    "INSTALL": {"weight": 6, "keywords": ["install"]},\n}';
+const ROOT_INSTALL = 'ROOT_RESOURCES = ("INSTALL-GUIDE.md",)';
+const withInstallOnDisk = (p) => p === 'INSTALL-GUIDE.md' || diskProbe(p);
+
+// A root file is exempt from the typed-pair rule only when it is declared,
+// referenced and present in the router's own folder.
+function testPacketRootResourcePasses() {
+  const result = validatePacket({
+    routerText: nonHubRouterText([INSTALL_SIGNALS, ROOT_INSTALL, INSTALL_MAP]),
+    resolveOnDisk: withInstallOnDisk,
+    resolveInOwnRoot: (p) => p === 'INSTALL-GUIDE.md',
+  });
+  assert.deepEqual(result.violations, [], JSON.stringify(result.violations));
+}
+
+function testRootResourceGuardsStillFail() {
+  const own = (p) => p === 'INSTALL-GUIDE.md';
+  const undeclared = validatePacket({
+    routerText: nonHubRouterText([INSTALL_SIGNALS, INSTALL_MAP]), resolveOnDisk: withInstallOnDisk, resolveInOwnRoot: own,
+  });
+  assert.deepEqual(codesOf(undeclared), ['RRC-006'], JSON.stringify(undeclared.violations));
+  // Present only at the hub root, which a packet's ordinary probe would accept.
+  const hubOnly = validatePacket({
+    routerText: nonHubRouterText([INSTALL_SIGNALS, ROOT_INSTALL, INSTALL_MAP]), resolveOnDisk: withInstallOnDisk, resolveInOwnRoot: () => false,
+  });
+  assert.ok(codesOf(hubOnly).includes('RRC-006'), JSON.stringify(hubOnly.violations));
+  const noProbe = validatePacket({
+    routerText: nonHubRouterText([INSTALL_SIGNALS, ROOT_INSTALL, INSTALL_MAP]), resolveOnDisk: withInstallOnDisk,
+  });
+  assert.ok(codesOf(noProbe).includes('RRC-006'), JSON.stringify(noProbe.violations));
+  const nested = validatePacket({
+    routerText: nonHubRouterText([INSTALL_SIGNALS, 'ROOT_RESOURCES = ("references/packet-a.md",)', INSTALL_MAP]),
+    resolveOnDisk: withInstallOnDisk, resolveInOwnRoot: own,
+  });
+  assert.ok(nested.violations.some((v) => v.code === 'RRC-004' && /single markdown file name/.test(v.message)), JSON.stringify(nested.violations));
+}
+
+const TUPLE_MODEL = 'INTENT_MODEL = {\n    "APPS": {"keywords": [("app research", 4), ("competitor", 3)]},\n'
+  + '    "FLOWS": {"keywords": [("user flow", 4)]},\n}';
+const MIRROR_SIGNALS = 'INTENT_SIGNALS = {\n    "APPS": {"weight": 4, "keywords": ["app research", "competitor"]},\n'
+  + '    "FLOWS": {"weight": 4, "keywords": ["user flow"]},\n}';
+const APPS_FLOWS_MAP = 'RESOURCE_MAP = {\n    "APPS": ["references/packet-a.md"],\n    "FLOWS": ["references/packet-a.md"],\n}';
+
+// Both intent maps may stand only as an exact mirror: same keys, same keywords.
+function testPacketMirroredIntentMapsPass() {
+  const result = validatePacket({ routerText: nonHubRouterText([TUPLE_MODEL, MIRROR_SIGNALS, APPS_FLOWS_MAP]) });
+  assert.deepEqual(result.violations, [], JSON.stringify(result.violations));
+}
+
+function testPacketDriftedIntentMirrorFails() {
+  const missingKeyword = MIRROR_SIGNALS.replace(', "competitor"', '');
+  const drifted = validatePacket({ routerText: nonHubRouterText([TUPLE_MODEL, missingKeyword, APPS_FLOWS_MAP]) });
+  assert.ok(codesOf(drifted).includes('RRC-002'), JSON.stringify(drifted.violations));
+  const renamed = MIRROR_SIGNALS.replace('"FLOWS"', '"JOURNEYS"');
+  const rekeyed = validatePacket({ routerText: nonHubRouterText([TUPLE_MODEL, renamed, APPS_FLOWS_MAP]) });
+  assert.ok(codesOf(rekeyed).includes('RRC-002'), JSON.stringify(rekeyed.violations));
+}
+
+// A commented-out name or keyword is not one the runtime reads, and an
+// apostrophe inside a comment must not open a string.
+function testCommentsAreNotEntries() {
+  const commentedNoLoad = 'NO_LOAD_INTENTS = (\n    "DESIGN",\n    # "GAMMA" was retired\n)';
+  const noLoad = validatePacket({ routerText: nonHubRouterText([SIGNALS_WITH_DESIGN, commentedNoLoad, ALPHA_MAP]) });
+  assert.deepEqual(noLoad.violations, [], JSON.stringify(noLoad.violations));
+  const commentedKeyword = MIRROR_SIGNALS.replace('"competitor"]},', '"competitor"]},  # it\'s "rival" in the old model');
+  const mirror = validatePacket({ routerText: nonHubRouterText([TUPLE_MODEL, commentedKeyword, APPS_FLOWS_MAP]) });
+  assert.deepEqual(mirror.violations, [], JSON.stringify(mirror.violations));
+}
+
+// A list named in prose outside the fenced machine block declares nothing.
+function testProseNameListIsNotDeclared() {
+  const text = nonHubRouterText([SIGNALS_WITH_DESIGN, ALPHA_MAP])
+    .replace('## 3. MACHINE ROUTER', 'NO_LOAD_INTENTS = ("DESIGN",) is how a packet opts out.\n\n## 3. MACHINE ROUTER');
+  const result = validatePacket({ routerText: text });
+  assert.ok(codesOf(result).includes('RRC-004'), JSON.stringify(result.violations));
+}
+
 function testActivePositiveThroughSharedAlias() {
   const aliasEntries = [
     { workflowMode: 'alpha', leafResourceId: 'references/a.md', diskPath: 'shared/references/a.md' },
@@ -848,6 +1017,21 @@ testStandaloneRoutesToItsPackageIndex();
 testStandaloneAssetsFeatureCatalogIsNotAPackageIndex();
 testPacketPackageIndexIsNotAPackageIndex();
 testPacketActivePositive();
+testPacketIntentModelWithResourceMapPasses();
+testPacketLowerCaseIntentModelAlonePasses();
+testPacketWithNoMapPasses();
+testPacketEmptyDeclaredResourceMapFails();
+testPacketDeclaringBothIntentNamesFails();
+testPacketMismatchedKeysFailWhenBothMapsExist();
+testHubWithIntentModelStillNeedsSignals();
+testPacketNoLoadIntentPasses();
+testNoLoadIntentMisuseFails();
+testPacketRootResourcePasses();
+testRootResourceGuardsStillFail();
+testPacketMirroredIntentMapsPass();
+testPacketDriftedIntentMirrorFails();
+testCommentsAreNotEntries();
+testProseNameListIsNotDeclared();
 testStandaloneActiveEmptyMaps();
 testStandaloneStage1OnlyRejected();
 testPacketStage1OnlyRejected();

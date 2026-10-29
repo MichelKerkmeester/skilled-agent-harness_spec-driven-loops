@@ -8,7 +8,7 @@ expected_intent: VERIFICATION
 expected_resources:
   - references/shared/alignment-verification-automation.md
   - assets/scripts/README.md
-version: 1.0.2.0
+version: 1.0.4.0
 ---
 
 # OC-008: Verification alignment routing
@@ -21,7 +21,7 @@ This document captures the routing-recall contract, execution process, source an
 
 This scenario validates `VERIFICATION` routing for `OC-008`. It focuses on confirming that the exact prompt
 below classifies as `VERIFICATION` and loads the full 2-file resource set instead of a generic or mismatched
-resource set, per `SKILL.md` §6's machine-readable router. It then runs the guards that resource set
+resource set, per `ROUTER.md` §3's machine-readable router. It then runs the guards that resource set
 describes, because a verification scenario that only checks that two documents exist grades the pointer and
 not the gate.
 
@@ -50,7 +50,7 @@ Verify the alignment drift gate and completion claim type-check signals before s
   `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
   `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-skilled/`, each one documents
-  `VERIFICATION` routing per `SKILL.md` §2 or §6, and steps 5-9 return the exit status each one states.
+  `VERIFICATION` routing per `SKILL.md` §2 or `ROUTER.md` §3, and steps 5-9 return the exit status each one states.
 - Desired user-visible outcome: the bundled workflow cites the routed `VERIFICATION` resources as the
   standards evidence and reports guard results it actually ran, not a mismatched language tier and not an
   assumption that the gate passed.
@@ -69,8 +69,8 @@ Verify the alignment drift gate and completion claim type-check signals before s
 ### Commands
 
 1. `sed -n '/^---$/,/^---$/p' .skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/SKILL.md | grep -F '"VERIFICATION"'`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/SKILL.md | sed -n '/"VERIFICATION": \[/,/\],/p'`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/ROUTER.md | grep -F '"VERIFICATION"'`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/ROUTER.md | sed -n '/"VERIFICATION": \[/,/\],/p'`
 4. `for p in references/shared/alignment-verification-automation.md assets/scripts/README.md; do test -e ".skilled/skills/sk-code/sk-code-skilled/$p" && echo "OK $p" || echo "MISS $p"; done`
 5. `python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root . --check-router; echo "rc=$?"`
 6. `python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root . --check-router --fail-on-warn; echo "rc=$?"`
@@ -141,7 +141,7 @@ PASS lines; the test summary line; the `--explain` JSON.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §6 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [ROUTER.md](../../ROUTER.md) §3 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §2 | Reference-map prose entry for the `VERIFICATION` resource set |
 | [SKILL.md](../../SKILL.md) §3 | The alignment-drift-is-a-verification-gate rule this scenario's resources enforce |
 | [verify_alignment_drift.py](../../assets/scripts/verify_alignment_drift.py) | Guard steps 5 and 6 run; `--check-router` adds the dead-route leg and `--fail-on-warn` gates the advisory findings |

@@ -10,7 +10,7 @@ expected_resources:
   - assets/utcp-figma-manual.md
   - assets/env-template.md
   - references/figma-cli-reference.md
-version: 1.0.1.0
+version: 1.0.3.0
 ---
 
 # FG-R05: MCP context routing
@@ -21,11 +21,11 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario validates MCP_CONTEXT routing for `FG-R05`. It focuses on confirming that a prompt about pulling design context through Code Mode via the `figma-developer-mcp` wiring scores highest against `INTENT_MODEL["MCP_CONTEXT"]` in `SKILL.md` §8 and resolves the `RESOURCE_MAP["MCP_CONTEXT"]` set, not on actually invoking a Code Mode tool, since this scenario only exercises which intent and resources the router selects.
+This scenario validates MCP_CONTEXT routing for `FG-R05`. It focuses on confirming that a prompt about pulling design context through Code Mode via the `figma-developer-mcp` wiring scores highest against `INTENT_MODEL["MCP_CONTEXT"]` in `../../ROUTER.md` §3 and resolves the `RESOURCE_MAP["MCP_CONTEXT"]` set, not on actually invoking a Code Mode tool, since this scenario only exercises which intent and resources the router selects.
 
 ### Why This Matters
 
-MCP_CONTEXT is the only intent whose `RESOURCE_MAP` entry loads `assets/` snippets (`SKILL.md` §8 Resource Loading Levels, CONDITIONAL row). Verifying this scenario's four-path set keeps the optional Code Mode path (Framelink `figma` manual, `figma_FIGMA_API_KEY` .env line) discoverable without pulling it into every CLI-only route.
+MCP_CONTEXT is the only intent whose `RESOURCE_MAP` entry loads `assets/` snippets (`../../ROUTER.md` §3 Resource Loading Levels, CONDITIONAL row). Verifying this scenario's four-path set keeps the optional Code Mode path (Framelink `figma` manual, `figma_FIGMA_API_KEY` .env line) discoverable without pulling it into every CLI-only route.
 
 ---
 
@@ -42,8 +42,8 @@ Operators confirm the exact prompt for `FG-R05` classifies as `MCP_CONTEXT` and 
 Pull design context through code mode via the figma-developer-mcp wiring.
 ```
 
-- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`SKILL.md` §8); "mcp", "code mode", and "figma-developer-mcp" each match `MCP_CONTEXT` keywords and no other intent scores as high, so `MCP_CONTEXT` becomes the primary intent and `RESOURCE_MAP["MCP_CONTEXT"]` loads all four declared paths
-- Expected signals: every path in `expected_resources` exists under `mcp-figma/`, and each documents `MCP_CONTEXT` routing per `SKILL.md` §8
+- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`../../ROUTER.md` §3); "mcp", "code mode", and "figma-developer-mcp" each match `MCP_CONTEXT` keywords and no other intent scores as high, so `MCP_CONTEXT` becomes the primary intent and `RESOURCE_MAP["MCP_CONTEXT"]` loads all four declared paths
+- Expected signals: every path in `expected_resources` exists under `mcp-figma/`, and each documents `MCP_CONTEXT` routing per `../../ROUTER.md` §3
 - Desired user-visible outcome: the bundled workflow loads the Framelink wiring reference, the paste-ready manual and .env snippets, and the CLI baseline, then discovers the live `figma` manual through Code Mode (`list_tools`/`search_tools`/`tool_info`) before invoking any tool
 - Pass/fail: PASS if every listed path exists and the frontmatter intent is `MCP_CONTEXT`; FAIL if any listed path is missing or the frontmatter disagrees
 
@@ -58,7 +58,7 @@ Pull design context through code mode via the figma-developer-mcp wiring.
 ### Commands
 
 1. `sed -n '1,17p' .skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/mcp-context.md`
-2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-figma/SKILL.md | sed -n '/"MCP_CONTEXT":/p'`
+2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-figma/ROUTER.md | sed -n '/"MCP_CONTEXT":/p'`
 3. `for p in references/mcp-wiring.md assets/utcp-figma-manual.md assets/env-template.md references/figma-cli-reference.md; do test -e ".skilled/skills/mcp-tooling/mcp-figma/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
@@ -77,7 +77,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 ### Failure Triage
 
 1. Re-run step 3 for the specific path that failed and confirm whether it was renamed or removed under `references/` or `assets/`.
-2. Diff this scenario's `expected_resources` against the step-2 `INTENT_MODEL["MCP_CONTEXT"]` excerpt and the `RESOURCE_MAP["MCP_CONTEXT"]` entry in `SKILL.md` §8 to see whether the drift is a stale scenario file or a stale `SKILL.md` map.
+2. Diff this scenario's `expected_resources` against the step-2 `INTENT_MODEL["MCP_CONTEXT"]` excerpt and the `RESOURCE_MAP["MCP_CONTEXT"]` entry in `../../ROUTER.md` §3 to see whether the drift is a stale scenario file or a stale `../../ROUTER.md` map.
 3. If the Code Mode `figma` manual itself is unavailable (not registered, or `figma_FIGMA_API_KEY` missing from `.env`), that blocks live discovery specifically -- record it as a SKIP for the live-discovery follow-up, not as a FAIL of this static path-resolution scenario.
 
 ---
@@ -94,7 +94,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §8 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [ROUTER.md](../../ROUTER.md) §3 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §1 | Activation triggers this scenario's prompt assumes |
 
 ---

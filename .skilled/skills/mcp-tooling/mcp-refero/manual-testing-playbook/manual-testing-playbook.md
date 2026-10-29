@@ -1,7 +1,7 @@
 ---
 title: "mcp-refero: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review and orchestration guidance, execution expectations, and per-scenario validation for the mcp-refero skill. Covers wiring verification, discovery-first callable confirmation, the read-only research funnel (single-layer and full walk), response_format discipline, quota/429 honesty, the config-mutation refusal gate, and the mandatory sk-design-md-generator pairing."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # mcp-refero: Manual Testing Playbook
@@ -346,7 +346,7 @@ Prompt: `"Use Refero to pick the best visual style for our new pricing page and 
 
 ## 11. INTRA-ROUTING RECALL (`RF-R01`..`RF-R05`, `RF-H01`, `RF-H02`, `RF-N01`) -- BENCHMARK-FACING, NOT PART OF THE 9-SCENARIO COUNT
 
-This category validates the `mcp-refero` smart router itself (`SKILL.md` §10 `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP`), independent of any live Refero call or auth state. Every scenario is a static, read-only check: does the exact prompt classify to the declared intent, and does every path in `expected_resources` exist on disk. Five scenarios (`RF-R01`-`RF-R05`) are fitted to each of the five declared intents, two (`RF-H01`, `RF-H02`) are natural-phrasing holdouts that decontaminate `RF-R01` and `RF-R03`, and one (`RF-N01`) is a negative control proving an out-of-domain prompt scores zero across every intent. As noted in Section 1, this set is benchmark-facing and intentionally excluded from the 9-scenario operator count above, but every file is still linked here so nothing is orphaned from this root index.
+This category validates the `mcp-refero` smart router itself (`../ROUTER.md` §3 `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP`), independent of any live Refero call or auth state. Every scenario is a static, read-only check: does the exact prompt classify to the declared intent, and does every path in `expected_resources` exist on disk. Five scenarios (`RF-R01`-`RF-R05`) are fitted to each of the five declared intents, two (`RF-H01`, `RF-H02`) are natural-phrasing holdouts that decontaminate `RF-R01` and `RF-R03`, and one (`RF-N01`) is a negative control proving an out-of-domain prompt scores zero across every intent. As noted in Section 1, this set is benchmark-facing and intentionally excluded from the 9-scenario operator count above, but every file is still linked here so nothing is orphaned from this root index.
 
 ### Scenario Summary
 

@@ -1,7 +1,7 @@
 ---
 title: "SP-008 -- UNKNOWN_FALLBACK with disambiguation checklist"
 description: "This scenario validates zero-keyword fallback for `SP-008`. It focuses on confirming the router defaults to TEXT_ENHANCE and surfaces UNKNOWN_FALLBACK_CHECKLIST."
-version: 2.3.1.5
+version: 2.3.2.0
 ---
 
 # SP-008 -- UNKNOWN_FALLBACK with disambiguation checklist
@@ -45,7 +45,7 @@ Run sk-prompt on plain prose with no intent keywords; verify it defaults to TEXT
 ### Commands
 
 1. `sk-prompt: Here is some text I wrote yesterday. <plain prose body, no INTENT_MODEL keywords>`
-2. `bash: rg -A 6 'UNKNOWN_FALLBACK_CHECKLIST' .skilled/skills/sk-prompt/SKILL.md` (capture canonical 4-item list)
+2. `bash: rg -A 6 'UNKNOWN_FALLBACK_CHECKLIST' .skilled/skills/sk-prompt/ROUTER.md` (capture canonical 4-item list)
 
 ### Expected
 
@@ -62,7 +62,7 @@ Routing trace + checklist text. Compare against the canonical SKILL.md list.
 
 ### Failure Triage
 
-1. Inspect SKILL.md `UNKNOWN_FALLBACK_CHECKLIST` constant for the canonical 4-item list.
+1. Inspect ROUTER.md `UNKNOWN_FALLBACK_CHECKLIST` constant for the canonical 4-item list.
 2. Inspect `route_prompt_improver_resources()` for the `scores[primary] == 0` branch.
 3. Re-dispatch with one keyword present (for example "improve") and confirm the fallback does NOT trigger.
 
@@ -79,14 +79,14 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../SKILL.md` | sk-prompt skill source: §10 UNKNOWN_FALLBACK_CHECKLIST |
+| `../../ROUTER.md` | sk-prompt router: §3 UNKNOWN_FALLBACK_CHECKLIST |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
 | `../../references/depth-framework.md` | DEFAULT_RESOURCE loaded under UNKNOWN_FALLBACK |
-| `../../SKILL.md` | §10 route_prompt_improver_resources() pseudocode |
+| `../../ROUTER.md` | §3 route_prompt_improver_resources() pseudocode |
 
 ---
 

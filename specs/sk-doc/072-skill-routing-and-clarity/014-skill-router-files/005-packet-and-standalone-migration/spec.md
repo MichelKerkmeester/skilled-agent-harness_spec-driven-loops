@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-29 |
 | **Branch** | `worktrees/269-skill-router-files` |
 | **Parent Spec** | ../spec.md |

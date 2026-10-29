@@ -9,7 +9,7 @@ expected_resources:
   - scripts/quality-gate.cjs
   - assets/quality-defaults.json
 catalog_applicable: true
-version: 1.1.4.0
+version: 1.1.5.0
 ---
 
 # CQ-002: Foreign Polyglot Change Blocks On All Seven Seeded Labels
@@ -174,7 +174,7 @@ Command transcript from steps 1 to 4, the frontmatter block with `expected_inten
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §9 | Target-path and surface routing the runner consumes, including the `UNKNOWN` row |
+| [ROUTER.md](../../ROUTER.md) §3 | Target-path and surface routing the runner consumes, including the `UNKNOWN` row |
 | [quality-gate-hygiene.test.cjs](../../scripts/tests/quality-gate-hygiene.test.cjs) | The F01 case this scenario replays |
 | [runner-contract.md](../../references/runner-contract.md) §2 and §3 | Gate values, exit codes and the verdict fields this scenario reads |
 

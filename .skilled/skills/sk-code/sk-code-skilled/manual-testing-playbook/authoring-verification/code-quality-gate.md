@@ -18,7 +18,7 @@ expected_resources:
   - assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md
   - assets/checklists/rust-checklist/p1-required.md
   - assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md
-version: 1.0.2.0
+version: 1.0.4.0
 ---
 
 # OC-007: Code quality gate routing
@@ -31,7 +31,7 @@ This document captures the routing-recall contract, execution process, source an
 
 This scenario validates `CODE_QUALITY` routing for `OC-007`. It focuses on confirming that the exact prompt
 below classifies as `CODE_QUALITY` and loads the full 12-file resource set instead of a generic or mismatched
-resource set, per `SKILL.md` §6's machine-readable router.
+resource set, per `ROUTER.md` §3's machine-readable router.
 
 ### Why This Matters
 
@@ -58,7 +58,7 @@ Run a quality gate for lint, format, naming, standards, and code smell risks in 
   `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
   `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-skilled/`, and each one
-  documents `CODE_QUALITY` routing per `SKILL.md` §2 or §6.
+  documents `CODE_QUALITY` routing per `SKILL.md` §2 or `ROUTER.md` §3.
 - Desired user-visible outcome: the bundled workflow cites the routed `CODE_QUALITY` resources as the
   standards evidence, not a mismatched language or generic tier.
 - Pass/fail: PASS if every listed path exists and the frontmatter surface/intent are `SKILLED`/
@@ -75,8 +75,8 @@ Run a quality gate for lint, format, naming, standards, and code smell risks in 
 ### Commands
 
 1. `sed -n '/^---$/,/^---$/p' .skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/code-quality-gate.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/SKILL.md | grep -F '"CODE_QUALITY"'`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/SKILL.md | sed -n '/"CODE_QUALITY": \[/,/\],/p'`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/ROUTER.md | grep -F '"CODE_QUALITY"'`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/ROUTER.md | sed -n '/"CODE_QUALITY": \[/,/\],/p'`
 4. `for p in assets/checklists/universal-checklist.md assets/checklists/javascript-checklist.md assets/checklists/js-css-style/overview-header-and-comments.md assets/checklists/js-css-style/naming-init-formatting-and-css.md assets/checklists/js-css-style/verification-quick-reference-and-related.md assets/checklists/typescript-checklist.md assets/checklists/python-checklist.md assets/checklists/shell-checklist.md assets/checklists/rust-checklist/overview-and-p0-parity.md assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md assets/checklists/rust-checklist/p1-required.md assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md; do test -e ".skilled/skills/sk-code/sk-code-skilled/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
@@ -119,7 +119,7 @@ excerpt.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §6 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [ROUTER.md](../../ROUTER.md) §3 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §2 | Reference-map prose entry for the `CODE_QUALITY` resource set |
 
 ---

@@ -9,7 +9,7 @@ trigger_phrases:
   - "claude opus sonnet haiku dispatch"
 importance_tier: normal
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # cli-claude-code Providers, Models & Invocation
@@ -111,7 +111,7 @@ SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 claude -p "<prompt>" \
 - `-p` (print) is mandatory for non-interactive dispatch; use `--permission-mode plan` for read-only review/analysis.
 
 ### Self-invocation guard
-A `claude -p` dispatch must never run from inside a Claude Code session (a `$CLAUDECODE`-set, `claude`-in-ancestry, or state-lock signal) — that is a circular self-invocation. The guard is inline in [../SKILL.md](../SKILL.md) §9 "Self-Invocation Guard".
+A `claude -p` dispatch must never run from inside a Claude Code session (a `$CLAUDECODE`-set, `claude`-in-ancestry, or state-lock signal) — that is a circular self-invocation. The guard is inline in [../ROUTER.md](../ROUTER.md) §3 "Self-Invocation Guard".
 
 ### Parallel / fan-out
 Multi-lineage parallel dispatch is driven by `fanout-run.cjs`, which lives outside this hub — see §6.

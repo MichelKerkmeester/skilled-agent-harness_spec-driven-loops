@@ -1874,6 +1874,12 @@ function auditRootRouter(lib, ctx, { dir, label, isPacket }) {
         const hubResolved = path.resolve(ctx.target, rel);
         return hubResolved.startsWith(hubPrefix) && fs.existsSync(hubResolved);
       },
+      // A root file a router declares in ROOT_RESOURCES must sit in its own
+      // folder, so this probe never falls back to the hub.
+      resolveInOwnRoot: (rel) => {
+        const resolved = path.resolve(dir, rel);
+        return resolved.startsWith(rootPrefix) && fs.existsSync(resolved);
+      },
     });
     if (evaluation.violations.length === 0) {
       pass(`${prefix}${subject} conforms to the two-state contract (${evaluation.state})`);

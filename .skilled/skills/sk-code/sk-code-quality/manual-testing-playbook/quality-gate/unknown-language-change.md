@@ -9,7 +9,7 @@ expected_resources:
   - scripts/quality-gate.cjs
   - assets/comment-syntax.json
 catalog_applicable: true
-version: 1.1.5.0
+version: 1.1.6.0
 ---
 
 # CQ-003: A Change With No Checkable File Reports Nothing Checked
@@ -157,7 +157,7 @@ Command transcript from steps 1 to 4, the frontmatter block with `expected_inten
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §9 | Surface routing that leaves a foreign change on the universal floor |
+| [ROUTER.md](../../ROUTER.md) §3 | Surface routing that leaves a foreign change on the universal floor |
 | [quality-gate-surfaces.test.cjs](../../scripts/tests/quality-gate-surfaces.test.cjs) | The F05 case this scenario replays |
 | [runner-contract.md](../../references/runner-contract.md) §2 and §3 | The `NOTHING_CHECKED` gate value and the `coverage.unchecked` reasons |
 | [comment-syntax.json](../../assets/comment-syntax.json) | The language and extension table that decides whether a comment family exists |

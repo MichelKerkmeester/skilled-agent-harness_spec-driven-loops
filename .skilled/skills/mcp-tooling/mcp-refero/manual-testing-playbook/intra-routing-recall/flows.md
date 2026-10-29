@@ -7,7 +7,7 @@ description: "This scenario validates FLOWS routing for `RF-R03`. It focuses on 
 expected_intent: FLOWS
 expected_resources:
   - references/tool-surface.md
-version: 1.0.1.0
+version: 1.0.3.0
 ---
 
 # RF-R03: Flows routing
@@ -18,7 +18,7 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario validates FLOWS routing for `RF-R03`. It focuses on confirming that a prompt asking for the step-by-step cancel-subscription user flow scores highest against `INTENT_MODEL["FLOWS"]` in `SKILL.md` §10 and resolves the `RESOURCE_MAP["FLOWS"]` set, not on actually pulling the flow, since this scenario only exercises which intent and resources the router selects.
+This scenario validates FLOWS routing for `RF-R03`. It focuses on confirming that a prompt asking for the step-by-step cancel-subscription user flow scores highest against `INTENT_MODEL["FLOWS"]` in `../../ROUTER.md` §3 and resolves the `RESOURCE_MAP["FLOWS"]` set, not on actually pulling the flow, since this scenario only exercises which intent and resources the router selects.
 
 ### Why This Matters
 
@@ -39,8 +39,8 @@ Operators confirm the exact prompt for `RF-R03` classifies as `FLOWS` and resolv
 Get the Refero user flow for cancel subscription on iOS, step by step.
 ```
 
-- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`SKILL.md` §10); "user flow", "cancel subscription", and "step" (via "step by step") each match `FLOWS` keywords and no other intent scores as high, so `FLOWS` becomes the primary intent and `RESOURCE_MAP["FLOWS"]` loads the declared path
-- Expected signals: the `expected_resources` path exists under `mcp-refero/`, and it documents `FLOWS` routing per `SKILL.md` §10
+- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`../../ROUTER.md` §3); "user flow", "cancel subscription", and "step" (via "step by step") each match `FLOWS` keywords and no other intent scores as high, so `FLOWS` becomes the primary intent and `RESOURCE_MAP["FLOWS"]` loads the declared path
+- Expected signals: the `expected_resources` path exists under `mcp-refero/`, and it documents `FLOWS` routing per `../../ROUTER.md` §3
 - Desired user-visible outcome: the bundled workflow loads the tool-surface taxonomy and runs the multi-step cancel-subscription flow search as a read-only Refero query
 - Pass/fail: PASS if the listed path exists and the frontmatter intent is `FLOWS`; FAIL if the listed path is missing or the frontmatter disagrees
 
@@ -55,7 +55,7 @@ Get the Refero user flow for cancel subscription on iOS, step by step.
 ### Commands
 
 1. `sed -n '1,14p' .skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/intra-routing-recall/flows.md`
-2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-refero/SKILL.md | sed -n '/"FLOWS":/p'`
+2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-refero/ROUTER.md | sed -n '/"FLOWS":/p'`
 3. `for p in references/tool-surface.md; do test -e ".skilled/skills/mcp-tooling/mcp-refero/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
@@ -74,7 +74,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 ### Failure Triage
 
 1. Re-run step 3 for `references/tool-surface.md` and confirm whether it was renamed or removed under `references/`.
-2. Diff this scenario's `expected_resources` against the step-2 `INTENT_MODEL["FLOWS"]` excerpt and the `RESOURCE_MAP["FLOWS"]` entry in `SKILL.md` §10 to see whether the drift is a stale scenario file or a stale `SKILL.md` map.
+2. Diff this scenario's `expected_resources` against the step-2 `INTENT_MODEL["FLOWS"]` excerpt and the `RESOURCE_MAP["FLOWS"]` entry in `../../ROUTER.md` §3 to see whether the drift is a stale scenario file or a stale `../../ROUTER.md` map.
 
 ---
 
@@ -90,7 +90,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §10 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [ROUTER.md](../../ROUTER.md) §3 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §1 | Activation triggers this scenario's prompt assumes |
 
 ---

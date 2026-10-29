@@ -10,7 +10,7 @@ expected_resources:
 blindToRouterKeywords: true
 blindExceptions:
   - "start to finish"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # MB-H02: Blind holdout: recovery path evidence
@@ -21,7 +21,7 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario is the natural-phrasing holdout for `MB-R03` (`blindToRouterKeywords: true`). It focuses on confirming that a prompt phrased the way a real user would describe an account-recovery journey -- not the router's own vocabulary -- still classifies as `FLOWS` per `SKILL.md` §10 MACHINE ROUTER and resolves the same `RESOURCE_MAP["FLOWS"]` set as `MB-R03`, not on actually running the search.
+This scenario is the natural-phrasing holdout for `MB-R03` (`blindToRouterKeywords: true`). It focuses on confirming that a prompt phrased the way a real user would describe an account-recovery journey -- not the router's own vocabulary -- still classifies as `FLOWS` per `../../ROUTER.md` §3 MACHINE ROUTER and resolves the same `RESOURCE_MAP["FLOWS"]` set as `MB-R03`, not on actually running the search.
 
 ### Route Binding
 
@@ -46,7 +46,7 @@ Operators confirm the exact holdout prompt for `MB-H02` classifies as `FLOWS` an
 Show me how real products take someone who lost their account credential back into a working session, start to finish.
 ```
 
-- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`SKILL.md` §10 MACHINE ROUTER); "start to finish" is the one recorded-exception `FLOWS` keyword hit, and no other intent's keyword list matches any word in the prompt, so `FLOWS` remains the sole scoring intent and `RESOURCE_MAP["FLOWS"]` loads the declared path
+- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`../../ROUTER.md` §3 MACHINE ROUTER); "start to finish" is the one recorded-exception `FLOWS` keyword hit, and no other intent's keyword list matches any word in the prompt, so `FLOWS` remains the sole scoring intent and `RESOURCE_MAP["FLOWS"]` loads the declared path
 - Expected signals: the `expected_resources` path exists under `mcp-mobbin/`, the frontmatter intent is `FLOWS`, and the resolved set matches `MB-R03`'s
 - Desired user-visible outcome: the bundled workflow classifies the natural-phrasing request the same way it classifies the keyword-heavy `MB-R03` prompt, loading the same tool-surface taxonomy
 - Pass/fail: PASS if the listed path exists, the frontmatter intent is `FLOWS`, and the resolved set matches `MB-R03`; FAIL if the listed path is missing or the frontmatter disagrees
@@ -62,7 +62,7 @@ Show me how real products take someone who lost their account credential back in
 ### Commands
 
 1. `sed -n '1,17p' .skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/intra-routing-recall/holdout-flows.md`
-2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md | sed -n '/"FLOWS":/p'`
+2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-mobbin/ROUTER.md | sed -n '/"FLOWS":/p'`
 3. `for p in references/tool-surface.md; do test -e ".skilled/skills/mcp-tooling/mcp-mobbin/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
@@ -97,7 +97,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §10 MACHINE ROUTER | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [ROUTER.md](../../ROUTER.md) §3 MACHINE ROUTER | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §1 | Activation triggers this scenario's prompt assumes |
 
 ---

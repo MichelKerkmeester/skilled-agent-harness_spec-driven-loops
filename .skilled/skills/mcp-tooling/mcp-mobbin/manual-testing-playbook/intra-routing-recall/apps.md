@@ -7,7 +7,7 @@ description: "This scenario validates APPS routing for `MB-R01`. It focuses on c
 expected_intent: APPS
 expected_resources:
   - references/tool-surface.md
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # MB-R01: Apps routing
@@ -18,7 +18,7 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario validates APPS routing for `MB-R01`. It focuses on confirming that a prompt asking for competitor app research and comparison scores highest against `INTENT_MODEL["APPS"]` in `SKILL.md` §10 MACHINE ROUTER and resolves the `RESOURCE_MAP["APPS"]` set, not on actually running the Mobbin search, since this scenario only exercises which intent and resources the router selects.
+This scenario validates APPS routing for `MB-R01`. It focuses on confirming that a prompt asking for competitor app research and comparison scores highest against `INTENT_MODEL["APPS"]` in `../../ROUTER.md` §3 MACHINE ROUTER and resolves the `RESOURCE_MAP["APPS"]` set, not on actually running the Mobbin search, since this scenario only exercises which intent and resources the router selects.
 
 ### Why This Matters
 
@@ -39,8 +39,8 @@ Operators confirm the exact prompt for `MB-R01` classifies as `APPS` and resolve
 Run app design research on Mobbin: an app comparison of how competitor banking apps handle identity verification.
 ```
 
-- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`SKILL.md` §10 MACHINE ROUTER); "app design research" and "app comparison" (both phrase keywords), plus "competitor" and "banking apps", each match `APPS` keywords and no other intent scores as high, so `APPS` becomes the primary intent and `RESOURCE_MAP["APPS"]` loads the declared path
-- Expected signals: the `expected_resources` path exists under `mcp-mobbin/`, and it documents `APPS` routing per `SKILL.md` §10 MACHINE ROUTER
+- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`../../ROUTER.md` §3 MACHINE ROUTER); "app design research" and "app comparison" (both phrase keywords), plus "competitor" and "banking apps", each match `APPS` keywords and no other intent scores as high, so `APPS` becomes the primary intent and `RESOURCE_MAP["APPS"]` loads the declared path
+- Expected signals: the `expected_resources` path exists under `mcp-mobbin/`, and it documents `APPS` routing per `../../ROUTER.md` §3 MACHINE ROUTER
 - Desired user-visible outcome: the bundled workflow loads the tool-surface taxonomy and runs the app-comparison research as a read-only Mobbin query
 - Pass/fail: PASS if the listed path exists and the frontmatter intent is `APPS`; FAIL if the listed path is missing or the frontmatter disagrees
 
@@ -55,7 +55,7 @@ Run app design research on Mobbin: an app comparison of how competitor banking a
 ### Commands
 
 1. `sed -n '1,14p' .skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/intra-routing-recall/apps.md`
-2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md | sed -n '/"APPS":/p'`
+2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-mobbin/ROUTER.md | sed -n '/"APPS":/p'`
 3. `for p in references/tool-surface.md; do test -e ".skilled/skills/mcp-tooling/mcp-mobbin/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
@@ -74,7 +74,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 ### Failure Triage
 
 1. Re-run step 3 for `references/tool-surface.md` and confirm whether it was renamed or removed under `references/`.
-2. Diff this scenario's `expected_resources` against the step-2 `INTENT_MODEL["APPS"]` excerpt and the `RESOURCE_MAP["APPS"]` entry in `SKILL.md` §10 MACHINE ROUTER to see whether the drift is a stale scenario file or a stale `SKILL.md` map.
+2. Diff this scenario's `expected_resources` against the step-2 `INTENT_MODEL["APPS"]` excerpt and the `RESOURCE_MAP["APPS"]` entry in `../../ROUTER.md` §3 MACHINE ROUTER to see whether the drift is a stale scenario file or a stale `ROUTER.md` map.
 
 ---
 
@@ -90,7 +90,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §10 MACHINE ROUTER | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [ROUTER.md](../../ROUTER.md) §3 MACHINE ROUTER | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §1 | Activation triggers this scenario's prompt assumes |
 
 ---

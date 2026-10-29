@@ -1,7 +1,7 @@
 ---
 title: "sk-code-skilled: Manual Testing Playbook"
 description: "Routing-recall corpus for the sk-code-skilled surface: one scenario per declared intent, plus the always-load shared tier, the guard exit statuses and the SKILLED surface detection the packet rests on."
-version: 1.2.0.0
+version: 1.2.2.0
 ---
 
 # sk-code-skilled: Manual Testing Playbook
@@ -21,11 +21,11 @@ each scenario.
 ## 1. OVERVIEW
 
 Routing-recall corpus for the `sk-code-skilled` surface. These scenarios exercise the machine-readable
-intent signals, resource map and default tier in `SKILL.md` §6, and the surface detection that causes the
+intent signals, resource map and default tier in `ROUTER.md` §3, and the surface detection that causes the
 hub to bundle this packet. The corpus is derived from the walked tree, split into category folders by
 resource domain.
 
-Coverage note: the corpus covers all ten prompt intents that `SKILL.md` §6 declares machine-readably —
+Coverage note: the corpus covers all ten prompt intents that `ROUTER.md` §3 declares machine-readably —
 `IMPLEMENTATION`, `CODE_QUALITY`, `VERIFICATION`, `HOOKS`, `CONFIG`, `JAVASCRIPT`, `TYPESCRIPT`, `PYTHON`,
 `SHELL` and `RUST` — with one scenario per intent, and it adds the three things those routes rest on: the
 six-path shared tier every route loads (OC-011), the guard exit statuses the verification route promises
@@ -73,7 +73,7 @@ specific sandbox or runtime blocker prevents the check from running.
 
 1. Working directory is the repository root.
 2. `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` resolves on disk.
-3. `SKILL.md` §6 (MACHINE ROUTER) resolves, carrying the machine-readable `DEFAULT_RESOURCE`,
+3. `ROUTER.md` §3 (MACHINE ROUTER) resolves, carrying the machine-readable `DEFAULT_RESOURCE`,
    `INTENT_SIGNALS` and `RESOURCE_MAP` blocks. §2b describes the routing but does not carry the blocks.
 4. Every path a scenario lists under `expected_resources` resolves under the packet root.
 5. OC-012 additionally needs `.skilled/skills/sk-code/mode-registry.json` to parse.
@@ -522,4 +522,4 @@ exactly what that scenario checks.
 No dedicated catalog entry exists for the other scenarios. The catalog inventories hub and packet behavior —
 mode routing, compiled routing, the quality gate, the doctors and review calibration — and does not hold a
 per-intent entry for this surface's reference sets. Each of those scenarios therefore cites `SKILL.md` §2 and
-§6 as its contract source instead of a catalog file.
+`ROUTER.md` §3 as its contract source instead of a catalog file.

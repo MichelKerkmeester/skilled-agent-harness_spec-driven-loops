@@ -2,7 +2,7 @@
 name: sk-code-review
 description: "Stack-agnostic code-review for sk-code: findings-first severity, security/correctness minimums, and surface evidence."
 allowed-tools: [Read, Bash, Grep, Glob, Write]
-version: 1.9.13.0
+version: 1.9.14.0
 metadata:
   family: sk-code
 ---
@@ -55,8 +55,8 @@ Review keeps no detection of its own.
 The quality runner's explain entry is the one resolver, and it applies the shared detection contract, [`stack-detection.md`](../shared/references/stack-detection.md) section 2.
 A surface the hub's router bundles from request words is only a candidate: it applies to the files the resolver places in it.
 
-The intent-to-reference routing is the final `MACHINE ROUTER` section of this file.
 The rule-override algorithm it hands to the review lives in [`review-core.md`](./references/review-core.md) section 9.
+Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
 
 ---
 
@@ -279,7 +279,7 @@ A repository, a surface packet or a mode a user adds to the hub may raise these 
 ### Reference Loading Notes
 
 - Load only the references needed for the selected intents.
-- Routing authority: the hub's `SKILL.md` section 2 names `hub-router.json` as the mode vocabulary and `ROUTER.md` as the leaf-set router. This packet's `INTENT_SIGNALS`, `RESOURCE_MAP` and `DEFAULT_RESOURCES` live in its `MACHINE ROUTER` section (section 10).
+- Routing authority: the hub's `SKILL.md` section 2 names `hub-router.json` as the mode vocabulary and `ROUTER.md` as the leaf-set router. This packet's `INTENT_SIGNALS`, `RESOURCE_MAP` and `DEFAULT_RESOURCES` live in its [`ROUTER.md`](./ROUTER.md) section 3.
 
 ---
 
@@ -415,157 +415,6 @@ Both are skill guidance the reviewer reads and applies in-loop, not a separate c
 - `lite`: maps to the existing M-2 conservative skip (§9.2). It NEVER lowers the ALWAYS tier, the baseline security/correctness minimums, or the P0/P1/P2 contract. It cannot skip a review on a sensitive path (auth/config/persistence/deps/sandbox/public-response), exactly as M-2 already enforces.
 
 The depth alias is advisory routing only; it must never be read as permission to relax a floor.
-
----
-
-## 10. MACHINE ROUTER
-
-The packet's deterministic intent-to-reference routing. Paths are relative to this skill root.
-
-### Resource loading levels
-
-| Level | Rule |
-| --- | --- |
-| ALWAYS | `DEFAULT_RESOURCES` |
-| CONDITIONAL | `RESOURCE_MAP[intent]` |
-| ON_DEMAND | every `RESOURCE_MAP` target when an `ON_DEMAND_KEYWORDS` term matches |
-
-```python
-import re
-from pathlib import Path
-
-SKILL_ROOT = Path(__file__).resolve().parent
-# Discover resources recursively across references and assets.
-RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCES = [
-    "references/review-core.md",
-    "references/review-ux-single-pass.md",
-    "assets/security-checklist.md",
-    "assets/code-quality-checklist.md",
-    "assets/fix-completeness-checklist.md",
-]
-
-INTENT_SIGNALS = {
-    "SECURITY": {"weight": 5, "keywords": ["security", "auth", "injection", "vulnerability", "race"]},
-    "QUALITY": {"weight": 4, "keywords": ["correctness", "bug", "regression", "performance", "boundary", "contract", "breaking change", "backward compatible", "compatibility"]},
-    "KISS": {"weight": 3, "keywords": ["kiss", "simple", "simplicity", "over-engineer", "overengineering"]},
-    "DRY": {"weight": 3, "keywords": ["dry", "duplication", "duplicate", "copy-paste", "repeated logic"]},
-    "SOLID": {"weight": 3, "keywords": ["solid", "architecture", "design", "coupling", "cohesion", "module", "adapter", "interface", "abstraction", "responsibility", "dependency", "boundary"]},
-    "REMOVAL": {"weight": 3, "keywords": ["remove", "dead code", "cleanup", "deprecate"]},
-    "TESTING": {"weight": 3, "keywords": ["test", "tests", "testing", "coverage", "assertion", "mock", "stub", "fixture", "test quality", "brittle"]},
-    "CORE": {"weight": 2, "keywords": ["review doctrine", "review standards", "review baseline", "single pass", "single-pass", "interactive review", "one-pass review"]},
-    "COMPLETENESS": {"weight": 3, "keywords": ["fix completeness", "incomplete fix", "partial fix", "complete the fix", "all call sites", "leftover", "half-done"]},
-    "PR_STATE": {"weight": 3, "keywords": ["pr state", "pull request state", "dedup", "deduplicate", "duplicate finding", "already flagged", "prior comment", "repeated finding"]},
-    "SETUP": {"weight": 2, "keywords": ["quick reference", "review setup", "how to review", "review workflow", "review cheat sheet"]},
-}
-
-RESOURCE_MAP = {
-    "SECURITY": ["assets/security-checklist.md"],
-    "QUALITY": ["assets/code-quality-checklist.md"],
-    "KISS": ["assets/code-quality-checklist.md"],
-    "DRY": ["assets/code-quality-checklist.md"],
-    "SOLID": ["assets/solid-checklist.md"],
-    "REMOVAL": ["assets/removal-plan.md"],
-    "TESTING": ["assets/test-quality-checklist.md"],
-    "CORE": ["references/review-core.md", "references/review-ux-single-pass.md"],
-    "COMPLETENESS": ["assets/fix-completeness-checklist.md"],
-    "PR_STATE": ["references/pr-state-dedup.md"],
-    "SETUP": ["references/quick-reference.md"],
-}
-
-ON_DEMAND_KEYWORDS = ["deep review", "full review", "all checks", "comprehensive", "flag false positives", "blocking regressions", "list findings", "read-only only", "underrepresented", "scope correctly"]
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm review scope (diff/staged/files/commit range)",
-    "Confirm risk priority (security/correctness/performance/maintainability/test quality/contract safety)",
-    "Confirm architecture lens (KISS/DRY/SOLID required or optional)",
-    "Confirm stack context (system-code/web/full-stack)",
-    "Confirm findings-only vs findings+fix follow-up",
-]
-
-def _task_text(task) -> str:
-    return " ".join([
-        str(getattr(task, "text", "")),
-        str(getattr(task, "query", "")),
-        str(getattr(task, "description", "")),
-        " ".join(getattr(task, "keywords", []) or []),
-    ]).lower()
-
-def _guard_in_skill(relative_path: str) -> str:
-    resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)
-    if resolved.suffix.lower() != ".md":
-        raise ValueError(f"Only markdown resources are routable: {relative_path}")
-    return resolved.relative_to(SKILL_ROOT).as_posix()
-
-def discover_markdown_resources() -> set[str]:
-    docs = []
-    for base in RESOURCE_BASES:
-        if base.exists():
-            docs.extend(path for path in base.rglob("*.md") if path.is_file())
-    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
-
-def keyword_present(keyword: str, text: str) -> bool:
-    """Boundary-aware match: bare substrings misroute ('pr' in 'improve prompt')."""
-    return re.search(rf"(?<![a-z0-9]){re.escape(keyword)}(?![a-z0-9])", text) is not None
-
-def score_intents(task) -> dict[str, float]:
-    text = _task_text(task)
-    scores = {intent: 0.0 for intent in INTENT_SIGNALS}
-    for intent, cfg in INTENT_SIGNALS.items():
-        for keyword in cfg["keywords"]:
-            if keyword_present(keyword, text):
-                scores[intent] += cfg["weight"]
-    return scores
-
-def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_intents: int = 2) -> list[str]:
-    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
-    if not ranked or ranked[0][1] <= 0:
-        return ["QUALITY"]
-    selected = [ranked[0][0]]
-    if len(ranked) > 1 and ranked[1][1] > 0 and (ranked[0][1] - ranked[1][1]) <= ambiguity_delta:
-        selected.append(ranked[1][0])
-    return selected[:max_intents]
-
-# Rule overrides: the resolver algorithm lives in review-core.md, section 9.
-
-def route_review_resources(task):
-    inventory = discover_markdown_resources()
-    text = _task_text(task)
-    scores = score_intents(task)
-    intents = select_intents(scores, ambiguity_delta=1.0)
-
-    loaded = []
-    seen = set()
-
-    def load_if_available(relative_path: str) -> None:
-        guarded = _guard_in_skill(relative_path)
-        if guarded in inventory and guarded not in seen:
-            load(guarded)
-            loaded.append(guarded)
-            seen.add(guarded)
-
-    for relative_path in DEFAULT_RESOURCES:
-        load_if_available(relative_path)
-
-    if sum(scores.values()) < 0.5:
-        return {
-            "intents": ["QUALITY"],
-            "needs_disambiguation": True,
-            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
-            "resources": loaded,
-        }
-
-    for intent in intents:
-        for relative_path in RESOURCE_MAP.get(intent, []):
-            load_if_available(relative_path)
-
-    if any(keyword_present(keyword, text) for keyword in ON_DEMAND_KEYWORDS):
-        for paths in RESOURCE_MAP.values():
-            for relative_path in paths:
-                load_if_available(relative_path)
-
-    return {"intents": intents, "scores": scores, "resources": loaded}
-```
 
 ---
 

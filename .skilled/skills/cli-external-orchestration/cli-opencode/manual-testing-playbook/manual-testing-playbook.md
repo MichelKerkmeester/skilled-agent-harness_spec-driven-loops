@@ -1,7 +1,7 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.22.0
+version: 1.4.23.0
 ---
 
 # cli-opencode: Manual Testing Playbook
@@ -785,7 +785,7 @@ The cli-opencode skill is a thin orchestration wrapper around the external `open
 
 The `intra-routing-recall/` category and the `stress/` category are exceptions to the manual-only
 pattern above: `intra-routing-recall/` re-derives its expected `INTENT_SIGNALS`/`RESOURCE_MAP` truth
-directly from SKILL.md on every run, and `stress/` runs the shared hermetic Vitest suite at
+directly from ROUTER.md on every run, and `stress/` runs the shared hermetic Vitest suite at
 `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-opencode.vitest.ts`, covering
 `cli-opencode-EC-001` .. `cli-opencode-EC-014`.
 
@@ -881,7 +881,7 @@ Validator support: the shared `validate_document.py` validates this root playboo
 
 ## 19. INTRA ROUTING RECALL (`CO-R01..CO-R07`, `CO-H01..CO-H02`, `CO-N01`)
 
-This category re-derives its expected truth directly from SKILL.md's `INTENT_SIGNALS`/`RESOURCE_MAP`
+This category re-derives its expected truth directly from ROUTER.md's `INTENT_SIGNALS`/`RESOURCE_MAP`
 on every run: each routing scenario confirms a keyword-bearing prompt resolves its documented intent
 and resource bundle, each holdout scenario confirms a keyword-free paraphrase still generalizes to
 the right intent, and the negative scenario confirms an out-of-domain prompt routes to

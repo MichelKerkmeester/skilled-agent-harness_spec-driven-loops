@@ -12,7 +12,7 @@ expected_resources:
   - assets/code-quality-checklist.md
   - assets/fix-completeness-checklist.md
   - references/quick-reference.md
-version: 1.0.0.0
+version: 1.0.2.0
 ---
 
 # CR-R11: SETUP routing
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `CR-R11` and confirm the
 - Objective: confirm the exact prompt selects `SETUP` and adds `references/quick-reference.md` beyond the baseline, and the disconfirming prompt adds nothing.
 - Real user request: `Ask where to start reading before running a review.`
 - Prompt: `Show me the review quick reference and the review workflow for a small change.`
-- Expected execution process: run the shipped `MACHINE ROUTER` block from `SKILL.md` §10 over the exact prompt and over the disconfirming prompt, resolve each printed path under the skill root, and compare with the Expected block.
+- Expected execution process: run the shipped `MACHINE ROUTER` block from `../../ROUTER.md` §3 over the exact prompt and over the disconfirming prompt, resolve each printed path under the skill root, and compare with the Expected block.
 - Expected signals: the exact prompt prints `intents= ['SETUP']`, `scores= {'SETUP': 4.0}` and six resources ending in `references/quick-reference.md`; the disconfirming prompt prints `intents= ['QUALITY']`, an empty score map and only the five `DEFAULT_RESOURCES`.
 - Desired user-visible outcome: a reviewer handed the mode's own index before it starts, and a request for that index that cannot silently degrade to the baseline.
 - Pass/fail: PASS if the exact prompt selects `SETUP` with score `4.0` and its resource list is the five `DEFAULT_RESOURCES` plus `references/quick-reference.md`, the disconfirming prompt adds nothing, and every printed path exists under the skill root; FAIL if the intent differs, the score differs, the index reference is absent, or a printed path does not exist.
@@ -59,20 +59,20 @@ Show me the review quick reference and the review workflow for a small change.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-R11 | SETUP routing | Confirm a setup-shaped prompt selects `SETUP` and adds `references/quick-reference.md` beyond the baseline, and that a prompt without those words adds nothing. | `Show me the review quick reference and the review workflow for a small change.` | bash: run the shipped `SKILL.md` §10 router block over the exact prompt and the disconfirming prompt -> bash: test that every printed path exists under the skill root | The exact prompt prints `intents= ['SETUP']`, `scores= {'SETUP': 4.0}` and six resources ending in `references/quick-reference.md`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}` and the five `DEFAULT_RESOURCES` | Both router transcripts plus the path-existence output | PASS iff the exact prompt selects `SETUP` at `4.0`, its resource list is the five `DEFAULT_RESOURCES` plus `references/quick-reference.md`, the disconfirming prompt adds nothing, and every printed path exists; FAIL on a different intent or score, a missing index reference, or a path that does not resolve | 1. Confirm the §10 block was extracted from `SKILL.md`; 2. Diff `RESOURCE_MAP["SETUP"]` and re-run the path-existence step; 3. Check whether a reweighting of the `SETUP` weight pushed the score off `4.0` |
+| CR-R11 | SETUP routing | Confirm a setup-shaped prompt selects `SETUP` and adds `references/quick-reference.md` beyond the baseline, and that a prompt without those words adds nothing. | `Show me the review quick reference and the review workflow for a small change.` | bash: run the shipped `../../ROUTER.md` §3 router block over the exact prompt and the disconfirming prompt -> bash: test that every printed path exists under the skill root | The exact prompt prints `intents= ['SETUP']`, `scores= {'SETUP': 4.0}` and six resources ending in `references/quick-reference.md`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}` and the five `DEFAULT_RESOURCES` | Both router transcripts plus the path-existence output | PASS iff the exact prompt selects `SETUP` at `4.0`, its resource list is the five `DEFAULT_RESOURCES` plus `references/quick-reference.md`, the disconfirming prompt adds nothing, and every printed path exists; FAIL on a different intent or score, a missing index reference, or a path that does not resolve | 1. Confirm the §3 block was extracted from `ROUTER.md`; 2. Diff `RESOURCE_MAP["SETUP"]` and re-run the path-existence step; 3. Check whether a reweighting of the `SETUP` weight pushed the score off `4.0` |
 
 ### Commands
 
-Run from the repository root. The block is extracted from `SKILL.md` at run time, so the scenario tests the shipped router and not a copy of it.
+Run from the repository root. The block is extracted from `ROUTER.md` at run time, so the scenario tests the shipped router and not a copy of it.
 
 ```bash
 python3 - <<'PY'
 import re
 from pathlib import Path
 
-skill = Path('.skilled/skills/sk-code/sk-code-review/SKILL.md')
+skill = Path('.skilled/skills/sk-code/sk-code-review/ROUTER.md')
 text = skill.read_text()
-block = re.search(r"```python\n(.*?)\n```", text[text.index('## 10. MACHINE ROUTER'):], re.S).group(1)
+block = re.search(r"```python\n(.*?)\n```", text[text.index('## 3. MACHINE ROUTER'):], re.S).group(1)
 ns = {'__file__': str(skill), '__name__': 'machine_router', 'load': lambda path: None}
 exec(compile(block, 'machine-router', 'exec'), ns)
 
@@ -137,7 +137,7 @@ OK references/quick-reference.md
 
 ### Evidence
 
-Both router transcripts, the six-line path-existence output, and the `INTENT_SIGNALS["SETUP"]` and `RESOURCE_MAP["SETUP"]` excerpts from `SKILL.md` §10.
+Both router transcripts, the six-line path-existence output, and the `INTENT_SIGNALS["SETUP"]` and `RESOURCE_MAP["SETUP"]` excerpts from `../../ROUTER.md` §3.
 
 ### Pass / Fail
 
@@ -146,7 +146,7 @@ Both router transcripts, the six-line path-existence output, and the `INTENT_SIG
 
 ### Failure Triage
 
-1. Confirm the extraction found the `## 10. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
+1. Confirm the extraction found the `## 3. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
 2. Re-run the path-existence command. A `MISS references/quick-reference.md` means the index was renamed or moved, and `SKILL.md` §8 still points a reader at it.
 3. If the score moved, quote the changed `INTENT_SIGNALS["SETUP"]` weight. Two hits at weight `2` give `4.0`; the sum is above the `0.5` fallback line, so a weight of `0` would turn the run into the disambiguation branch rather than a different score.
 4. If the disconfirming prompt still carries the index reference, a `SETUP` keyword has become a substring of ordinary prose; name the keyword.
@@ -166,7 +166,7 @@ Both router transcripts, the six-line path-existence output, and the `INTENT_SIG
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §10 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES` and the router block this scenario executes |
+| [ROUTER.md](../../ROUTER.md) §3 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES` and the router block this scenario executes |
 | [quick-reference.md](../../references/quick-reference.md) | The index this route adds |
 | [SKILL.md](../../SKILL.md) §8 (`RELATED RESOURCES`) | The instruction that starts a reader at the added index |
 

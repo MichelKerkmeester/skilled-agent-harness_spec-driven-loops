@@ -1,7 +1,7 @@
 ---
 title: "mcp-figma: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-scenario validation for the mcp-figma skill. Covers binary detection, the Figma Desktop requirement, safe connect, daemon health, read-only inspect and export, the destructive-verb refusal gate, and optional Framelink MCP discovery via Code Mode."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # mcp-figma: Manual Testing Playbook
@@ -367,7 +367,7 @@ Prompt: `"What Figma MCP tools are available through Code Mode?"`
 
 ## 12. INTRA-ROUTING RECALL (`FG-R01`..`FG-R06`, `FG-H01`, `FG-H02`, `FG-N01`)
 
-This category validates the `mcp-figma` smart router itself (`SKILL.md` §8 `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP`), independent of any live `figma-ds-cli` or Figma Desktop session. Every scenario is a static, read-only check: does the exact prompt classify to the declared intent, and does every path in `expected_resources` exist on disk. Six scenarios (`FG-R01`-`FG-R06`) are fitted to each of the six declared intents, two (`FG-H01`, `FG-H02`) are natural-phrasing holdouts that decontaminate `FG-R01` and `FG-R03`, and one (`FG-N01`) is a negative control proving an out-of-domain prompt scores zero across every intent.
+This category validates the `mcp-figma` smart router itself (`../ROUTER.md` §3 `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP`), independent of any live `figma-ds-cli` or Figma Desktop session. Every scenario is a static, read-only check: does the exact prompt classify to the declared intent, and does every path in `expected_resources` exist on disk. Six scenarios (`FG-R01`-`FG-R06`) are fitted to each of the six declared intents, two (`FG-H01`, `FG-H02`) are natural-phrasing holdouts that decontaminate `FG-R01` and `FG-R03`, and one (`FG-N01`) is a negative control proving an out-of-domain prompt scores zero across every intent.
 
 ### Scenario Summary
 

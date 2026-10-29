@@ -1,7 +1,7 @@
 ---
 title: "SP-006 -- ON_DEMAND keyword loads full RESOURCE_MAP"
 description: "This scenario validates ON_DEMAND_KEYWORDS for `SP-006`. It focuses on confirming keywords like \"deep dive\", \"all frameworks\", \"format guide\" trigger loading every RESOURCE_MAP entry."
-version: 2.3.1.5
+version: 2.3.2.0
 ---
 
 # SP-006 -- ON_DEMAND keyword loads full RESOURCE_MAP
@@ -45,7 +45,7 @@ Run sk-prompt on my deep-dive framework comparison; verify ON_DEMAND loads every
 ### Commands
 
 1. `sk-prompt: Give me a deep dive on all frameworks — I want to compare RCAF vs COSTAR vs TIDD-EC for an executive briefing.`
-2. `bash: rg 'ON_DEMAND_KEYWORDS' .skilled/skills/sk-prompt/SKILL.md` (verify keyword list still includes "deep dive" and "all frameworks")
+2. `bash: rg 'ON_DEMAND_KEYWORDS' .skilled/skills/sk-prompt/ROUTER.md` (verify keyword list still includes "deep dive" and "all frameworks")
 
 ### Expected
 
@@ -62,7 +62,7 @@ Routing trace; ON_DEMAND keyword match log; full resource list.
 
 ### Failure Triage
 
-1. Inspect SKILL.md §10 `ON_DEMAND_KEYWORDS` list; confirm "deep dive" and "all frameworks" still present.
+1. Inspect ROUTER.md §3 `ON_DEMAND_KEYWORDS` list; confirm "deep dive" and "all frameworks" still present.
 2. Check `route_prompt_improver_resources()` pseudocode for the post-routing ON_DEMAND check.
 3. Re-dispatch with a different ON_DEMAND keyword (for example "format guide") and confirm same behavior.
 
@@ -79,7 +79,7 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../SKILL.md` | sk-prompt skill source: §10 ON_DEMAND_KEYWORDS |
+| `../../ROUTER.md` | sk-prompt router: §3 ON_DEMAND_KEYWORDS |
 
 ### Implementation And Test Anchors
 

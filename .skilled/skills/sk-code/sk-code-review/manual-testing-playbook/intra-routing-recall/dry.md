@@ -11,7 +11,7 @@ expected_resources:
   - assets/security-checklist.md
   - assets/code-quality-checklist.md
   - assets/fix-completeness-checklist.md
-version: 1.1.0.0
+version: 1.1.2.0
 ---
 
 # CR-R04: DRY routing
@@ -37,7 +37,7 @@ Operators run the exact prompt and command sequence for `CR-R04` and confirm the
 - Real user request: `Review target repeats one branch several times and the author wants a duplication pass.`
 - Objective: confirm the exact prompt selects `DRY` at its own score and the disconfirming prompt selects no intent.
 - Prompt: `Review this change for DRY problems, duplication, duplicate branches, copy-paste code, and repeated logic.`
-- Expected execution process: run the shipped `MACHINE ROUTER` block from `SKILL.md` §10 over the exact prompt and over the disconfirming prompt, and compare the printed intents, scores and resource lists with the Expected block.
+- Expected execution process: run the shipped `MACHINE ROUTER` block from `../../ROUTER.md` §3 over the exact prompt and over the disconfirming prompt, and compare the printed intents, scores and resource lists with the Expected block.
 - Expected signals: the exact prompt prints `intents= ['DRY']`, `scores= {'DRY': 15.0}`, `needs_disambiguation= False` and the five `DEFAULT_RESOURCES`; the disconfirming prompt prints `intents= ['QUALITY']`, an empty score map and `needs_disambiguation= True`.
 - Desired user-visible outcome: a review that reads a duplication complaint as a DRY pass and reaches the shared-lens rules for it.
 - Pass/fail: PASS if the exact prompt selects `DRY` with score `15.0`, the disconfirming prompt selects `QUALITY` only through the low-score fallback, and every printed path is one of the five `DEFAULT_RESOURCES`; FAIL if the intent differs, the score differs, or the disconfirming prompt still selects `DRY`.
@@ -58,20 +58,20 @@ Review this change for DRY problems, duplication, duplicate branches, copy-paste
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-R04 | DRY routing | Confirm a duplication-shaped prompt selects `DRY` at its own score, and that the same prompt with unrelated words selects no intent. | `Review this change for DRY problems, duplication, duplicate branches, copy-paste code, and repeated logic.` | bash: run the shipped `SKILL.md` §10 router block over the exact prompt and the disconfirming prompt -> compare intents, scores, `needs_disambiguation` and the resource lists with the Expected block | The exact prompt prints `intents= ['DRY']`, `scores= {'DRY': 15.0}`, `needs_disambiguation= False` and the five `DEFAULT_RESOURCES`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}` and `needs_disambiguation= True` | Both router transcripts, with the intent, score, flag and resource list for each prompt | PASS iff the exact prompt selects `DRY` at `15.0`, the disconfirming prompt reaches `QUALITY` only through the low-score fallback, and every printed path is a `DEFAULT_RESOURCES` entry; FAIL on a different intent, a different score, or a disconfirming prompt that still selects `DRY` | 1. Confirm the §10 block was extracted from `SKILL.md`; 2. Diff `INTENT_SIGNALS["DRY"]` against the keywords the exact prompt relies on; 3. Check the disconfirming prompt carries no duplication keyword |
+| CR-R04 | DRY routing | Confirm a duplication-shaped prompt selects `DRY` at its own score, and that the same prompt with unrelated words selects no intent. | `Review this change for DRY problems, duplication, duplicate branches, copy-paste code, and repeated logic.` | bash: run the shipped `../../ROUTER.md` §3 router block over the exact prompt and the disconfirming prompt -> compare intents, scores, `needs_disambiguation` and the resource lists with the Expected block | The exact prompt prints `intents= ['DRY']`, `scores= {'DRY': 15.0}`, `needs_disambiguation= False` and the five `DEFAULT_RESOURCES`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}` and `needs_disambiguation= True` | Both router transcripts, with the intent, score, flag and resource list for each prompt | PASS iff the exact prompt selects `DRY` at `15.0`, the disconfirming prompt reaches `QUALITY` only through the low-score fallback, and every printed path is a `DEFAULT_RESOURCES` entry; FAIL on a different intent, a different score, or a disconfirming prompt that still selects `DRY` | 1. Confirm the §3 block was extracted from `ROUTER.md`; 2. Diff `INTENT_SIGNALS["DRY"]` against the keywords the exact prompt relies on; 3. Check the disconfirming prompt carries no duplication keyword |
 
 ### Commands
 
-Run from the repository root. The block is extracted from `SKILL.md` at run time, so the scenario tests the shipped router and not a copy of it.
+Run from the repository root. The block is extracted from `ROUTER.md` at run time, so the scenario tests the shipped router and not a copy of it.
 
 ```bash
 python3 - <<'PY'
 import re
 from pathlib import Path
 
-skill = Path('.skilled/skills/sk-code/sk-code-review/SKILL.md')
+skill = Path('.skilled/skills/sk-code/sk-code-review/ROUTER.md')
 text = skill.read_text()
-block = re.search(r"```python\n(.*?)\n```", text[text.index('## 10. MACHINE ROUTER'):], re.S).group(1)
+block = re.search(r"```python\n(.*?)\n```", text[text.index('## 3. MACHINE ROUTER'):], re.S).group(1)
 ns = {'__file__': str(skill), '__name__': 'machine_router', 'load': lambda path: None}
 exec(compile(block, 'machine-router', 'exec'), ns)
 
@@ -120,7 +120,7 @@ The disconfirming prompt keeps the reporting words and drops every duplication w
 
 ### Evidence
 
-Both router transcripts, the score map and flag from each, and the `INTENT_SIGNALS["DRY"]` and `RESOURCE_MAP["DRY"]` excerpts from `SKILL.md` §10.
+Both router transcripts, the score map and flag from each, and the `INTENT_SIGNALS["DRY"]` and `RESOURCE_MAP["DRY"]` excerpts from `../../ROUTER.md` §3.
 
 ### Pass / Fail
 
@@ -129,7 +129,7 @@ Both router transcripts, the score map and flag from each, and the `INTENT_SIGNA
 
 ### Failure Triage
 
-1. Confirm the extraction found the `## 10. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
+1. Confirm the extraction found the `## 3. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
 2. A score that falls in steps of `3` means one or more keywords stopped matching. Quote `INTENT_SIGNALS["DRY"]` and name each one the prompt still contains.
 3. `dry` is a short word and a candidate for a substring collision; if an unrelated prompt in the same session selects `DRY`, check that keyword first.
 4. If the disconfirming prompt still prints a score map, one of its words matches a `DRY` keyword; name the word.
@@ -149,7 +149,7 @@ Both router transcripts, the score map and flag from each, and the `INTENT_SIGNA
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §10 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES` and the router block this scenario executes |
+| [ROUTER.md](../../ROUTER.md) §3 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES` and the router block this scenario executes |
 | [code-quality-checklist.md](../../assets/code-quality-checklist.md) | The checklist the `DRY` intent targets, in its duplication section |
 | [review-core.md](../../references/review-core.md) | The `review.dry` and `review.rule-of-three` lens rules the checklist items carry |
 

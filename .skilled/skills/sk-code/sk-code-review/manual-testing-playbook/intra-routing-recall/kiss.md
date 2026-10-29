@@ -11,7 +11,7 @@ expected_resources:
   - assets/security-checklist.md
   - assets/code-quality-checklist.md
   - assets/fix-completeness-checklist.md
-version: 1.1.0.0
+version: 1.1.2.0
 ---
 
 # CR-R03: KISS routing
@@ -37,7 +37,7 @@ Operators run the exact prompt and command sequence for `CR-R03` and confirm the
 - Objective: confirm the exact prompt selects `KISS` at its own score and the disconfirming prompt selects no intent.
 - Real user request: `Review target looks over-engineered and the author wants a simplicity pass.`
 - Prompt: `Review this implementation for KISS, simplicity, and signs that it is over-engineered or overengineering the solution.`
-- Expected execution process: run the shipped `MACHINE ROUTER` block from `SKILL.md` §10 over the exact prompt and over the disconfirming prompt, and compare the printed intents, scores and resource lists with the Expected block.
+- Expected execution process: run the shipped `MACHINE ROUTER` block from `../../ROUTER.md` §3 over the exact prompt and over the disconfirming prompt, and compare the printed intents, scores and resource lists with the Expected block.
 - Expected signals: the exact prompt prints `intents= ['KISS']`, `scores= {'KISS': 9.0}`, `needs_disambiguation= False` and the five `DEFAULT_RESOURCES`; the disconfirming prompt prints `intents= ['QUALITY']`, an empty score map and `needs_disambiguation= True`.
 - Desired user-visible outcome: a review that reads an over-engineering complaint as a simplicity pass rather than as an unmatched request.
 - Pass/fail: PASS if the exact prompt selects `KISS` with score `9.0`, the disconfirming prompt selects `QUALITY` only through the low-score fallback, and every printed path is one of the five `DEFAULT_RESOURCES`; FAIL if the intent differs, the score differs, or the disconfirming prompt still selects `KISS`.
@@ -58,20 +58,20 @@ Review this implementation for KISS, simplicity, and signs that it is over-engin
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-R03 | KISS routing | Confirm a simplicity-shaped prompt selects `KISS` at its own score, and that the same prompt without its simplicity words selects no intent. | `Review this implementation for KISS, simplicity, and signs that it is over-engineered or overengineering the solution.` | bash: run the shipped `SKILL.md` §10 router block over the exact prompt and the disconfirming prompt -> compare intents, scores, `needs_disambiguation` and the resource lists with the Expected block | The exact prompt prints `intents= ['KISS']`, `scores= {'KISS': 9.0}`, `needs_disambiguation= False` and the five `DEFAULT_RESOURCES`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}` and `needs_disambiguation= True` | Both router transcripts, with the intent, score, flag and resource list for each prompt | PASS iff the exact prompt selects `KISS` at `9.0`, the disconfirming prompt reaches `QUALITY` only through the low-score fallback, and every printed path is a `DEFAULT_RESOURCES` entry; FAIL on a different intent, a different score, or a disconfirming prompt that still selects `KISS` | 1. Confirm the §10 block was extracted from `SKILL.md`; 2. Diff `INTENT_SIGNALS["KISS"]` against the keywords the exact prompt relies on; 3. Check the disconfirming prompt carries no simplicity keyword |
+| CR-R03 | KISS routing | Confirm a simplicity-shaped prompt selects `KISS` at its own score, and that the same prompt without its simplicity words selects no intent. | `Review this implementation for KISS, simplicity, and signs that it is over-engineered or overengineering the solution.` | bash: run the shipped `../../ROUTER.md` §3 router block over the exact prompt and the disconfirming prompt -> compare intents, scores, `needs_disambiguation` and the resource lists with the Expected block | The exact prompt prints `intents= ['KISS']`, `scores= {'KISS': 9.0}`, `needs_disambiguation= False` and the five `DEFAULT_RESOURCES`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}` and `needs_disambiguation= True` | Both router transcripts, with the intent, score, flag and resource list for each prompt | PASS iff the exact prompt selects `KISS` at `9.0`, the disconfirming prompt reaches `QUALITY` only through the low-score fallback, and every printed path is a `DEFAULT_RESOURCES` entry; FAIL on a different intent, a different score, or a disconfirming prompt that still selects `KISS` | 1. Confirm the §3 block was extracted from `ROUTER.md`; 2. Diff `INTENT_SIGNALS["KISS"]` against the keywords the exact prompt relies on; 3. Check the disconfirming prompt carries no simplicity keyword |
 
 ### Commands
 
-Run from the repository root. The block is extracted from `SKILL.md` at run time, so the scenario tests the shipped router and not a copy of it.
+Run from the repository root. The block is extracted from `ROUTER.md` at run time, so the scenario tests the shipped router and not a copy of it.
 
 ```bash
 python3 - <<'PY'
 import re
 from pathlib import Path
 
-skill = Path('.skilled/skills/sk-code/sk-code-review/SKILL.md')
+skill = Path('.skilled/skills/sk-code/sk-code-review/ROUTER.md')
 text = skill.read_text()
-block = re.search(r"```python\n(.*?)\n```", text[text.index('## 10. MACHINE ROUTER'):], re.S).group(1)
+block = re.search(r"```python\n(.*?)\n```", text[text.index('## 3. MACHINE ROUTER'):], re.S).group(1)
 ns = {'__file__': str(skill), '__name__': 'machine_router', 'load': lambda path: None}
 exec(compile(block, 'machine-router', 'exec'), ns)
 
@@ -120,7 +120,7 @@ The disconfirming prompt carries no intent keyword, so the router returns its lo
 
 ### Evidence
 
-Both router transcripts, the score map and flag from each, and the `INTENT_SIGNALS["KISS"]` and `RESOURCE_MAP["KISS"]` excerpts from `SKILL.md` §10.
+Both router transcripts, the score map and flag from each, and the `INTENT_SIGNALS["KISS"]` and `RESOURCE_MAP["KISS"]` excerpts from `../../ROUTER.md` §3.
 
 ### Pass / Fail
 
@@ -129,7 +129,7 @@ Both router transcripts, the score map and flag from each, and the `INTENT_SIGNA
 
 ### Failure Triage
 
-1. Confirm the extraction found the `## 10. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
+1. Confirm the extraction found the `## 3. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
 2. A score of `6.0` rather than `9.0` is the common drift: one of `kiss`, `simplicity` or `overengineering` stopped matching. Quote `INTENT_SIGNALS["KISS"]` and name which one.
 3. The intent can survive a dropped keyword while the score does not, which is why the score is asserted and the intent alone is not enough.
 4. If the disconfirming prompt still selects `KISS`, a keyword has become a substring of ordinary prose; name the keyword.
@@ -149,7 +149,7 @@ Both router transcripts, the score map and flag from each, and the `INTENT_SIGNA
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §10 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES` and the router block this scenario executes |
+| [ROUTER.md](../../ROUTER.md) §3 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES` and the router block this scenario executes |
 | [code-quality-checklist.md](../../assets/code-quality-checklist.md) | The checklist the `KISS` intent targets, in its simplicity section |
 | [review-core.md](../../references/review-core.md) | The `review.kiss` lens rule the checklist item carries |
 

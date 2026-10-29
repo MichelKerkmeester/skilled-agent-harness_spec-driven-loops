@@ -13,14 +13,14 @@ expected_resources:
   - references/state/state-reducer-registry.md
   - assets/deep-review-strategy.md
   - references/state/state-jsonl.md
-version: 1.1.1.0
+version: 1.1.3.0
 ---
 
 # DV-R01: Deep review setup routing
 
 ## 1. OVERVIEW
 
-This scenario verifies the `deep-review` packet's own intra-packet smart router (`SKILL.md` §8 `Smart Router Pseudocode`) scores a setup-shaped request as `REVIEW_SETUP` and loads the setup resource set, distinct from the parent `system-deep-loop` hub's mode-level routing which selects `review` before this packet even loads.
+This scenario verifies the `deep-review` packet's own intra-packet smart router ([ROUTER.md](../../ROUTER.md) §3 `MACHINE ROUTER`) scores a setup-shaped request as `REVIEW_SETUP` and loads the setup resource set, distinct from the parent `system-deep-loop` hub's mode-level routing which selects `review` before this packet even loads.
 
 ---
 
@@ -52,7 +52,7 @@ Start deep review in review mode for an audit spec workflow and prepare converge
 
 ### Preconditions
 
-1. `.skilled/skills/system-deep-loop/deep-review/SKILL.md` §8 contains `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS`.
+1. `../../ROUTER.md` §3 contains `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS`.
 2. Every path in `expected_resources` exists under `.skilled/skills/system-deep-loop/deep-review/`.
 
 ### Prompt
@@ -97,7 +97,7 @@ Command transcript from steps 1-2; the router transcript from step 3, saved to `
 
 | File | Role |
 |---|---|
-| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` §8 | `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS` this scenario exercises |
+| `../../ROUTER.md` §3 | `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS` this scenario exercises |
 
 ---
 

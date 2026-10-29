@@ -1,7 +1,7 @@
 ---
 title: "mcp-click-up: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the mcp-click-up skill: cupt CLI (v0.7.1+) and the official hosted ClickUp MCP (61 live tools)."
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # mcp-click-up: Feature Catalog
@@ -19,7 +19,7 @@ The mcp-click-up skill routes ClickUp work between two complementary tools:
 
 > **Verification status (2026-10-08):** the `clickup_official` manual runs ClickUp's hosted server through `mcp-remote`, after the npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08. The hosted server registered 61 tools on 2026-10-08, and every MCP card below was generated from that tool list, one card per tool, with each parameter table taken from the server's own schema. The server has no tools for goals, bulk create, webhooks, checklist edits, spaces, views, space tags, task templates, guests, user groups or audit logs. Its operator catalog had no operators enabled, so those features have no MCP route.
 
-Routing is **operation-based**: each feature belongs to exactly one tool. See `../SKILL.md §9` for the routing pseudocode.
+Routing is **operation-based**: each feature belongs to exactly one tool. See `../ROUTER.md` §3 MACHINE ROUTER for the routing pseudocode.
 
 | Metric | Value |
 |--------|-------|

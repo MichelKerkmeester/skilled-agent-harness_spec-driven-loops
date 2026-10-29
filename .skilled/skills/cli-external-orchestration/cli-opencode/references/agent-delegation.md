@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode multi-agent workflow"
 importance_tier: normal
 contextType: implementation
-version: 1.4.13.0
+version: 1.4.14.0
 ---
 
 # OpenCode CLI - Agent Delegation
@@ -464,4 +464,4 @@ The conductor (calling AI) decides which path. The agent has no visibility into 
 - `./integration-patterns.md` - Three use cases that drive agent selection
 - `./opencode-tools.md` - Why agent dispatch matters relative to sibling cli-* skills
 - `../assets/prompt-templates.md` - Copy-paste templates per agent
-- `../SKILL.md` - Smart router pseudocode
+- `../ROUTER.md` - Smart router pseudocode

@@ -1,7 +1,7 @@
 ---
 title: "mcp-click-up: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the mcp-click-up skill. Covers all 111 features across cupt CLI and the official ClickUp MCP."
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # mcp-click-up: Manual Testing Playbook
@@ -803,7 +803,7 @@ Expected: `cupt time status` shows the running timer; `cupt time stop` stops it;
 
 ## 16. INTRA ROUTING RECALL
 
-Routing-recall contracts validate that the SKILL.md Smart Router's `INTENT_SIGNALS`/`RESOURCE_MAP`
+Routing-recall contracts validate that the ROUTER.md §3 MACHINE ROUTER's `INTENT_SIGNALS`/`RESOURCE_MAP`
 model routes realistic prompts to the right references. Routing-stage files may use router
 vocabulary; holdout files were authored blind to obvious router keywords (their `blindExceptions`
 frontmatter records any natural-language vocabulary later bound into the router); the negative file

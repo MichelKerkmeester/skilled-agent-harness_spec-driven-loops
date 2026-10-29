@@ -3,7 +3,7 @@ title: "SKD-001 -- Diagnosis entry on a vague complaint"
 description: "This scenario validates Diagnosis entry on a vague complaint for `SKD-001`. It focuses on confirm a vague visual complaint loads the symptom-to-fix table before any value changes."
 stage: routing
 id: "SKD-001"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # SKD-001 -- Diagnosis entry on a vague complaint
@@ -67,11 +67,11 @@ Advisor JSON with the ranked skill and confidence, the agent reply, and the grep
 
 ### Failure Triage
 
-Re-read the DIAGNOSE keyword weights in `SKILL.md` Section 9; if the advisor missed, check the intent signals in `graph-metadata.json` for the phrasing used.
+Re-read the DIAGNOSE keyword weights in `ROUTER.md` Section 3; if the advisor missed, check the intent signals in `graph-metadata.json` for the phrasing used.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SKD-001 | Diagnosis entry on a vague complaint | confirm a vague visual complaint loads the symptom-to-fix table before any value changes | `This dashboard ui looks amateur and cluttered, make it look better` | 1. `bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "this dashboard ui looks amateur and cluttered, make it look better" --threshold 0.5` -> 2. `agent: issue the same prompt in a fresh session and capture the reply` -> 3. `bash: rg -n "No hierarchy" .skilled/skills/sk-design/references/diagnosis-table.md` | The advisor ranks `sk-design` first; the answer names a row from the diagnosis table (no hierarchy, competing neighbours, or space added rather than removed) before proposing any change. | Advisor JSON with the ranked skill and confidence, the agent reply, and the grep hit proving the named cause exists as a table row. | PASS if the advisor ranks `sk-design` first and the reply names a diagnosis-table cause before any value is proposed; FAIL if the reply proposes spacing, color or size changes without naming a cause, or the advisor does not return `sk-design` | Re-read the DIAGNOSE keyword weights in `SKILL.md` Section 9; if the advisor missed, check the intent signals in `graph-metadata.json` for the phrasing used. |
+| SKD-001 | Diagnosis entry on a vague complaint | confirm a vague visual complaint loads the symptom-to-fix table before any value changes | `This dashboard ui looks amateur and cluttered, make it look better` | 1. `bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "this dashboard ui looks amateur and cluttered, make it look better" --threshold 0.5` -> 2. `agent: issue the same prompt in a fresh session and capture the reply` -> 3. `bash: rg -n "No hierarchy" .skilled/skills/sk-design/references/diagnosis-table.md` | The advisor ranks `sk-design` first; the answer names a row from the diagnosis table (no hierarchy, competing neighbours, or space added rather than removed) before proposing any change. | Advisor JSON with the ranked skill and confidence, the agent reply, and the grep hit proving the named cause exists as a table row. | PASS if the advisor ranks `sk-design` first and the reply names a diagnosis-table cause before any value is proposed; FAIL if the reply proposes spacing, color or size changes without naming a cause, or the advisor does not return `sk-design` | Re-read the DIAGNOSE keyword weights in `ROUTER.md` Section 3; if the advisor missed, check the intent signals in `graph-metadata.json` for the phrasing used. |
 
 ---
 

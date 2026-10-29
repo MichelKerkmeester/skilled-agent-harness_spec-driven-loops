@@ -2,7 +2,7 @@
 name: sk-create-agent
 description: Scaffold OpenCode agents with runtime placement, permission frontmatter, authority boundaries, workflow sections, and validation.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 <!-- Keywords: create-agent, /create:agent, opencode agent, agent frontmatter, permission object, authority boundary, agent template -->
@@ -50,7 +50,7 @@ Stay in this packet only when the artifact is a concrete runtime agent file whos
 `references/README.md` is the route map, and the fallback when the component or runtime is unclear.
 A resolved request loads this packet's flat references and assets first, with `assets/agent-template.md` as the scaffold.
 
-The component decision, the smart-router pseudocode and the router resilience rules sit in the final `MACHINE ROUTER` section of this file.
+Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
 
 ---
 
@@ -269,103 +269,3 @@ Use these only when the core path above is not enough:
 5. `assets/agent-template.md` for exhaustive body variants, binding/refusal contracts, and scaffold examples.
 6. `../shared/references/validation.md` for validation pipeline details.
 7. `../shared/references/core-standards.md` for shared document structure rules.
-
----
-
-## 7. MACHINE ROUTER
-
-This section holds the packet's component decision, its smart-router pseudocode and its router resilience rules.
-
-Decision rule:
-
-```text
-Need a named runtime persona with authority and tool policy?
-  YES -> Create an agent
-  NO  -> Use or create a skill, template, or command instead
-```
-
-### Smart Router Pseudocode
-
-For this flat-reference packet, the canonical resilient router discovers resources at call
-time, guards and loads only what exists, scores the runtime-target and agent-authoring
-intents, and returns a disambiguation checklist rather than silently loading nothing:
-
-```python
-from pathlib import Path
-
-SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/README.md"
-
-# Three routing targets; keywords come from this packet's activation triggers.
-INTENT_MODEL = {
-    "opencode_agent": {"weight": 4, "keywords": ["opencode agent", "permission object", ".skilled/agents"]},
-    "claude_agent": {"weight": 4, "keywords": ["claude code agent", ".claude/agents"]},
-    "agent_authoring": {"weight": 4, "keywords": ["create agent", "/create:agent", "agent file", "new agent", "agent persona", "agent frontmatter", "authority boundary", "agent template"]},
-}
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm the runtime target directory (.skilled/agents/ or .claude/agents/)",
-    "Confirm the permission or authority boundary the agent needs (tool access, task/orchestration authority)",
-    "Confirm this needs a new agent rather than a skill, command, or an existing agent",
-]
-
-def discover_markdown_resources() -> set[str]:
-    docs = []
-    for base in RESOURCE_BASES:
-        if base.exists():
-            docs.extend(path for path in base.rglob("*.md") if path.is_file())
-    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
-
-def _guard_in_skill(relative_path: str) -> str:
-    resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)
-    if resolved.suffix.lower() != ".md":
-        raise ValueError(f"Only markdown resources are routable: {relative_path}")
-    return resolved.relative_to(SKILL_ROOT).as_posix()
-
-def load_if_available(relative_path, inventory, loaded, seen) -> None:
-    guarded = _guard_in_skill(relative_path)
-    if guarded in inventory and guarded not in seen:
-        load(guarded)
-        loaded.append(guarded)
-        seen.add(guarded)
-
-def score_intents(request) -> dict:
-    text = request.text.lower()
-    scores = {intent: 0 for intent in INTENT_MODEL}
-    for intent, cfg in INTENT_MODEL.items():
-        for kw in cfg["keywords"]:
-            if kw in text:
-                scores[intent] += cfg["weight"]
-    return scores
-
-def route_agent_request(request):
-    inventory = discover_markdown_resources()
-    loaded, seen = [], set()
-    scores = score_intents(request)
-
-    if max(scores.values() or [0]) < 4:                      # Tier 1: unclear component/runtime/authority
-        load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
-        return {
-            "load_level": "UNKNOWN_FALLBACK",
-            "needs_disambiguation": True,
-            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
-            "resources": loaded,
-        }
-
-    intent = max(scores, key=scores.get)                     # Tier 2: happy path
-    # Flat resource topology: no references/<key>/ subdirectories. The intent selects the
-    # runtime frontmatter schema and body shape already documented above, not a keyed subtree.
-    for path in sorted(inventory):
-        load_if_available(path, inventory, loaded, seen)
-    return {"intent": intent, "resources": loaded}
-```
-
-### Router Resilience
-
-This packet routes by component choice and runtime-persona requirements. It does not use runtime keyed resource discovery through `references/<key>/` because its references are flat.
-
-- Load optional markdown resources only after resolving them under this packet and confirming they exist.
-- Treat `references/README.md` as the fallback route map when the component choice or runtime-persona requirements are unclear.
-- Ask for the missing component type, runtime profile, or authority requirements instead of silently loading no resources.
-- Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.

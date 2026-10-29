@@ -5,7 +5,7 @@ stage: routing
 title: 'ON_DEMAND tier loading'
 description: "This scenario validates ON_DEMAND tier loading for `CR-R12`. It confirms an ON_DEMAND keyword match loads every RESOURCE_MAP target, so a single-intent prompt resolves to the ten deep-dive paths."
 expected_intent: SECURITY
-version: 1.0.0.0
+version: 1.0.2.0
 ---
 
 # CR-R12: ON_DEMAND tier loading
@@ -20,7 +20,7 @@ This scenario validates ON_DEMAND tier loading for `CR-R12`. It confirms that a 
 
 ### Why This Matters
 
-`SKILL.md` §10 defines three loading levels: `ALWAYS` is `DEFAULT_RESOURCES`, `CONDITIONAL` is `RESOURCE_MAP[intent]`, and `ON_DEMAND` is every `RESOURCE_MAP` target when an `ON_DEMAND_KEYWORDS` term matches. Only the first two tiers are exercised by the per-intent scenarios, so nothing tested the tier that turns one intent into the full ten-path deep-dive set. That is also the tier `SK_CODE_REVIEW_DEPTH=ultra` biases intent selection toward, so an untested ON_DEMAND tier leaves the `ultra` alias with no observable effect to check. CR-R12 asserts the ten-path set and the eight-path difference against the same prompt without its ON_DEMAND term, so a dropped keyword or a broken tier shows up as a missing path.
+`../../ROUTER.md` §3 defines three loading levels: `ALWAYS` is `DEFAULT_RESOURCES`, `CONDITIONAL` is `RESOURCE_MAP[intent]`, and `ON_DEMAND` is every `RESOURCE_MAP` target when an `ON_DEMAND_KEYWORDS` term matches. Only the first two tiers are exercised by the per-intent scenarios, so nothing tested the tier that turns one intent into the full ten-path deep-dive set. That is also the tier `SK_CODE_REVIEW_DEPTH=ultra` biases intent selection toward, so an untested ON_DEMAND tier leaves the `ultra` alias with no observable effect to check. CR-R12 asserts the ten-path set and the eight-path difference against the same prompt without its ON_DEMAND term, so a dropped keyword or a broken tier shows up as a missing path.
 
 This file states the ten paths under `### Expected` rather than in `expected_resources`, because the frontmatter field records the tier a route must load for the intent it names, and the ON_DEMAND tier is a property of the prompt rather than of `SECURITY`. The command below is the check either way.
 
@@ -33,7 +33,7 @@ Operators run the exact prompt and command sequence for `CR-R12` and confirm the
 - Objective: confirm an ON_DEMAND keyword match loads all ten `RESOURCE_MAP` targets, and that the same prompt without the ON_DEMAND term loads only the selected intent's target.
 - Real user request: `Ask for one comprehensive security pass and expect the reviewer to hold every checklist at once.`
 - Prompt: `Run a comprehensive security review with all checks and list findings.`
-- Expected execution process: run the shipped `MACHINE ROUTER` block from `SKILL.md` §10 over the exact prompt and over the same prompt with the ON_DEMAND terms removed, then compare the two resource lists with the Expected block.
+- Expected execution process: run the shipped `MACHINE ROUTER` block from `../../ROUTER.md` §3 over the exact prompt and over the same prompt with the ON_DEMAND terms removed, then compare the two resource lists with the Expected block.
 - Expected signals: the exact prompt prints `intents= ['SECURITY']`, `scores= {'SECURITY': 5.0}` and all ten `RESOURCE_MAP` targets; the reduced prompt prints the same intent and score with the five `DEFAULT_RESOURCES` only, because `RESOURCE_MAP["SECURITY"]` is already inside them.
 - Desired user-visible outcome: one comprehensive request that actually loads the deep-dive set, and a single-intent request that stays narrow, so the operator can tell the two apart from the transcript.
 - Pass/fail: PASS if the exact prompt prints all ten `RESOURCE_MAP` targets and the reduced prompt prints five, with the same intent and score on both; FAIL if the exact prompt prints fewer than ten, the reduced prompt also prints ten, or the intent or score differs between the runs.
@@ -54,20 +54,20 @@ Run a comprehensive security review with all checks and list findings.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-R12 | ON_DEMAND tier loading | Confirm an ON_DEMAND keyword match loads all ten `RESOURCE_MAP` targets, and that the same prompt without the ON_DEMAND term loads only the selected intent's target. | `Run a comprehensive security review with all checks and list findings.` | bash: run the shipped `SKILL.md` §10 router block over the exact prompt and over the same prompt with the ON_DEMAND terms removed -> compare the two resource lists with the Expected block | The exact prompt prints `intents= ['SECURITY']`, `scores= {'SECURITY': 5.0}` and all ten `RESOURCE_MAP` targets; the reduced prompt prints the same intent and score with the five `DEFAULT_RESOURCES` only | Both router transcripts, with the resource list for each prompt and the count in each list | PASS iff the exact prompt prints ten `RESOURCE_MAP` targets and the reduced prompt prints five, with the same intent and score on both; FAIL if the exact prompt prints fewer than ten, the reduced prompt also prints ten, or the intent or score differs between the runs | 1. Confirm the §10 block was extracted from `SKILL.md`; 2. Check `ON_DEMAND_KEYWORDS` for the terms the exact prompt relies on; 3. Confirm the reduced prompt really carries no ON_DEMAND term |
+| CR-R12 | ON_DEMAND tier loading | Confirm an ON_DEMAND keyword match loads all ten `RESOURCE_MAP` targets, and that the same prompt without the ON_DEMAND term loads only the selected intent's target. | `Run a comprehensive security review with all checks and list findings.` | bash: run the shipped `../../ROUTER.md` §3 router block over the exact prompt and over the same prompt with the ON_DEMAND terms removed -> compare the two resource lists with the Expected block | The exact prompt prints `intents= ['SECURITY']`, `scores= {'SECURITY': 5.0}` and all ten `RESOURCE_MAP` targets; the reduced prompt prints the same intent and score with the five `DEFAULT_RESOURCES` only | Both router transcripts, with the resource list for each prompt and the count in each list | PASS iff the exact prompt prints ten `RESOURCE_MAP` targets and the reduced prompt prints five, with the same intent and score on both; FAIL if the exact prompt prints fewer than ten, the reduced prompt also prints ten, or the intent or score differs between the runs | 1. Confirm the §3 block was extracted from `ROUTER.md`; 2. Check `ON_DEMAND_KEYWORDS` for the terms the exact prompt relies on; 3. Confirm the reduced prompt really carries no ON_DEMAND term |
 
 ### Commands
 
-Run from the repository root. The block is extracted from `SKILL.md` at run time, so the scenario tests the shipped router and not a copy of it.
+Run from the repository root. The block is extracted from `ROUTER.md` at run time, so the scenario tests the shipped router and not a copy of it.
 
 ```bash
 python3 - <<'PY'
 import re
 from pathlib import Path
 
-skill = Path('.skilled/skills/sk-code/sk-code-review/SKILL.md')
+skill = Path('.skilled/skills/sk-code/sk-code-review/ROUTER.md')
 text = skill.read_text()
-block = re.search(r"```python\n(.*?)\n```", text[text.index('## 10. MACHINE ROUTER'):], re.S).group(1)
+block = re.search(r"```python\n(.*?)\n```", text[text.index('## 3. MACHINE ROUTER'):], re.S).group(1)
 ns = {'__file__': str(skill), '__name__': 'machine_router', 'load': lambda path: None}
 exec(compile(block, 'machine-router', 'exec'), ns)
 
@@ -115,7 +115,7 @@ CONDITIONAL
 
 ### Evidence
 
-Both router transcripts, the resource count from each, and the `ON_DEMAND_KEYWORDS` and `RESOURCE_MAP` excerpts from `SKILL.md` §10.
+Both router transcripts, the resource count from each, and the `ON_DEMAND_KEYWORDS` and `RESOURCE_MAP` excerpts from `../../ROUTER.md` §3.
 
 ### Pass / Fail
 
@@ -124,7 +124,7 @@ Both router transcripts, the resource count from each, and the `ON_DEMAND_KEYWOR
 
 ### Failure Triage
 
-1. Confirm the extraction found the `## 10. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
+1. Confirm the extraction found the `## 3. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
 2. If the exact prompt prints five, quote `ON_DEMAND_KEYWORDS` and confirm the prompt still carries `comprehensive`, `all checks` or `list findings`. The tier runs only after the low-score check, so a prompt scoring nothing takes the disambiguation branch and never reaches it.
 3. If both runs print ten, the reduced prompt still carries an ON_DEMAND term; name the term that survived the edit.
 4. If a tenth path is missing, diff the printed list against `RESOURCE_MAP` and name the dropped target.
@@ -144,7 +144,7 @@ Both router transcripts, the resource count from each, and the `ON_DEMAND_KEYWOR
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §10 (`MACHINE ROUTER`) | The three loading levels, `ON_DEMAND_KEYWORDS`, `RESOURCE_MAP` and the router block this scenario executes |
+| [ROUTER.md](../../ROUTER.md) §3 (`MACHINE ROUTER`) | The three loading levels, `ON_DEMAND_KEYWORDS`, `RESOURCE_MAP` and the router block this scenario executes |
 | [SKILL.md](../../SKILL.md) §9.3 (`SK_CODE_REVIEW_DEPTH`) | The `ultra` alias that biases intent selection toward the tier this scenario exercises |
 | [solid-checklist.md](../../assets/solid-checklist.md) | A deep-dive path that arrives through the ON_DEMAND tier alone |
 

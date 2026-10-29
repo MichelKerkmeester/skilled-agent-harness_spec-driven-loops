@@ -1,7 +1,7 @@
 ---
 title: "PROVENANCE-001 -- Source-Of-Truth Router Card Sorts Each Value"
 description: "This scenario validates the source-of-truth router card for PROVENANCE-001. It confirms the fill-in card sorts every value bound for a v3 Style Reference into measured, brief-provided, inferred or absent before writing, so only measured values land in token tables, doubtful values are recorded with their origin, while a brief-only request with no live site is routed out of scope as forward-authoring."
-version: 1.0.1.0
+version: 1.0.2.0
 expected_intent: EXTRACT_WRITE
 expected_resources:
   - references/design-md-format.md
@@ -99,7 +99,8 @@ Cross-read the completed doubtful-values table against `references/authoring-bou
 | `../../backend/scripts/validate.ts` | Fidelity validator. `checkPhantomColors` covers measured-value provenance and `claimsScore` covers inference provenance |
 | `../../backend/scripts/formatters-v3.ts` | Deterministic v3 emitters that emit measured values verbatim so the card's measured rows land in token tables unchanged |
 | `../../references/design-md-format.md` | v3 Style Reference section specification and the cardinal rules the card protects |
-| `../../SKILL.md` | §9 MACHINE ROUTER card loading rule, §3 Cardinal Fidelity Rule, §5 References and Reference Loading Notes |
+| `../../SKILL.md` | §3 Cardinal Fidelity Rule, §5 References and Reference Loading Notes |
+| `../../ROUTER.md` | §3 MACHINE ROUTER card loading rule |
 
 ---
 

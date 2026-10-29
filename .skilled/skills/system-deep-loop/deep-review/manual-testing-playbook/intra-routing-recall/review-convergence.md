@@ -13,14 +13,14 @@ expected_resources:
   - references/protocol/completion-criteria.md
   - references/protocol/loop-state-and-gates.md
   - references/convergence/convergence-recovery.md
-version: 1.1.1.0
+version: 1.1.3.0
 ---
 
 # DV-R03: Deep review convergence routing
 
 ## 1. OVERVIEW
 
-This scenario verifies the `deep-review` packet's intra-packet smart router (`SKILL.md` §8 `Smart Router Pseudocode`) scores a convergence-evaluation request as `REVIEW_CONVERGENCE` and loads the convergence and gate resource set, distinct from the setup, iteration, and report resource sets.
+This scenario verifies the `deep-review` packet's intra-packet smart router ([ROUTER.md](../../ROUTER.md) §3 `MACHINE ROUTER`) scores a convergence-evaluation request as `REVIEW_CONVERGENCE` and loads the convergence and gate resource set, distinct from the setup, iteration, and report resource sets.
 
 ---
 
@@ -52,7 +52,7 @@ Evaluate review convergence, coverage gate status, verdict, binary gate, and all
 
 ### Preconditions
 
-1. `.skilled/skills/system-deep-loop/deep-review/SKILL.md` §8 contains `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS`.
+1. `../../ROUTER.md` §3 contains `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS`.
 2. Every path in `expected_resources` exists under `.skilled/skills/system-deep-loop/deep-review/`.
 
 ### Prompt
@@ -97,7 +97,7 @@ Command transcript from steps 1-2; the router transcript from step 3, saved to `
 
 | File | Role |
 |---|---|
-| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` §8 | `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS` this scenario exercises |
+| `../../ROUTER.md` §3 | `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS` this scenario exercises |
 
 ---
 

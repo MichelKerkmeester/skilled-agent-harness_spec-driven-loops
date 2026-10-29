@@ -7,7 +7,7 @@ trigger_phrases:
   - "27 diagram types"
   - "create diagram"
   - "/design:diagram"
-version: 1.0.0.4
+version: 1.0.1.0
 ---
 
 # Type selection and routing (/design:diagram)
@@ -42,7 +42,7 @@ The router loads `references/foundations/style-guide.md` on every diagram and lo
 
 | File | Layer | Role |
 |---|---|---|
-| `SKILL.md` (Smart Routing + selection guide) | Handler | Request-shape classification, 27-type selection guide, resource loading levels, and the routing pseudocode |
+| `SKILL.md` (Smart Routing + selection guide) and `../../ROUTER.md` (`## 3. MACHINE ROUTER`) | Handler | Request-shape classification, 27-type selection guide, resource loading levels, and the routing pseudocode |
 | `references/types/type-*.md` (27 files) | Shared | Per-type layout conventions, per-type ceilings, and anti-patterns loaded conditionally for generate requests |
 | `.skilled/commands/design/assets/diagram-auto.yaml`, `diagram-confirm.yaml` | Shared | Workflow YAML that carries the generate/import/export detection steps executed by the `/design:diagram` router |
 

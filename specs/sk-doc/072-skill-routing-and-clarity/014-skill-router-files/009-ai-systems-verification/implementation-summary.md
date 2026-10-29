@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/009-ai-systems-verification"
+    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification"
     last_updated_at: "2026-10-29T11:37:26Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"

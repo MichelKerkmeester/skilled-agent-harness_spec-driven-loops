@@ -3,7 +3,7 @@ id: CU-H01
 category: intra_routing_recall
 stage: holdout
 title: 'Blind holdout — daily task op'
-description: "This scenario validates the SKILL.md Smart Router's CUPT_DAILY intent generalizes to a prompt authored keyword-blind for `CU-H01`. It confirms plain daily-ops phrasing still scores CUPT_DAILY via the recorded blindExceptions vocabulary."
+description: "This scenario validates the ROUTER.md §3 MACHINE ROUTER's CUPT_DAILY intent generalizes to a prompt authored keyword-blind for `CU-H01`. It confirms plain daily-ops phrasing still scores CUPT_DAILY via the recorded blindExceptions vocabulary."
 expected_intent: CUPT_DAILY
 expected_resources:
   - references/cupt-commands.md
@@ -11,7 +11,7 @@ blindExceptions:
   - "ticket"
   - "close it out"
   - "jot down"
-version: 1.1.1.0
+version: 1.1.3.0
 ---
 
 # CU-H01: Blind holdout — daily task op
@@ -42,7 +42,7 @@ recorded in this scenario's `blindExceptions` frontmatter.
 ## 2. SCENARIO CONTRACT
 
 Operators confirm the exact prompt, despite its keyword-blind authoring, still scores `CUPT_DAILY`
-under `SKILL.md` §9's weighted keyword model via the recorded `blindExceptions`, and that the
+under `../../ROUTER.md` §3 MACHINE ROUTER's weighted keyword model via the recorded `blindExceptions`, and that the
 router's `RESOURCE_MAP["CUPT_DAILY"]` entry matches this scenario's declared `expected_resources`.
 
 - Objective: confirm the prompt's narrower keyword overlap with `INTENT_SIGNALS["CUPT_DAILY"]` — via
@@ -65,14 +65,14 @@ I finished the ticket I was working on this morning - please close it out and jo
   `INTENT_SIGNALS["CUPT_DAILY"]` keywords present, giving `CUPT_DAILY` a nonzero score with no
   competing `TROUBLESHOOT`/`INSTALL` keyword to trigger the tie-break, so `max(scores, key=scores.get)`
   selects `CUPT_DAILY`.
-- Expected signals: `SKILL.md` §9 lists `ticket`, `close it out`, and `jot down` under
+- Expected signals: `../../ROUTER.md` §3 MACHINE ROUTER lists `ticket`, `close it out`, and `jot down` under
   `INTENT_SIGNALS["CUPT_DAILY"]`; `RESOURCE_MAP["CUPT_DAILY"]` names exactly
   `references/cupt-commands.md`; the file exists.
 - Desired user-visible outcome: the router states plainly that this request routes to `CUPT_DAILY`
   and bundles the `cupt` command reference, despite the prompt never naming the tool or intent.
-- Pass/fail: PASS if `SKILL.md` §9 confirms all three matched keywords under `CUPT_DAILY` and the
+- Pass/fail: PASS if `../../ROUTER.md` §3 MACHINE ROUTER confirms all three matched keywords under `CUPT_DAILY` and the
   mapped resource exists; FAIL if any of those keywords is removed from `CUPT_DAILY`, the
-  `RESOURCE_MAP["CUPT_DAILY"]` entry in `SKILL.md` no longer matches this scenario's frontmatter, or
+  `RESOURCE_MAP["CUPT_DAILY"]` entry in `ROUTER.md` §3 MACHINE ROUTER no longer matches this scenario's frontmatter, or
   the resource path is missing.
 
 ---
@@ -86,7 +86,7 @@ I finished the ticket I was working on this morning - please close it out and jo
 ### Commands
 
 1. `sed -n '1,17p' .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/holdout-daily.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/ROUTER.md`
 3. `sed -n '/^```text$/,/^```$/p' .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/holdout-daily.md | grep -io 'cupt\|clickup\|mcp\|list\b\|log time' || echo "no obvious router keyword in the prompt body"`
 4. `test -e .skilled/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md && echo "OK references/cupt-commands.md" || echo "MISS references/cupt-commands.md"`
 
@@ -105,7 +105,7 @@ obvious router keyword.
 
 ### Pass / Fail
 
-- **Pass**: `SKILL.md` §9 still lists all three `blindExceptions` keywords under `CUPT_DAILY`, the
+- **Pass**: `../../ROUTER.md` §3 MACHINE ROUTER still lists all three `blindExceptions` keywords under `CUPT_DAILY`, the
   prompt body carries no obvious router keyword, and `RESOURCE_MAP["CUPT_DAILY"]`'s resource path
   exists.
 - **Fail**: any of the three keywords is removed from `CUPT_DAILY`'s list, the resource map no longer
@@ -134,7 +134,7 @@ obvious router keyword.
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` §9 | The `CUPT_DAILY` `INTENT_SIGNALS` keywords and `RESOURCE_MAP` entry this scenario verifies |
+| `../../ROUTER.md` §3 MACHINE ROUTER | The `CUPT_DAILY` `INTENT_SIGNALS` keywords and `RESOURCE_MAP` entry this scenario verifies |
 
 ---
 

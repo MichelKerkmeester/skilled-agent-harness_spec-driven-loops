@@ -4,7 +4,7 @@ category: ci_surface
 stage: negative
 title: 'Prompts that share CI words do not route to the CI surface'
 description: "This scenario validates the routing floor for `ci-surface-routing-floor`. It focuses on prompts that carry CI vocabulary without being CI requests, and confirms the compiled route defers or bundles another surface instead of selecting `sk-code-ci`."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Prompts that share CI words do not route to the CI surface
@@ -15,7 +15,7 @@ This document captures the run contract, execution process, source anchors and m
 
 ## 1. OVERVIEW
 
-This scenario validates the routing floor stated in the `MACHINE ROUTER` block of `SKILL.md`: every keyword in `INTENT_SIGNALS` is multi-word, so a bare `workflow` never scores this surface. It sends three prompts that share CI words without being CI requests, plus one positive control, through the same compiled route the hub serves.
+This scenario validates the routing floor stated in the `MACHINE ROUTER` section of [`ROUTER.md`](../../ROUTER.md): every keyword in `INTENT_SIGNALS` is multi-word, so a bare `workflow` never scores this surface. It sends three prompts that share CI words without being CI requests, plus one positive control, through the same compiled route the hub serves.
 
 ### Why This Matters
 
@@ -68,7 +68,7 @@ for (const p of prompts) { const r=compiledRoute("sk-code",p,{}); console.log(JS
 2. List every intent keyword that carries the word `workflow`.
 
 ```bash
-sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-ci/SKILL.md | grep -o '"[^"]*workflow[^"]*"'
+sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-ci/ROUTER.md | grep -o '"[^"]*workflow[^"]*"'
 ```
 
 ### Expected
@@ -136,7 +136,7 @@ Command transcript from steps 1 and 2 with the exit status, and the four JSON li
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) `MACHINE ROUTER` section | The multi-word `INTENT_SIGNALS` keywords the floor rests on |
+| [ROUTER.md](../../ROUTER.md) `MACHINE ROUTER` section | The multi-word `INTENT_SIGNALS` keywords the floor rests on |
 | `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs` | The compiled route engine behind step 1 |
 | `.skilled/skills/sk-code/mode-registry.json` | The packet's alias list, which can score the surface before the intent signal is read |
 | `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` | The automated near-miss assertions this scenario's prompts mirror |

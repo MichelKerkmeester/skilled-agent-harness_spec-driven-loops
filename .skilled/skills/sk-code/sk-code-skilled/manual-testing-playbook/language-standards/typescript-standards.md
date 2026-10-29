@@ -13,7 +13,7 @@ expected_resources:
   - references/typescript/quality-standards/tsconfig-and-modules.md
   - references/typescript/quick-reference/template-naming-and-types.md
   - references/typescript/quick-reference/imports-errors-and-tsconfig.md
-version: 1.0.1.1
+version: 1.0.3.0
 ---
 
 # OC-001: TypeScript standards routing
@@ -26,7 +26,7 @@ This document captures the routing-recall contract, execution process, source an
 
 This scenario validates `TYPESCRIPT` routing for `OC-001`. It focuses on confirming that the exact prompt
 below classifies as `TYPESCRIPT` and loads the full 7-file resource set instead of a generic or mismatched
-resource set, per `SKILL.md` §6's machine-readable router.
+resource set, per `ROUTER.md` §3's machine-readable router.
 
 ### Why This Matters
 
@@ -53,7 +53,7 @@ For an OpenCode TypeScript module, apply the typescript .ts standards before I i
   `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
   `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-skilled/`, and each one
-  documents `TYPESCRIPT` routing per `SKILL.md` §2 or §6.
+  documents `TYPESCRIPT` routing per `SKILL.md` §2 or `ROUTER.md` §3.
 - Desired user-visible outcome: the bundled workflow cites the routed `TYPESCRIPT` resources as the
   standards evidence, not a mismatched language or generic tier.
 - Pass/fail: PASS if every listed path exists and the frontmatter surface/intent are `SKILLED`/
@@ -70,8 +70,8 @@ For an OpenCode TypeScript module, apply the typescript .ts standards before I i
 ### Commands
 
 1. `sed -n '/^---$/,/^---$/p' .skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/language-standards/typescript-standards.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/SKILL.md | grep -F '"TYPESCRIPT"'`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/SKILL.md | sed -n '/"TYPESCRIPT": \[/,/\],/p'`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/ROUTER.md | grep -F '"TYPESCRIPT"'`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/ROUTER.md | sed -n '/"TYPESCRIPT": \[/,/\],/p'`
 4. `for p in references/typescript/style-guide/overview-strict-and-naming.md references/typescript/style-guide/formatting-imports-and-coexistence.md references/typescript/quality-standards/overview-and-type-system.md references/typescript/quality-standards/tsdoc-errors-and-async.md references/typescript/quality-standards/tsconfig-and-modules.md references/typescript/quick-reference/template-naming-and-types.md references/typescript/quick-reference/imports-errors-and-tsconfig.md; do test -e ".skilled/skills/sk-code/sk-code-skilled/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
@@ -112,7 +112,7 @@ excerpt.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §6 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [ROUTER.md](../../ROUTER.md) §3 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §2 | Reference-map prose entry for the `TYPESCRIPT` resource set |
 
 ---

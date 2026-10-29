@@ -9,7 +9,7 @@ trigger_phrases:
   - "component readme voice"
 importance_tier: normal
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # README Types and Voice
@@ -29,7 +29,7 @@ A README answers "What is this?" and "How do I use it?" in a scannable, progress
 - Setting how much a reader gets at each disclosure stage
 - Splitting narrative and reference voice inside one file
 
-The README type decision tree lives in `SKILL.md` Section 10. This reference covers the type table, disclosure stages and voice split that the tree feeds into.
+The README type decision tree lives in `ROUTER.md` Section 3. This reference covers the type table, disclosure stages and voice split that the tree feeds into.
 
 ---
 

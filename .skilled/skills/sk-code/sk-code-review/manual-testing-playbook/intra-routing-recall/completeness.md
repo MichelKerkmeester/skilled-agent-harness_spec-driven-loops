@@ -11,7 +11,7 @@ expected_resources:
   - assets/security-checklist.md
   - assets/code-quality-checklist.md
   - assets/fix-completeness-checklist.md
-version: 1.0.0.0
+version: 1.0.2.0
 ---
 
 # CR-R09: COMPLETENESS routing
@@ -37,7 +37,7 @@ Operators run the exact prompt and command sequence for `CR-R09` and confirm the
 - Objective: confirm the exact prompt selects `COMPLETENESS` at its own score and the disconfirming prompt selects no intent.
 - Real user request: `Ask whether a patch really fixes every call site or only the reported one.`
 - Prompt: `Check fix completeness here: is this an incomplete fix that leaves leftover call sites?`
-- Expected execution process: run the shipped `MACHINE ROUTER` block from `SKILL.md` §10 over the exact prompt and over the disconfirming prompt, and compare the printed intents, scores and resource lists with the Expected block.
+- Expected execution process: run the shipped `MACHINE ROUTER` block from `../../ROUTER.md` §3 over the exact prompt and over the disconfirming prompt, and compare the printed intents, scores and resource lists with the Expected block.
 - Expected signals: the exact prompt prints `intents= ['COMPLETENESS']`, `scores= {'COMPLETENESS': 9.0}`, `needs_disambiguation= False` and the five `DEFAULT_RESOURCES`; the disconfirming prompt prints `intents= ['QUALITY']`, an empty score map and `needs_disambiguation= True`.
 - Desired user-visible outcome: a reviewer routed to the fix-completeness checklist, and no silent fall-through where that checklist merely arrives with the baseline.
 - Pass/fail: PASS if the exact prompt selects `COMPLETENESS` with score `9.0`, the disconfirming prompt selects `QUALITY` only through the low-score fallback, and every printed path is one of the five `DEFAULT_RESOURCES`; FAIL if the intent differs, the score differs, or the disconfirming prompt still selects `COMPLETENESS`.
@@ -58,20 +58,20 @@ Check fix completeness here: is this an incomplete fix that leaves leftover call
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-R09 | COMPLETENESS routing | Confirm a fix-completeness prompt selects `COMPLETENESS` at its own score, and that the same prompt without its completeness words selects no intent. | `Check fix completeness here: is this an incomplete fix that leaves leftover call sites?` | bash: run the shipped `SKILL.md` §10 router block over the exact prompt and the disconfirming prompt -> compare intents, scores, `needs_disambiguation` and the resource lists with the Expected block | The exact prompt prints `intents= ['COMPLETENESS']`, `scores= {'COMPLETENESS': 9.0}`, `needs_disambiguation= False` and the five `DEFAULT_RESOURCES`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}` and `needs_disambiguation= True` | Both router transcripts, with the intent, score, flag and resource list for each prompt | PASS iff the exact prompt selects `COMPLETENESS` at `9.0`, the disconfirming prompt reaches `QUALITY` only through the low-score fallback, and every printed path is a `DEFAULT_RESOURCES` entry; FAIL on a different intent, a different score, or a disconfirming prompt that still selects `COMPLETENESS` | 1. Confirm the §10 block was extracted from `SKILL.md` and not rewritten by hand; 2. Diff `INTENT_SIGNALS["COMPLETENESS"]` against the keywords the exact prompt relies on; 3. Check the disconfirming prompt carries no completeness keyword |
+| CR-R09 | COMPLETENESS routing | Confirm a fix-completeness prompt selects `COMPLETENESS` at its own score, and that the same prompt without its completeness words selects no intent. | `Check fix completeness here: is this an incomplete fix that leaves leftover call sites?` | bash: run the shipped `../../ROUTER.md` §3 router block over the exact prompt and the disconfirming prompt -> compare intents, scores, `needs_disambiguation` and the resource lists with the Expected block | The exact prompt prints `intents= ['COMPLETENESS']`, `scores= {'COMPLETENESS': 9.0}`, `needs_disambiguation= False` and the five `DEFAULT_RESOURCES`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}` and `needs_disambiguation= True` | Both router transcripts, with the intent, score, flag and resource list for each prompt | PASS iff the exact prompt selects `COMPLETENESS` at `9.0`, the disconfirming prompt reaches `QUALITY` only through the low-score fallback, and every printed path is a `DEFAULT_RESOURCES` entry; FAIL on a different intent, a different score, or a disconfirming prompt that still selects `COMPLETENESS` | 1. Confirm the §3 block was extracted from `ROUTER.md` and not rewritten by hand; 2. Diff `INTENT_SIGNALS["COMPLETENESS"]` against the keywords the exact prompt relies on; 3. Check the disconfirming prompt carries no completeness keyword |
 
 ### Commands
 
-Run from the repository root. The block is extracted from `SKILL.md` at run time, so the scenario tests the shipped router and not a copy of it.
+Run from the repository root. The block is extracted from `ROUTER.md` at run time, so the scenario tests the shipped router and not a copy of it.
 
 ```bash
 python3 - <<'PY'
 import re
 from pathlib import Path
 
-skill = Path('.skilled/skills/sk-code/sk-code-review/SKILL.md')
+skill = Path('.skilled/skills/sk-code/sk-code-review/ROUTER.md')
 text = skill.read_text()
-block = re.search(r"```python\n(.*?)\n```", text[text.index('## 10. MACHINE ROUTER'):], re.S).group(1)
+block = re.search(r"```python\n(.*?)\n```", text[text.index('## 3. MACHINE ROUTER'):], re.S).group(1)
 ns = {'__file__': str(skill), '__name__': 'machine_router', 'load': lambda path: None}
 exec(compile(block, 'machine-router', 'exec'), ns)
 
@@ -120,7 +120,7 @@ The disconfirming prompt carries no intent keyword, so the router returns its lo
 
 ### Evidence
 
-Both router transcripts, the extracted-block provenance line, and the `INTENT_SIGNALS["COMPLETENESS"]` and `RESOURCE_MAP["COMPLETENESS"]` excerpts from `SKILL.md` §10.
+Both router transcripts, the extracted-block provenance line, and the `INTENT_SIGNALS["COMPLETENESS"]` and `RESOURCE_MAP["COMPLETENESS"]` excerpts from `../../ROUTER.md` §3.
 
 ### Pass / Fail
 
@@ -129,8 +129,8 @@ Both router transcripts, the extracted-block provenance line, and the `INTENT_SI
 
 ### Failure Triage
 
-1. Confirm the extraction found the `## 10. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
-2. Compare the exact prompt word by word with `INTENT_SIGNALS["COMPLETENESS"]` in `SKILL.md` §10. A reworded prompt that drops `fix completeness`, `incomplete fix` or `leftover` lowers the score and is a prompt-equality failure.
+1. Confirm the extraction found the `## 3. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
+2. Compare the exact prompt word by word with `INTENT_SIGNALS["COMPLETENESS"]` in `../../ROUTER.md` §3. A reworded prompt that drops `fix completeness`, `incomplete fix` or `leftover` lowers the score and is a prompt-equality failure.
 3. If the score moved but the intent did not, quote the changed weight in `INTENT_SIGNALS["COMPLETENESS"]`; the `COMPLETENESS` weight is `3` and sits inside the ambiguity delta, so a weight edit can also pull a second intent into `select_intents`.
 4. If the disconfirming prompt selects `COMPLETENESS`, the keyword list has grown a substring that matches ordinary prose; name the keyword.
 
@@ -149,7 +149,7 @@ Both router transcripts, the extracted-block provenance line, and the `INTENT_SI
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §10 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES` and the router block this scenario executes |
+| [ROUTER.md](../../ROUTER.md) §3 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES` and the router block this scenario executes |
 | [fix-completeness-checklist.md](../../assets/fix-completeness-checklist.md) | The checklist the `COMPLETENESS` intent targets |
 
 ---

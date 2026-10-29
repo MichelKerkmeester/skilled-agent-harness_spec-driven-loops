@@ -7,7 +7,7 @@ description: "This scenario validates the negative/out-of-domain control for `CD
 expected_intent: none
 expected_resources: []
 blindToRouterKeywords: false
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CD-N01: Negative: out of domain
@@ -18,7 +18,7 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario validates the negative/out-of-domain control for `CD-N01`. It focuses on confirming that a prompt entirely unrelated to browser debugging -- summarizing a quarterly sales report -- scores zero against every entry in `INTENT_SIGNALS` (`SKILL.md` §9) and falls through the router's zero-score branch to `UNKNOWN_FALLBACK`, not on any Chrome DevTools capability, since this scenario exists to prove the router does not force an out-of-domain prompt into a false-positive route.
+This scenario validates the negative/out-of-domain control for `CD-N01`. It focuses on confirming that a prompt entirely unrelated to browser debugging -- summarizing a quarterly sales report -- scores zero against every entry in `INTENT_SIGNALS` (`../../ROUTER.md` §3) and falls through the router's zero-score branch to `UNKNOWN_FALLBACK`, not on any Chrome DevTools capability, since this scenario exists to prove the router does not force an out-of-domain prompt into a false-positive route.
 
 ### Why This Matters
 
@@ -39,7 +39,7 @@ Operators confirm the exact prompt for `CD-N01` scores zero across every `INTENT
 Summarise this quarterly sales report into three bullet points.
 ```
 
-- Expected execution process: the router scores the prompt against `INTENT_SIGNALS` (`SKILL.md` §9); no keyword from `CLI`, `MCP`, `INSTALL`, `TROUBLESHOOT`, or `AUTOMATION` appears in the prompt, so the classifier returns an all-zero score vector and the `UNKNOWN_FALLBACK` branch fires instead of a false intent match
+- Expected execution process: the router scores the prompt against `INTENT_SIGNALS` (`../../ROUTER.md` §3); no keyword from `CLI`, `MCP`, `INSTALL`, `TROUBLESHOOT`, or `AUTOMATION` appears in the prompt, so the classifier returns an all-zero score vector and the `UNKNOWN_FALLBACK` branch fires instead of a false intent match
 - Expected signals: the frontmatter `expected_intent` stays `none` and `expected_resources` stays empty; the negative-control grep in step 3 reports `NOMATCH` for the full keyword alternation
 - Desired user-visible outcome: the bundled workflow declines to attach any Chrome DevTools resource to the request and, if surfaced to an orchestrator, reports this as outside the `mcp-chrome-devtools` domain rather than guessing an intent
 - Pass/fail: PASS if the prompt scores zero across all five `INTENT_SIGNALS` entries and the frontmatter stays `expected_intent: none`; FAIL if any keyword incidentally matches or an intent is force-assigned
@@ -55,7 +55,7 @@ Summarise this quarterly sales report into three bullet points.
 ### Commands
 
 1. `sed -n '1,14p' .skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/negative.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-chrome-devtools/ROUTER.md`
 3. `echo "Summarise this quarterly sales report into three bullet points." | grep -qiE 'bdg|browser-debugger-cli|terminal|cli|command line|command-line|shell|headless|lightweight|token efficient|mcp|code mode|multi-tool|parallel sessions|model context protocol|multiple tools|isolated instances|tool chain|in parallel|install|setup|not installed|command -v bdg|set up|getting started|download|npm install|not found|first time|error|failed|troubleshoot|session issue|keeps dropping|won.t connect|figure out why|work out the cause|hangs|hanging|stuck|crash|crashing|broken|not working|timeout|disconnect|flaky|root cause|ci|pipeline|automation|production|automate|unattended|continuous integration|batch|recurring' && echo MATCH || echo NOMATCH`
 
 ### Expected
@@ -74,7 +74,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_S
 ### Failure Triage
 
 1. If step 3 prints `MATCH`, re-run the same grep restricted to one intent's keyword list at a time to identify exactly which keyword the prompt incidentally contains.
-2. Confirm whether the false match is a genuinely ambiguous prompt (rewrite the prompt) or a keyword in `INTENT_SIGNALS` that is too broad (flag it against `SKILL.md` §9 for a keyword-weight review) -- do not silently accept a routed intent for this negative-control scenario.
+2. Confirm whether the false match is a genuinely ambiguous prompt (rewrite the prompt) or a keyword in `INTENT_SIGNALS` that is too broad (flag it against `../../ROUTER.md` §3 for a keyword-weight review) -- do not silently accept a routed intent for this negative-control scenario.
 
 ---
 
@@ -90,7 +90,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_S
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §9 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [ROUTER.md](../../ROUTER.md) §3 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §1 | Activation triggers this scenario's prompt assumes |
 
 ---

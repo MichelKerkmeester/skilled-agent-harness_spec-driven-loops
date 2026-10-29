@@ -2,7 +2,7 @@
 name: sk-code-skilled
 description: "sk-code SKILLED surface: system-code evidence (TypeScript/Python/shell/Rust/config standards, language-agnostic patterns, hooks, alignment verification, and skill/agent/command/MCP authoring checklists) plus shared implement/debug/verify workflow doctrine."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 2.1.15.0
+version: 2.1.16.0
 metadata:
   family: sk-code
   packetKind: surface
@@ -115,7 +115,7 @@ The hub bundles this surface when the task touches `.skilled/` system code — a
 
 The parent hub `RESOURCE_MAP` carries this map re-prefixed with `sk-code-skilled/` plus the parent-owned universal tier, and the router-sync guard (`assets/scripts/verify-router-sync.cjs`, leg 2) checks that equality. A new doc under `references/` or `assets/` needs a `RESOURCE_MAP` entry here, or leg 1b fails.
 
-The python block that encodes this routing lives in the final `MACHINE ROUTER` section of this file.
+Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
 
 ---
 
@@ -198,129 +198,3 @@ The MCP server checklist, `assets/checklists/mcp-server-authoring.md`, has no pa
 | SKILLED | `.rs` | `assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md` |
 | SKILLED | `.json`, `.jsonc`, `.yaml`, `.yml` | `assets/checklists/config-checklist.md` |
 | sk-code-ci | `.github/workflows/**` | `../sk-code-ci/references/ci-workflow-standards.md` |
-
----
-
-## 6. MACHINE ROUTER
-
-This block is the deterministic projection of sk-code-skilled's own reference/asset routing; keep it in sync with the parent hub union.
-
-```python
-# sk-code-skilled owns its intent -> reference/asset routing. Paths are relative to
-# this skill root. The parent sk-code hub RESOURCE_MAP is the union of this map
-# (re-prefixed with sk-code-skilled/) plus the
-# parent-owned universal/shared tier. The router-sync guard
-# (assets/scripts/verify-router-sync.cjs, leg 2) checks that equality.
-# verify_alignment_drift.py --check-router checks dead routes only, so it is not
-# the equality authority. Leg 1b of the same guard fails on any reference or asset doc that
-# no router names, so a new doc under references/ or assets/ needs a RESOURCE_MAP entry here.
-DEFAULT_RESOURCE = [
-    "references/shared/universal-patterns/naming-and-commenting.md",
-    "references/shared/universal-patterns/organization-security-and-examples.md",
-    "references/shared/code-organization/overview-and-module-organization.md",
-    "references/shared/code-organization/imports-and-exports.md",
-    "references/shared/code-organization/directory-and-test-conventions.md",
-    "references/shared/workflow-guardrails.md",
-]
-
-INTENT_SIGNALS = {
-    "IMPLEMENTATION":     {"weight": 1, "keywords": ["implement", "build", "create", "feature", "component", "module", "authoring"]},
-    "CODE_QUALITY":       {"weight": 1, "keywords": ["lint", "format", "quality gate", "naming", "standards", "code smell"]},
-    "VERIFICATION":       {"weight": 1, "keywords": ["verify", "passing", "type-check", "alignment drift", "completion claim"]},
-    "HOOKS":              {"weight": 1, "keywords": ["session-prime", "user-prompt-submit", "pre-tool-use", "post-tool-use"]},
-    "CONFIG":             {"weight": 1, "keywords": ["jsonc", ".json", ".jsonc", "descriptor", "config schema"]},
-    "JAVASCRIPT":         {"weight": 1, "keywords": ["javascript", ".js", "commonjs", ".cjs", ".mjs"]},
-    "TYPESCRIPT":         {"weight": 1, "keywords": ["typescript", ".ts", ".tsx"]},
-    "PYTHON":             {"weight": 1, "keywords": ["python", ".py", "docstring"]},
-    "SHELL":              {"weight": 1, "keywords": ["shell script", "bash", ".sh"]},
-    "RUST":               {"weight": 1, "keywords": ["rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "#[napi]", "wasm-bindgen", "wasm_bindgen", "#[wasm_bindgen]", "wasi", "cdylib"]},
-}
-
-RESOURCE_MAP = {
-    "IMPLEMENTATION": [
-        "references/shared/universal-patterns/naming-and-commenting.md",
-        "references/shared/universal-patterns/organization-security-and-examples.md",
-        "references/shared/code-organization/overview-and-module-organization.md",
-        "references/shared/code-organization/imports-and-exports.md",
-        "references/shared/code-organization/directory-and-test-conventions.md",
-        "assets/checklists/agent-authoring.md",
-        "assets/checklists/command-authoring.md",
-        "assets/checklists/skill-authoring.md",
-        "assets/checklists/mcp-server-authoring.md",
-    ],
-    "CODE_QUALITY": [
-        "assets/checklists/universal-checklist.md",
-        "assets/checklists/javascript-checklist.md",
-        "assets/checklists/js-css-style/overview-header-and-comments.md",
-        "assets/checklists/js-css-style/naming-init-formatting-and-css.md",
-        "assets/checklists/js-css-style/verification-quick-reference-and-related.md",
-        "assets/checklists/typescript-checklist.md",
-        "assets/checklists/python-checklist.md",
-        "assets/checklists/shell-checklist.md",
-        "assets/checklists/rust-checklist/overview-and-p0-parity.md",
-        "assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md",
-        "assets/checklists/rust-checklist/p1-required.md",
-        "assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md",
-    ],
-    "VERIFICATION": [
-        "references/shared/alignment-verification-automation.md",
-        "assets/scripts/README.md",
-    ],
-    "HOOKS": [
-        "references/shared/hooks.md",
-    ],
-    "CONFIG": [
-        "references/config/style-guide.md",
-        "references/config/quality-standards.md",
-        "references/config/quick-reference.md",
-        "assets/checklists/config-checklist.md",
-    ],
-    "JAVASCRIPT": [
-        "references/javascript/style-guide.md",
-        "references/javascript/quality-standards/overview-modules-and-docs.md",
-        "references/javascript/quality-standards/security-testing-and-exemptions.md",
-        "references/javascript/quick-reference.md",
-    ],
-    "TYPESCRIPT": [
-        "references/typescript/style-guide/overview-strict-and-naming.md",
-        "references/typescript/style-guide/formatting-imports-and-coexistence.md",
-        "references/typescript/quality-standards/overview-and-type-system.md",
-        "references/typescript/quality-standards/tsdoc-errors-and-async.md",
-        "references/typescript/quality-standards/tsconfig-and-modules.md",
-        "references/typescript/quick-reference/template-naming-and-types.md",
-        "references/typescript/quick-reference/imports-errors-and-tsconfig.md",
-    ],
-    "PYTHON": [
-        "references/python/style-guide.md",
-        "references/python/quality-standards.md",
-        "references/python/quick-reference.md",
-    ],
-    "SHELL": [
-        "references/shell/style-guide/overview-structure-and-naming.md",
-        "references/shell/style-guide/variables-functions-and-output.md",
-        "references/shell/quality-standards/overview-and-priority-blockers.md",
-        "references/shell/quality-standards/validation-security-and-shellcheck.md",
-        "references/shell/quick-reference/template-variables-and-loops.md",
-        "references/shell/quick-reference/functions-strings-and-checklist.md",
-    ],
-    "RUST": [
-        "references/rust/style-guide/overview-and-file-header.md",
-        "references/rust/style-guide/toolchain-and-project-structure.md",
-        "references/rust/style-guide/naming-conventions.md",
-        "references/rust/style-guide/formatting-and-imports.md",
-        "references/rust/style-guide/commenting-and-rustdoc.md",
-        "references/rust/style-guide/interop-model.md",
-        "references/rust/style-guide/interop-errors-and-parity.md",
-        "references/rust/quality-standards/overview-and-data-ownership.md",
-        "references/rust/quality-standards/modeling-collections-and-api.md",
-        "references/rust/quality-standards/docs-errors-and-async.md",
-        "references/rust/quality-standards/build-and-organization.md",
-        "references/rust/quality-standards/determinism-and-parity.md",
-        "references/rust/quick-reference/overview-and-boundary-template.md",
-        "references/rust/quick-reference/naming-ordering-and-signatures.md",
-        "references/rust/quick-reference/collections-imports-and-errors.md",
-        "references/rust/quick-reference/rustdoc-and-cargo.md",
-        "references/rust/quick-reference/determinism-parity-and-related.md",
-    ],
-}
-```

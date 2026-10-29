@@ -9,7 +9,7 @@ trigger_phrases:
   - "progressive disclosure skills"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Skill Anatomy and Structure System
@@ -107,7 +107,7 @@ Keep boundaries clear:
 
 ### Routing Authority Standard
 
-The machine router is the authoritative routing source. It sits in a final `## MACHINE ROUTER` section, the last H2 in the file. Section 2 stays short prose that points at it. Do not maintain separate use-case routing tables.
+The machine router is the authoritative routing source. It sits in the sibling `ROUTER.md`, in a final `## MACHINE ROUTER` section that is the last H2 of that file. Section 2 of `SKILL.md` stays short prose that links to it. Do not maintain separate use-case routing tables.
 
 Router parity checklist for the machine router block:
 - Guarded in-skill loading (`_guard_in_skill`)
@@ -126,7 +126,7 @@ Smart-router resilience reference:
 ❌ WRONG: File references or routing logic in "WHEN TO USE"
 ❌ WRONG: Separate use-case routing tables or navigation guides
 ❌ WRONG: A machine router block inside SMART ROUTING
-✅ RIGHT: Short routing prose in Section 2, one machine router block in the final MACHINE ROUTER section
+✅ RIGHT: Short routing prose in Section 2, one machine router block in the final MACHINE ROUTER section of ROUTER.md
 
 "WHEN TO USE" = WHEN (triggers, conditions, use cases)
 "SMART ROUTING" = HOW a prompt reaches this skill, in 8 to 12 lines of prose

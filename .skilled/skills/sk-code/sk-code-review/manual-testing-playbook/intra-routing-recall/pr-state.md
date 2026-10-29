@@ -12,7 +12,7 @@ expected_resources:
   - assets/code-quality-checklist.md
   - assets/fix-completeness-checklist.md
   - references/pr-state-dedup.md
-version: 1.0.0.0
+version: 1.0.2.0
 ---
 
 # CR-R10: PR_STATE routing
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `CR-R10` and confirm the
 - Objective: confirm the exact prompt selects `PR_STATE` and adds `references/pr-state-dedup.md` beyond the baseline, and the disconfirming prompt adds nothing.
 - Real user request: `Ask a reviewer not to raise a finding the pull request already has.`
 - Prompt: `The PR state for this branch: a repeated finding was already flagged in a prior comment, so deduplicate it.`
-- Expected execution process: run the shipped `MACHINE ROUTER` block from `SKILL.md` §10 over the exact prompt and over the disconfirming prompt, resolve each printed path under the skill root, and compare with the Expected block.
+- Expected execution process: run the shipped `MACHINE ROUTER` block from `../../ROUTER.md` §3 over the exact prompt and over the disconfirming prompt, resolve each printed path under the skill root, and compare with the Expected block.
 - Expected signals: the exact prompt prints `intents= ['PR_STATE']`, `scores= {'PR_STATE': 15.0}` and six resources ending in `references/pr-state-dedup.md`; the disconfirming prompt prints `intents= ['QUALITY']`, an empty score map and only the five `DEFAULT_RESOURCES`.
 - Desired user-visible outcome: a reviewer handed the pull-request dedup doctrine before it starts, and a request for that doctrine that cannot silently degrade to the baseline.
 - Pass/fail: PASS if the exact prompt selects `PR_STATE` with score `15.0` and its resource list is the five `DEFAULT_RESOURCES` plus `references/pr-state-dedup.md`, the disconfirming prompt adds nothing, and every printed path exists under the skill root; FAIL if the intent differs, the score differs, the dedup reference is absent, or a printed path does not exist.
@@ -59,20 +59,20 @@ The PR state for this branch: a repeated finding was already flagged in a prior 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-R10 | PR_STATE routing | Confirm a pull-request-state prompt selects `PR_STATE` and adds `references/pr-state-dedup.md` beyond the baseline, and that a prompt without those words adds nothing. | `The PR state for this branch: a repeated finding was already flagged in a prior comment, so deduplicate it.` | bash: run the shipped `SKILL.md` §10 router block over the exact prompt and the disconfirming prompt -> bash: test that every printed path exists under the skill root | The exact prompt prints `intents= ['PR_STATE']`, `scores= {'PR_STATE': 15.0}` and six resources ending in `references/pr-state-dedup.md`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}` and the five `DEFAULT_RESOURCES` | Both router transcripts plus the path-existence output | PASS iff the exact prompt selects `PR_STATE` at `15.0`, its resource list is the five `DEFAULT_RESOURCES` plus `references/pr-state-dedup.md`, the disconfirming prompt adds nothing, and every printed path exists; FAIL on a different intent or score, a missing dedup reference, or a path that does not resolve | 1. Confirm the §10 block was extracted from `SKILL.md`; 2. Diff `RESOURCE_MAP["PR_STATE"]` and re-run the path-existence step; 3. Check that `references/pr-state-dedup.md` was not renamed |
+| CR-R10 | PR_STATE routing | Confirm a pull-request-state prompt selects `PR_STATE` and adds `references/pr-state-dedup.md` beyond the baseline, and that a prompt without those words adds nothing. | `The PR state for this branch: a repeated finding was already flagged in a prior comment, so deduplicate it.` | bash: run the shipped `../../ROUTER.md` §3 router block over the exact prompt and the disconfirming prompt -> bash: test that every printed path exists under the skill root | The exact prompt prints `intents= ['PR_STATE']`, `scores= {'PR_STATE': 15.0}` and six resources ending in `references/pr-state-dedup.md`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}` and the five `DEFAULT_RESOURCES` | Both router transcripts plus the path-existence output | PASS iff the exact prompt selects `PR_STATE` at `15.0`, its resource list is the five `DEFAULT_RESOURCES` plus `references/pr-state-dedup.md`, the disconfirming prompt adds nothing, and every printed path exists; FAIL on a different intent or score, a missing dedup reference, or a path that does not resolve | 1. Confirm the §3 block was extracted from `ROUTER.md`; 2. Diff `RESOURCE_MAP["PR_STATE"]` and re-run the path-existence step; 3. Check that `references/pr-state-dedup.md` was not renamed |
 
 ### Commands
 
-Run from the repository root. The block is extracted from `SKILL.md` at run time, so the scenario tests the shipped router and not a copy of it.
+Run from the repository root. The block is extracted from `ROUTER.md` at run time, so the scenario tests the shipped router and not a copy of it.
 
 ```bash
 python3 - <<'PY'
 import re
 from pathlib import Path
 
-skill = Path('.skilled/skills/sk-code/sk-code-review/SKILL.md')
+skill = Path('.skilled/skills/sk-code/sk-code-review/ROUTER.md')
 text = skill.read_text()
-block = re.search(r"```python\n(.*?)\n```", text[text.index('## 10. MACHINE ROUTER'):], re.S).group(1)
+block = re.search(r"```python\n(.*?)\n```", text[text.index('## 3. MACHINE ROUTER'):], re.S).group(1)
 ns = {'__file__': str(skill), '__name__': 'machine_router', 'load': lambda path: None}
 exec(compile(block, 'machine-router', 'exec'), ns)
 
@@ -137,7 +137,7 @@ OK references/pr-state-dedup.md
 
 ### Evidence
 
-Both router transcripts, the six-line path-existence output, and the `INTENT_SIGNALS["PR_STATE"]` and `RESOURCE_MAP["PR_STATE"]` excerpts from `SKILL.md` §10.
+Both router transcripts, the six-line path-existence output, and the `INTENT_SIGNALS["PR_STATE"]` and `RESOURCE_MAP["PR_STATE"]` excerpts from `../../ROUTER.md` §3.
 
 ### Pass / Fail
 
@@ -146,7 +146,7 @@ Both router transcripts, the six-line path-existence output, and the `INTENT_SIG
 
 ### Failure Triage
 
-1. Confirm the extraction found the `## 10. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
+1. Confirm the extraction found the `## 3. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
 2. Re-run the path-existence command. A `MISS references/pr-state-dedup.md` means the reference was renamed or moved; `INTENT_SIGNALS["PR_STATE"]` also names `dedup` and `deduplicate`, so a rename must update the M-1 gate that reference carries.
 3. If the intent or the score moved, quote the changed `INTENT_SIGNALS["PR_STATE"]` entry. Weight `3` against seven keywords gives the observed `15.0` for five hits.
 4. If the disconfirming prompt still carries the dedup reference, a `PR_STATE` keyword has become a substring of ordinary prose; name the keyword.
@@ -166,7 +166,7 @@ Both router transcripts, the six-line path-existence output, and the `INTENT_SIG
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §10 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES` and the router block this scenario executes |
+| [ROUTER.md](../../ROUTER.md) §3 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES` and the router block this scenario executes |
 | [pr-state-dedup.md](../../references/pr-state-dedup.md) | The dedup doctrine and M-1 commands this route adds |
 | [SKILL.md](../../SKILL.md) §9.1 (`M-1`) | The gate the added reference defines |
 

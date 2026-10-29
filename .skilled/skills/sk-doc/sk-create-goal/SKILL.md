@@ -2,7 +2,7 @@
 name: sk-create-goal
 description: Authors packet goal.md files from existing specs and leaves the goal template and session state with their owners.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.4.5.0
+version: 1.4.6.0
 ---
 
 <!-- Keywords: create-goal, /create:goal, packet goal, goal.md authoring, phase parent goal, nested phase child goal -->
@@ -49,14 +49,14 @@ An authoring or revision request loads [`references/parent-and-nested-goals.md`]
 The same request also loads [`references/authoring-standards.md`](references/authoring-standards.md), [`assets/goal-exemplars.md`](assets/goal-exemplars.md) and the template for the goal's kind.
 A budget measurement or a chat-slice handoff loads [`references/budget-and-handoff.md`](references/budget-and-handoff.md).
 
-The four pre-write decisions, the resource discovery and fallback rule, and the router block sit in the final `MACHINE ROUTER` section of this file.
+Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
 
 ---
 
 ## 3. HOW IT WORKS
 
 1. Read the target packet's source specification and acceptance criteria. For a phase parent, read its phase map and inspect every direct phase-child directory on disk.
-2. Apply the four routing decisions in the final `MACHINE ROUTER` section. For top-level, phase-parent, nested-child, retrofit, phase-add and amendment work, load and follow [`references/parent-and-nested-goals.md`](references/parent-and-nested-goals.md). Identify which goal files to add or revise and whether a child change requires a parent amendment first.
+2. Apply the four routing decisions in [`ROUTER.md`](./ROUTER.md). For top-level, phase-parent, nested-child, retrofit, phase-add and amendment work, load and follow [`references/parent-and-nested-goals.md`](references/parent-and-nested-goals.md). Identify which goal files to add or revise and whether a child change requires a parent amendment first.
 3. Start each goal from the template for its kind: [`goal-top-level-template.md`](assets/goal-top-level-template.md), [`goal-phase-parent-template.md`](assets/goal-phase-parent-template.md) or [`goal-phase-child-template.md`](assets/goal-phase-child-template.md).
    Each is a checked copy of system-spec-kit's [`goal.md.tmpl`](../../system-spec-kit/templates/addons/goal.md.tmpl) at that kind's level.
    Copy the block between its template markers into `goal.md`.
@@ -147,72 +147,3 @@ The four pre-write decisions, the resource discovery and fallback rule, and the 
 ## 8. RELATED RESOURCES
 
 - [`README.md`](./README.md) is the short reader entry point.
-
----
-
-## 9. MACHINE ROUTER
-
-The packet's pre-write routing decisions, its resource discovery and fallback rule, and the router block that encodes them.
-
-### Pre-Write Routing Decisions
-
-Run these four decisions before writing:
-
-1. **File content or session state?** A request to author or revise a packet's `goal.md` is file work. A request to set, bind, inject or resend a session objective belongs to the goal hooks or the host's native goal command. Redirect session-state requests without editing a packet goal.
-2. **Does the packet exist? What role does it have?** Confirm the target directory exists. A nested phase child has a parent directory containing `spec.md`. A packet with direct phase-child directories is the phase parent. Otherwise, treat it as a top-level packet. If the packet is missing, route packet creation to system-spec-kit first.
-3. **Does `goal.md` exist?** Revise an existing goal. Add one to an existing packet that has none. Do not treat a missing packet as a goal-file request.
-4. **Does a child change alter a parent decision or criterion?** If it does, amend the parent first. Then print the updated parent chat slice for the operator to resend. Do not let a child goal override a parent decision.
-
-### Resource Discovery And Fallback
-
-Discover reference and asset documents at call time, and keep loads inside this packet.
-- Top-level, phase-parent and nested-child authoring, retrofit, phase-add or parent amendment work: load [`references/parent-and-nested-goals.md`](references/parent-and-nested-goals.md) and follow the matching workflow.
-- Every goal authoring or revision request: also load [`references/authoring-standards.md`](references/authoring-standards.md), [`assets/goal-exemplars.md`](assets/goal-exemplars.md) and the template for the goal's kind before drafting.
-- A budget measurement or chat-slice handoff: load [`references/budget-and-handoff.md`](references/budget-and-handoff.md).
-
-Fall back to the workflow reference when no specific resource applies:
-
-```python
-from pathlib import Path
-
-SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/parent-and-nested-goals.md"
-UNKNOWN_FALLBACK = {
-    "load_level": "UNKNOWN_FALLBACK",
-    "needs_disambiguation": True,
-    "resources": [],
-}
-
-def discover_markdown_resources():
-    documents = []
-    for base in RESOURCE_BASES:
-        if base.exists():
-            documents.extend(path for path in base.rglob("*.md") if path.is_file())
-    return {path.relative_to(SKILL_ROOT).as_posix() for path in documents}
-
-def _guard_in_skill(relative_path):
-    resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)
-    if resolved.suffix.lower() != ".md":
-        raise ValueError("Only packet-local markdown resources are routable")
-    return resolved.relative_to(SKILL_ROOT).as_posix()
-
-def route_references(selected):
-    inventory = discover_markdown_resources()
-    loaded = []
-    seen = set()
-    for relative_path in selected:
-        guarded = _guard_in_skill(relative_path)
-        if guarded in inventory and guarded not in seen:
-            load(guarded)
-            loaded.append(guarded)
-            seen.add(guarded)
-    if not loaded:
-        fallback = _guard_in_skill(DEFAULT_RESOURCE)
-        if fallback in inventory:
-            load(fallback)
-            loaded.append(fallback)
-        return {**UNKNOWN_FALLBACK, "resources": loaded}
-    return {"resources": loaded}
-```

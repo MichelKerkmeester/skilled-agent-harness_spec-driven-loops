@@ -9,7 +9,7 @@ expected_resources:
   - references/python/style-guide.md
   - references/python/quality-standards.md
   - references/python/quick-reference.md
-version: 1.0.1.1
+version: 1.0.3.0
 ---
 
 # OC-002: Python standards routing
@@ -22,7 +22,7 @@ This document captures the routing-recall contract, execution process, source an
 
 This scenario validates `PYTHON` routing for `OC-002`. It focuses on confirming that the exact prompt
 below classifies as `PYTHON` and loads the full 3-file resource set instead of a generic or mismatched
-resource set, per `SKILL.md` §6's machine-readable router.
+resource set, per `ROUTER.md` §3's machine-readable router.
 
 ### Why This Matters
 
@@ -49,7 +49,7 @@ Review this python .py argparse helper for docstring and quality standards.
   `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
   `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-skilled/`, and each one
-  documents `PYTHON` routing per `SKILL.md` §2 or §6.
+  documents `PYTHON` routing per `SKILL.md` §2 or `ROUTER.md` §3.
 - Desired user-visible outcome: the bundled workflow cites the routed `PYTHON` resources as the
   standards evidence, not a mismatched language or generic tier.
 - Pass/fail: PASS if every listed path exists and the frontmatter surface/intent are `SKILLED`/
@@ -66,8 +66,8 @@ Review this python .py argparse helper for docstring and quality standards.
 ### Commands
 
 1. `sed -n '/^---$/,/^---$/p' .skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/language-standards/python-standards.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/SKILL.md | grep -F '"PYTHON"'`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/SKILL.md | sed -n '/"PYTHON": \[/,/\],/p'`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/ROUTER.md | grep -F '"PYTHON"'`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/ROUTER.md | sed -n '/"PYTHON": \[/,/\],/p'`
 4. `for p in references/python/style-guide.md references/python/quality-standards.md references/python/quick-reference.md; do test -e ".skilled/skills/sk-code/sk-code-skilled/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
@@ -108,7 +108,7 @@ excerpt.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §6 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [ROUTER.md](../../ROUTER.md) §3 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §2 | Reference-map prose entry for the `PYTHON` resource set |
 
 ---

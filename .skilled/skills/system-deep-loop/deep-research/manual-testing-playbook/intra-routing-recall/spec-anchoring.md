@@ -8,14 +8,14 @@ expected_intent: SPEC_ANCHORING
 expected_resources:
   - references/protocol/spec-check-protocol.md
   - references/state/state-outputs.md
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # DR-R06: Deep research spec anchoring routing
 
 ## 1. OVERVIEW
 
-This scenario verifies the `deep-research` packet's own intra-packet smart router (`SKILL.md` §9 `Smart Router Pseudocode`) scores a spec-anchoring-shaped request as `SPEC_ANCHORING` and loads the `SPEC_ANCHORING` resource set, distinct from the other seven intra-routing-recall intents (LOOP_SETUP, ITERATION, CONVERGENCE, RECOVERY, STATE, RUNTIME_PARITY, RESOURCE_MAP).
+This scenario verifies the `deep-research` packet's own intra-packet smart router (`../../ROUTER.md` §3 `MACHINE ROUTER`, `Smart Router Pseudocode`) scores a spec-anchoring-shaped request as `SPEC_ANCHORING` and loads the `SPEC_ANCHORING` resource set, distinct from the other seven intra-routing-recall intents (LOOP_SETUP, ITERATION, CONVERGENCE, RECOVERY, STATE, RUNTIME_PARITY, RESOURCE_MAP).
 
 ---
 
@@ -47,7 +47,7 @@ Use spec anchoring with a generated fence, folder_state classification, and lock
 
 ### Preconditions
 
-1. `.skilled/skills/system-deep-loop/deep-research/SKILL.md` §9 contains `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS`.
+1. `.skilled/skills/system-deep-loop/deep-research/ROUTER.md` §3 `MACHINE ROUTER` contains `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS`.
 2. Every path in `expected_resources` exists under `.skilled/skills/system-deep-loop/deep-research/`.
 
 ### Prompt
@@ -92,7 +92,7 @@ Command transcript from steps 1-2; the router transcript from step 3, saved to `
 
 | File | Role |
 |---|---|
-| `.skilled/skills/system-deep-loop/deep-research/SKILL.md` §9 | `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS` this scenario exercises |
+| `../../ROUTER.md` §3 `MACHINE ROUTER` | `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS` this scenario exercises |
 
 ---
 

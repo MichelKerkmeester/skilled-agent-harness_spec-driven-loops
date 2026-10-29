@@ -12,7 +12,7 @@ expected_resources:
   - references/shared/code-organization/imports-and-exports.md
   - references/shared/code-organization/directory-and-test-conventions.md
   - references/shared/workflow-guardrails.md
-version: 1.0.0.0
+version: 1.0.2.0
 ---
 
 # OC-011: Shared default tier routing
@@ -26,7 +26,7 @@ This document captures the always-load tier contract, execution process, source 
 
 This scenario validates the always-load shared tier for `OC-011`. It focuses on confirming that the six
 `DEFAULT_RESOURCE` paths resolve under the skill root and are emitted alongside a routed intent, per
-`SKILL.md` §6's machine-readable router, instead of a route that carries only its intent-specific leaves.
+`ROUTER.md` §3's machine-readable router, instead of a route that carries only its intent-specific leaves.
 
 Every other routing scenario in this playbook asserts an intent-specific resource set. None of them
 asserts the tier that `SKILL.md` §2b says a route loads first, and the replay library seeds a route with
@@ -78,14 +78,14 @@ Implement a small helper inside a .skilled skill and tell me which shared refere
 ### Commands
 
 1. `sed -n '/^---$/,/^---$/p' .skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/routing-tier/shared-default-tier.md`
-2. `sed -n '/^DEFAULT_RESOURCE = \[/,/^\]/p' .skilled/skills/sk-code/sk-code-skilled/SKILL.md`
+2. `sed -n '/^DEFAULT_RESOURCE = \[/,/^\]/p' .skilled/skills/sk-code/sk-code-skilled/ROUTER.md`
 3. `for p in references/shared/universal-patterns/naming-and-commenting.md references/shared/universal-patterns/organization-security-and-examples.md references/shared/code-organization/overview-and-module-organization.md references/shared/code-organization/imports-and-exports.md references/shared/code-organization/directory-and-test-conventions.md references/shared/workflow-guardrails.md; do test -e ".skilled/skills/sk-code/sk-code-skilled/$p" && echo "OK $p" || echo "MISS $p"; done`
 4. `node -e "const l=require('./.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs');const r=l.routeSkillResources({skillRoot:'.skilled/skills/sk-code/sk-code-skilled',taskText:'Implement a small helper inside a .skilled skill and tell me which shared references you load.'});console.log('intents='+r.intents.join(','));r.resources.forEach((p)=>console.log(p));"`
 
 ### Expected
 
 Step 1 shows `expected_intent: IMPLEMENTATION` and the six-path `expected_resources` list in the
-frontmatter. Step 2 shows the same six paths in `SKILL.md`'s `DEFAULT_RESOURCE` block. Step 3 prints `OK`
+frontmatter. Step 2 shows the same six paths in `ROUTER.md`'s `DEFAULT_RESOURCE` block. Step 3 prints `OK`
 for every path. Step 4 prints `intents=IMPLEMENTATION` and then the emitted list, whose first six entries
 are the default-tier paths in `DEFAULT_RESOURCE` order, followed by the four `IMPLEMENTATION` authoring
 checklists.
@@ -105,7 +105,7 @@ Command transcript from steps 1-4 with the replay output; the resolved frontmatt
 ### Failure Triage
 
 1. If step 4 omits a default-tier path, compare step 2's block with the six listed paths and confirm
-   whether `SKILL.md`'s `DEFAULT_RESOURCE` changed or the replay library stopped seeding the tier.
+   whether `ROUTER.md`'s `DEFAULT_RESOURCE` changed or the replay library stopped seeding the tier.
 2. If step 3 prints `MISS`, re-run step 3 for that path and confirm whether it was renamed under
    `references/shared/`.
 3. If step 4 selects no intent, grep the `INTENT_SIGNALS` block for the word this prompt relies on and
@@ -125,7 +125,7 @@ Command transcript from steps 1-4 with the replay output; the resolved frontmatt
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §6 | `DEFAULT_RESOURCE` block and the intent maps this scenario exercises |
+| [ROUTER.md](../../ROUTER.md) §3 | `DEFAULT_RESOURCE` block and the intent maps this scenario exercises |
 | [SKILL.md](../../SKILL.md) §2b | The prose claim that every route loads the shared tier first |
 | [router-replay-lib.cjs](../../assets/scripts/router-replay-lib.cjs) | Replay that seeds a route with `DEFAULT_RESOURCE` |
 

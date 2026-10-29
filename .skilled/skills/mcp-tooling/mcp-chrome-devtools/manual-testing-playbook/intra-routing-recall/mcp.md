@@ -8,7 +8,7 @@ expected_intent: MCP
 expected_resources:
   - references/session-management.md
   - references/cdp-patterns.md
-version: 1.0.1.0
+version: 1.0.3.0
 ---
 
 # CD-R02: MCP routing
@@ -19,7 +19,7 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario validates MCP routing for `CD-R02`. It focuses on confirming that a prompt about running several parallel browser sessions through Code Mode as a multi-tool workflow scores highest against `INTENT_SIGNALS["MCP"]` in `SKILL.md` §9 and resolves the `RESOURCE_MAP["MCP"]` set, not on actually running the parallel sessions, since this scenario only exercises which intent and resources the router selects.
+This scenario validates MCP routing for `CD-R02`. It focuses on confirming that a prompt about running several parallel browser sessions through Code Mode as a multi-tool workflow scores highest against `INTENT_SIGNALS["MCP"]` in `../../ROUTER.md` §3 and resolves the `RESOURCE_MAP["MCP"]` set, not on actually running the parallel sessions, since this scenario only exercises which intent and resources the router selects.
 
 ### Why This Matters
 
@@ -40,8 +40,8 @@ Operators confirm the exact prompt for `CD-R02` classifies as `MCP` and resolves
 Run several parallel browser sessions through code mode as a multi-tool mcp workflow.
 ```
 
-- Expected execution process: the router scores the prompt against `INTENT_SIGNALS` (`SKILL.md` §9); "code mode", "multi-tool", "parallel sessions", and "mcp" each match `MCP` keywords and no other intent scores as high, so `MCP` becomes the primary intent and `RESOURCE_MAP["MCP"]` loads both declared paths
-- Expected signals: every path in `expected_resources` exists under `mcp-chrome-devtools/`, and each documents `MCP` routing per `SKILL.md` §9
+- Expected execution process: the router scores the prompt against `INTENT_SIGNALS` (`../../ROUTER.md` §3); "code mode", "multi-tool", "parallel sessions", and "mcp" each match `MCP` keywords and no other intent scores as high, so `MCP` becomes the primary intent and `RESOURCE_MAP["MCP"]` loads both declared paths
+- Expected signals: every path in `expected_resources` exists under `mcp-chrome-devtools/`, and each documents `MCP` routing per `../../ROUTER.md` §3
 - Desired user-visible outcome: the bundled workflow loads the session-management and CDP patterns references and drives the parallel sessions through Code Mode rather than the single-session `bdg` CLI
 - Pass/fail: PASS if every listed path exists and the frontmatter intent is `MCP`; FAIL if any listed path is missing or the frontmatter disagrees
 
@@ -56,7 +56,7 @@ Run several parallel browser sessions through code mode as a multi-tool mcp work
 ### Commands
 
 1. `sed -n '1,15p' .skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/mcp.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md | sed -n '/"MCP":/p'`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-chrome-devtools/ROUTER.md | sed -n '/"MCP":/p'`
 3. `for p in references/session-management.md references/cdp-patterns.md; do test -e ".skilled/skills/mcp-tooling/mcp-chrome-devtools/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
@@ -75,7 +75,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_S
 ### Failure Triage
 
 1. Re-run step 3 for the specific path that failed and confirm whether it was renamed or removed under `references/`.
-2. Diff this scenario's `expected_resources` against the step-2 `INTENT_SIGNALS["MCP"]` excerpt and the `RESOURCE_MAP["MCP"]` entry in `SKILL.md` §9 to see whether the drift is a stale scenario file or a stale `SKILL.md` map.
+2. Diff this scenario's `expected_resources` against the step-2 `INTENT_SIGNALS["MCP"]` excerpt and the `RESOURCE_MAP["MCP"]` entry in `../../ROUTER.md` §3 to see whether the drift is a stale scenario file or a stale `../../ROUTER.md` map.
 
 ---
 
@@ -91,7 +91,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_S
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §9 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [ROUTER.md](../../ROUTER.md) §3 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §1 | Activation triggers this scenario's prompt assumes |
 
 ---

@@ -1,7 +1,7 @@
 ---
 title: "SP-007 -- AMBIGUITY_DELTA top-2 tiebreaker"
 description: "This scenario validates AMBIGUITY_DELTA top-2 selection for `SP-007`. It focuses on confirming both intents load when scores differ by 1 or less."
-version: 2.3.1.0
+version: 2.3.3.0
 ---
 
 # SP-007 -- AMBIGUITY_DELTA top-2 tiebreaker
@@ -45,7 +45,7 @@ Improve this framework-comparison prompt; verify near-tied TEXT_ENHANCE and FRAM
 ### Commands
 
 1. `sk-prompt: Improve this prompt and tell me which framework fits — RCAF or COSTAR.`
-2. `bash: rg 'AMBIGUITY_DELTA' .skilled/skills/sk-prompt/SKILL.md` (confirm delta=1)
+2. `bash: rg 'AMBIGUITY_DELTA' .skilled/skills/sk-prompt/ROUTER.md` (confirm delta=1)
 
 ### Expected
 
@@ -62,7 +62,7 @@ Routing trace with intent scores + resource list with dedup verification.
 
 ### Failure Triage
 
-1. Inspect SKILL.md `select_intents()` pseudocode: confirm AMBIGUITY_DELTA=1 path returns secondary intent.
+1. Inspect ROUTER.md `select_intents()` pseudocode: confirm AMBIGUITY_DELTA=1 path returns secondary intent.
 2. Re-dispatch with a deliberately polarizing input ("just improve this") to confirm single-intent return works (control case).
 3. Inspect `seen` set logic in `route_prompt_improver_resources()` for dedup correctness.
 
@@ -79,7 +79,7 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../SKILL.md` | sk-prompt skill source: the final MACHINE ROUTER section's select_intents() pseudocode |
+| `../../ROUTER.md` | sk-prompt skill source: the `## 3. MACHINE ROUTER` section's select_intents() pseudocode |
 
 ### Implementation And Test Anchors
 

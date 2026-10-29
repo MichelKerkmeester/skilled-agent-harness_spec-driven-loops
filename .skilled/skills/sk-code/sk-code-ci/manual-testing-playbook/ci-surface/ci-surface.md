@@ -10,7 +10,7 @@ expected_resources:
   - references/trigger-and-filter-rules.md
   - references/job-shape-rules.md
   - references/protected-set.md
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CI workflow standards routing
@@ -21,7 +21,7 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario validates `CI_WORKFLOW` routing. It confirms that the exact prompt below classifies as `CI_WORKFLOW` and loads the four routed references instead of a generic or mismatched resource set. The intent signal and the resource map are read from the `MACHINE ROUTER` block at the end of `SKILL.md`; section 2b carries the prose that names the same four paths.
+This scenario validates `CI_WORKFLOW` routing. It confirms that the exact prompt below classifies as `CI_WORKFLOW` and loads the four routed references instead of a generic or mismatched resource set. The intent signal and the resource map are read from the `MACHINE ROUTER` section at the end of [`ROUTER.md`](../../ROUTER.md); section 2b carries the prose that names the same four paths.
 
 ### Why This Matters
 
@@ -62,8 +62,8 @@ review the github actions workflow yaml
 ### Commands
 
 1. `awk 'NR==1 && /^---$/{print; next} /^---$/{print; exit} {print}' .skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/ci-surface/ci-surface.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-ci/SKILL.md | grep -F '"CI_WORKFLOW"'`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-ci/SKILL.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-ci/ROUTER.md | grep -F '"CI_WORKFLOW"'`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-ci/ROUTER.md`
 4. `for p in references/ci-workflow-standards.md references/trigger-and-filter-rules.md references/job-shape-rules.md references/protected-set.md; do test -e ".skilled/skills/sk-code/sk-code-ci/$p" && echo "OK $p" || echo "MISS $p"; done`
 5. `for p in references/ci-workflow-standards.md references/trigger-and-filter-rules.md references/job-shape-rules.md references/protected-set.md; do grep -m1 '^title:' ".skilled/skills/sk-code/sk-code-ci/$p"; done`
 6. `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs --checks 4 | grep -c 'sk-code-ci/'; echo "exit $?"; node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs --checks 4 | grep -c 'router-sync:'; echo "exit $?"`
@@ -149,7 +149,7 @@ Command transcript from steps 1 to 9, the resolved frontmatter block, the guard'
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) `MACHINE ROUTER` section | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [ROUTER.md](../../ROUTER.md) `MACHINE ROUTER` section | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) section 2b | The prose map that names the same four paths |
 | `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` | The guard's check 4 behind step 6: every routing scenario's expected resource is emitted |
 | `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs` | The compiled route engine behind step 7 |

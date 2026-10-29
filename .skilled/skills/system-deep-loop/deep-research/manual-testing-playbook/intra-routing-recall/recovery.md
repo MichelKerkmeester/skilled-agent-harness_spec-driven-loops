@@ -8,14 +8,14 @@ expected_intent: RECOVERY
 expected_resources:
   - references/convergence/convergence-recovery.md
   - references/state/state-reducer-registry.md
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # DR-R04: Deep research recovery routing
 
 ## 1. OVERVIEW
 
-This scenario verifies the `deep-research` packet's own intra-packet smart router (`SKILL.md` §9 `Smart Router Pseudocode`) scores a recovery-shaped request as `RECOVERY` and loads the `RECOVERY` resource set, distinct from the other seven intra-routing-recall intents (LOOP_SETUP, ITERATION, CONVERGENCE, STATE, SPEC_ANCHORING, RUNTIME_PARITY, RESOURCE_MAP).
+This scenario verifies the `deep-research` packet's own intra-packet smart router (`../../ROUTER.md` §3 `MACHINE ROUTER`, `Smart Router Pseudocode`) scores a recovery-shaped request as `RECOVERY` and loads the `RECOVERY` resource set, distinct from the other seven intra-routing-recall intents (LOOP_SETUP, ITERATION, CONVERGENCE, STATE, SPEC_ANCHORING, RUNTIME_PARITY, RESOURCE_MAP).
 
 ---
 
@@ -47,7 +47,7 @@ The research loop is stuck after a timeout; run recovery, reconstruct state, and
 
 ### Preconditions
 
-1. `.skilled/skills/system-deep-loop/deep-research/SKILL.md` §9 contains `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS`.
+1. `.skilled/skills/system-deep-loop/deep-research/ROUTER.md` §3 `MACHINE ROUTER` contains `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS`.
 2. Every path in `expected_resources` exists under `.skilled/skills/system-deep-loop/deep-research/`.
 
 ### Prompt
@@ -92,7 +92,7 @@ Command transcript from steps 1-2; the router transcript from step 3, saved to `
 
 | File | Role |
 |---|---|
-| `.skilled/skills/system-deep-loop/deep-research/SKILL.md` §9 | `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS` this scenario exercises |
+| `../../ROUTER.md` §3 `MACHINE ROUTER` | `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS` this scenario exercises |
 
 ---
 

@@ -16,6 +16,10 @@
       "ai systems migration plan",
       "ai systems migration tasks",
       "ai systems migration acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "ai systems migration implementation summary"
     ],
     "key_topics": [
@@ -26,11 +30,11 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation",
-      "summary",
-      "yourvaluehere",
-      "broken",
-      "missing"
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -39,6 +43,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,6 +69,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -179,17 +190,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-10-29T11:37:24Z",
-    "last_save_at": "2026-10-29T11:37:26.973Z",
+    "last_save_at": "2026-10-29T13:25:47.003Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,15 +202,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e62bd84e67e088473b4edfeb57f878f23fb8114b0a5a65618b2d70e40e03fd8c",
+    "source_fingerprint": "sha256:89efc1bdc3c4bf8225924329bab5de5d0183d714238217e867297010b54494cd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "290dbde979ffa66affd7c4145f6b61b6581bd68107f698531c36cf9183b8bda6",
       "plan.md": "8d4a3e3614ea684c52f8e9beccafff1e5d5fe2e20df777d63c0910b6109369a1",
       "tasks.md": "b799fffd761a8ffda6be16b67d6cc0077cbe4095715c6d1ca072366038ba15b2",
-      "implementation-summary.md": "d3e337e56aa1d6b38f979732e264dd5f2feac02d37c47b7088dea76b28bc78d3"
+      "implementation-summary.md": "44880d597b4d752589000947b4a340bf2adacbd1fe583fbc51bf8241c57005aa"
     },
     "last_active_at": null
   }

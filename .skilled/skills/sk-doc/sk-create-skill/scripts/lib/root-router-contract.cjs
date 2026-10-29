@@ -28,8 +28,16 @@
  *                 must all be declared and empty, and routing delegates to
  *                 hub-router.json plus mode-registry.json. Only a hub may
  *                 declare it; a standalone skill or packet has no mode
- *                 registry to stage against, so both must declare active with
- *                 their own non-empty maps.
+ *                 registry to stage against, so both declare active.
+ *
+ * A standalone skill or packet router is held to the maps it declares rather
+ * than to the hub's pair. It may name its intent map INTENT_MODEL, the name the
+ * skill template and the replay reader already accept, and it may route by
+ * pseudocode alone with no map at all, because a skill that loads its whole
+ * reference set on any match has no per-intent map to write. A map it does
+ * declare must be non-empty and readable, the two key sets must match when
+ * both maps are declared, and declaring both intent names is a malformed
+ * declaration. A hub keeps the pair it has always needed.
  *
  * Both states require the root file itself, a root SKILL.md pointer that is
  * exactly `SKILL.md` and resolves, one four-part numeric version, and the
@@ -235,12 +243,126 @@ function dictKeys(body) {
   return keys;
 }
 
+// Python `#` comments removed from a code segment, leaving quoted strings
+// whole. A commented-out entry or an apostrophe in a comment would otherwise
+// read as a name, a keyword or the start of a string the runtime never sees.
+function stripComments(segment) {
+  let out = '';
+  let quote = null;
+  for (let i = 0; i < segment.length; i += 1) {
+    const ch = segment[i];
+    if (quote) {
+      out += ch;
+      if (ch === '\\' && i + 1 < segment.length) {
+        out += segment[i + 1];
+        i += 1;
+      } else if (ch === quote) {
+        quote = null;
+      }
+    } else if (ch === '"' || ch === "'") {
+      quote = ch;
+      out += ch;
+    } else if (ch === '#') {
+      while (i + 1 < segment.length && segment[i + 1] !== '\n') i += 1;
+    } else {
+      out += ch;
+    }
+  }
+  return out;
+}
+
+// The bodies of the document's fenced code blocks joined, or the whole text
+// when it has none. A declaration named in prose is not one the runtime runs.
+function fencedCode(text) {
+  const blocks = [...String(text).matchAll(/^```[^\n]*\n([\s\S]*?)^```/gm)].map((m) => m[1]);
+  return blocks.length > 0 ? blocks.join('\n') : String(text);
+}
+
+// The keys at the outer level of a dictionary body, in any case. A standalone
+// skill or packet names its intents the way its pseudocode reads them, often
+// in lower case, and the nested "weight" and "keywords" fields sit one level
+// down, so depth rather than case tells a key from a field.
+function topLevelKeys(rawBody) {
+  const keys = [];
+  if (!rawBody) return keys;
+  const body = stripComments(rawBody);
+  let depth = 0;
+  const re = /"([^"\\]*)"\s*:|'([^'\\]*)'\s*:|"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|[{}[\]]/g;
+  let m;
+  while ((m = re.exec(body)) !== null) {
+    const token = m[0];
+    if (token === '{' || token === '[') depth += 1;
+    else if (token === '}' || token === ']') depth -= 1;
+    else if (depth === 0 && (m[1] !== undefined || m[2] !== undefined)) keys.push(m[1] !== undefined ? m[1] : m[2]);
+  }
+  return keys;
+}
+
 function quotedStrings(segment) {
   const out = [];
   const re = /"([^"]*)"|'([^']*)'/g;
   let m;
   while ((m = re.exec(segment)) !== null) out.push(m[1] !== undefined ? m[1] : m[2]);
   return out;
+}
+
+/**
+ * The quoted names in a `NAME = (...)` tuple or `NAME = [...]` list, or null
+ * when the name is not declared. A non-hub router uses these to declare the
+ * intents that load nothing and the files at its own root it routes to.
+ */
+function parseNameList(text, name) {
+  const code = stripComments(fencedCode(text || ''));
+  const m = new RegExp(`(?:^|\\n)\\s*${name}\\s*=\\s*([([])`).exec(code);
+  if (!m) return null;
+  const opener = m.index + m[0].length - 1;
+  const body = balancedBody(code, opener, m[1], m[1] === '(' ? ')' : ']');
+  return body === null ? [] : quotedStrings(body);
+}
+
+/**
+ * Each outer key of a dictionary body mapped to the set of strings in its
+ * `keywords` list. Tuple-weighted keywords and plain keyword lists read the
+ * same, because only the quoted strings are collected.
+ */
+function intentKeywordSets(rawBody) {
+  const sets = new Map();
+  if (!rawBody) return sets;
+  const body = stripComments(rawBody);
+  const keyRe = /"([^"\\]*)"\s*:\s*\{|'([^'\\]*)'\s*:\s*\{/g;
+  let m;
+  while ((m = keyRe.exec(body)) !== null) {
+    const opener = m.index + m[0].length - 1;
+    const entry = balancedBody(body, opener, '{', '}');
+    if (entry === null) break;
+    const kw = /["']keywords["']\s*:\s*\[/.exec(entry);
+    const list = kw ? balancedBody(entry, kw.index + kw[0].length - 1, '[', ']') : null;
+    sets.set(m[1] !== undefined ? m[1] : m[2], new Set(list === null ? [] : quotedStrings(list)));
+    keyRe.lastIndex = opener + entry.length + 2;
+  }
+  return sets;
+}
+
+/**
+ * Whether INTENT_SIGNALS is an exact mirror of INTENT_MODEL: the same outer
+ * keys, and for every key the same set of keyword strings. Weights may differ,
+ * because the mirror exists to restate a tuple-weighted model in the plain
+ * shape other parsers read.
+ */
+function intentMapsMirror(text) {
+  const model = extractDictBody(text, 'INTENT_MODEL');
+  const signals = extractDictBody(text, 'INTENT_SIGNALS');
+  const modelKeys = topLevelKeys(model);
+  const signalKeys = topLevelKeys(signals);
+  if (modelKeys.length === 0 || modelKeys.length !== signalKeys.length) return false;
+  if ([...new Set(modelKeys)].sort().join('\n') !== [...new Set(signalKeys)].sort().join('\n')) return false;
+  const modelSets = intentKeywordSets(model);
+  const signalSets = intentKeywordSets(signals);
+  return modelKeys.every((key) => {
+    const a = modelSets.get(key);
+    const b = signalSets.get(key);
+    return a && b && a.size > 0 && a.size === b.size && [...a].every((word) => b.has(word));
+  });
 }
 
 /**
@@ -493,6 +615,8 @@ function pushLegacyDefaultResidue(violations, hubDefaultResource, stageTwoDefaul
  * @param {Array<string>} [args.hubRouterDefaultResource] - hub-router.json routerPolicy.defaultResource.
  * @param {Array<string>} [args.legacyFiles] - relative legacy router paths present on disk.
  * @param {Function} [args.resolveOnDisk] - (relativePath) => boolean probe for disk existence.
+ * @param {Function} [args.resolveInOwnRoot] - (relativePath) => boolean probe that looks only in the
+ *   router's own folder, never in a hub above it. A packet without this probe gets no root-file exemption.
  * @returns {{ok:boolean, state:(string|null), violations:Array<{code:string, message:string}>}}
  *   `ok` is false exactly when violations is non-empty; `state` is the parsed
  *   router_state when it was well-formed, else null.
@@ -507,8 +631,14 @@ function validateRootRouter({
   hubRouterDefaultResource = null,
   legacyFiles = [],
   resolveOnDisk = null,
+  resolveInOwnRoot = null,
 } = {}) {
   const resolve = typeof resolveOnDisk === 'function' ? resolveOnDisk : () => true;
+  // A standalone skill's probe already looks only in its own folder; a packet's
+  // falls back to the hub, so only an explicit own-root probe may vouch for it.
+  const resolveOwn = typeof resolveInOwnRoot === 'function'
+    ? resolveInOwnRoot
+    : (targetClass === TARGET_CLASS_PACKET ? () => false : resolve);
   const violations = [];
   const stateInfo = { state: null };
   const isHub = targetClass === TARGET_CLASS_HUB;
@@ -571,7 +701,7 @@ function validateRootRouter({
   } else if (!isHub && stateValues[0] === 'stage1-only') {
     violations.push({
       code: CODES.MALFORMED_STATE,
-      message: `router_state "stage1-only" is reserved for a hub; a ${targetNoun} ROUTER.md must declare active with its own non-empty maps`,
+      message: `router_state "stage1-only" is reserved for a hub; a ${targetNoun} ROUTER.md must declare active`,
     });
   } else if (!VALID_STATES.includes(stateValues[0])) {
     violations.push({
@@ -635,22 +765,43 @@ function validateRootRouter({
   }
 
   if (stateInfo.state === 'active') {
-    const intentStatus = classifyDeclaration(routerText, 'INTENT_SIGNALS', 'dict');
+    // A hub always reads INTENT_SIGNALS. A standalone skill or packet reads
+    // INTENT_MODEL when that is the only intent name it declares.
+    const signalsStatus = classifyDeclaration(routerText, 'INTENT_SIGNALS', 'dict');
+    const modelStatus = isHub ? 'absent' : classifyDeclaration(routerText, 'INTENT_MODEL', 'dict');
+    const intentName = signalsStatus === 'absent' && modelStatus !== 'absent' ? 'INTENT_MODEL' : 'INTENT_SIGNALS';
+    // An INTENT_MODEL keyed in lower case reads as empty to the hub's key
+    // grammar, so its outer keys decide whether it holds any intent.
+    const intentStatus = intentName === 'INTENT_MODEL' && modelStatus === 'empty'
+      && topLevelKeys(extractDictBody(routerText, 'INTENT_MODEL')).length > 0
+      ? 'valid'
+      : (intentName === 'INTENT_MODEL' ? modelStatus : signalsStatus);
     const resourceStatus = classifyDeclaration(routerText, 'RESOURCE_MAP', 'dict');
     const defaultStatus = classifyDeclaration(routerText, 'DEFAULT_RESOURCES?', 'list');
+    // A non-hub router answers only for the maps it declares; a hub needs both.
+    const intentRequired = isHub || intentStatus !== 'absent';
+    const resourceRequired = isHub || resourceStatus !== 'absent';
 
-    if (intentStatus === 'absent' || intentStatus === 'empty') {
+    // Two intent maps are one map only when INTENT_SIGNALS mirrors INTENT_MODEL
+    // exactly; any drift between them would make two parsers route differently.
+    if (signalsStatus !== 'absent' && modelStatus !== 'absent' && !intentMapsMirror(routerText)) {
+      violations.push({
+        code: CODES.MALFORMED_STATE,
+        message: 'ROUTER.md declares both INTENT_SIGNALS and INTENT_MODEL and they do not mirror each other; keep one intent map, or keep identical keys and keywords in both',
+      });
+    }
+    if (intentRequired && (intentStatus === 'absent' || intentStatus === 'empty')) {
       violations.push({
         code: CODES.ACTIVE_MAP_INVALID,
-        message: 'active INTENT_SIGNALS must be a non-empty dictionary',
+        message: `active ${intentName} must be a non-empty dictionary`,
       });
     } else if (intentStatus === 'malformed') {
       violations.push({
         code: CODES.MALFORMED_STATE,
-        message: 'active INTENT_SIGNALS declaration is unreadable (must be a balanced INTENT_SIGNALS = {...} block)',
+        message: `active ${intentName} declaration is unreadable (must be a balanced ${intentName} = {...} block)`,
       });
     }
-    if (resourceStatus === 'absent' || resourceStatus === 'empty') {
+    if (resourceRequired && (resourceStatus === 'absent' || resourceStatus === 'empty')) {
       violations.push({
         code: CODES.ACTIVE_MAP_INVALID,
         message: 'active RESOURCE_MAP must be a non-empty dictionary',
@@ -668,26 +819,58 @@ function validateRootRouter({
       });
     }
 
-    const intentBody = extractDictBody(routerText, 'INTENT_SIGNALS');
+    const intentBody = extractDictBody(routerText, intentName);
     const resourceBody = extractDictBody(routerText, 'RESOURCE_MAP');
-    const intentKeys = dictKeys(intentBody);
-    const resourceKeys = dictKeys(resourceBody);
+    const intentKeys = isHub ? dictKeys(intentBody) : topLevelKeys(intentBody);
+    const resourceKeys = isHub ? dictKeys(resourceBody) : topLevelKeys(resourceBody);
 
     const intentSet = new Set(intentKeys);
     const resourceSet = new Set(resourceKeys);
-    const signalsOnly = [...intentSet].filter((k) => !resourceSet.has(k));
-    const mapOnly = [...resourceSet].filter((k) => !intentSet.has(k));
-    if (signalsOnly.length > 0 || mapOnly.length > 0) {
+    const resourceDetail = parseResourceMapDetailed(routerText);
+
+    // A non-hub router may name intents that deliberately load nothing: such a
+    // key may be absent from RESOURCE_MAP or map to an empty list. The list is
+    // explicit, so an intent that loses its resources by accident still fails.
+    const declaredNoLoad = parseNameList(routerText, 'NO_LOAD_INTENTS');
+    const noLoad = new Set();
+    if (declaredNoLoad !== null && isHub) {
       violations.push({
         code: CODES.ACTIVE_MAP_INVALID,
-        message: `active INTENT_SIGNALS and RESOURCE_MAP keys do not match (signals-only: [${signalsOnly.join(', ') || 'none'}], map-only: [${mapOnly.join(', ') || 'none'}])`,
+        message: 'a hub router may not declare NO_LOAD_INTENTS; every hub intent owns at least one resource path',
+      });
+    } else if (declaredNoLoad !== null) {
+      for (const key of declaredNoLoad) {
+        if (!intentSet.has(key)) {
+          violations.push({
+            code: CODES.ACTIVE_MAP_INVALID,
+            message: `NO_LOAD_INTENTS names ${JSON.stringify(key)}, which is not a key of ${intentName}`,
+          });
+        } else if ((resourceDetail.map[key] || []).length > 0) {
+          violations.push({
+            code: CODES.ACTIVE_MAP_INVALID,
+            message: `NO_LOAD_INTENTS names ${JSON.stringify(key)}, but RESOURCE_MAP gives it resource paths; drop it from one of the two`,
+          });
+        } else {
+          noLoad.add(key);
+        }
+      }
+    }
+
+    const signalsOnly = [...intentSet].filter((k) => !resourceSet.has(k) && !noLoad.has(k));
+    const mapOnly = [...resourceSet].filter((k) => !intentSet.has(k));
+    // The key sets are one contract only when both maps exist to hold it.
+    const compareKeys = isHub || (intentStatus !== 'absent' && resourceStatus !== 'absent');
+    if (compareKeys && (signalsOnly.length > 0 || mapOnly.length > 0)) {
+      violations.push({
+        code: CODES.ACTIVE_MAP_INVALID,
+        message: `active ${intentName} and RESOURCE_MAP keys do not match (signals-only: [${signalsOnly.join(', ') || 'none'}], map-only: [${mapOnly.join(', ') || 'none'}])`,
       });
     }
 
     // An active router routes leaves; a key that owns no resource path would
     // select nothing at stage two. A declared key whose entry is missing or
-    // not a list, and a key whose list is empty, both fail closed here.
-    const resourceDetail = parseResourceMapDetailed(routerText);
+    // not a list, and a key whose list is empty, both fail closed here, unless
+    // NO_LOAD_INTENTS names the key.
     for (const key of resourceDetail.malformedKeys) {
       violations.push({
         code: CODES.ACTIVE_MAP_INVALID,
@@ -695,6 +878,7 @@ function validateRootRouter({
       });
     }
     for (const key of resourceDetail.emptyKeys) {
+      if (noLoad.has(key)) continue;
       violations.push({
         code: CODES.ACTIVE_MAP_INVALID,
         message: `active RESOURCE_MAP key ${JSON.stringify(key)} must own at least one resource path`,
@@ -734,6 +918,36 @@ function validateRootRouter({
       sharedExemptions.add(raw);
     }
 
+    // A non-hub router may route to a markdown file at its own root, such as an
+    // install guide, which no manifest lists as a leaf. It must declare the file
+    // in ROOT_RESOURCES, reference it from RESOURCE_MAP, and the file must exist
+    // in the router's own folder: a packet's ordinary probe also looks in the
+    // hub, and a hub-root file is not the packet's to route.
+    const rootExemptions = new Set();
+    if (!isHub) {
+      for (const raw of parseNameList(routerText, 'ROOT_RESOURCES') || []) {
+        const posix = toPosix(raw);
+        if (posix.includes('/') || !posix.endsWith('.md') || !isHubContainedPath(posix)) {
+          violations.push({
+            code: CODES.ACTIVE_MAP_INVALID,
+            message: `declared root resource ${JSON.stringify(raw)} must be a single markdown file name at the router's own root`,
+          });
+        } else if (!mappedValues.has(raw)) {
+          violations.push({
+            code: CODES.ACTIVE_MAP_INVALID,
+            message: `declared root resource ${JSON.stringify(raw)} is not referenced by any RESOURCE_MAP entry`,
+          });
+        } else if (!resolveOwn(raw)) {
+          violations.push({
+            code: CODES.UNRESOLVED_LEAF,
+            message: `declared root resource ${JSON.stringify(raw)} does not exist in the router's own folder`,
+          });
+        } else {
+          rootExemptions.add(raw);
+        }
+      }
+    }
+
     // Every mapped resource must be a real packet leaf: it is hub-contained,
     // resolves on disk, dual-reads to one typed pair through the
     // leaf-resource contract, and that pair is registered in the committed
@@ -763,7 +977,7 @@ function validateRootRouter({
           });
           continue;
         }
-        if (sharedExemptions.has(raw)) continue;
+        if (sharedExemptions.has(raw) || rootExemptions.has(raw)) continue;
         // A standalone skill may route to its own package index. The generator
         // excludes that page from the manifest by design, so demanding a typed
         // pair for it would fail every fresh skill whose router starts there. A
@@ -889,7 +1103,10 @@ module.exports = {
   frontmatterValues,
   extractDictBody,
   dictKeys,
+  topLevelKeys,
   balancedBody,
+  parseNameList,
+  intentMapsMirror,
   classifyDeclaration,
   isHubContainedPath,
   parseResourceMap,

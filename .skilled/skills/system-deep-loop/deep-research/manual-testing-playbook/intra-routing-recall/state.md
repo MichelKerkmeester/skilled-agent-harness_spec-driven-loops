@@ -11,14 +11,14 @@ expected_resources:
   - references/state/state-outputs.md
   - references/state/state-reducer-registry.md
   - assets/deep-research-strategy.md
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # DR-R05: Deep research state routing
 
 ## 1. OVERVIEW
 
-This scenario verifies the `deep-research` packet's own intra-packet smart router (`SKILL.md` §9 `Smart Router Pseudocode`) scores a state-shaped request as `STATE` and loads the `STATE` resource set, distinct from the other seven intra-routing-recall intents (LOOP_SETUP, ITERATION, CONVERGENCE, RECOVERY, SPEC_ANCHORING, RUNTIME_PARITY, RESOURCE_MAP).
+This scenario verifies the `deep-research` packet's own intra-packet smart router (`../../ROUTER.md` §3 `MACHINE ROUTER`, `Smart Router Pseudocode`) scores a state-shaped request as `STATE` and loads the `STATE` resource set, distinct from the other seven intra-routing-recall intents (LOOP_SETUP, ITERATION, CONVERGENCE, RECOVERY, SPEC_ANCHORING, RUNTIME_PARITY, RESOURCE_MAP).
 
 ---
 
@@ -50,7 +50,7 @@ Explain the state file, jsonl strategy, dashboard, registry, and lineage records
 
 ### Preconditions
 
-1. `.skilled/skills/system-deep-loop/deep-research/SKILL.md` §9 contains `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS`.
+1. `.skilled/skills/system-deep-loop/deep-research/ROUTER.md` §3 `MACHINE ROUTER` contains `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS`.
 2. Every path in `expected_resources` exists under `.skilled/skills/system-deep-loop/deep-research/`.
 
 ### Prompt
@@ -95,7 +95,7 @@ Command transcript from steps 1-2; the router transcript from step 3, saved to `
 
 | File | Role |
 |---|---|
-| `.skilled/skills/system-deep-loop/deep-research/SKILL.md` §9 | `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS` this scenario exercises |
+| `../../ROUTER.md` §3 `MACHINE ROUTER` | `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS` this scenario exercises |
 
 ---
 

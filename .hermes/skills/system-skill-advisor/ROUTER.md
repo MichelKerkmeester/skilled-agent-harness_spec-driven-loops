@@ -1,0 +1,345 @@
+---
+title: "System Skill Advisor Router"
+description: "Sibling router for system-skill-advisor: the intent signals, the resource map and the no-match checklist a reader parses first."
+trigger_phrases:
+  - "system-skill-advisor router"
+  - "system-skill-advisor routing"
+importance_tier: normal
+contextType: general
+version: 1.0.0.0
+router_state: active
+skill_pointer: SKILL.md
+---
+
+# System Skill Advisor Router
+
+The machine router for [`SKILL.md`](../../../.skilled/skills/system-skill-advisor/SKILL.md). `SKILL.md` keeps the short routing prose and the
+link that points here; this file holds the declaration a reader parses to decide what loads.
+
+---
+
+## 1. OVERVIEW
+
+A request reaches this skill when the work is about skill selection itself: choosing which skill should handle a task, Gate 2 routing, the advisor CLI commands, the prompt-time skill-advisor hook, skill-graph freshness or the standalone advisor package. Selection draws from `references/scoring/`, `references/graph/`, `references/runtime/`, `references/config/` and `references/decisions/`, from `hooks/` for prompt-time hook behavior, and from the `feature-catalog/` and `manual-testing-playbook/` package indexes when the request is a broad browse. The advisor recommends the target skill without absorbing its rules, so `sk-code`, `sk-doc`, `sk-git` and `mcp-code-mode` still own their own work once the recommendation lands.
+
+The router answers one question: given a request, which skill-local resources load, in what order, and
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+loads before an intent selects it.
+
+---
+
+## 2. INTENT MODEL
+
+- **SCORER** — fires on "scorer", "lane fusion", "five-lane", "confidence calibration", "lane attribution", "ambiguous brief", "ambiguity window"; loads `references/scoring/advisor-scorer.md`.
+- **LANE_TUNING** — fires on "lane weight tuning", "reweight lane", "lane weight change"; loads `references/scoring/lane-weight-tuning.md`.
+- **VALIDATION_BASELINES** — fires on "validation baseline", "advisor_validate baseline", "validate slice bundle"; loads `references/scoring/validation-baselines.md`.
+- **GRAPH_QUERY** — fires on "skill graph query", "skill_graph_query", "graph query cookbook", "skill graph status", "skill graph validate", "relationship read"; loads `references/graph/skill-graph-query-cookbook.md`.
+- **GRAPH_DRIFT** — fires on "skill graph drift", "reconcile graph drift", "sqlite drift"; loads `references/graph/skill-graph-drift.md`.
+- **GRAPH_EXTRACTION** — fires on "graph extraction plan", "extraction history", "extraction completion"; loads `references/graph/skill-graph-extraction-plan.md`.
+- **ENHANCES** — fires on "propagate enhances", "enhances propagation", "skill_graph_propagate_enhances"; loads `references/graph/propagate-enhances.md`.
+- **MCP_SHAPE** — fires on "standalone mcp shape", "mcp topology", "server shape", "standalone advisor mcp"; loads `references/runtime/standalone-mcp-shape.md`.
+- **TOOL_IDS** — fires on "tool id", "stable tool id", "tool ids reference"; loads `references/runtime/tool-ids-reference.md`.
+- **LEGACY_BRIDGE** — fires on "legacy tool bridge", "compatibility bridge", "bridge policy"; loads `references/runtime/legacy-tool-bridge.md`.
+- **FRESHNESS** — fires on "freshness contract", "trust state", "trust-state vocabulary", "degraded daemon", "quarantined daemon", "unavailable daemon"; loads `references/runtime/freshness-contract.md`.
+- **DAEMON_LEASE** — fires on "daemon lease", "single-writer lease", "lease contract", "chokidar watcher", "daemon lifecycle"; loads `references/runtime/daemon-lease-contract.md`.
+- **DB_PATH** — fires on "database path policy", "sqlite path", "db path"; loads `references/config/db-path-policy.md`.
+- **HOOK** — fires on "skill advisor hook", "prompt-time hook", "userpromptsubmit", "opencode plugin bridge", "goal opencode plugin"; loads `hooks/skill-advisor-hook.md`.
+- **DECISIONS** — fires on "deferred decision", "tier d", "deprecation banner"; loads `references/decisions/deferred-decisions.md`.
+- **RECOMMEND** — fires on "advisor_recommend", "recommend happy path"; loads `feature-catalog/cli-surface/advisor-recommend.md`.
+- **STATUS** — fires on "advisor_status", "status transition", "status and rebuild"; loads `feature-catalog/cli-surface/advisor-status.md`.
+- **REBUILD** — fires on "advisor_rebuild", "rebuild from source"; loads `feature-catalog/cli-surface/advisor-rebuild.md`.
+- **VALIDATE_TOOL** — fires on "advisor_validate"; loads `feature-catalog/cli-surface/advisor-validate.md`.
+- **CLI** — fires on "skill-advisor cli", "daemon-backed cli", "cli fallback"; loads `feature-catalog/cli-surface/skill-advisor-cli.md`.
+
+---
+
+## 3. MACHINE ROUTER
+
+The one machine-readable projection of the intent model above, written as `## MACHINE ROUTER` so every
+reader finds it. This section is the last in the file, and it holds the only pseudocode.
+
+This section holds the detailed resource domains, loading rules and machine router.
+
+This package is mandatory context for non-trivial Gate 2 routing. The live advisor scores prompts through the daemon-backed CLI. This smart router controls which local documentation resources an agent should load while maintaining the advisor package.
+
+Routing model:
+
+```text
+user prompt
+  |
+  +-- exact skill name or explicit user direction -> named skill wins
+  |
+  +-- non-trivial or ambiguous request
+        |
+        +-- advisor_recommend through the advisor CLI
+        |
+        +-- top recommendation above confidence threshold -> invoke that skill
+        |
+        +-- ambiguous top scores -> surface top candidates and ask or route with caveat
+```
+
+Resource domains:
+
+- `references/scoring/` documents scorer lanes, lane weight tuning, calibration and validation baselines.
+- `references/graph/` documents skill graph queries, drift reconciliation, graph extraction status and `enhances` propagation.
+- `references/runtime/` documents the CLI front-door contract, stable command ids, freshness and daemon lease behavior.
+- `references/config/` documents package-local database path policy.
+- `hooks/` documents prompt-time hook behavior across runtimes.
+- `references/decisions/` documents deferred decision records and historical rationale that still affects operators.
+- `feature-catalog/` documents current advisor capabilities and source-of-truth feature references.
+- `manual-testing-playbook/` documents deterministic operator scenarios for advisor tools, hooks, compatibility, daemon behavior and skill graph flows.
+- `runtime/` owns handlers, schemas, tools, scripts, tests, library modules and the package-local SQLite database.
+
+**Typed leaf projection (fleet routing standard).** system-skill-advisor is a normal, standalone single-mode skill. Its sole workflow mode is `system-skill-advisor`, and there is no `mode-registry.json`.
+
+- Every routable leaf under the five declared leaf roots, `references/`, `assets/`, `feature-catalog/`, `manual-testing-playbook/` and `hooks/`, is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` and narrowed by `leaf-scopes.json`.
+- `hooks/` is Markdown-only through `leaf-scopes.json`: the scope names its five hook docs, and the nine runtime `.ts`, `.py` and `.json` files beside them are never leaves. `assets/` is declared and has no docs to contribute.
+- Regenerate both generated class-S artifacts with `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix`.
+- The plain gate must keep them byte-stable.
+- `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/scoring/advisor-scorer.md`) to its typed `(system-skill-advisor, leafResourceId)` identity. A deterministic router replay recovers real typed pairs against the manifest.
+- The `RESOURCE_MAP` below emits those exact leaf paths.
+- The feature-catalog and manual-testing-playbook package indexes are navigation only. They are never routed as typed leaves.
+- Do not hand-edit either generated file.
+- The `runtime/` advisor engine (`skill-graph.json`, scorer/prompt-policy config, handlers) is the runtime, not a routable documentation leaf. It is intentionally outside every `leafRoot` and never appears in the manifest.
+
+### Resource loading levels
+
+| Level | When to Load | Resources |
+|---|---|---|
+| FALLBACK | Request too weak to score | The two `DEFAULT_RESOURCES` runtime references, offered with the disambiguation checklist (fallback-only: never unioned into a scored route) |
+| SELECTED | An intent scores | The exact `RESOURCE_MAP[intent]` leaf(s) for the selected intent(s), emitted as typed `(WORKFLOW_MODE, leafResourceId)` pairs |
+| NAVIGATION | Broad "list the features / playbook" browse | A `PACKAGE_INDEXES` index doc: navigation only, never a typed leaf |
+
+### Smart router pseudocode
+
+The prompt-time brief can show a runnable `/doctor:` command as the top line or as an `Also:` second line under a skill.
+
+This pseudocode is the canonical resource-routing contract. The router is a singleton-mode selector:
+
+- It scores the request against `INTENT_SIGNALS`.
+- It keeps the intents within the ambiguity delta of the top score, at most two.
+- It resolves each intent to its exact `RESOURCE_MAP` leaf path. Use no directory prefixes, filename stems or globs.
+- Every selected leaf projects to a typed `(WORKFLOW_MODE, leafResourceId)` pair against `leaf-manifest.json` via `leaf-aliases.json`.
+- Package indexes and fallback defaults ride their own channels. They never become typed leaves.
+- The live advisor scorer, not this router, remains authoritative for runtime skill scoring. See [`references/scoring/advisor-scorer.md`](../../../.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md).
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (
+    SKILL_ROOT / "references",
+    SKILL_ROOT / "assets",
+    SKILL_ROOT / "feature-catalog",
+    SKILL_ROOT / "manual-testing-playbook",
+    SKILL_ROOT / "hooks",
+)
+
+# This standalone skill emits exactly one workflow mode. Every routed leaf is a
+# (WORKFLOW_MODE, leafResourceId) pair. leaf-manifest.json is the authorized
+# leaf inventory; leaf-aliases.json binds each router-emitted path to its typed
+# identity so a deterministic benchmark replay recovers real pairs.
+WORKFLOW_MODE = "system-skill-advisor"
+
+# Always-relevant runtime references offered when a request is too weak to
+# score. DEFAULT_RESOURCE_SEMANTICS = "fallback-only": the defaults are a
+# defer-time suggestion surfaced with the disambiguation checklist, never
+# unioned into a scored route's typed leaves, so selected-leaf precision holds.
+DEFAULT_RESOURCES = [
+    "references/runtime/tool-ids-reference.md",
+    "references/runtime/standalone-mcp-shape.md",
+]
+DEFAULT_RESOURCE_SEMANTICS = "fallback-only"
+
+# Navigation indexes: loadable for browsing, deliberately excluded from typed
+# leaves and from leaf-manifest.json. A broad "list the features / playbook"
+# request loads these; they never become a (mode, leaf) pair.
+PACKAGE_INDEXES = {
+    "FEATURES": "feature-catalog/feature-catalog.md",
+    "PLAYBOOK": "manual-testing-playbook/manual-testing-playbook.md",
+}
+
+# Intent -> weighted keyword signals. Keys are honest documentation-topic
+# vocabulary drawn from what each reference/feature doc is ABOUT, not reverse
+# engineered from any scenario prompt. A distinctive doc phrase scores weight 3;
+# there are no per-scenario exact-match keys, so measured routing recall stays
+# an honest reflection of natural topic overlap rather than a tuned number.
+INTENT_SIGNALS = {
+    "SCORER": {"weight": 3, "keywords": ["scorer", "lane fusion", "five-lane", "confidence calibration", "lane attribution", "ambiguous brief", "ambiguity window"]},
+    "LANE_TUNING": {"weight": 3, "keywords": ["lane weight tuning", "reweight lane", "lane weight change"]},
+    "VALIDATION_BASELINES": {"weight": 3, "keywords": ["validation baseline", "advisor_validate baseline", "validate slice bundle"]},
+    "GRAPH_QUERY": {"weight": 3, "keywords": ["skill graph query", "skill_graph_query", "graph query cookbook", "skill graph status", "skill graph validate", "relationship read"]},
+    "GRAPH_DRIFT": {"weight": 3, "keywords": ["skill graph drift", "reconcile graph drift", "sqlite drift"]},
+    "GRAPH_EXTRACTION": {"weight": 3, "keywords": ["graph extraction plan", "extraction history", "extraction completion"]},
+    "ENHANCES": {"weight": 3, "keywords": ["propagate enhances", "enhances propagation", "skill_graph_propagate_enhances"]},
+    "MCP_SHAPE": {"weight": 3, "keywords": ["standalone mcp shape", "mcp topology", "server shape", "standalone advisor mcp"]},
+    "TOOL_IDS": {"weight": 3, "keywords": ["tool id", "stable tool id", "tool ids reference"]},
+    "LEGACY_BRIDGE": {"weight": 3, "keywords": ["legacy tool bridge", "compatibility bridge", "bridge policy"]},
+    "FRESHNESS": {"weight": 3, "keywords": ["freshness contract", "trust state", "trust-state vocabulary", "degraded daemon", "quarantined daemon", "unavailable daemon"]},
+    "DAEMON_LEASE": {"weight": 3, "keywords": ["daemon lease", "single-writer lease", "lease contract", "chokidar watcher", "daemon lifecycle"]},
+    "DB_PATH": {"weight": 3, "keywords": ["database path policy", "sqlite path", "db path"]},
+    "HOOK": {"weight": 3, "keywords": ["skill advisor hook", "prompt-time hook", "userpromptsubmit", "opencode plugin bridge", "goal opencode plugin"]},
+    "DECISIONS": {"weight": 3, "keywords": ["deferred decision", "tier d", "deprecation banner"]},
+    "RECOMMEND": {"weight": 3, "keywords": ["advisor_recommend", "recommend happy path"]},
+    "STATUS": {"weight": 3, "keywords": ["advisor_status", "status transition", "status and rebuild"]},
+    "REBUILD": {"weight": 3, "keywords": ["advisor_rebuild", "rebuild from source"]},
+    "VALIDATE_TOOL": {"weight": 3, "keywords": ["advisor_validate"]},
+    "CLI": {"weight": 3, "keywords": ["skill-advisor cli", "daemon-backed cli", "cli fallback"]},
+}
+
+# Intent -> exact leaf path(s). No prefixes, stems, or globs: every value is a
+# concrete markdown leaf that exists in leaf-manifest.json (package indexes are
+# intentionally absent — they live in PACKAGE_INDEXES). Several intents share a
+# reference leaf on purpose; the many feature-catalog and playbook leaves that
+# no intent maps stay reachable only via PACKAGE_INDEXES or a full-inventory
+# browse. That unmapped remainder is expected, not a gap to be closed by tuning.
+RESOURCE_MAP = {
+    "SCORER": ["references/scoring/advisor-scorer.md"],
+    "LANE_TUNING": ["references/scoring/lane-weight-tuning.md"],
+    "VALIDATION_BASELINES": ["references/scoring/validation-baselines.md"],
+    "GRAPH_QUERY": ["references/graph/skill-graph-query-cookbook.md"],
+    "GRAPH_DRIFT": ["references/graph/skill-graph-drift.md"],
+    "GRAPH_EXTRACTION": ["references/graph/skill-graph-extraction-plan.md"],
+    "ENHANCES": ["references/graph/propagate-enhances.md"],
+    "MCP_SHAPE": ["references/runtime/standalone-mcp-shape.md"],
+    "TOOL_IDS": ["references/runtime/tool-ids-reference.md"],
+    "LEGACY_BRIDGE": ["references/runtime/legacy-tool-bridge.md"],
+    "FRESHNESS": ["references/runtime/freshness-contract.md"],
+    "DAEMON_LEASE": ["references/runtime/daemon-lease-contract.md"],
+    "DB_PATH": ["references/config/db-path-policy.md"],
+    "HOOK": ["hooks/skill-advisor-hook.md"],
+    "DECISIONS": ["references/decisions/deferred-decisions.md"],
+    "RECOMMEND": ["feature-catalog/cli-surface/advisor-recommend.md"],
+    "STATUS": ["feature-catalog/cli-surface/advisor-status.md"],
+    "REBUILD": ["feature-catalog/cli-surface/advisor-rebuild.md"],
+    "VALIDATE_TOOL": ["feature-catalog/cli-surface/advisor-validate.md"],
+    "CLI": ["feature-catalog/cli-surface/skill-advisor-cli.md"],
+}
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm whether the request is about scoring, skill graph, runtime, config, hooks, decisions, the command surface, features or playbooks",
+    "Confirm whether the task changes documentation only or executable advisor behavior",
+    "Provide the failing tool id, hook runtime, reference path or validation command",
+    "Confirm the verification command set before completion",
+]
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)  # fail closed on any escape
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def _task_text(task) -> str:
+    fields = [
+        getattr(task, "prompt", ""),
+        getattr(task, "intent", ""),
+        getattr(task, "path", ""),
+        getattr(task, "command", ""),
+    ]
+    return " ".join(str(field) for field in fields if field).lower()
+
+def score_intents(task) -> dict[str, int]:
+    text = _task_text(task)
+    scores = {}
+    for intent, model in INTENT_SIGNALS.items():
+        hits = sum(1 for keyword in model["keywords"] if keyword in text)
+        if hits:
+            scores[intent] = hits * model["weight"]
+    return scores
+
+def typed_leaves(paths: list[str]) -> list[dict]:
+    # Project selected leaf paths into deduped (workflowMode, leafResourceId)
+    # pairs. Package indexes are never present (they are not in RESOURCE_MAP);
+    # a path that is not a real manifest leaf is dropped, never emitted as an
+    # invented pair.
+    seen, pairs = set(), []
+    index_paths = set(PACKAGE_INDEXES.values())
+    for path in paths:
+        if path in index_paths or (WORKFLOW_MODE, path) in seen:
+            continue
+        seen.add((WORKFLOW_MODE, path))
+        pairs.append({"workflowMode": WORKFLOW_MODE, "leafResourceId": path})
+    return pairs
+
+inventory = discover_markdown_resources()
+scores = score_intents(task)
+
+# Too weak to score: offer the fallback defaults + disambiguation and assemble
+# no typed leaves. DEFAULT_RESOURCE_SEMANTICS = "fallback-only" is exactly what
+# makes the defaults a suggestion here rather than an assembled route.
+if max(scores.values() or [0]) < 3:
+    return {
+        "workflowMode": WORKFLOW_MODE,
+        "load_level": "UNKNOWN_FALLBACK",
+        "needs_disambiguation": True,
+        "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+        "supportResources": [p for p in DEFAULT_RESOURCES if p in inventory],
+        "leafResources": [],
+    }
+
+# Keep intents within the ambiguity delta of the top score (at most two). A
+# genuine tie between equally weighted keys surfaces both; otherwise the single
+# top intent resolves to exactly its own leaf.
+ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+top_score = ranked[0][1]
+selected = [intent for intent, score in ranked if top_score - score <= 1][:2]
+
+resources = []
+for intent in selected:
+    for path in RESOURCE_MAP.get(intent, []):
+        guarded = _guard_in_skill(path)
+        if guarded in inventory and guarded not in resources:
+            resources.append(guarded)
+
+return {
+    "workflowMode": WORKFLOW_MODE,
+    "intents": selected,
+    "ambiguous": len(selected) > 1,
+    # Compatibility flat list: selected leaves only. Fallback defaults are NOT
+    # unioned in (fallback-only semantics), so a scored route carries exactly
+    # its intents' leaves.
+    "resources": resources,
+    # Typed projection every benchmark/replay consumer compares byte-for-byte.
+    "leafResources": typed_leaves(resources),
+    # Support defaults and navigation indexes ride their own channels so they
+    # never inflate selected-leaf precision.
+    "supportResources": DEFAULT_RESOURCES,
+    "navigationResources": PACKAGE_INDEXES,
+}
+```
+
+### Fallback contract
+
+- **Low confidence:** load default runtime references, emit `UNKNOWN_FALLBACK_CHECKLIST`, and ask for the missing intent/path/tool signal.
+- **Ambiguous intent scores:** load the top two intents' exact leaves and disclose the ambiguity instead of picking one silently.
+- **Known intent with no mapped leaf:** return a "no knowledge base found" notice naming the missing intent. Never invent a typed pair for a path outside `leaf-manifest.json`.
+- **Advisor daemon unavailable:** Run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`.
+  The CLI starts the daemon when the socket is cold.
+  If the daemon stays unreachable, the CLI answers from the local Python scorer and marks the result degraded. The brief then renders `Advisor: stale` instead of claiming live.
+  A degraded answer is stale. A missing answer is a fail-open. Prompt-time adapters cap the call with their own timeout and never block the prompt.
+  Operator checks, doctor routes and scripts use the same CLI with `--timeout-ms N`.
+  Direct callers that need the Python JSON-array shape use `runtime/scripts/skill_advisor.py`.
+  The full command contract, output envelope, exit taxonomy and stale-build recovery are in [`references/runtime/cli-front-door-contract.md`](../../../.skilled/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md).
+
+### Gate 2 caller guidance
+
+- Use `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json` for live runtime routing. The CLI is the only front door.
+- Use `runtime/scripts/skill_advisor.py` for the JSON-array facade contract: compatibility scripts and callers that parse the Python output shape.
+- Exit `75` is retryable fail-open: bound the call with a timeout and continue without a recommendation rather than blocking. The CLI cold-starts the daemon and bounds the wait itself.
+- CLI calls are sent untrusted by default. Mutations (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`) require `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`, the maintainer path. Read commands never need it.
+
+### Anti-patterns
+
+- Directory prefixes, filename stems, or globs in `RESOURCE_MAP`. Every value is an exact leaf path that exists in `leaf-manifest.json`.
+- Tuning `INTENT_SIGNALS` keywords to make individual scenario prompts hit their own leaf. Keys are documentation-topic vocabulary. A low honest routing recall is expected, not a defect to be inflated.
+- A hand-maintained resource inventory that drifts from `leaf-manifest.json`. Regenerate both generated class-S artifacts with `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix` instead of synchronizing either file by hand.
+- Raw `load("references/file.md")` calls without `_guard_in_skill()`, inventory checks or duplicate suppression.
+- Hardcoded tool IDs in caller code. Consult the live definitions in `runtime/tools/index.ts` and `runtime/tools/skill-graph-tools.ts`.

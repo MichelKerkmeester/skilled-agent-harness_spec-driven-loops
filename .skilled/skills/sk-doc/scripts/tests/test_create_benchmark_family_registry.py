@@ -22,9 +22,9 @@ LANE_OWNED_TEMPLATE_PATTERN = re.compile(
 
 
 def _extract_families(skill_text: str) -> tuple[str, ...]:
-    """Return the literal FAMILIES discriminator from the SKILL router."""
+    """Return the literal FAMILIES discriminator from the skill router."""
     match = re.search(r"FAMILIES\s*=\s*(\[[^\]]+\])", skill_text, re.DOTALL)
-    assert match, "create-benchmark SKILL.md has no literal FAMILIES list"
+    assert match, "create-benchmark ROUTER.md has no literal FAMILIES list"
     families = ast.literal_eval(match.group(1))
     assert isinstance(families, list) and all(
         isinstance(family, str) for family in families
@@ -40,7 +40,7 @@ def _extract_family_table(skill_text: str) -> str:
         skill_text,
         re.DOTALL,
     )
-    assert match, "create-benchmark SKILL.md has no Benchmark Families table"
+    assert match, "create-benchmark ROUTER.md has no Benchmark Families table"
     return match.group("table")
 
 
@@ -56,10 +56,11 @@ def validate_registry() -> None:
     benchmark_root = sk_doc_root / "sk-create-benchmark"
     assets_root = benchmark_root / "assets"
     references_root = benchmark_root / "references"
-    skill_text = (benchmark_root / "SKILL.md").read_text(encoding="utf-8")
+    # The machine router, with its FAMILIES list and family table, lives in the sibling ROUTER.md.
+    router_text = (benchmark_root / "ROUTER.md").read_text(encoding="utf-8")
     readme_text = (benchmark_root / "README.md").read_text(encoding="utf-8")
-    families = _extract_families(skill_text)
-    family_table = _extract_family_table(skill_text)
+    families = _extract_families(router_text)
+    family_table = _extract_family_table(router_text)
 
     assert GUIDE_ONLY_FAMILIES <= set(families), (
         "guide-only family allowlist must remain a subset of FAMILIES"
@@ -83,7 +84,7 @@ def validate_registry() -> None:
     for resource_key in sorted(resource_keys):
         token = f"`{doc_token_by_dir.get(resource_key, resource_key)}`"
         assert token in family_table, (
-            f"resource key '{resource_key}' is missing from the SKILL family table"
+            f"resource key '{resource_key}' is missing from the ROUTER family table"
         )
         assert token in readme_text, (
             f"resource key '{resource_key}' is missing from create-benchmark README.md"

@@ -7,12 +7,12 @@ trigger_phrases:
   - "aside capabilities"
   - "aside chrome devtools parity"
 last_updated: "2026-07-17"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # mcp-aside-devtools: Feature Catalog
 
-This document is the canonical capability inventory for the `mcp-aside-devtools` skill. The root catalog acts as the system-level directory: it maps the five Smart Router intent domains (TASK, REPL, MCP, INSTALL, TROUBLESHOOT from SKILL.md §9) onto the three lanes the skill routes between — the natural-language agent-task CLI, the deterministic Playwright-compatible REPL, and the Aside MCP server via Code Mode. Every capability below traces to the packet's references, examples, playbook scenarios, or the completed fan-out research; nothing is invented beyond that verified surface.
+This document is the canonical capability inventory for the `mcp-aside-devtools` skill. The root catalog acts as the system-level directory: it maps the five Smart Router intent domains (TASK, REPL, MCP, INSTALL, TROUBLESHOOT from `../ROUTER.md` §3) onto the three lanes the skill routes between — the natural-language agent-task CLI, the deterministic Playwright-compatible REPL, and the Aside MCP server via Code Mode. Every capability below traces to the packet's references, examples, playbook scenarios, or the completed fan-out research; nothing is invented beyond that verified surface.
 
 > **Registration status (read first).** The `aside` UTCP manual **is registered** in `.utcp_config.json` (2026-07-16; snapshot in [`../assets/utcp-aside-manual.md`](../assets/utcp-aside-manual.md)), and the Code Mode callable is **CONFIRMED by live discovery 2026-07-16** ([`../references/discovery-fixture-2026-07-16.json`](../references/discovery-fixture-2026-07-16.json)): registry/discovery name `aside.aside.repl` (dot-separated), TypeScript callable `aside.aside_repl(args)` inside `call_tool_chain`. Per-session rediscovery still precedes first invocation (`tools.listChanged: true`).
 

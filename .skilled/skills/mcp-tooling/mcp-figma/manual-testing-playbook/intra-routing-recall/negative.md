@@ -7,7 +7,7 @@ description: "This scenario validates the negative/out-of-domain control for `FG
 expected_intent: none
 expected_resources: []
 blindToRouterKeywords: false
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # FG-N01: Negative: out of domain
@@ -18,7 +18,7 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario validates the negative/out-of-domain control for `FG-N01`. It focuses on confirming that a prompt entirely unrelated to Figma -- refactoring a Python function -- scores zero against every entry in `INTENT_MODEL` (`SKILL.md` §8) and falls through `classify_intents`'s zero-score branch to `UNKNOWN_FALLBACK`, not on any Figma capability, since this scenario exists to prove the router does not force an out-of-domain prompt into a false-positive route.
+This scenario validates the negative/out-of-domain control for `FG-N01`. It focuses on confirming that a prompt entirely unrelated to Figma -- refactoring a Python function -- scores zero against every entry in `INTENT_MODEL` (`../../ROUTER.md` §3) and falls through `classify_intents`'s zero-score branch to `UNKNOWN_FALLBACK`, not on any Figma capability, since this scenario exists to prove the router does not force an out-of-domain prompt into a false-positive route.
 
 ### Why This Matters
 
@@ -39,7 +39,7 @@ Operators confirm the exact prompt for `FG-N01` scores zero across every `INTENT
 Refactor this Python function to run more efficiently.
 ```
 
-- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`SKILL.md` §8); no keyword from `CREATE_RENDER`, `DESIGN_SYSTEM_TOKENS`, `INSPECT_EXPORT`, `CONNECT_SETUP_DAEMON`, `MCP_CONTEXT`, or `TROUBLESHOOT` appears in the prompt, so `classify_intents` returns an all-zero score vector and the `UNKNOWN_FALLBACK` branch fires instead of a false intent match
+- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`../../ROUTER.md` §3); no keyword from `CREATE_RENDER`, `DESIGN_SYSTEM_TOKENS`, `INSPECT_EXPORT`, `CONNECT_SETUP_DAEMON`, `MCP_CONTEXT`, or `TROUBLESHOOT` appears in the prompt, so `classify_intents` returns an all-zero score vector and the `UNKNOWN_FALLBACK` branch fires instead of a false intent match
 - Expected signals: the frontmatter `expected_intent` stays `none` and `expected_resources` stays empty; the negative-control grep in step 3 reports `NOMATCH` for the full keyword alternation
 - Desired user-visible outcome: the bundled workflow declines to attach any Figma resource to the request and, if surfaced to an orchestrator, reports this as outside the `mcp-figma` domain rather than guessing an intent
 - Pass/fail: PASS if the prompt scores zero across all six `INTENT_MODEL` entries and the frontmatter stays `expected_intent: none`; FAIL if any keyword incidentally matches or an intent is force-assigned
@@ -55,7 +55,7 @@ Refactor this Python function to run more efficiently.
 ### Commands
 
 1. `sed -n '1,14p' .skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/negative.md`
-2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-figma/SKILL.md`
+2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-figma/ROUTER.md`
 3. `echo "Refactor this Python function to run more efficiently." | grep -qiE 'create|render|frame|component|icon|layout|import|build|draw|mockup|wireframe|prototype|artboard|button|generate|sketch|card|token|variable|var:|collection|shadcn|design system|theme|palette|style|swatch|typography|spacing|tailwind|primitive|inspect|extract|export|screenshot|design\.md|a11y|audit|accessibility|contrast|snapshot|properties|svg|png|storybook|jsx|download|capture|connect|safe|patch|unpatch|daemon|diagnose|reconnect|setup|set up|install|bridge|plugin|restart|health|mcp|code mode|design context|figma-developer-mcp|pull|framelink|utcp|get_design_context|error|failed|not connected|binary not found|unauthorized|broken|not working|doesn.t work|won.t connect|not responding|unresponsive|crash|timeout|conflict|stuck|permission denied' && echo MATCH || echo NOMATCH`
 
 ### Expected
@@ -74,7 +74,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 ### Failure Triage
 
 1. If step 3 prints `MATCH`, re-run the same grep restricted to one intent's keyword list at a time to identify exactly which keyword the prompt incidentally contains.
-2. Confirm whether the false match is a genuinely ambiguous prompt (rewrite the prompt) or a keyword in `INTENT_MODEL` that is too broad (flag it against `SKILL.md` §8 for a keyword-weight review) -- do not silently accept a routed intent for this negative-control scenario.
+2. Confirm whether the false match is a genuinely ambiguous prompt (rewrite the prompt) or a keyword in `INTENT_MODEL` that is too broad (flag it against `../../ROUTER.md` §3 for a keyword-weight review) -- do not silently accept a routed intent for this negative-control scenario.
 
 ---
 
@@ -90,7 +90,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §8 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [ROUTER.md](../../ROUTER.md) §3 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §1 | Activation triggers this scenario's prompt assumes |
 
 ---

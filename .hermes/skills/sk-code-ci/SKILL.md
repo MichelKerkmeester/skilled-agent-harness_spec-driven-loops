@@ -2,7 +2,7 @@
 name: sk-code-ci
 description: "Read-only GitHub Actions workflow evidence: trigger, filter, permission, timeout, concurrency and caching rules, the protected set and the scaffold templates."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.1.12.0
+version: 1.1.13.0
 metadata:
   family: sk-code
   packetKind: surface
@@ -65,7 +65,7 @@ The hub bundles this surface when a CI-workflow signal fires: the request names 
 
 The parent hub `RESOURCE_MAP` carries the same four paths under `CI_WORKFLOW`, re-prefixed with `sk-code-ci/`, and the router-sync guard (`sk-code-skilled/assets/scripts/verify-router-sync.cjs`, leg 2) checks that the two lists stay equal.
 
-The python block that encodes this routing lives in the final `MACHINE ROUTER` section of this file.
+Read [`ROUTER.md`](../../../.skilled/skills/sk-code/sk-code-ci/ROUTER.md) before selecting skill-local resources; open only the matched files.
 
 ---
 
@@ -104,33 +104,3 @@ The rules below hold for every workflow change, whoever applies it.
 - Output: the rule evidence, the protected set, the exception record and the scaffold templates the paired mode applies.
 - `sk-code-review` applies the rules to a workflow diff and `sk-code-quality` applies them to a workflow being authored. The quality mode selects this packet's checklist through the `quality.checklists` declaration in `../mode-registry.json`, one path-only row for `.github/workflows/**`.
 - The hub registration lives in `../mode-registry.json`, `../hub-router.json` and `../ROUTER.md`.
-
----
-
-## MACHINE ROUTER
-
-The packet's deterministic intent-to-reference routing, kept equal to the projection the parent hub union carries.
-
-```python
-# sk-code-ci owns its intent -> reference routing. Paths are relative to this
-# skill root. The parent sk-code hub RESOURCE_MAP carries the same four paths
-# under the same key, re-prefixed with sk-code-ci/. The router-sync guard
-# (sk-code-skilled/assets/scripts/verify-router-sync.cjs, leg 2) checks that equality.
-# Every keyword is multi-word, so a bare "workflow" never scores this surface.
-DEFAULT_RESOURCE = [
-    "references/ci-workflow-standards.md",
-]
-
-INTENT_SIGNALS = {
-    "CI_WORKFLOW": {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "ci job", "action to a sha", "sha-pinned action", ".github/workflows/"]},
-}
-
-RESOURCE_MAP = {
-    "CI_WORKFLOW": [
-        "references/ci-workflow-standards.md",
-        "references/trigger-and-filter-rules.md",
-        "references/job-shape-rules.md",
-        "references/protected-set.md",
-    ],
-}
-```

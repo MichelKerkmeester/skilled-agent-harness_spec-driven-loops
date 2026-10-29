@@ -12,7 +12,7 @@ trigger_phrases:
   - "codex exec model reasoning effort"
 importance_tier: normal
 contextType: implementation
-version: 1.9.2.0
+version: 1.9.3.0
 ---
 
 # cli-codex Providers, Models & Invocation
@@ -127,7 +127,7 @@ SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 codex exec \
 - `</dev/null` — REQUIRED when backgrounding `codex exec` inside a `while read … done < file` loop; without it the backgrounded process inherits and drains the loop's stdin, silently dropping most dispatches. See [integration-patterns.md](./integration-patterns.md) §4 → "Silent Stdin Consumption".
 
 ### Self-invocation guard
-A codex dispatch must not recursively re-enter a session already running inside Codex (detection: `CODEX_SESSION_ID` / any `CODEX_*` env var, `codex` in process ancestry, or `~/.codex/state/<id>/lock`). The guard refuses the dispatch — see [../SKILL.md](../SKILL.md) §9 "Self-Invocation Guard".
+A codex dispatch must not recursively re-enter a session already running inside Codex (detection: `CODEX_SESSION_ID` / any `CODEX_*` env var, `codex` in process ancestry, or `~/.codex/state/<id>/lock`). The guard refuses the dispatch — see [../ROUTER.md](../ROUTER.md) §3 "Self-Invocation Guard".
 
 ### Parallel / fan-out
 Multi-lineage parallel dispatch is driven by the shared deep-loop runtime (`fanout-run.cjs`, executor kind `cli-codex`), which lives outside this hub — see §6.

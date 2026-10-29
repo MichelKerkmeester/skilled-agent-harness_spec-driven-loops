@@ -1,7 +1,7 @@
 ---
 title: "SP-020 -- User-named framework override wins"
 description: "This scenario validates explicit framework override handling for `SP-020`. It focuses on honoring a user-named framework over automatic routing."
-version: 2.3.1.0
+version: 2.3.2.0
 ---
 
 # SP-020 -- User-named framework override wins
@@ -80,7 +80,7 @@ Verify the enhanced prompt includes CRAFT elements: Context, Role, Action, Forma
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../SKILL.md` | sk-prompt skill source: the final MACHINE ROUTER section's primary detection and §7 `@prompt-improver` contract |
+| `../../SKILL.md` | sk-prompt skill source: `../../ROUTER.md`'s `## 3. MACHINE ROUTER` section's primary detection and §7 `@prompt-improver` contract |
 
 ### Implementation And Test Anchors
 

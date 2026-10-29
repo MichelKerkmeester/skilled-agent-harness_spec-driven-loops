@@ -3,11 +3,11 @@ id: AD-R04
 category: intra-routing-recall
 stage: routing
 title: 'Install routing'
-description: "This scenario validates the SKILL.md Smart Router's INSTALL intent for `AD-R04`. It confirms a first-time setup prompt scores INSTALL and loads exactly RESOURCE_MAP['INSTALL']."
+description: "This scenario validates the ROUTER.md Smart Router's INSTALL intent for `AD-R04`. It confirms a first-time setup prompt scores INSTALL and loads exactly RESOURCE_MAP['INSTALL']."
 expected_intent: INSTALL
 expected_resources:
   - references/troubleshooting.md
-version: 1.1.1.0
+version: 1.1.3.0
 ---
 
 # AD-R04: Install routing
@@ -20,7 +20,7 @@ This document captures the routing-recall contract, execution process, source an
 
 This scenario validates that the `mcp-aside-devtools` Smart Router's `INSTALL` intent signal fires on
 a first-time setup request, and that the router loads exactly `RESOURCE_MAP["INSTALL"]` —
-`references/troubleshooting.md` alone — per `SKILL.md` §9.
+`references/troubleshooting.md` alone — per `../../ROUTER.md` §3.
 
 ### Why This Matters
 
@@ -35,7 +35,7 @@ framing this scenario protects.
 
 ## 2. SCENARIO CONTRACT
 
-Operators confirm the exact prompt scores `INSTALL` under `SKILL.md` §9's weighted keyword model and
+Operators confirm the exact prompt scores `INSTALL` under `../../ROUTER.md` §3's weighted keyword model and
 that the router's `RESOURCE_MAP["INSTALL"]` entry matches this scenario's declared `expected_resources`.
 
 - Objective: confirm the prompt's keyword overlap with `INTENT_SIGNALS["INSTALL"]` selects `INSTALL`
@@ -51,13 +51,13 @@ Aside is not installed on this machine — set up the CLI with the curl installe
 - Expected execution process: the router scores every intent's keyword set against the lowercased
   prompt and selects `INSTALL` because `not installed`, `set up`, `curl`, `sign in`, and `first time`
   are all literal `INTENT_SIGNALS["INSTALL"]` keywords at weight 4 each.
-- Expected signals: `SKILL.md` §9 lists `INSTALL` in `INTENT_SIGNALS` with those keywords;
+- Expected signals: `../../ROUTER.md` §3 lists `INSTALL` in `INTENT_SIGNALS` with those keywords;
   `RESOURCE_MAP["INSTALL"]` names exactly `references/troubleshooting.md`; the file exists.
 - Desired user-visible outcome: the router states plainly that this request routes to `INSTALL` and
   bundles the troubleshooting reference (for its documented install/first-sign-in section) before
   answering.
-- Pass/fail: PASS if `SKILL.md` §9 names the matched `INSTALL` keywords and the mapped resource
-  exists; FAIL if the keyword weights or `RESOURCE_MAP["INSTALL"]` entry in `SKILL.md` no longer
+- Pass/fail: PASS if `../../ROUTER.md` §3 names the matched `INSTALL` keywords and the mapped resource
+  exists; FAIL if the keyword weights or `RESOURCE_MAP["INSTALL"]` entry in `../../ROUTER.md` no longer
   matches this scenario's frontmatter, or the resource path is missing.
 
 ---
@@ -71,8 +71,8 @@ Aside is not installed on this machine — set up the CLI with the curl installe
 ### Commands
 
 1. `sed -n '1,11p' .skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/install.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/ROUTER.md`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/ROUTER.md`
 4. `test -e .skilled/skills/mcp-tooling/mcp-aside-devtools/references/troubleshooting.md && echo "OK references/troubleshooting.md" || echo "MISS references/troubleshooting.md"`
 
 ### Expected
@@ -88,7 +88,7 @@ from steps 2-3 with the matched keywords highlighted.
 
 ### Pass / Fail
 
-- **Pass**: `SKILL.md` §9 names the matched `INSTALL` keywords and `RESOURCE_MAP["INSTALL"]` lists the
+- **Pass**: `../../ROUTER.md` §3 names the matched `INSTALL` keywords and `RESOURCE_MAP["INSTALL"]` lists the
   resource, and the resource path exists.
 - **Fail**: the keyword set or resource map in `SKILL.md` no longer matches this scenario's
   frontmatter, or the resource path does not resolve.
@@ -99,7 +99,7 @@ from steps 2-3 with the matched keywords highlighted.
    quoted matches to see which keyword moved or was reworded.
 2. Re-run step 4 and confirm whether `references/troubleshooting.md` was renamed or removed.
 3. If the prompt instead scored `TROUBLESHOOT`, confirm the ambiguity-delta tie-break in
-   `select_intents()` (`SKILL.md` §9) still favors `INSTALL`'s higher raw keyword count.
+   `select_intents()` (`../../ROUTER.md` §3) still favors `INSTALL`'s higher raw keyword count.
 
 ---
 
@@ -116,7 +116,7 @@ from steps 2-3 with the matched keywords highlighted.
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` §9 | The `INSTALL` `INTENT_SIGNALS` keywords and `RESOURCE_MAP` entry this scenario verifies |
+| `../../ROUTER.md` §3 | The `INSTALL` `INTENT_SIGNALS` keywords and `RESOURCE_MAP` entry this scenario verifies |
 
 ---
 

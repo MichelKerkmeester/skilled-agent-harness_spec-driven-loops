@@ -8,7 +8,7 @@ expected_intent: CROSS_REPO
 expected_resources: 
   - references/cli-reference.md
   - references/opencode-tools.md
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # CO-R05: Cross-repo routing
@@ -26,7 +26,7 @@ This scenario validates the hub's `CROSS_REPO` intent-routing contract for `CO-R
 ### Why This Matters
 
 Routing recall scenarios are how this playbook proves the hub's smart router actually resolves the
-documented `INTENT_SIGNALS`/`RESOURCE_MAP` contract in SKILL.md, rather than assuming the router
+documented `INTENT_SIGNALS`/`RESOURCE_MAP` contract in ROUTER.md, rather than assuming the router
 matches its own documentation. A drift here means an operator prompt silently loads the wrong
 reference set or none at all.
 
@@ -34,7 +34,7 @@ reference set or none at all.
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: confirm SKILL.md's `INTENT_SIGNALS["CROSS_REPO"]` entry matches this scenario's expected_intent, and RESOURCE_MAP["CROSS_REPO"] resolves on disk.
+- Objective: confirm ROUTER.md's `INTENT_SIGNALS["CROSS_REPO"]` entry matches this scenario's expected_intent, and RESOURCE_MAP["CROSS_REPO"] resolves on disk.
 - Stage: `routing`
 - Prompt: `Run the same task in another repository by pointing --dir at that cross-repo checkout. (OpenCode 1 only)`
 
@@ -46,9 +46,9 @@ Run the same task in another repository by pointing --dir at that cross-repo che
 On OpenCode 1, `--dir` pins the cross-repo checkout. The OpenCode 2 (2.0.32) twin has no `--dir`, so it starts in the target directory instead: `cd <path> && opencode run ...` (see the [install reference](../../references/install-and-versions.md)).
 
 - Expected execution process: the hub scores the prompt against every `INTENT_SIGNALS` keyword list and resolves `CROSS_REPO` at its documented weight, then conditional-loads `RESOURCE_MAP["CROSS_REPO"]`.
-- Expected signals: SKILL.md's `INTENT_SIGNALS["CROSS_REPO"]` entry exists with its documented weight and keyword list, and `RESOURCE_MAP["CROSS_REPO"]` names `references/cli-reference.md` and `references/opencode-tools.md`. Both resource paths resolve on disk.
+- Expected signals: ROUTER.md's `INTENT_SIGNALS["CROSS_REPO"]` entry exists with its documented weight and keyword list, and `RESOURCE_MAP["CROSS_REPO"]` names `references/cli-reference.md` and `references/opencode-tools.md`. Both resource paths resolve on disk.
 - Desired user-visible outcome: the bundled workflow states plainly which intent this prompt resolves and which resources it loaded, before any downstream execution happens.
-- Pass/fail: PASS if SKILL.md's `INTENT_SIGNALS["CROSS_REPO"]` and `RESOURCE_MAP["CROSS_REPO"]` entries match this scenario's frontmatter and both resource paths exist. FAIL if either entry has drifted from this scenario's frontmatter, or a resource path does not resolve.
+- Pass/fail: PASS if ROUTER.md's `INTENT_SIGNALS["CROSS_REPO"]` and `RESOURCE_MAP["CROSS_REPO"]` entries match this scenario's frontmatter and both resource paths exist. FAIL if either entry has drifted from this scenario's frontmatter, or a resource path does not resolve.
 
 ---
 
@@ -61,8 +61,8 @@ On OpenCode 1, `--dir` pins the cross-repo checkout. The OpenCode 2 (2.0.32) twi
 ### Commands
 
 1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/intra-routing-recall/cross-repo.md`
-2. `grep -n '"CROSS_REPO"' ../../SKILL.md` (confirms the `INTENT_SIGNALS` entry)
-3. `grep -A2 'RESOURCE_MAP = {' ../../SKILL.md | grep '"CROSS_REPO"'` (confirms the `RESOURCE_MAP` entry)
+2. `grep -n '"CROSS_REPO"' ../../ROUTER.md` (confirms the `INTENT_SIGNALS` entry)
+3. `grep -A2 'RESOURCE_MAP = {' ../../ROUTER.md | grep '"CROSS_REPO"'` (confirms the `RESOURCE_MAP` entry)
 4. `test -e .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md && echo "OK references/cli-reference.md" || echo "MISS references/cli-reference.md"`
 5. `test -e .skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md && echo "OK references/opencode-tools.md" || echo "MISS references/opencode-tools.md"`
 
@@ -72,12 +72,12 @@ Step 1 shows `expected_intent: CROSS_REPO`. Step 2's output names the `CROSS_REP
 
 ### Evidence
 
-Command transcript from every step above. This scenario's frontmatter is compared against SKILL.md's
+Command transcript from every step above. This scenario's frontmatter is compared against ROUTER.md's
 live `INTENT_SIGNALS["CROSS_REPO"]` entry.
 
 ### Pass / Fail
 
-- **Pass**: SKILL.md's `INTENT_SIGNALS["CROSS_REPO"]` and `RESOURCE_MAP["CROSS_REPO"]` entries match this scenario's frontmatter, and every resource path resolves.
+- **Pass**: ROUTER.md's `INTENT_SIGNALS["CROSS_REPO"]` and `RESOURCE_MAP["CROSS_REPO"]` entries match this scenario's frontmatter, and every resource path resolves.
 - **Fail**: the keyword/weight entry or the resource mapping has drifted from this scenario's frontmatter, or a resource path does not resolve.
 
 ### Failure Triage
@@ -100,7 +100,7 @@ live `INTENT_SIGNALS["CROSS_REPO"]` entry.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) | The `CROSS_REPO` entry in `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario verifies |
+| [ROUTER.md](../../ROUTER.md) | The `CROSS_REPO` entry in `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario verifies |
 
 ---
 

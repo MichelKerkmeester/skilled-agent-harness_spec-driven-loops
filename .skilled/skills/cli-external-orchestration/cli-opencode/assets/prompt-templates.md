@@ -10,7 +10,7 @@ trigger_phrases:
   - "minimax dispatch scaffold"
 importance_tier: normal
 contextType: implementation
-version: 1.4.12.0
+version: 1.4.13.0
 ---
 
 # OpenCode CLI - Prompt Templates
@@ -739,4 +739,4 @@ opencode run \
 - `../references/agent-delegation.md` - Agent routing matrix
 - `../references/opencode-tools.md` - Unique value props
 - `./prompt-quality-card.md` - Framework selection and CLEAR check
-- `../SKILL.md` - Smart router pseudocode
+- `../ROUTER.md` - Smart router pseudocode

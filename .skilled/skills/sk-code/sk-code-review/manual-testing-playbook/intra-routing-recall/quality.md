@@ -11,7 +11,7 @@ expected_resources:
   - assets/security-checklist.md
   - assets/code-quality-checklist.md
   - assets/fix-completeness-checklist.md
-version: 1.1.0.0
+version: 1.1.2.0
 ---
 
 # CR-R02: Quality routing
@@ -37,7 +37,7 @@ Operators run the exact prompt and command sequence for `CR-R02` and confirm the
 - Objective: confirm the exact prompt scores `QUALITY` at `20.0` with no disambiguation flag, and the disconfirming prompt reaches `QUALITY` only through the empty-score fallback.
 - Real user request: `Review target has correctness and contract-compatibility risk.`
 - Prompt: `Review this change for correctness, regression risk, performance boundaries, and breaking contract compatibility.`
-- Expected execution process: run the shipped `MACHINE ROUTER` block from `SKILL.md` §10 over the exact prompt and over the disconfirming prompt, and compare the printed scores, flags and resource lists with the Expected block.
+- Expected execution process: run the shipped `MACHINE ROUTER` block from `../../ROUTER.md` §3 over the exact prompt and over the disconfirming prompt, and compare the printed scores, flags and resource lists with the Expected block.
 - Expected signals: the exact prompt prints `intents= ['QUALITY']`, `scores= {'QUALITY': 20.0}`, `needs_disambiguation= False`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}`, `needs_disambiguation= True`; both print the five `DEFAULT_RESOURCES`.
 - Desired user-visible outcome: a review that treats a correctness and contract question as a quality pass rather than an unmatched request, so the reviewer does not stop to ask what was wanted.
 - Pass/fail: PASS if the exact prompt scores `QUALITY` at `20.0` with `needs_disambiguation= False` and the disconfirming prompt prints an empty score map with `needs_disambiguation= True`; FAIL if the scores, the flag or the printed paths differ from the Expected block.
@@ -58,20 +58,20 @@ Review this change for correctness, regression risk, performance boundaries, and
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-R02 | Quality routing | Confirm the exact prompt scores `QUALITY` at `20.0` with no disambiguation flag, and that a prompt with no intent keyword reaches `QUALITY` only through the empty-score fallback. | `Review this change for correctness, regression risk, performance boundaries, and breaking contract compatibility.` | bash: run the shipped `SKILL.md` §10 router block over the exact prompt and the disconfirming prompt -> compare scores, the `needs_disambiguation` flag and the resource lists with the Expected block | The exact prompt prints `intents= ['QUALITY']`, `scores= {'QUALITY': 20.0}`, `needs_disambiguation= False`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}`, `needs_disambiguation= True`; both print the five `DEFAULT_RESOURCES` | Both router transcripts, with the score map and flag for each prompt | PASS iff the exact prompt scores `QUALITY` at `20.0` with the flag clear and the disconfirming prompt prints an empty score map with the flag set; FAIL on a different score, a cleared flag on the disconfirming prompt, or a different path list | 1. Confirm the §10 block was extracted from `SKILL.md`; 2. Diff `INTENT_SIGNALS["QUALITY"]` against the keywords the exact prompt relies on; 3. Check the fallback threshold, which decides whether the disconfirming prompt takes the empty-score branch |
+| CR-R02 | Quality routing | Confirm the exact prompt scores `QUALITY` at `20.0` with no disambiguation flag, and that a prompt with no intent keyword reaches `QUALITY` only through the empty-score fallback. | `Review this change for correctness, regression risk, performance boundaries, and breaking contract compatibility.` | bash: run the shipped `../../ROUTER.md` §3 router block over the exact prompt and the disconfirming prompt -> compare scores, the `needs_disambiguation` flag and the resource lists with the Expected block | The exact prompt prints `intents= ['QUALITY']`, `scores= {'QUALITY': 20.0}`, `needs_disambiguation= False`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}`, `needs_disambiguation= True`; both print the five `DEFAULT_RESOURCES` | Both router transcripts, with the score map and flag for each prompt | PASS iff the exact prompt scores `QUALITY` at `20.0` with the flag clear and the disconfirming prompt prints an empty score map with the flag set; FAIL on a different score, a cleared flag on the disconfirming prompt, or a different path list | 1. Confirm the §3 block was extracted from `ROUTER.md`; 2. Diff `INTENT_SIGNALS["QUALITY"]` against the keywords the exact prompt relies on; 3. Check the fallback threshold, which decides whether the disconfirming prompt takes the empty-score branch |
 
 ### Commands
 
-Run from the repository root. The block is extracted from `SKILL.md` at run time, so the scenario tests the shipped router and not a copy of it.
+Run from the repository root. The block is extracted from `ROUTER.md` at run time, so the scenario tests the shipped router and not a copy of it.
 
 ```bash
 python3 - <<'PY'
 import re
 from pathlib import Path
 
-skill = Path('.skilled/skills/sk-code/sk-code-review/SKILL.md')
+skill = Path('.skilled/skills/sk-code/sk-code-review/ROUTER.md')
 text = skill.read_text()
-block = re.search(r"```python\n(.*?)\n```", text[text.index('## 10. MACHINE ROUTER'):], re.S).group(1)
+block = re.search(r"```python\n(.*?)\n```", text[text.index('## 3. MACHINE ROUTER'):], re.S).group(1)
 ns = {'__file__': str(skill), '__name__': 'machine_router', 'load': lambda path: None}
 exec(compile(block, 'machine-router', 'exec'), ns)
 
@@ -120,7 +120,7 @@ The disconfirming prompt carries no intent keyword, so the router returns its lo
 
 ### Evidence
 
-Both router transcripts, the score map and flag from each, and the `INTENT_SIGNALS["QUALITY"]` and `RESOURCE_MAP["QUALITY"]` excerpts from `SKILL.md` §10.
+Both router transcripts, the score map and flag from each, and the `INTENT_SIGNALS["QUALITY"]` and `RESOURCE_MAP["QUALITY"]` excerpts from `../../ROUTER.md` §3.
 
 ### Pass / Fail
 
@@ -129,7 +129,7 @@ Both router transcripts, the score map and flag from each, and the `INTENT_SIGNA
 
 ### Failure Triage
 
-1. Confirm the extraction found the `## 10. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
+1. Confirm the extraction found the `## 3. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
 2. A score below `20.0` means one of the five matched keywords moved or changed weight. Quote `INTENT_SIGNALS["QUALITY"]` and name the one that stopped matching.
 3. If the disconfirming prompt prints the flag as `False`, the fallback threshold moved: the router takes the disambiguation branch only while the summed score stays under its floor.
 4. Read the intent on its own with care. `QUALITY` appears in both runs by design, so an intent-only comparison here cannot fail and is not the signal.
@@ -149,7 +149,7 @@ Both router transcripts, the score map and flag from each, and the `INTENT_SIGNA
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §10 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES`, the fallback branch and the router block this scenario executes |
+| [ROUTER.md](../../ROUTER.md) §3 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES`, the fallback branch and the router block this scenario executes |
 | [code-quality-checklist.md](../../assets/code-quality-checklist.md) | The checklist the `QUALITY` intent targets |
 | [fix-completeness-checklist.md](../../assets/fix-completeness-checklist.md) | The completeness checklist the route keeps alongside it |
 

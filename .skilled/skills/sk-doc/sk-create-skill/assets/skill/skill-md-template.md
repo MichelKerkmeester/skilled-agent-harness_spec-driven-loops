@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill section guidance"
 importance_tier: normal
 contextType: general
-version: 1.2.5.1
+version: 1.2.6.0
 ---
 
 # SKILL.md File Templates - Creation Guide
@@ -530,7 +530,7 @@ Keep pseudocode out of SMART ROUTING and put it in that section.
 |------|---------|
 | `RS-001` | SMART ROUTING is longer than the limit (12 lines or 180 words by default) |
 | `RS-002` | `SKILL.md` carries a `## MACHINE ROUTER` section, with or without a code block |
-| `RS-003` | `## MACHINE ROUTER` exists in `SKILL.md` but is not the last H2 |
+| `RS-003` | A `## MACHINE ROUTER` section is not the last H2 of the document that holds it |
 | `RS-004` | the skill has no sibling `ROUTER.md`, or its real path leaves the skill folder |
 | `RS-005` | `SKILL.md` has no relative markdown link to `./ROUTER.md` that resolves |
 

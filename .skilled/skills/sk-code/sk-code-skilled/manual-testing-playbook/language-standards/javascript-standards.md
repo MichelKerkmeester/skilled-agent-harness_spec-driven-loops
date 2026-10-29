@@ -10,7 +10,7 @@ expected_resources:
   - references/javascript/quality-standards/overview-modules-and-docs.md
   - references/javascript/quality-standards/security-testing-and-exemptions.md
   - references/javascript/quick-reference.md
-version: 1.0.0.0
+version: 1.0.2.0
 ---
 
 # OC-010: JavaScript standards routing
@@ -23,7 +23,7 @@ This document captures the routing-recall contract, execution process, source an
 
 This scenario validates `JAVASCRIPT` routing for `OC-010`. It focuses on confirming that the exact prompt
 below classifies as `JAVASCRIPT` and loads the full 4-file resource set instead of a generic or mismatched
-resource set, per `SKILL.md` §6's machine-readable router.
+resource set, per `ROUTER.md` §3's machine-readable router.
 
 ### Why This Matters
 
@@ -53,7 +53,7 @@ Review this CommonJS .cjs plugin against the javascript style guide and .mjs int
   `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
   `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-skilled/`, and each one
-  documents `JAVASCRIPT` routing per `SKILL.md` §2 or §6.
+  documents `JAVASCRIPT` routing per `SKILL.md` §2 or `ROUTER.md` §3.
 - Desired user-visible outcome: the bundled workflow cites the routed `JAVASCRIPT` resources as the
   standards evidence, not a mismatched language or generic tier.
 - Pass/fail: PASS if every listed path exists and the frontmatter surface/intent are `SKILLED`/
@@ -70,8 +70,8 @@ Review this CommonJS .cjs plugin against the javascript style guide and .mjs int
 ### Commands
 
 1. `sed -n '/^---$/,/^---$/p' .skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/language-standards/javascript-standards.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/SKILL.md | grep -F '"JAVASCRIPT"'`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/SKILL.md | sed -n '/"JAVASCRIPT": \[/,/\],/p'`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/ROUTER.md | grep -F '"JAVASCRIPT"'`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/ROUTER.md | sed -n '/"JAVASCRIPT": \[/,/\],/p'`
 4. `for p in references/javascript/style-guide.md references/javascript/quality-standards/overview-modules-and-docs.md references/javascript/quality-standards/security-testing-and-exemptions.md references/javascript/quick-reference.md; do test -e ".skilled/skills/sk-code/sk-code-skilled/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
@@ -112,7 +112,7 @@ excerpt.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §6 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [ROUTER.md](../../ROUTER.md) §3 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §2 | Reference-map prose entry for the `JAVASCRIPT` resource set |
 
 ---

@@ -1,7 +1,7 @@
 ---
 title: "BMR-001 -- Promote a completed MCP result"
 description: "This scenario validates MCP promotion for BMR-001. A completed result with an accepted decision, stable fixture and replay commands becomes a skill-local benchmark report and source pointer."
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # BMR-001 -- Promote a completed MCP result
@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `BMR-001` and confirm th
 - Objective: route a completed MCP bake-off to the MCP promotion family and identify its required artifacts
 - Realistic user request: `The retrieval bake-off is finished and the decision was accepted. Put the result where MCP operators will find it.`
 - Prompt: `Promote this completed MCP bake-off into the consuming skill. Check that the decision is accepted, the fixture is stable and the replay commands are recorded.`
-- Expected execution process: `SKILL.md` section 12 selects MCP promotion, the adoption gate is checked, the target skill and `mcp-server/` are confirmed, the dated folder is selected from the execution date and the report plus source pointer are authored from the shared templates.
+- Expected execution process: `ROUTER.md` section 3 selects MCP promotion, the adoption gate is checked, the target skill and `mcp-server/` are confirmed, the dated folder is selected from the execution date and the report plus source pointer are authored from the shared templates.
 - Expected signals: the reply names MCP promotion, lists `benchmark-report.md`, `source.md` and the required evidence files and refuses to compare unrelated MCP stacks. It does not claim that the benchmark was run by this skill.
 - Desired user-visible outcome: a reproducible promotion plan with a clear source pointer and a report shape that an MCP operator can open first.
 - Pass/fail: PASS if the promotion gate and artifacts are named with source evidence. FAIL if the family is misrouted, a scorer is authored or the run is promoted without a stable fixture.
@@ -40,11 +40,11 @@ Operators run the exact prompt and command sequence for `BMR-001` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| BMR-001 | Promote a completed MCP result | Route a completed MCP bake-off to the promotion family | `Promote this completed MCP bake-off into the consuming skill. Check that the decision is accepted, the fixture is stable and the replay commands are recorded.` | 1. `agent: Read SKILL.md section 12 and identify the MCP promotion family` -> 2. `agent: Read SKILL.md section 3 and list the adoption gate` -> 3. `bash: test -d .skilled/skills/system-spec-kit/runtime` -> 4. `agent: State the report, source and copied-evidence artifacts` | Steps 1 and 2 select the `shared` family and name the accepted decision, stable fixture and replay commands. Step 3 exits 0. Step 4 names the ten-section report, source pointer and evidence files | Exact prompt, quoted adoption gate, command output and exit status, target check, artifact list and family decision | PASS if all gate inputs and artifacts are evidenced. FAIL if the run invents a winner, skips the target check or crosses into scoring | 1. Confirm the family table was read. 2. Recheck the adoption gate. 3. Confirm the run describes authoring only and does not claim execution |
+| BMR-001 | Promote a completed MCP result | Route a completed MCP bake-off to the promotion family | `Promote this completed MCP bake-off into the consuming skill. Check that the decision is accepted, the fixture is stable and the replay commands are recorded.` | 1. `agent: Read ROUTER.md section 3 and identify the MCP promotion family` -> 2. `agent: Read SKILL.md section 3 and list the adoption gate` -> 3. `bash: test -d .skilled/skills/system-spec-kit/runtime` -> 4. `agent: State the report, source and copied-evidence artifacts` | Steps 1 and 2 select the `shared` family and name the accepted decision, stable fixture and replay commands. Step 3 exits 0. Step 4 names the ten-section report, source pointer and evidence files | Exact prompt, quoted adoption gate, command output and exit status, target check, artifact list and family decision | PASS if all gate inputs and artifacts are evidenced. FAIL if the run invents a winner, skips the target check or crosses into scoring | 1. Confirm the family table was read. 2. Recheck the adoption gate. 3. Confirm the run describes authoring only and does not claim execution |
 
 ### Commands
 
-1. `agent: Read SKILL.md section 12 and identify the MCP promotion family`
+1. `agent: Read ROUTER.md section 3 and identify the MCP promotion family`
 2. `agent: Read SKILL.md section 3 and list the adoption gate`
 3. `bash: test -d .skilled/skills/system-spec-kit/runtime`
 4. `agent: State the report, source and copied-evidence artifacts`

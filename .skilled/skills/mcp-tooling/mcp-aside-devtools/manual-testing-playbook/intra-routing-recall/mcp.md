@@ -3,13 +3,13 @@ id: AD-R03
 category: intra-routing-recall
 stage: routing
 title: 'MCP routing'
-description: "This scenario validates the SKILL.md Smart Router's MCP intent for `AD-R03`. It confirms a Code Mode tool-chaining prompt scores MCP and loads exactly RESOURCE_MAP['MCP'] as a full declared set, not a partial one."
+description: "This scenario validates the ROUTER.md Smart Router's MCP intent for `AD-R03`. It confirms a Code Mode tool-chaining prompt scores MCP and loads exactly RESOURCE_MAP['MCP'] as a full declared set, not a partial one."
 expected_intent: MCP
 expected_resources:
   - references/mcp-wiring.md
   - references/session-management.md
   - assets/utcp-aside-manual.md
-version: 1.1.1.0
+version: 1.1.3.0
 ---
 
 # AD-R03: MCP routing
@@ -23,11 +23,11 @@ This document captures the routing-recall contract, execution process, source an
 This scenario validates that the `mcp-aside-devtools` Smart Router's `MCP` intent signal fires on a
 Code Mode tool-chaining request, and that the router loads exactly `RESOURCE_MAP["MCP"]` — all three
 declared resources, `references/mcp-wiring.md`, `references/session-management.md`, and
-`assets/utcp-aside-manual.md` — per `SKILL.md` §9.
+`assets/utcp-aside-manual.md` — per `../../ROUTER.md` §3.
 
 ### Why This Matters
 
-Under this packet's `fallback-only` default-resource semantics (`SKILL.md` §9, `DEFAULT_RESOURCE_SEMANTICS
+Under this packet's `fallback-only` default-resource semantics (`../../ROUTER.md` §3, `DEFAULT_RESOURCE_SEMANTICS
 = "fallback-only"`), a scored route loads exactly its intent's declared resource set — never a partial
 subset and never the unioned default. `MCP` is the one intent whose declared set has three entries
 instead of two, including the `assets/utcp-aside-manual.md` UTCP manual snapshot needed for Code Mode
@@ -38,7 +38,7 @@ router blesses or trims it to two.
 
 ## 2. SCENARIO CONTRACT
 
-Operators confirm the exact prompt scores `MCP` under `SKILL.md` §9's weighted keyword model and that
+Operators confirm the exact prompt scores `MCP` under `../../ROUTER.md` §3's weighted keyword model and that
 the router's `RESOURCE_MAP["MCP"]` entry matches this scenario's declared `expected_resources` in full.
 
 - Objective: confirm the prompt's keyword overlap with `INTENT_SIGNALS["MCP"]` selects `MCP` as the
@@ -58,12 +58,12 @@ Run the aside mcp server over stdio and chain its repl tool with other code mode
 - Expected execution process: the router scores every intent's keyword set against the lowercased
   prompt and selects `MCP` because `mcp`, `code mode`, `stdio`, and `call_tool_chain` are all literal
   `INTENT_SIGNALS["MCP"]` keywords at weight 4 each.
-- Expected signals: `SKILL.md` §9 lists `MCP` in `INTENT_SIGNALS` with those keywords;
+- Expected signals: `../../ROUTER.md` §3 lists `MCP` in `INTENT_SIGNALS` with those keywords;
   `RESOURCE_MAP["MCP"]` names exactly the three declared resources; all three files exist.
 - Desired user-visible outcome: the router states plainly that this request routes to `MCP` and
   bundles all three resources — not a partial set — before answering.
-- Pass/fail: PASS if `SKILL.md` §9 names the matched `MCP` keywords and all three mapped resources
-  exist; FAIL if the keyword weights or `RESOURCE_MAP["MCP"]` entry in `SKILL.md` no longer matches
+- Pass/fail: PASS if `../../ROUTER.md` §3 names the matched `MCP` keywords and all three mapped resources
+  exist; FAIL if the keyword weights or `RESOURCE_MAP["MCP"]` entry in `../../ROUTER.md` no longer matches
   this scenario's frontmatter, or any resource path is missing, or only a partial subset is loaded.
 
 ---
@@ -77,8 +77,8 @@ Run the aside mcp server over stdio and chain its repl tool with other code mode
 ### Commands
 
 1. `sed -n '1,14p' .skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/mcp.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/ROUTER.md`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/ROUTER.md`
 4. `test -e .skilled/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md && echo "OK references/mcp-wiring.md" || echo "MISS references/mcp-wiring.md"`
 5. `test -e .skilled/skills/mcp-tooling/mcp-aside-devtools/references/session-management.md && echo "OK references/session-management.md" || echo "MISS references/session-management.md"`
 6. `test -e .skilled/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md && echo "OK assets/utcp-aside-manual.md" || echo "MISS assets/utcp-aside-manual.md"`
@@ -97,7 +97,7 @@ steps 2-3 with the matched keywords and the full three-entry resource list highl
 
 ### Pass / Fail
 
-- **Pass**: `SKILL.md` §9 names the matched `MCP` keywords and `RESOURCE_MAP["MCP"]` lists all three
+- **Pass**: `../../ROUTER.md` §3 names the matched `MCP` keywords and `RESOURCE_MAP["MCP"]` lists all three
   resources in full, and all three resource paths exist.
 - **Fail**: the keyword set or resource map in `SKILL.md` no longer matches this scenario's
   frontmatter, a resource path does not resolve, or only a partial subset of the three is loaded.
@@ -107,7 +107,7 @@ steps 2-3 with the matched keywords and the full three-entry resource list highl
 1. Re-run step 2 and diff the current `INTENT_SIGNALS["MCP"]` keyword list against this scenario's
    quoted matches to see which keyword moved or was reworded.
 2. Re-run steps 4-6 and confirm whether a reference or asset file was renamed or removed.
-3. If only two of the three resources loaded, confirm `RESOURCE_MAP["MCP"]` in `SKILL.md` §9 still
+3. If only two of the three resources loaded, confirm `RESOURCE_MAP["MCP"]` in `../../ROUTER.md` §3 still
    declares the full three-entry set rather than a trimmed one.
 
 ---
@@ -125,7 +125,7 @@ steps 2-3 with the matched keywords and the full three-entry resource list highl
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` §9 | The `MCP` `INTENT_SIGNALS` keywords and `RESOURCE_MAP` entry this scenario verifies |
+| `../../ROUTER.md` §3 | The `MCP` `INTENT_SIGNALS` keywords and `RESOURCE_MAP` entry this scenario verifies |
 
 ---
 

@@ -15,7 +15,7 @@ expected_resources:
   - assets/checklists/command-authoring.md
   - assets/checklists/skill-authoring.md
   - assets/checklists/mcp-server-authoring.md
-version: 1.0.1.1
+version: 1.0.3.0
 ---
 
 # OC-006: Implementation authoring routing
@@ -28,7 +28,7 @@ This document captures the routing-recall contract, execution process, source an
 
 This scenario validates `IMPLEMENTATION` routing for `OC-006`. It focuses on confirming that the exact prompt
 below classifies as `IMPLEMENTATION` and loads the full 9-file resource set instead of a generic or mismatched
-resource set, per `SKILL.md` §6's machine-readable router.
+resource set, per `ROUTER.md` §3's machine-readable router.
 
 ### Why This Matters
 
@@ -55,7 +55,7 @@ Implement a new OpenCode skill-authoring module and include command-authoring an
   `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
   `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-skilled/`, and each one
-  documents `IMPLEMENTATION` routing per `SKILL.md` §2 or §6.
+  documents `IMPLEMENTATION` routing per `SKILL.md` §2 or `ROUTER.md` §3.
 - Desired user-visible outcome: the bundled workflow cites the routed `IMPLEMENTATION` resources as the
   standards evidence, not a mismatched language or generic tier.
 - Pass/fail: PASS if every listed path exists and the frontmatter surface/intent are `SKILLED`/
@@ -72,8 +72,8 @@ Implement a new OpenCode skill-authoring module and include command-authoring an
 ### Commands
 
 1. `sed -n '/^---$/,/^---$/p' .skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/implementation-authoring.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/SKILL.md | grep -F '"IMPLEMENTATION"'`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/SKILL.md | sed -n '/"IMPLEMENTATION": \[/,/\],/p'`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/ROUTER.md | grep -F '"IMPLEMENTATION"'`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-skilled/ROUTER.md | sed -n '/"IMPLEMENTATION": \[/,/\],/p'`
 4. `for p in references/shared/universal-patterns/naming-and-commenting.md references/shared/universal-patterns/organization-security-and-examples.md references/shared/code-organization/overview-and-module-organization.md references/shared/code-organization/imports-and-exports.md references/shared/code-organization/directory-and-test-conventions.md assets/checklists/agent-authoring.md assets/checklists/command-authoring.md assets/checklists/skill-authoring.md assets/checklists/mcp-server-authoring.md; do test -e ".skilled/skills/sk-code/sk-code-skilled/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
@@ -114,7 +114,7 @@ excerpt.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §6 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [ROUTER.md](../../ROUTER.md) §3 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §2 | Reference-map prose entry for the `IMPLEMENTATION` resource set |
 
 ---

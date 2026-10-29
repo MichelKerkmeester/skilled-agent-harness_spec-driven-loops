@@ -3,12 +3,12 @@ id: CU-R03
 category: intra_routing_recall
 stage: routing
 title: 'Install routing'
-description: "This scenario validates the SKILL.md Smart Router's INSTALL intent for `CU-R03`. It confirms a first-time setup/auth prompt scores INSTALL and loads exactly RESOURCE_MAP['INSTALL']."
+description: "This scenario validates the ROUTER.md §3 MACHINE ROUTER's INSTALL intent for `CU-R03`. It confirms a first-time setup/auth prompt scores INSTALL and loads exactly RESOURCE_MAP['INSTALL']."
 expected_intent: INSTALL
 expected_resources:
   - INSTALL-GUIDE.md
   - references/troubleshooting.md
-version: 1.1.2.0
+version: 1.1.4.0
 ---
 
 # CU-R03: Install routing
@@ -22,7 +22,7 @@ This document captures the routing-recall contract, execution process, source an
 This scenario validates that the `mcp-click-up` Smart Router's `INSTALL` intent signal fires on a
 first-time setup and authentication request, and that the router loads exactly
 `RESOURCE_MAP["INSTALL"]` — `INSTALL-GUIDE.md` (skill-root-relative, not under `references/`) and
-`references/troubleshooting.md` — per `SKILL.md` §9.
+`references/troubleshooting.md` — per `../../ROUTER.md` §3 MACHINE ROUTER.
 
 ### Why This Matters
 
@@ -37,7 +37,7 @@ exist.
 
 ## 2. SCENARIO CONTRACT
 
-Operators confirm the exact prompt scores `INSTALL` under `SKILL.md` §9's weighted keyword model and
+Operators confirm the exact prompt scores `INSTALL` under `../../ROUTER.md` §3 MACHINE ROUTER's weighted keyword model and
 that the router's `RESOURCE_MAP["INSTALL"]` entry matches this scenario's declared
 `expected_resources`, including the skill-root-relative `INSTALL-GUIDE.md` path.
 
@@ -55,13 +55,13 @@ Walk me through the cupt setup - install cupt and authenticate with my API token
 - Expected execution process: the router scores every intent's keyword set (weight 6 per hit) against
   the lowercased prompt; `setup`, `install cupt`, `authenticate`, and `api token` are all literal
   `INTENT_SIGNALS["INSTALL"]` keywords, giving an `INSTALL` score of 24 (> 4), and no
-  `TROUBLESHOOT` keyword appears, so `SKILL.md` §9's tie-break selects `INSTALL` directly.
-- Expected signals: `SKILL.md` §9 lists `INSTALL` in `INTENT_SIGNALS` with those keywords;
+  `TROUBLESHOOT` keyword appears, so `../../ROUTER.md` §3 MACHINE ROUTER's tie-break selects `INSTALL` directly.
+- Expected signals: `ROUTER.md` §3 MACHINE ROUTER lists `INSTALL` in `INTENT_SIGNALS` with those keywords;
   `RESOURCE_MAP["INSTALL"]` names exactly `INSTALL-GUIDE.md` and `references/troubleshooting.md`; both
   files exist at those exact paths (the first at the skill root, not under `references/`).
 - Desired user-visible outcome: the router states plainly that this request routes to `INSTALL` and
   bundles the install guide plus the troubleshooting reference before answering.
-- Pass/fail: PASS if `SKILL.md` §9 names the matched `INSTALL` keywords and both mapped resources
+- Pass/fail: PASS if `../../ROUTER.md` §3 MACHINE ROUTER names the matched `INSTALL` keywords and both mapped resources
   exist at their declared paths; FAIL if the keyword weights or `RESOURCE_MAP["INSTALL"]` entry in
   `SKILL.md` no longer matches this scenario's frontmatter, or either resource path is missing.
 
@@ -76,8 +76,8 @@ Walk me through the cupt setup - install cupt and authenticate with my API token
 ### Commands
 
 1. `sed -n '1,12p' .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/install.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/ROUTER.md`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/ROUTER.md`
 4. `test -e .skilled/skills/mcp-tooling/mcp-click-up/INSTALL-GUIDE.md && echo "OK INSTALL-GUIDE.md" || echo "MISS INSTALL-GUIDE.md"`
 5. `test -e .skilled/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md && echo "OK references/troubleshooting.md" || echo "MISS references/troubleshooting.md"`
 
@@ -95,7 +95,7 @@ from steps 2-3 with the matched keywords and the exact `INSTALL-GUIDE.md` path h
 
 ### Pass / Fail
 
-- **Pass**: `SKILL.md` §9 names the matched `INSTALL` keywords and `RESOURCE_MAP["INSTALL"]` lists
+- **Pass**: `ROUTER.md` §3 MACHINE ROUTER names the matched `INSTALL` keywords and `RESOURCE_MAP["INSTALL"]` lists
   both resources at their declared paths, and both resource paths exist.
 - **Fail**: the keyword set or resource map in `SKILL.md` no longer matches this scenario's
   frontmatter, or a resource path does not resolve (including a resource incorrectly expected under
@@ -125,7 +125,7 @@ from steps 2-3 with the matched keywords and the exact `INSTALL-GUIDE.md` path h
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` §9 | The `INSTALL` `INTENT_SIGNALS` keywords, `RESOURCE_MAP` entry, and tie-break rule this scenario verifies |
+| `../../ROUTER.md` §3 MACHINE ROUTER | The `INSTALL` `INTENT_SIGNALS` keywords, `RESOURCE_MAP` entry, and tie-break rule this scenario verifies |
 
 ---
 

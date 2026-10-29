@@ -9,7 +9,7 @@ expected_resources:
   - references/figma-cli-reference.md
   - references/tool-surface.md
 blindToRouterKeywords: true
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # FG-H02: Blind holdout: measurements
@@ -20,7 +20,7 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario is the natural-phrasing holdout for `FG-R03` (`blindToRouterKeywords: true`). It focuses on confirming that a prompt phrased the way a real user would ask for measurements, a picture, and accessibility notes -- not the router's own vocabulary -- still classifies as `INSPECT_EXPORT` per `SKILL.md` §8 and resolves the same `RESOURCE_MAP["INSPECT_EXPORT"]` set as `FG-R03`, not on actually running the inspect.
+This scenario is the natural-phrasing holdout for `FG-R03` (`blindToRouterKeywords: true`). It focuses on confirming that a prompt phrased the way a real user would ask for measurements, a picture, and accessibility notes -- not the router's own vocabulary -- still classifies as `INSPECT_EXPORT` per `../../ROUTER.md` §3 and resolves the same `RESOURCE_MAP["INSPECT_EXPORT"]` set as `FG-R03`, not on actually running the inspect.
 
 ### Why This Matters
 
@@ -41,7 +41,7 @@ Operators confirm the exact holdout prompt for `FG-H02` classifies as `INSPECT_E
 Grab the measurements and a picture of the selected element and write up its accessibility notes.
 ```
 
-- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`SKILL.md` §8); "accessibility" is the one literal `INSPECT_EXPORT` keyword hit, and no other intent's keyword list matches any word in the prompt, so `INSPECT_EXPORT` remains the sole scoring intent and `RESOURCE_MAP["INSPECT_EXPORT"]` loads both declared paths
+- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`../../ROUTER.md` §3); "accessibility" is the one literal `INSPECT_EXPORT` keyword hit, and no other intent's keyword list matches any word in the prompt, so `INSPECT_EXPORT` remains the sole scoring intent and `RESOURCE_MAP["INSPECT_EXPORT"]` loads both declared paths
 - Expected signals: every path in `expected_resources` exists under `mcp-figma/`, the frontmatter intent is `INSPECT_EXPORT`, and the resolved set matches `FG-R03`'s
 - Desired user-visible outcome: the bundled workflow classifies the natural-phrasing request the same way it classifies the keyword-heavy `FG-R03` prompt, loading the same CLI/daemon baseline and tool-surface taxonomy, and treats the whole request as read-only
 - Pass/fail: PASS if every listed path exists, the frontmatter intent is `INSPECT_EXPORT`, and the resolved set matches `FG-R03`; FAIL if any listed path is missing or the frontmatter disagrees
@@ -57,7 +57,7 @@ Grab the measurements and a picture of the selected element and write up its acc
 ### Commands
 
 1. `sed -n '1,16p' .skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/holdout-inspect.md`
-2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-figma/SKILL.md | sed -n '/"INSPECT_EXPORT":/p'`
+2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-figma/ROUTER.md | sed -n '/"INSPECT_EXPORT":/p'`
 3. `for p in references/figma-cli-reference.md references/tool-surface.md; do test -e ".skilled/skills/mcp-tooling/mcp-figma/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
@@ -92,7 +92,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §8 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [ROUTER.md](../../ROUTER.md) §3 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §1 | Activation triggers this scenario's prompt assumes |
 
 ---

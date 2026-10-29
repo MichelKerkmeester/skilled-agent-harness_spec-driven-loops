@@ -8,7 +8,7 @@ expected_intent: AUTOMATION
 expected_resources:
   - references/cdp-patterns.md
   - references/session-management.md
-version: 1.0.1.0
+version: 1.0.3.0
 ---
 
 # CD-R05: Automation routing
@@ -19,11 +19,11 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario validates AUTOMATION routing for `CD-R05`. It focuses on confirming that a prompt about wiring browser capture into an unattended CI pipeline scores highest against `INTENT_SIGNALS["AUTOMATION"]` in `SKILL.md` §9 and resolves the `RESOURCE_MAP["AUTOMATION"]` set, not on actually wiring the pipeline, since this scenario only exercises which intent and resources the router selects.
+This scenario validates AUTOMATION routing for `CD-R05`. It focuses on confirming that a prompt about wiring browser capture into an unattended CI pipeline scores highest against `INTENT_SIGNALS["AUTOMATION"]` in `../../ROUTER.md` §3 and resolves the `RESOURCE_MAP["AUTOMATION"]` set, not on actually wiring the pipeline, since this scenario only exercises which intent and resources the router selects.
 
 ### Why This Matters
 
-AUTOMATION is the lowest-weighted intent (`weight: 3` versus `4` for the other four, per `SKILL.md` §9 `INTENT_SIGNALS`), so it is the one most likely to lose a close tie. Confirming this CI/pipeline-heavy prompt still resolves `AUTOMATION` over `CLI` (which also mentions no CLI-specific terms here) is what proves the lower weight does not silently starve the intent of real matches.
+AUTOMATION is the lowest-weighted intent (`weight: 3` versus `4` for the other four, per `../../ROUTER.md` §3 `INTENT_SIGNALS`), so it is the one most likely to lose a close tie. Confirming this CI/pipeline-heavy prompt still resolves `AUTOMATION` over `CLI` (which also mentions no CLI-specific terms here) is what proves the lower weight does not silently starve the intent of real matches.
 
 ---
 
@@ -40,8 +40,8 @@ Operators confirm the exact prompt for `CD-R05` classifies as `AUTOMATION` and r
 Wire this browser capture into a CI pipeline so it runs unattended in production automation.
 ```
 
-- Expected execution process: the router scores the prompt against `INTENT_SIGNALS` (`SKILL.md` §9); "ci", "pipeline", "automation", "unattended", and "production" each match `AUTOMATION` keywords (weight 3) and no other intent scores as high, so `AUTOMATION` becomes the primary intent and `RESOURCE_MAP["AUTOMATION"]` loads both declared paths
-- Expected signals: every path in `expected_resources` exists under `mcp-chrome-devtools/`, and each documents `AUTOMATION` routing per `SKILL.md` §9
+- Expected execution process: the router scores the prompt against `INTENT_SIGNALS` (`../../ROUTER.md` §3); "ci", "pipeline", "automation", "unattended", and "production" each match `AUTOMATION` keywords (weight 3) and no other intent scores as high, so `AUTOMATION` becomes the primary intent and `RESOURCE_MAP["AUTOMATION"]` loads both declared paths
+- Expected signals: every path in `expected_resources` exists under `mcp-chrome-devtools/`, and each documents `AUTOMATION` routing per `../../ROUTER.md` §3
 - Desired user-visible outcome: the bundled workflow loads the CDP patterns and session-management references and treats the request as a recurring unattended job rather than a one-off interactive session
 - Pass/fail: PASS if every listed path exists and the frontmatter intent is `AUTOMATION`; FAIL if any listed path is missing or the frontmatter disagrees
 
@@ -56,7 +56,7 @@ Wire this browser capture into a CI pipeline so it runs unattended in production
 ### Commands
 
 1. `sed -n '1,15p' .skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/automation.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md | sed -n '/"AUTOMATION":/p'`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-chrome-devtools/ROUTER.md | sed -n '/"AUTOMATION":/p'`
 3. `for p in references/cdp-patterns.md references/session-management.md; do test -e ".skilled/skills/mcp-tooling/mcp-chrome-devtools/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
@@ -75,7 +75,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_S
 ### Failure Triage
 
 1. Re-run step 3 for the specific path that failed and confirm whether it was renamed or removed under `references/`.
-2. Diff this scenario's `expected_resources` against the step-2 `INTENT_SIGNALS["AUTOMATION"]` excerpt and the `RESOURCE_MAP["AUTOMATION"]` entry in `SKILL.md` §9 to see whether the drift is a stale scenario file or a stale `SKILL.md` map.
+2. Diff this scenario's `expected_resources` against the step-2 `INTENT_SIGNALS["AUTOMATION"]` excerpt and the `RESOURCE_MAP["AUTOMATION"]` entry in `../../ROUTER.md` §3 to see whether the drift is a stale scenario file or a stale `../../ROUTER.md` map.
 
 ---
 
@@ -91,7 +91,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_S
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §9 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [ROUTER.md](../../ROUTER.md) §3 | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §1 | Activation triggers this scenario's prompt assumes |
 
 ---

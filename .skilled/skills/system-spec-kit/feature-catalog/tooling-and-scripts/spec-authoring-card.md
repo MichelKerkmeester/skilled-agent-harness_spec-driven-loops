@@ -6,7 +6,7 @@ trigger_phrases:
   - "authoring card"
   - "write a spec packet"
   - "fill a spec scaffold"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Spec authoring card
@@ -23,7 +23,7 @@ The card covers the bounds of a packet write, the level choice, the scaffold com
 
 ### Router Change
 
-`RESOURCE_MAP` in `SKILL.md` lists the resources each intent loads. Four rows changed from the long guide to the card. The `ON_DEMAND` list keeps one guide entry, so a reader can still ask for the long path.
+`RESOURCE_MAP` in [`ROUTER.md`](../../ROUTER.md) §3 MACHINE ROUTER lists the resources each intent loads. Four rows changed from the long guide to the card. The `ON_DEMAND` list keeps one guide entry, so a reader can still ask for the long path.
 
 ### Sync Guard
 

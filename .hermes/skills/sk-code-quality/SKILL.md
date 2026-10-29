@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: "sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists."
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.13.15.0
+version: 1.13.16.0
 metadata:
   family: sk-code
 ---
@@ -66,8 +66,8 @@ Three resources load first: `references/runner-contract.md` for the runner's CLI
 `../shared/references/universal/code-quality-standards.md` for the shared severity floor; and `references/code-style-guide.md` for this packet's style and comment rules.
 The resource domains, loading levels, path-keyed rows and comment-hygiene layers follow in the next section.
 
-The route map, the prompt-intent projection and the call sequence sit in the final `MACHINE ROUTER` section of this file.
 That projection only makes the default resources scoreable; it never picks the path-keyed checklist.
+Read [`ROUTER.md`](../../../.skilled/skills/sk-code/sk-code-quality/ROUTER.md) before selecting skill-local resources; open only the matched files.
 
 ---
 
@@ -329,83 +329,3 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 
 - [`../shared/references/universal/code-quality-standards.md`](../../../.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md) - Shared code quality standards.
 - [`references/code-style-guide.md`](../../../.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md) - This mode's code style and comment hygiene guide.
-
----
-
-## 9. MACHINE ROUTER
-
-The packet's deterministic route map, its thin prompt-intent projection and the call sequence that reads them.
-
-### Primary Detection Signal
-
-Surface identity is resolved once by the parent shared router. This mode consumes that result and then routes by target path and quality intent:
-
-```text
-QUALITY TASK
-    |
-    +- Surface identity -> ../shared/references/stack-detection.md
-    +- Phase lifecycle  -> ../shared/references/phase-detection.md
-    +- Resource routing -> ../ROUTER.md
-    |
-    +- Quality runner     -> node scripts/quality-gate.cjs (one verdict for the change)
-    |     +- any surface  -> the universal floor plus the runner's built-in checks
-    |     +- UNKNOWN      -> the floor plus the runner's checks, with `unknown` recorded
-    |
-    +- SKILLED target    -> ../sk-code-skilled/assets/checklists/<target-checklist>.md
-    +- Comment hygiene    -> scripts/check-comment-hygiene.sh, called once by the runner
-    +- Dist staleness     -> scripts/check-dist-staleness.sh when generated artifacts are involved
-```
-
-### Phase Detection
-
-```text
-Phase 1 Implementation writes or changes files
-    -> Phase 1.5 Code Quality Gate runs here
-        -> run node scripts/quality-gate.cjs and read its gate
-        -> load every checklist the verdict lists before any completion claim
-        -> the runner calls comment hygiene once over every modified file
-        -> apply P0/P1/P2 author checks and judge the judgment_required items
-        -> edit in place only for gate failures
-    -> Phase 2 Debugging if checks expose a failing symptom
-    -> Phase 3 Verification after the gate is clean enough to verify
-```
-
-### Thin Prompt-Intent Projection
-
-sk-code-quality routes primarily by TARGET PATH (the checklists `--explain` names for a file), not by prompt keywords. Its parent-to-child discoverability is the hub `quality` signal. This thin prompt-intent projection deliberately does not model the path-keyed dispatch.
-
-```python
-# Thin prompt-intent router: sk-code-quality owns a single routable checklist. Its
-# real routing is target-path-keyed (the checklists --explain names), and its parent
-# discoverability is the hub quality signal. This block only made the one asset
-# scoreable by the retired deterministic router-replay.
-DEFAULT_RESOURCE = [
-    "references/runner-contract.md",
-    "../shared/references/universal/code-quality-standards.md",
-    "references/code-style-guide.md",
-]
-
-INTENT_SIGNALS = {
-    "QUALITY": {"weight": 1, "keywords": ["quality gate", "comment hygiene", "p0 p1 p2", "code smell", "dist staleness", "naming", "standards", "checklist", "author quality gate", "envelope", "restraint", "yagni"]},
-}
-
-RESOURCE_MAP = {
-    "QUALITY": [
-        "references/quality-config.md",
-    ],
-}
-```
-
-### Call Sequence
-
-```text
-discover_markdown_resources()
-    -> _guard_in_skill() + load_if_available()
-    -> score_intents()/select_intents() for the thin QUALITY projection
-    -> get_routing_key() from target path, then select the path-keyed checklist
-    -> UNKNOWN_FALLBACK when no routable target path is available
-```
-
-The declarations behind `--explain` stay authoritative, and the runner reads them directly. One `--explain` call takes several paths.
-Each file's entry lists its `surfaces`, the folder each surface loads from in `surface_skills`, the `source` seat that declared each checklist and that checklist's parsed `## Rule overrides` rows, and a single path prints the same fields at the top level.
-The prompt-intent projection only makes the default quality resources scoreable.

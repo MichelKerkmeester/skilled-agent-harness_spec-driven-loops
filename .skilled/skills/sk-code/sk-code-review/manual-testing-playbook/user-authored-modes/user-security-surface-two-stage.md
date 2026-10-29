@@ -1,7 +1,7 @@
 ---
 title: "CR-028 -- User security surface through both routing stages"
 description: "This scenario validates the user security surface through both routing stages for `CR-028`. It focuses on the skill advisor selecting the `sk-code` hub, then the hub router selecting the review mode plus a repository-added security surface, with review staying primary and the surface riding as read-only evidence."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CR-028 -- User security surface through both routing stages
@@ -72,7 +72,9 @@ hubRouter.routerSignals["sk-code-security"]={weight:4,classes:["code-security-ru
 hubRouter.vocabularyClasses["code-security-runtime"]={keywords:["session token","token handler"]};
 const tb=hubRouter.routerPolicy.tieBreak; tb.splice(tb.length-1,0,"sk-code-security");
 const md=fs.readFileSync(path.join(root,"SKILL.md"),"utf8");
-const snap=compileRegistry({activationGeneration:1,hubRouter,registry,skillMarkdown:md,sourceBytes:{"SKILL.md":Buffer.from(md),"hub-router.json":Buffer.from(JSON.stringify(hubRouter)),"mode-registry.json":Buffer.from(JSON.stringify(registry))}});
+const rr=fs.readFileSync(path.join(root,"ROUTER.md"),"utf8");
+const rm=rr.slice(rr.search(/^## \d+\. MACHINE ROUTER$/m));
+const snap=compileRegistry({activationGeneration:1,hubRouter,registry,routerMarkdown:rm,skillMarkdown:md,sourceBytes:{"ROUTER.md":Buffer.from(rr),"SKILL.md":Buffer.from(md),"hub-router.json":Buffer.from(JSON.stringify(hubRouter)),"mode-registry.json":Buffer.from(JSON.stringify(registry))}});
 for (const p of ["review the session token handler for security issues","fix the session token handler"]) { const {decision}=evaluateCanary(snap,{prompt:p}); console.log(p,"=>",decision.route.selectionKind,decision.route.targets.map(t=>t.destinationId.workflowMode).join(",")); }
 '
 ```

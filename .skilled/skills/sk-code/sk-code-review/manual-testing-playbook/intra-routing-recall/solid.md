@@ -12,7 +12,7 @@ expected_resources:
   - assets/code-quality-checklist.md
   - assets/fix-completeness-checklist.md
   - assets/solid-checklist.md
-version: 1.1.0.0
+version: 1.1.2.0
 ---
 
 # CR-R05: SOLID routing
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `CR-R05` and confirm the
 - Objective: confirm the exact prompt selects `SOLID` at its own score and adds `assets/solid-checklist.md` beyond the baseline, and the disconfirming prompt adds nothing.
 - Real user request: `Review target is a module layout the author wants assessed for coupling and boundaries.`
 - Prompt: `Review this architecture for SOLID design, coupling, cohesion, module boundaries, adapter interfaces, abstraction responsibility, and dependency direction.`
-- Expected execution process: run the shipped `MACHINE ROUTER` block from `SKILL.md` §10 over the exact prompt and over the disconfirming prompt, resolve each printed path under the skill root, and compare with the Expected block.
+- Expected execution process: run the shipped `MACHINE ROUTER` block from `../../ROUTER.md` §3 over the exact prompt and over the disconfirming prompt, resolve each printed path under the skill root, and compare with the Expected block.
 - Expected signals: the exact prompt prints `intents= ['SOLID']`, `scores= {'SOLID': 30.0}` and six resources ending in `assets/solid-checklist.md`; the disconfirming prompt prints `intents= ['QUALITY']`, an empty score map and only the five `DEFAULT_RESOURCES`.
 - Desired user-visible outcome: a reviewer handed the SOLID checklist for an architecture question, and no architecture route invented for a prompt that only asks for an opinion.
 - Pass/fail: PASS if the exact prompt selects `SOLID` with score `30.0` and its resource list is the five `DEFAULT_RESOURCES` plus `assets/solid-checklist.md`, the disconfirming prompt adds nothing, and every printed path exists under the skill root; FAIL if the intent differs, the score differs, the SOLID checklist is absent, or a printed path does not exist.
@@ -59,20 +59,20 @@ Review this architecture for SOLID design, coupling, cohesion, module boundaries
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-R05 | SOLID routing | Confirm an architecture-shaped prompt selects `SOLID` at its own score and adds `assets/solid-checklist.md` beyond the baseline, and that a prompt without those words adds nothing. | `Review this architecture for SOLID design, coupling, cohesion, module boundaries, adapter interfaces, abstraction responsibility, and dependency direction.` | bash: run the shipped `SKILL.md` §10 router block over the exact prompt and the disconfirming prompt -> bash: test that every printed path exists under the skill root | The exact prompt prints `intents= ['SOLID']`, `scores= {'SOLID': 30.0}` and six resources ending in `assets/solid-checklist.md`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}` and the five `DEFAULT_RESOURCES` | Both router transcripts plus the path-existence output | PASS iff the exact prompt selects `SOLID` at `30.0`, its resource list is the five `DEFAULT_RESOURCES` plus `assets/solid-checklist.md`, the disconfirming prompt adds nothing, and every printed path exists; FAIL on a different intent or score, a missing SOLID checklist, or a path that does not resolve | 1. Confirm the §10 block was extracted from `SKILL.md`; 2. Diff `RESOURCE_MAP["SOLID"]` and re-run the path-existence step; 3. Compare the score against the ten matched keywords before suspecting the map |
+| CR-R05 | SOLID routing | Confirm an architecture-shaped prompt selects `SOLID` at its own score and adds `assets/solid-checklist.md` beyond the baseline, and that a prompt without those words adds nothing. | `Review this architecture for SOLID design, coupling, cohesion, module boundaries, adapter interfaces, abstraction responsibility, and dependency direction.` | bash: run the shipped `../../ROUTER.md` §3 router block over the exact prompt and the disconfirming prompt -> bash: test that every printed path exists under the skill root | The exact prompt prints `intents= ['SOLID']`, `scores= {'SOLID': 30.0}` and six resources ending in `assets/solid-checklist.md`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}` and the five `DEFAULT_RESOURCES` | Both router transcripts plus the path-existence output | PASS iff the exact prompt selects `SOLID` at `30.0`, its resource list is the five `DEFAULT_RESOURCES` plus `assets/solid-checklist.md`, the disconfirming prompt adds nothing, and every printed path exists; FAIL on a different intent or score, a missing SOLID checklist, or a path that does not resolve | 1. Confirm the §3 block was extracted from `ROUTER.md`; 2. Diff `RESOURCE_MAP["SOLID"]` and re-run the path-existence step; 3. Compare the score against the ten matched keywords before suspecting the map |
 
 ### Commands
 
-Run from the repository root. The block is extracted from `SKILL.md` at run time, so the scenario tests the shipped router and not a copy of it.
+Run from the repository root. The block is extracted from `ROUTER.md` at run time, so the scenario tests the shipped router and not a copy of it.
 
 ```bash
 python3 - <<'PY'
 import re
 from pathlib import Path
 
-skill = Path('.skilled/skills/sk-code/sk-code-review/SKILL.md')
+skill = Path('.skilled/skills/sk-code/sk-code-review/ROUTER.md')
 text = skill.read_text()
-block = re.search(r"```python\n(.*?)\n```", text[text.index('## 10. MACHINE ROUTER'):], re.S).group(1)
+block = re.search(r"```python\n(.*?)\n```", text[text.index('## 3. MACHINE ROUTER'):], re.S).group(1)
 ns = {'__file__': str(skill), '__name__': 'machine_router', 'load': lambda path: None}
 exec(compile(block, 'machine-router', 'exec'), ns)
 
@@ -137,7 +137,7 @@ OK assets/solid-checklist.md
 
 ### Evidence
 
-Both router transcripts, the six-line path-existence output, and the `INTENT_SIGNALS["SOLID"]` and `RESOURCE_MAP["SOLID"]` excerpts from `SKILL.md` §10.
+Both router transcripts, the six-line path-existence output, and the `INTENT_SIGNALS["SOLID"]` and `RESOURCE_MAP["SOLID"]` excerpts from `../../ROUTER.md` §3.
 
 ### Pass / Fail
 
@@ -146,7 +146,7 @@ Both router transcripts, the six-line path-existence output, and the `INTENT_SIG
 
 ### Failure Triage
 
-1. Confirm the extraction found the `## 10. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
+1. Confirm the extraction found the `## 3. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
 2. A score in steps of `3` below `30.0` means one of the ten matched keywords moved. Quote `INTENT_SIGNALS["SOLID"]` and name the one the prompt still contains.
 3. A score above `30.0` means the keyword list grew a word the prompt now matches twice through near-duplicates, or a plural form started matching. Name the new keyword.
 4. A `MISS assets/solid-checklist.md` means the checklist moved; `RESOURCE_MAP["SOLID"]` carries the path and must move with it.
@@ -167,7 +167,7 @@ Both router transcripts, the six-line path-existence output, and the `INTENT_SIG
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §10 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES` and the router block this scenario executes |
+| [ROUTER.md](../../ROUTER.md) §3 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES` and the router block this scenario executes |
 | [solid-checklist.md](../../assets/solid-checklist.md) | The checklist this route adds |
 | [review-core.md](../../references/review-core.md) | The `review.solid` lens rule the checklist items carry |
 

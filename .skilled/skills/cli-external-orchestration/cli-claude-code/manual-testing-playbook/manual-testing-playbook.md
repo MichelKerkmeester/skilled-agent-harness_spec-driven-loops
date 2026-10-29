@@ -1,7 +1,7 @@
 ---
 title: "Claude Code CLI Orchestrator: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-claude-code cross-AI delegation skill."
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Claude Code CLI Orchestrator: Manual Testing Playbook
@@ -676,7 +676,7 @@ The cli-claude-code skill is a thin orchestration wrapper around the external An
 | `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-claude-code.vitest.ts` | Hermetic fan-out, lineage, timeout, and transport stress cells for the `cli-claude-code` adapter | `cli-claude-code-EC-001` .. `cli-claude-code-EC-014` |
 
 The `intra-routing-recall/` category is also an exception to the manual-only pattern above: it
-re-derives its expected `INTENT_SIGNALS`/`RESOURCE_MAP` truth directly from SKILL.md on every run.
+re-derives its expected `INTENT_SIGNALS`/`RESOURCE_MAP` truth directly from ROUTER.md on every run.
 
 Validator support: the shared `validate_document.py` validates this root playbook structurally but does not recurse into category folders. Per-feature file completeness is checked manually via the link integrity and feature ID count gates documented in section 5.
 
@@ -742,7 +742,7 @@ Validator support: the shared `validate_document.py` validates this root playboo
 
 ## 18. INTRA ROUTING RECALL (`CC-R01..CC-R07`, `CC-H01..CC-H02`, `CC-N01`)
 
-This category re-derives its expected truth directly from SKILL.md's `INTENT_SIGNALS`/`RESOURCE_MAP`
+This category re-derives its expected truth directly from ROUTER.md's `INTENT_SIGNALS`/`RESOURCE_MAP`
 on every run: each routing scenario confirms a keyword-bearing prompt resolves its documented intent
 and resource bundle, each holdout scenario confirms a keyword-free paraphrase still generalizes to
 the right intent, and the negative scenario confirms an out-of-domain prompt routes to

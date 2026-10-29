@@ -10,7 +10,7 @@ trigger_phrases:
   - "devin model alias reference"
 importance_tier: normal
 contextType: implementation
-version: 1.4.6.0
+version: 1.4.7.0
 ---
 
 # cli-devin Providers, Models & Invocation
@@ -147,7 +147,7 @@ SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 devin -p \
 - `</dev/null` is REQUIRED before stdout/stderr redirects (and inside any `while read` loop). `devin -p` inherits the caller's stdin and silently drains it, dropping later dispatches. See [integration-patterns.md](./integration-patterns.md) §4.
 
 ### Self-invocation guard
-A devin dispatch must not recursively re-enter a session already running inside Devin. The guard is packet-local and inline. See [../SKILL.md](../SKILL.md) §9 "Self-Invocation Guard" (detects `$DEVIN_PROJECT_DIR`, `devin` process ancestry, and active-session credentials).
+A devin dispatch must not recursively re-enter a session already running inside Devin. The guard is packet-local and inline. See [../ROUTER.md](../ROUTER.md) §3 "Self-Invocation Guard" (detects `$DEVIN_PROJECT_DIR`, `devin` process ancestry, and active-session credentials).
 
 ### Cloud handoff
 Devin's unique `/handoff` transfers the current session to a cloud VM (own shell, browser, full repo access) for long-running, browser-dependent, or CI-like work. See [cloud-handoff.md](./cloud-handoff.md).

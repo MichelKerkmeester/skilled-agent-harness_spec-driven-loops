@@ -7,7 +7,7 @@ description: "This scenario validates the negative/out-of-domain control for `MB
 expected_intent: none
 expected_resources: []
 blindToRouterKeywords: false
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # MB-N01: Negative: out of domain
@@ -18,7 +18,7 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario validates the negative/out-of-domain control for `MB-N01`. It focuses on confirming that a prompt entirely unrelated to Mobbin -- optimizing a SQL query -- scores zero against every entry in `INTENT_MODEL` (`SKILL.md` §10 MACHINE ROUTER) and falls through the router's zero-score branch to `UNKNOWN_FALLBACK`, not on any Mobbin capability, since this scenario exists to prove the router does not force an out-of-domain prompt into a false-positive route.
+This scenario validates the negative/out-of-domain control for `MB-N01`. It focuses on confirming that a prompt entirely unrelated to Mobbin -- optimizing a SQL query -- scores zero against every entry in `INTENT_MODEL` (`../../ROUTER.md` §3 MACHINE ROUTER) and falls through the router's zero-score branch to `UNKNOWN_FALLBACK`, not on any Mobbin capability, since this scenario exists to prove the router does not force an out-of-domain prompt into a false-positive route.
 
 ### Why This Matters
 
@@ -39,7 +39,7 @@ Operators confirm the exact prompt for `MB-N01` scores zero across every `INTENT
 Optimize this SQL query so the report loads faster.
 ```
 
-- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`SKILL.md` §10 MACHINE ROUTER); no keyword from `APPS`, `SCREENS`, `FLOWS`, `ELEMENTS`, `WIRING_AUTH`, or `TROUBLESHOOT` appears in the prompt, so the classifier returns an all-zero score vector and the `UNKNOWN_FALLBACK` branch fires instead of a false intent match
+- Expected execution process: the router scores the prompt against `INTENT_MODEL` (`../../ROUTER.md` §3 MACHINE ROUTER); no keyword from `APPS`, `SCREENS`, `FLOWS`, `ELEMENTS`, `WIRING_AUTH`, or `TROUBLESHOOT` appears in the prompt, so the classifier returns an all-zero score vector and the `UNKNOWN_FALLBACK` branch fires instead of a false intent match
 - Expected signals: the frontmatter `expected_intent` stays `none` and `expected_resources` stays empty; the negative-control grep in step 3 reports `NOMATCH` for the full keyword alternation
 - Desired user-visible outcome: the bundled workflow declines to attach any Mobbin resource to the request and, if surfaced to an orchestrator, reports this as outside the `mcp-mobbin` domain rather than guessing an intent
 - Pass/fail: PASS if the prompt scores zero across all six `INTENT_MODEL` entries and the frontmatter stays `expected_intent: none`; FAIL if any keyword incidentally matches or an intent is force-assigned
@@ -55,7 +55,7 @@ Optimize this SQL query so the report loads faster.
 ### Commands
 
 1. `sed -n '1,14p' .skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/intra-routing-recall/negative.md`
-2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md`
+2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-mobbin/ROUTER.md`
 3. `echo "Optimize this SQL query so the report loads faster." | grep -qiE 'app design research|app research|competitor|app comparison|banking apps|category|how do apps|real apps|screen|screen examples|ui pattern|empty state|first open|onboarding screen|component example|screenshot|paywall|settings|dashboard|flow|ux flow|user flow|journey|start to finish|multi-step|progression|forgot password|checkout|signup process|element|bottom sheet|inline validation|component behavior|button state|tab bar|modal|confirmation dialog|wiring|utcp|oauth|mcp-remote|authenticate|pkce|manual|register|token|plan|install|setup|error|failed|401|not working|not resolving|429|rate limit|timeout|unauthorized|denied' && echo MATCH || echo NOMATCH`
 
 ### Expected
@@ -74,7 +74,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 ### Failure Triage
 
 1. If step 3 prints `MATCH`, re-run the same grep restricted to one intent's keyword list at a time to identify exactly which keyword the prompt incidentally contains.
-2. Confirm whether the false match is a genuinely ambiguous prompt (rewrite the prompt) or a keyword in `INTENT_MODEL` that is too broad (flag it against `SKILL.md` §10 MACHINE ROUTER for a keyword-weight review) -- do not silently accept a routed intent for this negative-control scenario.
+2. Confirm whether the false match is a genuinely ambiguous prompt (rewrite the prompt) or a keyword in `INTENT_MODEL` that is too broad (flag it against `../../ROUTER.md` §3 MACHINE ROUTER for a keyword-weight review) -- do not silently accept a routed intent for this negative-control scenario.
 
 ---
 
@@ -90,7 +90,7 @@ Command transcript from steps 1-3; the resolved frontmatter block; the `INTENT_M
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §10 MACHINE ROUTER | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [ROUTER.md](../../ROUTER.md) §3 MACHINE ROUTER | `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
 | [SKILL.md](../../SKILL.md) §1 | Activation triggers this scenario's prompt assumes |
 
 ---

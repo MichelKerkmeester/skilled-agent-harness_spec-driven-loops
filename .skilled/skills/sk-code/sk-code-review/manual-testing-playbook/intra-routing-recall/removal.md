@@ -12,7 +12,7 @@ expected_resources:
   - assets/code-quality-checklist.md
   - assets/fix-completeness-checklist.md
   - assets/removal-plan.md
-version: 1.1.0.0
+version: 1.1.2.0
 ---
 
 # CR-R06: Removal routing
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `CR-R06` and confirm the
 - Objective: confirm the exact prompt selects `REMOVAL` at its own score and adds `assets/removal-plan.md` beyond the baseline, and the disconfirming prompt adds nothing.
 - Real user request: `Review target is a cleanup that deprecates an obsolete path and the author wants a removal plan.`
 - Prompt: `Review this cleanup plan to remove dead code and deprecate obsolete behavior safely.`
-- Expected execution process: run the shipped `MACHINE ROUTER` block from `SKILL.md` §10 over the exact prompt and over the disconfirming prompt, resolve each printed path under the skill root, and compare with the Expected block.
+- Expected execution process: run the shipped `MACHINE ROUTER` block from `../../ROUTER.md` §3 over the exact prompt and over the disconfirming prompt, resolve each printed path under the skill root, and compare with the Expected block.
 - Expected signals: the exact prompt prints `intents= ['REMOVAL']`, `scores= {'REMOVAL': 12.0}` and six resources ending in `assets/removal-plan.md`; the disconfirming prompt prints `intents= ['QUALITY']`, an empty score map and only the five `DEFAULT_RESOURCES`.
 - Desired user-visible outcome: a reviewer handed the removal plan for a cleanup question, and no removal route invented for a prompt that only asks for an opinion.
 - Pass/fail: PASS if the exact prompt selects `REMOVAL` with score `12.0` and its resource list is the five `DEFAULT_RESOURCES` plus `assets/removal-plan.md`, the disconfirming prompt adds nothing, and every printed path exists under the skill root; FAIL if the intent differs, the score differs, the removal plan is absent, or a printed path does not exist.
@@ -59,20 +59,20 @@ Review this cleanup plan to remove dead code and deprecate obsolete behavior saf
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-R06 | Removal routing | Confirm a removal-shaped prompt selects `REMOVAL` at its own score and adds `assets/removal-plan.md` beyond the baseline, and that a prompt without removal words adds nothing. | `Review this cleanup plan to remove dead code and deprecate obsolete behavior safely.` | bash: run the shipped `SKILL.md` §10 router block over the exact prompt and the disconfirming prompt -> bash: test that every printed path exists under the skill root | The exact prompt prints `intents= ['REMOVAL']`, `scores= {'REMOVAL': 12.0}` and six resources ending in `assets/removal-plan.md`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}` and the five `DEFAULT_RESOURCES` | Both router transcripts plus the path-existence output | PASS iff the exact prompt selects `REMOVAL` at `12.0`, its resource list is the five `DEFAULT_RESOURCES` plus `assets/removal-plan.md`, the disconfirming prompt adds nothing, and every printed path exists; FAIL on a different intent or score, a missing removal plan, or a path that does not resolve | 1. Confirm the §10 block was extracted from `SKILL.md`; 2. Diff `RESOURCE_MAP["REMOVAL"]` and re-run the path-existence step; 3. Compare the score against the four matched keywords before suspecting the map |
+| CR-R06 | Removal routing | Confirm a removal-shaped prompt selects `REMOVAL` at its own score and adds `assets/removal-plan.md` beyond the baseline, and that a prompt without removal words adds nothing. | `Review this cleanup plan to remove dead code and deprecate obsolete behavior safely.` | bash: run the shipped `../../ROUTER.md` §3 router block over the exact prompt and the disconfirming prompt -> bash: test that every printed path exists under the skill root | The exact prompt prints `intents= ['REMOVAL']`, `scores= {'REMOVAL': 12.0}` and six resources ending in `assets/removal-plan.md`; the disconfirming prompt prints `intents= ['QUALITY']`, `scores= {}` and the five `DEFAULT_RESOURCES` | Both router transcripts plus the path-existence output | PASS iff the exact prompt selects `REMOVAL` at `12.0`, its resource list is the five `DEFAULT_RESOURCES` plus `assets/removal-plan.md`, the disconfirming prompt adds nothing, and every printed path exists; FAIL on a different intent or score, a missing removal plan, or a path that does not resolve | 1. Confirm the §3 block was extracted from `ROUTER.md`; 2. Diff `RESOURCE_MAP["REMOVAL"]` and re-run the path-existence step; 3. Compare the score against the four matched keywords before suspecting the map |
 
 ### Commands
 
-Run from the repository root. The block is extracted from `SKILL.md` at run time, so the scenario tests the shipped router and not a copy of it.
+Run from the repository root. The block is extracted from `ROUTER.md` at run time, so the scenario tests the shipped router and not a copy of it.
 
 ```bash
 python3 - <<'PY'
 import re
 from pathlib import Path
 
-skill = Path('.skilled/skills/sk-code/sk-code-review/SKILL.md')
+skill = Path('.skilled/skills/sk-code/sk-code-review/ROUTER.md')
 text = skill.read_text()
-block = re.search(r"```python\n(.*?)\n```", text[text.index('## 10. MACHINE ROUTER'):], re.S).group(1)
+block = re.search(r"```python\n(.*?)\n```", text[text.index('## 3. MACHINE ROUTER'):], re.S).group(1)
 ns = {'__file__': str(skill), '__name__': 'machine_router', 'load': lambda path: None}
 exec(compile(block, 'machine-router', 'exec'), ns)
 
@@ -137,7 +137,7 @@ OK assets/removal-plan.md
 
 ### Evidence
 
-Both router transcripts, the six-line path-existence output, and the `INTENT_SIGNALS["REMOVAL"]` and `RESOURCE_MAP["REMOVAL"]` excerpts from `SKILL.md` §10.
+Both router transcripts, the six-line path-existence output, and the `INTENT_SIGNALS["REMOVAL"]` and `RESOURCE_MAP["REMOVAL"]` excerpts from `../../ROUTER.md` §3.
 
 ### Pass / Fail
 
@@ -146,7 +146,7 @@ Both router transcripts, the six-line path-existence output, and the `INTENT_SIG
 
 ### Failure Triage
 
-1. Confirm the extraction found the `## 10. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
+1. Confirm the extraction found the `## 3. MACHINE ROUTER` section and the `python` fence inside it; an empty block raises before any routing output and is a scenario-setup failure, not a routing failure.
 2. A score in steps of `3` below `12.0` means one of `remove`, `dead code`, `cleanup` or `deprecate` stopped matching. Quote `INTENT_SIGNALS["REMOVAL"]` and name it.
 3. `removal` and `removed` do not match the `remove` keyword, because the router matches whole words. A prompt that only says `removal` scores lower, and that is expected rather than a defect.
 4. A `MISS assets/removal-plan.md` means the asset moved; `RESOURCE_MAP["REMOVAL"]` and the unrequested-code removal scenario both name it.
@@ -167,7 +167,7 @@ Both router transcripts, the six-line path-existence output, and the `INTENT_SIG
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §10 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES` and the router block this scenario executes |
+| [ROUTER.md](../../ROUTER.md) §3 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES` and the router block this scenario executes |
 | [removal-plan.md](../../assets/removal-plan.md) | The plan this route adds |
 | [unrequested-code-removal.md](../efficiency-and-restraint/unrequested-code-removal.md) | The scenario that exercises the needed-ness prompt this route serves |
 

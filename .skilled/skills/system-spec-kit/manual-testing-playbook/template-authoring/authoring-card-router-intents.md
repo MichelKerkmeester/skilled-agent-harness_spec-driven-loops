@@ -1,7 +1,7 @@
 ---
 title: "481 -- Authoring card loaded by four intents"
 description: "This scenario validates that the PLAN, IMPLEMENT, INTAKE and TEMPLATE_AUTHORING intents load the authoring card and leave the long guide on demand."
-version: 1.0.1.0
+version: 1.0.3.0
 id: template-authoring-authoring-card-router-intents
 ---
 
@@ -9,7 +9,7 @@ id: template-authoring-authoring-card-router-intents
 
 ## 1. OVERVIEW
 
-This scenario validates the router change that sends four authoring intents to the card. The `RESOURCE_MAP` in `SKILL.md` sends four authoring intents to a short card. The long template guide stays reachable from `ON_DEMAND` only. The scenario counts the card and guide lines inside the four intent blocks and inside the on demand list.
+This scenario validates the router change that sends four authoring intents to the card. The `RESOURCE_MAP` in [`ROUTER.md`](../../ROUTER.md) §3 MACHINE ROUTER sends four authoring intents to a short card. The long template guide stays reachable from `ON_DEMAND` only. The scenario counts the card and guide lines inside the four intent blocks and inside the on demand list.
 
 ### Why This Matters
 
@@ -49,19 +49,19 @@ Run the commands from the checkout root in one shell session.
 
 ```bash
 S=.skilled/skills/system-spec-kit
-awk '/^    "(PLAN|IMPLEMENT|INTAKE|TEMPLATE_AUTHORING)": \[$/ {inside=1} inside && /spec-authoring-card\.md/ {n++} inside && /^    \],$/ {inside=0} END {print n+0}' "$S/SKILL.md"
+awk '/^    "(PLAN|IMPLEMENT|INTAKE|TEMPLATE_AUTHORING)": \[$/ {inside=1} inside && /spec-authoring-card\.md/ {n++} inside && /^    \],$/ {inside=0} END {print n+0}' "$S/ROUTER.md"
 ```
 
 2. Count the guide lines in the same four blocks.
 
 ```bash
-awk '/^    "(PLAN|IMPLEMENT|INTAKE|TEMPLATE_AUTHORING)": \[$/ {inside=1} inside && /template-guide\.md/ {n++} inside && /^    \],$/ {inside=0} END {print n+0}' "$S/SKILL.md"
+awk '/^    "(PLAN|IMPLEMENT|INTAKE|TEMPLATE_AUTHORING)": \[$/ {inside=1} inside && /template-guide\.md/ {n++} inside && /^    \],$/ {inside=0} END {print n+0}' "$S/ROUTER.md"
 ```
 
 3. Count the guide lines in the on demand list.
 
 ```bash
-awk '/"ON_DEMAND": \[/ {od=1; next} od && /^    \],$/ {od=0} od && /template-guide\.md/ {n++} END {print n+0}' "$S/SKILL.md"
+awk '/"ON_DEMAND": \[/ {od=1; next} od && /^    \],$/ {od=0} od && /template-guide\.md/ {n++} END {print n+0}' "$S/ROUTER.md"
 ```
 
 ### Expected
