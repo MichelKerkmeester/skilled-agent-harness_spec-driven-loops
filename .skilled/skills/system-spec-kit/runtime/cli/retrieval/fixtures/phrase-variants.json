@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e7b8037543b126a58c658e376d120283318e47b81e77b88b6591b576c69bfccd",
+  "manifestHash": "3f92685a2d1c092c7285bbadcbe7033f6508175162e5fca5c7264cc85b561b7e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -43787,6 +43787,9 @@
     "exactly once applier": [
       "exactly once applier"
     ],
+    "exactly one fresh cross process acquire": [
+      "exactly one fresh cross-process acquire"
+    ],
     "exacttriggersearch parity": [
       "exactTriggerSearch parity"
     ],
@@ -47325,6 +47328,9 @@
     ],
     "fix the deep loop fan out s failed": [
       "fix the deep loop fan out s failed"
+    ],
+    "fix the flaky cross process loop lock race": [
+      "fix the flaky cross process loop lock race"
     ],
     "fix the gap detector over capping": [
       "fix the gap detector over-capping"
@@ -60822,6 +60828,18 @@
     "loop lock": [
       "loop lock"
     ],
+    "loop lock cross process race": [
+      "loop lock cross process race"
+    ],
+    "loop lock cross process race implementation summary": [
+      "loop lock cross process race implementation summary"
+    ],
+    "loop lock cross process race plan": [
+      "loop lock cross process race plan"
+    ],
+    "loop lock cross process race tasks": [
+      "loop lock cross process race tasks"
+    ],
     "loop lock heartbeat hardening": [
       "loop-lock heartbeat hardening"
     ],
@@ -60845,6 +60863,9 @@
     ],
     "loop lock ts pid ttl heartbeat": [
       "loop-lock.ts pid ttl heartbeat"
+    ],
+    "loop lock two winners": [
+      "loop lock two winners"
     ],
     "loop termination cause event": [
       "loop termination cause event"

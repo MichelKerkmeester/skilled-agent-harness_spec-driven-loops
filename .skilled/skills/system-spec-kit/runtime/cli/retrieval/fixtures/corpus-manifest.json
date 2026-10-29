@@ -1,5 +1,5 @@
 {
-  "corpusHash": "60f2cec502e9e887faded73f3764f06f41d99cb200e5c6e293b23b791c8d1d62",
+  "corpusHash": "9f824819f2c6097eb676ca462eaa2df74b026653d4118cf6c060a7270fc6af11",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27136,
+  "includedPathCount": 27140,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -16490,6 +16490,10 @@
     "specs/system-deep-loop/043-fanout-resume-and-containment/plan.md",
     "specs/system-deep-loop/043-fanout-resume-and-containment/spec.md",
     "specs/system-deep-loop/043-fanout-resume-and-containment/tasks.md",
+    "specs/system-deep-loop/044-loop-lock-cross-process-race/implementation-summary.md",
+    "specs/system-deep-loop/044-loop-lock-cross-process-race/plan.md",
+    "specs/system-deep-loop/044-loop-lock-cross-process-race/spec.md",
+    "specs/system-deep-loop/044-loop-lock-cross-process-race/tasks.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/implementation-summary.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/plan.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/research/leak-research.md",
@@ -27167,7 +27171,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e7b8037543b126a58c658e376d120283318e47b81e77b88b6591b576c69bfccd",
+  "manifestHash": "3f92685a2d1c092c7285bbadcbe7033f6508175162e5fca5c7264cc85b561b7e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31843,6 +31847,10 @@
     },
     {
       "path": "specs/system-deep-loop/043-fanout-resume-and-containment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/044-loop-lock-cross-process-race/scratch",
       "reason": "excluded directory"
     },
     {
