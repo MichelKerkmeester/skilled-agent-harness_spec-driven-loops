@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7302,
-    "ok": 16290,
+    "ok": 16302,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27140,
+  "documentsScanned": 27152,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "3f92685a2d1c092c7285bbadcbe7033f6508175162e5fca5c7264cc85b561b7e",
+  "manifestHash": "ed5a5a2146194964a1ccb85a5d86ccf219f68b71d5eb86b179f7b89f643f74f6",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 39809,
+      "ok": 39828,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -72513,6 +72513,14 @@
     },
     {
       "path": "specs/sk-doc/073-opencode-native-surfaces/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/074-reference-template-debt/001-diagram-references/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/074-reference-template-debt/002-remaining-references/scratch",
       "reason": "excluded directory"
     },
     {

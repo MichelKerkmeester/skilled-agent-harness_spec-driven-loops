@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3f92685a2d1c092c7285bbadcbe7033f6508175162e5fca5c7264cc85b561b7e",
+  "manifestHash": "ed5a5a2146194964a1ccb85a5d86ccf219f68b71d5eb86b179f7b89f643f74f6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -37468,6 +37468,9 @@
     "design md fidelity check": [
       "design md fidelity check"
     ],
+    "design md format numbering": [
+      "design md format numbering"
+    ],
     "design md format specification": [
       "design md format specification"
     ],
@@ -37495,6 +37498,9 @@
     ],
     "design md provenance": [
       "design md provenance"
+    ],
+    "design md sample exemption": [
+      "design md sample exemption"
     ],
     "design md section order": [
       "design md section order"
@@ -38261,6 +38267,24 @@
     ],
     "diagram primitives index": [
       "diagram primitives index"
+    ],
+    "diagram reference overview section": [
+      "diagram reference overview section"
+    ],
+    "diagram references": [
+      "diagram references"
+    ],
+    "diagram references acceptance criteria": [
+      "diagram references acceptance criteria"
+    ],
+    "diagram references implementation summary": [
+      "diagram references implementation summary"
+    ],
+    "diagram references plan": [
+      "diagram references plan"
+    ],
+    "diagram references tasks": [
+      "diagram references tasks"
     ],
     "diagram review": [
       "diagram review"
@@ -74922,6 +74946,9 @@
     "phase 1 deep research router files": [
       "phase 1 deep research router files"
     ],
+    "phase 1 diagram references": [
+      "phase 1 diagram references"
+    ],
     "phase 1 doc version contract": [
       "phase 1 doc version contract"
     ],
@@ -75443,6 +75470,9 @@
     ],
     "phase 2 rebuild fanout removal tasks": [
       "phase 2 rebuild fanout removal tasks"
+    ],
+    "phase 2 remaining references": [
+      "phase 2 remaining references"
     ],
     "phase 2 removal plan": [
       "phase 2 removal plan"
@@ -83541,8 +83571,14 @@
     "reference creation guidelines": [
       "reference creation guidelines"
     ],
+    "reference doc overview section": [
+      "reference doc overview section"
+    ],
     "reference file structure": [
       "reference file structure"
+    ],
+    "reference format debt": [
+      "reference format debt"
     ],
     "reference frontmatter standardization": [
       "reference frontmatter standardization"
@@ -83588,6 +83624,9 @@
     ],
     "reference template alignment": [
       "reference template alignment"
+    ],
+    "reference template debt phase parent spec": [
+      "reference template debt phase parent spec"
     ],
     "references block beyond adrs": [
       "references block beyond adrs"
@@ -85420,6 +85459,24 @@
     ],
     "remaining mode root cutover": [
       "remaining mode root cutover"
+    ],
+    "remaining references": [
+      "remaining references"
+    ],
+    "remaining references acceptance criteria": [
+      "remaining references acceptance criteria"
+    ],
+    "remaining references decision record": [
+      "remaining references decision record"
+    ],
+    "remaining references implementation summary": [
+      "remaining references implementation summary"
+    ],
+    "remaining references plan": [
+      "remaining references plan"
+    ],
+    "remaining references tasks": [
+      "remaining references tasks"
     ],
     "remaining seven mode rollout tasks": [
       "remaining seven mode rollout tasks"

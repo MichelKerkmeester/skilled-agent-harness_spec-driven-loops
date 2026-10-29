@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9f824819f2c6097eb676ca462eaa2df74b026653d4118cf6c060a7270fc6af11",
+  "corpusHash": "a0a2ba947dc7076c51af58eaf7527938898f160255a8bccf8581788098e12d0c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27140,
+  "includedPathCount": 27152,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -14124,6 +14124,18 @@
     "specs/sk-doc/073-opencode-native-surfaces/plan.md",
     "specs/sk-doc/073-opencode-native-surfaces/spec.md",
     "specs/sk-doc/073-opencode-native-surfaces/tasks.md",
+    "specs/sk-doc/074-reference-template-debt/001-diagram-references/acceptance-criteria.md",
+    "specs/sk-doc/074-reference-template-debt/001-diagram-references/implementation-summary.md",
+    "specs/sk-doc/074-reference-template-debt/001-diagram-references/plan.md",
+    "specs/sk-doc/074-reference-template-debt/001-diagram-references/spec.md",
+    "specs/sk-doc/074-reference-template-debt/001-diagram-references/tasks.md",
+    "specs/sk-doc/074-reference-template-debt/002-remaining-references/acceptance-criteria.md",
+    "specs/sk-doc/074-reference-template-debt/002-remaining-references/decision-record.md",
+    "specs/sk-doc/074-reference-template-debt/002-remaining-references/implementation-summary.md",
+    "specs/sk-doc/074-reference-template-debt/002-remaining-references/plan.md",
+    "specs/sk-doc/074-reference-template-debt/002-remaining-references/spec.md",
+    "specs/sk-doc/074-reference-template-debt/002-remaining-references/tasks.md",
+    "specs/sk-doc/074-reference-template-debt/spec.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
     "specs/sk-git/020-live-sync-harden-default-on/spec.md",
@@ -27171,7 +27183,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "3f92685a2d1c092c7285bbadcbe7033f6508175162e5fca5c7264cc85b561b7e",
+  "manifestHash": "ed5a5a2146194964a1ccb85a5d86ccf219f68b71d5eb86b179f7b89f643f74f6",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30991,6 +31003,14 @@
     },
     {
       "path": "specs/sk-doc/073-opencode-native-surfaces/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/074-reference-template-debt/001-diagram-references/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/074-reference-template-debt/002-remaining-references/scratch",
       "reason": "excluded directory"
     },
     {
