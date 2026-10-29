@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0db777d048f4aac0c4e738b03e60e12543aad720e8d47a2fbb43ee953e1715b9",
+  "manifestHash": "2e27c50068d53ab6dca14b7c688053f439d7049e3d1758db771e99ba38458314",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10506,11 +10506,17 @@
     "ai session child cli rule summary": [
       "AI_SESSION_CHILD cli rule summary"
     ],
+    "ai systems canon waiver": [
+      "ai systems canon waiver"
+    ],
     "ai systems migration": [
       "ai systems migration"
     ],
     "ai systems migration acceptance criteria": [
       "ai systems migration acceptance criteria"
+    ],
+    "ai systems migration decision record": [
+      "ai systems migration decision record"
     ],
     "ai systems migration implementation summary": [
       "ai systems migration implementation summary"
@@ -10538,6 +10544,12 @@
     ],
     "ai systems router files research": [
       "ai systems router files research"
+    ],
+    "ai systems router move": [
+      "ai systems router move"
+    ],
+    "ai systems router move plan": [
+      "ai systems router move plan"
     ],
     "ai systems verification": [
       "ai systems verification"
@@ -19310,6 +19322,9 @@
     ],
     "claude posttooluse sh": [
       "claude posttooluse sh"
+    ],
+    "claude project routing document": [
+      "claude project routing document"
     ],
     "claude prompting best practices": [
       "claude prompting best practices"

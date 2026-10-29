@@ -1,5 +1,5 @@
 {
-  "corpusHash": "c8da4209b29e9facfc78639241a2f17c47e1ff3c2ab7798df66cedd78610b8ec",
+  "corpusHash": "cf520fc01b60a2925faf7f60c5d1de72c33d84d38f23a82499985ce9ae01c37b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27081,
+  "includedPathCount": 27082,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -14050,6 +14050,7 @@
     "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/tasks.md",
     "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration/acceptance-criteria.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration/decision-record.md",
     "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration/goal.md",
     "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration/implementation-summary.md",
     "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration/plan.md",
@@ -27112,7 +27113,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0db777d048f4aac0c4e738b03e60e12543aad720e8d47a2fbb43ee953e1715b9",
+  "manifestHash": "2e27c50068d53ab6dca14b7c688053f439d7049e3d1758db771e99ba38458314",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
