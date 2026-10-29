@@ -9,7 +9,7 @@ expected_resources:
   - references/aside-cli-reference.md
   - references/session-management.md
 blindToRouterKeywords: true
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # AD-H01: Blind holdout: scripted evidence
@@ -78,7 +78,7 @@ Step through the page in exact scripted order and snapshot every state so the ru
 
 1. `sed -n '1,14p' .skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/holdout-repl.md`
 2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/ROUTER.md`
-3. `sed -n '/^```text$/,/^```$/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/holdout-repl.md | grep -io 'repl\|playwright\|deterministic\|aside' || echo "no obvious tool-name keyword in the prompt body"`
+3. `sed -n '/^```text$/,/^```$/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/holdout-repl.md | grep -iow 'repl\|playwright\|deterministic\|aside' || echo "no obvious tool-name keyword in the prompt body"`
 4. `test -e .skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-cli-reference.md && echo "OK references/aside-cli-reference.md" || echo "MISS references/aside-cli-reference.md"`
 5. `test -e .skilled/skills/mcp-tooling/mcp-aside-devtools/references/session-management.md && echo "OK references/session-management.md" || echo "MISS references/session-management.md"`
 
