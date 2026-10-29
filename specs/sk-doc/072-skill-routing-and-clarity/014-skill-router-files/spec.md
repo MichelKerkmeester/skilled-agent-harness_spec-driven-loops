@@ -107,6 +107,9 @@ Set per phase from the research findings; each child's `spec.md` lists its files
 | 4 | 004-hub-router-merge/ | Each hub's MACHINE ROUTER joins its existing root `ROUTER.md` | Pending |
 | 5 | 005-packet-and-standalone-migration/ | The 47 mode packets and standalone skills each get their own `ROUTER.md`, in batches, until the debt ledger is empty | Pending |
 | 6 | 006-regeneration-and-verification/ | Regenerate every derived file, recapture the advisor baseline, compare replay projections and regenerate the per-skill token table | Pending |
+| 7 | 007-ai-systems-research/ | Three DeepSeek research iterations over the 16 skills in the AI Systems repository: what each router holds, what loads them, which checks read them and how a Claude Project receives the router | In Progress |
+| 8 | 008-ai-systems-migration/ | Each AI Systems skill gets its own `ROUTER.md` and a link in SKILL.md, and its Claude Project knowledge files follow | Pending |
+| 9 | 009-ai-systems-verification/ | The AI Systems checks pass, every router resolves and the Claude Project mirrors match their skills | Pending |
 
 ### Phase Transition Rules
 
@@ -124,6 +127,9 @@ Set per phase from the research findings; each child's `spec.md` lists its files
 | 003-check-and-template-canon | 004-hub-router-merge | The checks enforce the new shape behind a debt ledger | Both routing-shape suites pass |
 | 004-hub-router-merge | 005-packet-and-standalone-migration | Every hub passes the new shape | `parent-skill-check` 12b passes on every hub |
 | 005-packet-and-standalone-migration | 006-regeneration-and-verification | Every skill and mode passes the new shape with an empty ledger | `package_skill.py --strict` passes on every skill |
+| 003-check-and-template-canon | 007-ai-systems-research | The canon and the scaffold write the new shape, so the second repository has a target to move to | Both routing-shape suites pass. Phases 007 to 009 do not wait on 004 to 006 |
+| 007-ai-systems-research | 008-ai-systems-migration | The research names a target shape for each of the 16 skills and the Claude Project path | `research/research.md` answers RQ-1 to RQ-5 |
+| 008-ai-systems-migration | 009-ai-systems-verification | Every AI Systems skill has its router in `ROUTER.md` and a link from SKILL.md | Each skill resolves `router-md` through the resolver |
 <!-- /ANCHOR:phase-map -->
 
 ---

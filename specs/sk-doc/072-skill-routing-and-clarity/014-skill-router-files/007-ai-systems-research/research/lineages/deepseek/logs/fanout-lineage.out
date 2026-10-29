@@ -1,0 +1,10 @@
+Lineage complete. Summary of what is on disk under `specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/research/lineages/deepseek`:
+
+- **Run open + 3 iterations + terminal synthesis**, all through `append-mode-event.cjs` (ledger stream sequences 1–5; synthesis row carries `stopReason: maxIterationsReached`). The reducer ran after every iteration and once at the end.
+- `iterations/iteration-00{1,2,3}.md` with `## Findings` and `deltas/iter-00{1,2,3}.jsonl`; findingsCount matches the enumerated findings (10 / 15 / 13).
+- `research.md`: RQ-1 (17,935 routing words → 13,130 machine data at 73.2%, 4,805 prose, per-skill table), RQ-2 (no loader reads a sibling file; `opencode.json`/`.claude/skills`/`.opencode/skills` never see the 16; Project sync compiler retired 2026-09-18), RQ-3 (14 gates with file:line, incl. `check_hub.py:58` forbidding packet `ROUTER.md` and `differential.py:268` slicing the routing heading), RQ-4 (all four routers fail the final-heading rule; `check-route-table.py --write` would revert a hand edit), RQ-5 (per-skill target shape, one `<System> - System - Routing.md` knowledge doc per Project, ~17,460 tokens saved, order ending with Product Owner), plus `Eliminated Alternatives`, `Divergence Map`, `Open Questions`, `Appendix: Convergence Report`.
+- Registry: 5/5 questions resolved, 38 key findings, convergence score 1, `terminalStop: maxIterationsReached`.
+
+Target repository was read only (no `.env` opened); the only writes in this worktree are inside the lineage directory (out-of-scope modifications in `git status` predate this run at 12:08/12:25 versus lineage writes at 12:39–12:45).
+
+FANOUT_LINEAGE_COMPLETE:deepseek

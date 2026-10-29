@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration",
+  "description": "Phase 8: ai-systems-migration",
+  "keywords": [
+    "phase",
+    "ai-systems-migration"
+  ],
+  "lastUpdated": "2026-10-29T11:37:25.616Z",
+  "specId": "008",
+  "folderSlug": "ai-systems-migration",
+  "parentChain": [
+    "sk-doc",
+    "072-skill-routing-and-clarity",
+    "014-skill-router-files"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

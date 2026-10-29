@@ -1,0 +1,698 @@
+{
+  "sessionId": "fanout-deepseek-1793273952691-3ci03m",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 3,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-10-29T11:45:02.809Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-rq-1-for-each-of-the-16-skills-which-parts-of-its-routing-section-are-agent-faci",
+      "inboxId": null,
+      "text": "RQ-1: For each of the 16 skills, which parts of its routing section are agent-facing prose and which are machine data (assignment blocks, pseudocode, resource lists), and what is the word count of each part?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-rq-2-what-loads-these-skills-opencode-through-opencode-json-claude-code-through-",
+      "inboxId": null,
+      "text": "RQ-2: What loads these skills (OpenCode through opencode.json, Claude Code through .claude/, the Claude Project sync loop in 'AI Systems/z - Claude Project Sync Loop' and its hand-written knowledge files, and any other runtime), and does each loader load a file beside SKILL.md on its own?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-rq-3-which-check-benchmark-gate-or-script-in-the-ai-systems-repository-reads-a-s",
+      "inboxId": null,
+      "text": "RQ-3: Which check, benchmark gate or script in the AI Systems repository reads a SKILL.md routing section or a ROUTER.md, with file:line, and which of this repository's tools (package_skill.py, the router resolver) apply there?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-rq-4-how-does-each-of-the-four-existing-router-md-files-classify-against-the-new",
+      "inboxId": null,
+      "text": "RQ-4: How does each of the four existing ROUTER.md files classify against the new canon, and what does each need?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-5-rq-5-what-is-the-per-skill-migration-design-target-shape-per-skill-claude-projec",
+      "inboxId": null,
+      "text": "RQ-5: What is the per-skill migration design: target shape per skill, Claude Project knowledge-file changes, token saving per skill, and the order that avoids colliding with other sessions working in that repository?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-rq-1-for-each-of-the-16-skills-which-parts-of-its-routing-section-are-agent-faci",
+      "inboxId": null,
+      "text": "RQ-1: For each of the 16 skills, which parts of its routing section are agent-facing prose and which are machine data (assignment blocks, pseudocode, resource lists), and what is the word count of each part?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-rq-2-what-loads-these-skills-opencode-through-opencode-json-claude-code-through-",
+      "inboxId": null,
+      "text": "RQ-2: What loads these skills (OpenCode through opencode.json, Claude Code through .claude/, the Claude Project sync loop in 'AI Systems/z - Claude Project Sync Loop' and its hand-written knowledge files, and any other runtime), and does each loader load a file beside SKILL.md on its own?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-rq-3-which-check-benchmark-gate-or-script-in-the-ai-systems-repository-reads-a-s",
+      "inboxId": null,
+      "text": "RQ-3: Which check, benchmark gate or script in the AI Systems repository reads a SKILL.md routing section or a ROUTER.md, with file:line, and which of this repository's tools (package_skill.py, the router resolver) apply there?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-rq-4-how-does-each-of-the-four-existing-router-md-files-classify-against-the-new",
+      "inboxId": null,
+      "text": "RQ-4: How does each of the four existing ROUTER.md files classify against the new canon, and what does each need?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-5-rq-5-what-is-the-per-skill-migration-design-target-shape-per-skill-claude-projec",
+      "inboxId": null,
+      "text": "RQ-5: What is the per-skill migration design: target shape per skill, Claude Project knowledge-file changes, token saving per skill, and the order that avoids colliding with other sessions working in that repository?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-sk-barter-copywriter-is-the-largest-router-and-the-largest-assignment-block-rout",
+      "text": "**`sk-barter-copywriter` is the largest router and the largest assignment-block router: 3,814 routing words, 2,789 machine data (73 percent) and 1,025 prose.** Twelve of its nineteen sub-blocks are machine data - `Signal Weights` (10-row weight table, 283w), `Source Copy Recognition` (820w), `Edit Demand Override` (244w), `Artifact Resolution` (165w), `Lane Resource Sets` (7-row table, 210w), `Scope Triggers` (235w), `Tone And Energy Slots` (209w), `Slot Completeness` (6-row table, 162w), `Phrase Matching` (140w), `Resilience Tiers` (141w), `Lane Resolution` (106w), `Resource Domains` (74w); it carries no fenced pseudocode at all. [SOURCE: AI Systems/Barter - Copywriter/sk-barter-copywriter/SKILL.md:26]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`AI Systems/*/SKILL.md`, all 16 files, with the routing section bounds recorded in the table above.",
+        "The measurement pass itself: `find \"AI Systems\" -name SKILL.md -not -path \"*/specs/*\" -not -path \"*/runtime/*\" -not -path \"*/scratch/*\" -not -path \"*/node_modules/*\"` (16 hits) plus a per-block tokenizer run over each file."
+      ]
+    },
+    {
+      "id": "finding-1-3-sk-barter-deal-templates-splits-1-835-routing-words-into-1-002-machine-data-55-p",
+      "text": "**`sk-barter-deal-templates` splits 1,835 routing words into 1,002 machine data (55 percent) and 833 prose; its machine parts are fenced pseudocode plus one 11-item list.** `Primary Detection Signal` (266w, one fence), `Resource Domains` (63w, one fence), `Resource Loading Levels` (5-row table, 132w) and `Command Entry Points` (541w, 11 `key: value` items). [SOURCE: AI Systems/Barter - Deal Templates/sk-barter-deal-templates/SKILL.md:50]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`AI Systems/*/SKILL.md`, all 16 files, with the routing section bounds recorded in the table above.",
+        "The measurement pass itself: `find \"AI Systems\" -name SKILL.md -not -path \"*/specs/*\" -not -path \"*/runtime/*\" -not -path \"*/scratch/*\" -not -path \"*/node_modules/*\"` (16 hits) plus a per-block tokenizer run over each file."
+      ]
+    },
+    {
+      "id": "finding-1-4-sk-media-editor-is-the-lightest-large-skill-605-routing-words-258-machine-data-4",
+      "text": "**`sk-media-editor` is the lightest large skill: 605 routing words, 258 machine data (43 percent) and 347 prose**, from one detection-signal fence (99w), one resource-domains fence (85w) and a 5-row loading-levels table (74w). [SOURCE: AI Systems/Media Editor/sk-media-editor/SKILL.md:74]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`AI Systems/*/SKILL.md`, all 16 files, with the routing section bounds recorded in the table above.",
+        "The measurement pass itself: `find \"AI Systems\" -name SKILL.md -not -path \"*/specs/*\" -not -path \"*/runtime/*\" -not -path \"*/scratch/*\" -not -path \"*/node_modules/*\"` (16 hits) plus a per-block tokenizer run over each file."
+      ]
+    },
+    {
+      "id": "finding-1-8-sk-prompt-improver-keeps-the-most-prose-in-absolute-terms-after-the-copywriter-2",
+      "text": "**`sk-prompt-improver` keeps the most prose in absolute terms after the copywriter: 2,519 routing words, 1,342 machine (53 percent) and 1,177 prose**, split across six prose sub-blocks - `Phase Detection` (436w), `Routing Workflow` (186w), `Natural-Language Topic Signals` (180w), `Confidence Thresholds` (145w), `Mode Mapping` (106w), `Platform Detection` (54w) - plus a 902w `Smart Router Pseudocode` fence. [SOURCE: AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:65]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`AI Systems/*/SKILL.md`, all 16 files, with the routing section bounds recorded in the table above.",
+        "The measurement pass itself: `find \"AI Systems\" -name SKILL.md -not -path \"*/specs/*\" -not -path \"*/runtime/*\" -not -path \"*/scratch/*\" -not -path \"*/node_modules/*\"` (16 hits) plus a per-block tokenizer run over each file."
+      ]
+    },
+    {
+      "id": "finding-1-9-sk-sales-communication-is-1-622-routing-words-at-71-percent-machine-1-154w-five-",
+      "text": "**`sk-sales-communication` is 1,622 routing words at 71 percent machine (1,154w)**: five fenced or tabular blocks plus a 434w `Semantic Topic Registry` carrying two fences. [SOURCE: AI Systems/Sales - Direct Communication/sk-sales-communication/SKILL.md:44]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`AI Systems/*/SKILL.md`, all 16 files, with the routing section bounds recorded in the table above.",
+        "The measurement pass itself: `find \"AI Systems\" -name SKILL.md -not -path \"*/specs/*\" -not -path \"*/runtime/*\" -not -path \"*/scratch/*\" -not -path \"*/node_modules/*\"` (16 hits) plus a per-block tokenizer run over each file."
+      ]
+    },
+    {
+      "id": "finding-1-1-the-16-routing-sections-hold-17-935-words-of-which-13-130-73-2-percent-are-machi",
+      "text": "**The 16 routing sections hold 17,935 words, of which 13,130 (73.2 percent) are machine data and 4,805 (26.8 percent) are agent-facing prose.** [INFERENCE: derived from the per-block classification of all 16 `## ... SMART ROUTING` sections, bounded by the next `## ` heading in each file]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`AI Systems/*/SKILL.md`, all 16 files, with the routing section bounds recorded in the table above.",
+        "The measurement pass itself: `find \"AI Systems\" -name SKILL.md -not -path \"*/specs/*\" -not -path \"*/runtime/*\" -not -path \"*/scratch/*\" -not -path \"*/node_modules/*\"` (16 hits) plus a per-block tokenizer run over each file."
+      ]
+    },
+    {
+      "id": "finding-1-10-the-four-moneybird-routing-sections-carry-no-machine-data-at-all-and-the-three-t",
+      "text": "**The four Moneybird routing sections carry no machine data at all, and the three that ship a sibling `ROUTER.md` are already in the post-move shape**: the hub's section is 329 words of prose naming its children, `cli-jortt` is 46 words, `cli-moneybird` 45 and `sk-moneybird-accountant` 50. [SOURCE: AI Systems/Moneybird Accountant/SKILL.md:28] [SOURCE: AI Systems/Moneybird Accountant/cli-jortt/SKILL.md:43] [SOURCE: AI Systems/Moneybird Accountant/cli-moneybird/SKILL.md:45] [SOURCE: AI Systems/Moneybird Accountant/sk-moneybird-accountant/SKILL.md:40]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`AI Systems/*/SKILL.md`, all 16 files, with the routing section bounds recorded in the table above.",
+        "The measurement pass itself: `find \"AI Systems\" -name SKILL.md -not -path \"*/specs/*\" -not -path \"*/runtime/*\" -not -path \"*/scratch/*\" -not -path \"*/node_modules/*\"` (16 hits) plus a per-block tokenizer run over each file."
+      ]
+    },
+    {
+      "id": "finding-1-5-the-product-owner-hub-holds-485-routing-words-296-machine-61-percent-and-189-pro",
+      "text": "**The Product Owner hub holds 485 routing words, 296 machine (61 percent) and 189 prose**: the section opens with a fenced route-resolution block (181w) and closes with an `Outcomes` assignment list (115w). [SOURCE: AI Systems/Product Owner/SKILL.md:36]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`AI Systems/*/SKILL.md`, all 16 files, with the routing section bounds recorded in the table above.",
+        "The measurement pass itself: `find \"AI Systems\" -name SKILL.md -not -path \"*/specs/*\" -not -path \"*/runtime/*\" -not -path \"*/scratch/*\" -not -path \"*/node_modules/*\"` (16 hits) plus a per-block tokenizer run over each file."
+      ]
+    },
+    {
+      "id": "finding-1-6-three-mcp-skills-are-pure-machine-data-mcp-click-up-981w-mcp-figma-1-199w-and-mc",
+      "text": "**Three MCP skills are pure machine data: `mcp-click-up` 981w, `mcp-figma` 1,199w and `mcp-code-mode` 776w, each at 0 prose words.** Their sections are a `Resource Loading Levels` block, a `Smart Router Pseudocode` fence (742w, 837w and 747w respectively) and, for `mcp-click-up`, a 20-row `Operation-to-Tool Routing Table` (208w). [SOURCE: AI Systems/Product Owner/mcp-figma/SKILL.md:113] [SOURCE: AI Systems/Product Owner/mcp-click-up/SKILL.md:76] [SOURCE: AI Systems/Product Owner/mcp-code-mode/SKILL.md:58]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`AI Systems/*/SKILL.md`, all 16 files, with the routing section bounds recorded in the table above.",
+        "The measurement pass itself: `find \"AI Systems\" -name SKILL.md -not -path \"*/specs/*\" -not -path \"*/runtime/*\" -not -path \"*/scratch/*\" -not -path \"*/node_modules/*\"` (16 hits) plus a per-block tokenizer run over each file."
+      ]
+    },
+    {
+      "id": "finding-1-7-three-skills-are-96-to-97-percent-machine-data-sk-create-figjam-964-routing-word",
+      "text": "**Three skills are 96 to 97 percent machine data**: `sk-create-figjam` 964 routing words with 30 prose, `sk-sales-hubspot-automation` 2,067 with 76 prose, and `sk-product-owner` 598 with 190 prose (68 percent machine). [SOURCE: AI Systems/Product Owner/sk-create-figjam/SKILL.md:32] [SOURCE: AI Systems/Sales - HubSpot & Automation/sk-sales-hubspot-automation/SKILL.md:69] [SOURCE: AI Systems/Product Owner/sk-product-owner/SKILL.md:42]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`AI Systems/*/SKILL.md`, all 16 files, with the routing section bounds recorded in the table above.",
+        "The measurement pass itself: `find \"AI Systems\" -name SKILL.md -not -path \"*/specs/*\" -not -path \"*/runtime/*\" -not -path \"*/scratch/*\" -not -path \"*/node_modules/*\"` (16 hits) plus a per-block tokenizer run over each file."
+      ]
+    },
+    {
+      "id": "finding-2-3-claude-skills-is-a-symlink-to-the-same-public-tree-not-to-ai-systems-claude-code",
+      "text": "**`.claude/skills` is a symlink to the same Public tree, not to `AI Systems/`.** Claude Code therefore loads the same 17 shared skills and, like OpenCode, never sees the 16 project skills. [SOURCE: .claude/skills]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`opencode.json`, `.opencode/skills`, `.claude/skills`, `Commands/agent-router.md`, `AGENTS.md`.",
+        "`AI Systems/*/benchmark/router/differential.py`, `AI Systems/Product Owner/benchmark/gates/check_hub.py`, `check_leaf_map_parity.py`.",
+        "`AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/{check-skill-words.py,check-route-table.py,route-replay/route-replay.py}`, `AI Systems/Moneybird Accountant/cli-moneybird/scripts/exit-code-parity.sh`.",
+        "`AI Systems/z — Claude Project Sync Loop/systems.cjs`, `residency/counts.md`.",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/{package_skill.py,ci-router-vocabulary-reach.cjs,generate-router-intent-signals.cjs,routing-shape-known-debt.json}` in the AI Systems checkout."
+      ]
+    },
+    {
+      "id": "finding-2-2-opencode-skills-is-a-symlink-out-of-the-repository-and-holds-none-of-the-16-it-r",
+      "text": "**`.opencode/skills` is a symlink out of the repository and holds none of the 16.** It resolves to `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills` and lists 17 entries (`cli-classifier`, `cli-external-orchestration`, `cli-orca`, `local-obsidian`, `local-webflow`, `mcp-code-mode`, `mcp-tooling`, `sk-code`, `sk-communication`, `sk-design`, `sk-doc`, `sk-git`, `sk-prompt`, `system-deep-loop`, `system-skill-advisor`, `system-spec-kit`, `README.txt`). [SOURCE: .opencode/skills]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`opencode.json`, `.opencode/skills`, `.claude/skills`, `Commands/agent-router.md`, `AGENTS.md`.",
+        "`AI Systems/*/benchmark/router/differential.py`, `AI Systems/Product Owner/benchmark/gates/check_hub.py`, `check_leaf_map_parity.py`.",
+        "`AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/{check-skill-words.py,check-route-table.py,route-replay/route-replay.py}`, `AI Systems/Moneybird Accountant/cli-moneybird/scripts/exit-code-parity.sh`.",
+        "`AI Systems/z — Claude Project Sync Loop/systems.cjs`, `residency/counts.md`.",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/{package_skill.py,ci-router-vocabulary-reach.cjs,generate-router-intent-signals.cjs,routing-shape-known-debt.json}` in the AI Systems checkout."
+      ]
+    },
+    {
+      "id": "finding-2-12-check-leaf-map-parity-py-reads-the-hub-router-md-python-block-and-each-packet-s-",
+      "text": "**`check_leaf_map_parity.py` reads the hub `ROUTER.md` Python block and each packet's `SKILL.md` `RESOURCE_MAP`, so it spans both homes today**: `source = (ROOT / \"ROUTER.md\").read_text()` then `DEFAULT_RESOURCE, RESOURCE_MAP, INTENT_SIGNALS` (lines 72-75), against `(ROOT / packet / \"SKILL.md\")` and its `RESOURCE_MAP` (lines 88-91). [SOURCE: AI Systems/Product Owner/benchmark/gates/check_leaf_map_parity.py:72]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`opencode.json`, `.opencode/skills`, `.claude/skills`, `Commands/agent-router.md`, `AGENTS.md`.",
+        "`AI Systems/*/benchmark/router/differential.py`, `AI Systems/Product Owner/benchmark/gates/check_hub.py`, `check_leaf_map_parity.py`.",
+        "`AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/{check-skill-words.py,check-route-table.py,route-replay/route-replay.py}`, `AI Systems/Moneybird Accountant/cli-moneybird/scripts/exit-code-parity.sh`.",
+        "`AI Systems/z — Claude Project Sync Loop/systems.cjs`, `residency/counts.md`.",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/{package_skill.py,ci-router-vocabulary-reach.cjs,generate-router-intent-signals.cjs,routing-shape-known-debt.json}` in the AI Systems checkout."
+      ]
+    },
+    {
+      "id": "finding-2-1-opencode-json-names-no-skill-path-at-all-its-whole-surface-is-schema-permission-",
+      "text": "**`opencode.json` names no skill path at all.** Its whole surface is `$schema`, `permission`, one `mcp.code_mode` entry and one `experimental` flag. There is no `skills`, `instructions`, `agents` or `references` key, so OpenCode is not told about a single one of the 16 skills. [SOURCE: opencode.json:1]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`opencode.json`, `.opencode/skills`, `.claude/skills`, `Commands/agent-router.md`, `AGENTS.md`.",
+        "`AI Systems/*/benchmark/router/differential.py`, `AI Systems/Product Owner/benchmark/gates/check_hub.py`, `check_leaf_map_parity.py`.",
+        "`AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/{check-skill-words.py,check-route-table.py,route-replay/route-replay.py}`, `AI Systems/Moneybird Accountant/cli-moneybird/scripts/exit-code-parity.sh`.",
+        "`AI Systems/z — Claude Project Sync Loop/systems.cjs`, `residency/counts.md`.",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/{package_skill.py,ci-router-vocabulary-reach.cjs,generate-router-intent-signals.cjs,routing-shape-known-debt.json}` in the AI Systems checkout."
+      ]
+    },
+    {
+      "id": "finding-2-6-claude-projects-have-no-automated-path-at-all-the-sync-compiler-was-retired-on-2",
+      "text": "**Claude Projects have no automated path at all: the sync compiler was retired on 2026-09-18 and Project files are hand-written.** `AGENTS.md` section 5 states the compiler \"is retired and its folder was deleted on 2026-09-18\", that a change means listing skill files against their Project counterparts, updating the matching kernel or knowledge file \"by hand or record that no Project-facing change is needed\", and that \"No manifest, lock file or checksum ledger is kept\". [SOURCE: AGENTS.md:119]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`opencode.json`, `.opencode/skills`, `.claude/skills`, `Commands/agent-router.md`, `AGENTS.md`.",
+        "`AI Systems/*/benchmark/router/differential.py`, `AI Systems/Product Owner/benchmark/gates/check_hub.py`, `check_leaf_map_parity.py`.",
+        "`AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/{check-skill-words.py,check-route-table.py,route-replay/route-replay.py}`, `AI Systems/Moneybird Accountant/cli-moneybird/scripts/exit-code-parity.sh`.",
+        "`AI Systems/z — Claude Project Sync Loop/systems.cjs`, `residency/counts.md`.",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/{package_skill.py,ci-router-vocabulary-reach.cjs,generate-router-intent-signals.cjs,routing-shape-known-debt.json}` in the AI Systems checkout."
+      ]
+    },
+    {
+      "id": "finding-2-13-four-moneybird-gates-read-router-md-as-a-first-class-surface-which-makes-those-t",
+      "text": "**Four Moneybird gates read `ROUTER.md` as a first-class surface, which makes those three skills the working model for the move.** `check-skill-words.py` counts `COUNTED_NAMES = (\"ROUTER.md\", \"SKILL.md\")` with the three router files listed as exemptions (lines 54-64); `check-route-table.py` \"Reads the ROUTER.md beside the skill's SKILL.md\" (line 7) from `ROUTER_MD = os.path.join(SKILL_FOLDER, \"ROUTER.md\")` (line 63) and can regenerate the router block (line 35); `route-replay.py` replays `ROUTER.md` (lines 8, 77); `exit-code-parity.sh` reads `TROUBLESHOOT` keywords out of `cli-moneybird/ROUTER.md` (lines 45, 230). [SOURCE: AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/check-skill-words.py:54] [SOURCE: AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/check-route-table.py:63] [SOURCE: AI Systems/Moneybird Accountant/cli-moneybird/scripts/exit-code-parity.sh:45]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`opencode.json`, `.opencode/skills`, `.claude/skills`, `Commands/agent-router.md`, `AGENTS.md`.",
+        "`AI Systems/*/benchmark/router/differential.py`, `AI Systems/Product Owner/benchmark/gates/check_hub.py`, `check_leaf_map_parity.py`.",
+        "`AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/{check-skill-words.py,check-route-table.py,route-replay/route-replay.py}`, `AI Systems/Moneybird Accountant/cli-moneybird/scripts/exit-code-parity.sh`.",
+        "`AI Systems/z — Claude Project Sync Loop/systems.cjs`, `residency/counts.md`.",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/{package_skill.py,ci-router-vocabulary-reach.cjs,generate-router-intent-signals.cjs,routing-shape-known-debt.json}` in the AI Systems checkout."
+      ]
+    },
+    {
+      "id": "finding-2-7-four-projects-already-carry-a-routing-section-in-their-hand-written-kernel-so-th",
+      "text": "**Four Projects already carry a routing section in their hand-written kernel, so the move changes a Project artefact, not just a skill file.** `claude project/Custom Instructions.md` holds `## 2. SMART ROUTING` in Sales - Direct Communication (line 41), Prompt Improver (line 37), Barter - Deal Templates as `## 5. SMART ROUTING` (line 126) and Sales - HubSpot & Automation as `## 5. SMART ROUTING` (line 107). [SOURCE: AI Systems/Sales - Direct Communication/claude project/Custom Instructions.md:41] [SOURCE: AI Systems/Prompt Improver/claude project/Custom Instructions.md:37] [SOURCE: AI Systems/Barter - Deal Templates/claude project/Custom Instructions.md:126] [SOURCE: AI Systems/Sales - HubSpot & Automation/claude project/Custom Instructions.md:107]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`opencode.json`, `.opencode/skills`, `.claude/skills`, `Commands/agent-router.md`, `AGENTS.md`.",
+        "`AI Systems/*/benchmark/router/differential.py`, `AI Systems/Product Owner/benchmark/gates/check_hub.py`, `check_leaf_map_parity.py`.",
+        "`AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/{check-skill-words.py,check-route-table.py,route-replay/route-replay.py}`, `AI Systems/Moneybird Accountant/cli-moneybird/scripts/exit-code-parity.sh`.",
+        "`AI Systems/z — Claude Project Sync Loop/systems.cjs`, `residency/counts.md`.",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/{package_skill.py,ci-router-vocabulary-reach.cjs,generate-router-intent-signals.cjs,routing-shape-known-debt.json}` in the AI Systems checkout."
+      ]
+    },
+    {
+      "id": "finding-2-5-no-loader-in-the-repository-reads-a-file-beside-skill-md-on-its-own-so-a-sibling",
+      "text": "**No loader in the repository reads a file beside `SKILL.md` on its own, so a sibling `ROUTER.md` is invisible until `SKILL.md` links it.** That is the load-bearing fact behind the canon's pointer rule: the router can move, but the link in `SKILL.md` is the only thing that brings it back in. [INFERENCE: from findings 1-4 plus the absence of any `ROUTER.md` reader in the two runtime symlink trees]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`opencode.json`, `.opencode/skills`, `.claude/skills`, `Commands/agent-router.md`, `AGENTS.md`.",
+        "`AI Systems/*/benchmark/router/differential.py`, `AI Systems/Product Owner/benchmark/gates/check_hub.py`, `check_leaf_map_parity.py`.",
+        "`AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/{check-skill-words.py,check-route-table.py,route-replay/route-replay.py}`, `AI Systems/Moneybird Accountant/cli-moneybird/scripts/exit-code-parity.sh`.",
+        "`AI Systems/z — Claude Project Sync Loop/systems.cjs`, `residency/counts.md`.",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/{package_skill.py,ci-router-vocabulary-reach.cjs,generate-router-intent-signals.cjs,routing-shape-known-debt.json}` in the AI Systems checkout."
+      ]
+    },
+    {
+      "id": "finding-2-4-the-load-path-that-does-reach-the-16-is-one-command-and-it-reads-exactly-one-fil",
+      "text": "**The load path that does reach the 16 is one command, and it reads exactly one file: `{skill_folder}/SKILL.md`.** `Commands/agent-router.md` step 4 says it \"Finds and reads the COMPLETE skill identity (the named `{skill_folder}/SKILL.md` that AGENTS.md points to)\", its table row 3 records `skill_path, skill_content`, and its load rule says \"Primary: read `{agent_scope_root}/{skill_folder}/SKILL.md` COMPLETELY. On load, its routing, references and assets define the identity. Then load only what `SKILL.md` marks ALWAYS\". No sibling file is named anywhere in that path. [SOURCE: Commands/agent-router.md:50] [SOURCE: Commands/agent-router.md:329]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`opencode.json`, `.opencode/skills`, `.claude/skills`, `Commands/agent-router.md`, `AGENTS.md`.",
+        "`AI Systems/*/benchmark/router/differential.py`, `AI Systems/Product Owner/benchmark/gates/check_hub.py`, `check_leaf_map_parity.py`.",
+        "`AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/{check-skill-words.py,check-route-table.py,route-replay/route-replay.py}`, `AI Systems/Moneybird Accountant/cli-moneybird/scripts/exit-code-parity.sh`.",
+        "`AI Systems/z — Claude Project Sync Loop/systems.cjs`, `residency/counts.md`.",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/{package_skill.py,ci-router-vocabulary-reach.cjs,generate-router-intent-signals.cjs,routing-shape-known-debt.json}` in the AI Systems checkout."
+      ]
+    },
+    {
+      "id": "finding-2-11-the-product-owner-hub-gate-forbids-a-packet-from-owning-a-router-md-and-requires",
+      "text": "**The Product Owner hub gate forbids a packet from owning a `ROUTER.md` and requires its routing to stay in `SKILL.md` section 2 - the exact opposite of the canon.** `PACKET_RESIDUE` lists `ROUTER.md` (line 58), `SMART_ROUTING_SECTION = re.compile(r\"^## 2\\. SMART ROUTING\\n(.*?)(?=^## )\")` (line 62) is applied at line 185 and a miss appends \"packet SKILL.md has no Section 2 SMART ROUTING\" (line 187). The same gate also pins the hub's own `ROUTER.md` with `router_state: active` (line 55) and `skill_pointer: SKILL.md` (line 56). [SOURCE: AI Systems/Product Owner/benchmark/gates/check_hub.py:58]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`opencode.json`, `.opencode/skills`, `.claude/skills`, `Commands/agent-router.md`, `AGENTS.md`.",
+        "`AI Systems/*/benchmark/router/differential.py`, `AI Systems/Product Owner/benchmark/gates/check_hub.py`, `check_leaf_map_parity.py`.",
+        "`AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/{check-skill-words.py,check-route-table.py,route-replay/route-replay.py}`, `AI Systems/Moneybird Accountant/cli-moneybird/scripts/exit-code-parity.sh`.",
+        "`AI Systems/z — Claude Project Sync Loop/systems.cjs`, `residency/counts.md`.",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/{package_skill.py,ci-router-vocabulary-reach.cjs,generate-router-intent-signals.cjs,routing-shape-known-debt.json}` in the AI Systems checkout."
+      ]
+    },
+    {
+      "id": "finding-2-9-the-sales-differential-gate-slices-the-routing-section-out-of-skill-md-by-litera",
+      "text": "**The Sales differential gate slices the routing section out of `SKILL.md` by literal heading, so the prose cannot leave without the gate.** `prose[prose.index(\"## 2. SMART ROUTING\"):prose.index(\"## 3. HOW IT WORKS\")]` raises `ValueError` the moment either heading moves. [SOURCE: AI Systems/Sales - Direct Communication/benchmark/router/differential.py:268]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`opencode.json`, `.opencode/skills`, `.claude/skills`, `Commands/agent-router.md`, `AGENTS.md`.",
+        "`AI Systems/*/benchmark/router/differential.py`, `AI Systems/Product Owner/benchmark/gates/check_hub.py`, `check_leaf_map_parity.py`.",
+        "`AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/{check-skill-words.py,check-route-table.py,route-replay/route-replay.py}`, `AI Systems/Moneybird Accountant/cli-moneybird/scripts/exit-code-parity.sh`.",
+        "`AI Systems/z — Claude Project Sync Loop/systems.cjs`, `residency/counts.md`.",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/{package_skill.py,ci-router-vocabulary-reach.cjs,generate-router-intent-signals.cjs,routing-shape-known-debt.json}` in the AI Systems checkout."
+      ]
+    },
+    {
+      "id": "finding-2-10-the-same-gate-already-reads-its-pseudocode-fence-from-a-sibling-file-which-is-th",
+      "text": "**The same gate already reads its pseudocode fence from a sibling file, which is the precedent phase 008 can copy.** `ROUTER_CONTRACT_MD` is `sk-sales-communication/references/router-contract.md` and `extract_pseudocode` compiles the fence out of it, while the prose guard still reads `SKILL.md`. Barter - Deal Templates does the same and says so in its header: \"The prose guards keep reading their tables out of SKILL.md, because those tables ...\", with the fence in `references/`, and a third copy `## 12. ROUTER CODE` inside the kernel. [SOURCE: AI Systems/Sales - Direct Communication/benchmark/router/differential.py:96] [SOURCE: AI Systems/Barter - Deal Templates/benchmark/router/differential.py:21] [SOURCE: AI Systems/Barter - Deal Templates/benchmark/router/differential.py:117]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`opencode.json`, `.opencode/skills`, `.claude/skills`, `Commands/agent-router.md`, `AGENTS.md`.",
+        "`AI Systems/*/benchmark/router/differential.py`, `AI Systems/Product Owner/benchmark/gates/check_hub.py`, `check_leaf_map_parity.py`.",
+        "`AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/{check-skill-words.py,check-route-table.py,route-replay/route-replay.py}`, `AI Systems/Moneybird Accountant/cli-moneybird/scripts/exit-code-parity.sh`.",
+        "`AI Systems/z — Claude Project Sync Loop/systems.cjs`, `residency/counts.md`.",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/{package_skill.py,ci-router-vocabulary-reach.cjs,generate-router-intent-signals.cjs,routing-shape-known-debt.json}` in the AI Systems checkout."
+      ]
+    },
+    {
+      "id": "finding-2-8-the-sync-loop-s-residency-ledger-shows-a-hand-migration-already-in-flight-counte",
+      "text": "**The sync loop's residency ledger shows a hand migration already in flight, counted in statements rather than files.** `residency/counts.md` records 98 of 327 declared statements moved (0 interlock, 16 every-answer, 34 route, 48 duplicate-or-machine), and `residency/moved-route-*.json` keeps per-system statement keys. Anything phase 008 changes in a kernel has to be reconciled with this ledger or it will read as drift. [SOURCE: AI Systems/z — Claude Project Sync Loop/residency/counts.md:1]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`opencode.json`, `.opencode/skills`, `.claude/skills`, `Commands/agent-router.md`, `AGENTS.md`.",
+        "`AI Systems/*/benchmark/router/differential.py`, `AI Systems/Product Owner/benchmark/gates/check_hub.py`, `check_leaf_map_parity.py`.",
+        "`AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/{check-skill-words.py,check-route-table.py,route-replay/route-replay.py}`, `AI Systems/Moneybird Accountant/cli-moneybird/scripts/exit-code-parity.sh`.",
+        "`AI Systems/z — Claude Project Sync Loop/systems.cjs`, `residency/counts.md`.",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/{package_skill.py,ci-router-vocabulary-reach.cjs,generate-router-intent-signals.cjs,routing-shape-known-debt.json}` in the AI Systems checkout."
+      ]
+    },
+    {
+      "id": "finding-2-15-the-vendored-package-skill-py-is-not-the-same-tool-as-this-repository-s-its-rs-c",
+      "text": "**The vendored `package_skill.py` is not the same tool as this repository's: its RS codes are swapped, so a code number means different things in the two repositories.** The AI Systems copy reports `RS-004` as \"mode packet carries its own ROUTER.md\" / a missing sibling router (lines 1006-1008) and `RS-005` as \"no `## MACHINE ROUTER` section\" (line 1000), while this repository's copy reports `RS-004` as \"no sibling ROUTER.md beside SKILL.md\" (line 1029) and `RS-005` as the missing pointer link (line 1113). A migration plan that cites codes without the repository will be read backwards by whoever runs the other copy. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:1000] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:1029]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`opencode.json`, `.opencode/skills`, `.claude/skills`, `Commands/agent-router.md`, `AGENTS.md`.",
+        "`AI Systems/*/benchmark/router/differential.py`, `AI Systems/Product Owner/benchmark/gates/check_hub.py`, `check_leaf_map_parity.py`.",
+        "`AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/{check-skill-words.py,check-route-table.py,route-replay/route-replay.py}`, `AI Systems/Moneybird Accountant/cli-moneybird/scripts/exit-code-parity.sh`.",
+        "`AI Systems/z — Claude Project Sync Loop/systems.cjs`, `residency/counts.md`.",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/{package_skill.py,ci-router-vocabulary-reach.cjs,generate-router-intent-signals.cjs,routing-shape-known-debt.json}` in the AI Systems checkout."
+      ]
+    },
+    {
+      "id": "finding-2-14-this-repository-s-router-shape-tooling-is-vendored-into-ai-systems-but-scans-ski",
+      "text": "**This repository's router-shape tooling is vendored into AI Systems but scans `.skilled/skills`, so it does not currently police the 16 project skills.** `ci-router-vocabulary-reach.cjs:50` and `generate-router-intent-signals.cjs:30` both set `SKILLS = path.join(REPO_ROOT, '.skilled', 'skills')`, and `routing-shape-known-debt.json` is keyed by path under `.skilled/skills` with 4 entries. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:50] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json:1]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`opencode.json`, `.opencode/skills`, `.claude/skills`, `Commands/agent-router.md`, `AGENTS.md`.",
+        "`AI Systems/*/benchmark/router/differential.py`, `AI Systems/Product Owner/benchmark/gates/check_hub.py`, `check_leaf_map_parity.py`.",
+        "`AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/{check-skill-words.py,check-route-table.py,route-replay/route-replay.py}`, `AI Systems/Moneybird Accountant/cli-moneybird/scripts/exit-code-parity.sh`.",
+        "`AI Systems/z — Claude Project Sync Loop/systems.cjs`, `residency/counts.md`.",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/{package_skill.py,ci-router-vocabulary-reach.cjs,generate-router-intent-signals.cjs,routing-shape-known-debt.json}` in the AI Systems checkout."
+      ]
+    },
+    {
+      "id": "finding-3-9-a-project-cannot-follow-the-pointer-so-the-only-way-it-receives-a-router-is-a-kn",
+      "text": "**A Project cannot follow the pointer, so the only way it receives a router is a knowledge file that repeats it.** A Project sees text, not a sibling path; the kernel's SMART ROUTING sections (four Projects, iteration 2 finding 7) prove routing content already lives in hand-written Project text. The canon's link rule therefore stops at the repository boundary. [INFERENCE: from iteration 2 findings 4-7 plus the absence of any routing knowledge doc]",
+      "addedAtIteration": 3,
+      "sources": [
+        "The four `ROUTER.md` files: `AI Systems/Product Owner/ROUTER.md`, `AI Systems/Moneybird Accountant/{cli-jortt,cli-moneybird,sk-moneybird-accountant}/ROUTER.md`.",
+        "`AI Systems/*/SKILL.md` pointer lines, mtimes for all 16 files, `git status --porcelain` and `git log --since=\"21 days ago\"` over `AI Systems`.",
+        "`AI Systems/Product Owner/benchmark/gates/check_hub.py`, `AI Systems/Sales - Direct Communication/benchmark/router/differential.py`, `AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/check-route-table.py`.",
+        "`AI Systems/Product Owner/claude project/` and `AI Systems/Sales - Direct Communication/claude project/knowledge/` listings."
+      ]
+    },
+    {
+      "id": "finding-3-1-all-four-existing-routers-carry-the-same-two-frontmatter-fields-and-a-gate-pins-",
+      "text": "**All four existing routers carry the same two frontmatter fields, and a gate pins both.** `router_state: active` and `skill_pointer: SKILL.md` sit at Product Owner lines 11-12 and at lines 10-11 in each of the three Moneybird routers; `check_hub.py` pins them as `ROUTER_STATE_LINE` and `SKILL_POINTER_LINE`. Any restructure keeps those two lines byte-identical. [SOURCE: AI Systems/Product Owner/ROUTER.md:11] [SOURCE: AI Systems/Moneybird Accountant/cli-jortt/ROUTER.md:10]",
+      "addedAtIteration": 3,
+      "sources": [
+        "The four `ROUTER.md` files: `AI Systems/Product Owner/ROUTER.md`, `AI Systems/Moneybird Accountant/{cli-jortt,cli-moneybird,sk-moneybird-accountant}/ROUTER.md`.",
+        "`AI Systems/*/SKILL.md` pointer lines, mtimes for all 16 files, `git status --porcelain` and `git log --since=\"21 days ago\"` over `AI Systems`.",
+        "`AI Systems/Product Owner/benchmark/gates/check_hub.py`, `AI Systems/Sales - Direct Communication/benchmark/router/differential.py`, `AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/check-route-table.py`.",
+        "`AI Systems/Product Owner/claude project/` and `AI Systems/Sales - Direct Communication/claude project/knowledge/` listings."
+      ]
+    },
+    {
+      "id": "finding-3-8-no-claude-project-has-a-routing-knowledge-document-today-so-the-project-side-of-",
+      "text": "**No Claude Project has a routing knowledge document today, so the Project side of the move is an authoring task, not a rewrite.** A name search for `rout` under every `claude project/` tree returns only benchmark artefacts; the knowledge files follow the `<System> - <Section> - <Title>.md` convention (`Sales Direct Communication - System - Flight Manual.md`, `Product Owner - Assets - Flow Templates.md`). [SOURCE: AI Systems/Sales - Direct Communication/claude project/knowledge]",
+      "addedAtIteration": 3,
+      "sources": [
+        "The four `ROUTER.md` files: `AI Systems/Product Owner/ROUTER.md`, `AI Systems/Moneybird Accountant/{cli-jortt,cli-moneybird,sk-moneybird-accountant}/ROUTER.md`.",
+        "`AI Systems/*/SKILL.md` pointer lines, mtimes for all 16 files, `git status --porcelain` and `git log --since=\"21 days ago\"` over `AI Systems`.",
+        "`AI Systems/Product Owner/benchmark/gates/check_hub.py`, `AI Systems/Sales - Direct Communication/benchmark/router/differential.py`, `AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/check-route-table.py`.",
+        "`AI Systems/Product Owner/claude project/` and `AI Systems/Sales - Direct Communication/claude project/knowledge/` listings."
+      ]
+    },
+    {
+      "id": "finding-3-2-none-of-the-four-has-a-machine-router-heading-so-all-four-fail-the-canon-s-desti",
+      "text": "**None of the four has a `## MACHINE ROUTER` heading, so all four fail the canon's destination rule.** The three Moneybird routers hold their machine block under `## 2. SMART ROUTING` (cli-jortt's fence runs lines 88-176, cli-moneybird's 83-170 after a text block at 57-65, sk-moneybird-accountant's 100-254); the Product Owner hub holds it under `## 3. MACHINE-READABLE ROUTER (replay / benchmark source)` at line 41 with the fence at 45-103. [SOURCE: AI Systems/Moneybird Accountant/cli-jortt/ROUTER.md:88] [SOURCE: AI Systems/Product Owner/ROUTER.md:41]",
+      "addedAtIteration": 3,
+      "sources": [
+        "The four `ROUTER.md` files: `AI Systems/Product Owner/ROUTER.md`, `AI Systems/Moneybird Accountant/{cli-jortt,cli-moneybird,sk-moneybird-accountant}/ROUTER.md`.",
+        "`AI Systems/*/SKILL.md` pointer lines, mtimes for all 16 files, `git status --porcelain` and `git log --since=\"21 days ago\"` over `AI Systems`.",
+        "`AI Systems/Product Owner/benchmark/gates/check_hub.py`, `AI Systems/Sales - Direct Communication/benchmark/router/differential.py`, `AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/check-route-table.py`.",
+        "`AI Systems/Product Owner/claude project/` and `AI Systems/Sales - Direct Communication/claude project/knowledge/` listings."
+      ]
+    },
+    {
+      "id": "finding-3-5-one-generator-writes-a-router-block-back-into-router-md-so-the-heading-must-chan",
+      "text": "**One generator writes a router block back into `ROUTER.md`, so the heading must change there too or the move reverts.** `check-route-table.py` documents `--write` as \"Regenerate the router block in ROUTER.md and append the table's ...\" and resolves `ROUTER_MD = os.path.join(SKILL_FOLDER, \"ROUTER.md\")`. A hand-edited heading that the generator does not emit will be overwritten on its next run. [SOURCE: AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/check-route-table.py:35]",
+      "addedAtIteration": 3,
+      "sources": [
+        "The four `ROUTER.md` files: `AI Systems/Product Owner/ROUTER.md`, `AI Systems/Moneybird Accountant/{cli-jortt,cli-moneybird,sk-moneybird-accountant}/ROUTER.md`.",
+        "`AI Systems/*/SKILL.md` pointer lines, mtimes for all 16 files, `git status --porcelain` and `git log --since=\"21 days ago\"` over `AI Systems`.",
+        "`AI Systems/Product Owner/benchmark/gates/check_hub.py`, `AI Systems/Sales - Direct Communication/benchmark/router/differential.py`, `AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/check-route-table.py`.",
+        "`AI Systems/Product Owner/claude project/` and `AI Systems/Sales - Direct Communication/claude project/knowledge/` listings."
+      ]
+    },
+    {
+      "id": "finding-3-10-recommended-way-for-a-project-to-receive-a-router-one-new-versionless-knowledge-",
+      "text": "**Recommended way for a Project to receive a router: one new versionless knowledge doc per System that needs routing, holding the `## MACHINE ROUTER` payload verbatim, with the kernel reduced to a pointer plus its interlock rules.** The name follows the existing convention, for example `Sales Direct Communication - System - Routing.md`; the kernel keeps only the rules that must hold on every request and names the doc in its always row; the change is recorded as a dated parity note in the system `SYNC.md`, per `AGENTS.md` section 5. This satisfies REQ-003 and it is the only shape that keeps the kernel and `ROUTER.md` comparable, because the doc can be diffed against the router block word for word. [INFERENCE: from findings 8-9 and the `<System> - <Section> - <Title>.md` convention]",
+      "addedAtIteration": 3,
+      "sources": [
+        "The four `ROUTER.md` files: `AI Systems/Product Owner/ROUTER.md`, `AI Systems/Moneybird Accountant/{cli-jortt,cli-moneybird,sk-moneybird-accountant}/ROUTER.md`.",
+        "`AI Systems/*/SKILL.md` pointer lines, mtimes for all 16 files, `git status --porcelain` and `git log --since=\"21 days ago\"` over `AI Systems`.",
+        "`AI Systems/Product Owner/benchmark/gates/check_hub.py`, `AI Systems/Sales - Direct Communication/benchmark/router/differential.py`, `AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/check-route-table.py`.",
+        "`AI Systems/Product Owner/claude project/` and `AI Systems/Sales - Direct Communication/claude project/knowledge/` listings."
+      ]
+    },
+    {
+      "id": "finding-3-11-the-collision-risk-is-measurable-and-it-is-concentrated-in-product-owner-at-8e45",
+      "text": "**The collision risk is measurable and it is concentrated in Product Owner.** At `8e4573b8f` the only working-tree entries are two untracked files under `Product Context/Collab Phases/`; no skill folder is dirty. But Product Owner took commits on 2026-10-28 (`sk-product-owner/SKILL.md` mtime 10:17, hub 10:10, `mcp-click-up` 07:53, `sk-create-figjam` 06:19) and the sync loop records its reviews in the same tree, while Moneybird has no commit in 21 days and its four SKILL.md mtimes are 2026-10-18. [SOURCE: AI Systems/Product Owner/SKILL.md] [SOURCE: AI Systems/Moneybird Accountant/sk-moneybird-accountant/SKILL.md]",
+      "addedAtIteration": 3,
+      "sources": [
+        "The four `ROUTER.md` files: `AI Systems/Product Owner/ROUTER.md`, `AI Systems/Moneybird Accountant/{cli-jortt,cli-moneybird,sk-moneybird-accountant}/ROUTER.md`.",
+        "`AI Systems/*/SKILL.md` pointer lines, mtimes for all 16 files, `git status --porcelain` and `git log --since=\"21 days ago\"` over `AI Systems`.",
+        "`AI Systems/Product Owner/benchmark/gates/check_hub.py`, `AI Systems/Sales - Direct Communication/benchmark/router/differential.py`, `AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/check-route-table.py`.",
+        "`AI Systems/Product Owner/claude project/` and `AI Systems/Sales - Direct Communication/claude project/knowledge/` listings."
+      ]
+    },
+    {
+      "id": "finding-3-12-the-order-that-avoids-collisions-runs-from-the-quiet-gate-free-skills-to-the-hot",
+      "text": "**The order that avoids collisions runs from the quiet, gate-free skills to the hot, gate-bound ones, and puts each gate change in the same commit as the skill it guards:** Media Editor (no differential gate, mtime 2026-10-05, 258 machine words) pilot; Prompt Improver (quiet since 2026-10-18); Barter - Copywriter (quiet since 2026-10-18, and the only table-shaped router, so it proves the shape without a fence); Sales - Direct Communication (its `differential.py` prose slice changes in the same commit); Sales - HubSpot & Automation (gate lives under `specs/`, quiet since 2026-10-01); Barter - Deal Templates (differential gate plus the kernel `## 12. ROUTER CODE` copy, touched 2026-10-27); the Moneybird cluster (heading rename plus `check-route-table.py --write` before the hand edit, hub pointer added, quiet repository); the Product Owner cluster last (four MCP/FigJam packets and the hub, with `check_hub.py`'s residue rule relaxed first, then the hub `ROUTER.md` restructure, then the packets). [INFERENCE: from findings 2-5, 11 and the iteration-1 and iteration-2 gate inventory]",
+      "addedAtIteration": 3,
+      "sources": [
+        "The four `ROUTER.md` files: `AI Systems/Product Owner/ROUTER.md`, `AI Systems/Moneybird Accountant/{cli-jortt,cli-moneybird,sk-moneybird-accountant}/ROUTER.md`.",
+        "`AI Systems/*/SKILL.md` pointer lines, mtimes for all 16 files, `git status --porcelain` and `git log --since=\"21 days ago\"` over `AI Systems`.",
+        "`AI Systems/Product Owner/benchmark/gates/check_hub.py`, `AI Systems/Sales - Direct Communication/benchmark/router/differential.py`, `AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/check-route-table.py`.",
+        "`AI Systems/Product Owner/claude project/` and `AI Systems/Sales - Direct Communication/claude project/knowledge/` listings."
+      ]
+    },
+    {
+      "id": "finding-3-6-the-pointer-half-of-the-canon-is-already-satisfied-in-exactly-four-skills-and-ab",
+      "text": "**The pointer half of the canon is already satisfied in exactly four skills and absent in the other twelve.** `cli-jortt/SKILL.md:45`, `cli-moneybird/SKILL.md:47`, `sk-moneybird-accountant/SKILL.md:42` and `Product Owner/SKILL.md:38` all link `ROUTER.md` as a relative markdown link. [SOURCE: AI Systems/Moneybird Accountant/cli-jortt/SKILL.md:45] [SOURCE: AI Systems/Product Owner/SKILL.md:38]",
+      "addedAtIteration": 3,
+      "sources": [
+        "The four `ROUTER.md` files: `AI Systems/Product Owner/ROUTER.md`, `AI Systems/Moneybird Accountant/{cli-jortt,cli-moneybird,sk-moneybird-accountant}/ROUTER.md`.",
+        "`AI Systems/*/SKILL.md` pointer lines, mtimes for all 16 files, `git status --porcelain` and `git log --since=\"21 days ago\"` over `AI Systems`.",
+        "`AI Systems/Product Owner/benchmark/gates/check_hub.py`, `AI Systems/Sales - Direct Communication/benchmark/router/differential.py`, `AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/check-route-table.py`.",
+        "`AI Systems/Product Owner/claude project/` and `AI Systems/Sales - Direct Communication/claude project/knowledge/` listings."
+      ]
+    },
+    {
+      "id": "finding-3-3-the-product-owner-hub-s-machine-block-is-not-even-last-so-renaming-the-heading-w",
+      "text": "**The Product Owner hub's machine block is not even last, so renaming the heading would not be enough.** `## 4. HOW TO READ THIS` follows at line 107 and `## RELATED RESOURCES` at line 116. The canon requires the machine section to close the file, so that router needs the block physically moved past the two prose sections. [SOURCE: AI Systems/Product Owner/ROUTER.md:107]",
+      "addedAtIteration": 3,
+      "sources": [
+        "The four `ROUTER.md` files: `AI Systems/Product Owner/ROUTER.md`, `AI Systems/Moneybird Accountant/{cli-jortt,cli-moneybird,sk-moneybird-accountant}/ROUTER.md`.",
+        "`AI Systems/*/SKILL.md` pointer lines, mtimes for all 16 files, `git status --porcelain` and `git log --since=\"21 days ago\"` over `AI Systems`.",
+        "`AI Systems/Product Owner/benchmark/gates/check_hub.py`, `AI Systems/Sales - Direct Communication/benchmark/router/differential.py`, `AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/check-route-table.py`.",
+        "`AI Systems/Product Owner/claude project/` and `AI Systems/Sales - Direct Communication/claude project/knowledge/` listings."
+      ]
+    },
+    {
+      "id": "finding-3-4-the-three-moneybird-routers-mix-prose-and-machine-text-inside-one-heading-so-eac",
+      "text": "**The three Moneybird routers mix prose and machine text inside one heading, so each needs a split, not a rename.** `## 2. SMART ROUTING` holds the prose description of the operation table and then the fence; the canon puts the prose in the router body and only the machine data under the final heading. [SOURCE: AI Systems/Moneybird Accountant/sk-moneybird-accountant/ROUTER.md:22]",
+      "addedAtIteration": 3,
+      "sources": [
+        "The four `ROUTER.md` files: `AI Systems/Product Owner/ROUTER.md`, `AI Systems/Moneybird Accountant/{cli-jortt,cli-moneybird,sk-moneybird-accountant}/ROUTER.md`.",
+        "`AI Systems/*/SKILL.md` pointer lines, mtimes for all 16 files, `git status --porcelain` and `git log --since=\"21 days ago\"` over `AI Systems`.",
+        "`AI Systems/Product Owner/benchmark/gates/check_hub.py`, `AI Systems/Sales - Direct Communication/benchmark/router/differential.py`, `AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/check-route-table.py`.",
+        "`AI Systems/Product Owner/claude project/` and `AI Systems/Sales - Direct Communication/claude project/knowledge/` listings."
+      ]
+    },
+    {
+      "id": "finding-3-7-the-token-saving-is-concentrated-in-five-skills-the-rest-are-small-at-1-33-token",
+      "text": "**The token saving is concentrated in five skills; the rest are small.** At 1.33 tokens per word the removable machine mass per skill is `mcp-figma` 1,595, `mcp-click-up` 1,305, `mcp-code-mode` 1,032, `sk-create-figjam` 1,242, `sk-product-owner` 543 from the Product Owner cluster; `sk-sales-hubspot-automation` 2,648 and `sk-sales-communication` 1,535; `sk-barter-copywriter` 3,709 and `sk-barter-deal-templates` 1,333; `sk-prompt-improver` 1,785; `sk-media-editor` 343; the Product Owner hub 394. Total about 17,460 tokens, against roughly 12 added pointer lines at about 15 tokens each. [INFERENCE: from the iteration-1 machine word counts and the 1.33 tokens/word convention]",
+      "addedAtIteration": 3,
+      "sources": [
+        "The four `ROUTER.md` files: `AI Systems/Product Owner/ROUTER.md`, `AI Systems/Moneybird Accountant/{cli-jortt,cli-moneybird,sk-moneybird-accountant}/ROUTER.md`.",
+        "`AI Systems/*/SKILL.md` pointer lines, mtimes for all 16 files, `git status --porcelain` and `git log --since=\"21 days ago\"` over `AI Systems`.",
+        "`AI Systems/Product Owner/benchmark/gates/check_hub.py`, `AI Systems/Sales - Direct Communication/benchmark/router/differential.py`, `AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/check-route-table.py`.",
+        "`AI Systems/Product Owner/claude project/` and `AI Systems/Sales - Direct Communication/claude project/knowledge/` listings."
+      ]
+    },
+    {
+      "id": "finding-3-13-two-gate-decisions-must-be-made-before-step-one-because-they-change-every-later-",
+      "text": "**Two gate decisions must be made before step one, because they change every later step.** `check_hub.py` must stop listing `ROUTER.md` as packet residue and must learn to read a packet's machine section, and the two `differential.py` prose guards must learn to slice the routing prose from wherever it lands. Both are in-repository gate edits, so phase 008 owns them, but the migration cannot start without them. [SOURCE: AI Systems/Product Owner/benchmark/gates/check_hub.py:58] [SOURCE: AI Systems/Sales - Direct Communication/benchmark/router/differential.py:268]",
+      "addedAtIteration": 3,
+      "sources": [
+        "The four `ROUTER.md` files: `AI Systems/Product Owner/ROUTER.md`, `AI Systems/Moneybird Accountant/{cli-jortt,cli-moneybird,sk-moneybird-accountant}/ROUTER.md`.",
+        "`AI Systems/*/SKILL.md` pointer lines, mtimes for all 16 files, `git status --porcelain` and `git log --since=\"21 days ago\"` over `AI Systems`.",
+        "`AI Systems/Product Owner/benchmark/gates/check_hub.py`, `AI Systems/Sales - Direct Communication/benchmark/router/differential.py`, `AI Systems/Moneybird Accountant/sk-moneybird-accountant/scripts/check-route-table.py`.",
+        "`AI Systems/Product Owner/claude project/` and `AI Systems/Sales - Direct Communication/claude project/knowledge/` listings."
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-2bbff49ef9e0",
+      "text": "Counting routing words with `wc -w` over the raw section. It inflates fenced blocks and tables, because punctuation and markdown markers collapse into fewer tokens than my tokenizer produces: `wc -w` reads 8,213 words for `sk-barter-copywriter` while the tokenizer reads 8,018 for the whole file. Rejected in favour of one consistent tokenizer, and the rule is stated above so phase 008 can reproduce the numbers.",
+      "contentHash": "2bbff49ef9e0",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-56c9261f8f69",
+      "text": "Reading `### Executable Contract` as a machine-data marker. In `sk-barter-copywriter` (line 232), `sk-barter-deal-templates` (line 115) and `sk-media-editor` (line 126) that heading holds plain prose describing the contract, not the contract itself. A heading-name heuristic would misclassify all three.",
+      "contentHash": "56c9261f8f69",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-91d65f6024b0",
+      "text": "Treating the whole `SKILL.md` as \"the routing section\". The spec's measured behavior anchors on `## .*SMART ROUTING`, and every other section (WHEN TO USE, RULES, RESOURCES, DELIVERY) is skill content that the move must not touch.",
+      "contentHash": "91d65f6024b0",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-a2966530871d",
+      "text": "Assuming `.claude/skills` or `.opencode/skills` holds the 16 project skills. Both are symlinks into `Code_Environment/Public` and hold the same 17 shared skills; the project skills are reached only by `Commands/agent-router.md`.",
+      "contentHash": "a2966530871d",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-7785aec79296",
+      "text": "Assuming a packaging script will rewrite a Claude Project from the skill source. `AGENTS.md` section 5 retires the compiler and forbids a manifest, lock or checksum, so the Project update is a hand edit or a recorded \"no change needed\".",
+      "contentHash": "7785aec79296",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-e7742b1de93b",
+      "text": "Reading the AI Systems `specs/` harnesses (`AI Systems/Sales - HubSpot & Automation/specs/.../harness.py`, `AI Systems/Barter - Deal Templates/specs/.../harness.py`) as live gates. They live under `specs/`, which the topic excludes, and the replay is kept under `benchmark/`.",
+      "contentHash": "e7742b1de93b",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-1baf8a9c6f60",
+      "text": "Searching for a skill loader in `opencode.json`. There is no skill key to extend, so the only way a sibling router reaches a runtime is the `SKILL.md` pointer and the agent's own follow-the-link behaviour.",
+      "contentHash": "1baf8a9c6f60",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-2e3a36d54538",
+      "text": "Giving every Claude Project the repository's `ROUTER.md` verbatim. Product Owner's router is 1,229 words and `sk-moneybird-accountant`'s is 2,435, which would move cost into every Project retrieval rather than cut it; the residency class work in iteration 2 already shows that shape being rejected by hand.",
+      "contentHash": "2e3a36d54538",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-eeff7d9c47f6",
+      "text": "Looking for an existing Project routing doc to extend. There is none, so the first one is an authoring decision and belongs in phase 008's plan rather than a find-and-replace.",
+      "contentHash": "eeff7d9c47f6",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-8617106a4246",
+      "text": "Migrating Product Owner first because it is the most visible. Its commit cadence (daily) and its packet gate make it the worst first target.",
+      "contentHash": "8617106a4246",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-0718e558c123",
+      "text": "Renaming `## 2. SMART ROUTING` to `## MACHINE ROUTER` in place. It leaves prose inside the machine section (finding 4) and, for Product Owner, leaves two sections after it (finding 3).",
+      "contentHash": "0718e558c123",
+      "addedAtIteration": 3
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 38,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 1,
+    "coverageBySources": {
+      "code": 23,
+      "other": 11
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/271-check-and-template-canon/specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/research/lineages/deepseek/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [
+    {
+      "type": "event",
+      "event": "novelty_signal_inert",
+      "mode": "research",
+      "severity": "warning",
+      "metric": "newInfoRatio",
+      "run": 3,
+      "window": 3,
+      "value": 1,
+      "sparkline": "▄▄▄",
+      "note": "newInfoRatio held flat at 1 across 3 iterations — the novelty signal is uninformative, so convergence and \"not exhausted\" claims derived from it are untrustworthy.",
+      "timestamp": "2026-10-29T11:43:38Z"
+    },
+    {
+      "type": "event",
+      "event": "trend_flatline",
+      "mode": "research",
+      "severity": "advisory",
+      "metric": "score",
+      "run": 3,
+      "window": 3,
+      "value": 1,
+      "sparkline": "▄▄▄",
+      "timestamp": "2026-10-29T11:43:38Z"
+    }
+  ],
+  "strategyWarnings": []
+}

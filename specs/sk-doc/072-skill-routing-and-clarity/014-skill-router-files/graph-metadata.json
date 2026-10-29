@@ -9,7 +9,10 @@
     "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/003-check-and-template-canon",
     "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/004-hub-router-merge",
     "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/005-packet-and-standalone-migration",
-    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification"
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration",
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification"
   ],
   "manual": {
     "depends_on": [],
@@ -102,16 +105,16 @@
     ],
     "causal_summary": "Every SKILL.md ends with a `## MACHINE ROUTER` section, and that section loads whenever the skill does",
     "created_at": "2026-10-29T07:52:39Z",
-    "last_save_at": "2026-10-29T10:11:03.113Z",
+    "last_save_at": "2026-10-29T12:06:37.628Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:52cdf809626fae32def7307212c76b202a75c0edc2f716dd0e46ac85ab5ab067",
+    "source_fingerprint": "sha256:62d5b6a88e7db808306f1b2c0cb54c9a2afaca14f4d8051d6b1102cbd3776b0f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "de6c5ee54de46afd7c1925c231ff833b43e1ccc6e80b4375399a6c0570e5f86e"
+      "spec.md": "e21677797d9e83af34690ace7cace5dcbaf79ef526c9c63fb92b8a1caffb89f8"
     },
     "last_active_at": null
   }
