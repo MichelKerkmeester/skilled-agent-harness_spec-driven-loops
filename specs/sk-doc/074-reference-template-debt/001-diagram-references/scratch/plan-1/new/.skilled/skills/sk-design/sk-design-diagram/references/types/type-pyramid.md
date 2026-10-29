@@ -1,0 +1,57 @@
+---
+title: "Pyramid / Funnel"
+description: "Layout conventions for ranked hierarchies and conversion funnels — trapezoid layers, honest widths, drop-off annotations, and single focal layer accent."
+trigger_phrases:
+  - "pyramid hierarchy"
+  - "funnel conversion"
+  - "prioritization ranks"
+  - "trapezoid layer diagram"
+  - "drop off annotation"
+importance_tier: normal
+contextType: implementation
+version: 1.2.0.8
+---
+
+# Pyramid / Funnel
+
+## 1. OVERVIEW
+
+**Best for:** hierarchy of needs, prioritization ranks, value pyramids, conversion funnels, content importance stacks.
+
+---
+
+## 2. TWO ORIENTATIONS — PICK ONE
+- **Pyramid** (point up) — narrow apex = most important / rarest / most valuable. Base is broadest / foundational.
+- **Funnel** (point down) — narrow end = conversion (smallest group). Top is widest / audience.
+
+Don't mix orientations on one diagram.
+
+---
+
+## 3. LAYOUT CONVENTIONS
+- 4–6 layers. Each layer is a trapezoid built from an SVG `<polygon>` with 4 points.
+- Consistent layer height (56–72px).
+- Widths decrease linearly from base to apex (pyramid) or top to bottom (funnel). When showing real funnel data, widths must be honest (proportional to count/percentage).
+- Each layer has:
+  - **Name label** centered inside the trapezoid — Geist 12–14px 600.
+  - **Sublabel** below or beside the name — Geist Mono 9–10px.
+  - **Side annotation** (right or left) — optional. For funnels: drop-off percentage here (`−40%`).
+- Fill: subtle graded tints OR all paper-2 with hairline dividers (cleaner). Pick one.
+- Stroke: 1px hairline between layers; outer silhouette 1px muted or ink.
+- **Coral on ONE layer only**: apex of pyramid, conversion layer of funnel, or critical bottleneck.
+- Optional left-margin axis arrow + Geist Mono label (`rarer ↑`, `drop-off ↓`).
+
+---
+
+## 4. ANTI-PATTERNS
+- 7+ layers (illegible — compress or split).
+- Pyramid for non-hierarchical data (use a tree or bar chart).
+- Dishonest widths (fake equal spacing when drops are unequal).
+- Coral on the base layer (dilutes the "apex = rare" signal).
+
+---
+
+## 5. EXAMPLES
+- `assets/diagrams/pyramid.html` — minimal light
+- `assets/diagrams/pyramid-dark.html` — minimal dark
+- `assets/diagrams/pyramid-full.html` — full editorial

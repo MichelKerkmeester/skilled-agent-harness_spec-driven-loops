@@ -1,0 +1,8 @@
+🔍 Validating skill: mcp-obsidian
+(strict mode)
+==================================================
+
+✅ Skill is valid!
+
+==================================================
+Result: PASS

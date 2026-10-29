@@ -10,16 +10,18 @@ trigger_phrases:
   - "manual export never automatic"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Export to PNG / SVG
+
+## 1. OVERVIEW
 
 Convert a generated diagram HTML file into a portable `.svg` and/or `.png` next to it. **Manual only — never run unprompted.**
 
 ---
 
-## 1. TRIGGER
+## 2. TRIGGER
 
 Load this file when:
 
@@ -34,7 +36,7 @@ The SKILL.md export route (under HOW IT WORKS → Output) is a thin wrapper that
 
 ---
 
-## 2. SCOPE
+## 3. SCOPE
 
 Both formats are **diagram-only** — just the `<svg>` node. Editorial wrappers (header, summary cards, footer in `-full` variants) are intentionally dropped: the export deliverable is the diagram itself, suitable for Figma, slides, social cards, or blog images.
 
@@ -44,7 +46,7 @@ If the user explicitly asks for "a screenshot of the whole page including the ca
 
 ---
 
-## 3. SVG EXPORT PROCEDURE
+## 4. SVG EXPORT PROCEDURE
 
 1. Read the source HTML file.
 2. Extract the **first** `<svg ...>...</svg>` block. Use a multiline regex anchored on `<svg` and `</svg>`. Most generated diagrams have only one SVG; if there are multiple, the first is the diagram (gallery files are an exception — see *Edge cases*).
@@ -68,7 +70,7 @@ Tools that don't fetch remote fonts at import time (offline Illustrator, some Fi
 
 ---
 
-## 4. PNG EXPORT PROCEDURE
+## 5. PNG EXPORT PROCEDURE
 
 Render **the original HTML** (not the extracted SVG) and screenshot only the `<svg>` element's bounding box. This keeps font loading reliable (already wired in the source HTML) while satisfying the "diagram only" rule. The PNG always has a **transparent background** (`omit_background=True`) so it can be placed on any slide or doc colour without a white halo.
 
@@ -119,9 +121,9 @@ Default `device_scale_factor=2` for crisp output. Accept `1` for compact assets 
 
 ---
 
-## 5. SIZING THE EXPORT
+## 6. SIZING THE EXPORT
 
-The PNG's pixel dimensions are the SVG's `viewBox` × `device_scale_factor`. So the size decision was already made when the diagram was drawn — see [`output-spec.md` §2](../foundations/output-spec.md) for the presets. Export only picks the multiplier.
+The PNG's pixel dimensions are the SVG's `viewBox` × `device_scale_factor`. So the size decision was already made when the diagram was drawn — see [`output-spec.md` §3](../foundations/output-spec.md) for the presets. Export only picks the multiplier.
 
 | Destination | Scale | Result from a 1280×720 `viewBox` |
 |---|---|---|
@@ -147,7 +149,7 @@ If the target aspect ratio doesn't match the `viewBox` aspect ratio, say so and 
 
 ---
 
-## 6. EDGE CASES
+## 7. EDGE CASES
 
 - **Source holds more than one `<svg>` block** (a gallery page with several diagrams in one file): refuse the export and ask the user which specific diagram file they meant. Don't guess.
 - **No `<svg>` block found**: the source isn't a diagram file. Tell the user; don't write anything.
@@ -156,7 +158,7 @@ If the target aspect ratio doesn't match the `viewBox` aspect ratio, say so and 
 
 ---
 
-## 7. WHAT THIS COMMAND NEVER DOES
+## 8. WHAT THIS COMMAND NEVER DOES
 
 - Modifies the source HTML.
 - Adds export buttons or `<script>` tags to generated diagrams (the "no JS in deliverables" rule in SKILL.md RULES still stands).

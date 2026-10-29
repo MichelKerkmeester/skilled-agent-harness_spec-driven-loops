@@ -9,14 +9,18 @@ trigger_phrases:
   - "combined fragment alt opt loop"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.9
+version: 1.2.1.0
 ---
 
 # Sequence
 
+## 1. OVERVIEW
+
 **Best for:** request/response flows, protocol exchanges, multi-actor interactions over time, API call traces, incident reconstructions, auth/token refresh paths with branching.
 
-## 1. Layout conventions
+---
+
+## 2. LAYOUT CONVENTIONS
 - Actors as boxes in a horizontal row at the top.
 - **Lifelines**: dashed vertical lines descending from each actor to the bottom.
 - Messages: horizontal arrows between lifelines; time flows top→down.
@@ -26,7 +30,9 @@ version: 1.2.0.9
 - Coral on the primary success response or headline message — one, maybe two. Actor focal strokes do not count toward the coral message budget.
 - When the flow **branches** (valid vs invalid token, retry, optional step), draw a **combined fragment** frame — do not invent free-floating if/else arrow clusters.
 
-## 2. Message kinds
+---
+
+## 3. MESSAGE KINDS
 
 | Kind | Stroke | Marker | When |
 |---|---|---|---|
@@ -47,7 +53,9 @@ Define once in `<defs>` and use for fire-and-forget only:
 
 Dark mode: stroke `#bfc0c0` (muted on dark paper). Do not fill the open marker — the hollow head is the async signal. Return messages keep the **filled** marker even when dashed.
 
-## 3. Combined fragments (`alt` / `opt` / `loop`)
+---
+
+## 4. COMBINED FRAGMENTS (`alt` / `opt` / `loop`)
 
 Use a rectangular **frame** that spans only the lifelines participating in the branch. Operator label is Geist Mono, uppercase, in a small tab at the top-left of the frame. Time still flows top→down inside the frame.
 
@@ -100,7 +108,9 @@ Dark mode: frame fill `rgba(245,245,245,0.04)`, stroke `rgba(245,245,245,0.22)`,
 - `par`, `critical`, `break`, `ref`, and other UML operators — second PR if needed.
 - Participant create/destroy, found/lost messages, duration timing bars.
 
-## 4. Complexity budget (sequence-specific)
+---
+
+## 5. COMPLEXITY BUDGET (SEQUENCE-SPECIFIC)
 - Max lifelines: 5 (same as SKILL.md §3 complexity budget).
 - Max messages (arrows): 12.
 - Max combined fragments: 1 (hard default); 2 only if each is a single-region `opt`/`loop`.
@@ -110,19 +120,25 @@ Dark mode: frame fill `rgba(245,245,245,0.04)`, stroke `rgba(245,245,245,0.22)`,
 
 If you exceed, split: overview (happy path) + detail (failure / refresh path).
 
-## 5. Lifeline primitive
+---
+
+## 6. LIFELINE PRIMITIVE
 ```svg
 <line x1="CX" y1="TOP" x2="CX" y2="BOTTOM"
       stroke="rgba(45,49,66,0.20)" stroke-width="1" stroke-dasharray="3,3"/>
 ```
 
-## 6. Activation bar primitive
+---
+
+## 7. ACTIVATION BAR PRIMITIVE
 ```svg
 <rect x="CX-4" y="TOP" width="8" height="H"
       fill="rgba(45,49,66,0.06)" stroke="#4f5d75" stroke-width="0.8"/>
 ```
 
-## 7. Anti-patterns
+---
+
+## 8. ANTI-PATTERNS
 - Message arrow pointing *upward* (reverses time — never).
 - Activation bars that never close.
 - Labels sitting over another lifeline — shorten or shift y into a gap.
@@ -135,7 +151,9 @@ If you exceed, split: overview (happy path) + detail (failure / refresh path).
 - Filled arrowhead on async fire-and-forget (use open marker).
 - Open arrowhead on return messages (returns stay filled + dashed).
 
-## 8. Examples
+---
+
+## 9. EXAMPLES
 - `assets/diagrams/sequence.html` — minimal light (cold-cache happy path)
 - `assets/diagrams/sequence-dark.html` — minimal dark
 - `assets/diagrams/sequence-full.html` — full editorial

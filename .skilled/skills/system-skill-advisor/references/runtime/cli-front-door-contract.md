@@ -6,11 +6,13 @@ trigger_phrases:
   - "skill advisor cli commands"
   - "advisor exit codes"
   - "advisor cli output shape"
-version: 0.11.0.0
+version: 0.11.1.0
 importance_tier: "important"
 contextType: "implementation"
 ---
 # Contract: the skill advisor CLI front door
+
+## 1. OVERVIEW
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
@@ -19,7 +21,7 @@ contextType: "implementation"
 
 ---
 
-## 1. INVOCATION
+## 2. INVOCATION
 
 ```
 node .skilled/bin/skill-advisor.cjs <command> [--arg value ...] --format json
@@ -35,7 +37,7 @@ session start so the first real call does not pay daemon start.
 
 ---
 
-## 2. COMMANDS
+## 3. COMMANDS
 
 Nine, each accepting three spellings: snake case, kebab case and camel case.
 
@@ -57,7 +59,7 @@ refused before anything is written.
 
 ---
 
-## 3. OUTPUT ENVELOPE
+## 4. OUTPUT ENVELOPE
 
 Success goes to stdout:
 
@@ -86,7 +88,7 @@ daemon caches by prompt. It describes the cache, never the recommendation.
 
 ---
 
-## 4. EXIT TAXONOMY
+## 5. EXIT TAXONOMY
 
 Five codes. A caller decides what to do from the code, not by parsing the message.
 
@@ -103,7 +105,7 @@ that gets 75 continues without a recommendation rather than blocking.
 
 ---
 
-## 5. FAILURE POSTURE
+## 6. FAILURE POSTURE
 
 The advisor never blocks the caller. Every integration treats an absent recommendation as normal:
 the prompt still goes through, the command still runs, the session still starts. A caller that
@@ -113,7 +115,7 @@ Set a timeout. The prompt-time integrations use a few seconds and fall through o
 
 ---
 
-## 6. WHAT IS PROVEN ABOUT THIS SURFACE
+## 7. WHAT IS PROVEN ABOUT THIS SURFACE
 
 A parity harness recorded 22 frozen cases across all nine commands against the CLI and against the
 MCP surface while both shipped. Every success path returned identical payloads apart from

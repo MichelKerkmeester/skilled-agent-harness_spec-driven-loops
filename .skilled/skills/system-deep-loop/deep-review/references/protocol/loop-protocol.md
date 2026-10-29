@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.3.0
+version: 1.11.4.0
 ---
 
 # Deep Review Loop Protocol
@@ -688,7 +688,7 @@ State-transition rules, error handling, and the review quality gates live in `lo
 
 ---
 
-## 11. RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### Shared Protocol Documentation
 

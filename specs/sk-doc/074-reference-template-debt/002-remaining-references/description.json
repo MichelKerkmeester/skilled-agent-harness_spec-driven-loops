@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/074-reference-template-debt/002-remaining-references",
+  "description": "Phase 2: remaining-references",
+  "keywords": [
+    "phase",
+    "remaining-references"
+  ],
+  "lastUpdated": "2026-10-29T21:27:28.761Z",
+  "specId": "002",
+  "folderSlug": "remaining-references",
+  "parentChain": [
+    "sk-doc",
+    "074-reference-template-debt"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

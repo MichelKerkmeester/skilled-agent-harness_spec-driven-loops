@@ -10,21 +10,27 @@ trigger_phrases:
   - "bridge hop crossings"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Architecture
 
+## 1. OVERVIEW
+
 **Best for:** system overviews, data-flow diagrams, integration maps, infra topology.
 
-## 1. Layout conventions
+---
+
+## 2. LAYOUT CONVENTIONS
 - Group components by tier or trust boundary (frontend → backend → data; public → private).
 - Primary flow runs left→right or top→down. Pick one and hold it.
 - Draw arrows before boxes so z-order puts connections behind components.
 - 1–2 coral focal nodes: the primary integration point, the primary data store, or the key decision node.
 - Dashed boundary rectangles mark regions (VPC, security group, trust zone); labels sit on a paper-colored mask over the boundary line.
 
-## 2. Connector style
+---
+
+## 3. CONNECTOR STYLE
 
 **Rounded right-angle (orthogonal) connectors are MANDATORY** for all non-horizontal/vertical connections — diagonal `<line>` between off-axis nodes is a hard fail (see SKILL.md §4 Mandatory connector rules). Two-bend elbow path with `r=8`:
 
@@ -50,7 +56,9 @@ Reserve left/right ports for connections that travel primarily horizontally. Ent
 
 **Zone label margin.** Leave ≥16px between the bottom of the zone eyebrow label and the top of the first enclosed node. Size the zone rect tall enough to contain this header gap (zone `y` = node_top − 32; label mask `y` = zone_y + 4).
 
-## 3. Crossing arrows — bridge / hop
+---
+
+## 4. CROSSING ARROWS — BRIDGE / HOP
 
 When two orthogonal arrows must cross, add a small arc (hop/bridge) on the **less important** arrow at the crossing point. The more important arrow is drawn uninterrupted.
 
@@ -64,7 +72,9 @@ When two orthogonal arrows must cross, add a small arc (hop/bridge) on the **les
 
 Decide which arrow to bridge: bridge the one that is less semantically important (passive, secondary, write-back), or the one with lighter stroke weight (dashed, muted). Never bridge both.
 
-## 4. Zone grouping
+---
+
+## 5. ZONE GROUPING
 
 Group 2+ nodes that serve the same tier or trust boundary with a zone rect — drawn **before** arrows and nodes (z-order: bg → zones → arrows → nodes):
 
@@ -82,12 +92,16 @@ Rules:
 - Max 3 zones per diagram. More and it reads like a swimlane (use that type instead).
 - Dark mode: swap `rgba(45,49,66,…)` → `rgba(245,245,245,…)` same opacities; label mask fill = `paper` (dark).
 
-## 5. Anti-patterns
+---
+
+## 6. ANTI-PATTERNS
 - Every box in coral ("this is important too") — hierarchy collapses.
 - Bidirectional arrow when one direction is obvious from context.
 - Legend floating inside the diagram area.
 
-## 6. Examples
+---
+
+## 7. EXAMPLES
 - `assets/diagrams/architecture.html` — minimal light
 - `assets/diagrams/architecture-dark.html` — minimal dark
 - `assets/diagrams/architecture-full.html` — full editorial

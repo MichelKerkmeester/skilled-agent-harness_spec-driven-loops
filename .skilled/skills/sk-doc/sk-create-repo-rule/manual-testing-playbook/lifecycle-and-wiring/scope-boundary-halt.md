@@ -2,7 +2,7 @@
 title: "RRL-002 -- Scope boundary halt"
 description: "This scenario validates the pre-wiring scope check for `RRL-002`. It focuses on halting rather than widening the router's scope statement to admit an out-of-bounds rule."
 stage: routing
-version: 1.1.0.3
+version: 1.1.1.0
 ---
 
 # RRL-002 -- Scope boundary halt
@@ -45,11 +45,11 @@ Operators run the exact prompt and command sequence for `RRL-002` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| RRL-002 | Scope boundary halt | Verify an out-of-bounds rule halts at the scope check instead of widening the scope statement | `I have a finished rule about which sub-agent to dispatch for each kind of task. Wire it into the router so it loads.` | 1. `agent: Read references/agents-md-integration.md section 2` -> 2. `bash: sed -n '/## 4. SCOPE OF THIS DOCUMENT/,$p' 'REPO RULES.md'` -> 3. `agent: Decide admit or halt and quote the deciding clause` -> 4. `bash: git diff 'REPO RULES.md'` | Step 2: the Out clause names dispatch mechanics. Step 3: the run halts with the clause quoted verbatim. Step 4: empty output | The step 2 output, the quoted clause, the halt decision, and the step 4 diff | PASS if step 3 halts with the clause quoted against step 2 and step 4 is empty; FAIL if a row is added or the scope statement is edited | 1. Read the step 4 diff first, since an edited scope statement is the specific failure and it is easy to miss in a reply that otherwise sounds correct. 2. Compare the quoted clause against step 2 word for word, because a paraphrase means the boundary was recalled rather than read. 3. Confirm the escalation names the decision as the operator's rather than recommending a widening, since the mode does not widen the statement on its own judgment |
+| RRL-002 | Scope boundary halt | Verify an out-of-bounds rule halts at the scope check instead of widening the scope statement | `I have a finished rule about which sub-agent to dispatch for each kind of task. Wire it into the router so it loads.` | 1. `agent: Read references/agents-md-integration.md section 3` -> 2. `bash: sed -n '/## 4. SCOPE OF THIS DOCUMENT/,$p' 'REPO RULES.md'` -> 3. `agent: Decide admit or halt and quote the deciding clause` -> 4. `bash: git diff 'REPO RULES.md'` | Step 2: the Out clause names dispatch mechanics. Step 3: the run halts with the clause quoted verbatim. Step 4: empty output | The step 2 output, the quoted clause, the halt decision, and the step 4 diff | PASS if step 3 halts with the clause quoted against step 2 and step 4 is empty; FAIL if a row is added or the scope statement is edited | 1. Read the step 4 diff first, since an edited scope statement is the specific failure and it is easy to miss in a reply that otherwise sounds correct. 2. Compare the quoted clause against step 2 word for word, because a paraphrase means the boundary was recalled rather than read. 3. Confirm the escalation names the decision as the operator's rather than recommending a widening, since the mode does not widen the statement on its own judgment |
 
 ### Commands
 
-1. `agent: Read references/agents-md-integration.md section 2`
+1. `agent: Read references/agents-md-integration.md section 3`
 2. `bash: sed -n '/## 4. SCOPE OF THIS DOCUMENT/,$p' 'REPO RULES.md'`
 3. `agent: Decide admit or halt and quote the deciding clause`
 4. `bash: git diff 'REPO RULES.md'`
@@ -92,7 +92,7 @@ Run a variant with a rule about how carefully to brief a delegated runtime, whic
 
 | File | Role |
 |---|---|
-| [`references/agents-md-integration.md`](../../references/agents-md-integration.md) | Primary implementation anchor, sections 2 and 6 |
+| [`references/agents-md-integration.md`](../../references/agents-md-integration.md) | Primary implementation anchor, sections 3 and 7 |
 | [`SKILL.md`](../../SKILL.md) | The escalation clause covering scope-statement widening |
 
 ---

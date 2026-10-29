@@ -9,20 +9,22 @@ trigger_phrases:
   - "bucket contents"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
+version: 1.2.1.0
 ---
 
 # Medallion
+
+## 1. OVERVIEW
 
 **Best for:** documenting a multi-tier data-storage layout where each tier is a distinct *quality / access level* of the same dataset — typically raw landing zone, anonymised, staging/cleaned, aggregated business indicators, and cold archive. Used when the reader needs to see at a glance *what each bucket contains*, *who writes it*, *with what tool and format*, and *how data is promoted between tiers*.
 
 Prefer **Process** if the subject is a workflow with role lanes. Prefer **High-Level** if the subject is the cluster architecture rather than the storage tier organisation.
 
-This type is **parametric** — the inputs schema in §1 drives every coordinate via the formulas in §2. Two generations from the same inputs must produce visually identical SVG. The rule shapes mirror `type-process.md` and `type-data-flow.md` so color override, focal rule, and reproducibility checklist read identically across types.
+This type is **parametric** — the inputs schema in §2 drives every coordinate via the formulas in §3. Two generations from the same inputs must produce visually identical SVG. The rule shapes mirror `type-process.md` and `type-data-flow.md` so color override, focal rule, and reproducibility checklist read identically across types.
 
 ---
 
-## 1. Inputs — the parameter contract
+## 2. INPUTS — THE PARAMETER CONTRACT
 
 ```yaml
 title:    "Five-Tier Medallion Architecture"
@@ -63,16 +65,16 @@ dark: false
 ```
 
 **Reserved field semantics:**
-- `tiers[i].style` — one of `outer`, `default`, `focal`, `cold`. Drives the card's fill/stroke palette (§2.4).
+- `tiers[i].style` — one of `outer`, `default`, `focal`, `cold`. Drives the card's fill/stroke palette (§3.4).
 - `tiers[i].focal: true` — exactly **one** tier may declare this. Overrides `style` to `focal` and switches the promotion arrow *into* this tier to `focal` automatically.
 - `tiers[i].fields` — `{tool, format, writer, example}`. `example` is a 1- or 2-item list; the section heading uses `example_label`.
-- `tiers[i].color` — optional `"#hex"` per-tier color override. See §4.
-- `promotions[].style` — `normal` | `focal` | `lifecycle`. The connector rule (§3) binds each style to fixed stroke / dash / marker.
+- `tiers[i].color` — optional `"#hex"` per-tier color override. See §5.
+- `promotions[].style` — `normal` | `focal` | `lifecycle`. The connector rule (§4) binds each style to fixed stroke / dash / marker.
 - `paths` — 0–2 entries. When 0 entries, the bottom row is omitted and `viewBox_h` shrinks accordingly.
 
 ---
 
-## 2. Layout formulas — deterministic geometry
+## 3. LAYOUT FORMULAS — DETERMINISTIC GEOMETRY
 
 ```
 # Tier dimensions
@@ -108,14 +110,14 @@ arc_label_y      = 50                                    # label sits inside the
 # Path row (bottom)
 path_y           = tier_y + tier_h + path_gap            # 476
 path_w           = (viewBox_w - 2*left_pad - path_gap) / 2 if len(paths) == 2 else (viewBox_w - 2*left_pad)
-                                                          # Canonical 5-tier shape uses path_w=460 explicitly (see §2.5)
+                                                          # Canonical 5-tier shape uses path_w=460 explicitly (see §3.5)
 ```
 
-### 2.1 Background
+### 3.1 Background
 
 Solid paper fill across the full viewBox. No dot pattern.
 
-### 2.2 Tier card (172 × 380)
+### 3.2 Tier card (172 × 380)
 
 Each tier renders as a rounded-rect card with a tinted header band, a centered bucket name, four labeled field rows, and a separated `example_label` section near the bottom.
 
@@ -151,9 +153,9 @@ field rows (absolute y):
 
 The HTML namespace declaration on the `<div>` is required for SVG to render the inline content. Browsers and Playwright/Chromium render this faithfully; if your export target doesn't support `<foreignObject>` (some older Inkscape builds), hand-split long values into two `<tspan>` lines instead.
 
-Field labels use the `node-name` role at 11px in ink. Field values use the `sublabel` role in muted. Bucket and field values can be retinted by `color` override (§4).
+Field labels use the `node-name` role at 11px in ink. Field values use the `sublabel` role in muted. Bucket and field values can be retinted by `color` override (§5).
 
-### 2.3 Tier styles
+### 3.3 Tier styles
 
 Four canonical styles, picked per tier via `tiers[i].style`. Default mapping if `style` is omitted: tier 0 → `outer`, last tier → `cold`, focal tier (if any) → `focal`, others → `default`.
 
@@ -168,7 +170,7 @@ Four canonical styles, picked per tier via `tiers[i].style`. Default mapping if 
 
 **Focal styling note:** the focal tier's accent treatment cascades — its bucket text and its example-value lines render in accent. Other field values (tool/format/writer) stay muted; only the bucket name and the example payload carry the focal signal so the tier card doesn't fully drown in coral.
 
-### 2.4 Promotion arcs (over the top of the tiers)
+### 3.4 Promotion arcs (over the top of the tiers)
 
 Each promotion is a **cubic Bézier arc** anchored at the **top-center** of each adjacent tier — `(tier_cx(i), tier_y)` to `(tier_cx(i+1), tier_y)`. The arc rises into the 80-px `arc_band` above the cards, peaking at y ≈ 20. Both the connector and its label remain fully visible — no paper masks, no overlap with card content.
 
@@ -197,7 +199,7 @@ The cubic geometry: anchor y = 80 (tier top), control y = 0 (top of viewBox). Cu
 
 **Auto-style rules:**
 - If `promotions[k].to` references the **focal tier**, the style auto-promotes to `focal` (accent, width 1.6, `arrow-accent` marker).
-- If `promotions[k].to` references a tier with a **`color` override** (§4), the arrow inherits that hex — stroke = `C`, label fill = `C`, marker-end uses a color-matched marker (e.g., `arrow-yellow` for `#c9a23a`). Width stays at 1.4 — the color override is a "concern" signal, not a focal promotion. Lifecycle/dashed arrows keep their dash but adopt the color.
+- If `promotions[k].to` references a tier with a **`color` override** (§5), the arrow inherits that hex — stroke = `C`, label fill = `C`, marker-end uses a color-matched marker (e.g., `arrow-yellow` for `#c9a23a`). Width stays at 1.4 — the color override is a "concern" signal, not a focal promotion. Lifecycle/dashed arrows keep their dash but adopt the color.
 - Focal wins if both apply (a colored tier marked focal still uses accent).
 
 **Label inside the arc:**
@@ -207,7 +209,7 @@ The cubic geometry: anchor y = 80 (tier top), control y = 0 (top of viewBox). Cu
 
 For shorter inter-tier gaps (if `tier_gap` is overridden below the default 16 px), the arc anchors `arc_inset` may need to shrink correspondingly to keep the arc visible.
 
-### 2.5 Path row (bottom, optional)
+### 3.5 Path row (bottom, optional)
 
 Up to **2** write-method cards. The canonical 5-tier shape (with `arc_band_h = 80`):
 
@@ -230,9 +232,9 @@ Per-card content:
 
 ---
 
-## 3. Connector rules (mandatory)
+## 4. CONNECTOR RULES (MANDATORY)
 
-Three styles, bound to topology. Mirror §3 of `type-process.md` so the rule reads identically.
+Three styles, bound to topology. Mirror §4 of `type-process.md` so the rule reads identically.
 
 ```svg
 <defs>
@@ -251,11 +253,11 @@ Add a new `<marker>` for each `color` override used in the diagram. Naming conve
 
 ---
 
-## 4. Component color override
+## 5. COMPONENT COLOR OVERRIDE
 
-Any tier or path entry accepts an optional `color: "#hex"`. Mirrors `type-process.md` §4 / `type-data-flow.md` §4.
+Any tier or path entry accepts an optional `color: "#hex"`. Mirrors `type-process.md` §5 / `type-data-flow.md` §5.
 
-### 4.1 Per-tier `color`
+### 5.1 Per-tier `color`
 
 Applied to:
 
@@ -272,18 +274,18 @@ Applied to:
 
 `C_light` = the same hex lightened ~15% for dark-mode contrast.
 
-### 4.2 Per-path `color`
+### 5.2 Per-path `color`
 
 Replaces the path card's stroke with `rgba(C, 0.45)` and the tag chip stroke with `rgba(C, 0.55)`. Tag text and title text use `C`. Sub stays muted.
 
-### 4.3 Rules
+### 5.3 Rules
 
 - **Never on focal tiers.** The accent already carries that signal — a `color` on the focal tier is ignored.
 - **Never on the `cold` tier in addition to its dashed treatment.** Pick either dashed-cold or a custom color, not both.
 - **Cap at 2 custom-colored elements** per diagram (tier or path), in addition to the focal tier.
-- **Promotion arrows inherit the target tier's color** (§3 auto-style rule). A `color: "#c9a23a"` on the Staging tier means the CLEAN+WEIGHT arc landing in Staging is also rendered in yellow — connector, label, and arrowhead match. This keeps visual coherence: the colored tier and its incoming flow read as a single "concern" group. Arrows do **not** inherit color from the source tier — only the target — so the arc *out of* a colored tier reverts to muted (or to the next target's color/style).
+- **Promotion arrows inherit the target tier's color** (§4 auto-style rule). A `color: "#c9a23a"` on the Staging tier means the CLEAN+WEIGHT arc landing in Staging is also rendered in yellow — connector, label, and arrowhead match. This keeps visual coherence: the colored tier and its incoming flow read as a single "concern" group. Arrows do **not** inherit color from the source tier — only the target — so the arc *out of* a colored tier reverts to muted (or to the next target's color/style).
 
-### 4.4 Semantic palette (recommended)
+### 5.4 Semantic palette (recommended)
 
 Same palette as the other parametric types so a reader scanning multiple diagrams sees the same colors meaning the same thing:
 
@@ -295,7 +297,7 @@ Same palette as the other parametric types so a reader scanning multiple diagram
 
 ---
 
-## 5. Focal rule
+## 6. FOCAL RULE
 
 Exactly **one** focal tier per diagram. Defaults to the tier marked `focal: true` in inputs; if none is marked, defaults to the analytical pivot tier (typically `Aggregated` or whichever tier downstream consumers query).
 
@@ -309,7 +311,7 @@ If zero or >1 tiers carry `focal: true`, halt and ask the user.
 
 ---
 
-## 6. Dark mode
+## 7. DARK MODE
 
 | Token | Light | Dark |
 |---|---|---|
@@ -328,11 +330,11 @@ If zero or >1 tiers carry `focal: true`, halt and ask the user.
 
 ---
 
-## 7. Reproducibility checklist (taste gate)
+## 8. REPRODUCIBILITY CHECKLIST (TASTE GATE)
 
 Before emitting SVG, verify **every** item:
 
-1. `viewBox = "0 0 {viewBox_w} {viewBox_h}"` derived via §2 (5 tiers + 2 paths → 1040 × 548).
+1. `viewBox = "0 0 {viewBox_w} {viewBox_h}"` derived via §3 (5 tiers + 2 paths → 1040 × 548).
 2. Each tier card at `(tier_x(i), 80)` size `172 × 380`, `rx=6`.
 3. Tier header band fills `(tier_x(i), 80, 172, 40)` plus a 10-px extension under the band.
 4. Exactly **one** focal tier; its incoming arc auto-styled to `focal`.
@@ -345,7 +347,7 @@ Before emitting SVG, verify **every** item:
 
 ---
 
-## 8. Anti-patterns
+## 9. ANTI-PATTERNS
 
 - **More than one focal tier** — focal exists to mark the central analytical surface; >1 erases the signal.
 - **Cold styling on a non-archive tier** — the dashed fog look is reserved for retention/archive tiers.
@@ -357,7 +359,7 @@ Before emitting SVG, verify **every** item:
 
 ---
 
-## 9. Examples
+## 10. EXAMPLES
 
 - `assets/diagrams/medallion.html` — minimal light (NatStat quarterly survey: 5 tiers, 2 path cards, Aggregated focal). Gallery default.
 - `assets/diagrams/medallion-dark.html` — same, dark skin.
@@ -365,6 +367,6 @@ Before emitting SVG, verify **every** item:
 
 ---
 
-## 10. Worked YAML
+## 11. WORKED YAML
 
-The YAML in §1 is the **complete** inputs definition for the shipped `medallion.html`. Every coordinate in that file's SVG is derivable from §2 applied to those inputs. The same YAML is embedded as a top-of-file HTML comment inside `medallion.html` so source view shows the parametric inputs immediately above the SVG.
+The YAML in §2 is the **complete** inputs definition for the shipped `medallion.html`. Every coordinate in that file's SVG is derivable from §3 applied to those inputs. The same YAML is embedded as a top-of-file HTML comment inside `medallion.html` so source view shows the parametric inputs immediately above the SVG.

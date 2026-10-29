@@ -9,16 +9,18 @@ trigger_phrases:
   - "point table"
 importance_tier: normal
 contextType: general
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # Human Voice Rules: Publish Supplement
+
+## 1. OVERVIEW
 
 This supplement is loaded after the wording standard, `hvr-rules.md`, and never alone. The base is what a reply loads. This supplement is what a published document adds.
 
 ---
 
-## 1. SCORING
+## 2. SCORING
 
 - **Scoring:** Hard blockers cost -5 points. Soft deductions cost -2 or -1. Clean document starts at 100.
 
@@ -49,7 +51,7 @@ The point labels left the base's section titles. This table records what each fi
 
 ---
 
-## 2. RULE PRECEDENCE
+## 3. RULE PRECEDENCE
 
 When a word or phrase appears in multiple categories, apply exactly one penalty using first-match-wins:
 
@@ -64,7 +66,7 @@ A term listed in both hard blocker and soft deduction is evaluated only as hard 
 
 ---
 
-## 3. PRE-PUBLISH CHECKLIST
+## 4. PRE-PUBLISH CHECKLIST
 
 ### Scoring
 
@@ -133,7 +135,7 @@ pre_publish_checklist:
 
 ---
 
-## 4. RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 ### Templates That Apply HVR
 

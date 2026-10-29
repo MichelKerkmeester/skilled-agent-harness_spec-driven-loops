@@ -7,16 +7,20 @@ trigger_phrases:
   - "superseded runbook"
 importance_tier: "normal"
 contextType: "reference"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Spec-Root Alias Retirement Runbook
+
+## 1. OVERVIEW
 
 > **Superseded. Do not run this procedure.** It was written while `.opencode/specs` was the canonical root and a root `specs` link pointed at it. The relocation packet `specs/system-speckit/032-relocate-specs-folder` reversed that on 2026-08-08: the real tree is now `specs/`, which the canonical resolver reads first, and the `.opencode/specs` back-link was removed on 2026-09-20 in `befe3993f1`. Root `specs` is no longer an alias but the tracked spec tree itself, so the `git rm -- specs` below would target the real packets. The preflight's mode `120000` check fails on that tree and stops the procedure before it gets that far. The text below is kept as the record of the retired plan.
 
 This runbook removes the repository-root `specs` compatibility alias only after the canonical `.opencode/specs` root is independently safe. It does not migrate, delete, or roll back packet data.
 
-## Why Retirement Is Required
+---
+
+## 2. WHY RETIREMENT IS REQUIRED
 
 The tracked `specs` blob is a symbolic link whose current payload is an absolute path on one developer machine. That payload is not portable:
 
@@ -27,11 +31,15 @@ The tracked `specs` blob is a symbolic link whose current payload is an absolute
 
 A relative `specs -> .opencode/specs` link avoids the machine-specific target on symlink-capable hosts, but it still fails as a universal contract when symlinks are unavailable. Canonical behavior must therefore work with no alias present.
 
-## Stop Conditions
+---
+
+## 3. STOP CONDITIONS
 
 Stop the retirement if any precondition lacks evidence, any mandatory matrix row fails or skips, telemetry records a legacy dependency, `specs` reappears after removal, or `.opencode/specs` changes during the retirement operation. Resolve the failing dependency before restarting the compatibility window.
 
-## Preconditions
+---
+
+## 4. PRECONDITIONS
 
 The release operator must attach evidence for every item below before removing the alias:
 
@@ -54,7 +62,9 @@ On a symlink-capable checkout, also record `readlink specs`. An absolute result 
 
 Dispatch `.github/workflows/spec-root-resolution-matrix.yml` against the candidate behavior revision before changing the tracked alias. Require all three operating-system jobs to pass and retain their symlink-capability skip reasons and counts as release evidence.
 
-## Final Retirement
+---
+
+## 5. FINAL RETIREMENT
 
 Run these commands from the repository root. `git rm` removes only the tracked alias entry; it must not be replaced with a recursive filesystem deletion.
 
@@ -91,7 +101,9 @@ git commit -m "chore(spec-kit): retire specs alias" -m "The pre-retirement matri
 
 Push the candidate through the normal review process. The root `specs` path is a workflow trigger, so the deletion commit runs the three operating-system jobs again. Do not merge or promote the candidate unless that post-removal run is green and its skip report satisfies the same policy.
 
-## Verify No Re-Materialization
+---
+
+## 6. VERIFY NO RE-MATERIALIZATION
 
 Repeat these checks after every representative writer or release smoke test and once more after the deployed release has completed its normal save/index cycle:
 
@@ -102,7 +114,9 @@ git status --short -- specs .opencode/specs
 
 Before the retirement commit, the only expected status is the staged deletion of `specs`. After the commit, both commands must report no `specs` entry and no unexpected canonical-tree mutation. Any reappearance identifies a remaining writer, installer, checkout hook, or external automation dependency; stop rollout and identify that owner rather than deleting the entry repeatedly.
 
-## Rollback Bridge
+---
+
+## 7. ROLLBACK BRIDGE
 
 Rollback never moves or restores packet data. Canonical `.opencode/specs` data, canonical-only writers, and collision guards remain authoritative.
 

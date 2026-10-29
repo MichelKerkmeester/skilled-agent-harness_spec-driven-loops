@@ -2,7 +2,7 @@
 title: "RRL-001 -- Router bootstrap"
 description: "This scenario validates the router prerequisite for `RRL-001`. It focuses on emitting the router into a repository that has none, before any rule is written."
 stage: routing
-version: 1.1.0.3
+version: 1.1.1.0
 ---
 
 # RRL-001 -- Router bootstrap
@@ -92,7 +92,7 @@ Run the same prompt against a repository that already has a router and confirm n
 
 | File | Role |
 |---|---|
-| [`references/agents-md-integration.md`](../../references/agents-md-integration.md) | Primary implementation anchor, sections 3 and 7 |
+| [`references/agents-md-integration.md`](../../references/agents-md-integration.md) | Primary implementation anchor, sections 4 and 8 |
 | [`assets/repo-rules-router-template.md`](../../assets/repo-rules-router-template.md) | The router the prerequisite emits |
 
 ---

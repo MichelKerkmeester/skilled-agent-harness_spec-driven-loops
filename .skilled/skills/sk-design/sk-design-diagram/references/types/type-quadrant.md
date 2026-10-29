@@ -9,14 +9,18 @@ trigger_phrases:
   - "consultant scenario matrix"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
+version: 1.2.1.0
 ---
 
 # Quadrant
 
+## 1. OVERVIEW
+
 **Best for:** prioritization (Impact × Effort), positioning (Reach × Frequency), portfolio maps, 2×2 decision frames.
 
-## 1. Layout conventions
+---
+
+## 2. LAYOUT CONVENTIONS
 - 2×2 grid. Axis lines: 1px ink cross through the center.
 - **Axis labels: Jobs-minimal.** One single word at each arrow tip — no glyphs baked into the label (no `↑` / `→` / `←` / `↓`), no parentheticals, no "HIGH / LOW" modifiers. Geist Mono 9px regular weight, tracked 0.18em, uppercase. Flank the arrow tips — never sit labels on top of the axis line. Shorten the arrow enough (~60–80px inside the viewBox edge) to leave breathing room for the labels beyond the tips.
 - Never label at the midpoint.
@@ -24,12 +28,16 @@ version: 1.2.0.8
 - Coral on the "do first" item (typically top-right).
 - Limit to ~12 items; cluster or split beyond that.
 
-## 2. Anti-patterns
+---
+
+## 3. ANTI-PATTERNS
 - Four filled quadrants in different colors — position + label does the work; color noise weakens it.
 - Items placed on axis lines (ambiguous quadrant).
 - Missing axis names.
 
-## 3. Examples
+---
+
+## 4. EXAMPLES
 - `assets/diagrams/quadrant.html` — minimal light
 - `assets/diagrams/quadrant-dark.html` — minimal dark
 - `assets/diagrams/quadrant-full.html` — full editorial
@@ -37,7 +45,7 @@ version: 1.2.0.8
 
 ---
 
-## 4. Consultant special (2×2 scenario matrix)
+## 5. CONSULTANT SPECIAL (2×2 SCENARIO MATRIX)
 
 A **layout variant** of the standard quadrant — same house skin (warm paper, dot pattern, Instrument Serif title, Geist mono eyebrows, coral focal rule). The grammar shifts: axes hold a **range** rather than a measurement; cells hold **named scenarios** rather than positioned items.
 

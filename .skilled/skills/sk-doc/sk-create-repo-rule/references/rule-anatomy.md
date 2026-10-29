@@ -9,7 +9,7 @@ trigger_phrases:
   - "divergence classification"
 importance_tier: important
 contextType: reference
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Rule Anatomy Contract
@@ -29,7 +29,7 @@ its rule) for the corpus as it stands.
 
 ---
 
-## 0. OVERVIEW: WHAT A REPO RULE IS
+## 1. OVERVIEW: WHAT A REPO RULE IS
 
 A repo rule **supplements the harness**. It is not a law and not a contract with the
 runtime: it can be overridden by an explicit operator instruction, changed when it stops
@@ -51,7 +51,7 @@ This is why the mode owns changing and removing rules, not only creating them.
 
 ---
 
-## 1. WHAT THE CORPUS AGREES ON
+## 2. WHAT THE CORPUS AGREES ON
 
 Every one of these is carried by every shipped rule. A generated rule that omits any is not a rule of this set.
 
@@ -74,7 +74,7 @@ generator can assert without qualification.
 
 ---
 
-## 2. WHAT VARIES, AND WHY
+## 3. WHAT VARIES, AND WHY
 
 These scale with the rule's subject. A generator sets no target for them.
 
@@ -84,12 +84,12 @@ These scale with the rule's subject. A generator sets no target for them.
 | Numbered sections | Follows the subject — a rule that turns on more distinct mechanisms carries more sections |
 | Self-check items | One per obligation the body actually creates |
 | Total lines | Follows section count, which follows the subject |
-| Inter-rule cross-references | Sparse; rules are more independent than the cross-reference doctrine implies. See section 4 |
+| Inter-rule cross-references | Sparse; rules are more independent than the cross-reference doctrine implies. See section 5 |
 | Example-and-repair line | Optional: the tempting wrong move beside its repair, earned when the rule names a habit. The template carries it and the shipped corpus predates it |
 
 ---
 
-## 3. LENGTH BANDS
+## 4. LENGTH BANDS
 
 Operator-set, and they replace the stale ~160 ceiling the set carried before these
 bands. Counts include frontmatter, because that is what a reader loads.
@@ -113,7 +113,7 @@ explanation should be looked at.
 
 ---
 
-## 4. A SECOND FINDING: THE RULES ARE NEARLY INDEPENDENT
+## 5. A SECOND FINDING: THE RULES ARE NEARLY INDEPENDENT
 
 Every rule links back to the router, and sideways links between rules stay few next to
 the doctrine each rule holds. `check-repo-rules.cjs` reports the live link count, so this
@@ -126,7 +126,7 @@ doctrine.
 
 ---
 
-## 5. THE FRONTMATTER SCHEMA
+## 6. THE FRONTMATTER SCHEMA
 
 Six keys, in this order, matching the skill-reference schema:
 
@@ -154,7 +154,7 @@ claimed by two rules, so each phrase resolves to exactly one file.
 
 ---
 
-## 6. SECTION ORDER
+## 7. SECTION ORDER
 
 The body order is not arbitrary and is consistent where subjects overlap:
 
@@ -167,9 +167,9 @@ The body order is not arbitrary and is consistent where subjects overlap:
 
 ---
 
-## 7. SELF-CHECK
+## 8. SELF-CHECK
 
-- [ ] Every MUST element in section 1 appears in the generated rule.
+- [ ] Every MUST element in section 2 appears in the generated rule.
 - [ ] Dividers equal numbered sections exactly.
 - [ ] `title` and `description` are quoted, and the frontmatter parses.
 - [ ] Trigger phrases are symptom vocabulary, and none duplicates another rule's.

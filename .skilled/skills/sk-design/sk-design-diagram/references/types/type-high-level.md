@@ -10,10 +10,12 @@ trigger_phrases:
   - "vertical chevron strip"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.9
+version: 1.2.1.0
 ---
 
 # High-Level
+
+## 1. OVERVIEW
 
 **Best for:** end-to-end data stack overviews — ingestion → storage → query → analytics → visualization — deployed on a container orchestrator (Kubernetes, ECS, Nomad). Combines a phase chevron banner, deployment boundary, orchestration bar, identity footer, and (optionally) a right-side vertical chevron strip for cross-cutting concerns (Orchestration, Security, Observability).
 
@@ -21,7 +23,7 @@ This type is **parametric**. The diagram is fully determined by a small list of 
 
 ---
 
-## 1. Inputs — the parameter contract
+## 2. INPUTS — THE PARAMETER CONTRACT
 
 Before drawing, collect these from the user (or accept them as a YAML/JSON block). Everything in this reference is derived from these inputs. Don't invent geometry on the fly.
 
@@ -68,10 +70,10 @@ dark: false
 
 **Reserved `kind` values:**
 - `node` — a standard box inside the cluster (default).
-- `bar` — a horizontal strip spanning the cluster top. Typically one (Orchestration); see §5 for the pairing rule.
-- `cross-cutting` — a horizontal strip spanning the body width (stops at the strip margin), stacked below the cluster. **Zero or more allowed**; each stacks 44 px below the previous (§2.5) and pairs 1:1 with a vertical chevron (§5).
+- `bar` — a horizontal strip spanning the cluster top. Typically one (Orchestration); see §6 for the pairing rule.
+- `cross-cutting` — a horizontal strip spanning the body width (stops at the strip margin), stacked below the cluster. **Zero or more allowed**; each stacks 44 px below the previous (§3.5) and pairs 1:1 with a vertical chevron (§6).
 
-**Optional `color`** (per component, hex string): tints the component's container and content while leaving connectors untouched. See §3.4. Use sparingly — a custom color is a semantic flag (e.g., red = security concern), not decoration.
+**Optional `color`** (per component, hex string): tints the component's container and content while leaving connectors untouched. See §4.4. Use sparingly — a custom color is a semantic flag (e.g., red = security concern), not decoration.
 
 **Source `type` values** → icon mapping (use `references/primitives/primitive-icons.md`):
 - `db` → `database`
@@ -83,11 +85,11 @@ dark: false
 
 ---
 
-## 2. Layout formulas — deterministic geometry
+## 3. LAYOUT FORMULAS — DETERMINISTIC GEOMETRY
 
 Every coordinate below is derived from the inputs. **No hardcoded numbers in examples that aren't justified here.**
 
-### 2.1 Canvas
+### 3.1 Canvas
 
 ```
 has_vertical       = any(c.vertical or c.name in reserved_names for c in chevrons)
@@ -105,7 +107,7 @@ Every horizontal element (chevron banner, cluster, orchestration bar, identity /
 
 `viewBox_h` grows when more than one cross-cutting bar is declared: 1 crosscut → 540, 2 → 600 (or 584 if you want it tight; the rule rounds to the next multiple of 20 for clean grids).
 
-### 2.2 Horizontal chevron banner
+### 3.2 Horizontal chevron banner
 
 ```
 y_banner           = 4
@@ -133,7 +135,7 @@ Fills alternate `#2d3142` / `#3d4460` (light mode) or `#3d4460` / `#4a5270` (dar
 - In dark mode, use the same hex unless contrast against paper labels suffers; if it does, pick a darker shade for dark mode and document it as a `color_dark` field on that chevron.
 - A chevron color override is independent of any paired component's color, but pairing them (same hex on chevron + bar) is the conventional way to make the column "read" as one concern.
 
-### 2.3 Source zone (dashed, external)
+### 3.3 Source zone (dashed, external)
 
 ```
 sources_x          = 4
@@ -144,7 +146,7 @@ sources_h          = 336
 
 Stroke: `rgba(45,49,66,0.20)`, `stroke-width=0.8`, `stroke-dasharray=6,3`, `rx=6`. Zone fill: `rgba(45,49,66,0.02)`.
 
-### 2.4 Cluster boundary (solid)
+### 3.4 Cluster boundary (solid)
 
 ```
 cluster_x          = x_boundaries[1] + 4           # starts at end of source zone + 4px gutter
@@ -155,7 +157,7 @@ cluster_h          = 336
 
 Stroke: `rgba(45,49,66,0.18)`, `stroke-width=1.2`, `rx=8`. Fill: `rgba(45,49,66,0.02)`. K8s icon + label at `(cluster_x + 16, 352)` (icon) and `(cluster_x + 40, 362)` (text).
 
-### 2.5 Cross-cutting bars (identity, observability, …)
+### 3.5 Cross-cutting bars (identity, observability, …)
 
 Zero or more `kind: cross-cutting` components stack below the cluster. Each gets its own 40-px row with a 4-px gap.
 
@@ -176,9 +178,9 @@ Reserved cross-cutting *concerns* (informational; user can name the actual bar w
 - **Governance / Lineage** — OpenMetadata, DataHub, Apache Atlas
 - **Secrets / config** — Vault, Sealed Secrets, External Secrets
 
-Each cross-cutting bar pairs 1:1 with a vertical chevron in the right strip (§5).
+Each cross-cutting bar pairs 1:1 with a vertical chevron in the right strip (§6).
 
-### 2.6 Orchestration bar component (inside cluster)
+### 3.6 Orchestration bar component (inside cluster)
 
 ```
 bar_x              = cluster_x + 12
@@ -189,7 +191,7 @@ bar_h              = 44
 
 Stroke: `rgba(45,49,66,0.18)`, `stroke-width=0.8`, `rx=4`. Fill: `rgba(45,49,66,0.05)`. Tool icon at the far right (`bar_x + bar_w - 50, 58`); name centered at `(bar_x + bar_w/2, 71)`; subtitle at `(bar_x + bar_w/2, 84)`.
 
-### 2.7 Component nodes (inside cluster)
+### 3.7 Component nodes (inside cluster)
 
 ```
 node_w             = 152
@@ -210,7 +212,7 @@ row_top(k)         = first_top_y + k * (node_h + gap)   # k = 0..K-1
 
 Role badge top-left at `(node_x+8, node_y+6)`, size 12 high. Icon top-right at `(node_x+node_w-32, node_y+6)`, 24×24, monochrome via `currentColor`. Name centered at `(node_cx, node_y+44)` size 11 sans semibold. Subtitle at `(node_cx, node_y+56)` size 8 mono muted.
 
-### 2.8 Source nodes (inside dashed zone)
+### 3.8 Source nodes (inside dashed zone)
 
 ```
 src_node_w         = sources_w - 8
@@ -223,14 +225,14 @@ src_row_top(k)     = src_first_top_y + k * (src_node_h + src_gap)
 
 Same role-badge / icon / name / subtitle pattern as cluster nodes (icon at `src_node_x+54, row_top(k)+6`; name centered at `src_node_x+src_node_w/2, row_top(k)+42`; subtitle one line below). Role badge text: `EXT`. Caps at 4 sources; for more, split into a separate diagram.
 
-### 2.9 Right strip — vertical chevrons
+### 3.9 Right strip — vertical chevrons
 
 ```
 strip_x            = 1000 - right_strip_w       # 972 when present
 strip_w            = 28
 verticals          = [c for c in chevrons if c.vertical or c.name in reserved_names]
 strip_y_top        = 40
-strip_y_bot        = max(428, 388 + n_cross * 44 - 4)   # extends to last crosscut row (see §2.1)
+strip_y_bot        = max(428, 388 + n_cross * 44 - 4)   # extends to last crosscut row (see §3.1)
 strip_h_total      = strip_y_bot - strip_y_top
 heights            = [floor_to_4(strip_h_total / len(verticals))] * len(verticals)
 heights[-1]       += strip_h_total - sum(heights)       # last absorbs remainder
@@ -242,18 +244,18 @@ Examples:
 
 Adjacent edges share the same y (no gap), like horizontal chevrons share x at their boundary.
 
-**Polygon shapes** (top-to-bottom flow, mirrors horizontal §2.2):
+**Polygon shapes** (top-to-bottom flow, mirrors horizontal §3.2):
 - First (topmost): flat top, point at bottom — `(strip_x, y0) (strip_x+strip_w, y0) (strip_x+strip_w, y1-12) (strip_x+strip_w/2, y1) (strip_x, y1-12)`
 - Middle: notch on top, point on bottom — `(strip_x, y0) (strip_x+strip_w/2, y0+12) (strip_x+strip_w, y0) (strip_x+strip_w, y1-12) (strip_x+strip_w/2, y1) (strip_x, y1-12)`
 - Last (bottommost): notch on top, flat bottom — `(strip_x, y0) (strip_x+strip_w/2, y0+12) (strip_x+strip_w, y0) (strip_x+strip_w, y1) (strip_x, y1)`
 
 Fills alternate `#2d3142` / `#3d4460` (same palette as horizontals). Labels: paper-colored mono `font-size=7`, `letter-spacing=0.14em`, **rotated −90°**, anchored at `(strip_x + strip_w/2, (y0+y1)/2)`.
 
-Vertical chevrons honor the per-chevron `color` override documented in §2.2 — apply the hex to the polygon fill, leave the rotated label paper-colored. Pair the override with the same hex on the chevron's paired bar/crosscut to bind them visually as one concern.
+Vertical chevrons honor the per-chevron `color` override documented in §3.2 — apply the hex to the polygon fill, leave the rotated label paper-colored. Pair the override with the same hex on the chevron's paired bar/crosscut to bind them visually as one concern.
 
 ---
 
-## 3. Connector rules (mandatory)
+## 4. CONNECTOR RULES (MANDATORY)
 
 These are non-negotiable. Pick the style **automatically** from the topology — do not let the user override style on focal-touching or bar-originating edges.
 
@@ -275,7 +277,7 @@ These are non-negotiable. Pick the style **automatically** from the topology —
 </defs>
 ```
 
-### 3.1 Exit / entry sides (non-negotiable)
+### 4.1 Exit / entry sides (non-negotiable)
 
 | Edge kind | Exit side of source | Entry side of target |
 |---|---|---|
@@ -285,7 +287,7 @@ These are non-negotiable. Pick the style **automatically** from the topology —
 | Cross-cutting bar | — (emits no edges) | — |
 | Vertical chevron | — (labels only; emits no edges) | — |
 
-### 3.2 Routing
+### 4.2 Routing
 
 - Orthogonal elbows, **at most two bends** per path.
 - Use a Q-bezier 8-px corner radius at every bend.
@@ -293,14 +295,14 @@ These are non-negotiable. Pick the style **automatically** from the topology —
 - Exactly one `marker-end` per `<path>` / `<line>`. Never both `marker-start` and `marker-end`.
 - Labels: every `primary` and `secondary` connector gets a label (small mono, opaque paper-filled rect mask behind). `trigger` and `query` connectors are unlabelled.
 
-### 3.3 Crossings
+### 4.3 Crossings
 
-- Avoid. Re-route via the chevron divider trunk (§4) before accepting a crossing.
+- Avoid. Re-route via the chevron divider trunk (§5) before accepting a crossing.
 - If unavoidable, the path drawn second carries a 6-px arc hop over the first.
 
-### 3.4 Component color override
+### 4.4 Component color override
 
-A component may declare an optional `color: "#hex"` (CSS color string). The override **only** retints the component's container and content — connectors are never recolored. Edges keep their topology-driven style from §3.
+A component may declare an optional `color: "#hex"` (CSS color string). The override **only** retints the component's container and content — connectors are never recolored. Edges keep their topology-driven style from §4.
 
 **Where the color is applied** (given `C = color`):
 
@@ -319,10 +321,10 @@ The subtitle stays muted because it's parenthetical metadata — only the primar
 
 **Rules**:
 
-- **Never on the focal node.** The focal node is already colored with the accent (§2.7). A `color` on the focal node is ignored — accent wins.
+- **Never on the focal node.** The focal node is already colored with the accent (§3.7). A `color` on the focal node is ignored — accent wins.
 - **Never on source nodes.** Sources live outside the cluster and stay neutral.
-- **Cap at 2 custom-colored components** per diagram (in addition to the focal). Three or more colored things erases the signal — the same reason §1 limits accent to 1–2 elements.
-- **No color on connectors.** If you find yourself wanting a colored edge, the right move is to pick a different `style` from §3, not to override.
+- **Cap at 2 custom-colored components** per diagram (in addition to the focal). Three or more colored things erases the signal — the same reason SKILL.md §3 limits accent to 1–2 elements.
+- **No color on connectors.** If you find yourself wanting a colored edge, the right move is to pick a different `style` from §4, not to override.
 
 **Semantic uses** (recommended):
 - `#b85450` (rust-red) — Security / Identity (Keycloak, Vault)
@@ -334,11 +336,11 @@ Stick to these unless the user's brand demands otherwise. Random hex per compone
 
 ---
 
-## 4. Block branching rules (fan-out)
+## 5. BLOCK BRANCHING RULES (FAN-OUT)
 
 The single biggest reproducibility hazard. Fix these rules and the diagram becomes predictable.
 
-### 4.1 Source fan-out (one source → N components)
+### 5.1 Source fan-out (one source → N components)
 
 ```
 exit_x   = source.right
@@ -347,7 +349,7 @@ trunk_x  = cluster_x - 8                     # 4-px gutter before cluster border
 
 Path per target: `M exit_x,source_cy → H trunk_x → V target_cy → H target.left`. Use Q-bezier corners.
 
-### 4.2 Component fan-out (one component → N components)
+### 5.2 Component fan-out (one component → N components)
 
 ```
 exit_x   = node.right
@@ -356,11 +358,11 @@ trunk_x  = x_boundaries[index(source.chevron) + 1] + 4   # 4 px past the chevron
 
 Path per target: `M exit_x,source_cy → H trunk_x → V target_cy → H target.left`.
 
-### 4.3 Fan-out cap
+### 5.3 Fan-out cap
 
 **Max 3 outgoing edges per node.** Above 3, introduce a hub (usually the `focal` node). The chevron banner is the legend; if a node is fanning out to four downstream targets, it's secretly the hub — make it explicit.
 
-### 4.4 Bar drops (Airflow → N nodes)
+### 5.4 Bar drops (Airflow → N nodes)
 
 ```
 drop_x(target) = target.cx
@@ -370,7 +372,7 @@ drop_y_end     = target.top
 
 Straight vertical line, `style: trigger`. One per target. No bends — bar drops never elbow.
 
-### 4.5 Source vertical staggering
+### 5.5 Source vertical staggering
 
 When multiple sources connect to the same single target (e.g. four sources → NiFi), stagger their entry y on the target:
 
@@ -382,9 +384,9 @@ This avoids overlapping arrowheads at the target's left edge.
 
 ---
 
-## 5. Vertical chevrons — semantics
+## 6. VERTICAL CHEVRONS — SEMANTICS
 
-Reserved names `Orchestration`, `Security`, `Observability`, `Governance`, `Backup` always render in the right strip (§2.9). Any chevron with `vertical: true` is treated as a reserved-style vertical regardless of name. The rules:
+Reserved names `Orchestration`, `Security`, `Observability`, `Governance`, `Backup` always render in the right strip (§3.9). Any chevron with `vertical: true` is treated as a reserved-style vertical regardless of name. The rules:
 
 - **Pairing rule (mandatory, 1:1):** every vertical chevron pairs with exactly one cross-spanning component, and every cross-spanning component pairs with exactly one vertical chevron. The two component kinds that pair:
   - `kind: bar` — lives inside the cluster (top row). Conventionally paired with `Orchestration`.
@@ -392,7 +394,7 @@ Reserved names `Orchestration`, `Security`, `Observability`, `Governance`, `Back
 
   If the inputs declare a vertical chevron without a paired component (or vice versa), halt and ask the user — the diagram is incomplete.
 
-- **Count constraint:** `len(verticals) == len(bars) + len(crosscuts)`. The right strip is split evenly among all verticals (§2.9), so visual alignment between a chevron and its bar/row is approximate — the *label* is what matters, not the y-pixel match.
+- **Count constraint:** `len(verticals) == len(bars) + len(crosscuts)`. The right strip is split evenly among all verticals (§3.9), so visual alignment between a chevron and its bar/row is approximate — the *label* is what matters, not the y-pixel match.
 
 - **Ordering convention:** declare verticals top-down in the order: bar-paired first (Orchestration), then crosscut-paired in the same order the crosscuts appear below the cluster. This keeps the visual reading order consistent.
 
@@ -406,7 +408,7 @@ The visual contract: the vertical chevron's column visually "owns" the bar/cross
 
 ---
 
-## 6. Dark mode
+## 7. DARK MODE
 
 When `dark: true`, swap these tokens:
 
@@ -429,11 +431,11 @@ When `dark: true`, swap these tokens:
 
 ---
 
-## 7. Reproducibility checklist (the taste gate)
+## 8. REPRODUCIBILITY CHECKLIST (THE TASTE GATE)
 
 Before emitting SVG, verify **every** item. If any fails, fix it — don't ship.
 
-1. Every cluster `node.cx` equals its chevron's `cx` (§2.2 + §2.7). This is what makes the chevron banner a real legend.
+1. Every cluster `node.cx` equals its chevron's `cx` (§3.2 + §3.7). This is what makes the chevron banner a real legend.
 2. Every chevron `width` is a multiple of 4 and ≥ 120.
 3. The reserved right strip (28 px) exists **iff** any vertical chevron is declared. If yes, `effective_w = 972`; if no, `effective_w = 1000`.
 4. Exactly **one** `focal` node. If `focal` is unset in inputs, default to the first `kind: node` under chevron "Storage".
@@ -442,28 +444,28 @@ Before emitting SVG, verify **every** item. If any fails, fix it — don't ship.
 7. The cross-cutting bar (if any) emits **no** edges.
 8. No node has > 3 outgoing edges, or if it does, it is the declared `focal` / hub.
 9. All `<path>` and `<line>` connectors are emitted **before** any node `<rect>` (z-order).
-10. Each vertical chevron pairs **1:1** with exactly one `bar` or `cross-cutting` component (§5 pairing rule). `len(verticals) == len(bars) + len(crosscuts)`.
+10. Each vertical chevron pairs **1:1** with exactly one `bar` or `cross-cutting` component (§6 pairing rule). `len(verticals) == len(bars) + len(crosscuts)`.
 11. `viewBox_h = max(540, strip_y_bot + 112)` — grow the canvas when multiple crosscuts are declared so the legend still fits.
-12. Custom component colors (§3.4) apply only to container + icon + name; connectors stay topology-driven. Cap at 2 custom-colored components in addition to the focal.
+12. Custom component colors (§4.4) apply only to container + icon + name; connectors stay topology-driven. Cap at 2 custom-colored components in addition to the focal.
 11. The diagram passes SKILL.md §6 (4-px grid; ≤ 2 accent elements; mono only for technical content; hairlines; no shadows; no `rounded-2xl`).
 
 ---
 
-## 8. Anti-patterns
+## 9. ANTI-PATTERNS
 
 - Chevron banner omitted — it's the key that maps visual columns to functional phases.
-- Node x-center off-chevron (§7 #1) — breaks the "banner-as-legend" contract.
+- Node x-center off-chevron (§8 #1) — breaks the "banner-as-legend" contract.
 - Vertical chevron drawn on the cluster (overlay) instead of in a reserved right strip.
 - More than one focal node — MinIO/S3 (or whichever storage hub) is *the* focal point.
 - External zone with solid border — dashed border is the signal that these components are outside the cluster.
 - Identity bar inside the cluster boundary — it applies to all components and must span the full canvas width.
-- Vertical chevron without a paired bar/cross-cutting component — see §5 pairing rule.
+- Vertical chevron without a paired bar/cross-cutting component — see §6 pairing rule.
 - Bar-component edges drawn solid — orchestration triggers must be dashed.
 - Source fanning out to >3 components without a hub.
 
 ---
 
-## 9. Examples
+## 10. EXAMPLES
 
 - `assets/diagrams/high-level.html` — horizontal-only, 5 phases, light skin.
 - `assets/diagrams/high-level-dark.html` — same, dark skin.

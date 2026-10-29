@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/074-reference-template-debt/001-diagram-references",
+  "spec_folder": "sk-doc/074-reference-template-debt/001-diagram-references",
+  "parent_id": "sk-doc/074-reference-template-debt",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "diagram references",
+      "phase 1 diagram references",
+      "diagram reference overview section",
+      "diagram references plan",
+      "diagram references tasks",
+      "diagram references acceptance criteria",
+      "diagram references implementation summary"
+    ],
+    "key_topics": [
+      "diagram",
+      "references",
+      "phase",
+      "reference",
+      "overview",
+      "section",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scratch/renumber-references.py",
+      ".skilled/skills/sk-design/sk-design-diagram/references/foundations/output-spec.md",
+      ".skilled/skills/sk-design/sk-design-diagram/references/foundations/derivation-record.md",
+      ".skilled/skills/sk-design/sk-design-diagram/references/primitives/primitive-icons.md",
+      ".skilled/skills/sk-design/sk-design-diagram/references/catalog.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "renumber-references.py",
+        "kind": "file",
+        "path": "scratch/renumber-references.py",
+        "source": "derived"
+      },
+      {
+        "name": "output-spec.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-diagram/references/foundations/output-spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "derivation-record.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-diagram/references/foundations/derivation-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "primitive-icons.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-diagram/references/primitives/primitive-icons.md",
+        "source": "derived"
+      },
+      {
+        "name": "catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-diagram/references/catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 27 type files, the catalog, the three import and export procedures, the output spec, the derivation record and the icon primitive all fail the reference format",
+    "created_at": "2026-10-29T21:27:27Z",
+    "last_save_at": "2026-10-29T22:06:59.494Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ebe332f46c9ad352dfc0d585260a4ff9419cce5d49e3b8641f5d19e6a4081a4d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d9c4aa5238a2e9c53b9a1977ba146d20dfc9926250be89a759657ae6c327cd4d",
+      "plan.md": "e9a0300402ed9050547f9ac6d44a9eca81c33b5745d42737859984db531f6e52",
+      "tasks.md": "56fba69fb6bb4ffbcf873201eb0cbff560ddff8f65cbd79d49b9c2b1a6c505b9",
+      "implementation-summary.md": "cf014b5151ceb1791555eb9bf5ab342bfe0ca6445e8e84d9b6e3d3a078186637"
+    },
+    "last_active_at": null
+  }
+}

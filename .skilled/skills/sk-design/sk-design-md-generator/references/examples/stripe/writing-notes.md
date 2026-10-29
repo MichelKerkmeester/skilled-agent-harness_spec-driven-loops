@@ -7,10 +7,12 @@ trigger_phrases:
   - Stripe extraction caveats
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Writing Notes: Stripe DESIGN.md
+
+## 1. OVERVIEW
 
 This DESIGN.md is a v3 **Style Reference**, regenerated from the existing `tokens.json` with no re-crawl — all values are deterministically pre-rendered (Colors, Spacing & Shapes, Surfaces, Quick Start pasted unchanged) and the prose is authored from the build-write-prompt FACTS block only.
 

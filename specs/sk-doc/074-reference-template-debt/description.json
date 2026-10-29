@@ -1,0 +1,22 @@
+{
+  "specFolder": "sk-doc/074-reference-template-debt",
+  "description": "Bring every skill reference doc that fails the reference format up to it",
+  "keywords": [
+    "bring",
+    "every",
+    "skill",
+    "reference",
+    "doc",
+    "fails",
+    "format"
+  ],
+  "lastUpdated": "2026-10-29T21:27:27.462Z",
+  "specId": "074",
+  "folderSlug": "reference-template-debt",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -9,14 +9,18 @@ trigger_phrases:
   - "normalized axis scoring"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.9
+version: 1.2.1.0
 ---
 
 # Radar / Spider
 
+## 1. OVERVIEW
+
 **Best for:** comparing 3–5 entities across 3–5 quantitative criteria on a single normalized 0–N scale. Capability matrices, product or backend evaluations, framework/team scorecards. Where a comparison table starts running out of horizontal room, radar makes the shape of each option legible at a glance.
 
-## 1. Layout conventions
+---
+
+## 2. LAYOUT CONVENTIONS
 
 - **N axes (3–5).** Equally spaced on a regular polygon-N. First axis at the top (`-90°`), going clockwise. **Above 5 → split or use a comparison table.**
 - **Five concentric grid rings** at fractions `0.2 / 0.4 / 0.6 / 0.8 / 1.0` of the radius. Drawn as closed polygons connecting the axis vertices at that fraction. Inner four at `rule` 0.10 opacity, outer ring at `rule-solid` 0.20 (a hint stronger to anchor the chart).
@@ -28,7 +32,9 @@ version: 1.2.0.9
 - **Drawing order:** dots-pattern bg → grid rings → axis spokes → axis labels → scale ticks → non-focal series (smallest area first) → focal series → focal vertex dots → legend.
 - **Legend:** horizontal strip at the bottom (per the global rule). Swatch is a 16×8 rectangle (matches the polygon stroke+fill, not a circle), then the entity name. ~140px between entries. Optional italic tail on the right with the rationale (`"One coral. Position is the signal — color reserved for the recommended option."`).
 
-## 2. Math
+---
+
+## 3. MATH
 
 For axis `i` (0-indexed) of `N`, value `v` on scale `S`, center `(cx, cy)`, outer radius `R`:
 
@@ -63,7 +69,9 @@ Series `[9, 8, 9, 9, 9]` on a 0–10 scale becomes:
 
 Each vertex: `center + (v/10) · (outer_i − center)`, rounded to the nearest pixel.
 
-## 3. Series palette
+---
+
+## 4. SERIES PALETTE
 
 The skill's "1-focal" rule still holds: `accent` is reserved for the focal series, and a small editorial palette (`series-1` through `series-5`, defined in [`style-guide.md`](../foundations/style-guide.md)) covers the non-focal series. Don't reach for free-form colors.
 
@@ -76,7 +84,9 @@ The skill's "1-focal" rule still holds: `accent` is reserved for the focal serie
 | 4 | `series-4` (rust-brown) | `#9c6b50` | `#b88670` |
 | 5 | `series-5` (slate) | `#6e6479` | `#8d8298` |
 
-## 4. Anti-patterns
+---
+
+## 5. ANTI-PATTERNS
 
 - **More than 5 series** → mush. Split into two charts (e.g. "best by latency" + "best by ops") or switch to a comparison table.
 - **Axes on inconsistent native scales** (one 0–100, another 0–1) without normalization. **Always normalize to 0–N first** — radar polygons compare *shapes*, not absolute values.
@@ -87,7 +97,9 @@ The skill's "1-focal" rule still holds: `accent` is reserved for the focal serie
 - **Mono-font axis labels.** Names go in Geist sans (the global rule). Mono is for technical sublabels only.
 - **Rainbow palette.** Even with the new `series-*` tokens, you don't need all 5 in one chart — use only as many as you have non-focal entities.
 
-## 5. Examples
+---
+
+## 6. EXAMPLES
 
 - `assets/diagrams/radar.html` — minimal light. 4 storage backends × 5 workload dimensions, MinIO focal.
 - `assets/diagrams/radar-dark.html` — minimal dark, same data.

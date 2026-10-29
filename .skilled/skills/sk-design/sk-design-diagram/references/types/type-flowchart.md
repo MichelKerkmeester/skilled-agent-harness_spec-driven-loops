@@ -9,14 +9,18 @@ trigger_phrases:
   - "merge point dot"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
+version: 1.2.1.0
 ---
 
 # Flowchart
 
+## 1. OVERVIEW
+
 **Best for:** decision logic, algorithms, user-facing branching flows ("Should I…?"), onboarding routing, support-triage trees.
 
-## 1. Layout conventions
+---
+
+## 2. LAYOUT CONVENTIONS
 - Shape carries type, not color:
   - **Oval** (`rx=20`) — start / end
   - **Rectangle** (`rx=6`) — step / action
@@ -26,12 +30,16 @@ version: 1.2.0.8
 - Use coral on the happy path *or* on the single most consequential decision — never on every decision.
 - If two arrows must cross, use a small arc jump on one so the crossing is readable.
 
-## 2. Anti-patterns
+---
+
+## 3. ANTI-PATTERNS
 - Using fill color to signal node type (shape does that).
 - Decision diamond with 4+ exits — refactor into nested diamonds.
 - Unlabeled decision branches.
 
-## 3. Examples
+---
+
+## 4. EXAMPLES
 - `assets/diagrams/flowchart.html` — minimal light
 - `assets/diagrams/flowchart-dark.html` — minimal dark
 - `assets/diagrams/flowchart-full.html` — full editorial

@@ -9,20 +9,22 @@ trigger_phrases:
   - "data type chips"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.9
+version: 1.2.1.0
 ---
 
 # Process
+
+## 1. OVERVIEW
 
 **Best for:** sequential business processes with multiple actors/divisions where the reader needs to see *who* does *what*, *what data* enters and leaves each step, and *which tools* are used — not just the step order. Covers responsibility audits, data-quality gate reviews, cross-divisional handoff maps, and end-to-end workflow documentation.
 
 Prefer swimlane (simpler) when the data types and tools don't matter. Prefer process when each step's input/output payload and responsible team must be legible at a glance.
 
-This type is **parametric** — the inputs schema in §1 drives every coordinate via the formulas in §2. Two generations from the same inputs must produce visually identical SVG. The rule shapes mirror `type-data-flow.md` so color override, IN/OUT chip semantic, and reproducibility checklist read identically across types.
+This type is **parametric** — the inputs schema in §2 drives every coordinate via the formulas in §3. Two generations from the same inputs must produce visually identical SVG. The rule shapes mirror `type-data-flow.md` so color override, IN/OUT chip semantic, and reproducibility checklist read identically across types.
 
 ---
 
-## 1. Inputs — the parameter contract
+## 2. INPUTS — THE PARAMETER CONTRACT
 
 ```yaml
 lanes:                              # 1..6 horizontal swimlanes (top to bottom)
@@ -51,7 +53,7 @@ nodes:                              # explicit per-cell entries; empty cells ren
       chips: {in: "TB", out: "LS"}, color: "#b85450" }    # rust-red — governance / training
   # ... etc
 
-arrows:                             # explicit edges; styles bind to topology (see §3)
+arrows:                             # explicit edges; styles bind to topology (see §4)
   - { from: {lane: "RDE", step: 0}, to: {lane: "IT",  step: 1}, style: "normal" }
   - { from: {lane: "IT",  step: 1}, to: {lane: "RDE", step: 2}, style: "focal-in" }     # accent — into focal
   - { from: {lane: "RDE", step: 2}, to: {lane: "FLD", step: 3}, style: "focal-out" }    # accent — out of focal
@@ -65,13 +67,13 @@ dark: false
 - `lanes[k].key` — the 3-letter role badge text shown inside every node in that lane.
 - `lanes[k].name` — 1 or 2 line lane label; uppercase mono.
 - `steps[j].focal: true` — exactly **one** step may declare this. Header chip renders in accent.
-- `nodes[i].focal: true` — exactly **one** node may declare this. Renders with accent border (§5).
-- `nodes[i].chips` — `{in: "<CODE>", out: "<CODE>"}` object (either side `null` to omit). Codes from §8. **Skip** the input chip on the first step's nodes, **skip** the output chip on the last step's nodes (no upstream / downstream).
-- `nodes[i].color` — optional **per-node color override**. Any valid `"#hex"` string; the §4 palette is recommended for cross-diagram consistency.
+- `nodes[i].focal: true` — exactly **one** node may declare this. Renders with accent border (§6).
+- `nodes[i].chips` — `{in: "<CODE>", out: "<CODE>"}` object (either side `null` to omit). Codes from §9. **Skip** the input chip on the first step's nodes, **skip** the output chip on the last step's nodes (no upstream / downstream).
+- `nodes[i].color` — optional **per-node color override**. Any valid `"#hex"` string; the §5 palette is recommended for cross-diagram consistency.
 
 ---
 
-## 2. Layout formulas — deterministic geometry
+## 3. LAYOUT FORMULAS — DETERMINISTIC GEOMETRY
 
 ```
 label_col_w      = 140
@@ -115,7 +117,7 @@ legend_row_y     = [legend_y_top + 16, legend_y_top + 37,
                     legend_y_top + 58, legend_y_top + 79]
 ```
 
-### 2.1 Background structure
+### 3.1 Background structure
 
 - Paper fill across full viewBox.
 - Dot pattern: 22×22 grid, `circle r=0.8`, `fill rgba(45,49,66,0.10)`. Opacity 0.55.
@@ -123,7 +125,7 @@ legend_row_y     = [legend_y_top + 16, legend_y_top + 37,
 - Lane dividers: horizontal hairlines at every `lane_y_top(k)` and at `legend_y_top`; stroke `rgba(45,49,66,0.12)` width 0.8.
 - Label column right border: vertical hairline at `x = label_col_w`, stroke `rgba(45,49,66,0.20)` width 1, from `y = header_h` to `y = legend_y_top`.
 
-### 2.2 Step header chip + label
+### 3.2 Step header chip + label
 
 Per step `j`:
 
@@ -136,8 +138,8 @@ label_anchor     = (step_cx(j), 32)              # 8-px gap below chip
 
 **Chip** (the numbered pill at the top of each column):
 - Default fill: `rgba(45,49,66,0.12)`, number text ink.
-- Focal fill: `rgba(235,108,54,0.20)`, number text accent (§5).
-- Per-step `color` override (§4): replaces the fill with `rgba(C, 0.20)` and the number fill with `C`.
+- Focal fill: `rgba(235,108,54,0.20)`, number text accent (§6).
+- Per-step `color` override (§5): replaces the fill with `rgba(C, 0.20)` and the number fill with `C`.
 
 **Label** (the uppercase mono text below the chip):
 - Renders `steps[j].label` (uppercased), anchored at `label_anchor`.
@@ -147,15 +149,15 @@ label_anchor     = (step_cx(j), 32)              # 8-px gap below chip
 - Per-step `color` override: fill = `C` (matches the chip number color).
 - Keep labels short (≤ 9 chars). Long labels truncate; if you need more, abbreviate.
 
-### 2.3 Lane labels
+### 3.3 Lane labels
 
 One or two-line mono label, all uppercase, letter-spacing 0.08em, font-size 8, fill muted. Centered at `(lane_label_x, lane_y_mid(k))`:
 - Single-line: anchored at `(lane_label_x, lane_y_mid(k) + 4)`
 - Two-line: lines at `(lane_label_x, lane_y_mid(k) - 4)` and `(lane_label_x, lane_y_mid(k) + 4)`
 
-Per-lane `color` override (§4): replaces the label fill with `C` and the lane stripe tint with `rgba(C, 0.04)`.
+Per-lane `color` override (§5): replaces the label fill with `C` and the lane stripe tint with `rgba(C, 0.04)`.
 
-### 2.4 Node content layout (inside the 100×64 rect)
+### 3.4 Node content layout (inside the 100×64 rect)
 
 ```
 role_chip          rect 14×10 at (node_x+4, node_y+4),  rx=2
@@ -168,7 +170,7 @@ data chip IN       rect 16×8 at (node_x+4,   node_y+54), rx=2      # payload en
 data chip OUT      rect 16×8 at (node_x+80,  node_y+54), rx=2      # payload leaving
 ```
 
-**Role chip text rule:** the badge inside each node renders `lanes[k].key` where `k` is the node's lane index — **not** the step number (the step number already lives in the column header chip at the top, §2.2). Showing the lane key as the node badge gives each node a self-contained "who" identifier that survives when a single node is excerpted out of context. Mirrors the same rule in `type-data-flow.md` §2.4.
+**Role chip text rule:** the badge inside each node renders `lanes[k].key` where `k` is the node's lane index — **not** the step number (the step number already lives in the column header chip at the top, §3.2). Showing the lane key as the node badge gives each node a self-contained "who" identifier that survives when a single node is excerpted out of context. Mirrors the same rule in `type-data-flow.md` §3.4.
 
 Empty cells (no node entry) render **nothing**. No placeholder rect, no role chip, no label.
 
@@ -176,7 +178,7 @@ Empty cells (no node entry) render **nothing**. No placeholder rect, no role chi
 
 ---
 
-## 3. Connector rules (mandatory)
+## 4. CONNECTOR RULES (MANDATORY)
 
 Three styles, bound to topology. Connectors drawn **before** all node rects (z-order rule).
 
@@ -199,7 +201,7 @@ Three styles, bound to topology. Connectors drawn **before** all node rects (z-o
 </defs>
 ```
 
-### 3.1 Routing rules (non-negotiable)
+### 4.1 Routing rules (non-negotiable)
 
 **Single-bend right-angle:** exit RIGHT → corridor → enter TOP (↓ destination below) or BOTTOM (↑ destination above).
 
@@ -227,17 +229,17 @@ Three styles, bound to topology. Connectors drawn **before** all node rects (z-o
 - **Markers:** exactly one `marker-end` per path. Never `marker-start`.
 - **Labels:** all process arrows are unlabelled by default. The step number + the actor lane carry the semantic; a label on every arrow is noise. Only label an arrow if it represents a non-step concept (re-test loop, escalation) — then use a paper-masked rect behind 6.5-px mono text.
 
-### 3.2 Crossings
+### 4.2 Crossings
 
 Avoid. The corridor x position (8 px before destination node) is the only routing column — if two arrows would cross there, **swap step assignments** or **split into two diagrams** rather than introducing a bend-around. Crossings hide the underlying control flow.
 
 ---
 
-## 4. Component color override
+## 5. COMPONENT COLOR OVERRIDE
 
-Any node, lane, or step accepts an optional `color: "#hex"`. Mirrors `type-data-flow.md` §4 and `type-high-level.md` §3.4 so the rule reads identically across types.
+Any node, lane, or step accepts an optional `color: "#hex"`. Mirrors `type-data-flow.md` §5 and `type-high-level.md` §4.4 so the rule reads identically across types.
 
-### 4.1 Per-node `color`
+### 5.1 Per-node `color`
 
 Applied to:
 
@@ -255,22 +257,22 @@ Applied to:
 
 `C_light` = the same hex lightened ~15% for dark-mode contrast (e.g., `#b85450` → `#d97a78`).
 
-### 4.2 Per-step `color`
+### 5.2 Per-step `color`
 
 Replaces the step header chip's fill with `rgba(C, 0.20)` and the chip's number text fill with `C`. The legend's matching step entry uses the same colors.
 
-### 4.3 Per-lane `color`
+### 5.3 Per-lane `color`
 
 Replaces the lane stripe tint with `rgba(C, 0.04)` and the lane label text fill with `C`. Use sparingly — lane tints are easy to over-apply.
 
-### 4.4 Rules
+### 5.4 Rules
 
 - **Never on focal nodes / focal steps.** The accent already carries that signal. A `color` on a focal element is ignored.
-- **Never on arrows.** Arrows are topology-driven. If you want a colored edge, pick a different `style` from §3, not a color override.
+- **Never on arrows.** Arrows are topology-driven. If you want a colored edge, pick a different `style` from §4, not a color override.
 - **Cap at 3 custom-colored elements** per diagram (nodes + lanes + steps combined), in addition to the focal pair (focal node + focal step header). Above 3 the visual signal starts to fragment.
 - **Subtitle and tool labels stay muted** regardless of any component `color`.
 
-### 4.5 Semantic palette (recommended)
+### 5.5 Semantic palette (recommended)
 
 Same palette as `type-high-level.md`, `type-dp-integration.md`, `type-data-flow.md`:
 
@@ -281,7 +283,7 @@ Same palette as `type-high-level.md`, `type-dp-integration.md`, `type-data-flow.
 
 ---
 
-## 5. Focal rule
+## 6. FOCAL RULE
 
 The process diagram has three focal slots, exactly one entry each:
 
@@ -293,7 +295,7 @@ If zero or >1 of any focal slot are declared, halt and ask the user.
 
 ---
 
-## 6. Dark mode
+## 7. DARK MODE
 
 | Token | Light | Dark |
 |---|---|---|
@@ -316,11 +318,11 @@ If zero or >1 of any focal slot are declared, halt and ask the user.
 
 ---
 
-## 7. Reproducibility checklist (taste gate)
+## 8. REPRODUCIBILITY CHECKLIST (TASTE GATE)
 
 Before emitting SVG, verify **every** item:
 
-1. `viewBox = "0 0 {viewBox_w} {viewBox_h}"` derived via §2.
+1. `viewBox = "0 0 {viewBox_w} {viewBox_h}"` derived via §3.
 2. Header strip at `y=0..36`; legend strip at `y=legend_y_top..viewBox_h` (`legend_y_top = 36 + n_lanes * 80`).
 3. Every node at `(step_cx(j) - 50, lane_y_top(k) + 8)` size `100×64`.
 4. Empty cells render nothing — no placeholder rect, no text.
@@ -335,9 +337,9 @@ Before emitting SVG, verify **every** item:
 
 ---
 
-## 8. Data-type chips reference (input + output)
+## 9. DATA-TYPE CHIPS REFERENCE (INPUT + OUTPUT)
 
-Same catalog as `type-data-flow.md` §8.
+Same catalog as `type-data-flow.md` §9.
 
 - **Input chip** at `(node_x+4, node_y+54)` — bottom-**left**. Payload entering the node.
 - **Output chip** at `(node_x+80, node_y+54)` — bottom-**right**. Payload leaving the node.
@@ -356,13 +358,13 @@ Same catalog as `type-data-flow.md` §8.
 
 Text inside chip: white, font-size 5, weight 700, mono.
 
-Data-type chip colors are a **separate semantic axis** from the per-node color override (§4). Chip colors describe *payload format*; node color describes *concern type*. A node can have both an `out: TB` mustard chip and a rust-red border simultaneously.
+Data-type chip colors are a **separate semantic axis** from the per-node color override (§5). Chip colors describe *payload format*; node color describes *concern type*. A node can have both an `out: TB` mustard chip and a rust-red border simultaneously.
 
 ---
 
-## 9. Legend (3- or 4-row strip)
+## 10. LEGEND (3- OR 4-ROW STRIP)
 
-Each row introduced by a category label at `x = label_col_w + 4` (= 144). The default legend has **3 rows** (`STEPS` / `DATA TYPE` / `FLOW`); when one or more nodes carry a `color` override (§4), add a 4th `CONCERN` row and grow `legend_h` to 100.
+Each row introduced by a category label at `x = label_col_w + 4` (= 144). The default legend has **3 rows** (`STEPS` / `DATA TYPE` / `FLOW`); when one or more nodes carry a `color` override (§5), add a 4th `CONCERN` row and grow `legend_h` to 100.
 
 - **Row 1 — `STEPS`** at `y = legend_y_top + 16`: repeat the header chips with their labels. Focal step keeps accent fill.
 - **Row 2 — `DATA TYPE`** at `y = legend_y_top + 37`: one swatch per chip type actually used in the diagram. Append a small sub-hint in muted mono: `left chip = input · right chip = output`.
@@ -371,7 +373,7 @@ Each row introduced by a category label at `x = label_col_w + 4` (= 144). The de
 
 ---
 
-## 10. Complexity budget
+## 11. COMPLEXITY BUDGET
 
 | Dimension | Max |
 |---|---|
@@ -380,13 +382,13 @@ Each row introduced by a category label at `x = label_col_w + 4` (= 144). The de
 | Nodes per lane | Nodes = active steps only — empty cells are invisible |
 | Labelled arrows | 0 by default (label only for non-step concepts) |
 | Data-type chips per node | 2 (input + output) |
-| Custom-colored elements (§4) | 3 (in addition to focal node + focal step) |
+| Custom-colored elements (§5) | 3 (in addition to focal node + focal step) |
 
 Above 6 lanes or 12 steps: split into two diagrams (overview + detail).
 
 ---
 
-## 11. Anti-patterns
+## 12. ANTI-PATTERNS
 
 - **Placeholder empty cells** — if an actor doesn't participate in a step, leave the cell empty (no box, no text).
 - **Diagonal arrows** — every connector must have exactly one right-angle bend. No direct straight lines between nodes in different lanes.
@@ -402,9 +404,9 @@ Above 6 lanes or 12 steps: split into two diagrams (overview + detail).
 
 ---
 
-## 12. Worked example — full YAML for `process-extended.html`
+## 13. WORKED EXAMPLE — FULL YAML FOR `process-extended.html`
 
-The extended example diagram is fully described by the following inputs. Every coordinate in the rendered SVG is derivable from this block via §2 + §3 + §4. This is the canonical proof that the parametric contract works end-to-end.
+The extended example diagram is fully described by the following inputs. Every coordinate in the rendered SVG is derivable from this block via §3 + §4 + §5. This is the canonical proof that the parametric contract works end-to-end.
 
 ```yaml
 # Quarterly survey — end-to-end workflow (extended variant)
@@ -470,9 +472,9 @@ arrows:
 dark: false
 ```
 
-### 12.1 What this YAML proves
+### 13.1 What this YAML proves
 
-Run §2 of this reference with these inputs:
+Run §3 of this reference with these inputs:
 
 - `n_lanes = 6`, `n_steps = 11`, `has_color_row = true` (3 nodes carry `color`).
 - `viewBox_w = 140 + 11 * 112 + 28 = 1400`. ✓ matches rendered SVG.
@@ -485,25 +487,25 @@ Run §2 of this reference with these inputs:
 
 The two coord drifts on the rightmost two nodes (chip width=20 for two-digit step numbers shifts the chip but not the node center math) are an artifact of the existing hand-tuned example, not a formula failure — a fresh generation from this YAML would produce x=1158 and the diagram would be visually indistinguishable from the shipped version.
 
-### 12.2 Adapting this YAML to a different process
+### 13.2 Adapting this YAML to a different process
 
 To document a different process, change only the value of these inputs:
 
 - **Lanes**: rename `lanes[k].name` to your team names; update each `nodes[i].lane` to match. Up to 6 lanes.
 - **Steps**: rename `steps[j].label`, move `focal: true` to the step that defines the diagram's central claim. Up to 12 steps.
 - **Nodes**: write one entry per `(lane, step)` cell that has work. Leave cells empty (no entry) to render nothing.
-- **Colors**: choose `color: "#hex"` on at most 3 nodes (§4 cap). Stick to the recommended palette unless brand demands otherwise.
-- **Arrows**: declare every edge explicitly with `style: normal | focal-in | focal-out | trigger`. The routing rule (§3.1) fills in the geometry.
+- **Colors**: choose `color: "#hex"` on at most 3 nodes (§5 cap). Stick to the recommended palette unless brand demands otherwise.
+- **Arrows**: declare every edge explicitly with `style: normal | focal-in | focal-out | trigger`. The routing rule (§4.1) fills in the geometry.
 
 Everything else — viewBox sizing, chip positions, legend layout, dark-mode token swap — is derivable. The YAML is the **source of truth**; the SVG is one of many possible renderings of it (light/dark/full all derive from the same inputs with different style tokens).
 
 ---
 
-## 13. Examples
+## 14. EXAMPLES
 
 - `assets/diagrams/process.html` — minimal light (quarterly survey: 11 steps, 6 divisions, data-type chips). Gallery default.
 - `assets/diagrams/process-dark.html` — same, dark skin.
 - `assets/diagrams/process-full.html` — same, editorial-card frame.
-- `assets/diagrams/process-extended.html` — exercises §4 color override: Build app in slate-blue (data quality), Train enumerators in rust-red (governance), Publish results in olive-green (data products). Focal accent on Pilot test step + node unchanged.
+- `assets/diagrams/process-extended.html` — exercises §5 color override: Build app in slate-blue (data quality), Train enumerators in rust-red (governance), Publish results in olive-green (data products). Focal accent on Pilot test step + node unchanged.
 - `assets/diagrams/process-extended-dark.html` — extended pattern, dark skin.
 - `assets/diagrams/process-extended-full.html` — extended pattern, editorial-card frame.

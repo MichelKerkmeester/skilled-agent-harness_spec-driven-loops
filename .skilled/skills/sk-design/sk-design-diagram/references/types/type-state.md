@@ -9,14 +9,18 @@ trigger_phrases:
   - "state machine layout"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
+version: 1.2.1.0
 ---
 
 # State Machine
 
+## 1. OVERVIEW
+
 **Best for:** finite state logic — order status, auth state, connection lifecycle, form wizard, job queue status.
 
-## 1. Layout conventions
+---
+
+## 2. LAYOUT CONVENTIONS
 - States are rounded rectangles (`rx=8`), labeled in Geist.
 - **Start**: filled ink dot (`r=6`). **End**: ringed dot (outer `r=8` outline, inner filled `r=5`).
 - Transitions: curved arrows labeled in Geist Mono as `event [guard] / action` (omit sections you don't need).
@@ -24,12 +28,16 @@ version: 1.2.0.8
 - Orient along the dominant flow direction (left→right or top→down); rearrange before crossing transitions.
 - Coral on the state the reader should notice — typically the error state, or "happy completion".
 
-## 2. Anti-patterns
+---
+
+## 3. ANTI-PATTERNS
 - More transitions than states × 2 → likely two state machines.
 - "From any state" transitions drawn from every state — use a single annotation (`* → Error on timeout`) instead.
 - Unlabeled transitions (the whole point is *what triggers this*).
 
-## 3. Examples
+---
+
+## 4. EXAMPLES
 - `assets/diagrams/state.html` — minimal light
 - `assets/diagrams/state-dark.html` — minimal dark
 - `assets/diagrams/state-full.html` — full editorial

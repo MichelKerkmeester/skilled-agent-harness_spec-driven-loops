@@ -7,7 +7,7 @@ trigger_phrases:
   - "diagram token derivation"
 importance_tier: important
 contextType: reference
-version: 1.2.0.9
+version: 1.2.1.0
 ---
 
 # Diagram Palette Derivation Record
@@ -128,6 +128,8 @@ What holds the relationship now is stronger and needs no upkeep. The applicator 
 form from the values in this record, and the corpus check requires the result to equal the shipped
 bytes exactly. A value that drifts from the record fails that comparison by name. A geometry change,
 which a hash would have flagged and a reader would then have waved through, is not a drift at all.
+
+---
 
 ## 7. TOLERANCES
 

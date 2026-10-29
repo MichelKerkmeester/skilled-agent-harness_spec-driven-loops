@@ -2,7 +2,7 @@
 title: "RRD-003 -- Routing refusal"
 description: "This scenario validates the routing refusal for `RRD-003`. It focuses on refusing dispatch mechanics under the scope boundary, with the scope statement quoted rather than paraphrased."
 stage: routing
-version: 1.1.0.3
+version: 1.1.1.0
 ---
 
 # RRD-003 -- Routing refusal
@@ -28,7 +28,7 @@ Operators run the exact prompt and command sequence for `RRD-003` and confirm th
 - Objective: refuse a routing proposal under the scope boundary test and quote the scope statement that refuses it
 - Real user request: `Add a rule about which CLI executor to use for research runs.`
 - Prompt: `Add a repo rule covering which CLI executor we should pick for research runs, and which thinking level to set for each one.`
-- Expected execution process: the decision tests load, test 1 passes because the content fires on an action, and test 2 refuses it. The proposal is dispatch mechanics, which the scope statement lists as Out. Section 5 maps a test-2 refusal to the always-loaded routing section or the skill its router resolves.
+- Expected execution process: the decision tests load, test 1 passes because the content fires on an action, and test 2 refuses it. The proposal is dispatch mechanics, which the scope statement lists as Out. Section 6 maps a test-2 refusal to the always-loaded routing section or the skill its router resolves.
 - Expected signals: the reply refuses, names decision test 2, and quotes the Out clause of the scope statement verbatim rather than summarizing it. No new file appears under `repo-rules/` and the scope statement is unchanged.
 - Desired user-visible outcome: the user learns the proposal is out of bounds for the rule set, sees the exact wording that puts it out of bounds, and is told which surface owns it.
 - Pass/fail: PASS if the refusal names test 2 and quotes the Out clause verbatim; FAIL if a rule is written, the scope statement is widened, or the boundary is described only in paraphrase.
@@ -90,7 +90,7 @@ Run a near-miss variant asking for a rule about how carefully to brief a delegat
 
 | File | Role |
 |---|---|
-| [`references/decision-tests.md`](../../references/decision-tests.md) | Primary implementation anchor, section 2 |
+| [`references/decision-tests.md`](../../references/decision-tests.md) | Primary implementation anchor, section 3 |
 | [`references/agents-md-integration.md`](../../references/agents-md-integration.md) | The scope-statement check and the escalation boundary |
 
 ---

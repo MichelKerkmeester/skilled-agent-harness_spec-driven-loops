@@ -9,7 +9,7 @@ trigger_phrases:
   - "where does this content belong"
 importance_tier: important
 contextType: reference
-version: 1.1.0.4
+version: 1.1.1.0
 ---
 
 # Decision Tests: May This Rule Exist?
@@ -20,14 +20,14 @@ matters once these four pass.
 
 ---
 
-## 0. OVERVIEW
+## 1. OVERVIEW
 
 Each test is recovered from the phase record that established it, not restated from
 memory.
 
 ---
 
-## 1. THE ALWAYS-LOADED TEST
+## 2. THE ALWAYS-LOADED TEST
 
 > **A rule file loads on a trigger. Content that must bind when no trigger has fired
 > cannot live in one.**
@@ -52,7 +52,7 @@ unconditionally. A total move needs a total trigger, or the content goes quiet.
 
 ---
 
-## 2. THE SCOPE BOUNDARY TEST
+## 3. THE SCOPE BOUNDARY TEST
 
 > **The router states what the rule set is In and Out for. Out is not advisory.**
 
@@ -81,7 +81,7 @@ A rule about which skill, command, model or flags to pick is still refused here.
 
 ---
 
-## 3. THE FOUR-PART REFUSAL TEST
+## 4. THE FOUR-PART REFUSAL TEST
 
 A proposal must pass **all four** to become a rule file.
 
@@ -102,7 +102,7 @@ must be deliberate.
 
 ---
 
-## 4. THE RESTRAINT TEST
+## 5. THE RESTRAINT TEST
 
 > **The rule set is subject to its own `overengineering.md`.**
 
@@ -122,7 +122,7 @@ restraint ladder whose rung numbering contradicted the authoritative one.
 
 ---
 
-## 5. WHERE IT GOES IF IT IS NOT A RULE
+## 6. WHERE IT GOES IF IT IS NOT A RULE
 
 Refusing is not the end of the decision. Every refusal routes somewhere:
 
@@ -144,7 +144,7 @@ diffed and archived with the work, and the rule files and the router stay free o
 
 ---
 
-## 6. SELF-CHECK
+## 7. SELF-CHECK
 
 - [ ] The proposal was tested against all four gates, in order, before any drafting.
 - [ ] Test 1 was answered by asking what happens on a turn where nothing fires.

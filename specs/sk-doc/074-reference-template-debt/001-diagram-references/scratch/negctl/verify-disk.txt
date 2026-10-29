@@ -1,0 +1,23 @@
+source=disk
+checked=146
+dangling=20
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-dp-integration.md:351: §2.1 -> .skilled/skills/sk-design/sk-design-diagram/references/types/type-dp-integration.md has no section 2.1
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-dp-integration.md:352: §2.2 -> .skilled/skills/sk-design/sk-design-diagram/references/types/type-dp-integration.md has no section 2.2
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-dp-security-matrix.md:83: §2.4 -> .skilled/skills/sk-design/sk-design-diagram/references/types/type-dp-security-matrix.md has no section 2.4
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-dp-security-matrix.md:156: §2.4 -> .skilled/skills/sk-design/sk-design-diagram/references/types/type-dp-security-matrix.md has no section 2.4
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-dp-security-matrix.md:286: §2.4 -> .skilled/skills/sk-design/sk-design-diagram/references/types/type-dp-security-matrix.md has no section 2.4
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md:74: §2.5 -> .skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md has no section 2.5
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md:235: §2.1 -> .skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md has no section 2.1
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md:247: §2.2 -> .skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md has no section 2.2
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md:254: §2.2 -> .skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md has no section 2.2
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md:324: §2.7 -> .skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md has no section 2.7
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md:389: §2.9 -> .skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md has no section 2.9
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md:397: §2.9 -> .skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md has no section 2.9
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md:438: §2.2 -> .skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md has no section 2.2
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md:438: §2.7 -> .skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md has no section 2.7
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-loop.md:177: §2.2 -> .skilled/skills/sk-design/sk-design-diagram/references/types/type-loop.md has no section 2.2
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-loop.md:177: §2.3 -> .skilled/skills/sk-design/sk-design-diagram/references/types/type-loop.md has no section 2.3
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-medallion.md:68: §2.4 -> .skilled/skills/sk-design/sk-design-diagram/references/types/type-medallion.md has no section 2.4
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-medallion.md:113: §2.5 -> .skilled/skills/sk-design/sk-design-diagram/references/types/type-medallion.md has no section 2.5
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-process.md:173: §2.2 -> .skilled/skills/sk-design/sk-design-diagram/references/types/type-process.md has no section 2.2
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-process.md:173: §2.4 -> .skilled/skills/sk-design/sk-design-diagram/references/types/type-data-flow.md has no section 2.4

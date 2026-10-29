@@ -1,0 +1,8 @@
+🔍 Validating skill: cli-external-orchestration
+(strict mode)
+==================================================
+
+✅ Skill is valid!
+
+==================================================
+Result: PASS

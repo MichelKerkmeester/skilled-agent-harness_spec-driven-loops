@@ -11,7 +11,7 @@ trigger_phrases:
   - "rule lifecycle"
 importance_tier: important
 contextType: reference
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Integration and Lifecycle: Wiring, Revising and Retiring a Rule
@@ -20,7 +20,7 @@ A rule file that nothing points at is inert.
 
 ---
 
-## 0. OVERVIEW
+## 1. OVERVIEW
 
 The router's trigger table is the only thing that **loads** one; the pointer from the
 governed `AGENTS.md` section is the only thing that makes it **findable at the moment
@@ -28,7 +28,7 @@ of need**.
 
 ---
 
-## 1. THE THREE WIRING POINTS
+## 2. THE THREE WIRING POINTS
 
 | Point | Where | Lost without it |
 |-------|-------|-----------------|
@@ -45,7 +45,7 @@ pointers with `grep -c <rule-file> AGENTS.md` rather than trusting a number writ
 
 ---
 
-## 2. THE SCOPE-STATEMENT CHECK — RUN IT FIRST
+## 3. THE SCOPE-STATEMENT CHECK — RUN IT FIRST
 
 Before adding a trigger row, confirm `REPO RULES.md` §4 **In** admits the rule.
 
@@ -65,11 +65,11 @@ unilaterally; that is an operator decision, and each of the four was one.
 
 ---
 
-## 3. CREATE
+## 4. CREATE
 
 Order matters, and it is chosen so an interruption is survivable.
 
-1. **Scope check** (§2 above). Refuse here if it fails.
+1. **Scope check** (§3 above). Refuse here if it fails.
 2. **Write the rule file.** First, deliberately.
 3. **Add the trigger row.**
 4. **Add the index row.**
@@ -83,7 +83,7 @@ nothing, which **looks like coverage**. Always leave the safer wreck.
 
 ---
 
-## 4. REVISE
+## 5. REVISE
 
 1. Run the decision tests again. A rule that no longer passes them should be **retired,
    not patched** — a rule kept alive by editing is how a set stops meaning anything.
@@ -98,7 +98,7 @@ alone until something forces the question. **This is a choice, not a finding.**
 
 ---
 
-## 5. RETIRE
+## 6. RETIRE
 
 **The rule set has never done this.** The path below is the create path inverted, and it
 has been dry-run rather than performed.
@@ -120,7 +120,7 @@ to be ignored, and a reader who finds one cannot tell retired from pending.
 
 ---
 
-## 6. THE `AGENTS.md` BOUNDARY
+## 7. THE `AGENTS.md` BOUNDARY
 
 **Adding or removing a pointer is mechanical. Everything else escalates.**
 
@@ -131,7 +131,7 @@ operator. That is not caution, it is the precedence ladder working.
 
 ---
 
-## 7. A REPOSITORY WITH NO ROUTER
+## 8. A REPOSITORY WITH NO ROUTER
 
 No `REPO RULES.md` means no rule can load, whatever else is true. Emit the router from
 `assets/repo-rules-router-template.md` before writing the rule. It is a prerequisite, not
@@ -139,7 +139,7 @@ a deliverable — nobody asked for it.
 
 ---
 
-## 8. THE SIBLING FEDERATION
+## 9. THE SIBLING FEDERATION
 
 A rule file can be shared. A rule in the rules directory — `.skilled/repo-rules/` where a
 source root exists, `repo-rules/` otherwise — may be symlinked into sibling
@@ -189,7 +189,7 @@ another.
 
 ---
 
-## 9. SELF-CHECK
+## 10. SELF-CHECK
 
 - [ ] The scope statement was checked before the trigger row was written.
 - [ ] All three wiring points exist, and the pointer covers every governed section.

@@ -7,10 +7,12 @@ trigger_phrases:
   - Linear extraction caveats
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Writing Notes: Linear DESIGN.md (v3 Style Reference)
+
+## 1. OVERVIEW
 
 - This is a **v3 Style Reference** regenerated from the existing `tokens.json` (no re-crawl) via `build-write-prompt.ts` → author prose → `validate.ts`. The value-bearing sections (Colors, Spacing & Shapes, Surfaces, Quick Start) are pasted verbatim from the deterministic formatter.
 - Final validation: **score 99/100, claims 100/100, PASS** (zero critical failures). The single warning — `unknown-font: "### Tailwind v4"` — is a benign false positive where the font heuristic matches the Tailwind heading; it costs 1 value point and matches the anobel exemplar's behavior.

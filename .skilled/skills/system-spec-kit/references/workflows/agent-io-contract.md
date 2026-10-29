@@ -8,14 +8,18 @@ trigger_phrases:
   - "advisory metadata fields"
 importance_tier: important
 contextType: implementation
-version: 1.6.0.8
+version: 1.6.1.0
 ---
 
 # Agent I/O Contract
 
+## 1. OVERVIEW
+
 Shared advisory contract for structured agent dispatch and return metadata. This contract helps orchestrators and leaf agents exchange typed hints without making older prompts invalid.
 
-## 1. CONTRACT STATUS
+---
+
+## 2. CONTRACT STATUS
 
 ```yaml
 schema_version: agent-io/v1
@@ -33,7 +37,7 @@ Agent I/O is advisory-only: a convenience header that may opportunistically carr
 
 ---
 
-## 2. DISPATCH GROUP
+## 3. DISPATCH GROUP
 
 Orchestrators may place this compact header near the top of a delegated task prompt. Target size: under 15 lines.
 
@@ -66,7 +70,7 @@ Consumers must keep these fields advisory and ignore unknown values rather than 
 
 ---
 
-## 3. RESULT GROUP
+## 4. RESULT GROUP
 
 Leaf agents may append this envelope after their required native output:
 
@@ -97,7 +101,7 @@ Rules for result envelopes:
 
 ---
 
-## 4. HANDOFF GROUP
+## 5. HANDOFF GROUP
 
 Optional handoff fields describe information crossing from one agent to another. The first concrete use is a debug-to-implementation handoff. This is a narrower, advisory adaptation of Gem's existing orchestrator `debugger_diagnosis` machine-check; it adds typed fields without replacing native debug reports.
 
@@ -123,7 +127,7 @@ Handoff rules:
 
 ---
 
-## 5. PRE-EXECUTION GROUP
+## 6. PRE-EXECUTION GROUP
 
 Optional pre-execution fields describe scoped gates that fire only when their predicate is true. The orchestrator owns the predicates and should not spread heuristic copies across leaf agents.
 
@@ -147,7 +151,7 @@ Pre-execution rules:
 
 ---
 
-## 6. ADVISORY GROUP
+## 7. ADVISORY GROUP
 
 Optional advisory fields route review attention and surface spec drift without creating gates, mutations, or new refusal reasons.
 
@@ -169,7 +173,7 @@ Advisory rules:
 
 ---
 
-## 7. EVIDENCE GROUP
+## 8. EVIDENCE GROUP
 
 Optional evidence fields let a load-bearing claim carry its proof in a fixed, machine-checkable shape at the dispatch boundary. This is the structural backstop for the doctrine that a finding is a hypothesis until verified: a claim either names its class and what would confirm it, or the missing piece is surfaced as an advisory. The schema is owned by `runtime/` (`lib/deep-loop/evidence-contract.ts`); that module is the source of truth for allowed values, and this doc cites it rather than redefining them.
 
@@ -183,7 +187,7 @@ scope_state: in_scope | out_of_scope | scope_expanded
 child_result_verified: true | false
 ```
 
-> **Representation (where this actually lives).** Unlike §2-§6, this block is NOT a free-standing `AGENT_IO_EVIDENCE` text envelope that agents append to their output — no agent currently emits one, and nothing parses one. The Evidence Group is carried as the structured `evidence` field on a deep-loop JSONL iteration record, and the only consumer validates it as a structured object via `validateEvidenceContract(record.evidence)` (`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts`). The fenced shape above is the documented field schema (keys + allowed values), not a literal text format to emit. Producing it as a text block appended to agent output would not be validated.
+> **Representation (where this actually lives).** Unlike §3-§7, this block is NOT a free-standing `AGENT_IO_EVIDENCE` text envelope that agents append to their output — no agent currently emits one, and nothing parses one. The Evidence Group is carried as the structured `evidence` field on a deep-loop JSONL iteration record, and the only consumer validates it as a structured object via `validateEvidenceContract(record.evidence)` (`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts`). The fenced shape above is the documented field schema (keys + allowed values), not a literal text format to emit. Producing it as a text block appended to agent output would not be validated.
 
 Evidence rules:
 

@@ -1,0 +1,8 @@
+🔍 Validating skill: sk-design-chart
+(strict mode)
+==================================================
+
+✅ Skill is valid!
+
+==================================================
+Result: PASS

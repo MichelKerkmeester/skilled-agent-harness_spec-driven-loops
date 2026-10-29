@@ -2,7 +2,7 @@
 title: "RRD-002 -- Existing-owner refusal"
 description: "This scenario validates the existing-owner refusal for `RRD-002`. It focuses on refusing a proposal another rule already carries, and naming that rule as the destination."
 stage: routing
-version: 1.1.0.3
+version: 1.1.1.0
 ---
 
 # RRD-002 -- Existing-owner refusal
@@ -28,7 +28,7 @@ Operators run the exact prompt and command sequence for `RRD-002` and confirm th
 - Objective: refuse a proposal that an existing rule already owns, and name the owning rule and section
 - Real user request: `We keep forgetting to run the tests before saying something is done. Add a rule.`
 - Prompt: `We keep saying work is finished before anyone runs the tests. Add a repo rule that stops us claiming done without proof.`
-- Expected execution process: the decision tests load, tests 1 and 2 pass, and part 2 of the four-part test finds that `evidence-and-proof.md` already carries the obligation. Section 5 maps that refusal to a new section inside the rule that already owns it, so the reply names the owning file rather than refusing in the abstract.
+- Expected execution process: the decision tests load, tests 1 and 2 pass, and part 2 of the four-part test finds that `evidence-and-proof.md` already carries the obligation. Section 6 maps that refusal to a new section inside the rule that already owns it, so the reply names the owning file rather than refusing in the abstract.
 - Expected signals: the reply refuses, names the four-part test part 2, and names `evidence-and-proof.md` as the owner. No new file appears under `repo-rules/`.
 - Desired user-visible outcome: the user learns the obligation already exists, where it lives, and that a section there is the right place for anything the existing rule is missing.
 - Pass/fail: PASS if the refusal names part 2 and names the owning rule; FAIL if a new rule file is created, or the refusal names no owner.
@@ -90,7 +90,7 @@ Repeat with a proposal whose owner is less obvious, such as a convention about n
 
 | File | Role |
 |---|---|
-| [`references/decision-tests.md`](../../references/decision-tests.md) | Primary implementation anchor, sections 3 and 5 |
+| [`references/decision-tests.md`](../../references/decision-tests.md) | Primary implementation anchor, sections 4 and 6 |
 | [`SKILL.md`](../../SKILL.md) | The create ordering and the refusal stop point |
 
 ---

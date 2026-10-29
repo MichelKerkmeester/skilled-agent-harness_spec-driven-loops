@@ -8,10 +8,12 @@ trigger_phrases:
   - "pre-resolve gate for a dispatched worker"
 importance_tier: important
 contextType: implementation
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # Child Dispatch Preamble
+
+## 1. OVERVIEW
 
 A dispatched worker reads this repository's `AGENTS.md` at startup, the same as any other
 session, and obeys the gates in it. One of those gates stops before the first write to ask the
@@ -20,7 +22,7 @@ dispatch ends having written nothing.
 
 ---
 
-## 1. WHY SETTING THE ENVIRONMENT VARIABLE IS NOT ENOUGH
+## 2. WHY SETTING THE ENVIRONMENT VARIABLE IS NOT ENOUGH
 
 `AGENTS.md` waives that gate for a dispatched child, and conditions the waiver on
 `AI_SESSION_CHILD=1` being set in the environment.
@@ -41,7 +43,7 @@ Ship one without the other and the dispatch fails silently, at exit code zero.
 
 ---
 
-## 2. THE BLOCK
+## 3. THE BLOCK
 
 Put this at the very top of the prompt, above the persona and the task. Substitute the real
 folder path.
@@ -68,7 +70,7 @@ that finishes both exit zero.
 
 ---
 
-## 3. THE GENERAL FORM
+## 4. THE GENERAL FORM
 
 The spec-folder question is the instance that bites most often, not the only one. Any
 instruction that tells a session to stop and ask becomes a silent hang in a dispatched child.
@@ -85,7 +87,7 @@ point where the child stops.
 
 ---
 
-## 4. HOW THE FAILURE PRESENTS
+## 5. HOW THE FAILURE PRESENTS
 
 It does not look like a failure.
 
@@ -100,7 +102,7 @@ dispatch that wrote everything then hit a provider capacity error exits one.
 
 ---
 
-## 5. SELF-CHECK
+## 6. SELF-CHECK
 
 - [ ] The environment variable is set on the child process
 - [ ] The preamble block is the first thing in the prompt

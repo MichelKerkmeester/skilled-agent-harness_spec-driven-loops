@@ -1,0 +1,8 @@
+🔍 Validating skill: deep-review
+(strict mode)
+==================================================
+
+✅ Skill is valid!
+
+==================================================
+Result: PASS

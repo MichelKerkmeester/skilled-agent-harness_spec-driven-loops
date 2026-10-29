@@ -10,7 +10,7 @@ trigger_phrases:
   - "reviewing a draft rule"
 importance_tier: important
 contextType: reference
-version: 1.1.0.5
+version: 1.1.1.0
 ---
 
 # Creation Standards: Is This Rule Worth Loading?
@@ -21,7 +21,7 @@ would change their behaviour over.
 
 ---
 
-## 0. OVERVIEW
+## 1. OVERVIEW
 
 These five tests are read out of what the shipped corpus already does. Every one passes
 across the corpus. Each is a question a reviewer answers by reading; none can be automated, and
@@ -29,7 +29,7 @@ that limit is the reason they live here rather than in the structural floor.
 
 ---
 
-## 1. THE SECTION TEST
+## 2. THE SECTION TEST
 
 **A numbered section earns its place by making clear what goes wrong without it.**
 
@@ -56,7 +56,7 @@ the section is a topic rather than a rule, and it goes.
 
 ---
 
-## 2. THE TRIGGER-PHRASE TEST
+## 3. THE TRIGGER-PHRASE TEST
 
 **Phrases are what someone types when they have the problem, not what the section is called.**
 
@@ -81,7 +81,7 @@ reader who has the problem and does not know the rule exists.
 
 ---
 
-## 3. THE BINDING-SENTENCE TEST
+## 4. THE BINDING-SENTENCE TEST
 
 **One sentence, one obligation.**
 
@@ -94,7 +94,7 @@ One that only makes sense after reading the body has not.
 
 ---
 
-## 4. THE SELF-CHECK TEST
+## 5. THE SELF-CHECK TEST
 
 **One item per obligation the body creates — never one per section.**
 
@@ -111,7 +111,7 @@ An item with no such sentence is decoration; a body obligation with no item is a
 
 ---
 
-## 5. THE MISREADING GUARD
+## 6. THE MISREADING GUARD
 
 **A rule that could be read as licence to do less needs a section saying it is not.**
 
@@ -134,7 +134,7 @@ explicitly. If no, the section would be ceremony.
 
 ---
 
-## 6. DON'TS
+## 7. DON'TS
 
 Each is an observed failure, not a preference.
 
@@ -149,7 +149,7 @@ Each is an observed failure, not a preference.
 
 ---
 
-## 7. WHAT THIS DOCUMENT IS NOT
+## 8. WHAT THIS DOCUMENT IS NOT
 
 - **Not a scoring rubric.** There is no number. Every test needs a reader, and a checkable
   proxy would measure the proxy.
@@ -160,7 +160,7 @@ Each is an observed failure, not a preference.
 
 ---
 
-## 8. SELF-CHECK
+## 9. SELF-CHECK
 
 - [ ] For every section, I can say what breaks without it.
 - [ ] No trigger phrase of mine appears in another rule.

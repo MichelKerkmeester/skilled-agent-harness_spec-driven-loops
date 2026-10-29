@@ -9,14 +9,18 @@ trigger_phrases:
   - "focal series dots"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
+version: 1.2.1.0
 ---
 
 # Line Chart
 
+## 1. OVERVIEW
+
 **Best for:** continuous trends over time or a sequential index — signups over weeks, revenue by month, latency over releases. Use when the direction and rate of change between points is the primary message.
 
-## 1. Layout conventions
+---
+
+## 2. LAYOUT CONVENTIONS
 
 - **Plot area margins:** left 80px, bottom 60px, top 40px, right 40px — inside `0 0 1000 500` viewBox.
 - **Points:** 4–12 data points. Fewer → consider a summary stat; more → aggregate into periods.
@@ -42,7 +46,9 @@ version: 1.2.0.8
           fill="none" stroke="#7c8f6f" stroke-width="1.2" stroke-linejoin="round"/>
 ```
 
-## 2. Anti-patterns
+---
+
+## 3. ANTI-PATTERNS
 
 - More than 5 series (visual mush — reduce or split).
 - Lines that don't start at a shared zero baseline unless explicitly annotated.
@@ -51,7 +57,9 @@ version: 1.2.0.8
 - Y-axis that doesn't include zero when the absolute magnitude matters.
 - Connecting discontinuous data segments without a visual gap.
 
-## 3. Examples
+---
+
+## 4. EXAMPLES
 
 - `assets/diagrams/line.html` — minimal light
 - `assets/diagrams/line-dark.html` — minimal dark

@@ -70,7 +70,7 @@ Read [`ROUTER.md`](../../../.skilled/skills/sk-doc/sk-create-repo-rule/ROUTER.md
 ### Create
 
 1. **Run the four decision tests.** Always-loaded, scope boundary, four-part refusal, restraint.
-2. **On refusal**, name the test that failed and where the content goes instead — the tests' section 5 maps every refusal to a destination. Stop here. This is the common outcome.
+2. **On refusal**, name the test that failed and where the content goes instead — the tests' section 6 maps every refusal to a destination. Stop here. This is the common outcome.
 3. **Check the destination exists.** No `REPO RULES.md` in the target repository means no rule can load; emit the router from `assets/repo-rules-router-template.md` first.
 4. **Fill `assets/repo-rule-template.md`.** Ten fixed elements, open numbered body, aim under 160 lines.
 5. **Run `references/creation-standards.md` against the draft.** Structure is checkable and is not the bar; a rule can pass every assertion and be worth nobody's context.
@@ -92,7 +92,7 @@ Read [`ROUTER.md`](../../../.skilled/skills/sk-doc/sk-create-repo-rule/ROUTER.md
 Run the decision tests again first — a rule that no longer passes them should be retired,
 not patched. Then edit, and if the change alters *when* the rule fires, change the trigger
 row in the same edit or the router lies silently. Bump `version`. Full ordering and the
-`version` convention: `references/agents-md-integration.md` §4.
+`version` convention: `references/agents-md-integration.md` §5.
 
 To learn whether a revision changed behaviour, measure instead of guessing:
 `python3 .skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py`.
@@ -105,7 +105,7 @@ a Wilson 95% interval. It prints aggregates only, never transcript text.
 
 Pointer first, then index row, then trigger row, then the file — create inverted, so no
 intermediate state leaves a row pointing at nothing. Record why it went. Do not archive;
-git holds the history. Full ordering: `references/agents-md-integration.md` §5.
+git holds the history. Full ordering: `references/agents-md-integration.md` §6.
 
 ---
 

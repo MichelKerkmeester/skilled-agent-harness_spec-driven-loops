@@ -9,14 +9,18 @@ trigger_phrases:
   - "containment ring hierarchy"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
+version: 1.2.1.0
 ---
 
 # Nested Containment
 
+## 1. OVERVIEW
+
 **Best for:** hierarchy through containment — scope boundaries, CLAUDE.md cascade, trust zones, folder nesting, blast radius. Outer = broader, inner = more specific.
 
-## 1. Layout conventions
+---
+
+## 2. LAYOUT CONVENTIONS
 - 3–5 rounded rectangles (`rx=8`), nested with consistent inset padding (24–32px horizontal, 32–36px vertical recommended).
 - Each level labeled at the top-left in Geist Mono eyebrow style (7–8px, letter-spacing 0.14em). Labels sit on a paper-colored mask rect over the ring's top border.
 - Stroke hierarchy: outer rings faint (`rgba(..,0.30–0.45)`), progressing to muted, to ink, to coral at the innermost focal.
@@ -24,13 +28,17 @@ version: 1.2.0.8
 - Optional file-icon glyph (folded-corner rect) inside each level hints at scope content.
 - Italic Instrument Serif callouts (see `primitive-annotation.md`) — 1–2 max.
 
-## 2. Anti-patterns
+---
+
+## 3. ANTI-PATTERNS
 - More than 6 levels (information disappears inward).
 - Irregular padding between levels — unaligned nesting looks accidental.
 - Content inside rings that isn't part of the hierarchy — use a sibling diagram.
 - Coral on multiple levels — hierarchy collapses.
 
-## 3. Examples
+---
+
+## 4. EXAMPLES
 - `assets/diagrams/nested.html` — minimal light
 - `assets/diagrams/nested-dark.html` — minimal dark
 - `assets/diagrams/nested-full.html` — full editorial

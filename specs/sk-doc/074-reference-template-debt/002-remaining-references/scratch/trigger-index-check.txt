@@ -1,0 +1,21 @@
+trigger index is STALE or the corpus is untrusted
+  index             : /Users/michelkerkmeester/worktrees/public/277-reference-template-debt/.skilled/skills/system-spec-kit/runtime/data/trigger-index.json
+  documents scanned : 27147
+  stale documents   : 11 (11 missing from the index)
+  obsolete paths    : 0
+  untrusted docs    : 0
+  duration ms       : 8178.1
+  examples (11 of 11):
+    stale     specs/sk-doc/074-reference-template-debt/001-diagram-references/acceptance-criteria.md (added: diagram references acceptance criteria; removed: none)
+    stale     specs/sk-doc/074-reference-template-debt/001-diagram-references/implementation-summary.md (added: diagram references implementation summary; removed: none)
+    stale     specs/sk-doc/074-reference-template-debt/001-diagram-references/plan.md (added: diagram references plan; removed: none)
+    stale     specs/sk-doc/074-reference-template-debt/001-diagram-references/spec.md (added: diagram references, phase 1 diagram references; removed: none)
+    stale     specs/sk-doc/074-reference-template-debt/001-diagram-references/tasks.md (added: diagram references tasks; removed: none)
+    stale     specs/sk-doc/074-reference-template-debt/002-remaining-references/acceptance-criteria.md (added: remaining references acceptance criteria; removed: none)
+    stale     specs/sk-doc/074-reference-template-debt/002-remaining-references/implementation-summary.md (added: remaining references implementation summary; removed: none)
+    stale     specs/sk-doc/074-reference-template-debt/002-remaining-references/plan.md (added: remaining references plan; removed: none)
+    stale     specs/sk-doc/074-reference-template-debt/002-remaining-references/spec.md (added: phase 2 remaining references, remaining references; removed: none)
+    stale     specs/sk-doc/074-reference-template-debt/002-remaining-references/tasks.md (added: remaining references tasks; removed: none)
+    stale     specs/sk-doc/074-reference-template-debt/spec.md (added: reference template debt phase parent spec; removed: none)
+  note: manifest hash differs (index 00c851b9b7b9daa7252826b8476643696299b239e2dfe5267adce947423f9c38, corpus 56f00ebd26f4dd4fbf746febbde744ad2d89f6963ed73892cb476cbeb3b08e49); no lookup answer depends on it
+  regenerate: node generate-trigger-index.mjs

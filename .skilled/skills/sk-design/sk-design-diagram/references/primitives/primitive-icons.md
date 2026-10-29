@@ -10,16 +10,18 @@ trigger_phrases:
   - "brand logo icons"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.7
+version: 1.2.1.0
 ---
 
 # Icons (primitive)
+
+## 1. OVERVIEW
 
 A monochrome 24×24 icon library for IT/cloud diagrams. Each icon uses `currentColor` so it inherits ink from its parent SVG and adapts to the editorial skin or any user-onboarded brand palette.
 
 ---
 
-## 1. USAGE
+## 2. USAGE
 
 Find the icon by name (the `### name` headings below). Copy the fenced `<svg>` snippet into your diagram. Default size is 24×24; wrap in `<g transform="translate(x,y) scale(s)">` to position and resize. Set `color`, `fill`, or `stroke` on the parent group/SVG to control color.
 
@@ -27,7 +29,7 @@ Generic icons are stroked (1.5px, hairline, like the rest of the skill); brand s
 
 ---
 
-## 2. COMPUTE
+## 3. COMPUTE
 
 ### laptop
 User laptop or workstation.
@@ -85,7 +87,7 @@ Source: Tabler Icons / `cube` (MIT)
 
 ---
 
-## 3. PEOPLE
+## 4. PEOPLE
 
 ### user
 End user or single actor.
@@ -125,7 +127,7 @@ Source: Tabler Icons / `robot` (MIT)
 
 ---
 
-## 4. NETWORK
+## 5. NETWORK
 
 ### cloud
 Cloud provider or boundary.
@@ -201,7 +203,7 @@ Source: Tabler Icons / `tag` (MIT)
 
 ---
 
-## 5. DATA
+## 6. DATA
 
 ### database
 Relational or document database.
@@ -277,7 +279,7 @@ Source: Tabler Icons / `search` (MIT)
 
 ---
 
-## 6. KUBERNETES
+## 7. KUBERNETES
 
 ### pod
 Pod (smallest deployable unit).
@@ -335,7 +337,7 @@ Source: Tabler Icons / `device-sd-card` (MIT)
 
 ---
 
-## 7. ACTION
+## 8. ACTION
 
 ### api
 API surface / endpoint.
@@ -402,7 +404,7 @@ Source: Tabler Icons / `alert-triangle` (MIT)
 
 ---
 
-## 8. DEVOPS
+## 9. DEVOPS
 
 ### git-branch
 Branch / fork point.
@@ -460,7 +462,7 @@ Source: Tabler Icons / `test-pipe` (MIT)
 
 ---
 
-## 9. BRAND
+## 10. BRAND
 
 ### docker
 Docker engine / image.
@@ -644,7 +646,7 @@ Source: log-z/logos / `starrocks` (MIT)
 
 ---
 
-## 10. DATA STACK
+## 11. DATA STACK
 
 ### nifi
 Apache NiFi data flow.
@@ -747,7 +749,7 @@ Source: Simple Icons / `jupyter` (CC0)
 
 ---
 
-## 11. LANGUAGE
+## 12. LANGUAGE
 
 ### python
 Python.
@@ -778,7 +780,7 @@ Source: Tabler Icons / `sql` (MIT)
 
 ---
 
-## 12. STATISTICAL TOOLS
+## 13. STATISTICAL TOOLS
 
 ### spss
 IBM SPSS Statistics.
@@ -827,7 +829,7 @@ Source: Simple Icons / `qgis` (CC0)
 
 ---
 
-## 13. FILE FORMATS
+## 14. FILE FORMATS
 
 ### excel
 Microsoft Excel spreadsheet.
@@ -858,7 +860,7 @@ Source: Tabler Icons / `file-type-txt` (MIT)
 
 ---
 
-## 14. LICENSE ATTRIBUTION
+## 15. LICENSE ATTRIBUTION
 
 - **Tabler Icons** — MIT — https://github.com/tabler/tabler-icons
 - **Simple Icons** — CC0 — https://github.com/simple-icons/simple-icons

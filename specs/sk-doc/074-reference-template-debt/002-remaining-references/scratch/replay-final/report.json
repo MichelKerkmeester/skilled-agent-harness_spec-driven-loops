@@ -1,0 +1,98 @@
+{
+  "hubs": {
+    "sk-doc": {
+      "marker": null,
+      "gold": 25,
+      "unscored": 4,
+      "unknown": 3,
+      "unresolvable": 0,
+      "tied": 2,
+      "precision": 0.8126984126984127,
+      "recall": 0.8743333333333334,
+      "f1": 0.8254959349593495,
+      "exact": 19
+    },
+    "mcp-tooling": {
+      "marker": null,
+      "gold": 14,
+      "unscored": 1,
+      "unknown": 0,
+      "unresolvable": 0,
+      "tied": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1,
+      "exact": 14
+    },
+    "system-deep-loop": {
+      "marker": null,
+      "gold": 5,
+      "unscored": 15,
+      "unknown": 0,
+      "unresolvable": 0,
+      "tied": 1,
+      "precision": 0.9,
+      "recall": 1,
+      "f1": 0.9333333333333332,
+      "exact": 4
+    },
+    "cli-external-orchestration": {
+      "marker": null,
+      "gold": 5,
+      "unscored": 19,
+      "unknown": 0,
+      "unresolvable": 0,
+      "tied": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1,
+      "exact": 5
+    },
+    "sk-design": {
+      "marker": null,
+      "gold": 4,
+      "unscored": 0,
+      "unknown": 0,
+      "unresolvable": 0,
+      "tied": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1,
+      "exact": 4
+    },
+    "sk-code": {
+      "marker": "surface slice not replayed",
+      "gold": 8,
+      "unscored": 8
+    },
+    "cli-classifier": {
+      "marker": null,
+      "gold": 3,
+      "unscored": 4,
+      "unknown": 0,
+      "unresolvable": 0,
+      "tied": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1,
+      "exact": 3
+    }
+  },
+  "totals": {
+    "gold": 64,
+    "scored": 56,
+    "tied": 3,
+    "meanF1": 0.9161440185830428,
+    "exact": 49
+  },
+  "routerReads": null,
+  "replayVerdict": {
+    "outcome": "stop",
+    "reason": "prose arm covers 0 of 56 rows",
+    "N": 56,
+    "P": 0,
+    "keywordF1": null,
+    "proseF1": null,
+    "line": "replay verdict: stop (prose arm covers 0 of 56 rows) N=56 P=0 keyword_f1=n/a prose_f1=n/a"
+  }
+}

@@ -7,10 +7,12 @@ trigger_phrases:
   - Supabase extraction caveats
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Writing Notes: Supabase DESIGN.md (v3)
+
+## 1. OVERVIEW
 
 - This is a v3 **Style Reference**, regenerated from the existing `tokens.json` with no re-crawl. Value-bearing sections (Tokens — Colors, Spacing & Shapes, Surfaces, Quick Start) are pasted verbatim from `build-write-prompt.ts`; only prose was authored.
 - Final validation: **score 99/100, claims 100/100, PASS** (zero critical failures). The single warning (`unknown-font: "### Tailwind v4"`) is a benign heuristic false-positive on the required Quick Start subheading — same warning the gold anobel exemplar would raise.

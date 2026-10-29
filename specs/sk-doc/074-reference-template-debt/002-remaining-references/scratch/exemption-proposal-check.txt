@@ -1,0 +1,16 @@
+BEFORE (validator as shipped)
+   total_issues=1 examples/linear/DESIGN.md
+   total_issues=1 examples/stripe/DESIGN.md
+   total_issues=1 examples/supabase/DESIGN.md
+   total_issues=1 examples/vercel/DESIGN.md
+   total_issues=2 design-md-format.md
+   total_issues=0 examples/linear/writing-notes.md
+   total_issues=0 anti-patterns.md
+AFTER (one pattern appended in memory, validator file untouched)
+   SKIPPED examples/linear/DESIGN.md
+   SKIPPED examples/stripe/DESIGN.md
+   SKIPPED examples/supabase/DESIGN.md
+   SKIPPED examples/vercel/DESIGN.md
+   total_issues=2 design-md-format.md
+   SKIPPED examples/linear/writing-notes.md
+   total_issues=0 anti-patterns.md

@@ -9,14 +9,18 @@ trigger_phrases:
   - "ikigai frame"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
+version: 1.2.1.0
 ---
 
 # Venn / Set Overlap
 
+## 1. OVERVIEW
+
 **Best for:** intersection of concepts/domains, shared attributes between categories, "where A meets B", ikigai-style frames (desirable × feasible × viable).
 
-## 1. Layout conventions
+---
+
+## 2. LAYOUT CONVENTIONS
 - **Prefer 2 or 3 circles.** Avoid 4+ (unreadable — use a matrix instead).
 - Circle stroke: 1px hairline, color per-set (ink, muted, soft).
 - Circle fill: very low-opacity tint — `rgba(45,49,66,0.04)` for ink set, `rgba(79,93,117,0.05)` for muted. Tints compound naturally in overlap regions.
@@ -26,7 +30,9 @@ version: 1.2.0.8
 - **Coral accent** on the ONE focal intersection — the "sweet spot". Either coral label stroke OR clipPath-bounded coral fill tint (`rgba(235,108,54,0.10)`).
 - Circle centers and radii divisible by 4.
 
-## 2. Anti-patterns
+---
+
+## 3. ANTI-PATTERNS
 - Unlabeled regions — reader can't tell which set is which.
 - Circles that don't overlap when overlap is the point.
 - Equal-sized circles when sets are obviously different (dishonest).
@@ -34,7 +40,9 @@ version: 1.2.0.8
 - Labels sitting on top of circle strokes (illegible).
 - 4+ circles where 2–3 would do.
 
-## 3. Examples
+---
+
+## 4. EXAMPLES
 - `assets/diagrams/venn.html` — minimal light
 - `assets/diagrams/venn-dark.html` — minimal dark
 - `assets/diagrams/venn-full.html` — full editorial

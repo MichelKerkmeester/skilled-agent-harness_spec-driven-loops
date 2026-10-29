@@ -1,0 +1,15 @@
+🔍 Validating skill: sk-design-md-generator
+(strict mode)
+==================================================
+
+✅ Skill is valid!
+
+⚠️  5 warning(s):
+   • SKILL.md has 3793 words (recommended max: 3000)
+   • Unexpected file type in references/: references/examples/vercel/tokens.json (expected: .md)
+   • Unexpected file type in references/: references/examples/linear/tokens.json (expected: .md)
+   • Unexpected file type in references/: references/examples/supabase/tokens.json (expected: .md)
+   • Unexpected file type in references/: references/examples/stripe/tokens.json (expected: .md)
+
+==================================================
+Result: PASS

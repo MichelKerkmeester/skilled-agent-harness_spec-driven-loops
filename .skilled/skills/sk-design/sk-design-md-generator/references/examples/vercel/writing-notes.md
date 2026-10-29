@@ -7,10 +7,12 @@ trigger_phrases:
   - Vercel extraction caveats
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Writing Notes: Vercel (v3 Style Reference)
+
+## 1. OVERVIEW
 
 - This DESIGN.md is a **v3 Style Reference** regenerated from the existing `tokens.json` — no re-crawl, no network. Only the deterministic WRITE prompt (`build-write-prompt.ts`) was run over the extracted tokens.
 - Final validation: **score 99/100, claims 100/100, PASS** (`validate.ts`). Zero critical failures — no phantom hex, no quickstart-phantom-color.

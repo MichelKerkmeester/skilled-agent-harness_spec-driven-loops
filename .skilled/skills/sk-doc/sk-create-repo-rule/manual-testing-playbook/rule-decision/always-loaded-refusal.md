@@ -2,7 +2,7 @@
 title: "RRD-001 -- Always-loaded refusal"
 description: "This scenario validates the always-loaded refusal for `RRD-001`. It focuses on refusing a proposal whose content must bind on every turn, and naming the always-loaded document as its destination."
 stage: routing
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # RRD-001 -- Always-loaded refusal
@@ -28,7 +28,7 @@ Operators run the exact prompt and command sequence for `RRD-001` and confirm th
 - Objective: refuse a proposal that must bind when no trigger has fired, and route it to the always-loaded document
 - Real user request: `Add a rule that says you must always read a file before editing it.`
 - Prompt: `Add a repo rule that says you must always read a file before you edit it. We keep getting blind edits and I want it written down.`
-- Expected execution process: `references/decision-tests.md` loads on every path, test 1 is answered by asking what must hold on a turn where nothing fires, the READ FIRST obligation is found to bind unconditionally, and section 5 of the tests maps a test-1 refusal to the always-loaded document as a compressed row. No draft is written.
+- Expected execution process: `references/decision-tests.md` loads on every path, test 1 is answered by asking what must hold on a turn where nothing fires, the READ FIRST obligation is found to bind unconditionally, and section 6 of the tests maps a test-1 refusal to the always-loaded document as a compressed row. No draft is written.
 - Expected signals: the reply refuses, names decision test 1 by name, and names the always-loaded document as the destination. No new file appears under `repo-rules/` and the router row counts are unchanged.
 - Desired user-visible outcome: the user learns the request was refused, which test refused it, and where the obligation actually belongs.
 - Pass/fail: PASS if the request is refused by test 1 with the destination named and no file is created; FAIL if a rule file is authored, or the refusal names neither the test nor a destination.
@@ -43,18 +43,18 @@ Operators run the exact prompt and command sequence for `RRD-001` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| RRD-001 | Always-loaded refusal | Verify a proposal that must bind every turn is refused and routed to the always-loaded document | `Add a repo rule that says you must always read a file before you edit it. We keep getting blind edits and I want it written down.` | 1. `agent: Read references/decision-tests.md` -> 2. `agent: Apply test 1 by asking what must hold on a turn where nothing fires` -> 3. `agent: Read section 5 and name the destination` -> 4. `bash: git status --porcelain repo-rules/` | Step 1: the tests are loaded before any drafting. Step 2: the answer is that the obligation binds unconditionally. Step 3: the destination is named as the always-loaded document. Step 4: empty output | The prompt as typed, the refusal text, the named test, the named destination, and the step 4 output | PASS if steps 2 and 3 refuse by test 1 and name the destination and step 4 is empty; FAIL if a file is created or the refusal is bare | 1. Confirm `references/decision-tests.md` was loaded at all, since it is the ALWAYS resource. 2. Check that test 1 was answered by the no-trigger question rather than by topic similarity. 3. Grep the always-loaded document for the READ FIRST obligation to confirm the destination claim is true rather than assumed |
+| RRD-001 | Always-loaded refusal | Verify a proposal that must bind every turn is refused and routed to the always-loaded document | `Add a repo rule that says you must always read a file before you edit it. We keep getting blind edits and I want it written down.` | 1. `agent: Read references/decision-tests.md` -> 2. `agent: Apply test 1 by asking what must hold on a turn where nothing fires` -> 3. `agent: Read section 6 and name the destination` -> 4. `bash: git status --porcelain repo-rules/` | Step 1: the tests are loaded before any drafting. Step 2: the answer is that the obligation binds unconditionally. Step 3: the destination is named as the always-loaded document. Step 4: empty output | The prompt as typed, the refusal text, the named test, the named destination, and the step 4 output | PASS if steps 2 and 3 refuse by test 1 and name the destination and step 4 is empty; FAIL if a file is created or the refusal is bare | 1. Confirm `references/decision-tests.md` was loaded at all, since it is the ALWAYS resource. 2. Check that test 1 was answered by the no-trigger question rather than by topic similarity. 3. Grep the always-loaded document for the READ FIRST obligation to confirm the destination claim is true rather than assumed |
 
 ### Commands
 
 1. `agent: Read references/decision-tests.md`
 2. `agent: Apply test 1 by asking what must hold on a turn where nothing fires`
-3. `agent: Read section 5 of the tests and name the destination for a test-1 refusal`
+3. `agent: Read section 6 of the tests and name the destination for a test-1 refusal`
 4. `bash: git status --porcelain repo-rules/`
 
 ### Expected
 
-Step 1 loads `references/decision-tests.md`, which is the ALWAYS-level resource and must appear on every path including a refusal. Step 2 answers the no-trigger question and finds that the obligation holds unconditionally, which is the definition of a test-1 failure. Step 3 names the always-loaded document as the destination, taken from section 5 of the tests rather than invented. Step 4 prints nothing, proving no file was written.
+Step 1 loads `references/decision-tests.md`, which is the ALWAYS-level resource and must appear on every path including a refusal. Step 2 answers the no-trigger question and finds that the obligation holds unconditionally, which is the definition of a test-1 failure. Step 3 names the always-loaded document as the destination, taken from section 6 of the tests rather than invented. Step 4 prints nothing, proving no file was written.
 
 ### Evidence
 
@@ -90,7 +90,7 @@ Re-run with a proposal that genuinely does fire on a trigger, such as a conventi
 
 | File | Role |
 |---|---|
-| [`references/decision-tests.md`](../../references/decision-tests.md) | Primary implementation anchor, sections 1 and 5 |
+| [`references/decision-tests.md`](../../references/decision-tests.md) | Primary implementation anchor, sections 2 and 6 |
 | [`SKILL.md`](../../SKILL.md) | The create ordering |
 | [`ROUTER.md`](../../ROUTER.md) | Machine router: intent map, resource map and loading levels |
 

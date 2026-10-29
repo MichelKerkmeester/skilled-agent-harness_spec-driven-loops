@@ -2,7 +2,7 @@
 title: "RRA-001 -- Full rule authoring"
 description: "This scenario validates full rule authoring for `RRA-001`. It focuses on the one path where all four decision tests pass, producing a structurally conforming rule inside the length bands."
 stage: routing
-version: 1.1.0.3
+version: 1.1.1.0
 ---
 
 # RRA-001 -- Full rule authoring
@@ -93,7 +93,7 @@ Compare the produced file against the shortest shipped rule side by side. A gene
 
 | File | Role |
 |---|---|
-| [`references/rule-anatomy.md`](../../references/rule-anatomy.md) | Primary implementation anchor, sections 1 and 3 |
+| [`references/rule-anatomy.md`](../../references/rule-anatomy.md) | Primary implementation anchor, sections 2 and 4 |
 | [`assets/repo-rule-template.md`](../../assets/repo-rule-template.md) | The blank the draft is filled from |
 
 ---

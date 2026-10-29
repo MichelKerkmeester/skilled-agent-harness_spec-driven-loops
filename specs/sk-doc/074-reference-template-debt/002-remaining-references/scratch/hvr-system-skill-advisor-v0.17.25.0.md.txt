@@ -1,0 +1,9 @@
+HVR SCAN: .skilled/skills/system-skill-advisor/changelog/v0.17.25.0.md
+  x1    first@23    soft1  soft-deduction         actually
+  x2    first@15    review oxford-comma-candidate , and
+  (--all lists every occurrence with line and column)
+
+  hard blockers:          0
+  mechanical deductions:  -1
+  mechanical ceiling:     99/100
+  NOT scored here:        three-item enumeration, triple headers, setup language, synonym cycling, false ranges, fragmented headers, copula avoidance, significance inflation, generic conclusions, sentence rhythm, personality

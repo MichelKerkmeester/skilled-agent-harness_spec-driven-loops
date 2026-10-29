@@ -9,20 +9,22 @@ trigger_phrases:
   - "pre platform tooling"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # IT current-state
+
+## 1. OVERVIEW
 
 **Best for:** documenting the *before* picture of a modernization proposal — the legacy IT landscape grouped by phase or department (Collection → Processing → Dissemination, or Frontend / Backend / Storage, or Survey → Analysts → Reports), with pain-points flagged, file-based hand-offs labelled (CSV / Excel / Email / Copy), and pre-platform tooling visible. The companion to `type-dp-integration.md`: this type shows the gap that a data-platform proposal is going to close.
 
 Use when stakeholders need to see the friction in the current setup — siloed scripts, manual file shuffles, missing version control, single-points-of-failure — and the path from those to a target platform topology.
 
-This type is **parametric** — the inputs schema in §1 drives every coordinate via the formulas in §2. The rule shape mirrors `type-dp-integration.md` (zones + cross-cutting footer bars), `type-process.md` (rounded right-angle connectors), and `type-medallion.md` (per-element `color` override) so the focal rule, color override, dark mode, and reproducibility checklist read identically across types.
+This type is **parametric** — the inputs schema in §2 drives every coordinate via the formulas in §3. The rule shape mirrors `type-dp-integration.md` (zones + cross-cutting footer bars), `type-process.md` (rounded right-angle connectors), and `type-medallion.md` (per-element `color` override) so the focal rule, color override, dark mode, and reproducibility checklist read identically across types.
 
 ---
 
-## 1. Inputs — the parameter contract
+## 2. INPUTS — THE PARAMETER CONTRACT
 
 ```yaml
 title:    "Current IT Landscape"
@@ -83,9 +85,9 @@ dark: false
 - `components[i][k].name` — `node-name` role (the human-readable label).
 - `components[i][k].sub` — `sublabel` role at 10px in muted (the technical sub-label; up to 2 lines via auto-wrap when component height grows to 72).
 - `components[i][k].icon` — any id from `references/primitives/primitive-icons.md`. If missing → no icon, the name shifts left. (Catalog has 41 icons; `mail` is currently missing — use `icon: file` as fallback for email hand-offs.)
-- `components[i][k].kind` — `standard | focal | external`. `focal` triggers the accent palette (§5); `external` switches to a 4-2 dashed stroke and muted ink to signal "this is outside our scope."
-- `components[i][k].color` — optional per-component color override (§4). Ignored on `kind: focal` (accent wins).
-- `connectors[k].from` / `connectors[k].to` — refer to a component `id`. Cross-zone, cross-row, same-zone vertical, and same-zone horizontal all legal; routing chosen by §3.
+- `components[i][k].kind` — `standard | focal | external`. `focal` triggers the accent palette (§6); `external` switches to a 4-2 dashed stroke and muted ink to signal "this is outside our scope."
+- `components[i][k].color` — optional per-component color override (§5). Ignored on `kind: focal` (accent wins).
+- `connectors[k].from` / `connectors[k].to` — refer to a component `id`. Cross-zone, cross-row, same-zone vertical, and same-zone horizontal all legal; routing chosen by §4.
 - `connectors[k].label` — uppercase short text (≤ 8 chars). `arrow-label` role at 9px, weight 600.
 - `connectors[k].icon` — optional inline icon to the left of the text. Same catalog as component icons.
 - `connectors[k].style` — `neutral | link | accent`. Drives stroke color + marker.
@@ -95,7 +97,7 @@ dark: false
 
 ---
 
-## 2. Layout formulas — deterministic geometry
+## 3. LAYOUT FORMULAS — DETERMINISTIC GEOMETRY
 
 ```
 # Horizontal orientation (default)
@@ -108,7 +110,7 @@ n_zones         = len(zones)
 
 # Zone widths: base 200 + 24 per component to give vertical room for icons + 2-line subs.
 # In the canonical example (3 / 3 / 3 components) the replication used 256 / 360 / 272 —
-# the formula approximates that with hand-picked widths in the worked YAML (§10).
+# the formula approximates that with hand-picked widths in the worked YAML (§11).
 zone_w(i)       = base + n_components_i * comp_slack             # base ≈ 200, slack ≈ 24
 viewBox_w       = left_pad + Σ zone_w(i) + (n_zones-1) * zone_gap + right_pad
 
@@ -137,7 +139,7 @@ content_bottom  = N_footer > 0 ? footer_bottom : zone_y + zone_h
 viewBox_h       = content_bottom + legend_block_h + 24
 ```
 
-### 2.1 Background and zone frame
+### 3.1 Background and zone frame
 
 Solid paper fill across `viewBox`. No dot pattern. Each zone box:
 
@@ -150,7 +152,7 @@ Solid paper fill across `viewBox`. No dot pattern. Each zone box:
       font-family="{eyebrow}" letter-spacing="0.14em">{name}</text>
 ```
 
-### 2.2 Component box
+### 3.2 Component box
 
 Three visual kinds:
 
@@ -178,7 +180,7 @@ name_y = comp_y + (comp_h/2) - 2
 sub_y  = comp_y + (comp_h/2) + 14
 ```
 
-### 2.3 Connector geometry (§3 holds the routing rules)
+### 3.3 Connector geometry (§4 holds the routing rules)
 
 ```
 src_right  = comp_x(i_src) + comp_w(i_src)
@@ -198,7 +200,7 @@ dst_cy     = dst_top + comp_h_dst/2
 corridor_x = dst_cx                            # land arrow on dst horizontal center, enter via top/bot
 ```
 
-### 2.4 Footer bar
+### 3.4 Footer bar
 
 ```svg
 <rect x="left_pad" y="footer_y(k)" width="viewBox_w - 2*left_pad" height="footer_bar_h"
@@ -212,17 +214,17 @@ corridor_x = dst_cx                            # land arrow on dst horizontal ce
 
 Footer bars are layer-wide services. **No connectors emerge from them.** They sit visually below the zones and let the reader see the cross-cutting concerns at a glance.
 
-### 2.5 Legend strip
+### 3.5 Legend strip
 
 Hairline divider at `y = content_bottom + 16`, then a row of swatches + labels at `y = content_bottom + 36`. Only the styles actually used by `connectors[]` (plus `focal` and `external` if those component kinds are present) appear in the legend.
 
 ---
 
-## 3. Connector rules (mandatory)
+## 4. CONNECTOR RULES (MANDATORY)
 
-### 3.1 Path shape — rounded right-angle Q-bezier, r = 8
+### 4.1 Path shape — rounded right-angle Q-bezier, r = 8
 
-Reused verbatim from `type-process.md` §3.1. No diagonals — ever.
+Reused verbatim from `type-process.md` §4.1. No diagonals — ever.
 
 ```svg
 <!-- Same zone, adjacent component (same vertical column): single vertical line -->
@@ -237,7 +239,7 @@ Reused verbatim from `type-process.md` §3.1. No diagonals — ever.
 - Use `{src_cy + 8}` and `V {dst_top}` when destination lies BELOW source.
 - Use `{src_cy − 8}` and `V {dst_bottom}` when destination lies ABOVE source.
 
-### 3.2 Exit / entry sides (configurable; defaults below)
+### 4.2 Exit / entry sides (configurable; defaults below)
 
 | Topology | Default exit side of source | Default entry side of destination |
 | --- | --- | --- |
@@ -248,11 +250,11 @@ Reused verbatim from `type-process.md` §3.1. No diagonals — ever.
 
 A connector can override via `connectors[k].from_side` / `connectors[k].to_side` (`top | right | bottom | left`). **Backward references** (right→left in horizontal orientation, up in vertical orientation) are permitted only when at least one endpoint has `kind: external`, and must be `dashed: true`.
 
-### 3.3 Markers MUST touch the destination rectangle
+### 4.3 Markers MUST touch the destination rectangle
 
 The path's last command ends at the destination's rectangle edge (`V {dst_top}` or `H {dst_left}`), **not** at the centroid. After applying `refX=7` on the marker, the triangle sits flush against the border. Stopping the line short of the edge — or sending it to the centroid and burying the arrowhead inside the rect — is a hard fail.
 
-### 3.4 Style → stroke + marker
+### 4.4 Style → stroke + marker
 
 | `style` | Stroke color | Stroke width | Marker |
 | --- | --- | --- | --- |
@@ -272,7 +274,7 @@ Add `stroke-dasharray="4 3"` when `dashed: true`.
 </defs>
 ```
 
-### 3.5 Connector label = inline icon + text, placed at the START of the connector with a perpendicular margin
+### 4.5 Connector label = inline icon + text, placed at the START of the connector with a perpendicular margin
 
 The label sits **near the source end** of the connector (not at the mid-segment) and is **offset perpendicular to the line** so it never overlaps the stroke. Icon (when `icon:` is set) sits inside the label's paper-fill mask, to the left of the text.
 
@@ -299,15 +301,15 @@ For cross-zone H+Q+V routes the label binds to the **horizontal** segment, since
 
 - `w = text_w + (icon ? 30 : 12)` — auto-fit.
 - Mask `fill` resolves to `paper` in light mode and `ink` in dark mode. The mask is kept as a safety pad — even though the label no longer sits on the line, it can graze zone backgrounds and component fills, and the mask preserves contrast.
-- `stroke_color` follows §3.4 (text + icon inherit the connector's accent / link / neutral color).
+- `stroke_color` follows §4.4 (text + icon inherit the connector's accent / link / neutral color).
 
-### 3.6 Z-order
+### 4.6 Z-order
 
 All connectors (paths + lines + labels) emit BEFORE any component rect, so node fills mask the line ends. The connector label is the exception — it draws AFTER its line so the mask sits on top.
 
 ---
 
-## 4. Component color override (per-component `color: "#hex"`)
+## 5. COMPONENT COLOR OVERRIDE (PER-COMPONENT `color: "#hex"`)
 
 Per-component, same shape as every other parametric type in this skill.
 
@@ -337,7 +339,7 @@ Per-component, same shape as every other parametric type in this skill.
 
 ---
 
-## 5. Focal rule
+## 6. FOCAL RULE
 
 - `kind: focal` components: **≤ 2 per diagram** (zero is also valid for diagrams without a single dominant pain-point).
 - Auto-styling: accent stroke 1.4, accent-tinted fill 7 %, ink-bold `node-name`, accent line-1 `sublabel`.
@@ -348,7 +350,7 @@ If your diagram needs more than 2 focal components, you've collapsed two narrati
 
 ---
 
-## 6. Dark mode
+## 7. DARK MODE
 
 | Role | Light | Dark |
 | --- | --- | --- |
@@ -371,7 +373,7 @@ If your diagram needs more than 2 focal components, you've collapsed two narrati
 
 ---
 
-## 7. Reproducibility checklist (taste gate)
+## 8. REPRODUCIBILITY CHECKLIST (TASTE GATE)
 
 Before emitting SVG, verify **every** item:
 
@@ -390,12 +392,12 @@ Before emitting SVG, verify **every** item:
 
 ---
 
-## 8. Anti-patterns
+## 9. ANTI-PATTERNS
 
 - **Diagonal arrows.** The NatStat replication has one (analyst → LegacyPortal). The new type forbids it — always rounded right-angle Q-bezier.
 - **Marker not touching the target.** Path ends at the centroid or stops short of the border.
 - **Inline `text` connector labels without a mask rect.** The connector line can bleed through the text and it becomes unreadable.
-- **Labels sitting on top of the connector line, mid-segment.** Labels belong at the *start* of the connector with a perpendicular margin (see §3.5) — burying them in the middle of the line hides the source-to-destination direction and forces the reader's eye to fight the mask.
+- **Labels sitting on top of the connector line, mid-segment.** Labels belong at the *start* of the connector with a perpendicular margin (see §4.5) — burying them in the middle of the line hides the source-to-destination direction and forces the reader's eye to fight the mask.
 - **Tiny text badges as icons.** The source uses 7-px `DB` / `APP` / `EXT` badges; this type uses real 24-px catalog icons. Text badges are only acceptable as the label text, not as the component "icon."
 - **Custom color on a focal component.** Focal always wins; user-set `color` silently ignored on `kind: focal`.
 - **Footer bar wired to one component.** Footer = cross-cutting layer-wide concern; a connector from a footer to a specific component is a category error (use `type-dp-integration.md`'s AUTH-line pattern only when the footer service truly authenticates *all* components, and even then the line lands at the zone bottom edge, not at a specific tool).
@@ -405,19 +407,19 @@ Before emitting SVG, verify **every** item:
 
 ---
 
-## 9. Examples
+## 10. EXAMPLES
 
 - `assets/diagrams/it-state.html` — minimal light (NatStat canonical: 3 zones, 9 components, 8 connectors, 0 footer bars, SQL Server tinted olive). Gallery default.
 - `assets/diagrams/it-state-dark.html` — same, dark skin.
 - `assets/diagrams/it-state-full.html` — same, editorial-card frame with summary cards.
-- `assets/diagrams/it-state-extended.html` — exercises §4 color override + footer bars: 2 footer bars (Identity Manager + Observability) below the zones, third custom color on Analyst Machines (slate-blue, data-quality concern).
+- `assets/diagrams/it-state-extended.html` — exercises §5 color override + footer bars: 2 footer bars (Identity Manager + Observability) below the zones, third custom color on Analyst Machines (slate-blue, data-quality concern).
 - `assets/diagrams/it-state-extended-dark.html` — extended pattern, dark skin.
 
 ---
 
-## 10. Worked YAML — full inputs for `it-state.html`
+## 11. WORKED YAML — FULL INPUTS FOR `it-state.html`
 
-The complete inputs that map to the shipped canonical example. Every coordinate in that SVG is derivable from §2 applied to these inputs.
+The complete inputs that map to the shipped canonical example. Every coordinate in that SVG is derivable from §3 applied to these inputs.
 
 ```yaml
 title:    "Current IT Landscape"
@@ -456,7 +458,7 @@ connectors:
 dark: false
 ```
 
-### 10.1 What this YAML proves
+### 11.1 What this YAML proves
 
 - `n_zones = 3`, components per zone `= [3, 3, 3]`, custom color count = 1 (SQL Server), focal count = 2 (Shared Drive, LegacyPortal), external count = 2 (Civil Registry, Ministry Partners).
 - Zone widths in canonical: 256 / 360 / 272 ⇒ `viewBox_w = 16 + 256 + 20 + 360 + 20 + 272 + 16 = 960` ✓
@@ -481,4 +483,4 @@ dark: false
 
 When the source row matches the destination row's y range (e.g., Survey at y=108 with Shared Drive at y=80–148), prefer **side-edge** entry — a single horizontal path with a fully visible arrow. When the source row is offset, detour through the destination's nearest zone background to enter a side edge rather than approaching a top/bottom edge from the wrong side.
 
-The extended example (§9 line 4) demonstrates footer bars + a third custom color and proves `viewBox_h` grows correctly when `N_footer > 0`.
+The extended example (§10 line 4) demonstrates footer bars + a third custom color and proves `viewBox_h` grows correctly when `N_footer > 0`.

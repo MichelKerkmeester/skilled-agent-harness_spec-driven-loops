@@ -8,14 +8,18 @@ trigger_phrases:
   - "pdf extractor dependency"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.5
+version: 1.1.1.0
 ---
 
 # Capabilities & fidelity tiers
 
+## 1. OVERVIEW
+
 A diff is only as trustworthy as the extraction behind it. `create-diff` tells the user what tier a comparison is at, so a limited result is never mistaken for a complete one. Run `python3 ../scripts/create_diff.py capabilities` (from the packet dir) to see the live matrix and which PDF extractor, if any, is available.
 
-## Tiers
+---
+
+## 2. TIERS
 
 | Tier | Meaning |
 | --- | --- |
@@ -24,7 +28,9 @@ A diff is only as trustworthy as the extraction behind it. `create-diff` tells t
 | `text*` | Text layer only, and only when an optional extractor is installed. |
 | `unsupported` | No reliable local extraction available. |
 
-## Format matrix
+---
+
+## 3. FORMAT MATRIX
 
 | Format | Extensions | Tier | Compared | Not compared |
 | --- | --- | --- | --- | --- |
@@ -36,7 +42,9 @@ A diff is only as trustworthy as the extraction behind it. `create-diff` tells t
 
 Unknown *text-like* extensions are treated as plain text, and the report carries a fidelity warning saying so, so the assumption can be corrected. Known binary or unsupported extensions — spreadsheets, presentations, images, and archives (`.xlsx`, `.pptx`, `.png`, `.zip`, …) — are refused with exit `3` rather than raw-byte "text"-diffed into a meaningless report. An *unknown* extension whose first 8 KB contains a NUL byte is treated as binary and refused the same way. A file that is not valid UTF-8 is likewise refused with exit `3` rather than decoded with replacement characters (`�`): silent replacement can make two files that differ only in undecodable bytes look identical, hiding a real difference.
 
-## PDF dependency
+---
+
+## 4. PDF DEPENDENCY
 
 Text-PDF support needs one local extractor, probed in this order:
 
@@ -46,10 +54,14 @@ Text-PDF support needs one local extractor, probed in this order:
 
 If none is present, `compare`/`compare-pair` on a PDF exits `3` with an actionable message. The fallback is to extract the text yourself and run `compare-pair --before old.txt --after new.txt`.
 
-## Scanned PDFs
+---
+
+## 5. SCANNED PDFS
 
 A PDF with no text layer (a scan/image) extracts to empty text. The engine detects this and adds a prominent warning to the report rather than presenting an empty, misleading diff. OCR is deliberately out of scope for this mode.
 
-## Normalization
+---
+
+## 6. NORMALIZATION
 
 Before diffing, both sides are canonicalized so incidental encoding differences are not reported as edits: Unicode NFC, `\r\n`/`\r` → `\n`, and trailing whitespace stripped per line. Text is then split into logical lines: an empty file is zero lines (not one phantom blank line), and a single trailing newline is not treated as an extra blank line — so an empty-vs-content diff reads as a pure addition and a trailing-newline-only change is not reported as a spurious edit. Interior blank lines are preserved. Markdown headings/sections are parsed but are not currently rendered into the report, and never change the text comparison.

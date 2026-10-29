@@ -1,0 +1,22 @@
+file	line	ref	target	reason
+.skilled/skills/sk-design/sk-design-diagram/references/foundations/derivation-record.md	21	§2	.skilled/skills/sk-design/sk-design-diagram/references/foundations/derivation-record.md	section number unchanged
+.skilled/skills/sk-design/sk-design-diagram/references/foundations/derivation-record.md	21	§3	.skilled/skills/sk-design/sk-design-diagram/references/foundations/derivation-record.md	section number unchanged
+.skilled/skills/sk-design/sk-design-diagram/references/foundations/derivation-record.md	21	§4	.skilled/skills/sk-design/sk-design-diagram/references/foundations/derivation-record.md	section number unchanged
+.skilled/skills/sk-design/sk-design-diagram/references/import-export/import-drawio.md	100	§3	SKILL.md	file before: SKILL.md
+.skilled/skills/sk-design/sk-design-diagram/references/import-export/import-drawio.md	100	§4	SKILL.md	list continuation of the reference before it (file before: SKILL.md)
+.skilled/skills/sk-design/sk-design-diagram/references/import-export/import-drawio.md	115	§5	SKILL.md	file before: SKILL.md
+.skilled/skills/sk-design/sk-design-diagram/references/import-export/import-drawio.md	130	§4	SKILL.md	file before: SKILL.md
+.skilled/skills/sk-design/sk-design-diagram/references/import-export/import-drawio.md	138	§6	SKILL.md	file before: SKILL.md
+.skilled/skills/sk-design/sk-design-diagram/references/import-export/import-drawio.md	159	§3	SKILL.md	override: sentence names the SKILL.md budget
+.skilled/skills/sk-design/sk-design-diagram/references/import-export/import-drawio.md	200	§4	SKILL.md	file before: SKILL.md
+.skilled/skills/sk-design/sk-design-diagram/references/import-export/import-mermaid.md	92	§4	SKILL.md	file before: SKILL.md
+.skilled/skills/sk-design/sk-design-diagram/references/import-export/import-mermaid.md	100	§6	SKILL.md	file before: SKILL.md
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-architecture.md	29	§4	SKILL.md	file before: SKILL.md
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-dp-integration.md	409	§1	SKILL.md	file before: SKILL.md
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md	448	§6	SKILL.md	file before: SKILL.md
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-it-state.md	467	§4	SKILL.md	file before: SKILL.md
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-loop.md	115	§4	SKILL.md	file before: SKILL.md
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-loop.md	175	§4	SKILL.md	file before: SKILL.md
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-loop.md	175	§4	SKILL.md	followed by 'rule N', a SKILL.md rule number
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-loop.md	181	§4	SKILL.md	followed by 'rule N', a SKILL.md rule number
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-sequence.md	104	§3	SKILL.md	file before: SKILL.md

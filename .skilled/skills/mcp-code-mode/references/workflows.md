@@ -9,14 +9,18 @@ trigger_phrases:
   - "sandbox state persistence"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.16
+version: 1.0.1.0
 ---
 
 # Workflow Examples - Discovery-First MCP Patterns
 
+## 1. OVERVIEW
+
 The configured manuals are fixed in `.utcp_config.json`; callable tools are not. Every workflow therefore discovers the manual and tool schema before calling it.
 
-## 1. DISCOVER, INSPECT, CALL
+---
+
+## 2. DISCOVER, INSPECT, CALL
 
 ```typescript
 const candidates = await search_tools({
@@ -39,7 +43,7 @@ Use the returned schema to replace the placeholder arguments before execution. T
 
 ---
 
-## 2. ENUMERATE A MANUAL
+## 3. ENUMERATE A MANUAL
 
 ```typescript
 const allTools = await list_tools();
@@ -53,7 +57,7 @@ The configured manual names are listed in [tool-catalog.md](./tool-catalog.md). 
 
 ---
 
-## 3. CONFIRMED MOBBIN SEARCH
+## 4. CONFIRMED MOBBIN SEARCH
 
 This is the concrete example for the currently confirmed three-tool Mobbin surface:
 
@@ -78,7 +82,7 @@ The Mobbin packet documents `search_screens`, `search_flows`, and `search_sectio
 
 ---
 
-## 4. SEQUENTIAL CHAIN WITH VALIDATION
+## 5. SEQUENTIAL CHAIN WITH VALIDATION
 
 ```typescript
 const first = await call_tool_chain({
@@ -100,7 +104,7 @@ Keep dependent operations in one chain when the second call consumes the first r
 
 ---
 
-## 5. PARALLEL READ-ONLY WORK
+## 6. PARALLEL READ-ONLY WORK
 
 ```typescript
 const [left, right] = await Promise.all([
@@ -115,7 +119,7 @@ Use parallel execution only for independent reads. Do not parallelize mutations,
 
 ---
 
-## 6. ERROR AND PARTIAL-SUCCESS HANDLING
+## 7. ERROR AND PARTIAL-SUCCESS HANDLING
 
 ```typescript
 const outcomes = await Promise.allSettled([
@@ -133,7 +137,7 @@ Report partial success explicitly. A successful call does not prove that a sibli
 
 ---
 
-## 7. STATE AND TIMEOUTS
+## 8. STATE AND TIMEOUTS
 
 Keep intermediate data in local variables inside one `call_tool_chain` execution. Use a timeout appropriate to the number and size of calls, and return a bounded summary rather than dumping large tool responses into logs.
 

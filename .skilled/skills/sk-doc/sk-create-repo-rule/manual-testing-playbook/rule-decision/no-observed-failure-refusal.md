@@ -2,7 +2,7 @@
 title: "RRD-004 -- Restraint refusal"
 description: "This scenario validates the restraint refusal for `RRD-004`. It focuses on refusing a proposal backed by a best-practice appeal rather than a failure that happens today."
 stage: routing
-version: 1.1.0.3
+version: 1.1.1.0
 ---
 
 # RRD-004 -- Restraint refusal
@@ -90,7 +90,7 @@ Re-run with the same subject and a named failure attached, such as a specific in
 
 | File | Role |
 |---|---|
-| [`references/decision-tests.md`](../../references/decision-tests.md) | Primary implementation anchor, sections 4 and 5 |
+| [`references/decision-tests.md`](../../references/decision-tests.md) | Primary implementation anchor, sections 5 and 6 |
 | [`SKILL.md`](../../SKILL.md) | The forbidden clause against adding a rule because the set looks thin |
 
 ---

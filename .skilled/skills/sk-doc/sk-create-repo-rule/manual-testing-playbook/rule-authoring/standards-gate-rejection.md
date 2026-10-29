@@ -2,7 +2,7 @@
 title: "RRA-002 -- Standards gate rejection"
 description: "This scenario validates the standards gate for `RRA-002`. It focuses on rejecting a draft that satisfies every structural check and still fails the reader tests."
 stage: routing
-version: 1.1.0.4
+version: 1.1.1.0
 ---
 
 # RRA-002 -- Standards gate rejection
@@ -92,7 +92,7 @@ Run the same gate against a shipped rule from `repo-rules/`. All five standards 
 
 | File | Role |
 |---|---|
-| [`references/creation-standards.md`](../../references/creation-standards.md) | Primary implementation anchor, sections 1 through 5 |
+| [`references/creation-standards.md`](../../references/creation-standards.md) | Primary implementation anchor, sections 2 through 6 |
 | [`references/rule-anatomy.md`](../../references/rule-anatomy.md) | The observed ranges the standards are judged against |
 
 ---

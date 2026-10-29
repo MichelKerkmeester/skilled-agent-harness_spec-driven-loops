@@ -1,0 +1,10 @@
+HVR SCAN: .skilled/skills/mcp-tooling/mcp-obsidian/changelog/v0.24.6.0.md
+  x1    first@23    hard   punctuation            ;
+  x1    first@24    soft1  soft-deduction         actually
+  x1    first@24    review oxford-comma-candidate , and
+  (--all lists every occurrence with line and column)
+
+  hard blockers:          1
+  mechanical deductions:  -6
+  mechanical ceiling:     94/100
+  NOT scored here:        three-item enumeration, triple headers, setup language, synonym cycling, false ranges, fragmented headers, copula avoidance, significance inflation, generic conclusions, sentence rhythm, personality

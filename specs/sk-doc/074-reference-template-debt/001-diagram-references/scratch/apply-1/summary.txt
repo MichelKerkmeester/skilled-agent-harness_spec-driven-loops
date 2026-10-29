@@ -1,0 +1,38 @@
+files=34
+rows=125
+mismatches=0
+left_alone=21
+.skilled/skills/sk-design/sk-design-diagram/references/catalog.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=1	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/foundations/derivation-record.md	mode=format-only	rewritten=0	left=3	h3_shifted=0	dividers_added=1	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/foundations/output-spec.md	mode=wrap-overview	rewritten=2	left=0	h3_shifted=0	dividers_added=0	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/import-export/export.md	mode=wrap-overview	rewritten=1	left=0	h3_shifted=0	dividers_added=0	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/import-export/import-drawio.md	mode=wrap-overview	rewritten=5	left=7	h3_shifted=0	dividers_added=0	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/import-export/import-mermaid.md	mode=wrap-overview	rewritten=1	left=2	h3_shifted=0	dividers_added=0	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/primitives/primitive-icons.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=0	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-architecture.md	mode=wrap-overview	rewritten=0	left=1	h3_shifted=0	dividers_added=6	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-bar.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=4	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-data-flow.md	mode=wrap-overview	rewritten=16	left=0	h3_shifted=10	dividers_added=0	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-dp-integration.md	mode=wrap-overview	rewritten=9	left=1	h3_shifted=8	dividers_added=0	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-dp-security-matrix.md	mode=wrap-overview	rewritten=13	left=0	h3_shifted=11	dividers_added=0	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-er.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=3	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-flowchart.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=3	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-gantt.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=3	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md	mode=wrap-overview	rewritten=21	left=1	h3_shifted=18	dividers_added=0	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-it-state.md	mode=wrap-overview	rewritten=13	left=1	h3_shifted=12	dividers_added=0	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-layers.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=3	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-line.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=3	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-loop.md	mode=wrap-overview	rewritten=3	left=4	h3_shifted=4	dividers_added=0	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-medallion.md	mode=wrap-overview	rewritten=15	left=0	h3_shifted=9	dividers_added=0	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-nested.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=3	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-org-chart.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=5	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-process.md	mode=wrap-overview	rewritten=26	left=0	h3_shifted=13	dividers_added=0	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-pyramid.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=4	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-quadrant.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=3	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-radar.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=5	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-scatter.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=3	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-sequence.md	mode=wrap-overview	rewritten=0	left=1	h3_shifted=0	dividers_added=8	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-state.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=3	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-swimlane.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=3	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-timeline.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=3	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-tree.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=3	errors=0
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-venn.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=3	errors=0

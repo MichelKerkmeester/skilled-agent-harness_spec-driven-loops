@@ -1,0 +1,17 @@
+file	line	ref	target	reason
+.skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md	35	§2	EXTERNAL:RULES.md	file before: RULES.md
+.skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md	36	§3	EXTERNAL:RULES.md	file before: RULES.md
+.skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md	50	§4	EXTERNAL:RULES.md	file before: RULES.md
+.skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md	57	§4	EXTERNAL:REPO RULES.md	override: the sentence belongs to another file than its bare number suggests
+.skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md	63	§4	EXTERNAL:REPO RULES.md	override: the sentence belongs to another file than its bare number suggests
+.skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md	129	§4	EXTERNAL:REPO RULES.md	override: the sentence belongs to another file than its bare number suggests
+.skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md	172	§2	EXTERNAL:REPO RULES.md	override: the sentence belongs to another file than its bare number suggests
+.skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md	173	§3	EXTERNAL:REPO RULES.md	override: the sentence belongs to another file than its bare number suggests
+.skilled/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md	40	§3	EXTERNAL:evidence-and-proof.md	file before: evidence-and-proof.md
+.skilled/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md	42	§3	EXTERNAL:uncertainty-and-honesty.md	file before: uncertainty-and-honesty.md
+.skilled/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md	44	§2	EXTERNAL:blast-radius.md	file before: blast-radius.md
+.skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md	49	§8	EXTERNAL:AGENTS.md	file before: AGENTS.md
+.skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md	50	§8	EXTERNAL:AGENTS.md	override: the sentence belongs to another file than its bare number suggests
+.skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md	67	§2	EXTERNAL:AGENTS.md	file before: AGENTS.md
+.skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md	132	§2	EXTERNAL:AGENTS.md	file before: AGENTS.md
+.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md	366	§9	EXTERNAL:../state/state-format.md	file before: ../state/state-format.md

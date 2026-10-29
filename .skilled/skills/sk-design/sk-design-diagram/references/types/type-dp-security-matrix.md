@@ -10,20 +10,22 @@ trigger_phrases:
   - "ad group roles"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
+version: 1.2.1.0
 ---
 
 # DP security matrix
+
+## 1. OVERVIEW
 
 **Best for:** documenting per-role / per-component access permissions for a data platform — a grid where each row is a platform component (Keycloak, MinIO bucket, Trino catalog, JupyterHub, NiFi, …) and each column is a role / AD group (Data Administrators, Data Engineers, Data Scientists, Data Consumers, …). Each intersection cell holds a permission value (Admin / Full / R/W / Read / SELECT / Login / No access) with a visual category that matches the permission level. One cell may be marked focal to flag a critical access rule (e.g., "Data Consumers can ONLY `SELECT` from the aggregated catalog — sole consumer access").
 
 Use when stakeholders need to audit *who can do what* across the platform. Prefer **DP integration** when the question is *who can talk to what* (topology/protocol) rather than *who can write/read what* (permissions).
 
-This type is **parametric** — the inputs schema in §1 drives every coordinate via the formulas in §2. The rule shape mirrors `type-medallion.md` / `type-process.md` / `type-data-flow.md` so the focal rule, color override, dark mode, and reproducibility checklist read identically across types.
+This type is **parametric** — the inputs schema in §2 drives every coordinate via the formulas in §3. The rule shape mirrors `type-medallion.md` / `type-process.md` / `type-data-flow.md` so the focal rule, color override, dark mode, and reproducibility checklist read identically across types.
 
 ---
 
-## 1. Inputs — the parameter contract
+## 2. INPUTS — THE PARAMETER CONTRACT
 
 ```yaml
 title:    "Platform Access Matrix"
@@ -50,7 +52,7 @@ cells:                                  # explicit (row, col) entries; omitted �
   # level = visual category: full | rw | read | none  (closed vocabulary, drives styling)
   # focal: true (max 1)            — overrides level to focal styling
   # sub: "second-line text"        — used inside focal cell
-  # color: "#hex"                  — optional per-cell color override (§4)
+  # color: "#hex"                  — optional per-cell color override (§5)
   - { row: 0, col: 0, value: "Admin", level: "full" }
   - { row: 0, col: 1, value: "Login", level: "read" }
   - { row: 0, col: 2, value: "Login", level: "read" }
@@ -78,15 +80,15 @@ dark: false
 - `roles[j].name` — primary role label (`node-name` role at 11px, white text on the ink banner)
 - `roles[j].code` — secondary AD-group identifier (`sublabel` role, white text at 0.85 opacity)
 - `components[i].hint` — optional right-aligned `sublabel` text in the label cell (e.g., `"SSO"`, `"S3 API"`)
-- `cells[k].level` — closed vocabulary `full | rw | read | none`. Drives fill/stroke/text-color per §2.4.
+- `cells[k].level` — closed vocabulary `full | rw | read | none`. Drives fill/stroke/text-color per §3.4.
 - `cells[k].value` — free-form display text. Domain-specific labels (`"R/W"`, `"SELECT"`, `"Login"`) work without inventing new levels.
 - `cells[k].focal: true` — exactly **one** cell may declare this. Overrides `level` to focal styling.
 - `cells[k].sub` — optional 2nd-line text (used with focal). Renders in the `sublabel` role at 8px below the primary value.
-- `cells[k].color: "#hex"` — optional per-cell color override (§4).
+- `cells[k].color: "#hex"` — optional per-cell color override (§5).
 
 ---
 
-## 2. Layout formulas — deterministic geometry
+## 3. LAYOUT FORMULAS — DETERMINISTIC GEOMETRY
 
 ```
 # Constants
@@ -124,11 +126,11 @@ role_col_x(j)    = left_pad + comp_col_w + comp_role_gap
 role_col_cx(j)   = role_col_x(j) + role_col_w / 2                                 # 306, 470, 634, 798
 ```
 
-### 2.1 Background
+### 3.1 Background
 
 Solid paper fill across the full viewBox. No dot pattern.
 
-### 2.2 Header row (`y = 72, h = 52`)
+### 3.2 Header row (`y = 72, h = 52`)
 
 **Component-column header cell:**
 - Rect: `(comp_col_x, header_y, comp_col_w, header_h)`, fill white, stroke `ink @ 0.12` 0.8, `rx=6`
@@ -142,7 +144,7 @@ Solid paper fill across the full viewBox. No dot pattern.
   - Line 1 at `y=92`: `roles[j].name` — `node-name` role at 11px, white
   - Line 2 at `y=108`: `roles[j].code` — `sublabel` role, white at opacity 0.85
 
-### 2.3 Data row (`y = row_y(k), h = 36`)
+### 3.3 Data row (`y = row_y(k), h = 36`)
 
 **Component label cell:**
 - Rect: `(comp_col_x, row_y(k), comp_col_w, row_h)`, fill white, stroke `ink @ 0.12` 0.8, `rx=4`
@@ -151,11 +153,11 @@ Solid paper fill across the full viewBox. No dot pattern.
 
 **Value cells (one per role × component):**
 - Rect: `(role_col_x(j), row_y(k), role_col_w, row_h)`, `rx=4`, stroke `ink @ 0.12` 0.6
-- Fill and text-color depend on `level` (or focal flag) — see §2.4
+- Fill and text-color depend on `level` (or focal flag) — see §3.4
 - Value text centered at `(role_col_cx(j), row_y(k) + 22)`: `node-name` role at 10px
 - Focal cell uses a slightly raised primary text at `y=18` and a sub-line at `y=30` (`sublabel` role at 8px)
 
-### 2.4 Cell style table
+### 3.4 Cell style table
 
 | `level` | Fill | Stroke | Text color | Text weight |
 |---|---|---|---|---|
@@ -167,7 +169,7 @@ Solid paper fill across the full viewBox. No dot pattern.
 
 The focal cell can carry a 2nd line (`sub:`) rendered in `accent` with the `sublabel` role at 8px and 0.85 opacity.
 
-### 2.5 Legend (`y_top = legend_y_top, h ≈ 30`)
+### 3.5 Legend (`y_top = legend_y_top, h ≈ 30`)
 
 Hairline separator at `legend_y_top`. Below the separator, one row of style swatches with their labels — only the styles actually used in the diagram appear in the legend.
 
@@ -177,7 +179,7 @@ Hairline separator at `legend_y_top`. Below the separator, one row of style swat
 
 ---
 
-## 3. Cells, not connectors
+## 4. CELLS, NOT CONNECTORS
 
 A matrix diagram has **no connectors** — there are no arrows between cells, no flow lines. The diagram's information is entirely in the cell content + cell styling. The only "connector-like" element is the focal cell's accent border, which visually "calls out" a specific intersection.
 
@@ -185,11 +187,11 @@ Cells emit **no edges**. Don't add arrows pointing into cells or between cells �
 
 ---
 
-## 4. Color overrides
+## 5. COLOR OVERRIDES
 
-Three independent override axes — per-cell, per-component (row), per-role (column). All optional, all use the same `color: "#hex"` field, all draw from the same recommended palette. Mirrors §3.4 of `type-high-level.md`, §4 of `type-process.md`, §4 of `type-medallion.md`.
+Three independent override axes — per-cell, per-component (row), per-role (column). All optional, all use the same `color: "#hex"` field, all draw from the same recommended palette. Mirrors §4.4 of `type-high-level.md`, §5 of `type-process.md`, §5 of `type-medallion.md`.
 
-### 4.1 Per-cell `color`
+### 5.1 Per-cell `color`
 
 Tints a specific intersection cell. Applied to:
 
@@ -202,7 +204,7 @@ Tints a specific intersection cell. Applied to:
 
 `C_light` = the same hex lightened ~15% for dark-mode contrast.
 
-### 4.2 Per-component `color`  (`components[i].color`)
+### 5.2 Per-component `color`  (`components[i].color`)
 
 Tints the row's **label cell only** (left column). The data cells in that row keep their per-cell `level` styling — the row color flags *what* this component is, not *what permissions live in it*.
 
@@ -213,7 +215,7 @@ Tints the row's **label cell only** (left column). The data cells in that row ke
 | Component name | `C` | `C_light` |
 | Hint text | unchanged (muted) | unchanged (muted) |
 
-### 4.3 Per-role `color`  (`roles[j].color`)
+### 5.3 Per-role `color`  (`roles[j].color`)
 
 Tints the **column banner only** (top row). Cells underneath keep their `level` styling. Replaces the default navy banner fill with the chosen hex.
 
@@ -224,14 +226,14 @@ Tints the **column banner only** (top row). Cells underneath keep their `level` 
 
 If you pick a mid-luminance hex (e.g., yellow `#c9a23a`), the text auto-flips to ink for contrast. Pair `roles[j].text_color: "#hex"` to override this auto-pick.
 
-### 4.4 Rules
+### 5.4 Rules
 
 - **Focal cell wins.** A focal cell ignores `color` overrides — accent always.
 - **Per-cell `color` overrides `level` styling** for that one cell.
 - **Per-component / per-role overrides are scoped:** component → row label only; role → banner only. They do **not** spread into the matrix body. To flag a specific intersection, use per-cell.
 - **Cap:** keep total custom-colored entities ≤ 5 per diagram (combining cells + components + roles). Above 5, the matrix reads as colored noise — split into multiple diagrams or rethink which color carries which concern.
 
-### 4.5 Recommended palette (same as the other parametric types)
+### 5.5 Recommended palette (same as the other parametric types)
 
 - `#b85450` rust-red — Security elevation / break-glass / SoX-flagged
 - `#5a7d9a` slate-blue — Quality / monitoring / observability gate
@@ -241,7 +243,7 @@ If you pick a mid-luminance hex (e.g., yellow `#c9a23a`), the text auto-flips to
 
 ---
 
-## 5. Focal rule
+## 6. FOCAL RULE
 
 Exactly **one** focal cell per diagram (or zero). The focal cell:
 - Uses focal styling (accent fill + accent stroke 1.4 + accent text bold)
@@ -252,7 +254,7 @@ If zero or >1 `focal: true` cells are declared, halt and ask the user.
 
 ---
 
-## 6. Dark mode
+## 7. DARK MODE
 
 | Token | Light | Dark |
 |---|---|---|
@@ -273,15 +275,15 @@ If zero or >1 `focal: true` cells are declared, halt and ask the user.
 
 ---
 
-## 7. Reproducibility checklist (taste gate)
+## 8. REPRODUCIBILITY CHECKLIST (TASTE GATE)
 
 Before emitting SVG, verify **every** item:
 
-1. `viewBox = "0 0 {viewBox_w} {viewBox_h}"` derived via §2 (4 roles × 8 components → 920 × 520).
+1. `viewBox = "0 0 {viewBox_w} {viewBox_h}"` derived via §3 (4 roles × 8 components → 920 × 520).
 2. Header row at `y=72 h=52`. Component header cell white-filled with two-line `Component / vs. AD group` label. Role banners filled `ink` with name + AD-group code in white.
 3. Data rows start at `y=140`, stride 40, height 36. `rows_bottom = 140 + (n_components−1)·40 + 36`.
 4. Component label cell `rx=4`, name left-aligned at `x=24`, optional `hint` right-aligned at `x = comp_col_x + comp_col_w − 12`.
-5. Every value cell `rx=4`, stroke `ink @ 0.12` 0.6, fill + text matching §2.4 for its `level`.
+5. Every value cell `rx=4`, stroke `ink @ 0.12` 0.6, fill + text matching §3.4 for its `level`.
 6. Exactly **one** focal cell (or zero). Focal cell stroke `accent` width 1.4. Primary value at `y = row_y(k) + 18`; `sub` (if present) at `y = row_y(k) + 30`.
 7. Cells omitted from `cells:` render as `level: "none"` with `none_label` text (default `"No access"`).
 8. Custom-colored cells ≤ 2 (in addition to the focal cell).
@@ -291,7 +293,7 @@ Before emitting SVG, verify **every** item:
 
 ---
 
-## 8. Anti-patterns
+## 9. ANTI-PATTERNS
 
 - **More than one focal cell** — focal exists to mark *the* critical access rule; >1 erases the signal.
 - **Connectors anywhere** — matrix is value-driven; arrows belong in DP integration / process diagrams.
@@ -304,7 +306,7 @@ Before emitting SVG, verify **every** item:
 
 ---
 
-## 9. Examples
+## 10. EXAMPLES
 
 - `assets/diagrams/dp-security-matrix.html` — minimal light (NatStat canonical: 4 roles × 8 components, focal at Data Consumers × Trino aggregated). Gallery default.
 - `assets/diagrams/dp-security-matrix-dark.html` — same, dark skin.
@@ -312,9 +314,9 @@ Before emitting SVG, verify **every** item:
 
 ---
 
-## 10. Worked YAML — full inputs for `dp-security-matrix.html`
+## 11. WORKED YAML — FULL INPUTS FOR `dp-security-matrix.html`
 
-The complete inputs that map to the shipped canonical example. Every coordinate in that SVG is derivable from §2 applied to these inputs.
+The complete inputs that map to the shipped canonical example. Every coordinate in that SVG is derivable from §3 applied to these inputs.
 
 ```yaml
 title:    "Platform Access Matrix"
@@ -381,9 +383,9 @@ cells:
 dark: false
 ```
 
-### 10.1 What this YAML proves
+### 11.1 What this YAML proves
 
-Run §2 with these inputs:
+Run §3 with these inputs:
 - `n_roles = 4`, `n_components = 8`, no color overrides, one focal cell.
 - `viewBox_w = 12 + 208 + 12 + 4·148 + 3·16 + 48 = 920` ✓
 - `row_y(k)` produces `140, 180, 220, 260, 300, 340, 380, 420` ✓

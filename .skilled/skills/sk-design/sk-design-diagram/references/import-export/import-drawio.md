@@ -10,22 +10,24 @@ trigger_phrases:
   - "make this presentable"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Import from draw.io
+
+## 1. OVERVIEW
 
 Turn a `.drawio` file into an editorial-quality diagram at the format, size, and detail level the destination needs. This is a redraw, not a conversion: you read the source for its *content* — components, relationships, grouping, direction — and then draw a new diagram in this skill's design system.
 
 ---
 
-## 1. TRIGGER
+## 2. TRIGGER
 
 Load this file when the user points at a `.drawio`, `.drawio.xml`, `.drawio.png`, or `.drawio.svg` file and wants a diagram out of it — "convert this drawio", "redraw this diagram", "make this presentable", "この drawio をきれいにして", or the `create:diagram` command's import route.
 
 ---
 
-## 2. STEP 1 — EXTRACT THE IR
+## 3. STEP 1 — EXTRACT THE IR
 
 Never read a `.drawio` file with Read. Most are deflate+base64 payloads, and even the readable ones are 10× more XML than signal. Run the extractor:
 
@@ -49,7 +51,7 @@ Read the digest, not the file. If the digest is empty (`0 nodes`), the source is
 
 ---
 
-## 3. STEP 2 — SET THE FOUR DIALS
+## 4. STEP 2 — SET THE FOUR DIALS
 
 Before drawing, fix format, size, detail level, and audience per [`output-spec.md`](../foundations/output-spec.md). Infer what the destination makes obvious, then ask once for any material ambiguity and let the digest inform the options you offer:
 
@@ -59,7 +61,7 @@ The digest's `budget:` line tells you whether the ask is even possible: a source
 
 ---
 
-## 4. STEP 3 — PICK THE TARGET TYPE
+## 5. STEP 3 — PICK THE TARGET TYPE
 
 The source's shape vocabulary is a hint, not an instruction. draw.io users reach for rectangles because rectangles are what's on the toolbar.
 
@@ -83,19 +85,19 @@ The digest's `type candidates` field ranks these mechanically. Override it when 
 
 ---
 
-## 5. STEP 4 — BUILD THE SEMANTIC MODEL
+## 6. STEP 4 — BUILD THE SEMANTIC MODEL
 
 Work from the digest, not from coordinates. In order:
 
 1. **Name the story.** One sentence: *"A request enters through the gateway, gets authenticated, and lands in Postgres."* Everything that doesn't serve that sentence is a degrade-ladder candidate.
-2. **Apply the detail level.** Walk [`output-spec.md` §3](../foundations/output-spec.md) degrade ladder until you're under the node ceiling. The digest's *collapsible groups* section is step 3 of that ladder, pre-computed.
+2. **Apply the detail level.** Walk [`output-spec.md` §4](../foundations/output-spec.md) degrade ladder until you're under the node ceiling. The digest's *collapsible groups* section is step 3 of that ladder, pre-computed.
 3. **Pick 1–2 focal nodes.** The digest's `hubs` ranking (highest degree) is the usual answer, but the focal node is the one the *reader* should look at first — sometimes that's the entry point or the new component, not the busiest one. These get `accent`; everything else does not.
-4. **Rewrite every label** at the audience level ([`output-spec.md` §4](../foundations/output-spec.md)). draw.io labels are written by the author for the author: `svc-auth-prod-v2` becomes `Auth Service`. Preserve proper nouns, expand acronyms once.
+4. **Rewrite every label** at the audience level ([`output-spec.md` §5](../foundations/output-spec.md)). draw.io labels are written by the author for the author: `svc-auth-prod-v2` becomes `Auth Service`. Preserve proper nouns, expand acronyms once.
 5. **Prune edges.** Source graphs carry edges that layout already implies. If A sits above B in a stack and everything flows down, the arrow is noise. Keep edges that carry a label, cross a zone boundary, or run against the dominant direction.
 
 ---
 
-## 6. STEP 5 — REDRAW
+## 7. STEP 5 — REDRAW
 
 Fresh layout on the 4px grid, per the type reference and SKILL.md §3 (layout/budget) + §4 (connector rules). Explicitly:
 
@@ -132,16 +134,16 @@ Fresh layout on the 4px grid, per the type reference and SKILL.md §3 (layout/bu
 
 ---
 
-## 7. STEP 6 — DELIVER
+## 8. STEP 6 — DELIVER
 
 1. Write the `.html`.
-2. Run the SKILL.md §6 taste gate **and** the [`output-spec.md` §6](../foundations/output-spec.md) checklist.
+2. Run the SKILL.md §6 taste gate **and** the [`output-spec.md` §7](../foundations/output-spec.md) checklist.
 3. Produce `svg` / `png` if the format dial asked for them — via [`export.md`](export.md), from the HTML.
-4. Report the fidelity ledger ([`output-spec.md` §5](../foundations/output-spec.md)). Every import gets one; the user knows the source and will notice what's gone.
+4. Report the fidelity ledger ([`output-spec.md` §6](../foundations/output-spec.md)). Every import gets one; the user knows the source and will notice what's gone.
 
 ---
 
-## 8. WORKED EXAMPLE
+## 9. WORKED EXAMPLE
 
 [`assets/diagrams/import-drawio.html`](../../assets/diagrams/import-drawio.html) is the output of this procedure run on `scripts/fixtures/sample-architecture.drawio` (12 nodes, 8 edges, 2 container groups) at `format=html`, `size=doc-inline`, `detail=balanced`, `audience=mixed`.
 
@@ -160,7 +162,7 @@ What the run decided, and why:
 
 ---
 
-## 9. MULTI-PAGE FILES
+## 10. MULTI-PAGE FILES
 
 Default is page 0. When the file has several pages:
 
@@ -170,7 +172,7 @@ Default is page 0. When the file has several pages:
 
 ---
 
-## 10. EDGE CASES
+## 11. EDGE CASES
 
 | Situation | Do |
 |---|---|
@@ -181,11 +183,11 @@ Default is page 0. When the file has several pages:
 | Labels are empty across the board | The source carries meaning in shape and position only. Ask the user what the boxes are — don't invent names. |
 | Source has 40+ nodes | Don't offer `faithful`. Propose overview + per-zone detail up front, before drawing anything. |
 | Source is someone else's branded diagram | Redraw in the *project's* skin (`style-guide.md`), not the source's. Say so — it's a feature, not a bug. |
-| CJK / non-Latin labels | Font fallback per [`output-spec.md` §4](../foundations/output-spec.md). Don't romanize labels. |
+| CJK / non-Latin labels | Font fallback per [`output-spec.md` §5](../foundations/output-spec.md). Don't romanize labels. |
 
 ---
 
-## 11. ANTI-PATTERNS
+## 12. ANTI-PATTERNS
 
 | Anti-pattern | Why it fails |
 |---|---|

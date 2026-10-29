@@ -1,0 +1,12 @@
+.skilled/skills/cli-external-orchestration
+.skilled/skills/mcp-code-mode
+.skilled/skills/mcp-tooling/mcp-obsidian
+.skilled/skills/sk-design/sk-design-chart
+.skilled/skills/sk-design/sk-design-diagram
+.skilled/skills/sk-design/sk-design-md-generator
+.skilled/skills/sk-doc/sk-create-diff
+.skilled/skills/sk-doc/sk-create-repo-rule
+.skilled/skills/sk-doc/sk-create-with-human-voice
+.skilled/skills/system-deep-loop/deep-review
+.skilled/skills/system-skill-advisor
+.skilled/skills/system-spec-kit

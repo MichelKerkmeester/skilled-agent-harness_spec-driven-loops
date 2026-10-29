@@ -9,14 +9,18 @@ trigger_phrases:
   - "temporal overlap view"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
+version: 1.2.1.0
 ---
 
 # Gantt Chart
 
+## 1. OVERVIEW
+
 **Best for:** project plans and roadmaps — tasks with explicit start and end dates, grouped into phases. Use when the reader needs to see temporal overlap, parallel tracks, and milestone sequencing at a glance.
 
-## 1. Layout conventions
+---
+
+## 2. LAYOUT CONVENTIONS
 
 - **Left label column:** x=20–200 (180px). Task names in Geist sans 11px 600. Phase labels as Geist Mono 7px eyebrows above each group.
 - **Timeline area:** x=200–960 (760px). Time axis runs left→right.
@@ -44,7 +48,9 @@ version: 1.2.0.8
 
 Duration in pixels: `(end_week - start_week) × pitch`. Pitch = timeline_width / total_weeks.
 
-## 2. Anti-patterns
+---
+
+## 3. ANTI-PATTERNS
 
 - More than 12 tasks (splits into sub-plans or collapses into phase-level view).
 - More than 5 parallel tracks per phase (illegible overlap).
@@ -52,7 +58,9 @@ Duration in pixels: `(end_week - start_week) × pitch`. Pitch = timeline_width /
 - Start/end dates in the bar label (put them in the x-axis or tooltip comment instead).
 - Equal visual weight for all bars (the focal task must stand out).
 
-## 3. Examples
+---
+
+## 4. EXAMPLES
 
 - `assets/diagrams/gantt.html` — minimal light
 - `assets/diagrams/gantt-dark.html` — minimal dark

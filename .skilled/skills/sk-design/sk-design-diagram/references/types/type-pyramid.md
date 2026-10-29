@@ -9,20 +9,26 @@ trigger_phrases:
   - "drop off annotation"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
+version: 1.2.1.0
 ---
 
 # Pyramid / Funnel
 
+## 1. OVERVIEW
+
 **Best for:** hierarchy of needs, prioritization ranks, value pyramids, conversion funnels, content importance stacks.
 
-## 1. Two orientations — pick one
+---
+
+## 2. TWO ORIENTATIONS — PICK ONE
 - **Pyramid** (point up) — narrow apex = most important / rarest / most valuable. Base is broadest / foundational.
 - **Funnel** (point down) — narrow end = conversion (smallest group). Top is widest / audience.
 
 Don't mix orientations on one diagram.
 
-## 2. Layout conventions
+---
+
+## 3. LAYOUT CONVENTIONS
 - 4–6 layers. Each layer is a trapezoid built from an SVG `<polygon>` with 4 points.
 - Consistent layer height (56–72px).
 - Widths decrease linearly from base to apex (pyramid) or top to bottom (funnel). When showing real funnel data, widths must be honest (proportional to count/percentage).
@@ -35,13 +41,17 @@ Don't mix orientations on one diagram.
 - **Coral on ONE layer only**: apex of pyramid, conversion layer of funnel, or critical bottleneck.
 - Optional left-margin axis arrow + Geist Mono label (`rarer ↑`, `drop-off ↓`).
 
-## 3. Anti-patterns
+---
+
+## 4. ANTI-PATTERNS
 - 7+ layers (illegible — compress or split).
 - Pyramid for non-hierarchical data (use a tree or bar chart).
 - Dishonest widths (fake equal spacing when drops are unequal).
 - Coral on the base layer (dilutes the "apex = rare" signal).
 
-## 4. Examples
+---
+
+## 5. EXAMPLES
 - `assets/diagrams/pyramid.html` — minimal light
 - `assets/diagrams/pyramid-dark.html` — minimal dark
 - `assets/diagrams/pyramid-full.html` — full editorial

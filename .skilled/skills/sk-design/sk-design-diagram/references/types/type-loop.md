@@ -9,20 +9,22 @@ trigger_phrases:
   - "shared hub state"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Loop
+
+## 1. OVERVIEW
 
 **Best for:** reinforcing cycles, flywheels, feedback loops, and operating loops — anything where the last step feeds the first and a shared hub accumulates state. Use Loop when the reader must see both motions at once: work advances clockwise around the ring, while each pass writes durable state back to one common center.
 
 Prefer **Flowchart** when the path ends, branches toward an outcome, or never truly returns to its first step. Prefer **Cycle** when the center does not accumulate shared state. The dashed write-back spokes are the defining signal here: remove them and the figure is only a circular process.
 
-This type is **parametric**. The inputs in §1 determine station count, angles, edge intersections, connector paths, and viewBox bounds. Identical inputs should produce identical geometry.
+This type is **parametric**. The inputs in §2 determine station count, angles, edge intersections, connector paths, and viewBox bounds. Identical inputs should produce identical geometry.
 
 ---
 
-## 1. Inputs — the parameter contract
+## 2. INPUTS — THE PARAMETER CONTRACT
 
 ```yaml
 title: "The self-improving loop"
@@ -55,11 +57,11 @@ Station order is semantic. `stations[0]` is the top station, then entries procee
 
 ---
 
-## 2. Layout math — deterministic geometry
+## 3. LAYOUT MATH — DETERMINISTIC GEOMETRY
 
 Use SVG coordinates, where positive y points downward. Let the hub center be `C = (cx, cy)`, station count be `N`, station ring radius be `R`, station half-size be `a = station_w/2`, `b = station_h/2`, and hub half-size be `A = hub_w/2`, `B = hub_h/2`.
 
-### 2.1 Station centers
+### 3.1 Station centers
 
 For zero-indexed station `k`:
 
@@ -76,7 +78,7 @@ station_y(k)        = station_center_y(k) - station_h/2
 
 Thus station 1 sits at the top, and increasing `k` moves clockwise. Round station rectangles to the nearest 4px grid point after computing the ideal geometry; preserve symmetry when rounding paired stations. Keep ring-circle intersection points to three decimal places so every arc remains on the same circle.
 
-### 2.2 Solid ring-flow endpoints
+### 3.2 Solid ring-flow endpoints
 
 Ring connectors travel from station `k` to station `j = (k + 1) mod N` as circular SVG arcs on the station circle itself. Every segment uses the same center `C`, radius `R`, and clockwise sweep. The station boxes interrupt the circle; connectors begin at the circle's clockwise exit from the source box and end just before its counterclockwise entry into the destination box, so the marker tip lands on the destination stroke.
 
@@ -114,7 +116,7 @@ The large-arc flag is `0` because adjacent-station gaps are less than 180 degree
 
 Loop's circular ring arcs are a documented type-specific exception to SKILL.md §4 rule 11, following the same precedent as Medallion's promotion arcs. A Loop never mixes cubic, straight, or rounded-orthogonal segments into its ring: the six visible gaps must read as pieces of one continuous circle.
 
-### 2.3 Dashed write-back spoke endpoints
+### 3.3 Dashed write-back spoke endpoints
 
 Each spoke runs inward from the station edge toward the hub. Use the same ray/box intersection formula, now on the radial vector `u_k`:
 
@@ -135,7 +137,7 @@ Because the arrow travels from the station toward `C`, adding `marker_gap` leave
 
 Labels are optional when the station sublabel already names the write-back. When used, they follow the `arrow-label` role, stay to one side of the spoke, and receive an opaque `paper` mask with a visible 6–10px gap from the stroke. Label a curated subset rather than forcing six labels into the hub halo.
 
-### 2.4 ViewBox sizing
+### 3.4 ViewBox sizing
 
 The viewBox must include the full station rectangles, outer ring curves, arrowheads, and at least `margin` breathing room:
 
@@ -153,7 +155,7 @@ Include the full circle extrema `cx +/- R`, `cy +/- R` plus station bounds and m
 
 ---
 
-## 3. Visual grammar
+## 4. VISUAL GRAMMAR
 
 | Element | Treatment |
 |---|---|
@@ -170,9 +172,9 @@ The hub is not a seventh process step. It is accumulated state: memory, standard
 
 ---
 
-## 4. Connector rules (mandatory)
+## 5. CONNECTOR RULES (MANDATORY)
 
-SKILL.md §4 applies in full except for the two Loop-specific connector primitives: circular ring arcs (§2.2) and straight radial spokes (§2.3). Like Medallion's promotion arcs, these replace §4 rule 11 for this diagram type:
+SKILL.md §4 applies in full except for the two Loop-specific connector primitives: circular ring arcs (§3.2) and straight radial spokes (§3.3). Like Medallion's promotion arcs, these replace §4 rule 11 for this diagram type:
 
 - Ring arrows are same-radius circular arcs, solid, and clockwise. Every path uses `A R R 0 0 1`; destination markers land on station edges and no connector ends at a center point.
 - Spokes are dashed and point inward. A solid spoke destroys the visual distinction between operating flow and write-back.
@@ -183,7 +185,7 @@ SKILL.md §4 applies in full except for the two Loop-specific connector primitiv
 
 ---
 
-## 5. Dark variant — token swap
+## 6. DARK VARIANT — TOKEN SWAP
 
 Apply the style-guide inversion rule; do not invent a second palette.
 
@@ -201,7 +203,7 @@ The semantic relationship stays unchanged in dark mode: one `ink`-filled hub, on
 
 ---
 
-## 6. Reproducibility checklist
+## 7. REPRODUCIBILITY CHECKLIST
 
 1. Station count is 5–8 and hub count is exactly one.
 2. Station 0 is at `-90deg`; all others use equal `360/N` steps clockwise.
@@ -215,7 +217,7 @@ The semantic relationship stays unchanged in dark mode: one `ink`-filled hub, on
 
 ---
 
-## 7. Anti-patterns
+## 8. ANTI-PATTERNS
 
 | Anti-pattern | Why it fails / correction |
 |---|---|
@@ -230,7 +232,7 @@ The semantic relationship stays unchanged in dark mode: one `ink`-filled hub, on
 
 ---
 
-## 8. Examples
+## 9. EXAMPLES
 
 - `assets/diagrams/loop.html` — minimal light: six-station self-improving operating loop.
 - `assets/diagrams/loop-dark.html` — the same geometry under the dark token inversion.

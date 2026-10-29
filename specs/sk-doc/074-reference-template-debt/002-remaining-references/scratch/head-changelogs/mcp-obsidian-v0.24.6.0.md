@@ -1,0 +1,30 @@
+---
+title: "mcp-obsidian v0.24.6.0, The machine router moves to ROUTER.md"
+description: "The machine router now lives in a sibling file. SKILL.md keeps SMART ROUTING short and links to ROUTER.md."
+trigger_phrases:
+  - "mcp-obsidian v0.24.6.0"
+  - "mcp-obsidian 0.24.6.0"
+  - "machine router"
+importance_tier: "normal"
+contextType: "general"
+version: 0.24.6.0
+---
+# v0.24.6.0, The Machine Router Moves to ROUTER.md
+
+The machine router now lives in a sibling `ROUTER.md`, which keeps `SKILL.md`'s SMART ROUTING section short.
+
+&nbsp;
+
+## What's New at a Glance
+
+- **The machine map keeps its full detail.** `ROUTER.md` holds the intent map, resource map, default resource, loading levels and routing pseudocode under `## 3. MACHINE ROUTER`, after a short overview and intent model.
+- **The skill page stays concise.** `SKILL.md` keeps SMART ROUTING as short prose ending with one link to `ROUTER.md`. Its version is now `0.24.6.0`.
+- **Routing behavior stays the same.** The parsed router is identical to the previous edition.
+- **Existing references follow the move.** References that pointed to the router in `SKILL.md` now point to `ROUTER.md` §3; the testing playbooks and feature catalog entries still cite the older target.
+- **The server install tables point at `ROUTER.md`.** The MCP and CLI server READMEs list the machine router, and the release note above now names which pointers actually moved.
+
+&nbsp;
+
+## Upgrade
+
+Read the machine router in `ROUTER.md`.

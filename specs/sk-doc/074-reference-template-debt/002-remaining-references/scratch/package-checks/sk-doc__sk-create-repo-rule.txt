@@ -1,0 +1,12 @@
+🔍 Validating skill: sk-create-repo-rule
+(strict mode)
+==================================================
+
+✅ Skill is valid!
+
+⚠️  2 warning(s):
+   • Missing recommended section: INTEGRATION POINTS
+   • Missing recommended section: RELATED RESOURCES
+
+==================================================
+Result: PASS

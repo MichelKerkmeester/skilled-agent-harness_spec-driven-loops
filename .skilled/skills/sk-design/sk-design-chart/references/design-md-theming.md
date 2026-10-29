@@ -8,16 +8,20 @@ trigger_phrases:
   - "design-md chart delivery"
 importance_tier: normal
 contextType: reference
-version: 0.23.0.9
+version: 0.23.1.0
 ---
 
 # Theming a chart from DESIGN.md
+
+## 1. OVERVIEW
 
 `DESIGN.md` is a style reference, not a chart form. The chart packet applies one locally available
 v3 reference to a copy of an existing form; it does not extract a site, open a URL or change the
 stock palette. Extraction belongs to `sk-design-md-generator`.
 
-## The command
+---
+
+## 2. THE COMMAND
 
 ```bash
 node .skilled/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs \
@@ -35,7 +39,9 @@ The input must be a local file. A URL is refused. The output directory is create
 chosen form has a complete derived palette and both theme validations have passed. There is no
 force option.
 
-## What the parser reads
+---
+
+## 3. WHAT THE PARSER READS
 
 The parser follows the v3 headings rather than searching for arbitrary prose:
 
@@ -48,7 +54,9 @@ The parser follows the v3 headings rather than searching for arbitrary prose:
 A missing heading, table or substitute is reported by name and stops the run. Six-digit colour
 values are the usable rows; gradients are not silently turned into flat colours.
 
-## The role mapping
+---
+
+## 4. THE ROLE MAPPING
 
 The mapping preserves the chart packet's role vocabulary and uses table order as prominence:
 
@@ -77,7 +85,9 @@ A table colour counts as chromatic when its HSL saturation is at least 24 percen
 is a neutral and can only serve the chrome roles or fill a missing series. The threshold keeps a
 warm grey out of the series ladder while letting a muted brand hue in.
 
-## Ordered forms and the default reference
+---
+
+## 5. ORDERED FORMS AND THE DEFAULT REFERENCE
 
 An ordered form (`bullet`, `calendar-grid`, `heat-matrix`, `progress-single`) paints a single-hue
 magnitude ramp with step and end gates of its own. A colour table does not supply such a ramp, so
@@ -100,7 +110,9 @@ that no longer exists. `assets/style-reference/evilcharts/origin.md` records whe
 and pins each file by hash. Overriding is unchanged: pass any other `DESIGN.md` path, including one
 `sk-design-md-generator` has just produced, and the script themes from that instead.
 
-## The corner ladder is a floor, not a mapping
+---
+
+## 6. THE CORNER LADDER IS A FLOOR, NOT A MAPPING
 
 Each of the corpus's five rungs takes the largest corner the reference publishes that still fits it.
 A reference with nothing that small has said nothing about that rung and the corpus value stands,
@@ -122,7 +134,9 @@ stock ladder from both, which is the one property that says the default is still
 corpus came from. It buys that property at the cost of a reference with larger corners contributing
 fewer of them, and that is the right side of the trade.
 
-## Gates before writing
+---
+
+## 7. GATES BEFORE WRITING
 
 The thresholds come from `assets/style-reference/evilcharts/palettes.json` on every run. The applicator uses the shared
 colour arithmetic module that the checker requires, so the same transfer curve, luminance and
@@ -139,7 +153,9 @@ Every failure names the role, measured ratio, gate and nearest table colour that
 script prints `RESULT: FAILED` and writes no output on a failure. A pass prints one `MAPPING` line
 per role for both grounds, then writes the selected form copies and ends with `RESULT: PASSED`.
 
-## What changes in a delivery
+---
+
+## 8. WHAT CHANGES IN A DELIVERY
 
 The writer changes only the two sentinel-marked palette regions, their provenance comments, the
 font-family declarations and the light corner ladder inside the palette. `CHART_DATA`, `READOUT`,

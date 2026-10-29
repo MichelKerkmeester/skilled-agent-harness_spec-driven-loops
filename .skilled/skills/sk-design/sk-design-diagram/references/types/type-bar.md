@@ -10,14 +10,18 @@ trigger_phrases:
   - "focal bar accent"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
+version: 1.2.1.0
 ---
 
 # Bar / Column Chart
 
+## 1. OVERVIEW
+
 **Best for:** comparing discrete quantities across categories or time intervals — sprint velocity, monthly revenue, feature adoption, cohort counts. Use when each category has a single numeric value and the comparison between bars is the primary message.
 
-## 1. Layout conventions
+---
+
+## 2. LAYOUT CONVENTIONS
 
 - **Orientation:** Vertical bars (columns) are default. Horizontal bars are appropriate when category labels are long or you have more than 8 categories.
 - **Plot area margins:** left 80px (y-axis labels), bottom 60px (x-axis labels), top 40px, right 40px — inside a `0 0 1000 500` viewBox.
@@ -43,7 +47,9 @@ version: 1.2.0.8
 
 Focal bar: replace fill with `rgba(235,108,54,0.12)`, stroke with `#eb6c36`, label fill with `#eb6c36`.
 
-## 2. Anti-patterns
+---
+
+## 3. ANTI-PATTERNS
 
 - More than 8 bars without grouping (illegible at normal scale).
 - Truncated y-axis (not starting at 0) — distorts the magnitude comparison.
@@ -51,12 +57,16 @@ Focal bar: replace fill with `rgba(235,108,54,0.12)`, stroke with `#eb6c36`, lab
 - 3-D bar extrusion — no shadows, no depth.
 - Category labels rotated more than 45°; prefer short labels or horizontal chart instead.
 
-## 3. Variants
+---
+
+## 4. VARIANTS
 
 - **Grouped bars:** two bars per category, side by side. Use `accent` for the primary series and `series-1` for the secondary. Max 2 groups.
 - **Stacked bars:** segments stacked to total. Use `accent` for the focal segment; muted tints for others. Document the total at the top of each stack.
 
-## 4. Examples
+---
+
+## 5. EXAMPLES
 
 - `assets/diagrams/bar.html` — minimal light
 - `assets/diagrams/bar-dark.html` — minimal dark

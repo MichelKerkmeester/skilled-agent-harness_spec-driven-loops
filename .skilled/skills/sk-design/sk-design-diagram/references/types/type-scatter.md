@@ -9,14 +9,18 @@ trigger_phrases:
   - "point cloud chart"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
+version: 1.2.1.0
 ---
 
 # Scatter Plot
 
+## 1. OVERVIEW
+
 **Best for:** correlation and distribution — two continuous variables plotted against each other. Use when the relationship (or lack of one) between variables is the message, or when you need to identify clusters, outliers, and high/low performers.
 
-## 1. Layout conventions
+---
+
+## 2. LAYOUT CONVENTIONS
 
 - **Plot area margins:** left 80px, bottom 60px, top 40px, right 40px — inside `0 0 1000 500` viewBox.
 - **Point count:** 5–30 points. Fewer → just describe the relationship in prose; more → bin into a density contour.
@@ -38,7 +42,9 @@ version: 1.2.0.8
 <circle cx="X" cy="Y" r="6" fill="rgba(235,108,54,0.15)" stroke="#eb6c36" stroke-width="1.2"/>
 ```
 
-## 2. Anti-patterns
+---
+
+## 3. ANTI-PATTERNS
 
 - More than 30 points without clustering (jitter/mush).
 - Forced trend line when the data is genuinely scattered — dishonest.
@@ -46,7 +52,9 @@ version: 1.2.0.8
 - Bubble size encoding (use a third axis label or color instead; bubble area perception is unreliable).
 - Axes that don't include zero when the absolute position matters; axes that do include zero when the range is tiny and far from zero.
 
-## 3. Examples
+---
+
+## 4. EXAMPLES
 
 - `assets/diagrams/scatter.html` — minimal light
 - `assets/diagrams/scatter-dark.html` — minimal dark

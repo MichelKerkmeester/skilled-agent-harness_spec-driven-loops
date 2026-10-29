@@ -9,14 +9,18 @@ trigger_phrases:
   - "tool name lookup"
 importance_tier: normal
 contextType: general
-version: 1.0.0.12
+version: 1.0.1.0
 ---
 
 # Tool Catalog - Configured MCP Manuals
 
+## 1. OVERVIEW
+
 Code Mode does not maintain a hand-counted static tool inventory. The configured manual names below are the current wiring surface; callable names and schemas must be discovered from the live session.
 
-## 1. RUNTIME DISCOVERY
+---
+
+## 2. RUNTIME DISCOVERY
 
 ```typescript
 const matches = await search_tools({
@@ -34,7 +38,7 @@ Use the exact tool name returned by `list_tools()` or `search_tools()`. Call `to
 
 ---
 
-## 2. CONFIGURED MANUALS
+## 3. CONFIGURED MANUALS
 
 The current `.utcp_config.json` contains these ten manual names:
 
@@ -54,7 +58,7 @@ This table names manuals, not tools. A manual may be disabled, unauthenticated, 
 
 ---
 
-## 3. CALLING CONTRACT
+## 4. CALLING CONTRACT
 
 The TypeScript namespace is derived from the manual and tool name returned by discovery. For example, the confirmed Mobbin callable is:
 
@@ -73,7 +77,7 @@ Do not infer a tool from a service label, a remembered catalog, or a similarly n
 
 ---
 
-## 4. CONFIGURATION AUTHORITY
+## 5. CONFIGURATION AUTHORITY
 
 The configured manual list is sourced from `.utcp_config.json`. The generated Code Mode `leaf-manifest.json` owns which catalog and workflow resources are routable. The live MCP session owns tool names, schemas, authentication state, and availability.
 

@@ -1,0 +1,454 @@
+.skilled/skills/cli-classifier/cli-jev/references/cli-reference.md	OK	0	
+.skilled/skills/cli-classifier/cli-jev/references/integration-patterns.md	OK	0	
+.skilled/skills/cli-classifier/cli-jev/references/mcp-server.md	OK	0	
+.skilled/skills/cli-classifier/cli-jev/references/providers-and-models.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-claude-code/references/agent-delegation.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-claude-code/references/integration-patterns.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-claude-code/references/providers-and-models.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-codex/references/agent-delegation.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-codex/references/cli-reference.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-codex/references/codex-tools.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-codex/references/integration-patterns.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-codex/references/providers-and-models.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-cursor/references/agent-delegation.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-cursor/references/cli-reference.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-cursor/references/cursor-tools.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-cursor/references/integration-patterns.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-cursor/references/providers-and-models.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-cursor/references/shared-editor-config.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-devin/references/agent-delegation.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-devin/references/cli-reference.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-devin/references/cloud-handoff.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-devin/references/integration-patterns.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-hermes/references/agent-delegation.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-hermes/references/cli-reference.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-hermes/references/hermes-tools.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-hermes/references/hook-contract.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-hermes/references/integration-patterns.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-hermes/references/mcp-policy.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-hermes/references/providers-and-models.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-opencode/references/context-budget.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-opencode/references/permissions-matrix.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-opencode/references/self-invocation-guard.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-pi/references/agent-delegation.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-pi/references/integration-patterns.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-pi/references/native-skills-and-extensions.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-pi/references/pi-tools.md	OK	0	
+.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md	OK	0	
+.skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md	FAIL	1	missing_required_section
+.skilled/skills/cli-orca/references/mutation-and-browser-boundaries.md	OK	0	
+.skilled/skills/cli-orca/references/orca-cli-reference.md	OK	0	
+.skilled/skills/cli-orca/references/orca-skills/computer-use.md	OK	0	
+.skilled/skills/cli-orca/references/orca-skills/linear-tickets.md	OK	0	
+.skilled/skills/cli-orca/references/orca-skills/orca-cli.md	OK	0	
+.skilled/skills/cli-orca/references/orca-skills/orca-emulator-android.md	OK	0	
+.skilled/skills/cli-orca/references/orca-skills/orca-emulator.md	OK	0	
+.skilled/skills/cli-orca/references/orca-skills/orca-linear.md	OK	0	
+.skilled/skills/cli-orca/references/orca-skills/orca-per-workspace-env.md	OK	0	
+.skilled/skills/cli-orca/references/orca-skills/orchestration.md	OK	0	
+.skilled/skills/cli-orca/references/orca-skills/overview.md	OK	0	
+.skilled/skills/cli-orca/references/session-and-runtime.md	OK	0	
+.skilled/skills/cli-orca/references/troubleshooting.md	OK	0	
+.skilled/skills/mcp-code-mode/references/architecture.md	OK	0	
+.skilled/skills/mcp-code-mode/references/configuration.md	OK	0	
+.skilled/skills/mcp-code-mode/references/naming-convention.md	OK	0	
+.skilled/skills/mcp-code-mode/references/tool-catalog.md	FAIL	1	missing_required_section
+.skilled/skills/mcp-code-mode/references/workflows.md	FAIL	1	missing_required_section
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-cli-reference.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/session-management.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/troubleshooting.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/cdp-patterns.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/troubleshooting.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-figma/references/figma-cli-reference.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-figma/references/mcp-wiring.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-figma/references/tool-surface.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-figma/references/troubleshooting.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-mobbin/references/mcp-wiring.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-notion/references/api-gap-tools.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-notion/references/database-model.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-notion/references/mcp-tools.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-notion/references/migration-inventory.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-notion/references/property-types.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-notion/references/troubleshooting.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-obsidian/references/cli-versus-mcp.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-obsidian/references/mcp-tools.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-obsidian/references/notion-migration.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-obsidian/references/obsidian-cli-commands.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-obsidian/references/official-cli-agent-usage.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/data-model.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/health-md.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/troubleshooting.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/workflows.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/data-model.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/iconic.md	FAIL	1	missing_required_section
+.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/troubleshooting.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/workflows.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/installed-plugins.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/plugin-operation-logic.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/customization.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/plugin-development.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/theme-development.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/themes.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-obsidian/references/troubleshooting.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-refero/references/mcp-wiring.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-refero/references/tool-surface.md	OK	0	
+.skilled/skills/mcp-tooling/mcp-refero/references/troubleshooting.md	OK	0	
+.skilled/skills/sk-code/shared/references/phase-detection.md	OK	0	
+.skilled/skills/sk-code/shared/references/stack-detection.md	OK	0	
+.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md	OK	0	
+.skilled/skills/sk-code/shared/references/universal/rule-overrides.md	OK	0	
+.skilled/skills/sk-code/shared/references/workflow-debug.md	OK	0	
+.skilled/skills/sk-code/shared/references/workflow-implement.md	OK	0	
+.skilled/skills/sk-code/shared/references/workflow-verify.md	OK	0	
+.skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md	OK	0	
+.skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md	OK	0	
+.skilled/skills/sk-code/sk-code-ci/references/protected-set.md	OK	0	
+.skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md	OK	0	
+.skilled/skills/sk-code/sk-code-ci/references/workflow-debug.md	OK	0	
+.skilled/skills/sk-code/sk-code-ci/references/workflow-implement.md	OK	0	
+.skilled/skills/sk-code/sk-code-ci/references/workflow-verify.md	OK	0	
+.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md	OK	0	
+.skilled/skills/sk-code/sk-code-quality/references/quality-config.md	OK	0	
+.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md	OK	0	
+.skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md	OK	0	
+.skilled/skills/sk-code/sk-code-review/references/quick-reference.md	OK	0	
+.skilled/skills/sk-code/sk-code-review/references/review-core.md	OK	0	
+.skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/config/quality-standards.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/config/quick-reference.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/config/style-guide.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/overview-modules-and-docs.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/security-testing-and-exemptions.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/javascript/quick-reference.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/python/quality-standards.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/python/quick-reference.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/python/style-guide.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/collections-imports-and-errors.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/determinism-parity-and-related.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/commenting-and-rustdoc.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-errors-and-parity.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/naming-conventions.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/overview-and-file-header.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/toolchain-and-project-structure.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/imports-and-exports.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/overview-and-module-organization.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/organization-security-and-examples.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/shell/quality-standards/overview-and-priority-blockers.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/shell/quick-reference/functions-strings-and-checklist.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/shell/quick-reference/template-variables-and-loops.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/variables-functions-and-output.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/overview-and-type-system.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/tsconfig-and-modules.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/tsdoc-errors-and-async.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/typescript/quick-reference/imports-errors-and-tsconfig.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/typescript/quick-reference/template-naming-and-types.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/workflow-debug.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/workflow-implement.md	OK	0	
+.skilled/skills/sk-code/sk-code-skilled/references/workflow-verify.md	OK	0	
+.skilled/skills/sk-design/sk-design-chart/references/catalog.md	OK	0	
+.skilled/skills/sk-design/sk-design-chart/references/color-system.md	OK	0	
+.skilled/skills/sk-design/sk-design-chart/references/design-md-theming.md	FAIL	1	missing_required_section
+.skilled/skills/sk-design/sk-design-chart/references/template-contract.md	OK	0	
+.skilled/skills/sk-design/sk-design-chart/scripts/tests/fixtures/references/linear/DESIGN.md	SKIPPED	0	
+.skilled/skills/sk-design/sk-design-chart/scripts/tests/fixtures/references/stripe/DESIGN.md	SKIPPED	0	
+.skilled/skills/sk-design/sk-design-chart/scripts/tests/fixtures/references/supabase/DESIGN.md	SKIPPED	0	
+.skilled/skills/sk-design/sk-design-chart/scripts/tests/fixtures/references/vercel/DESIGN.md	SKIPPED	0	
+.skilled/skills/sk-design/sk-design-diagram/references/ascii-format/notation-and-validator.md	OK	0	
+.skilled/skills/sk-design/sk-design-diagram/references/ascii-format/pattern-selection.md	OK	0	
+.skilled/skills/sk-design/sk-design-diagram/references/ascii-format/worked-example.md	OK	0	
+.skilled/skills/sk-design/sk-design-diagram/references/catalog.md	FAIL	1	missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/design-md-theming.md	OK	0	
+.skilled/skills/sk-design/sk-design-diagram/references/foundations/derivation-record.md	FAIL	1	general_h2_separator
+.skilled/skills/sk-design/sk-design-diagram/references/foundations/onboarding.md	OK	0	
+.skilled/skills/sk-design/sk-design-diagram/references/foundations/output-spec.md	FAIL	1	missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/foundations/router-pseudocode.md	OK	0	
+.skilled/skills/sk-design/sk-design-diagram/references/foundations/style-guide.md	OK	0	
+.skilled/skills/sk-design/sk-design-diagram/references/import-export/export.md	FAIL	1	missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/import-export/import-drawio.md	FAIL	1	missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/import-export/import-mermaid.md	FAIL	1	missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/primitives/primitive-annotation.md	OK	0	
+.skilled/skills/sk-design/sk-design-diagram/references/primitives/primitive-icons.md	FAIL	1	missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/primitives/primitive-sketchy.md	OK	0	
+.skilled/skills/sk-design/sk-design-diagram/references/primitives/primitive-terminal.md	OK	0	
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-architecture.md	FAIL	7	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-bar.md	FAIL	5	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-data-flow.md	FAIL	13	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-dp-integration.md	FAIL	13	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-dp-security-matrix.md	FAIL	11	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-er.md	FAIL	4	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-flowchart.md	FAIL	4	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-gantt.md	FAIL	4	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-high-level.md	FAIL	10	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-it-state.md	FAIL	11	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-layers.md	FAIL	4	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-line.md	FAIL	4	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-loop.md	FAIL	9	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-medallion.md	FAIL	11	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-nested.md	FAIL	4	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-org-chart.md	FAIL	6	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-process.md	FAIL	14	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-pyramid.md	FAIL	5	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-quadrant.md	FAIL	5	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-radar.md	FAIL	6	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-scatter.md	FAIL	4	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-sequence.md	FAIL	9	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-state.md	FAIL	4	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-swimlane.md	FAIL	4	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-timeline.md	FAIL	4	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-tree.md	FAIL	4	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-diagram/references/types/type-venn.md	FAIL	4	h2_not_uppercase,missing_required_section
+.skilled/skills/sk-design/sk-design-fundamentals/references/build-procedure.md	OK	0	
+.skilled/skills/sk-design/sk-design-fundamentals/references/color-system.md	OK	0	
+.skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md	OK	0	
+.skilled/skills/sk-design/sk-design-fundamentals/references/diagnosis-table.md	OK	0	
+.skilled/skills/sk-design/sk-design-fundamentals/references/hierarchy.md	OK	0	
+.skilled/skills/sk-design/sk-design-fundamentals/references/interaction-craft.md	OK	0	
+.skilled/skills/sk-design/sk-design-fundamentals/references/motion-principles.md	OK	0	
+.skilled/skills/sk-design/sk-design-fundamentals/references/review-checklist.md	OK	0	
+.skilled/skills/sk-design/sk-design-fundamentals/references/ux-laws.md	OK	0	
+.skilled/skills/sk-design/sk-design-md-generator/references/anti-patterns.md	OK	0	
+.skilled/skills/sk-design/sk-design-md-generator/references/authoring-boundary.md	OK	0	
+.skilled/skills/sk-design/sk-design-md-generator/references/color-role-taxonomy.md	OK	0	
+.skilled/skills/sk-design/sk-design-md-generator/references/component-taxonomy.md	OK	0	
+.skilled/skills/sk-design/sk-design-md-generator/references/creation-contract.md	OK	0	
+.skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/anti-slop-principles.md	OK	0	
+.skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/cognitive-laws.md	OK	0	
+.skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/design-principles-digest.md	FAIL	1	missing_required_section
+.skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/design-token-vocabulary.md	OK	0	
+.skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/numeric-design-laws.md	OK	0	
+.skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/register-card.md	OK	0	
+.skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/register.md	OK	0	
+.skilled/skills/sk-design/sk-design-md-generator/references/design-md-format.md	FAIL	2	missing_required_section,non_sequential_numbering
+.skilled/skills/sk-design/sk-design-md-generator/references/examples/editorial-exemplar.md	OK	0	
+.skilled/skills/sk-design/sk-design-md-generator/references/examples/linear/DESIGN.md	FAIL	1	missing_required_section
+.skilled/skills/sk-design/sk-design-md-generator/references/examples/linear/writing-notes.md	FAIL	1	missing_required_section
+.skilled/skills/sk-design/sk-design-md-generator/references/examples/stripe/DESIGN.md	FAIL	1	missing_required_section
+.skilled/skills/sk-design/sk-design-md-generator/references/examples/stripe/writing-notes.md	FAIL	1	missing_required_section
+.skilled/skills/sk-design/sk-design-md-generator/references/examples/supabase/DESIGN.md	FAIL	1	missing_required_section
+.skilled/skills/sk-design/sk-design-md-generator/references/examples/supabase/writing-notes.md	FAIL	1	missing_required_section
+.skilled/skills/sk-design/sk-design-md-generator/references/examples/vercel/DESIGN.md	FAIL	1	missing_required_section
+.skilled/skills/sk-design/sk-design-md-generator/references/examples/vercel/writing-notes.md	FAIL	1	missing_required_section
+.skilled/skills/sk-design/sk-design-md-generator/references/extraction-workflow.md	OK	0	
+.skilled/skills/sk-design/sk-design-md-generator/references/guided-run.md	OK	0	
+.skilled/skills/sk-design/sk-design-md-generator/references/quality-checklist.md	OK	0	
+.skilled/skills/sk-design/sk-design-md-generator/references/sk-code-handoff.md	OK	0	
+.skilled/skills/sk-design/sk-design-md-generator/references/troubleshooting.md	OK	0	
+.skilled/skills/sk-design/sk-design-md-generator/references/writing-style-guide.md	OK	0	
+.skilled/skills/sk-doc/shared/references/core-standards.md	OK	0	
+.skilled/skills/sk-doc/shared/references/evergreen-packet-id-rule.md	OK	0	
+.skilled/skills/sk-doc/shared/references/filesystem-naming-convention.md	OK	0	
+.skilled/skills/sk-doc/shared/references/quick-reference.md	OK	0	
+.skilled/skills/sk-doc/shared/references/validation.md	OK	0	
+.skilled/skills/sk-doc/sk-create-agent/references/agent-vs-skill-vs-command.md	OK	0	
+.skilled/skills/sk-doc/sk-create-agent/references/common-pitfalls.md	OK	0	
+.skilled/skills/sk-doc/sk-create-agent/references/permission-design.md	OK	0	
+.skilled/skills/sk-doc/sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md	OK	0	
+.skilled/skills/sk-doc/sk-create-benchmark/references/shared/case-studies.md	OK	0	
+.skilled/skills/sk-doc/sk-create-benchmark/references/shared/pitfalls.md	OK	0	
+.skilled/skills/sk-doc/sk-create-benchmark/references/shared/worked-example.md	OK	0	
+.skilled/skills/sk-doc/sk-create-changelog/references/topology-edge-cases.md	OK	0	
+.skilled/skills/sk-doc/sk-create-changelog/references/version-bump-rules.md	OK	0	
+.skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md	OK	0	
+.skilled/skills/sk-doc/sk-create-command/references/argument-hints-and-modes.md	OK	0	
+.skilled/skills/sk-doc/sk-create-command/references/common-pitfalls.md	OK	0	
+.skilled/skills/sk-doc/sk-create-command/references/router-presentation-split.md	OK	0	
+.skilled/skills/sk-doc/sk-create-command/references/worked-example.md	OK	0	
+.skilled/skills/sk-doc/sk-create-diff/references/accessibility-contract.md	OK	0	
+.skilled/skills/sk-doc/sk-create-diff/references/capabilities-and-fidelity.md	FAIL	1	missing_required_section
+.skilled/skills/sk-doc/sk-create-diff/references/cli-reference.md	FAIL	1	missing_required_section
+.skilled/skills/sk-doc/sk-create-diff/references/worked-example.md	FAIL	1	missing_required_section
+.skilled/skills/sk-doc/sk-create-diff/references/workflow.md	OK	0	
+.skilled/skills/sk-doc/sk-create-feature-catalog/references/common-pitfalls.md	OK	0	
+.skilled/skills/sk-doc/sk-create-feature-catalog/references/examples.md	OK	0	
+.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md	OK	0	
+.skilled/skills/sk-doc/sk-create-goal/references/authoring-standards.md	OK	0	
+.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md	OK	0	
+.skilled/skills/sk-doc/sk-create-goal/references/parent-and-nested-goals.md	OK	0	
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/common-pitfalls.md	OK	0	
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/examples.md	OK	0	
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/prompt-voice.md	OK	0	
+.skilled/skills/sk-doc/sk-create-quality-control/references/optimization.md	OK	0	
+.skilled/skills/sk-doc/sk-create-quality-control/references/transformation-patterns.md	OK	0	
+.skilled/skills/sk-doc/sk-create-quality-control/references/validation-and-enforcement.md	OK	0	
+.skilled/skills/sk-doc/sk-create-quality-control/references/workflow-examples.md	OK	0	
+.skilled/skills/sk-doc/sk-create-quality-control/references/workflows.md	OK	0	
+.skilled/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md	OK	0	
+.skilled/skills/sk-doc/sk-create-readme/references/readme/types-and-voice.md	OK	0	
+.skilled/skills/sk-doc/sk-create-readme/references/readme/writing-patterns.md	OK	0	
+.skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md	FAIL	1	non_sequential_numbering
+.skilled/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md	FAIL	1	non_sequential_numbering
+.skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md	FAIL	1	non_sequential_numbering
+.skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md	FAIL	1	non_sequential_numbering
+.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md	OK	0	
+.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md	OK	0	
+.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md	OK	0	
+.skilled/skills/sk-doc/sk-create-skill/references/shared/advisor-index-handoff.md	OK	0	
+.skilled/skills/sk-doc/sk-create-skill/references/shared/common-pitfalls.md	OK	0	
+.skilled/skills/sk-doc/sk-create-skill/references/shared/overview.md	OK	0	
+.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md	OK	0	
+.skilled/skills/sk-doc/sk-create-skill/references/shared/validation-and-packaging.md	OK	0	
+.skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md	OK	0	
+.skilled/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md	OK	0	
+.skilled/skills/sk-doc/sk-create-skill/references/skill/upgrading-a-skill-to-v4.md	OK	0	
+.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-publish-supplement.md	FAIL	1	missing_required_section
+.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md	OK	0	
+.skilled/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md	OK	0	
+.skilled/skills/sk-doc/sk-create-with-human-voice/references/scoring-and-verification.md	OK	0	
+.skilled/skills/sk-git/references/commit-workflows.md	OK	0	
+.skilled/skills/sk-git/references/continuous-integration.md	OK	0	
+.skilled/skills/sk-git/references/finish-workflows.md	OK	0	
+.skilled/skills/sk-git/references/github-mcp-integration.md	OK	0	
+.skilled/skills/sk-git/references/gitkraken-mcp-integration.md	OK	0	
+.skilled/skills/sk-git/references/large-reorg-playbook.md	OK	0	
+.skilled/skills/sk-git/references/quick-reference.md	OK	0	
+.skilled/skills/sk-git/references/remote-branch-policy.md	OK	0	
+.skilled/skills/sk-git/references/shared-patterns.md	OK	0	
+.skilled/skills/sk-git/references/unstick-dirty-worktree.md	OK	0	
+.skilled/skills/sk-git/references/worktree-workflows.md	OK	0	
+.skilled/skills/sk-prompt/references/depth-framework.md	OK	0	
+.skilled/skills/sk-prompt/references/patterns-evaluation.md	OK	0	
+.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md	OK	0	
+.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/deep-mode.md	OK	0	
+.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md	OK	0	
+.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/failure-handling.md	OK	0	
+.skilled/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md	OK	0	
+.skilled/skills/system-deep-loop/deep-ai-council/references/integration/loop-protocol.md	OK	0	
+.skilled/skills/system-deep-loop/deep-ai-council/references/integration/quick-reference.md	OK	0	
+.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/anti-patterns.md	OK	0	
+.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md	OK	0	
+.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md	OK	0	
+.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/findings-registry.md	OK	0	
+.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md	OK	0	
+.skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md	OK	0	
+.skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md	OK	0	
+.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md	OK	0	
+.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-graph.md	OK	0	
+.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-recovery.md	OK	0	
+.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-reference-only.md	OK	0	
+.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md	OK	0	
+.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md	OK	0	
+.skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md	OK	0	
+.skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md	OK	0	
+.skilled/skills/system-deep-loop/deep-research/references/protocol/context-snapshot.md	OK	0	
+.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md	OK	0	
+.skilled/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md	OK	0	
+.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md	OK	0	
+.skilled/skills/system-deep-loop/deep-research/references/state/state-jsonl.md	OK	0	
+.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md	OK	0	
+.skilled/skills/system-deep-loop/deep-research/references/state/state-reducer-registry.md	OK	0	
+.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-recovery.md	OK	0	
+.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-signals.md	OK	0	
+.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md	OK	0	
+.skilled/skills/system-deep-loop/deep-review/references/protocol/completion-criteria.md	OK	0	
+.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md	FAIL	1	non_sequential_numbering
+.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-state-and-gates.md	OK	0	
+.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md	OK	0	
+.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md	OK	0	
+.skilled/skills/system-deep-loop/deep-review/references/state/state-jsonl.md	OK	0	
+.skilled/skills/system-deep-loop/deep-review/references/state/state-outputs.md	OK	0	
+.skilled/skills/system-deep-loop/deep-review/references/state/state-reducer-registry.md	OK	0	
+.skilled/skills/system-deep-loop/runtime/references/coverage-graph-schema.md	OK	0	
+.skilled/skills/system-deep-loop/runtime/references/integration-points.md	OK	0	
+.skilled/skills/system-deep-loop/runtime/references/script-interface-contract.md	OK	0	
+.skilled/skills/system-deep-loop/runtime/references/state-format.md	OK	0	
+.skilled/skills/system-skill-advisor/references/config/db-path-policy.md	OK	0	
+.skilled/skills/system-skill-advisor/references/decisions/deferred-decisions.md	OK	0	
+.skilled/skills/system-skill-advisor/references/graph/propagate-enhances.md	OK	0	
+.skilled/skills/system-skill-advisor/references/graph/skill-graph-drift.md	OK	0	
+.skilled/skills/system-skill-advisor/references/graph/skill-graph-extraction-plan.md	OK	0	
+.skilled/skills/system-skill-advisor/references/graph/skill-graph-query-cookbook.md	OK	0	
+.skilled/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md	FAIL	1	missing_required_section
+.skilled/skills/system-skill-advisor/references/runtime/daemon-lease-contract.md	OK	0	
+.skilled/skills/system-skill-advisor/references/runtime/freshness-contract.md	OK	0	
+.skilled/skills/system-skill-advisor/references/runtime/legacy-tool-bridge.md	OK	0	
+.skilled/skills/system-skill-advisor/references/runtime/standalone-mcp-shape.md	OK	0	
+.skilled/skills/system-skill-advisor/references/runtime/tool-ids-reference.md	OK	0	
+.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md	OK	0	
+.skilled/skills/system-skill-advisor/references/scoring/lane-weight-tuning.md	OK	0	
+.skilled/skills/system-skill-advisor/references/scoring/validation-baselines.md	OK	0	
+.skilled/skills/system-spec-kit/references/cli/daemon-cli-reference.md	OK	0	
+.skilled/skills/system-spec-kit/references/cli/memory-handback.md	OK	0	
+.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md	OK	0	
+.skilled/skills/system-spec-kit/references/config/environment-variables.md	OK	0	
+.skilled/skills/system-spec-kit/references/config/hook-system.md	OK	0	
+.skilled/skills/system-spec-kit/references/config/launcher-lease.md	OK	0	
+.skilled/skills/system-spec-kit/references/debugging/troubleshooting.md	OK	0	
+.skilled/skills/system-spec-kit/references/debugging/universal-debugging-methodology.md	OK	0	
+.skilled/skills/system-spec-kit/references/memory/embedder-pluggability.md	OK	0	
+.skilled/skills/system-spec-kit/references/memory/epistemic-vectors.md	OK	0	
+.skilled/skills/system-spec-kit/references/memory/memory-system.md	OK	0	
+.skilled/skills/system-spec-kit/references/memory/save-workflow.md	OK	0	
+.skilled/skills/system-spec-kit/references/memory/trigger-config.md	OK	0	
+.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md	OK	0	
+.skilled/skills/system-spec-kit/references/structure/folder-routing.md	OK	0	
+.skilled/skills/system-spec-kit/references/structure/folder-structure.md	OK	0	
+.skilled/skills/system-spec-kit/references/structure/grep-convention.md	OK	0	
+.skilled/skills/system-spec-kit/references/structure/phase-definitions.md	OK	0	
+.skilled/skills/system-spec-kit/references/structure/phase-system.md	OK	0	
+.skilled/skills/system-spec-kit/references/structure/sub-folder-versioning.md	OK	0	
+.skilled/skills/system-spec-kit/references/templates/level-selection-guide.md	OK	0	
+.skilled/skills/system-spec-kit/references/templates/level-specifications.md	OK	0	
+.skilled/skills/system-spec-kit/references/templates/template-guide.md	OK	0	
+.skilled/skills/system-spec-kit/references/templates/template-style-guide.md	OK	0	
+.skilled/skills/system-spec-kit/references/validation/decision-format.md	OK	0	
+.skilled/skills/system-spec-kit/references/validation/five-checks.md	OK	0	
+.skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md	OK	0	
+.skilled/skills/system-spec-kit/references/validation/phase-checklists.md	OK	0	
+.skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md	OK	0	
+.skilled/skills/system-spec-kit/references/validation/validation-rules.md	OK	0	
+.skilled/skills/system-spec-kit/references/workflows/agent-io-contract.md	FAIL	1	missing_required_section
+.skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md	OK	0	
+.skilled/skills/system-spec-kit/references/workflows/execution-methods.md	OK	0	
+.skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md	OK	0	
+.skilled/skills/system-spec-kit/references/workflows/intake-contract.md	OK	0	
+.skilled/skills/system-spec-kit/references/workflows/nested-changelog.md	OK	0	
+.skilled/skills/system-spec-kit/references/workflows/quick-reference.md	OK	0	
+.skilled/skills/system-spec-kit/references/workflows/rename-pattern.md	OK	0	
+.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md	OK	0	
+.skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md	OK	0	
+.skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md	OK	0	
+.skilled/skills/system-spec-kit/references/workflows/worked-examples.md	OK	0	
+.skilled/skills/system-spec-kit/runtime/cli/references/spec-root-alias-retirement-runbook.md	FAIL	1	missing_required_section

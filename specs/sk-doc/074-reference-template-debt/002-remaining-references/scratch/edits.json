@@ -1,0 +1,364 @@
+[
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md",
+  "line": 87,
+  "find": "See section 4",
+  "replace": "See section 5",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md",
+  "pairs": [
+   [
+    "4",
+    "5"
+   ]
+  ],
+  "note": "own prose reference"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md",
+  "line": 172,
+  "find": "Every MUST element in section 1",
+  "replace": "Every MUST element in section 2",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md",
+  "pairs": [
+   [
+    "1",
+    "2"
+   ]
+  ],
+  "note": "own prose reference"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+  "line": 68,
+  "find": "the tests' section 5 maps",
+  "replace": "the tests' section 6 maps",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md",
+  "pairs": [
+   [
+    "5",
+    "6"
+   ]
+  ],
+  "note": "inbound from the skill contract"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+  "line": 90,
+  "find": "agents-md-integration.md` \u00a74",
+  "replace": "agents-md-integration.md` \u00a75",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md",
+  "pairs": [
+   [
+    "4",
+    "5"
+   ]
+  ],
+  "note": "inbound from the skill contract"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+  "line": 103,
+  "find": "agents-md-integration.md` \u00a75",
+  "replace": "agents-md-integration.md` \u00a76",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md",
+  "pairs": [
+   [
+    "5",
+    "6"
+   ]
+  ],
+  "note": "inbound from the skill contract"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/lifecycle-and-wiring/router-bootstrap.md",
+  "line": 95,
+  "find": "Primary implementation anchor, sections 3 and 7",
+  "replace": "Primary implementation anchor, sections 4 and 8",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md",
+  "pairs": [
+   [
+    "3",
+    "4"
+   ],
+   [
+    "7",
+    "8"
+   ]
+  ],
+  "note": "inbound from a playbook scenario"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/lifecycle-and-wiring/rule-retirement.md",
+  "line": 95,
+  "find": "Primary implementation anchor, section 5",
+  "replace": "Primary implementation anchor, section 6",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md",
+  "pairs": [
+   [
+    "5",
+    "6"
+   ]
+  ],
+  "note": "inbound from a playbook scenario"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/lifecycle-and-wiring/scope-boundary-halt.md",
+  "line": 48,
+  "find": "agents-md-integration.md section 2`",
+  "replace": "agents-md-integration.md section 3`",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md",
+  "pairs": [
+   [
+    "2",
+    "3"
+   ]
+  ],
+  "note": "inbound from a playbook scenario"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/lifecycle-and-wiring/scope-boundary-halt.md",
+  "line": 52,
+  "find": "agents-md-integration.md section 2`",
+  "replace": "agents-md-integration.md section 3`",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md",
+  "pairs": [
+   [
+    "2",
+    "3"
+   ]
+  ],
+  "note": "inbound from a playbook scenario"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/lifecycle-and-wiring/scope-boundary-halt.md",
+  "line": 95,
+  "find": "Primary implementation anchor, sections 2 and 6",
+  "replace": "Primary implementation anchor, sections 3 and 7",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md",
+  "pairs": [
+   [
+    "2",
+    "3"
+   ],
+   [
+    "6",
+    "7"
+   ]
+  ],
+  "note": "inbound from a playbook scenario"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-authoring/full-rule-authoring.md",
+  "line": 96,
+  "find": "Primary implementation anchor, sections 1 and 3",
+  "replace": "Primary implementation anchor, sections 2 and 4",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md",
+  "pairs": [
+   [
+    "1",
+    "2"
+   ],
+   [
+    "3",
+    "4"
+   ]
+  ],
+  "note": "inbound from a playbook scenario"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-authoring/standards-gate-rejection.md",
+  "line": 95,
+  "find": "Primary implementation anchor, sections 1 through 5",
+  "replace": "Primary implementation anchor, sections 2 through 6",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md",
+  "pairs": [
+   [
+    "1",
+    "2"
+   ],
+   [
+    "2",
+    "3"
+   ],
+   [
+    "3",
+    "4"
+   ],
+   [
+    "4",
+    "5"
+   ],
+   [
+    "5",
+    "6"
+   ]
+  ],
+  "note": "inbound from a playbook scenario"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-authoring/trigger-phrase-collision.md",
+  "line": 93,
+  "find": "Primary implementation anchor, section 2",
+  "replace": "Primary implementation anchor, section 3",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md",
+  "pairs": [
+   [
+    "2",
+    "3"
+   ]
+  ],
+  "note": "inbound from a playbook scenario"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/always-loaded-refusal.md",
+  "line": 31,
+  "find": "and section 5 of the tests",
+  "replace": "and section 6 of the tests",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md",
+  "pairs": [
+   [
+    "5",
+    "6"
+   ]
+  ],
+  "note": "inbound from a playbook scenario"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/always-loaded-refusal.md",
+  "line": 46,
+  "find": "Read section 5 and name the destination",
+  "replace": "Read section 6 and name the destination",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md",
+  "pairs": [
+   [
+    "5",
+    "6"
+   ]
+  ],
+  "note": "inbound from a playbook scenario"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/always-loaded-refusal.md",
+  "line": 52,
+  "find": "Read section 5 of the tests",
+  "replace": "Read section 6 of the tests",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md",
+  "pairs": [
+   [
+    "5",
+    "6"
+   ]
+  ],
+  "note": "inbound from a playbook scenario"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/always-loaded-refusal.md",
+  "line": 57,
+  "find": "taken from section 5 of the tests",
+  "replace": "taken from section 6 of the tests",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md",
+  "pairs": [
+   [
+    "5",
+    "6"
+   ]
+  ],
+  "note": "inbound from a playbook scenario"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/always-loaded-refusal.md",
+  "line": 93,
+  "find": "Primary implementation anchor, sections 1 and 5",
+  "replace": "Primary implementation anchor, sections 2 and 6",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md",
+  "pairs": [
+   [
+    "1",
+    "2"
+   ],
+   [
+    "5",
+    "6"
+   ]
+  ],
+  "note": "inbound from a playbook scenario"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/existing-owner-refusal.md",
+  "line": 31,
+  "find": "Section 5 maps that refusal",
+  "replace": "Section 6 maps that refusal",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md",
+  "pairs": [
+   [
+    "5",
+    "6"
+   ]
+  ],
+  "note": "inbound from a playbook scenario"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/existing-owner-refusal.md",
+  "line": 93,
+  "find": "Primary implementation anchor, sections 3 and 5",
+  "replace": "Primary implementation anchor, sections 4 and 6",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md",
+  "pairs": [
+   [
+    "3",
+    "4"
+   ],
+   [
+    "5",
+    "6"
+   ]
+  ],
+  "note": "inbound from a playbook scenario"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md",
+  "line": 93,
+  "find": "Primary implementation anchor, sections 4 and 5",
+  "replace": "Primary implementation anchor, sections 5 and 6",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md",
+  "pairs": [
+   [
+    "4",
+    "5"
+   ],
+   [
+    "5",
+    "6"
+   ]
+  ],
+  "note": "inbound from a playbook scenario"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/routing-refusal.md",
+  "line": 31,
+  "find": "Section 5 maps a test-2 refusal",
+  "replace": "Section 6 maps a test-2 refusal",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md",
+  "pairs": [
+   [
+    "5",
+    "6"
+   ]
+  ],
+  "note": "inbound from a playbook scenario"
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/routing-refusal.md",
+  "line": 93,
+  "find": "Primary implementation anchor, section 2",
+  "replace": "Primary implementation anchor, section 3",
+  "target": ".skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md",
+  "pairs": [
+   [
+    "2",
+    "3"
+   ]
+  ],
+  "note": "inbound from a playbook scenario"
+ }
+]

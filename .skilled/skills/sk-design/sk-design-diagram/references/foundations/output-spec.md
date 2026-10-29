@@ -11,16 +11,18 @@ trigger_phrases:
   - "degrade ladder"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.7
+version: 1.2.1.0
 ---
 
 # Output Spec — format × size × detail × audience
+
+## 1. OVERVIEW
 
 Four dials decide what an imported diagram becomes. Set them **before** redrawing — they change the deliverable, layout, type ramp, node count, and wording.
 
 ---
 
-## 1. FORMAT
+## 2. FORMAT
 
 | Format | Deliverable | Keeps | Drops |
 |---|---|---|---|
@@ -44,7 +46,7 @@ Pick by destination:
 
 ---
 
-## 2. SIZE
+## 3. SIZE
 
 The preset sets the SVG `viewBox`. Every value below is divisible by 4, so the 4px grid rule in SKILL.md HOW IT WORKS still holds.
 
@@ -88,9 +90,9 @@ Presentation ramp implies fewer nodes — 16px names in 64px boxes eat the canva
 
 ---
 
-## 3. DETAIL LEVEL
+## 4. DETAIL LEVEL
 
-How much of the source survives. This is a *count* dial — it governs how many elements make it through, not how they're worded (that's §4).
+How much of the source survives. This is a *count* dial — it governs how many elements make it through, not how they're worded (that's §5).
 
 | Level | Nodes | Edges | Sublabels | What survives |
 |---|---|---|---|---|
@@ -116,11 +118,11 @@ When the source has more than the level allows, cut in this order and stop as so
 5. **Cross-cutting infrastructure** — logging, metrics, secrets, CI. At `simplified` these go without asking; at `balanced` keep at most one, and only if the diagram is about it.
 6. **Still over?** Split into overview + detail. Splitting beats shrinking.
 
-Anything cut in steps 2–6 goes in the fidelity ledger (§5). Step 1 doesn't need reporting.
+Anything cut in steps 2–6 goes in the fidelity ledger (§6). Step 1 doesn't need reporting.
 
 ---
 
-## 4. AUDIENCE LEVEL
+## 5. AUDIENCE LEVEL
 
 Independent of the detail dial: the same 12 nodes get named differently for a platform team than for a steering committee. Detail sets *how many*; audience sets *what they're called*.
 
@@ -155,7 +157,7 @@ For mono sublabels use `'Geist Mono', 'Noto Sans Mono CJK JP', monospace`. CJK g
 
 ---
 
-## 5. FIDELITY LEDGER
+## 6. FIDELITY LEDGER
 
 Any time output is smaller than input — every `balanced` and `simplified` run, and most `faithful` ones — report what you cut, in chat, after the file path. Short and specific:
 
@@ -171,7 +173,7 @@ The reader of the diagram can't see what's missing. The person who asked for it 
 
 ---
 
-## 6. CHECKLIST
+## 7. CHECKLIST
 
 Run alongside the SKILL.md SUCCESS CRITERIA taste gate.
 

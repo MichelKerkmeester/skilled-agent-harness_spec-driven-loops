@@ -8,14 +8,18 @@ trigger_phrases:
   - "before after report example"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.6
+version: 1.1.1.0
 ---
 
 # Worked example
 
+## 1. OVERVIEW
+
 An end-to-end run using the shipped fixtures (`../assets/fixtures/`). Two versions of an onboarding guide: the "after" rewrites a sentence, expands two bullets, adds a section, and extends a line.
 
-## 1. EXPLICIT-PAIR COMPARISON
+---
+
+## 2. EXPLICIT-PAIR COMPARISON
 
 From the packet directory:
 
@@ -38,7 +42,7 @@ Compared onboarding-before.md → onboarding-after.md (markdown, tier full)
 
 ---
 
-## 2. VERIFY THE REPORT
+## 3. VERIFY THE REPORT
 
 ```bash
 python3 scripts/validate_report.py /tmp/onboarding-review.html
@@ -49,7 +53,7 @@ Open the file in any browser, offline. The unified view shows old/new line numbe
 
 ---
 
-## 3. THE AUTOMATIC (snapshot) FLOW
+## 4. THE AUTOMATIC (SNAPSHOT) FLOW
 
 The same result via the baseline workflow — capture before editing, compare after:
 
@@ -64,7 +68,7 @@ python3 scripts/create_diff.py compare /tmp/doc.md --report /tmp/review.html
 
 ---
 
-## 4. JSON FOR AUTOMATION
+## 5. JSON FOR AUTOMATION
 
 ```bash
 python3 scripts/create_diff.py compare-pair \

@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/074-reference-template-debt/002-remaining-references",
+  "spec_folder": "sk-doc/074-reference-template-debt/002-remaining-references",
+  "parent_id": "sk-doc/074-reference-template-debt",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "remaining references",
+      "phase 2 remaining references",
+      "remaining references plan",
+      "remaining references tasks",
+      "remaining references acceptance criteria",
+      "remaining references decision record",
+      "design md sample exemption",
+      "design md format numbering",
+      "remaining references implementation summary"
+    ],
+    "key_topics": [
+      "remaining",
+      "references",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decision",
+      "record",
+      "design",
+      "sample",
+      "exemption"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/edits.json",
+      ".hermes/skills/sk-create-repo-rule/SKILL.md",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_format_spec_exclusion.py",
+      ".skilled/skills/sk-doc/changelog/v2.3.32.0.md",
+      "scratch/validate-after-exemption.tsv",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+      "scratch/final-validate.tsv",
+      "scratch/adr-checks/option-c-unnumbered-overview.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "edits.json",
+        "kind": "config",
+        "path": "scratch/edits.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/sk-create-repo-rule/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_format_spec_exclusion.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_format_spec_exclusion.py",
+        "source": "derived"
+      },
+      {
+        "name": "v2.3.32.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/changelog/v2.3.32.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-after-exemption.tsv",
+        "kind": "file",
+        "path": "scratch/validate-after-exemption.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "final-validate.tsv",
+        "kind": "file",
+        "path": "scratch/final-validate.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "option-c-unnumbered-overview.txt",
+        "kind": "file",
+        "path": "scratch/adr-checks/option-c-unnumbered-overview.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phase 1, 27 reference docs still fail the format",
+    "created_at": "2026-10-29T21:27:28Z",
+    "last_save_at": "2026-10-29T22:06:59.526Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0941284dcb8bad2abf57cf3859f7f7f08d5efc33592234387c56c2dc79c93b61",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "614441c493471e517a7756289f318d509bc74a06ddc5e1e10ad9730958b04cee",
+      "plan.md": "9db46ceaacc766d732ed1a4fd59f19b32b32bced1e36d45f3cf7b52f5d7793a9",
+      "tasks.md": "c52b2ff85b769e1f16fb1a84adba36ec82b245ebf83a2ac397c5739caa4d46b2",
+      "decision-record.md": "68cc2cd386a7b508b1a5ee0feddda8214342eb9193daaffb7d256363ebe71a95",
+      "implementation-summary.md": "80319db58b6a27dd0a6077bc6a4f207e053fe444bb7889df115027aeeadebbb9"
+    },
+    "last_active_at": null
+  }
+}

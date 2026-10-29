@@ -1,0 +1,11 @@
+
+❌ INVALID: specs/sk-doc/074-reference-template-debt/002-remaining-references/scratch/adr-checks/references/design-md-format.md
+Document type: reference
+Total issues: 2
+
+🚫 Blocking errors (1):
+  - [missing_required_section] Missing required section: overview
+    Fix: Add section with name containing "overview"
+
+⚠️ Warnings (1):
+  - [non_sequential_numbering] Non-sequential section number: expected 1, found 0

@@ -2,7 +2,7 @@
 title: "RRA-003 -- Trigger phrase collision"
 description: "This scenario validates collision detection for `RRA-003`. It focuses on catching a trigger phrase another rule already claims, before the file is written."
 stage: routing
-version: 1.1.0.3
+version: 1.1.1.0
 ---
 
 # RRA-003 -- Trigger phrase collision
@@ -90,7 +90,7 @@ Sweep the whole set for duplicates rather than checking one phrase: run the corp
 
 | File | Role |
 |---|---|
-| [`references/creation-standards.md`](../../references/creation-standards.md) | Primary implementation anchor, section 2 |
+| [`references/creation-standards.md`](../../references/creation-standards.md) | Primary implementation anchor, section 3 |
 | [`references/rule-anatomy.md`](../../references/rule-anatomy.md) | The frontmatter schema carrying `trigger_phrases` |
 
 ---

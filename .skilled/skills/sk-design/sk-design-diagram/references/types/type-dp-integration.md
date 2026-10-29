@@ -10,10 +10,12 @@ trigger_phrases:
   - "footer auth lines"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.10
+version: 1.2.1.0
 ---
 
 # DP integration
+
+## 1. OVERVIEW
 
 **Best for:** the integration topology of a data platform — which source systems plug in, which consumer surfaces plug out, and which protocol each one speaks. Hub-and-spoke layout wrapped in an explicit **Data platform** layer; no time/phase axis.
 
@@ -23,7 +25,7 @@ This type is **parametric** — like `type-high-level.md`, every coord is derive
 
 ---
 
-## 1. Inputs — the parameter contract
+## 2. INPUTS — THE PARAMETER CONTRACT
 
 ```yaml
 sources:                            # left column, 0..6 nodes
@@ -86,11 +88,11 @@ dark: false
 - `key` → key + ring (identity / IDP)
 - Any explicit icon name in `primitive-icons.md` is also accepted.
 
-**Per-component `color: "#hex"`** is optional on any node, bar, or footer entry. See §4.
+**Per-component `color: "#hex"`** is optional on any node, bar, or footer entry. See §5.
 
 ---
 
-## 2. Layout formulas — deterministic geometry
+## 3. LAYOUT FORMULAS — DETERMINISTIC GEOMETRY
 
 ```
 # Canvas
@@ -139,7 +141,7 @@ row_h            = 72
 row_gap          = 16
 ```
 
-### 2.1 Row placement (cursor algorithm)
+### 3.1 Row placement (cursor algorithm)
 
 Allocate each `platform.rows` entry top-to-bottom. The single `row` (or first row when N>1) anchors to side-column row 2 so its connectors stay horizontal:
 
@@ -173,7 +175,7 @@ for entry in platform.rows[primary_row_idx+1:]:
 
 This produces the canonical layout for the standard shape (top bar / 3-node row / bottom bar): Trino at `y=104 h=56`, primary row at `y=176 h=72`, Airflow at `y=324 h=44`. Bottom anchor of Airflow at y=368 (40-px clear from zone bottom at y=408). **Note**: with the canonical layout there's a 76-px gap between the primary row's bottom (y=248) and Airflow's top (y=324). That gap is intentional — Airflow visually sits at the same y-band as source/consumer row 4 (cy=388), so it reads as a sibling of the bottom side-column row.
 
-### 2.2 Node placement inside a `row` entry
+### 3.2 Node placement inside a `row` entry
 
 ```
 N            = len(row.nodes)
@@ -184,7 +186,7 @@ node_cx(j)   = node_x(j) + node_w/2
 
 For the canonical 3-node row: `node_w = (696 - 32 - 32) / 3 = 210.67`. The shipped example uses fixed `node_w=160` with custom x positions (`288, 480, 672`) chosen so each node's `cx` aligns to the column for connector convenience: 368, 560, 752. **Both layouts are valid**; the formula above is the default for new diagrams. Document any deviation in the rendered SVG with a comment.
 
-### 2.3 Bar (full-zone-width) placement
+### 3.3 Bar (full-zone-width) placement
 
 ```
 bar_x      = zone_x + zone_pad_x         # 276
@@ -194,7 +196,7 @@ bar_cx     = zone_cx                     # 608
 
 Bars span the full zone width minus 16-px padding on each side. Bars marked `focal: true` use `bar_h_focal=56` and accent styling (fill `rgba(focal_accent, 0.08)`, stroke `focal_accent`). Non-focal bars use `bar_h_default=44` with muted styling (fill `rgba(45,49,66,0.05)`, stroke `rgba(45,49,66,0.32)`).
 
-### 2.4 Source / consumer placement (side columns)
+### 3.4 Source / consumer placement (side columns)
 
 ```
 source_y(k)       = col_top + k * 88            # 92, 180, 268, 356, …
@@ -207,7 +209,7 @@ All side-column nodes use fixed `w=160 h=64`. Same fill / stroke pattern: fill `
 
 ---
 
-## 3. Connector rules (mandatory)
+## 4. CONNECTOR RULES (MANDATORY)
 
 Five styles, bound to topology. Don't let user override style on focal-touching, bar-originating, or Trino → consumer edges — those are fixed by rule.
 
@@ -231,7 +233,7 @@ Five styles, bound to topology. Don't let user override style on focal-touching,
 </defs>
 ```
 
-### 3.1 Exit / entry sides (non-negotiable)
+### 4.1 Exit / entry sides (non-negotiable)
 
 | Edge kind | Exit side of source | Entry side of target |
 |---|---|---|
@@ -242,7 +244,7 @@ Five styles, bound to topology. Don't let user override style on focal-touching,
 | Footer → zone | **top** of footer (at `footer_auth_x(k)`) | zone bottom edge `y = zone_y + zone_h` |
 | Footer → component (any specific one) | **forbidden** |
 
-### 3.2 Routing
+### 4.2 Routing
 
 - Orthogonal elbows with at most two bends; Q-bezier `r=8` at every corner.
 - **Fan-out staggering:** when one node fans out to N targets on the same side, stagger the exit y by ±4 px per index so arrows don't overlap (e.g., Trino → 4 consumers exits at y=124, 132, 140, 148). The vertical segments run in the corridor between the zone edge and the consumer column, also y-staggered.
@@ -250,7 +252,7 @@ Five styles, bound to topology. Don't let user override style on focal-touching,
 - **Markers:** exactly one `marker-end` per `<line>` / `<path>`. Never `marker-start`.
 - **Labels:** every `primary`, `secondary`, `federated`, `auth` edge gets a protocol label (Geist Mono 8 px, paper-filled rect mask with 6–10 px clear gap above the stroke). `trigger` edges are unlabelled.
 
-### 3.3 Footer → zone trunk
+### 4.3 Footer → zone trunk
 
 When N=1 footer: single vertical line at `x = zone_cx` from `footer_y(0)` to `zone_y + zone_h`.
 
@@ -267,13 +269,13 @@ Examples:
 
 Each AUTH line goes from `(footer_auth_x(k), footer_y(k))` up to `(footer_auth_x(k), zone_y + zone_h)`. AUTH labels sit just above the arrowhead at the zone bottom edge.
 
-### 3.4 Crossings
+### 4.4 Crossings
 
 Avoid. Re-route via the corridor x positions before accepting a crossing. If unavoidable, the path drawn second carries a 6-px arc hop over the first.
 
 ---
 
-## 4. Component color override (mirrors `type-high-level.md` §3.4)
+## 5. COMPONENT COLOR OVERRIDE (MIRRORS `type-high-level.md` §4.4)
 
 Any source, consumer, platform component (node or bar), or footer node accepts an optional `color: "#hex"`. Mirrors high-level so the rule reads identically across types.
 
@@ -295,7 +297,7 @@ Any source, consumer, platform component (node or bar), or footer node accepts a
 **Rules:**
 
 - **Never on focal components.** `focal_accent` always wins — a `color` on a focal component is ignored.
-- **Never on connectors.** If you want a colored edge, pick a different `style` from §3, not a color override.
+- **Never on connectors.** If you want a colored edge, pick a different `style` from §4, not a color override.
 - **Cap at 2 custom-colored components** per diagram (in addition to the focal pair).
 
 **Semantic palette** (use these unless brand demands otherwise):
@@ -306,7 +308,7 @@ Any source, consumer, platform component (node or bar), or footer node accepts a
 
 ---
 
-## 5. Focal rule
+## 6. FOCAL RULE
 
 **Exactly two focal components.** Default: the storage hub (MinIO / S3 / similar) and the federation engine (Trino / Dremio / similar). These two surfaces distinguish a "platform" from a pile of tools. Everything else (NiFi, Jupyter, Airflow, AD, all sources, all consumers) stays ink / muted.
 
@@ -318,7 +320,7 @@ Any source, consumer, platform component (node or bar), or footer node accepts a
 
 ---
 
-## 6. Dark mode
+## 7. DARK MODE
 
 | Token | Light | Dark |
 |---|---|---|
@@ -338,7 +340,7 @@ Any source, consumer, platform component (node or bar), or footer node accepts a
 
 ---
 
-## 7. Reproducibility checklist (taste gate)
+## 8. REPRODUCIBILITY CHECKLIST (TASTE GATE)
 
 Before emitting SVG, verify **every** item:
 
@@ -346,8 +348,8 @@ Before emitting SVG, verify **every** item:
 2. Platform zone at `x=260 y=72 w=696 h=col_h`. Zone label paper-masked across top border at `y=zone_y+3`.
 3. Left column at `x=40..200`, right column at `x=1000..1160` — both 160 wide.
 4. Source / consumer rows top at `y=92`, stride 88 px.
-5. `platform.rows` entries stack inside zone via the §2.1 cursor algorithm; total y-span ≤ `zone_h`.
-6. Inside each `kind: row`, node x-centers are evenly spaced across zone width (§2.2).
+5. `platform.rows` entries stack inside zone via the §3.1 cursor algorithm; total y-span ≤ `zone_h`.
+6. Inside each `kind: row`, node x-centers are evenly spaced across zone width (§3.2).
 7. **Exactly 2** focal components (`focal: true`).
 8. Every edge originating from a `kind: bar` component uses `style: trigger` (dashed, unlabelled).
 9. Every Trino → consumer edge uses `style: primary` (the serve-flow rule).
@@ -357,7 +359,7 @@ Before emitting SVG, verify **every** item:
 
 ---
 
-## 8. Sources and consumers — icon library
+## 9. SOURCES AND CONSUMERS — ICON LIBRARY
 
 Define each icon as `<g id="ico-…">` in `<defs>`, drawn at translate(cx, cy) with `stroke="currentColor"` so it inherits the surrounding text color. Common icons:
 
@@ -376,15 +378,15 @@ If you need more icons, browse `assets/style-reference/harness-diagram/icons.htm
 
 ---
 
-## 9. Identity, common services → connect to the layer, not to components
+## 10. IDENTITY, COMMON SERVICES → CONNECT TO THE LAYER, NOT TO COMPONENTS
 
-**Active Directory** (or Keycloak, IAM, OPA, any cross-cutting identity / policy / secrets store) authenticates *every* component in the platform. Wiring it to one specific tool would understate the trust scope. Connect it instead with a single arrow to the bottom edge of the platform zone, labeled `AUTH` (§3.3).
+**Active Directory** (or Keycloak, IAM, OPA, any cross-cutting identity / policy / secrets store) authenticates *every* component in the platform. Wiring it to one specific tool would understate the trust scope. Connect it instead with a single arrow to the bottom edge of the platform zone, labeled `AUTH` (§4.3).
 
-The same rule applies to any other layer-wide service: centralized logging, secrets vault, observability stack, audit sink, mTLS root. Each goes in the `footer` list, each gets its own row, each gets its own AUTH line up to the zone bottom edge (staggered by index per §3.3). The visual reading is "the platform layer delegates to all of these," which is the architectural truth.
+The same rule applies to any other layer-wide service: centralized logging, secrets vault, observability stack, audit sink, mTLS root. Each goes in the `footer` list, each gets its own row, each gets its own AUTH line up to the zone bottom edge (staggered by index per §4.3). The visual reading is "the platform layer delegates to all of these," which is the architectural truth.
 
 ---
 
-## 10. Budget — this type exceeds the default
+## 11. BUDGET — THIS TYPE EXCEEDS THE DEFAULT
 
 This is the one type where the default 9-node / 12-arrow budget is intentionally exceeded. A realistic platform integration shows:
 
@@ -401,12 +403,12 @@ When this gets unwieldy:
 
 ---
 
-## 11. Anti-patterns
+## 12. ANTI-PATTERNS
 
 - **Sources or consumers as a single collapsed node** when ≥3 distinct items exist — defeats the whole point of this type. Use Architecture or High-level if you want collapsing.
 - **One bus arrow from "sources" to "the platform"** — every wire is labeled with its protocol; this is how integration teams read the diagram.
-- **Per-tool color coding** (teal-NiFi, magenta-MinIO, yellow-Jupyter) inside the zone — collapses hierarchy; only the two focal accents earn coral, plus up to 2 custom colors on cross-cutting components (§4 cap).
-- **More than 2 focal components** — focal exists to distinguish "platform" from "pile of tools"; >2 erases the signal (same rule as SKILL.md §1).
+- **Per-tool color coding** (teal-NiFi, magenta-MinIO, yellow-Jupyter) inside the zone — collapses hierarchy; only the two focal accents earn coral, plus up to 2 custom colors on cross-cutting components (§5 cap).
+- **More than 2 focal components** — focal exists to distinguish "platform" from "pile of tools"; >2 erases the signal (same rule as SKILL.md §3).
 - **`color` override on a focal component** — ignored. Focal_accent always wins.
 - **Footer wired to one specific tool** (e.g., AD → Airflow only) — wrong unless that service truly only protects one tool. The default is the layer-wide connection.
 - **Footer or identity inside the zone** — identity gates the layer from outside. Drawing it inside misrepresents the trust model.
@@ -415,11 +417,11 @@ When this gets unwieldy:
 
 ---
 
-## 12. Examples
+## 13. EXAMPLES
 
 - `assets/diagrams/dp-integration.html` — minimal light (1 footer = AD). Gallery default.
 - `assets/diagrams/dp-integration-dark.html` — same, dark skin.
 - `assets/diagrams/dp-integration-full.html` — same, editorial-card frame.
-- `assets/diagrams/dp-integration-extended.html` — exercises §4 color override + multi-footer: AD in rust-red, Observability (Prometheus/Grafana/Loki) in slate-blue. Canvas height grown to fit 2 footer rows.
+- `assets/diagrams/dp-integration-extended.html` — exercises §5 color override + multi-footer: AD in rust-red, Observability (Prometheus/Grafana/Loki) in slate-blue. Canvas height grown to fit 2 footer rows.
 - `assets/diagrams/dp-integration-extended-dark.html` — extended pattern, dark skin.
 - `assets/diagrams/dp-integration-extended-full.html` — extended pattern, editorial-card frame.

@@ -8,14 +8,18 @@ trigger_phrases:
   - "create-diff flags"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.3
+version: 1.1.1.0
 ---
 
 # CLI reference
 
+## 1. OVERVIEW
+
 Engine: `scripts/create_diff.py` (run with `python3`). All paths are relative to where you run it; the engine never writes to a source document.
 
-## `capabilities`
+---
+
+## 2. `capabilities`
 
 List supported formats, fidelity tiers, and which PDF extractor is available.
 
@@ -23,7 +27,9 @@ List supported formats, fidelity tiers, and which PDF extractor is available.
 python3 create_diff.py capabilities [--json]
 ```
 
-## `snapshot`
+---
+
+## 3. `snapshot`
 
 Capture a baseline of a file into the local store (before an edit).
 
@@ -31,7 +37,9 @@ Capture a baseline of a file into the local store (before an edit).
 python3 create_diff.py snapshot <file> [--state-dir DIR]
 ```
 
-## `compare`
+---
+
+## 4. `compare`
 
 Compare a file against its latest baseline and render a report.
 
@@ -42,7 +50,9 @@ python3 create_diff.py compare <file> \
 
 Default report path: `<file-stem>.diff.html` in the current directory.
 
-## `compare-pair`
+---
+
+## 5. `compare-pair`
 
 Compare two explicit files with no stored state.
 
@@ -53,7 +63,9 @@ python3 create_diff.py compare-pair \
   [--label-before L] [--label-after L] [--json]
 ```
 
-## `status`
+---
+
+## 6. `status`
 
 List stored baselines (all, or for one file).
 
@@ -61,7 +73,9 @@ List stored baselines (all, or for one file).
 python3 create_diff.py status [<file>] [--state-dir DIR] [--json]
 ```
 
-## `cleanup`
+---
+
+## 7. `cleanup`
 
 Remove stored baselines.
 
@@ -72,7 +86,9 @@ python3 create_diff.py cleanup \
 
 With no `--older-than`, all matching snapshots are removed. Use `--dry-run` to preview.
 
-## Flags
+---
+
+## 8. FLAGS
 
 | Flag | Applies to | Meaning |
 | --- | --- | --- |
@@ -84,7 +100,9 @@ With no `--older-than`, all matching snapshots are removed. Use `--dry-run` to p
 | `--older-than DAYS` | cleanup | Remove snapshots older than N days. |
 | `--dry-run` | cleanup | Preview removals without deleting. |
 
-## Exit codes
+---
+
+## 9. EXIT CODES
 
 | Code | Meaning |
 | --- | --- |
@@ -94,7 +112,9 @@ With no `--older-than`, all matching snapshots are removed. Use `--dry-run` to p
 | `4` | Missing baseline snapshot for `compare`. |
 | `5` | I/O or extraction failure. |
 
-## JSON summary shape
+---
+
+## 10. JSON SUMMARY SHAPE
 
 `compare`/`compare-pair --json` prints:
 
@@ -109,11 +129,15 @@ With no `--older-than`, all matching snapshots are removed. Use `--dry-run` to p
 }
 ```
 
-## Reproducibility
+---
+
+## 11. REPRODUCIBILITY
 
 Set `SOURCE_DATE_EPOCH` to a fixed Unix timestamp to make report output byte-reproducible (the diff content is already deterministic; only the "Generated" timestamp varies otherwise).
 
-## Report validator
+---
+
+## 12. REPORT VALIDATOR
 
 ```bash
 python3 validate_report.py <report.html> [more.html ...]

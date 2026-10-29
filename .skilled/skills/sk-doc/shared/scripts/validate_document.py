@@ -183,6 +183,18 @@ INSTRUCTION_FILE_NAMES = [
     'AGENTS.md',
 ]
 
+# The DESIGN.md format spec and its sample outputs. Their section numbers are the
+# format's own section ids, which the generator and its references cite, so
+# renumbering them to this validator's conventions would break the format.
+# Matched by path suffix, so a sibling such as writing-notes.md is still validated.
+FORMAT_SPEC_FILES = [
+    'sk-design-md-generator/references/design-md-format.md',
+    'sk-design-md-generator/references/examples/linear/DESIGN.md',
+    'sk-design-md-generator/references/examples/stripe/DESIGN.md',
+    'sk-design-md-generator/references/examples/supabase/DESIGN.md',
+    'sk-design-md-generator/references/examples/vercel/DESIGN.md',
+]
+
 # Specialized leaf-doc root dir names. Both the hyphen and underscore forms are
 # accepted while the naming migration is in flight; the shared resolver is the
 # single source of truth so this validator and the guards never diverge on which
@@ -234,6 +246,9 @@ def should_exclude_path(file_path: str) -> Tuple[bool, Optional[str]]:
 
     if normalized.rsplit('/', 1)[-1] in INSTRUCTION_FILE_NAMES:
         return True, "Instruction file: keeps its runtime's own section template"
+
+    if any(normalized.endswith('/' + suffix) for suffix in FORMAT_SPEC_FILES):
+        return True, "Format spec: its section numbers are the DESIGN.md format's ids"
 
     return False, None
 

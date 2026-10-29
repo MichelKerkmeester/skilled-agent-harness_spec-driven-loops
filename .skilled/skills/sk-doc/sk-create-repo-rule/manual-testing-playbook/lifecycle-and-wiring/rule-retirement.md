@@ -2,7 +2,7 @@
 title: "RRL-003 -- Rule retirement"
 description: "This scenario validates the retirement ordering for `RRL-003`. It focuses on removing a rule in the inverted create order so no intermediate state leaves a row pointing at nothing."
 stage: routing
-version: 1.1.0.3
+version: 1.1.1.0
 ---
 
 # RRL-003 -- Rule retirement
@@ -92,7 +92,7 @@ After a successful retirement, confirm the rule is recoverable from git history 
 
 | File | Role |
 |---|---|
-| [`references/agents-md-integration.md`](../../references/agents-md-integration.md) | Primary implementation anchor, section 5 |
+| [`references/agents-md-integration.md`](../../references/agents-md-integration.md) | Primary implementation anchor, section 6 |
 | [`references/decision-tests.md`](../../references/decision-tests.md) | The tests that run again before a retirement is confirmed |
 
 ---

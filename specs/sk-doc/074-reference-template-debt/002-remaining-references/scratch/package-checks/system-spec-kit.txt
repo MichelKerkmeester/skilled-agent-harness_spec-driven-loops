@@ -1,0 +1,11 @@
+🔍 Validating skill: system-spec-kit
+(strict mode)
+==================================================
+
+✅ Skill is valid!
+
+⚠️  1 warning(s):
+   • SKILL.md has 3364 words (recommended max: 3000)
+
+==================================================
+Result: PASS

@@ -1,0 +1,27 @@
+files=22
+rows=8
+mismatches=0
+left_alone=10
+.skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=0	errors=0
+.skilled/skills/mcp-code-mode/references/tool-catalog.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=1	errors=0
+.skilled/skills/mcp-code-mode/references/workflows.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=1	errors=0
+.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/iconic.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=1	errors=0
+.skilled/skills/sk-design/sk-design-chart/references/design-md-theming.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=7	errors=0
+.skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/design-principles-digest.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=0	errors=0
+.skilled/skills/sk-design/sk-design-md-generator/references/examples/linear/writing-notes.md	mode=no-sections	rewritten=0	left=0	h3_shifted=0	dividers_added=0	errors=0
+.skilled/skills/sk-design/sk-design-md-generator/references/examples/stripe/writing-notes.md	mode=no-sections	rewritten=0	left=0	h3_shifted=0	dividers_added=0	errors=0
+.skilled/skills/sk-design/sk-design-md-generator/references/examples/supabase/writing-notes.md	mode=no-sections	rewritten=0	left=0	h3_shifted=0	dividers_added=0	errors=0
+.skilled/skills/sk-design/sk-design-md-generator/references/examples/vercel/writing-notes.md	mode=no-sections	rewritten=0	left=0	h3_shifted=0	dividers_added=0	errors=0
+.skilled/skills/sk-doc/sk-create-diff/references/capabilities-and-fidelity.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=5	errors=0
+.skilled/skills/sk-doc/sk-create-diff/references/cli-reference.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=11	errors=0
+.skilled/skills/sk-doc/sk-create-diff/references/worked-example.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=1	errors=0
+.skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md	mode=renumber	rewritten=6	left=3	h3_shifted=0	dividers_added=0	errors=0
+.skilled/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md	mode=renumber	rewritten=0	left=3	h3_shifted=0	dividers_added=0	errors=0
+.skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md	mode=renumber	rewritten=0	left=3	h3_shifted=0	dividers_added=0	errors=1
+  ERROR .skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md:50: §8 has no section 8 in .skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md
+.skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md	mode=renumber	rewritten=0	left=0	h3_shifted=0	dividers_added=0	errors=0
+.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-publish-supplement.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=0	errors=0
+.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md	mode=renumber	rewritten=0	left=1	h3_shifted=0	dividers_added=0	errors=0
+.skilled/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=0	errors=0
+.skilled/skills/system-spec-kit/references/workflows/agent-io-contract.md	mode=wrap-overview	rewritten=2	left=0	h3_shifted=0	dividers_added=1	errors=0
+.skilled/skills/system-spec-kit/runtime/cli/references/spec-root-alias-retirement-runbook.md	mode=wrap-overview	rewritten=0	left=0	h3_shifted=0	dividers_added=6	errors=0

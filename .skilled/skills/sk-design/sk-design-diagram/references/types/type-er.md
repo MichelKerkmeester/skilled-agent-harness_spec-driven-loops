@@ -9,14 +9,18 @@ trigger_phrases:
   - "domain model entities"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
+version: 1.2.1.0
 ---
 
 # ER / Data Model
 
+## 1. OVERVIEW
+
 **Best for:** database schemas, API resource relationships, domain models.
 
-## 1. Layout conventions
+---
+
+## 2. LAYOUT CONVENTIONS
 - Each entity is a two-section box:
   - **Header**: type tag (`ENTITY`) + entity name in Geist.
   - **Body**: field list in Geist Mono, one per line. PK prefixed with `#`, FK prefixed with `→`.
@@ -26,12 +30,16 @@ version: 1.2.0.8
 - Group related entities close; lay out so most relationships are straight lines, not tangles.
 - Coral on the aggregate root or central entity of the model.
 
-## 2. Anti-patterns
+---
+
+## 3. ANTI-PATTERNS
 - Drawing an arrow for every FK on a model with dozens — lay out by cluster instead.
 - Inconsistent cardinality notation between ends of the same relationship.
 - Fields padded to equal-height boxes — natural height by content is fine.
 
-## 3. Examples
+---
+
+## 4. EXAMPLES
 - `assets/diagrams/er.html` — minimal light
 - `assets/diagrams/er-dark.html` — minimal dark
 - `assets/diagrams/er-full.html` — full editorial

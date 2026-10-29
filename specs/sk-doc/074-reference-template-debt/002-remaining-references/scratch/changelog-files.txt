@@ -1,0 +1,12 @@
+.skilled/skills/cli-external-orchestration/changelog/v1.7.12.0.md
+.skilled/skills/mcp-code-mode/changelog/v1.0.15.0.md
+.skilled/skills/mcp-tooling/mcp-obsidian/changelog/v0.24.6.0.md
+.skilled/skills/sk-design/sk-design-chart/changelog/v0.23.5.0.md
+.skilled/skills/sk-design/sk-design-diagram/changelog/v1.2.9.0.md
+.skilled/skills/sk-design/sk-design-md-generator/changelog/v1.1.10.0.md
+.skilled/skills/sk-doc/sk-create-diff/changelog/v1.1.9.0.md
+.skilled/skills/sk-doc/sk-create-repo-rule/changelog/v1.1.6.0.md
+.skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.4.0.md
+.skilled/skills/system-deep-loop/deep-review/changelog/v1.11.13.0.md
+.skilled/skills/system-skill-advisor/changelog/v0.17.25.0.md
+.skilled/skills/system-spec-kit/changelog/v2.12.25.0.md

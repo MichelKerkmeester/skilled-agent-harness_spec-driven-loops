@@ -1,0 +1,12 @@
+.skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md
+.skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/lifecycle-and-wiring/router-bootstrap.md
+.skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/lifecycle-and-wiring/rule-retirement.md
+.skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/lifecycle-and-wiring/scope-boundary-halt.md
+.skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-authoring/full-rule-authoring.md
+.skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-authoring/standards-gate-rejection.md
+.skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-authoring/trigger-phrase-collision.md
+.skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/always-loaded-refusal.md
+.skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/existing-owner-refusal.md
+.skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md
+.skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/routing-refusal.md
+.skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md

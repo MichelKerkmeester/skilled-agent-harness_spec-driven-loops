@@ -9,14 +9,18 @@ trigger_phrases:
   - "focal layer bottleneck"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
+version: 1.2.1.0
 ---
 
 # Layer Stack
 
+## 1. OVERVIEW
+
 **Best for:** OSI model, CSS cascade, context hierarchy, tech stack, abstraction layers, memory hierarchy.
 
-## 1. Layout conventions
+---
+
+## 2. LAYOUT CONVENTIONS
 - Horizontal bands stacked vertically. Each layer is a full-width rectangle (same x, same width). 4–6 layers total.
 - Layer height 56–72px, width typically 800–880px inside a 1000px viewBox.
 - Each row contains (left→right):
@@ -28,13 +32,17 @@ version: 1.2.0.8
 - Direction indicator on the LEFT margin (outside the stack): small up/down arrow + Geist Mono label (`abstraction ↑`, `packets ↓`).
 - Coral on **one** focal layer (stroke + subtle tint fill) — the bottleneck, the pay-rent layer, the one under discussion.
 
-## 2. Anti-patterns
+---
+
+## 3. ANTI-PATTERNS
 - Layers that aren't actually hierarchical (use swimlane or architecture).
 - Skipped numbering (missing L4 between L3 and L5 without explanation).
 - Every layer a different color — hierarchy invisible.
 - Inconsistent layer heights without reason.
 
-## 3. Examples
+---
+
+## 4. EXAMPLES
 - `assets/diagrams/layers.html` — minimal light
 - `assets/diagrams/layers-dark.html` — minimal dark
 - `assets/diagrams/layers-full.html` — full editorial

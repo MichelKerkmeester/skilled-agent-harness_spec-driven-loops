@@ -7,10 +7,12 @@ trigger_phrases:
   - "diagram lookup"
 importance_tier: important
 contextType: reference
-version: 1.2.0.6
+version: 1.2.1.0
 ---
 
 # Diagram Catalog
+
+## 1. OVERVIEW
 
 Read this before choosing a type. The table between the sentinels below is machine-read: the corpus check matches its columns by header name rather than by position. Every row resolves to a canonical example under `assets/diagrams/`, and every canonical example appears in exactly one row. Prose outside the sentinels is never asserted on, so rewrite this page freely. A ceiling cell carries the number and qualifier its own type file states. `No stated ceiling` means the file states none of its own, so the general budget of 9 nodes and 12 arrows applies.
 
@@ -46,7 +48,9 @@ Read this before choosing a type. The table between the sentinels below is machi
 | dp-security-matrix | data-structure | Which role holds which permission on which component | assets/diagrams/dp-security-matrix.html | none | 6 roles, 14 components (max) | none | light |
 <!-- DIAGRAM_CATALOG:END -->
 
-## Not indexed
+---
+
+## 2. NOT INDEXED
 
 The hand-drawn `sketchy` treatment is documented in `references/primitives/primitive-sketchy.md` as a variant that applies to any minimal template, but no example in the corpus exercises it. It is descoped from this catalog with that stated reason, unproven by any example, rather than given a manufactured proof file whose only job would be to demonstrate one primitive.
 

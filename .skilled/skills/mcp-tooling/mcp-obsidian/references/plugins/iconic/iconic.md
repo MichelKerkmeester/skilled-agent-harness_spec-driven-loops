@@ -10,14 +10,18 @@ trigger_phrases:
   - "folder icon colors"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.7.0.0
+version: 0.7.1.0
 ---
 
 # Iconic Plugin Index (`iconic`)
 
+## 1. OVERVIEW
+
 The `mcp-obsidian` mode operates this plugin by **editing its `data.json` rulebook** — never by driving the icon-picker UI.
 
-## 1. IDENTITY
+---
+
+## 2. IDENTITY
 
 | Identity field | Current value | Why it matters |
 | --- | --- | --- |
@@ -29,13 +33,13 @@ The `mcp-obsidian` mode operates this plugin by **editing its `data.json` rulebo
 
 ---
 
-## 2. WHAT IT DOES
+## 3. WHAT IT DOES
 
 Customizes icons and their colors directly in the Obsidian UI: tabs, files & folders, bookmarks, tags, properties, and ribbon commands. Rules can match by file extension or folder name; per-item overrides exist for individual icons. Rendering happens in-app; the mode touches only the JSON.
 
 ---
 
-## 3. FILE-LAYER SURFACE (what the AI edits)
+## 4. FILE-LAYER SURFACE (WHAT THE AI EDITS)
 
 | Layer | Path / artifact | Operable by AI |
 |---|---|---|
@@ -56,7 +60,7 @@ Customizes icons and their colors directly in the Obsidian UI: tabs, files & fol
 
 ---
 
-## 4. RULE SHAPE (one rule)
+## 5. RULE SHAPE (ONE RULE)
 
 ```json
 {
@@ -79,7 +83,7 @@ Customizes icons and their colors directly in the Obsidian UI: tabs, files & fol
 
 ---
 
-## 5. GOTCHAS
+## 6. GOTCHAS
 
 - **Backup before every write.** Take a `.bak` copy of `data.json` before merging (the bundle's `merge_rules.py` pattern: backup → merge → write).
 - **Merge, never replace.** Preserve every setting and rule not being changed; user-customized rules stay untouched.

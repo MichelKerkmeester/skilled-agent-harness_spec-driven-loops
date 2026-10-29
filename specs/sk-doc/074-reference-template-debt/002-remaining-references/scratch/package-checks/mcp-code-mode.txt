@@ -1,0 +1,8 @@
+🔍 Validating skill: mcp-code-mode
+(strict mode)
+==================================================
+
+✅ Skill is valid!
+
+==================================================
+Result: PASS

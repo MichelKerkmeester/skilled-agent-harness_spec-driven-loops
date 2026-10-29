@@ -27,7 +27,8 @@
     "sk-doc/070-repo-doc-debt",
     "sk-doc/071-readme-reference-debt",
     "sk-doc/072-skill-routing-and-clarity",
-    "sk-doc/073-opencode-native-surfaces"
+    "sk-doc/073-opencode-native-surfaces",
+    "sk-doc/074-reference-template-debt"
   ],
   "manual": {
     "depends_on": [],
