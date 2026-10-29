@@ -314,7 +314,7 @@ Use `search_tools()`, `tool_info()`, `list_tools()`, and `call_tool_chain()` as 
 
 ## 9. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/naming-convention.md`, `references/configuration.md`, `references/tool-catalog.md`, `references/workflows.md`, `references/architecture.md`, `assets/config-template.md` and `assets/env-template.md`.
+The router discovers reference and asset docs dynamically. Start with `references/naming-convention.md`, `references/configuration.md`, `references/tool-catalog.md`, `references/workflows.md`, `references/architecture.md`, `assets/config-template.md` and `assets/env-template.md`.
 
 Then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 

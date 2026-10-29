@@ -10,7 +10,7 @@ Validates markdown documentation against template rules to ensure
 consistent formatting with proper TOC, H2 emojis, and section structure.
 
 Usage:
-    python validate_document.py <document.md> [--type readme|code_folder|skill|reference|asset|agent|command|install_guide|security_policy|spec|changelog]
+    python validate_document.py <document.md> [--type readme|code_folder|skill|reference|asset|agent|command|install_guide|security_policy|skill_router|spec|changelog]
     python validate_document.py <document.md> --json
     python validate_document.py <document.md> --fix [--dry-run]
     python validate_document.py <document.md> --blocking-only
@@ -301,6 +301,10 @@ def _detect_document_type_with_source(file_path: str, content: str, rules: Dict[
     # lowercase security.md reference or playbook leaf keeps its own type.
     if Path(str(file_path)).name == 'SECURITY.md':
         return 'security_policy', 'rule'
+    # A skill or mode keeps its machine router in a sibling ROUTER.md, and only that
+    # exact name marks it. Without this rule a router fell back to README rules.
+    if Path(str(file_path)).name == 'ROUTER.md':
+        return 'skill_router', 'rule'
     # A companion file sits in a run folder below benchmark/reports/, either directly
     # (reports/<run>/) or under a grouping folder (reports/<group>/<run>/).
     if (portable_path.name in BENCHMARK_COMPANION_NAMES
@@ -2100,7 +2104,7 @@ def main() -> None:
         epilog=__doc__
     )
     parser.add_argument('file', help='Markdown file to validate')
-    parser.add_argument('--type', choices=['readme', 'code_folder', 'code-folder', 'skill', 'reference', 'asset', 'agent', 'command', 'install_guide', 'security_policy', 'spec', 'changelog', 'playbook', 'playbook_feature', 'feature_catalog', 'benchmark_companion'],
+    parser.add_argument('--type', choices=['readme', 'code_folder', 'code-folder', 'skill', 'reference', 'asset', 'agent', 'command', 'install_guide', 'security_policy', 'skill_router', 'spec', 'changelog', 'playbook', 'playbook_feature', 'feature_catalog', 'benchmark_companion'],
                         help='Document type (auto-detected if not specified)')
     parser.add_argument('--json', action='store_true', help='Output results as JSON')
     parser.add_argument('--blocking-only', action='store_true', help='Show only blocking errors')

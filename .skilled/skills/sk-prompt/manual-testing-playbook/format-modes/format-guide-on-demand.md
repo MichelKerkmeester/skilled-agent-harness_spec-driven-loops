@@ -1,7 +1,7 @@
 ---
 title: "SP-028 -- Format guide on-demand loading"
-description: "This scenario validates format-guide loading for `SP-028`. It focuses on loading `format_guide_*.md` only when format mode and ON_DEMAND keyword signals require it."
-version: 2.3.2.0
+description: "This scenario validates format-guide loading for `SP-028`. It focuses on loading `assets/format-guide-yaml.md` on the `$yaml` prefix and holding the other format guides until an ON_DEMAND keyword appears."
+version: 2.3.3.0
 ---
 
 # SP-028 -- Format guide on-demand loading
@@ -16,7 +16,7 @@ This scenario validates that format guides are loaded on demand rather than for 
 
 ### Why This Matters
 
-Format guides are useful but costly. Loading them only when format mode and on-demand signals align keeps routine prompt work lean while preserving format depth when needed.
+Format guides are useful but costly. Loading the other guides only when an on-demand signal asks for them keeps routine prompt work lean while preserving format depth when needed.
 
 ---
 
@@ -24,7 +24,7 @@ Format guides are useful but costly. Loading them only when format mode and on-d
 
 Operators run the exact prompt and command sequence for `SP-028` and confirm the expected signals without contradictory evidence.
 
-- Objective: Confirm format guide loading requires format-mode need plus ON_DEMAND keyword match.
+- Objective: Confirm a format-mode prefix loads its matching guide on its own, with the other format guides waiting for an ON_DEMAND keyword.
 - Real user request: `$yaml improve my CI/CD config prompt — load the YAML format guide and apply YAML-specific structure.`
 - Prompt: `$yaml improve my CI/CD config prompt; verify YAML guide loading appears in the trace and the output uses YAML structure.`
 - Expected execution process: sk-prompt detects `$yaml`, sees the on-demand `format guide` language, loads YAML format guide, and returns YAML-structured output.
@@ -46,7 +46,7 @@ $yaml improve my CI/CD config prompt; verify YAML guide loading appears in the t
 
 1. `sk-prompt: $yaml improve my CI/CD config prompt — load the YAML format guide and apply YAML-specific structure.`
 2. `agent: @prompt-improver raw_task="Improve a CI/CD config prompt for YAML delivery and apply YAML format-guide rules." task_type=generation target_cli=opencode complexity_hint=6 constraints="Load YAML guide; output YAML-specific structure."`
-3. `bash: rg 'ON_DEMAND_KEYWORDS|format guide|format_guide_yaml' .skilled/skills/sk-prompt/ROUTER.md .skilled/skills/sk-prompt/assets/format-guide-yaml.md`
+3. `bash: rg 'ON_DEMAND_KEYWORDS' .skilled/skills/sk-prompt/ROUTER.md && ls .skilled/skills/sk-prompt/assets/format-guide-yaml.md` (confirm "format guide" is an on-demand keyword and the YAML guide resolves on disk)
 
 ### Expected
 
@@ -69,7 +69,7 @@ Capture the routing trace, YAML guide reference, YAML enhanced prompt, and CLEAR
 
 ### Optional Supplemental Checks
 
-Run a `$yaml` request without `format guide` wording and verify the trace does not load the deep-dive asset unless another on-demand keyword is present.
+Run a `$yaml` request without `format guide` wording and verify the trace still loads `assets/format-guide-yaml.md` through `FORMAT_YAML`, while the other format guides and the CLI card stay unloaded until an on-demand keyword is present.
 
 ---
 

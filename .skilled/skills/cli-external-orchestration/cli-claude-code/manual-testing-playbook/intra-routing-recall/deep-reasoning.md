@@ -8,7 +8,7 @@ expected_intent: DEEP_REASONING
 expected_resources: 
   - references/cli-reference.md
   - references/claude-tools.md
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # CC-R01: Deep reasoning routing
@@ -58,7 +58,7 @@ Have Claude reason through the trade-off between two caching strategies and anal
 
 1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/intra-routing-recall/deep-reasoning.md`
 2. `grep -n '"DEEP_REASONING"' ../../ROUTER.md` (confirms the `INTENT_SIGNALS` entry)
-3. `grep -A2 'RESOURCE_MAP = {' ../../ROUTER.md | grep '"DEEP_REASONING"'` (confirms the `RESOURCE_MAP` entry)
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' ../../ROUTER.md | grep '"DEEP_REASONING"'` (confirms the `RESOURCE_MAP` entry)
 4. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md && echo "OK references/cli-reference.md" || echo "MISS references/cli-reference.md"`
 5. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md && echo "OK references/claude-tools.md" || echo "MISS references/claude-tools.md"`
 
@@ -68,7 +68,7 @@ Step 1 shows `expected_intent: DEEP_REASONING`. Step 2's output names the `DEEP_
 
 ### Evidence
 
-Command transcript from every step above; this scenario's frontmatter compared against SKILL.md's
+Command transcript from every step above; this scenario's frontmatter compared against ROUTER.md's
 live `INTENT_SIGNALS["DEEP_REASONING"]` entry.
 
 ### Pass / Fail
@@ -78,7 +78,7 @@ live `INTENT_SIGNALS["DEEP_REASONING"]` entry.
 
 ### Failure Triage
 
-1. Re-run the SKILL.md greps above and diff the current entry against this scenario's frontmatter to
+1. Re-run the ROUTER.md greps above and diff the current entry against this scenario's frontmatter to
    see exactly which keyword, weight, or resource moved.
 2. Re-run the `test -e` checks and confirm whether a resource file was renamed or removed.
 

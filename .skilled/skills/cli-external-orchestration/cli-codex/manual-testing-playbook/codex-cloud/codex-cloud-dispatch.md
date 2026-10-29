@@ -1,7 +1,7 @@
 ---
 title: "CX-028 -- codex cloud dispatch"
 description: "This scenario validates the codex cloud subcommand for `CX-028`. It focuses on confirming the cloud subcommand surface (auth + dispatch contract) is documented and reachable in the live binary."
-version: 1.9.0.12
+version: 1.9.1.0
 ---
 
 # CX-028 -- codex cloud dispatch
@@ -69,7 +69,7 @@ If auth tokens are configured, dispatch a small benign cloud task and verify the
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` (line 263) | Documents `codex cloud` in §3 Unique Codex Capabilities |
+| `../../SKILL.md` | §3 "Dispatch-Critical Gotchas" names `codex cloud` among the unique capabilities |
 | `../../references/cli-reference.md` | Subcommand contract |
 
 ---

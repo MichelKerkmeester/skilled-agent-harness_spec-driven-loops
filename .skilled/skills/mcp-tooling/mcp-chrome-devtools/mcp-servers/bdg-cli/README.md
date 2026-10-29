@@ -5,7 +5,7 @@ trigger_phrases:
   - "bdg cli install"
   - "browser-debugger-cli"
   - "install bdg"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # bdg-cli
@@ -82,7 +82,8 @@ ls -la /tmp/verify.png
 
 | Document | Purpose |
 |---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Runtime routing between the bdg CLI and the Chrome DevTools MCP |
+| [`../../SKILL.md`](../../SKILL.md) | Runtime instructions and the CLI/MCP safety invariants |
+| [`../../ROUTER.md`](../../ROUTER.md) | Machine router: intent map, operation table and loading levels |
 | [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md) | Canonical step-by-step install with validation checkpoints |
 | [`../../references/cdp-patterns.md`](../../references/cdp-patterns.md) | CDP command patterns and Unix composability |
 | [`../chrome-devtools-mcp/README.md`](../chrome-devtools-mcp/README.md) | The MCP fallback this CLI is preferred over |

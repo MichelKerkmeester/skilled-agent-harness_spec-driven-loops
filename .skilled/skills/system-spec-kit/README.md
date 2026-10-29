@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.19.0
+version: 2.7.20.0
 ---
 
 # System Spec Kit
@@ -419,6 +419,7 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 ```
 .skilled/skills/system-spec-kit/
 ├── SKILL.md                    # AI workflow instructions (when to use, gates, rules)
+├── ROUTER.md                   # Machine router: intent map, resource map and loading levels
 ├── README.md                   # This file (what it does, how to use it)
 ├── ARCHITECTURE.md             # Boundary contract: runtime/cli/ vs runtime/
 ├── templates/                  # Template source + Level contract
@@ -456,7 +457,8 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 
 | File | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | AI agent instructions: routing rules, gates, validation procedures, template application |
+| [`SKILL.md`](./SKILL.md) | AI agent instructions: when to activate, gates, validation procedures and template application; its routing prose points at `ROUTER.md` |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map, loading levels and the routing pseudocode |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md) | API boundary contract between `runtime/cli/` and `runtime/` |
 | [`runtime/README.md`](./runtime/README.md) | engine architecture, the public API surface, build and validation commands |
 | [`runtime/cli/spec/create.sh`](./runtime/cli/spec/create.sh) | create spec folders with level-appropriate template files |
@@ -588,7 +590,7 @@ A: This README covers the whole skill: spec folders, documentation levels, comma
 
 **Q: What is the difference between SKILL.md and this README?**
 
-A: SKILL.md contains instructions for AI agents: when to activate, routing rules, gate procedures and validation workflows. This README is for humans and AI alike: what the skill does, how to use it, where to find things and which commands drive it. SKILL.md is the employee handbook, this README is the product brochure.
+A: SKILL.md contains instructions for AI agents: when to activate, gate procedures and validation workflows, and the routing prose that points at `ROUTER.md`. `ROUTER.md` is the machine router, and it holds the intent model, the intent and resource maps and the loading levels. This README is for humans and AI alike: what the skill does, how to use it, where to find things and which commands drive it. SKILL.md is the employee handbook, this README is the product brochure.
 
 **Q: How do I upgrade a Level 1 folder to Level 2 after the fact?**
 
@@ -657,7 +659,8 @@ The manual testing playbook runs every scenario behind these checks.
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | AI agent instructions, routing, gates and validation |
+| [`SKILL.md`](./SKILL.md) | AI agent instructions, gates and validation |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md) | API boundary contract between `runtime/cli/` and `runtime/` |
 | [`runtime/README.md`](./runtime/README.md) | engine architecture, the public API surface, build and validation commands |
 | [`references/memory/memory-system.md`](./references/memory/memory-system.md) | detailed retrieval and continuity reference |

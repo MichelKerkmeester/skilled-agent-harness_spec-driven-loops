@@ -8,7 +8,7 @@ trigger_phrases:
   - "git workspace commit finish"
   - "pull request commit hygiene"
   - "commit id trailer"
-version: 1.8.14.0
+version: 1.8.15.0
 ---
 
 # sk-git
@@ -272,8 +272,8 @@ The skill ships a manual testing playbook with scenarios across 9 categories and
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-git/README.md --type readme` reports zero issues |
 | Skill packaging and structure | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/sk-git --check` reports `PASS` (snake_case findings on `references/`/`assets/` are advisory ahead of the hyphen-naming program) |
 | Allocator behavior | `bash .skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` ends in `FAIL=0` |
-| Commit message structure | `bash .skilled/scripts/git-hooks/tests/commit-msg.test.sh` reports `PASS=11 FAIL=0` |
-| Commit trailer stamping | `bash .skilled/scripts/git-hooks/tests/prepare-commit-msg.test.sh` reports `PASS=43 FAIL=0` |
+| Commit message structure | `bash .skilled/scripts/git-hooks/tests/commit-msg.test.sh` reports `PASS=45 FAIL=0` |
+| Commit trailer stamping | `bash .skilled/scripts/git-hooks/tests/prepare-commit-msg.test.sh` reports `PASS=80 FAIL=0` |
 | Commit ordinal allocation | `bash .skilled/skills/sk-git/scripts/tests/commit-id-naming.test.sh` reports `PASS=39 FAIL=0` |
 | Live behavior | Run the playbook scenarios under `manual-testing-playbook/<topic>/` in a live session |
 

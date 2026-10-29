@@ -6,7 +6,7 @@ trigger_phrases:
   - "obsidian-mcp-server install"
   - "obsidian manual"
   - "official obsidian mcp install"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # obsidian-mcp
@@ -124,6 +124,7 @@ Tools are called via Code Mode `call_tool_chain` as `obsidian.obsidian_<tool>`.
 
 | Document | Purpose |
 |---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Runtime routing between the CLI profiles and the Obsidian MCP |
+| [`../../SKILL.md`](../../SKILL.md) | Runtime instructions and the CLI/MCP safety invariants |
+| [`../../ROUTER.md`](../../ROUTER.md) | Machine router: intent map, operation table and loading levels |
 | [`../../references/mcp-tools.md`](../../references/mcp-tools.md) | Last-captured tool inventory and invocation pattern |
 | [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md) | Step-by-step install with validation checkpoints |

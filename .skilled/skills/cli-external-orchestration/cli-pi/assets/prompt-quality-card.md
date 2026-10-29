@@ -8,7 +8,7 @@ trigger_phrases:
   - "pi clear check"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.6
+version: 1.5.1.0
 ---
 
 # Pi CLI - Prompt Quality Card
@@ -17,7 +17,21 @@ version: 1.5.0.6
 
 This is a thin delegator. The canonical prompt-models packet owns the framework table, task mapping, density guidance, anti-hallucination checks, and CLEAR questions. This card adds only mechanics that are specific to constructing a safe Pi dispatch.
 
-## 1. CANONICAL SOURCE
+## 1. OVERVIEW
+
+### Purpose
+
+This card is the Pi fast-path prompt-quality reference. It delegates the framework table and the CLEAR check to the
+canonical card and records only the Pi-specific dispatch mechanics plus the precedence rule.
+
+### Usage
+
+Compose a Pi dispatch prompt by starting from the canonical card, applying its Pre-Dispatch Checklist, and then
+adding the Pi mechanics in this file.
+
+---
+
+## 2. CANONICAL SOURCE
 
 Load:
 
@@ -27,7 +41,7 @@ Do not copy the canonical taxonomy into this card. Do not create a second STAR, 
 
 ---
 
-## 2. TWO TIERS
+## 3. TWO TIERS
 
 ### Tier 1 - Fast Path
 
@@ -39,7 +53,7 @@ Use the canonical card's deep-path trigger list. When it calls for prompt improv
 
 ---
 
-## 3. PI DISPATCH ADDENDA
+## 4. PI DISPATCH ADDENDA
 
 After the canonical prompt is selected, add:
 
@@ -55,7 +69,7 @@ For a read-only review, ask for findings and evidence, then use the installed to
 
 ---
 
-## 4. COMPOSITION CHECK
+## 5. COMPOSITION CHECK
 
 - [ ] Canonical framework selected.
 - [ ] Model profile checked when applicable.
@@ -68,9 +82,9 @@ For a read-only review, ask for findings and evidence, then use the installed to
 
 ---
 
-## 5. RELATED
+## 6. RELATED
 
-- [SKILL.md](../SKILL.md) owns routing and hard rules.
+- [SKILL.md](../SKILL.md) owns the hard rules; [ROUTER.md](../ROUTER.md) owns routing.
 - [prompt-templates.md](./prompt-templates.md) provides reusable dispatch shapes.
 - [cli-reference.md](../references/cli-reference.md) owns confirmed flags.
 

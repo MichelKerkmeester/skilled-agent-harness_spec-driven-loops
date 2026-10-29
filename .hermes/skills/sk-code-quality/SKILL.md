@@ -66,7 +66,7 @@ Three resources load first: `references/runner-contract.md` for the runner's CLI
 `../shared/references/universal/code-quality-standards.md` for the shared severity floor; and `references/code-style-guide.md` for this packet's style and comment rules.
 The resource domains, loading levels, path-keyed rows and comment-hygiene layers follow in the next section.
 
-That projection only makes the default resources scoreable; it never picks the path-keyed checklist.
+The prompt-intent projection in that router only makes the default resources scoreable; it never picks the path-keyed checklist.
 Read [`ROUTER.md`](../../../.skilled/skills/sk-code/sk-code-quality/ROUTER.md) before selecting skill-local resources; open only the matched files.
 
 ---

@@ -363,7 +363,7 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
 
 ### Reference Loading Notes
 
-- Load only references needed for current intent; Smart Routing (Section 2) and [`ROUTER.md`](../../../.skilled/skills/cli-external-orchestration/cli-devin/ROUTER.md) are the single routing authority.
+- Load only references needed for current intent; [`ROUTER.md`](../../../.skilled/skills/cli-external-orchestration/cli-devin/ROUTER.md) is the single routing authority.
 - `cli-reference.md` is ALWAYS loaded as baseline.
 
 ---

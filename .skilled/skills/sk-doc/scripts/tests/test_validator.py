@@ -123,6 +123,22 @@ TEST_CASES: List[Dict[str, Any]] = [
         "expected_errors": ["missing_required_section"],
         "expected_document_type": "security_policy",
         "description": "A security policy without a reporting section is rejected"
+    },
+    {
+        "file": "skill-router/ROUTER.md",
+        "doc_type": None,
+        "expected_exit": 0,
+        "expected_errors": [],
+        "expected_document_type": "skill_router",
+        "description": "ROUTER.md auto-detects as a skill router instead of falling back to README rules"
+    },
+    {
+        "file": "skill-router-no-machine/ROUTER.md",
+        "doc_type": None,
+        "expected_exit": 1,
+        "expected_errors": ["missing_required_section"],
+        "expected_document_type": "skill_router",
+        "description": "A skill router without a machine router section is rejected"
     }
 ]
 

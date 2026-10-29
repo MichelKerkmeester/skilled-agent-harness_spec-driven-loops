@@ -6,7 +6,7 @@ trigger_phrases:
   - "{{SKILL_NAME}} routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -34,6 +34,11 @@ loads before an intent selects it.
 
 [TODO: Keep this section and the machine block below in sync. When a row changes here, change the matching map entry.]
 
+A skill may name its intent map `INTENT_MODEL` instead of `INTENT_SIGNALS`, the name this template and the replay
+reader both accept. Declaring both is legal only when they mirror each other exactly, in keys and in keywords;
+otherwise keep one. A router may also route by pseudocode alone with no map at all, which suits a skill that loads
+its whole reference set on any match, because a hub's map is the one thing this flexibility never relaxes.
+
 ---
 
 ## 3. MACHINE ROUTER
@@ -59,6 +64,11 @@ RESOURCE_MAP = {
 }
 
 # Every key above must appear in both maps, and every path must resolve inside this folder.
+# An intent that deliberately loads nothing may be listed in NO_LOAD_INTENTS, which is the only way a key may sit
+# outside RESOURCE_MAP or map to an empty list; that list is checked, so an intent that loses its resources by
+# accident still fails. A markdown file at this router's own root, which no leaf manifest lists, may be routed by
+# declaring it in ROOT_RESOURCES and referencing it from a RESOURCE_MAP entry.
+# None of these three patterns is available to a hub router.
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm the task intent",
     "Provide one concrete input or expected output",

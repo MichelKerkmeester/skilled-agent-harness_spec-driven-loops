@@ -115,7 +115,7 @@ The advisor implementation, skill-graph library and package-local database live 
 
 **Skill lifecycle: how a new skill becomes routable.** The daemon watcher monitors the skills root itself. It watches that root shallowly, covering top-level directories only. It also watches each known root's identity files.
 When a skill is created while the daemon is warm, the new directory's event goes through the normal debounce into reindex.
-Reindex promotes the root's `SKILL.md` and `graph-metadata.json` into durable watch targets.
+Reindex promotes the root's `SKILL.md`, `ROUTER.md` and `graph-metadata.json` into durable watch targets.
 With no daemon running, the next daemon start ingests the skill through normal discovery.
 Refresh manually at any time with `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted`.
 Deleting a root retires its targets through the same path.

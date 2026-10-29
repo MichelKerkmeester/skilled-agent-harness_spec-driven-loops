@@ -107,6 +107,24 @@ describe('smart-router telemetry analyzer', () => {
     expect(analysis.classDistribution.extra).toBe(0);
   });
 
+  it('treats a baseline run that also reads the sibling ROUTER.md as compliant', () => {
+    const analysis = analyzeTelemetryRecords({
+      records: [
+        record({
+          complianceClass: 'extra',
+          actualReads: ['SKILL.md', 'ROUTER.md'],
+          observedSkill: 'sk-code',
+          observedSkills: ['sk-code'],
+        }),
+      ],
+      generatedAt: '2026-04-19T21:00:00.000Z',
+    });
+
+    expect(analysis.totalRecords).toBe(1);
+    expect(analysis.classDistribution.always).toBe(1);
+    expect(analysis.classDistribution.extra).toBe(0);
+  });
+
   it('emits a no-data report for empty JSONL', () => {
     const root = tempRoot();
     fs.mkdirSync(path.join(root, '.skilled', 'skill', '.state/smart-router-telemetry'), { recursive: true });

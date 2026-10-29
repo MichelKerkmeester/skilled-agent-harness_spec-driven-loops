@@ -1,7 +1,7 @@
 ---
 title: "mcp-refero Installation Guide"
 description: "Verify-only setup for the read-only Refero design-reference transport: plan access, authentication and the registered Code Mode manual."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # mcp-refero Installation Guide
@@ -205,7 +205,8 @@ See [`references/troubleshooting.md`](references/troubleshooting.md) for the ful
 | Document | Location | Purpose |
 | -------- | -------- | ------- |
 | README | `.skilled/skills/mcp-tooling/mcp-refero/README.md` | Human orientation and quick start |
-| SKILL.md | `.skilled/skills/mcp-tooling/mcp-refero/SKILL.md` | Runtime instructions and routing |
+| SKILL.md | `.skilled/skills/mcp-tooling/mcp-refero/SKILL.md` | Runtime instructions; the machine router is in `ROUTER.md` |
+| ROUTER.md | `.skilled/skills/mcp-tooling/mcp-refero/ROUTER.md` | Machine router: intent map, resource map and loading levels |
 | Tool Surface | `.skilled/skills/mcp-tooling/mcp-refero/references/tool-surface.md` | The eight-tool contract, funnel, and plan gating |
 | MCP Wiring | `.skilled/skills/mcp-tooling/mcp-refero/references/mcp-wiring.md` | Bridge, OAuth/Bearer, naming, discovery |
 | Troubleshooting | `.skilled/skills/mcp-tooling/mcp-refero/references/troubleshooting.md` | Full failure-mode table |

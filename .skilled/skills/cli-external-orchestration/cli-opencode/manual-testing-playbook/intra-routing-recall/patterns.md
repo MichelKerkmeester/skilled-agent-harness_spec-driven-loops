@@ -8,7 +8,7 @@ expected_intent: PATTERNS
 expected_resources: 
   - references/integration-patterns.md
   - references/cli-reference.md
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # CO-R07: Patterns routing
@@ -58,7 +58,7 @@ Describe the workflow to orchestrate a long job, then resume session state later
 
 1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/intra-routing-recall/patterns.md`
 2. `grep -n '"PATTERNS"' ../../ROUTER.md` (confirms the `INTENT_SIGNALS` entry)
-3. `grep -A2 'RESOURCE_MAP = {' ../../ROUTER.md | grep '"PATTERNS"'` (confirms the `RESOURCE_MAP` entry)
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' ../../ROUTER.md | grep '"PATTERNS"'` (confirms the `RESOURCE_MAP` entry)
 4. `test -e .skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md && echo "OK references/integration-patterns.md" || echo "MISS references/integration-patterns.md"`
 5. `test -e .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md && echo "OK references/cli-reference.md" || echo "MISS references/cli-reference.md"`
 
@@ -78,7 +78,7 @@ live `INTENT_SIGNALS["PATTERNS"]` entry.
 
 ### Failure Triage
 
-1. Re-run the SKILL.md greps above and diff the current entry against this scenario's frontmatter to
+1. Re-run the ROUTER.md greps above and diff the current entry against this scenario's frontmatter to
    see exactly which keyword, weight, or resource moved.
 2. Re-run the `test -e` checks and confirm whether a resource file was renamed or removed.
 

@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-design-md-generator routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -117,7 +117,7 @@ assets/source-of-truth-router-card.md  # fill-in provenance card
 | CONDITIONAL | Internal procedure support           | `procedures/design-system-extraction.md` when the request involves extraction, token capture, `DESIGN.md`, source design systems, screenshots, or measured brand references |
 | ON_DEMAND   | Deep format edge-cases or component patterns | `references/anti-patterns.md`, `references/component-taxonomy.md` |
 
-The private procedure-card selection table in Section 3 is part of this routing contract: after the public `md-generator` mode is selected, choose `procedures/design-system-extraction.md` when its trigger matches and cite its relative path in the plan or proof line.
+The private procedure-card selection list in `SKILL.md` Section 3 is part of this routing contract: after the public `md-generator` mode is selected, choose `procedures/design-system-extraction.md` when its trigger matches and cite its relative path in the plan or proof line.
 
 ### Smart Router Pseudocode
 

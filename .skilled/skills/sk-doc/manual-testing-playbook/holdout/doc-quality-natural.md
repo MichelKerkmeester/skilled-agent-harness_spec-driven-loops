@@ -19,7 +19,7 @@ expected_leaf_resources:
   - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/evergreen-packet-id-rule.md
 stage: negative
-version: 2.1.0.7
+version: 2.1.1.0
 ---
 
 # SD-H02: DOC_QUALITY Held-Out (decontaminated phrasing)
@@ -81,7 +81,8 @@ This is a prompt-only fail-safe scenario, converted from a holdout: the typed go
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` | The sk-doc router under test |
+| `../../ROUTER.md` | The sk-doc router under test: section 3 intent maps and loading levels |
+| `../../SKILL.md` | Runtime prose and the pointer to `ROUTER.md` |
 | `../../sk-create-skill/scripts/validate-playbook-topology.cjs` | Routing-gold contract gate |
 
 ---

@@ -5,7 +5,7 @@ trigger_phrases:
   - "Delete a block"
   - "notion_delete-a-block"
   - "trash a Notion block"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Delete a block (`notion_delete-a-block`)
@@ -34,7 +34,7 @@ This is functionally equivalent to calling `update-a-block` (`BLK-004`) with `ar
 
 | File | Layer | Role |
 |---|---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Shared | Routes block trash operations to the Blocks domain in the mode's operation table. |
+| [`../../ROUTER.md`](../../ROUTER.md) | Shared | Routes block trash operations to the Blocks domain in the operation-to-tool table in section 3. |
 | [`../../references/mcp-tools.md`](../../references/mcp-tools.md) | Shared | Confirms the tool name, endpoint, API-version pin, and the no-hard-delete note (§5 Blocks). |
 
 ### Validation And Tests

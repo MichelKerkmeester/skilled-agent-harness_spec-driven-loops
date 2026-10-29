@@ -7,7 +7,7 @@ trigger_phrases:
   - "jev packetKind"
 importance_tier: "important"
 contextType: "reference"
-version: 0.1.0.3
+version: 0.1.1.0
 ---
 
 # Transport classification
@@ -44,10 +44,9 @@ Anchors: `mode-registry.json` (the entry and the `extensions` block), the hub's 
 `leaf-manifest.json` (leaf set).
 
 **Verified**: `node .skilled/commands/doctor/scripts/parent-skill-check.cjs
-.skilled/skills/cli-classifier` exits 0 with `PASS: 5i` and two registered modes; rule 3h reports only when the
-shape is violated, so its clean state is the absence of a `3h` line rather than a `PASS` line. The
-same run passes the moved-mode check `3c`, because both of this hub's modes resolve
-to existing packet folders.
+.skilled/skills/cli-classifier` exits 0 with `PASS: 3h`, `PASS: 5i` and one registered mode; `3h` prints its
+PASS line on every clean run, and `3c` passes because the hub's single mode resolves
+to its existing packet folder.
 
 ---
 

@@ -13,7 +13,7 @@ expected_resources:
   - references/typescript/quality-standards/tsconfig-and-modules.md
   - references/typescript/quick-reference/template-naming-and-types.md
   - references/typescript/quick-reference/imports-errors-and-tsconfig.md
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # OC-001: TypeScript standards routing
@@ -96,7 +96,7 @@ excerpt.
 1. Re-run step 4 for the specific path that failed and confirm whether it was renamed or removed under
    `references/typescript/`.
 2. Diff this scenario's `expected_resources` against the step-3 `RESOURCE_MAP["TYPESCRIPT"]` excerpt to see
-   whether the drift is a stale scenario file or a stale `SKILL.md` map.
+   whether the drift is a stale scenario file or a stale `ROUTER.md` map.
 
 ---
 

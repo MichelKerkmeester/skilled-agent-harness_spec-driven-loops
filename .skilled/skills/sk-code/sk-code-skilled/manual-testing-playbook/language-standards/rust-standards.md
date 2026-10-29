@@ -23,7 +23,7 @@ expected_resources:
   - references/rust/quick-reference/collections-imports-and-errors.md
   - references/rust/quick-reference/rustdoc-and-cargo.md
   - references/rust/quick-reference/determinism-parity-and-related.md
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # OC-009: Rust standards routing
@@ -106,7 +106,7 @@ excerpt.
 1. Re-run step 4 for the specific path that failed and confirm whether it was renamed or removed under
    `references/rust/`.
 2. Diff this scenario's `expected_resources` against the step-3 `RESOURCE_MAP["RUST"]` excerpt to see
-   whether the drift is a stale scenario file or a stale `SKILL.md` map.
+   whether the drift is a stale scenario file or a stale `ROUTER.md` map.
 
 ---
 

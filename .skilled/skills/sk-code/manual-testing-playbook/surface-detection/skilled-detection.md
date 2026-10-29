@@ -1,7 +1,7 @@
 ---
 title: "SD-002: SKILLED Surface Detection"
 description: "Verify sk-code routes system-code prompts (paths under .skilled/) to the SKILLED surface and loads the opencode/* reference and asset trees with correct sub-language detection."
-version: 1.5.5.0
+version: 1.5.6.0
 ---
 
 # SD-002: SKILLED Surface Detection
@@ -97,7 +97,7 @@ Evidence: `/tmp/skc-SD002-loaded-refs.txt` (surface, sub-language, and loaded-re
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.skilled/skills/sk-code/SKILL.md` — the hub's routing and load-discipline rules.
+- `.skilled/skills/sk-code/ROUTER.md` — the hub's routing and load-discipline rules.
 - `.skilled/skills/sk-code/shared/references/stack-detection.md`: the detection order and the SKILLED language sub-detection table (sections 2 and 3).
 - `.skilled/skills/sk-code/mode-registry.json`: the SKILLED `surfaceDetection` block.
 - `.skilled/skills/sk-code/sk-code-skilled/references/typescript/` — Expected-loaded TypeScript references.

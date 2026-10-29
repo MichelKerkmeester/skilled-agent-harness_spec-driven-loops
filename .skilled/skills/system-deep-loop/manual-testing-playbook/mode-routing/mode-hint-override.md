@@ -17,7 +17,7 @@ expected_leaf_resources:
     leaf_resource_id: references/state/state-jsonl.md
   - workflow_mode: research
     leaf_resource_id: references/convergence/convergence.md
-version: "1.2.0.0"
+version: "1.2.1.0"
 ---
 
 # MO-004: Mode-Hint Override
@@ -60,7 +60,7 @@ research: Investigate whether our deep review findings are repeating because the
 
 ### Preconditions
 
-1. `.skilled/skills/system-deep-loop/SKILL.md` contains the mode-hint override rule.
+1. `.skilled/skills/system-deep-loop/ROUTER.md` contains the mode-hint override rule.
 2. `.skilled/skills/system-deep-loop/mode-registry.json` contains the `research` mode entry.
 
 ### Exact Command Sequence
@@ -94,7 +94,7 @@ research: Investigate whether our deep review findings are repeating because the
 
 ## 4. SOURCE FILES
 
-- `.skilled/skills/system-deep-loop/SKILL.md` - mode-hint override rule.
+- `.skilled/skills/system-deep-loop/ROUTER.md` - mode-hint override rule.
 - `.skilled/skills/system-deep-loop/mode-registry.json` - `research` mode source of truth.
 
 ---

@@ -156,7 +156,7 @@ The injection screen runs that measured question as an advisory on Claude Code, 
   - [`cli-jev/references/integration-patterns.md`](../../../.skilled/skills/cli-classifier/cli-jev/references/integration-patterns.md).
   - [`cli-jev/references/mcp-server.md`](../../../.skilled/skills/cli-classifier/cli-jev/references/mcp-server.md).
 - Hub metadata: [`description.json`](../../../.skilled/skills/cli-classifier/description.json), [`graph-metadata.json`](../../../.skilled/skills/cli-classifier/graph-metadata.json), [`leaf-manifest.json`](../../../.skilled/skills/cli-classifier/leaf-manifest.json).
-- Hub changelog: [`changelog/v0.8.2.0.md`](../../../.skilled/skills/cli-classifier/changelog/v0.8.2.0.md).
+- Hub changelog: [`changelog/v0.8.6.0.md`](../../../.skilled/skills/cli-classifier/changelog/v0.8.6.0.md).
 
 ---
 

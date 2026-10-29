@@ -8,7 +8,7 @@ trigger_phrases:
   - "template composition reference"
 importance_tier: normal
 contextType: general
-version: 1.6.7.0
+version: 1.6.8.0
 ---
 
 # Template Guide - Template Selection, Adaptation & Quality Standards
@@ -938,7 +938,7 @@ specs/122-skill-standardization/
     └── scratch/
 ```
 
-**See:** `system-spec-kit SKILL.md` Section 3 (Sub-Folder Versioning) for full versioning workflow.
+**See:** [`references/structure/sub-folder-versioning.md`](../structure/sub-folder-versioning.md) Section 3 (Workflow Steps) for the full versioning workflow.
 
 ### 10.2 Manual Sub-Folders for Organization
 

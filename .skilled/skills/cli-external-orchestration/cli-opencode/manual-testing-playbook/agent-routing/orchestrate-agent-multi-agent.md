@@ -1,7 +1,7 @@
 ---
 title: "CO-034 -- Orchestrate agent multi-agent coordination"
 description: "This scenario validates the orchestrate agent for `CO-034`. It focuses on confirming `--agent orchestrate` produces a sequenced multi-agent decomposition without nested opencode run invocations."
-version: 1.4.12.0
+version: 1.4.13.0
 ---
 
 # CO-034 -- Orchestrate agent multi-agent coordination
@@ -70,7 +70,7 @@ For full multi-agent flow validation, dispatch the first specialist named by the
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` (line 254) | Documents `--agent orchestrate` in §3 agent routing table |
+| `../../SKILL.md` | §1 Agent dispatch names the primary `orchestrate` agent; §3 "OpenCode Agent Delegation" states the `--agent orchestrate` routing rule |
 | `../../references/agent-delegation.md` | §6 multi-agent workflows and the no-nested-run rule |
 | `.skilled/agents/orchestrate.md` | Agent definition file |
 

@@ -12,7 +12,7 @@ expected_resources:
   - references/shell/quality-standards/validation-security-and-shellcheck.md
   - references/shell/quick-reference/template-variables-and-loops.md
   - references/shell/quick-reference/functions-strings-and-checklist.md
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # OC-003: Shell standards routing
@@ -95,7 +95,7 @@ excerpt.
 1. Re-run step 4 for the specific path that failed and confirm whether it was renamed or removed under
    `references/shell/`.
 2. Diff this scenario's `expected_resources` against the step-3 `RESOURCE_MAP["SHELL"]` excerpt to see
-   whether the drift is a stale scenario file or a stale `SKILL.md` map.
+   whether the drift is a stale scenario file or a stale `ROUTER.md` map.
 
 ---
 

@@ -7,7 +7,7 @@ trigger_phrases:
   - "skill graph rebuild"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.0.6
+version: 0.8.1.0
 ---
 
 # Skill Graph Drift Reconciliation
@@ -48,7 +48,7 @@ The SQLite graph drifts from the source files when any of these happen:
 2. **Skill removed**: a skill directory is deleted but the SQLite graph still has rows for it.
 3. **Edge mutated**: an existing graph-metadata.json file changes its `edges.depends_on[]`, `edges.enhances[]` or `edges.conflicts[]` arrays but the SQLite graph holds stale edge rows.
 4. **Schema bump**: the JSON schema_version increments (1 → 2) but the SQLite graph still expects v1 fields.
-5. **Hash drift**: any file under `.skilled/skills/*/graph-metadata.json` plus `.skilled/skills/*/SKILL.md` changes, computed via SHA-256 hash. The daemon watches for hash changes per `freshness-contract.md` §5.
+5. **Hash drift**: any file under `.skilled/skills/*/graph-metadata.json`, `.skilled/skills/*/SKILL.md` or `.skilled/skills/*/ROUTER.md` (where the skill carries one) changes, computed via SHA-256 hash. The daemon watches for hash changes per `freshness-contract.md` §5.
 
 ---
 

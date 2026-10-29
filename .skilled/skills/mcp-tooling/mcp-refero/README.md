@@ -7,7 +7,7 @@ trigger_phrases:
   - "design reference"
   - "ui reference search"
   - "real app screens"
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # mcp-refero
@@ -194,7 +194,7 @@ Live-call checks require an authenticated Pro (or higher) account and are operat
 | Check | How to run it |
 |---|---|
 | Skill package | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/mcp-tooling/mcp-refero --check` reports zero errors |
-| SKILL.md frontmatter | `head -8 .skilled/skills/mcp-tooling/mcp-refero/SKILL.md` shows the `name`, `description`, `version` and `user-invocable` fields, with `version: 1.0.0.0` |
+| SKILL.md frontmatter | `head -8 .skilled/skills/mcp-tooling/mcp-refero/SKILL.md` shows the `name`, `description`, `version` and `user-invocable` fields |
 | Install posture | `bash .skilled/skills/mcp-tooling/mcp-refero/scripts/install.sh` exits 0, verify-only with nothing installed or modified |
 | Wiring presence | `bash .skilled/skills/mcp-tooling/mcp-refero/scripts/doctor.sh` reports the `refero` manual registered (read-only grep) |
 | Endpoint reachability | `REFERO_DOCTOR_LIVE=1 bash .skilled/skills/mcp-tooling/mcp-refero/scripts/doctor.sh` reports HTTP 401, auth required as documented |
@@ -207,6 +207,7 @@ Live-call checks require an authenticated Pro (or higher) account and are operat
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES and references |
+| [`ROUTER.md#3-machine-router`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Verify-only setup: the registered manual, the Pro-plan requirement and the operator-only OAuth step |
 | [`references/tool-surface.md`](./references/tool-surface.md) | The eight-tool contract, ID typing, the research funnel, plan gating and the deprecated legacy surface |
 | [`references/mcp-wiring.md`](./references/mcp-wiring.md) | The registered manual, the mcp-remote bridge, OAuth/Bearer, the doubled-prefix rule and discovery |

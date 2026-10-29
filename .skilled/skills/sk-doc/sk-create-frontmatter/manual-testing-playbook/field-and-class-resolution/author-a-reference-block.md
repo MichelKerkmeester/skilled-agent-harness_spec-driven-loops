@@ -1,7 +1,7 @@
 ---
 title: "FMC-001 -- Author a reference block"
 description: "This scenario validates authoring a frontmatter block for a new reference document in `FMC-001`. It focuses on resolving the document class first, copying the five-field block that class carries, and closing it with `version` as the last key."
-version: 1.0.0.4
+version: 1.0.1.0
 ---
 
 # FMC-001 -- Author a reference block
@@ -96,7 +96,8 @@ Re-run the authoring step for a `SKILL.md` instead of a reference document and c
 |---|---|
 | [`assets/frontmatter-templates.md`](../../assets/frontmatter-templates.md) | Primary implementation anchor, sections 3, 4 and 5 |
 | [`references/frontmatter-versioning.md`](../../references/frontmatter-versioning.md) | The insertion rule that places `version` last inside the block |
-| [`SKILL.md`](../../SKILL.md) | Resource loading levels and the author-a-block ordering |
+| [`ROUTER.md`](../../ROUTER.md) | Resource loading levels |
+| [`SKILL.md`](../../SKILL.md) | The author-a-block ordering |
 
 ---
 

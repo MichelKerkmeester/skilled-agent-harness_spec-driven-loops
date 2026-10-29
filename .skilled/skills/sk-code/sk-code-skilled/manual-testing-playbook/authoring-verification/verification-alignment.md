@@ -8,7 +8,7 @@ expected_intent: VERIFICATION
 expected_resources:
   - references/shared/alignment-verification-automation.md
   - assets/scripts/README.md
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # OC-008: Verification alignment routing
@@ -114,7 +114,7 @@ PASS lines; the test summary line; the `--explain` JSON.
 1. Re-run step 4 for the specific path that failed and confirm whether it was renamed or removed under
    `references/shared/`.
 2. Diff this scenario's `expected_resources` against the step-3 `RESOURCE_MAP["VERIFICATION"]` excerpt to see
-   whether the drift is a stale scenario file or a stale `SKILL.md` map.
+   whether the drift is a stale scenario file or a stale `ROUTER.md` map.
 3. If step 5 reports a `[WARN]` finding against a file this package owns, fix that file rather than
    relaxing the guard; a warning that survives in a sibling packet's tree belongs to that packet and leaves
    step 5 at `rc=0` by design.

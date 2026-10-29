@@ -149,6 +149,12 @@ test('copies a source ROUTER.md beside SKILL.md and reports drift when the copy 
     assert.match(failedCheck(), /DRIFT hub/);
     run(env);
     assert.equal(readFileSync(join(env.output, 'hub', 'ROUTER.md'), 'utf8'), copiedText);
+
+    // A source that drops its router takes the copy with it, so Hermes never reads a stale one.
+    rmSync(join(env.source, 'hub', 'ROUTER.md'));
+    run(env);
+    assert.ok(!existsSync(join(env.output, 'hub', 'ROUTER.md')));
+    assert.match(run(env, ['--check']), /PASS: 4/);
   } finally {
     rmSync(env.root, { recursive: true, force: true });
   }

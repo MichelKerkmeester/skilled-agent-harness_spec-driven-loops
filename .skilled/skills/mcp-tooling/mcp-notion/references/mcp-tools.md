@@ -10,7 +10,7 @@ trigger_phrases:
   - "notion markdown"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Official Notion MCP Tools Reference
@@ -31,7 +31,7 @@ The official Notion MCP server exposes **24 tools across 6 API domains** — one
 The 6 covered domains are: **Pages (7), Blocks (5), Databases / Data Sources (6), Comments (2), Users (3), Search (1)**.
 
 Use this reference when:
-- Routing a Notion request to a specific MCP tool (see the priority table in Section 6 and the operation table in the mode `SKILL.md`).
+- Routing a Notion request to a specific MCP tool (see the priority table in Section 6 and the operation table in `../ROUTER.md` section 3).
 - Writing Code Mode `call_tool_chain({ code: "..." })` invocations against the `notion` manual.
 - Confirming whether a capability is covered by the MCP or falls into one of the 5 uncovered domains that require direct API calls (Section 7 → `api-gap-tools.md`).
 

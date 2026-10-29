@@ -5,7 +5,7 @@ trigger_phrases:
   - "figma-ds-cli"
   - "figma cli install"
   - "figma cli naming trap"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # figma-cli
@@ -80,7 +80,8 @@ Connect modes (the safe plugin bridge vs. the gated yolo patch), the daemon, and
 
 | Document | Purpose |
 |---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Runtime contract: command-safety model, routing, and rules |
+| [`../../SKILL.md`](../../SKILL.md) | Runtime contract: command-safety model and rules |
+| [`../../ROUTER.md`](../../ROUTER.md) | Machine router: intent map, operation table and loading levels |
 | [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md) | Full install and connect-mode setup |
 | [`../../references/figma-cli-reference.md`](../../references/figma-cli-reference.md) | Binary identity, connect modes, daemon model, command examples |
 | [`../../references/tool-surface.md`](../../references/tool-surface.md) | The read-only, mutating, and destructive command taxonomy |

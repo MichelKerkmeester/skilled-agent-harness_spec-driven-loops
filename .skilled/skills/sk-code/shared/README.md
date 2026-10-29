@@ -8,7 +8,7 @@ trigger_phrases:
   - "sk-code surface detection"
 importance_tier: normal
 contextType: general
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # sk-code shared
@@ -58,7 +58,7 @@ shared/
 
 | File | Purpose | Read by |
 |---|---|---|
-| [`references/stack-detection.md`](./references/stack-detection.md) | Surface detection over the declared surfaces, plus SKILLED language sub-detection. Specific surfaces go first in declared order, private `local-*` surfaces among them. `sk-code-skilled` is the one fallback surface and always ranks last, so any declared surface outranks it. UNKNOWN comes after that | `../SKILL.md` for the session surface hint, `../ROUTER.md` as part of the always-loaded preamble, `sk-code-quality` and `sk-code-review` for surface identity |
+| [`references/stack-detection.md`](./references/stack-detection.md) | Surface detection over the declared surfaces, plus SKILLED language sub-detection. Specific surfaces go first in declared order, private `local-*` surfaces among them. `sk-code-skilled` is the one fallback surface and always ranks last, so any declared surface outranks it. UNKNOWN comes after that | `../ROUTER.md` §11 for the session surface hint and the always-loaded preamble, `sk-code-quality` and `sk-code-review` for surface identity |
 | [`references/phase-detection.md`](./references/phase-detection.md) | The phase lifecycle from research through the Phase 1.5 quality gate to verification, its iron laws and the evidence each surface supplies per phase | `../ROUTER.md` preamble and `sk-code-quality` |
 
 The second-stage router itself is [`../ROUTER.md`](../ROUTER.md) at the hub root, not in this folder. It maps a code intent to the leaf resources the selected mode loads.

@@ -1,7 +1,7 @@
 ---
 title: "LS-001: SKILLED TypeScript Sub-Detection"
 description: "Verify that within SKILLED surface, TypeScript file extensions trigger loading of typescript/* references (not python, shell, or config)."
-version: 1.5.4.0
+version: 1.5.5.0
 ---
 
 # LS-001: SKILLED TypeScript Sub-Detection
@@ -77,7 +77,7 @@ Evidence: `/tmp/skc-LS001-loaded-refs.txt` (loaded-refs transcript).
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.skilled/skills/sk-code/shared/references/stack-detection.md` (section 3, SKILLED language sub-detection).
-- `.skilled/skills/sk-code/SKILL.md` — the hub's routing and load-discipline rules.
+- `.skilled/skills/sk-code/ROUTER.md` — the hub's routing and load-discipline rules.
 - `.skilled/skills/sk-code/sk-code-skilled/references/typescript/` — the three expected-loaded TypeScript reference folders, `style-guide/`, `quality-standards/` and `quick-reference/`, each split into topic parts.
 
 Catalog: `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`, the entry that names `ROUTER.md` as the owner of the stage-two resource maps the language overlay lives in.

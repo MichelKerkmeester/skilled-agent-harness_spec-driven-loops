@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-git routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -23,8 +23,9 @@ link that points here; this file holds the declaration a reader parses to decide
 A request that names a worktree, a commit, a pull request, a merge, a finish, GitKraken or GitLens reaches sk-git, and this router picks from the worktree, commit, finish, GitKraken-MCP and shared-pattern reference families rather than from the whole folder. Spec folders and code implementation are routed elsewhere, so they never pull these files. A request whose keywords barely score loads the shared patterns and asks a disambiguation checklist instead of guessing.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
-loads before an intent selects it.
+what happens when nothing matches. Every path below stays inside this skill folder. The quick reference
+baseline loads on every invocation; past that baseline, no conditional resource loads before an intent
+selects it.
 
 ---
 
@@ -33,7 +34,7 @@ loads before an intent selects it.
 - **WORKSPACE_SETUP** — "worktree / create worktree / numbered worktree / restructure worktrees / workspace / parallel work" requests load `references/worktree-workflows.md` and `assets/worktree-checklist.md`. The near-miss phrasings "dirty workspace", "unclean" and "mixed changes" add weight to this intent without firing it alone.
 - **COMMIT** — "commit / staged / message / conventional commit" requests load `references/commit-workflows.md` and `assets/commit-message-template.md`. "half-staged", "boundary" and "split commit" add weight to the same intent.
 - **FINISH** — "finish / merge / pr / pull request / integrate" requests load `references/finish-workflows.md`, `assets/pr-template.md` and `references/github-mcp-integration.md`, the last one because a PR is opened across providers. "ship", "hotfix", "trunk" and "minimal risk" add weight.
-- **GITKRAKEN_MCP** — "gitkraken / gitlens / launchpad / commit composer / cross-platform pr / multi-provider issue / gitlens start review / gitlens start work" requests load `references/gitkraken-mcp-integration.md` and nothing else, so the GUI and MCP path stays separate from the CLI flows.
+- **GITKRAKEN_MCP** — "gitkraken / gitlens / launchpad / commit composer / cross-platform pr / multi-provider issue / gitlens start review / gitlens start work" requests load `references/gitkraken-mcp-integration.md` on top of the always-loaded quick reference and nothing further, so the GUI and MCP path stays separate from the CLI flows.
 - **SHARED_PATTERNS** — "convention / pattern / reference / branch naming" requests load `references/shared-patterns.md`, and every request that scores near zero loads it too, then adds the disambiguation checklist rather than defaulting to a family.
 
 ---

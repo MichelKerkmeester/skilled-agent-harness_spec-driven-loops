@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-tooling hub-router scoring"
   - "mode-registry.json eight modes"
   - "mcp-tooling smart routing"
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Workflow-Vs-Transport Two-Axis Routing (mcp-tooling)
@@ -43,10 +43,10 @@ The router resolves to `single` for one dominant signal, `orderedBundle` for mul
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/mcp-tooling/SKILL.md` | Shared | States the two-axis model and packet boundaries. |
+| `.skilled/skills/mcp-tooling/SKILL.md` | Shared | States the packet boundaries and the short routing summary that points at the machine router. |
 | `.skilled/skills/mcp-tooling/mode-registry.json` | Shared | Declarative registry for all eight packets. |
 | `.skilled/skills/mcp-tooling/hub-router.json` | Shared | Router signals, vocabulary classes, and tie-break policy. |
-| `.skilled/skills/mcp-tooling/ROUTER.md` | Shared | Stage-two leaf resource map. |
+| `.skilled/skills/mcp-tooling/ROUTER.md` | Shared | Machine router: intent map, resource map and loading levels, plus the two-axis model, routing rule and outcomes in section 5. |
 
 ### Validation and tests
 

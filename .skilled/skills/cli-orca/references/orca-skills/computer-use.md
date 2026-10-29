@@ -9,7 +9,7 @@ trigger_phrases:
   - "orca accessibility tree clicks"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Official Orca Skill - Computer Use
@@ -66,6 +66,6 @@ Third, escalate when the target is Orca's embedded browser. That surface belongs
 ## 4. RELATED RESOURCES
 
 - The official skills index and the boundary matrix: [`overview.md`](overview.md).
-- `orca-cli` owns Orca's embedded browser, terminals, worktrees and automations ([`orca-cli.md`](orca-cli.md) once authored, see the routing table in the skill's SKILL.md section 3.6 meanwhile).
+- `orca-cli` owns Orca's embedded browser, terminals, worktrees and automations ([`orca-cli.md`](orca-cli.md); its one-line row is in [`../../SKILL.md`](../../SKILL.md) section 3.6).
 - The version-matched guide served by the binary is authoritative for flags: load it with `ORCA skills get computer-use` (snapshot: skills/computer-use/SKILL.md, guide-loading section).
 - Verbatim upstream wording: `assets/computer-use.txt`, with release revision and digest in [`assets/PROVENANCE.md`](../../assets/PROVENANCE.md).

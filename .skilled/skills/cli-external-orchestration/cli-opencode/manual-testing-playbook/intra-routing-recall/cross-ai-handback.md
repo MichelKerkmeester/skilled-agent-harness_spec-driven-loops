@@ -8,7 +8,7 @@ expected_intent: CROSS_AI_HANDBACK
 expected_resources: 
   - references/integration-patterns.md
   - references/opencode-tools.md
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # CO-R03: Cross-AI handback routing
@@ -58,7 +58,7 @@ Hand back to spec kit and code graph so the structural code index stays current 
 
 1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/intra-routing-recall/cross-ai-handback.md`
 2. `grep -n '"CROSS_AI_HANDBACK"' ../../ROUTER.md` (confirms the `INTENT_SIGNALS` entry)
-3. `grep -A2 'RESOURCE_MAP = {' ../../ROUTER.md | grep '"CROSS_AI_HANDBACK"'` (confirms the `RESOURCE_MAP` entry)
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' ../../ROUTER.md | grep '"CROSS_AI_HANDBACK"'` (confirms the `RESOURCE_MAP` entry)
 4. `test -e .skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md && echo "OK references/integration-patterns.md" || echo "MISS references/integration-patterns.md"`
 5. `test -e .skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md && echo "OK references/opencode-tools.md" || echo "MISS references/opencode-tools.md"`
 
@@ -78,7 +78,7 @@ live `INTENT_SIGNALS["CROSS_AI_HANDBACK"]` entry.
 
 ### Failure Triage
 
-1. Re-run the SKILL.md greps above and diff the current entry against this scenario's frontmatter to
+1. Re-run the ROUTER.md greps above and diff the current entry against this scenario's frontmatter to
    see exactly which keyword, weight, or resource moved.
 2. Re-run the `test -e` checks and confirm whether a resource file was renamed or removed.
 

@@ -5,7 +5,7 @@ trigger_phrases:
   - "notion page property item"
   - "GAP-003"
   - "notion property truncation"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Page Property Items (direct API -- GAP-003)
@@ -40,7 +40,7 @@ A `Notion-Version` mismatch surfaces as a 400 validation error; an unshared page
 
 | File | Layer | Role |
 |---|---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Shared | Routes the 5 API-gap capabilities to direct REST calls instead of an MCP tool. |
+| [`../../ROUTER.md`](../../ROUTER.md) | Shared | Routes the 5 API-gap capabilities to direct REST calls instead of an MCP tool. |
 | [`../../references/api-gap-tools.md`](../../references/api-gap-tools.md) | Shared | Confirms the endpoint, the paginated property types, the `2025-09-03` version pin, and a runnable curl example. |
 
 ### Validation And Tests

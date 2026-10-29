@@ -47,10 +47,20 @@ function tempWorkspace(): string {
   return root;
 }
 
-function writeSkill(root: string, skill: string, content: string, resources: readonly string[] = []): void {
+function writeSkill(
+  root: string,
+  skill: string,
+  content: string,
+  resources: readonly string[] = [],
+  routerContent: string | null = null,
+): void {
   const skillDir = path.join(root, '.skilled', 'skill', skill);
   fs.mkdirSync(skillDir, { recursive: true });
   fs.writeFileSync(path.join(skillDir, 'SKILL.md'), content, 'utf8');
+  // A migrated skill keeps the machine router in its own file, so the fixture does too.
+  if (routerContent !== null) {
+    fs.writeFileSync(path.join(skillDir, 'ROUTER.md'), routerContent, 'utf8');
+  }
   for (const resource of resources) {
     const resourcePath = path.join(skillDir, resource);
     fs.mkdirSync(path.dirname(resourcePath), { recursive: true });
@@ -85,6 +95,13 @@ function advisorResult(skill: string, confidence = 0.91, uncertainty = 0.1): Adv
 
 const routedSkill = [
   '# Routed Skill',
+  '',
+  'Read `ROUTER.md` before selecting skill-local resources.',
+  '',
+].join('\n');
+
+const routedRouter = [
+  '## 3. MACHINE ROUTER',
   '',
   '<!-- ANCHOR:smart-routing -->',
   '### Smart Router Pseudocode',
@@ -124,11 +141,11 @@ describe('smart-router static measurement harness', () => {
       'references/typescript/style-guide.md',
       'references/config/json.md',
       'assets/checklists/typescript-checklist.md',
-    ]);
+    ], routedRouter);
     writeSkill(root, 'sk-doc', routedSkill, [
       'references/shared/universal_patterns.md',
       'references/config/json.md',
-    ]);
+    ], routedRouter);
 
     const corpusRows: CorpusRow[] = [
       { id: 'p1', prompt: 'Implement TypeScript support', skill_top_1: 'sk-code' },
@@ -157,7 +174,7 @@ describe('smart-router static measurement harness', () => {
     writeSkill(root, 'sk-code', routedSkill, [
       'references/shared/universal_patterns.md',
       'references/typescript/style-guide.md',
-    ]);
+    ], routedRouter);
 
     const summary = await runMeasurement({
       workspaceRoot: root,
@@ -177,7 +194,7 @@ describe('smart-router static measurement harness', () => {
     writeSkill(root, 'sk-code', routedSkill, [
       'references/shared/universal_patterns.md',
       'references/typescript/style-guide.md',
-    ]);
+    ], routedRouter);
 
     await runMeasurement({
       workspaceRoot: root,

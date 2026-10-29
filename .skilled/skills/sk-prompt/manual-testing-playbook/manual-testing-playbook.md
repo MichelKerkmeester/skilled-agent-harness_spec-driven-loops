@@ -1,7 +1,7 @@
 ---
 title: "sk-prompt: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the sk-prompt skill."
-version: 2.3.2.0
+version: 2.3.3.0
 ---
 
 # sk-prompt: Manual Testing Playbook
@@ -31,7 +31,7 @@ Canonical package artifacts:
 
 This playbook provides 28 deterministic scenarios across 7 categories validating the `sk-prompt` skill surface and its escalation agent `@prompt-improver`. Each feature keeps its original ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-05-06): the playbook covers mode detection across 7 command prefixes, INTENT_MODEL keyword scoring, the DEPTH+CLEAR processing loop with phase exit gates, CLEAR five-dimension scoring with floors, framework selection across 7 frameworks, escalation routing to `@prompt-improver`, and on-demand format-guide loading for `$json` and `$yaml`. `sk-prompt` does not ship a `feature-catalog/`, so per-feature files anchor directly to `SKILL.md`, `../ROUTER.md`, `references/`, and `assets/` on disk.
+Coverage note (2026-05-06): the playbook covers mode detection across 7 command prefixes, INTENT_MODEL keyword scoring, the DEPTH+CLEAR processing loop with phase exit gates, CLEAR five-dimension scoring with floors, framework selection across 7 frameworks, escalation routing to `@prompt-improver`, and on-demand format-guide loading for `$json` and `$yaml`. No scenario drives the CLI fast-path card (`assets/cli-prompt-quality-card.md`) or the `CLI_FAST_PATH` intent, so a regression in either one stays uncovered here. `sk-prompt` does not ship a `feature-catalog/`, so per-feature files anchor directly to `SKILL.md`, `../ROUTER.md`, `references/`, and `assets/` on disk.
 
 ### Realistic Test Model
 
@@ -90,7 +90,7 @@ Coverage note (2026-05-06): the playbook covers mode detection across 7 command 
 ### Inputs Required
 
 1. `manual-testing-playbook.md`
-2. Referenced per-feature files under `manual-testing-playbook/NN__category_name/`
+2. Referenced per-feature files under `manual-testing-playbook/<category-name>/`
 3. Scenario execution evidence (per §3 Global Evidence Requirements)
 4. Feature-to-scenario coverage map (§15 Feature Cross-Reference Index)
 5. Triage notes for all non-pass outcomes
@@ -240,7 +240,7 @@ Prompt: `$short improve and refine my prompt; verify the prefix overrides keywor
 
 Mode picked: $short (prefix wins). Desired outcome: 3-round enhancement, not 10.
 
-Desired user-visible outcome: Enhanced prompt + transparency report stating "Mode prefix detected: $short; keyword scoring suppressed".
+Desired user-visible outcome: Enhanced prompt + transparency report stating "Mode prefix detected: $short; intent scores do not affect selection".
 
 #### Test Execution
 
@@ -294,7 +294,7 @@ Verify that when the primary and secondary intent scores differ by 1 or less, th
 
 #### Scenario Contract
 
-Prompt: `Improve this framework-comparison prompt; verify near-tied TEXT_ENHANCE and FRAMEWORK intents load a deduplicated union of resources.`
+Prompt: `Improve this prompt against a framework and its scoring; verify both near-tied intents load a deduplicated union of resources.`
 
 Both intents loaded: yes. Desired outcome: union of TEXT_ENHANCE and FRAMEWORK resources, deduplicated.
 
@@ -312,7 +312,7 @@ Verify that a zero-keyword-score prompt falls back to TEXT_ENHANCE and surfaces 
 
 #### Scenario Contract
 
-Prompt: `Run sk-prompt on plain prose with no intent keywords; verify it defaults to TEXT_ENHANCE and surfaces UNKNOWN_FALLBACK_CHECKLIST.`
+Prompt: `Route a plain draft that carries no intent keyword; verify the default intent and the 4-item checklist surface before work proceeds.`
 
 Default chosen: TEXT_ENHANCE. Disambiguation checklist surfaced: yes.
 
@@ -524,9 +524,9 @@ Verify that complexity scoring routes a request to the correct framework: low co
 
 Prompt: `Improve my customer-support response prompt; verify framework selection evaluates complexity, chooses the right family, and returns score plus rationale.`
 
-Matrix alignment: 3/3. Desired outcome: framework family matches complexity bucket.
+Matrix alignment: 1/1 on the primary prompt, with an optional second variant. Desired outcome: framework family matches complexity bucket.
 
-Desired user-visible outcome: Three transparency reports each naming the selected framework and the complexity score that drove the choice.
+Desired user-visible outcome: One transparency report from the primary prompt, and a second from the optional low-complexity variant, each naming the selected framework and the complexity score that drove the choice.
 
 #### Test Execution
 
@@ -542,9 +542,9 @@ Verify that when a user explicitly names a framework in their request (for examp
 
 Prompt: `Apply CRAFT to my technical-spec authoring prompt; verify it overrides automatic framework routing and logs the user-named override.`
 
-User override honored: yes. Desired outcome: COSTAR selected; override logged in rationale.
+User override honored: yes. Desired outcome: CRAFT selected; override logged in rationale.
 
-Desired user-visible outcome: Transparency report containing `Framework: COSTAR (user-named, complexity-routing override)`.
+Desired user-visible outcome: Transparency report containing `Framework: CRAFT (user-named, complexity-routing override)`.
 
 #### Test Execution
 
@@ -618,9 +618,9 @@ Verify that any of (complexity >= 7, compliance constraints, multi-stakeholder a
 
 Prompt: `Run sk-prompt on a HIPAA-bound, high-complexity prompt. Verify it escalates to @prompt-improver and the routing decision names the reason. Return the escalation payload.`
 
-Escalation count: 4/4. Desired outcome: all four trigger deep path.
+Escalation count: 1/1 on the primary prompt, with an optional second variant. Desired outcome: the compliance trigger reaches the deep path.
 
-Desired user-visible outcome: Four routing decisions logged as `Escalation: @prompt-improver (<trigger reason>)`.
+Desired user-visible outcome: The routing decision logged as `Escalation: @prompt-improver (<trigger reason>)`, plus the `@prompt-improver` input payload.
 
 #### Test Execution
 
@@ -676,9 +676,9 @@ Verify that `$json`, `$yaml`, and default markdown modes deliver enhanced prompt
 
 Prompt: `$json improve my API request prompt; verify the enhanced prompt is valid JSON with format-specific keys, not markdown sections.`
 
-Format compliance: 3/3. Desired outcome: format-correct enhanced prompts.
+Format compliance: 1/1 on `$json`, with an optional `$yaml` variant. Desired outcome: format-correct enhanced prompts.
 
-Desired user-visible outcome: Three enhanced prompts that parse as valid JSON, YAML, and Markdown respectively.
+Desired user-visible outcome: A `$json` enhanced prompt that parses as valid JSON, and an optional `$yaml` variant that parses as YAML.
 
 #### Test Execution
 
@@ -688,15 +688,15 @@ Desired user-visible outcome: Three enhanced prompts that parse as valid JSON, Y
 
 #### Description
 
-Verify that `assets/format-guide-json.md`, `format-guide-yaml.md`, `format-guide-markdown.md` load only when both the format-mode prefix is set and the ON_DEMAND keyword is matched in the request.
+Verify that a format-mode prefix loads its matching format guide (`$yaml` loads `assets/format-guide-yaml.md`), and that the ON_DEMAND keyword adds the other format guides and the CLI card.
 
 #### Scenario Contract
 
 Prompt: `$yaml improve my CI/CD config prompt; verify YAML guide loading appears in the trace and the output uses YAML structure.`
 
-Conditional load: yes. Desired outcome: token-efficient resource loading.
+Conditional load: only the other guides wait for ON_DEMAND. Desired outcome: token-efficient resource loading.
 
-Desired user-visible outcome: Routing trace listing `format-guide-json.md` only on the second run.
+Desired user-visible outcome: Routing trace listing `assets/format-guide-yaml.md` for the `$yaml` request, with the other format guides added only when an on-demand keyword is present.
 
 #### Test Execution
 

@@ -19,7 +19,7 @@ trigger_phrases:
   - "repo rule"
   - "frontmatter contract"
   - "document diff"
-version: 2.3.7.0
+version: 2.3.8.0
 ---
 
 # sk-doc
@@ -198,7 +198,7 @@ The skill ships the checks that prove a document is ready.
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the mode rules |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions and the mode rules |
 | [`ROUTER.md`](./ROUTER.md) | Stage-two surface router: authoring intent to the exact leaf resources the selected mode loads |
 | [`shared/references/quick-reference.md`](shared/references/quick-reference.md) | One-page command and gate cheat sheet |
 | [`sk-create-with-human-voice/references/hvr-rules.md`](sk-create-with-human-voice/references/hvr-rules.md) | Human Voice Rules, the writing standard all output must pass |

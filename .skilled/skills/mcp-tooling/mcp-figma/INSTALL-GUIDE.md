@@ -1,7 +1,7 @@
 ---
 title: "mcp-figma Installation Guide"
 description: "Installation and verification of the silships figma-ds-cli binary that drives Figma Desktop from the terminal, plus the safe MCP setup."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # mcp-figma Installation Guide
@@ -399,7 +399,8 @@ See `references/troubleshooting.md` for the full symptom, cause and fix detail, 
 | Document | Location | Purpose |
 | -------- | -------- | ------- |
 | README | `.skilled/skills/mcp-tooling/mcp-figma/README.md` | Human orientation and quick start |
-| SKILL.md | `.skilled/skills/mcp-tooling/mcp-figma/SKILL.md` | Runtime instructions and routing |
+| SKILL.md | `.skilled/skills/mcp-tooling/mcp-figma/SKILL.md` | Runtime instructions; the machine router is in `ROUTER.md` |
+| ROUTER.md | `.skilled/skills/mcp-tooling/mcp-figma/ROUTER.md` | Machine router: intent map, resource map and loading levels |
 | CLI Reference | `.skilled/skills/mcp-tooling/mcp-figma/references/figma-cli-reference.md` | Binary identity, daemon, connect modes |
 | Tool Surface | `.skilled/skills/mcp-tooling/mcp-figma/references/tool-surface.md` | Read-only, mutating and destructive taxonomy |
 | MCP Wiring | `.skilled/skills/mcp-tooling/mcp-figma/references/mcp-wiring.md` | Optional Framelink MCP through Code Mode |

@@ -1,7 +1,7 @@
 ---
 title: "sk-code: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-code skill."
-version: 1.5.14.0
+version: 1.5.15.0
 ---
 
 # sk-code: Manual Testing Playbook
@@ -36,7 +36,7 @@ Canonical package artifacts:
 
 This playbook provides deterministic operator scenarios validating the `sk-code` skill surface, plus one `compiled-routing/` category that is excluded as routing-gold (see the corpus manifest). Each feature keeps a stable ID (numbered `{PREFIX}-NNN` for legacy categories, or a descriptive kebab-slug for newer non-numbered categories) and links to a dedicated feature file with the full execution contract. §16 FEATURE CATALOG CROSS-REFERENCE INDEX carries the authoritative per-scenario listing, the feature-catalog entry each scenario belongs to, and the scenario counts the validator derives from the walked tree.
 
-Coverage note (2026-05-04, with the CI and `/doctor:ci` bullets added 2026-10-25): the playbook covers sk-code's two-axis routing (Code Surface → Intent → Resource Loading) at SKILL.md head-of-main. It exercises:
+Coverage note (2026-05-04, with the CI and `/doctor:ci` bullets added 2026-10-25): the playbook covers sk-code's two-axis routing (Code Surface → Intent → Resource Loading) at ROUTER.md head-of-main. It exercises:
 - SKILLED surface detection (CWD or target path under `.skilled/`).
 - UNKNOWN fallback (Go / Swift / React Native markers — disambiguation expected).
 - SKILLED language sub-detection (JavaScript, TypeScript, Python, Shell, Rust, Config) with correct sub-language reference loading, LS-005 and LS-006 covering the JavaScript and Rust rows.

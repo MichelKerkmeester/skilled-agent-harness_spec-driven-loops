@@ -130,8 +130,14 @@ function hasOnDemandSignal(record: ComplianceRecord): boolean {
     || record.allowedResources.some((resource) => resource.toLowerCase().startsWith('on_demand:'));
 }
 
+// A compliant baseline run reads the instruction file and, when the skill ships one, the router
+// that sits beside it, so both count as an expected baseline read rather than extra context.
+const BASELINE_SKILL_FILES = ['SKILL.md', 'ROUTER.md'];
+
 function isBaselineSkillRead(resourcePath: string): boolean {
-  return resourcePath === 'SKILL.md' || resourcePath.endsWith('/SKILL.md');
+  return BASELINE_SKILL_FILES.some(
+    (fileName) => resourcePath === fileName || resourcePath.endsWith(`/${fileName}`),
+  );
 }
 
 function collapsePromptRecords(records: readonly ComplianceRecord[]): ComplianceRecord[] {

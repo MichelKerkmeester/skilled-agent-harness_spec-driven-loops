@@ -1,7 +1,7 @@
 ---
 title: "sk-code-quality: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review protocol, execution expectations and per-feature validation files for the sk-code-quality skill."
-version: 1.1.8.0
+version: 1.1.9.0
 ---
 
 # sk-code-quality: Manual Testing Playbook
@@ -27,7 +27,7 @@ A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and 
 
 This playbook provides a derived census of deterministic scenarios across categories validating the `sk-code-quality` skill surface. The operator validator computes those counts from the walked tree, so the root index in section 9 is the only list to maintain. Each scenario keeps its original ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note: `sk-code-quality` routes primarily by target path, through the checklist map in `SKILL.md` section 2, and its discoverability from the parent hub is the hub `quality` signal. The corpus covers the runner's five gate values, its ten check states and its error codes, its CLI, config discovery and trust boundary, the outside-skill checklist rows, the rule-override and hygiene paths, the dist adapter, the ceiling report, the legacy write-time adapter, the manifest suggestion lane and the quality doctor. Two scenarios check routing rather than the runner: the prompt-intent `QUALITY` projection and the restraint prompt. The corpus does not cover the layer probe's `untrusted`, `broken` and `unknown` states, the `quality-config-*.test.cjs` parts of the suite, or the path-keyed checklist families for the SKILLED, agent, command, spec-folder and language rows.
+Coverage note: `sk-code-quality` routes primarily by target path, through the checklist map in `SKILL.md` section 3, and its discoverability from the parent hub is the hub `quality` signal. The corpus covers the runner's five gate values, its ten check states and its error codes, its CLI, config discovery and trust boundary, the outside-skill checklist rows, the rule-override and hygiene paths, the dist adapter, the ceiling report, the legacy write-time adapter, the manifest suggestion lane and the quality doctor. Two scenarios check routing rather than the runner: the prompt-intent `QUALITY` projection and the restraint prompt. The corpus does not cover the layer probe's `untrusted`, `broken` and `unknown` states, the `quality-config-*.test.cjs` parts of the suite, or the path-keyed checklist families for the SKILLED, agent, command, spec-folder and language rows.
 
 ### Realistic Test Model
 

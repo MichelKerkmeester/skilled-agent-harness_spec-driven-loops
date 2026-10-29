@@ -5,7 +5,7 @@ trigger_phrases:
   - "Create a page"
   - "notion_create-a-page"
   - "create a new Notion page"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Create a page (`notion_create-a-page`)
@@ -34,7 +34,7 @@ If the manual is unregistered, the token is unset, or the parent is unshared, Co
 
 | File | Layer | Role |
 |---|---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Shared | Routes page-creation requests to the MCP and states the headless backend selection. |
+| [`../../ROUTER.md`](../../ROUTER.md) | Shared | Routes page-creation requests to the MCP and states the headless backend selection. |
 | [`../../references/mcp-tools.md`](../../references/mcp-tools.md) | Shared | Confirms the tool name, endpoint, parent shape, and API-version pin. |
 
 ### Validation And Tests

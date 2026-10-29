@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface router pattern"
 importance_tier: important
 contextType: implementation
-version: 2.3.13.0
+version: 2.3.14.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -21,6 +21,7 @@ This is sk-doc's second-layer (surface) router, first-class at the hub root as
 `ROUTER.md`. The hub selects a workflow mode in [`hub-router.json`](hub-router.json)
 (sk-create-skill, sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command,
 sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark,
+sk-create-changelog, sk-create-diff, sk-create-repo-rule, sk-create-frontmatter,
 sk-create-goal, sk-create-with-human-voice, or sk-create-quality-control);
 this doc maps a request's documentation/authoring intent to the exact packet-local
 leaf resources that mode should load. Every path is either packet-qualified
@@ -72,19 +73,11 @@ emits leaf paths, and this router never re-decides the mode.
   being expressed as the union of the two above, because the router keeps only
   intents within one point of the top score: a paired request that also names
   the agent would otherwise drop the command half.
-- **flowchart leaves** — the simple-workflow and decision-tree ASCII patterns a
-  request to diagram a flow as ASCII / text characters loads. Fired by
-  "flowchart / ascii / text diagram / decision tree / process diagram" requests.
-- **chart leaves.** The chart catalog, the colour systems and the template
-  contract a request to plot data as a standalone HTML chart loads. Fired by
-  "create a chart / plot the data / data visualization / treemap / waterfall
-  chart / heatmap / box plot / histogram" requests. The catalog is the
-  always-loaded leaf, because turning the comparison a reader needs into one
-  chart form comes before any colour or markup decision. The form names claimed
-  that packet does claim, `bar chart`, `line chart`, `scatter plot`, `radar
-  chart`, `gantt chart` and `org chart`, stay with it, and only the
-  data-qualified `bar chart of`, `line chart of` and `scatter plot of` cross
-  the boundary.
+- **diagram and chart leaves belong to the `sk-design` hub.** ASCII flowchart,
+  decision-tree and standalone HTML chart authoring is `sk-design-diagram` and
+  `sk-design-chart` work, and this router declares no intent for it: `/design:diagram`
+  and `/design:chart` are the entry points, so "flowchart", "ascii", "process diagram",
+  "create a chart" and "plot the data" reach no key in the two maps below.
 - **human-voice leaves** — the scope gate, the scoring method and the Human
   Voice Rules standard a request to apply or score that standard loads. Fired
   by "hvr / human voice rules / apply human voice / rewrite in human voice /
@@ -410,7 +403,7 @@ RESOURCE_MAP = {
 
 ## 5. MACHINE ROUTER
 
-The hub's routing prose, moved here from `SKILL.md` so the skill body keeps only the pointer. It sits last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 3 stays the only replay source.
+The hub's detailed routing prose, moved here from `SKILL.md` so the skill body keeps only a short routing summary and a pointer to this file. It sits last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 3 stays the only replay source.
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash

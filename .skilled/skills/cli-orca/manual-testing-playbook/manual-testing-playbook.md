@@ -1,7 +1,7 @@
 ---
 title: "cli-orca: Manual Testing Playbook"
 description: "Operator-facing manual validation for cli-orca routing, handoffs, runtime recovery and ownership boundaries."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # cli-orca: Manual Testing Playbook
@@ -15,7 +15,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 ## 1. OVERVIEW
 
-The walked tree holds 8 deterministic scenarios across 4 categories, covering advisor routing, handoff receipts, runtime recovery and ownership boundaries. Coverage note: automated tests and the routing contract in `SKILL.md` remain authoritative for exhaustive behavior. These scenarios select operator-visible invariants that can be reproduced with stable prompts and focused existing commands. They do not replace the skill's full validation.
+The walked tree holds 8 deterministic scenarios across 4 categories, covering advisor routing, handoff receipts, runtime recovery and ownership boundaries. Coverage note: automated tests and the routing contract in `ROUTER.md` remain authoritative for exhaustive behavior. These scenarios select operator-visible invariants that can be reproduced with stable prompts and focused existing commands. They do not replace the skill's full validation.
 
 ### Realistic Test Model
 
@@ -186,7 +186,7 @@ The anchors below are structural references and executable surfaces. Focused sce
 | Coverage Area | Automated Or Structural Anchor | Scenario IDs |
 |---|---|---|
 | Advisor routing | [Advisor entry point](../../system-skill-advisor/runtime/scripts/skill_advisor.py) | `ORCA-001`, `ORCA-002` |
-| Routing contract | [cli-orca router contract](../SKILL.md) | `ORCA-001`, `ORCA-002`, `ORCA-003` |
+| Routing contract | [cli-orca router contract](../ROUTER.md#3-machine-router) | `ORCA-001`, `ORCA-002`, `ORCA-003` |
 | Executable resolution and terminal replay | [Session and runtime reference](../references/session-and-runtime.md) | `ORCA-004`, `ORCA-005` |
 | Recovery taxonomy | [Troubleshooting reference](../references/troubleshooting.md) | `ORCA-005`, `ORCA-006` |
 | Mutation and browser boundaries | [Mutation and browser boundaries reference](../references/mutation-and-browser-boundaries.md) | `ORCA-007` |

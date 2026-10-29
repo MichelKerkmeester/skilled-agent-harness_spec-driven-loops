@@ -10,7 +10,7 @@ expected_leaf_resources:
   - workflow_mode: sk-create-changelog
     leaf_resource_id: assets/changelog-template.md
 stage: holdout
-version: 2.1.0.8
+version: 2.1.1.0
 ---
 
 # SD-H04: CHANGELOG Held-Out (decontaminated phrasing)
@@ -66,7 +66,8 @@ This is a prompt-only holdout scenario. It carries no command sequence or captur
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` | The sk-doc router under test |
+| `../../ROUTER.md` | The sk-doc router under test: section 3 intent maps and loading levels |
+| `../../SKILL.md` | Runtime prose and the pointer to `ROUTER.md` |
 | `../../sk-create-skill/scripts/validate-playbook-topology.cjs` | Routing-gold contract gate |
 
 ---

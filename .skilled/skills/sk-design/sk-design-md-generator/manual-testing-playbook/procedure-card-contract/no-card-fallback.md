@@ -1,7 +1,7 @@
 ---
 title: "PROCCARD-002 -- md-generator no-card fallback"
 description: "This scenario validates the exact md-generator no-procedure fallback line and baseline pipeline continuation."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # PROCCARD-002 -- md-generator no-card fallback
@@ -41,7 +41,8 @@ md-generator's fallback is pipeline-specific. It must not be rewritten as the Re
 | File | Role |
 |---|---|
 | `../manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../SKILL.md` | Exact no-card fallback and phase detection |
+| `../../SKILL.md` | Exact no-card fallback |
+| `../../ROUTER.md` | §3 MACHINE ROUTER (phase detection and resource loading levels) |
 
 ---
 

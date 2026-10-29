@@ -5,7 +5,7 @@ trigger_phrases:
   - "notion async task poll"
   - "GAP-004"
   - "poll a notion async task"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Async-Task Polling (direct API -- GAP-004)
@@ -40,7 +40,7 @@ Fallback: if no task id is available (no local trigger, and the UI action was no
 
 | File | Layer | Role |
 |---|---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Shared | Routes the 5 API-gap capabilities to direct REST calls instead of an MCP tool. |
+| [`../../ROUTER.md`](../../ROUTER.md) | Shared | Routes the 5 API-gap capabilities to direct REST calls instead of an MCP tool. |
 | [`../../references/api-gap-tools.md`](../../references/api-gap-tools.md) | Shared | Confirms the endpoint via the API index, flags the version pin and status schema `VERIFY`, and gives a runnable curl example. |
 
 ### Validation And Tests

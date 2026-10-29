@@ -1,7 +1,7 @@
 ---
 title: "IMP-002 -- Mermaid import"
 description: "This scenario validates Mermaid import for `IMP-002`. It focuses on extracting .mmd, .mermaid, or fenced-Mermaid sources via mermaid_extract.py, redrawing without copying the renderer layout or theme, and shipping a fidelity ledger."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # IMP-002 -- Mermaid import
@@ -80,7 +80,7 @@ Run the multi-block variant: invoke `mermaid_extract.py docs/multi.md --diagram 
 | File | Role |
 |---|---|
 | [`manual-testing-playbook.md`](../manual-testing-playbook.md) | Root directory page and scenario summary |
-| `../../feature-catalog/import-export/mermaid-import.md` | Feature-catalog source describing the implementation contract (authored next) |
+| [`../../feature-catalog/import-export/mermaid-import.md`](../../feature-catalog/import-export/mermaid-import.md) | Feature-catalog source describing the implementation contract |
 
 ### Implementation And Test Anchors
 

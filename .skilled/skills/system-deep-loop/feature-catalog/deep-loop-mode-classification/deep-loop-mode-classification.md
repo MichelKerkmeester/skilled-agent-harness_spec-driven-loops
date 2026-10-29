@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-deep-loop three-tier discriminator"
   - "workflowMode runtimeLoopType backendKind"
   - "system-deep-loop smart routing"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Registry-Driven Deep-Loop Mode Classification (system-deep-loop)
@@ -37,9 +37,9 @@ The advisor routes any deep-loop query to the single identity `system-deep-loop`
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/system-deep-loop/SKILL.md` | Shared | States the registry-driven classification contract and the three-tier discriminator. |
+| `.skilled/skills/system-deep-loop/SKILL.md` | Shared | States the registry-driven classification contract and names the three discriminator keys as terms. |
 | `.skilled/skills/system-deep-loop/mode-registry.json` | Shared | Declarative registry for all three `workflowMode` packets. |
-| `.skilled/skills/system-deep-loop/ROUTER.md` | Shared | Second-layer intent-to-leaf mapping consumed by router-replay benchmarking. |
+| `.skilled/skills/system-deep-loop/ROUTER.md` | Shared | Second-layer intent-to-leaf mapping consumed by router-replay benchmarking, and the three-tier discriminator section with its never-infer rule. |
 
 ### Validation And Tests
 

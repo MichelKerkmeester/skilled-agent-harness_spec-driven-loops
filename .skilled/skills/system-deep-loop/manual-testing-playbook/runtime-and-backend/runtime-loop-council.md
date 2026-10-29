@@ -7,7 +7,7 @@ description: "Verify the ai-council mode resolves to backendKind runtime-loop-ty
 expected_intent: ai-council
 expected_workflow_mode: ai-council
 expected_leaf_resources: []
-version: "1.2.0.0"
+version: "1.2.1.0"
 ---
 
 # RB-002: Runtime Loop Council Backend
@@ -50,7 +50,7 @@ For an AI council deliberation, resolve the mode through the registry and state 
 ### Preconditions
 
 1. `.skilled/skills/system-deep-loop/mode-registry.json` contains the `ai-council` mode entry.
-2. `.skilled/skills/system-deep-loop/SKILL.md` contains the three-tier discriminator section.
+2. `.skilled/skills/system-deep-loop/ROUTER.md` contains the three-tier discriminator section.
 
 ### Prompt
 
@@ -89,7 +89,7 @@ For an AI council deliberation, resolve the mode through the registry and state 
 
 ## 4. SOURCE FILES
 
-- `.skilled/skills/system-deep-loop/SKILL.md` - three-tier discriminator and council mapping.
+- `.skilled/skills/system-deep-loop/ROUTER.md` - three-tier discriminator and council mapping.
 - `.skilled/skills/system-deep-loop/mode-registry.json` - `ai-council` backend fields.
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 

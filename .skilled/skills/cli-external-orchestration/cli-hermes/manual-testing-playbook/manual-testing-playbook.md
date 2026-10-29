@@ -1,7 +1,7 @@
 ---
 title: "cli-hermes: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance, and per-scenario validation files for the cli-hermes skill."
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # cli-hermes: Manual Testing Playbook
@@ -315,7 +315,8 @@ The `cli-hermes` skill is an orchestrator wrapper around the Hermes binary and t
 
 | Test Surface | Coverage | Playbook Overlap |
 |---|---|---|
-| `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md` | Routing, self-invocation guard, dispatch shape, the closed roster, and the hard rules | `HERMES-001`, `HERMES-003`, `HERMES-004`, `HERMES-007`, `HERMES-016`, `HERMES-018` |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md` | Dispatch shape, the closed roster, and the hard rules |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/ROUTER.md` | Machine router: intent map, resource map, loading levels, and the self-invocation guard | `HERMES-001`, `HERMES-003`, `HERMES-004`, `HERMES-007`, `HERMES-016`, `HERMES-018` |
 | `.skilled/skills/cli-external-orchestration/cli-hermes/references/cli-reference.md` | Flags, headless forms, exit codes, the non-empty-stdout requirement, approvals, isolation, environment | `HERMES-001`, `HERMES-002`, `HERMES-003`, `HERMES-011`, `HERMES-012`, `HERMES-013`, `HERMES-021`, `HERMES-022` |
 | `.skilled/skills/cli-external-orchestration/cli-hermes/references/hermes-tools.md` | Toolsets, repo-local skills, project plugins, the `.hermes/` write guard | `HERMES-007`, `HERMES-016`, `HERMES-017`, `HERMES-019` |
 | `.skilled/skills/cli-external-orchestration/cli-hermes/references/mcp-policy.md` | Operator MCP steps and deny-by-default per tool | `HERMES-019` |

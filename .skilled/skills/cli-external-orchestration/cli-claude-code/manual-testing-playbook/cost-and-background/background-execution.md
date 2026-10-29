@@ -1,7 +1,7 @@
 ---
 title: "CC-027 -- Background execution"
 description: "This scenario validates background execution for `CC-027`. It focuses on confirming a Claude Code dispatch can run in the background and the parent shell can collect output without blocking."
-version: 1.5.0.15
+version: 1.5.1.0
 ---
 
 # CC-027 -- Background execution
@@ -67,7 +67,7 @@ For full parallel validation, fan out 3 backgrounded dispatches with distinct pr
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` (line 257) | Background execution example with `&` |
+| `../../references/integration-patterns.md` | §5 Background Execution carries the `&`, `</dev/null` and `wait` example |
 | `../../references/integration-patterns.md` | Cross-AI orchestration patterns including parallel dispatch |
 
 ---

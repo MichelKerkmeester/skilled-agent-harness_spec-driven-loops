@@ -4,7 +4,7 @@ description: "Author canonical feature-inventory packages, a root catalog plus o
 trigger_phrases:
   - "feature catalog"
   - "feature inventory"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # create-feature-catalog
@@ -140,7 +140,8 @@ A: No. `validate_document.py` checks structure and the leaf's Validation And Tes
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Authoritative packet contract, routing and validation rules |
+| [`SKILL.md`](./SKILL.md) | Authoritative packet contract and validation rules |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`references/README.md`](./references/README.md) | Reference route-map |
 | [`references/examples.md`](./references/examples.md) | Annotated walkthrough of a shipped feature catalog |
 | [`references/common-pitfalls.md`](./references/common-pitfalls.md) | Recurring catalog defects with worked fixes |

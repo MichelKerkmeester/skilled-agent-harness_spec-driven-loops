@@ -1,7 +1,7 @@
 ---
 title: "482 -- Authoring card sync guard"
 description: "This scenario validates that the card sync guard passes the changed tree and fails a disposable copy whose card is missing."
-version: 1.0.2.0
+version: 1.0.3.0
 id: template-authoring-authoring-card-sync-guard
 ---
 
@@ -21,15 +21,15 @@ Four surfaces describe one authoring path. A reader who edits one surface alone 
 
 Operators run the guard twice, once on the tree and once on a copy without the card.
 
-- Objective: Prove that the guard prints ten `PASS` lines and `CARD SYNC OK` on the tree, and `FAIL card-exists` and `FAIL card-names-checklist` with `CARD SYNC FAILED` on the copy.
+- Objective: Prove that the guard prints eleven `PASS` lines and `CARD SYNC OK` on the tree, and `FAIL card-exists` and `FAIL card-names-checklist` with `CARD SYNC FAILED` on the copy.
 - Playbook ID: 482.
 - Real user request: `Confirm the authoring card, the router, the leaf inventory and the checklist agree, then prove the guard notices a missing card.`
 - Prompt: `Confirm the authoring card, the router, the leaf inventory and the checklist agree, then prove the guard notices a missing card.`
-- Preconditions: A checkout with bash, rsync, `jq`, `rg` and `awk` on PATH, and `runtime/cli/spec/check-card-sync.sh` and the card present. The scenario needs no network.
+- Preconditions: A checkout with bash, rsync, `jq`, `rg` and `awk` on PATH, and `runtime/cli/spec/check-card-sync.sh`, `ROUTER.md`, `leaf-manifest.json`, `leaf-aliases.json`, the card and the authoring checklist present. The scenario needs no network.
 - Expected execution process: Run the guard on the tree, copy the skill without `node_modules` into a scratch folder, run the guard on the copy, delete the card from the copy, run the guard again, then remove the scratch folder.
-- Expected signals: The tree run prints ten `PASS` lines, then `CARD SYNC OK`, and exits 0. The copy run prints `CARD SYNC OK` before the card is deleted. The broken run exits 1, prints one `FAIL card-exists` line and one `FAIL card-names-checklist` line, since a missing card also names no checklist, then `CARD SYNC FAILED`.
+- Expected signals: The tree run prints eleven `PASS` lines, then `CARD SYNC OK`, and exits 0. The copy run prints `CARD SYNC OK` before the card is deleted. The broken run exits 1, prints one `FAIL card-exists` line and one `FAIL card-names-checklist` line, since a missing card also names no checklist, then `CARD SYNC FAILED`.
 - Desired user-visible outcome: The operator sees the four surfaces agree and the guard refuse a copy that lost one of them.
-- Pass/fail: PASS if the tree run prints ten `PASS` lines and `CARD SYNC OK`, and the broken run exits 1 with `FAIL card-exists`, `FAIL card-names-checklist` and `CARD SYNC FAILED`. FAIL if either run returns the other verdict.
+- Pass/fail: PASS if the tree run prints eleven `PASS` lines and `CARD SYNC OK`, and the broken run exits 1 with `FAIL card-exists`, `FAIL card-names-checklist` and `CARD SYNC FAILED`. FAIL if either run returns the other verdict.
 
 ---
 
@@ -86,7 +86,7 @@ test ! -d "$OUT" && echo "cleanup=ok"
 
 ### Expected
 
-Step 1 prints `clean_exit=0`, then `10`, then `CARD SYNC OK`. Step 2 prints `copy_exit=0`, then `CARD SYNC OK`. Step 3 prints `broken_exit=1`, then `1`, then `2`, then `CARD SYNC FAILED`. Step 4 prints `cleanup=ok`.
+Step 1 prints `clean_exit=0`, then `11`, then `CARD SYNC OK`. Step 2 prints `copy_exit=0`, then `CARD SYNC OK`. Step 3 prints `broken_exit=1`, then `1`, then `2`, then `CARD SYNC FAILED`. Step 4 prints `cleanup=ok`.
 
 ### Evidence
 
@@ -97,7 +97,7 @@ Step 1 prints `clean_exit=0`, then `10`, then `CARD SYNC OK`. Step 2 prints `cop
 
 ### Pass / Fail
 
-- **Pass**: The tree run exits 0 with ten `PASS` lines and `CARD SYNC OK`, and the broken run exits 1 with one `FAIL card-exists` line, two `FAIL` lines in all and `CARD SYNC FAILED`.
+- **Pass**: The tree run exits 0 with eleven `PASS` lines and `CARD SYNC OK`, and the broken run exits 1 with one `FAIL card-exists` line, two `FAIL` lines in all and `CARD SYNC FAILED`.
 - **Fail**: A pass count differs, the broken run passes, or a failure line names a check other than `card-exists` or `card-names-checklist`.
 
 ### Failure Triage

@@ -1,7 +1,7 @@
 ---
 title: "CU-005 -- Ask mode (read-only)"
 description: "This scenario validates Cursor's read-only --mode ask for `CU-005`. It focuses on confirming Q&A/explanation dispatches answer accurately against real repo content without any file writes."
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # CU-005 -- Ask mode (read-only)
@@ -16,7 +16,7 @@ This scenario validates `--mode ask` for `CU-005`. It focuses on confirming Q&A/
 
 ### Why This Matters
 
-`--mode ask` is Cursor's dedicated read-only Q&A surface, distinct from `--mode plan`'s multi-step planning focus. SKILL.md §3 "Task Type Routing" recommends `--mode ask` for "Read-only exploration / architecture questions". This scenario proves the mode both refuses to write AND produces a correct, grounded answer - not just an empty read-only no-op.
+`--mode ask` is Cursor's dedicated read-only Q&A surface, distinct from `--mode plan`'s multi-step planning focus. The SKILL.md §3 task-type to execution-mode table recommends `--mode ask` for "Read-only exploration / architecture questions". This scenario proves the mode both refuses to write AND produces a correct, grounded answer - not just an empty read-only no-op.
 
 ---
 

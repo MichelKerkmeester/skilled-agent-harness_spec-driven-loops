@@ -3,7 +3,7 @@ title: "SKD-012 -- Type scale unit discipline"
 description: "This scenario validates Type scale unit discipline for `SKD-012`. It focuses on confirm an em-based type size is flagged and converted, without breaking the measure exception."
 stage: routing
 id: "SKD-012"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # SKD-012 -- Type scale unit discipline
@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `SKD-012` and confirm th
 
 1. `bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "set the headline to 2.5em" --threshold 0.5`
 2. `agent: issue the same prompt in a fresh session`
-3. `bash: rg -n "em. is correct .here" .skilled/skills/sk-design/SKILL.md`
+3. `bash: rg -n "em. is correct .here" .skilled/skills/sk-design/sk-design-fundamentals/SKILL.md`
 
 ### Expected Signals
 
@@ -71,7 +71,7 @@ Read the line-height and line length subsection in `SKILL.md` Section 3; over-co
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SKD-012 | Type scale unit discipline | confirm an em-based type size is flagged and converted, without breaking the measure exception | `Set the headline to 2.5em` | 1. `bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "set the headline to 2.5em" --threshold 0.5` -> 2. `agent: issue the same prompt in a fresh session` -> 3. `bash: rg -n "em. is correct .here" .skilled/skills/sk-design/SKILL.md` | The reply names the `em` rule, offers a scale value in px or rem, and does not convert `max-width` measure. | The agent reply, and the grep proving the measure exception is documented alongside the rule. | PASS if the reply rejects `em` for the type scale, offers a value from the scale, and preserves the measure exception if measure is mentioned; FAIL if the reply accepts `2.5em`, or converts the line-length `max-width` away from `em` | Read the line-height and line length subsection in `SKILL.md` Section 3; over-correcting the measure means the exception was skipped. |
+| SKD-012 | Type scale unit discipline | confirm an em-based type size is flagged and converted, without breaking the measure exception | `Set the headline to 2.5em` | 1. `bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "set the headline to 2.5em" --threshold 0.5` -> 2. `agent: issue the same prompt in a fresh session` -> 3. `bash: rg -n "em. is correct .here" .skilled/skills/sk-design/sk-design-fundamentals/SKILL.md` | The reply names the `em` rule, offers a scale value in px or rem, and does not convert `max-width` measure. | The agent reply, and the grep proving the measure exception is documented alongside the rule. | PASS if the reply rejects `em` for the type scale, offers a value from the scale, and preserves the measure exception if measure is mentioned; FAIL if the reply accepts `2.5em`, or converts the line-length `max-width` away from `em` | Read the line-height and line length subsection in `SKILL.md` Section 3; over-correcting the measure means the exception was skipped. |
 
 ---
 

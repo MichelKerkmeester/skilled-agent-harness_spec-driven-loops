@@ -6,7 +6,7 @@ trigger_phrases:
   - "cupt example scripts"
   - "task queue workflow"
   - "time tracking script"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # mcp-click-up - Example Scripts
@@ -325,7 +325,8 @@ sudo apt install jq
 ### Skill Documentation
 
 **mcp-click-up:**
-- [`../SKILL.md`](../SKILL.md): Routing rules and agent invariants
+- [`../SKILL.md`](../SKILL.md): Agent invariants and the two-path routing prose
+- [`../ROUTER.md#3-machine-router`](../ROUTER.md#3-machine-router): Machine router: intent map, resource map and loading levels
 - [`../INSTALL-GUIDE.md`](../INSTALL-GUIDE.md): Install and authentication
 - [`../references/cupt-commands.md`](../references/cupt-commands.md): Full cupt command reference
 

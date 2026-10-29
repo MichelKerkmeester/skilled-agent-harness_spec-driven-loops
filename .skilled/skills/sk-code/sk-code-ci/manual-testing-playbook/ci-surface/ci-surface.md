@@ -10,7 +10,7 @@ expected_resources:
   - references/trigger-and-filter-rules.md
   - references/job-shape-rules.md
   - references/protected-set.md
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # CI workflow standards routing
@@ -21,7 +21,7 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario validates `CI_WORKFLOW` routing. It confirms that the exact prompt below classifies as `CI_WORKFLOW` and loads the four routed references instead of a generic or mismatched resource set. The intent signal and the resource map are read from the `MACHINE ROUTER` section at the end of [`ROUTER.md`](../../ROUTER.md); section 2b carries the prose that names the same four paths.
+This scenario validates `CI_WORKFLOW` routing. It confirms that the exact prompt below classifies as `CI_WORKFLOW` and loads the four routed references instead of a generic or mismatched resource set. The intent signal and the resource map are read from the `MACHINE ROUTER` section at the end of [`ROUTER.md`](../../ROUTER.md); `SKILL.md` section 2b carries the prose that names the same four paths.
 
 ### Why This Matters
 

@@ -5,7 +5,7 @@ trigger_phrases:
   - "Create a data source"
   - "notion_create-a-data-source"
   - "define a new Notion data source schema"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Create a data source (`notion_create-a-data-source`)
@@ -34,7 +34,7 @@ There is no `create-a-database` tool in the official 24-tool catalog — this is
 
 | File | Layer | Role |
 |---|---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Shared | Routes database/data-source ops to the Databases and data sources domain in the mode's operation table. |
+| [`../../ROUTER.md`](../../ROUTER.md) | Shared | Routes database/data-source ops to the Databases and data sources domain in the operation-to-tool table in section 3. |
 | [`../../references/mcp-tools.md`](../../references/mcp-tools.md) | Shared | Confirms the tool name, endpoint, API-version pin, and key inputs (§5 Databases / Data Sources). |
 | [`../../references/database-model.md`](../../references/database-model.md) | Shared | Documents the schema-config example this tool's `properties` input follows, and the property/relation/rollup shapes. |
 

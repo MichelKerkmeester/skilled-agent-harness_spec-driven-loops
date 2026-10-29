@@ -5,7 +5,7 @@ trigger_phrases:
   - "Update a data source"
   - "notion_update-a-data-source"
   - "add or change a column on a Notion data source"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Update a data source (`notion_update-a-data-source`)
@@ -34,7 +34,7 @@ Read the current schema with `retrieve-a-data-source` before editing it, since p
 
 | File | Layer | Role |
 |---|---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Shared | Routes database/data-source ops to the Databases and data sources domain in the mode's operation table. |
+| [`../../ROUTER.md`](../../ROUTER.md) | Shared | Routes database/data-source ops to the Databases and data sources domain in the operation-to-tool table in section 3. |
 | [`../../references/mcp-tools.md`](../../references/mcp-tools.md) | Shared | Confirms the tool name, endpoint, API-version pin, and key inputs (§5 Databases / Data Sources). |
 | [`../../references/database-model.md`](../../references/database-model.md) | Shared | Documents the property/relation/rollup/formula config shapes this tool writes, and the cross-property dependency rules. |
 

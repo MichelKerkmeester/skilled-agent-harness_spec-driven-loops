@@ -5,7 +5,7 @@ trigger_phrases:
   - "github actions workflow standards"
   - "ci workflow rules"
   - "workflow yaml evidence"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # sk-code-ci
@@ -82,6 +82,7 @@ The implement, debug and verify doctrine is symlinked in from `../shared/referen
 | Document | Why to read it |
 |---|---|
 | [SKILL.md](SKILL.md) | The surface contract: when the hub bundles this packet, the reference map and the non-negotiables |
+| [ROUTER.md](ROUTER.md) | Machine router: intent map, resource map and routing pseudocode |
 | [../SKILL.md](../SKILL.md) | The `sk-code` hub that registers this surface and bundles it beside a workflow mode |
 | [../sk-code-review/README.md](../sk-code-review/README.md) | The review mode that applies these rules to a workflow diff |
 | [../sk-code-quality/README.md](../sk-code-quality/README.md) | The quality mode that applies these rules to a workflow being authored |

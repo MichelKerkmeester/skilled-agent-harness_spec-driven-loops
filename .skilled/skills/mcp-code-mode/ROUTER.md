@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-code-mode routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -62,7 +62,7 @@ Keep the resilient mechanics from the canonical router, but do not force keyed s
 
 **Typed leaf projection (fleet routing standard).** mcp-code-mode is a normal, standalone single-mode skill whose sole workflow mode is `mcp-code-mode` (there is no `mode-registry.json`).
 
-Every routable leaf under `references/`, `assets/`, and the manual-testing playbook is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json`. Regenerate it with `generate-leaf-manifest.cjs --write .skilled/skills/mcp-code-mode`, and keep it byte-stable under `--check`.
+Every routable leaf under `references/`, `assets/`, and the manual-testing playbook is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json`. Regenerate it with `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write .skilled/skills/mcp-code-mode`, and keep it byte-stable under `--check`.
 
 `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/naming-convention.md`) to its typed `(mcp-code-mode, leafResourceId)` identity, so a deterministic router replay recovers real typed pairs against the manifest.
 

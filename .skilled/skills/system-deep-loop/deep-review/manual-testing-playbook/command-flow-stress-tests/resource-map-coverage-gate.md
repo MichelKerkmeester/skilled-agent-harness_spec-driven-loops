@@ -1,7 +1,7 @@
 ---
 title: "CP-054 -- Resource-map coverage gate **(SANDBOXED)**"
 description: "Validate that deep-review command flow detects resource-map.md and carries coverage-gate evidence into state and synthesis."
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # CP-054 -- Resource-map coverage gate **(SANDBOXED)**
@@ -100,7 +100,7 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 | File | Lines | Role |
 |---|---:|---|
 | `.skilled/commands/deep/review.md` | 186-188, 238-245 | Review packet outputs and YAML handoff |
-| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | 233-251, 496-503 | Resource-map coverage behavior and report expectations |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | 98-105, 306 | Resource-map coverage behavior and report expectations |
 | `.skilled/agents/deep-review.md` | 245-252, 424-435 | Traceability dimension and pre-delivery verification |
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | — | Root directory page and scenario summary |
 

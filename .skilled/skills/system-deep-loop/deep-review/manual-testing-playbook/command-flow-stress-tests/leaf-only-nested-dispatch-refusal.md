@@ -1,7 +1,7 @@
 ---
 title: "CP-056 -- LEAF-only nested dispatch refusal **(SANDBOXED)**"
 description: "Validate that the @deep-review body refuses nested agent dispatch requests instead of delegating."
-version: 1.11.0.11
+version: 1.11.1.0
 ---
 
 # CP-056 -- LEAF-only nested dispatch refusal **(SANDBOXED)**
@@ -99,7 +99,7 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 | File | Lines | Role |
 |---|---:|---|
 | `.skilled/commands/deep/review.md` | 169-188, 361-365 | Command owns loop dispatch, agent is one iteration |
-| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | 43-61, 90-95 | Command-only loop invocation and LEAF invariant |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | 43-61, 242 | Command-only loop invocation and LEAF invariant |
 | `.skilled/agents/deep-review.md` | 37-48, 388-404 | Illegal nesting hard block and never rules |
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | — | Root directory page and scenario summary |
 

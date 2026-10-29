@@ -7,7 +7,7 @@ description: "Verify the backendKind discriminator stays closed to runtime-loop-
 expected_intent: UNKNOWN
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
-version: "1.3.0.0"
+version: "1.3.1.0"
 ---
 
 # RB-004: Retired Backend Completeness Check
@@ -72,7 +72,7 @@ Step 1 produces exactly one distinct line: `"backendKind": "runtime-loop-type"`.
 
 ### Failure Triage
 
-1. If a second `backendKind` value appears, that is a real architecture change, not a scenario defect: identify the new mode and update this scenario, `discriminator.backendKind`, and any dependent SKILL.md backend-routing rule together rather than silently treating the new value as passing.
+1. If a second `backendKind` value appears, that is a real architecture change, not a scenario defect: identify the new mode and update this scenario, `discriminator.backendKind`, and any dependent ROUTER.md backend-routing rule together rather than silently treating the new value as passing.
 2. If `external-adapter` reappears in `SKILL.md` without a matching registry entry, treat it as stale documentation and remove the reference, or add the registry entry if the backend is genuinely being reactivated.
 3. If the grep commands report zero total `backendKind` matches, verify `mode-registry.json` still parses as valid JSON and has not been truncated.
 
@@ -81,7 +81,7 @@ Step 1 produces exactly one distinct line: `"backendKind": "runtime-loop-type"`.
 ## 4. SOURCE FILES
 
 - `.skilled/skills/system-deep-loop/mode-registry.json` - `discriminator.backendKind` definition and per-mode `backendKind` values.
-- `.skilled/skills/system-deep-loop/SKILL.md` - backend routing rule that must stay consistent with the single-value discriminator.
+- `.skilled/skills/system-deep-loop/ROUTER.md` - backend routing rule that must stay consistent with the single-value discriminator.
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---

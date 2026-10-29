@@ -5,7 +5,7 @@ trigger_phrases:
   - "Search"
   - "notion_search"
   - "search Notion by title"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Search (`notion_search`)
@@ -34,7 +34,7 @@ The operator needs the `notion` manual registered in `.utcp_config.json`, `NOTIO
 
 | File | Layer | Role |
 |---|---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Shared | Routes discovery-by-title requests to the Search domain in the mode's operation table. |
+| [`../../ROUTER.md`](../../ROUTER.md) | Shared | Routes discovery-by-title requests to the Search domain in the operation-to-tool table in section 3. |
 | [`../../references/mcp-tools.md`](../../references/mcp-tools.md) | Shared | Confirms the tool name, endpoint, API-version pin, and the title-only limit (§5 Search). |
 
 ### Validation And Tests

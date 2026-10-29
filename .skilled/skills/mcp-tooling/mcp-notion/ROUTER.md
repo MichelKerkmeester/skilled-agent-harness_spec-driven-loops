@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-notion routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -50,7 +50,7 @@ The packet's deterministic routing detail behind the summary above: the loading 
 ### Resource Loading Levels
 
 ```
-ALWAYS:    SKILL.md (this file)
+ALWAYS:    SKILL.md and this ROUTER.md
 ON_DEMAND: references/mcp-tools.md        (24-tool catalog + Code Mode invocation)
            references/api-gap-tools.md    (direct API for the 5 uncovered capabilities)
            references/property-types.md   (22 property types: schema, value, filter/sort)

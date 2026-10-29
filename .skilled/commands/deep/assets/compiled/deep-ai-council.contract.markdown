@@ -42,7 +42,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
-      "sha256": "670a4d241100e32aa8018b7d870a53abe9d0035318f9cc5374db63c54e1d45cd",
+      "sha256": "e62635af0ddc616fa5d48ad37c954b58af702d9ab546eb1b5f3159d47b9a0f50",
       "section": "full"
     },
     {
@@ -112,7 +112,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md",
-      "sha256": "d73c9deed8e0a1e26a5fca11e4df04323e4dfb6b576103436d2909c014d02ed7",
+      "sha256": "4f5c9b87fb2767198fb697d0b75e37799dac2e85e15b9cc92ac92172f01de071",
       "section": "full"
     },
     {

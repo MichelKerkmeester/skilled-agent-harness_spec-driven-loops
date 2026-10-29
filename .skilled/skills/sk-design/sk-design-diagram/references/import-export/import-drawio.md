@@ -10,7 +10,7 @@ trigger_phrases:
   - "make this presentable"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.11
+version: 1.2.1.0
 ---
 
 # Import from draw.io
@@ -197,4 +197,4 @@ Default is page 0. When the file has several pages:
 | Re-embedding vendor logos from the source | Breaks the self-contained rule and the monochrome icon system |
 | Silently dropping components | The user knows the source. Always ship the fidelity ledger. |
 | Inventing components to fill a layout | An import is bounded by its source. Gaps get asked about, not filled. |
-| Preserving draw.io diagonal connectors | Orthogonal elbows are mandatory (SKILL.md §6 rule 1) regardless of origin |
+| Preserving draw.io diagonal connectors | Orthogonal elbows are mandatory (SKILL.md §4 rule 11) regardless of origin |

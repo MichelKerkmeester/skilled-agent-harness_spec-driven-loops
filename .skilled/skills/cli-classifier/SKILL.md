@@ -151,7 +151,7 @@ The injection screen runs that measured question as an advisory on Claude Code, 
   - [`cli-jev/references/integration-patterns.md`](./cli-jev/references/integration-patterns.md).
   - [`cli-jev/references/mcp-server.md`](./cli-jev/references/mcp-server.md).
 - Hub metadata: [`description.json`](./description.json), [`graph-metadata.json`](./graph-metadata.json), [`leaf-manifest.json`](./leaf-manifest.json).
-- Hub changelog: [`changelog/v0.8.2.0.md`](./changelog/v0.8.2.0.md).
+- Hub changelog: [`changelog/v0.8.6.0.md`](./changelog/v0.8.6.0.md).
 
 ---
 

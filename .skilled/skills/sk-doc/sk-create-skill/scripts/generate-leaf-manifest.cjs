@@ -116,6 +116,18 @@ function fallbackIgnored(rel) {
 const GIT_TIMEOUT_MS = 20000;
 const GIT_NO_FSMONITOR = ['-c', 'core.fsmonitor=false'];
 
+// A git hook exports GIT_DIR and GIT_INDEX_FILE. With GIT_DIR set, git takes the
+// current directory as the work tree root, so the toplevel query answers with the
+// skill directory and check-ignore never reads the repository's root .gitignore.
+// Dropping the variables lets git discover the repository from the packet root.
+const GIT_HOOK_VARS = ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_INDEX_FILE', 'GIT_PREFIX', 'GIT_COMMON_DIR'];
+
+function discoveryEnv() {
+  const env = { ...process.env };
+  for (const name of GIT_HOOK_VARS) delete env[name];
+  return env;
+}
+
 let gitFailure = null;
 
 function recordGitFailure(command, res) {
@@ -127,6 +139,7 @@ function gitToplevel(cwd) {
   if (gitFailure !== null) return null;
   const res = spawnSync('git', ['rev-parse', '--show-toplevel'], {
     cwd,
+    env: discoveryEnv(),
     encoding: 'utf8',
     timeout: GIT_TIMEOUT_MS,
   });
@@ -153,6 +166,7 @@ function dropGitIgnoredLeaves(packetRoot, rels) {
   });
   const res = spawnSync('git', [...GIT_NO_FSMONITOR, 'check-ignore', '-z', '--stdin'], {
     cwd: top,
+    env: discoveryEnv(),
     input: `${repoRels.join('\0')}\0`,
     encoding: 'utf8',
     timeout: GIT_TIMEOUT_MS,

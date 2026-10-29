@@ -1,7 +1,7 @@
 ---
 title: "SD-003: UNKNOWN Surface Fallback"
 description: "Verify sk-code asks for runtime/verification disambiguation when the prompt targets an unsupported stack (Go, Swift, React Native, generic Node.js)."
-version: 1.5.3.0
+version: 1.5.4.0
 ---
 
 # SD-003: UNKNOWN Surface Fallback
@@ -48,7 +48,7 @@ Prompt: `Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and
 
 ### Preconditions
 
-1. `.skilled/skills/sk-code/SKILL.md` is at HEAD-of-main and its UNKNOWN fallback rule is intact.
+1. `.skilled/skills/sk-code/ROUTER.md` is at HEAD-of-main and its UNKNOWN fallback rule (section 6) is intact.
 2. Skill advisor callable.
 
 ### Exact Command Sequence
@@ -89,7 +89,7 @@ Evidence: `/tmp/skc-SD003-response.txt` (surface decision, AI disambiguation res
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.skilled/skills/sk-code/SKILL.md` — the hub's routing and load-discipline rules, including the disambiguation rule.
+- `.skilled/skills/sk-code/ROUTER.md` — the hub's routing and load-discipline rules, including the disambiguation rule.
 - `.skilled/skills/sk-code/ROUTER.md` — section 6, UNKNOWN FALLBACK, and its four-question checklist.
 - `.skilled/skills/sk-code/shared/references/stack-detection.md` — marker definitions (none should match Go) and the test cases that return UNKNOWN.
 

@@ -4,7 +4,7 @@ description: "Local, Git-free before/after review of an edited document, rendere
 trigger_phrases:
   - "before after document review"
   - "document diff report"
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # create-diff
@@ -157,7 +157,8 @@ A: `compare-pair` accepts one before-document and one after-document, but you ca
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Authoritative packet contract, routing and rules |
+| [`SKILL.md`](./SKILL.md) | Authoritative packet contract and rules |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`references/README.md`](./references/README.md) | Reference route-map |
 | [`references/cli-reference.md`](./references/cli-reference.md) | Full command, flag and exit-code reference |
 | [`references/capabilities-and-fidelity.md`](./references/capabilities-and-fidelity.md) | Format support matrix and fidelity tiers |

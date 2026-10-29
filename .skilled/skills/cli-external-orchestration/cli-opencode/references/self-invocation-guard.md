@@ -8,7 +8,7 @@ trigger_phrases:
   - "opencode circular dispatch refusal"
 importance_tier: important
 contextType: implementation
-version: 1.4.0.2
+version: 1.4.1.0
 ---
 
 # OpenCode CLI - Self-Invocation Guard (ADR-001)
@@ -25,7 +25,7 @@ Document the full three-layer self-invocation detection contract behind ADR-001 
 
 ### When to Use
 
-Read this when implementing, auditing, or debugging the self-invocation guard referenced from `SKILL.md` §2 and from `integration-patterns.md` §5 (decision tree + exact refusal message).
+Read this when implementing, auditing, or debugging the self-invocation guard referenced from `ROUTER.md` §3 and from `integration-patterns.md` §5 (decision tree + exact refusal message).
 
 ### Core Principle
 
@@ -98,4 +98,5 @@ When `detect_self_invocation()` returns a signal and the prompt lacks explicit p
 - [`integration-patterns.md`](./integration-patterns.md) - Decision tree and exact refusal message text
 - [`destructive-scope-violations.md`](./destructive-scope-violations.md) - RM-8 incident this guard protects against
 - [`agent-delegation.md`](./agent-delegation.md) - Agent routing this guard gates before dispatch
-- [`../SKILL.md`](../SKILL.md) - Section 2 SMART ROUTING pointer and Section 4 ALWAYS rule 2
+- [`../ROUTER.md`](../ROUTER.md) - Section 3 MACHINE ROUTER, which states the guard and points here
+- [`../SKILL.md`](../SKILL.md) - Section 4 ALWAYS rule 2

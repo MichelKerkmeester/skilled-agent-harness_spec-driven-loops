@@ -262,12 +262,21 @@ async function loadDefaultBuildBrief(): Promise<BuildSkillAdvisorBrief> {
   throw lastError instanceof Error ? lastError : new Error(String(lastError));
 }
 
-function markdownTreeBytes(skillDir: string): number {
+// Every run is told to read the instructions and the router beside them, so both files count
+// in every byte total this harness reports.
+function baselineFileBytes(skillDir: string): number {
   let total = 0;
-  const skillMd = path.join(skillDir, 'SKILL.md');
-  if (fs.existsSync(skillMd)) {
-    total += fs.statSync(skillMd).size;
+  for (const fileName of ['SKILL.md', 'ROUTER.md']) {
+    const filePath = path.join(skillDir, fileName);
+    if (fs.existsSync(filePath)) {
+      total += fs.statSync(filePath).size;
+    }
   }
+  return total;
+}
+
+function markdownTreeBytes(skillDir: string): number {
+  let total = baselineFileBytes(skillDir);
   for (const baseName of ['references', 'assets']) {
     const base = path.join(skillDir, baseName);
     if (!fs.existsSync(base)) {
@@ -293,9 +302,7 @@ function markdownTreeBytes(skillDir: string): number {
 }
 
 function bytesForResources(skillDir: string, resources: readonly string[]): number {
-  let total = fs.existsSync(path.join(skillDir, 'SKILL.md'))
-    ? fs.statSync(path.join(skillDir, 'SKILL.md')).size
-    : 0;
+  let total = baselineFileBytes(skillDir);
   for (const resource of resources) {
     const resourcePath = path.join(skillDir, resource);
     if (fs.existsSync(resourcePath) && fs.statSync(resourcePath).isFile()) {
@@ -515,8 +522,11 @@ function extractOnDemandResources(routerText: string): string[] {
 }
 
 function parseRouterModel(skillDir: string): RouterModel {
-  const skillText = readTextIfExists(path.join(skillDir, 'SKILL.md'));
-  if (!skillText) {
+  // The machine router ships beside the instructions. A skill that still carries the router
+  // inline keeps working, so SKILL.md stays the fallback rather than the target.
+  const routerSource = readTextIfExists(path.join(skillDir, 'ROUTER.md'))
+    ?? readTextIfExists(path.join(skillDir, 'SKILL.md'));
+  if (!routerSource) {
     return {
       variant: 'missing_skill',
       routerText: '',
@@ -529,7 +539,7 @@ function parseRouterModel(skillDir: string): RouterModel {
       unknown: true,
     };
   }
-  const routerText = findRouterBlock(skillText);
+  const routerText = findRouterBlock(routerSource);
   const variant = detectVariant(routerText);
   const unknown = routerText.length === 0 || variant === 'unknown';
   return {

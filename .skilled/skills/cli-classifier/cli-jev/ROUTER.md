@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-jev routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -38,7 +38,7 @@ loads before an intent selects it.
 ## 2. INTENT MODEL
 
 - **`JEV_JUDGMENT`** — "ask jev", "jev judgment", "jev noul", "jev choice", "jev score", "jev urgency check", "jev yes or no", "jev probability", "cli-jev" or "cli-usage" fires it, and the route loads `references/cli-reference.md` and `references/integration-patterns.md`.
-- **`JEV_QUESTION`** — "jev pick one", "jev options", "jev question", "shape a jev question", "jev batch", "jev run", "several jev questions" or "jev question card" fires it, and the route loads `references/cli-reference.md` and `assets/question-shaping-card.md`.
+- **`JEV_QUESTION`** — "jev pick one", "jev options", "jev question", "shape a jev question", "jev batch", "jev run", "several jev questions" or "jev question card" fires it, and the route loads `assets/question-shaping-card.md` on top of the `references/cli-reference.md` and `references/integration-patterns.md` baseline every scored route loads first.
 - **`JEV_PROVIDER`** — "jev provider", "jev model id", "jev model", "jev openrouter", "jev official provider", "jev auth status" or "jev auth" fires it, and the route loads `references/providers-and-models.md` on top of the `references/cli-reference.md` and `references/integration-patterns.md` baseline every scored route loads first.
 - **`JEV_MCP`** — "jev mcp", "jev mcp host", "jev mcp server" or "expose jev" fires it, and the route loads `references/mcp-server.md` on top of the same CLI baseline.
 

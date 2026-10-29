@@ -7,7 +7,7 @@ trigger_phrases:
   - "opencode script maintenance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # sk code assets scripts
@@ -40,7 +40,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 **Step 1: Confirm the owner.**
 
-Start with `.skilled/skills/sk-code/SKILL.md` for runtime routing and workflow boundaries.
+Start with `.skilled/skills/sk-code/ROUTER.md` for runtime routing, and `.skilled/skills/sk-code/SKILL.md` for workflow boundaries.
 
 **Step 2: Inspect the local code.**
 
@@ -116,5 +116,5 @@ Expected output: Findings recorded in the current refinement and release-alignme
 | Document | Purpose |
 |---|---|
 | [`sk-code-skilled/SKILL.md`](../../SKILL.md) | Runtime instructions for the owning skill. |
-| [`sk-code-skilled/SKILL.md`](../../SKILL.md) | OpenCode coding standards and verification routing. |
+| [`sk-code-skilled/ROUTER.md`](../../ROUTER.md) | Machine router: intent map, resource map and routing. |
 | [`sk-doc skill-readme-template.md`](../../../../sk-doc/sk-create-skill/assets/skill/skill-readme-template.md) | README structure used for this code README. |

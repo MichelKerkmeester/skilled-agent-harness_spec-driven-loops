@@ -36,6 +36,8 @@ describe('sa-001 — Chokidar narrow-scope watcher', () => {
       '---',
       '',
     ].join('\n'));
+    // A shipped skill keeps its router beside SKILL.md, so the fixture does too.
+    write(`.skilled/skills/${slug}/ROUTER.md`, `# ${slug} router\n`);
     write(`.skilled/skills/${slug}/graph-metadata.json`, JSON.stringify({
       schema_version: 1,
       skill_id: slug,
@@ -47,7 +49,7 @@ describe('sa-001 — Chokidar narrow-scope watcher', () => {
     }, null, 2));
   }
 
-  it('narrows discovery to SKILL.md and graph-metadata.json amid 100 unrelated files', async () => {
+  it('narrows discovery to SKILL.md, ROUTER.md and graph-metadata.json amid 125 unrelated files', async () => {
     writeSkill('alpha');
     for (let index = 0; index < 125; index += 1) {
       write(`.skilled/skills/alpha/noise/file-${index}.txt`, `noise-${index}\n`);
@@ -56,12 +58,17 @@ describe('sa-001 — Chokidar narrow-scope watcher', () => {
     const targets = discoverWatchTargets(tmpDir);
     const targetNames = targets.map((target) => target.path.replace(tmpDir, ''));
 
-    expect(targets).toHaveLength(2);
+    expect(targets).toHaveLength(3);
     expect(targetNames).toEqual([
       '/.skilled/skills/alpha/SKILL.md',
+      '/.skilled/skills/alpha/ROUTER.md',
       '/.skilled/skills/alpha/graph-metadata.json',
     ]);
-    expect(targets.every((target) => target.reason === 'skill-md' || target.reason === 'graph-metadata')).toBe(true);
+    expect(targets.map((target) => target.reason).sort()).toEqual([
+      'graph-metadata',
+      'router-md',
+      'skill-md',
+    ]);
   });
 
   it('discovers narrow targets under 100ms with deep unrelated directories', async () => {
@@ -75,7 +82,7 @@ describe('sa-001 — Chokidar narrow-scope watcher', () => {
     const targets = discoverWatchTargets(tmpDir);
     const elapsedMs = performance.now() - startedAt;
 
-    expect(targets).toHaveLength(2);
+    expect(targets).toHaveLength(3);
     expect(elapsedMs).toBeLessThan(100);
   });
 });

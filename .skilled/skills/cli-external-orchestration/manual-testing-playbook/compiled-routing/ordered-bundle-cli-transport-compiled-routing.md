@@ -23,7 +23,7 @@ evidence_manifest_digest: 8421624a5e7550ff0471728ea9ec6c116c083a21a3880169e5a1b5
 evidence_model: router-replay
 evidence_reasoning_effort: n/a
 created: 2026-07-21
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # cli-external-orchestration opencode transport serves compiled and matches legacy
@@ -68,7 +68,7 @@ node .skilled/bin/compiled-route.cjs --hub cli-external-orchestration --prompt "
 ## 4. SOURCE FILES
 
 - `manual-testing-playbook.md` - Root directory page and scenario summary.
-- `.skilled/skills/cli-external-orchestration/SKILL.md` - Hub contract and its compiled-serving declaration.
+- `.skilled/skills/cli-external-orchestration/ROUTER.md` - The compiled-routing directive at section 5, MACHINE ROUTER; `SKILL.md` carries the hub contract that points at it.
 - `.skilled/skills/cli-external-orchestration/hub-router.json` - Hub vocabulary classes and the transport-mode signal.
 - `.skilled/bin/compiled-route.cjs` - Compiled route front door.
 

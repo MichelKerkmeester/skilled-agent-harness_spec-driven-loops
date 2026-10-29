@@ -8,7 +8,7 @@ expected_intent: RESOURCE_MAP
 expected_resources:
   - references/protocol/loop-protocol.md
   - references/state/state-outputs.md
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # DR-R08: Deep research resource map routing
@@ -56,7 +56,7 @@ Use the resource map inventory and coverage gate while preparing the research lo
 
 ### Commands
 
-1. `sed -n '105,117p' .skilled/skills/system-deep-loop/deep-research/ROUTER.md` - confirm the `RESOURCE_MAP` keyword list and resource map.
+1. `sed -n '/^## 3. MACHINE ROUTER$/,$p' .skilled/skills/system-deep-loop/deep-research/ROUTER.md` - confirm the `RESOURCE_MAP` keyword list and resource map.
 2. `for p in references/guides/quick-reference.md references/protocol/loop-protocol.md references/state/state-outputs.md; do test -e ".skilled/skills/system-deep-loop/deep-research/$p" && echo "OK $p" || echo "MISS $p"; done` - confirm every expected resource resolves on disk.
 3. Dispatch the exact prompt into the deep-research packet's router and capture which intent and resource set it reports.
 

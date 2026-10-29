@@ -8,7 +8,7 @@ trigger_phrases:
   - "daemon contract"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.8.0.9
+version: 0.8.1.0
 ---
 
 # Freshness Contract
@@ -53,7 +53,7 @@ The advisor reports one of four trust states in every response that touches the 
 
 | State | Meaning |
 |---|---|
-| `live` | The index is fresh. Source SKILL.md plus graph-metadata.json files have not changed since the last build. The recommendation reflects current skill state. |
+| `live` | The index is fresh. Source SKILL.md, ROUTER.md plus graph-metadata.json files have not changed since the last build. The recommendation reflects current skill state. |
 | `stale` | The index is queryable but source files have changed since the last build. The recommendation may be wrong for skills modified after the last generation bump. |
 | `absent` | The index is missing. The SQLite database file does not exist or was deleted. No recommendation can be computed. |
 | `unavailable` | The advisor subsystem cannot be reached. Either the daemon is down or a hard error blocks all reads. |
@@ -94,7 +94,7 @@ Trust states transition based on three signals: a generation counter, a source-f
 
 Trigger details:
 
-- `live → stale`: daemon detects a hash mismatch on any `.skilled/skills/*/SKILL.md` or `graph-metadata.json` file.
+- `live → stale`: daemon detects a hash mismatch on any `.skilled/skills/*/SKILL.md`, `ROUTER.md` or `graph-metadata.json` file.
 - `stale → live`: `advisor_rebuild` completes successfully plus the generation counter advances.
 - `live → absent`: SQLite database file is deleted or fails integrity check.
 - `absent → live`: `advisor_rebuild` runs from scratch plus succeeds.
@@ -129,7 +129,7 @@ The caller must NOT:
 
 The freshness daemon (`runtime/lib/daemon/`) is responsible for:
 
-- Watching `.skilled/skills/*/SKILL.md` plus `.skilled/skills/*/graph-metadata.json` for mtime changes.
+- Watching `.skilled/skills/*/SKILL.md`, `.skilled/skills/*/ROUTER.md` (where a skill carries one) plus `.skilled/skills/*/graph-metadata.json` for mtime changes.
 - Recomputing the source-hash signature on any watched-file change.
 - Bumping the generation counter when the signature changes.
 - Invalidating the prompt cache when the generation bumps.

@@ -43,7 +43,7 @@ Transforms vague or basic inputs into highly effective, structured AI prompts. P
 Transform vague requests into structured prompts using RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, or CRAFT frameworks with CLEAR scoring (40+/50 threshold).
 
 #### Design-Generation Prompt
-Construct a grounded, anti-default generation brief for a design-generation run. Covers the brief shape, the String Seed of Thought anti-median variation technique, pre-answering a multi-turn discovery form, and the handoff to `sk-code`. This skill owns the prompt only, never the measured design-reference extraction (`sk-design-md-generator`) or the run transport.
+Construct a grounded, anti-default generation brief for a design-generation run. The `DESIGN_GEN` intent loads `references/patterns-evaluation.md`, the framework library and the CLEAR rubric, so the brief is built from a named framework rather than a design-specific reference this skill does not ship. This skill owns the prompt only, never the measured design-reference extraction (`sk-design-md-generator`) or the run transport.
 
 ### When NOT to Use
 
@@ -58,11 +58,11 @@ Construct a grounded, anti-default generation brief for a design-generation run.
 ## 2. SMART ROUTING
 
 The `$improve`, `$text`, `$refine`, `$short`, `$json`, `$yaml` and `$raw` prefixes select this skill, and so does a request to improve, enhance, score or restructure a prompt.
-The prefix is authoritative: it fixes the operating mode before any scoring runs.
+The prefix is authoritative: it fixes the operating mode, and the intent scores the router computes never change it.
 With no prefix, weighted keyword scoring picks the top intent, or the top two when their scores sit within `AMBIGUITY_DELTA`.
 A zero score falls back to `TEXT_ENHANCE` with the disambiguation checklist rather than guessing.
 
-`references/depth-framework.md` loads first on every run except `$raw`, and `references/patterns-evaluation.md` joins it for the text, framework, design-generation, Markdown, JSON and YAML intents.
+`references/depth-framework.md` loads first on every run except `$raw` and the `FRAMEWORK` intent, and `references/patterns-evaluation.md` joins it for the text, design-generation, Markdown, JSON and YAML intents; on `FRAMEWORK` it replaces the DEPTH default instead of joining it.
 Read [`ROUTER.md`](../../../.skilled/skills/sk-prompt/ROUTER.md) before selecting skill-local resources; open only the matched files.
 
 ---
@@ -199,6 +199,7 @@ See [depth-framework.md](../../../.skilled/skills/sk-prompt/references/depth-fra
 - [format-guide-markdown.md](../../../.skilled/skills/sk-prompt/assets/format-guide-markdown.md) - Markdown format deep-dive: fundamentals, delivery standards, RCAF/CRAFT structures, advanced patterns, validation, best practices
 - [format-guide-json.md](../../../.skilled/skills/sk-prompt/assets/format-guide-json.md) - JSON format deep-dive: fundamentals, data types, delivery standards, RCAF/CRAFT structures, advanced patterns, validation, best practices
 - [format-guide-yaml.md](../../../.skilled/skills/sk-prompt/assets/format-guide-yaml.md) - YAML format deep-dive: fundamentals, data types, delivery standards, RCAF/CRAFT structures, advanced patterns, templates, validation, best practices
+- [cli-prompt-quality-card.md](../../../.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md) - CLI fast-path card: the framework selection table, the CLEAR pre-dispatch check and the escalation triggers the `cli-*` packets delegate to
 
 ### Reference Loading Notes
 
@@ -317,7 +318,7 @@ Key integrations:
 
 ## 9. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/depth-framework.md`, `references/patterns-evaluation.md`, `assets/format-guide-json.md`, `assets/format-guide-markdown.md`, `assets/format-guide-yaml.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/depth-framework.md`, `references/patterns-evaluation.md`, `assets/format-guide-json.md`, `assets/format-guide-markdown.md`, `assets/format-guide-yaml.md`, `assets/cli-prompt-quality-card.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 ## RELATED PLAYBOOK
 

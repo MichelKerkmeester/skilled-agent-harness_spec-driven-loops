@@ -5,7 +5,7 @@ trigger_phrases:
   - "create-skill scripts"
   - "leaf manifest generator"
   - "skill package validation"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Create-skill scripts
@@ -22,10 +22,13 @@ version: 1.0.2.0
 
 | File | Responsibility |
 |---|---|
+| `ci-hub-vocabulary-source.cjs` | Checks the hub's one authored routing vocabulary against the registry aliases, the stage-two intents, the `Keyword triggers:` lines and the packets; the alias, stage-two, triggers and packets legs fail on drift. |
 | `ci-leaf-manifest-freshness.cjs` | Checks committed leaf manifests for byte drift. |
+| `ci-router-vocabulary-reach.cjs` | Probes every multi-word phrase a router declares through the advisor and reports the ones that do not reach the hub declaring them. Single words are skipped. |
 | `ci-skill-derived-freshness.cjs` | Checks generated skill-derived files for freshness. |
 | `ci-skill-root-metadata.cjs` | Enforces skill-root metadata class rules. |
 | `generate-leaf-manifest.cjs` | Generates or checks a hub leaf manifest. A starting root or declared scope that resolves outside the skill fails with `LEAF_SYMLINK_OUT_OF_ROOT`, and so does a leaf link that escapes the skill. A link that stays inside the skill is listed under its own path. `--write` and `--check` refuse a `leaf-manifest.json` that is a link, live or dangling, with `symbolic link, not followed` in the error and a non-zero exit. `--write` otherwise writes the manifest through a temporary sibling renamed over it. |
+| `generate-router-intent-signals.cjs` | Carries every multi-word phrase a router declares up into the hub's `graph-metadata.json` `intent_signals`, so a capability the router advertises can be asked for by name. `--check` reports drift, `--write` applies it. |
 | `init_skill.py` | Scaffolds a skill directory. |
 | `package_skill.py` | Validates and packages a skill directory. |
 | `regenerate-skill-derived.cjs` | Regenerates derived skill data. |
@@ -34,7 +37,7 @@ version: 1.0.2.0
 | `validate-playbook-topology.cjs` | Validates manual playbook topology. |
 | `validate_skill_package.py` | Runs skill and parent-hub package validation. |
 
-`package_skill.py --check` also enforces the routing canon: a short SMART ROUTING section, any machine router block in a final `## MACHINE ROUTER` section, and no packet-owned `ROUTER.md`. Skills still in the old shape are recorded in `routing-shape-known-debt.json`, keyed by the skill's path relative to `.skilled/skills` (for example `sk-code/sk-code-review`); a folder outside that root is never debt. Each entry records `{"lines", "words", "machineBlocks", "codes"}`, and a listed skill fails only when one of those counts grows or it shows a code the entry does not record; `--strict` promotes a new routing-shape finding to an error.
+`package_skill.py --check` also enforces the routing canon: a short SMART ROUTING section, any machine router block in a final `## MACHINE ROUTER` section, and a sibling `ROUTER.md` beside `SKILL.md` that must be a real file inside the skill folder. Skills still in the old shape are recorded in `routing-shape-known-debt.json`, keyed by the skill's path relative to `.skilled/skills` (for example `sk-code/sk-code-review`); a folder outside that root is never debt. Each entry records `{"lines", "words", "machineBlocks", "codes"}`, and a listed skill fails only when one of those counts grows or it shows a code the entry does not record; `--strict` promotes a new routing-shape finding to an error.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "CMD-001 -- create-diagram command"
 description: "This scenario validates the /design:diagram command router for `CMD-001`. It focuses on mode resolution, workflow YAML binding, and the presentation boundary between the router and the presentation contract."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CMD-001 -- create-diagram command
@@ -79,7 +79,7 @@ Run the `:confirm` variant with the same arguments and confirm the identical wor
 | File | Role |
 |---|---|
 | [`manual-testing-playbook.md`](../manual-testing-playbook.md) | Root directory page and scenario summary |
-| `../../feature-catalog/command-and-hub-integration/design-diagram-command.md` | Feature-catalog source describing the implementation contract (authored next) |
+| [`../../feature-catalog/command-and-hub-integration/design-diagram-command.md`](../../feature-catalog/command-and-hub-integration/design-diagram-command.md) | Feature-catalog source describing the implementation contract |
 
 ### Implementation And Test Anchors
 

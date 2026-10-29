@@ -10,7 +10,7 @@ trigger_phrases:
   - "pi passthrough model selection"
 importance_tier: normal
 contextType: implementation
-version: 1.5.7.0
+version: 1.5.8.0
 ---
 
 The single catalog of the providers, authenticated model ids, the `--thinking` effort lever, and dispatch shapes the cli-pi mode can reach. cli-pi is a multi-provider passthrough with no enforced model allowlist and no fixed default model — every dispatch names its provider and model explicitly. The repository's `.pi/settings.json` does make `llmgateway/deepseek-v4.1-flash-1017` the default of a run that names no model, but that governs only such a run and never a dispatch.
@@ -193,5 +193,6 @@ Multi-lineage parallel dispatch is driven by `fanout-run.cjs`, which lives outsi
 
 - [cli-reference.md](./cli-reference.md) — full `pi` flags, headless modes, auth failure behavior, §13 model selection
 - [integration-patterns.md](./integration-patterns.md) — conductor/executor dispatch shapes, print/JSON/RPC, and anti-patterns
-- [../SKILL.md](../SKILL.md) — cli-pi mode overview, routing, and recursion bounds
+- [../SKILL.md](../SKILL.md) — cli-pi mode overview and recursion bounds
+- [../ROUTER.md](../ROUTER.md) — machine router: intent map, resource map, loading levels and the self-invocation guard
 - [../../cli-codex/references/providers-and-models.md](../../cli-codex/references/providers-and-models.md) — authoritative GPT-6 effort-ceiling cross-map for the `openai` tiers

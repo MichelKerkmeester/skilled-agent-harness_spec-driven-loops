@@ -1,7 +1,7 @@
 ---
 title: "SP-004 -- Mode prefix wins over keyword scoring"
-description: "This scenario validates prefix-vs-keyword precedence for `SP-004`. It focuses on confirming an explicit `$` prefix overrides keyword-weighted INTENT_MODEL scoring even when keyword density is high."
-version: 2.3.3.0
+description: "This scenario validates prefix-vs-keyword precedence for `SP-004`. It focuses on confirming an explicit `$` prefix fixes the mode even when keyword density is high, so the intent scores the router computes never change it."
+version: 2.3.4.0
 ---
 
 # SP-004 -- Mode prefix wins over keyword scoring
@@ -27,10 +27,10 @@ Operators run the exact prompt and command sequence for `SP-004` and confirm the
 - Objective: Confirm explicit prefix overrides keyword-weighted scoring
 - Real user request: `$short Please improve and refine and enhance this prompt — make it tight and reusable.`
 - Prompt: `$short improve and refine my prompt; verify the prefix overrides keyword scoring, runs 3 DEPTH rounds, and logs the override.`
-- Expected execution process: sk-prompt enters STEP 0 mode detection, detects `$short` prefix, marks the input as prefix-resolved, skips INTENT_MODEL keyword scoring, and runs the 3-round D-P-H cycle.
-- Expected signals: Mode = `$short`, DEPTH rounds = 3, transparency log notes "prefix detected; keyword scoring suppressed"
-- Desired user-visible outcome: Enhanced prompt + transparency report stating "Mode prefix detected: $short; keyword scoring suppressed".
-- Pass/fail: PASS if mode is `$short` and keyword scoring is logged as suppressed; FAIL if mode resolves to default (10 rounds) or if keyword-scoring trace runs.
+- Expected execution process: sk-prompt enters STEP 0 mode detection, detects `$short` prefix, marks the input as prefix-resolved, fixes the mode and its 3-round DEPTH schedule ahead of any INTENT_MODEL score, and runs the 3-round D-P-H cycle.
+- Expected signals: Mode = `$short`, DEPTH rounds = 3, transparency log notes "prefix detected; intent scores do not affect selection"
+- Desired user-visible outcome: Enhanced prompt + transparency report stating "Mode prefix detected: $short; intent scores do not affect selection".
+- Pass/fail: PASS if mode is `$short` and the log says the prefix resolved the mode ahead of intent scoring; FAIL if mode resolves to default (10 rounds) or an intent score displaces the prefix.
 
 ---
 
@@ -49,23 +49,23 @@ $short improve and refine my prompt; verify the prefix overrides keyword scoring
 
 ### Expected
 
-Mode = `$short`, DEPTH rounds = 3, transparency report contains "prefix detected; keyword scoring suppressed" or equivalent override note.
+Mode = `$short`, DEPTH rounds = 3, transparency report contains "prefix detected; intent scores do not affect selection" or an equivalent override note.
 
 ### Evidence
 
-Capture transparency report. Confirm 3-round phase log. Confirm no INTENT_MODEL score table appears in the trace.
+Capture transparency report. Confirm the 3-round phase log. Confirm the intent scores the router returns do not change the selected mode; the router scores every request, so the trace may list them.
 
 ### Pass / Fail
 
 - **Pass**: Mode resolves to `$short`, 3 DEPTH rounds run, override logged.
-- **Fail**: Mode resolves to default (10 rounds) or INTENT_MODEL scoring runs alongside the prefix.
+- **Fail**: Mode resolves to default (10 rounds) or an INTENT_MODEL score displaces the prefix.
 
 ### Failure Triage
 
 1. Confirm `$short` is the literal first token (no leading whitespace, exact case).
 2. Inspect ROUTER.md §3 Phase Detection block: STEP 0 should detect prefix BEFORE STEP 1 keyword scoring.
 3. Inspect smart-router pseudocode for prefix-precedence logic.
-4. If keyword scoring still runs, file a routing-precedence regression against ROUTER.md §3.
+4. If an intent score changes the selected mode, file a routing-precedence regression against ROUTER.md §3.
 
 ### Optional Supplemental Checks
 

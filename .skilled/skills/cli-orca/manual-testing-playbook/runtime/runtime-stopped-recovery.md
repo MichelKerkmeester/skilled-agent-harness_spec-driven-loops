@@ -2,7 +2,7 @@
 title: "ORCA-006 -- Stopped runtime recovered deliberately with state re-verified"
 description: "This scenario validates that a stopped Orca runtime is recognized and restarted deliberately, with pre-stop state claims re-verified by a read back before work continues."
 catalog_applicable: true
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # ORCA-006 -- Stopped runtime recovered deliberately with state re-verified
@@ -71,7 +71,7 @@ The second list is the load-bearing signal, not the restart. A zero exit status 
 |---|---|
 | [Session and runtime reference](../../references/session-and-runtime.md) | Runtime state checks, the documented start path and the one-executable rule. |
 | [Troubleshooting reference](../../references/troubleshooting.md) | The stopped-runtime recovery row and evidence handling. |
-| [Router contract](../../SKILL.md) | Runtime escalation triggers and mutation boundary. |
+| [Skill contract](../../SKILL.md) | Runtime escalation triggers and mutation boundary. |
 
 ---
 

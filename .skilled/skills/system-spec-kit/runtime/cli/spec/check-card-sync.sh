@@ -46,7 +46,8 @@ fi
 
 CARD_REL="references/workflows/spec-authoring-card.md"
 CARD="$SKILL_ROOT/$CARD_REL"
-ROUTER="$SKILL_ROOT/ROUTER.md"
+ROUTER_REL="ROUTER.md"
+ROUTER="$SKILL_ROOT/$ROUTER_REL"
 LEAVES="$SKILL_ROOT/leaf-manifest.json"
 ALIASES="$SKILL_ROOT/leaf-aliases.json"
 CHECKLIST_REL="references/workflows/spec-folder-authoring-checklist.md"
@@ -70,40 +71,50 @@ else
     fi
 fi
 
-# 2. Every authoring intent loads the card.
+# 2. The router that carries the intents exists. A missing router is reported once, and the
+#    checks below then read an empty file, so the guard never aborts on an awk error.
+ROUTER_SOURCE="$ROUTER"
+if [ ! -f "$ROUTER" ]; then
+    fail_check router-exists "missing $ROUTER_REL"
+    ROUTER_SOURCE=/dev/null
+else
+    pass router-exists
+fi
+
+# 3. Every authoring intent loads the card.
 for INTENT in PLAN IMPLEMENT INTAKE TEMPLATE_AUTHORING; do
     if awk -v intent="$INTENT" '
         $0 == "    \"" intent "\": [" { inside = 1; next }
         inside && $0 == "    ]," { inside = 0 }
         inside && /spec-authoring-card\.md/ { found = 1 }
         END { exit(found ? 0 : 1) }
-    ' "$ROUTER"; then
+    ' "$ROUTER_SOURCE"; then
         pass "intent-$INTENT"
     else
         fail_check "intent-$INTENT" "does not load $CARD_REL"
     fi
 done
 
-# 3. The long guide is listed only in the on-demand level, not in an intent list.
+# 4. The long guide is listed only in the on-demand level, not in an intent list.
 GUIDE_IN_MAP=$(awk '
     /^RESOURCE_MAP = \{/ { map = 1; next }
     map && /^\}$/ { map = 0 }
     map && /"references\/templates\/template-guide\.md"/ { n++ }
     END { print n + 0 }
-' "$ROUTER")
+' "$ROUTER_SOURCE")
 GUIDE_ON_DEMAND=$(awk '
     /"ON_DEMAND": \[/ { od = 1; next }
     od && /^    \],$/ { od = 0 }
     od && /"references\/templates\/template-guide\.md"/ { n++ }
     END { print n + 0 }
-' "$ROUTER")
+' "$ROUTER_SOURCE")
 if [ "$GUIDE_IN_MAP" -eq 0 ] && [ "$GUIDE_ON_DEMAND" -eq 1 ]; then
     pass guide-on-demand-only
 else
     fail_check guide-on-demand-only "in intent lists: $GUIDE_IN_MAP, in ON_DEMAND: $GUIDE_ON_DEMAND"
 fi
 
-# 4. The inventory lists the card and the identity projection agrees.
+# 5. The inventory lists the card and the identity projection agrees.
 if jq -e --arg p "$CARD_REL" 'any(.modes[].leaves[]; . == $p)' "$LEAVES" > /dev/null; then
     pass leaf-manifest
 else
@@ -115,7 +126,7 @@ else
     fail_check leaf-aliases "does not list $CARD_REL"
 fi
 
-# 5. The checklist sends a reader to a filled example that exists, not the gated
+# 6. The checklist sends a reader to a filled example that exists, not the gated
 #    source root, and the card hands the steps it skips to that checklist.
 if [ ! -f "$CHECKLIST" ]; then
     fail_check checklist "missing $CHECKLIST_REL"

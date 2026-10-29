@@ -1,7 +1,7 @@
 ---
 title: "CC-026 -- Max budget USD cap behavior"
 description: "This scenario validates `--max-budget-usd` cost cap behavior for `CC-026`. It focuses on confirming the budget flag is accepted and that JSON cost metadata stays within the cap."
-version: 1.5.0.15
+version: 1.5.1.0
 ---
 
 # CC-026 -- Max budget USD cap behavior
@@ -68,7 +68,7 @@ For batch-budget validation, dispatch the same prompt twice with a single `--max
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` (line 189) | Documents `--max-budget-usd` in the §3 flag table |
+| `../../SKILL.md` | §3 "Default Invocation" table appends `--max-budget-usd 1.00` on the "Cost-capped" row |
 | `../../references/cli-reference.md` | Cost control surface and budget contract |
 
 ---

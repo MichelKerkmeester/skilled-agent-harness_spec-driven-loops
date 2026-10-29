@@ -8,7 +8,7 @@ expected_intent: REVIEW
 expected_resources: 
   - references/integration-patterns.md
   - references/agent-delegation.md
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # CC-R04: Review routing
@@ -58,7 +58,7 @@ Get a second opinion from Claude: audit this login handler for security holes an
 
 1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/intra-routing-recall/review.md`
 2. `grep -n '"REVIEW"' ../../ROUTER.md` (confirms the `INTENT_SIGNALS` entry)
-3. `grep -A2 'RESOURCE_MAP = {' ../../ROUTER.md | grep '"REVIEW"'` (confirms the `RESOURCE_MAP` entry)
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' ../../ROUTER.md | grep '"REVIEW"'` (confirms the `RESOURCE_MAP` entry)
 4. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/references/integration-patterns.md && echo "OK references/integration-patterns.md" || echo "MISS references/integration-patterns.md"`
 5. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/references/agent-delegation.md && echo "OK references/agent-delegation.md" || echo "MISS references/agent-delegation.md"`
 
@@ -68,7 +68,7 @@ Step 1 shows `expected_intent: REVIEW`. Step 2's output names the `REVIEW` keywo
 
 ### Evidence
 
-Command transcript from every step above; this scenario's frontmatter compared against SKILL.md's
+Command transcript from every step above; this scenario's frontmatter compared against ROUTER.md's
 live `INTENT_SIGNALS["REVIEW"]` entry.
 
 ### Pass / Fail
@@ -78,7 +78,7 @@ live `INTENT_SIGNALS["REVIEW"]` entry.
 
 ### Failure Triage
 
-1. Re-run the SKILL.md greps above and diff the current entry against this scenario's frontmatter to
+1. Re-run the ROUTER.md greps above and diff the current entry against this scenario's frontmatter to
    see exactly which keyword, weight, or resource moved.
 2. Re-run the `test -e` checks and confirm whether a resource file was renamed or removed.
 

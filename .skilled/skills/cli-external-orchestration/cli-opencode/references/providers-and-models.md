@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode minimax llmgateway gpt dispatch"
 importance_tier: normal
 contextType: implementation
-version: 1.4.16.0
+version: 1.4.17.0
 ---
 
 # cli-opencode Providers, Models & Invocation
@@ -180,4 +180,5 @@ Multi-lineage parallel dispatch is driven by `fanout-run.cjs`, which lives outsi
 
 - [cli-reference.md](./cli-reference.md): full `opencode run` flags, subcommands, auth pre-flight, troubleshooting
 - [integration-patterns.md](./integration-patterns.md): dispatch shapes + failure-mode matrix
-- [../SKILL.md](../SKILL.md): cli-opencode mode overview and routing
+- [../SKILL.md](../SKILL.md): cli-opencode mode overview
+- [../ROUTER.md](../ROUTER.md): machine router with the intent map, resource map, loading levels and the self-invocation guard

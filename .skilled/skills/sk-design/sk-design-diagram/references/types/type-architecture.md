@@ -10,7 +10,7 @@ trigger_phrases:
   - "bridge hop crossings"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.8
+version: 1.2.1.0
 ---
 
 # Architecture
@@ -26,7 +26,7 @@ version: 1.2.0.8
 
 ## 2. Connector style
 
-**Rounded right-angle (orthogonal) connectors are MANDATORY** for all non-horizontal/vertical connections — diagonal `<line>` between off-axis nodes is a hard fail (see SKILL.md §6 Mandatory connector rules). Two-bend elbow path with `r=8`:
+**Rounded right-angle (orthogonal) connectors are MANDATORY** for all non-horizontal/vertical connections — diagonal `<line>` between off-axis nodes is a hard fail (see SKILL.md §4 Mandatory connector rules). Two-bend elbow path with `r=8`:
 
 ```svg
 <!-- right+down: from (x1,y1) to (x2,y2), mid = (x1+x2)/2 -->

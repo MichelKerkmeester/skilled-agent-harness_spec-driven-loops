@@ -26,7 +26,7 @@ The retired deep-improvement Lane C skill-benchmark harness benchmarked `mcp-too
 | `reports/2026-08-03--playbook-validation--live/` | 2026-08-03 | Live | **BLOCKED-BY-ROUTE-GOLD** | 42 | 16 | ENFORCED (auto), 16 rows, 0 matches, 16 violations |
 | `reports/baseline/` | 2026-07-16 | Mode A router-replay | **PASS** | 95 | 13 | not scored (pre-gate harness; routeGoldRows 0) |
 
-Baseline captured before mcp-obsidian was registered: six modes (three workflow + three transports), 6/6 hub_routing holdout coverage, and the post-expansion advisor index (generation 11998). The current hub has seven modes: four workflows plus three transports.
+Baseline captured before mcp-obsidian was registered: six modes (three workflow + three transports), 6/6 hub_routing holdout coverage, and the post-expansion advisor index (generation 11998). The current hub has eight modes: five workflows plus three transports.
 
 The 2026-08-03 router run is the current deterministic result under the route-gold hard gate (`--route-gold auto`, enforced for hub-type skills). The live run of the same date fails that gate on every scenario.
 

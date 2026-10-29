@@ -8,7 +8,7 @@ expected_surface_role: fallback
 expected_detection_markers:
   - .skilled/
   - .opencode/
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # OC-012: SKILLED surface detection
@@ -22,7 +22,7 @@ This document captures the surface-detection contract, execution process, source
 
 This scenario validates the surface detection that bundles this packet for `OC-012`. It focuses on
 confirming that the hub's `mode-registry.json` declares the `SKILLED` surface with a `fallback` role, the
-`.skilled/` and `.opencode/` path markers, and the `sk-code-skilled` packet, and that `SKILL.md` §1 states
+`.skilled/` and `.opencode/` path markers, and the `sk-code-skilled` packet, and that the `SKILL.md` preamble states
 the same two-step detection in prose.
 
 Every other scenario in this playbook assumes detection has already resolved `SKILLED`; this one proves the
@@ -40,7 +40,7 @@ is load-bearing and not descriptive.
 
 ## 2. SCENARIO CONTRACT
 
-Operators confirm the `SKILLED` surface declaration for `OC-012` matches what `SKILL.md` §1 says, without
+Operators confirm the `SKILLED` surface declaration for `OC-012` matches what the `SKILL.md` preamble says, without
 contradictory evidence.
 
 - Objective: confirm the declared surface carries label `SKILLED`, role `fallback`, packet
@@ -54,7 +54,7 @@ Which surface does a .skilled/ task resolve to, and why does the skill-code pack
 ```
 
 - Expected execution process: the reader resolves `mode-registry.json`, finds the `sk-code-skilled` mode,
-  reads its `surfaceDetection` block, and compares it with the two-step detection prose in `SKILL.md` §1.
+  reads its `surfaceDetection` block, and compares it with the two-step detection prose in the `SKILL.md` preamble.
 - Expected signals: step 2 prints the two-step detection bullets, step 3 prints one line for `SKILLED` with
   `role=fallback`, `packet=sk-code-skilled` and both path markers, and step 4 prints the same block as JSON.
 - Desired user-visible outcome: the answer names `SKILLED` as the surface for `.skilled/` work, cites the
@@ -81,7 +81,7 @@ Which surface does a .skilled/ task resolve to, and why does the skill-code pack
 ### Expected
 
 Step 1 shows `expected_surface: SKILLED`, `expected_surface_role: fallback` and the two detection markers
-in the frontmatter. Step 2 prints the two detection bullets from `SKILL.md` §1, the first naming `.skilled/`.
+in the frontmatter. Step 2 prints the two detection bullets from the `SKILL.md` preamble, the first naming `.skilled/`.
 Step 3 prints one line: `SKILLED role=fallback packet=sk-code-skilled markers=.skilled/ .opencode/ skill.md
 .ts .tsx .cjs .mjs .py .sh .rs graph-metadata spec-folder argparse`. Step 4 prints the same block as JSON
 with `"label": "SKILLED"`, `"role": "fallback"`, and `pathMarkers` holding `.skilled/` and `.opencode/`.
@@ -104,7 +104,7 @@ the detection prose excerpt from step 2.
    `sk-code-skilled` and that the packet folder with the same name still exists beside it.
 2. If a marker differs, compare step 3 with step 4 to see whether the registry changed or the replay library
    reads a different block.
-3. If step 2 prints no bullets, confirm `SKILL.md` §1 still opens with the detection sentence this step
+3. If step 2 prints no bullets, confirm the `SKILL.md` preamble still opens with the detection sentence this step
    anchors on, and update the anchor if the prose was rewritten.
 
 ---
@@ -122,7 +122,7 @@ the detection prose excerpt from step 2.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../../SKILL.md) §1 | The two-step detection prose this scenario compares against |
+| [SKILL.md](../../SKILL.md) preamble | The two-step detection prose this scenario compares against |
 | [mode-registry.json](../../../mode-registry.json) | The `surfaceDetection` block this scenario reads |
 | [router-replay-lib.cjs](../../assets/scripts/router-replay-lib.cjs) | `declaredSurfaces` reader the guard uses |
 | [declared-surfaces-parity.test.cjs](../../scripts/tests/declared-surfaces-parity.test.cjs) | Proves the replay library and the plugin declare the same surfaces |

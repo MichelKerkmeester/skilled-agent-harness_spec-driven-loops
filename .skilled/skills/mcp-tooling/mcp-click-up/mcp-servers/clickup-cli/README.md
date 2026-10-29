@@ -6,7 +6,7 @@ trigger_phrases:
   - "cupt install"
   - "cupt cli"
   - "install cupt"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # clickup-cli (cupt)
@@ -82,6 +82,7 @@ Expected: `cupt, version <installed version>`, then two lines: `OK: Authenticate
 
 | Document | Purpose |
 |---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Runtime routing between `cupt` and the official ClickUp MCP |
+| [`../../SKILL.md`](../../SKILL.md) | Runtime instructions and the CLI/MCP safety invariants |
+| [`../../ROUTER.md`](../../ROUTER.md) | Machine router: intent map, operation table and loading levels |
 | [`../../references/cupt-commands.md`](../../references/cupt-commands.md) | Full `cupt` command reference with agent patterns |
 | [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md) | Step-by-step install with validation checkpoints |

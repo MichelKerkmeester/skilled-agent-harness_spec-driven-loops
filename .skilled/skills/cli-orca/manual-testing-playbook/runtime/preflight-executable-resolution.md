@@ -2,7 +2,7 @@
 title: "ORCA-004 -- Executable resolution and versioned preflight before any Orca operation"
 description: "This scenario validates that the skill resolves one Orca executable in the documented order, captures version evidence and loads the version matched guide before any Orca operation runs."
 catalog_applicable: true
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # ORCA-004 -- Executable resolution and versioned preflight before any Orca operation
@@ -67,7 +67,7 @@ The recorded executable is the load-bearing evidence, not a printed path. A path
 
 | File | Role |
 |---|---|
-| [Router contract](../../SKILL.md) | States the resolution order, the preflight evidence capture and the one-executable rule. |
+| [Skill contract](../../SKILL.md) | States the resolution order, the preflight evidence capture and the one-executable rule. |
 | [Session and runtime reference](../../references/session-and-runtime.md) | Resolution detail, runtime-state checks and the reason a fallthrough is forbidden. |
 | [Troubleshooting reference](../../references/troubleshooting.md) | The missing-executable and guide-mismatch recovery rows. |
 

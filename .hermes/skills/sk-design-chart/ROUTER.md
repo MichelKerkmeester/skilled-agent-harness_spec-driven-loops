@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-design-chart routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -38,8 +38,9 @@ loads before an intent selects it.
 
 ## 3. MACHINE ROUTER
 
-The one machine-readable projection of the intent model above, written as `## MACHINE ROUTER` so every
-reader finds it. This section is the last in the file, and it holds the only pseudocode.
+The routing detail behind the intent model above, written as `## MACHINE ROUTER` so every reader
+finds it. This section is the last in the file, and it holds the only pseudocode: a discovery sketch,
+not a scored intent map.
 
 This section holds the packet's resource domains and the discovery pseudocode that reads them.
 

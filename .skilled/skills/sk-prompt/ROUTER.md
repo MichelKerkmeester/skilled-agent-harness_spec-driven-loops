@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-prompt routing"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -38,6 +38,8 @@ loads before an intent selects it.
 - **FORMAT_YAML** — "yaml / frontmatter / config" requests load `assets/format-guide-yaml.md` and `references/patterns-evaluation.md`.
 - **RAW** — the `$raw` token, or "raw passthrough", loads nothing at all: passthrough is asked for by command token and never inferred from prose, and it skips DEPTH with the references.
 - **CLI_FAST_PATH** — "cli prompt quality card / prompt framework selection table / clear pre-dispatch check / fast path prompt quality" requests load `assets/cli-prompt-quality-card.md`, the card a CLI orchestrator reads before dispatch instead of the full body.
+
+Every intent except `FRAMEWORK` also loads `references/depth-framework.md` as the default resource, so a Markdown, JSON, YAML, design-generation or CLI fast-path run reads both the DEPTH default and its mapped file, and the bullet above names only the intent-specific addition.
 
 ---
 
@@ -76,7 +78,7 @@ This skill uses a **simple intent router**, not a keyed resource-subdirectory ro
 There are no `references/<key>/` or `assets/<key>/` runtime-key directories to select. The router therefore discovers markdown resources recursively from `references/` and `assets/`, then applies command-prefix and intent scoring against the discovered inventory.
 
 - `references/` for DEPTH methodology, framework definitions, and CLEAR scoring.
-- `assets/` for format-specific deep-dives (Markdown, JSON, YAML).
+- `assets/` for format-specific deep-dives (Markdown, JSON, YAML) and the CLI prompt-quality card a CLI orchestrator reads before dispatch.
 
 ```text
 references/depth-framework.md            - DEPTH methodology, RICCE integration

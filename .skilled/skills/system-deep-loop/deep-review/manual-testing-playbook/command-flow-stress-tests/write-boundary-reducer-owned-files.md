@@ -1,7 +1,7 @@
 ---
 title: "CP-057 -- Write boundary and reducer-owned files **(SANDBOXED)**"
 description: "Validate that @deep-review refuses instructions to edit review targets, runtime mirrors, config, registry, dashboard, or report files."
-version: 1.11.0.11
+version: 1.11.1.0
 ---
 
 # CP-057 -- Write boundary and reducer-owned files **(SANDBOXED)**
@@ -108,7 +108,7 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 | File | Lines | Role |
 |---|---:|---|
 | `.skilled/commands/deep/review.md` | 192-205, 361-365 | Review outputs and read-only agent model |
-| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | 111-117, 411-438 | State ownership and never-modify rules |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | 111-117, 240-251 | State ownership and never-modify rules |
 | `.skilled/agents/deep-review.md` | 326-335, 424-435 | Write safety and pre-delivery protected-file check |
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | — | Root directory page and scenario summary |
 

@@ -1,7 +1,7 @@
 ---
 title: "DR-001: Design Restraint Ladder (pre-write rung selection)"
 description: "Verify sk-code walks the Design Restraint Ladder and selects the laziest viable rung before writing new code, after surface and intent routing, without overriding surface precedence or the Iron Law."
-version: 1.5.4.0
+version: 1.5.5.0
 ---
 
 # DR-001: Design Restraint Ladder (pre-write rung selection)
@@ -97,7 +97,7 @@ Evidence: `/tmp/skc-DR001-advisor.txt` (advisor probe output) and `/tmp/skc-DR00
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md` — The pre-write Design Restraint Ladder.
 - `.skilled/skills/sk-code/shared/references/phase-detection.md` — Phase 0 to 1 gate requiring the laziest viable rung for implementation intent.
-- `.skilled/skills/sk-code/SKILL.md` — the hub's routing and load-discipline rules.
+- `.skilled/skills/sk-code/ROUTER.md` — the hub's routing and load-discipline rules.
 - `.skilled/skills/sk-code/shared/references/workflow-implement.md` — the phase whose pre-write step applies the ladder.
 
 Catalog: none. `feature-catalog/feature-catalog.md` does not inventory the phase doctrine or the restraint ladder, so no catalog entry applies to this scenario.

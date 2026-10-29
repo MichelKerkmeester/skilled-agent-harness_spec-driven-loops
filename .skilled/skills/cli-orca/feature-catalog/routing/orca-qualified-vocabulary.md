@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-orca trigger signals"
   - "orca bare token routing"
   - "cli-orca negative holdouts"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Orca-qualified routing vocabulary (SKILL.md activation triggers)
@@ -21,11 +21,11 @@ The cli-orca skill activates only on a multi-word signal that qualifies a phrase
 
 The router pseudocode in the `## 3. MACHINE ROUTER` section of [`../../ROUTER.md`](../../ROUTER.md) starts with `signals = orca_qualified_phrases(request)` and defers when the signal set is empty, before any lane selection happens. Three signal classes carry the positive vocabulary.
 
-Command-family phrases pair the Orca qualifier with a command surface: `orca cli`, `orca worktree`, `orca terminal`, `orca browser`, `orca automation`, `orca handoff`, `orca artifacts`, `orca skills`, `orca repository` and `orca embedded browser`. Workspace-shaped phrases describe the Orca form of a surface without the product name: `managed worktree`, `paired terminal`, `child worktree`, `$orca-cli` and `full ownership handoff`. Official skill names such as `orca-linear` or `orchestration` qualify a request when the request itself places them in Orca. The smart-routing lane table maps each command-family phrase to its lane reference, and the recovery phrases `runtime stopped`, `executable missing`, `guide mismatch` and `ambiguous result` route to troubleshooting.
+Command-family phrases pair the Orca qualifier with a command surface: `orca cli`, `orca worktree`, `orca terminal`, `orca browser`, `orca automation`, `orca handoff`, `orca artifacts`, `orca skills`, `orca repository` and `orca embedded browser`. Workspace-shaped phrases describe the Orca form of a surface without the product name: `managed worktree`, `paired terminal`, `child worktree`, `$orca-cli` and `full ownership handoff`. Official skill names such as `orca-linear` or `orchestration` qualify a request when the request itself places them in Orca. The primary detection signal table in [`../../ROUTER.md`](../../ROUTER.md) under `## 3. MACHINE ROUTER` maps each command-family phrase to its lane reference, and the recovery phrases `runtime stopped`, `executable missing`, `guide mismatch` and `ambiguous send` route to troubleshooting.
 
 The negative holdouts are the reason the vocabulary is multi-word. Generic git worktrees and branch management belong to `sk-git`, ordinary shell terminal commands to the normal coding workflow, Chrome DevTools Protocol debugging to `mcp-chrome-devtools`, generic agentic browser work to `mcp-aside-devtools`, supervised multi-agent coordination to the official `orchestration` skill, and an unrelated `OpenOrca` model label to no Orca route at all. Qualified siblings disambiguate the crowded token: `cursor worktree` routes to `cli-cursor` even though it shares the word worktree, and bare `handoff` or `full handoff` without an Orca qualifier routes to whatever continuity or dispatch context used it. Recorded replays pin both sides: the positive fixtures `orca cli` and `managed worktree` with `paired terminal` resolve to the Orca lane, while the negative fixtures for an `OpenOrca` model label and a generic git worktree defer.
 
-The routing vocabulary and the ownership matrix are stated canonically in [SKILL.md](../../SKILL.md); this page expands the vocabulary and never overrides it.
+The routing vocabulary and the ownership matrix are stated canonically in [`../../SKILL.md`](../../SKILL.md), with the lane map and the router pseudocode in [`../../ROUTER.md`](../../ROUTER.md); this page expands the vocabulary and never overrides them.
 
 ---
 
@@ -35,7 +35,7 @@ The routing vocabulary and the ownership matrix are stated canonically in [SKILL
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/cli-orca/SKILL.md` | Routing contract | Activation triggers, the smart-router pseudocode that defers on an empty signal set in [`../../ROUTER.md`](../../ROUTER.md) under `## 3. MACHINE ROUTER`, the When NOT to Use holdout table and the NEVER rules against bare-token routing. |
+| `.skilled/skills/cli-orca/SKILL.md` | Workflow contract | Activation triggers, the When NOT to Use holdout table and the NEVER rules against bare-token routing; the smart-router pseudocode that defers on an empty signal set lives in [`../../ROUTER.md`](../../ROUTER.md) under `## 3. MACHINE ROUTER`. |
 | `.skilled/skills/cli-orca/graph-metadata.json` | Metadata projection | Declares the intent signals and derived trigger phrases, all multi-word and Orca-qualified, plus the domain tags that name the surfaces. |
 | `.skilled/skills/cli-orca/leaf-manifest.json` | Metadata projection | Declares the leaf resources the routing contract loads per lane, including the official-skill snapshot assets. |
 | `.skilled/skills/cli-orca/leaf-manifest.config.json` | Metadata projection | Configures which root directories the manifest generation covers, keeping the changelog and benchmark trees outside the routing targets. |

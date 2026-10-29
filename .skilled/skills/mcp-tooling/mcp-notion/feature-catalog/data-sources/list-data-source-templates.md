@@ -5,7 +5,7 @@ trigger_phrases:
   - "List data source templates"
   - "notion_list-data-source-templates"
   - "see the page templates on a Notion data source"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # List data source templates (`notion_list-data-source-templates`)
@@ -34,7 +34,7 @@ A `restricted_resource` or 404-style error usually means the data source was nev
 
 | File | Layer | Role |
 |---|---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Shared | Routes database/data-source ops to the Databases and data sources domain in the mode's operation table. |
+| [`../../ROUTER.md`](../../ROUTER.md) | Shared | Routes database/data-source ops to the Databases and data sources domain in the operation-to-tool table in section 3. |
 | [`../../references/mcp-tools.md`](../../references/mcp-tools.md) | Shared | Confirms the tool name, endpoint, API-version pin, and key inputs (§5 Databases / Data Sources). |
 | [`../../references/database-model.md`](../../references/database-model.md) | Shared | Documents the data-source hierarchy this template listing sits under. |
 

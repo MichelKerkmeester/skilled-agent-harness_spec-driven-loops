@@ -34,7 +34,7 @@ expected_leaf_resources:
     leaf_resource_id: references/evergreen-packet-id-rule.md
   - workflow_mode: sk-create-changelog
     leaf_resource_id: assets/changelog-template.md
-version: 2.1.0.22
+version: 2.1.1.0
 ---
 
 # SD-012: Multi-Step Dispatch Stability
@@ -101,7 +101,7 @@ CLI transcript with intent, resources, response shape, token counts where applic
 
 ### Failure Triage
 
-Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt.
+Re-read `ROUTER.md` section 3 `INTENT_SIGNALS` / `RESOURCE_MAP` and intent keywords, then compare against the routed prompt.
 
 ### Optional Supplemental Checks
 
@@ -137,7 +137,8 @@ Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare a
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` | The sk-doc router under test |
+| `../../ROUTER.md` | The sk-doc router under test: section 3 intent maps and loading levels |
+| `../../SKILL.md` | Runtime prose and the pointer to `ROUTER.md` |
 | `../../sk-create-skill/scripts/validate-playbook-topology.cjs` | Routing-gold contract gate |
 
 ---

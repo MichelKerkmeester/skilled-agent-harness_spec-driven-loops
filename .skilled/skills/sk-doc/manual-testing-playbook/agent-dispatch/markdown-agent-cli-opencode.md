@@ -12,7 +12,7 @@ expected_workflow_mode: sk-create-changelog
 expected_leaf_resources:
   - workflow_mode: sk-create-changelog
     leaf_resource_id: assets/changelog-template.md
-version: 2.1.0.19
+version: 2.1.1.0
 ---
 
 # Output existence + shape
@@ -130,7 +130,8 @@ This scenario is fixed to `cli-opencode` with the DeepSeek v4 Pro DIRECT API pro
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` | The sk-doc router under test |
+| `../../ROUTER.md` | The sk-doc router under test: section 3 intent maps and loading levels |
+| `../../SKILL.md` | Runtime prose and the pointer to `ROUTER.md` |
 | `../../sk-create-skill/scripts/validate-playbook-topology.cjs` | Routing-gold contract gate |
 
 ---

@@ -4,7 +4,7 @@ description: "Author current-state folder READMEs from real files, for anyone wr
 trigger_phrases:
   - "create readme"
   - "write a readme"
-version: 1.1.0.13
+version: 1.1.1.0
 ---
 
 # create-readme
@@ -152,7 +152,8 @@ A: `create-skill`, using its own `skill-readme-template.md`, as one step in scaf
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime workflow, routing rules and the full validation checklist |
+| [`SKILL.md`](./SKILL.md) | Runtime workflow and the full validation checklist |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`assets/readme-template.md`](./assets/readme-template.md) | Fillable scaffold for project, skill, feature and component READMEs |
 | [`assets/readme-code-template.md`](./assets/readme-code-template.md) | Fillable scaffold for source-code folder READMEs, with diagram examples |
 | [`references/README.md`](./references/README.md) | Route map into the `readme/` reference group |

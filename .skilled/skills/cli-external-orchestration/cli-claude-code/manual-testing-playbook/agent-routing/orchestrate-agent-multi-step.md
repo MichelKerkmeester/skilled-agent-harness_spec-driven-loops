@@ -1,7 +1,7 @@
 ---
 title: "CC-022 -- Orchestrate agent multi-step coordination"
 description: "This scenario validates Orchestrate agent multi-step coordination for `CC-022`. It focuses on confirming `--agent orchestrate` decomposes a complex task into a sequenced agent pipeline."
-version: 1.5.0.16
+version: 1.5.1.0
 ---
 
 # CC-022 -- Orchestrate agent multi-step coordination
@@ -68,7 +68,7 @@ If the plan names exactly 3 agents but skips handoff description, re-prompt with
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` (line 213) | Documents the orchestrate agent in the §3 Agent Routing Table |
+| `../../SKILL.md` | §3 "Claude Code Agent Delegation" agent table routes multi-agent coordination to `orchestrate` |
 | `../../references/agent-delegation.md` | Agent contract for multi-agent coordination |
 
 ---

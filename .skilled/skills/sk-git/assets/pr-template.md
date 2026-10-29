@@ -9,7 +9,7 @@ trigger_phrases:
   - "gh pr create body"
 importance_tier: normal
 contextType: implementation
-version: 1.3.0.0
+version: 1.3.1.0
 ---
 
 # Pull Request Template - PR Description Standard
@@ -520,7 +520,7 @@ call_tool_chain(`github.github_create_pull_request({
 })`)
 ```
 
-**Note**: GitHub MCP runs via `npx @modelcontextprotocol/server-github`. Requires a GitHub PAT configured in `.utcp_config.json`. See [SKILL.md](../SKILL.md) Section 2 for full tool reference.
+**Note**: GitHub MCP runs via `npx @modelcontextprotocol/server-github`. Requires a GitHub PAT configured in `.utcp_config.json`. See [github-mcp-integration.md](../references/github-mcp-integration.md) section 3 for the available tools and section 4 for usage examples.
 
 ---
 

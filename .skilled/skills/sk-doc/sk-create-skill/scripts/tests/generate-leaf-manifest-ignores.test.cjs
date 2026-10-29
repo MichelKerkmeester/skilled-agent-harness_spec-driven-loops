@@ -78,6 +78,30 @@ function testGitIgnoredLeafIsDropped() {
   assert.deepEqual(readLeaves(skillDir), ['assets/logo.txt', 'references/keep.md']);
 }
 
+// A pre-commit hook runs the generator with GIT_DIR exported. The same ignored
+// leaf must still be dropped, because a manifest written outside the hook would
+// otherwise read as stale inside it.
+function testGitIgnoredLeafIsDroppedUnderHookEnv() {
+  const repoRoot = makeTmpDir('hook-env');
+  const init = spawnSync('git', ['init', '-q'], { cwd: repoRoot, encoding: 'utf8' });
+  assert.equal(init.status, 0, init.stderr);
+  writeFile(repoRoot, '.gitignore', '__pycache__/\n');
+
+  const skillDir = path.join(repoRoot, 'skill');
+  writeStandaloneSkill(skillDir);
+  writeFile(skillDir, 'references/keep.md', '# keep\n');
+  writeFile(skillDir, 'assets/scripts/__pycache__/probe.cpython-315.pyc', '');
+
+  const saved = process.env.GIT_DIR;
+  process.env.GIT_DIR = path.join(repoRoot, '.git');
+  try {
+    assert.deepEqual(readLeaves(skillDir), ['references/keep.md']);
+  } finally {
+    if (saved === undefined) delete process.env.GIT_DIR;
+    else process.env.GIT_DIR = saved;
+  }
+}
+
 // The name rules are the whole answer when git cannot give one, so this case
 // first proves that its fixture sits outside every work tree.
 function testFallbackDropsGeneratedNoise() {
@@ -102,6 +126,8 @@ function testFallbackDropsGeneratedNoise() {
 try {
   testGitIgnoredLeafIsDropped();
   console.log('ok - git-ignored leaf is dropped');
+  testGitIgnoredLeafIsDroppedUnderHookEnv();
+  console.log('ok - git-ignored leaf is dropped under a hook git environment');
   testFallbackDropsGeneratedNoise();
   console.log('ok - fallback drops generated noise outside a work tree');
 } finally {

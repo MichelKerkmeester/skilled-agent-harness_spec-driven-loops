@@ -1,7 +1,7 @@
 ---
 title: "sk-doc: Manual Testing Playbook"
 description: "Operator-facing index for sk-doc smart-router validation: intent detection, resource loading, unknown-fallback, cross-CLI dispatch, and token-cost baselines."
-version: 2.1.3.0
+version: 2.1.4.0
 ---
 
 # sk-doc: Manual Testing Playbook
@@ -10,7 +10,7 @@ version: 2.1.3.0
 
 This document is the operator directory for the sk-doc manual testing playbook. Per-scenario execution detail lives in the category folders below; each scenario file ships a YAML contract (id, expected_intent, expected_resources, token ranges) plus setup, expected behavior, cross-CLI variants, and success criteria.
 
-Source of truth for routing behavior: `.skilled/skills/sk-doc/SKILL.md` §2 Smart Routing, resolved at runtime through `mode-registry.json` / `hub-router.json` (the retired flat RESOURCE_MAP is no longer the source of record), plus the UNKNOWN_FALLBACK_CHECKLIST in `.skilled/skills/sk-doc/ROUTER.md` §5 MACHINE ROUTER.
+Source of truth for routing behavior: `.skilled/skills/sk-doc/SKILL.md` §2 Smart Routing, resolved at runtime through `mode-registry.json` / `hub-router.json` for the mode, and through the `INTENT_SIGNALS` / `RESOURCE_MAP` block in `.skilled/skills/sk-doc/ROUTER.md` §3 for the leaves that mode loads — that block is the byte-for-byte source the deterministic replay parses — plus the UNKNOWN_FALLBACK_CHECKLIST in the same file's §5 MACHINE ROUTER.
 
 ---
 
@@ -95,7 +95,7 @@ All 10 carry `stage: holdout`: excluded from the fitted routing aggregate, score
 ## Global Preconditions
 
 1. `.skilled/skills/sk-doc/SKILL.md` is at HEAD-of-main and contains the §2 Smart Routing block, `.skilled/skills/sk-doc/ROUTER.md` contains the §5 MACHINE ROUTER block (`UNKNOWN_FALLBACK_CHECKLIST`), and both `mode-registry.json` and `hub-router.json` resolve on disk.
-2. All `references/*.md`, `references/*.md`, `assets/skill/*.md`, `assets/readme/*.md`, `assets/flowcharts/*.md`, `assets/command/*.md`, and `sk-create-agent/assets/agent-template.md` resolve on disk.
+2. Every resource path the scenario under test names in `expected_resources` resolves on disk under `.skilled/skills/sk-doc/`, and so do the packet subtrees those paths open — `shared/` and each `sk-create-*/references/`, `sk-create-*/assets/` the scenario cites. The hub root carries no `references/` or `assets/` directory of its own, so a path is always packet-qualified.
 3. Skill advisor binary callable: `python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --help` exits 0.
 4. Each of the 2 CLI runtimes (cli-opencode, cli-claude-code) is installed and authenticated.
 5. Token-cost baselines (SD-013 → SD-014 → SD-015) MUST run in order on the same CLI to keep the floor/median/ceiling comparable.

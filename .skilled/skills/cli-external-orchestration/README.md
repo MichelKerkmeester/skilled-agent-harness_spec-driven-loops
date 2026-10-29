@@ -17,7 +17,7 @@ trigger_phrases:
   - "delegate to hermes"
   - "cli dispatch"
   - "cross-ai delegation"
-version: 1.7.7.0
+version: 1.7.8.0
 ---
 
 # cli-external-orchestration
@@ -45,7 +45,7 @@ Your machine runs more than one external AI runtime, each with its own CLI and i
 
 ### What It Does
 
-The hub holds no packet-local logic. Every request routes to exactly one of seven nested workflow packets through `hub-router.json` and `mode-registry.json`. The hub itself keeps just its `SKILL.md` and the registry files. Each mode packet keeps its own contract, references, playbook and changelog.
+The hub holds no packet-local logic. Every request routes to exactly one of seven nested workflow packets through `hub-router.json` and `mode-registry.json`. The hub itself keeps just its `SKILL.md`, `ROUTER.md` and the registry files. Each mode packet keeps its own contract, references, playbook and changelog.
 
 ### The Mode Roster
 

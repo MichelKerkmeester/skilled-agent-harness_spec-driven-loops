@@ -1,7 +1,7 @@
 ---
 title: "CM-007 -- list_tools dot vs underscore"
 description: "This scenario validates the dot-vs-underscore translation for `CM-007`. It focuses on confirming that `list_tools()` returns names in `a.b.c` dot form but the calling syntax requires the dot-to-underscore translation `a.b_c`."
-version: 1.0.0.8
+version: 1.0.1.0
 id: CM-007
 category: manual_namespace_contract
 stage: routing
@@ -72,7 +72,7 @@ Capture the chosen entry literal, the dot-form error, and the underscore-form re
 
 ### Failure Triage
 
-1. If no entries have 2+ dots: read `.skilled/skills/mcp-code-mode/SKILL.md` line 232-233 for the current dot/underscore rule — the contract may have been simplified.
+1. If no entries have 2+ dots: read the tool-name translation note in `.skilled/skills/mcp-code-mode/SKILL.md` section 3 (line 100) and `references/naming-convention.md` for the current dot/underscore rule — the contract may have been simplified.
 2. If dot form succeeds: the runtime is auto-translating — file an enhancement to clarify documentation, but treat as a PASS for tooling purposes.
 3. If underscore form fails with "tool not found": cross-check via `tool_info({tool_name: <underscore_form>})` (CM-003) — confirm the canonical name.
 
@@ -94,7 +94,7 @@ Capture the chosen entry literal, the dot-form error, and the underscore-form re
 
 | File | Role |
 |---|---|
-| `.skilled/skills/mcp-code-mode/SKILL.md` | Tool name translation rule (line 232-233) |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | Tool name translation rule (section 3, Tool Name Translation) |
 
 ---
 

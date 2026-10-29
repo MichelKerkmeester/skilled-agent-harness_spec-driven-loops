@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.9.0
+version: 2.3.10.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -34,7 +34,7 @@ The smart router maps a detected surface (a declared specific surface, then the 
 
 ### Core Principle
 
-Routing is a two-stage decision: **surface-first, intent-second**. Surface narrows the resource family: a declared specific surface first, then the SKILLED fallback, then UNKNOWN. Intent narrows the specific files within that family. The detected surface also goes to the compiled front door as `--surface-hint`. When a prompt ties between surfaces, a hinted specific surface leads the bundle. SKILLED already ranks last, so a SKILLED hint changes nothing (`SKILL.md` §2).
+Routing is a two-stage decision: **surface-first, intent-second**. Surface narrows the resource family: a declared specific surface first, then the SKILLED fallback, then UNKNOWN. Intent narrows the specific files within that family. The detected surface also goes to the compiled front door as `--surface-hint`. When a prompt ties between surfaces, a hinted specific surface leads the bundle. SKILLED already ranks last, so a SKILLED hint changes nothing (`SKILL.md` §3).
 
 ### Key Sources
 
@@ -210,7 +210,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 
 This block is the authored source for the intent vocabulary and weights. §2 explains how it is scored and does not repeat the keywords; §4 renders the same rows as prose. When an intent row changes here, update the matching prose row in §4.
 
-This projection is intentionally lossy in two documented ways the flat dictionary cannot express, both enforced by the prose contract and the surface-detection pseudocode in `SKILL.md` §2:
+This projection is intentionally lossy in two documented ways the flat dictionary cannot express, both enforced by the prose contract and the surface-detection pseudocode in this file's §11:
 
 - **No phase boosts.** The `+5` unambiguous-phase boost from the §2 scoring algorithm is not represented; every keyword carries unit weight here.
 - **No doc-only anti-signals.** The `sk-code -2 / sk-doc +3` anti-signals (§2) that route prose-only edits away from this skill are a pre-filter the flat model does not carry.
@@ -385,7 +385,7 @@ It does not load another surface's resources, and it defers `assets/*` (checklis
 
 ## 11. MACHINE ROUTER
 
-The hub's routing prose, moved here from `SKILL.md` so the skill body keeps only the pointer. It sits last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 9 stays the only replay source.
+The hub's detailed routing prose, moved here from `SKILL.md` so the skill body keeps only a short routing summary and a pointer to this file. It sits last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 9 stays the only replay source.
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash

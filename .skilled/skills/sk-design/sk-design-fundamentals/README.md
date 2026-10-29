@@ -1,15 +1,15 @@
 ---
-title: "sk-design"
+title: "sk-design-fundamentals"
 description: "Concrete values and behavior for a UI that reads as designed, fixed scales, hierarchy technique, interaction detail, motion rules and a WCAG review pass, for anyone building, fixing or reviewing an interface."
 trigger_phrases:
   - "ui looks off"
   - "make this look better"
   - "spacing and type scale"
   - "design review findings"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
-# sk-design
+# sk-design-fundamentals
 
 > A UI that reads as designed, because every value came from a list instead of a guess.
 
@@ -68,7 +68,7 @@ The skill distills four public sources into one operating model, kept in the ord
 **Step 1: Invoke it.** Routing is automatic on the trigger phrases above. To load it manually:
 
 ```bash
-cat .skilled/skills/sk-design/SKILL.md
+cat .skilled/skills/sk-design/sk-design-fundamentals/SKILL.md
 ```
 
 The scales in Section 3 are the always-loaded part; everything else loads on intent.

@@ -7,7 +7,7 @@ trigger_phrases:
   - "diagram smart router"
 importance_tier: "normal"
 contextType: "reference"
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Diagram Router Pseudocode
@@ -16,12 +16,22 @@ This is the reference implementation of the routing rules in [`../../ROUTER.md#3
 
 ---
 
-## 1. IMPLEMENTATION
+## 1. OVERVIEW
+
+Four pieces carry the whole router: the intent model that scores a request, the resource map that
+answers each winning intent, the load levels that say how much a run brings in, and the UNKNOWN
+fallback for a request that scores nothing. Read them in that order and the route a request takes is
+one pass down the file.
+
+---
+
+## 2. IMPLEMENTATION
 
 ```python
 from pathlib import Path
 
-SKILL_ROOT = Path(__file__).resolve().parent
+# This file sits under references/foundations/, two levels below the packet root.
+SKILL_ROOT = Path(__file__).resolve().parents[2]
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/foundations/style-guide.md"
 
@@ -45,6 +55,7 @@ LOAD_LEVELS = {
     "GENERATE": "STANDARD",
     "IMPORT": "STANDARD",
     "EXPORT": "STANDARD",
+    "ASCII_MARKDOWN": "STANDARD",
     "STYLE": "MINIMAL",
 }
 

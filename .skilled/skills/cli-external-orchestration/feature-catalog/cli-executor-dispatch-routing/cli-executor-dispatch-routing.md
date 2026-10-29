@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-external-orchestration hub-router scoring"
   - "cli-opencode cli-claude-code cli-codex cli-cursor dispatch"
   - "cli-external-orchestration smart routing"
-version: 1.6.0.0
+version: 1.6.1.0
 ---
 
 # CLI Executor Two-Axis Dispatch Routing (cli-external-orchestration)
@@ -41,7 +41,7 @@ The router resolves to `single` (one dominant executor signal routes to one mode
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/cli-external-orchestration/SKILL.md` | Shared | States the two-axis model, routing rule, and outcome set. |
+| `.skilled/skills/cli-external-orchestration/ROUTER.md` | Shared | §5 states the two-axis model, routing rule, and outcome set. |
 | `.skilled/skills/cli-external-orchestration/mode-registry.json` | Shared | Declarative registry for the seven executor packets. The `transport-axis` extension left with the mode it named, so this registry declares no extension and the `cli-classifier` hub declares the axis. |
 | `.skilled/skills/cli-external-orchestration/hub-router.json` | Shared | Router signals, vocabulary classes, and tie-break policy. |
 

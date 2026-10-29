@@ -1,6 +1,6 @@
 ---
 title: "sk-design-chart: Manual Testing Playbook"
-description: "Operator-facing reference combining the manual testing directory, the review protocol, the orchestration guide and the per-feature validation files for the sk-design-chart sk-doc workflow packet."
+description: "Operator-facing reference combining the manual testing directory, the review protocol, the orchestration guide and the per-feature validation files for the sk-design-chart workflow packet."
 version: 0.23.1.0
 ---
 

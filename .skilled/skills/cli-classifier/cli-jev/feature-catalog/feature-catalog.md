@@ -8,13 +8,13 @@ trigger_phrases:
   - "jev transport classification"
   - "jev dispatch guards"
 last_updated: "2026-09-20"
-version: 0.1.0.2
+version: 0.1.1.0
 ---
 
 # cli-jev: Feature Catalog
 
 This catalog inventories the live `cli-jev` surface. `cli-jev` is the packet of mode `cli-jev` in the
-`cli-classifier` hub, one of its two `packetKind: "transport"` modes: the hub resolves the mode
+`cli-classifier` hub, its only `packetKind: "transport"` mode: the hub resolves the mode
 through the `transport-axis` extension, the dispatch hooks inspect and preflight the command, and the
 `jev` binary turns a state and a question into one typed value.
 

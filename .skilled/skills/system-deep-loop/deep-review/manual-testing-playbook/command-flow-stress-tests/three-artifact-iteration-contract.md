@@ -1,7 +1,7 @@
 ---
 title: "CP-053 -- Three-artifact iteration contract **(SANDBOXED)**"
 description: "Validate that command-flow dispatch produces iteration markdown, state-log JSONL, and per-iteration delta JSONL."
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # CP-053 -- Three-artifact iteration contract **(SANDBOXED)**
@@ -89,7 +89,7 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 | File | Lines | Role |
 |---|---:|---|
 | `.skilled/commands/deep/assets/deep-review-presentation.txt` | 271-278, 396-400 | Workflow outputs and read-only agent model |
-| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | 354-356, 414-420 | Executor invariants and quality gates |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | 220-222, 309-319 | Executor invariants and quality gates |
 | `.skilled/agents/deep-review.md` | 80-98, 177-195 | Single-iteration sequence and output verification |
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | — | Root directory page and scenario summary |
 

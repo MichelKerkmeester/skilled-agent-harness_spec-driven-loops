@@ -1,7 +1,7 @@
 ---
 title: "DIA-003 -- Onboarding flow"
 description: "This scenario validates the style-guide gate and onboarding flow for `DIA-003`. It focuses on detecting the shipped-default skin, extracting tokens from a source, proposing a mapped diff, and rewriting style-guide.md only after approval."
-version: 1.0.0.4
+version: 1.0.1.0
 ---
 
 # DIA-003 -- Onboarding flow
@@ -81,7 +81,7 @@ Run the skill-source variant (option b) against an installed skill that carries 
 | File | Role |
 |---|---|
 | [`manual-testing-playbook.md`](../manual-testing-playbook.md) | Root directory page and scenario summary |
-| `../../feature-catalog/diagram-generation/onboarding-flow.md` | Feature-catalog source describing the implementation contract (authored next) |
+| [`../../feature-catalog/diagram-generation/onboarding-flow.md`](../../feature-catalog/diagram-generation/onboarding-flow.md) | Feature-catalog source describing the implementation contract |
 
 ### Implementation And Test Anchors
 

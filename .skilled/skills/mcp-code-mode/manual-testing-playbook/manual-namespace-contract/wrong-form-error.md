@@ -1,7 +1,7 @@
 ---
 title: "CM-006 -- Wrong-form error"
 description: "This scenario validates the wrong-form error for `CM-006`. It focuses on confirming that calling without the manual prefix returns a deterministic 'tool not found' error referencing the wrong-form name."
-version: 1.0.0.7
+version: 1.0.1.0
 id: CM-006
 category: manual_namespace_contract
 stage: routing
@@ -91,7 +91,7 @@ Capture the verbatim error message returned by the chain.
 
 | File | Role |
 |---|---|
-| `.skilled/skills/mcp-code-mode/SKILL.md` | Manual-namespace contract; #1-error guidance (line 195-216) |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | Manual-namespace contract; #1-error guidance (section 3, Critical Naming Pattern) |
 
 ---
 

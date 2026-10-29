@@ -1,7 +1,7 @@
 ---
 title: "mcp-notion Installation Guide"
 description: "Installation and configuration for Notion workspace operations through the official Notion MCP server and the direct API path."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # mcp-notion Installation Guide
@@ -245,7 +245,8 @@ Full diagnosis and recovery: [`references/troubleshooting.md`](references/troubl
 
 | Resource | Purpose |
 |----------|---------|
-| [`SKILL.md`](SKILL.md) | Routing rules, agent invariants, dual-backend selection, quick reference |
+| [`SKILL.md`](SKILL.md) | Agent invariants, the two-surface routing prose, dual-backend selection and quick reference |
+| [`ROUTER.md#3-machine-router`](ROUTER.md#3-machine-router) | Machine router: intent map, resource map, operation-to-tool table and loading levels |
 | [`README.md`](README.md) | Human-facing overview with feature tables and FAQ |
 | [`references/mcp-tools.md`](references/mcp-tools.md) | The 24-tool official MCP catalog by domain, with invocation |
 | [`references/api-gap-tools.md`](references/api-gap-tools.md) | Direct Notion REST API calls for the five gap capabilities |

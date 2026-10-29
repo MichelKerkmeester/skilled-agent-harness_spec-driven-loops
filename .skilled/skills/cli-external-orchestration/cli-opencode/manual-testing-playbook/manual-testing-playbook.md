@@ -1,7 +1,7 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.23.0
+version: 1.4.24.0
 ---
 
 # cli-opencode: Manual Testing Playbook
@@ -743,7 +743,7 @@ OpenCode 2 has no `--dir`. On OpenCode 1, verify the documented self-invocation 
 
 Prompt summary: As an in-OpenCode operator (simulated by exporting OPENCODE_CONFIG_DIR=/tmp/co-031-fake) attempting a nested cross-repo dispatch, restate the request as a generic cross-repo cli-opencode invocation with --dir pointing at a different path but WITHOUT any parallel-session keywords. Verify the smart router refuses with the documented self-invocation message AND the refusal message includes the parallel-session keyword option among the three remediation paths (OpenCode 2 `run` has no `--dir`, so this is OpenCode 1 only, see the [install reference](../references/install-and-versions.md)).
 
-Expected signals: Layer 1 trips. SKILL.md `has_parallel_session_keywords` is the only bypass. Integration_patterns.md §5 lists parallel-session keywords as remediation. Cross-repo NOT a bypass. No real dispatch.
+Expected signals: Layer 1 trips. `references/self-invocation-guard.md`'s `has_parallel_session_keywords` check is the only bypass. Integration_patterns.md §5 lists parallel-session keywords as remediation. Cross-repo NOT a bypass. No real dispatch.
 
 #### Test Execution
 

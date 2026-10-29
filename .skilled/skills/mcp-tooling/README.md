@@ -9,7 +9,7 @@ trigger_phrases:
   - "notion mcp"
   - "figma cli"
   - "mcp tool bridge"
-version: 1.8.4.0
+version: 1.8.5.0
 ---
 
 # mcp-tooling
@@ -35,7 +35,7 @@ External tools do not share one setup story or one safety model. The hub gives t
 
 The hub selects a `workflowMode` through `mode-registry.json` and `hub-router.json`. The root `ROUTER.md` then maps the selected mode to the exact packet-local references needed for the request. `mcp-code-mode` is shared infrastructure for packets that use Code Mode, not another hub member.
 
-[`SKILL.md`](./SKILL.md) is the hub's routing contract, the file an agent loads first, and it carries the mode table, the routing rules and the reference list while every per-mode detail stays in the packets.
+[`SKILL.md`](./SKILL.md) is the hub's routing contract, the file an agent loads first, and it carries the mode table, the routing summary, the compiled-route directive and the reference list while every per-mode detail stays in the packets, and the machine routing rule, the outcomes and the two-axis model live in [`ROUTER.md`](./ROUTER.md) section 5.
 
 ---
 

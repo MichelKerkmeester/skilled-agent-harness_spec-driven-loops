@@ -12,7 +12,7 @@ trigger_phrases:
   - "typed judgment transport"
 importance_tier: "important"
 contextType: "general"
-version: 0.1.0.3
+version: 0.1.1.0
 ---
 
 # cli-jev
@@ -41,7 +41,7 @@ what `transport` means in this hub, and it is the reason the mode is registered 
 
 ---
 
-## 2. THE THREE PRIMITIVES
+## 2. THE FOUR PRIMITIVES
 
 | Primitive | Answers with | Range | Use it when |
 |---|---|---|---|
@@ -96,6 +96,7 @@ implemented check in the runtime-neutral dispatch engine:
 ```text
 cli-jev/
   SKILL.md                             # the contract: when to use, dispatch shape, eight hard rules
+  ROUTER.md                            # Machine router: intent map, resource map and loading levels
   README.md                            # this file
   references/                          # deep-dive docs loaded by intent
     cli-reference.md                   # subcommands, flags, input forms, exit codes, output shapes
@@ -113,6 +114,7 @@ cli-jev/
 | File | Role |
 |---|---|
 | `SKILL.md` | The routing contract: activation triggers, dispatch shape, eight hard rules |
+| `ROUTER.md` | Machine router: intent map, resource map and loading levels |
 | `README.md` | This front page: what the packet is, how it dispatches, what it cannot do |
 | `references/cli-reference.md` | Every subcommand, flag, input form, exit code and output shape |
 | `references/providers-and-models.md` | The four providers, their key variables, endpoints and translation behavior |

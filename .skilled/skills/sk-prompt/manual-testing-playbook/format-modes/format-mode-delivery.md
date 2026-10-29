@@ -1,7 +1,7 @@
 ---
 title: "SP-027 -- Format mode delivery"
 description: "This scenario validates format-mode output delivery for `SP-027`. It focuses on `$json`, `$yaml`, and markdown mode producing format-correct structures."
-version: 2.3.0.5
+version: 2.3.1.0
 ---
 
 # SP-027 -- Format mode delivery
@@ -46,7 +46,7 @@ $json improve my API request prompt; verify the enhanced prompt is valid JSON wi
 
 1. `sk-prompt: $json improve my API request prompt — return the enhanced prompt structured as JSON, not markdown.`
 2. `agent: @prompt-improver raw_task="Improve an API request prompt for JSON delivery." task_type=generation target_cli=opencode complexity_hint=6 constraints="Deliver enhanced prompt as valid JSON, not markdown."`
-3. `bash: rg 'JSON|YAML|Markdown|format_guide_json' .skilled/skills/sk-prompt/SKILL.md .skilled/skills/sk-prompt/assets/format-guide-json.md`
+3. `bash: rg 'JSON|YAML|Markdown|format-guide-json' .skilled/skills/sk-prompt/SKILL.md .skilled/skills/sk-prompt/assets/format-guide-json.md`
 
 ### Expected
 

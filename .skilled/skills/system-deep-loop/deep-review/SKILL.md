@@ -87,7 +87,7 @@ The loop runs only through `/deep:review`, whose workflow owns state, dispatch a
 `references/protocol/quick-reference.md` loads first on every invocation.
 The review phase named by the dispatch context then selects the loop protocol, the convergence documents or the state documents.
 
-That pseudocode is the one route from a request to a resource set.
+The routing pseudocode in [`ROUTER.md`](./ROUTER.md) is the one route from a request to a resource set.
 A request whose intent scores stay under the threshold returns `UNKNOWN_FALLBACK` with a disambiguation checklist, never a silent default.
 Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
 

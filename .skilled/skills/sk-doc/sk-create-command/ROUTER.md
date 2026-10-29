@@ -1,6 +1,6 @@
 ---
 title: "Create Command Router"
-description: "Sibling router for sk-create-command: the intent signals, the resource map and the no-match checklist a reader parses first."
+description: "Sibling router for sk-create-command: the intent model, the router resilience rules and the resource loading sequence a reader parses first."
 trigger_phrases:
   - "sk-create-command router"
   - "sk-create-command routing"

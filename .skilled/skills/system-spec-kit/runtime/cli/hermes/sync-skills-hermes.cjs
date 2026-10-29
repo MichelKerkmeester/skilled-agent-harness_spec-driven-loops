@@ -79,7 +79,13 @@ function splitFrontmatter(content) {
 function frontmatterName(frontmatter, fallback) {
   const line = (frontmatter || '').split(/\r?\n/).find((l) => /^name:\s*/.test(l));
   if (!line) return fallback;
-  return line.replace(/^name:\s*/, '').trim().replace(/^(["'])(.*)\1$/, '$2') || fallback;
+  const name = line.replace(/^name:\s*/, '').trim().replace(/^(["'])(.*)\1$/, '$2') || fallback;
+  // The name becomes a directory under OUTPUT_DIR and a pruning target, so a value that is
+  // not a single path segment would write outside the mirror it is meant to fill.
+  if (name !== path.posix.basename(name) || name === '.' || name === '..') {
+    throw new Error(`skill name '${name}' is not a single path segment`);
+  }
+  return name;
 }
 
 function toPosix(filePath) {

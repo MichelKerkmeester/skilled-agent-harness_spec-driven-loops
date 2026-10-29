@@ -8,7 +8,7 @@ expected_intent: AGENT_DISPATCH
 expected_resources: 
   - references/agent-delegation.md
   - assets/prompt-templates.md
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # CO-R04: Agent dispatch routing
@@ -58,7 +58,7 @@ Dispatch this to the deep-research and ai-council agent lanes so each one invest
 
 1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/intra-routing-recall/agent-dispatch.md`
 2. `grep -n '"AGENT_DISPATCH"' ../../ROUTER.md` (confirms the `INTENT_SIGNALS` entry)
-3. `grep -A2 'RESOURCE_MAP = {' ../../ROUTER.md | grep '"AGENT_DISPATCH"'` (confirms the `RESOURCE_MAP` entry)
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' ../../ROUTER.md | grep '"AGENT_DISPATCH"'` (confirms the `RESOURCE_MAP` entry)
 4. `test -e .skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md && echo "OK references/agent-delegation.md" || echo "MISS references/agent-delegation.md"`
 5. `test -e .skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md && echo "OK assets/prompt-templates.md" || echo "MISS assets/prompt-templates.md"`
 
@@ -78,7 +78,7 @@ live `INTENT_SIGNALS["AGENT_DISPATCH"]` entry.
 
 ### Failure Triage
 
-1. Re-run the SKILL.md greps above and diff the current entry against this scenario's frontmatter to
+1. Re-run the ROUTER.md greps above and diff the current entry against this scenario's frontmatter to
    see exactly which keyword, weight, or resource moved.
 2. Re-run the `test -e` checks and confirm whether a resource file was renamed or removed.
 

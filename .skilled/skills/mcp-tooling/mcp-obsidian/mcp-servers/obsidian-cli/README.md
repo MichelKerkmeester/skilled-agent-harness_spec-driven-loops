@@ -6,7 +6,7 @@ trigger_phrases:
   - "notesmd-cli install"
   - "notesmd cli"
   - "obsidian command line interface"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # obsidian-cli (notesmd-cli + official obsidian)
@@ -97,6 +97,7 @@ Expected: `notesmd-cli` prints its subcommand list; `obsidian` prints its help o
 
 | Document | Purpose |
 |---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Runtime routing between the CLI profiles and the Obsidian MCP |
+| [`../../SKILL.md`](../../SKILL.md) | Runtime instructions and the CLI/MCP safety invariants |
+| [`../../ROUTER.md`](../../ROUTER.md) | Machine router: intent map, operation table and loading levels |
 | [`../../references/obsidian-cli-commands.md`](../../references/obsidian-cli-commands.md) | Full command reference with agent patterns |
 | [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md) | Step-by-step install with validation checkpoints |

@@ -1,7 +1,7 @@
 ---
 title: "INTERACT-001 -- Interaction Capture And State Matrix"
 description: "This scenario validates interaction capture for INTERACT-001. Interaction capture is default-on, so a plain extraction run captures hover, focus, active, and disabled states and the resulting tokens.json carries interaction data the writer turns into the v3 Style Reference's Components hover/focus/active states. The opt-out path (--fast-no-interaction / --no-interaction) leaves those states absent rather than fabricating them."
-version: 1.0.1.0
+version: 1.0.2.0
 expected_intent: EXTRACT_WRITE
 expected_resources:
   - references/design-md-format.md
@@ -99,7 +99,8 @@ If the operator wants to confirm the full pipeline writes interaction states, ru
 | `../../backend/scripts/validate.ts` | Style Reference validator -- `checkSectionCompleteness` requires the named v3 sections including `## Components`, where interaction states are characterized |
 | `../../references/design-md-format.md` | v3 Style Reference section specification -- §6 Components captures hover/focus states |
 | `../../feature-catalog/interaction-capture/interaction-capture.md` | Feature catalog entry for interaction-capture.ts |
-| `../../SKILL.md` | SS2 SMART ROUTING -- the --with-interaction flag documentation; SS3 HOW IT WORKS -- the three-phase pipeline |
+| `../../SKILL.md` | SS3 HOW IT WORKS -- the three-phase pipeline |
+| `../../backend/README.md` | The `--with-interaction` flag as the documented default, beside the two opt-out flags |
 
 ---
 

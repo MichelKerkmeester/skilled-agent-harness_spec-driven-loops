@@ -9,7 +9,7 @@ trigger_phrases:
   - "orca cli resolution"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Orca Session and Runtime Boundaries
@@ -128,7 +128,7 @@ Confirmed shutdown. Close one known handle with `terminal close --terminal <hand
 
 The inspected 1.4.205 command registry exposed no Orca-native MCP command. The official documentation's separate MCP integration context is not a discovered CLI callable, server name, transport or schema. The surface therefore stays CLI only until a separate callable is verified (reference: `references/session-and-runtime.md`).
 
-If a future version exposes a verified MCP surface, update the routing contract and this reference from that evidence rather than adding a speculative manual (routing contract: SKILL.md).
+If a future version exposes a verified MCP surface, update the routing contract and this reference from that evidence rather than adding a speculative manual (routing contract: ROUTER.md).
 
 ---
 
@@ -136,7 +136,8 @@ If a future version exposes a verified MCP surface, update the routing contract 
 
 | Document | Relationship |
 |---|---|
-| [`../SKILL.md`](../SKILL.md) | Routing contract and mutation boundary for this skill |
+| [`../SKILL.md`](../SKILL.md) | Workflow, rules and mutation boundary for this skill |
+| [`../ROUTER.md`](../ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`orca-cli-reference.md`](./orca-cli-reference.md) | The commands whose selection and receipt rules this file constrains |
 | [`mutation-and-browser-boundaries.md`](./mutation-and-browser-boundaries.md) | Authorization gates for the state-changing lanes above |
 | [`troubleshooting.md`](./troubleshooting.md) | Recovery rows for selection and receipt failures |

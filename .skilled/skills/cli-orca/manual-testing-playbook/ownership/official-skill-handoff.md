@@ -2,7 +2,7 @@
 title: "ORCA-008 -- Official skill layer matches the upstream stubs"
 description: "This scenario validates that the local snapshot layer is byte identical to the upstream stubs and that local documents defer flag detail to the binary guide."
 catalog_applicable: true
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # ORCA-008 -- Official skill layer matches the upstream stubs
@@ -26,10 +26,10 @@ The official stubs are discovery stubs by design: the real flags live in the ins
 - Objective: Prove the local official skill layer matches the upstream stubs it snapshots and defers flag detail to the binary.
 - Real user request: `Does our Orca skill layer match what the binary ships, and where does the flag detail live?`
 - Prompt: `Does our Orca skill layer match what the binary ships, and where does the flag detail live?`
-- Expected execution process: List the snapshot layer, compare one snapshot byte for byte against its versioned source, and read the overview's guide-authority rule. The comparison is the identity half, and the overview lines are the deference half.
-- Expected signals: Step 1 lists the eight snapshot files plus PROVENANCE.md. Step 2 exits zero, proving the local snapshot is byte identical to the versioned source. Step 3 prints the rule that the real guide is served by the binary through `ORCA skills get <name> --full`, so no local document claims flag detail the binary owns.
+- Expected execution process: List the snapshot layer, compare one snapshot against the upstream digest recorded for its source, and read the overview's guide-authority rule. The comparison is the identity half, and the overview lines are the deference half.
+- Expected signals: Step 1 lists the eight snapshot files plus PROVENANCE.md. Step 2 exits zero, proving the shipped bytes still match the upstream digest recorded in `assets/PROVENANCE.md` section 3. Step 3 prints the rule that the real guide is served by the binary through `ORCA skills get <name> --full`, so no local document claims flag detail the binary owns.
 - Desired user-visible outcome: The operator learns the layer matches upstream and that flag detail lives in the version-matched guide served by the binary, not in any local document.
-- Pass/fail: PASS if the listing shows eight snapshot files plus PROVENANCE.md, the comparison exits zero, and the overview prints the binary-guide rule. FAIL if a snapshot drifts from its source, or if a local document presents itself as the flag authority instead of deferring to the binary guide. SKIP when the snapshot tree or its versioned source is missing, with the absent tree named as the blocker.
+- Pass/fail: PASS if the listing shows eight snapshot files plus PROVENANCE.md, the comparison exits zero, and the overview prints the binary-guide rule. FAIL if a snapshot drifts from its recorded digest, or if a local document presents itself as the flag authority instead of deferring to the binary guide. SKIP when a snapshot file or its provenance record is missing, with the absent file named as the blocker.
 
 ---
 
@@ -40,16 +40,16 @@ The official stubs are discovery stubs by design: the real flags live in the ins
 Run the steps in order from the repository root.
 
 1. Run `ls .skilled/skills/cli-orca/assets/*.txt` and keep the listing.
-2. Run `cmp .skilled/skills/cli-orca/assets/orchestration.txt specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/skills/orchestration/SKILL.md` and record the exit status.
+2. Run `shasum -a 256 -c <(printf '%s  %s\n' 36bc32f022447418b566db35f9ffcff75113eb023e37d06fd1bd609c5dd173ef .skilled/skills/cli-orca/assets/orchestration.txt)` and record the exit status. The digest is the one `assets/PROVENANCE.md` section 3 records for `orchestration`.
 3. Run `rg -n "guide" .skilled/skills/cli-orca/references/orca-skills/overview.md` and keep the guide-authority lines.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| ORCA-008 | Official skill layer matches the upstream stubs | Prove snapshot identity and the deference rule that keeps flag detail in the binary guide. | `Does our Orca skill layer match what the binary ships, and where does the flag detail live?` | 1. `bash: ls .skilled/skills/cli-orca/assets/*.txt` -> 2. `bash: cmp .skilled/skills/cli-orca/assets/orchestration.txt specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/skills/orchestration/SKILL.md` -> 3. `bash: rg -n "guide" .skilled/skills/cli-orca/references/orca-skills/overview.md` | Step 1 lists the eight snapshot files plus PROVENANCE.md. Step 2 exits zero, proving the local snapshot is byte identical to the versioned source. Step 3 prints the rule that the real guide is served by the binary through `ORCA skills get <name> --full`, so no local document claims flag detail the binary owns. | Command transcript, exit statuses, the directory listing, the cmp result, and the guide-authority lines. | PASS if the listing shows eight snapshot files plus PROVENANCE.md, the comparison exits zero, and the overview prints the binary-guide rule. FAIL if a snapshot drifts from its source, or if a local document presents itself as the flag authority instead of deferring to the binary guide. SKIP when the snapshot tree or its versioned source is missing, with the absent tree named as the blocker. | 1. Rerun `cmp` on the drifted file and capture the first differing byte. 2. Regenerate the snapshot from the source following PROVENANCE.md and never hand-edit snapshot bytes. 3. Rerun the byte and hash comparison from PROVENANCE.md section 4. 4. If a local document restates flag detail, point it at `ORCA skills get <name> --full` and remove the local claim. |
+| ORCA-008 | Official skill layer matches the upstream stubs | Prove snapshot identity and the deference rule that keeps flag detail in the binary guide. | `Does our Orca skill layer match what the binary ships, and where does the flag detail live?` | 1. `bash: ls .skilled/skills/cli-orca/assets/*.txt` -> 2. `bash: shasum -a 256 -c <(printf '%s  %s\n' 36bc32f022447418b566db35f9ffcff75113eb023e37d06fd1bd609c5dd173ef .skilled/skills/cli-orca/assets/orchestration.txt)` -> 3. `bash: rg -n "guide" .skilled/skills/cli-orca/references/orca-skills/overview.md` | Step 1 lists the eight snapshot files plus PROVENANCE.md. Step 2 exits zero, proving the shipped bytes still match the upstream digest recorded in `assets/PROVENANCE.md` section 3. Step 3 prints the rule that the real guide is served by the binary through `ORCA skills get <name> --full`, so no local document claims flag detail the binary owns. | Command transcript, exit statuses, the directory listing, the digest result, and the guide-authority lines. | PASS if the listing shows eight snapshot files plus PROVENANCE.md, the comparison exits zero, and the overview prints the binary-guide rule. FAIL if a snapshot drifts from its recorded digest, or if a local document presents itself as the flag authority instead of deferring to the binary guide. SKIP when a snapshot file or its provenance record is missing, with the absent file named as the blocker. | 1. Rerun the digest comparison on the drifted file and capture the computed digest against the recorded value. 2. Regenerate the snapshot from the source following PROVENANCE.md and never hand-edit snapshot bytes. 3. Rerun the digest comparison against PROVENANCE.md section 3 after a refresh. 4. If a local document restates flag detail, point it at `ORCA skills get <name> --full` and remove the local claim. |
 
 ### Evidence Review
 
-The zero exit of the byte comparison is the load-bearing signal for identity, not the presence of the files. A listing proves the layer exists, and the guide-authority lines prove deference, so a PASS needs the comparison result together with the overview lines, and a drift fails the whole layer rather than one stub.
+The zero exit of the digest comparison is the load-bearing signal for identity, not the presence of the files. A listing proves the layer exists, and the guide-authority lines prove deference, so a PASS needs the comparison result together with the overview lines, and a drift fails the whole layer rather than one stub.
 
 ---
 
@@ -68,7 +68,7 @@ The zero exit of the byte comparison is the load-bearing signal for identity, no
 |---|---|
 | [Official skills overview](../../references/orca-skills/overview.md) | The hybrid stub design, the guide loading rule and the snapshot provenance. |
 | [Snapshot provenance](../../assets/PROVENANCE.md) | Per-skill release records, the verification procedure and the refresh procedure. |
-| [Router contract](../../SKILL.md) | Official-skill lane rules and the NEVER rule against restating stub flags as local truth. |
+| [Skill contract](../../SKILL.md) | Official-skill lane rules and the NEVER rule against restating stub flags as local truth. |
 
 ---
 

@@ -2,7 +2,7 @@
 title: "ORCA-002 -- Negative holdouts stay out of the Orca route"
 description: "This scenario validates that OpenOrca model traffic and generic git worktree requests never route to cli-orca."
 catalog_applicable: true
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # ORCA-002 -- Negative holdouts stay out of the Orca route
@@ -66,7 +66,7 @@ Do not treat an empty first list alone as success without recording it. The gene
 
 | File | Role |
 |---|---|
-| [cli-orca router contract](../../SKILL.md) | The when-not-to-use table and the bare-token rule these holdouts enforce. |
+| [cli-orca skill contract](../../SKILL.md) | The when-not-to-use table and the bare-token rule these holdouts enforce. |
 | [Advisor entry point](../../../system-skill-advisor/runtime/scripts/skill_advisor.py) | The advisor surface the entry point wraps. |
 
 ---

@@ -1,12 +1,12 @@
 ---
 title: "AU-001 Chokidar Watcher Narrow Scope"
-description: "Manual validation that the daemon Chokidar watcher subscribes only to SKILL.md, graph-metadata.json and derived.key_files paths and does not fire on unrelated file changes."
+description: "Manual validation that the daemon Chokidar watcher subscribes only to SKILL.md, ROUTER.md, graph-metadata.json and derived.key_files paths and does not fire on unrelated file changes."
 trigger_phrases:
   - "au-001"
   - "watcher scope"
   - "chokidar narrow scope"
   - "auto update daemon watcher"
-version: 0.8.1.0
+version: 0.8.2.0
 id: AU-001
 category: auto_update_daemon
 stage: routing
@@ -18,14 +18,14 @@ expected_leaf_resources:
 
 # AU-001 Chokidar Watcher Narrow Scope
 
-Prompt: Manual validation that the daemon Chokidar watcher subscribes only to SKILL.md, graph-metadata.json and derived.key_files paths and does not fire on unrelated file changes.
+Prompt: Manual validation that the daemon Chokidar watcher subscribes only to SKILL.md, ROUTER.md, graph-metadata.json and derived.key_files paths and does not fire on unrelated file changes.
 
 
 ---
 
 ## 1. OVERVIEW
 
-Validate that the daemon watcher in `lib/daemon/watcher.ts` subscribes only to `SKILL.md`, `graph-metadata.json` and dynamic `derived.key_files` paths and that unrelated file writes under `.skilled/` or repo root do not trigger a reindex.
+Validate that the daemon watcher in `lib/daemon/watcher.ts` subscribes only to `SKILL.md`, `ROUTER.md`, `graph-metadata.json` and dynamic `derived.key_files` paths and that unrelated file writes under `.skilled/` or repo root do not trigger a reindex.
 
 ---
 
@@ -69,12 +69,21 @@ touch .skilled/skills/sk-doc/SKILL.md
 
 5. Wait 3 seconds and recheck status again.
 
+6. Touch a skill file that is neither `SKILL.md` nor `graph-metadata.json`:
+
+```bash
+touch .skilled/skills/sk-doc/ROUTER.md
+```
+
+7. Wait 3 seconds and recheck status once more.
+
 ### Expected Signals
 
 - After step 2 unrelated touch, `generation` in `advisor_status` is unchanged from step 1.
 - After step 4 tracked touch, `generation` increments by exactly 1.
+- After step 6 `ROUTER.md` touch, `generation` increments by exactly 1 and `freshness` settles back to `live`.
 - `freshness` returns to `live` after the debounce window.
-- Daemon logs (if exposed) show a reindex event only after the SKILL.md touch, not after the plugin touch.
+- Daemon logs (if exposed) show a reindex event only after the SKILL.md and ROUTER.md touches, not after the plugin touch.
 
 ### Failure Modes
 
@@ -82,6 +91,7 @@ touch .skilled/skills/sk-doc/SKILL.md
 | --- | --- | --- |
 | Watcher fires on unrelated paths | Generation increments after plugin touch | Inspect `lib/daemon/watcher.ts` glob patterns for over-subscription. |
 | Watcher misses tracked paths | Generation unchanged after SKILL.md touch | Confirm Chokidar is active. Inspect lease and lifecycle logs. |
+| Watcher misses a skill's router | Generation unchanged after ROUTER.md touch | Confirm `discoverWatchTargets` still emits a `router-md` target for a skill that carries the file. |
 | Stale trust state after touch | `freshness` remains `stale` beyond debounce window | Check `lib/freshness/cache-invalidation.ts` hook-up to generation bumps. |
 
 ---

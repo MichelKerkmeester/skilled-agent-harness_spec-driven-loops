@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-design-fundamentals routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -59,7 +59,7 @@ The dominant split is **build**, **improve**, or **review**, because it decides 
 ```text
 WHAT IS THE STARTING POINT?
     |
-    +- Nothing yet   -> BUILD.   Systems (Section 3) + procedure. Add color-system.md for a palette,
+    +- Nothing yet   -> BUILD.   Systems (SKILL.md Section 3) + procedure. Add color-system.md for a palette,
     |                            interaction-craft.md when implementing, motion-principles.md when animating.
     |
     +- A complaint   -> IMPROVE. Load references/diagnosis-table.md FIRST, map symptom to cause, then apply.
@@ -67,7 +67,7 @@ WHAT IS THE STARTING POINT?
     +- Existing code -> REVIEW.  Load references/review-checklist.md and run the severity-tiered pass.
 ```
 
-A second signal decides depth: a request naming one property (*"what shadow?"*) needs only the relevant scale, while *"make this look designed"* needs the hierarchy technique in Section 3 and usually the diagnosis table.
+A second signal decides depth: a request naming one property (*"what shadow?"*) needs only the relevant scale, while *"make this look designed"* needs the hierarchy technique in `SKILL.md` Section 3 and usually the diagnosis table.
 
 ### Phase Detection
 
@@ -89,14 +89,14 @@ references/   design and behavior knowledge, loaded on intent
 assets/       copy-paste starting values
 ```
 
-- `references/` holds one document per routed intent; Section 5 lists them.
+- `references/` holds one document per routed intent; `SKILL.md` Section 5 lists them.
 - `assets/` holds `tokens.css`, a complete contrast-verified token set to copy in and retune.
 
 ### Resource Loading Levels
 
 | Level | When to Load | Resources |
 | ----------- | ------------------------ | ---------------------------- |
-| ALWAYS | Every skill invocation | The scales and hard rules in this file |
+| ALWAYS | Every skill invocation | The scales and hard rules in `SKILL.md`, and this `ROUTER.md` |
 | CONDITIONAL | If intent signals match | `build-procedure.md`, `diagnosis-table.md`, `hierarchy.md`, `color-system.md`, `depth-and-detail.md`, `interaction-craft.md`, `motion-principles.md`, `ux-laws.md`, `review-checklist.md` |
 | ON_DEMAND | Only on explicit request | `assets/tokens.css`, `assets/token-starter-set.md` |
 

@@ -1,6 +1,6 @@
 ---
 name: sk-design-chart
-description: "Chart authoring for sk-doc: turn a reader's comparison into one catalog form, copy its file and ship a standalone HTML chart."
+description: "Chart authoring for sk-design: turn a reader's comparison into one catalog form, copy its file and ship a standalone HTML chart."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 0.23.5.0
 metadata:
@@ -36,7 +36,7 @@ Keyword triggers: `create a chart`, `plot the data`, `data visualization`, `tree
 
 ### When NOT to Use
 
-Use another `sk-doc` packet when:
+Use a sibling packet when:
 
 - The artifact explains a structure rather than plotting values. A flow, an architecture, a sequence or a state machine is `sk-design-diagram` work.
 - The request is about the prose around a chart rather than the chart. That is `sk-create-readme` or `sk-create-quality-control`.
@@ -81,7 +81,7 @@ because resolving it means moving a file between packets and that is a decision 
 
 ### Packet Boundary
 
-This packet may create and edit chart artifacts, its own corpus and its own validator. It does not own the `sk-doc` hub identity, and it never carries its own `graph-metadata.json` or `description.json`.
+This packet may create and edit chart artifacts, its own corpus and its own validator. It does not own the `sk-design` hub identity, and it never carries its own `graph-metadata.json` or `description.json`.
 
 ---
 
@@ -176,7 +176,7 @@ The corpus shares a measured visual register for card anatomy, type scale, bare 
 
 ## 7. INTEGRATION POINTS
 
-- Input: chart requests routed from the `sk-doc` hub.
+- Input: chart requests routed from the `sk-design` hub.
 - Output: a standalone HTML chart.
 - Neighbour: `sk-design-diagram` owns structural visuals, and the two are separated by what the artifact carries rather than by which one was asked first.
 

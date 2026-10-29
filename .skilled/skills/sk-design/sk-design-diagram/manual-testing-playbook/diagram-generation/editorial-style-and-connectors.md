@@ -1,7 +1,7 @@
 ---
 title: "DIA-002 -- Editorial style and connectors"
 description: "This scenario validates the editorial design system and mandatory connector rules for `DIA-002`. It focuses on the 4px grid, single-accent focal rule, orthogonal elbows, fanned attach points, masked arrow labels, and bottom-strip legend."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # DIA-002 -- Editorial style and connectors
@@ -79,7 +79,7 @@ Run the same audit on a second type, such as an ER diagram, to confirm the conne
 | File | Role |
 |---|---|
 | [`manual-testing-playbook.md`](../manual-testing-playbook.md) | Root directory page and scenario summary |
-| `../../feature-catalog/diagram-generation/editorial-style-and-connectors.md` | Feature-catalog source describing the implementation contract (authored next) |
+| [`../../feature-catalog/diagram-generation/editorial-style-and-connectors.md`](../../feature-catalog/diagram-generation/editorial-style-and-connectors.md) | Feature-catalog source describing the implementation contract |
 
 ### Implementation And Test Anchors
 

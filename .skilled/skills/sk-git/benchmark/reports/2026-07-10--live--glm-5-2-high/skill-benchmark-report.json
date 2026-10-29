@@ -6,7 +6,7 @@
   "traceMode": "live",
   "targetSkill": {
     "id": "sk-git",
-    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-git"
+    "root": ".opencode/skills/sk-git"
   },
   "verdict": "PASS",
   "aggregateScore": 100,

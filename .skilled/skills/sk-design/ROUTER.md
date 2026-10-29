@@ -7,7 +7,7 @@ trigger_phrases:
   - "design intent routing"
 importance_tier: important
 contextType: implementation
-version: 2.0.6.0
+version: 2.0.7.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -118,7 +118,7 @@ RESOURCE_MAP = {
 
 ## 5. MACHINE ROUTER
 
-The hub's routing prose, moved here from `SKILL.md` so the skill body keeps only the pointer. It sits
+The hub's detailed routing prose, moved here from `SKILL.md` so the skill body keeps only a short routing summary and a pointer to this file. It sits
 last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and
 `RESOURCE_MAP` block in section 3 stays the only replay source.
 
@@ -203,4 +203,4 @@ return single or ambiguous according to hub-router.json routerPolicy.outcomes
 
 `routerPolicy.defaultMode` is `sk-design-fundamentals`: a design question with no clearer owner is a
 values question. That differs from `sk-doc`, whose default is `null` because an unclear documentation
-intent has no safe default. Outcomes are `single`, `ambiguous` or `none`.
+intent has no safe default. The outcomes `routerPolicy.outcomes` defines are `single`, `orderedBundle`, `defer` and `none`.

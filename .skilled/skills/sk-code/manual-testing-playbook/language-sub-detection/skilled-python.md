@@ -1,7 +1,7 @@
 ---
 title: "LS-002: SKILLED Python Sub-Detection"
 description: "Verify that within SKILLED surface, Python file extensions trigger loading of python/* references (not typescript, shell, or config)."
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # LS-002: SKILLED Python Sub-Detection
@@ -76,7 +76,7 @@ Evidence: `/tmp/skc-LS002-loaded-refs.txt` (loaded-refs transcript).
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.skilled/skills/sk-code/SKILL.md` — the hub's routing and load-discipline rules.
+- `.skilled/skills/sk-code/ROUTER.md` — the hub's routing and load-discipline rules.
 - `.skilled/skills/sk-code/sk-code-skilled/references/python/{style-guide,quality-standards,quick-reference}.md`.
 
 Catalog: `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`, the entry that names `ROUTER.md` as the owner of the stage-two resource maps the language overlay lives in.

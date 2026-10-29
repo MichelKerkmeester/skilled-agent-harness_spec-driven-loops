@@ -5,7 +5,7 @@ trigger_phrases:
   - "aside examples"
   - "aside example scripts"
   - "aside workflow scripts"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Aside Devtools - Example Scripts
@@ -113,7 +113,8 @@ Every artifact needs independent proof: a screenshot is a non-empty PNG-magic fi
 
 ## 5. SEE ALSO
 
-- `../SKILL.md`: lane router and full rule set
+- `../SKILL.md`: full rule set and the lane-routing prose
+- `../ROUTER.md#3-machine-router`: machine router, intent map, resource map and loading levels
 - `../references/aside-cli-reference.md`: verified command surface
 - `../references/mcp-wiring.md`: handshake, discovery, registration posture
 - `../scripts/doctor.sh`: read-only diagnostics combining these checks

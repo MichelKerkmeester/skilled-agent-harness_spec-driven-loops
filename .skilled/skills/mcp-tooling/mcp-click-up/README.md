@@ -7,7 +7,7 @@ trigger_phrases:
   - "task management"
   - "time tracking"
   - "click up"
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # mcp-click-up
@@ -231,7 +231,8 @@ The skill ships a manual testing playbook and two example scripts that double as
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the two-path operation router and the full agent safety invariants |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions, the two-path routing prose and the full agent safety invariants |
+| [`ROUTER.md#3-machine-router`](./ROUTER.md#3-machine-router) | Machine router: intent map, operation-to-tool table and loading levels |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Step-by-step install for cupt and the official MCP server with validation checkpoints |
 | [`references/cupt-commands.md`](./references/cupt-commands.md) | Complete cupt command reference with `--json` variants and agent patterns |
 | [`references/mcp-tools.md`](./references/mcp-tools.md) | The 61 live ClickUp MCP tools grouped by area, with `call_tool_chain()` invocation |

@@ -6,7 +6,7 @@ trigger_phrases:
   - "diagram foundations index"
   - "style guide onboarding output spec"
 contextType: general
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # references/foundations
@@ -28,6 +28,8 @@ The shared foundation docs every diagram build touches, directly or via one cond
 | `style-guide.md` | The single source of truth for colors, typography, spacing, and the 4px grid every diagram type draws against. |
 | `onboarding.md` | The agent-mediated brand/skin extraction flow: no network-fetch tool ships in the packet, so this is guidance, not a script. |
 | `output-spec.md` | The four import/export dials (format, size, detail, audience), the degrade ladder, and the fidelity-ledger contract. |
+| `router-pseudocode.md` | The reference implementation of `ROUTER.md` §3: the intent model, the guarded resource map, the load levels and the UNKNOWN fallback. |
+| `derivation-record.md` | Why each stock token value is what it is, the gates it clears, and every recorded departure. |
 
 ---
 

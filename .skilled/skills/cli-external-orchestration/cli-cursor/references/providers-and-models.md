@@ -9,7 +9,7 @@ trigger_phrases:
   - "cursor grok glm effort suffix"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.15
+version: 1.4.1.0
 ---
 
 # cli-cursor Providers, Models & Invocation
@@ -172,4 +172,5 @@ Multi-lineage parallel dispatch is driven by `fanout-run.cjs` (executor kind `cl
 
 - [cli-reference.md](./cli-reference.md) — full `cursor-agent` flags, subcommands, auth pre-flight, model selection (§5), troubleshooting
 - [integration-patterns.md](./integration-patterns.md) — cross-AI orchestration patterns, dispatch envelope, model-selection strategy
-- [../SKILL.md](../SKILL.md) — cli-cursor mode overview, routing, and the enforced-allowlist rules
+- [../SKILL.md](../SKILL.md) — cli-cursor mode overview and the enforced-allowlist rules
+- [../ROUTER.md](../ROUTER.md) — machine router: intent map, resource map, loading levels and the self-invocation guard

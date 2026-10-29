@@ -1,20 +1,20 @@
 ---
 title: "Type selection and routing"
-description: "Classifies each request into GENERATE, IMPORT, or EXPORT, then selects one of the 27 supported diagram types and loads the matching references/types/type-*.md convention before drawing."
+description: "Classifies each request into one of five intents (GENERATE, IMPORT, EXPORT, ASCII_MARKDOWN or STYLE), resolves the output format, then selects one of the 27 supported diagram types and loads the matching references/types/type-*.md convention before drawing."
 trigger_phrases:
   - "Type selection and routing"
   - "diagram type selection guide"
   - "27 diagram types"
   - "create diagram"
   - "/design:diagram"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Type selection and routing (/design:diagram)
 
 ## 1. OVERVIEW
 
-Classifies each request into GENERATE, IMPORT, or EXPORT, then selects one of the 27 supported diagram types and loads the matching `references/types/type-*.md` convention before drawing.
+Classifies each request into one of five intents (GENERATE, IMPORT, EXPORT, ASCII_MARKDOWN or STYLE), resolves the output format, then selects one of the 27 supported diagram types and loads the matching `references/types/type-*.md` convention before drawing.
 
 Every diagram request starts in the router: it decides what kind of work is being asked for and, for a generate request, which of the 27 type grammars fits. The type choice is the single most load-bearing decision — an architecture, flowchart, sequence, and swimlane each carry different layout conventions, per-type ceilings, and anti-patterns. The typical caller is the `/design:diagram` command or natural-language routing, and the main failure mode is picking a type by vocabulary rather than by what the reader is being shown.
 
@@ -24,7 +24,7 @@ Every diagram request starts in the router: it decides what kind of work is bein
 
 ### Request shape routing
 
-The router detects the request shape from source extensions and intent vocabulary. Generate requests match type vocabulary plus "diagram" with no file source; import requests match a `.drawio`, `.mmd`, or `.mermaid` path or extension; export requests match `export`, `png`, `svg`, `rasterize`, or "save as". Each intent scores keyword hits, the top-scoring intent wins, and when the top two scores sit within an ambiguity delta of 1 both are returned so the caller can resolve the near-tie. A request with no recognized signal falls back to a disambiguation checklist asking for the request shape, target path, style-guide status, and verification expectations.
+The router detects the request shape from source extensions and intent vocabulary. Generate requests match type vocabulary plus "diagram" with no file source; import requests match a `.drawio`, `.mmd`, or `.mermaid` path or extension; export requests match `export`, `png`, `svg`, `rasterize`, or "save as". ASCII_MARKDOWN requests match plain-text or box-drawing flowchart wording and resolve the `ascii-markdown` format to `references/ascii-format/pattern-selection.md` and one `assets/ascii-patterns/*.md` asset; STYLE requests match the customize, onboard, brand or repaint vocabulary and load `references/foundations/onboarding.md` with the always-loaded style guide. Each intent scores keyword hits, the top-scoring intent wins, and when the top two scores sit within an ambiguity delta of 1 both are returned so the caller can resolve the near-tie. A request with no recognized signal falls back to a disambiguation checklist asking for the request shape, target path, style-guide status, and verification expectations.
 
 ### Type selection
 
@@ -42,7 +42,7 @@ The router loads `references/foundations/style-guide.md` on every diagram and lo
 
 | File | Layer | Role |
 |---|---|---|
-| `SKILL.md` (Smart Routing + selection guide) and `../../ROUTER.md` (`## 3. MACHINE ROUTER`) | Handler | Request-shape classification, 27-type selection guide, resource loading levels, and the routing pseudocode |
+| `SKILL.md` (Smart Routing + selection guide); `ROUTER.md` (`## 3. MACHINE ROUTER`) | Handler | Request-shape classification and the 27-type selection guide in `SKILL.md`; the intent map, resource map and loading levels in `ROUTER.md` §3 |
 | `references/types/type-*.md` (27 files) | Shared | Per-type layout conventions, per-type ceilings, and anti-patterns loaded conditionally for generate requests |
 | `.skilled/commands/design/assets/diagram-auto.yaml`, `diagram-confirm.yaml` | Shared | Workflow YAML that carries the generate/import/export detection steps executed by the `/design:diagram` router |
 

@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-skill-advisor routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -57,8 +57,6 @@ loads before an intent selects it.
 
 The one machine-readable projection of the intent model above, written as `## MACHINE ROUTER` so every
 reader finds it. This section is the last in the file, and it holds the only pseudocode.
-
-This section holds the detailed resource domains, loading rules and machine router.
 
 This package is mandatory context for non-trivial Gate 2 routing. The live advisor scores prompts through the daemon-backed CLI. This smart router controls which local documentation resources an agent should load while maintaining the advisor package.
 

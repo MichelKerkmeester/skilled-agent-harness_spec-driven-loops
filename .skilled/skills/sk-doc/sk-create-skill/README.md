@@ -4,7 +4,7 @@ description: "Scaffold, validate and package standalone OpenCode skills and two-
 trigger_phrases:
   - "create skill"
   - "parent hub"
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # create-skill
@@ -161,7 +161,8 @@ A: No. `SKILL.md` is the root marker, while each class has required root metadat
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime workflow, routing rules and the full standalone and parent-hub contract |
+| [`SKILL.md`](./SKILL.md) | Runtime workflow and the full standalone and parent-hub contract |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`assets/skill/skill-md-template.md`](./assets/skill/skill-md-template.md) | Standalone `SKILL.md` scaffold |
 | [`assets/skill/skill-readme-template.md`](./assets/skill/skill-readme-template.md) | Standalone skill README scaffold, the template this file was written from |
 | [`assets/skill/skill-router-template.md`](./assets/skill/skill-router-template.md) | Sibling `ROUTER.md` scaffold for a standalone skill or mode packet |

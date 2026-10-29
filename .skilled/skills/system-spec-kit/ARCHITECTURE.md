@@ -8,7 +8,7 @@ trigger_phrases:
   - "resume ladder"
   - "spec-kit runtime subsystems"
 importance_tier: "important"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Architecture: system-spec-kit
@@ -205,7 +205,8 @@ Spec-kit's quality gates run at three layers.
 ## 8. RELATED
 
 - [README.md](./README.md): Human-facing package overview
-- [SKILL.md](./SKILL.md): Runtime routing and invariants
+- [SKILL.md](./SKILL.md): Runtime invariants and the routing entry point
+- [ROUTER.md](./ROUTER.md): The machine router, intent model, resource map and loading levels
 - [feature-catalog/feature-catalog.md](./feature-catalog/feature-catalog.md): Current feature inventory
 - [manual-testing-playbook/manual-testing-playbook.md](./manual-testing-playbook/manual-testing-playbook.md): Operator validation scenarios
 - [runtime/README.md](./runtime/README.md): Runtime package details

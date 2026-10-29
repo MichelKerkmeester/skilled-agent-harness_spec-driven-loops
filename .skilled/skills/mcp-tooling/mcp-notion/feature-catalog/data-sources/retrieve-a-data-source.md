@@ -5,7 +5,7 @@ trigger_phrases:
   - "Retrieve a data source"
   - "notion_retrieve-a-data-source"
   - "read a Notion data source's schema"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Retrieve a data source (`notion_retrieve-a-data-source`)
@@ -34,7 +34,7 @@ Read this schema before writing rows, not after a failed write. A `restricted_re
 
 | File | Layer | Role |
 |---|---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Shared | Routes database/data-source ops to the Databases and data sources domain in the mode's operation table. |
+| [`../../ROUTER.md`](../../ROUTER.md) | Shared | Routes database/data-source ops to the Databases and data sources domain in the operation-to-tool table in section 3. |
 | [`../../references/mcp-tools.md`](../../references/mcp-tools.md) | Shared | Confirms the tool name, endpoint, API-version pin, and key inputs (§5 Databases / Data Sources). |
 | [`../../references/database-model.md`](../../references/database-model.md) | Shared | Documents the schema-first workflow and the property/relation/rollup config shapes this read returns. |
 

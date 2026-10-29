@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-spec-kit routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -87,7 +87,7 @@ Keep this section focused on domains rather than static file inventories.
 **Typed leaf projection (fleet routing standard).** system-spec-kit is a normal, registry-less single-mode skill. Its sole workflow mode is `system-spec-kit`, and there is no `mode-registry.json`.
 
 - Its router routes ONLY into the `references/` and `assets/` doc corpora. These are the only routable leaves.
-- Every leaf is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (`generate-leaf-manifest.cjs --write .skilled/skills/system-spec-kit`; byte-stable under `--check`).
+- Every leaf is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (`node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write .skilled/skills/system-spec-kit`; byte-stable under `--check`).
 - `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/memory/memory-system.md`) to its typed `(system-spec-kit, leafResourceId)` identity. A deterministic router replay recovers real typed pairs against the manifest.
 - The `RESOURCE_MAP` below names every leaf in that manifest under at least one intent. Each reference and asset is reachable through the router and by browsing.
 - The one exception is `references/templates/template-guide.md`, which the `ON_DEMAND` level loads on request.
@@ -117,7 +117,7 @@ Primary operational scripts:
 - `spec/recommend-level.sh`
 - `runtime/lib/templates/level-contract-resolver.ts`
 
-Spec-script exit codes (`spec/*.sh`; distinct from the daemon-backed memory CLI taxonomy in §3):
+Spec-script exit codes (`spec/*.sh`; distinct from the daemon-backed memory CLI taxonomy in `references/cli/daemon-cli-reference.md` §5):
 - `0`: success.
 - `1`: user error such as bad flags or invalid input.
 - `2`: validation error.

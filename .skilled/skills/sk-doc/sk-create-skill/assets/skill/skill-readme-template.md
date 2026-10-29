@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill readme scaffold"
 importance_tier: normal
 contextType: general
-version: 1.3.1.0
+version: 1.3.2.0
 ---
 
 # Skill README Template
@@ -300,7 +300,8 @@ A: [A short, direct answer. Link a stable file when it helps.]
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions and routing logic |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`references/[name].md`](./references/[name].md) | [Why it matters] |
 | [`assets/[name].md`](./assets/[name].md) | [How it is used] |
 ````

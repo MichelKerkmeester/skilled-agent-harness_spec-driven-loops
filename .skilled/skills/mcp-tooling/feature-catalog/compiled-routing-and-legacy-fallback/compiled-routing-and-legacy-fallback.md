@@ -6,7 +6,7 @@ trigger_phrases:
   - "SPECKIT_COMPILED_ROUTING"
   - "compiled route front door"
   - "mcp-tooling compiled routing"
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)
@@ -56,7 +56,7 @@ The Orca packet left this hub for the standalone `cli-orca` skill, so the former
 | `.skilled/skills/mcp-tooling/SKILL.md` | Shared | Tells callers to use the compiled front door when it is serving. |
 | `.skilled/bin/compiled-route.cjs` | Script | Conditional compiled-route CLI front door. |
 | `.skilled/bin/compiled-route-status.cjs` | Script | Reports serving authority and cause code. |
-| `.skilled/skills/mcp-tooling/mode-registry.json` | Source | Declares the nine source modes. |
+| `.skilled/skills/mcp-tooling/mode-registry.json` | Source | Declares the eight source modes. |
 | `.skilled/skills/mcp-tooling/hub-router.json` | Source | Supplies the source routing policy and vocabulary. |
 
 ### Validation and tests

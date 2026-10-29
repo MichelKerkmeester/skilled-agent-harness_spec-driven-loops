@@ -1,7 +1,7 @@
 ---
 title: "PI-001 -- Version/help + .pi/ directory creation + settings.json merge"
 description: "This scenario validates the installed Pi version and help surface, confirms the project-local .pi settings package merge, and keeps nested global precedence as an explicitly bounded check for `PI-001`."
-version: 1.5.0.4
+version: 1.5.1.0
 ---
 
 # PI-001 -- Version/help + .pi/ directory creation + settings.json merge
@@ -60,7 +60,8 @@ Operators run the inspection commands and distinguish the observed project merge
 | File | Role |
 |---|---|
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | Root directory, isolation policy, and release rules |
-| `../../SKILL.md` | Pi routing, recursion bounds, and provider preflight |
+| `../../SKILL.md` | Pi recursion bounds and provider preflight |
+| `../../ROUTER.md` | Machine router: intent map, resource map and loading levels |
 | `../../references/cli-reference.md` | Version, config-directory override, flags, and failure-handling contract |
 
 ### Implementation And Test Anchors

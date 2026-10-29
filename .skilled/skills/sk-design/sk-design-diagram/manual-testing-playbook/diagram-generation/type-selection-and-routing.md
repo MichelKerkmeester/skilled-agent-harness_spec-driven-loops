@@ -1,7 +1,7 @@
 ---
 title: "DIA-001 -- Type selection and routing"
 description: "This scenario validates type selection and routing for `DIA-001`. It focuses on selecting the correct diagram type from the 27-type selection guide and loading the matching type reference before drawing."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # DIA-001 -- Type selection and routing
@@ -79,13 +79,14 @@ Run a second variant with a decision-logic request (`Draw a flowchart of our ref
 | File | Role |
 |---|---|
 | [`manual-testing-playbook.md`](../manual-testing-playbook.md) | Root directory page and scenario summary |
-| `../../feature-catalog/diagram-generation/type-selection-and-routing.md` | Feature-catalog source describing the implementation contract (authored next) |
+| [`../../feature-catalog/diagram-generation/type-selection-and-routing.md`](../../feature-catalog/diagram-generation/type-selection-and-routing.md) | Feature-catalog source describing the implementation contract |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
 | `SKILL.md` (Smart Routing + Selection Guide) | Primary implementation anchor |
+| [`ROUTER.md` §3](../../ROUTER.md#3-machine-router) | Machine router: request-shape signals, resource map and loading levels |
 | `references/types/type-architecture.md` | Type convention anchor |
 
 ---

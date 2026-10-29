@@ -1,7 +1,7 @@
 ---
 title: "SP-008 -- UNKNOWN_FALLBACK with disambiguation checklist"
 description: "This scenario validates zero-keyword fallback for `SP-008`. It focuses on confirming the router defaults to TEXT_ENHANCE and surfaces UNKNOWN_FALLBACK_CHECKLIST."
-version: 2.3.3.0
+version: 2.3.4.0
 ---
 
 # SP-008 -- UNKNOWN_FALLBACK with disambiguation checklist
@@ -25,8 +25,8 @@ Operators sometimes paste a draft with no meta-commentary. Without an UNKNOWN_FA
 Operators run the exact prompt and command sequence for `SP-008` and confirm the expected signals without contradictory evidence.
 
 - Objective: Confirm zero-keyword input routes to UNKNOWN_FALLBACK with checklist
-- Real user request: `Here is some text I wrote yesterday. <body of text without meta-commentary>`
-- Prompt: `Run sk-prompt on plain prose with no intent keywords; verify it defaults to TEXT_ENHANCE and surfaces UNKNOWN_FALLBACK_CHECKLIST.`
+- Real user request: `Here is a draft I wrote yesterday. <body of writing without meta-commentary>`
+- Prompt: `Route a plain draft that carries no intent keyword; verify the default intent and the 4-item checklist surface before work proceeds.`
 - Expected execution process: sk-prompt scores intents (all zero), enters the unknown-fallback branch, loads the default resource, returns `needs_disambiguation: true` along with the 4-item checklist.
 - Expected signals: Default = TEXT_ENHANCE; checklist printed verbatim; disambiguation flag set
 - Desired user-visible outcome: Routing trace showing default = TEXT_ENHANCE, plus the 4 checklist items rendered as numbered or bulleted list.
@@ -39,13 +39,13 @@ Operators run the exact prompt and command sequence for `SP-008` and confirm the
 ### Prompt
 
 ```
-Run sk-prompt on plain prose with no intent keywords; verify it defaults to TEXT_ENHANCE and surfaces UNKNOWN_FALLBACK_CHECKLIST.
+Route a plain draft that carries no intent keyword; verify the default intent and the 4-item checklist surface before work proceeds.
 ```
 
 ### Commands
 
-1. `sk-prompt: Here is some text I wrote yesterday. <plain prose body, no INTENT_MODEL keywords>`
-2. `bash: rg -A 6 'UNKNOWN_FALLBACK_CHECKLIST' .skilled/skills/sk-prompt/ROUTER.md` (capture canonical 4-item list)
+1. `sk-prompt: Here is a draft I wrote yesterday. <plain prose body, no INTENT_MODEL keyword>`
+2. `bash: rg -A 6 '^UNKNOWN_FALLBACK_CHECKLIST = ' .skilled/skills/sk-prompt/ROUTER.md` (capture canonical 4-item list)
 
 ### Expected
 

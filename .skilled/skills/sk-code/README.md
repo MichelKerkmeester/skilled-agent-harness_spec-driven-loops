@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.35.0
+version: 2.2.36.0
 ---
 
 # sk-code
@@ -197,7 +197,7 @@ A: The request stays at the hub. The hub orders the routing and asks for disambi
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime hub instructions and routing rules |
+| [`SKILL.md`](./SKILL.md) | Runtime hub instructions and the routing authority split |
 | [`ROUTER.md`](./ROUTER.md) | Active stage-two surface router, leaf map, and explicit shared-control declaration |
 | [`mode-registry.json`](./mode-registry.json) | The mode-to-packet routing map |
 | [`leaf-manifest.json`](./leaf-manifest.json) | The generated inventory of routed leaves, regenerated when packets change |

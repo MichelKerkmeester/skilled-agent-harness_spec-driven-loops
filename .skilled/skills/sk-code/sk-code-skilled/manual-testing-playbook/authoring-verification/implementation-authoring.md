@@ -15,7 +15,7 @@ expected_resources:
   - assets/checklists/command-authoring.md
   - assets/checklists/skill-authoring.md
   - assets/checklists/mcp-server-authoring.md
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # OC-006: Implementation authoring routing
@@ -98,7 +98,7 @@ excerpt.
 1. Re-run step 4 for the specific path that failed and confirm whether it was renamed or removed under
    `references/shared/`.
 2. Diff this scenario's `expected_resources` against the step-3 `RESOURCE_MAP["IMPLEMENTATION"]` excerpt to see
-   whether the drift is a stale scenario file or a stale `SKILL.md` map.
+   whether the drift is a stale scenario file or a stale `ROUTER.md` map.
 
 ---
 

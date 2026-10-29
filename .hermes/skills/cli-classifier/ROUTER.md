@@ -8,7 +8,7 @@ trigger_phrases:
   - "typed judgment routing"
 importance_tier: important
 contextType: implementation
-version: 0.8.3.0
+version: 0.8.4.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -45,7 +45,7 @@ One dominant judgment intent routes to the `cli-jev` leaf set. Two near-tied Jev
 
 ## 3. MACHINE-READABLE ROUTER (replay / benchmark source)
 
-The single machine-readable projection of the intent model above. The prose is the human-facing contract, and this block is the byte-for-byte source the deterministic router-replay parses. Keep them in sync: when a map row changes above, update the matching `RESOURCE_MAP` entry here. Every `RESOURCE_MAP` path resolves on disk and is registered in `leaf-manifest.json`, so each dual-reads to a canonical typed pair.
+The single machine-readable projection of the intent model above. The prose is the human-facing contract, and this block is the authored stage-two declaration the router contract checks and a reader parses; the deterministic replay resolves this hub's mode through `hub-router.json`. Keep them in sync: when a map row changes above, update the matching `RESOURCE_MAP` entry here. Every `RESOURCE_MAP` path resolves on disk and is registered in `leaf-manifest.json`, so each dual-reads to a canonical typed pair.
 
 ```python
 # No hub-wide preamble: each intent lists its mode's baseline first, then its own
@@ -107,7 +107,7 @@ RESOURCE_MAP = {
 
 ## 5. MACHINE ROUTER
 
-The hub's routing prose, moved here from `SKILL.md` so the skill body keeps only the pointer. It sits last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 3 stays the only replay source.
+The hub's detailed routing prose, moved here from `SKILL.md` so the skill body keeps only a short routing summary and a pointer to this file. It sits last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 3 stays the only replay source.
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash

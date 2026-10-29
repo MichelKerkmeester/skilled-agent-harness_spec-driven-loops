@@ -1,7 +1,7 @@
 ---
 title: "CP-052 -- Deep-review setup-to-YAML handoff **(SANDBOXED)**"
 description: "Validate that /deep:review resolves setup inputs before loading the auto YAML workflow."
-version: 1.11.0.10
+version: 1.11.1.0
 ---
 
 # CP-052 -- Deep-review setup-to-YAML handoff **(SANDBOXED)**
@@ -88,7 +88,7 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 | File | Lines | Role |
 |---|---:|---|
 | `.skilled/commands/deep/review.md` | 7-25, 43-160, 238-245 | Setup-first command contract and YAML handoff |
-| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | 43-61, 253-346 | Command-only invocation and three-layer workflow |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | 43-61, 123-125 | Command-only invocation and three-layer workflow |
 | `.skilled/agents/deep-review.md` | 23-33, 218-238 | Agent is single-iteration target and mirrors are read-only |
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | — | Root directory page and scenario summary |
 

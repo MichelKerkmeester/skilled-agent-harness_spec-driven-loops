@@ -704,6 +704,30 @@
         "Test harness"
       ],
       "description": "Per-feature catalog leaf file under */feature-catalog/<category>/ (only the Validation And Tests table Type + placeholder check applies; catalogs do not use emoji/uppercase H2s). allowedValidationTypes is a curated canonical set \u2014 the advisory Type warning surfaces near-dupes/typos to normalize toward these, not to force 2 values on the real corpus"
+    },
+    "skill_router": {
+      "description": "Sibling ROUTER.md beside a skill's or mode's SKILL.md. Detected by filename. It opens with an Overview and ends with the machine router: the intent map, resource map, default resource, loading levels and routing pseudocode",
+      "requiredSections": [
+        "overview",
+        "machine_router"
+      ],
+      "recommendedSections": [
+        "intent_model"
+      ],
+      "optionalSections": [],
+      "sectionEmojis": {},
+      "sectionAliases": {
+        "machine router": "machine_router",
+        "intent model": "intent_model"
+      },
+      "tocRequired": false,
+      "tocForbidden": true,
+      "anchorNavigationForbidden": true,
+      "h2DividerRequired": true,
+      "h2EmojiRequired": false,
+      "h2UppercaseRequired": true,
+      "firstSectionName": "overview",
+      "lastSectionPattern": "machine_router"
     }
   },
   "validationRules": {

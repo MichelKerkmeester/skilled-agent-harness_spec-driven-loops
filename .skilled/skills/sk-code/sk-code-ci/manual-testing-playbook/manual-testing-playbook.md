@@ -1,7 +1,7 @@
 ---
 title: "sk-code-ci: Manual Testing Playbook"
 description: "Corpus for the sk-code-ci surface: the routing-recall scenario for its CI_WORKFLOW intent signal and resource map, the negative floor that keeps CI words out of unrelated turns, one scenario per shipped rule reference, and the two /doctor:ci scenarios for a repository with its own switch names."
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # sk-code-ci: Manual Testing Playbook
@@ -26,7 +26,7 @@ Routing-recall, rule-reference and foreign-repository corpus for the `sk-code-ci
 
 Three kinds of scenario live here. One is routing recall: `ci-surface-ci-standards` sends one prompt through the hub and confirms the four routed references, the compiled route and the registry rows that name them. One is the floor under that recall: `ci-surface-routing-floor` sends prompts that share CI vocabulary without being CI requests and confirms the packet stays out of them. Four are rule-reference scenarios, one per file the packet ships, and each one drives the rule it documents against a fixture that breaks it and against this repository, where it holds. Two are `/doctor:ci` scenarios that run the three doctor scripts in a repository whose conventions are not this one's.
 
-The rule references themselves are read from the `MACHINE ROUTER` section at the end of [`ROUTER.md`](../ROUTER.md); section 2b carries the prose that names the same four paths.
+The rule references themselves are read from the `MACHINE ROUTER` section at the end of [`ROUTER.md`](../ROUTER.md); `SKILL.md` section 2b carries the prose that names the same four paths.
 
 The hub's router-sync guard replays every scenario here that declares `expected_intent` (check `4` of `sk-code-skilled/assets/scripts/verify-router-sync.cjs`), and the guard walks packet-level playbooks only, so a routing scenario kept anywhere else would never be replayed. Every other scenario declares no intent, because what it asserts is a behaviour rather than a route, and an operator runs it by hand.
 

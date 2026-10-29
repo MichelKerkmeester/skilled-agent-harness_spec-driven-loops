@@ -3,7 +3,7 @@ title: "SKD-010 -- Every value comes from a scale"
 description: "This scenario validates Every value comes from a scale for `SKD-010`. It focuses on confirm a spatial or type value is returned from the fixed scale with the scale named."
 stage: routing
 id: "SKD-010"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # SKD-010 -- Every value comes from a scale
@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `SKD-010` and confirm th
 
 1. `bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "what padding should this card have" --threshold 0.5`
 2. `agent: issue the same prompt in a fresh session and record the returned value`
-3. `bash: rg -n "^4  8  12  16  24  32  48" .skilled/skills/sk-design/SKILL.md`
+3. `bash: rg -n "^4  8  12  16  24  32  48" .skilled/skills/sk-design/sk-design-fundamentals/SKILL.md`
 
 ### Expected Signals
 
@@ -71,7 +71,7 @@ Compare the returned value against the grep output directly; a near-miss such as
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SKD-010 | Every value comes from a scale | confirm a spatial or type value is returned from the fixed scale with the scale named | `What padding should this card have` | 1. `bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "what padding should this card have" --threshold 0.5` -> 2. `agent: issue the same prompt in a fresh session and record the returned value` -> 3. `bash: rg -n "^4  8  12  16  24  32  48" .skilled/skills/sk-design/SKILL.md` | The returned value appears verbatim in the spacing scale, and the reply names the scale. | Advisor JSON, the returned value, and the grep output showing the scale the value must belong to. | PASS if the returned value appears in the grep output and the reply names the scale it came from; FAIL if the value is absent from the scale, or is returned with no scale named | Compare the returned value against the grep output directly; a near-miss such as 20px or 40px means the scale was paraphrased rather than read. |
+| SKD-010 | Every value comes from a scale | confirm a spatial or type value is returned from the fixed scale with the scale named | `What padding should this card have` | 1. `bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "what padding should this card have" --threshold 0.5` -> 2. `agent: issue the same prompt in a fresh session and record the returned value` -> 3. `bash: rg -n "^4  8  12  16  24  32  48" .skilled/skills/sk-design/sk-design-fundamentals/SKILL.md` | The returned value appears verbatim in the spacing scale, and the reply names the scale. | Advisor JSON, the returned value, and the grep output showing the scale the value must belong to. | PASS if the returned value appears in the grep output and the reply names the scale it came from; FAIL if the value is absent from the scale, or is returned with no scale named | Compare the returned value against the grep output directly; a near-miss such as 20px or 40px means the scale was paraphrased rather than read. |
 
 ---
 

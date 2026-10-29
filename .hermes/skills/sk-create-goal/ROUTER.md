@@ -1,6 +1,6 @@
 ---
 title: "Create Packet Goals Router"
-description: "Sibling router for sk-create-goal: the intent signals, the resource map and the no-match checklist a reader parses first."
+description: "Sibling router for sk-create-goal: the intent model, the default resource and the no-match checklist a reader parses first."
 trigger_phrases:
   - "sk-create-goal router"
   - "sk-create-goal routing"

@@ -8,7 +8,7 @@ trigger_phrases:
   - "rename surface taxonomy"
 importance_tier: normal
 contextType: implementation
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Rename Pattern — mechanical refactor template
@@ -87,7 +87,7 @@ Dispatch 2-4 parallel read-only CLI jobs (e.g. cli-opencode or cli-opencode) to 
 
 ## 4. CASE-SENSITIVITY GOTCHA
 
-Per the `feedback_rename_grep_case_insensitive` memory note: the final-gate grep MUST use `rg -il` (case-insensitive). UPPERCASE / Title-Case / underscore variants are easy to miss. Always also check for the underscore variant of any hyphenated identifier (e.g., `sk_small_model` next to `sk-small-model`) — Python pseudocode in SKILL.md examples often uses underscores.
+Per the `feedback_rename_grep_case_insensitive` memory note: the final-gate grep MUST use `rg -il` (case-insensitive). UPPERCASE / Title-Case / underscore variants are easy to miss. Always also check for the underscore variant of any hyphenated identifier (e.g., `sk_small_model` next to `sk-small-model`) — Python pseudocode in `ROUTER.md` examples often uses underscores.
 
 ---
 

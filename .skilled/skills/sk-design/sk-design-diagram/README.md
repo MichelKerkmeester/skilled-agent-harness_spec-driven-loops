@@ -4,7 +4,7 @@ description: "Draw a self-contained HTML/SVG technical diagram across 27 types a
 trigger_phrases:
   - "create diagram"
   - "architecture diagram"
-version: 1.2.0.16
+version: 1.2.1.0
 ---
 
 # sk-design-diagram
@@ -144,7 +144,8 @@ A: No: the packet has no network-fetch tool. Onboarding is agent-mediated: the c
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Authoritative packet contract, design system, routing, and taste gate |
+| [`SKILL.md`](./SKILL.md) | Authoritative packet contract, design system and taste gate |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`references/foundations/style-guide.md`](./references/foundations/style-guide.md) | Design tokens: the single source of truth for colors, typography, and spacing |
 | [`references/foundations/output-spec.md`](./references/foundations/output-spec.md) | The four import/export dials: format, size, detail, audience |
 | [`references/import-export/import-drawio.md`](./references/import-export/import-drawio.md) | draw.io redraw procedure |

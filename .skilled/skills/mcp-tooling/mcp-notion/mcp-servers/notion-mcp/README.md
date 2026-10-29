@@ -6,7 +6,7 @@ trigger_phrases:
   - "notion official mcp"
   - "notion manual"
   - "official notion mcp install"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # notion-mcp
@@ -90,7 +90,8 @@ Never hardcode a tool name without confirming it this way first. Notion tool nam
 
 | Document | Purpose |
 |---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Runtime routing between local and remote Notion backends |
+| [`../../SKILL.md`](../../SKILL.md) | Runtime instructions and the local/remote backend comparison |
+| [`../../ROUTER.md`](../../ROUTER.md) | Machine router: intent map, operation-to-tool table and loading levels |
 | [`../../references/mcp-tools.md`](../../references/mcp-tools.md) | 24-tool inventory, priority table, and Code Mode invocation pattern |
 | [`../../references/api-gap-tools.md`](../../references/api-gap-tools.md) | Direct API calls for the 5 uncovered domains (file uploads, views, property items, async tasks, daily notes) |
 | [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Rate limits, auth errors, API-version issues, and local-to-remote migration |

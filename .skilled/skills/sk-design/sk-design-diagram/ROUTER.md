@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-design-diagram routing"
 importance_tier: normal
 contextType: general
-version: 1.2.0.0
+version: 1.2.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -42,10 +42,11 @@ Five intents, one per detection signal the machine router scores. Each names the
 
 ## 3. MACHINE ROUTER
 
-The one machine-readable projection of the intent model above, written as `## MACHINE ROUTER` so every
-reader finds it. This section is the last in the file, and it holds the only pseudocode.
+The routing detail behind the intent model above, written as `## MACHINE ROUTER` so every reader
+finds it. This section is the last in the file. It carries no pseudocode of its own and links the
+reference that holds it.
 
-This section holds the format-resolution rule, the request-shape signals, the phase map, the resource domains, the loading-level table and the router pseudocode the SMART ROUTING summary in `SKILL.md` points at.
+This section holds the format-resolution rule, the request-shape signals, the phase map, the resource domains, the loading-level table and a link to the router pseudocode.
 
 Resolve the output format before selecting resources. **`html-svg`** is the default for the existing Generate, Import, and Export paths. **`ascii-markdown`** is for plain-text or box-drawing flowcharts in markdown.
 

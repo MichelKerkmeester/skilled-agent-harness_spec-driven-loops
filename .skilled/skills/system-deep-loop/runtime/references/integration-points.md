@@ -7,7 +7,7 @@ trigger_phrases:
   - "doctor deep-loop"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.12
+version: 1.4.1.0
 ---
 
 # Deep Loop Runtime Integration Points
@@ -177,7 +177,7 @@ Three more surfaces of this hub live inside `system-spec-kit`'s runtime tree and
 |---|---|---|
 | Script stdout stops being JSON-only | YAML output bindings break. | Preserve stdout contract. |
 | Session id omitted | Graph state can bleed across lineages. | All scripts require `--session-id`. |
-| MCP tools reintroduced | Runtime boundary regresses. | Follow `SKILL.md` NEVER rule. |
+| MCP tools reintroduced | Runtime boundary regresses. | Keep the runtime MCP-free; the hub `SKILL.md` escalates an MCP-tool change. |
 | DB not closed | SQLite handles remain open. | Keep `closeDb()` in `finally`. |
 | Consumer YAML uses old MCP names | Graph integration fails. | Grep YAML for `runtime//scripts`. |
 
@@ -187,7 +187,7 @@ Three more surfaces of this hub live inside `system-spec-kit`'s runtime tree and
 
 | Path | Role |
 |---|---|
-| `SKILL.md` | Runtime boundary and rules. |
+| `../SKILL.md` | Hub rules: the MCP-free boundary and the escalate-on-MCP-tools rule. |
 | `README.md` | Human-facing layout and quick start. |
 | `scripts/*.cjs` | Direct integration entry points. |
 | `lib/deep-loop/*.ts` | Shared executor, validation, state, scoring, and permission primitives. |

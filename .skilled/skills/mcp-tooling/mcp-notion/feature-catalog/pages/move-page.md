@@ -5,7 +5,7 @@ trigger_phrases:
   - "Move a page"
   - "notion_move-page"
   - "move a Notion page to a new parent"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Move a page (`notion_move-page`)
@@ -32,7 +32,7 @@ Behavior note: moving a page into a data source may require its properties to sa
 
 | File | Layer | Role |
 |---|---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Shared | Routes page-reorganization requests to the MCP. |
+| [`../../ROUTER.md`](../../ROUTER.md) | Shared | Routes page-reorganization requests to the MCP. |
 | [`../../references/mcp-tools.md`](../../references/mcp-tools.md) | Shared | Confirms the tool name, endpoint, and parent shape. |
 
 ### Validation And Tests

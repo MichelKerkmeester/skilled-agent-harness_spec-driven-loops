@@ -1,7 +1,7 @@
 ---
 title: "CX-004 -- Explicit fast service tier"
 description: "This scenario validates the explicit fast service tier rule for `CX-004`. It focuses on enforcing the auto-memory rule that -c service_tier=fast must be passed explicitly on every codex exec invocation."
-version: 1.9.0.12
+version: 1.9.1.0
 ---
 
 # CX-004 -- Explicit fast service tier
@@ -61,7 +61,7 @@ Operators run the exact prompt and command sequence for `CX-004` and confirm the
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../SKILL.md` (§4 ALWAYS rule 6) | Mandates explicit model + effort + service tier on every invocation |
+| `../../SKILL.md` (§4 ALWAYS rule 7) | Mandates explicit model + effort + service tier on every invocation |
 | `../../references/cli-reference.md` (§4 Command-Line Flags) | Documents the `-c` config-override mechanism |
 
 ### Implementation And Test Anchors
@@ -69,7 +69,7 @@ Operators run the exact prompt and command sequence for `CX-004` and confirm the
 | File | Role |
 |---|---|
 | `../../SKILL.md` | §3 Default Invocation block + §4 ALWAYS rule 6 |
-| `../../SKILL.md` (line 205 `-c service_tier="fast"` flag table, line 218 Fast-mode REQUIRED note, §4 rule 6 line 317) | Documents the always-explicit fast-tier contract enforced by this scenario |
+| `../../SKILL.md` | §3 "Default Invocation" table passes `-c service_tier="fast"` on every row, §3 "Model Selection" states fast is the default tier, and §4 ALWAYS rule 7 mandates an explicit tier |
 | `../../references/cli-reference.md` (§4 Command-Line Flags, §5 Model Selection) | CLI flag and config-override reference for `-c service_tier` |
 
 ---

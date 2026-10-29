@@ -1,7 +1,7 @@
 ---
 title: "cli-classifier: Manual Testing Playbook"
 description: "Operator-facing validation for the cli-classifier hub: Jev requests resolve to cli-jev, the current only mode, while out-of-domain requests stay out."
-version: 0.4.1.0
+version: 0.4.2.0
 ---
 
 # cli-classifier: Manual Testing Playbook
@@ -146,7 +146,7 @@ Prompt: `Run the Pi classifier transport with a stub jev first on PATH and show 
 
 | Coverage Area | Automated Or Structural Anchor | Scenario IDs |
 |---|---|---|
-| Hub routing contract | [cli-classifier SKILL.md](../SKILL.md) | `CC-002`, `CC-003`, `CJ-001`, `CJ-002` |
+| Hub routing contract | [cli-classifier SKILL.md](../SKILL.md) section 2 and [ROUTER.md](../ROUTER.md) | `CC-002`, `CC-003`, `CJ-001`, `CJ-002` |
 | Router vocabulary | [hub-router.json](../hub-router.json) | `CC-002`, `CC-003`, `CJ-001`, `CJ-002` |
 | Compiled canary corpus | `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json` | none, replayed by the rollout runner |
 | Jev transport behavior | [cli-jev playbook](../cli-jev/manual-testing-playbook/manual-testing-playbook.md) | none, covered by the `JEV-` scenarios |

@@ -2,7 +2,7 @@
 title: "CHT-008 -- The form comes from the lookup, and the diagram boundary holds"
 description: "This scenario validates routing and form selection for `CHT-008`. It confirms a chart request reaches this packet and resolves to a named catalog row, while a structural-visual request still reaches the neighbouring diagram packet."
 stage: routing
-version: 0.23.0.3
+version: 0.23.1.0
 ---
 
 # CHT-008 -- The form comes from the lookup, and the diagram boundary holds
@@ -33,7 +33,7 @@ Operators run the exact prompt and command sequence for `CHT-008` and confirm th
 - Real user request: `Make a waterfall chart of the budget movement from gross to net.`
 - Prompt: `Make a waterfall chart of the budget movement from gross to net, and tell me which row of the lookup you used.`
 - Expected execution process: the advisor scores the hub above the mandatory-invoke bar, the hub router resolves the mode and names its reference resources, the catalog is read, one row is chosen for the question and the file that row names is copied whole rather than rewritten.
-- Expected signals: stage one returns `sk-doc` above the bar. Stage two returns the chart mode with the matched alias and resolves the catalog, the colour systems and the template contract, all of which exist on disk. The agent names the row it used. A structural-visual request resolves to the diagram mode instead.
+- Expected signals: stage one returns `sk-design` above the bar. Stage two returns the chart mode with the matched alias and resolves the catalog, the colour systems and the template contract, all of which exist on disk. The agent names the row it used. A structural-visual request resolves to the diagram mode instead.
 - Desired user-visible outcome: a chart request gets a chart traceable to a named row, and a diagram request still gets a diagram.
 - Pass/fail: PASS when both stages resolve this packet for the chart request, the neighbour still takes the diagram request and the delivered file traces to one row. FAIL when either stage resolves the wrong packet, when a resolved resource is not on disk or when the chart was written freehand while a row for its question exists.
 
@@ -57,7 +57,7 @@ Operators run the exact prompt and command sequence for `CHT-008` and confirm th
 
 ### Expected
 
-Step 1 returns `sk-doc` above the threshold with the matched signal in its reason. Step 2 returns the chart mode as the intent, the matched alias that carried it and a resource list holding the catalog, the colour systems and the template contract, with an empty unresolved list. Step 3 returns the diagram mode, which is the half of the boundary that has to keep working. Step 4 resolves to the waterfall row in the time family. Step 5 produces one self-contained file that names its row. Step 6 confirms the corpus is unchanged. Step 7 returns empty output, because the delivery is written outside the packet.
+Step 1 returns `sk-design` above the threshold with the matched signal in its reason. Step 2 returns the chart mode as the intent, the matched alias that carried it and a resource list holding the catalog, the colour systems and the template contract, with an empty unresolved list. Step 3 returns the diagram mode, which is the half of the boundary that has to keep working. Step 4 resolves to the waterfall row in the time family. Step 5 produces one self-contained file that names its row. Step 6 confirms the corpus is unchanged. Step 7 returns empty output, because the delivery is written outside the packet.
 
 Stage two is the stage that decides the mode, and it resolves on the alias rather than on the sentence. Stage one decides the hub.
 

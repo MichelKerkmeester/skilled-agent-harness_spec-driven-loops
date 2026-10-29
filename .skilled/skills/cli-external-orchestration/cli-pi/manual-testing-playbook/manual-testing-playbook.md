@@ -1,7 +1,7 @@
 ---
 title: "cli-pi: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance, and per-scenario validation files for the cli-pi skill."
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # cli-pi: Manual Testing Playbook
@@ -288,7 +288,8 @@ The `cli-pi` skill is an orchestrator wrapper around the Pi binary and community
 
 | Test Surface | Coverage | Playbook Overlap |
 |---|---|---|
-| `.skilled/skills/cli-external-orchestration/cli-pi/SKILL.md` | Routing, provider preflight, headless modes, and hard rules | `PI-001`, `PI-002`, `PI-003`, `PI-017`, `PI-018` |
+| `.skilled/skills/cli-external-orchestration/cli-pi/SKILL.md` | Provider preflight, headless modes, and hard rules |
+| `.skilled/skills/cli-external-orchestration/cli-pi/ROUTER.md` | Machine router: intent map, resource map, loading levels | `PI-001`, `PI-002`, `PI-003`, `PI-017`, `PI-018` |
 | `.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md` | Confirmed flags, config-dir override, JSON/RPC distinctions, and output-first failure handling | `PI-001`, `PI-002`, `PI-017` |
 | `.skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs` | Flat prompt generation and drift checking | `PI-007`, `PI-008` |
 | `.skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs` | Project agent translation and sync checking | `PI-010` |

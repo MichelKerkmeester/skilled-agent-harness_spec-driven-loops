@@ -5,7 +5,7 @@ trigger_phrases:
   - "notion file upload"
   - "GAP-001"
   - "upload a file to notion"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # File Uploads (direct API -- GAP-001)
@@ -44,7 +44,7 @@ A `Notion-Version` mismatch surfaces as a 400 validation error; an unshared pare
 
 | File | Layer | Role |
 |---|---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Shared | Routes the 5 API-gap capabilities to direct REST calls instead of an MCP tool. |
+| [`../../ROUTER.md`](../../ROUTER.md) | Shared | Routes the 5 API-gap capabilities to direct REST calls instead of an MCP tool. |
 | [`../../references/api-gap-tools.md`](../../references/api-gap-tools.md) | Shared | Confirms all 5 endpoints, the required `2026-03-11` version pin, and runnable curl/Code Mode examples. |
 
 ### Validation And Tests

@@ -5,7 +5,7 @@ trigger_phrases:
   - "Retrieve your bot user"
   - "notion_retrieve-bot-user"
   - "check the Notion integration identity"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Retrieve your bot user (`notion_retrieve-bot-user`)
@@ -36,7 +36,7 @@ A 401 here means `NOTION_TOKEN` is missing or invalid — resolve that before at
 
 | File | Layer | Role |
 |---|---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Shared | Routes connectivity/auth preflight checks to the Users domain in the mode's operation table. |
+| [`../../ROUTER.md`](../../ROUTER.md) | Shared | Routes connectivity/auth preflight checks to the Users domain in the operation-to-tool table in section 3. |
 | [`../../references/mcp-tools.md`](../../references/mcp-tools.md) | Shared | Confirms the tool name, endpoint, API-version pin, and no-input contract (§5 Users). |
 
 ### Validation And Tests

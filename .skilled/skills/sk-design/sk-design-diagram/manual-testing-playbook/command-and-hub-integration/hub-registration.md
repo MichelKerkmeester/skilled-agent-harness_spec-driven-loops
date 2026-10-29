@@ -1,7 +1,7 @@
 ---
 title: "CMD-002 -- Hub registration"
 description: "This scenario validates the sk-design hub registration for `CMD-002`. It focuses on the mode-registry entry, the leaf-manifest references, the absence of a packet-local graph-metadata.json, and a clean package-structure validator run."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CMD-002 -- Hub registration
@@ -79,7 +79,7 @@ Spot-check one alias from the registry against the routing intent model in the p
 | File | Role |
 |---|---|
 | [`manual-testing-playbook.md`](../manual-testing-playbook.md) | Root directory page and scenario summary |
-| `../../feature-catalog/command-and-hub-integration/hub-registration.md` | Feature-catalog source describing the implementation contract (authored next) |
+| [`../../feature-catalog/command-and-hub-integration/hub-registration.md`](../../feature-catalog/command-and-hub-integration/hub-registration.md) | Feature-catalog source describing the implementation contract |
 
 ### Implementation And Test Anchors
 

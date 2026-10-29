@@ -8,7 +8,7 @@ expected_intent: CLI
 expected_resources:
   - references/cdp-patterns.md
   - references/session-management.md
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # CD-R01: CLI routing
@@ -23,7 +23,7 @@ This scenario validates CLI routing for `CD-R01`. It focuses on confirming that 
 
 ### Why This Matters
 
-CLI is the lightweight, token-efficient default path (`bdg`), distinct from the heavier MCP parallel-instance path (`../../ROUTER.md` §3 Pattern 3). Confirming this prompt resolves `CLI` and loads both `cdp-patterns.md` and `session-management.md` is what keeps a bundled workflow on the terminal tool instead of reaching for Code Mode when a single headless session is all that's needed.
+CLI is the lightweight, token-efficient default path (`bdg`), distinct from the heavier MCP parallel-instance path (`../../feature-catalog/mcp-parallel-instances/`). Confirming this prompt resolves `CLI` and loads both `cdp-patterns.md` and `session-management.md` is what keeps a bundled workflow on the terminal tool instead of reaching for Code Mode when a single headless session is all that's needed.
 
 ---
 

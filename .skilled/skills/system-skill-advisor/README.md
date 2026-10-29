@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.12.10.0
+version: 0.12.11.0
 ---
 
 # system-skill-advisor
@@ -124,7 +124,7 @@ Shadow-delta JSONL recording is opt-in. `advisor_recommend` includes the prompt-
 
 ### Freshness and the Trust Contract
 
-A daemon watches every `SKILL.md` and `graph-metadata.json` under `.skilled/skills/`. When a watched source changes, the daemon schedules an incremental reindex, publishes a fresh generation after the rebuild and invalidates the recommendation cache. It holds a single-writer lease. Explicit trusted mutation paths are `advisor_rebuild`, `skill_graph_scan` and real `skill_graph_propagate_enhances` apply writes (`mode: apply` with `dryRun !== true`). Corrupt-database recovery may also move aside and recreate the database during lazy initialization.
+A daemon watches every `SKILL.md`, `ROUTER.md` and `graph-metadata.json` under `.skilled/skills/`. When a watched source changes, the daemon schedules an incremental reindex, publishes a fresh generation after the rebuild and invalidates the recommendation cache. It holds a single-writer lease. Explicit trusted mutation paths are `advisor_rebuild`, `skill_graph_scan` and real `skill_graph_propagate_enhances` apply writes (`mode: apply` with `dryRun !== true`). Corrupt-database recovery may also move aside and recreate the database during lazy initialization.
 
 Every response carries a trust state so the caller knows what to do next.
 

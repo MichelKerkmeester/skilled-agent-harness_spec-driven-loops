@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill validation path"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Skill Authoring Checklist
@@ -33,7 +33,7 @@ This checklist keeps new and modified OpenCode skills consistent with the live s
 
 ## 2. PRE-CHECKS
 
-- [ ] Read the live parent-hub example at `.skilled/skills/sk-code/SKILL.md`, `.skilled/skills/sk-code/graph-metadata.json`, `.skilled/skills/sk-code/mode-registry.json`, and `.skilled/skills/sk-code/hub-router.json` before copying a hub pattern.
+- [ ] Read the live parent-hub example at `.skilled/skills/sk-code/SKILL.md`, `.skilled/skills/sk-code/ROUTER.md`, `.skilled/skills/sk-code/graph-metadata.json`, `.skilled/skills/sk-code/mode-registry.json`, and `.skilled/skills/sk-code/hub-router.json` before copying a hub pattern.
 - [ ] Read `sk-doc` source rules at `.skilled/skills/sk-doc/sk-create-skill/references/README.md` and the parent-hub pattern at `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`.
 - [ ] Decide the skill shape: flat skill or parent-hub skill. A parent hub has one advisor-routable identity and nested mode packets.
 - [ ] For any parent hub, require hub-level `graph-metadata.json`, `mode-registry.json`, `hub-router.json`, and `description.json`; nested packets must not carry their own `graph-metadata.json`.
@@ -49,12 +49,12 @@ This checklist keeps new and modified OpenCode skills consistent with the live s
 1. Define the skill's activation boundary before drafting content.
 2. Choose the shape.
    - Flat skill: one `SKILL.md` plus optional `references/`, `assets/`, `scripts/`, and `description.json`.
-   - Parent-hub skill: hub `SKILL.md`, `description.json`, `graph-metadata.json`, `mode-registry.json`, `hub-router.json`, and nested packet folders.
+   - Parent-hub skill: hub `SKILL.md`, `ROUTER.md`, `description.json`, `graph-metadata.json`, `mode-registry.json`, `hub-router.json`, and nested packet folders.
 3. Create or update `SKILL.md` with required frontmatter, a focused description, and the standard sections used by the live example.
-4. For parent hubs, keep routing in `mode-registry.json` and `hub-router.json`; keep workflow or surface detail inside nested packet `SKILL.md` files.
+4. For parent hubs, keep stage-one routing in `mode-registry.json` and `hub-router.json`, and each packet's machine router in that packet's own `ROUTER.md`; keep workflow or surface detail inside nested packet `SKILL.md` files.
 5. For parent hubs, keep a single advisor identity in hub-level `graph-metadata.json`; do not add packet-level graph metadata.
 6. Put detailed standards in `references/`, reusable output material in `assets/`, and deterministic helpers in `scripts/`.
-7. Add resource-routing guidance in Smart Routing only when the skill has conditional resources.
+7. Put the `INTENT_SIGNALS` / `RESOURCE_MAP` block and its routing prose in the packet's own `ROUTER.md`, under a final `## MACHINE ROUTER` heading; a hub root `ROUTER.md` carries the hub's stage-two control document instead. `SKILL.md` SMART ROUTING stays short prose plus the link to that file.
 8. Add or update `description.json` with matching version, keywords, and trigger examples.
 9. Add changelog coverage when the skill has a versioned release stream.
 10. Check that new links resolve from the file that contains them.
@@ -76,5 +76,5 @@ This checklist keeps new and modified OpenCode skills consistent with the live s
 
 - `.skilled/skills/sk-doc/sk-create-skill/references/README.md` (source index for skill structure rules)
 - `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md` (parent-hub structure and metadata contract)
-- Parent-hub example: `.skilled/skills/sk-code/SKILL.md`, `.skilled/skills/sk-code/graph-metadata.json`, `.skilled/skills/sk-code/mode-registry.json`, `.skilled/skills/sk-code/hub-router.json`
+- Parent-hub example: `.skilled/skills/sk-code/SKILL.md`, `.skilled/skills/sk-code/ROUTER.md` (machine router: intent map, resource map and load tiers), `.skilled/skills/sk-code/graph-metadata.json`, `.skilled/skills/sk-code/mode-registry.json`, `.skilled/skills/sk-code/hub-router.json`
 - Verification recipes: `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md`

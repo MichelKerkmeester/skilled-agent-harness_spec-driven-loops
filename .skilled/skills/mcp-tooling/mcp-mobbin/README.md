@@ -7,7 +7,7 @@ trigger_phrases:
   - "app design research"
   - "screen examples"
   - "ux flow references"
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # mcp-mobbin
@@ -200,7 +200,7 @@ A: No. It is a transport with `mutatesWorkspace: false`:
 | Check | How to run it |
 |---|---|
 | Skill package | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/mcp-tooling/mcp-mobbin --check` reports zero errors |
-| SKILL.md frontmatter | `head -8 .skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md` shows `name: mcp-mobbin`, a `description` and `version: 1.0.0.0` |
+| SKILL.md frontmatter | `head -8 .skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md` shows `name: mcp-mobbin`, a `description` and `user-invocable: true` |
 | Wiring state | `bash .skilled/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh` reports `OK 'mobbin' manual registered` plus the bridge shape (absence would be ERR) |
 | Install posture | `bash .skilled/skills/mcp-tooling/mcp-mobbin/scripts/install.sh` verifies Node 18 or newer, npx and the registered manual, then points at the operator-only OAuth step |
 | Endpoint reachability | `MOBBIN_DOCTOR_LIVE=1 bash .skilled/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh` reports HTTP 401 (auth required, as documented) |
@@ -213,6 +213,7 @@ A: No. It is a transport with `mutatesWorkspace: false`:
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES and references |
+| [`ROUTER.md#3-machine-router`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Verify-only setup: the registered wiring state, the paid-plan gate and the operator-only OAuth step |
 | [`references/tool-surface.md`](./references/tool-surface.md) | The three-tool contract, the intent workflows, plan gating, rate limit and the open questions |
 | [`references/mcp-wiring.md`](./references/mcp-wiring.md) | The registered manual, the mcp-remote bridge, OAuth, DCR, PKCE, inferred naming and discovery |

@@ -12,7 +12,7 @@ trigger_phrases:
   - "codex exec model reasoning effort"
 importance_tier: normal
 contextType: implementation
-version: 1.9.3.0
+version: 1.9.4.0
 ---
 
 # cli-codex Providers, Models & Invocation
@@ -37,7 +37,8 @@ This file enumerates the provider/model/effort facts and the dispatch envelope. 
 ### Authority pointers
 - Full CLI flags, subcommands, sandbox modes, auth pre-flight, troubleshooting → [cli-reference.md](./cli-reference.md)
 - Dispatch envelope + orchestration patterns + failure-mode traps → [integration-patterns.md](./integration-patterns.md)
-- Routing, default-invocation contract, self-invocation guard → [../SKILL.md](../SKILL.md)
+- Default-invocation contract → [../SKILL.md](../SKILL.md)
+- Routing, intent map, resource map, loading levels and the self-invocation guard → [../ROUTER.md](../ROUTER.md)
 
 ---
 
@@ -145,4 +146,5 @@ Multi-lineage parallel dispatch is driven by the shared deep-loop runtime (`fano
 
 - [cli-reference.md](./cli-reference.md) — full `codex exec` flags, sandbox modes, model table, auth, config, troubleshooting
 - [integration-patterns.md](./integration-patterns.md) — cross-AI orchestration patterns + dispatch failure-mode traps
-- [../SKILL.md](../SKILL.md) — cli-codex mode overview, routing, default-invocation contract, self-invocation guard
+- [../SKILL.md](../SKILL.md) — cli-codex mode overview and default-invocation contract
+- [../ROUTER.md](../ROUTER.md) — machine router: intent map, resource map, loading levels and the self-invocation guard

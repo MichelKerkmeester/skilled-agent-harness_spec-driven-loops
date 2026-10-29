@@ -440,7 +440,7 @@ rg --no-config --json --fixed-strings --ignore-case \
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically from `references/`, `assets/`, and `scripts/`. See §5 for the core set.
+The router discovers reference and asset docs dynamically from `references/` and `assets/`. See §5 for the core set.
 
 ### Manual Testing Playbook
 

@@ -5,7 +5,7 @@ trigger_phrases:
   - "Retrieve a database"
   - "notion_retrieve-a-database"
   - "list the data sources inside a Notion database"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Retrieve a database (`notion_retrieve-a-database`)
@@ -34,7 +34,7 @@ There is no MCP tool to *create* a database container — only its data sources 
 
 | File | Layer | Role |
 |---|---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Shared | Routes database/data-source ops to the Databases and data sources domain in the mode's operation table. |
+| [`../../ROUTER.md`](../../ROUTER.md) | Shared | Routes database/data-source ops to the Databases and data sources domain in the operation-to-tool table in section 3. |
 | [`../../references/mcp-tools.md`](../../references/mcp-tools.md) | Shared | Confirms the tool name, endpoint, API-version pin, and key inputs (§5 Databases / Data Sources). |
 | [`../../references/database-model.md`](../../references/database-model.md) | Shared | Documents the database → data-source → page hierarchy and the migration rule for holding only a `database_id`. |
 

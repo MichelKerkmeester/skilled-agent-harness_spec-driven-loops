@@ -6,7 +6,7 @@ trigger_phrases:
   - "diagram type conventions index"
   - "27 diagram types"
 contextType: general
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # references/types
@@ -17,7 +17,7 @@ Per-type layout conventions, ceilings, and anti-patterns: one file per supported
 
 ## 1. OVERVIEW
 
-The router loads exactly one of these files per generate request, selected by `SKILL.md`'s type-selection guide. Each file documents that type's grammar-specific rules: layout formulas, complexity ceiling, and common anti-patterns.
+The router loads exactly one of these files per generate request, selected by the `GENERATE` intent in `ROUTER.md`, whose type table lives in `../catalog.md`. Each file documents that type's grammar-specific rules: layout formulas, complexity ceiling, and common anti-patterns.
 
 ---
 

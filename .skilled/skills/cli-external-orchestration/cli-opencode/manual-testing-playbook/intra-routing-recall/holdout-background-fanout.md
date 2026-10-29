@@ -9,7 +9,7 @@ expected_resources:
   - references/integration-patterns.md
   - assets/prompt-templates.md
 blindToRouterKeywords: true
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # CO-H02: Blind holdout: background fan-out sessions
@@ -59,7 +59,7 @@ Fire off three background coding jobs on a remote box so they each explore a dif
 
 1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/intra-routing-recall/holdout-background-fanout.md`
 2. `grep -n '"PARALLEL_DETACHED"' ../../ROUTER.md` (confirms the `INTENT_SIGNALS` entry)
-3. `grep -A2 'RESOURCE_MAP = {' ../../ROUTER.md | grep '"PARALLEL_DETACHED"'` (confirms the `RESOURCE_MAP` entry)
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' ../../ROUTER.md | grep '"PARALLEL_DETACHED"'` (confirms the `RESOURCE_MAP` entry)
 4. `test -e .skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md && echo "OK references/integration-patterns.md" || echo "MISS references/integration-patterns.md"`
 5. `test -e .skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md && echo "OK assets/prompt-templates.md" || echo "MISS assets/prompt-templates.md"`
 
@@ -79,7 +79,7 @@ live `INTENT_SIGNALS["PARALLEL_DETACHED"]` entry.
 
 ### Failure Triage
 
-1. Re-run the SKILL.md greps above and diff the current entry against this scenario's frontmatter to
+1. Re-run the ROUTER.md greps above and diff the current entry against this scenario's frontmatter to
    see exactly which keyword, weight, or resource moved.
 2. Re-run the `test -e` checks and confirm whether a resource file was renamed or removed.
 

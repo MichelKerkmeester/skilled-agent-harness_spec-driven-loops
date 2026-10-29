@@ -58,7 +58,7 @@
         "order": 1,
         "skill": "sk-design",
         "resource": ".skilled/skills/sk-design/SKILL.md",
-        "action": "load the sk-doc parent hub routing table"
+        "action": "load the sk-design parent hub routing table"
       },
       {
         "order": 2,
@@ -93,7 +93,7 @@
         "order": 1,
         "skill": "sk-design",
         "resource": ".skilled/skills/sk-design/SKILL.md",
-        "action": "load the sk-doc parent hub routing table"
+        "action": "load the sk-design parent hub routing table"
       },
       {
         "order": 2,

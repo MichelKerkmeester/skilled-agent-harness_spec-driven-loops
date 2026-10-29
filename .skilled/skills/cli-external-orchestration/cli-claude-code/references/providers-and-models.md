@@ -9,7 +9,7 @@ trigger_phrases:
   - "claude opus sonnet haiku dispatch"
 importance_tier: normal
 contextType: implementation
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # cli-claude-code Providers, Models & Invocation
@@ -129,4 +129,5 @@ Multi-lineage parallel dispatch is driven by `fanout-run.cjs`, which lives outsi
 
 - [cli-reference.md](./cli-reference.md) — full `claude` flags, subcommands, permission modes, OAuth pre-flight, troubleshooting
 - [integration-patterns.md](./integration-patterns.md) — cross-AI orchestration patterns and dispatch shapes
-- [../SKILL.md](../SKILL.md) — cli-claude-code mode overview, routing, and default-invocation contract
+- [../SKILL.md](../SKILL.md) — cli-claude-code mode overview and default-invocation contract
+- [../ROUTER.md](../ROUTER.md) — machine router: intent map, resource map, loading levels and the self-invocation guard

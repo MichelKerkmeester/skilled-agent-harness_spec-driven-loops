@@ -13,7 +13,7 @@ expected_leaf_resources:
     leaf_resource_id: assets/ascii-patterns/simple-workflow.md
   - workflow_mode: sk-design-diagram
     leaf_resource_id: assets/ascii-patterns/decision-tree-flow.md
-version: 2.1.0.21
+version: 2.1.1.0
 ---
 
 # SD-007: Ambiguous Multi-Intent Disambiguation
@@ -88,7 +88,7 @@ CLI transcript with intent, resources, response shape, token counts where applic
 
 ### Failure Triage
 
-Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt.
+Re-read `ROUTER.md` §3 RESOURCE_MAP and intent keywords, then compare against the routed prompt.
 
 ### Optional Supplemental Checks
 
@@ -124,7 +124,7 @@ Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare a
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` | The sk-doc router under test |
+| `../../ROUTER.md` | The sk-design router under test |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs` | Routing-gold contract gate |
 
 ---

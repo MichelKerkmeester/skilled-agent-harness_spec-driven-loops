@@ -8,7 +8,7 @@ trigger_phrases:
   - "repeatable drift verifier"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Alignment Verification Automation
@@ -54,7 +54,7 @@ Use this reference when tuning recurring checks or interpreting verifier output 
 The verifier is intentionally lightweight. It does not replace the standards
 checklists and, by default, does not scan markdown. The opt-in `--check-router`
 flag adds one narrow exception: it checks that every RESOURCE_MAP/DEFAULT_RESOURCE
-leaf a `SKILL.md` router names exists on disk (a dead-route guard, scoped to the
+leaf a skill's router names exists on disk (a dead-route guard, scoped to the
 router block only). It still never inspects markdown prose. RESOURCE_MAP
 parent-child *equality* is not checked by this script either; leg 2 of
 `verify-router-sync.cjs` checks it, as the section "Router-sync guard" below
@@ -132,7 +132,7 @@ Notes:
 - Output includes both rule id and severity (`[RULE] [ERROR|WARN]`).
 - Exit code `0` means no blocking findings (warnings are non-blocking by default).
 - Exit code `1` means one or more errors were found, or warnings were found with `--fail-on-warn`.
-- `--check-router` (default off) emits `ROUTER-DEAD-PATH` (ERROR) for any RESOURCE_MAP leaf with no file on disk; without the flag the router table is never parsed, so the default invocation is behavior-identical to omitting it.
+- `--check-router` (default off) emits `ROUTER-DEAD-PATH` (ERROR) for any RESOURCE_MAP leaf with no file on disk. It also emits `ROUTER-DUAL-DECLARATION` (ERROR) when both `SKILL.md` and `ROUTER.md` declare a router, and that finding suppresses the dead-path leg for the skill: with two declarations neither document is read. Without the flag the router table is never parsed, so the default invocation is behavior-identical to omitting it.
 
 ---
 

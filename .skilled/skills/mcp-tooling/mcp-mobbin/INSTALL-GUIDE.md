@@ -1,7 +1,7 @@
 ---
 title: "mcp-mobbin Installation Guide"
 description: "Verify-only setup for the read-only Mobbin design-research transport: plan access, browser OAuth and the registered Code Mode manual."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # mcp-mobbin Installation Guide
@@ -212,7 +212,8 @@ See [`references/troubleshooting.md`](references/troubleshooting.md) for the ful
 | Document | Location | Purpose |
 | -------- | -------- | ------- |
 | README | `.skilled/skills/mcp-tooling/mcp-mobbin/README.md` | Human orientation and quick start |
-| SKILL.md | `.skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md` | Runtime instructions and routing |
+| SKILL.md | `.skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md` | Runtime instructions; the machine router is in `ROUTER.md` |
+| ROUTER.md | `.skilled/skills/mcp-tooling/mcp-mobbin/ROUTER.md` | Machine router: intent map, resource map and loading levels |
 | Tool Surface | `.skilled/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md` | The single-tool contract, intent workflows, plan gating, and rate limit |
 | MCP Wiring | `.skilled/skills/mcp-tooling/mcp-mobbin/references/mcp-wiring.md` | Registered manual, bridge, OAuth/DCR/PKCE, inferred naming, discovery |
 | Troubleshooting | `.skilled/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md` | Full failure-mode table |

@@ -1,7 +1,7 @@
 ---
 title: "CP-055 -- Synthesis and save boundary **(SANDBOXED)**"
 description: "Validate that deep-review synthesis writes reducer-owned review artifacts and routes continuity through generate-context.js, not retired memory files."
-version: 1.11.0.10
+version: 1.11.1.0
 ---
 
 # CP-055 -- Synthesis and save boundary **(SANDBOXED)**
@@ -90,7 +90,7 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 | File | Lines | Role |
 |---|---:|---|
 | `.skilled/commands/deep/assets/deep-review-presentation.txt` | 306-322, 345-361 | Success/failure output and memory integration |
-| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | 414-420, 430-434 | Loop completion, quality gates, continuity integration |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | 298-322, 330-338 | Loop completion, quality gates, continuity integration |
 | `.skilled/agents/deep-review.md` | 292-297, 503-520 | Reducer boundary and related resources |
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | — | Root directory page and scenario summary |
 

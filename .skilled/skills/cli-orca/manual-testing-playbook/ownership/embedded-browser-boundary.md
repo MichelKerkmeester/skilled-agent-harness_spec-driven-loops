@@ -2,7 +2,7 @@
 title: "ORCA-007 -- Embedded browser stays inside the Orca runtime"
 description: "This scenario validates that the embedded browser is used only for Orca-hosted pages and that an external site is routed to a page-automation tool instead."
 catalog_applicable: true
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # ORCA-007 -- Embedded browser stays inside the Orca runtime
@@ -67,7 +67,7 @@ The ownership rule lines from step 1 are the load-bearing signal for the externa
 | File | Role |
 |---|---|
 | [Mutation and browser boundaries reference](../../references/mutation-and-browser-boundaries.md) | Browser ownership matrix and the snapshot, interact, re-snapshot loop. |
-| [Router contract](../../SKILL.md) | Browser lane rules and the external page escalation trigger. |
+| [Router contract](../../ROUTER.md#3-machine-router) | Browser lane rules and the lane resource map. |
 
 ---
 

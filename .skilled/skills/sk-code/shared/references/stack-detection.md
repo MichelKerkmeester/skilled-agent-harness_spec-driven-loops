@@ -8,7 +8,7 @@ trigger_phrases:
   - "declare an sk-code surface"
 importance_tier: important
 contextType: general
-version: 2.2.11.0
+version: 2.2.12.0
 ---
 
 # Router Reference - Code Surface Detection
@@ -172,4 +172,4 @@ YAML is live hub config: command routers, workflow contracts and each command's 
 - [`../../hub-router.json`](../../hub-router.json): `routerPolicy.tieBreak`, which ranks the fallback last.
 - [`../../ROUTER.md`](../../ROUTER.md): root intent classification, resource maps, declared shared controls and load tiers.
 - [`./phase-detection.md`](./phase-detection.md): the Phase 1, 2 and 3 lifecycle and per-phase resource loading.
-- `SKILL.md` section 2: the operator-facing summary of the routing contract, including the session surface hint.
+- `ROUTER.md` section 11: the compiled-routing directive, including the session surface hint.

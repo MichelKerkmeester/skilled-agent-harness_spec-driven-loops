@@ -8,7 +8,7 @@ expected_intent: CODE_EDITING
 expected_resources: 
   - references/cli-reference.md
   - assets/prompt-templates.md
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # CC-H02: Blind holdout — editing domain
@@ -58,7 +58,7 @@ Have the external assistant rework the checkout module so the retry behavior is 
 
 1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/intra-routing-recall/holdout-editing.md`
 2. `grep -n '"CODE_EDITING"' ../../ROUTER.md` (confirms the `INTENT_SIGNALS` entry)
-3. `grep -A2 'RESOURCE_MAP = {' ../../ROUTER.md | grep '"CODE_EDITING"'` (confirms the `RESOURCE_MAP` entry)
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' ../../ROUTER.md | grep '"CODE_EDITING"'` (confirms the `RESOURCE_MAP` entry)
 4. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md && echo "OK references/cli-reference.md" || echo "MISS references/cli-reference.md"`
 5. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-templates.md && echo "OK assets/prompt-templates.md" || echo "MISS assets/prompt-templates.md"`
 
@@ -68,7 +68,7 @@ Step 1 shows `expected_intent: CODE_EDITING`. Step 2's output names the `CODE_ED
 
 ### Evidence
 
-Command transcript from every step above; this scenario's frontmatter compared against SKILL.md's
+Command transcript from every step above; this scenario's frontmatter compared against ROUTER.md's
 live `INTENT_SIGNALS["CODE_EDITING"]` entry.
 
 ### Pass / Fail
@@ -78,7 +78,7 @@ live `INTENT_SIGNALS["CODE_EDITING"]` entry.
 
 ### Failure Triage
 
-1. Re-run the SKILL.md greps above and diff the current entry against this scenario's frontmatter to
+1. Re-run the ROUTER.md greps above and diff the current entry against this scenario's frontmatter to
    see exactly which keyword, weight, or resource moved.
 2. Re-run the `test -e` checks and confirm whether a resource file was renamed or removed.
 

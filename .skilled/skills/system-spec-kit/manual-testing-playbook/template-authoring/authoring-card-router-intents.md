@@ -1,7 +1,7 @@
 ---
 title: "481 -- Authoring card loaded by four intents"
 description: "This scenario validates that the PLAN, IMPLEMENT, INTAKE and TEMPLATE_AUTHORING intents load the authoring card and leave the long guide on demand."
-version: 1.0.4.0
+version: 1.0.5.0
 id: template-authoring-authoring-card-router-intents
 ---
 
@@ -25,7 +25,7 @@ Operators count the card and guide lines in the router and read three numbers.
 - Playbook ID: 481.
 - Real user request: `Show me which authoring document each writing intent loads, and confirm the long guide is only an on-demand lookup now.`
 - Prompt: `Show me which authoring document each writing intent loads, and confirm the long guide is only an on-demand lookup now.`
-- Preconditions: A checkout with `awk` on PATH and `SKILL.md` and `references/workflows/spec-authoring-card.md` present. The scenario needs no network.
+- Preconditions: A checkout with `awk` on PATH and `ROUTER.md` and `references/workflows/spec-authoring-card.md` present. The scenario needs no network.
 - Expected execution process: Run one `awk` count over the four intent blocks for the card, one for the guide, and one over the on demand list for the guide.
 - Expected signals: The card count prints `4`. The intent guide count prints `0`. The on demand guide count prints `1`.
 - Desired user-visible outcome: The operator sees the four intents load the card and the guide held for an on demand read.

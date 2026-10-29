@@ -1,7 +1,7 @@
 ---
 title: "DIA-004 -- Primitive variants"
 description: "This scenario validates the on-demand primitive variants for `DIA-004`. It focuses on annotation callouts, the sketchy displacement filter, the terminal skin, and the monochrome icon library."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # DIA-004 -- Primitive variants
@@ -80,7 +80,7 @@ Add a `terminal` sub-check: request the loop diagram again with the terminal ski
 | File | Role |
 |---|---|
 | [`manual-testing-playbook.md`](../manual-testing-playbook.md) | Root directory page and scenario summary |
-| `../../feature-catalog/diagram-generation/primitive-variants.md` | Feature-catalog source describing the implementation contract (authored next) |
+| [`../../feature-catalog/diagram-generation/primitive-variants.md`](../../feature-catalog/diagram-generation/primitive-variants.md) | Feature-catalog source describing the implementation contract |
 
 ### Implementation And Test Anchors
 

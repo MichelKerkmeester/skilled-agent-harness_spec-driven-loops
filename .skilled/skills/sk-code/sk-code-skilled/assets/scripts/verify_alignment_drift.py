@@ -915,7 +915,10 @@ def check_router_paths(roots: Iterable[str]) -> List[Finding]:
     Default-off companion to the language checks (runs only under
     --check-router). A dead route means a documented resource cannot be loaded,
     so it is an integrity finding. A sibling ROUTER.md that declares supplies the
-    text, read from its machine-router section. SKILL.md is read whole whenever
+    text, read from its machine-router section. One that cannot be decoded supplies
+    nothing and the scan falls back to SKILL.md, so a sibling the scan cannot read
+    never suppresses the leaves the readable document names. SKILL.md is read whole
+    whenever
     it is the only declarer or declares nothing under a heading, because the
     leaves it names live wherever the document names them and a header this
     grammar does not know still names leaves worth checking. Neither document is
@@ -958,9 +961,10 @@ def check_router_paths(roots: Iterable[str]) -> List[Finding]:
                     with open(router_md, "r", encoding="utf-8") as handle:
                         router_text = handle.read()
                 except (UnicodeDecodeError, OSError):
-                    # A sibling the scan cannot read may be the live router, so no
-                    # honest verdict exists and the skill is left unchecked.
-                    continue
+                    # A sibling the scan cannot read supplies no router, but it is no
+                    # reason to drop the skill: the declaration it can read still
+                    # names leaves, and a skill left unchecked is the louder fault.
+                    router_text = ""
             in_router_file = router_declaration_section(router_text)
             in_skill_file = router_declaration_section(skill_text)
             if in_router_file is not None and in_skill_file is not None:

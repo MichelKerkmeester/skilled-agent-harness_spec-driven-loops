@@ -14,7 +14,7 @@ expected_leaf_resources:
   - workflow_mode: cli-jev
     leaf_resource_id: references/integration-patterns.md
 created: 2026-09-20
-version: 0.4.0.0
+version: 0.4.1.0
 ---
 
 # CJ-001: A Jev judgment request resolves mode cli-jev
@@ -88,7 +88,8 @@ for p in "ask jev for a probability that this plan ships on time" "score these t
 |---|---|
 | [hub-router.json](../../hub-router.json) | The vocabulary classes the judgment signals match |
 | [mode-registry.json](../../mode-registry.json) | The registered mode and its packet kind |
-| [SKILL.md](../../SKILL.md) | The hub's routing contract |
+| [ROUTER.md](../../ROUTER.md) | The surface router: the intent map, resource map and loading levels the expected leaves come from |
+| [SKILL.md](../../SKILL.md) | The hub's routing contract, which points at the surface router |
 
 ---
 

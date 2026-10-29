@@ -7,7 +7,7 @@ trigger_phrases:
   - "official orca skills package"
 importance_tier: normal
 contextType: general
-version: 0.1.3.0
+version: 0.1.4.0
 ---
 
 # cli-orca
@@ -40,7 +40,7 @@ What it deliberately does not own: generic Git worktrees and branch work stay wi
 
 The package is organized around the four leaf roots declared in `leaf-manifest.config.json`: `references`, `assets`, `feature-catalog` and `manual-testing-playbook`. The changelog tree sits outside the leaf roots on purpose, because it records history rather than a routing target.
 
-- **Skill workflow** -- `SKILL.md` holds the phase workflow, the rules and the escalation taxonomy. `graph-metadata.json` carries the advisor identity for the root, and `leaf-manifest.json` with its derived projection `leaf-aliases.json` declares the leaves the metadata gate emits.
+- **Skill workflow** -- `SKILL.md` holds the operating workflow, the rules and the escalation taxonomy. `graph-metadata.json` carries the advisor identity for the root, and `leaf-manifest.json` with its derived projection `leaf-aliases.json` declares the leaves the metadata gate emits.
 - **Machine router** -- [`ROUTER.md`](ROUTER.md#3-machine-router) holds the intent map, resource map and loading levels for this skill.
 - **Reference corpus** -- the four CLI references named by the SKILL.md reference table: `orca-cli-reference.md`, `session-and-runtime.md`, `mutation-and-browser-boundaries.md` and `troubleshooting.md`.
 - **Official skills layer** -- `references/orca-skills/overview.md` with the boundary matrix and install commands, one authored reference per official skill and the flat `assets/<name>.txt` snapshots.
@@ -71,6 +71,6 @@ The local gates that govern this package:
 - **Root metadata gate** -- `ci-skill-root-metadata.cjs` checks class-S conformance and the freshness of the generated metadata, then regenerates the leaf manifest and aliases with `--fix`.
 - **Document validator** -- `validate_document.py` per authored document checks template and prose conformance.
 - **Package validator** -- `validate_skill_package.py` checks the package shape and its required documents.
-- **Parent check on the hub** -- after the extraction, `parent-skill-check.cjs` on `mcp-tooling` is the gate that proves the hub holds nine aligned modes.
+- **Parent check on the hub** -- after the extraction, `parent-skill-check.cjs` on `mcp-tooling` is the gate that proves the hub holds eight aligned modes.
 
 The advisor and compiled-route replays belong to the migration packet that owns them. This README and the release note were authored in the same change as the rest of the package, so nothing on this page claims a gate result of its own.

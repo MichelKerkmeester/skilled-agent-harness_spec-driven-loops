@@ -205,10 +205,8 @@ function buildRedactions(
   addRedaction(redactions, env['OPENCODE_HOME'], '<OPENCODE_HOME>');
   addRedaction(redactions, env['CLAUDE_HOME'], '<CLAUDE_HOME>');
   addRedaction(redactions, env['CLAUDE_CODE_HOME'], '<CLAUDE_CODE_HOME>');
-  addRedaction(redactions, env['OPENCODE_HOME'], '<OPENCODE_HOME>');
   addRedaction(redactions, env['SPECKIT_OPENCODE_STATE_DIR'], '<OPENCODE_STATE_DIR>');
   addRedaction(redactions, env['SPECKIT_CLAUDE_CODE_STATE_DIR'], '<CLAUDE_CODE_STATE_DIR>');
-  addRedaction(redactions, env['SPECKIT_OPENCODE_STATE_DIR'], '<OPENCODE_STATE_DIR>');
 
   for (const [value, replacement] of Object.entries(options.redactions ?? {})) {
     addRedaction(redactions, value, replacement);

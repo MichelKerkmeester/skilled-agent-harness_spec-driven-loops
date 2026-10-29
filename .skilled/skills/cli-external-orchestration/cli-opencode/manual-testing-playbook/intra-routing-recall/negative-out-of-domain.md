@@ -6,7 +6,7 @@ title: 'Negative: out-of-domain prompt routes nothing'
 description: "This scenario validates the hub's UNKNOWN_FALLBACK path for CO-N01: an out-of-domain prompt must score zero against every INTENT_SIGNALS entry and route to the documented UNKNOWN_FALLBACK_CHECKLIST instead of guessing an intent."
 expected_intent: none
 expected_resources: []
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # CO-N01: Negative: out-of-domain prompt routes nothing
@@ -74,7 +74,7 @@ live `UNKNOWN_FALLBACK_CHECKLIST` entry.
 
 ### Failure Triage
 
-1. Re-run the SKILL.md greps above and diff the current entry against this scenario's frontmatter to
+1. Re-run the ROUTER.md greps above and diff the current entry against this scenario's frontmatter to
    see exactly which keyword, weight, or resource moved.
 2. Re-run the `test -e` checks and confirm whether a resource file was renamed or removed.
 

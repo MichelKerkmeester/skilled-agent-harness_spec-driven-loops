@@ -9,7 +9,7 @@ trigger_phrases:
   - "resource map scoring"
 importance_tier: normal
 contextType: implementation
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Shared Smart-Router Helpers (cli-* family)
@@ -170,12 +170,12 @@ The caller surfaces `disambiguation_checklist` to the user before re-routing.
 
 ## 5. PROVIDER-SPECIFIC DICTIONARIES
 
-Each cli-* SKILL.md provides its own:
+Each cli-* packet's `ROUTER.md` provides its own:
 - `INTENT_SIGNALS` — provider-specific keyword-to-weight intent map
 - `RESOURCE_MAP` — provider-specific intent-to-reference-files map
 - `LOADING_LEVELS` — provider-specific `ALWAYS` / `ON_DEMAND_KEYWORDS` / `ON_DEMAND` lists
 - `UNKNOWN_FALLBACK_CHECKLIST` — provider-specific disambiguation prompts
 
-See each skill's final `MACHINE ROUTER` section for these inline dictionaries.
+See the final `MACHINE ROUTER` section of each skill's `ROUTER.md` for these inline dictionaries.
 
 ---

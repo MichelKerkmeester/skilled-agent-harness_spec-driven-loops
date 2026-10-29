@@ -1,7 +1,7 @@
 ---
 title: "mcp-click-up Installation Guide"
 description: "Installation and configuration for ClickUp task management through the cupt CLI and the ClickUp MCP path."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # mcp-click-up Installation Guide
@@ -211,7 +211,8 @@ Full diagnosis and recovery: [`references/troubleshooting.md`](references/troubl
 
 | Resource | Purpose |
 |----------|---------|
-| [`SKILL.md`](SKILL.md) | Routing rules, agent invariants, quick-reference cheat sheet |
+| [`SKILL.md`](SKILL.md) | Agent invariants, the two-path routing prose and the quick-reference cheat sheet |
+| [`ROUTER.md#3-machine-router`](ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`README.md`](README.md) | Human-facing overview with feature tables and FAQ |
 | [`references/troubleshooting.md`](references/troubleshooting.md) | Full diagnosis and recovery for install failures (loaded by the smart router on INSTALL intent alongside this guide) |
 | [`references/cupt-commands.md`](references/cupt-commands.md) | Complete cupt command reference with `--json` variants |

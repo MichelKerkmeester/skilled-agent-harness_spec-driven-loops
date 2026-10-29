@@ -7,7 +7,7 @@ trigger_phrases:
   - "pi.dev cli"
   - "delegate to pi"
   - "pi coding agent"
-version: 1.5.0.8
+version: 1.5.1.0
 ---
 
 # cli-pi
@@ -95,11 +95,12 @@ The packet's guard is conservative. Process ancestry is checked first, then a .p
 
 ## 5. STRUCTURE
 
-The packet folder holds the routing contract, this README and the resources the smart router loads.
+The packet folder holds the routing contract in [`ROUTER.md`](./ROUTER.md), plus this README and the resources the smart router loads.
 
 ```text
 cli-pi/
-  SKILL.md                                      # Runtime instructions, smart routing and hard rules
+  SKILL.md                                      # Runtime instructions and hard rules
+  ROUTER.md                                     # Machine router: intent map, resource map and loading levels
   README.md                                     # Folder orientation and navigation for the packet
   assets/                                       # Prompt-quality card and dispatch templates
     assets/prompt-quality-card.md               # Thin prompt-quality delegator with the two-tier rule
@@ -119,7 +120,8 @@ cli-pi/
 
 | File | Role |
 |---|---|
-| SKILL.md | Runtime instructions, smart routing and hard rules |
+| SKILL.md | Runtime instructions and hard rules |
+| ROUTER.md | Machine router: intent map, resource map and loading levels |
 | README.md | Folder orientation and navigation for the packet |
 | assets/prompt-quality-card.md | Thin prompt-quality delegator with the two-tier precedence rule |
 | assets/prompt-templates.md | Print, JSON, RPC, review and generation scaffolds |
@@ -213,7 +215,8 @@ A: It is a common short word and a math constant. This packet uses multi-word al
 
 | Document | Purpose |
 |---|---|
-| [SKILL.md](./SKILL.md) | Runtime instructions, smart routing and hard rules |
+| [SKILL.md](./SKILL.md) | Runtime instructions and hard rules |
+| [ROUTER.md](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [references/cli-reference.md](./references/cli-reference.md) | Pi flags, commands, modes, environment and failure handling |
 | [references/pi-tools.md](./references/pi-tools.md) | Capabilities with no sibling analog (RPC, native extensions/prompts, tool surface) |
 | [references/integration-patterns.md](./references/integration-patterns.md) | Cross-AI dispatch lifecycle, cross-validation and anti-patterns |

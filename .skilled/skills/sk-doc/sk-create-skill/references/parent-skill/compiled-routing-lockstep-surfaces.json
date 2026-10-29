@@ -4,15 +4,15 @@
   "directiveMarker": "> **Compiled routing (default-on",
   "hubNamePlaceholder": "{{HUB_NAME}}",
   "notes": [
-    "Only hub-skill and parent-template entries are directive-bearing today; catalog and authoring-doc entries are factual rewrite surfaces for later wording changes.",
+    "Only hub-skill entries are directive-bearing today, each at its hub's `ROUTER.md`, because the template and scaffold entries name that file and never repeat its directive; catalog and authoring-doc entries are factual rewrite surfaces for later wording changes.",
     "hubName is null when a surface is not bound to one concrete live hub."
   ],
   "surfaces": [
-    { "id": "hub-skill.cli-external-orchestration", "kind": "hub-skill", "hubName": "cli-external-orchestration", "path": ".skilled/skills/cli-external-orchestration/SKILL.md" },
-    { "id": "hub-skill.mcp-tooling", "kind": "hub-skill", "hubName": "mcp-tooling", "path": ".skilled/skills/mcp-tooling/SKILL.md" },
-    { "id": "hub-skill.sk-code", "kind": "hub-skill", "hubName": "sk-code", "path": ".skilled/skills/sk-code/SKILL.md" },
-    { "id": "hub-skill.sk-doc", "kind": "hub-skill", "hubName": "sk-doc", "path": ".skilled/skills/sk-doc/SKILL.md" },
-    { "id": "hub-skill.system-deep-loop", "kind": "hub-skill", "hubName": "system-deep-loop", "path": ".skilled/skills/system-deep-loop/SKILL.md" },
+    { "id": "hub-skill.cli-external-orchestration", "kind": "hub-skill", "hubName": "cli-external-orchestration", "path": ".skilled/skills/cli-external-orchestration/ROUTER.md" },
+    { "id": "hub-skill.mcp-tooling", "kind": "hub-skill", "hubName": "mcp-tooling", "path": ".skilled/skills/mcp-tooling/ROUTER.md" },
+    { "id": "hub-skill.sk-code", "kind": "hub-skill", "hubName": "sk-code", "path": ".skilled/skills/sk-code/ROUTER.md" },
+    { "id": "hub-skill.sk-doc", "kind": "hub-skill", "hubName": "sk-doc", "path": ".skilled/skills/sk-doc/ROUTER.md" },
+    { "id": "hub-skill.system-deep-loop", "kind": "hub-skill", "hubName": "system-deep-loop", "path": ".skilled/skills/system-deep-loop/ROUTER.md" },
     { "id": "parent-template.active-scaffold", "kind": "parent-template", "hubName": null, "path": ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md" },
     { "id": "parent-template.canonical", "kind": "parent-template", "hubName": null, "path": ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md" },
     { "id": "feature-catalog.cli-external-orchestration", "kind": "feature-catalog", "hubName": "cli-external-orchestration", "path": ".skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md" },

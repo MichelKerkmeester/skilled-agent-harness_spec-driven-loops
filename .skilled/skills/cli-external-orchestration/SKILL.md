@@ -93,6 +93,7 @@ cli-external-orchestration/
   ROUTER.md
   cli-opencode/
     SKILL.md
+    ROUTER.md
     README.md
     references/
     assets/
@@ -100,6 +101,7 @@ cli-external-orchestration/
     changelog/
   cli-claude-code/
     SKILL.md
+    ROUTER.md
     README.md
     references/
     assets/
@@ -107,6 +109,7 @@ cli-external-orchestration/
     changelog/
   cli-codex/
     SKILL.md
+    ROUTER.md
     README.md
     references/
     assets/
@@ -114,6 +117,7 @@ cli-external-orchestration/
     changelog/
   cli-cursor/
     SKILL.md
+    ROUTER.md
     README.md
     references/
     assets/
@@ -121,6 +125,7 @@ cli-external-orchestration/
     changelog/
   cli-devin/
     SKILL.md
+    ROUTER.md
     README.md
     references/
     assets/
@@ -128,6 +133,7 @@ cli-external-orchestration/
     changelog/
   cli-pi/
     SKILL.md
+    ROUTER.md
     README.md
     references/
     assets/
@@ -135,6 +141,7 @@ cli-external-orchestration/
     changelog/
   cli-hermes/
     SKILL.md
+    ROUTER.md
     README.md
     references/
     assets/

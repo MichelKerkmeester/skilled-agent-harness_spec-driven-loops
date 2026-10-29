@@ -5,7 +5,7 @@ trigger_phrases:
   - "Update page properties"
   - "notion_update-page-properties"
   - "patch a Notion page's properties"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Update page properties (`notion_update-page-properties`)
@@ -32,7 +32,7 @@ Only the properties supplied in the call change — omitted properties are left 
 
 | File | Layer | Role |
 |---|---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Shared | Routes property-update requests to the MCP. |
+| [`../../ROUTER.md`](../../ROUTER.md) | Shared | Routes property-update requests to the MCP. |
 | [`../../references/mcp-tools.md`](../../references/mcp-tools.md) | Shared | Confirms the tool name, endpoint, and partial-update behavior. |
 
 ### Validation And Tests

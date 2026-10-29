@@ -5,7 +5,7 @@ trigger_phrases:
   - "notion daily notes"
   - "GAP-005"
   - "open today's notion note"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Daily Notes (convention -- GAP-005)
@@ -39,7 +39,7 @@ Fallback: if the "Daily Notes" data source itself does not exist and cannot be c
 
 | File | Layer | Role |
 |---|---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Shared | Routes the 5 API-gap capabilities, including this convention-based one, out of the raw MCP tool surface. |
+| [`../../ROUTER.md`](../../ROUTER.md) | Shared | Routes the 5 API-gap capabilities, including this convention-based one, out of the raw MCP tool surface. |
 | [`../../references/api-gap-tools.md`](../../references/api-gap-tools.md) | Shared | Confirms this is the one gap with no endpoint at all, and states the query-then-create pattern in full. |
 
 ### Validation And Tests

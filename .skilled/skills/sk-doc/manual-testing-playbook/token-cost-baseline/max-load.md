@@ -367,7 +367,7 @@ expected_leaf_resources:
     leaf_resource_id: references/scope-and-exemptions.md
   - workflow_mode: sk-create-with-human-voice
     leaf_resource_id: references/scoring-and-verification.md
-version: 2.1.0.14
+version: 2.1.1.0
 ---
 
 # SD-015: Max-Load Token Cost (Ceiling)
@@ -409,7 +409,7 @@ The ceiling case records the upper-bound inventory an explicit full-toolkit requ
 
 ```text
 DO NOT execute the work below. INSTEAD describe (in your response):
-1. Which sk-doc intent the router would select for the input (pick from the 17-intent RESOURCE_MAP: DOC_QUALITY, OPTIMIZATION, SKILL_CREATION, PARENT_HUB, AGENT_CREATION, COMMAND_CREATION, AGENT_COMMAND, FLOWCHART, HVR, PLAYBOOK, FEATURE_CATALOG, README_CREATION, CHANGELOG, BENCHMARK, DIFF, REPO_RULE, FULL_INVENTORY; or UNKNOWN_FALLBACK if no keywords match)
+1. Which sk-doc intent the router would select for the input (pick from the 18-intent RESOURCE_MAP: DOC_QUALITY, OPTIMIZATION, SKILL_CREATION, PARENT_HUB, AGENT_CREATION, COMMAND_CREATION, AGENT_COMMAND, HVR, PLAYBOOK, FEATURE_CATALOG, README_CREATION, CHANGELOG, BENCHMARK, DIFF, REPO_RULE, FRONTMATTER, GOAL_AUTHORING, FULL_INVENTORY; or UNKNOWN_FALLBACK if no keywords match)
 2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
 3. The response shape sk-doc would return (~3-5 lines describing structure, not actual content)
 
@@ -434,7 +434,7 @@ CLI transcript with intent, resources, response shape, token counts where applic
 
 ### Failure Triage
 
-Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt.
+Re-read `ROUTER.md` section 3 `INTENT_SIGNALS` / `RESOURCE_MAP` and intent keywords, then compare against the routed prompt.
 
 ### Optional Supplemental Checks
 
@@ -476,7 +476,8 @@ If the ceiling is ever measured, run it on:
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` | The sk-doc router under test |
+| `../../ROUTER.md` | The sk-doc router under test: section 3 intent maps and loading levels |
+| `../../SKILL.md` | Runtime prose and the pointer to `ROUTER.md` |
 | `../../sk-create-skill/scripts/validate-playbook-topology.cjs` | Routing-gold contract gate |
 
 ---

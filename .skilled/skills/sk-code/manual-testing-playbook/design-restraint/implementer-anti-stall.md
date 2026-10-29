@@ -1,7 +1,7 @@
 ---
 title: "DR-002: Implementer anti-stall rule"
 description: "Verify that when part of a requirement looks unnecessary, sk-code builds the simplest correct implementation as specified AND raises a scope-amendment recommendation in the same response, without stalling to ask and without silently cutting scope."
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # DR-002: Implementer anti-stall rule
@@ -12,7 +12,7 @@ This scenario verifies the implementer anti-stall rule, which lives in the Pre-W
 
 When part of the requirement looks unnecessary, the implementer implements the requirement as specified AND raises a scope-amendment recommendation in the same response. It never silently cuts scope (SCOPE-LOCK still holds) and never blocks solely to ask when a safe minimal version already satisfies the requirement.
 
-It is the behavioral guard that keeps the Design Restraint Ladder (DR-001) from turning restraint into hesitation. `SKILL.md` section 4 carries the SCOPE-LOCK rule the anti-stall behavior sits beside; the anti-stall wording itself is the reference's.
+It is the behavioral guard that keeps the Design Restraint Ladder (DR-001) from turning restraint into hesitation. The scope lock the anti-stall behavior sits beside is `AGENTS.md` section 1; the anti-stall wording itself is the reference's.
 
 ---
 
@@ -88,7 +88,7 @@ Evidence: `/tmp/skc-DR002-advisor.txt` (advisor probe output) and `/tmp/skc-DR00
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.skilled/skills/sk-code/shared/references/workflow-implement.md` — the Pre-Write Restraint rule that requires the implementation and the scope-amendment note in one response.
 - `.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md` — Design Restraint Ladder the anti-stall rule complements.
-- `.skilled/skills/sk-code/SKILL.md` — section 4 SCOPE-LOCK, the rule the anti-stall behavior sits beside.
+- `AGENTS.md` — section 1 SCOPE LOCK, the rule the anti-stall behavior sits beside.
 - `.skilled/skills/sk-code/sk-code-quality/scripts/lib/quality-config.cjs` — the target file and its `discoverConfig()` call.
 
 Catalog: none. `feature-catalog/feature-catalog.md` does not inventory the phase doctrine or the anti-stall rule, so no catalog entry applies to this scenario.

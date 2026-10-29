@@ -2,7 +2,7 @@
 title: "ORCA-003 -- Retired hub Orca routing defers to the standalone skill"
 description: "This scenario validates that the mcp-tooling hub no longer routes Orca CLI work, hands it to the standalone cli-orca skill and preserves the retired hub routing evidence."
 catalog_applicable: true
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # ORCA-003 -- Retired hub Orca routing defers to the standalone skill
@@ -17,7 +17,7 @@ This scenario verifies that Orca CLI work is no longer an mcp-tooling mode, that
 
 ### Why This Matters
 
-A hub that still declared an Orca mode would split Orca routing across two owners, and a silent deletion of the retired scenarios would erase the evidence that pins the deferral. The hub declares nine tool bridges and Orca is not one of them, so a route command that still returns an Orca packet means the retirement leaked.
+A hub that still declared an Orca mode would split Orca routing across two owners, and a silent deletion of the retired scenarios would erase the evidence that pins the deferral. The hub declares eight tool bridges and Orca is not one of them, so a route command that still returns an Orca packet means the retirement leaked.
 
 ---
 
@@ -27,7 +27,7 @@ A hub that still declared an Orca mode would split Orca routing across two owner
 - Real user request: `Route Orca CLI work. Is it still an mcp-tooling mode or does another skill own it now?`
 - Prompt: `Route Orca CLI work. Is it still an mcp-tooling mode or does another skill own it now?`
 - Expected execution process: Search the hub's SKILL.md and README.md for the deferral lines, run the compiled route front door with an Orca worktree and terminal prompt, then list the archived hub routing reports.
-- Expected signals: Step 1 prints the deliberate deferral lines that name the standalone cli-orca skill and prints no stale `mcp-orca-cli` reference. Step 2 reports no route into an Orca mode, because the hub declares nine tool bridges and Orca is not one of them. Step 3 lists orca-worktree-terminal.md and holdout-managed-workspace.md, proving the retired hub scenarios survive as packet evidence.
+- Expected signals: Step 1 prints the deliberate deferral lines that name the standalone cli-orca skill and prints no stale `mcp-orca-cli` reference. Step 2 reports no route into an Orca mode, because the hub declares eight tool bridges and Orca is not one of them. Step 3 lists orca-worktree-terminal.md and holdout-managed-workspace.md, proving the retired hub scenarios survive as packet evidence.
 - Desired user-visible outcome: A verdict that Orca CLI routing has exactly one owner, the standalone skill, with the retired hub scenarios still on disk as evidence.
 - Pass/fail: PASS if the hub pages carry the deferral lines with no stale Orca mode reference, the route command returns no Orca packet and both archived reports are listed. FAIL if the hub still declares an Orca mode, if step 2 still returns an Orca packet or if the archived scenarios are gone. SKIP applies only when the cited hub files, the route runtime or the archived report directory are missing in this environment, with the missing artifact named as the blocker.
 
@@ -45,7 +45,7 @@ Run the steps in order from the repository root.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| ORCA-003 | Retired hub Orca routing defers to the standalone skill | Prove the hub hands Orca work to cli-orca and the retired scenarios survive. | `Route Orca CLI work. Is it still an mcp-tooling mode or does another skill own it now?` | 1. `bash: rg -n "cli-orca" .skilled/skills/mcp-tooling/SKILL.md .skilled/skills/mcp-tooling/README.md` -> 2. `bash: node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "Use the Orca CLI to inspect the current worktree and terminal"` -> 3. `bash: ls specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/` | Step 1 prints the deferral lines naming the standalone cli-orca skill with no stale mcp-orca-cli reference. Step 2 reports no route into an Orca mode because the hub declares nine tool bridges and Orca is not one of them. Step 3 lists orca-worktree-terminal.md and holdout-managed-workspace.md. | The search hits with line numbers, the route command's printed answer, the directory listing and the three exit statuses. | PASS if the hub pages carry the deferral lines with no stale Orca mode reference, the route returns no Orca packet and both archived reports are listed. FAIL if the hub still declares an Orca mode, the route still returns an Orca packet or the archived scenarios are gone. SKIP applies only when a cited artifact is missing in this environment, with the missing artifact named as the blocker. | 1. Search the whole mcp-tooling packet for any remaining Orca mode declaration. 2. Compare the registry's declared bridges with the router signals for an Orca key. 3. Confirm both archived reports exist and name the retired mode. 4. Escalate with the printed route answer if the hub text and the route answer disagree. |
+| ORCA-003 | Retired hub Orca routing defers to the standalone skill | Prove the hub hands Orca work to cli-orca and the retired scenarios survive. | `Route Orca CLI work. Is it still an mcp-tooling mode or does another skill own it now?` | 1. `bash: rg -n "cli-orca" .skilled/skills/mcp-tooling/SKILL.md .skilled/skills/mcp-tooling/README.md` -> 2. `bash: node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "Use the Orca CLI to inspect the current worktree and terminal"` -> 3. `bash: ls specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/` | Step 1 prints the deferral lines naming the standalone cli-orca skill with no stale mcp-orca-cli reference. Step 2 reports no route into an Orca mode because the hub declares eight tool bridges and Orca is not one of them. Step 3 lists orca-worktree-terminal.md and holdout-managed-workspace.md. | The search hits with line numbers, the route command's printed answer, the directory listing and the three exit statuses. | PASS if the hub pages carry the deferral lines with no stale Orca mode reference, the route returns no Orca packet and both archived reports are listed. FAIL if the hub still declares an Orca mode, the route still returns an Orca packet or the archived scenarios are gone. SKIP applies only when a cited artifact is missing in this environment, with the missing artifact named as the blocker. | 1. Search the whole mcp-tooling packet for any remaining Orca mode declaration. 2. Compare the registry's declared bridges with the router signals for an Orca key. 3. Confirm both archived reports exist and name the retired mode. 4. Escalate with the printed route answer if the hub text and the route answer disagree. |
 
 ### Evidence Review
 

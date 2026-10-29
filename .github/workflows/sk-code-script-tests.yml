@@ -100,6 +100,11 @@ jobs:
       - name: Run the sk-code-review bash suite
         run: bash .skilled/skills/sk-code/sk-code-review/scripts/tests/check-rule-copies.test.sh
 
+      # The alignment drift checker reads each router from ROUTER.md, and its Python
+      # suite sat beside the script with no job running it, so a regression went unseen.
+      - name: Run the sk-code-skilled alignment drift tests
+        run: python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py
+
       # The runner's dist check loads the spec-kit freshness library, which resolves
       # the shared workspace package through node_modules. Install scripts are skipped
       # because the tests need only the workspace links, never a native build.

@@ -12,7 +12,7 @@ trigger_phrases:
   - "reconcile primary checkout after worktree push"
 importance_tier: normal
 contextType: implementation
-version: 1.7.2.0
+version: 1.7.3.0
 ---
 
 # Git Finish - Detailed Workflow Reference
@@ -216,7 +216,7 @@ call_tool_chain(`github.github_create_pull_request({
 })`)
 ```
 
-**Note**: GitHub MCP runs via `npx @modelcontextprotocol/server-github`. Requires a GitHub Personal Access Token configured in `.utcp_config.json`. See SKILL.md Section 2 for full tool list and usage.
+**Note**: GitHub MCP runs via `npx @modelcontextprotocol/server-github`. Requires a GitHub Personal Access Token configured in `.utcp_config.json`. See [github-mcp-integration.md](github-mcp-integration.md) sections 3 and 4 for the full tool list and usage.
 
 **PR Title Guidelines**:
 - Use conventional commit format: `feat: `, `fix: `, `refactor: `
@@ -881,10 +881,14 @@ pulls succeed and pushes stop.
 gh auth status                                  # which account is active, and who else is logged in
 git remote -v                                   # who owns the repo
 gh auth switch --hostname github.com --user <owner-account>
+git push                                        # the push that needed the other account
+gh auth switch --hostname github.com --user <previous-account>
 ```
 
 Switching changes the credential every session on the machine uses, so when the work is not yours to
-decide, report the mismatch and the one-line fix rather than switching underneath someone.
+decide, report the mismatch and the one-line fix rather than switching underneath someone. When you do
+switch, note which account `gh auth status` showed as active first, and switch back to it right after
+the push, so a parallel session's next push does not run as the wrong account.
 
 **No upstream remote**:
 ```bash

@@ -5,7 +5,7 @@ trigger_phrases:
   - "cli-classifier hub"
   - "local classifier hub"
   - "jev judgment hub"
-version: 0.8.2.0
+version: 0.8.3.0
 ---
 
 # cli-classifier
@@ -91,7 +91,7 @@ The hub registers one mode today. A future classifier is added as a new mode and
 | [`SKILL.md`](./SKILL.md) | The hub's routing contract and rules | The entry point an agent loads |
 | [`mode-registry.json`](./mode-registry.json) | The single source of truth for every mode | Resolve which packet owns a request |
 | [`hub-router.json`](./hub-router.json) | Router policy, signals and vocabulary classes | See which phrases pick the current `cli-jev` mode |
-| [`ROUTER.md`](./ROUTER.md) | The stage-two surface router, `router_state: active` | Keep its `INTENT_SIGNALS` and `RESOURCE_MAP` keys equal, every path a `leaf-manifest.json` leaf, and its keywords equal to both mode routers |
+| [`ROUTER.md`](./ROUTER.md) | The stage-two surface router, `router_state: active` | Keep its `INTENT_SIGNALS` and `RESOURCE_MAP` keys equal, every path a `leaf-manifest.json` leaf, and every registered mode router's keywords present; `JEV_JUDGMENT` adds hub-level aliases the packet model does not carry |
 | [`leaf-manifest.json`](./leaf-manifest.json) | The generated inventory of routed leaves | Find the references a mode loads |
 | [`benchmark/injection-screen/`](./benchmark/injection-screen/) | The offline injection screen scorer and its tests | Its default run makes zero model calls. `--jev` adds the hosted classifier behind its gate |
 
@@ -105,6 +105,10 @@ Releases live in `changelog/` with one file per release, named `v[version].md`. 
 
 | Release | Entry |
 |---|---|
+| v0.8.6.0 | [`changelog/v0.8.6.0.md`](./changelog/v0.8.6.0.md) |
+| v0.8.5.0 | [`changelog/v0.8.5.0.md`](./changelog/v0.8.5.0.md) |
+| v0.8.4.0 | [`changelog/v0.8.4.0.md`](./changelog/v0.8.4.0.md) |
+| v0.8.3.0 | [`changelog/v0.8.3.0.md`](./changelog/v0.8.3.0.md) |
 | v0.8.2.0 | [`changelog/v0.8.2.0.md`](./changelog/v0.8.2.0.md) |
 | v0.8.1.0 | [`changelog/v0.8.1.0.md`](./changelog/v0.8.1.0.md) |
 | v0.8.0.0 | [`changelog/v0.8.0.0.md`](./changelog/v0.8.0.0.md) |

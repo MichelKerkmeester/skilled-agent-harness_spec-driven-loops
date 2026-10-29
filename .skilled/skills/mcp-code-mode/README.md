@@ -7,7 +7,7 @@ trigger_phrases:
   - "mcp tools"
   - "tool orchestration"
   - "context reduction"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # mcp-code-mode
@@ -146,7 +146,7 @@ Skip Code Mode for native MCP tools a runtime registers directly, for local file
 
 ### Related Skills
 
-The three MCP tool skills below are among the nine modes the `mcp-tooling` parent hub dispatches via `mcp-tooling/mode-registry.json`. Each one consumes Code Mode as an MCP transport.
+The three MCP tool skills below are among the eight modes the `mcp-tooling` parent hub dispatches via `mcp-tooling/mode-registry.json`. Each one consumes Code Mode as an MCP transport.
 
 | Skill | Relationship |
 |---|---|
@@ -192,7 +192,7 @@ A: Without error handling, an unhandled exception stops the entire `call_tool_ch
 
 ## 8. VERIFICATION
 
-The skill ships a manual testing playbook covering the core tools, the naming contract, environment variable prefixing, multi-tool workflows and recovery scenarios.
+The skill ships a manual testing playbook covering nine categories of scenario: the core tools, the naming contract, environment variable prefixing, multi-tool workflows, ClickUp and Chrome through Code Mode, third-party servers through Code Mode, recovery and configuration, plugins and hooks, and the doctor commands.
 
 | Check | How to run it |
 |---|---|

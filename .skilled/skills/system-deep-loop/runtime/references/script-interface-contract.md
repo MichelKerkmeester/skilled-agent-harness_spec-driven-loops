@@ -8,7 +8,7 @@ trigger_phrases:
   - "coverage graph script exit codes"
 importance_tier: important
 contextType: implementation
-version: 1.4.0.3
+version: 1.4.1.0
 ---
 
 # Deep Loop Runtime Script Interface Contract
@@ -149,7 +149,7 @@ Visible anchors:
 Relevant source:
 
 - `lib/deep-loop/permissions-gate.ts` maps tools and bash commands to operation classes.
-- `SKILL.md` states direct `.cjs` invocation is the supported consumer path.
+- `README.md` §3 states direct `.cjs` invocation from `scripts/` is the supported consumer path.
 - `/doctor:deep-loop` calls status, query and convergence with `--read-only`. Its route is `add-only` only because the workflow writes its packet-local state log.
 
 ---

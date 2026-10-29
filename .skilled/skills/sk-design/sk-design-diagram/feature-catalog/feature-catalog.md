@@ -8,7 +8,7 @@ trigger_phrases:
   - "diagram generation import export"
   - "feature catalog"
 last_updated: "2026-08-12"
-version: 1.0.0.5
+version: 1.0.1.0
 ---
 
 # sk-design-diagram: Feature Catalog
@@ -29,11 +29,11 @@ Use this catalog as the canonical inventory for the live `sk-design-diagram` fea
 
 #### Description
 
-Classifies each request into GENERATE, IMPORT, or EXPORT, then selects one of the 27 supported diagram types and loads the matching `references/types/type-*.md` convention before drawing.
+Classifies each request into one of five intents (GENERATE, IMPORT, EXPORT, ASCII_MARKDOWN or STYLE), resolves the output format, then selects one of the 27 supported diagram types and loads the matching `references/types/type-*.md` convention before drawing.
 
 #### Current Reality
 
-The router scores request vocabulary (`diagram`, `architecture`, `sequence`, `drawio`, `mermaid`, `export`, `png`) with an ambiguity delta of 1, guards every resource path, and loads `references/foundations/style-guide.md` always plus the conditional type/import/export references; the 27-type selection guide maps components-and-connections to Architecture, decision logic to Flowchart, time-ordered messages to Sequence, and so on.
+The router scores request vocabulary (`diagram`, `architecture`, `sequence`, `drawio`, `mermaid`, `export`, `png`, plus the ascii-markdown and customize wording) with an ambiguity delta of 1, guards every resource path, and loads `references/foundations/style-guide.md` always plus the conditional type/import/export references, the `ascii-format` pattern set and `references/foundations/onboarding.md`; the 27-type selection guide maps components-and-connections to Architecture, decision logic to Flowchart, time-ordered messages to Sequence, and so on.
 
 #### Source Files
 

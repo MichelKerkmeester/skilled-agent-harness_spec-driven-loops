@@ -8,7 +8,7 @@ expected_intent: AGENT_DELEGATION
 expected_resources: 
   - references/agent-delegation.md
   - references/integration-patterns.md
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # CC-R05: Agent delegation routing
@@ -58,7 +58,7 @@ Delegate this long-running indexing job to a Claude background agent and let it 
 
 1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/intra-routing-recall/agent-delegation.md`
 2. `grep -n '"AGENT_DELEGATION"' ../../ROUTER.md` (confirms the `INTENT_SIGNALS` entry)
-3. `grep -A2 'RESOURCE_MAP = {' ../../ROUTER.md | grep '"AGENT_DELEGATION"'` (confirms the `RESOURCE_MAP` entry)
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' ../../ROUTER.md | grep '"AGENT_DELEGATION"'` (confirms the `RESOURCE_MAP` entry)
 4. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/references/agent-delegation.md && echo "OK references/agent-delegation.md" || echo "MISS references/agent-delegation.md"`
 5. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/references/integration-patterns.md && echo "OK references/integration-patterns.md" || echo "MISS references/integration-patterns.md"`
 
@@ -68,7 +68,7 @@ Step 1 shows `expected_intent: AGENT_DELEGATION`. Step 2's output names the `AGE
 
 ### Evidence
 
-Command transcript from every step above; this scenario's frontmatter compared against SKILL.md's
+Command transcript from every step above; this scenario's frontmatter compared against ROUTER.md's
 live `INTENT_SIGNALS["AGENT_DELEGATION"]` entry.
 
 ### Pass / Fail
@@ -78,7 +78,7 @@ live `INTENT_SIGNALS["AGENT_DELEGATION"]` entry.
 
 ### Failure Triage
 
-1. Re-run the SKILL.md greps above and diff the current entry against this scenario's frontmatter to
+1. Re-run the ROUTER.md greps above and diff the current entry against this scenario's frontmatter to
    see exactly which keyword, weight, or resource moved.
 2. Re-run the `test -e` checks and confirm whether a resource file was renamed or removed.
 

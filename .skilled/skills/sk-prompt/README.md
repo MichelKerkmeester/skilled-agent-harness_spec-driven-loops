@@ -7,7 +7,7 @@ trigger_phrases:
   - "framework"
   - "CLEAR scoring"
   - "/prompt:improve"
-version: 3.0.1.0
+version: 3.0.2.0
 ---
 
 # sk-prompt
@@ -150,7 +150,7 @@ The `@prompt-improver` agent is the fresh-context escalation surface. It loads t
 
 ### When To Use This Skill
 
-Reach for `sk-prompt` when a prompt you are about to send feels vague or unstructured, when you need a framework you do not use every day, when you want a quality score before you dispatch and when you are building a reusable prompt template. Skip it for a one-line fact-check query where structure adds no value. For design-generation work, the skill constructs the brief: a grounded anti-default prompt, a seed-of-thought variation technique, a discovery-form pre-answer and a handoff note to `sk-code`. It owns the prompt only. `sk-design-md-generator` owns measured design-reference extraction.
+Reach for `sk-prompt` when a prompt you are about to send feels vague or unstructured, when you need a framework you do not use every day, when you want a quality score before you dispatch and when you are building a reusable prompt template. Skip it for a one-line fact-check query where structure adds no value. For design-generation work, the skill constructs the brief from the framework library and CLEAR rubric in `references/patterns-evaluation.md`, plus a handoff note to `sk-code`; it ships no design-specific reference of its own. It owns the prompt only. `sk-design-md-generator` owns measured design-reference extraction.
 
 ### Related Skills
 
@@ -215,6 +215,7 @@ A: No. An intent-preservation check runs during Prototype. The skill keeps the g
 | [`references/patterns-evaluation.md`](./references/patterns-evaluation.md) | The seven framework definitions, the selection algorithm and the CLEAR rubric |
 | [`references/depth-framework.md`](./references/depth-framework.md) | The DEPTH five-phase methodology, energy levels, round configuration and RICCE integration |
 | [`assets/framework-registry.json`](./assets/framework-registry.json) | Machine-readable scaffold registry with code-oriented slot templates for a subset of five frameworks |
+| [`assets/cli-prompt-quality-card.md`](./assets/cli-prompt-quality-card.md) | The canonical CLI prompt-quality card that the `cli-*` cards delegate to before dispatch |
 | [`assets/format-guide-markdown.md`](./assets/format-guide-markdown.md) | Markdown delivery format deep-dive |
 | [`assets/format-guide-json.md`](./assets/format-guide-json.md) | JSON delivery format deep-dive |
 | [`assets/format-guide-yaml.md`](./assets/format-guide-yaml.md) | YAML delivery format deep-dive |

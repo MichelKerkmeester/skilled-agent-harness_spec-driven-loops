@@ -7,7 +7,7 @@ trigger_phrases:
   - "capture website css"
   - "design tokens from url"
   - "validate design.md"
-version: 1.1.4.0
+version: 1.1.5.0
 ---
 
 # sk-design-md-generator
@@ -262,7 +262,8 @@ A: This skill captures what exists on a live site. `interface` invents new direc
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES and references |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, HOW IT WORKS, RULES and references |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Node.js, Playwright and Chromium setup plus a first-extraction walkthrough |
 | [`references/design-md-format.md`](./references/design-md-format.md) | The authoritative v3 Style Reference section specification (Header and intro, `Tokens - Colors`, `Tokens - Typography`, `Tokens - Spacing & Shapes`, Components, Do's and Don'ts, Surfaces, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands, Quick Start) |
 | [`references/writing-style-guide.md`](./references/writing-style-guide.md) | Voice, tone and section-composition rules for DESIGN.md prose |

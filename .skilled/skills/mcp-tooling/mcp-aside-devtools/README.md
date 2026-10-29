@@ -7,7 +7,7 @@ trigger_phrases:
   - "aside cli"
   - "aside mcp"
   - "browser agent task"
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # mcp-aside-devtools
@@ -189,7 +189,8 @@ A: Unresolved. Docs examples show `-m provider/model`. The installed help shows 
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the lane router and the full rule set |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions, the lane-routing prose and the full rule set |
+| [`ROUTER.md#3-machine-router`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Step-by-step install: curl installer, sign-in, permission tiers, MCP posture |
 | [`references/aside-cli-reference.md`](./references/aside-cli-reference.md) | Verified command surface, options, boundary rules |
 | [`references/mcp-wiring.md`](./references/mcp-wiring.md) | MCP transport, handshake, discovery, UTCP registration posture |

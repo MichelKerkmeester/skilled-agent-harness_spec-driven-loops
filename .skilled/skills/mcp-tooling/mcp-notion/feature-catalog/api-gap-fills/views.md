@@ -5,7 +5,7 @@ trigger_phrases:
   - "notion views api"
   - "GAP-002"
   - "create a saved notion view"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Views (direct API -- GAP-002)
@@ -47,7 +47,7 @@ A `Notion-Version` mismatch or an unconfirmed create/update body surfaces as a 4
 
 | File | Layer | Role |
 |---|---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Shared | Routes the 5 API-gap capabilities to direct REST calls instead of an MCP tool. |
+| [`../../ROUTER.md`](../../ROUTER.md) | Shared | Routes the 5 API-gap capabilities to direct REST calls instead of an MCP tool. |
 | [`../../references/api-gap-tools.md`](../../references/api-gap-tools.md) | Shared | Confirms all 8 view endpoints, the `2026-03-11` version pin, and the create/query example, with the create/update body flagged `VERIFY`. |
 
 ### Validation And Tests

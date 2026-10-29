@@ -5,7 +5,7 @@ trigger_phrases:
   - "Retrieve a page"
   - "notion_retrieve-a-page"
   - "read a Notion page's properties"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Retrieve a page (`notion_retrieve-a-page`)
@@ -34,7 +34,7 @@ A missing or unshared page returns a 404-style `restricted_resource` — treat i
 
 | File | Layer | Role |
 |---|---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Shared | Routes structured page reads to the MCP when prerequisites are met. |
+| [`../../ROUTER.md`](../../ROUTER.md) | Shared | Routes structured page reads to the MCP when prerequisites are met. |
 | [`../../references/mcp-tools.md`](../../references/mcp-tools.md) | Shared | Confirms the tool name, endpoint, and the ~25-item truncation behavior. |
 
 ### Validation And Tests

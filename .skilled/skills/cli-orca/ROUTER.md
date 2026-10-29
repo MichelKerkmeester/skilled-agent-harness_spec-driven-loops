@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-orca routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -55,7 +55,7 @@ The routing detail behind the short summary: the lane and phase tables, the load
 | `orca browser`, `orca embedded browser`, Orca tab snapshots or refs | Browser lane, [`references/mutation-and-browser-boundaries.md`](references/mutation-and-browser-boundaries.md) |
 | `orca automation`, `orca artifacts`, `orca skills` | Automation and publishing lane, [`references/mutation-and-browser-boundaries.md`](references/mutation-and-browser-boundaries.md) |
 | Any named official skill in an Orca context | Official skills index, [`references/orca-skills/overview.md`](references/orca-skills/overview.md) |
-| Runtime stopped, executable missing, guide mismatch, ambiguous result | Recovery lane, [`references/troubleshooting.md`](references/troubleshooting.md) |
+| Runtime stopped, executable missing, guide mismatch, ambiguous send | Recovery lane, [`references/troubleshooting.md`](references/troubleshooting.md) |
 
 ### Phase Detection
 
@@ -70,7 +70,7 @@ The routing detail behind the short summary: the lane and phase tables, the load
 
 | Level | Content |
 |-------|---------|
-| L0 | This `SKILL.md`, always in context once activated |
+| L0 | `SKILL.md` and this `ROUTER.md`, always in context once activated |
 | L1 | The one reference selected by the lane table above |
 | L2 | The version-matched guide served by the binary: `orca skills get orca-cli --full`, or `--reference references/<file>.md` for one guide section |
 

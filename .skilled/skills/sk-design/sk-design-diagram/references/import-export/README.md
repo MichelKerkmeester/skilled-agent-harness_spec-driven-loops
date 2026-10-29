@@ -6,7 +6,7 @@ trigger_phrases:
   - "diagram import export index"
   - "drawio mermaid export procedures"
 contextType: general
-version: 1.2.0.7
+version: 1.2.1.0
 ---
 
 # references/import-export
@@ -35,6 +35,6 @@ Import requests route by source extension to one of the two redraw procedures be
 
 | Document | Purpose |
 |---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Request-shape routing (generate / import / export). |
+| [`../../ROUTER.md`](../../ROUTER.md#3-machine-router) | Request-shape routing (generate / import / export) and the import/export resource domains. |
 | [`../foundations/output-spec.md`](../foundations/output-spec.md) | The four output dials and degrade ladder both redraw procedures apply. |
 | [`../../scripts/README.md`](../../scripts/README.md) | The two extractor CLIs these procedures call. |

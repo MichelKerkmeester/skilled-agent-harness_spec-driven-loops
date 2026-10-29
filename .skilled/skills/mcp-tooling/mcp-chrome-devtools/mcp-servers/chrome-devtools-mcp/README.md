@@ -5,7 +5,7 @@ trigger_phrases:
   - "chrome devtools mcp server"
   - "chrome_devtools_1 server"
   - "chrome devtools code mode"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # chrome-devtools-mcp
@@ -85,7 +85,8 @@ Close pages in a `finally` block so no browser instance leaks.
 
 | Document | Purpose |
 |---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Runtime routing between the bdg CLI and this MCP fallback |
+| [`../../SKILL.md`](../../SKILL.md) | Runtime instructions and the CLI/MCP safety invariants |
+| [`../../ROUTER.md`](../../ROUTER.md) | Machine router: intent map, operation table and loading levels |
 | [`../../assets/utcp-chrome-devtools-manuals.md`](../../assets/utcp-chrome-devtools-manuals.md) | Byte-true registered-state snapshot of both manuals |
 | [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md) | §4 Code Mode configuration and §10 MCP tools reference |
 | [`../bdg-cli/README.md`](../bdg-cli/README.md) | The primary CLI this MCP is a fallback to |

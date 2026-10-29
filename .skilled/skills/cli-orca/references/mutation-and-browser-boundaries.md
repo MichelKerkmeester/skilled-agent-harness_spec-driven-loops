@@ -9,7 +9,7 @@ trigger_phrases:
   - "orca untrusted content"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Orca Mutation and Browser Boundaries
@@ -122,7 +122,8 @@ Never print account tokens, artifact edit tokens or credentials in output. Never
 
 | Document | Relationship |
 |---|---|
-| [`../SKILL.md`](../SKILL.md) | Routing contract and mutation boundary for this skill |
+| [`../SKILL.md`](../SKILL.md) | Workflow, rules and mutation boundary for this skill |
+| [`../ROUTER.md`](../ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`orca-cli-reference.md`](./orca-cli-reference.md) | The commands this file classifies by safety class |
 | [`session-and-runtime.md`](./session-and-runtime.md) | Receipt and selection rules that govern replay after a blocked mutation |
 | [`troubleshooting.md`](./troubleshooting.md) | Recovery rows for archive-hook, publishing and browser failures |

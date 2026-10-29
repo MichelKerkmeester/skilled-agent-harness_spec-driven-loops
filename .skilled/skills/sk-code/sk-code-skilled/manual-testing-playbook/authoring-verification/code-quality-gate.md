@@ -18,7 +18,7 @@ expected_resources:
   - assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md
   - assets/checklists/rust-checklist/p1-required.md
   - assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # OC-007: Code quality gate routing
@@ -102,7 +102,7 @@ excerpt.
 1. Re-run step 4 for the specific path that failed and confirm whether it was renamed or removed under
    `assets/checklists/` or `assets/checklists/js-css-style/`.
 2. Sort both lists — this scenario's `expected_resources` and the step-3 array — and diff them; both hold
-   12 paths, so any difference is a stale scenario file or a stale `SKILL.md` map, never a legitimate
+   12 paths, so any difference is a stale scenario file or a stale `ROUTER.md` map, never a legitimate
    subset.
 
 ---

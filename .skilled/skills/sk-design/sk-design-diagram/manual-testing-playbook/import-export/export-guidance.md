@@ -1,7 +1,7 @@
 ---
 title: "IMP-003 -- Export guidance"
 description: "This scenario validates PNG/SVG export for `IMP-003`. It focuses on manual-only, diagram-only export via references/import-export/export.md, the Playwright PNG path, and an unchanged source HTML."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # IMP-003 -- Export guidance
@@ -82,7 +82,7 @@ Confirm the never-unprompted rule: generate a fresh diagram HTML and verify no `
 | File | Role |
 |---|---|
 | [`manual-testing-playbook.md`](../manual-testing-playbook.md) | Root directory page and scenario summary |
-| `../../feature-catalog/import-export/export-guidance.md` | Feature-catalog source describing the implementation contract (authored next) |
+| [`../../feature-catalog/import-export/export-guidance.md`](../../feature-catalog/import-export/export-guidance.md) | Feature-catalog source describing the implementation contract |
 
 ### Implementation And Test Anchors
 

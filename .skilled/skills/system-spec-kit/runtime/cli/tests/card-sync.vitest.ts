@@ -67,6 +67,17 @@ describe('authoring card sync', () => {
     expect(run.output).toContain('CARD SYNC FAILED');
   });
 
+  it('reports a missing router instead of aborting on the first read', () => {
+    const root = copySkillRoot();
+    fs.rmSync(path.join(root, 'ROUTER.md'));
+    const run = runGuard(root);
+    expect(run.status).toBe(1);
+    expect(run.output).toContain('FAIL router-exists: missing ROUTER.md');
+    expect(run.output).toContain('FAIL intent-PLAN');
+    expect(run.output).toContain('FAIL guide-on-demand-only');
+    expect(run.output).toContain('CARD SYNC FAILED');
+  });
+
   it('fails when the checklist still sends a reader to the templates root', () => {
     const root = copySkillRoot();
     edit(root, CHECKLIST, (text) => `${text}\nRead templates from \`.skilled/skills/system-spec-kit/templates/\`\n`);

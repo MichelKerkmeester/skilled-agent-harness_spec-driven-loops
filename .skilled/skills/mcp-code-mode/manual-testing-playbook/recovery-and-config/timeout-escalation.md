@@ -1,7 +1,7 @@
 ---
 title: "CM-023 -- Timeout escalation"
 description: "This scenario validates the call_tool_chain timeout argument for `CM-023`. It focuses on confirming a chain that exceeds the timeout aborts within the expected window with a deterministic timeout error."
-version: 1.0.0.7
+version: 1.0.1.0
 id: CM-023
 category: recovery_and_config
 stage: routing
@@ -88,7 +88,7 @@ Capture the verbatim response (including the timeout error message text) and the
 
 | File | Role |
 |---|---|
-| `.skilled/skills/mcp-code-mode/SKILL.md` | timeout argument doc (line 689-693) |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | timeout argument doc (section 8, Timeout Guidelines) |
 
 ---
 

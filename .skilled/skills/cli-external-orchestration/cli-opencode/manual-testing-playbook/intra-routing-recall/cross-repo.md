@@ -8,7 +8,7 @@ expected_intent: CROSS_REPO
 expected_resources: 
   - references/cli-reference.md
   - references/opencode-tools.md
-version: 1.4.3.0
+version: 1.4.4.0
 ---
 
 # CO-R05: Cross-repo routing
@@ -62,7 +62,7 @@ On OpenCode 1, `--dir` pins the cross-repo checkout. The OpenCode 2 (2.0.32) twi
 
 1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/intra-routing-recall/cross-repo.md`
 2. `grep -n '"CROSS_REPO"' ../../ROUTER.md` (confirms the `INTENT_SIGNALS` entry)
-3. `grep -A2 'RESOURCE_MAP = {' ../../ROUTER.md | grep '"CROSS_REPO"'` (confirms the `RESOURCE_MAP` entry)
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' ../../ROUTER.md | grep '"CROSS_REPO"'` (confirms the `RESOURCE_MAP` entry)
 4. `test -e .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md && echo "OK references/cli-reference.md" || echo "MISS references/cli-reference.md"`
 5. `test -e .skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md && echo "OK references/opencode-tools.md" || echo "MISS references/opencode-tools.md"`
 
@@ -82,7 +82,7 @@ live `INTENT_SIGNALS["CROSS_REPO"]` entry.
 
 ### Failure Triage
 
-1. Re-run the SKILL.md greps above and diff the current entry against this scenario's frontmatter to
+1. Re-run the ROUTER.md greps above and diff the current entry against this scenario's frontmatter to
    see exactly which keyword, weight, or resource moved.
 2. Re-run the `test -e` checks and confirm whether a resource file was renamed or removed.
 

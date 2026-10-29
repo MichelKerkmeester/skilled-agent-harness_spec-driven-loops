@@ -100,10 +100,13 @@ function declaredSection(text, source) {
 /**
  * Decide which document holds a skill's machine router.
  *
- * ROUTER.md is probed first, so the migration order is visible in the verdict: a skill that has
- * moved its router answers `router-md`, a skill that has not answers `skill-md`, and a skill that
- * has done both answers `dual-declaration` with no text, because two declarations disagreeing
- * about the same intent is a fault to report rather than a precedence to settle.
+ * ROUTER.md is probed first, so the migration order is visible in the verdict: a skill whose
+ * declaration sits under the machine-router heading answers `router-md`, a skill that has not
+ * moved its declaration answers `skill-md`, and a skill that declares in both documents answers
+ * `dual-declaration` with no text, because two declarations disagreeing about the same intent is a
+ * fault to report rather than a precedence to settle. A hub is the case the heading keeps out: its
+ * stage-two map sits under the machine-readable-router heading and it answers `none`, so it keeps
+ * resolving through its hub router.
  *
  * @param {Object} args - The candidates.
  * @param {string} args.skillRoot - Skill root dir holding SKILL.md and optionally ROUTER.md.

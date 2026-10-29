@@ -5,7 +5,7 @@ trigger_phrases:
   - "List all users"
   - "notion_list-all-users"
   - "list Notion workspace users"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # List all users (`notion_list-all-users`)
@@ -34,7 +34,7 @@ The response mixes `person` and `bot` type user objects in one array. An integra
 
 | File | Layer | Role |
 |---|---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Shared | Routes user-directory reads to the Users domain in the mode's operation table. |
+| [`../../ROUTER.md`](../../ROUTER.md) | Shared | Routes user-directory reads to the Users domain in the operation-to-tool table in section 3. |
 | [`../../references/mcp-tools.md`](../../references/mcp-tools.md) | Shared | Confirms the tool name, endpoint, API-version pin, and key inputs (§5 Users). |
 
 ### Validation And Tests

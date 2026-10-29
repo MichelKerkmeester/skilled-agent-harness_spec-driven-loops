@@ -12,7 +12,7 @@ trigger_phrases:
   - "style reference chart"
 importance_tier: normal
 contextType: general
-version: 0.23.0.26
+version: 0.23.1.0
 ---
 
 # sk-design-chart
@@ -84,6 +84,7 @@ The hub router draws the same line by name. The bare type names `sk-design-diagr
 | Path | What it holds |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | The runtime contract: when to use the packet, the workflow, the rules |
+| [`ROUTER.md`](./ROUTER.md) | The machine router: intent model, resource domains and the format-resolution rule |
 | [`references/`](./references/) | The catalog, the colour systems and the template contract |
 | [`assets/templates/`](./assets/templates/) | One self-contained file per chart form, copied whole |
 | [`assets/style-reference/`](./assets/style-reference/) | One directory per Style Reference, each carrying its own `DESIGN.md`, `palettes.json` and proof sheets. A reference is carried here rather than read from a sibling library, so nothing outside the packet can change it |
@@ -123,7 +124,8 @@ That is a constraint rather than a preference. This repository is MIT and public
 | [`SKILL.md`](./SKILL.md) | The runtime contract and the template-first workflow |
 | [`references/README.md`](./references/README.md) | The reference index |
 | [`scripts/README.md`](./scripts/README.md) | What the corpus validator checks |
-| [`../SKILL.md`](../SKILL.md) | The `sk-doc` hub that routes here |
+| [`../SKILL.md`](../SKILL.md) | The `sk-design` hub that routes here |
+| [`ROUTER.md`](./ROUTER.md) | The machine router: intent map, resource map and loading levels |
 | [`../sk-design-diagram/README.md`](../sk-design-diagram/README.md) | The structural-visual packet across the boundary |
 
 ## SCREENSHOTS

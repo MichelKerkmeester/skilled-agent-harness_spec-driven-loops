@@ -6,7 +6,7 @@ trigger_phrases:
   - "figma-ds-cli example scripts"
   - "figma safe connect example"
   - "figma export walkthrough"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # mcp-figma - Example Walkthroughs
@@ -132,7 +132,8 @@ Full failure catalog: [`../references/troubleshooting.md`](../references/trouble
 
 ### Skill Documentation
 
-- [`../SKILL.md`](../SKILL.md) - Routing, gating taxonomy, ALWAYS/NEVER rules
+- [`../SKILL.md`](../SKILL.md) - Gating taxonomy, ALWAYS/NEVER rules and the routing prose
+- [`../ROUTER.md#3-machine-router`](../ROUTER.md#3-machine-router) - Machine router: intent map, resource map and loading levels
 - [`../references/figma-cli-reference.md`](../references/figma-cli-reference.md) - CLI/daemon/connect model and command examples
 - [`../references/tool-surface.md`](../references/tool-surface.md) - Read-only / mutating / destructive taxonomy
 - [`../feature-catalog/feature-catalog.md`](../feature-catalog/feature-catalog.md) - Full capability inventory with class tags

@@ -7,7 +7,7 @@ description: "Verify the research mode resolves to backendKind runtime-loop-type
 expected_intent: research
 expected_workflow_mode: research
 expected_leaf_resources: []
-version: "1.2.0.0"
+version: "1.2.1.0"
 ---
 
 # RB-001: Runtime Loop Research Backend
@@ -50,7 +50,7 @@ For a deep research run, resolve the mode through the registry and state the bac
 ### Preconditions
 
 1. `.skilled/skills/system-deep-loop/mode-registry.json` contains the `research` mode entry.
-2. `.skilled/skills/system-deep-loop/SKILL.md` contains the backend routing rule.
+2. `.skilled/skills/system-deep-loop/ROUTER.md` contains the backend routing rule.
 
 ### Prompt
 
@@ -88,7 +88,7 @@ For a deep research run, resolve the mode through the registry and state the bac
 
 ## 4. SOURCE FILES
 
-- `.skilled/skills/system-deep-loop/SKILL.md` - backend routing rule.
+- `.skilled/skills/system-deep-loop/ROUTER.md` - backend routing rule.
 - `.skilled/skills/system-deep-loop/mode-registry.json` - `research` backend fields.
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 

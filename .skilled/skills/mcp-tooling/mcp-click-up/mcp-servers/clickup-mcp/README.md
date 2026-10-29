@@ -6,7 +6,7 @@ trigger_phrases:
   - "clickup official mcp"
   - "clickup_official manual"
   - "official clickup mcp install"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # clickup-mcp
@@ -75,6 +75,7 @@ Never hardcode a tool name without confirming it this way first. See `../../refe
 
 | Document | Purpose |
 |---|---|
-| [`../../SKILL.md`](../../SKILL.md) | Runtime routing between `cupt` and the official ClickUp MCP |
+| [`../../SKILL.md`](../../SKILL.md) | Runtime instructions and the CLI/MCP safety invariants |
+| [`../../ROUTER.md`](../../ROUTER.md) | Machine router: intent map, operation table and loading levels |
 | [`../../references/mcp-tools.md`](../../references/mcp-tools.md) | Last-captured tool inventory and invocation pattern |
 | [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md) | Step-by-step install with validation checkpoints |

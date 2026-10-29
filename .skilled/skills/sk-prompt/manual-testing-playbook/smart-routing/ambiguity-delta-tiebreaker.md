@@ -1,7 +1,7 @@
 ---
 title: "SP-007 -- AMBIGUITY_DELTA top-2 tiebreaker"
 description: "This scenario validates AMBIGUITY_DELTA top-2 selection for `SP-007`. It focuses on confirming both intents load when scores differ by 1 or less."
-version: 2.3.3.0
+version: 2.3.4.0
 ---
 
 # SP-007 -- AMBIGUITY_DELTA top-2 tiebreaker
@@ -25,8 +25,8 @@ When an operator request is genuinely on the boundary between TEXT_ENHANCE and F
 Operators run the exact prompt and command sequence for `SP-007` and confirm the expected signals without contradictory evidence.
 
 - Objective: Confirm AMBIGUITY_DELTA=1 produces top-2 resource union
-- Real user request: `Improve this prompt and tell me which framework fits — RCAF or COSTAR.`
-- Prompt: `Improve this framework-comparison prompt; verify near-tied TEXT_ENHANCE and FRAMEWORK intents load a deduplicated union of resources.`
+- Real user request: `Improve this prompt against a framework and its scoring.`
+- Prompt: `Improve this prompt against a framework and its scoring; verify both near-tied intents load a deduplicated union of resources.`
 - Expected execution process: sk-prompt scores both intents, computes the delta, finds it <= AMBIGUITY_DELTA=1, returns (primary, secondary) tuple, and loads union of RESOURCE_MAP entries with seen-set dedup.
 - Expected signals: `references/depth-framework.md` AND `references/patterns-evaluation.md` both in loaded list with no duplicates.
 - Desired user-visible outcome: Routing trace listing both intents with their scores, plus the deduplicated resource list.
@@ -39,17 +39,17 @@ Operators run the exact prompt and command sequence for `SP-007` and confirm the
 ### Prompt
 
 ```
-Improve this framework-comparison prompt; verify near-tied TEXT_ENHANCE and FRAMEWORK intents load a deduplicated union of resources.
+Improve this prompt against a framework and its scoring; verify both near-tied intents load a deduplicated union of resources.
 ```
 
 ### Commands
 
-1. `sk-prompt: Improve this prompt and tell me which framework fits — RCAF or COSTAR.`
+1. `sk-prompt: Improve this prompt against a framework and its scoring.`
 2. `bash: rg 'AMBIGUITY_DELTA' .skilled/skills/sk-prompt/ROUTER.md` (confirm delta=1)
 
 ### Expected
 
-Routing trace lists `(TEXT_ENHANCE, FRAMEWORK)` (or vice versa) with scores within 1 point. Resources loaded: both `references/depth-framework.md` AND `references/patterns-evaluation.md`, no duplicates.
+Routing trace lists `(TEXT_ENHANCE, FRAMEWORK)` (or vice versa) with scores within 1 point: the documented input ties at 7 against 7. Resources loaded: both `references/depth-framework.md` AND `references/patterns-evaluation.md`, no duplicates.
 
 ### Evidence
 

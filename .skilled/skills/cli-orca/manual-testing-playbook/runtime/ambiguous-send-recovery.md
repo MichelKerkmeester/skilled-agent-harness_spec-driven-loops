@@ -2,7 +2,7 @@
 title: "ORCA-005 -- Ambiguous send resolved by terminal read back"
 description: "This scenario validates that an ambiguous terminal send is resolved by reading the terminal back rather than by sending the instruction twice."
 catalog_applicable: true
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # ORCA-005 -- Ambiguous send resolved by terminal read back
@@ -70,7 +70,7 @@ The read back is the load-bearing signal, not the send receipt. An accepted inpu
 |---|---|
 | [Session and runtime reference](../../references/session-and-runtime.md) | Terminal receipt stages, retry request ids and the no-resend rule. |
 | [Troubleshooting reference](../../references/troubleshooting.md) | Recovery row for ambiguous terminal transport. |
-| [Router contract](../../SKILL.md) | Terminal lane rules and escalation triggers. |
+| [Router contract](../../ROUTER.md#3-machine-router) | Terminal lane rules and the lane resource map. |
 
 ---
 
