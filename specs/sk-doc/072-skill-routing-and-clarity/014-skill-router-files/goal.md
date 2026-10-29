@@ -121,5 +121,6 @@ and findings belong here.
 | Routing parse | All 54 routers parse identically to the pre-move tree after every alignment edit, so D1 holds. |
 | Re-mint gate | The pre-commit re-mint gate ignored a staged ROUTER.md, so mcp-tooling's manifest went stale. `f031f07eba` adds ROUTER.md to the gate's paths with two hook tests and re-mints mcp-tooling. |
 | Leaf manifest under a hook | `generate-leaf-manifest.cjs` counted git-ignored files when a hook exported `GIT_DIR`. It now drops the hook's git variables, with a test. |
-| Follow-up work | Routing-data items go to `../015-routing-data-alignment/`, and the reference format debt goes to `specs/sk-doc/074-reference-template-debt/`. Both are recorded in the parent spec. |
+| Follow-up work | Routing-data items go to `../015-routing-data-alignment/`, and the reference format debt goes to `specs/sk-doc/074-reference-template-debt/`. Both are recorded in the parent spec. Both shipped: 074 as `e190385670`, 015 as `0bf2d2c3d4`. |
+| D3 amendment | 015 changed routing on purpose, as D3 requires an amendment to do. The scorer still reads 155/195, 49/66 and 19/24. The replay gained one gold row, mcp-notion's first scenario, and reads `gold=65 scored=57 tied=3 mean_f1=0.9176 exact=50`. The other hub lines are unchanged. Criterion 3 held at this packet's close, and the reading after 015 is recorded in 015's decision record. |
 <!-- /ANCHOR:log -->
