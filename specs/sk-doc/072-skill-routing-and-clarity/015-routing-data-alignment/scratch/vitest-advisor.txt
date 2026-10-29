@@ -1,0 +1,9 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/276-routing-data-alignment/.skilled/skills/system-skill-advisor/runtime
+
+
+ Test Files  48 passed (48)
+      Tests  431 passed | 4 skipped (435)
+   Start at  22:52:18
+   Duration  41.99s (transform 438ms, setup 149ms, import 1.84s, tests 37.59s, environment 2ms)
+

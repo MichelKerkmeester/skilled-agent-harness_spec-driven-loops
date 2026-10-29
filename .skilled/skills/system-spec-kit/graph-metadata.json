@@ -68,7 +68,15 @@
     "spec template add-ons",
     "template add-ons",
     "spec docs",
-    "draft auto-repair"
+    "draft auto-repair",
+    "temp-path orphan",
+    "launchagent sweep",
+    "check-card-sync",
+    "hermes skill copies",
+    "hermes router copy",
+    "sync-skills-hermes",
+    "sweep temp path orphans",
+    "sweep stale mcp processes"
   ],
   "derived": {
     "trigger_phrases": [

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/072-skill-routing-and-clarity/015-routing-data-alignment",
+  "spec_folder": "sk-doc/072-skill-routing-and-clarity/015-routing-data-alignment",
+  "parent_id": "sk-doc/072-skill-routing-and-clarity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "routing data alignment",
+      "phase 15 routing data alignment",
+      "router move follow-up routing fixes",
+      "routing data alignment plan",
+      "routing data alignment tasks",
+      "routing data alignment acceptance criteria",
+      "routing data alignment decision record",
+      "refuted routing items",
+      "read-only explainer floor items",
+      "routing data alignment implementation summary"
+    ],
+    "key_topics": [
+      "routing",
+      "data",
+      "alignment",
+      "phase",
+      "router",
+      "move",
+      "follow-up",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decision"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/mcp-tooling/hub-router.json",
+      ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/notion-workspace-data.md",
+      ".skilled/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-design/hub-router.json",
+      ".skilled/skills/sk-design/sk-design-diagram/ROUTER.md",
+      ".skilled/skills/system-deep-loop/hub-router.json",
+      ".skilled/skills/sk-prompt/ROUTER.md",
+      ".skilled/bin/tests/compiled-route-admission.test.cjs",
+      "scratch/probes-before.txt",
+      "scratch/probe.cjs",
+      "scratch/sk-prompt-router-probe.py",
+      "scratch/sa001.py",
+      "scratch/baseline-before.json",
+      "scratch/probes-after.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-tooling/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "notion-workspace-data.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/notion-workspace-data.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-diagram/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-admission.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-admission.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "probes-before.txt",
+        "kind": "file",
+        "path": "scratch/probes-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "probe.cjs",
+        "kind": "file",
+        "path": "scratch/probe.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-prompt-router-probe.py",
+        "kind": "file",
+        "path": "scratch/sk-prompt-router-probe.py",
+        "source": "derived"
+      },
+      {
+        "name": "sa001.py",
+        "kind": "file",
+        "path": "scratch/sa001.py",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-before.json",
+        "kind": "config",
+        "path": "scratch/baseline-before.json",
+        "source": "derived"
+      },
+      {
+        "name": "probes-after.txt",
+        "kind": "file",
+        "path": "scratch/probes-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Work Recorded",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alignment Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Several skills declare a phrase in one routing stage that the other stage scores differently, so a request lands on the wrong mode, on no mode, or on another skill",
+    "created_at": "2026-10-29T21:26:56Z",
+    "last_save_at": "2026-10-29T22:09:17.230Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:767aa60a7225f2e480b65a0ce76ea195909ce68d2341fde7a397b5137e3ce41d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e1fc13d295375567adc4508f61a472e5785c749074fdd7bf8a68f2d8ecc5e43a",
+      "plan.md": "78d86eb6ae45682b0f33609e7c1586315893d679d3f6466bb1d51bf84b20225d",
+      "tasks.md": "875589ff711bdf9ca8d2ab63f4a4ecfa00f05abf3ac8714377a59995ca717437",
+      "decision-record.md": "7c36707100cae51f0d71680e034b1ff31720ac2cea3a5009e9a52cad4f925652",
+      "implementation-summary.md": "3f1ba9e3928d03705501833861952e91441c3a0802f774a4c7bc5eaeab75c568"
+    },
+    "last_active_at": null
+  }
+}

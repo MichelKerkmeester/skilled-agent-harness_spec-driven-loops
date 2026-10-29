@@ -7,7 +7,7 @@ trigger_phrases:
   - "diagram smart router"
 importance_tier: "normal"
 contextType: "reference"
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # Diagram Router Pseudocode
@@ -41,6 +41,7 @@ INTENT_MODEL = {
     "EXPORT": {"keywords": [("export", 4), ("png", 3), ("svg", 3), ("rasterize", 3)]},
     "ASCII_MARKDOWN": {"keywords": [("ascii flowchart", 4), ("workflow diagram", 4), ("text diagram", 4), ("decision tree", 3), ("decision branch", 3), ("approval loop diagram", 3), ("parallel execution diagram", 3)]},
     "STYLE": {"keywords": [("customize", 3), ("onboard", 3), ("style guide", 2), ("palette", 2), ("brand", 2)]},
+    "DESIGN_MD_THEME": {"keywords": [("design.md", 4), ("style reference", 4), ("theme diagram", 3), ("repaint", 3)]},
 }
 
 RESOURCE_MAP = {
@@ -49,6 +50,7 @@ RESOURCE_MAP = {
     "EXPORT": ["references/import-export/export.md", "references/foundations/output-spec.md"],
     "ASCII_MARKDOWN": ["references/ascii-format/pattern-selection.md", "references/ascii-format/notation-and-validator.md"],
     "STYLE": ["references/foundations/onboarding.md", "references/foundations/style-guide.md"],
+    "DESIGN_MD_THEME": ["references/design-md-theming.md"],
 }
 
 LOAD_LEVELS = {
@@ -57,6 +59,7 @@ LOAD_LEVELS = {
     "EXPORT": "STANDARD",
     "ASCII_MARKDOWN": "STANDARD",
     "STYLE": "MINIMAL",
+    "DESIGN_MD_THEME": "MINIMAL",
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [

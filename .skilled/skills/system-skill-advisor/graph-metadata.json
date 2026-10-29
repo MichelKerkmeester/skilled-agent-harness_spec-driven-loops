@@ -78,7 +78,13 @@
     "git-ignored skill",
     "private skills folder",
     "index private skills",
-    "trusted skill root"
+    "trusted skill root",
+    "skill graph freshness",
+    "advisor freshness",
+    "advisor index stale",
+    "scorer fusion",
+    "lane fusion",
+    "skill graph drift"
   ],
   "derived": {
     "trigger_phrases": [

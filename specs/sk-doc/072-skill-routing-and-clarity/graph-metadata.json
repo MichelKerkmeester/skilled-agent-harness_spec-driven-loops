@@ -17,7 +17,8 @@
     "sk-doc/072-skill-routing-and-clarity/011-regeneration-and-verification",
     "sk-doc/072-skill-routing-and-clarity/012-alignment-remediation",
     "sk-doc/072-skill-routing-and-clarity/013-mcp-tooling-routing-canon",
-    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files"
+    "sk-doc/072-skill-routing-and-clarity/014-skill-router-files",
+    "sk-doc/072-skill-routing-and-clarity/015-routing-data-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -111,16 +112,16 @@
     ],
     "causal_summary": "Skill docs under `.skilled/skills/` are hard to read",
     "created_at": "2026-10-28T06:21:53Z",
-    "last_save_at": "2026-10-29T09:18:24.061Z",
+    "last_save_at": "2026-10-29T22:09:17.168Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d7670cf2ee8dbd4b8b257527408d90fd08218373463ce1ada01345000b6ab040",
+    "source_fingerprint": "sha256:ad2ac8cf11bb28e33ed2d7db8c8409ae6ac9480bcb96064471b9b87a2b886a8e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "92bddd68e5a067e10200d4830ad59f27795c6f84641772a37420274bf8809e02"
+      "spec.md": "c14318ad8b334022d47ac8df307beb2a69bbcdc8b5f9fd1db295de8c3618cf81"
     },
     "last_active_at": null
   }

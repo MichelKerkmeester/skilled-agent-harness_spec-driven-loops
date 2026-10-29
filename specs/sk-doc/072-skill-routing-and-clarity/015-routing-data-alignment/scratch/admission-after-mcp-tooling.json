@@ -1,0 +1,359 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "hubs": [
+    {
+      "hubId": "mcp-tooling",
+      "admitted": true,
+      "verdict": "pass",
+      "counts": {
+        "pass": 16,
+        "drift": 0,
+        "stale-gold": 0,
+        "invalid": 0,
+        "broken": 0,
+        "n/a": 0
+      },
+      "fitted": {
+        "total": 9,
+        "judged": 9,
+        "pass": 9
+      },
+      "holdout": {
+        "total": 7,
+        "judged": 7,
+        "pass": 7
+      },
+      "negative": {
+        "total": 0,
+        "judged": 0,
+        "pass": 0
+      },
+      "coverage": {
+        "modes": [
+          {
+            "workflowMode": "mcp-aside-devtools",
+            "scenarios": 2
+          },
+          {
+            "workflowMode": "mcp-chrome-devtools",
+            "scenarios": 2
+          },
+          {
+            "workflowMode": "mcp-click-up",
+            "scenarios": 2
+          },
+          {
+            "workflowMode": "mcp-figma",
+            "scenarios": 2
+          },
+          {
+            "workflowMode": "mcp-mobbin",
+            "scenarios": 2
+          },
+          {
+            "workflowMode": "mcp-notion",
+            "scenarios": 1
+          },
+          {
+            "workflowMode": "mcp-obsidian",
+            "scenarios": 2
+          },
+          {
+            "workflowMode": "mcp-refero",
+            "scenarios": 2
+          }
+        ],
+        "uncovered": [],
+        "negatives": 1,
+        "enforced": false,
+        "short": false
+      },
+      "scenarios": [
+        {
+          "id": "MT-004",
+          "file": "manual-testing-playbook/hub-routing/ambiguous-defer.md",
+          "stage": "fitted",
+          "goldModes": [
+            "defer"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": []
+        },
+        {
+          "id": "MT-007",
+          "file": "manual-testing-playbook/hub-routing/aside-browser-automation.md",
+          "stage": "fitted",
+          "goldModes": [
+            "mcp-aside-devtools"
+          ],
+          "goldLeaves": [
+            "mcp-aside-devtools:references/aside-cli-reference.md",
+            "mcp-aside-devtools:references/mcp-wiring.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-aside-devtools"
+          ]
+        },
+        {
+          "id": "MT-001",
+          "file": "manual-testing-playbook/hub-routing/chrome-devtools-browser-debug.md",
+          "stage": "fitted",
+          "goldModes": [
+            "mcp-chrome-devtools"
+          ],
+          "goldLeaves": [
+            "mcp-chrome-devtools:references/cdp-patterns.md",
+            "mcp-chrome-devtools:references/session-management.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-chrome-devtools"
+          ]
+        },
+        {
+          "id": "MT-002",
+          "file": "manual-testing-playbook/hub-routing/clickup-task-management.md",
+          "stage": "fitted",
+          "goldModes": [
+            "mcp-click-up"
+          ],
+          "goldLeaves": [
+            "mcp-click-up:references/cupt-commands.md",
+            "mcp-click-up:references/mcp-tools.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-click-up"
+          ]
+        },
+        {
+          "id": "MT-003",
+          "file": "manual-testing-playbook/hub-routing/figma-transport.md",
+          "stage": "fitted",
+          "goldModes": [
+            "mcp-figma"
+          ],
+          "goldLeaves": [
+            "mcp-figma:references/figma-cli-reference.md",
+            "mcp-figma:references/mcp-wiring.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-figma"
+          ]
+        },
+        {
+          "id": "MT-H04",
+          "file": "manual-testing-playbook/hub-routing/holdout-agentic-browser.md",
+          "stage": "holdout",
+          "goldModes": [
+            "mcp-aside-devtools"
+          ],
+          "goldLeaves": [
+            "mcp-aside-devtools:references/aside-cli-reference.md",
+            "mcp-aside-devtools:references/mcp-wiring.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-aside-devtools"
+          ]
+        },
+        {
+          "id": "MT-H01",
+          "file": "manual-testing-playbook/hub-routing/holdout-browser-inspect.md",
+          "stage": "holdout",
+          "goldModes": [
+            "mcp-chrome-devtools"
+          ],
+          "goldLeaves": [
+            "mcp-chrome-devtools:references/cdp-patterns.md",
+            "mcp-chrome-devtools:references/session-management.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-chrome-devtools"
+          ]
+        },
+        {
+          "id": "MT-H02",
+          "file": "manual-testing-playbook/hub-routing/holdout-design-tokens.md",
+          "stage": "holdout",
+          "goldModes": [
+            "mcp-figma"
+          ],
+          "goldLeaves": [
+            "mcp-figma:references/figma-cli-reference.md",
+            "mcp-figma:references/mcp-wiring.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-figma"
+          ]
+        },
+        {
+          "id": "MT-H07",
+          "file": "manual-testing-playbook/hub-routing/holdout-knowledge-base.md",
+          "stage": "holdout",
+          "goldModes": [
+            "mcp-obsidian"
+          ],
+          "goldLeaves": [
+            "mcp-obsidian:references/mcp-tools.md",
+            "mcp-obsidian:references/obsidian-cli-commands.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-obsidian"
+          ]
+        },
+        {
+          "id": "MT-H06",
+          "file": "manual-testing-playbook/hub-routing/holdout-mobile-pattern-research.md",
+          "stage": "holdout",
+          "goldModes": [
+            "mcp-mobbin"
+          ],
+          "goldLeaves": [
+            "mcp-mobbin:references/tool-surface.md",
+            "mcp-mobbin:references/mcp-wiring.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-mobbin"
+          ]
+        },
+        {
+          "id": "MT-H03",
+          "file": "manual-testing-playbook/hub-routing/holdout-task-tracking.md",
+          "stage": "holdout",
+          "goldModes": [
+            "mcp-click-up"
+          ],
+          "goldLeaves": [
+            "mcp-click-up:references/cupt-commands.md",
+            "mcp-click-up:references/mcp-tools.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-click-up"
+          ]
+        },
+        {
+          "id": "MT-H05",
+          "file": "manual-testing-playbook/hub-routing/holdout-web-design-reference.md",
+          "stage": "holdout",
+          "goldModes": [
+            "mcp-refero"
+          ],
+          "goldLeaves": [
+            "mcp-refero:references/tool-surface.md",
+            "mcp-refero:references/mcp-wiring.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-refero"
+          ]
+        },
+        {
+          "id": "MT-009",
+          "file": "manual-testing-playbook/hub-routing/mobbin-app-research.md",
+          "stage": "fitted",
+          "goldModes": [
+            "mcp-mobbin"
+          ],
+          "goldLeaves": [
+            "mcp-mobbin:references/tool-surface.md",
+            "mcp-mobbin:references/mcp-wiring.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-mobbin"
+          ]
+        },
+        {
+          "id": "MT-011",
+          "file": "manual-testing-playbook/hub-routing/notion-workspace-data.md",
+          "stage": "fitted",
+          "goldModes": [
+            "mcp-notion"
+          ],
+          "goldLeaves": [
+            "mcp-notion:references/mcp-tools.md",
+            "mcp-notion:references/api-gap-tools.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-notion"
+          ]
+        },
+        {
+          "id": "MT-010",
+          "file": "manual-testing-playbook/hub-routing/obsidian-note-management.md",
+          "stage": "fitted",
+          "goldModes": [
+            "mcp-obsidian"
+          ],
+          "goldLeaves": [
+            "mcp-obsidian:references/mcp-tools.md",
+            "mcp-obsidian:references/obsidian-cli-commands.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-obsidian"
+          ]
+        },
+        {
+          "id": "MT-008",
+          "file": "manual-testing-playbook/hub-routing/refero-design-reference.md",
+          "stage": "fitted",
+          "goldModes": [
+            "mcp-refero"
+          ],
+          "goldLeaves": [
+            "mcp-refero:references/tool-surface.md",
+            "mcp-refero:references/mcp-wiring.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-refero"
+          ]
+        }
+      ]
+    }
+  ]
+}

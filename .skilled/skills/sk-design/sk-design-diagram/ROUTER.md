@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-design-diagram routing"
 importance_tier: normal
 contextType: general
-version: 1.2.1.0
+version: 1.2.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -30,13 +30,14 @@ loads before an intent selects it.
 
 ## 2. INTENT MODEL
 
-Five intents, one per detection signal the machine router scores. Each names the phrasing that fires it and the files it loads; `references/foundations/style-guide.md` loads ahead of every one of them.
+Six intents, one per detection signal the machine router scores. Each names the phrasing that fires it and the files it loads; `references/foundations/style-guide.md` loads ahead of every one of them.
 
 - **`GENERATE`** fires on "diagram / architecture / sequence / er model / swimlane / venn" with no source file behind the request. It loads `references/foundations/style-guide.md` first, then the type reference the diagram-type table names for the request — `references/types/type-architecture.md`, `references/types/type-sequence.md` or `references/types/type-flowchart.md` among the 27 `references/types/type-*.md` references.
 - **`IMPORT`** fires on a `.drawio`, `.drawio.png`, `.drawio.svg`, `.mmd`, `.mermaid` path or a fenced Mermaid block. It loads `references/import-export/import-drawio.md` or `references/import-export/import-mermaid.md`, and `references/foundations/output-spec.md` for the four dials set before drawing.
 - **`EXPORT`** fires on "export / png / svg / rasterize / save as". It loads `references/import-export/export.md` and `references/foundations/output-spec.md`.
 - **`ASCII_MARKDOWN`** fires on "ascii flowchart / workflow diagram / text diagram / text characters / decision tree / decision branch / approval loop diagram / parallel execution diagram / box-drawing / ascii-markdown", and resolves the `ascii-markdown` format before any type is chosen. It loads `references/ascii-format/pattern-selection.md` and one matching `assets/ascii-patterns/*.md` asset.
-- **`STYLE`** fires on the customize request the resource table marks CONDITIONAL: "customize the style guide / onboard the skin / brand the diagram / theme diagram / repaint diagram". It loads `references/foundations/onboarding.md` and `references/foundations/style-guide.md`, the file every run loads anyway.
+- **`STYLE`** fires on the customize request the resource table marks CONDITIONAL: "customize the style guide / onboard the skin / brand the diagram". It loads `references/foundations/onboarding.md` and `references/foundations/style-guide.md`, the file every run loads anyway.
+- **`DESIGN_MD_THEME`** fires on "DESIGN.md / style reference / theme diagram / repaint diagram", a request to repaint a diagram from a local Style Reference rather than rewrite the skin. It loads `references/design-md-theming.md` and runs `scripts/apply-design-md.cjs`, which writes themed copies to a scratch directory and never touches the stock library.
 
 ---
 
@@ -95,6 +96,7 @@ TASK CONTEXT
 ```text
 references/foundations/style-guide.md    # design tokens — ALWAYS
 references/foundations/onboarding.md     # skin extraction — CONDITIONAL (customize request)
+references/design-md-theming.md          # repaint from a local DESIGN.md, CONDITIONAL (DESIGN.md theming)
 references/foundations/output-spec.md    # import dials + export sizing — CONDITIONAL (import/export)
 references/primitives/primitive-*.md     # annotation, sketchy, terminal, icons — ON_DEMAND
 references/types/type-*.md               # 27 per-type layout conventions — CONDITIONAL (generate)
@@ -141,7 +143,7 @@ The route reference per diagram type:
 | Level | When to Load | Resources |
 |---|---|---|
 | ALWAYS | Every diagram | `references/foundations/style-guide.md` |
-| CONDITIONAL | Intent matches | `references/types/type-*.md`, `references/import-export/import-*.md`, `references/foundations/output-spec.md`, `references/import-export/export.md`, `references/foundations/onboarding.md` |
+| CONDITIONAL | Intent matches | `references/types/type-*.md`, `references/import-export/import-*.md`, `references/foundations/output-spec.md`, `references/import-export/export.md`, `references/foundations/onboarding.md`, `references/design-md-theming.md` |
 | ON_DEMAND | Only on explicit request | `references/primitives/primitive-*.md`, `assets/diagrams/starter-*.html`, `assets/style-reference/harness-diagram/icons.html` |
 
 ### Smart Router Pseudocode

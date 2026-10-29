@@ -58,7 +58,8 @@
     "managed worktree",
     "managed worktrees in orca",
     "paired terminal",
-    "child worktree"
+    "child worktree",
+    "full ownership handoff"
   ],
   "derived": {
     "trigger_phrases": [

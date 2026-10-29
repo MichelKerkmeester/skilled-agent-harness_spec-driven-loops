@@ -47,7 +47,11 @@
     "select prompt framework",
     "score prompt quality",
     "depth thinking pass",
-    "build a prompt template"
+    "build a prompt template",
+    "design-generation brief",
+    "design generation brief",
+    "design-generation prompt",
+    "design generation prompt"
   ],
   "derived": {
     "trigger_phrases": [

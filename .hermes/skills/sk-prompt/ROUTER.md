@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-prompt routing"
 importance_tier: normal
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -36,7 +36,7 @@ loads before an intent selects it.
 - **FORMAT_MARKDOWN** — "markdown / md / readme" requests load `assets/format-guide-markdown.md` and `references/patterns-evaluation.md`, the one format guide plus the scoring source.
 - **FORMAT_JSON** — "json / schema / api-ready" requests load `assets/format-guide-json.md` and `references/patterns-evaluation.md`.
 - **FORMAT_YAML** — "yaml / frontmatter / config" requests load `assets/format-guide-yaml.md` and `references/patterns-evaluation.md`.
-- **RAW** — the `$raw` token, or "raw passthrough", loads nothing at all: passthrough is asked for by command token and never inferred from prose, and it skips DEPTH with the references.
+- **RAW** — the `$raw` token loads nothing at all: passthrough is asked for by command token and never inferred from prose, and it skips DEPTH with the references.
 - **CLI_FAST_PATH** — "cli prompt quality card / prompt framework selection table / clear pre-dispatch check / fast path prompt quality" requests load `assets/cli-prompt-quality-card.md`, the card a CLI orchestrator reads before dispatch instead of the full body.
 
 Every intent except `FRAMEWORK` also loads `references/depth-framework.md` as the default resource, so a Markdown, JSON, YAML, design-generation or CLI fast-path run reads both the DEPTH default and its mapped file, and the bullet above names only the intent-specific addition.
@@ -135,7 +135,7 @@ INTENT_MODEL = {
     "FORMAT_YAML": {"keywords": [("yaml", 5), ("frontmatter", 3), ("config", 2)]},
     # $raw is the whole trigger: passthrough is asked for by command token, never
     # inferred from prose, and it deliberately loads nothing.
-    "RAW": {"keywords": [("$raw", 5), ("raw passthrough", 4)]},
+    "RAW": {"keywords": [("$raw", 5)]},
     # The fast-path card a CLI orchestrator reads before dispatch, instead of the
     # full body.
     "CLI_FAST_PATH": {"keywords": [("cli prompt quality card", 5), ("prompt framework selection table", 4), ("clear pre-dispatch check", 4), ("fast path prompt quality", 4)]},
@@ -233,8 +233,9 @@ def route_prompt_improver_resources(task):
             loaded.append(guarded)
             seen.add(guarded)
 
-    # Prefixes are authoritative; RAW skips DEPTH and reference loading.
-    if command_intent == "RAW":
+    # Prefixes are authoritative, and a no-load intent skips DEPTH and every
+    # reference whether it came from the prefix or from the token later in the text.
+    if command_intent in NO_LOAD_INTENTS or primary in NO_LOAD_INTENTS:
         return {"intents": intents, "intent_scores": scores, "resources": loaded, "load_level": "RAW"}
 
     # Unknown fallback: when no command prefix or keywords match at all.

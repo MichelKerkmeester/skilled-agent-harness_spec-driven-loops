@@ -46,7 +46,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | sk-doc/072-skill-routing-and-clarity |
 | **Predecessor** | 013-mcp-tooling-routing-canon |
-| **Successor** | None |
+| **Successor** | 015-routing-data-alignment |
 | **Handoff Criteria** | Every skill and mode keeps its machine router in a sibling `ROUTER.md`, the checks enforce it, and routing accuracy holds at its baseline |
 <!-- /ANCHOR:metadata -->
 

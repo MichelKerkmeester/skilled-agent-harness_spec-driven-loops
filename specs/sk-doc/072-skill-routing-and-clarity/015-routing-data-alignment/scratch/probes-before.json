@@ -1,0 +1,1293 @@
+[
+  {
+    "id": "MT-N03",
+    "item": "mcp-tooling N-03",
+    "prompt": "Show me screen examples for a paywall",
+    "advisor": {
+      "top1": null,
+      "top1Confidence": null,
+      "ranked": [
+        "mcp-tooling:0.519528"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "mcp-tooling",
+    "advisorPass": false,
+    "route": {
+      "action": "route",
+      "targets": [
+        "mcp-mobbin"
+      ]
+    },
+    "expectRoute": "defer",
+    "routePass": false
+  },
+  {
+    "id": "MT-D01",
+    "item": "mcp-tooling D-01",
+    "prompt": "screen examples for a paywall",
+    "route": {
+      "action": "route",
+      "targets": [
+        "mcp-mobbin"
+      ]
+    },
+    "expectRoute": "defer",
+    "routePass": false
+  },
+  {
+    "id": "MT-D01-ctl",
+    "item": "mcp-tooling D-01 control",
+    "prompt": "Find screen examples of paywalls from real iOS apps on Mobbin",
+    "advisor": {
+      "top1": "mcp-tooling",
+      "top1Confidence": 0.9087,
+      "ranked": [
+        "mcp-tooling:0.723137",
+        "sk-design:0.071225",
+        "sk-code:0.059276"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "mcp-tooling",
+    "advisorPass": true,
+    "route": {
+      "action": "route",
+      "targets": [
+        "mcp-mobbin"
+      ]
+    },
+    "expectRoute": "mcp-mobbin",
+    "routePass": true
+  },
+  {
+    "id": "MT-D01-ctl2",
+    "item": "mcp-tooling D-01 control",
+    "prompt": "Research onboarding flow patterns from real iOS apps on Mobbin and collect screen examples for the signup redesign.",
+    "advisor": {
+      "top1": "mcp-tooling",
+      "top1Confidence": 0.8989,
+      "ranked": [
+        "mcp-tooling:0.70497",
+        "sk-design:0.073244"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "mcp-tooling",
+    "advisorPass": true,
+    "route": {
+      "action": "route",
+      "targets": [
+        "mcp-mobbin"
+      ]
+    },
+    "expectRoute": "mcp-mobbin",
+    "routePass": true
+  },
+  {
+    "id": "MT-D08",
+    "item": "mcp-tooling D-08",
+    "prompt": "Extract DESIGN.md from the marketing site",
+    "advisor": {
+      "top1": "mcp-tooling",
+      "top1Confidence": 0.9058,
+      "ranked": [
+        "mcp-tooling:0.717833",
+        "sk-design:0.552737"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-design",
+    "advisorPass": false,
+    "route": {
+      "action": "route",
+      "targets": [
+        "mcp-figma"
+      ]
+    },
+    "expectRoute": "defer",
+    "routePass": false
+  },
+  {
+    "id": "MT-D08-ctl",
+    "item": "mcp-tooling D-08 control",
+    "prompt": "Extract a DESIGN.md from the open Figma file",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.82,
+      "ranked": [
+        "sk-design:0.462947",
+        "mcp-tooling:0.280761",
+        "sk-doc:0.160796"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "mcp-tooling",
+    "advisorPass": false,
+    "route": {
+      "action": "route",
+      "targets": [
+        "mcp-figma"
+      ]
+    },
+    "expectRoute": "mcp-figma",
+    "routePass": true
+  },
+  {
+    "id": "MT-D08-ctl2",
+    "item": "mcp-tooling D-08 control",
+    "prompt": "Render this component in Figma and export the design tokens.",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.8978,
+      "ranked": [
+        "sk-design:0.702961",
+        "mcp-tooling:0.280284"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "mcp-tooling",
+    "advisorPass": false,
+    "route": {
+      "action": "route",
+      "targets": [
+        "mcp-figma"
+      ]
+    },
+    "expectRoute": "mcp-figma",
+    "routePass": true
+  },
+  {
+    "id": "MT-D09",
+    "item": "mcp-tooling D-09 (refute)",
+    "prompt": "Use the MCP tool bridge for this.",
+    "advisor": {
+      "top1": "mcp-code-mode",
+      "top1Confidence": 0.9387,
+      "ranked": [
+        "mcp-code-mode:0.779014",
+        "sk-code:0.572992",
+        "mcp-tooling:0.335586"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "mcp-code-mode",
+    "advisorPass": true,
+    "route": {
+      "action": "defer",
+      "targets": []
+    },
+    "expectRoute": "defer",
+    "routePass": true
+  },
+  {
+    "id": "MT-D06",
+    "item": "mcp-tooling D-06",
+    "prompt": "Query my Notion database for rows whose status is open and update the matching page.",
+    "advisor": {
+      "top1": "mcp-tooling",
+      "top1Confidence": 0.8615,
+      "ranked": [
+        "mcp-tooling:0.635268",
+        "sk-code:0.091365",
+        "system-skill-advisor:0.084"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "mcp-tooling",
+    "advisorPass": true,
+    "route": {
+      "action": "route",
+      "targets": [
+        "mcp-notion"
+      ]
+    },
+    "expectRoute": "mcp-notion",
+    "routePass": true
+  },
+  {
+    "id": "SD-D01a",
+    "item": "sk-design D-01",
+    "prompt": "Repaint diagram from this DESIGN.md style reference.",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.91,
+      "ranked": [
+        "sk-design:0.725535",
+        "sk-code:0.264334",
+        "mcp-tooling:0.233618"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-design",
+    "advisorPass": true,
+    "route": {
+      "action": "route",
+      "targets": [
+        "sk-design-md-generator"
+      ]
+    },
+    "expectRoute": "sk-design-diagram",
+    "routePass": false
+  },
+  {
+    "id": "SD-D01b",
+    "item": "sk-design D-01",
+    "prompt": "Theme this chart with a local DESIGN.md style reference.",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.8897,
+      "ranked": [
+        "sk-design:0.687737",
+        "mcp-tooling:0.288842",
+        "sk-code:0.248915"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-design",
+    "advisorPass": true,
+    "route": {
+      "action": "route",
+      "targets": [
+        "sk-design-md-generator"
+      ]
+    },
+    "expectRoute": "sk-design-chart",
+    "routePass": false
+  },
+  {
+    "id": "SD-D01c",
+    "item": "sk-design D-01 control",
+    "prompt": "Extract the design tokens from https://stripe.com into a DESIGN.md style reference.",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.8852,
+      "ranked": [
+        "sk-design:0.679517",
+        "sk-code:0.23235",
+        "mcp-tooling:0.218062"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-design",
+    "advisorPass": true,
+    "route": {
+      "action": "route",
+      "targets": [
+        "sk-design-md-generator"
+      ]
+    },
+    "expectRoute": "sk-design-md-generator",
+    "routePass": true
+  },
+  {
+    "id": "SD-D01d",
+    "item": "sk-design D-01 control",
+    "prompt": "Generate a DESIGN.md for our marketing site",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.82,
+      "ranked": [
+        "sk-design:0.542295",
+        "mcp-tooling:0.17304",
+        "sk-doc:0.093262"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-design",
+    "advisorPass": true,
+    "route": {
+      "action": "route",
+      "targets": [
+        "sk-design-md-generator"
+      ]
+    },
+    "expectRoute": "sk-design-md-generator",
+    "routePass": true
+  },
+  {
+    "id": "SD-D01e",
+    "item": "sk-design D-01 control",
+    "prompt": "Validate this DESIGN.md against the schema",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.82,
+      "ranked": [
+        "sk-design:0.484452",
+        "mcp-tooling:0.152228",
+        "system-spec-kit:0.148322"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-design",
+    "advisorPass": true,
+    "route": {
+      "action": "route",
+      "targets": [
+        "sk-design-md-generator"
+      ]
+    },
+    "expectRoute": "sk-design-md-generator",
+    "routePass": true
+  },
+  {
+    "id": "SD-D01f",
+    "item": "sk-design D-01 control",
+    "prompt": "Build a style reference from a URL for our docs site",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.9026,
+      "ranked": [
+        "sk-design:0.711773",
+        "sk-doc:0.709533",
+        "sk-code:0.33194"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-design",
+    "advisorPass": true,
+    "route": {
+      "action": "route",
+      "targets": [
+        "sk-design-md-generator"
+      ]
+    },
+    "expectRoute": "sk-design-md-generator",
+    "routePass": true
+  },
+  {
+    "id": "SD-P01",
+    "item": "sk-design gap rerun",
+    "prompt": "Decide the padding, spacing scale and type scale for a new settings screen.",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.8887,
+      "ranked": [
+        "sk-design:0.685899",
+        "mcp-tooling:0.089096"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-design",
+    "advisorPass": true,
+    "route": {
+      "action": "route",
+      "targets": [
+        "sk-design-fundamentals"
+      ]
+    },
+    "expectRoute": "sk-design-fundamentals",
+    "routePass": true
+  },
+  {
+    "id": "SD-P02",
+    "item": "sk-design gap rerun",
+    "prompt": "Review this dashboard screen and tell me why the visual hierarchy looks wrong.",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.9388,
+      "ranked": [
+        "sk-design:0.779232",
+        "sk-code:0.604827",
+        "system-deep-loop:0.1512"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-design",
+    "advisorPass": true,
+    "route": {
+      "action": "route",
+      "targets": [
+        "sk-design-fundamentals"
+      ]
+    },
+    "expectRoute": "sk-design-fundamentals",
+    "routePass": true
+  },
+  {
+    "id": "SD-P03",
+    "item": "sk-design gap rerun",
+    "prompt": "Build a bar chart of quarterly revenue as a standalone HTML file.",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.8398,
+      "ranked": [
+        "sk-design:0.595",
+        "sk-doc:0.150398",
+        "mcp-tooling:0.090475"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-design",
+    "advisorPass": true,
+    "route": {
+      "action": "route",
+      "targets": [
+        "sk-design-chart"
+      ]
+    },
+    "expectRoute": "sk-design-chart",
+    "routePass": true
+  },
+  {
+    "id": "SD-P04",
+    "item": "sk-design gap rerun",
+    "prompt": "Plot this data as a heatmap and save it as a standalone HTML page.",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.8844,
+      "ranked": [
+        "sk-design:0.678",
+        "system-spec-kit:0.358289",
+        "sk-doc:0.218274"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-design",
+    "advisorPass": true,
+    "route": {
+      "action": "route",
+      "targets": [
+        "sk-design-chart"
+      ]
+    },
+    "expectRoute": "sk-design-chart",
+    "routePass": true
+  },
+  {
+    "id": "SD-P05",
+    "item": "sk-design gap rerun",
+    "prompt": "Create a sequence diagram of the OAuth login handshake as an HTML/SVG file.",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.82,
+      "ranked": [
+        "sk-design:0.525156",
+        "system-spec-kit:0.13305",
+        "sk-doc:0.086452"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-design",
+    "advisorPass": true,
+    "route": {
+      "action": "route",
+      "targets": [
+        "sk-design-diagram"
+      ]
+    },
+    "expectRoute": "sk-design-diagram",
+    "routePass": true
+  },
+  {
+    "id": "SD-P06",
+    "item": "sk-design gap rerun",
+    "prompt": "Draw an ASCII flowchart of the approval loop in markdown.",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.8825,
+      "ranked": [
+        "sk-design:0.674333",
+        "sk-doc:0.433093",
+        "mcp-tooling:0.115761"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-design",
+    "advisorPass": true,
+    "route": {
+      "action": "route",
+      "targets": [
+        "sk-design-diagram"
+      ]
+    },
+    "expectRoute": "sk-design-diagram",
+    "routePass": true
+  },
+  {
+    "id": "SD-P07",
+    "item": "sk-design gap rerun",
+    "prompt": "Redraw this .drawio architecture source as an editorial diagram.",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.8441,
+      "ranked": [
+        "sk-design:0.602933",
+        "mcp-tooling:0.086157"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-design",
+    "advisorPass": true,
+    "route": {
+      "action": "route",
+      "targets": [
+        "sk-design-diagram"
+      ]
+    },
+    "expectRoute": "sk-design-diagram",
+    "routePass": true
+  },
+  {
+    "id": "SD-P08",
+    "item": "sk-design gap rerun",
+    "prompt": "Extract the design tokens from https://stripe.com into a DESIGN.md style reference.",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.8852,
+      "ranked": [
+        "sk-design:0.679517",
+        "sk-code:0.23235",
+        "mcp-tooling:0.218062"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-design",
+    "advisorPass": true,
+    "route": {
+      "action": "route",
+      "targets": [
+        "sk-design-md-generator"
+      ]
+    },
+    "expectRoute": "sk-design-md-generator",
+    "routePass": true
+  },
+  {
+    "id": "SD-P09",
+    "item": "sk-design gap rerun",
+    "prompt": "Theme this chart with a local DESIGN.md style reference.",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.8897,
+      "ranked": [
+        "sk-design:0.687737",
+        "mcp-tooling:0.288842",
+        "sk-code:0.248915"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-design",
+    "advisorPass": true,
+    "route": {
+      "action": "route",
+      "targets": [
+        "sk-design-md-generator"
+      ]
+    },
+    "expectRoute": "sk-design-chart",
+    "routePass": false
+  },
+  {
+    "id": "SD-P10",
+    "item": "sk-design gap rerun",
+    "prompt": "Update the sk-design README navigation table.",
+    "advisor": {
+      "top1": "sk-doc",
+      "top1Confidence": 0.9221,
+      "ranked": [
+        "sk-doc:0.748166",
+        "sk-design:0.229999",
+        "sk-code:0.186752"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-doc",
+    "advisorPass": true
+  },
+  {
+    "id": "SD-P11",
+    "item": "sk-design gap rerun",
+    "prompt": "Investigate why the compiled router returns legacy for this hub and report findings.",
+    "advisor": {
+      "top1": "system-deep-loop",
+      "top1Confidence": 0.82,
+      "ranked": [
+        "system-deep-loop:0.458318",
+        "sk-code:0.217307",
+        "mcp-tooling:0.142737"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "system-deep-loop",
+    "advisorPass": true
+  },
+  {
+    "id": "DL-D10a",
+    "item": "system-deep-loop D-10",
+    "prompt": "audit the diff before merge",
+    "route": {
+      "action": "defer",
+      "targets": []
+    },
+    "expectRoute": "deep-review",
+    "routePass": false
+  },
+  {
+    "id": "DL-D10b",
+    "item": "system-deep-loop D-10",
+    "prompt": "Check seat diversity before we settle the release plan",
+    "route": {
+      "action": "defer",
+      "targets": []
+    },
+    "expectRoute": "deep-ai-council",
+    "routePass": false
+  },
+  {
+    "id": "DL-D10c",
+    "item": "system-deep-loop D-10",
+    "prompt": "investigate why the cache misses spike after deploy",
+    "route": {
+      "action": "defer",
+      "targets": []
+    },
+    "expectRoute": "deep-research",
+    "routePass": false
+  },
+  {
+    "id": "DL-D10d",
+    "item": "system-deep-loop D-10",
+    "prompt": "run an iterative review with severity findings on the auth module",
+    "route": {
+      "action": "defer",
+      "targets": []
+    },
+    "expectRoute": "deep-review",
+    "routePass": false
+  },
+  {
+    "id": "DL-D10e",
+    "item": "system-deep-loop D-10",
+    "prompt": "hold a council deliberation with multi-seat voting on the plan",
+    "route": {
+      "action": "defer",
+      "targets": []
+    },
+    "expectRoute": "deep-ai-council",
+    "routePass": false
+  },
+  {
+    "id": "DL-D10f",
+    "item": "system-deep-loop D-10",
+    "prompt": "iterative investigation of the flaky test until research convergence",
+    "route": {
+      "action": "defer",
+      "targets": []
+    },
+    "expectRoute": "deep-research",
+    "routePass": false
+  },
+  {
+    "id": "DL-ctl",
+    "item": "system-deep-loop control",
+    "prompt": "run a deep research loop on caching",
+    "route": {
+      "action": "route",
+      "targets": [
+        "deep-research"
+      ]
+    },
+    "expectRoute": "deep-research",
+    "routePass": true
+  },
+  {
+    "id": "SP-D03",
+    "item": "sk-prompt D-03",
+    "prompt": "Build a design-generation brief with anti-median variation for a canvas UI.",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.82,
+      "ranked": [
+        "sk-design:0.461895",
+        "mcp-tooling:0.076555",
+        "sk-code:0.069086"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-prompt",
+    "advisorPass": false
+  },
+  {
+    "id": "SP-D03b",
+    "item": "sk-prompt D-03",
+    "prompt": "Write a design generation prompt for the onboarding canvas",
+    "advisor": {
+      "top1": "sk-prompt",
+      "top1Confidence": 0.82,
+      "ranked": [
+        "sk-prompt:0.5133",
+        "sk-design:0.494854",
+        "sk-doc:0.279662"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-prompt",
+    "advisorPass": true
+  },
+  {
+    "id": "SP-D03-ctl",
+    "item": "sk-prompt D-03 control",
+    "prompt": "Design a canvas UI for the onboarding screen",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.82,
+      "ranked": [
+        "sk-design:0.492642",
+        "mcp-tooling:0.254218"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-design",
+    "advisorPass": true
+  },
+  {
+    "id": "SP-D03-ctl2",
+    "item": "sk-prompt D-03 control",
+    "prompt": "Decide the padding, spacing scale and type scale for a new settings screen.",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.8887,
+      "ranked": [
+        "sk-design:0.685899",
+        "mcp-tooling:0.089096"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-design",
+    "advisorPass": true
+  },
+  {
+    "id": "SP-D03y",
+    "item": "sk-prompt D-03 YAML half (refute)",
+    "prompt": "Turn this instruction into YAML frontmatter config for a prompt file.",
+    "advisor": {
+      "top1": "sk-doc",
+      "top1Confidence": 0.9034,
+      "ranked": [
+        "sk-doc:0.713394",
+        "sk-prompt:0.509992",
+        "sk-code:0.145188"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-doc",
+    "advisorPass": true
+  },
+  {
+    "id": "SP-ctl",
+    "item": "sk-prompt control",
+    "prompt": "Improve this vague prompt and score it with CLEAR",
+    "advisor": {
+      "top1": "sk-prompt",
+      "top1Confidence": 0.8854,
+      "ranked": [
+        "sk-prompt:0.679846",
+        "sk-doc:0.194518"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-prompt",
+    "advisorPass": true
+  },
+  {
+    "id": "CO-A05",
+    "item": "cli-orca A-05",
+    "prompt": "full ownership handoff",
+    "advisor": {
+      "top1": "cli-external-orchestration",
+      "top1Confidence": 0.82,
+      "ranked": [
+        "cli-external-orchestration:0.220542",
+        "cli-orca:0.162139"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "cli-orca",
+    "advisorPass": false
+  },
+  {
+    "id": "CO-A05b",
+    "item": "cli-orca A-05",
+    "prompt": "Do a full ownership handoff of this Orca worktree to the next agent",
+    "advisor": {
+      "top1": "cli-orca",
+      "top1Confidence": 0.8857,
+      "ranked": [
+        "cli-orca:0.680401",
+        "sk-git:0.589705",
+        "cli-external-orchestration:0.17716"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "cli-orca",
+    "advisorPass": true
+  },
+  {
+    "id": "CO-ctl",
+    "item": "cli-orca control",
+    "prompt": "Hand this task off to another CLI agent to finish",
+    "advisor": {
+      "top1": null,
+      "top1Confidence": null,
+      "ranked": [
+        "cli-external-orchestration:0.134505",
+        "cli-orca:0.128339",
+        "mcp-tooling:0.125933"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "cli-external-orchestration",
+    "advisorPass": false
+  },
+  {
+    "id": "CO-ctl2",
+    "item": "cli-orca control",
+    "prompt": "Delegate this refactor to codex and collect the result",
+    "advisor": {
+      "top1": "cli-external-orchestration",
+      "top1Confidence": 0.95,
+      "ranked": [
+        "cli-external-orchestration:0.127168",
+        "sk-doc:0.0504"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "cli-external-orchestration",
+    "advisorPass": true
+  },
+  {
+    "id": "CM-D06",
+    "item": "mcp-code-mode D-06",
+    "prompt": "Explain Code Mode's architecture",
+    "advisor": {
+      "top1": null,
+      "top1Confidence": null,
+      "ranked": [
+        "mcp-code-mode:0.691482",
+        "sk-code:0.567856",
+        "cli-external-orchestration:0.205862"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "mcp-code-mode",
+    "advisorPass": false
+  },
+  {
+    "id": "CM-D06b",
+    "item": "mcp-code-mode D-06",
+    "prompt": "How does the code mode architecture fit together",
+    "advisor": {
+      "top1": "mcp-code-mode",
+      "top1Confidence": 0.8749,
+      "ranked": [
+        "mcp-code-mode:0.660297",
+        "sk-code:0.526362",
+        "cli-external-orchestration:0.173474"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "mcp-code-mode",
+    "advisorPass": true
+  },
+  {
+    "id": "CM-ctl",
+    "item": "mcp-code-mode control",
+    "prompt": "Explain the architecture of the payments service",
+    "advisor": {
+      "top1": null,
+      "top1Confidence": null,
+      "ranked": [],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-code",
+    "advisorPass": false
+  },
+  {
+    "id": "CM-ctl2",
+    "item": "mcp-code-mode control",
+    "prompt": "What are the token and performance tradeoffs of Code Mode",
+    "advisor": {
+      "top1": "mcp-code-mode",
+      "top1Confidence": 0.8691,
+      "ranked": [
+        "mcp-code-mode:0.649463",
+        "sk-code:0.53245",
+        "mcp-tooling:0.331979"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "mcp-code-mode",
+    "advisorPass": true
+  },
+  {
+    "id": "SA-P01",
+    "item": "system-skill-advisor D-01",
+    "prompt": "Investigate why the advisor reports the index stale after only a skill's ROUTER.md changed.",
+    "advisor": {
+      "top1": "system-deep-loop",
+      "top1Confidence": 0.82,
+      "ranked": [
+        "system-deep-loop:0.474384",
+        "sk-code:0.229778",
+        "sk-doc:0.225431"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "system-skill-advisor",
+    "advisorPass": false
+  },
+  {
+    "id": "SA-P02",
+    "item": "system-skill-advisor D-01",
+    "prompt": "Confirm the daemon reindexes a skill after I edit its ROUTER.md.",
+    "advisor": {
+      "top1": "sk-doc",
+      "top1Confidence": 0.82,
+      "ranked": [
+        "sk-doc:0.551301",
+        "mcp-tooling:0.252108",
+        "sk-code:0.222388"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "system-skill-advisor",
+    "advisorPass": false
+  },
+  {
+    "id": "SA-P03",
+    "item": "system-skill-advisor D-01",
+    "prompt": "Check that the daemon watcher covers every skill's ROUTER.md next to SKILL.md.",
+    "advisor": {
+      "top1": null,
+      "top1Confidence": null,
+      "ranked": [
+        "sk-code:0.3104",
+        "cli-external-orchestration:0.245379",
+        "mcp-tooling:0.242888"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "system-skill-advisor",
+    "advisorPass": false
+  },
+  {
+    "id": "SA-P04",
+    "item": "system-skill-advisor D-01",
+    "prompt": "Show me the intent map and resource map the advisor router declares.",
+    "advisor": {
+      "top1": null,
+      "top1Confidence": null,
+      "ranked": [
+        "mcp-tooling:0.164514",
+        "sk-doc:0.128289",
+        "sk-code:0.121738"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "system-skill-advisor",
+    "advisorPass": false
+  },
+  {
+    "id": "SA-P05",
+    "item": "system-skill-advisor D-01",
+    "prompt": "Explain which skill-local reference the router loads for a scorer fusion question.",
+    "advisor": {
+      "top1": null,
+      "top1Confidence": null,
+      "ranked": [
+        "system-skill-advisor:0.432695",
+        "sk-code:0.261006",
+        "mcp-tooling:0.229139"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "system-skill-advisor",
+    "advisorPass": false
+  },
+  {
+    "id": "SA-ctl1",
+    "item": "system-skill-advisor control",
+    "prompt": "Create a new skill packet with its own ROUTER.md and intent map",
+    "advisor": {
+      "top1": "sk-doc",
+      "top1Confidence": 0.9091,
+      "ranked": [
+        "sk-doc:0.723839",
+        "system-spec-kit:0.603349",
+        "mcp-tooling:0.260187"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-doc",
+    "advisorPass": true
+  },
+  {
+    "id": "SA-ctl2",
+    "item": "system-skill-advisor control",
+    "prompt": "Review the freshness signature TypeScript for correctness bugs",
+    "advisor": {
+      "top1": "sk-code",
+      "top1Confidence": 0.9188,
+      "ranked": [
+        "sk-code:0.741868",
+        "system-deep-loop:0.1922",
+        "sk-design:0.169616"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-code",
+    "advisorPass": true
+  },
+  {
+    "id": "SA-ctl3",
+    "item": "system-skill-advisor control",
+    "prompt": "Draft the changelog entry for the advisor router move",
+    "advisor": {
+      "top1": "sk-doc",
+      "top1Confidence": 0.8264,
+      "ranked": [
+        "sk-doc:0.570131",
+        "sk-code:0.138406",
+        "mcp-tooling:0.108625"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-doc",
+    "advisorPass": true
+  },
+  {
+    "id": "SK-D05a",
+    "item": "system-spec-kit D-05",
+    "prompt": "Run the card sync check and tell me if an intent drifted out of the router",
+    "advisor": {
+      "top1": "sk-code",
+      "top1Confidence": 0.82,
+      "ranked": [
+        "sk-code:0.172103",
+        "cli-classifier:0.105",
+        "sk-doc:0.105"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "system-spec-kit",
+    "advisorPass": false
+  },
+  {
+    "id": "SK-D05b",
+    "item": "system-spec-kit D-05",
+    "prompt": "Check the Hermes skill copies and report a router copy that drifted from its source",
+    "advisor": {
+      "top1": null,
+      "top1Confidence": null,
+      "ranked": [
+        "sk-code:0.250791",
+        "sk-doc:0.206427",
+        "cli-external-orchestration:0.187459"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "system-spec-kit",
+    "advisorPass": false
+  },
+  {
+    "id": "SK-D04a",
+    "item": "system-spec-kit D-04",
+    "prompt": "Sweep the abandoned temp-path processes that init adopted and leave my session helpers alone",
+    "advisor": {
+      "top1": null,
+      "top1Confidence": null,
+      "ranked": [
+        "system-spec-kit:0.087279"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "system-spec-kit",
+    "advisorPass": false
+  },
+  {
+    "id": "SK-D04b",
+    "item": "system-spec-kit D-04",
+    "prompt": "Lower the orphan sweeper temp path age floor to two hours",
+    "advisor": {
+      "top1": null,
+      "top1Confidence": null,
+      "ranked": [
+        "sk-code:0.093333"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "system-spec-kit",
+    "advisorPass": false
+  },
+  {
+    "id": "SK-ctl1",
+    "item": "system-spec-kit control",
+    "prompt": "Review this pull request and list the P0 and P1 findings",
+    "advisor": {
+      "top1": "sk-code",
+      "top1Confidence": 0.8847,
+      "ranked": [
+        "sk-code:0.678513",
+        "sk-git:0.626888",
+        "system-deep-loop:0.277921"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-code",
+    "advisorPass": true
+  },
+  {
+    "id": "SK-ctl2",
+    "item": "system-spec-kit control",
+    "prompt": "Write a new agent definition for a documentation reviewer",
+    "advisor": {
+      "top1": "sk-doc",
+      "top1Confidence": 0.9326,
+      "ranked": [
+        "sk-doc:0.767621",
+        "create:agent:0.532",
+        "sk-design:0.2184"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-doc",
+    "advisorPass": true
+  },
+  {
+    "id": "SK-ctl3",
+    "item": "system-spec-kit control",
+    "prompt": "Create a git worktree for this task and commit with a conventional message",
+    "advisor": {
+      "top1": "sk-git",
+      "top1Confidence": 0.9348,
+      "ranked": [
+        "sk-git:0.771691",
+        "system-spec-kit:0.151952",
+        "mcp-tooling:0.120821"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-git",
+    "advisorPass": true
+  },
+  {
+    "id": "SK-ctl4",
+    "item": "system-spec-kit control",
+    "prompt": "Design a logo and pick a type scale for the landing page",
+    "advisor": {
+      "top1": "sk-design",
+      "top1Confidence": 0.8743,
+      "ranked": [
+        "sk-design:0.659232",
+        "mcp-tooling:0.121525",
+        "sk-doc:0.08"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-design",
+    "advisorPass": true
+  },
+  {
+    "id": "SG-D1",
+    "item": "sk-git D-1",
+    "prompt": "gitlens start review",
+    "advisor": {
+      "top1": "sk-code",
+      "top1Confidence": 0.9091,
+      "ranked": [
+        "sk-code:0.723881",
+        "system-deep-loop:0.676041",
+        "sk-git:0.606418"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-git",
+    "advisorPass": false
+  },
+  {
+    "id": "SG-D1b",
+    "item": "sk-git D-1",
+    "prompt": "Run the GitLens start review flow on this branch.",
+    "advisor": {
+      "top1": "sk-git",
+      "top1Confidence": 0.9374,
+      "ranked": [
+        "sk-git:0.776623",
+        "sk-code:0.657307",
+        "system-deep-loop:0.52352"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-git",
+    "advisorPass": true
+  },
+  {
+    "id": "SG-ctl",
+    "item": "sk-git control",
+    "prompt": "Start a code review of this branch and list correctness bugs",
+    "advisor": {
+      "top1": "sk-code",
+      "top1Confidence": 0.9421,
+      "ranked": [
+        "sk-code:0.785302",
+        "sk-git:0.715858",
+        "system-deep-loop:0.5082"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "sk-code",
+    "advisorPass": true
+  },
+  {
+    "id": "CC-D05",
+    "item": "cli-classifier D-05 (refute)",
+    "prompt": "Show me the cli-jev machine router",
+    "advisor": {
+      "top1": null,
+      "top1Confidence": null,
+      "ranked": [
+        "cli-classifier:0.639496",
+        "cli-external-orchestration:0.21905",
+        "mcp-tooling:0.193433"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "cli-classifier",
+    "advisorPass": false
+  },
+  {
+    "id": "CC-P14",
+    "item": "memory:save gap (refute)",
+    "prompt": "Validate the spec folder and save context for this session",
+    "advisor": {
+      "top1": "memory:save",
+      "top1Confidence": 0.8712,
+      "ranked": [
+        "memory:save:0.653333",
+        "system-spec-kit:0.860921",
+        "command-memory-save:0.56"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "memory:save",
+    "advisorPass": true
+  },
+  {
+    "id": "SDOC-P18",
+    "item": "memory:save gap (refute)",
+    "prompt": "Save context for this spec folder",
+    "advisor": {
+      "top1": "memory:save",
+      "top1Confidence": 0.8962,
+      "ranked": [
+        "memory:save:0.7",
+        "system-spec-kit:0.891038",
+        "command-memory-save:0.63"
+      ],
+      "freshness": "live"
+    },
+    "expectSkill": "memory:save",
+    "advisorPass": true
+  }
+]

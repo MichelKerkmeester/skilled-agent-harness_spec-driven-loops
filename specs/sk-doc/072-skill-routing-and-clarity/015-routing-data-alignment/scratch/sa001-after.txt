@@ -1,0 +1,18 @@
+{"id": "P1", "kind": "pos", "top": "sk-code", "confidence": 0.8783, "passes_threshold": true, "stderr": ""}
+{"id": "P2", "kind": "pos", "top": "sk-code", "confidence": 0.8438, "passes_threshold": true, "stderr": ""}
+{"id": "P3", "kind": "pos", "top": "sk-code", "confidence": 0.82, "passes_threshold": true, "stderr": ""}
+{"id": "P4", "kind": "pos", "top": "sk-code", "confidence": 0.9217, "passes_threshold": true, "stderr": ""}
+{"id": "P5", "kind": "pos", "top": "sk-code", "confidence": 0.82, "passes_threshold": true, "stderr": ""}
+{"id": "P6", "kind": "pos", "top": "sk-code", "confidence": 0.9428, "passes_threshold": true, "stderr": ""}
+{"id": "P7", "kind": "pos", "top": "sk-code", "confidence": 0.8614, "passes_threshold": true, "stderr": ""}
+{"id": "P8", "kind": "pos", "top": "sk-code", "confidence": 0.8594, "passes_threshold": true, "stderr": ""}
+{"id": "P9", "kind": "pos", "top": "sk-code", "confidence": 0.8627, "passes_threshold": true, "stderr": ""}
+{"id": "P10", "kind": "pos", "top": "sk-code", "confidence": 0.8938, "passes_threshold": true, "stderr": ""}
+{"id": "P11", "kind": "pos", "top": "sk-code", "confidence": 0.82, "passes_threshold": true, "stderr": ""}
+{"id": "P15", "kind": "pos", "top": "sk-code", "confidence": 0.82, "passes_threshold": true, "stderr": ""}
+{"id": "N1", "kind": "neg", "top": "sk-doc", "confidence": 0.82, "passes_threshold": true, "stderr": ""}
+{"id": "N2", "kind": "neg", "top": null, "confidence": null, "passes_threshold": null, "stderr": ""}
+{"id": "N3", "kind": "neg", "top": "system-deep-loop", "confidence": 0.94, "passes_threshold": true, "stderr": ""}
+{"id": "N4", "kind": "neg", "top": "cli-external-orchestration", "confidence": 0.95, "passes_threshold": true, "stderr": ""}
+{"id": "N5", "kind": "neg", "top": "system-deep-loop", "confidence": 0.82, "passes_threshold": true, "stderr": ""}
+records=17 positive=12/12 accuracy=1.00 negative_fp=0/5 verdict=PASS

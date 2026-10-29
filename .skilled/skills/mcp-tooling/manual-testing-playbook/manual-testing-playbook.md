@@ -1,7 +1,7 @@
 ---
 title: "mcp-tooling: Manual Testing Playbook"
 description: "Operator-facing index for mcp-tooling hub-routing validation across eight modes: five workflow bridges, three read-only design transports, seven blind holdouts, and the generic-tool ownership boundaries."
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # mcp-tooling: Manual Testing Playbook
@@ -18,7 +18,7 @@ The source of truth for routing is `.skilled/skills/mcp-tooling/hub-router.json`
 
 The hub routes an MCP tool-bridge request to one advisor identity, then resolves a `workflowMode` through the stage-one router. The root `ROUTER.md` maps that mode to the exact packet-local leaves. A scored route must not inherit the fallback `defaultResource` set.
 
-The hub-routing fixture directory contains **15 scenario files**: 8 primary routing scenarios (one for each mode plus the ambiguous-defer contract) and 7 blind holdouts. The holdouts exercise natural-language routing for seven of eight modes; `mcp-notion` remains without a blind holdout and that gap is reported honestly.
+The hub-routing fixture directory contains **16 scenario files**: 9 primary routing scenarios (one for each of the eight modes plus the ambiguous-defer contract) and 7 blind holdouts. The holdouts exercise natural-language routing for seven of eight modes; `mcp-notion` has a primary scenario but no blind holdout, because every word of its vocabulary names Notion, and that gap is reported honestly.
 
 ---
 
@@ -26,7 +26,7 @@ The hub-routing fixture directory contains **15 scenario files**: 8 primary rout
 
 Scored scenarios live as per-file YAML-frontmatter gold under `hub-routing/`.
 
-### Primary routing (8)
+### Primary routing (9)
 
 | ID | File | Expected `workflowMode` |
 |----|------|--------------------------|
@@ -38,6 +38,7 @@ Scored scenarios live as per-file YAML-frontmatter gold under `hub-routing/`.
 | MT-008 | [`hub-routing/refero-design-reference.md`](hub-routing/refero-design-reference.md) | `mcp-refero` |
 | MT-009 | [`hub-routing/mobbin-app-research.md`](hub-routing/mobbin-app-research.md) | `mcp-mobbin` |
 | MT-010 | [`hub-routing/obsidian-note-management.md`](hub-routing/obsidian-note-management.md) | `mcp-obsidian` |
+| MT-011 | [`hub-routing/notion-workspace-data.md`](hub-routing/notion-workspace-data.md) | `mcp-notion` |
 
 ### Blind holdouts (7; coverage 7/8)
 
@@ -61,7 +62,7 @@ Scored scenarios live as per-file YAML-frontmatter gold under `hub-routing/`.
 
 ## 3. SUCCESS CRITERIA
 
-- All 15 scenarios resolve to their expected `workflowMode` or to `defer` for MT-004 and assemble exactly the expected packet-qualified resources.
+- All 16 scenarios resolve to their expected `workflowMode` or to `defer` for MT-004 and assemble exactly the expected packet-qualified resources.
 - No scenario silently loads the wrong packet, a stale flat-skill path, or the fallback resource set on a scored route.
 - MT-004 remains a zero-signal defer: no mode scores, no packet resources are assembled, and the fallback resources are only a defer-time suggestion.
 - MT-H01 and MT-H07 preserve the Chrome/Aside and Obsidian/ClickUp boundaries, and a retired Orca holdout moved with the subject to the standalone `cli-orca` skill.

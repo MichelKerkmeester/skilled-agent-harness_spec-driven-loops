@@ -1,0 +1,377 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "hubs": [
+    {
+      "hubId": "system-deep-loop",
+      "admitted": true,
+      "verdict": "pass",
+      "counts": {
+        "pass": 20,
+        "drift": 0,
+        "stale-gold": 0,
+        "invalid": 0,
+        "broken": 0,
+        "n/a": 1
+      },
+      "fitted": {
+        "total": 19,
+        "judged": 18,
+        "pass": 18
+      },
+      "holdout": {
+        "total": 0,
+        "judged": 0,
+        "pass": 0
+      },
+      "negative": {
+        "total": 2,
+        "judged": 2,
+        "pass": 2
+      },
+      "coverage": {
+        "modes": [
+          {
+            "workflowMode": "ai-council",
+            "scenarios": 3
+          },
+          {
+            "workflowMode": "research",
+            "scenarios": 8
+          },
+          {
+            "workflowMode": "review",
+            "scenarios": 3
+          }
+        ],
+        "uncovered": [],
+        "negatives": 6,
+        "enforced": false,
+        "short": false
+      },
+      "scenarios": [
+        {
+          "id": "AI-002",
+          "file": "manual-testing-playbook/advisor-integration/lexical-mode-scoring.md",
+          "stage": "fitted",
+          "goldModes": [
+            "research"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "research"
+          ]
+        },
+        {
+          "id": "AI-004",
+          "file": "manual-testing-playbook/advisor-integration/no-false-fire-code-edit.md",
+          "stage": "negative",
+          "goldModes": [
+            "UNKNOWN"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": []
+        },
+        {
+          "id": "AI-001",
+          "file": "manual-testing-playbook/advisor-integration/single-advisor-identity.md",
+          "stage": "fitted",
+          "goldModes": [
+            "research"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "research"
+          ]
+        },
+        {
+          "id": "DL-CR-001",
+          "file": "manual-testing-playbook/compiled-routing/ordered-bundle-deep-mode-compiled-routing.md",
+          "stage": "fitted",
+          "goldModes": [
+            "research"
+          ],
+          "goldLeaves": [
+            "research:references/protocol/loop-protocol.md",
+            "research:references/state/state-jsonl.md",
+            "research:references/convergence/convergence.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "research"
+          ]
+        },
+        {
+          "id": "doctor-commands-readme",
+          "file": "manual-testing-playbook/doctor-commands/README.md",
+          "stage": "fitted",
+          "goldModes": [
+            "UNKNOWN"
+          ],
+          "goldLeaves": [],
+          "status": "n/a",
+          "reason": "no-prompt",
+          "detail": null,
+          "routedModes": []
+        },
+        {
+          "id": "doctor-commands-doctor-deep-loop-convergence",
+          "file": "manual-testing-playbook/doctor-commands/doctor-deep-loop-convergence.md",
+          "stage": "fitted",
+          "goldModes": [
+            "UNKNOWN"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": []
+        },
+        {
+          "id": "doctor-commands-doctor-deep-loop-empty-no-source",
+          "file": "manual-testing-playbook/doctor-commands/doctor-deep-loop-empty-no-source.md",
+          "stage": "fitted",
+          "goldModes": [
+            "UNKNOWN"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": []
+        },
+        {
+          "id": "doctor-commands-doctor-deep-loop-lazy-init",
+          "file": "manual-testing-playbook/doctor-commands/doctor-deep-loop-lazy-init.md",
+          "stage": "fitted",
+          "goldModes": [
+            "UNKNOWN"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": []
+        },
+        {
+          "id": "doctor-commands-doctor-deep-loop-scope",
+          "file": "manual-testing-playbook/doctor-commands/doctor-deep-loop-scope.md",
+          "stage": "fitted",
+          "goldModes": [
+            "UNKNOWN"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": []
+        },
+        {
+          "id": "MO-003",
+          "file": "manual-testing-playbook/mode-routing/ai-council-routing.md",
+          "stage": "fitted",
+          "goldModes": [
+            "ai-council"
+          ],
+          "goldLeaves": [
+            "ai-council:references/integration/loop-protocol.md",
+            "ai-council:references/scoring/scoring-rubric.md",
+            "ai-council:references/structure/output-schema.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "ai-council"
+          ]
+        },
+        {
+          "id": "MO-004",
+          "file": "manual-testing-playbook/mode-routing/mode-hint-override.md",
+          "stage": "fitted",
+          "goldModes": [
+            "research"
+          ],
+          "goldLeaves": [
+            "research:references/protocol/loop-protocol.md",
+            "research:references/state/state-jsonl.md",
+            "research:references/convergence/convergence.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "research"
+          ]
+        },
+        {
+          "id": "MO-001",
+          "file": "manual-testing-playbook/mode-routing/research-routing.md",
+          "stage": "fitted",
+          "goldModes": [
+            "research"
+          ],
+          "goldLeaves": [
+            "research:references/protocol/loop-protocol.md",
+            "research:references/state/state-jsonl.md",
+            "research:references/convergence/convergence.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "research"
+          ]
+        },
+        {
+          "id": "MO-002",
+          "file": "manual-testing-playbook/mode-routing/review-routing.md",
+          "stage": "fitted",
+          "goldModes": [
+            "review"
+          ],
+          "goldLeaves": [
+            "review:references/protocol/loop-protocol.md",
+            "review:references/protocol/completion-criteria.md",
+            "review:references/convergence/convergence.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "review"
+          ]
+        },
+        {
+          "id": "RB-004",
+          "file": "manual-testing-playbook/runtime-and-backend/external-adapter.md",
+          "stage": "negative",
+          "goldModes": [
+            "UNKNOWN"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": []
+        },
+        {
+          "id": "RB-002",
+          "file": "manual-testing-playbook/runtime-and-backend/runtime-loop-council.md",
+          "stage": "fitted",
+          "goldModes": [
+            "ai-council"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "ai-council"
+          ]
+        },
+        {
+          "id": "RB-001",
+          "file": "manual-testing-playbook/runtime-and-backend/runtime-loop-research.md",
+          "stage": "fitted",
+          "goldModes": [
+            "research"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "research"
+          ]
+        },
+        {
+          "id": "SC-002",
+          "file": "manual-testing-playbook/state-and-convergence-discipline/artifact-root-writes.md",
+          "stage": "fitted",
+          "goldModes": [
+            "ai-council"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "ai-council"
+          ]
+        },
+        {
+          "id": "SC-003",
+          "file": "manual-testing-playbook/state-and-convergence-discipline/convergence-stop.md",
+          "stage": "fitted",
+          "goldModes": [
+            "research"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "research"
+          ]
+        },
+        {
+          "id": "SC-001",
+          "file": "manual-testing-playbook/state-and-convergence-discipline/externalized-state.md",
+          "stage": "fitted",
+          "goldModes": [
+            "review"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "review"
+          ]
+        },
+        {
+          "id": "SC-004",
+          "file": "manual-testing-playbook/state-and-convergence-discipline/hub-logic-boundary.md",
+          "stage": "fitted",
+          "goldModes": [
+            "review"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "review"
+          ]
+        },
+        {
+          "id": "WC-001",
+          "file": "manual-testing-playbook/write-containment/shared-checkout-run.md",
+          "stage": "fitted",
+          "goldModes": [
+            "research"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "research"
+          ]
+        }
+      ]
+    }
+  ]
+}

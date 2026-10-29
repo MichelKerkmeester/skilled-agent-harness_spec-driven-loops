@@ -168,17 +168,17 @@
     ],
     "causal_summary": "Every SKILL.md ends with a `## MACHINE ROUTER` section, and that section loads whenever the skill does",
     "created_at": "2026-10-29T07:52:39Z",
-    "last_save_at": "2026-10-29T20:42:56.662Z",
+    "last_save_at": "2026-10-29T22:05:55.587Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:1f4c9599c13e118ee659d43c27903a3008819511b79ca1f0c13f575016b67f30",
+    "source_fingerprint": "sha256:acc29a5ff01b779281f0aa6e40f07ab5ca1b8b78e417176709746c538f218248",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "526e9b468b2f276bdde15859bd69221c9298f9e801c09971eff87eb567f0d9dd"
+      "spec.md": "a0acb3b93328551dd98227ac011079b9c343ed743b3aa7a3b2bfa7962a3497a2"
     },
     "last_active_at": null
   }

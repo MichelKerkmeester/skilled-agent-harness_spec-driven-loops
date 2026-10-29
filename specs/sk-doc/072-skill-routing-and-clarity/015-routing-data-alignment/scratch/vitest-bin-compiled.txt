@@ -1,0 +1,11 @@
+
+ RUN  v5.0.5 /Users/michelkerkmeester/worktrees/public/276-routing-data-alignment/.skilled
+
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-move-x01ghn/compiled-routing
+no prior closure to roll back
+
+ Test Files  2 passed (2)
+      Tests  46 passed (46)
+   Start at  22:53:25
+   Duration  559ms (tests 92%, transform 4%, import 3%, worker 1%)
+

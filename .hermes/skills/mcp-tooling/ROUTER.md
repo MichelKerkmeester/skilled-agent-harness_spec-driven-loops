@@ -8,7 +8,7 @@ trigger_phrases:
   - "mcp tool bridge resource map"
 importance_tier: important
 contextType: general
-version: 1.8.8.0
+version: 1.8.9.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -94,9 +94,9 @@ INTENT_SIGNALS = {
     "OBSIDIAN":        {"weight": 4, "keywords": ["obsidian", "mcp-obsidian", "obsidian vault", "notesmd-cli", "obsidian mcp", "note management", "markdown notes", "create note", "vault search", "backlinks", "daily note", "knowledge base", "note crud", "health", "health-md", "health md", "health.md", "health data", "apple health", "health chart", "health visualization", "iconic", "iconic rulebook", "icon rules", "icon automation", "file icons", "folder icons", "icon color", "iconic data json", "iconic ruleset", "excalidraw", "excalidraw.md", "drawing note", "embedded drawing", "whiteboard", "drawing script", "minimal theme", "css theme", "theme snippet", "style settings", "appearance", "snippets"]},
     "ASIDE_DEVTOOLS":  {"weight": 4, "keywords": ["aside", "aside browser", "aside cli", "aside mcp", "aside repl", "ai browser automation", "agentic browser", "agentic browser task", "browser agent", "aside daemon", "click through", "natural language browser", "aside account", "repl evidence capture"]},
     "NOTION":          {"weight": 4, "keywords": ["notion", "notion mcp", "notion api", "notion page", "notion token", "ntn_", "notion database", "notion data source", "query notion", "notion property", "notion relation", "notion rollup", "notion formula", "notion markdown", "notion search"]},
-    "FIGMA":           {"weight": 4, "keywords": ["figma", "figma cli", "figma-ds-cli", "figma desktop", "render in figma", "figma tokens", "extract design.md", "figma mcp", "figma daemon", "export from figma", "design file", "connect to figma", "figma variables", "figma export"]},
+    "FIGMA":           {"weight": 4, "keywords": ["figma", "figma cli", "figma-ds-cli", "figma desktop", "render in figma", "figma tokens", "figma mcp", "figma daemon", "export from figma", "design file", "connect to figma", "figma variables", "figma export"]},
     "REFERO":          {"weight": 4, "keywords": ["refero", "refero mcp", "refero.design", "design reference search", "ui reference", "real app screens", "reference styles", "web products", "real app screen search", "ui screens from real apps", "design inspiration search", "user flow references"]},
-    "MOBBIN":          {"weight": 4, "keywords": ["mobbin", "mobbin mcp", "app design research", "ux flow references", "mobile design patterns", "mobile ux research", "onboarding flow examples", "ios app examples", "phone apps", "real app ux patterns", "screen examples", "real app screenshots", "app screen gallery", "design pattern research"]},
+    "MOBBIN":          {"weight": 4, "keywords": ["mobbin", "mobbin mcp", "app design research", "ux flow references", "mobile design patterns", "mobile ux research", "onboarding flow examples", "ios app examples", "phone apps", "real app ux patterns", "real app screenshots", "app screen gallery", "design pattern research"]},
 }
 
 RESOURCE_MAP = {

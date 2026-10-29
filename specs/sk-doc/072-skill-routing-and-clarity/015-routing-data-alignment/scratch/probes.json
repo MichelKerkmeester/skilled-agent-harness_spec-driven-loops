@@ -1,0 +1,539 @@
+[
+ {
+  "id": "MT-N03",
+  "item": "mcp-tooling N-03",
+  "prompt": "Show me screen examples for a paywall",
+  "expectSkill": "mcp-tooling",
+  "hub": "mcp-tooling",
+  "expectRoute": "defer",
+  "note": "hub vocabulary reaches mcp-tooling; the read-only explainer floor abstains on a prompt that opens with Show"
+ },
+ {
+  "id": "MT-D01",
+  "item": "mcp-tooling D-01",
+  "prompt": "screen examples for a paywall",
+  "hub": "mcp-tooling",
+  "expectRoute": "defer"
+ },
+ {
+  "id": "MT-D01-ctl",
+  "item": "mcp-tooling D-01 control",
+  "prompt": "Find screen examples of paywalls from real iOS apps on Mobbin",
+  "expectSkill": "mcp-tooling",
+  "hub": "mcp-tooling",
+  "expectRoute": "mcp-mobbin"
+ },
+ {
+  "id": "MT-D01-ctl2",
+  "item": "mcp-tooling D-01 control",
+  "prompt": "Research onboarding flow patterns from real iOS apps on Mobbin and collect screen examples for the signup redesign.",
+  "expectSkill": "mcp-tooling",
+  "hub": "mcp-tooling",
+  "expectRoute": "mcp-mobbin"
+ },
+ {
+  "id": "MT-D08",
+  "item": "mcp-tooling D-08",
+  "prompt": "Extract DESIGN.md from the marketing site",
+  "expectSkill": "sk-design",
+  "hub": "mcp-tooling",
+  "expectRoute": "defer"
+ },
+ {
+  "id": "MT-D08-ctl",
+  "item": "mcp-tooling D-08 control",
+  "prompt": "Extract a DESIGN.md from the open Figma file",
+  "expectSkill": "sk-design",
+  "hub": "mcp-tooling",
+  "expectRoute": "mcp-figma",
+  "note": "pre-existing: a Figma prompt goes to sk-design at stage one before and after; control only, must not change"
+ },
+ {
+  "id": "MT-D08-ctl2",
+  "item": "mcp-tooling D-08 control",
+  "prompt": "Render this component in Figma and export the design tokens.",
+  "expectSkill": "sk-design",
+  "hub": "mcp-tooling",
+  "expectRoute": "mcp-figma",
+  "note": "pre-existing: the MT-003 prompt goes to sk-design at stage one before and after; control only, must not change"
+ },
+ {
+  "id": "MT-D09",
+  "item": "mcp-tooling D-09 (refute)",
+  "prompt": "Use the MCP tool bridge for this.",
+  "expectSkill": "mcp-code-mode",
+  "hub": "mcp-tooling",
+  "expectRoute": "defer"
+ },
+ {
+  "id": "MT-D06",
+  "item": "mcp-tooling D-06",
+  "prompt": "Query my Notion database for rows whose status is open and update the matching page.",
+  "expectSkill": "mcp-tooling",
+  "hub": "mcp-tooling",
+  "expectRoute": "mcp-notion"
+ },
+ {
+  "id": "SD-D01a",
+  "item": "sk-design D-01",
+  "prompt": "Repaint diagram from this DESIGN.md style reference.",
+  "expectSkill": "sk-design",
+  "hub": "sk-design",
+  "expectRoute": "sk-design-diagram"
+ },
+ {
+  "id": "SD-D01b",
+  "item": "sk-design D-01",
+  "prompt": "Theme this chart with a local DESIGN.md style reference.",
+  "expectSkill": "sk-design",
+  "hub": "sk-design",
+  "expectRoute": "sk-design-md-generator,sk-design-chart",
+  "note": "chart reached as the second mode of an ordered bundle; md-generator leads on the tie-break order"
+ },
+ {
+  "id": "SD-D01c",
+  "item": "sk-design D-01 control",
+  "prompt": "Extract the design tokens from https://stripe.com into a DESIGN.md style reference.",
+  "expectSkill": "sk-design",
+  "hub": "sk-design",
+  "expectRoute": "sk-design-md-generator"
+ },
+ {
+  "id": "SD-D01d",
+  "item": "sk-design D-01 control",
+  "prompt": "Generate a DESIGN.md for our marketing site",
+  "expectSkill": "sk-design",
+  "hub": "sk-design",
+  "expectRoute": "sk-design-md-generator"
+ },
+ {
+  "id": "SD-D01e",
+  "item": "sk-design D-01 control",
+  "prompt": "Validate this DESIGN.md against the schema",
+  "expectSkill": "sk-design",
+  "hub": "sk-design",
+  "expectRoute": "sk-design-md-generator"
+ },
+ {
+  "id": "SD-D01f",
+  "item": "sk-design D-01 control",
+  "prompt": "Build a style reference from a URL for our docs site",
+  "expectSkill": "sk-design",
+  "hub": "sk-design",
+  "expectRoute": "sk-design-md-generator"
+ },
+ {
+  "id": "SD-P01",
+  "item": "sk-design gap rerun",
+  "prompt": "Decide the padding, spacing scale and type scale for a new settings screen.",
+  "expectSkill": "sk-design",
+  "hub": "sk-design",
+  "expectRoute": "sk-design-fundamentals"
+ },
+ {
+  "id": "SD-P02",
+  "item": "sk-design gap rerun",
+  "prompt": "Review this dashboard screen and tell me why the visual hierarchy looks wrong.",
+  "expectSkill": "sk-design",
+  "hub": "sk-design",
+  "expectRoute": "sk-design-fundamentals"
+ },
+ {
+  "id": "SD-P03",
+  "item": "sk-design gap rerun",
+  "prompt": "Build a bar chart of quarterly revenue as a standalone HTML file.",
+  "expectSkill": "sk-design",
+  "hub": "sk-design",
+  "expectRoute": "sk-design-chart"
+ },
+ {
+  "id": "SD-P04",
+  "item": "sk-design gap rerun",
+  "prompt": "Plot this data as a heatmap and save it as a standalone HTML page.",
+  "expectSkill": "sk-design",
+  "hub": "sk-design",
+  "expectRoute": "sk-design-chart"
+ },
+ {
+  "id": "SD-P05",
+  "item": "sk-design gap rerun",
+  "prompt": "Create a sequence diagram of the OAuth login handshake as an HTML/SVG file.",
+  "expectSkill": "sk-design",
+  "hub": "sk-design",
+  "expectRoute": "sk-design-diagram"
+ },
+ {
+  "id": "SD-P06",
+  "item": "sk-design gap rerun",
+  "prompt": "Draw an ASCII flowchart of the approval loop in markdown.",
+  "expectSkill": "sk-design",
+  "hub": "sk-design",
+  "expectRoute": "sk-design-diagram"
+ },
+ {
+  "id": "SD-P07",
+  "item": "sk-design gap rerun",
+  "prompt": "Redraw this .drawio architecture source as an editorial diagram.",
+  "expectSkill": "sk-design",
+  "hub": "sk-design",
+  "expectRoute": "sk-design-diagram"
+ },
+ {
+  "id": "SD-P08",
+  "item": "sk-design gap rerun",
+  "prompt": "Extract the design tokens from https://stripe.com into a DESIGN.md style reference.",
+  "expectSkill": "sk-design",
+  "hub": "sk-design",
+  "expectRoute": "sk-design-md-generator"
+ },
+ {
+  "id": "SD-P09",
+  "item": "sk-design gap rerun",
+  "prompt": "Theme this chart with a local DESIGN.md style reference.",
+  "expectSkill": "sk-design",
+  "hub": "sk-design",
+  "expectRoute": "sk-design-md-generator,sk-design-chart",
+  "note": "chart reached as the second mode of an ordered bundle; md-generator leads on the tie-break order"
+ },
+ {
+  "id": "SD-P10",
+  "item": "sk-design gap rerun",
+  "prompt": "Update the sk-design README navigation table.",
+  "expectSkill": "sk-doc"
+ },
+ {
+  "id": "SD-P11",
+  "item": "sk-design gap rerun",
+  "prompt": "Investigate why the compiled router returns legacy for this hub and report findings.",
+  "expectSkill": "system-deep-loop"
+ },
+ {
+  "id": "DL-D10a",
+  "item": "system-deep-loop D-10",
+  "prompt": "audit the diff before merge",
+  "hub": "system-deep-loop",
+  "expectRoute": "deep-review"
+ },
+ {
+  "id": "DL-D10b",
+  "item": "system-deep-loop D-10",
+  "prompt": "Check seat diversity before we settle the release plan",
+  "hub": "system-deep-loop",
+  "expectRoute": "deep-ai-council"
+ },
+ {
+  "id": "DL-D10c",
+  "item": "system-deep-loop D-10",
+  "prompt": "investigate why the cache misses spike after deploy",
+  "hub": "system-deep-loop",
+  "expectRoute": "deep-research"
+ },
+ {
+  "id": "DL-D10d",
+  "item": "system-deep-loop D-10",
+  "prompt": "run an iterative review with severity findings on the auth module",
+  "hub": "system-deep-loop",
+  "expectRoute": "deep-review"
+ },
+ {
+  "id": "DL-D10e",
+  "item": "system-deep-loop D-10",
+  "prompt": "hold a council deliberation with multi-seat voting on the plan",
+  "hub": "system-deep-loop",
+  "expectRoute": "deep-ai-council"
+ },
+ {
+  "id": "DL-D10f",
+  "item": "system-deep-loop D-10",
+  "prompt": "iterative investigation of the flaky test until research convergence",
+  "hub": "system-deep-loop",
+  "expectRoute": "deep-research"
+ },
+ {
+  "id": "DL-ctl",
+  "item": "system-deep-loop control",
+  "prompt": "run a deep research loop on caching",
+  "hub": "system-deep-loop",
+  "expectRoute": "deep-research"
+ },
+ {
+  "id": "SP-D03",
+  "item": "sk-prompt D-03",
+  "prompt": "Build a design-generation brief with anti-median variation for a canvas UI.",
+  "expectSkill": "sk-prompt"
+ },
+ {
+  "id": "SP-D03b",
+  "item": "sk-prompt D-03",
+  "prompt": "Write a design generation prompt for the onboarding canvas",
+  "expectSkill": "sk-prompt"
+ },
+ {
+  "id": "SP-D03-ctl",
+  "item": "sk-prompt D-03 control",
+  "prompt": "Design a canvas UI for the onboarding screen",
+  "expectSkill": "sk-design"
+ },
+ {
+  "id": "SP-D03-ctl2",
+  "item": "sk-prompt D-03 control",
+  "prompt": "Decide the padding, spacing scale and type scale for a new settings screen.",
+  "expectSkill": "sk-design"
+ },
+ {
+  "id": "SP-D03y",
+  "item": "sk-prompt D-03 YAML half (refute)",
+  "prompt": "Turn this instruction into YAML frontmatter config for a prompt file.",
+  "expectSkill": "sk-doc"
+ },
+ {
+  "id": "SP-ctl",
+  "item": "sk-prompt control",
+  "prompt": "Improve this vague prompt and score it with CLEAR",
+  "expectSkill": "sk-prompt"
+ },
+ {
+  "id": "CO-A05",
+  "item": "cli-orca A-05",
+  "prompt": "full ownership handoff",
+  "expectSkill": "cli-orca"
+ },
+ {
+  "id": "CO-A05b",
+  "item": "cli-orca A-05",
+  "prompt": "Do a full ownership handoff of this Orca worktree to the next agent",
+  "expectSkill": "cli-orca"
+ },
+ {
+  "id": "CO-ctl",
+  "item": "cli-orca control",
+  "prompt": "Hand this task off to another CLI agent to finish",
+  "expectSkill": null,
+  "note": "pre-existing abstain; control only, must not change"
+ },
+ {
+  "id": "CO-ctl2",
+  "item": "cli-orca control",
+  "prompt": "Delegate this refactor to codex and collect the result",
+  "expectSkill": "cli-external-orchestration"
+ },
+ {
+  "id": "CM-D06",
+  "item": "mcp-code-mode D-06",
+  "prompt": "Explain Code Mode's architecture",
+  "expectSkill": "mcp-code-mode"
+ },
+ {
+  "id": "CM-D06b",
+  "item": "mcp-code-mode D-06",
+  "prompt": "How does the code mode architecture fit together",
+  "expectSkill": "mcp-code-mode"
+ },
+ {
+  "id": "CM-ctl",
+  "item": "mcp-code-mode control",
+  "prompt": "Explain the architecture of the payments service",
+  "expectSkill": null,
+  "note": "pre-existing abstain; control only, must not change"
+ },
+ {
+  "id": "CM-ctl2",
+  "item": "mcp-code-mode control",
+  "prompt": "What are the token and performance tradeoffs of Code Mode",
+  "expectSkill": "mcp-code-mode"
+ },
+ {
+  "id": "SA-P01",
+  "item": "system-skill-advisor D-01",
+  "prompt": "Investigate why the advisor reports the index stale after only a skill's ROUTER.md changed.",
+  "expectSkill": "system-skill-advisor"
+ },
+ {
+  "id": "SA-P02",
+  "item": "system-skill-advisor D-01",
+  "prompt": "Confirm the daemon reindexes a skill after I edit its ROUTER.md.",
+  "expectSkill": "system-skill-advisor"
+ },
+ {
+  "id": "SA-P03",
+  "item": "system-skill-advisor D-01",
+  "prompt": "Check that the daemon watcher covers every skill's ROUTER.md next to SKILL.md.",
+  "expectSkill": "system-skill-advisor"
+ },
+ {
+  "id": "SA-P04",
+  "item": "system-skill-advisor D-01",
+  "prompt": "Show me the intent map and resource map the advisor router declares.",
+  "expectSkill": "system-skill-advisor"
+ },
+ {
+  "id": "SA-P05",
+  "item": "system-skill-advisor D-01",
+  "prompt": "Explain which skill-local reference the router loads for a scorer fusion question.",
+  "expectSkill": "system-skill-advisor"
+ },
+ {
+  "id": "SA-ctl1",
+  "item": "system-skill-advisor control",
+  "prompt": "Create a new skill packet with its own ROUTER.md and intent map",
+  "expectSkill": "sk-doc"
+ },
+ {
+  "id": "SA-ctl2",
+  "item": "system-skill-advisor control",
+  "prompt": "Review the freshness signature TypeScript for correctness bugs",
+  "expectSkill": "sk-code"
+ },
+ {
+  "id": "SA-ctl3",
+  "item": "system-skill-advisor control",
+  "prompt": "Draft the changelog entry for the advisor router move",
+  "expectSkill": "sk-doc"
+ },
+ {
+  "id": "SK-D05a",
+  "item": "system-spec-kit D-05",
+  "prompt": "Run the card sync check and tell me if an intent drifted out of the router",
+  "expectSkill": "system-spec-kit"
+ },
+ {
+  "id": "SK-D05b",
+  "item": "system-spec-kit D-05",
+  "prompt": "Check the Hermes skill copies and report a router copy that drifted from its source",
+  "expectSkill": "system-spec-kit"
+ },
+ {
+  "id": "SK-D04a",
+  "item": "system-spec-kit D-04",
+  "prompt": "Sweep the abandoned temp-path processes that init adopted and leave my session helpers alone",
+  "expectSkill": "system-spec-kit"
+ },
+ {
+  "id": "SK-D04b",
+  "item": "system-spec-kit D-04",
+  "prompt": "Lower the orphan sweeper temp path age floor to two hours",
+  "expectSkill": "system-spec-kit"
+ },
+ {
+  "id": "SK-ctl1",
+  "item": "system-spec-kit control",
+  "prompt": "Review this pull request and list the P0 and P1 findings",
+  "expectSkill": "sk-code"
+ },
+ {
+  "id": "SK-ctl2",
+  "item": "system-spec-kit control",
+  "prompt": "Write a new agent definition for a documentation reviewer",
+  "expectSkill": "sk-doc"
+ },
+ {
+  "id": "SK-ctl3",
+  "item": "system-spec-kit control",
+  "prompt": "Create a git worktree for this task and commit with a conventional message",
+  "expectSkill": "sk-git"
+ },
+ {
+  "id": "SK-ctl4",
+  "item": "system-spec-kit control",
+  "prompt": "Design a logo and pick a type scale for the landing page",
+  "expectSkill": "sk-design"
+ },
+ {
+  "id": "SG-D1",
+  "item": "sk-git D-1",
+  "prompt": "gitlens start review",
+  "expectSkill": "sk-git"
+ },
+ {
+  "id": "SG-D1b",
+  "item": "sk-git D-1",
+  "prompt": "Run the GitLens start review flow on this branch.",
+  "expectSkill": "sk-git"
+ },
+ {
+  "id": "SG-ctl",
+  "item": "sk-git control",
+  "prompt": "Start a code review of this branch and list correctness bugs",
+  "expectSkill": "sk-code"
+ },
+ {
+  "id": "CC-D05",
+  "item": "cli-classifier D-05 (refute)",
+  "prompt": "Show me the cli-jev machine router",
+  "expectSkill": "cli-classifier"
+ },
+ {
+  "id": "CC-P14",
+  "item": "memory:save gap (refute)",
+  "prompt": "Validate the spec folder and save context for this session",
+  "expectSkill": "memory:save"
+ },
+ {
+  "id": "SDOC-P18",
+  "item": "memory:save gap (refute)",
+  "prompt": "Save context for this spec folder",
+  "expectSkill": "memory:save"
+ },
+ {
+  "id": "OOD-chart",
+  "item": "sk-design theming alias out-of-domain",
+  "prompt": "Fix the bug that breaks this chart's tooltip in the React dashboard",
+  "note": "after-only out-of-domain control: passes when the new alias owner does not take the prompt",
+  "avoidSkill": "sk-design"
+ },
+ {
+  "id": "OOD-orca",
+  "item": "cli-orca alias out-of-domain",
+  "prompt": "Give the client full ownership of the handoff document before Friday",
+  "note": "after-only out-of-domain control: passes when the new alias owner does not take the prompt",
+  "avoidSkill": "cli-orca"
+ },
+ {
+  "id": "OOD-advisor",
+  "item": "system-skill-advisor alias out-of-domain",
+  "prompt": "Fix the chokidar daemon watcher that crashes our Vite build",
+  "note": "after-only out-of-domain control: passes when the new alias owner does not take the prompt",
+  "avoidSkill": "system-skill-advisor"
+ },
+ {
+  "id": "OOD-speckit",
+  "item": "system-spec-kit alias out-of-domain",
+  "prompt": "Run the credit card sync check in the payments service and fix the failing test",
+  "note": "after-only out-of-domain control: passes when the new alias owner does not take the prompt",
+  "avoidSkill": "system-spec-kit"
+ },
+ {
+  "id": "OOD-prompt",
+  "item": "sk-prompt alias out-of-domain",
+  "prompt": "Write a design brief for the new landing page hero",
+  "note": "after-only out-of-domain control: passes when the new alias owner does not take the prompt",
+  "avoidSkill": "sk-prompt"
+ },
+ {
+  "id": "OOD-git",
+  "item": "sk-git alias out-of-domain",
+  "prompt": "Start a review of the gitlens extension settings page copy",
+  "note": "after-only out-of-domain control: passes when the new alias owner does not take the prompt",
+  "avoidSkill": "sk-git"
+ },
+ {
+  "id": "OOD-advisor2",
+  "item": "system-skill-advisor alias out-of-domain",
+  "prompt": "Our search daemon reindexes the product database every night; make it faster",
+  "avoidSkill": "system-skill-advisor",
+  "note": "after-only out-of-domain control"
+ },
+ {
+  "id": "OOD-speckit2",
+  "item": "system-spec-kit alias out-of-domain",
+  "prompt": "Write an orphan sweeper for unused rows in the Postgres orders table",
+  "avoidSkill": "system-spec-kit",
+  "note": "after-only out-of-domain control"
+ },
+ {
+  "id": "SK-D05a2",
+  "item": "system-spec-kit D-05",
+  "prompt": "Run check-card-sync and tell me if an intent drifted out of the router",
+  "expectSkill": "system-spec-kit"
+ }
+]

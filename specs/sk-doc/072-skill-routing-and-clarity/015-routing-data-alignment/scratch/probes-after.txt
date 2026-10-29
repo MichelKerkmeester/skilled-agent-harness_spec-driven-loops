@@ -1,0 +1,78 @@
+MT-N03 FAIL advisor=null(null) [mcp-tooling:0.519528] PASS route=defer:
+MT-D01  PASS route=defer:
+MT-D01-ctl PASS advisor=mcp-tooling(0.9087) [mcp-tooling:0.723132 sk-design:0.071225 sk-code:0.059276] PASS route=route:mcp-mobbin
+MT-D01-ctl2 PASS advisor=mcp-tooling(0.8989) [mcp-tooling:0.704965 sk-design:0.073244] PASS route=route:mcp-mobbin
+MT-D08 PASS advisor=sk-design(0.82) [sk-design:0.542293 mcp-tooling:0.18098] PASS route=defer:
+MT-D08-ctl PASS advisor=sk-design(0.82) [sk-design:0.459534 mcp-tooling:0.234091 sk-doc:0.160794] PASS route=route:mcp-figma
+MT-D08-ctl2 PASS advisor=sk-design(0.8978) [sk-design:0.702955 mcp-tooling:0.280282] PASS route=route:mcp-figma
+MT-D09 PASS advisor=mcp-code-mode(0.9387) [mcp-code-mode:0.779002 sk-code:0.58014 mcp-tooling:0.335579] PASS route=defer:
+MT-D06 PASS advisor=mcp-tooling(0.8615) [mcp-tooling:0.63526 sk-code:0.091365 system-skill-advisor:0.084] PASS route=route:mcp-notion
+SD-D01a PASS advisor=sk-design(0.91) [sk-design:0.725534 sk-code:0.264333 mcp-tooling:0.233615] PASS route=route:sk-design-diagram
+SD-D01b PASS advisor=sk-design(0.8897) [sk-design:0.687736 mcp-tooling:0.28884 sk-code:0.248914] PASS route=route:sk-design-md-generator,sk-design-chart
+SD-D01c PASS advisor=sk-design(0.8841) [sk-design:0.677463 sk-code:0.228775 mcp-tooling:0.190059] PASS route=route:sk-design-md-generator
+SD-D01d PASS advisor=sk-design(0.82) [sk-design:0.542293 mcp-tooling:0.173038 sk-doc:0.093261] PASS route=route:sk-design-md-generator
+SD-D01e PASS advisor=sk-design(0.82) [sk-design:0.484451 mcp-tooling:0.152227 system-spec-kit:0.148315] PASS route=route:sk-design-md-generator
+SD-D01f PASS advisor=sk-design(0.9026) [sk-design:0.711773 sk-doc:0.709533 sk-code:0.33194] PASS route=route:sk-design-md-generator
+SD-P01 PASS advisor=sk-design(0.8887) [sk-design:0.685892 mcp-tooling:0.089095] PASS route=route:sk-design-fundamentals
+SD-P02 PASS advisor=sk-design(0.9388) [sk-design:0.779225 sk-code:0.604826 system-deep-loop:0.1512] PASS route=route:sk-design-fundamentals
+SD-P03 PASS advisor=sk-design(0.8398) [sk-design:0.595 sk-doc:0.150397 mcp-tooling:0.090475] PASS route=route:sk-design-chart
+SD-P04 PASS advisor=sk-design(0.8844) [sk-design:0.678 system-spec-kit:0.358287 sk-doc:0.218269] PASS route=route:sk-design-chart
+SD-P05 PASS advisor=sk-design(0.82) [sk-design:0.525156 system-spec-kit:0.133045 sk-doc:0.08645] PASS route=route:sk-design-diagram
+SD-P06 PASS advisor=sk-design(0.8825) [sk-design:0.674333 sk-doc:0.433086 mcp-tooling:0.11576] PASS route=route:sk-design-diagram
+SD-P07 PASS advisor=sk-design(0.8441) [sk-design:0.602933 mcp-tooling:0.086155] PASS route=route:sk-design-diagram
+SD-P08 PASS advisor=sk-design(0.8841) [sk-design:0.677463 sk-code:0.228775 mcp-tooling:0.190059] PASS route=route:sk-design-md-generator
+SD-P09 PASS advisor=sk-design(0.8897) [sk-design:0.687736 mcp-tooling:0.28884 sk-code:0.248914] PASS route=route:sk-design-md-generator,sk-design-chart
+SD-P10 PASS advisor=sk-doc(0.9221) [sk-doc:0.748159 sk-design:0.229991 sk-code:0.18674]
+SD-P11 PASS advisor=system-deep-loop(0.82) [system-deep-loop:0.458316 sk-code:0.217299 mcp-tooling:0.142733]
+DL-D10a  PASS route=route:deep-review
+DL-D10b  PASS route=route:deep-ai-council
+DL-D10c  PASS route=route:deep-research
+DL-D10d  PASS route=route:deep-review
+DL-D10e  PASS route=route:deep-ai-council
+DL-D10f  PASS route=route:deep-research
+DL-ctl  PASS route=route:deep-research
+SP-D03 PASS advisor=sk-prompt(0.82) [sk-prompt:0.544444 sk-design:0.461893 sk-code:0.087286]
+SP-D03b PASS advisor=sk-prompt(0.9025) [sk-prompt:0.71163 sk-design:0.494853 sk-doc:0.284212]
+SP-D03-ctl PASS advisor=sk-design(0.82) [sk-design:0.492641 mcp-tooling:0.254217]
+SP-D03-ctl2 PASS advisor=sk-design(0.8887) [sk-design:0.685892 mcp-tooling:0.089095]
+SP-D03y PASS advisor=sk-doc(0.9034) [sk-doc:0.713386 sk-prompt:0.509989 sk-code:0.145187]
+SP-ctl PASS advisor=sk-prompt(0.8854) [sk-prompt:0.67984 sk-doc:0.194518 cli-external-orchestration:0.068194]
+CO-A05 PASS advisor=cli-orca(0.9332) [cli-orca:0.768801 cli-external-orchestration:0.230145]
+CO-A05b PASS advisor=cli-orca(0.9359) [cli-orca:0.773727 sk-git:0.5897 cli-external-orchestration:0.177159]
+CO-ctl PASS advisor=null(null) [cli-external-orchestration:0.1345 cli-orca:0.128334 mcp-tooling:0.125931]
+CO-ctl2 PASS advisor=cli-external-orchestration(0.95) [cli-external-orchestration:0.127167 sk-doc:0.0504]
+CM-D06 FAIL advisor=null(null) [mcp-code-mode:0.691472 sk-code:0.567848 cli-external-orchestration:0.205859]
+CM-D06b PASS advisor=mcp-code-mode(0.8749) [mcp-code-mode:0.660287 sk-code:0.526355 cli-external-orchestration:0.173471]
+CM-ctl PASS advisor=null(null) []
+CM-ctl2 PASS advisor=mcp-code-mode(0.8691) [mcp-code-mode:0.649455 sk-code:0.532444 mcp-tooling:0.331973]
+SA-P01 FAIL advisor=system-deep-loop(0.82) [system-deep-loop:0.474378 system-spec-kit:0.270905 sk-code:0.235324]
+SA-P02 FAIL advisor=sk-doc(0.82) [sk-doc:0.551294 mcp-tooling:0.252097 sk-code:0.222373]
+SA-P03 FAIL advisor=null(null) [sk-code:0.310382 system-spec-kit:0.278802 cli-external-orchestration:0.245371]
+SA-P04 FAIL advisor=null(null) [mcp-tooling:0.164509 sk-doc:0.128288 sk-code:0.121731]
+SA-P05 FAIL advisor=null(null) [system-skill-advisor:0.553091 sk-code:0.27388 mcp-tooling:0.235135]
+SA-ctl1 PASS advisor=sk-doc(0.9091) [sk-doc:0.723831 system-spec-kit:0.638336 mcp-tooling:0.260178]
+SA-ctl2 PASS advisor=sk-code(0.9232) [sk-code:0.750208 system-deep-loop:0.1922 sk-design:0.169616]
+SA-ctl3 PASS advisor=sk-doc(0.8316) [sk-doc:0.579663 sk-code:0.145549 system-spec-kit:0.133526]
+SK-D05a FAIL advisor=sk-code(0.82) [sk-code:0.182821 system-spec-kit:0.175962 sk-doc:0.1193]
+SK-D05b PASS advisor=system-spec-kit(0.9011) [system-spec-kit:0.709019 sk-code:0.262029 sk-doc:0.221423]
+SK-D04a PASS advisor=system-spec-kit(0.82) [system-spec-kit:0.189092]
+SK-D04b FAIL advisor=null(null) [system-spec-kit:0.107333 sk-code:0.101556]
+SK-ctl1 PASS advisor=sk-code(0.8847) [sk-code:0.678512 sk-git:0.626884 system-deep-loop:0.27792]
+SK-ctl2 PASS advisor=sk-doc(0.9326) [sk-doc:0.767617 create:agent:0.532 sk-design:0.2184]
+SK-ctl3 PASS advisor=sk-git(0.9348) [sk-git:0.771685 system-spec-kit:0.151947 mcp-tooling:0.120819]
+SK-ctl4 PASS advisor=sk-design(0.8743) [sk-design:0.659225 mcp-tooling:0.121524 sk-doc:0.08]
+SG-D1 PASS advisor=sk-git(0.9413) [sk-git:0.783747 sk-code:0.727216 system-deep-loop:0.67604]
+SG-D1b PASS advisor=sk-git(0.9374) [sk-git:0.776619 sk-code:0.657306 system-deep-loop:0.52352]
+SG-ctl PASS advisor=sk-code(0.9421) [sk-code:0.785296 sk-git:0.755854 system-deep-loop:0.5082]
+CC-D05 FAIL advisor=null(null) [cli-classifier:0.639487 cli-external-orchestration:0.219044 mcp-tooling:0.193428]
+CC-P14 PASS advisor=memory:save(0.8712) [memory:save:0.653333 system-spec-kit:0.860911 command-memory-save:0.56]
+SDOC-P18 PASS advisor=memory:save(0.8962) [memory:save:0.7 system-spec-kit:0.891028 command-memory-save:0.63]
+OOD-chart PASS advisor=sk-code(0.82) [sk-code:0.197214 mcp-tooling:0.08]
+OOD-orca PASS advisor=sk-doc(0.82) [sk-doc:0.2 cli-orca:0.169078 cli-external-orchestration:0.098633]
+OOD-advisor PASS advisor=sk-code(0.82) [sk-code:0.097364 mcp-tooling:0.08715 system-skill-advisor:0.0478]
+OOD-speckit PASS advisor=sk-code(0.82) [sk-code:0.168 sk-doc:0.10238 system-spec-kit:0.095976]
+OOD-prompt PASS advisor=sk-design(0.82) [sk-design:0.520775 sk-doc:0.26801 mcp-tooling:0.147287]
+OOD-git PASS advisor=sk-code(0.82) [sk-code:0.543075 sk-git:0.507124 system-deep-loop:0.50352]
+OOD-advisor2 PASS advisor=null(null) [mcp-tooling:0.136255 sk-design:0.112071 sk-code:0.110847]
+OOD-speckit2 PASS advisor=sk-doc(0.82) [sk-doc:0.169693 system-spec-kit:0.156386 sk-design:0.08575]
+SK-D05a2 PASS advisor=system-spec-kit(0.8403) [system-spec-kit:0.595962 sk-code:0.193546 sk-doc:0.1336]

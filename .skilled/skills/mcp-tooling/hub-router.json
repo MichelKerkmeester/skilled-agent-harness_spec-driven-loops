@@ -214,7 +214,6 @@
         "figma desktop",
         "render in figma",
         "figma tokens",
-        "extract design.md",
         "figma mcp"
       ]
     },
@@ -300,8 +299,7 @@
         "app design research",
         "ux flow references",
         "mobile design patterns",
-        "real app ux patterns",
-        "screen examples"
+        "real app ux patterns"
       ]
     },
     "app-design-research": {

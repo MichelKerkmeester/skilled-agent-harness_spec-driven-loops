@@ -7,7 +7,7 @@ trigger_phrases:
   - "27 diagram types"
   - "create diagram"
   - "/design:diagram"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Type selection and routing (/design:diagram)
@@ -24,7 +24,7 @@ Every diagram request starts in the router: it decides what kind of work is bein
 
 ### Request shape routing
 
-The router detects the request shape from source extensions and intent vocabulary. Generate requests match type vocabulary plus "diagram" with no file source; import requests match a `.drawio`, `.mmd`, or `.mermaid` path or extension; export requests match `export`, `png`, `svg`, `rasterize`, or "save as". ASCII_MARKDOWN requests match plain-text or box-drawing flowchart wording and resolve the `ascii-markdown` format to `references/ascii-format/pattern-selection.md` and one `assets/ascii-patterns/*.md` asset; STYLE requests match the customize, onboard, brand or repaint vocabulary and load `references/foundations/onboarding.md` with the always-loaded style guide. Each intent scores keyword hits, the top-scoring intent wins, and when the top two scores sit within an ambiguity delta of 1 both are returned so the caller can resolve the near-tie. A request with no recognized signal falls back to a disambiguation checklist asking for the request shape, target path, style-guide status, and verification expectations.
+The router detects the request shape from source extensions and intent vocabulary. Generate requests match type vocabulary plus "diagram" with no file source; import requests match a `.drawio`, `.mmd`, or `.mermaid` path or extension; export requests match `export`, `png`, `svg`, `rasterize`, or "save as". ASCII_MARKDOWN requests match plain-text or box-drawing flowchart wording and resolve the `ascii-markdown` format to `references/ascii-format/pattern-selection.md` and one `assets/ascii-patterns/*.md` asset; STYLE requests match the customize, onboard or brand vocabulary and load `references/foundations/onboarding.md` with the always-loaded style guide; DESIGN_MD_THEME requests name a DESIGN.md, a style reference, a diagram theme or a repaint and load `references/design-md-theming.md`. Each intent scores keyword hits, the top-scoring intent wins, and when the top two scores sit within an ambiguity delta of 1 both are returned so the caller can resolve the near-tie. A request with no recognized signal falls back to a disambiguation checklist asking for the request shape, target path, style-guide status, and verification expectations.
 
 ### Type selection
 

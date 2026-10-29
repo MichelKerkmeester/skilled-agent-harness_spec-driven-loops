@@ -82,7 +82,9 @@
     "worktree autoreap",
     "fsmonitor daemon",
     "fsmonitor daemons",
-    "fsmonitor daemon reaper"
+    "fsmonitor daemon reaper",
+    "gitlens start review",
+    "gitlens start work"
   ],
   "derived": {
     "trigger_phrases": [

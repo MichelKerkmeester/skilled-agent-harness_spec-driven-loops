@@ -1,0 +1,37 @@
+== compiled-route-guard
+exit=0 All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+== generate-router-intent-signals --check
+checked=7 hub(s), missing=0 RESULT: PASSED 
+== ci-hub-vocabulary-source
+OK    system-deep-loop             alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=0 checked=7 hub(s), drift=0 RESULT: PASSED 
+== ci-router-vocabulary-reach
+checked=7 hub(s), wrong-hub=0, outranked=0, no-reach=0, allowed=9, probe-error=0, operator-local=0 RESULT: PASSED 
+== sync-skills-hermes --check
+PASS: 65 Hermes skill copies in sync
+== skill-graph-freshness
+  STALE COMPILED: none (generated_at 2026-10-29T21:46:45.126630+00:00, newest source stamp 2026-10-26T00:00:00Z)
+  SIGNAL DRIFT compiled vs disk: none
+== package_skill --check --strict mcp-tooling: Result: PASS
+== package_skill --check --strict sk-design: Result: PASS
+== package_skill --check --strict sk-design/sk-design-diagram: Result: PASS
+== package_skill --check --strict system-deep-loop: Result: PASS
+== package_skill --check --strict sk-prompt: Result: PASS
+== package_skill --check --strict cli-orca: Result: PASS
+== package_skill --check --strict sk-git: Result: PASS
+== package_skill --check --strict system-skill-advisor: Result: PASS
+== package_skill --check --strict system-spec-kit: Result: PASS
+== parent-skill-check mcp-tooling: OK: parent-skill-check — all hard invariants passed, 0 warnings
+== parent-skill-check sk-design: OK: parent-skill-check — all hard invariants passed, 0 warnings
+== parent-skill-check system-deep-loop: OK: parent-skill-check — all hard invariants passed, 0 warnings
+== compiled-route-admission mcp-tooling: True pass {'pass': 16, 'drift': 0, 'stale-gold': 0, 'invalid': 0, 'broken': 0, 'n/a': 0} uncovered []
+== compiled-route-admission sk-design: True pass {'pass': 4, 'drift': 0, 'stale-gold': 0, 'invalid': 0, 'broken': 0, 'n/a': 0} uncovered ['sk-design-chart', 'sk-design-fundamentals', 'sk-design-md-generator']
+== compiled-route-admission system-deep-loop: True pass {'pass': 20, 'drift': 0, 'stale-gold': 0, 'invalid': 0, 'broken': 0, 'n/a': 1} uncovered []
+== validate_document mcp-tooling/changelog/v1.9.3.0.md: Total issues: 0
+== validate_document sk-design/changelog/v2.0.10.0.md: Total issues: 0
+== validate_document sk-design/sk-design-diagram/changelog/v1.2.9.0.md: Total issues: 0
+== validate_document system-deep-loop/changelog/v1.6.20.0.md: Total issues: 0
+== validate_document sk-prompt/changelog/v3.0.11.0.md: Total issues: 0
+== validate_document cli-orca/changelog/v0.1.7.0.md: Total issues: 0
+== validate_document sk-git/changelog/v1.11.6.0.md: Total issues: 0
+== validate_document system-skill-advisor/changelog/v0.17.25.0.md: Total issues: 0
+== validate_document system-spec-kit/changelog/v2.12.25.0.md: Total issues: 0

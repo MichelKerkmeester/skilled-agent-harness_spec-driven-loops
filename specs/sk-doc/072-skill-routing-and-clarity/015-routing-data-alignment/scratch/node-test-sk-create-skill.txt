@@ -1,0 +1,120 @@
+✔ advisor-index-handoff.md exists and defines the verification-state enum (0.839125ms)
+✔ advisor-index-handoff.md states the description.json / graph-vocabulary guardrail (A7) (0.390208ms)
+✔ every full-handoff create surface references advisor-index-handoff.md by path (2.439083ms)
+✔ every full-handoff create surface reports refresh status as NOT RUN, never auto-refreshing (1.067208ms)
+✔ standalone create surfaces never render H-only metadata fields in the handoff (0.680792ms)
+✔ parent create surfaces render the H-specific fields (description.json, leaf-manifest.json, command-metadata.json) (0.46075ms)
+✔ parent create workflows use the scoped generate-leaf-manifest.cjs --write, never invoke the fleet --fix gate (0.487625ms)
+✔ doctor-skill-advisor-tune.yaml derives skill_graph_validate severity using the shared vocabulary, not a top-level flag (0.485625ms)
+✔ doctor-skill-advisor-tune.yaml terminal verification_status uses the fail/partial/pass/skipped_unverified vocabulary (0.196917ms)
+✔ a hub whose copies agree passes every leg (51.804542ms)
+✔ an empty skills root is a usage error, not a green run (33.82075ms)
+✔ a mode with no routerSignals entry fails instead of being skipped (36.30275ms)
+✔ an alias the authored vocabulary does not carry fails the alias leg (38.751583ms)
+✔ a term no stage-two intent carries fails the stage-two leg (33.568125ms)
+✔ a stage-two exempt hub skips that leg in both directions and says so (32.565542ms)
+✔ a Keyword triggers term outside the authored vocabulary fails the triggers leg (32.016958ms)
+✔ an unbackticked trigger item is compared like a backticked one (29.549ms)
+✔ a second Keyword triggers line is read, not just the first (32.1065ms)
+✔ a packet with a triggers line that no registry mode names fails the packets leg (30.81275ms)
+✔ the reverse stage-two leg lists an intent keyword the vocabulary does not route (31.080458ms)
+✔ an unknown hub id is a usage error (29.314083ms)
+✔ the shipped fleet reaches a verdict (40.246875ms)
+[sk-doc] leaf-manifest freshness traversal coverage passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-leaf-manifest-freshness.test.cjs (246.495625ms)
+[sk-doc] router reach shipped-fleet ranking passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-router-vocabulary-reach.test.cjs (1834.441834ms)
+[sk-doc] compiled-routing-lockstep-parity fixture coverage passed
+[sk-doc] live report: 5/15 surfaces carry the directive block
+[sk-doc] live report: 2 surface(s) diverge from the majority wording (informational, not asserted):
+  - hub-skill.mcp-tooling: compiled-routing directive wording differs from the other 3 in-sync lockstep surface(s)
+  - hub-skill.sk-code: compiled-routing directive wording differs from the other 3 in-sync lockstep surface(s)
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/compiled-routing-lockstep-parity.test.cjs (41.098ms)
+[sk-doc] create journey proof passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs (781.383083ms)
+✔ every create-skill workflow has a blocking gate that runs validate_skill_package.py --strict (1.040167ms)
+✔ check-ignore disables fsmonitor and carries the git timeout (8.098542ms)
+✔ a check-ignore timeout falls back to the name rules (1.397959ms)
+✔ after one timeout a second root spawns no further git call (4.144417ms)
+✔ a timed-out write stays off disk and leaves the committed bytes alone (2.524084ms)
+✔ a timed-out check names the timeout, not a stale manifest (1.5875ms)
+ok - git-ignored leaf is dropped
+ok - git-ignored leaf is dropped under a hook git environment
+ok - fallback drops generated noise outside a work tree
+[sk-doc] leaf-manifest ignore filtering coverage passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-ignores.test.cjs (280.844958ms)
+leaf-manifest.json written (543a4ef189cdaa2adf3346014fdb63af82453d78b0c1a72cdc03fffd4e6d4e73)
+[sk-doc] leaf-manifest scope contract coverage passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs (898.453667ms)
+✔ stale check names the added and removed leaves and prints the fix command (97.478208ms)
+[sk-doc] standalone leaf-scope coverage passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-standalone-scopes.test.cjs (179.807709ms)
+[sk-doc] leaf-resource-contract unit coverage passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-resource-contract.test.cjs (1328.4995ms)
+✔ parseRouter reads an active block (2.631875ms)
+✔ parseRouter reports a stage1-only block (0.145292ms)
+✔ keywordHits guards the four keywords (0.111667ms)
+✔ scoreIntents weights and sorts (0.084958ms)
+✔ selectIntents keeps one point apart (0.06775ms)
+✔ selectIntents returns UNKNOWN (0.256125ms)
+✔ toPairs resolves packet-qualified and alias paths (0.427375ms)
+✔ toPairs counts an unresolvable path (0.099083ms)
+✔ scoreRow partial set (0.166916ms)
+✔ scoreRow empty prediction (0.197083ms)
+✔ scoreRow exact match (0.076916ms)
+✔ countRouterReads finds one read (2.780125ms)
+✔ countRouterReads prints no text (1.567625ms)
+✔ replayVerdict keeps (0.221333ms)
+✔ replayVerdict drops (0.057709ms)
+✔ replayVerdict stops on coverage (0.057208ms)
+✔ an unknown argument exits 2 (0.188ms)
+✔ without the flag the reads line prints not measured (1.695041ms)
+✔ --transcripts on a missing path exits 2 (0.527125ms)
+✔ --prose on a missing file exits 2 (0.349458ms)
+✔ readProse parses pairs and counts unparsed lines (0.729ms)
+✔ chooseBaseline prints the better arm (0.145708ms)
+✔ check-ignore disables fsmonitor and carries the git timeout (1.372625ms)
+✔ a spawn error keeps a reference that is missing from disk (0.9915ms)
+✔ after one spawn error a second missing reference spawns no further git call (0.230834ms)
+✔ status 1 on a missing path is not ignored (0.155875ms)
+[root-router-contract] all positive and negative fixtures passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs (134.489291ms)
+✔ routing ceilings are integers no larger than the frozen snapshot (0.868875ms)
+✔ every live debt key is already in the frozen snapshot (0.253291ms)
+✔ every live debt entry holds integers and codes within the frozen entry (0.2505ms)
+✔ the ratchet helper names a new key, a raised count and a new code (0.273833ms)
+[sk-doc] skill-derived regenerator + freshness gate coverage passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs (313.358917ms)
+[sk-doc] skill-root-metadata contract + fleet gate coverage passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs (890.864792ms)
+[sk-doc] skill-root reader inventory coverage passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-reader-inventory.test.cjs (454.280333ms)
+✔ build-rule-cards.cjs rejects the misspelled --chekc flag (33.431666ms)
+✔ check-repo-rules.cjs rejects the unknown --bogus-xyz flag (36.353667ms)
+✔ validate-compiled-routing-scenarios.cjs rejects the misspelled --strct flag (41.558208ms)
+✔ validate-doc-model-refs.js rejects the unknown --bogus-xyz flag (36.482875ms)
+✔ frontmatter-version.mjs rejects the unknown --bogus-xyz flag with its usage status 64 (40.705625ms)
+✔ lint-goal-criteria.cjs rejects the misspelled --alu flag (34.694125ms)
+✔ ci-leaf-manifest-freshness.cjs rejects the unknown --bogus-xyz flag (36.674917ms)
+✔ ci-skill-derived-freshness.cjs rejects the unknown --bogus-xyz flag (28.2315ms)
+✔ ci-skill-root-metadata.cjs rejects the unknown --bogus-xyz flag (35.698292ms)
+✔ ci-skill-root-metadata.cjs rejects --format yaml and names the bad value (35.70575ms)
+✔ ci-router-vocabulary-reach.cjs rejects the unknown --bogus-xyz flag (37.177291ms)
+✔ validate-playbook-topology.cjs rejects the misspelled --strct flag (35.621333ms)
+✔ generate-router-intent-signals.cjs rejects the unknown --bogus-xyz flag in check mode (25.697666ms)
+✔ generate-router-intent-signals.cjs rejects --hub with no value and names --hub (27.468292ms)
+✔ generate-leaf-manifest.cjs rejects the unknown --bogus-xyz flag after --check (33.440542ms)
+✔ ci-leaf-manifest-freshness.cjs names a missing --format value (34.281292ms)
+✔ ci-skill-root-metadata.cjs names a missing --format value (38.466542ms)
+[sk-doc] validate-compiled-routing-scenarios content-admission fixtures passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/validate-compiled-routing-scenarios.test.cjs (146.383541ms)
+[sk-doc] validate-playbook-topology quote-tolerance coverage passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/validate-playbook-topology.test.cjs (45.430917ms)
+ℹ tests 90
+ℹ suites 0
+ℹ pass 90
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1843.186833

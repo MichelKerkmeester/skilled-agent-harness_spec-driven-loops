@@ -36,13 +36,13 @@
   },
   "vocabularyClasses": {
     "research-aliases": {
-      "keywords": ["deep-research", "deep research", "research loop", "iterative investigation workflow", "research summary", "research convergence detection", "autoresearch", "iterative-research"]
+      "keywords": ["deep-research", "deep research", "research loop", "iterative investigation workflow", "research summary", "research convergence detection", "autoresearch", "iterative-research", "iterative investigation", "investigate why", "research convergence"]
     },
     "review-aliases": {
-      "keywords": ["deep-review", "deep review", "before running deep review", "review request", "review loop", "iterative review loop", "severity weighted findings", "convergence review", "release-readiness", "deep-review wave", "release readiness"]
+      "keywords": ["deep-review", "deep review", "before running deep review", "review request", "review loop", "iterative review loop", "severity weighted findings", "convergence review", "release-readiness", "deep-review wave", "release readiness", "deep review of", "iterative review", "severity findings", "review convergence", "audit the diff"]
     },
     "ai-council-aliases": {
-      "keywords": ["deep-ai-council", "ai council", "ai council deliberation", "multi-seat planning council", "council convergence", "planning council"]
+      "keywords": ["deep-ai-council", "ai council", "ai council deliberation", "multi-seat planning council", "council convergence", "planning council", "council deliberation", "multi-seat", "seat diversity"]
     },
     "hub-identity": {
       "keywords": ["system-deep-loop", "deep-loop-workflows", "deep loop workflows", "deep loop workflow"]

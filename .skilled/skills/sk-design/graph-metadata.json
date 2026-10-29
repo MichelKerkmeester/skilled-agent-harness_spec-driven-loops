@@ -274,7 +274,9 @@
     "measure a surface",
     "extract css",
     "design tokens from a site",
-    "style guide from a url"
+    "style guide from a url",
+    "theme this chart",
+    "theme the chart"
   ],
   "derived": {
     "trigger_phrases": [

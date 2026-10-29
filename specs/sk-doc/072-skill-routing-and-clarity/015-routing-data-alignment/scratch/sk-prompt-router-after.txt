@@ -1,0 +1,8 @@
+'$raw keep this prompt exactly as written'    intents=['RAW'] level=RAW resources=[]
+'raw passthrough'                             intents=['TEXT_ENHANCE'] level=UNKNOWN_FALLBACK resources=['references/depth-framework.md']
+'raw passthrough mode for my prompt'          intents=['TEXT_ENHANCE'] level=STANDARD resources=['references/depth-framework.md', 'references/patterns-evaluation.md']
+'use $raw on this one'                        intents=['RAW'] level=RAW resources=[]
+'improve this prompt'                         intents=['TEXT_ENHANCE'] level=STANDARD resources=['references/depth-framework.md', 'references/patterns-evaluation.md']
+'$improve make this clearer'                  intents=['TEXT_ENHANCE'] level=STANDARD resources=['references/depth-framework.md', 'references/patterns-evaluation.md']
+'$yaml turn this into frontmatter'            intents=['FORMAT_YAML'] level=STANDARD resources=['references/depth-framework.md', 'assets/format-guide-yaml.md', 'references/patterns-evaluation.md']
+'score this prompt with rcaf'                 intents=['FRAMEWORK'] level=STANDARD resources=['references/patterns-evaluation.md']

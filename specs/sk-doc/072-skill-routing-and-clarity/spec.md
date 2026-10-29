@@ -122,7 +122,8 @@ Give every skill one source per routing decision, a routing shape that fits its 
 | 11 | 011-regeneration-and-verification/ | Regenerate every mirror and generated file; rerun the phase 002 baseline and report the delta | Complete |
 | 12 | 012-alignment-remediation/ | The alignment run over the program's own range: close its 34 findings, from the two red CI gates to the documentation debt, and rerun the battery rows that failed | Complete |
 | 13 | 013-mcp-tooling-routing-canon/ | Move the mcp-tooling hub, the last SKILL.md without a final MACHINE ROUTER section, to the canon, and make the check fail any SKILL.md that lacks the section | Complete |
-| 14 | 014-skill-router-files/ | Move every skill's machine router out of SKILL.md into a sibling `ROUTER.md`, a phase parent with six children opening on three deep-research iterations | In Progress |
+| 14 | 014-skill-router-files/ | Move every skill's machine router out of SKILL.md into a sibling `ROUTER.md`, a phase parent with six children opening on three deep-research iterations | Complete |
+| 15 | 015-routing-data-alignment/ | Apply the routing-data fixes the router-move alignment check found but could not make, refute the ones that are correct behavior, and record a new scorer and replay baseline | Complete |
 
 ### Phase Transition Rules
 
@@ -148,6 +149,7 @@ Give every skill one source per routing decision, a routing shape that fits its 
 | 011-regeneration-and-verification | 012-alignment-remediation | Every generator writes nothing and the alignment run has a range to check | The alignment battery and lanes run over the program range |
 | 012-alignment-remediation | 013-mcp-tooling-routing-canon | The alignment findings closed and one hub still in the older shape | Every SKILL.md has the section and package_skill --strict enforces it |
 | 013-mcp-tooling-routing-canon | 014-skill-router-files | Every SKILL.md ends with a MACHINE ROUTER section the check enforces | The router move starts from one shape across all 54 skills |
+| 014-skill-router-files | 015-routing-data-alignment | Every router lives in a sibling `ROUTER.md` and the alignment phases recorded the routing-data items they could not fix | The 014 spec lists the follow-up items and each one has a probe prompt |
 <!-- /ANCHOR:phase-map -->
 
 ---

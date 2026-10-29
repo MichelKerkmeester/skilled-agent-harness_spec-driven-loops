@@ -93,7 +93,6 @@
       "keywords": [
         "extract",
         "design.md",
-        "style reference",
         "design tokens",
         "measure",
         "from a url",
@@ -189,7 +188,9 @@
         "histogram",
         "parallel coordinates",
         "measured site's look",
-        "theme a chart"
+        "theme a chart",
+        "theme this chart",
+        "theme the chart"
       ]
     }
   }

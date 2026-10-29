@@ -159,7 +159,6 @@
         "figma desktop",
         "render in figma",
         "figma tokens",
-        "extract design.md",
         "figma mcp"
       ],
       "advisorRouting": {
@@ -230,7 +229,6 @@
         "mobbin",
         "mobbin mcp",
         "app design research",
-        "screen examples",
         "ux flow references",
         "mobile design patterns"
       ],
