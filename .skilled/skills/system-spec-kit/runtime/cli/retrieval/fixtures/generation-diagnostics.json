@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7297,
-    "ok": 16103,
+    "missing-frontmatter": 7300,
+    "ok": 16121,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26948,
+  "documentsScanned": 26969,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "74f1e0f75ed24c2c8beedb9e9b5e585391172676187f3abc4e97cd2c2ccb7082",
+  "manifestHash": "da003317cd0706c1e714fa89b20de65b6f923ac05d671491f4c1314f392ba06e",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 39469,
+      "ok": 39494,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -40661,6 +40661,24 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/sk-git/028-crawlable-commit-history/001-research/research/dispatch-prompt.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -72407,6 +72425,22 @@
     },
     {
       "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/scratch",
       "reason": "excluded directory"
     },
     {

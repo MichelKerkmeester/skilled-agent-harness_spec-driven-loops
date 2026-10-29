@@ -1,5 +1,5 @@
 {
-  "manifestHash": "74f1e0f75ed24c2c8beedb9e9b5e585391172676187f3abc4e97cd2c2ccb7082",
+  "manifestHash": "da003317cd0706c1e714fa89b20de65b6f923ac05d671491f4c1314f392ba06e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10505,6 +10505,54 @@
     ],
     "ai session child cli rule summary": [
       "AI_SESSION_CHILD cli rule summary"
+    ],
+    "ai systems migration": [
+      "ai systems migration"
+    ],
+    "ai systems migration acceptance criteria": [
+      "ai systems migration acceptance criteria"
+    ],
+    "ai systems migration implementation summary": [
+      "ai systems migration implementation summary"
+    ],
+    "ai systems migration plan": [
+      "ai systems migration plan"
+    ],
+    "ai systems migration tasks": [
+      "ai systems migration tasks"
+    ],
+    "ai systems research": [
+      "ai systems research"
+    ],
+    "ai systems research acceptance criteria": [
+      "ai systems research acceptance criteria"
+    ],
+    "ai systems research implementation summary": [
+      "ai systems research implementation summary"
+    ],
+    "ai systems research plan": [
+      "ai systems research plan"
+    ],
+    "ai systems research tasks": [
+      "ai systems research tasks"
+    ],
+    "ai systems router files research": [
+      "ai systems router files research"
+    ],
+    "ai systems verification": [
+      "ai systems verification"
+    ],
+    "ai systems verification acceptance criteria": [
+      "ai systems verification acceptance criteria"
+    ],
+    "ai systems verification implementation summary": [
+      "ai systems verification implementation summary"
+    ],
+    "ai systems verification plan": [
+      "ai systems verification plan"
+    ],
+    "ai systems verification tasks": [
+      "ai systems verification tasks"
     ],
     "ai workflow spec upgrades": [
       "ai workflow spec upgrades"
@@ -57495,6 +57543,9 @@
     "knowledge graph production methodology deep loop": [
       "knowledge graph production methodology deep loop"
     ],
+    "known debt ledger": [
+      "known-debt ledger"
+    ],
     "known gap fixes": [
       "known gap fixes"
     ],
@@ -75681,6 +75732,9 @@
     "phase 8 advisor surface hint": [
       "phase 8 advisor surface hint"
     ],
+    "phase 8 ai systems migration": [
+      "phase 8 ai systems migration"
+    ],
     "phase 8 authored classifier fixture": [
       "phase 8 authored classifier fixture"
     ],
@@ -75743,6 +75797,9 @@
     ],
     "phase 9 advisor vocabulary freshness": [
       "phase 9 advisor vocabulary freshness"
+    ],
+    "phase 9 ai systems verification": [
+      "phase 9 ai systems verification"
     ],
     "phase 9 authoring benchmark and closeout": [
       "phase 9 authoring benchmark and closeout"
@@ -95415,6 +95472,7 @@
       "sibling route regression probe"
     ],
     "sibling router md": [
+      "sibling ROUTER.md",
       "sibling router md"
     ],
     "sibling shape parity check": [
@@ -98975,6 +99033,9 @@
     "sk create skill 1 7 6 0": [
       "sk-create-skill 1.7.6.0"
     ],
+    "sk create skill 1 8 0 0": [
+      "sk-create-skill 1.8.0.0"
+    ],
     "sk create skill authoring errors": [
       "sk-create-skill authoring errors"
     ],
@@ -99061,6 +99122,9 @@
     ],
     "sk create skill v1 7 6 0": [
       "sk-create-skill v1.7.6.0"
+    ],
+    "sk create skill v1 8 0 0": [
+      "sk-create-skill v1.8.0.0"
     ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
@@ -99785,6 +99849,9 @@
     "sk doc 2 3 30 0": [
       "sk-doc 2.3.30.0"
     ],
+    "sk doc 2 3 31 0": [
+      "sk-doc 2.3.31.0"
+    ],
     "sk doc 2 3 4 0": [
       "sk-doc 2.3.4.0"
     ],
@@ -100195,6 +100262,9 @@
     ],
     "sk doc v2 3 30 0": [
       "sk-doc v2.3.30.0"
+    ],
+    "sk doc v2 3 31 0": [
+      "sk-doc v2.3.31.0"
     ],
     "sk doc v2 3 4 0": [
       "sk-doc v2.3.4.0"
@@ -102986,6 +103056,12 @@
     ],
     "skill name benchmark topic iso date": [
       "{{SKILL_NAME}} {{BENCHMARK_TOPIC}} {{ISO_DATE}}"
+    ],
+    "skill name router": [
+      "{{SKILL_NAME}} router"
+    ],
+    "skill name routing": [
+      "{{SKILL_NAME}} routing"
     ],
     "skill nodes skill edges": [
       "skill_nodes skill_edges"

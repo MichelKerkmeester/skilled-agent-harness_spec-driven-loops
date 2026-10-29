@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8e197d52e8f2c0e2b953cb956189d8437e7447758355312f1538d76c214bb30f",
+  "corpusHash": "fa9b0624a7ac212a7a032fa4ab4cf4499429d267035588edaa9526de8a7d0b31",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26948,
+  "includedPathCount": 26969,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6216,6 +6216,7 @@
     ".skilled/skills/sk-doc/changelog/v2.3.29.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.30.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.31.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.4.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.5.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.6.0.md",
@@ -6684,6 +6685,7 @@
     ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-procedure-template.md",
     ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
     ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md",
+    ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md",
     ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-scaffold-template.md",
     ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md",
     ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-sync-manifest-template.md",
@@ -6714,6 +6716,7 @@
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.7.4.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.7.5.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.7.6.0.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.8.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/author-a-two-axis-parent-hub.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/keep-one-parent-identity.md",
@@ -13929,6 +13932,24 @@
     "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification/plan.md",
     "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/acceptance-criteria.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/research/fanout-attribution.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/research/research.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/research/resource-map.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration/acceptance-criteria.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration/tasks.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/acceptance-criteria.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/implementation-summary.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/plan.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/spec.md",
+    "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/tasks.md",
     "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/spec.md",
     "specs/sk-doc/072-skill-routing-and-clarity/spec.md",
     "specs/sk-doc/073-opencode-native-surfaces/acceptance-criteria.md",
@@ -26979,7 +27000,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "74f1e0f75ed24c2c8beedb9e9b5e585391172676187f3abc4e97cd2c2ccb7082",
+  "manifestHash": "da003317cd0706c1e714fa89b20de65b6f923ac05d671491f4c1314f392ba06e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30723,6 +30744,22 @@
     },
     {
       "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/scratch",
       "reason": "excluded directory"
     },
     {
