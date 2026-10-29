@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f592b2b1b0cf1b1d387c5ba4e93b0cff3ecf2e4f62cdc13281598f509ae9260a",
+  "manifestHash": "4b88542ed6125643f28a56403d6e531175ba38bfca175840624aa7545f6ce21b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -40989,6 +40989,9 @@
     "dual root task breakdown": [
       "dual root task breakdown"
     ],
+    "dual router declaration": [
+      "dual router declaration"
+    ],
     "dual schema wal truncate": [
       "dual-schema WAL TRUNCATE"
     ],
@@ -53315,6 +53318,9 @@
     "hermes roster gpt 5 6 ids": [
       "hermes roster gpt-5.6 ids"
     ],
+    "hermes router copy": [
+      "hermes router copy"
+    ],
     "hermes run budget margin seconds": [
       "HERMES_RUN_BUDGET_MARGIN_SECONDS"
     ],
@@ -53363,6 +53369,9 @@
     "hermes supported models": [
       "HERMES_SUPPORTED_MODELS",
       "hermes supported models"
+    ],
+    "hermes sync check": [
+      "hermes sync check"
     ],
     "hermes sync manifest": [
       "hermes SYNC manifest"
@@ -89705,6 +89714,9 @@
     "router derived file regeneration criteria": [
       "router derived file regeneration criteria"
     ],
+    "router edit freshness": [
+      "router edit freshness"
+    ],
     "router fallback pattern": [
       "router fallback pattern"
     ],
@@ -89752,6 +89764,9 @@
     ],
     "router md versus json routing": [
       "router.md versus json routing"
+    ],
+    "router md watcher": [
+      "router md watcher"
     ],
     "router measurement": [
       "router measurement"
@@ -97493,6 +97508,9 @@
     "sk code skilled 2 1 14 0": [
       "sk-code-skilled 2.1.14.0"
     ],
+    "sk code skilled 2 1 15 0": [
+      "sk-code-skilled 2.1.15.0"
+    ],
     "sk code skilled 2 1 2 0": [
       "sk-code-skilled 2.1.2.0"
     ],
@@ -97642,6 +97660,9 @@
     ],
     "sk code skilled v2 1 14 0": [
       "sk-code-skilled v2.1.14.0"
+    ],
+    "sk code skilled v2 1 15 0": [
+      "sk-code-skilled v2.1.15.0"
     ],
     "sk code skilled v2 1 2 0": [
       "sk-code-skilled v2.1.2.0"
@@ -109745,6 +109766,9 @@
     "system skill advisor 0 17 23 0": [
       "system-skill-advisor 0.17.23.0"
     ],
+    "system skill advisor 0 17 24 0": [
+      "system-skill-advisor 0.17.24.0"
+    ],
     "system skill advisor 0 17 3 0": [
       "system-skill-advisor 0.17.3.0"
     ],
@@ -109993,6 +110017,9 @@
     ],
     "system skill advisor v0 17 23 0": [
       "system-skill-advisor v0.17.23.0"
+    ],
+    "system skill advisor v0 17 24 0": [
+      "system-skill-advisor v0.17.24.0"
     ],
     "system skill advisor v0 17 3 0": [
       "system-skill-advisor v0.17.3.0"
@@ -110314,6 +110341,9 @@
     ],
     "system spec kit 2 12 21 0": [
       "system-spec-kit 2.12.21.0"
+    ],
+    "system spec kit 2 12 22 0": [
+      "system-spec-kit 2.12.22.0"
     ],
     "system spec kit 2 12 3 0": [
       "system-spec-kit 2.12.3.0"
@@ -110818,6 +110848,9 @@
     ],
     "system spec kit v2 12 21 0": [
       "system-spec-kit v2.12.21.0"
+    ],
+    "system spec kit v2 12 22 0": [
+      "system-spec-kit v2.12.22.0"
     ],
     "system spec kit v2 12 3 0": [
       "system-spec-kit v2.12.3.0"
