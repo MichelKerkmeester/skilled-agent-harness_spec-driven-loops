@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-speckit/056-orphan-sweep-temp-processes",
+  "description": "Orphan sweeper: reap abandoned temp and scratch processes and install the LaunchAgent",
+  "keywords": [
+    "orphan",
+    "sweeper",
+    "reap",
+    "abandoned",
+    "temp",
+    "scratch",
+    "processes",
+    "install",
+    "launchagent"
+  ],
+  "lastUpdated": "2026-10-29T08:25:14.263Z",
+  "specId": "056",
+  "folderSlug": "orphan-sweep-temp-processes",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

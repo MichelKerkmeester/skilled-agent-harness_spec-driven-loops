@@ -22,7 +22,7 @@ trigger_phrases:
 | Entry | Responsibility |
 |---|---|
 | `install-git-hooks.sh` | Installs repository-managed Git hooks. |
-| `orphan-mcp-sweeper.sh` | Reviews or cleans stale MCP helpers with dry-run support. |
+| `orphan-mcp-sweeper.sh` | Reviews or cleans stale MCP helpers, and parentless processes left running from temp or scratch folders for 6+ hours, with dry-run support. |
 | `run-node-tests.mjs` | Discovers and runs the repository's Node test files. |
 | `session-cleanup.sh` | Cleans session-scoped MCP helper descendants. |
 | `git-hooks/` | Contains hook entrypoints, shared helpers and harnesses. |

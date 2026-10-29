@@ -7,6 +7,7 @@
 # Defaults:
 #   ORPHAN_AGE_MIN_SEC=300
 #   ORPHAN_TMP_AGE_HOURS=24
+#   ORPHAN_TEMP_PROCESS_AGE_HOURS=6
 #   ORPHAN_SWEEPER_LOG_MAX_BYTES=10485760
 #   ORPHAN_SWEEPER_LOG_PATH=$HOME/.local/share/orphan-sweeper.log
 
@@ -20,6 +21,8 @@ DRY_RUN=false
 VERBOSE=false
 AGE_MIN_SEC="${ORPHAN_AGE_MIN_SEC:-300}"
 TMP_AGE_HOURS="${ORPHAN_TMP_AGE_HOURS:-24}"
+TEMP_PROCESS_AGE_HOURS="${ORPHAN_TEMP_PROCESS_AGE_HOURS:-6}"
+TEMP_PROCESS_CLASS="temp-path-orphan"
 LOG_PATH="${ORPHAN_SWEEPER_LOG_PATH:-${HOME:-/tmp}/.local/share/orphan-sweeper.log}"
 LOG_EXPLICIT=false
 LOG_MAX_BYTES="${ORPHAN_SWEEPER_LOG_MAX_BYTES:-10485760}"
@@ -108,6 +111,9 @@ if ! is_positive_int "$AGE_MIN_SEC"; then
 fi
 if ! is_positive_int "$TMP_AGE_HOURS"; then
   TMP_AGE_HOURS=24
+fi
+if ! is_positive_int "$TEMP_PROCESS_AGE_HOURS"; then
+  TEMP_PROCESS_AGE_HOURS=6
 fi
 if ! is_positive_int "$LOG_MAX_BYTES"; then
   LOG_MAX_BYTES=10485760
@@ -220,6 +226,84 @@ classify_command() {
   return 1
 }
 
+# Abandoned test fixtures, benchmark browsers and scratch repros are the other leftover
+# this machine collects: their parent exits and they keep running out of a temp or
+# scratch folder for days. Those folders are per-user throwaway space, so a process
+# that has outlived its parent and still runs from one is a leftover whatever binary
+# it is. The roots are matched without a leading /private because ps shows a command
+# the way it was typed, and /var and /tmp are the shorter spellings of both forms.
+temp_path_roots() {
+  local user_tmp uid
+  uid="$(id -u)"
+  user_tmp="$(getconf DARWIN_USER_TEMP_DIR 2>/dev/null || true)"
+  [[ -n "$user_tmp" ]] || user_tmp="${TMPDIR:-}"
+  user_tmp="${user_tmp%/}"
+  user_tmp="${user_tmp#/private}"
+  # A shared /tmp is not throwaway space this user owns, so it never qualifies.
+  case "$user_tmp" in
+    ''|/tmp) ;;
+    *) printf '%s/\n' "$user_tmp" ;;
+  esac
+  printf '%s\n' "/tmp/claude-$uid/"
+}
+
+TEMP_PATH_ROOTS=""
+
+command_uses_temp_path() {
+  local cmd="$1"
+  local root
+  # Gatekeeper runs a quarantined app from inside the temp dir; that is a real app.
+  case "$cmd" in
+    *"/AppTranslocation/"*) return 1 ;;
+    *"${HOME:-/nonexistent}/worktrees/"*"/.scratch-"*) return 0 ;;
+  esac
+  [[ -n "$TEMP_PATH_ROOTS" ]] || TEMP_PATH_ROOTS="$(temp_path_roots)"
+  while read -r root; do
+    [[ -n "$root" ]] || continue
+    [[ "$cmd" = *"$root"* ]] && return 0
+  done <<EOF
+$TEMP_PATH_ROOTS
+EOF
+  return 1
+}
+
+# The cheap string test runs first, because this is asked of every process on the box.
+is_temp_path_orphan() {
+  local pid="$1"
+  local ppid="$2"
+  local age="$3"
+  local stat="$4"
+  local cmd="$5"
+  local owner
+  command_uses_temp_path "$cmd" || return 1
+  [[ "$ppid" = "1" ]] || return 1
+  case "$stat" in *Z*) return 1 ;; esac
+  [[ "$age" -ge $((TEMP_PROCESS_AGE_HOURS * 3600)) ]] 2>/dev/null || return 1
+  owner="$(ps -p "$pid" -o uid= 2>/dev/null | tr -d ' ' || true)"
+  [[ "$owner" = "$(id -u)" ]]
+}
+
+# The pre-signal recheck must reach the same verdict the scan did. A command alone
+# names an MCP class, but a temp-path orphan is also defined by its parent and age,
+# so those are read again before any signal is sent.
+current_class_of() {
+  local pid="$1"
+  local cmd="$2"
+  local class="$3"
+  local ppid etime stat
+  classify_command "$cmd" && return 0
+  [[ "$class" = "$TEMP_PROCESS_CLASS" ]] || return 1
+  read -r ppid etime stat <<EOF
+$(ps -p "$pid" -o ppid=,etime=,stat= 2>/dev/null || true)
+EOF
+  [[ -n "${etime:-}" ]] || return 1
+  if is_temp_path_orphan "$pid" "${ppid:-}" "$(etime_to_seconds "$etime")" "${stat:-}" "$cmd"; then
+    printf '%s\n' "$TEMP_PROCESS_CLASS"
+    return 0
+  fi
+  return 1
+}
+
 class_index() {
   local class="$1"
   local i
@@ -294,6 +378,12 @@ $(pgrep -P "$parent" 2>/dev/null || true)
 EOF
 }
 
+# macOS pgrep leaves out its own ancestors unless given -a, so a sweep started from
+# inside a session (the Stop hook) would not see that session and would reap its MCP
+# helpers. Linux pgrep has no such exclusion and reads -a as an output-format flag.
+PGREP_ANCESTOR_FLAG=""
+[[ "$(uname -s)" = "Darwin" ]] && PGREP_ANCESTOR_FLAG="-a"
+
 # Build the live operator-session process tree across ALL AI CLI runtimes, not just
 # Claude Code. Any MCP helper descended from a live claude / opencode / codex
 # session belongs to an active operator session and must be preserved — most importantly
@@ -308,7 +398,7 @@ build_session_trees() {
       append_descendants "$pid"
     fi
   done <<EOF
-$(pgrep -f '(^|/)(claude|opencode|codex)( |$)|Claude Code' 2>/dev/null || true)
+$(pgrep $PGREP_ANCESTOR_FLAG -f '(^|/)(claude|opencode|codex)( |$)|Claude Code' 2>/dev/null || true)
 EOF
 }
 
@@ -366,6 +456,28 @@ preserve_reason() {
     *"ollama runner"*|*"ollama serve"*) printf '%s\n' "ollama-preserve"; return 0 ;;
   esac
 
+  # The advisor launcher retires itself after its own idle timeout, and hooks reach it
+  # only for the length of one prompt, so a sweep between prompts finds no client on it.
+  # Its server is covered while that launcher is its parent; a server left behind by a
+  # dead launcher is the orphan this sweeper exists for and stays sweepable.
+  case "$class" in
+    system-skill-advisor-launcher)
+      printf '%s\n' "advisor-self-idle-timeout"
+      return 0
+      ;;
+    skill-advisor-server)
+      local parent_pid parent_cmd
+      parent_pid="$(ps -p "$pid" -o ppid= 2>/dev/null | tr -d ' ' || true)"
+      if [[ -n "$parent_pid" ]] && [[ "$parent_pid" != "1" ]]; then
+        parent_cmd="$(ps -p "$parent_pid" -o command= 2>/dev/null || true)"
+        if [[ "$parent_cmd" = *"system-skill-advisor-launcher.cjs"* ]]; then
+          printf '%s\n' "advisor-launcher-child"
+          return 0
+        fi
+      fi
+      ;;
+  esac
+
   if [[ "${#SESSION_TREE_PIDS[@]}" -gt 0 ]] && pid_in_list "$pid" "${SESSION_TREE_PIDS[@]}"; then
     printf '%s\n' "live-session-tree"
     return 0
@@ -378,7 +490,9 @@ preserve_reason() {
     return 0
   fi
 
-  if has_non_mcp_listener "$pid"; then
+  # A leftover from a temp folder can still hold a port, such as a fixture's
+  # http.server, and that listener is part of the leftover, not a sign of use.
+  if [[ "$class" != "$TEMP_PROCESS_CLASS" ]] && has_non_mcp_listener "$pid"; then
     printf '%s\n' "active-non-mcp-tcp-listener"
     return 0
   fi
@@ -400,6 +514,10 @@ scan_processes() {
   while read -r pid _ppid etime rss _stat command; do
     [[ -n "${pid:-}" ]] || continue
     class="$(classify_command "${command:-}" 2>/dev/null || true)"
+    if [[ -z "$class" ]] && command_uses_temp_path "${command:-}" \
+      && is_temp_path_orphan "$pid" "$_ppid" "$(etime_to_seconds "$etime")" "$_stat" "${command:-}"; then
+      class="$TEMP_PROCESS_CLASS"
+    fi
     [[ -n "$class" ]] || continue
     age="$(etime_to_seconds "$etime")"
     CANDIDATE_PIDS+=("$pid")
@@ -457,7 +575,7 @@ terminate_candidates() {
 
     current_cmd="$(ps -p "$pid" -o command= 2>/dev/null || true)"
     [[ -n "$current_cmd" ]] || continue
-    current_class="$(classify_command "$current_cmd" 2>/dev/null || true)"
+    current_class="$(current_class_of "$pid" "$current_cmd" "$class" 2>/dev/null || true)"
     if [[ "$current_class" != "$class" ]] || [[ "$current_cmd" != "$cmd" ]]; then
       emit "action=preserve reason=pid-reclassified pid=$pid class=${current_class:-unknown} command=$current_cmd"
       continue
@@ -489,7 +607,7 @@ terminate_candidates() {
     cmd="${KILL_COMMANDS[$i]}"
     current_cmd="$(ps -p "$pid" -o command= 2>/dev/null || true)"
     [[ -n "$current_cmd" ]] || continue
-    current_class="$(classify_command "$current_cmd" 2>/dev/null || true)"
+    current_class="$(current_class_of "$pid" "$current_cmd" "$class" 2>/dev/null || true)"
     if [[ "$current_class" != "$class" ]] || [[ "$current_cmd" != "$cmd" ]]; then
       emit "action=preserve reason=pid-reclassified pid=$pid class=${current_class:-unknown} command=$current_cmd"
       continue
