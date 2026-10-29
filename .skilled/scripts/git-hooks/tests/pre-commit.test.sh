@@ -1175,5 +1175,18 @@ else
   echo "PASS  the guard stayed silent on an ordinary command-family file"; PASS=$((PASS + 1))
 fi
 
+# ── 84. the doc-version raise runs before the gates that regenerate from doc bytes ──
+# A version raised after the mirror-parity or re-mint gate changes bytes those gates
+# already approved, so the commit ships a stale Hermes copy or a stale manifest.
+DOCV_LINE="$(grep -n '^# --- Doc version bump' "$HOOK" | cut -d: -f1)"
+MIRROR_LINE="$(grep -n '^# --- Mirror parity gate' "$HOOK" | cut -d: -f1)"
+REMINT_LINE="$(grep -n '^# --- Compiled-routing auto re-mint' "$HOOK" | cut -d: -f1)"
+if [[ -n "$DOCV_LINE" && -n "$MIRROR_LINE" && -n "$REMINT_LINE" ]] \
+   && (( DOCV_LINE < MIRROR_LINE && DOCV_LINE < REMINT_LINE )); then
+  echo "PASS  the doc-version raise runs before mirror parity and the route re-mint"; PASS=$((PASS + 1))
+else
+  echo "FAIL  the doc-version raise must run before mirror parity and the route re-mint (lines: $DOCV_LINE, $MIRROR_LINE, $REMINT_LINE)"; FAIL=$((FAIL + 1))
+fi
+
 echo "pre-commit gates: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]
