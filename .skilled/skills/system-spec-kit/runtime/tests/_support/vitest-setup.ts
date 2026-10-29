@@ -5,6 +5,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { afterAll } from 'vitest';
 
 function ensureAbsoluteTempEnv(): void {
   const currentTmp = os.tmpdir();
@@ -52,10 +53,18 @@ function isolateProductionDatabase(): void {
   }
 
   // Default-safe: with no explicit override, derive a per-file scratch dir so the
-  // resolver lands on throwaway storage instead of the production file.
+  // resolver lands on throwaway storage instead of the production file. Setup runs
+  // once per test file, so remove the dir when the file finishes; otherwise every
+  // suite run leaves thousands of them in the system temp dir.
   if (!memEnv && !dirEnv) {
     const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-test-db-'));
     process.env.SPEC_KIT_DB_DIR = scratch;
+    afterAll(() => {
+      fs.rmSync(scratch, { recursive: true, force: true });
+      if (process.env.SPEC_KIT_DB_DIR === scratch) {
+        delete process.env.SPEC_KIT_DB_DIR;
+      }
+    });
   }
 }
 

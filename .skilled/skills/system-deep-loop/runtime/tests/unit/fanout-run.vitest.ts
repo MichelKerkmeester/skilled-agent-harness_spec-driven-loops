@@ -625,6 +625,7 @@ describe('fanout-run.cjs — max-iterations stop-reason tolerance', () => {
   // which is where a research run is actually judged.
   const makeResearchLineageDir = (iterations: number, withReport: boolean) => {
     const dir = mkdtempSync(join(tmpdir(), 'fanout-research-forced-'));
+    tempDirs.push(dir);
     mkdirSync(join(dir, 'iterations'), { recursive: true });
     for (let i = 1; i <= iterations; i++) {
       writeFileSync(join(dir, 'iterations', `iteration-${String(i).padStart(3, '0')}.md`), 'x');
