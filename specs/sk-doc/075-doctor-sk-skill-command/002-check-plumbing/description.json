@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/075-doctor-sk-skill-command/002-check-plumbing",
+  "description": "Phase 2: check-plumbing",
+  "keywords": [
+    "phase",
+    "check-plumbing"
+  ],
+  "lastUpdated": "2026-10-30T05:21:13.475Z",
+  "specId": "002",
+  "folderSlug": "check-plumbing",
+  "parentChain": [
+    "sk-doc",
+    "075-doctor-sk-skill-command"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

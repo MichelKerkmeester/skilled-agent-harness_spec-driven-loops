@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/075-doctor-sk-skill-command/008-hub-gap-report",
+  "description": "Phase 8: hub-gap-report",
+  "keywords": [
+    "phase",
+    "hub-gap-report"
+  ],
+  "lastUpdated": "2026-10-30T05:21:19.400Z",
+  "specId": "008",
+  "folderSlug": "hub-gap-report",
+  "parentChain": [
+    "sk-doc",
+    "075-doctor-sk-skill-command"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

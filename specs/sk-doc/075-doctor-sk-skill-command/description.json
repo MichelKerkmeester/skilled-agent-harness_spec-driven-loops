@@ -1,0 +1,24 @@
+{
+  "specFolder": "sk-doc/075-doctor-sk-skill-command",
+  "description": "Doctor skill command: check and convert a skill to the Skilled format and wire it into the advisor",
+  "keywords": [
+    "doctor",
+    "skill",
+    "command",
+    "check",
+    "convert",
+    "skilled",
+    "format",
+    "wire",
+    "advisor"
+  ],
+  "lastUpdated": "2026-10-30T05:21:11.693Z",
+  "specId": "075",
+  "folderSlug": "doctor-skill-command",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

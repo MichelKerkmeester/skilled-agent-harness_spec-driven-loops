@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/075-doctor-sk-skill-command",
+  "spec_folder": "sk-doc/075-doctor-sk-skill-command",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/075-doctor-sk-skill-command/001-check-engine",
+    "sk-doc/075-doctor-sk-skill-command/002-check-plumbing",
+    "sk-doc/075-doctor-sk-skill-command/003-convert-legacy-skilled",
+    "sk-doc/075-doctor-sk-skill-command/004-convert-plain-skill",
+    "sk-doc/075-doctor-sk-skill-command/005-integration",
+    "sk-doc/075-doctor-sk-skill-command/006-convert-plumbing",
+    "sk-doc/075-doctor-sk-skill-command/007-docs-and-changelogs",
+    "sk-doc/075-doctor-sk-skill-command/008-hub-gap-report",
+    "sk-doc/075-doctor-sk-skill-command/009-mirror-and-template-fixes",
+    "sk-doc/075-doctor-sk-skill-command/010-verification-and-release"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor skill command phase parent spec",
+      "doctor skill check convert",
+      "convert skill to skilled format",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "doctor",
+      "skill",
+      "command",
+      "phase",
+      "parent",
+      "spec",
+      "check",
+      "convert",
+      "skilled",
+      "format",
+      "packet",
+      "goal"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "scratch/design.md",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+      ".skilled/commands/README.txt",
+      ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-leaf-manifest-config-template.json",
+      "001-check-engine/goal.md",
+      "002-check-plumbing/goal.md",
+      "003-convert-legacy-skilled/goal.md",
+      "004-convert-plain-skill/goal.md",
+      "005-integration/goal.md",
+      "006-convert-plumbing/goal.md",
+      "007-docs-and-changelogs/goal.md",
+      "008-hub-gap-report/goal.md",
+      "009-mirror-and-template-fixes/goal.md",
+      "010-verification-and-release/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": "scratch/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "ci-router-vocabulary-reach.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "scoring-compatibility.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-runtime-mirrors.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "skill-leaf-manifest-config-template.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-leaf-manifest-config-template.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ship",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An adopter who brings a plain agent skill, or a Skilled skill whose machine router still sits inside `SKILL.md`, has no command that says how far the skill is from the current Skilled format, and no path that converts it in place",
+    "created_at": "2026-10-30T05:21:11Z",
+    "last_save_at": "2026-10-30T05:40:17.265Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:b7c4887a34cf65d970329d7ed8d075b05ae5c65c2f99fa94ce853d6173448e77",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0f4a14c1abefaf0fd15b00dd5d968b17674a35ea6f0571e61b46aa9dbaafd763"
+    },
+    "last_active_at": null
+  }
+}

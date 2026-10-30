@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/075-doctor-sk-skill-command/007-docs-and-changelogs",
+  "description": "Phase 7: docs-and-changelogs",
+  "keywords": [
+    "phase",
+    "docs-and-changelogs"
+  ],
+  "lastUpdated": "2026-10-30T05:21:18.407Z",
+  "specId": "007",
+  "folderSlug": "docs-and-changelogs",
+  "parentChain": [
+    "sk-doc",
+    "075-doctor-sk-skill-command"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
