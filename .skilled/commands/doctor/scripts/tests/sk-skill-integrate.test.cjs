@@ -600,6 +600,26 @@ test('I3 reports UNKNOWN when a probe cannot reach the advisor', (t) => {
   assert.match(bodyLines(row.lines), /UNKNOWN/);
 });
 
+test('I3 reports n/a and probes no phrase when the advisor CLI is absent', (t) => {
+  const repo = makeRepo(t);
+  fs.rmSync(path.join(repo.repoRoot, '.skilled', 'bin', 'skill-advisor.cjs'));
+
+  const planned = plan(repo);
+  const result = apply(repo);
+
+  const row = outcomeOf(result, 'I3');
+  assert.equal(row.status, 'N/A');
+  assert.deepEqual(row.lines, []);
+  assert.equal(result.ok, true);
+  assert.match(bodyLines(planned.lines), /I3 router reach and budget: n\/a - the advisor CLI is absent/);
+  // An absent tool is not a probe: no recommendation child was spawned for it.
+  assert.equal(
+    callLog(repo.repoRoot).filter((call) => call.tool === 'advisor' && call.argv[0] === 'advisor_recommend').length,
+    0,
+    'a row probed an advisor that is not installed',
+  );
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 8. I4 REGRESSION CORPUS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -873,6 +893,30 @@ test('I6 reports the index link n/a when the skill is outside the skills root', 
   );
   assert.match(bodyLines(planned.lines), /I6 changelog: n\/a - .*not a direct child of \.skilled\/skills/);
   assert.match(bodyLines(result.lines), /I6 changelog: n\/a - /);
+});
+
+test('I6 writes the short index link when the skills root is reached through a symlinked parent', (t) => {
+  const outer = makeTempRepo(t);
+  const realRoot = path.join(outer, 'real');
+  const linkedRoot = path.join(outer, 'linked');
+  writeStubs(realRoot);
+  writeSkillPackage(path.join(realRoot, '.skilled', 'skills', SKILL));
+  fs.symlinkSync(realRoot, linkedRoot, 'dir');
+  // The target resolver returns a real path, so the row reads a resolved skill root
+  // while the repository it belongs to is still spelled through the link.
+  const resolvedSkillRoot = fs.realpathSync(path.join(linkedRoot, '.skilled', 'skills', SKILL));
+  assert.notEqual(resolvedSkillRoot, path.join(linkedRoot, '.skilled', 'skills', SKILL));
+  const context = () => makeContext(linkedRoot);
+
+  const planned = integrate.planIntegration({ context: context(), skillRoot: resolvedSkillRoot });
+  const result = integrate.applyIntegration({ context: context(), skillRoot: resolvedSkillRoot, apply: true });
+
+  const link = path.join(linkedRoot, '.skilled', 'changelog', SKILL);
+  assert.equal(outcomeOf(result, 'I6').status, 'DONE');
+  assert.equal(fs.readlinkSync(link), `../skills/${SKILL}/changelog`);
+  assert.ok(fs.statSync(link).isDirectory(), 'the index link does not resolve');
+  const expected = `Create the relative link .skilled/changelog/${SKILL} -> ../skills/${SKILL}/changelog.`;
+  assert.ok(bodyLines(planned.lines).includes(expected), bodyLines(planned.lines));
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

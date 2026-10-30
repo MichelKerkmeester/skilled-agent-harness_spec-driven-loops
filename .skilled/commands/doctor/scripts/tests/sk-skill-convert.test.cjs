@@ -99,7 +99,32 @@ function writePeerSkill(tempRoot, name = EDGE_PEER) {
     `# ${name}`,
     '',
   ].join('\n'));
+  // The advisor's compiler discovers a folder only when it carries graph metadata,
+  // so a peer the edge gate should accept has to look like a real skill root.
+  writeGraphMetadata(peerRoot, name);
   return peerRoot;
+}
+
+// The edge map the advisor's compiler reads. Every group starts empty unless the
+// case declares the edges a root already ships.
+function writeGraphMetadata(skillRoot, name, options = {}) {
+  fs.mkdirSync(skillRoot, { recursive: true });
+  fs.writeFileSync(path.join(skillRoot, 'graph-metadata.json'), `${JSON.stringify({
+    schema_version: 1,
+    skill_id: name,
+    family: 'sk-util',
+    category: 'utility',
+    edges: {
+      depends_on: [],
+      enhances: [],
+      siblings: [],
+      conflicts_with: [],
+      prerequisite_for: [],
+      ...(options.edges || {}),
+    },
+    domains: ['test'],
+    intent_signals: options.phrases || [`${name} phrase one`, `${name} phrase two`, `${name} phrase three`],
+  }, null, 2)}\n`);
 }
 
 function edgeArgs(peer = EDGE_PEER) {
@@ -2178,6 +2203,240 @@ test('a plan whose advisor answers nothing asks the operator to name the edge ta
   assert.match(missing.stdout, /^edges: approval required; the advisor is unavailable.*--edge enhances:<skill>$/m);
 });
 
+// The compiled graph only knows a skill its compiler discovers, so an edge to any
+// other folder is the target the validator rejects as unknown.
+test('an edge target is accepted only where the advisor compiler discovers it', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const sourceRoot = path.join(FIXTURE_ROOT, 'plain', 'before');
+  const skillsDir = fixtureSkillsDir(tempRoot);
+  writePeerSkill(tempRoot);
+
+  // A folder with a SKILL.md and no graph metadata is skipped by discovery.
+  const bare = path.join(skillsDir, 'bare-skill');
+  fs.mkdirSync(bare, { recursive: true });
+  fs.writeFileSync(path.join(bare, 'SKILL.md'), '---\nname: bare-skill\ndescription: Bare.\n---\n');
+
+  // A linked folder is skipped even when the folder it points at holds metadata.
+  fs.symlinkSync(writePeerSkill(tempRoot, 'linked-target'), path.join(skillsDir, 'linked-skill'), 'dir');
+
+  const context = makeIntegrationContext(tempRoot);
+  writeGraphMetadata(path.join(skillsDir, 'excluded-skill'), 'excluded-skill');
+  const exclusionFile = path.join(
+    path.dirname(context.paths.skillGraphCompiler), '..', 'config', 'route-exclusions.json',
+  );
+  fs.mkdirSync(path.dirname(exclusionFile), { recursive: true });
+  fs.writeFileSync(exclusionFile, JSON.stringify({ excludedSkillIds: ['excluded-skill'] }));
+
+  for (const name of ['bare-skill', 'linked-skill', 'excluded-skill', 'local-private']) {
+    const refused = invokeArgs(
+      tempRoot,
+      ['plan', sourceRoot, ...phraseArgs(), '--edge', `enhances:${name}`],
+      context,
+    );
+    assert.equal(refused.exitCode, 1, `${name}: ${refused.stdout}`);
+    assert.match(refused.stderr, /^EDGE_TYPE_REFUSED:/, name);
+  }
+
+  const accepted = invokeArgs(tempRoot, ['plan', sourceRoot, ...phraseArgs(), ...edgeArgs()], context);
+  assert.equal(accepted.exitCode, 0, accepted.stderr);
+  assert.match(accepted.stdout, /^edges: enhances -> peer-lantern \(the approved edge, weight 0\.3\)$/m);
+});
+
+// Repeating the flag is one decision, not two writes.
+test('the same edge approved twice is one approved edge', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const sourceRoot = path.join(FIXTURE_ROOT, 'plain', 'before');
+  writePeerSkill(tempRoot);
+
+  const plan = invokeArgs(tempRoot, [
+    'plan', sourceRoot,
+    ...phraseArgs(),
+    ...edgeArgs(),
+    ...edgeArgs(),
+  ]);
+
+  assert.equal(plan.exitCode, 0, plan.stderr);
+  const approvedLines = plan.stdout.match(/^edges: enhances -> peer-lantern /gm) || [];
+  assert.equal(approvedLines.length, 1, plan.stdout);
+});
+
+// The refusal has to hand the operator the name the plan proposed, or the repair is
+// a guess at a skill the advisor already ranked.
+test('the edge refusal names the skill the plan proposed', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const sourceRoot = path.join(FIXTURE_ROOT, 'plain', 'before');
+  writePeerSkill(tempRoot, 'sk-doc');
+  const context = makeIntegrationContext(tempRoot, { edgeCandidates: ['sk-doc'] });
+
+  const refused = invokeArgs(tempRoot, [
+    'apply', sourceRoot,
+    ...phraseArgs(),
+    '--allowed-tool', 'Read',
+    '--agent-output', path.join(FIXTURE_ROOT, 'plain', 'after'),
+    '--apply',
+  ], context);
+
+  assert.equal(refused.exitCode, 1, refused.stdout);
+  assert.match(refused.stderr, /^EDGES_APPROVAL_REQUIRED:/);
+  assert.match(refused.stderr, /The advisor proposes sk-doc\./);
+});
+
+// One candidate is the whole list, so a line offering more names would be empty.
+test('a single edge candidate prints no other-candidates line', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const sourceRoot = path.join(FIXTURE_ROOT, 'plain', 'before');
+  writePeerSkill(tempRoot, 'sk-doc');
+  const context = makeIntegrationContext(tempRoot, { edgeCandidates: ['sk-doc'] });
+
+  const plan = invokeArgs(tempRoot, ['plan', sourceRoot, ...phraseArgs()], context);
+
+  assert.equal(plan.exitCode, 0, plan.stderr);
+  assert.match(plan.stdout, /^edges: approval required; propose enhances -> sk-doc$/m);
+  assert.ok(!plan.stdout.includes('Other edge candidates'), plan.stdout);
+});
+
+// A source that already declares an edge is not a zero-edge skill, so the guard
+// counts what the converted root will end with and not only what this run adds. The
+// same edge approved again is not a second relationship either.
+test('a plain source that already declares an edge keeps it once without a new approval', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const sourceRoot = path.join(tempRoot, 'plain-source');
+  copyPlainSource(sourceRoot);
+  writePeerSkill(tempRoot);
+  writeGraphMetadata(sourceRoot, 'brindle-lantern', {
+    phrases: PLAIN_PHRASES.slice(0, 3),
+    edges: {
+      enhances: [{ target: EDGE_PEER, weight: 0.5, context: 'The source already declares this relationship.' }],
+    },
+  });
+  const context = makeIntegrationContext(tempRoot);
+
+  const plan = invokeArgs(tempRoot, ['plan', sourceRoot, ...phraseArgs()], context);
+  assert.equal(plan.exitCode, 0, plan.stderr);
+  assert.ok(!/^edges: approval required/m.test(plan.stdout), plan.stdout);
+
+  const applied = invokeArgs(tempRoot, [
+    'apply', sourceRoot,
+    ...phraseArgs(),
+    '--allowed-tool', 'Read',
+    ...edgeArgs(),
+    '--agent-output', path.join(FIXTURE_ROOT, 'plain', 'after'),
+    '--apply',
+  ], context);
+
+  assert.equal(applied.exitCode, 0, `${applied.stdout}\n${applied.stderr}`);
+  const metadata = JSON.parse(fs.readFileSync(
+    path.join(fixtureSkillsDir(tempRoot), 'brindle-lantern', 'graph-metadata.json'),
+    'utf8',
+  ));
+  assert.deepEqual(
+    metadata.edges.enhances.map((edge) => [edge.target, edge.weight]),
+    [[EDGE_PEER, 0.5]],
+    'the declared edge was lost or duplicated',
+  );
+});
+
+// The in-place path keeps its own graph metadata, so the edge question is asked
+// from that file and the approved edge is written back into it.
+test('an in-place conversion with zero edges asks for and requires an approved edge', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const skillRoot = path.join(fixtureSkillsDir(tempRoot), 'brindle-lantern');
+  writeOldSkill(skillRoot, 'brindle-lantern');
+  writeGraphMetadata(skillRoot, 'brindle-lantern', { phrases: PLAIN_PHRASES.slice(0, 3) });
+  writePeerSkill(tempRoot, 'sk-doc');
+  const context = makeIntegrationContext(tempRoot, { edgeCandidates: ['sk-doc'] });
+  const metadataFile = path.join(skillRoot, 'graph-metadata.json');
+
+  const plan = invoke(tempRoot, 'plan', skillRoot, [], context);
+  assert.equal(plan.exitCode, 0, plan.stderr);
+  assert.match(plan.stdout, /^edges: approval required; propose enhances -> sk-doc$/m);
+
+  // The rerun carries the approved edge as its own write step and its own line.
+  const rerun = invoke(tempRoot, 'plan', skillRoot, [...edgeArgs('sk-doc')], context);
+  assert.equal(rerun.exitCode, 0, rerun.stderr);
+  assert.match(rerun.stdout, /^edges: enhances -> sk-doc \(the approved edge, weight 0\.3\)$/m);
+  assert.match(rerun.stdout, /Write the approved edge enhances -> sk-doc into graph-metadata\.json\./);
+
+  const refused = invoke(tempRoot, 'apply', skillRoot, ['--apply'], context);
+  assert.equal(refused.exitCode, 1, refused.stdout);
+  assert.match(refused.stderr, /^EDGES_APPROVAL_REQUIRED:/);
+  assert.deepEqual(
+    JSON.parse(fs.readFileSync(metadataFile, 'utf8')).edges.enhances,
+    [],
+    'the refused apply wrote an edge',
+  );
+
+  const applied = invoke(tempRoot, 'apply', skillRoot, [...edgeArgs('sk-doc'), '--apply'], context);
+  assert.equal(applied.exitCode, 0, `${applied.stdout}\n${applied.stderr}`);
+  const metadata = JSON.parse(fs.readFileSync(metadataFile, 'utf8'));
+  assert.deepEqual(
+    metadata.edges.enhances.map((edge) => [edge.target, edge.weight]),
+    [['sk-doc', 0.3]],
+  );
+  // The overwrite is undoable because the file that held the old map was backed up.
+  const undo = applied.stdout.slice(applied.stdout.indexOf('Undo:'));
+  const restored = undo.split('\n').find((line) => /^ {2}cp ".*" ".*\/graph-metadata\.json"$/.test(line));
+  assert.ok(restored, undo);
+  assert.ok(restored.includes(`"${fs.realpathSync(skillRoot)}/graph-metadata.json"`), restored);
+});
+
+// An older Skilled root may ship no graph metadata at all, and the approved edge still
+// has to land somewhere: the scaffold supplies that one file and the undo removes it.
+test('an in-place root with no graph metadata gains one when an edge is approved', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const skillRoot = path.join(fixtureSkillsDir(tempRoot), 'no-metadata');
+  writeOldSkill(skillRoot, 'no-metadata');
+  writePeerSkill(tempRoot);
+  const context = makeIntegrationContext(tempRoot);
+  const metadataFile = path.join(skillRoot, 'graph-metadata.json');
+
+  const plan = invoke(tempRoot, 'plan', skillRoot, [...edgeArgs()], context);
+  assert.equal(plan.exitCode, 0, plan.stderr);
+  assert.match(plan.stdout, /Copy graph-metadata\.json from the skill scaffold and write the approved edge enhances -> peer-lantern into it\./);
+
+  const applied = invoke(tempRoot, 'apply', skillRoot, [...edgeArgs(), '--apply'], context);
+
+  assert.equal(applied.exitCode, 0, `${applied.stdout}\n${applied.stderr}`);
+  const metadata = JSON.parse(fs.readFileSync(metadataFile, 'utf8'));
+  assert.deepEqual(metadata.edges.enhances.map((edge) => edge.target), [EDGE_PEER]);
+  const undo = applied.stdout.slice(applied.stdout.indexOf('Undo:'));
+  assert.ok(undo.includes(`  rm "${fs.realpathSync(metadataFile)}"`), undo);
+});
+
+// A root that already declares edges needs no question, and the flag the operator
+// does pass adds only the edge that is not there yet.
+test('an in-place conversion that already declares edges adds the approved one once', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const skillRoot = path.join(fixtureSkillsDir(tempRoot), 'branched-skill');
+  writeOldSkill(skillRoot, 'branched-skill');
+  writeGraphMetadata(skillRoot, 'branched-skill', {
+    edges: {
+      enhances: [{ target: EDGE_PEER, weight: 0.4, context: 'The root already declares this relationship.' }],
+    },
+  });
+  writePeerSkill(tempRoot);
+  writePeerSkill(tempRoot, 'sk-doc');
+  const context = makeIntegrationContext(tempRoot);
+
+  const plan = invoke(tempRoot, 'plan', skillRoot, [], context);
+  assert.equal(plan.exitCode, 0, plan.stderr);
+  assert.ok(!/^edges: /m.test(plan.stdout), plan.stdout);
+
+  const applied = invoke(tempRoot, 'apply', skillRoot, [
+    ...edgeArgs(EDGE_PEER),
+    ...edgeArgs('sk-doc'),
+    '--apply',
+  ], context);
+
+  assert.equal(applied.exitCode, 0, `${applied.stdout}\n${applied.stderr}`);
+  const metadata = JSON.parse(fs.readFileSync(path.join(skillRoot, 'graph-metadata.json'), 'utf8'));
+  assert.deepEqual(
+    metadata.edges.enhances.map((edge) => edge.target),
+    [EDGE_PEER, 'sk-doc'],
+    'the approved edge duplicated one the root already declared, or was not added',
+  );
+});
+
 // The in-place path ends with the same rows as the plain one, because a converted
 // skill with a drifted mirror or a stale compiled graph is not wired either.
 test('the older Skilled plan lists the integration rows it will run', (t) => {
@@ -2227,4 +2486,27 @@ test('the older Skilled apply runs the integration rows, keeps a satisfied one, 
   assert.ok(undo.includes(`  rm "${path.join(fs.realpathSync(skillRoot), 'ROUTER.md')}"`), undo);
   assert.ok(!undo.includes(`  rm "${indexLink}"`), undo);
   t.diagnostic(`in-place undo: ${undo.split('\n').slice(0, 6).join(' | ')}`);
+});
+
+// The rows overwrite tracked files on the in-place path too, so the undo has to hand
+// back the bytes that were there rather than only removing what the run created.
+test('the older Skilled undo copies back an integration file the rows overwrote', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const skillRoot = path.join(fixtureSkillsDir(tempRoot), 'rows-overwrote');
+  writeOldSkill(skillRoot, 'rows-overwrote');
+  const context = makeIntegrationContext(tempRoot);
+  fs.mkdirSync(path.dirname(context.paths.skillGraphJson), { recursive: true });
+  fs.writeFileSync(context.paths.skillGraphJson, 'PRE-RUN GRAPH\n');
+
+  const applied = invoke(tempRoot, 'apply', skillRoot, ['--apply'], context);
+
+  assert.equal(applied.exitCode, 0, `${applied.stdout}\n${applied.stderr}`);
+  const undo = applied.stdout.slice(applied.stdout.indexOf('Undo:'));
+  const restored = undo.split('\n').find((line) => line.trimStart().startsWith('cp ')
+    && line.includes(`"${context.paths.skillGraphJson}"`));
+  const match = /^ {2}cp "([^"]+)" "([^"]+)"$/.exec(restored || '');
+  assert.ok(match, undo);
+  assert.equal(match[2], context.paths.skillGraphJson);
+  assert.equal(fs.readFileSync(match[1], 'utf8'), 'PRE-RUN GRAPH\n');
+  assert.ok(!undo.includes(`  rm "${context.paths.skillGraphJson}"`), undo);
 });

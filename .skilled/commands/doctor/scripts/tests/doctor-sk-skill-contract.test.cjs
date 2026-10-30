@@ -90,13 +90,22 @@ const deriveCodes = () => {
 
 const CONVERT_REFUSAL_CODES = [...deriveCodes()].sort();
 
-// The four messages that are a question rather than a stop: the workflow asks
-// about them and reruns the plan with the approved flag.
+// The three messages that are a question rather than a stop: the workflow asks about
+// them and reruns the plan with the approved flag. The plan's pending edges line is
+// that question, so the code an apply prints without the flag is a refusal instead.
 const FOLLOW_UP_CODES = [
   'INTENT_SIGNALS_BELOW_FLOOR',
   'DESCRIPTION_TOO_LONG',
   'ALLOWED_TOOLS_MISSING',
+];
+
+// A code that says the apply ran without a flag the plan was approved with names the
+// workflow's own mistake, and each one is listed as a refusal beside its siblings.
+const APPLY_WITHOUT_FLAG_CODES = [
   'EDGES_APPROVAL_REQUIRED',
+  'ALLOWED_TOOLS_APPROVAL_REQUIRED',
+  'DESCRIPTION_TRIM_REQUIRED',
+  'AGENT_RESHAPE_REQUIRED',
 ];
 
 const CONVERT_WORKFLOW = parseYaml(CONVERT_YAML);
@@ -587,6 +596,22 @@ test('the convert workflow states the follow-ups that need their own yes and kee
   for (const code of FOLLOW_UP_CODES) {
     assert.ok(!refusalCodes.has(code), `${code} is listed as a stopping refusal`);
   }
+});
+
+// The apply-without-the-approved-flag codes are refusals, not plan questions: the
+// plan's pending line is the question, and the code is what an apply prints when the
+// workflow drops the flag it was approved with.
+test('the apply-without-the-approved-flag codes are listed beside each other as refusals', () => {
+  const refusalCodes = new Set(CONVERT_WORKFLOW.refusals.map((entry) => entry.code));
+  for (const code of APPLY_WITHOUT_FLAG_CODES) {
+    assert.ok(refusalCodes.has(code), `${code} is not listed as a refusal`);
+  }
+  // The plan-time questions stay the three messages the plan itself raises.
+  assert.deepEqual([...FOLLOW_UP_CODES].sort(), [
+    'ALLOWED_TOOLS_MISSING',
+    'DESCRIPTION_TOO_LONG',
+    'INTENT_SIGNALS_BELOW_FLOOR',
+  ]);
 });
 
 test('the convert workflow carries a reason for every refusal the converter can print', () => {

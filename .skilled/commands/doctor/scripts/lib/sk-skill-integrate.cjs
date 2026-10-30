@@ -83,6 +83,26 @@ function resolveReal(candidate, fileSystem) {
   }
 }
 
+// A folder this run is about to create has no real spelling of its own yet, so the
+// nearest existing ancestor is resolved and the rest is appended to it. Both sides
+// of a relative link then read the same way whether the root above them was named
+// through a symlink or not.
+function resolveRealPath(candidate, fileSystem) {
+  const resolved = path.resolve(candidate);
+  const pending = [];
+  let current = resolved;
+  while (true) {
+    try {
+      const real = fileSystem.realpathSync(current);
+      return pending.length ? path.join(real, ...pending.reverse()) : real;
+    } catch {
+      if (path.dirname(current) === current) return resolved;
+      pending.push(path.basename(current));
+      current = path.dirname(current);
+    }
+  }
+}
+
 function isDirectChild(parent, child, fileSystem = fs) {
   const relative = path.relative(resolveReal(parent, fileSystem), resolveReal(child, fileSystem));
   if (!relative || relative.startsWith('..') || path.isAbsolute(relative)) return false;
@@ -682,7 +702,14 @@ function integrateI6Changelog(options) {
   const entry = path.join(changelogDirectory, `v${version}.md`);
   const indexDirectory = path.join(context.repoRoot, ...CHANGELOG_INDEX);
   const link = path.join(indexDirectory, name);
-  const linkTarget = path.relative(indexDirectory, changelogDirectory).split(path.sep).join('/');
+  // The link is resolved by the reader against the directory it sits in, so both
+  // sides are computed from their real paths: a skills root reached through a
+  // symlinked parent yields the same short ../skills/<name>/changelog a plain root
+  // does, instead of spelling out the unresolved prefix.
+  const linkTarget = path.relative(
+    resolveRealPath(indexDirectory, fileSystem),
+    resolveRealPath(changelogDirectory, fileSystem),
+  ).split(path.sep).join('/');
   const linkLabel = pathLabel(context.repoRoot, link);
   const entryLabel = pathLabel(context.repoRoot, entry);
   // The index resolves the folder name one level up, so only a root sitting directly

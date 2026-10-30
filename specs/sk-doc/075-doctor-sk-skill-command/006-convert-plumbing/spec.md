@@ -37,7 +37,7 @@ contextType: "general"
 
 This is **Phase 6** of the Doctor skill command: check and convert a skill to the Skilled format and wire it into the advisor specification.
 
-**Scope Boundary**: The doctor plumbing for the `convert` target only: its route, workflow YAML, router and presentation entries, setup row, command contract entry, advisor bridge activation and the contract test of its refusal strings. The convert logic itself (`sk-skill-convert.cjs`, the transforms and the integration writes) belongs to phases 3, 4 and 5 and is not changed here.
+**Scope Boundary**: The doctor plumbing for the `convert` target only: its route, workflow YAML, router and presentation entries, setup row, command contract entry, advisor bridge activation and the contract test of its refusal strings. The convert logic itself (`sk-skill-convert.cjs`, the transforms and the integration writes) belongs to phases 3, 4 and 5 and is not changed here, apart from the release-run repair recorded below, which edits the codes and lines this plumbing prints while leaving that logic to phase 005.
 
 **Dependencies**:
 - Phase 3 (`003-convert-legacy-skilled`): `sk-skill-convert.cjs plan|apply` exists.
@@ -49,6 +49,15 @@ This is **Phase 6** of the Doctor skill command: check and convert a skill to th
 - `.skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml` with the phases read, plan, follow-ups, approval, write, re-read, undo and report.
 - A `convert` route in `.skilled/commands/doctor/_routes.yaml` with `mutating: mutates` and the engine's real write set as its gate-3 location.
 - Convert states in the router, presentation and setup list, an activated advisor bridge and refusal-string contract tests whose code list is derived from the engine.
+
+**Amendment (release run, commit 0012744)**: a conversion the release verification ran left the converted root
+with no edges the advisor graph accepts, so row I2 failed and the release run could not finish. Phase 005 repaired
+the engine and the integration library; this phase carries the wording that repair changed: the plan's
+`edges: approval required` line is a question in phase 3 and the edge reaches the rerun and the apply as
+`--edge enhances:<skill>`, so both script invocations on the convert route name it. `EDGES_APPROVAL_REQUIRED`
+is the apply-without-the-approved-flag refusal beside its three siblings, not a plan question, and the row
+wording names the one in-place apply that runs no row. The evidence is the same release phase 010 T008 run and
+finding 1 of `.scratch-dc90/075-010-out/deepseek.out`.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -87,9 +96,10 @@ Run in the worktree on 2026-10-30, before phases 2 to 5 land: no convert workflo
 - Add the convert target to the router `sk-skill.md`, the menu and result states to `doctor-sk-skill-presentation.txt`, and a convert row to `doctor-setup-presentation.txt`.
 - Activate the bridge in both lists of `scoring-compatibility.json`, rerun `derive-command-bridges.cjs`, and confirm reach with `doctor-phrase-reach.cjs`.
 - Extend `doctor-sk-skill-contract.test.cjs` to assert every refusal string the YAML prints.
+- Carry the release-run repair's wording: the edge question on the plan, `EDGES_APPROVAL_REQUIRED` as an apply-without-flag refusal beside its siblings, and the one in-place apply that runs no integration row.
 
 ### Out of Scope
-- Changing `sk-skill-convert.cjs`, `lib/sk-skill-convert-transforms.cjs` or the integration writes - phases 3 to 5 own them; this phase only routes to them.
+- Changing `sk-skill-convert.cjs`, `lib/sk-skill-convert-transforms.cjs` or the integration writes - phases 3 to 5 own them, and the release-run repair that touches them is phase 005's; this phase only routes to them and prints their lines.
 - User-facing docs and changelogs - phase 7 owns them.
 - The `check --into-hub` gap report - phase 8 owns it.
 
@@ -97,15 +107,15 @@ Run in the worktree on 2026-10-30, before phases 2 to 5 land: no convert workflo
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml` | Create | Workflow: read, plan, follow-ups, approval, write, re-read, undo, report |
-| `.skilled/commands/doctor/_routes.yaml` | Modify | Add the `/doctor:sk-skill` `convert` route |
-| `.skilled/commands/doctor/sk-skill.md` | Modify | Add the convert row to the router's target table |
-| `.skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt` | Modify | Convert menu entry, plan, refusal, `OK` and `CANCELLED` states |
+| `.skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml` | Create | Workflow: read, plan, follow-ups, approval, write, re-read, undo, report; the release-run repair adds the edge question, the `EDGES_APPROVAL_REQUIRED` refusal and the precise row wording |
+| `.skilled/commands/doctor/_routes.yaml` | Modify | Add the `/doctor:sk-skill` `convert` route, with `--edge` named on both script invocations and the in-place edge write in its gate-3 location |
+| `.skilled/commands/doctor/sk-skill.md` | Modify | Add the convert row to the router's target table, and the edge question and row wording the repair states |
+| `.skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt` | Modify | Convert menu entry, plan, refusal, `OK` and `CANCELLED` states, the edge lines and the four apply-without-flag codes |
 | `.skilled/commands/doctor/assets/doctor-setup-presentation.txt` | Modify | Add the convert row to the target list (`:19-37`) |
 | `.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json` | Modify | Add convert to `families.doctor` `execution_targets` (`:194`) |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json` | Modify | Activation entry in the `typescript` and `python` lists |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json` | Modify | Regenerated by `derive-command-bridges.cjs`, never by hand |
-| `.skilled/commands/doctor/scripts/tests/doctor-sk-skill-contract.test.cjs` | Modify | Assert the convert route, the YAML statuses and every refusal string |
+| `.skilled/commands/doctor/scripts/tests/doctor-sk-skill-contract.test.cjs` | Modify | Assert the convert route, the YAML statuses, the three plan questions and every refusal string, with the four apply-without-flag codes listed as refusals |
 | `.cursor/commands/doctor-sk-skill.md`, `.codex/prompts/doctor-sk-skill.md`, `.pi/prompts/doctor-sk-skill.md`, `.hermes/prompts/doctor-sk-skill.md` | Modify | Regenerated by the sync scripts when the router changes, never by hand |
 <!-- /ANCHOR:scope -->
 

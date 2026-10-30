@@ -60,6 +60,15 @@ it. The evidence is release phase 010's `scratch/after.md`, section T009: `DRIFT
 and check rows C8 and C9 as findings on a conversion that had otherwise finished. The same run's T008 records the
 companion defect the sibling plain-skill phase repaired: row I2 failed with `ZERO-EDGE WARNINGS (1)`.
 
+**Amendment (release run, commit 0012744)**: the same release run showed the I2 failure was not only the plain
+path's: neither path had an approved edge the compiled graph would accept, and the in-place path could not take
+one at all. This phase therefore also settles the edge and the link: the plan proposes one `enhances` edge and
+apply requires it whenever the converted root would end at zero edges, `--edge` is honoured on both paths with an
+edge the root already declares left alone, an edge target is accepted only where the advisor's compiler would
+discover it, and the I6 index link is computed from the same resolved paths the direct-child test uses. The
+authorship of the convert YAML, the presentation contract and the router is phase 006's; this repair edits them
+because the codes and the printed lines changed, and phase 006 records the amendment on its side.
+
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
@@ -98,21 +107,29 @@ lrwxr-xr-x@ 1 michelkerkmeester  staff  26 30 Oct 06:20 .skilled/changelog/sk-gi
 - I3 reach and budget: `advisor_recommend --warm-only` on three approved phrases with the rank reported, plus the budget row; add opt-in `--skill <id>` to the reach script.
 - I4 regression corpus: print proposed case rows; append to `skill-advisor-regression-cases.jsonl` only for a framework skill in this repository, and for an adopter skill write them to the skill's own `benchmark/advisor-cases.jsonl`, the skill-local home this phase establishes (parent D2). `package_skill.py --check --strict` must accept that file, with a test, and `skill_advisor_regression.py --dataset <skill>/benchmark/advisor-cases.jsonl` must run it.
 - I5 runtime mirrors: `sync-skills-hermes.cjs` then `--check`; skip with n/a when `.hermes/` is absent (parent D4). Claude, OpenCode, Pi and Devin are whole-directory links and need no write.
-- I6 changelog: create `changelog/v<version>.md` when absent and the relative link `.skilled/changelog/<name> -> ../skills/<name>/changelog`.
+- I6 changelog: create `changelog/v<version>.md` when absent and the relative link `.skilled/changelog/<name> -> ../skills/<name>/changelog`, with the link target computed from the resolved paths the direct-child test reads.
 - The older Skilled in-place conversion (`applyPlan`) plans and runs the same six rows, and the undo block it prints covers what they overwrite (D3, D4).
+- The approved `enhances` edge: the plan proposes one from the advisor's ranking and apply refuses a converted root that would end at zero edges; `--edge` is accepted on both paths, the target must be a skill the advisor's compiler discovers (not a link, not route-excluded, not operator-local), and an edge the root already declares is never written twice.
 
 ### Out of Scope
-- The convert YAML, presentation states and command bridge - phase 006.
+- The convert YAML, presentation states and command bridge as phase 006 authored them; this phase's repair edits the codes and lines they print, and phase 006 records that amendment.
 - Hub changelog layout (`<hub>/parent` plus per-packet links) - hubs are refused.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/commands/doctor/scripts/sk-skill-convert.cjs` | Modify | V9 rows I1 to I6, each a separate plan line |
+| `.skilled/commands/doctor/scripts/sk-skill-convert.cjs` | Modify | V9 rows I1 to I6, each a separate plan line; the edge proposal, guard and write on both paths |
+| `.skilled/commands/doctor/scripts/lib/sk-skill-integrate.cjs` | Modify | The six rows, the enhance-target proposal and the resolved index link |
 | `.skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs` | Modify | Spawn wrappers for scan, compiler, Hermes sync and regression runner |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs` | Modify | Opt-in `--skill <id>` for a standalone root |
-| `.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` | Modify | Temp-repo integration cases |
+| `.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` | Modify | Temp-repo integration cases, the edge and in-place undo cases |
+| `.skilled/commands/doctor/scripts/tests/sk-skill-integrate.test.cjs` | Modify | Row cases, including the resolved index link and the n/a branches |
+| `.skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml` | Modify | The `--edge` question, the refusal entry and the row wording |
+| `.skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt` | Modify | The edge lines, the code tables and the result wording |
+| `.skilled/commands/doctor/sk-skill.md` | Modify | The router contract for the edge question and the rows |
+| `.skilled/commands/doctor/_routes.yaml` | Modify | The convert route's approved flags and its edge write location |
+| `.skilled/commands/doctor/scripts/tests/doctor-sk-skill-contract.test.cjs` | Modify | The code classes and the refusal wording |
 <!-- /ANCHOR:scope -->
 
 ---

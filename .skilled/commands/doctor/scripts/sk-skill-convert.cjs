@@ -164,11 +164,37 @@ function edgeRefusal(value) {
   );
 }
 
-// A candidate only helps if it exists: the compiler rejects an edge whose target is not
-// a known skill, so a name is accepted only where it resolves to a public root here.
+// The compiled graph only knows a skill its compiler discovers, so a target is
+// accepted only where the compiler would list it: a public folder that is not a
+// link, holding readable graph metadata, and not excluded from the route set.
 function edgeTargetExists(target, context) {
   if (surface.isReservedSkillName(target)) return false;
-  return context.fs.existsSync(path.join(context.skillsDir, target, 'SKILL.md'));
+  const root = path.join(context.skillsDir, target);
+  let entry;
+  try {
+    entry = context.fs.lstatSync(root);
+  } catch {
+    return false;
+  }
+  if (!entry.isDirectory() || entry.isSymbolicLink()) return false;
+  const metadata = surface.readJsonFile(path.join(root, 'graph-metadata.json'), context.fs);
+  if (!metadata || typeof metadata !== 'object') return false;
+  const id = typeof metadata.skill_id === 'string' && metadata.skill_id ? metadata.skill_id : target;
+  return !routeExcludedSkillIds(context).has(id);
+}
+
+// The compiler drops a route-excluded skill before it builds the graph, so an edge
+// naming one is as unknown to the validator as an edge to a folder that is not there.
+function routeExcludedSkillIds(context) {
+  const compiler = context.paths && context.paths.skillGraphCompiler;
+  if (!compiler) return new Set();
+  const configDirectory = path.join(path.dirname(compiler), '..', 'config');
+  const local = path.join(configDirectory, 'route-exclusions.local.json');
+  const committed = path.join(configDirectory, 'route-exclusions.json');
+  const selected = context.fs.existsSync(local) ? local : committed;
+  const parsed = surface.readJsonFile(selected, context.fs);
+  const ids = parsed && Array.isArray(parsed.excludedSkillIds) ? parsed.excludedSkillIds : [];
+  return new Set(ids.filter((id) => typeof id === 'string' && id));
 }
 
 function parseEdgeApprovals(values, context, name) {
@@ -193,6 +219,53 @@ function edgeContextSentence(type, target, description) {
   const text = String(description || '').replace(/\s+/g, ' ').trim();
   const stem = text.length > 160 ? `${text.slice(0, 157).trimEnd()}...` : text;
   return `${type === 'enhances' ? 'Enhances' : type} ${target}: ${stem}`;
+}
+
+// The edges a root declares today, read from the same file the compiler reads, so a
+// run can tell a skill the advisor accepts from one it counts as an orphan.
+function readDeclaredEdges(skillRoot, fileSystem) {
+  const metadata = surface.readJsonFile(path.join(skillRoot, 'graph-metadata.json'), fileSystem);
+  const edges = metadata && metadata.edges && typeof metadata.edges === 'object' ? metadata.edges : {};
+  const declared = [];
+  for (const group of EDGE_GROUPS) {
+    for (const edge of Array.isArray(edges[group]) ? edges[group] : []) {
+      if (edge && typeof edge.target === 'string') declared.push({ type: group, target: edge.target });
+    }
+  }
+  return declared;
+}
+
+function readDeclaredPhrases(skillRoot, fileSystem) {
+  const metadata = surface.readJsonFile(path.join(skillRoot, 'graph-metadata.json'), fileSystem);
+  return metadata && Array.isArray(metadata.intent_signals) ? metadata.intent_signals : [];
+}
+
+// The edge decisions a plan carries. The advisor graph refuses a skill it can see and
+// which declares no edges, so the question is asked only when the converted root would
+// end at zero. An approved edge the root already declares is a no-op rather than a
+// second copy of the same relationship.
+function planEdgeApprovals(options) {
+  const { skillRoot, name, context, decisions, description, phrases, scaffolded } = options;
+  const fileSystem = context.fs;
+  const metadataPresent = fileSystem.existsSync(path.join(skillRoot, 'graph-metadata.json'));
+  const declared = readDeclaredEdges(skillRoot, fileSystem);
+  const approved = parseEdgeApprovals(decisions.edges, context, name)
+    .filter((edge) => !declared.some((declaredEdge) => (
+      declaredEdge.type === edge.type && declaredEdge.target === edge.target)))
+    .map((edge) => ({ ...edge, context: edgeContextSentence(edge.type, edge.target, description) }));
+  const edgeCount = declared.length + approved.length;
+  // A root that ships no metadata file is invisible to the compiler, so the graph's
+  // zero-edge refusal is not what stops it; the plain path scaffolds the file, and an
+  // in-place run that approves an edge creates its own from the same scaffold.
+  const edgeQuestion = (scaffolded || metadataPresent) && edgeCount === 0;
+  const proposal = edgeQuestion
+    ? planEdgeProposal(context, name, phrases, approved)
+    : { candidates: [], unavailable: false, detail: null };
+  return { metadataPresent, declared, approved, edgeCount, edgeQuestion, proposal };
+}
+
+function edgeLabel(edge) {
+  return `${edge.type} -> ${edge.target}`;
 }
 
 // The advisor is asked only while the run has no approved edge: a plan that already
@@ -485,15 +558,18 @@ function buildPlainPlan(skillRoot, skill, context, decisions) {
   }
   const proposedTrim = sourceDescriptionTrim(skill.fields.description);
   // The edge is the last approval a plain conversion needs: the scaffold starts with an
-  // empty edges map, so the plan proposes the name the advisor ranks and writes nothing
-  // until the operator names one with --edge.
+  // empty edges map unless the source already ships one, so the plan asks only when the
+  // staged root would end with no edges and writes nothing until one is approved.
   const edgeDescription = descriptionTrim || skill.fields.description;
-  const approvedEdges = parseEdgeApprovals(decisions.edges, context, name)
-    .map((edge) => ({
-      ...edge,
-      context: edgeContextSentence(edge.type, edge.target, edgeDescription),
-    }));
-  const edgeProposal = planEdgeProposal(context, name, phrases, approvedEdges);
+  const edgePlan = planEdgeApprovals({
+    skillRoot,
+    name,
+    context,
+    decisions,
+    description: edgeDescription,
+    phrases,
+    scaffolded: true,
+  });
   const agentSkill = getAgentSkillText(decisions.agentOutput, context);
   const nextBodySource = agentSkill ? reshapeBody(skill.text, agentSkill) : skill.text;
   let template;
@@ -591,8 +667,10 @@ function buildPlainPlan(skillRoot, skill, context, decisions) {
     suggestedPhrases,
     proposedTools,
     allowedTools: tools,
-    approvedEdges,
-    edgeProposal,
+    approvedEdges: edgePlan.approved,
+    edgeProposal: edgePlan.proposal,
+    edgeCount: edgePlan.edgeCount,
+    edgeQuestion: edgePlan.edgeQuestion,
     resourceDocs,
     renames: [...renames.entries()],
     mapResources,
@@ -802,6 +880,27 @@ function buildPlan(target, context, decisions = {}) {
     steps.push({ kind: 'overwrite', file: skillFile, detail: 'Remove inline machine router and link to ROUTER.md.' });
   }
   steps.push({ kind: 'create', file: routerFile, detail: 'Create sibling ROUTER.md from the router template.' });
+  // An in-place root keeps its own graph metadata, so an approved edge is a write into
+  // that file; a root without one gets the scaffold's file before its first edge.
+  const edgePlan = planEdgeApprovals({
+    skillRoot,
+    name,
+    context,
+    decisions,
+    description: descriptionTrim || skill.fields.description,
+    phrases: readDeclaredPhrases(skillRoot, fileSystem),
+    scaffolded: false,
+  });
+  if (edgePlan.approved.length) {
+    const labels = edgePlan.approved.map(edgeLabel).join(', ');
+    steps.push({
+      kind: edgePlan.metadataPresent ? 'overwrite' : 'scaffold',
+      file: path.join(skillRoot, 'graph-metadata.json'),
+      detail: edgePlan.metadataPresent
+        ? `Write the approved edge ${labels} into graph-metadata.json.`
+        : `Copy graph-metadata.json from the skill scaffold and write the approved edge ${labels} into it.`,
+    });
+  }
   // A converted skill is still unreachable while its mirrors drift and its compiled graph
   // is stale, so this path plans the same rows as the plain one and runs them after the
   // router proof. The plan the operator approves covers the reach writes as well.
@@ -828,6 +927,11 @@ function buildPlan(target, context, decisions = {}) {
     nextSkill: moved.skillMd,
     nextRouter: moved.routerMd,
     steps,
+    approvedEdges: edgePlan.approved,
+    edgeProposal: edgePlan.proposal,
+    edgeCount: edgePlan.edgeCount,
+    edgeQuestion: edgePlan.edgeQuestion,
+    metadataPresent: edgePlan.metadataPresent,
     integrationPlan: integrationPlan.lines,
     integrationWrites: integrationPlan.writes,
     followUps: planFollowUps(template, moved.skillMd, moved.routerMd),
@@ -1032,9 +1136,47 @@ function writeApprovedEdges(metadata, plan) {
     if (!Array.isArray(edges[group])) edges[group] = [];
   }
   for (const edge of plan.approvedEdges || []) {
+    // A relationship the root already declares is not a second relationship, and the
+    // operator approving it again is not a reason to write it twice.
+    const declared = edges[edge.type].some((entry) => entry && entry.target === edge.target);
+    if (declared) continue;
     edges[edge.type].push({ target: edge.target, weight: EDGE_WEIGHT, context: edge.context });
   }
   metadata.edges = edges;
+}
+
+// The edge is the only field this run changes in a root's own graph metadata, so the
+// file is read, given the approved edges and written back whole ahead of the rows.
+function writeApprovedEdgesFile(skillRoot, plan, fileSystem) {
+  const metadataFile = path.join(skillRoot, 'graph-metadata.json');
+  let metadata;
+  try {
+    metadata = JSON.parse(fileSystem.readFileSync(metadataFile, 'utf8'));
+  } catch (error) {
+    throw new ConvertError('GRAPH_METADATA_INVALID', `The conversion could not read graph-metadata.json: ${firstLine(error.message)}`, 1);
+  }
+  writeApprovedEdges(metadata, plan);
+  fileSystem.writeFileSync(metadataFile, `${JSON.stringify(metadata, null, 2)}\n`, 'utf8');
+}
+
+// An older Skilled root may ship no graph metadata, and an approved edge needs a file
+// to live in. The scaffold is the one place that knows its shape, so a throwaway
+// initialisation supplies that one file and nothing the root already holds is touched.
+function ensureGraphMetadata(plan, context) {
+  const fileSystem = context.fs;
+  const tempParent = fs.mkdtempSync(path.join(os.tmpdir(), 'sk-skill-convert-'));
+  try {
+    runStep(context, 'INIT_SKILL_FAILED', pythonExecutable(context), [
+      path.join(skillCreatorDirectory(context), 'init_skill.py'), plan.name, '--path', tempParent,
+    ], 'init_skill.py');
+    fileSystem.copyFileSync(
+      path.join(tempParent, plan.name, 'graph-metadata.json'),
+      path.join(plan.skillRoot, 'graph-metadata.json'),
+      fileSystem.constants.COPYFILE_EXCL,
+    );
+  } finally {
+    fs.rmSync(tempParent, { recursive: true, force: true });
+  }
 }
 
 function updateGraphMetadata(skillRoot, plan, fileSystem) {
@@ -1186,7 +1328,9 @@ function applyPlainPlan(plan, context) {
   }
   // An empty edges map is not a finished conversion: the advisor graph counts such a
   // skill as an orphan and refuses to compile, so the edge is approved or nothing runs.
-  if (plan.approvedEdges.length === 0) {
+  // The guard reads the count the staged root will end with, which is what makes a
+  // source that already ships its own edge sufficient on its own.
+  if (plan.edgeQuestion) {
     throw edgesApprovalRequired(plan.edgeProposal);
   }
 
@@ -1348,7 +1492,11 @@ function removeUnwrittenBackup(fileSystem, backupDirectory, backupBase, backupBa
 function applyPlan(plan, context) {
   if (plan.allowedToolsMissing) throw allowedToolsApprovalRequired(plan.proposedTools);
   if (plan.noop) return { changed: false, message: plan.message };
+  // The root's own edge map decides whether the conversion is finished, so a root the
+  // advisor graph would still refuse never reaches the first write.
+  if (!plan.frontmatterOnly && plan.edgeQuestion) throw edgesApprovalRequired(plan.edgeProposal);
   const fileSystem = context.fs;
+  const metadataFile = path.join(plan.skillRoot, 'graph-metadata.json');
   const currentSkill = fileSystem.readFileSync(plan.skillFile, 'utf8');
   if (currentSkill !== plan.originalSkill) {
     throw new ConvertError('STALE_PLAN', 'SKILL.md changed after planning; no files were written.', 1);
@@ -1364,6 +1512,9 @@ function applyPlan(plan, context) {
   const snapshotDirectory = path.join(backupDirectory, 'before');
   let writesStarted = false;
   let createdRouter = false;
+  let metadataBackup = null;
+  let metadataCreated = false;
+  let metadataWritten = false;
   try {
     fileSystem.copyFileSync(plan.skillFile, backupFile, fileSystem.constants.COPYFILE_EXCL);
     ensureInside(backupDirectory, snapshotDirectory);
@@ -1401,6 +1552,19 @@ function applyPlan(plan, context) {
     if (!isDeepStrictEqual(beforeSemantics, routerSemantics(after))) {
       throw new ConvertError('ROUTER_SEMANTICS_CHANGED', 'parseRouter semantics changed after the move; restoring the original skill files.', 1);
     }
+    // The edge belongs to the same format work, and it is written before the rows so
+    // the compiled graph reads the file the check engine does. The file it replaces is
+    // backed up beside SKILL.md, and a file it has to create is removed by the undo.
+    if (!plan.frontmatterOnly && plan.approvedEdges.length) {
+      metadataCreated = !fileSystem.existsSync(metadataFile);
+      if (!metadataCreated) {
+        metadataBackup = path.join(backupDirectory, 'graph-metadata.json');
+        fileSystem.copyFileSync(metadataFile, metadataBackup, fileSystem.constants.COPYFILE_EXCL);
+      }
+      metadataWritten = true;
+      if (metadataCreated) ensureGraphMetadata(plan, context);
+      writeApprovedEdgesFile(plan.skillRoot, plan, fileSystem);
+    }
     // The format work is done, so the same rows the plain path ends with run here: a
     // converted skill whose Hermes copy drifts or whose compiled graph is stale is not
     // wired, and the backup beside this one is what makes their overwrites undoable. A
@@ -1419,8 +1583,11 @@ function applyPlan(plan, context) {
     return {
       changed: true,
       backupDirectory,
-      backedUpFiles: [backupFile],
-      createdFiles: plan.frontmatterOnly ? [] : [plan.routerFile],
+      backedUpFiles: metadataBackup ? [backupFile, metadataBackup] : [backupFile],
+      createdFiles: [
+        ...(plan.frontmatterOnly ? [] : [plan.routerFile]),
+        ...(metadataCreated ? [metadataFile] : []),
+      ],
       integration,
       integrationWrites: integration ? integration.writes : [],
       message: plan.frontmatterOnly
@@ -1433,6 +1600,10 @@ function applyPlan(plan, context) {
       if (writesStarted) {
         fileSystem.writeFileSync(plan.skillFile, fileSystem.readFileSync(backupFile));
         if (createdRouter && fileSystem.existsSync(plan.routerFile)) fileSystem.unlinkSync(plan.routerFile);
+        if (metadataWritten) {
+          if (metadataBackup) fileSystem.copyFileSync(metadataBackup, metadataFile);
+          else if (fileSystem.existsSync(metadataFile)) fileSystem.unlinkSync(metadataFile);
+        }
       } else {
         removeUnwrittenBackup(fileSystem, backupDirectory, backupBase, backupBaseExisted);
       }
@@ -1453,6 +1624,9 @@ function appendEdgeLines(lines, plan) {
     }
     return;
   }
+  // A root that already declares an edge needs no question; the line would offer a
+  // choice the graph has already accepted.
+  if (!plan.edgeQuestion) return;
   const first = plan.edgeProposal.candidates[0];
   if (!first) {
     const reason = plan.edgeProposal.unavailable
@@ -1501,6 +1675,9 @@ function renderPlan(plan) {
     lines.push(`allowed-tools: approval required; propose ${JSON.stringify(plan.proposedTools)}`);
     lines.push('No allowed-tools field will be written until approved with repeated --allowed-tool values or one --allowed-tools list.');
   }
+  // The older Skilled path keeps its own graph metadata, so its edge question is asked
+  // from that file; a frontmatter-only normalisation plans no edge at all.
+  if (plan.kind !== 'plain' && plan.edgeQuestion !== undefined) appendEdgeLines(lines, plan);
   // The integration rows are planned here and run after the format gates, so the
   // plan the operator approves covers the reach writes as well as the file copy.
   if (plan.integrationPlan && plan.integrationPlan.length) {

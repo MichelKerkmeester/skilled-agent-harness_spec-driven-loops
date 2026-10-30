@@ -49,7 +49,12 @@
       ".skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
-      ".skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs"
+      ".skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs",
+      ".skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml",
+      ".skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt",
+      ".skilled/commands/doctor/sk-skill.md",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/scripts/tests/doctor-sk-skill-contract.test.cjs"
     ],
     "entities": [
       {
@@ -137,6 +142,36 @@
         "source": "derived"
       },
       {
+        "name": "doctor-sk-skill-convert.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-skill-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/sk-skill.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-skill-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-sk-skill-contract.test.cjs",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -165,41 +200,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Append",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Ordered",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The advisor reads only direct children of `.skilled/skills` holding `graph-metadata.json` (`projection.ts:1536-1556`), the compiled `skill-graph.json` is CI-gated for freshness (`routing-registry-drift.yml:241-246`), Hermes holds generated skill copies by frontmatter name (`sync-skills-hermes.cjs:150-152`), and the changelog index is a set of relative links that no script writes",
     "created_at": "2026-10-30T05:21:15Z",
-    "last_save_at": "2026-10-30T13:06:21.250Z",
+    "last_save_at": "2026-10-30T13:35:04.444Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +215,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d700ffaa9061dea8ee64f16e85b5bb4a307908d815926fffc9c67d77b3f7641d",
+    "source_fingerprint": "sha256:83e6aadcb8d87f81f9106fafe3a0c28f21b8da5f2ee4ee58136d11ebe217830a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dd298f8ff96d33efbd17fc27574f6b50a3a3165d86be25a82d4f26d684fc9db4",
+      "spec.md": "3ba3032a5e7d7ee6c799518ce15491aca043cbc9b41da791f0a156cce3a8d8ff",
       "plan.md": "6724ef32e19be4d82510be8480a6af05cf2f7c582f50ba41dfc27cd2d21cca9d",
       "tasks.md": "95a5f887178f14c2f676ecb47142e14baf2cfdf676f3622b6af2565c12096c31",
       "implementation-summary.md": "5a384fe370c12ff64a580e5e20c21a80c7187dbd71d5ed822a0019bbdd33f886"
