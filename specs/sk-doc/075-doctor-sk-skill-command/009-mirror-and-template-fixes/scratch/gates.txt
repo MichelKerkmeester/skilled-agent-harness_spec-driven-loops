@@ -1,0 +1,105 @@
+# Gate run from the final state
+
+## rg -c sync-skills-hermes.cjs --check
+
+```text
+.skilled/commands/doctor/_routes.yaml:1
+.skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml:1
+exit 0
+```
+
+## rg -c sync-prompts-hermes.cjs --check
+
+```text
+.skilled/commands/doctor/_routes.yaml:1
+.skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml:1
+exit 0
+```
+
+## route-validate
+
+```text
+WARN: H1: flag '--dry-run' appears in multiple /doctor:skill-advisor targets (allowed but informational): tune, rebuild
+WARN: H1: flag '--dry-run' appears in multiple /doctor:git targets (allowed but informational): hooks, standards
+WARN: H1: flag '--profile' appears in multiple /doctor:ci targets (allowed but informational): report, scaffold, toggle
+INFO: Manifest:     /Users/michelkerkmeester/worktrees/public/282-doctor-mirror-fixes/.skilled/commands/doctor/_routes.yaml
+INFO: Doctor dir:   /Users/michelkerkmeester/worktrees/public/282-doctor-mirror-fixes/.skilled/commands/doctor
+INFO: Assets:       /Users/michelkerkmeester/worktrees/public/282-doctor-mirror-fixes/.skilled/commands/doctor/assets
+INFO: Repo root:    /Users/michelkerkmeester/worktrees/public/282-doctor-mirror-fixes
+
+PASS: A1: manifest parses as YAML
+PASS: A2: schema_version is 1
+PASS: B1: .routes has 18 entries
+PASS: B2: all routes have required keys
+PASS: B3: every route's command names an existing doctor router
+PASS: C1: no duplicate target names within a command
+PASS: D1: all route YAML assets exist
+PASS: E1: all mutation classes valid
+PASS: F2: all route mcp_tools are subsets of their router's allowed-tools union
+PASS: F3: every cli_commands entry invokes the advisor CLI with a known command
+PASS: G1: every route has ≥1 trigger phrase
+PASS: G2: lead_phrases are valid across routes, standalone and mcp_subroutes
+PASS: G3: default_target is boolean, read-only and unique per command
+PASS: I1: all route script_invocations resolve to existing local scripts
+PASS: J1: targets are in parity with their router and presentation across 8 commands
+PASS: K1/K2: no read-only route declares a write or grants a mutating advisor command
+PASS: L1: all 46 route script invocations are invoked by their workflow YAML
+
+─────────────────────────────────────────────────────────────────
+OK: route-validate — 18 routes validated, 3 warnings
+exit 0
+```
+
+## contract test
+
+```text
+✔ the route declares both Hermes checks in their check-only form (8.956209ms)
+✔ the workflow names both Hermes checks and reports n/a when .hermes/ is absent (4.344875ms)
+✔ the output block carries a generator repair line for each Hermes check (3.212792ms)
+✔ the route stays read-only and never runs a mirror generator in write mode (5.870875ms)
+✔ the contract fails when a Hermes line is removed from the route (5.621209ms)
+✔ the contract fails when a Hermes asset, step or repair line leaves the workflow (11.038209ms)
+✔ the contract fails when a step loses its n/a rule or names no surface (3.679334ms)
+ℹ tests 7
+ℹ pass 7
+ℹ fail 0
+exit 0
+```
+
+## create-journey-proof
+
+```text
+[sk-doc] create journey proof passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs (586.223584ms)
+ℹ tests 1
+ℹ pass 1
+ℹ fail 0
+exit 0
+```
+
+## run-all
+
+```text
+[run-all] PASS: node:test (31 files)
+[run-all] PASS: unittest (1 files)
+[run-all] PASS: check-mcp-mutation-class.test.sh
+[run-all] PASS: mcp-doctor.test.sh
+[run-all] PASS: route-validate.test.sh
+[run-all] PASS: route-validate.sh --self-test
+[run-all] PASS: skill-graph freshness panel (vitest)
+[run-all] 7 suite(s) passed, 0 failed
+exit 0
+```
+
+## rg -n in-SKILL.md router
+
+```text
+exit 1 (no output above means no hit)
+```
+
+## the template parses and keeps its keys
+
+```text
+keys: _template,workflowMode,packet,leafRoots,excludeIndexFiles,resourceContractVersion,_note
+exit 0
+```

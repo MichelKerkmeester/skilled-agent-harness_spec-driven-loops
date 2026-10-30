@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-10-30 |
 | **Branch** | `worktrees/281-doctor-skill-command` |
 | **Parent Spec** | ../spec.md |
@@ -91,7 +91,7 @@ Run in the worktree on 2026-10-30. A wider sweep over `.skilled/skills/*/assets`
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.skilled/commands/doctor/_routes.yaml` | Modify | Two `script_invocations` lines in the runtime-mirrors route |
-| `.skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml` | Modify | Two `upstream_assets` entries, two checker steps with the n/a rule, two repair lines |
+| `.skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml` | Modify (also its `purpose` line) | Two `upstream_assets` entries, two checker steps with the n/a rule, two repair lines |
 | `.skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs` | Create | Asserts the route and YAML both name the Hermes skills and prompts checks |
 | `.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-leaf-manifest-config-template.json` | Modify | One-line wording fix in `_template` |
 <!-- /ANCHOR:scope -->

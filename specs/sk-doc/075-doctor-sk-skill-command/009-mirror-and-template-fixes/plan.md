@@ -35,14 +35,14 @@ Two small fixes. The runtime-mirrors route gains the Hermes skills check in its 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified: none; `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` runs from the repository root
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified: none; `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` runs from the repository root
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 and `rg -n "in-SKILL.md router" .skilled/skills` exits 1
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 and `rg -n "in-SKILL.md router" .skilled/skills` exits 1
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

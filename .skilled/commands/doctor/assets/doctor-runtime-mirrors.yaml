@@ -2,7 +2,7 @@
 # DOCTOR: RUNTIME MIRROR PARITY (READ-ONLY DIAGNOSTIC)
 # ─────────────────────────────────────────────────────────────────
 role: Diagnostic Operator reporting whether every runtime config dir still mirrors its canonical source
-purpose: Detect drift across the agent, command, prompt and hook mirrors that .claude, .codex, .cursor and .devin derive from .skilled, plus adapter-path resolution drift in the Claude, Codex, Cursor and Devin hook fallback chains
+purpose: Detect drift across the agent, command, prompt and hook mirrors that .claude, .codex, .cursor, .devin, .pi and .hermes derive from .skilled, plus adapter-path resolution drift in the Claude, Codex, Cursor and Devin hook fallback chains
 action: Run every upstream-assets checker plus the hook-adapter fallback health checks -> aggregate their verdicts -> report per-surface drift
 skill_owner: ".skilled/skills/system-spec-kit/runtime/cli/"
 
@@ -39,6 +39,8 @@ upstream_assets:
   codex_hooks_installer: ".skilled/bin/install-codex-hooks.mjs"
   pi_agents: ".skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs"
   pi_prompts: ".skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs"
+  hermes_skills: ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs"
+  hermes_prompts: ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs"
 
 # ─────────────────────────────────────────────────────────────────
 # HOOK-ADAPTER FALLBACK HEALTH CHECKS
@@ -137,6 +139,8 @@ execution:
     - "Run upstream_assets.codex_hooks_installer with --check --allow-worktree. Covers the user-global ~/.codex/hooks.json against the repo's .codex/hooks.json, including orphaned entries whose .skilled adapter no longer exists on disk. Explicit OK output = in sync; a drift report = drift; refusal, error, or missing affirmative output = error."
     - "Run upstream_assets.pi_agents with --check. Covers the generated .pi/agents/*.md. Exit 0 = in sync, 1 = drift."
     - "Run upstream_assets.pi_prompts with --check. Covers the generated .pi/prompts/*.md stubs. Exit 0 = in sync, 1 = drift."
+    - "Run upstream_assets.hermes_skills, the command node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check. Covers the generated .hermes/skills/<name>/ copies of each SKILL.md and its sibling ROUTER.md. When .hermes/ is absent, report the row as n/a (no .hermes/ tree) without running the check; an n/a row leaves STATUS unchanged, and this run never creates that directory. Exit 0 = in sync, 1 = drift."
+    - "Run upstream_assets.hermes_prompts, the command node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs --check. Covers the generated .hermes/prompts/*.md stubs. When .hermes/ is absent, report the row as n/a (no .hermes/ tree) without running the check; an n/a row leaves STATUS unchanged, and this run never creates that directory. Exit 0 = in sync, 1 = drift."
     - "For each row in hook_adapter_fallback_health_checks, run its file_exists check (a plain path-existence read, no execution of the adapter or the shell command that wraps it). Collect every row whose path does not resolve as a degraded hook adapter, keyed by host:event:path."
     - "Aggregate: report each surface with its own verdict rather than a single pass/fail, so the operator learns which mirror moved."
 
@@ -144,7 +148,7 @@ execution:
 # OUTPUT
 # ─────────────────────────────────────────────────────────────────
 output: |
-  STATUS=OK when every checker reports in sync.
+  STATUS=OK when every checker reports in sync, or n/a for a Hermes row while .hermes/ is absent.
   STATUS=DRIFT when any checker reports drift, listing each drifting surface and the repair command for it:
     runtime mirrors  -> node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
     codex agents     -> node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs
@@ -152,7 +156,11 @@ output: |
     codex hooks      -> node .skilled/bin/install-codex-hooks.mjs
     pi agents        -> node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs
     pi prompts       -> node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs
+    hermes skills    -> node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs
+    hermes prompts   -> node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs
     command catalog  -> update the root and family indexes, group counts, and hub metadata from command frontmatter
+  While .hermes/ is absent the two Hermes rows read n/a (no .hermes/ tree), never in sync, and leave
+  STATUS unchanged: the mirror does not exist yet, and this run never creates it. Their repair lines are the generator without --check, run once the tree exists.
   The agent roster check has no generator; its drift is repaired by the runtime-mirrors generator or by hand
   for the authored surfaces (.skilled/agents, .codex/agents).
   Hook CONFIG STRUCTURE is deliberately out of scope for mirroring: the four runtimes use incompatible event
