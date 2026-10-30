@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f009e7d7a12b428d263d385a93d2c5ef042706fe592fdfa3b690fe4f847027c7",
+  "corpusHash": "55497cb3f7a59ef74dc6ba15198bdb20b74f5d8ac32deba0d99e75ac3485a8a8",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27270,7 +27270,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0b125980c5c44ca026ba0baf5c5d202f7e77931ce79ccf492821f504d1564b73",
+  "manifestHash": "a57230e98d030dedb82ec30aa8ed4a29c080438bc04835f4c8cf86a234d06382",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
