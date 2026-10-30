@@ -54,11 +54,11 @@ This phase adds the `convert` route to `/doctor:sk-skill` and the workflow that 
 Doctor route plus workflow YAML (the `/doctor:ci scaffold` shape).
 
 ### Key Components
-- **`doctor-sk-skill-convert.yaml`**: phases read, refuse, plan and approval, write, re-read, undo; statuses `OK`, `CANCELLED`, `FAIL`.
-- **`_routes.yaml` convert route**: `mutating: mutates`, `script_invocations` naming `sk-skill-convert.cjs`, trigger phrases the bridge deriver copies into the advisor.
+- **`doctor-sk-skill-convert.yaml`**: phases read, plan, follow-ups, approval, write, re-read, undo, report; statuses `OK`, `CANCELLED`, `FAIL`, with the dry run ending `OK`.
+- **`_routes.yaml` convert route**: `mutating: mutates`, `script_invocations` naming the plan, the preserve proof, the apply and the re-read, and the engine's real write set as its gate-3 location.
 
 ### Data Flow
-The router `sk-skill.md` resolves `convert` to the route, the route names the YAML, the YAML runs `sk-skill-convert.cjs plan`, renders the plan from the presentation contract, asks once, then runs `sk-skill-convert.cjs apply` and `sk-skill-check.cjs` to re-read and prints the undo list.
+The router `sk-skill.md` resolves `convert` to the route, the route names the YAML, the YAML runs `sk-skill-convert.cjs plan`, asks the two field follow-ups with their own yes, proves the plain-skill prose with `preserve --snapshot`, reruns the plan with the approved flags, renders that plan, asks the conversion question, runs `apply --apply` with the same flags, re-reads the converted root through `sk-skill-check.cjs`, prints the engine's undo block, and renders the result.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -66,18 +66,21 @@ The router `sk-skill.md` resolves `convert` to the route, the route names the YA
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-N/A: this phase adds a feature route, not a fix.
+This phase also repairs the surfaces two reviews found out of line with the engine, which grew a plain-skill path, the `--description-trim` and `--allowed-tools` flags, a `preserve --snapshot` check and a printed undo block while the phase was in review.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `route-validate.py` | Enforces asset existence, mutation class, target parity and `script_invocations` use (`.skilled/commands/doctor/scripts/route-validate.py:12-33`) | unchanged | `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 |
-| `doctor-update-contract.test.cjs` | Reads `families.doctor` (`.skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs:42-46`) | unchanged | `run-all.sh` PASS |
+| `sk-skill-convert.cjs` and its `lib/` | Own the conversion: plan, apply, preserve, the integration rows and the undo block | unchanged, and read as the source of truth for every code and every flag | `node .skilled/commands/doctor/scripts/sk-skill-convert.cjs` prints the usage block the workflow quotes, exit 2 |
+| `doctor-sk-skill-convert.yaml` | Workflow: read, plan, follow-ups, approval, write, re-read, undo, report | rewritten in the engine's order, with the engine's write set as its mutation boundary | `node --test …/doctor-sk-skill-contract.test.cjs` 32/32 |
+| `doctor-sk-skill-presentation.txt` | Plan, questions, refusals, results | the two field messages became questions, the refusal table matches the derived code list, and the results carry the engine's undo block | the contract test's code-coverage and undo assertions |
+| `route-validate.py` | Enforces asset existence, mutation class, target parity and `script_invocations` use | unchanged | `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0, 51 invocations covered |
+| `doctor-update-contract.test.cjs` | Reads `families.doctor` | unchanged | `run-all.sh` PASS |
 
 Required inventories:
 - Same-class producers: `rg -n 'mutating: mutates' .skilled/commands/doctor/_routes.yaml`.
 - Consumers of changed symbols: `rg -n 'doctor-sk-skill-convert' . --glob '*.yaml' --glob '*.cjs' --glob '*.md'`.
-- Matrix axes: answer (yes, no, other) by input kind (older Skilled, plain, refused).
-- Algorithm invariant: no write before yes.
+- Matrix axes: answer (yes, no, other) by input kind (older Skilled converted in place, plain skill staged from an outside path, refused).
+- Algorithm invariant: no write before the plan has been printed and the operator has answered yes.
 <!-- /ANCHOR:affected-surfaces -->
 
 

@@ -1,6 +1,6 @@
 ---
 description: "Check a skill against the Skilled format, or convert one to it, plan first."
-argument-hint: "[check|convert] [<name-or-path>] [--dry-run] [--json]"
+argument-hint: "[check|convert] [<name-or-path>] [--json] [--into-hub <hub>] [--dry-run]"
 allowed-tools: Read, Bash
 ---
 <!-- skill_agent: sk-doc -->
@@ -34,7 +34,7 @@ Load the presentation contract before showing the menu, a plan, a result table, 
 - `execution_mode` is always `INTERACTIVE`. No `:auto` or `:confirm` suffix is supported.
 - The first positional token of `$ARGUMENTS` is the target. With no token the target is `check`, the route marked `default_target` because it only reads, so `/doctor:sk-skill` and `/doctor:sk-skill check` both run it. A bare `/doctor:sk-skill` never reaches `convert`, which writes. `list`, `?` and `menu` show the presentation contract's startup menu instead of binding a target.
 - The next positional token is a skill name or path, and the workflow passes it to the engine unchanged. For `check` no name checks the whole fleet and prints one row per skill root. For `convert` the name is required: ask for it once, rich enough to resolve to one skill folder, and never infer it from the conversation, an open file or the previous target.
-- `--json` belongs to `check` and prints the engine's JSON report and nothing else. `--dry-run` belongs to `convert` and prints the plan, then stops before the approval. `--into-hub <hub>` belongs to `check` too.
+- `--json` belongs to `check` and prints the engine's JSON report and nothing else. `--dry-run` belongs to `convert`: it prints the plan with the field values the engine proposes, then ends as a dry run without asking a question. `--into-hub <hub>` belongs to `check` too.
 - `--into-hub <hub>` prints the hub gap report instead of the format rows: the eleven surfaces a skill or mode must land on under that hub, each with the probe it ran. It reads and never writes, and mode-into-hub conversion stays refused.
 - `--into-hub` takes the next token as its value, so the hub is never a second skill argument; `--into-hub=<hub>` names it inline.
 - An unknown target, an unknown flag, a flag from the other target, a second skill argument, or `--into-hub` without a hub fails before YAML load with the presentation contract's wording.
@@ -56,7 +56,7 @@ Load the presentation contract before showing the menu, a plan, a result table, 
 | `<name-or-path>` | `convert` | Convert that one skill folder in place, after a printed plan and an explicit yes |
 | `--json` | `check` | Print the engine's JSON report and nothing else |
 | `--into-hub <hub>` | `check` | Report the eleven hub integration surfaces for the skill or mode named, or for the hub alone, instead of the format rows |
-| `--dry-run` | `convert` | Print the plan and the follow-ups, then stop before the approval and write nothing |
+| `--dry-run` | `convert` | Print the plan and the follow-ups it names, end as a dry run, ask nothing and write nothing |
 | `list`, `?`, `menu` | the command | Show the startup menu and the route manifest, and load no workflow |
 
 1. Read `.skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt`.
@@ -77,8 +77,11 @@ The argument failure wording, the startup menu, the fleet and deep result tables
 
 1. Bind the target from the first positional token, `check` when there is none, then resolve its route from `_routes.yaml`.
 2. `check` runs `sk-skill-check.cjs` once, adding the skill name or path, `--json` and `--into-hub <hub>` only when the operator passed them. The engine reports rows C1 to C13, or the eleven hub gap rows, and writes nothing.
-3. `convert` runs `sk-skill-convert.cjs plan` once. A refusal stops the run with its reason; otherwise the plan, its follow-ups and the backup folder are printed, and nothing is written.
-4. `convert` asks one question per write: the trim and the allowed-tools proposal each get their own yes, then the conversion gets one. Any answer but yes ends the run with nothing changed.
-5. On yes, `convert` runs `sk-skill-convert.cjs apply --apply`, re-reads the skill through `sk-skill-check.cjs`, and prints the router source line and the undo commands.
-6. Render the fleet table, the deep report or the conversion result through the presentation contract, and name the repair or the next command for the operator.
-7. Close with the result template's status line and the next command the operator can run.
+3. `convert` runs `sk-skill-convert.cjs plan` once. The plan call writes nothing. A refusal stops the run with its own code and reason; `DESCRIPTION_TOO_LONG` and `ALLOWED_TOOLS_MISSING` are not refusals, they are the field follow-ups of the next step.
+4. `convert` asks each follow-up with its own yes: the trimmed description, and the allowed-tools list, which it proposes as `[Read, Grep, Glob]` plus `Bash` when the skill has a `scripts/` folder and which the operator may edit. A no at either question ends the run as cancelled, names what was declined, and writes nothing.
+5. `convert` reruns `sk-skill-convert.cjs plan` with `--description-trim` and/or `--allowed-tools`, so the engine prints each approved field as its own plan line, and prints that plan. For a plain skill it first has the workflow agent reshape the SKILL.md prose into `--agent-output` and proves the body survived with `sk-skill-convert.cjs preserve --snapshot <dir> <staging dir>`; a preservation failure stops the run. With `--dry-run`, the run ends here as a dry run and asks nothing.
+6. `convert` asks the conversion question against that plan. A no ends the run as cancelled, naming the declined conversion, and writes nothing.
+7. `convert` runs `sk-skill-convert.cjs apply --apply` with the same flags on yes, and re-reads the converted root through `sk-skill-check.cjs`. The workflow never edits a SKILL.md field itself.
+8. `convert` prints the undo block the engine printed, exactly as printed, and never composes or runs one of its own.
+9. Render the fleet table, the deep report or the conversion result through the presentation contract, and name the repair or the next command for the operator.
+10. Close with the result template's status line and the next command the operator can run.

@@ -50,33 +50,49 @@ const CONVERT_ASSET = 'doctor-sk-skill-convert.yaml';
 const ENGINE = '.skilled/commands/doctor/scripts/sk-skill-check.cjs';
 const CONVERT_ENGINE = '.skilled/commands/doctor/scripts/sk-skill-convert.cjs';
 
-// The converter's own source is the proof that the refusal list quotes wording it
+// The converter's own source is the proof that a refusal quotes wording it
 // actually prints: a test that read only the workflow would pass on a reason the
-// engine never says. The controls come from the engine and its transforms library.
-const ENGINE_SOURCE = read(path.join(SCRIPTS, 'sk-skill-convert.cjs'))
-  + read(path.join(SCRIPTS, 'lib', 'sk-skill-convert-transforms.cjs'));
-
-// Every machine code the converter can print for a target it will not convert.
-const CONVERT_REFUSAL_CODES = [
-  'PREFLIGHT_REFUSED',
-  'RESERVED_PREFIX',
-  'PERSONA_PREFIX',
-  'NAME_NOT_KEBAB',
-  'NESTED_PACKETS',
-  'HUB_DECLARATION',
-  'DUAL_DECLARATION',
-  'NAME_COLLISION',
-  'ROUTER_EXISTS',
-  'STALE_PLAN',
-  'ROUTER_CONTENT_CHANGED',
-  'ROUTER_SEMANTICS_CHANGED',
-  'APPLY_FAILED',
-  'ROLLBACK_FAILED',
-  'FRONTMATTER_INVALID',
-  'ALLOWED_TOOLS_MISSING',
-  'ALLOWED_TOOLS_AMBIGUOUS',
-  'ALLOWED_TOOLS_INVALID',
+// engine never says. The controls come from the engine and both libraries it
+// throws through, so a code added there is caught here without an edit.
+const ENGINE_SOURCES = [
+  path.join(SCRIPTS, 'sk-skill-convert.cjs'),
+  path.join(SCRIPTS, 'lib', 'sk-skill-convert-transforms.cjs'),
+  path.join(SCRIPTS, 'lib', 'sk-skill-integrate.cjs'),
 ];
+const ENGINE_SOURCE = ENGINE_SOURCES.map(read).join('');
+
+// Every machine code the converter can print for a target it will not convert is
+// derived from the source, never listed here: each call family names its code in
+// its own argument position, and the two helpers carry a default.
+const CODE_CAPTURE = '([A-Z][A-Z0-9_]{3,})';
+const CODE_PATTERNS = [
+  new RegExp(`new ConvertError\\(\\s*'${CODE_CAPTURE}'`, 'g'),
+  new RegExp(`new ConvertError\\(\\s*error\\.code\\s*\\|\\|\\s*'${CODE_CAPTURE}'`, 'g'),
+  new RegExp(`transformError\\(\\s*'${CODE_CAPTURE}'`, 'g'),
+  new RegExp(`new IntegrationError\\(\\s*'${CODE_CAPTURE}'`, 'g'),
+  new RegExp(`new IntegrationError\\(\\s*error\\.code\\s*\\|\\|\\s*'${CODE_CAPTURE}'`, 'g'),
+  // refuse(message, code) names the code second, and its signature carries the
+  // default a call without one gets.
+  new RegExp(`refuse\\(\\s*(?:` + '`[^`]*`' + `|'[^']*'),\\s*'${CODE_CAPTURE}'`, 'gs'),
+  new RegExp(`\\bcode\\s*=\\s*'${CODE_CAPTURE}'`, 'g'),
+  // runStep throws the code it is called with, as its second argument.
+  new RegExp(`runStep\\(\\s*(?:context,\\s*)?'${CODE_CAPTURE}'`, 'gs'),
+];
+
+const deriveCodes = () => {
+  const codes = new Set();
+  for (const pattern of CODE_PATTERNS) {
+    let match;
+    while ((match = pattern.exec(ENGINE_SOURCE)) !== null) codes.add(match[1]);
+  }
+  return codes;
+};
+
+const CONVERT_REFUSAL_CODES = [...deriveCodes()].sort();
+
+// The two messages that are a question rather than a stop: the workflow asks
+// about them and reruns the plan with the approved flag.
+const FOLLOW_UP_CODES = ['DESCRIPTION_TOO_LONG', 'ALLOWED_TOOLS_MISSING'];
 
 const CONVERT_WORKFLOW = parseYaml(CONVERT_YAML);
 const PHASES = Object.keys(CONVERT_WORKFLOW.workflow);
@@ -94,6 +110,8 @@ const yamlStrings = (node, out = []) => {
   }
   return out;
 };
+
+const phaseText = (phase) => yamlStrings(CONVERT_WORKFLOW.workflow[phase]).join('\n');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. THE ROUTES
@@ -115,15 +133,30 @@ test('the manifest holds a check route and a convert route, and only check answe
     assert.deepEqual(route.mcp_tools, []);
   }
   assert.ok(checkRoute().allowed_flags.includes('--json'));
+  assert.ok(checkRoute().allowed_flags.includes('--into-hub <hub>'));
   assert.deepEqual(convertRoute().allowed_flags, ['--dry-run']);
 });
 
-test('the convert route names the skill folder and its backup as the only place it writes', () => {
+test('the convert route names every place the engine writes and nothing else', () => {
   const location = convertRoute().gate3_location;
-  assert.match(location, /\.skilled\/skills/);
-  assert.match(location, /SKILL\.md/);
-  assert.match(location, /ROUTER\.md/);
-  assert.match(location, /\.state\/doctor-sk-skill\/<name>\/<timestamp>/);
+  // The staged or converted folder, its backup, the changelog and its index link,
+  // then the integration targets the engine records in its plan.
+  for (const expected of [
+    /\.skilled\/skills\/<name>/,
+    /SKILL\.md/,
+    /ROUTER\.md/,
+    /\.state\/doctor-sk-skill\/<name>\/<timestamp>/,
+    /changelog/,
+    /\.skilled\/changelog\/<name>/,
+    /skill-graph\.sqlite/,
+    /skill-graph\.json/,
+    /advisor cases/,
+    /\.hermes\/skills/,
+  ]) {
+    assert.match(location, expected);
+  }
+  // A skill folder the run was not pointed at is not a write target.
+  assert.doesNotMatch(location, /every skill|any skill folder/);
 });
 
 test('both routes name the engines their workflows run and every trigger phrase carries three or more words', () => {
@@ -136,14 +169,23 @@ test('both routes name the engines their workflows run and every trigger phrase 
     checkRoute().script_invocations.map((entry) => entry.match(/\.skilled\/\S+\.cjs/)[0]),
     [ENGINE],
   );
+  // The plan, the preserve proof, the apply and the post-write re-read, in the order
+  // the workflow runs them.
   assert.deepEqual(
     convertRoute().script_invocations.map((entry) => entry.match(/\.skilled\/\S+\.cjs/)[0]),
-    [CONVERT_ENGINE, CONVERT_ENGINE, ENGINE],
+    [CONVERT_ENGINE, CONVERT_ENGINE, CONVERT_ENGINE, ENGINE],
   );
-  // The plan call is the one the workflow runs before the question, so it may not
-  // carry the write switch.
-  assert.doesNotMatch(convertRoute().script_invocations[0], /--apply/);
-  assert.match(convertRoute().script_invocations[1], /--apply/);
+  const planCall = convertRoute().script_invocations[0];
+  const preserveCall = convertRoute().script_invocations[1];
+  const applyCall = convertRoute().script_invocations[2];
+  // The plan call is the one the workflow runs before the questions, so it may not
+  // carry the write switch, and only the apply carries it.
+  assert.doesNotMatch(planCall, /--apply/);
+  assert.match(planCall, /sk-skill-convert\.cjs plan/);
+  assert.match(preserveCall, /sk-skill-convert\.cjs preserve --snapshot/);
+  assert.match(applyCall, /--apply/);
+  // A plain skill is still reachable: the phrase that names it stays.
+  assert.ok(convertRoute().trigger_phrases.includes('convert a plain agent skill'));
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -172,6 +214,11 @@ test('the router frontmatter stays within budget and grants only the tools it us
   assert.doesNotMatch(description, /[<>]/);
   const hint = ROUTER.match(/^argument-hint:\s*"(.*)"$/m)[1];
   assert.ok(hint.length <= 140, `argument-hint is ${hint.length} chars`);
+  // Both targets and all three flags the routes accept, so a typed invocation that
+  // the router honours is one the hint also names.
+  for (const token of ['[check|convert]', '[<name-or-path>]', '[--json]', '[--into-hub <hub>]', '[--dry-run]']) {
+    assert.ok(hint.includes(token), token);
+  }
   const tools = ROUTER.match(/^allowed-tools:\s*(.+)$/m)[1].split(',').map((tool) => tool.trim());
   assert.deepEqual(tools, ['Read', 'Bash']);
   assert.equal(ROUTER.split('<!-- skill_agent: sk-doc -->').length - 1, 1);
@@ -194,6 +241,31 @@ test('the router resolves the bare command to check and asks once for a convert 
   assert.match(ROUTER, /A bare `\/doctor:sk-skill` never reaches `convert`, which writes/);
 });
 
+test('the router step list runs the real order: plan, follow-up yeses, rerun, question, apply, undo', () => {
+  const summary = ROUTER.split('## 6. WORKFLOW SUMMARY')[1];
+  const steps = summary.split('\n').map((line) => line.trim()).filter((line) => /^\d+\. /.test(line));
+  const stepText = steps.join('\n');
+  const at = (pattern) => {
+    const index = steps.findIndex((step) => pattern.test(step));
+    assert.ok(index >= 0, `no step names ${pattern}`);
+    return index;
+  };
+  const plan = at(/sk-skill-convert\.cjs plan/);
+  const followUp = at(/own yes/);
+  const rerun = at(/reruns `sk-skill-convert\.cjs plan` with `--description-trim`/);
+  const question = at(/asks the conversion question/);
+  const apply = at(/sk-skill-convert\.cjs apply --apply/);
+  const undo = at(/undo block the engine printed/);
+  assert.ok(plan < followUp, 'the plan is printed before the follow-up questions');
+  assert.ok(followUp < rerun, 'the plan is rerun after the follow-up answers');
+  assert.ok(rerun < question, 'the conversion question is asked against the rerun plan');
+  assert.ok(question < apply, 'the apply runs only after the conversion question');
+  assert.ok(apply < undo, 'the undo is printed after the apply');
+  assert.match(stepText, /preserve --snapshot/);
+  assert.match(stepText, /never edits a SKILL\.md field/);
+  assert.match(stepText, /ends the run as cancelled/);
+});
+
 test('the presentation carries the dual menu, the accepted answers, the manifest rows and the target list', () => {
   assert.match(PRESENTATION, /^## 1\. Argument Failure$/m);
   assert.match(PRESENTATION, /^1\) check$/m);
@@ -205,7 +277,7 @@ test('the presentation carries the dual menu, the accepted answers, the manifest
   assert.match(PRESENTATION, /^\| `convert` \| `doctor-sk-skill-convert\.yaml` \| mutates \|/m);
 });
 
-test('the presentation keeps the check tables, the JSON passthrough and the plan-before-write wording', () => {
+test('the presentation keeps the check tables, the JSON passthrough and the question wording', () => {
   assert.match(PRESENTATION, /^Skill fleet check$/m);
   assert.match(PRESENTATION, /^Result: \[PASS\|FINDINGS/m);
   assert.ok(PRESENTATION.includes("With `--json` print the engine's JSON and nothing else"));
@@ -214,20 +286,50 @@ test('the presentation keeps the check tables, the JSON passthrough and the plan
   assert.match(PRESENTATION, /^Convert this skill now\? \[yes\/no\]$/m);
   assert.match(PRESENTATION, /Dry run: nothing was written and nothing was asked\./);
   assert.match(PRESENTATION, /never write a permission grant without that yes/);
+  // The engine's own flag is named beside the value the operator approves, so the
+  // workflow never edits a field by hand.
+  for (const flag of ['--description-trim', '--allowed-tools', '--agent-output']) {
+    assert.ok(PRESENTATION.includes(flag), flag);
+  }
+  assert.match(PRESENTATION, /The workflow never edits a field/);
 });
 
-test('the presentation closes on the summary, cancelled, failed and next-step templates', () => {
+test('the presentation closes on the converted, unchanged, cancelled, dry-run and failed templates', () => {
   assert.match(PRESENTATION, /^STATUS=\[status\]$/m);
   assert.match(PRESENTATION, /^STATUS=ERROR ERROR="\[message\]"$/m);
   assert.match(PRESENTATION, /^STATUS=OK$/m);
   assert.match(PRESENTATION, /^STATUS=CANCELLED ACTION=cancelled$/m);
   assert.match(PRESENTATION, /^STATUS=FAIL ERROR="\[code\]"$/m);
   assert.match(PRESENTATION, /^End interactive presentations with: `What would you like to do next\?`$/m);
+  // A declined question says what was declined, and a dry run ends at OK.
+  assert.match(PRESENTATION, /^Declined: \[the description trim \| the allowed-tools list \| the conversion\]$/m);
+  assert.match(PRESENTATION, /^### Dry Run$/m);
+  assert.match(PRESENTATION, /^DOCTOR DRY RUN$/m);
 });
 
-test('the presentation refusal table carries every code the workflow can print', () => {
-  for (const code of CONVERT_REFUSAL_CODES) {
-    assert.ok(PRESENTATION.includes(`\`${code}\``), code);
+test('the presentation refusal table carries every code the converter can print', () => {
+  const missing = CONVERT_REFUSAL_CODES.filter((code) => !PRESENTATION.includes(`\`${code}\``));
+  assert.deepEqual(missing, [], 'every code the converter prints is named in the presentation');
+  // The derivation is only worth trusting if it found the families the engine has.
+  for (const code of ['PREFLIGHT_REFUSED', 'USAGE', 'PRESERVATION_FAILED', 'AGENT_RESHAPE_REQUIRED']) {
+    assert.ok(CONVERT_REFUSAL_CODES.includes(code), `${code} was not derived from the engine source`);
+  }
+  assert.ok(CONVERT_REFUSAL_CODES.length >= 40, `only ${CONVERT_REFUSAL_CODES.length} codes derived`);
+});
+
+test('the presentation points the two follow-up messages at their questions instead of the refusal table', () => {
+  const followUpSection = PRESENTATION.split('### 5.5 Messages that are a follow-up question')[1];
+  assert.ok(followUpSection, 'the follow-up section is missing');
+  for (const code of FOLLOW_UP_CODES) {
+    assert.ok(followUpSection.includes(`\`${code}\``), `${code} is not named as a follow-up`);
+    assert.ok(/trim question|allowed-tools question/.test(followUpSection), code);
+  }
+  // The stopping tables above it never carry them. The plan section names both as
+  // questions, so only the refusal table between the two headings is checked here.
+  const refusals = PRESENTATION.split('## 5. Convert Refusals')[1]
+    .split('### 5.5 Messages that are a follow-up question')[0];
+  for (const code of FOLLOW_UP_CODES) {
+    assert.ok(!refusals.includes(`\`${code}\``), `${code} is still a stopping refusal`);
   }
 });
 
@@ -271,17 +373,17 @@ test('the check workflow maps all three engine exit classes to a route status', 
 
 test('the convert workflow is interactive, asks once per write and writes nothing on a dry run', () => {
   assert.equal(CONVERT_WORKFLOW.operating_mode.execution, 'interactive');
-  assert.equal(CONVERT_WORKFLOW.operating_mode.approvals, 'explicit_yes_before_the_first_write');
-  assert.equal(CONVERT_WORKFLOW.operating_mode.dry_run, 'run_the_plan_and_stop_before_the_approval');
+  assert.equal(CONVERT_WORKFLOW.operating_mode.approvals, 'one_explicit_yes_per_question_before_the_first_write');
+  assert.equal(CONVERT_WORKFLOW.operating_mode.dry_run, 'print_the_plan_then_status_ok_without_asking');
   assert.equal(CONVERT_WORKFLOW.operating_mode.never_commit, true);
   assert.deepEqual(CONVERT_WORKFLOW.output.statuses, ['OK', 'CANCELLED', 'FAIL']);
 });
 
-test('the convert workflow runs its phases in the read, refuse, plan, yes, write, re-read, undo order', () => {
+test('the convert workflow runs its phases in the read, plan, follow-up, yes, write, re-read, undo, report order', () => {
   assert.deepEqual(PHASES, [
     'phase_1_read',
-    'phase_2_refuse',
-    'phase_3_plan',
+    'phase_2_plan',
+    'phase_3_follow_ups',
     'phase_4_approval',
     'phase_5_write',
     'phase_6_reread',
@@ -291,24 +393,90 @@ test('the convert workflow runs its phases in the read, refuse, plan, yes, write
   assert.equal(CONVERT_WORKFLOW.output.presentation, '.skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt');
 });
 
-test('the plan runs before the approval and only the write phase runs the apply', () => {
-  const planPhase = PHASES.findIndex((phase) => yamlStrings(CONVERT_WORKFLOW.workflow[phase]).some(
-    (value) => value.includes(`${CONVERT_ENGINE} plan`),
-  ));
-  const applyPhase = PHASES.find((phase) => yamlStrings(CONVERT_WORKFLOW.workflow[phase]).some(
-    (value) => value.includes(`${CONVERT_ENGINE} apply`),
-  ));
-  assert.equal(PHASES[planPhase], 'phase_2_refuse');
-  assert.equal(applyPhase, 'phase_5_write');
-  assert.ok(planPhase < PHASES.indexOf('phase_4_approval'), 'the plan is printed before the question');
-  // The write switch may appear in the write phase and in the refusal that names it,
-  // never in the read, plan or approval phase.
-  for (const phase of ['phase_1_read', 'phase_3_plan', 'phase_4_approval']) {
-    assert.ok(
-      !yamlStrings(CONVERT_WORKFLOW.workflow[phase]).some((value) => value.includes('--apply')),
-      phase,
-    );
+test('the plan is rendered before the conversion question and the flags reach the apply', () => {
+  assert.match(phaseText('phase_2_plan'), new RegExp(`${CONVERT_ENGINE} plan`));
+  // The rerun is the plan the operator approves: it carries the approved flags and
+  // lands before the question, with the plain-skill proof before the format gate.
+  const rerun = phaseText('phase_3_follow_ups');
+  assert.match(rerun, /--description-trim/);
+  assert.match(rerun, /--allowed-tools/);
+  assert.match(rerun, /preserve --snapshot/);
+  assert.match(rerun, /Rerun the plan/);
+  // The write phase runs the apply with the same flags the rerun carried.
+  const write = phaseText('phase_5_write');
+  assert.match(write, new RegExp(`${CONVERT_ENGINE} apply`));
+  assert.match(write, /--apply/);
+  for (const flag of ['--description-trim', '--allowed-tools', '--agent-output']) {
+    assert.match(write, new RegExp(flag));
   }
+  // The write switch may appear before the write phase only where the read phase
+  // quotes the engine's usage block; the plan, follow-up and approval phases never
+  // carry it.
+  assert.match(phaseText('phase_1_read'), /usage block/);
+  for (const phase of ['phase_2_plan', 'phase_3_follow_ups', 'phase_4_approval']) {
+    assert.ok(!phaseText(phase).includes('--apply'), phase);
+  }
+  const order = ['phase_2_plan', 'phase_3_follow_ups', 'phase_4_approval', 'phase_5_write'];
+  for (let index = 1; index < order.length; index += 1) {
+    assert.ok(PHASES.indexOf(order[index - 1]) < PHASES.indexOf(order[index]), order[index]);
+  }
+});
+
+test('a no at any question is a cancelled run that names what was declined', () => {
+  const followUps = phaseText('phase_3_follow_ups');
+  assert.match(followUps, /STATUS=CANCELLED ACTION=cancelled/);
+  assert.match(followUps, /naming the declined description trim/);
+  assert.match(followUps, /naming the declined allowed-tools list/);
+  assert.match(followUps, /Nothing is written/);
+  const approval = phaseText('phase_4_approval');
+  assert.match(approval, /Any answer other than yes is a no/);
+  assert.match(approval, /STATUS=CANCELLED ACTION=cancelled/);
+  assert.match(approval, /naming the declined conversion/);
+  assert.match(approval, /Nothing is written/);
+});
+
+test('the plain-skill prose step and its preserve proof are described from the engine interface', () => {
+  const followUps = phaseText('phase_3_follow_ups');
+  // The agent reshapes prose into --agent-output; the workflow never edits a field.
+  assert.match(followUps, /workflow agent reshapes the SKILL\.md prose/);
+  assert.match(followUps, /--agent-output/);
+  assert.match(followUps, /never edits a SKILL\.md field/);
+  // The check runs the engine's own subcommand before the format gate.
+  assert.match(followUps, new RegExp(`preserve --snapshot <a scratch folder`));
+  assert.match(followUps, /Preservation PASS/);
+  assert.match(followUps, /PRESERVATION_FAILED/);
+  assert.match(followUps, /stops the run with STATUS=FAIL and nothing written/);
+});
+
+test('the undo phase quotes the engine block instead of composing one', () => {
+  const undo = phaseText('phase_7_undo');
+  assert.match(undo, /undo block exactly as the apply printed it/);
+  assert.match(undo, /Undo:/);
+  assert.match(undo, /git -c core\.fsmonitor=false restore/);
+  assert.match(undo, /Check:/);
+  // A composed undo used to delete ROUTER.md whatever the run had created.
+  assert.doesNotMatch(undo, /delete the created ROUTER\.md/);
+  assert.match(undo, /Never run the undo inside this route/);
+});
+
+test('a plan reporting no writes renders the unchanged result and asks nothing', () => {
+  const plan = phaseText('phase_2_plan');
+  assert.match(plan, /Writes: none/);
+  assert.match(plan, /already-converted result/);
+  assert.match(plan, /ask nothing/);
+  assert.match(plan, /STATUS=OK/);
+});
+
+test('an exit 2 during the apply is reported as a rolled-back conversion', () => {
+  const write = phaseText('phase_5_write');
+  assert.match(write, /Exit 2 during the apply/);
+  assert.match(write, /rolled back/);
+  assert.match(write, /STATUS=FAIL ERROR="<code>"/);
+  // A dry run ends at OK in the follow-up phase, before any question.
+  const followUps = phaseText('phase_3_follow_ups');
+  assert.match(followUps, /If dry_run is true/);
+  assert.match(followUps, /STATUS=OK/);
+  assert.match(followUps, /asks nothing and writes nothing/);
 });
 
 test('the convert workflow declares every variable its route resolves and what it may write', () => {
@@ -318,24 +486,46 @@ test('the convert workflow declares every variable its route resolves and what i
   const boundaries = CONVERT_WORKFLOW.mutation_boundaries;
   assert.equal(boundaries.read_only, false);
   const allowed = boundaries.allowed_targets.join('\n');
-  assert.match(allowed, /SKILL\.md/);
-  assert.match(allowed, /ROUTER\.md/);
-  assert.match(allowed, /\.state\/doctor-sk-skill/);
+  // Exactly the surfaces the engine writes: the skill folder, its backup, the
+  // changelog and its index link, the integration targets, and the approved fields.
+  for (const expected of [
+    /staged or converted skill folder/,
+    /SKILL\.md/,
+    /ROUTER\.md/,
+    /\.state\/doctor-sk-skill/,
+    /changelog/,
+    /\.skilled\/changelog\/<name>/,
+    /skill-graph\.sqlite/,
+    /skill-graph\.json/,
+    /advisor cases file/,
+    /\.hermes\/skills/,
+  ]) {
+    assert.match(allowed, expected);
+  }
   const forbidden = boundaries.forbidden_targets.join('\n');
   assert.match(forbidden, /sk-skill-convert\.cjs/);
   assert.match(forbidden, /the git index/);
+  // The graph and the changelog are no longer somebody else's: the engine writes them.
+  assert.doesNotMatch(forbidden, /the skill graph, the advisor index/);
+  assert.doesNotMatch(forbidden, /the changelog, which other routes own/);
   assert.match(boundaries.invariant, /until the plan has been printed and the operator has answered yes/);
   assert.match(boundaries.invariant, /every write is preceded by a backup/);
+  assert.match(boundaries.invariant, /A no at any question ends the run with STATUS=CANCELLED/);
 });
 
 test('the convert workflow states the follow-ups that need their own yes and keeps them out of the refusals', () => {
-  const planText = yamlStrings(CONVERT_WORKFLOW.workflow.phase_3_plan).join('\n');
-  assert.match(planText, /130 characters or fewer/);
-  assert.match(planText, /\[Read, Grep, Glob\]/);
-  assert.match(planText, /its own yes/);
-  assert.match(planText, /neither is written without its own yes/);
-  const dryRunText = yamlStrings(CONVERT_WORKFLOW.workflow.phase_3_plan).join('\n');
-  assert.match(dryRunText, /dry_run is true/);
+  const followUps = phaseText('phase_3_follow_ups');
+  assert.match(followUps, /130-character budget/);
+  assert.match(followUps, /\[Read, Grep, Glob\]/);
+  assert.match(followUps, /their own yes/);
+  assert.match(followUps, /let the operator edit it/);
+  // The engine's proposal adds Bash only when the skill actually ships scripts.
+  assert.match(followUps, /plus Bash when the skill folder holds a scripts\/ folder/);
+  // Neither message is a stopping refusal in the workflow either.
+  const refusalCodes = new Set(CONVERT_WORKFLOW.refusals.map((entry) => entry.code));
+  for (const code of FOLLOW_UP_CODES) {
+    assert.ok(!refusalCodes.has(code), `${code} is listed as a stopping refusal`);
+  }
 });
 
 test('the convert workflow carries a reason for every refusal the converter can print', () => {
@@ -350,9 +540,11 @@ test('the convert workflow carries a reason for every refusal the converter can 
     assert.ok(entry.next.length > 0, entry.code);
   }
   const codes = new Set(refusals.map((entry) => entry.code));
-  for (const code of CONVERT_REFUSAL_CODES) {
-    assert.ok(codes.has(code), `${code} is missing from the refusal list`);
-    assert.ok(ENGINE_SOURCE.includes(`'${code}'`), `${code} is not a code the converter prints`);
+  // Every listed code is one the engine prints, and the follow-up messages are not
+  // listed: they are questions, not refusals.
+  for (const code of codes) {
+    if (code.startsWith('<')) continue;
+    assert.ok(CONVERT_REFUSAL_CODES.includes(code), `${code} is not a code the converter prints`);
   }
   // The catch-all keeps a code the list has not learned yet from printing nothing.
   assert.ok(refusals.some((entry) => entry.code.startsWith('<')), 'a catch-all entry is missing');
@@ -412,15 +604,23 @@ test('the contract names the router, both workflows, the presentation, the hint 
   assert.ok(DOCTOR_CONTRACT.invocation_aliases.includes(`/doctor:sk-skill ${hint}`));
   assert.ok(DOCTOR_CONTRACT.loader_requirements.some((line) => line.includes('/doctor:sk-skill check')));
   assert.ok(DOCTOR_CONTRACT.loader_requirements.some((line) => line.includes('/doctor:sk-skill convert')));
+  // The contract's convert promises match the workflow: one yes per write, the plan
+  // rerun, the engine's undo block, and the follow-ups kept out of the refusals.
+  const convertLines = DOCTOR_CONTRACT.loader_requirements.filter((line) => line.includes('/doctor:sk-skill convert'));
+  const convertText = convertLines.join('\n');
+  assert.match(convertText, /own yes/i);
+  assert.match(convertText, /follow-up questions rather than refusals/);
+  assert.match(convertText, /undo block the engine printed/);
 });
 
 test('the setup target list carries one row per target', () => {
   const checkRows = SETUP_PRESENTATION.split('\n')
     .filter((line) => line.includes('/doctor:sk-skill check'));
   assert.equal(checkRows.length, 1);
-  assert.match(checkRows[0], /^\| `\/doctor:sk-skill check \[<name-or-path>\] \[--json\]` \|/);
+  assert.match(checkRows[0], /^\| `\/doctor:sk-skill check \[<name-or-path>\] \[--json\] \[--into-hub <hub>\]` \|/);
   const convertRows = SETUP_PRESENTATION.split('\n')
     .filter((line) => line.includes('/doctor:sk-skill convert'));
   assert.equal(convertRows.length, 1);
   assert.match(convertRows[0], /^\| `\/doctor:sk-skill convert <name-or-path> \[--dry-run\]` \|/);
+  assert.match(convertRows[0], /one yes per write/);
 });

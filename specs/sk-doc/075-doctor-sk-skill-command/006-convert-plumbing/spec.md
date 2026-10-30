@@ -46,9 +46,9 @@ This is **Phase 6** of the Doctor skill command: check and convert a skill to th
 - sk-doc's sk-create-command mode owns the authoring of every command surface here: the implementer reads `.skilled/skills/sk-doc/sk-create-command/SKILL.md`, its `ROUTER.md` and `references/router-presentation-split.md` first, and works through the `/create:command` workflow (`.skilled/commands/create/command.md`).
 
 **Deliverables**:
-- `.skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml` with the phases read, refuse, plan, yes, write, re-read and undo.
-- A `convert` route in `.skilled/commands/doctor/_routes.yaml` with `mutating: mutates`.
-- Convert states in the router, presentation and setup list, an activated advisor bridge and refusal-string contract tests.
+- `.skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml` with the phases read, plan, follow-ups, approval, write, re-read, undo and report.
+- A `convert` route in `.skilled/commands/doctor/_routes.yaml` with `mutating: mutates` and the engine's real write set as its gate-3 location.
+- Convert states in the router, presentation and setup list, an activated advisor bridge and refusal-string contract tests whose code list is derived from the engine.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -97,7 +97,7 @@ Run in the worktree on 2026-10-30, before phases 2 to 5 land: no convert workflo
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml` | Create | Workflow: read, refuse, plan, yes, write, re-read, undo |
+| `.skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml` | Create | Workflow: read, plan, follow-ups, approval, write, re-read, undo, report |
 | `.skilled/commands/doctor/_routes.yaml` | Modify | Add the `/doctor:sk-skill` `convert` route |
 | `.skilled/commands/doctor/sk-skill.md` | Modify | Add the convert row to the router's target table |
 | `.skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt` | Modify | Convert menu entry, plan, refusal, `OK` and `CANCELLED` states |
@@ -171,7 +171,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - **NFR-P02**: N/A for throughput: the command runs once per operator request.
 
 ### Security
-- **NFR-S01**: The route's `mutation_boundaries` name the skill folder, its runtime copies, the changelog link and the backup folder `.skilled/skills/.state/doctor-sk-skill/<name>/<timestamp>/` as the only write targets.
+- **NFR-S01**: The route's `mutation_boundaries` name every write the engine makes and nothing else: the staged or converted skill folder, its backups under `.skilled/skills/.state/doctor-sk-skill/<name>/<timestamp>/`, the skill's changelog folder and its `.skilled/changelog/<name>` link, the integration targets the engine records (the advisor graph, the compiled `skill-graph.json`, the advisor cases file, the Hermes skills mirror), and the frontmatter fields the operator approved as flags.
 - **NFR-S02**: A permission grant (`allowed-tools`) is never written without the operator confirming it (D7).
 
 ### Reliability

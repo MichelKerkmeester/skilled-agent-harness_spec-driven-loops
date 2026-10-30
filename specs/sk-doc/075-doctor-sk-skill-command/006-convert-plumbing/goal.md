@@ -53,11 +53,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 with a `/doctor:sk-skill` `convert` route marked `mutating: mutates`
-- [ ] `bash .skilled/commands/doctor/scripts/tests/run-all.sh` exits 0 and prints every suite PASS
-- [ ] `node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs` exits 0 and lists a convert phrase reaching `/doctor:sk-skill`
-- [ ] A manual `/doctor:sk-skill convert` run on a scratch skill prints `STATUS=CANCELLED` on "no" and `STATUS=OK` on "yes"
-- [ ] A convert run on a `local-`-prefixed scratch skill prints `REFUSE:` and `STATUS=FAIL`
+- [x] `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 with a `/doctor:sk-skill` `convert` route marked `mutating: mutates`
+- [x] `bash .skilled/commands/doctor/scripts/tests/run-all.sh` exits 0 and prints every suite PASS
+- [x] `node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs` exits 0 and lists a convert phrase reaching `/doctor:sk-skill`
+- [x] A manual `/doctor:sk-skill convert` run on a scratch skill prints `STATUS=CANCELLED` on "no" and `STATUS=OK` on "yes"
+- [x] A convert run on a `local-`-prefixed scratch skill prints `REFUSE:` and `STATUS=FAIL`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -73,11 +73,15 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase planned | Pending | Spec docs authored 2026-10-30 |
+| Phase planned | Done | Spec docs authored 2026-10-30 |
+| Route, workflow, presentation and bridge | Done | `route-validate.sh` exit 0, `run-all.sh` 7/7 PASS, `doctor-phrase-reach.cjs` `STATUS=OK phrases=130 bridges=24` |
+| Manual run | Done | `scratch/t014-convert-run.md`, then `scratch/t018-alignment-run.md` after the engine gained the plain-skill path |
+| Alignment with the engine's current interface | Done | Plan, follow-up yeses, plan rerun with the approved flags, `preserve --snapshot`, the engine's printed undo block, and the derived refusal-code test |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | No work has started |
+| The engine moved during review | It grew a plain-skill path, `--description-trim`, `--allowed-tools`, a `preserve --snapshot` check and a printed undo block. The workflow, presentation and contract test were realigned to it rather than freezing the older interface |
+| The refusal list is derived, not written by hand | Two engine changes left a hand-written list quoting wording the converter no longer prints, so the contract test now derives every code from the engine source |
 <!-- /ANCHOR:log -->

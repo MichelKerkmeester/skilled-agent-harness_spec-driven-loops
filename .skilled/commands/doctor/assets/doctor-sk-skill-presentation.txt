@@ -13,6 +13,7 @@ Every argument failure happens before any workflow YAML loads and prints the wor
 | A flag the other target owns | `Argument '[argument]' is not valid for target '[target]'. Did you mean /doctor:sk-skill [suggested-target] [argument]?` then `STATUS=FAIL ERROR="cross_target_flag"` |
 | `convert` with no skill name | `Convert needs one skill name or path.` then `Try: /doctor:sk-skill convert <name-or-path>` then `STATUS=FAIL ERROR="missing_skill_target"` |
 | A second skill name or path | `Only one skill name or path may be bound.` then `STATUS=FAIL ERROR="too_many_arguments"` |
+| The engine is invoked with no subcommand, or with an option it does not take | `USAGE: Invalid invocation.` then the engine's usage block, exit 2. The workflow only ever runs the documented calls, so this is the engine's own contract rather than a route the operator reaches |
 
 `convert` never infers the name it converts: with no name it asks once, in the wording `Which skill? Give one name under .skilled/skills, or a path to a skill root.`, and refuses to guess from the conversation or an open file. An answer that resolves to no skill root prints `Convert needs one skill name or path.` and ends `STATUS=FAIL ERROR="missing_skill_target"`.
 
@@ -137,63 +138,162 @@ Presentation: .skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt
 Next: run the plan, which writes nothing
 ```
 
-### Conversion Plan And Approval
+### The Plan The Operator Approves
 
-The plan section quotes the engine's own lines: its `Conversion plan:` name, its numbered steps with the `Overwrite` or `Create` verb and the absolute path, its `Backup existing files under:` line, and its `Follow-up items:` list.
+The plan section quotes the engine's own lines: its `Conversion plan:` name, its numbered steps with the `Overwrite` or `Create` verb and the absolute path, its `Backup existing files under:` line, its `Integration plan:` rows and its `Follow-up items:` list.
 
 ```text
 SKILL CONVERSION PLAN
 Skill: [name]
-Folder: [the skill folder, relative to .skilled/skills]
-Steps: [one line per numbered step the engine printed]
+Folder: [the skill folder, or the staged folder the plan will create]
+Steps: [one line per numbered step the engine printed, in its order]
 Backup folder: [the engine's backup line]
+Integration plan: [one line per integration row the engine printed]
 Engine follow-ups: [one bullet per follow-up item, or none]
 
-Field follow-ups in this run:
-- Description: [n] characters, over the 130-character budget | within budget, so no trim is proposed
-- allowed-tools: [the list the skill declares | not declared, so a least-privilege list is proposed]
-
-Trim the description to 130 characters or fewer? [yes/no]
-Declare allowed-tools as [Read, Grep, Glob] for this skill? [yes/no]
+Field values approved in this run:
+- Description: [the trim the operator approved, or within budget so no trim was asked]
+- allowed-tools: [the list the operator approved, or the list the skill already declares]
 
 Convert this skill now? [yes/no]
 ```
 
-Every follow-up above is a separate question with its own yes. A no leaves that field exactly as it was, records the follow-up as deferred, and does not cancel the conversion. The trim proposal names the trimmed description it would write. The allowed-tools proposal names the list it would write and is drawn from the tools the skill's own instructions already use; never write a permission grant without that yes.
+The plan quoted here is the rerun's, the one that already carries each approved field as its own line: `Set description: "..."` and `Set allowed-tools: [...]`. A plan printed before those questions is never the one the operator approves, because it does not contain the writes to be approved.
 
-With `--dry-run`, follow the plan with `Dry run: nothing was written and nothing was asked.` and stop.
+### Field Follow-Ups
 
-Any answer to the conversion question other than yes counts as no: print the cancelled result and write nothing.
+Two engine messages are questions rather than refusals. Each one is asked on its own, in this order, and each answer is its own yes.
+
+```text
+Trim the description to 130 characters or fewer? [yes/no]
+Declare allowed-tools as [Read, Grep, Glob] for this skill? [yes/no]
+```
+
+- **A description over the budget.** `DESCRIPTION_TOO_LONG` names the length and the 130-character limit. Ask the trim question and show the text in full: the engine's `Proposed description trim` line when the plan printed one, or, when the refusal printed no proposal, a trim of 130 characters or fewer that keeps the skill's own wording. Whichever text the operator approves is what goes to `--description-trim`.
+- **No `allowed-tools`.** `ALLOWED_TOOLS_MISSING` means the field is not declared. Propose the list the engine printed, `[Read, Grep, Glob]`, plus `Bash` when the skill folder holds a `scripts/` folder, and let the operator edit the list before answering. That answer is what goes to `--allowed-tools`. Never default the list and never write a permission grant without that yes.
+- **The workflow never edits a field.** Neither value is written by hand. Each approved value becomes a flag, the plan is rerun with it so the operator sees the field as one plan line, and the engine writes it beside the same backup.
+- **The plan is rerun.** After the answers, the workflow runs the plan again with `--description-trim`, `--allowed-tools` and, for a plain skill, `--agent-output`, prints that plan, and asks the conversion question against it.
+
+A no at either question ends the run, and it says which value was declined. Nothing is written.
+
+```text
+DOCTOR TARGET CANCELLED
+Target: convert
+Skill: [name]
+Declined: [the description trim | the allowed-tools list | the conversion]
+Changed: none
+STATUS=CANCELLED ACTION=cancelled
+```
+
+### Dry Run
+
+With `--dry-run`, follow the plan and the field values it proposes with `Dry run: nothing was written and nothing was asked.` and end with `STATUS=OK`. No question is asked, the agent step does not run, and nothing is written.
+
+### The Conversion Question
+
+`Convert this skill now? [yes/no]` covers the whole write: the files the plan names, the approved fields, the backup folder and the integration rows. Any answer other than yes counts as no: print the cancelled result and write nothing.
 
 ## 5. Convert Refusals
 
-A refusal prints `REFUSE: [the engine's reason]`, then `STATUS=FAIL ERROR="[code]"`, and stops. Nothing was written. The file is never forced, edited by hand or retried at another path inside this route.
+A refusal prints `REFUSE: [the engine's reason]`, then `STATUS=FAIL ERROR="[code]"`, and stops. Nothing was written. The file is never forced, edited by hand or retried at another path inside this route. Every code below is one the converter prints; a code this table has not learned yet still prints the engine's own message and is treated as the same class.
+
+### 5.1 Target and name
 
 | Code | Reason it prints | Next |
 |------|------------------|------|
-| `PREFLIGHT_REFUSED` | the engine's own sentence: not a direct child of `.skilled/skills`, no description, an input kind that is not an older Skilled skill, or an `ROUTER.md` the resolver does not read | Read the sentence, fix that one condition, then rerun the plan |
-| `RESERVED_PREFIX` | a `local-` prefixed skill is filtered by the format and advisor gates | Rename the skill without the prefix, or leave it private and unconverted |
-| `PERSONA_PREFIX` | an `agent-` prefixed skill collides with runtime persona mirrors | Rename the skill, then rerun |
+| `PREFLIGHT_REFUSED` | `SKILL.md` could not be read, or it declares no description | Fix that one condition, then rerun the plan |
+| `NOT_DIRECT_CHILD` | only a direct child of `.skilled/skills` can be converted, and this path is neither that nor an outside path the engine can stage | Pass the skill root under `.skilled/skills`, or the outside path of a plain skill |
+| `SKILL_UNREADABLE` | `SKILL.md` could not be read | Point the plan at a folder holding a readable `SKILL.md` |
+| `SKILL_NOT_FOUND` | the name or path resolved to no skill root | Pass a name under `.skilled/skills`, or a path to a skill root |
 | `NAME_NOT_KEBAB` | the declared skill name is not a lowercase kebab-case name | Fix the `name` field, then rerun |
+| `RESERVED_PREFIX` | a `local-` prefixed skill is filtered by the format and advisor gates | Rename it without the prefix, or leave it private and unconverted |
+| `PERSONA_PREFIX` | an `agent-` prefixed skill collides with runtime persona mirrors | Rename the skill, then rerun |
+| `NAME_COLLISION` | another skill root declares the same name | Resolve which root keeps the name, then rerun |
+| `TARGET_EXISTS` | the staged folder already exists, or it appeared after planning | Convert that root in place, or rename the incoming skill |
+| `SOURCE_SYMLINK` | the source tree holds a symlink, so a copy would write through it | Replace the link with the file it points at, then rerun |
 | `NESTED_PACKETS` | nested `SKILL.md` packets make this a hub candidate | Convert it with `/create:skill-parent`, not here |
 | `HUB_DECLARATION` | a hub declaration (`mode-registry.json`, `hub-router.json`, or a hub input kind) is present, and conversion does not modify hubs | Convert it with `/create:skill-parent`, not here |
 | `DUAL_DECLARATION` | both `SKILL.md` and `ROUTER.md` declare a machine router | Remove one declaration by hand, then rerun |
-| `NAME_COLLISION` | another skill root declares the same name | Resolve which root keeps the name, then rerun |
-| `ROUTER_EXISTS` | an `ROUTER.md` appeared that the conversion would not replace | Read that file; a conversion never overwrites it |
-| `STALE_PLAN` | `SKILL.md` changed after planning, and no file was written | Rerun the plan, which re-reads the skill |
-| `ROUTER_CONTENT_CHANGED` | the router content proof failed before the write | Report it with the engine's message; nothing changed |
-| `ROUTER_SEMANTICS_CHANGED` | the converted router no longer resolved to the same signals, so the skill folder was restored | Report it with the engine's message; nothing changed |
+| `NO_MACHINE_ROUTER` | the resolver found no machine router anywhere, so this is a plain skill reached through an in-skills path | Convert a plain skill from its own outside path, where the engine stages the new root |
+| `NOT_PLAIN_SKILL` | the outside-root input is not a plain skill | Point the plan at one plain skill folder |
+| `INPUT_KIND_UNSUPPORTED` | the input is neither an older Skilled skill nor a plain outside-root skill | Read the check input kind; a hub belongs to `/create:skill-parent` |
+| `ROUTER_EXISTS` | an `ROUTER.md` exists that the resolver does not read as this skill's machine router, so it is never replaced | Read that file; a conversion never overwrites it |
+| `DESCRIPTION_MISSING` | `SKILL.md` must declare a description | Add one, then rerun |
+| `INTENT_SIGNALS_BELOW_FLOOR` | fewer than 8 approved intent phrases were supplied | Approve the phrases the engine suggested, then rerun |
+| `RESOURCE_LINK_MISSING` | `SKILL.md` links to a reference document that is not there | Add the document, or drop the link |
+| `RESOURCE_RENAME_COLLISION` | a planned resource rename would replace an existing file | Rename one of the two, then rerun |
+| `SNAPSHOT_INVALID` | the preserve snapshot holds no `SKILL.md` | Point `--snapshot` at a folder holding the source `SKILL.md` |
+
+### 5.2 Frontmatter and router
+
+| Code | Reason it prints | Next |
+|------|------------------|------|
+| `FRONTMATTER_INVALID` | the frontmatter block is not closed, carries no single-line description, or the agent output has none | Fix that one field, then rerun |
+| `ALLOWED_TOOLS_INVALID` | `allowed-tools` is not a parseable top-level list | Fix the field, then rerun |
+| `ALLOWED_TOOLS_AMBIGUOUS` | `allowed-tools` has unbalanced parentheses | Fix that one list item, then rerun |
+| `VERSION_INVALID` | the `version` field is duplicated or carries no numeric component | Fix that line, then rerun |
+| `MACHINE_BLOCK_FENCE_UNCLOSED` | a fenced block before the machine router section is not closed | Close that fence, then rerun |
+| `MACHINE_BLOCK_UNFENCED` | a machine declaration sits outside a complete fenced block | Fence the declaration, then rerun |
+| `SMART_ROUTING_MISSING` | `SKILL.md` has no SMART ROUTING section to receive the router link | Add that section, then rerun |
+| `SMART_ROUTING_FENCE_UNCLOSED` | SMART ROUTING has an unclosed fenced block | Close it, then rerun |
+| `ROUTER_LINK_DUPLICATE` | SMART ROUTING already carries more than one `ROUTER.md` link | Keep one link, then rerun |
+| `ROUTER_TEMPLATE_INVALID` | the router template has no MACHINE ROUTER heading or no machine-router scaffold fence | Repair the template asset, then rerun |
+| `MACHINE_ROUTER_MISSING` | `SKILL.md` has no trailing MACHINE ROUTER section to move | Restore that section, then rerun |
+| `MACHINE_ROUTER_RESOLVER_MISMATCH` | the resolver section does not match the trailing source section | Repair that section, then rerun |
+| `MACHINE_ROUTER_NOT_TRAILING` | the MACHINE ROUTER section is not the final level-two section | Move it last, then rerun |
+| `TRANSFORM_FAILED` | the transforms stopped without a more specific code | Read the engine's message, fix that condition, then rerun |
+| `DESCRIPTION_TRIM_INVALID` | the approved trim is empty, or the `description` field it edits is absent | Pass non-empty text for the approved trim |
+
+### 5.3 Preconditions
+
+| Code | Reason it prints | Next |
+|------|------------------|------|
+| `USAGE` | the invocation was wrong: no subcommand, an unknown option, or a flag the subcommand does not take | Run `/doctor:sk-skill convert <name-or-path> [--dry-run]` |
+| `CHECK_UNAVAILABLE` | the existing skill check could not run | Fix the check engine's own failure, then rerun |
+| `CHECK_OUTPUT_INVALID` | the skill check did not return its JSON report | Fix the check engine, then rerun |
+| `ROUTER_PARSER_MISSING`, `ROUTER_PARSE_FAILED` | the router parser could not load, or it failed on this input | Repair the parser or the input it choked on, then rerun |
+| `ROUTER_RESOLVER_MISSING` | the machine-router resolver could not load | Repair the resolver asset, then rerun |
+| `ROUTER_TEMPLATE_MISSING` | the router template could not be read | Restore the template asset, then rerun |
+| `AGENT_OUTPUT_MISSING` | the `--agent-output` file or folder could not be read | Point it at the file the agent step wrote |
+| `SNAPSHOT_PATH_INVALID` | the router proof snapshot path is outside its backup directory | Report the engine's message; nothing was written |
+
+### 5.4 Writes and gates
+
+| Code | Reason it prints | Next |
+|------|------------------|------|
+| `STALE_PLAN` | `SKILL.md` changed after planning, and no file was written | Rerun the plan, then answer the questions again |
+| `ROUTER_CONTENT_CHANGED` | the router content proof failed before the write | Report the engine's message; nothing changed |
+| `ROUTER_SEMANTICS_CHANGED` | the converted router no longer resolved to the same signals, so the skill folder was restored | Report the engine's message; nothing changed |
 | `APPLY_FAILED` | the conversion rolled back and the skill folder holds its original files | Read the message, fix the cause, then rerun |
+| `PLAIN_APPLY_FAILED` | the staged plain conversion stopped and the staged folder was removed | Read the message, fix the cause, then rerun |
 | `ROLLBACK_FAILED` | the rollback could not restore every file and the backup is kept | Restore from the named backup folder by hand, then report it |
-| `ALLOWED_TOOLS_MISSING`, `ALLOWED_TOOLS_AMBIGUOUS`, `ALLOWED_TOOLS_INVALID`, `FRONTMATTER_INVALID` | the frontmatter cannot be normalized as written | Fix that one field, then rerun the plan |
+| `SOURCE_COPY_FAILED` | the source copy could not be created | Read the message, fix that path, then rerun |
+| `PRESERVATION_FAILED` | an original body line is missing from `SKILL.md`, `ROUTER.md` and `references/` | Put the line back, then rerun the preserve check |
+| `RESOURCE_LINK_STALE` | the staged tree still names a resource after its rename | Update that reference, then rerun |
+| `GRAPH_METADATA_INVALID` | the scaffold step could not read `graph-metadata.json` | Repair that file, then rerun |
+| `INIT_SKILL_FAILED` | `init_skill.py` failed | Read its output above the message, then rerun |
+| `ROOT_METADATA_FAILED` | `ci-skill-root-metadata.cjs` failed | Read its output above the message, then rerun |
+| `DERIVED_FILES_FAILED` | `regenerate-skill-derived.cjs` failed | Read its output above the message, then rerun |
+| `STRICT_PACKAGE_FAILED` | `package_skill.py --check --strict` did not report `Result: PASS` | Read the package check's own rows, fix that requirement, then rerun |
+| `VALIDATE_PACKAGE_FAILED` | `validate_skill_package.py` failed | Read its rows, fix that requirement, then rerun |
+
+### 5.5 Messages that are a follow-up question
+
+The first two are not stopping refusals: each names a write the operator has not approved yet, so the workflow asks that question in section 4 and reruns the plan with the approved flag. The last three mean the apply ran without a flag the plan was approved with; that is the workflow's own fault, and it is repaired by passing the same flags to the plan and to the apply.
+
+| Code | What it means | Where it is answered |
+|------|---------------|----------------------|
+| `DESCRIPTION_TOO_LONG` | the description is over 130 characters and no trim was approved | the trim question, then the plan is rerun with `--description-trim` |
+| `ALLOWED_TOOLS_MISSING` | `SKILL.md` declares no `allowed-tools` field | the allowed-tools question, then the plan is rerun with `--allowed-tools` |
+| `ALLOWED_TOOLS_APPROVAL_REQUIRED` | the apply was run without the approved `--allowed-tools` value | rerun the plan and the apply with the list the operator named |
+| `DESCRIPTION_TRIM_REQUIRED` | the apply was run without the approved `--description-trim` value | rerun the plan and the apply with the approved trim |
+| `AGENT_RESHAPE_REQUIRED` | the plain-skill apply was run without `--agent-output` | run the agent step and the preserve check, then the plan and the apply with that flag |
 
 A hub candidate prints one extra line after the refusal, because a hub belongs to another command:
 
 ```text
 Next: /create:skill-parent <the parent skill folder>
 ```
-
-A description over 130 characters and a missing `allowed-tools` are not refusals. They are the field follow-ups of the plan section, and each one needs its own yes before the converter can plan the conversion.
 
 ## 6. Result Templates
 
@@ -206,8 +306,9 @@ Skill: [name]
 Files changed: [each overwritten or created path]
 Router source: [inline -> ROUTER.md | ROUTER.md -> ROUTER.md]
 Verification: [the check engine's result line and any row that still reports FINDING]
-Follow-ups deferred: [the fields left untouched, or none]
-Undo: [the restore commands, one per file]
+Fields approved: [the trimmed description and the allowed-tools list the operator approved, or none]
+Integration: [one line per integration row the engine printed, and the row that failed when one did]
+Undo: [the engine's undo block, quoted whole: its Undo: line, one cp per backup, one rm per file the run created, one git restore per tracked file an integration row overwrote, and its Check: line]
 STATUS=OK
 ```
 
@@ -226,12 +327,29 @@ STATUS=OK
 
 ### Cancelled
 
+Render this when the operator declines any question, and name what was declined.
+
 ```text
 DOCTOR TARGET CANCELLED
 Target: convert
 Skill: [name]
+Declined: [the description trim | the allowed-tools list | the conversion]
 Changed: none
 STATUS=CANCELLED ACTION=cancelled
+```
+
+### Dry Run
+
+Render this after the plan and its follow-up proposals, and ask nothing.
+
+```text
+DOCTOR DRY RUN
+Target: convert
+Skill: [name]
+Plan: [the engine's plan lines, quoted as printed]
+Dry run: nothing was written and nothing was asked.
+Changed: none
+STATUS=OK
 ```
 
 ### Failure Summary
@@ -281,8 +399,12 @@ A rolled-back conversion prints `Changed: none`. A `ROLLBACK_FAILED` prints the 
 | `HUB_NOT_FOUND` | The hub name or path resolves to no directory. Check the spelling, or pass the hub root path |
 | `PRIVATE_ROOT_REFUSED` | A private root is skipped by every gate, so a report on it could only pass by being invisible. Point `--into-hub` and the skill at a public root |
 | Convert exits 1 with a code that is not in the refusal table | The code is the engine's own; read its message and treat it as the same class: nothing was written, fix that one condition, then rerun the plan |
-| Convert reports the skill is already converted | A previous run converted it and a second apply writes nothing. Read the conversion result, not a failure |
-| Convert changed `SKILL.md` and you want it back | Copy the backed-up `SKILL.md` over the converted one and delete the created `ROUTER.md`, using the backup folder the result printed |
+| Convert reports `DESCRIPTION_TOO_LONG` or `ALLOWED_TOOLS_MISSING` | Not a failure: each one is a follow-up question. Ask the trim or the allowed-tools question, then rerun the plan with the flag the answer gives |
+| Convert reports `PRESERVATION_FAILED` | The reshaped prose dropped an original body line. Put that line back into `SKILL.md` or into a reference document, rerun `preserve --snapshot <dir> <staging dir>` until it prints `Preservation PASS`, then rerun the plan |
+| Convert reports `AGENT_RESHAPE_REQUIRED`, `DESCRIPTION_TRIM_REQUIRED` or `ALLOWED_TOOLS_APPROVAL_REQUIRED` | The apply ran without a flag the plan was approved with. Rerun the plan and then the apply with the same flags |
+| Convert reports the skill is already converted | The plan printed `Writes: none` and nothing was asked. Read the unchanged result, not a failure |
+| Convert changed `SKILL.md` and you want it back | Run the engine's own `Undo:` block, exactly as printed. It restores each backed-up file, removes each file the run created and restores each tracked file an integration row overwrote. Never recompose it by hand |
+| Convert reports a plain skill that was copied rather than converted in place | A plain skill is staged under `.skilled/skills/<name>/` and its source folder stays as it was. Read the `Converted skill:` line for the root the check reads |
 | Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
 
 ## 8. Next Step
@@ -290,8 +412,8 @@ A rolled-back conversion prints `Changed: none`. A `ROLLBACK_FAILED` prints the 
 | Condition | Suggested Command | Reason |
 |-----------|-------------------|--------|
 | A check row still reports `FINDING` after a conversion | `/doctor:sk-skill check <name-or-path>` | The conversion completes the format; the remaining row is a different requirement |
-| A converted skill still reports `C11` over budget | `/doctor:sk-skill convert <name-or-path>` | The trim is offered again with its own yes |
-| The converted skill should reach the advisor | `npm --prefix .skilled/skills/system-skill-advisor/runtime run build` | The advisor reads the rebuilt skill graph, not the files on disk |
+| A converted skill still reports `C11` over budget | `/doctor:sk-skill convert <name-or-path>` | The trim is offered again with its own yes, and the plan is rerun with it |
+| The converted skill should reach the advisor | `/doctor:skill-advisor rebuild` | The advisor reads its own skill graph, which is rebuilt from its database, not from the files on disk |
 | The conversion was refused as a hub | `/create:skill-parent <the parent skill folder>` | A hub belongs to the parent-skill route |
 
 End interactive presentations with: `What would you like to do next?`

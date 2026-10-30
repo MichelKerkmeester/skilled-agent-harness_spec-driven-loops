@@ -33,7 +33,7 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Confirm the convert script from phases 3 to 5 exists (`DOC/scripts/sk-skill-convert.cjs`). Verify: `node DOC/scripts/sk-skill-convert.cjs plan --help` exits 0.
+- [x] T001 Confirm the convert script from phases 3 to 5 exists (`DOC/scripts/sk-skill-convert.cjs`). Verify: `node DOC/scripts/sk-skill-convert.cjs` with no subcommand prints its `USAGE: Invalid invocation.` usage block and exits 2.
 - [x] T002 Confirm the phase 2 plumbing exists (`DOC/sk-skill.md`, `DOC/assets/doctor-sk-skill-presentation.txt`, `DOC/scripts/tests/doctor-sk-skill-contract.test.cjs`). Verify: `ls` lists all three.
 - [x] T003 [P] Record the starting gate results (`scratch/before.md`). Verify: the file lists `route-validate.sh`, `run-all.sh` and `doctor-phrase-reach.cjs` with exit codes.
 <!-- /ANCHOR:phase-1 -->
@@ -68,6 +68,21 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Alignment With The Engine
+
+The convert engine grew a plain-skill path, `--description-trim`, `--allowed-tools`, a `preserve --snapshot` check and a printed undo block while this phase was in review. Every task below brings the surfaces back in line with it; none of them changes the engine.
+
+- [x] T018 Align the workflow with the engine's real order: plan, the trim and allowed-tools questions with their own yes, the plan rerun with the approved flags, the printed plan, the conversion question, then `apply --apply` with the same flags (`DOC/assets/doctor-sk-skill-convert.yaml`). Verify: `node --test DOC/scripts/tests/doctor-sk-skill-contract.test.cjs` passes with its phase-order assertions.
+- [x] T019 Print the engine's undo block instead of composing one (`DOC/assets/doctor-sk-skill-convert.yaml`, `DOC/assets/doctor-sk-skill-presentation.txt`). Verify: the contract test's undo assertion passes and the scratch run shows the engine's `Undo:` block with its `cp`, `rm`, `git restore` and `Check:` lines.
+- [x] T020 Describe the plain-skill prose step and its `preserve --snapshot` proof from the engine's interface, in the workflow, the router and the presentation (`DOC/assets/doctor-sk-skill-convert.yaml`, `DOC/assets/doctor-sk-skill-presentation.txt`, `DOC/sk-skill.md`). Verify: the contract test's preserve assertions pass and the scratch run prints `Preservation PASS`.
+- [x] T021 Derive the refusal code list from the engine source in the contract test, match the presentation table to it, and carry `DESCRIPTION_TOO_LONG` and `ALLOWED_TOOLS_MISSING` as follow-up questions rather than refusals (`DOC/scripts/tests/doctor-sk-skill-contract.test.cjs`, `DOC/assets/doctor-sk-skill-presentation.txt`, `DOC/assets/doctor-sk-skill-convert.yaml`). Verify: `node --test DOC/scripts/tests/doctor-sk-skill-contract.test.cjs` reports 32 tests, 32 pass.
+- [x] T022 Widen the argument hint and the command contract together, list the engine's real write set in `_routes.yaml` and in the workflow, and name `/doctor:skill-advisor rebuild` as the advisor next step (`DOC/sk-skill.md`, `.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json`, `DOC/_routes.yaml`, `DOC/assets/doctor-sk-skill-presentation.txt`, `DOC/assets/doctor-setup-presentation.txt`). Verify: a JSON Schema check of the contract reports `schema errors = 0` and `bash DOC/scripts/route-validate.sh` exits 0 with 51 script invocations.
+- [x] T023 Run the workflow's order on a scratch skill in a temporary repository and record it (`scratch/t018-alignment-run.md`). Verify: the transcript shows the plan, `STATUS=CANCELLED` on no with an unchanged tree hash, and `STATUS=OK` on yes with the engine's undo block.
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:execution-evidence -->
 ## Execution Evidence
 
@@ -76,7 +91,7 @@ Every run below happened in this worktree on 2026-10-30, from the worktree root.
 
 | Task | Command | Exit | Observed |
 |------|---------|------|----------|
-| T001 | `node DOC/scripts/sk-skill-convert.cjs plan` with no target | 2 | The script has no `--help`: it answers an unknown option with its usage block. The usage names `plan <skill-name-or-path>` and `apply <skill-name-or-path> [--apply]`, which is the interface this phase builds on |
+| T001 | `node DOC/scripts/sk-skill-convert.cjs` with no subcommand | 2 | `USAGE: Invalid invocation.` above the usage block. The block names `plan <skill-name-or-path>`, `apply <skill-name-or-path> [--description-trim <text>] [--allowed-tools <comma list>] [--agent-output <path>] [--apply]` and `preserve --snapshot <dir> [<skill-dir>]`, which is the interface this phase drives |
 | T002 | `ls` on the three phase 2 files | 0 | `sk-skill.md`, `doctor-sk-skill-presentation.txt` and `doctor-sk-skill-contract.test.cjs` all present before the first edit |
 | T003 | the three gates, recorded before any edit | 0 | `scratch/before.md`: 19 routes, 7/7 suites, `STATUS=OK phrases=118 bridges=22`, bridge `"fresh"` |
 | T004 | `rg -c 'STATUS=(OK\|CANCELLED\|FAIL)' DOC/assets/doctor-sk-skill-convert.yaml` | 0 | 11 matching lines; the file also carries `output.statuses: [OK, CANCELLED, FAIL]` |
@@ -88,11 +103,17 @@ Every run below happened in this worktree on 2026-10-30, from the worktree root.
 | T010 | `node --test DOC/scripts/tests/doctor-sk-skill-contract.test.cjs` | 0 | 25 tests, 25 pass. The refusal test reads the converter's own source, so a reason the engine never prints fails |
 | T011 | the seven sync scripts, then each with `--check` | 0 | All seven wrote 0 files and then reported `PASS` in sync, because the generated prompt stubs point at the router and carry none of its text |
 | T012 | `bash DOC/scripts/tests/run-all.sh` | 0 | `[run-all] 7 suite(s) passed, 0 failed` |
-| T013 | `node DOC/scripts/doctor-phrase-reach.cjs` | 0 | `STATUS=OK phrases=130 bridges=24`, with six `PASS command-doctor-sk-skill-convert` and six `PASS command-doctor-sk-skill-check` lines |
+| T013 | `node DOC/scripts/doctor-phrase-reach.cjs` | 0 | `STATUS=OK phrases=130 bridges=24`, with seven `PASS command-doctor-sk-skill-convert` lines (including `top "convert a plain agent skill"` and `top "/doctor:sk-skill convert"`) and five `PASS command-doctor-sk-skill-check` lines, re-run after the alignment round |
 | T014 | the transcript in `scratch/t014-convert-run.md` | - | Sections 1 to 3: the plan, no change on no, the apply, the backup, the re-read and the undo |
 | T015 | the same transcript, section 4 | 1 each | `RESERVED_PREFIX:` and `DUAL_DECLARATION:`, each rendered as `REFUSE:` plus `STATUS=FAIL` |
 | T016 | `scratch/t016-authoring-log.md` plus the schema and structure validators | 0 | `schema errors = 0`; `✅ VALID: …/sk-skill.md`, `Total issues: 0` |
 | T017 | `node BR/derive-command-bridges.cjs --check` | 0 | `"changed": []`; the contract test asserts the `default_target` flag on `check` and its absence on `convert` |
+| T018 | `node --test DOC/scripts/tests/doctor-sk-skill-contract.test.cjs` | 0 | 32 tests, 32 pass, including the phase order (plan, follow-up yeses, plan rerun, conversion question, apply with the same flags), the cancelled wording at both question sites and the `--apply`-only-in-the-write-phase rule |
+| T019 | the contract test's undo assertion plus `scratch/t018-alignment-run.md` section 4 | 0 | The workflow names the engine's `Undo:` line, its `cp`, its `rm`, its `git -c core.fsmonitor=false restore` and its `Check:` line, and the scratch run prints that block as the engine wrote it |
+| T020 | the contract test's preserve assertions plus `scratch/t018-alignment-run.md` section 4 | 0 | `Preservation PASS: 7 original body line(s) found.`, exit 0, then the apply printed the same line before its format gates |
+| T021 | `node --test DOC/scripts/tests/doctor-sk-skill-contract.test.cjs` | 0 | 66 codes derived from `sk-skill-convert.cjs` and its two libraries; every one is named in the presentation, and neither `DESCRIPTION_TOO_LONG` nor `ALLOWED_TOOLS_MISSING` is a stopping refusal anywhere |
+| T022 | `/usr/bin/python3` with `jsonschema`, then `bash DOC/scripts/route-validate.sh` | 0 | `whole-document schema errors = 0`, `families.doctor schema errors = 0`; `OK: route-validate — 20 routes validated, 3 warnings` and `L1: all 51 route script invocations are invoked by their workflow YAML` |
+| T023 | `node scratch-convert-run.cjs` in the dispatcher's scratch root | 0 | Plan exit 0 with the `approval required` follow-up and the integration plan; no gives a hash-equal tree and `STATUS=CANCELLED`; yes gives `Result: PASS`, `Preservation PASS`, the engine's undo block and exit 0; the older Skilled trim run refuses at 153 characters, prints `Set description:` on the rerun and applies with a backup |
 
 Two more checks were run because the bridge activation reaches the scorer beyond the doctor routes:
 
@@ -180,9 +201,21 @@ A blocked task is marked `[B]` with the blocking phase named; a P0 item never cl
 <!-- ANCHOR:fix-completeness -->
 ## FIX ADDENDUM: FIX COMPLETENESS
 
-N/A: this phase adds a route; it fixes no reported finding.
+This round fixes the findings two reviews raised against the phase's surfaces, and the
+one contract test that failed because the engine had moved on.
 
-- [x] CHK-FIX-001 [P2] N/A: no finding to classify.
+| Finding | Class | Resolution |
+|---------|-------|------------|
+| The trim and allowed-tools writes had no backup, and the conversion yes was asked against a plan the operator never saw | P1 | T018: each field is a question with its own yes, the plan is rerun with the approved flags so the engine prints the field as a plan line, and the apply carries the same flags |
+| The undo always deleted `ROUTER.md` | P1 | T019: the workflow prints the engine's undo block as printed |
+| The plain-skill prose step was undescribed and unproven | P1 | T020: the agent reshapes prose into `--agent-output` and `preserve --snapshot` proves the body before the format gate |
+| The refusal table and the workflow disagreed with the engine's codes | P2 | T021: the codes are derived from the engine source and the workflow carries the two follow-up messages as questions |
+| The refusal reason test failed on wording the engine no longer prints | P2 | T021 |
+| The argument hint, the write set and the advisor next step were stale | P2 | T022 |
+| The scratch evidence predated the engine change | P2 | T023 |
+
+- [x] CHK-FIX-001 [P1] Every finding above is fixed rather than deferred, and each one is verified by a command or a transcript row.
+- [x] CHK-FIX-002 [P2] No finding needed a change outside the phase's own files: the engine, its libraries and the compiled bridges are untouched.
 <!-- /ANCHOR:fix-completeness -->
 
 ---

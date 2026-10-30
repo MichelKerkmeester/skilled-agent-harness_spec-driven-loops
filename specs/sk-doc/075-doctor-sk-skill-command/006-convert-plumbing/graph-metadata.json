@@ -205,7 +205,7 @@
     ],
     "causal_summary": "After phase 5, `sk-skill-convert.cjs` can plan and apply a conversion, but only a person who knows the script path can run it",
     "created_at": "2026-10-30T05:21:16Z",
-    "last_save_at": "2026-10-30T09:02:50.900Z",
+    "last_save_at": "2026-10-30T10:13:14.902Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f86290c10e97c6d5f33b271dcec8b7b8dfe61b34b2a4e1f4bc34c431ce8fd405",
+    "source_fingerprint": "sha256:af71dd2ef4bf4696bf58aec500d9e6b530c420ed350e09d1b12e9e5244159e5c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b7a4167258e53c767856f5e905733c817663abcb6f5731e4c270a284d4ab6fa9",
-      "plan.md": "26fc9fffd4312c44f38bcc452ed8e209f797bfdb820589828e87153c3593beab",
-      "tasks.md": "f3105147bff98c46738949d37dc210aeda8b27f3ad21345ab15a789cfeee562c",
-      "implementation-summary.md": "7f37289559d2ed6cce91f66a743a9103d06d33136bf7e50556d845abad8d890c"
+      "spec.md": "f854e182be337179eadd67a1bc98dd2b4621f380c22ee39e67979665b916c98c",
+      "plan.md": "e486c507ecffce42d7f0da629feda58ab17293aea9317076bfb99cf4b79a3138",
+      "tasks.md": "7f39ccc53014042b2f503776711b0e430f87827e9ce648b471fbc47d3818d439",
+      "implementation-summary.md": "3e2348519793b3c9f816fce3625a0cfb79bae5b814e3a50bfb74f2ee9267af45"
     },
     "last_active_at": null
   }
