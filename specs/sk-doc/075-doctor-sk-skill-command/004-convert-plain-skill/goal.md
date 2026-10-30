@@ -8,17 +8,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-doc/075-doctor-sk-skill-command/004-convert-plain-skill"
-    last_updated_at: "2026-10-30T07:20:00Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-10-30T09:10:00Z"
+    last_updated_by: "claude-opus-worker"
+    recent_action: "Recorded the closed completion criteria"
+    next_safe_action: "Proceed with phase 005 integration"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-281-doctor-skill-command"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -53,11 +53,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `package_skill.py --check --strict` on the converted plain fixture prints `Result: PASS`
-- [ ] `ci-skill-root-metadata.cjs --skill <fixture>` exits 0 on the converted plain fixture
-- [ ] `sk-skill-convert.cjs preserve --snapshot <dir>` passes on the plain fixture and fails on the dropped-line fixture
-- [ ] With 7 approved phrases the plan stops with `INTENT_SIGNALS_BELOW_FLOOR`
-- [ ] `node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` exits 0
+- [x] `package_skill.py --check --strict` on the converted plain fixture prints `Result: PASS`
+- [x] `ci-skill-root-metadata.cjs --skill <fixture>` exits 0 on the converted plain fixture
+- [x] `sk-skill-convert.cjs preserve --snapshot <dir>` passes on the plain fixture and fails on the dropped-line fixture
+- [x] With 7 approved phrases the plan stops with `INTENT_SIGNALS_BELOW_FLOOR`
+- [x] `node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` exits 0
 <!-- /ANCHOR:completion -->
 
 ---
@@ -73,11 +73,15 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase planned | Pending | spec.md, plan.md, tasks.md authored |
+| Phase planned | Done | spec.md, plan.md, tasks.md authored |
+| V1 to V8 implemented | Done | `sk-skill-convert.cjs` runs the stages in order and the suite drives them end to end |
+| Preservation gate | Done | `preserve --snapshot` passes on the converted fixture and names the lost line on the dropped-line copy |
+| Format gates | Done | `Result: PASS` from the strict package check and exit 0 from the root-metadata check on the converted fixture |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | - |
+| Staged copy removed on a failed run | The plan's rollback promises it and an abandoned half-converted root would face every gate, so a failure after staging removes the tree the run created and keeps only the snapshot |
+| Interpreter resolved through the context | An absolute Homebrew path does not exist off macOS, so the scaffolder and both validators take the configured `python3` |
 <!-- /ANCHOR:log -->

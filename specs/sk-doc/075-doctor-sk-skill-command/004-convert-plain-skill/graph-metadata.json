@@ -35,14 +35,17 @@
       "goal"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/sk-skill-convert.cjs",
+      ".skilled/commands/doctor/scripts/lib/sk-skill-convert-transforms.cjs",
+      ".skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs"
     ],
     "entities": [
       {
@@ -79,6 +82,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-convert.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/sk-skill-convert.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-convert-transforms.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/lib/sk-skill-convert-transforms.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-convert.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs",
         "source": "derived"
       },
       {
@@ -130,7 +151,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview Add",
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -166,25 +187,7 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
+        "name": "Field Notes",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -192,7 +195,7 @@
     ],
     "causal_summary": "Class S needs only two authored files beyond `SKILL.md`, `graph-metadata.json` and `leaf-manifest.config.json` (`skill-root-metadata-contract.md:167-169`), but a plain skill also lacks the section shape, the resource-doc frontmatter and the router file the strict gate expects",
     "created_at": "2026-10-30T05:21:14Z",
-    "last_save_at": "2026-10-30T05:40:23.165Z",
+    "last_save_at": "2026-10-30T09:02:52.544Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f27a51e1c44e79c3d2eddff49a6c74c2b23661b59727151945da3f57f200da9",
+    "source_fingerprint": "sha256:d4be8bc88aad54b08217bef9be08e429acd6b2908b058718c52f2703e1337f42",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4b18ec1dd6e8cea32610c78efa463b24ffd53fa17745333a5c4a4b72fc98329c",
-      "plan.md": "2ae4ccc866097a82bba9bd9f8388f5c9a29723b9244dc7e58563dff8f2d07b95",
-      "tasks.md": "a277cf520bc8cc56d99186818075b3c17a0d832b380fa2ff5ba829d2a9a0c3d8",
-      "implementation-summary.md": "20ba7272e8d9595c772f4ef93983d7de6db7c4a149a8822e861077af5f0a4712"
+      "spec.md": "1797dab7d7bdad5d64337a324f1365aff0a1351d5525d5f3543e0b29c5962f2a",
+      "plan.md": "c864bdd8e9f35479d54becfe13543c523ac2a268f6d92fb1c521267897ac5580",
+      "tasks.md": "8e1baabc52c486863e635fa9da5bfcd3d0d14a3f91aa3a2c803530f665c1b5bd",
+      "implementation-summary.md": "abdcf666ed87e4c3a21c6b470d90807ce44422adcf1f8fb3953f4adc98f6fce4"
     },
     "last_active_at": null
   }

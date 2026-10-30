@@ -26,7 +26,7 @@ contextType: "general"
 | **Testing** | `node --test` |
 
 ### Overview
-Add the plain-skill steps to the convert script: stage, render the router, hand the prose reshape to the workflow's agent step bounded by `preserve`, add resource-doc frontmatter, copy absent metadata from a temp `init_skill.py` run, regenerate derived files and run the strict gate. Prove it on a plain fixture and a dropped-line fixture.
+The converter copies the outside source under its frontmatter name, renders one intent and the body-ordered resource map, accepts workflow-agent prose through `--agent-output`, and checks preservation before resource rewrites, metadata scaffolding and V7/V8. Intent phrases and `allowed-tools` arrive through explicit approval flags. The plain fixture proves strict PASS and root-metadata exit 0; the dropped-line fixture proves the preservation gate stops the run.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -35,14 +35,14 @@ Add the plain-skill steps to the convert script: stage, render the router, hand 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` exits 0 (phase 003 closed)
-- [ ] Plain and dropped-line fixtures exist
-- [ ] Dependencies identified
+- [x] `node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` exits 0 (phase 003 closed). Evidence: final suite passed 21/21.
+- [x] Plain and dropped-line fixtures exist. Evidence: `tests/fixtures/sk-skill-convert/plain/{before,after,dropped}`.
+- [x] Dependencies identified. Evidence: initializer, root metadata, derived generator and both validators run in integration tests.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] The plain fixture prints `Result: PASS` from `package_skill.py --check --strict` and `ci-skill-root-metadata.cjs --skill <fixture>` exits 0
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met. Evidence: AC-001 through AC-007 are Met.
+- [x] The plain fixture prints `Result: PASS` from `package_skill.py --check --strict` and `ci-skill-root-metadata.cjs --skill <fixture>` exits 0. Evidence: temp-copy integration test.
+- [x] Docs updated (spec/plan/tasks). Evidence: phase spec, plan, tasks, acceptance criteria, goal and implementation summary agree on completion.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -58,7 +58,7 @@ Scripted steps around one agent step
 - **`lib/sk-skill-convert-transforms.cjs`**: link harvest for `RESOURCE_MAP`, frontmatter insert for resource docs, kebab rename with link rewrite, phrase proposal from the description, keyword comment and any old `INTENT_SIGNALS`.
 
 ### Data Flow
-V1 copies the source to `.skilled/skills/<frontmatter-name>/` and snapshots it. V3(a) renders `ROUTER.md`; V4 hands section shaping to the agent, then `preserve --snapshot` compares body lines. V5 edits resource docs, V6 copies absent scaffold files and writes approved phrases, V7 regenerates derived files, V8 runs both validators and stops on fail.
+V1 copies the source to `.skilled/skills/<frontmatter-name>/` and snapshots it. V3(a) renders `ROUTER.md`; V4 takes the workflow agent's shaped `SKILL.md` and checks original body lines with `preserve --snapshot`. V5 edits and renames resource docs, V6 copies absent scaffold files and writes approved phrases, V7 regenerates metadata, and V8 runs both validators and stops on failure.
 <!-- /ANCHOR:architecture -->
 
 ---

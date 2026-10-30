@@ -33,8 +33,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Add a plain skill fixture and a dropped-line variant with invented names (`FX/`). Verify: the resolver prints `none` on the plain fixture.
-- [ ] T002 Confirm phase 003 closed (`DOC/scripts/tests/sk-skill-convert.test.cjs`). Verify: `node --test` on it exits 0.
+- [x] T001 Add a plain skill fixture and a dropped-line variant with invented names (`FX/`). Verify: the resolver prints `none` on the plain fixture. Evidence: resolver command printed `none` for `plain/before/SKILL.md`.
+- [x] T002 Confirm phase 003 closed (`DOC/scripts/tests/sk-skill-convert.test.cjs`). Verify: `node --test` on it exits 0. Evidence: the final conversion suite passed 21/21, including phase 003 cases.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -42,13 +42,13 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 V1 stage: copy under the frontmatter name with an exclusive create, refuse an existing folder (`DOC/scripts/sk-skill-convert.cjs`). Verify: the outside source is byte-identical after a run.
-- [ ] T004 V3(a) router render with one intent and the harvested `RESOURCE_MAP` in body order (`DOC/scripts/lib/sk-skill-convert-transforms.cjs`). Verify: the plan prints the map.
-- [ ] T005 V4 `preserve --snapshot <dir>` (`DOC/scripts/sk-skill-convert.cjs`). Verify: the dropped-line fixture exits non-zero and names the lost line.
-- [ ] T006 [P] V5 resource-doc frontmatter and kebab rename with link rewrite (`DOC/scripts/lib/sk-skill-convert-transforms.cjs`). Verify: the plan lists each rename file by file.
-- [ ] T007 V6 metadata from a temp `init_skill.py` run, copying only absent files, with at least 8 approved phrases (`DOC/scripts/sk-skill-convert.cjs`). Verify: 7 phrases stop the plan with `INTENT_SIGNALS_BELOW_FLOOR`.
-- [ ] T008 V7 and V8: root-metadata `--fix`, derived `--write`, then the strict and package validators (`DOC/scripts/sk-skill-convert.cjs`). Verify: a forced V8 failure stops before integration.
-- [ ] T009 `allowed-tools` proposal with no default (`DOC/scripts/sk-skill-convert.cjs`). Verify: the plan proposes `[Read, Grep, Glob]`, plus `Bash` only when `scripts/` exists.
+- [x] T003 V1 stage: copy under the frontmatter name with an exclusive create, refuse an existing folder (`DOC/scripts/sk-skill-convert.cjs`). Verify: the outside source is byte-identical after a run. Evidence: end-to-end tree hashes match; the existing-target test preserves its sentinel.
+- [x] T004 V3(a) router render with one intent and the harvested `RESOURCE_MAP` in body order (`DOC/scripts/lib/sk-skill-convert-transforms.cjs`). Verify: the plan prints the map. Evidence: plan and router both list `references/field-notes.md` for PRIMARY.
+- [x] T005 V4 `preserve --snapshot <dir>` (`DOC/scripts/sk-skill-convert.cjs`). Verify: the dropped-line fixture exits non-zero and names the lost line. Evidence: pass prints `Preservation PASS`; dropped fixture reports `Read the field notes before choosing a review path`, removes the staged copy, leaves the outside source hash unchanged and keeps the snapshot beside the backup.
+- [x] T006 [P] V5 resource-doc frontmatter and kebab rename with link rewrite (`DOC/scripts/lib/sk-skill-convert-transforms.cjs`). Verify: the plan lists each rename file by file. Evidence: `references/Field Notes.md` is listed, becomes `references/field-notes.md`, and links are rewritten.
+- [x] T007 V6 metadata from a temp `init_skill.py` run, copying only absent files, with at least 8 approved phrases (`DOC/scripts/sk-skill-convert.cjs`). Verify: 7 phrases stop the plan with `INTENT_SIGNALS_BELOW_FLOOR`. Evidence: 7 phrases are refused; 8 complete apply; the temp scaffold is removed and existing files survive.
+- [x] T008 V7 and V8: root-metadata `--fix`, derived `--write`, then the strict and package validators (`DOC/scripts/sk-skill-convert.cjs`). Verify: a forced V8 failure stops before integration. Evidence: valid apply passes both generators and gates; invalid RULES shape stops at `STRICT_PACKAGE_FAILED` before `validate_skill_package.py` runs.
+- [x] T009 `allowed-tools` proposal with no default (`DOC/scripts/sk-skill-convert.cjs`). Verify: the plan proposes `[Read, Grep, Glob]`, plus `Bash` only when `scripts/` exists. Evidence: tests verify both proposals and apply refuses without explicit `--allowed-tool` inputs.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -56,8 +56,8 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T010 Run the suite (`DOC/scripts/tests/sk-skill-convert.test.cjs`). Verify: `node --test` on it exits 0.
-- [ ] T011 Run the gates on the converted plain fixture (`FX/`). Verify: `package_skill.py --check --strict` prints `Result: PASS` and `ci-skill-root-metadata.cjs --skill <fixture>` exits 0.
+- [x] T010 Run the suite (`DOC/scripts/tests/sk-skill-convert.test.cjs`). Verify: `node --test` on it exits 0. Evidence: 21 tests passed, 0 failed, after the final change to the failure path.
+- [x] T011 Run the gates on the converted plain fixture (`FX/`). Verify: `package_skill.py --check --strict` prints `Result: PASS` and `ci-skill-root-metadata.cjs --skill <fixture>` exits 0. Evidence: a scratch-area run of the shipped converter produced `Result: PASS` (exit 0), `OK [S] brindle-lantern` (exit 0), `Preservation PASS: 7 original body line(s) found.` (exit 0) and `INTENT_SIGNALS_BELOW_FLOOR` on 7 phrases (exit 1).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,10 +65,10 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
-- [ ] Plain fixture passes both gates and `preserve`; dropped-line fixture fails `preserve`
+- [x] All tasks marked `[x]`. Evidence: T001–T011 are complete.
+- [x] No `[B]` blocked tasks remaining. Evidence: none are marked blocked.
+- [x] Manual verification passed. Evidence: the shipped converter ran end to end in a scratch skills root, and both format gates plus `preserve` were spawned there as separate processes.
+- [x] Plain fixture passes both gates and `preserve`; dropped-line fixture fails `preserve`. Evidence: end-to-end and preservation cases in the conversion suite.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -102,9 +102,9 @@ A blocked task is marked `[B]` with the blocking cause on the same line.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Fixtures in place
+- [x] CHK-001 [P0] Requirements documented in spec.md. Evidence: REQ-001 through REQ-007.
+- [x] CHK-002 [P0] Technical approach defined in plan.md. Evidence: ordered V1, V3(a), V4–V8 flow and test strategy.
+- [x] CHK-003 [P1] Fixtures in place. Evidence: invented plain source, reshaped after-copy and dropped-line copy under `FX/plain/`.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -112,10 +112,10 @@ A blocked task is marked `[B]` with the blocking cause on the same line.
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] `node --check` exits 0 on both scripts
-- [ ] CHK-011 [P0] Transforms read and write no file
-- [ ] CHK-012 [P1] V8 failure stops before any integration write
-- [ ] CHK-013 [P1] Scaffold copy never replaces an existing file
+- [x] CHK-010 [P0] `node --check` exits 0 on both scripts. Evidence: both converter files pass syntax checks.
+- [x] CHK-011 [P0] Transforms read and write no file. Evidence: transforms are pure text functions; unit tests exercise returned values.
+- [x] CHK-012 [P1] A failed run stops at its gate and leaves no half-converted root. Evidence: forced strict-package failure prevents the second validator; a dropped body line stops at V4 with the staged copy removed and the snapshot kept.
+- [x] CHK-013 [P1] Scaffold copy never replaces an existing file. Evidence: end-to-end fixture preserves `operator-note.txt` while adding scaffold files.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -123,10 +123,10 @@ A blocked task is marked `[B]` with the blocking cause on the same line.
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Dropped-line fixture fails `preserve`
-- [ ] CHK-022 [P1] Phrase floor tested at 7 and 8
-- [ ] CHK-023 [P1] Outside source unchanged after a run
+- [x] CHK-020 [P0] All acceptance criteria met. Evidence: AC-001 through AC-007 are Met.
+- [x] CHK-021 [P0] Dropped-line fixture fails `preserve`. Evidence: output names the missing field-notes line, and no scaffolder, generator or validator runs after it.
+- [x] CHK-022 [P1] Phrase floor tested at 7 and 8. Evidence: 7 is refused; 8 phrases complete the end-to-end apply.
+- [x] CHK-023 [P1] Outside source unchanged after a run. Evidence: source tree hashes match before and after apply.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -142,9 +142,9 @@ N/A: this phase fixes no reported finding.
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] `allowed-tools` never written without operator confirmation
-- [ ] CHK-032 [P1] Renames stay inside the staged skill folder
+- [x] CHK-030 [P0] No hardcoded secrets. Evidence: changed source and fixtures reviewed; fixtures use invented names and no credentials.
+- [x] CHK-031 [P0] `allowed-tools` never written without operator confirmation. Evidence: apply refuses without approved `--allowed-tool` values and leaves no target.
+- [x] CHK-032 [P1] Renames stay inside the staged skill folder. Evidence: plan names staged source/destination; test observes the rename under the temp target.
 <!-- /ANCHOR:security -->
 
 ---
@@ -152,9 +152,9 @@ N/A: this phase fixes no reported finding.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Comments state why each step exists, not a ticket id
-- [ ] CHK-042 [P2] Script README entry deferred to phase 007
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized. Evidence: each records the same V1, V3(a), V4–V8 scope and results.
+- [x] CHK-041 [P1] Comments state why each step exists, not a ticket id. Evidence: added code contains no packet or task labels in comments.
+- [x] CHK-042 [P2] Script README entry deferred to phase 007. Evidence: README integration is explicitly out of scope for this phase.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -162,8 +162,8 @@ N/A: this phase fixes no reported finding.
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp scaffold output removed after V6
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp scaffold output removed after V6. Evidence: test captures the `init_skill.py --path` directory and confirms it is absent after apply.
+- [x] CHK-051 [P1] scratch/ cleaned before completion. Evidence: no phase-local scratch files were created.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -173,11 +173,11 @@ N/A: this phase fixes no reported finding.
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | 0/8 |
-| P1 Items | 10 | 0/10 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 8 | 8/8 |
+| P1 Items | 10 | 10/10 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: Pending
+**Verification Date**: 2026-10-30
 <!-- /ANCHOR:summary -->
 
 ---

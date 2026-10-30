@@ -3,6 +3,8 @@
 // ───────────────────────────────────────────────────────────────────
 'use strict';
 
+const path = require('node:path');
+
 const MACHINE_ROUTER_HEADING_RE = /^##\s+(?:\d+\.\s+)?MACHINE ROUTER\s*$/;
 const SMART_ROUTING_HEADING_RE = /^##\s+(?:\d+\.\s+)?SMART ROUTING\s*$/i;
 // The routing canon calls a fenced or indented block a machine router when a line in it
@@ -28,6 +30,19 @@ function frontmatterParts(text) {
     close: match[3],
     after: match[4],
     rest: text.slice(match[0].length),
+  };
+}
+
+function optionalFrontmatterParts(text) {
+  const match = /^---(\r?\n)([\s\S]*?)(\r?\n---)(\r?\n|$)/.exec(text);
+  if (!match) return { newline: text.includes('\r\n') ? '\r\n' : '\n', body: '', rest: text, hasFrontmatter: false };
+  return {
+    newline: match[1],
+    body: match[2],
+    close: match[3],
+    after: match[4],
+    rest: text.slice(match[0].length),
+    hasFrontmatter: true,
   };
 }
 
@@ -469,8 +484,273 @@ function moveLegacyRouter(text, template, skillName, resolvedSection = null) {
   return { skillMd, routerMd, machineBody, movedBlocks: parts };
 }
 
+function extractMachineCodeBlock(text) {
+  const section = sectionFor(text, MACHINE_ROUTER_HEADING_RE);
+  if (!section) return null;
+  const scanned = scanFencedBlocks(text, section.end, section.sectionEnd);
+  if (scanned.unclosed) return null;
+  const block = scanned.blocks.find((candidate) => MACHINE_ASSIGNMENT_RE.test(candidate.body));
+  return block ? block.text : null;
+}
+
+function uniquePhrases(phrases) {
+  const output = [];
+  const seen = new Set();
+  for (const phrase of phrases || []) {
+    if (typeof phrase !== 'string') continue;
+    const value = phrase.trim();
+    const key = value.toLocaleLowerCase();
+    if (!value || seen.has(key)) continue;
+    seen.add(key);
+    output.push(value);
+  }
+  return output;
+}
+
+function proposeIntentPhrases(text) {
+  const parts = frontmatterParts(text);
+  const body = parts.rest;
+  const proposals = [];
+  const description = parts.body.match(/^description\s*:\s*(.+)$/m);
+  if (description) {
+    try { proposals.push(parseYamlScalar(description[1])); } catch {}
+  }
+  const comments = body.matchAll(/<!--\s*(?:keywords?|trigger[_ -]?phrases?|intent[_ -]?signals?)\s*:\s*([\s\S]*?)-->/gi);
+  for (const match of comments) proposals.push(...match[1].split(/[,;\n]/));
+  const oldSignals = body.matchAll(/(?:INTENT_SIGNALS|trigger_phrases)\s*=\s*\{?[\s\S]*?\bkeywords?\b\s*[:=]\s*\[([^\]]*)\]/gi);
+  for (const match of oldSignals) proposals.push(...[...match[1].matchAll(/["']([^"']+)["']/g)].map((item) => item[1]));
+  return uniquePhrases(proposals);
+}
+
+function normalizePlainSkillFrontmatter(text, allowedTools, descriptionTrim = null) {
+  const parts = frontmatterParts(text);
+  if (!Array.isArray(allowedTools) || allowedTools.length === 0) {
+    throw transformError('ALLOWED_TOOLS_APPROVAL_REQUIRED', 'Pass one or more explicitly approved --allowed-tool values.');
+  }
+  const tools = uniquePhrases(allowedTools);
+  if (tools.length !== allowedTools.length) {
+    throw transformError('ALLOWED_TOOLS_INVALID', 'Approved allowed-tools values must be non-empty and unique.');
+  }
+  const lines = parts.body.split(parts.newline);
+  const descriptionIndexes = [];
+  const allowedIndexes = [];
+  for (let index = 0; index < lines.length; index += 1) {
+    if (/^description\s*:/i.test(lines[index])) descriptionIndexes.push(index);
+    if (/^allowed-tools\s*:/i.test(lines[index])) allowedIndexes.push(index);
+  }
+  if (descriptionIndexes.length !== 1) {
+    throw transformError('FRONTMATTER_INVALID', 'SKILL.md needs exactly one single-line description field.');
+  }
+  let description = splitYamlComment(lines[descriptionIndexes[0]].replace(/^description\s*:\s*/i, '')).value;
+  description = parseYamlScalar(description);
+  if (descriptionTrim !== null) {
+    if (typeof descriptionTrim !== 'string' || !descriptionTrim.trim()) {
+      throw transformError('DESCRIPTION_TRIM_INVALID', 'The approved description trim must be non-empty text.');
+    }
+    description = descriptionTrim.trim();
+    lines[descriptionIndexes[0]] = `description: ${JSON.stringify(description)}`;
+  }
+  if (Array.from(description).length > 130) {
+    throw transformError('DESCRIPTION_TRIM_REQUIRED', 'The description exceeds 130 characters; approve a trim with --description-trim before V8.');
+  }
+
+  for (const index of allowedIndexes.reverse()) {
+    const parsed = parseAllowedTools(lines, index);
+    lines.splice(index, parsed.end - index);
+  }
+  lines.push('allowed-tools:');
+  for (const tool of tools) lines.push(`  - ${JSON.stringify(tool)}`);
+
+  const withTools = `---${parts.newline}${lines.join(parts.newline)}${parts.close}${parts.after}${parts.rest}`;
+  return normalizeSkillFrontmatter(withTools).text;
+}
+
+function harvestReferenceLinks(text) {
+  const body = frontmatterParts(text).rest;
+  const found = [];
+  const pattern = /\]\(\s*(?:<([^>]+)>|([^\s)]+))/g;
+  for (const match of body.matchAll(pattern)) {
+    const raw = (match[1] || match[2] || '').trim();
+    if (!raw || /^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(raw)) continue;
+    const withoutSuffix = raw.split(/[?#]/, 1)[0];
+    let decoded = withoutSuffix;
+    try {
+      decoded = decodeURIComponent(withoutSuffix);
+    } catch {}
+    const normalized = path.posix.normalize(decoded.replace(/^\.\//, ''));
+    if (normalized.startsWith('references/') && normalized.endsWith('.md') && !normalized.startsWith('../')) {
+      found.push(normalized);
+    }
+  }
+  return [...new Set(found)];
+}
+
+function kebabResourcePath(relativePath) {
+  const base = path.posix.basename(relativePath);
+  const originalExtension = path.posix.extname(base);
+  const extension = originalExtension.toLowerCase();
+  const stem = base.slice(0, base.length - originalExtension.length);
+  const kebab = stem
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .replace(/[^A-Za-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .toLowerCase();
+  if (!kebab) return relativePath;
+  return path.posix.join(path.posix.dirname(relativePath), `${kebab}${extension.toLowerCase()}`);
+}
+
+function resourceRenameMap(relativePaths) {
+  const renames = new Map();
+  for (const relativePath of relativePaths || []) {
+    const normalized = path.posix.normalize(String(relativePath).replace(/\\/g, '/'));
+    if (!/^(?:references|assets)\//.test(normalized) || !/\.md$/i.test(normalized)) continue;
+    const next = kebabResourcePath(normalized);
+    if (next !== normalized) renames.set(normalized, next);
+  }
+  const destinations = new Set();
+  for (const next of renames.values()) {
+    if (destinations.has(next)) throw transformError('RESOURCE_RENAME_COLLISION', `More than one resource would be renamed to ${next}.`);
+    destinations.add(next);
+  }
+  return renames;
+}
+
+function rewriteResourceLinks(text, renames, sourcePath = 'SKILL.md') {
+  if (!renames || renames.size === 0) return text;
+  const baseDirectory = path.posix.dirname(sourcePath);
+  return text.replace(/(\]\(\s*)(?:<([^>]+)>|([^\s)]+))/g, (match, prefix, anglePath, barePath) => {
+    const raw = anglePath || barePath || '';
+    if (!raw || /^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(raw)) return match;
+    const suffixAt = raw.search(/[?#]/);
+    const linkPath = suffixAt === -1 ? raw : raw.slice(0, suffixAt);
+    const suffix = suffixAt === -1 ? '' : raw.slice(suffixAt);
+    let decoded = linkPath;
+    try {
+      decoded = decodeURIComponent(linkPath);
+    } catch {}
+    const resolved = path.posix.normalize(path.posix.join(baseDirectory, decoded));
+    const renamed = renames.get(resolved);
+    if (!renamed) return match;
+    let relative = path.posix.relative(baseDirectory, renamed);
+    if (linkPath.startsWith('./') && !relative.startsWith('.')) relative = `./${relative}`;
+    const encoded = relative.split('/').map(encodeURIComponent).join('/');
+    const next = `${encoded}${suffix}`;
+    return `${prefix}${anglePath ? `<${next}>` : next}`;
+  });
+}
+
+function describeResource(relativePath, text) {
+  const body = optionalFrontmatterParts(text).rest;
+  const title = path.posix.basename(relativePath).replace(/\.md$/i, '')
+    .split('-')
+    .map((part) => part ? `${part[0].toUpperCase()}${part.slice(1)}` : '')
+    .join(' ');
+  const prose = body.split(/\r?\n/)
+    .map((line) => line.trim())
+    .find((line) => line && !/^#{1,6}\s/.test(line));
+  const stripped = (prose || `Reference notes for ${title}.`)
+    .replace(/[`*_]/g, '')
+    .replace(/\[[^\]]+\]\(([^)]+)\)/g, '$1')
+    .trim();
+  const description = Array.from(stripped).length <= 130
+    ? stripped
+    : `${Array.from(stripped).slice(0, 127).join('').trimEnd()}…`;
+  return { title, description };
+}
+
+function addResourceFrontmatter(text, relativePath, triggerPhrases) {
+  const parts = optionalFrontmatterParts(text);
+  const fields = parts.body.split(parts.newline);
+  const known = new Set(fields.map((line) => /^([A-Za-z0-9_-]+)\s*:/.exec(line)?.[1]).filter(Boolean));
+  const { title, description } = describeResource(relativePath, text);
+  const defaults = [
+    ['title', JSON.stringify(title)],
+    ['description', JSON.stringify(description)],
+    ['trigger_phrases', null],
+    ['importance_tier', 'normal'],
+    ['contextType', 'reference'],
+    ['version', '1.0.0.0'],
+  ];
+  const additions = [];
+  for (const [key, value] of defaults) {
+    if (known.has(key)) continue;
+    if (key === 'trigger_phrases') {
+      additions.push('trigger_phrases:');
+      for (const phrase of uniquePhrases(triggerPhrases).slice(0, 3)) additions.push(`  - ${JSON.stringify(phrase)}`);
+      if (!uniquePhrases(triggerPhrases).length) additions.push(`  - ${JSON.stringify(title.toLowerCase())}`);
+    } else additions.push(`${key}: ${value}`);
+  }
+  if (!additions.length) return text;
+  const newline = parts.newline;
+  const body = [...fields, ...additions].join(newline);
+  if (!parts.hasFrontmatter) {
+    return `---${newline}${additions.join(newline)}${newline}---${newline}${text}`;
+  }
+  return `---${newline}${body}${parts.close}${parts.after}${parts.rest}`;
+}
+
+function renderPlainRouter(template, skillName, title, phrases, resources, defaultResource) {
+  const prefix = renderRouterPrefix(template, skillName, title);
+  const pythonArray = (values) => `[${values.map((value) => JSON.stringify(value)).join(', ')}]`;
+  const resourceList = resources.length ? resources : [];
+  const primaryResource = defaultResource || 'manual-testing-playbook/manual-testing-playbook.md';
+  const machine = [
+    '```python',
+    'from pathlib import Path',
+    '',
+    'SKILL_ROOT = Path(__file__).resolve().parent',
+    'RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")',
+    '',
+    `DEFAULT_RESOURCE = ${JSON.stringify(primaryResource)}`,
+    '',
+    'INTENT_SIGNALS = {',
+    `    "PRIMARY": {"weight": 4, "keywords": ${pythonArray(uniquePhrases(phrases))}},`,
+    '}',
+    '',
+    'RESOURCE_MAP = {',
+    `    "PRIMARY": ${pythonArray(resourceList)},`,
+    '}',
+    ...(resourceList.length ? [] : ['', 'NO_LOAD_INTENTS = ["PRIMARY"]']),
+    '',
+    'UNKNOWN_FALLBACK_CHECKLIST = [',
+    '    "Confirm the task intent",',
+    '    "Provide one concrete input or expected output",',
+    '    "Confirm the verification command set before completion",',
+    ']',
+    '```',
+    '',
+  ].join('\n');
+  return `${prefix}${machine}`;
+}
+
+function bodyContent(text) {
+  return frontmatterParts(text).rest;
+}
+
+function bodyLinesToPreserve(text) {
+  return bodyContent(text).split(/\r?\n/)
+    .map(normalizePreservationLine)
+    .filter((line) => line && !/^#{1,6}\s/.test(line));
+}
+
+function normalizePreservationLine(line) {
+  return String(line).trim().replace(/\[([^\]]+)\]\((?:<[^>]+>|[^)]+)\)/g, '[$1]');
+}
+
 module.exports = {
   addRouterLink,
+  addResourceFrontmatter,
+  bodyLinesToPreserve,
+  bodyContent,
+  harvestReferenceLinks,
+  kebabResourcePath,
+  normalizePlainSkillFrontmatter,
+  normalizePreservationLine,
   moveLegacyRouter,
   normalizeSkillFrontmatter,
+  proposeIntentPhrases,
+  renderPlainRouter,
+  resourceRenameMap,
+  rewriteResourceLinks,
+  skillTitle,
 };

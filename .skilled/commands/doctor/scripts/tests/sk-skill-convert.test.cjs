@@ -28,6 +28,16 @@ const ROUTED_RESOURCES = [
   'references/shared-patterns.md',
   'references/worktree-workflows.md',
 ];
+const PLAIN_PHRASES = [
+  'lantern sample review',
+  'inspect lantern records',
+  'compare field marks',
+  'read observation notes',
+  'choose lantern path',
+  'review sample evidence',
+  'verify record clarity',
+  'route lantern requests',
+];
 
 function environment() {
   return { ...process.env, PYTHONDONTWRITEBYTECODE: '1', PYTHON: process.env.PYTHON || 'python3' };
@@ -53,15 +63,37 @@ function makeContext(tempRoot) {
   });
 }
 
-function invoke(tempRoot, command, skillRoot, extra = [], contextOverride = null) {
+function invokeArgs(tempRoot, args, contextOverride = null) {
   let stdout = '';
   let stderr = '';
-  const exitCode = convert.runConvert([command, skillRoot, ...extra], {
+  const exitCode = convert.runConvert(args, {
     context: contextOverride || makeContext(tempRoot),
     stdout: { write: (chunk) => { stdout += chunk; } },
     stderr: { write: (chunk) => { stderr += chunk; } },
   });
   return { exitCode, stdout, stderr };
+}
+
+function invoke(tempRoot, command, skillRoot, extra = [], contextOverride = null) {
+  return invokeArgs(tempRoot, [command, skillRoot, ...extra], contextOverride);
+}
+
+function phraseArgs(phrases = PLAIN_PHRASES) {
+  return phrases.flatMap((phrase) => ['--approved-phrase', phrase]);
+}
+
+function copyPlainSource(destination) {
+  fs.mkdirSync(path.dirname(destination), { recursive: true });
+  fs.cpSync(path.join(FIXTURE_ROOT, 'plain', 'before'), destination, { recursive: true });
+}
+
+function makeTemporaryDerivedGenerator(tempRoot) {
+  const directory = path.join(tempRoot, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts');
+  fs.mkdirSync(directory, { recursive: true });
+  const source = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'regenerate-skill-derived.cjs');
+  const destination = path.join(directory, 'regenerate-skill-derived.cjs');
+  fs.copyFileSync(source, destination);
+  return destination;
 }
 
 function writeOldSkill(skillRoot, name = path.basename(skillRoot), extra = '', description = 'A short skill description.') {
@@ -610,6 +642,306 @@ test('transform refusal codes survive plan handling and missing prerequisites re
   assert.match(missing.stderr, /^ROUTER_RESOLVER_MISSING:/);
 });
 
+test('plain resource transforms harvest links in order, add metadata, and rewrite kebab paths', () => {
+  const body = [
+    '---', 'name: sample-skill', 'description: short', '---', '',
+    'Read [Field Notes](<references/Field Notes.md>) first.',
+    'Then [Second Guide](references/Second_Guide.md).',
+  ].join('\n');
+  assert.deepEqual(transforms.harvestReferenceLinks(body), [
+    'references/Field Notes.md',
+    'references/Second_Guide.md',
+  ]);
+  const renames = transforms.resourceRenameMap([
+    'references/Field Notes.md',
+    'references/Second_Guide.md',
+  ]);
+  assert.deepEqual([...renames], [
+    ['references/Field Notes.md', 'references/field-notes.md'],
+    ['references/Second_Guide.md', 'references/second-guide.md'],
+  ]);
+  const rewritten = transforms.rewriteResourceLinks(body, renames);
+  assert.match(rewritten, /references\/field-notes\.md/);
+  assert.match(rewritten, /references\/second-guide\.md/);
+  const resource = transforms.addResourceFrontmatter('# Field Notes\nA useful field note.\n', 'references/field-notes.md', PLAIN_PHRASES);
+  assert.match(resource, /^title: "Field Notes"$/m);
+  assert.match(resource, /^description: "A useful field note\."$/m);
+  assert.match(resource, /^contextType: reference$/m);
+  assert.match(resource, /^version: 1\.0\.0\.0$/m);
+});
+
+test('plain plan proposes permission tools and refuses fewer than eight approved phrases', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const sourceRoot = path.join(FIXTURE_ROOT, 'plain', 'before');
+  const seven = invokeArgs(tempRoot, [
+    'plan', sourceRoot,
+    ...phraseArgs(PLAIN_PHRASES.slice(0, 7)),
+  ]);
+  assert.equal(seven.exitCode, 1);
+  assert.match(seven.stderr, /^INTENT_SIGNALS_BELOW_FLOOR:/);
+  assert.match(seven.stderr, /Suggested phrases:/);
+  t.diagnostic(`7 approved phrases plan exit ${seven.exitCode}: ${seven.stderr.trim()}`);
+
+  const plan = invokeArgs(tempRoot, ['plan', sourceRoot, ...phraseArgs()]);
+  assert.equal(plan.exitCode, 0, plan.stderr);
+  assert.match(plan.stdout, /approval required; propose \["Read","Grep","Glob"\]/);
+  assert.match(plan.stdout, /RESOURCE_MAP order: \["references\/field-notes\.md"\]/);
+  assert.match(plan.stdout, /--allowed-tool values/);
+  assert.ok(!plan.stdout.includes('allowed-tools: ["Read","Grep","Glob"]\n'));
+
+  const unapprovedApply = invokeArgs(tempRoot, [
+    'apply', sourceRoot,
+    ...phraseArgs(),
+    '--agent-output', path.join(FIXTURE_ROOT, 'plain', 'after'),
+    '--apply',
+  ]);
+  assert.equal(unapprovedApply.exitCode, 1);
+  assert.match(unapprovedApply.stderr, /^ALLOWED_TOOLS_APPROVAL_REQUIRED:/);
+  assert.ok(!fs.existsSync(path.join(fixtureSkillsDir(tempRoot), 'brindle-lantern')));
+
+  const sourceWithScripts = path.join(tempRoot, 'outside-with-scripts');
+  copyPlainSource(sourceWithScripts);
+  fs.mkdirSync(path.join(sourceWithScripts, 'scripts'), { recursive: true });
+  fs.writeFileSync(path.join(sourceWithScripts, 'scripts', 'inspect.js'), 'module.exports = true;\n');
+  const scriptsPlan = invokeArgs(tempRoot, ['plan', sourceWithScripts, ...phraseArgs()]);
+  assert.equal(scriptsPlan.exitCode, 0, scriptsPlan.stderr);
+  assert.match(scriptsPlan.stdout, /propose \["Read","Grep","Glob","Bash"\]/);
+});
+
+test('plain apply stages a copy, preserves the source, generates metadata, and passes the strict gates', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const sourceRoot = path.join(tempRoot, 'plain-source');
+  copyPlainSource(sourceRoot);
+  fs.mkdirSync(path.join(sourceRoot, 'manual-testing-playbook'), { recursive: true });
+  fs.writeFileSync(path.join(sourceRoot, 'manual-testing-playbook', 'operator-note.txt'), 'keep this source file\n');
+  const sourceBefore = hashTree(sourceRoot);
+  const afterSkill = path.join(FIXTURE_ROOT, 'plain', 'after');
+  const context = makeContext(tempRoot);
+  context.paths.regenerateDerived = makeTemporaryDerivedGenerator(tempRoot);
+  let scaffoldTempParent = null;
+  const originalRunCommand = context.runCommand;
+  context.runCommand = (command, args, options) => {
+    const pathIndex = args.indexOf('--path');
+    if (args.some((argument) => path.basename(argument) === 'init_skill.py') && pathIndex !== -1) {
+      scaffoldTempParent = args[pathIndex + 1];
+    }
+    return originalRunCommand(command, args, options);
+  };
+  const decisions = [
+    ...phraseArgs(),
+    '--allowed-tool', 'Read',
+    '--allowed-tool', 'Grep',
+    '--allowed-tool', 'Glob',
+    '--agent-output', afterSkill,
+  ];
+  const plan = invokeArgs(tempRoot, ['plan', sourceRoot, ...decisions], context);
+  assert.equal(plan.exitCode, 0, plan.stderr);
+  assert.match(plan.stdout, /Rename references\/Field Notes\.md to references\/field-notes\.md/);
+  assert.match(plan.stdout, /Copy: .*plain-source -> .*brindle-lantern/);
+  assert.match(plan.stdout, /allowed-tools: \["Read","Grep","Glob"\]/);
+  assert.ok(!fs.existsSync(path.join(fixtureSkillsDir(tempRoot), 'brindle-lantern')));
+
+  const applied = invokeArgs(tempRoot, ['apply', sourceRoot, ...decisions, '--apply'], context);
+  assert.equal(applied.exitCode, 0, `${applied.stdout}\n${applied.stderr}`);
+  assert.match(applied.stdout, /preservation and V8 format gates passed/i);
+  assert.match(applied.stdout, /Result: PASS/);
+  assert.equal(hashTree(sourceRoot), sourceBefore);
+  assert.ok(scaffoldTempParent);
+  assert.ok(!fs.existsSync(scaffoldTempParent));
+
+  const skillRoot = path.join(fixtureSkillsDir(tempRoot), 'brindle-lantern');
+  assert.ok(fs.existsSync(path.join(skillRoot, 'SKILL.md')));
+  assert.ok(fs.existsSync(path.join(skillRoot, 'ROUTER.md')));
+  assert.ok(fs.existsSync(path.join(skillRoot, 'references', 'field-notes.md')));
+  assert.equal(
+    fs.readFileSync(path.join(skillRoot, 'manual-testing-playbook', 'operator-note.txt'), 'utf8'),
+    'keep this source file\n',
+  );
+  assert.ok(!fs.existsSync(path.join(skillRoot, 'references', 'Field Notes.md')));
+  assert.match(fs.readFileSync(path.join(skillRoot, 'SKILL.md'), 'utf8'), /references\/field-notes\.md/);
+  assert.match(fs.readFileSync(path.join(skillRoot, 'SKILL.md'), 'utf8'), /^allowed-tools:\n  - "Read"$/m);
+  const router = fs.readFileSync(path.join(skillRoot, 'ROUTER.md'), 'utf8');
+  assert.match(router, /"PRIMARY": \{"weight": 4, "keywords": \[/);
+  assert.ok(router.indexOf('lantern sample review') < router.indexOf('route lantern requests'));
+  assert.match(router, /"references\/field-notes\.md"/);
+
+  const scriptsRoot = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts');
+  const strict = spawnSync('/usr/bin/python3', [
+    path.join(scriptsRoot, 'package_skill.py'), skillRoot, '--check', '--strict',
+  ], { cwd: REPO_ROOT, encoding: 'utf8', env: environment() });
+  assert.equal(strict.status, 0, `${strict.stdout}\n${strict.stderr}`);
+  assert.match(strict.stdout, /Result: PASS/);
+  t.diagnostic(`package_skill.py --check --strict exit ${strict.status}: ${strict.stdout.trim()}`);
+
+  const rootMetadata = spawnSync('node', [
+    path.join(scriptsRoot, 'ci-skill-root-metadata.cjs'),
+    '--skills-dir', fixtureSkillsDir(tempRoot),
+    '--skill', 'brindle-lantern',
+  ], { cwd: REPO_ROOT, encoding: 'utf8', env: environment() });
+  assert.equal(rootMetadata.status, 0, `${rootMetadata.stdout}\n${rootMetadata.stderr}`);
+  t.diagnostic(`ci-skill-root-metadata.cjs --skill brindle-lantern exit ${rootMetadata.status}: ${rootMetadata.stdout.trim()}`);
+
+  const snapshot = applied.stdout.match(/^Snapshot: (.+)$/m);
+  assert.ok(snapshot, applied.stdout);
+  const preserveContext = { ...context, cwd: skillRoot };
+  const preserved = invokeArgs(tempRoot, [
+    'preserve', '--snapshot', snapshot[1],
+  ], preserveContext);
+  assert.equal(preserved.exitCode, 0, preserved.stderr);
+  assert.match(preserved.stdout, /Preservation PASS/);
+  t.diagnostic(`preserve --snapshot exit ${preserved.exitCode}: ${preserved.stdout.trim()}`);
+});
+
+test('plain staging refuses an existing target without changing either folder', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const sourceRoot = path.join(FIXTURE_ROOT, 'plain', 'before');
+  const sourceBefore = hashTree(sourceRoot);
+  const targetRoot = path.join(fixtureSkillsDir(tempRoot), 'brindle-lantern');
+  fs.mkdirSync(targetRoot, { recursive: true });
+  const sentinel = path.join(targetRoot, 'reviewed.txt');
+  fs.writeFileSync(sentinel, 'keep existing target\n');
+  const result = invokeArgs(tempRoot, ['apply', sourceRoot, ...phraseArgs(), '--apply']);
+  assert.equal(result.exitCode, 1);
+  assert.match(result.stderr, /^TARGET_EXISTS:/);
+  assert.equal(fs.readFileSync(sentinel, 'utf8'), 'keep existing target\n');
+  assert.equal(hashTree(sourceRoot), sourceBefore);
+});
+
+test('plain V8 failure stops before the second package validator', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const sourceRoot = path.join(FIXTURE_ROOT, 'plain', 'before');
+  const invalidAgentRoot = path.join(tempRoot, 'invalid-agent-output');
+  fs.cpSync(path.join(FIXTURE_ROOT, 'plain', 'after'), invalidAgentRoot, { recursive: true });
+  const invalidSkill = path.join(invalidAgentRoot, 'SKILL.md');
+  fs.writeFileSync(
+    invalidSkill,
+    fs.readFileSync(invalidSkill, 'utf8').replace(/^## RULES\s*$/m, ''),
+  );
+  const context = makeContext(tempRoot);
+  context.paths.regenerateDerived = makeTemporaryDerivedGenerator(tempRoot);
+  const invokedCommands = [];
+  const originalRunCommand = context.runCommand;
+  context.runCommand = (command, args, options) => {
+    invokedCommands.push({ command, args });
+    return originalRunCommand(command, args, options);
+  };
+  const result = invokeArgs(tempRoot, [
+    'apply', sourceRoot,
+    ...phraseArgs(),
+    '--allowed-tool', 'Read',
+    '--allowed-tool', 'Grep',
+    '--allowed-tool', 'Glob',
+    '--agent-output', invalidAgentRoot,
+    '--apply',
+  ], context);
+  assert.equal(result.exitCode, 1);
+  assert.match(result.stderr, /^STRICT_PACKAGE_FAILED:/);
+  const validateScript = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'validate_skill_package.py');
+  assert.ok(!invokedCommands.some((entry) => entry.args.includes(validateScript)));
+});
+
+test('plain conversion and preserve stop at a dropped source body line', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const sourceRoot = path.join(FIXTURE_ROOT, 'plain', 'before');
+  const sourceBefore = hashTree(sourceRoot);
+  const decisions = [
+    ...phraseArgs(),
+    '--allowed-tool', 'Read',
+    '--allowed-tool', 'Grep',
+    '--allowed-tool', 'Glob',
+    '--agent-output', path.join(FIXTURE_ROOT, 'plain', 'dropped', 'SKILL.md'),
+  ];
+  const context = makeContext(tempRoot);
+  const invokedCommands = [];
+  const originalRunCommand = context.runCommand;
+  context.runCommand = (command, args, options) => {
+    invokedCommands.push({ command, args });
+    return originalRunCommand(command, args, options);
+  };
+  const result = invokeArgs(tempRoot, ['apply', sourceRoot, ...decisions, '--apply'], context);
+  assert.equal(result.exitCode, 1);
+  assert.match(result.stderr, /^PRESERVATION_FAILED:/);
+  assert.match(result.stderr, /Read the field notes before choosing a review path/);
+  // The check stops at V4, so nothing after it writes: no scaffolder, no
+  // generator and no post-strict validator ever runs. The read-only preflight
+  // probes on the source are expected and stay out of this filter.
+  const writesDisk = invokedCommands.filter((entry) => (
+    entry.args.some((argument) => /init_skill\.py$|validate_skill_package\.py$/.test(argument))
+    || entry.args.includes('--fix')
+    || entry.args.includes('--write')
+  ));
+  assert.deepEqual(writesDisk, []);
+  // A failed run leaves the skills root as it found it: no staged copy, an
+  // untouched outside source, and the snapshot retained beside the backup.
+  const staged = path.join(fixtureSkillsDir(tempRoot), 'brindle-lantern');
+  assert.ok(!fs.existsSync(staged));
+  assert.equal(hashTree(sourceRoot), sourceBefore);
+  const backupRoot = path.join(fixtureSkillsDir(tempRoot), '.state', 'doctor-sk-skill', 'brindle-lantern');
+  const backupDirectories = fs.readdirSync(backupRoot);
+  assert.equal(backupDirectories.length, 1);
+  assert.equal(
+    fs.readFileSync(path.join(backupRoot, backupDirectories[0], 'before', 'SKILL.md'), 'utf8'),
+    fs.readFileSync(path.join(sourceRoot, 'SKILL.md'), 'utf8'),
+  );
+
+  const snapshot = path.join(tempRoot, 'snapshot');
+  const droppedTarget = path.join(tempRoot, 'dropped-target');
+  fs.mkdirSync(snapshot, { recursive: true });
+  fs.mkdirSync(droppedTarget, { recursive: true });
+  fs.copyFileSync(path.join(sourceRoot, 'SKILL.md'), path.join(snapshot, 'SKILL.md'));
+  fs.copyFileSync(
+    path.join(FIXTURE_ROOT, 'plain', 'dropped', 'SKILL.md'),
+    path.join(droppedTarget, 'SKILL.md'),
+  );
+  const preserve = invokeArgs(tempRoot, ['preserve', '--snapshot', snapshot, droppedTarget]);
+  assert.equal(preserve.exitCode, 1);
+  assert.match(preserve.stderr, /Read the field notes before choosing a review path/);
+  t.diagnostic(`dropped-line preserve exit ${preserve.exitCode}: ${preserve.stderr.trim()}`);
+});
+
+test('long descriptions get a separate proposed trim and block apply before V8 without approval', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const sourceRoot = path.join(tempRoot, 'long-description');
+  copyPlainSource(sourceRoot);
+  const skillFile = path.join(sourceRoot, 'SKILL.md');
+  const longDescription = 'Helps inspect detailed lantern sample records and decide whether the evidence supports a clear and carefully documented review of every observed field mark before a final path is selected.';
+  const original = fs.readFileSync(skillFile, 'utf8');
+  fs.writeFileSync(skillFile, original.replace(/^description:.*$/m, `description: ${longDescription}`));
+
+  const plan = invokeArgs(tempRoot, ['plan', sourceRoot, ...phraseArgs()]);
+  assert.equal(plan.exitCode, 0, plan.stderr);
+  assert.match(plan.stdout, /Proposed description trim \(approve with --description-trim\):/);
+
+  const apply = invokeArgs(tempRoot, [
+    'apply', sourceRoot,
+    ...phraseArgs(),
+    '--allowed-tool', 'Read',
+    '--allowed-tool', 'Grep',
+    '--allowed-tool', 'Glob',
+    '--agent-output', path.join(FIXTURE_ROOT, 'plain', 'after'),
+    '--apply',
+  ]);
+  assert.equal(apply.exitCode, 1);
+  assert.match(apply.stderr, /^DESCRIPTION_TRIM_REQUIRED:/);
+  assert.ok(!fs.existsSync(path.join(fixtureSkillsDir(tempRoot), 'brindle-lantern')));
+
+  const approvedTrim = 'Review lantern samples and confirm the evidence.';
+  const context = makeContext(tempRoot);
+  context.paths.regenerateDerived = makeTemporaryDerivedGenerator(tempRoot);
+  const approved = invokeArgs(tempRoot, [
+    'apply', sourceRoot,
+    ...phraseArgs(),
+    '--allowed-tool', 'Read',
+    '--allowed-tool', 'Grep',
+    '--allowed-tool', 'Glob',
+    '--description-trim', approvedTrim,
+    '--agent-output', path.join(FIXTURE_ROOT, 'plain', 'after'),
+    '--apply',
+  ], context);
+  assert.equal(approved.exitCode, 0, `${approved.stdout}\n${approved.stderr}`);
+  assert.match(fs.readFileSync(path.join(fixtureSkillsDir(tempRoot), 'brindle-lantern', 'SKILL.md'), 'utf8'), new RegExp(`^description: "${approvedTrim}"$`, 'm'));
+});
+
 test('usage errors print the complete usage message', () => {
   let stderr = '';
   const result = convert.runConvert([], {
@@ -619,7 +951,7 @@ test('usage errors print the complete usage message', () => {
   });
   assert.equal(result, 2);
   assert.match(stderr, /Usage: sk-skill-convert\.cjs plan <skill-name-or-path>/);
-  assert.match(stderr, /sk-skill-convert\.cjs apply <skill-name-or-path> \[--apply\]/);
+  assert.match(stderr, /sk-skill-convert\.cjs apply <skill-name-or-path> .*\[--apply\]/);
   assert.match(stderr, /plan is read-only/);
 });
 
