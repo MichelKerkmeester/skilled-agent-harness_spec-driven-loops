@@ -53,8 +53,9 @@ that close that distance, as one library with a plan, an apply gate and its own 
 
 `lib/sk-skill-integrate.cjs` exports one function per row, `planIntegration(options)` which returns the plan
 lines and the writes it would make, and `applyIntegration(options)` which runs those rows only under
-`apply: true`. The plan is read-only: a printed plan costs no file. Every row records the paths it created or
-overwrote, so the caller can print an undo list.
+`apply: true`. The plan is read-only: a printed plan costs no file. Every row records the paths it wrote,
+naming a created path as `create` and an existing one as `overwrite` with a backup taken before the write,
+so the caller can print an undo list that never asks version control for a state it may not hold.
 
 | Row | What it does | How it reports |
 |-----|--------------|----------------|
@@ -72,9 +73,9 @@ report it always did.
 The conversion calls the library. `buildPlainPlan` appends `planIntegration(...).lines` to the printed plan,
 and `applyPlainPlan` calls `applyIntegration({ ..., apply: true })` only after `package_skill.py --check
 --strict` and `validate_skill_package.py` both pass, so a failed format gate never reaches a row. The result
-prints each row's lines, the undo list carries every recorded write (`rm` for a created file, `git restore`
-for an overwritten one), and a row that reports FAILED leaves the staged tree in place and makes the run exit
-non-zero rather than hiding the undo commands behind a success.
+prints each row's lines, the undo list removes each path the run created and copies each overwritten path back
+from the backup the row took first, and a row that reports FAILED leaves the staged tree in place and makes
+the run exit non-zero rather than hiding the undo commands behind a success.
 
 ### Files Changed
 
@@ -82,7 +83,7 @@ non-zero rather than hiding the undo commands behind a success.
 |------|--------|---------|
 | `.skilled/commands/doctor/scripts/lib/sk-skill-integrate.cjs` | Created | The six rows, their plan lines, and the apply gate |
 | `.skilled/commands/doctor/scripts/sk-skill-convert.cjs` | Modified | Plans the rows beside the conversion and applies them after the format gate, printing each result and recording each write for the undo list |
-| `.skilled/commands/doctor/scripts/tests/sk-skill-integrate.test.cjs` | Created | 23 temp-repo cases, including the freshness, package and dataset checks against the real tools |
+| `.skilled/commands/doctor/scripts/tests/sk-skill-integrate.test.cjs` | Created | 25 temp-repo cases, including the freshness, package and dataset checks against the real tools |
 | `.skilled/commands/doctor/scripts/tests/fixtures/sk-skill-integrate/router-reach-fleet-report.json` | Created | The fleet report recorded from the script before `--skill` existed, so the fleet path is compared against a golden and not against the file under test |
 | `.skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs` | Modified | Spawn wrappers for the scan, compiler and Hermes sync, plus the paths they need |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs` | Modified | Opt-in `--skill <name-or-path>`, usage line, and a refusal to mix it with `--hub` |
@@ -128,9 +129,9 @@ keeping the rows where their tests can isolate them.
 
 | Check | Result |
 |-------|--------|
-| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-integrate.test.cjs` | 23 tests, 23 pass, 0 fail, exit 0 |
+| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-integrate.test.cjs` | 25 tests, 25 pass, 0 fail, exit 0 |
 | `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | 54 tests, 54 pass, 0 fail, exit 0 |
-| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` | 47 tests, 47 pass, 0 fail, exit 0 |
+| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` | 51 tests, 51 pass, 0 fail, exit 0 |
 | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-router-vocabulary-reach.test.cjs` | 1 test, 1 pass, 0 fail, exit 0 |
 | `node --check` on the two created and two modified scripts | exit 0 on each |
 | `skill-graph-freshness.cjs --strict` over the temp repo | exit 0, `STALE COMPILED: none` |
@@ -139,7 +140,7 @@ keeping the rows where their tests can isolate them.
 | `cmp reach-before.txt reach-after.txt` (fleet, stand-in advisor) | exit 0, no output; 65536 bytes, identical sha256, identical verdict |
 | `node REACH --skill sk-git --limit 1` (live advisor) | one row, `RESULT: PASSED`, exit 0, advisor generation 1 |
 | Temp-repo convert, end state | `package_skill.py --check --strict` `Result: PASS`, `ci-skill-root-metadata.cjs --skill` exit 0, `sync-skills-hermes.cjs --check` `PASS: in sync`, `skill-graph-freshness.cjs --strict` exit 0 with `STALE COMPILED: none`, and `readlink .skilled/changelog/brindle-lantern` printing `../skills/brindle-lantern/changelog` |
-| Temp-repo convert, undo list | `rm` for the created changelog link and `git restore` for the overwritten compiled graph |
+| Temp-repo convert, undo list | `rm -r` for the staged root and the created folders, `rm` for the created files, and a `cp` from the backup for each overwritten target; no `git restore` line |
 | `validate.sh … --strict` | `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
 

@@ -110,9 +110,9 @@ The integration test runs apply against a copied fixture, then spawns `package_s
 | Check | Result |
 |-------|--------|
 | `node --check` on the converter, the transforms library and the test file | Exit 0 on all three |
-| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` | Exit 0; 47 tests passed, 0 failed |
+| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` | Exit 0; 51 tests passed, 0 failed |
 | `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | Exit 0; 54 tests passed, 0 failed |
-| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-integrate.test.cjs` | Exit 0; 23 tests passed, 0 failed |
+| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-integrate.test.cjs` | Exit 0; 25 tests passed, 0 failed |
 | Temporary-copy run: 7 approved phrases | Exit 1, `INTENT_SIGNALS_BELOW_FLOOR` |
 | Temporary-copy run: 8 phrases, three approved tools and the reshaped body | Exit 0; V1 to V8 all passed; outside source hash unchanged |
 | `package_skill.py --check --strict` on the converted fixture | Exit 0; `Result: PASS` |

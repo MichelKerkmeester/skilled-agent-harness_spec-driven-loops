@@ -35,7 +35,7 @@ Append V9 to convert: six rows, each printed as its own plan line and run only a
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Phase 004 closed: the plain fixture ends strict PASS. Evidence: the 004 suite passes 47/47 and its acceptance rows are Met
+- [x] Phase 004 closed: the plain fixture ends strict PASS. Evidence: the 004 suite passes 51/51 and its acceptance rows are Met
 - [x] Fleet reach output captured before the change in `scratch/reach-before.txt`
 - [x] Dependencies identified
 

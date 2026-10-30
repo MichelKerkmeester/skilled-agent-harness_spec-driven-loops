@@ -72,7 +72,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase planned | Pending | spec.md, plan.md, tasks.md authored |
-| Integration rows built | Done | `lib/sk-skill-integrate.cjs`, 23 temp-repo cases in `tests/sk-skill-integrate.test.cjs` |
+| Integration rows built | Done | `lib/sk-skill-integrate.cjs`, 25 temp-repo cases in `tests/sk-skill-integrate.test.cjs` |
 | Reach `--skill` flag | Done | one report row for a named root; default fleet report byte-identical to the golden recorded before the flag |
 | Convert call site | Pending | the conductor adds `applyIntegration` to the convert apply path |
 

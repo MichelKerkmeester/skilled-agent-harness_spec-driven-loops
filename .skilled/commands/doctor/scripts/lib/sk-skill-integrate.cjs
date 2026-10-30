@@ -10,6 +10,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 
 const surface = require('./sk-skill-surface.cjs');
 
@@ -113,6 +114,39 @@ function ensureDirectory(fileSystem, directory) {
   fileSystem.mkdirSync(directory, { recursive: true });
 }
 
+// An overwrite is only undoable when the bytes it replaced still exist somewhere.
+// The run copies the target beside its other backups first, so the printed undo
+// hands back the operator's own version, committed or not, instead of asking
+// version control for a state it may never have held.
+function backupBeforeWrite({ fileSystem, backupDirectory, target }) {
+  if (!backupDirectory || !fileSystem.existsSync(target)) return null;
+  const label = path.basename(target).replace(/[^A-Za-z0-9._-]+/g, '_') || 'target';
+  const digest = crypto.createHash('sha256').update(path.resolve(target)).digest('hex').slice(0, 12);
+  const backup = path.join(backupDirectory, 'integration', `${label}-${digest}`);
+  if (!fileSystem.existsSync(backup)) {
+    ensureDirectory(fileSystem, path.dirname(backup));
+    fileSystem.cpSync(target, backup, { recursive: true });
+  }
+  return backup;
+}
+
+// A row reports a write only for a path it really wrote. The kind says whether
+// the undo removes the path or restores it from the backup taken before the row
+// ran, and the directory flag tells the printed undo which rm and cp forms to use.
+function recordWrite({ fileSystem, target, existedBefore, backup, detail }) {
+  let directory = false;
+  try {
+    directory = fileSystem.lstatSync(target).isDirectory();
+  } catch {}
+  return {
+    kind: existedBefore ? 'overwrite' : 'create',
+    file: target,
+    directory,
+    ...(existedBefore && backup ? { backup } : {}),
+    detail,
+  };
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. OPTIONS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -157,6 +191,7 @@ function resolveOptions(options = {}) {
       ? options.description
       : (skill.fields.description || ''),
     phrases: selectPhrases(options.phrases || readGraphPhrases(skillRoot, fileSystem), name),
+    backupDirectory: options.backupDirectory ? path.resolve(options.backupDirectory) : null,
   };
 }
 
@@ -218,39 +253,43 @@ function integrateI1AdvisorScan(options) {
 }
 
 function integrateI2CompiledGraph(options) {
-  const { context, fileSystem } = options;
+  const { context, fileSystem, backupDirectory } = options;
   const compilerLabel = pathLabel(context.repoRoot, context.paths.skillGraphCompiler);
   if (!fileSystem.existsSync(context.paths.skillGraphCompiler)) {
     return makeRow('I2', [
       `I2 ${ROW_TITLES.I2}: n/a - the skill-graph compiler is absent (${compilerLabel}); no compiled graph is refreshed.`,
     ], () => ({ status: 'N/A', lines: [] }), { status: 'N/A' });
   }
+  const target = context.paths.skillGraphJson;
+  const detail = `Recompiled via ${surface.pythonCommand(context)} ${compilerLabel} --export-json.`;
   return makeRow('I2', [
     `I2 ${ROW_TITLES.I2}: Overwrite ${SKILL_GRAPH_LABEL} by running ${surface.pythonCommand(context)} `
     + `${compilerLabel} --export-json (a tracked-file write).`,
   ], () => {
+    const existedBefore = fileSystem.existsSync(target);
+    const backup = existedBefore
+      ? backupBeforeWrite({ fileSystem, backupDirectory, target })
+      : null;
     const result = surface.runSkillGraphCompiler(context);
-    const detail = firstLine(result.stderr) || firstLine(result.stdout);
+    const reason = firstLine(result.stderr) || firstLine(result.stdout);
     if (result.code !== 0) {
       return {
         status: 'FAILED',
-        lines: [`I2 ${ROW_TITLES.I2}: FAILED - the compiler exited ${result.code}${detail ? `: ${detail}` : ''}.`],
+        lines: [`I2 ${ROW_TITLES.I2}: FAILED - the compiler exited ${result.code}${reason ? `: ${reason}` : ''}.`],
       };
     }
     return {
       status: 'DONE',
       lines: [`I2 ${ROW_TITLES.I2}: recompiled; ${SKILL_GRAPH_LABEL} is current.`],
-      writes: [{
-        kind: 'overwrite',
-        file: context.paths.skillGraphJson,
-        detail: `Recompiled via ${surface.pythonCommand(context)} ${compilerLabel} --export-json.`,
-      }],
+      writes: fileSystem.existsSync(target)
+        ? [recordWrite({ fileSystem, target, existedBefore, backup, detail })]
+        : [],
     };
   }, {
     writes: [{
-      kind: 'overwrite',
-      file: context.paths.skillGraphJson,
-      detail: `Recompiled via ${surface.pythonCommand(context)} ${compilerLabel} --export-json.`,
+      kind: fileSystem.existsSync(target) ? 'overwrite' : 'create',
+      file: target,
+      detail,
     }],
   });
 }
@@ -411,7 +450,7 @@ function renderCaseRow(row) {
 }
 
 function integrateI4RegressionCases(options) {
-  const { context, fileSystem, skillRoot, name, phrases } = options;
+  const { context, fileSystem, skillRoot, name, phrases, backupDirectory } = options;
   const framework = isFrameworkSkill(options);
   const target = framework
     ? context.paths.regressionCorpus
@@ -443,7 +482,11 @@ function integrateI4RegressionCases(options) {
   if (datasetCommand) planLines.push(`I4 dataset command: ${datasetCommand}`);
   const plannedWrites = proposed.length === 0
     ? []
-    : [{ kind: 'overwrite', file: target, detail: `Append ${proposed.length} regression case row(s).` }];
+    : [{
+      kind: fileSystem.existsSync(target) ? 'overwrite' : 'create',
+      file: target,
+      detail: `Append ${proposed.length} regression case row(s).`,
+    }];
 
   return makeRow('I4', planLines, () => {
     const lines = [];
@@ -453,6 +496,10 @@ function integrateI4RegressionCases(options) {
         lines: [`I4 ${ROW_TITLES.I4}: every proposed phrase is already a case for ${name}; nothing is appended.`],
       };
     }
+    const existedBefore = fileSystem.existsSync(target);
+    const backup = existedBefore
+      ? backupBeforeWrite({ fileSystem, backupDirectory, target })
+      : null;
     ensureDirectory(fileSystem, path.dirname(target));
     const appended = proposed.map(renderCaseRow).join('\n');
     const prefix = existingText === '' || existingText.endsWith('\n') ? '' : '\n';
@@ -462,13 +509,19 @@ function integrateI4RegressionCases(options) {
     return {
       status: 'DONE',
       lines,
-      writes: [{ kind: 'overwrite', file: target, detail: `Appended ${proposed.length} regression case row(s).` }],
+      writes: [recordWrite({
+        fileSystem,
+        target,
+        existedBefore,
+        backup,
+        detail: `Appended ${proposed.length} regression case row(s).`,
+      })],
     };
   }, { writes: plannedWrites });
 }
 
 function integrateI5RuntimeMirrors(options) {
-  const { context, fileSystem } = options;
+  const { context, fileSystem, backupDirectory } = options;
   const hermesDirectory = path.join(context.repoRoot, HERMES_DIRECTORY);
   const outputOverride = context.env && context.env.HERMES_SKILLS_OUTPUT_DIR;
   // The override names where the copies land, so that is the path a caller has to
@@ -483,16 +536,21 @@ function integrateI5RuntimeMirrors(options) {
       `I5 ${ROW_TITLES.I5}: n/a - ${HERMES_DIRECTORY}/ does not exist and HERMES_SKILLS_OUTPUT_DIR is unset; nothing is created.`,
     ], () => ({ status: 'N/A', lines: [] }), { status: 'N/A' });
   }
+  const planKind = fileSystem.existsSync(hermesTarget) ? 'overwrite' : 'create';
   return makeRow('I5', [
     `I5 ${ROW_TITLES.I5}: run node ${hermesLabel}, then node ${hermesLabel} --check for Hermes.`,
     `I5 ${ROW_TITLES.I5}: ${LINKED_RUNTIMES.join(', ')} are whole-directory links to .skilled/skills and need no write.`,
   ], () => {
+    const existedBefore = fileSystem.existsSync(hermesTarget);
+    const backup = existedBefore
+      ? backupBeforeWrite({ fileSystem, backupDirectory, target: hermesTarget })
+      : null;
     const synced = surface.runHermesSync(context);
     if (synced.code !== 0) {
-      const detail = firstLine(synced.stderr) || firstLine(synced.stdout);
+      const reason = firstLine(synced.stderr) || firstLine(synced.stdout);
       return {
         status: 'FAILED',
-        lines: [`I5 ${ROW_TITLES.I5}: FAILED - Hermes sync exited ${synced.code}${detail ? `: ${detail}` : ''}.`],
+        lines: [`I5 ${ROW_TITLES.I5}: FAILED - Hermes sync exited ${synced.code}${reason ? `: ${reason}` : ''}.`],
       };
     }
     const checked = surface.runHermesSync(context, { check: true });
@@ -506,10 +564,19 @@ function integrateI5RuntimeMirrors(options) {
     return {
       status: 'DONE',
       lines: [`I5 ${ROW_TITLES.I5}: Hermes synced and checked${detail ? ` (${detail})` : ''}.`],
-      writes: [{ kind: 'overwrite', file: hermesTarget, detail: 'Hermes skill copies regenerated.' }],
+      // A sync that reports success without writing anything has no path to undo.
+      writes: fileSystem.existsSync(hermesTarget)
+        ? [recordWrite({
+          fileSystem,
+          target: hermesTarget,
+          existedBefore,
+          backup,
+          detail: 'Hermes skill copies regenerated.',
+        })]
+        : [],
     };
   }, {
-    writes: [{ kind: 'overwrite', file: hermesTarget, detail: 'Regenerate the Hermes skill copies and check them.' }],
+    writes: [{ kind: planKind, file: hermesTarget, detail: 'Regenerate the Hermes skill copies and check them.' }],
   });
 }
 

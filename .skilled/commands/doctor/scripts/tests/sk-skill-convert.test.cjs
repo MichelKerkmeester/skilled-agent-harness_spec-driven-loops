@@ -149,7 +149,13 @@ print('Compiled skill-graph.json: %d skills' % len(signals))
 `;
 
 const CONVERT_HERMES_STUB = `'use strict';
+const fs = require('node:fs');
+const path = require('node:path');
 const argv = process.argv.slice(2);
+if (!argv.includes('--check')) {
+  const output = process.env.HERMES_SKILLS_OUTPUT_DIR || path.join(process.cwd(), '.hermes', 'skills');
+  fs.mkdirSync(output, { recursive: true });
+}
 process.stdout.write(argv.includes('--check') ? 'PASS: in sync\\n' : 'SYNCED\\n');
 process.exit(0);
 `;
@@ -946,13 +952,15 @@ test('plain apply stages a copy, preserves the source, generates metadata, and p
   assert.equal(rootMetadata.status, 0, `${rootMetadata.stdout}\n${rootMetadata.stderr}`);
   t.diagnostic(`ci-skill-root-metadata.cjs --skill brindle-lantern exit ${rootMetadata.status}: ${rootMetadata.stdout.trim()}`);
 
-  // The undo list names every write the integration rows recorded.
+  // The undo list names every write the integration rows recorded: the staged
+  // root and the folders this run created are removed, and no line asks version
+  // control to restore a path that was never tracked here.
   assert.match(applied.stdout, /^Undo:$/m);
   assert.ok(applied.stdout.includes(`  rm "${changelogIndex}"`), applied.stdout);
-  assert.match(
-    applied.stdout,
-    /git -c core\.fsmonitor=false restore -- ".*system-skill-advisor\/runtime\/scripts\/skill-graph\.json"/,
-  );
+  assert.ok(applied.stdout.includes(`  rm "${context.paths.skillGraphJson}"`), applied.stdout);
+  assert.ok(applied.stdout.includes(`  rm -r "${skillRoot}"`), applied.stdout);
+  assert.ok(applied.stdout.includes(`  rm -r "${path.join(tempRoot, 'hermes-out')}"`), applied.stdout);
+  assert.ok(!/git -c core\.fsmonitor=false restore/.test(applied.stdout), applied.stdout);
 
   const snapshot = applied.stdout.match(/^Snapshot: (.+)$/m);
   assert.ok(snapshot, applied.stdout);
@@ -1645,6 +1653,65 @@ test('preservation compares link targets verbatim, allowing only the planned ren
   assert.equal(renamed.exitCode, 0, renamed.stderr);
 });
 
+// A reference definition names the same document as an inline link, so the
+// planned rename has to canonicalize its target too. Every other form already
+// goes through that canonicalization, which is why only the definition failed.
+test('preservation canonicalizes a reference definition target through the planned rename map', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const header = [
+    '---', 'name: definition-target', 'description: A short plain skill description.', '---', '',
+    '# Definition Target', '', '## Purpose', '',
+  ].join('\n');
+  const source = [
+    `${header}Read [notes](<references/Field Notes.md>) and \`references/Field Notes.md\` now.`,
+    '',
+    '<a href="references/Field Notes.md">notes</a>',
+    '',
+    '[notes]: <references/Field Notes.md>',
+    '',
+  ].join('\n');
+  const snapshot = path.join(tempRoot, 'snapshot');
+  const target = path.join(tempRoot, 'target');
+  writeTree(snapshot, { 'SKILL.md': source });
+
+  const kebab = source.split('references/Field Notes.md').join('references/field-notes.md');
+  writeTree(target, { 'SKILL.md': kebab });
+  const accepted = invokeArgs(tempRoot, ['preserve', '--snapshot', snapshot, target]);
+  assert.equal(accepted.exitCode, 0, accepted.stderr);
+
+  const repointed = path.join(tempRoot, 'repointed');
+  writeTree(repointed, {
+    'SKILL.md': kebab.replace('[notes]: <references/field-notes.md>', '[notes]: <references/other.md>'),
+  });
+  const refused = invokeArgs(tempRoot, ['preserve', '--snapshot', snapshot, repointed]);
+  assert.equal(refused.exitCode, 1, refused.stdout);
+  assert.match(refused.stderr, /\[notes\]: <references\/field-notes\.md>/);
+});
+
+// A plan that renamed nothing is the one case where the check has to derive the
+// kebab name itself. When the plan named a rename, a spelling it never chose is
+// a path the staged tree does not hold, so accepting it would hide a dead link.
+test('preservation accepts a derived kebab target only when the plan renamed nothing', () => {
+  const renames = transforms.resourceRenameMap(['references/Field Notes.md']);
+  const canonical = transforms.normalizePreservationLine('[x](<references/field-notes.md>)', renames);
+  assert.equal(
+    transforms.normalizePreservationLine('[x](<references/Field Notes.md>)', renames),
+    canonical,
+  );
+  for (const spelling of ['references/field notes.md', 'references/Field-Notes.md', 'references/Field_Notes.md']) {
+    assert.notEqual(
+      transforms.normalizePreservationLine(`[x](<${spelling}>)`, renames),
+      canonical,
+      `${spelling} was accepted although the plan renamed only the source spelling`,
+    );
+  }
+  assert.equal(
+    transforms.normalizePreservationLine('[x](<references/Field Notes.md>)', new Map()),
+    canonical,
+    'a map with no renames still has to derive the kebab name',
+  );
+});
+
 test('preservation does not let a copied reference line stand in for a dropped SKILL.md line', (t) => {
   const tempRoot = makeTempRoot(t);
   const source = plainSkillText('reference-pool', [
@@ -1813,4 +1880,79 @@ test('the plain path accepts the comma form of the allowed-tools approval', (t) 
   assert.equal(plan.exitCode, 0, plan.stderr);
   assert.match(plan.stdout, /allowed-tools: \["Read","Grep","Glob"\]/);
   assert.ok(!plan.stdout.includes('No allowed-tools field will be written'));
+});
+
+// A tool's own parentheses can hold a comma, so the list split has to ignore a
+// comma inside them while the single-tool flag never splits at all.
+test('a tool whose parentheses hold a comma survives both approval forms', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const sourceRoot = path.join(FIXTURE_ROOT, 'plain', 'before');
+  const typed = 'Bash(git log, git show)';
+
+  const commaList = invokeArgs(tempRoot, [
+    'plan', sourceRoot,
+    ...phraseArgs(),
+    '--allowed-tools', `Read,${typed}`,
+  ]);
+  assert.equal(commaList.exitCode, 0, commaList.stderr);
+  assert.ok(
+    commaList.stdout.includes(`allowed-tools: ${JSON.stringify(['Read', typed])}`),
+    commaList.stdout,
+  );
+
+  const repeated = invokeArgs(tempRoot, [
+    'plan', sourceRoot,
+    ...phraseArgs(),
+    '--allowed-tool', typed,
+  ]);
+  assert.equal(repeated.exitCode, 0, repeated.stderr);
+  assert.ok(
+    repeated.stdout.includes(`allowed-tools: ${JSON.stringify([typed])}`),
+    repeated.stdout,
+  );
+
+  const unbalanced = invokeArgs(tempRoot, [
+    'plan', sourceRoot,
+    ...phraseArgs(),
+    '--allowed-tools', 'Read,Bash(git log',
+  ]);
+  assert.equal(unbalanced.exitCode, 2, unbalanced.stdout);
+  assert.match(unbalanced.stderr, /^ALLOWED_TOOLS_AMBIGUOUS:/);
+});
+
+// An overwrite is not the same promise as a creation: a created path is
+// removed, a path that existed is copied back from the backup the run made, and
+// an untracked path is never handed to version control.
+test('the undo removes the staged root and recreates an overwritten target from its backup', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const sourceRoot = path.join(tempRoot, 'plain-source');
+  copyPlainSource(sourceRoot);
+  const context = makeIntegrationContext(tempRoot);
+  const compiled = context.paths.skillGraphJson;
+  fs.mkdirSync(path.dirname(compiled), { recursive: true });
+  fs.writeFileSync(compiled, 'PRE-RUN GRAPH\n');
+
+  const applied = invokeArgs(tempRoot, [
+    'apply', sourceRoot,
+    ...phraseArgs(),
+    '--allowed-tool', 'Read',
+    '--agent-output', path.join(FIXTURE_ROOT, 'plain', 'after'),
+    '--apply',
+  ], context);
+  assert.equal(applied.exitCode, 0, `${applied.stdout}\n${applied.stderr}`);
+
+  const stagedRoot = path.join(fixtureSkillsDir(tempRoot), 'brindle-lantern');
+  const undo = applied.stdout.slice(applied.stdout.indexOf('Undo:'));
+  assert.ok(undo.includes(`  rm -r "${stagedRoot}"`), undo);
+  assert.ok(!/git -c core\.fsmonitor=false restore/.test(undo), undo);
+  assert.ok(!undo.includes('plain-source"'), undo);
+
+  const restored = /^ {2}cp "([^"]+)" "(.+)"$/m.exec(undo);
+  assert.ok(restored, undo);
+  assert.equal(restored[2], compiled, 'the copied-back path is not the overwritten target');
+  assert.equal(fs.readFileSync(restored[1], 'utf8'), 'PRE-RUN GRAPH\n');
+
+  const checkLine = undo.split('\n').find((line) => line.startsWith('Check: '));
+  assert.ok(checkLine, undo);
+  assert.ok(checkLine.includes(`check "${stagedRoot}"`), checkLine);
 });

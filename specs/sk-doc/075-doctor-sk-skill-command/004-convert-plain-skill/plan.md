@@ -35,7 +35,7 @@ The converter copies the outside source under its frontmatter name, renders one 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] `node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` exits 0 (phase 003 closed). Evidence: final suite passed 47/47.
+- [x] `node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` exits 0 (phase 003 closed). Evidence: final suite passed 51/51.
 - [x] Plain and dropped-line fixtures exist. Evidence: `tests/fixtures/sk-skill-convert/plain/{before,after,dropped}`.
 - [x] Dependencies identified. Evidence: initializer, root metadata, derived generator and both validators run in integration tests.
 
@@ -82,7 +82,7 @@ Two reviews of the shipped phase reported five P1 and seven P2 findings. Each is
 | P2-4 | `sk-skill-convert-transforms.cjs` | Table rows collapse internal whitespace runs before comparison |
 | P2-5 | test | The result's command log is asserted for `ci-skill-root-metadata.cjs` and `validate_skill_package.py`, both with exit 0 |
 | P2-6 | both scripts, test | Design step ids are gone from operator messages, the scaffold helper name and the cases; each describes the step |
-| P2-7 | `plan.md`, `tasks.md`, `implementation-summary.md` | Test counts record the real numbers (47 conversion, 54 check, 23 integration) |
+| P2-7 | `plan.md`, `tasks.md`, `implementation-summary.md` | Test counts record the real numbers (51 conversion, 54 check, 25 integration) |
 <!-- /ANCHOR:affected-surfaces -->
 
 

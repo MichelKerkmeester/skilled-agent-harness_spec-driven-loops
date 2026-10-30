@@ -53,7 +53,7 @@ below records the call site, and `implementation-summary.md` records the deviati
 ## Phase 1: Setup
 
 - [x] T001 Capture the reach fleet output before any change (`scratch/reach-before.txt`). Verify: the file is non-empty. Evidence: the capture, the after-run and `cmp` were produced under the worker scratch area with a stand-in advisor, so no live advisor answer entered the comparison: `node reach-compare.cjs` printed `cmp exit=0`, and a 65536-byte report hashed `670de1bb...` on both sides. The packet `scratch/` folder is untouched.
-- [x] T002 Build a temp-repo harness that sets `HERMES_SKILLS_OUTPUT_DIR` and `SKILL_GRAPH_FRESHNESS_ROOT` (`DOC/scripts/tests/sk-skill-integrate.test.cjs`). Verify: the harness removes its temp dir after each case. Evidence: `makeTempRepo` registers `t.after(() => fs.rmSync(root, { recursive: true, force: true }))`; all 23 cases pass.
+- [x] T002 Build a temp-repo harness that sets `HERMES_SKILLS_OUTPUT_DIR` and `SKILL_GRAPH_FRESHNESS_ROOT` (`DOC/scripts/tests/sk-skill-integrate.test.cjs`). Verify: the harness removes its temp dir after each case. Evidence: `makeTempRepo` registers `t.after(() => fs.rmSync(root, { recursive: true, force: true }))`; all 25 cases pass.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -75,9 +75,9 @@ below records the call site, and `implementation-summary.md` records the deviati
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T009 Run the temp-repo cases (`DOC/scripts/tests/sk-skill-integrate.test.cjs`). Verify: Hermes `--check` PASS and `skill-graph-freshness.cjs --strict` exits 0. Evidence: `node --test` reports 23 pass, 0 fail; inside it the freshness panel exits 0 and the Hermes check is observed passing.
+- [x] T009 Run the temp-repo cases (`DOC/scripts/tests/sk-skill-integrate.test.cjs`). Verify: Hermes `--check` PASS and `skill-graph-freshness.cjs --strict` exits 0. Evidence: `node --test` reports 25 pass, 0 fail; inside it the freshness panel exits 0 and the Hermes check is observed passing.
 - [x] T010 Capture the fleet output after the change and compare (`scratch/reach-after.txt`). Verify: `cmp scratch/reach-before.txt scratch/reach-after.txt` prints nothing. Evidence: `cmp exit=0 stdout=""`; both runs exit 1 on the same stubbed verdict, so the verdict is unchanged as well as the bytes.
-- [x] T012 Wire the rows into the conversion (`DOC/scripts/sk-skill-convert.cjs`). Verify: `plan` prints `planIntegration(...).lines` and `apply --apply` calls `applyIntegration({ ..., apply: true })` after the format gate. Evidence: the plan prints `Integration plan: brindle-lantern` and one line per row; the end-to-end case prints each row's result and the undo list carries `rm` for the changelog link and `git restore` for the compiled graph. A failed strict gate never spawns the advisor, the compiler or the Hermes sync.
+- [x] T012 Wire the rows into the conversion (`DOC/scripts/sk-skill-convert.cjs`). Verify: `plan` prints `planIntegration(...).lines` and `apply --apply` calls `applyIntegration({ ..., apply: true })` after the format gate. Evidence: the plan prints `Integration plan: brindle-lantern` and one line per row; the end-to-end case prints each row's result and the undo list removes the staged root, removes each path the run created and copies an overwritten target back from its backup, with no `git restore` line. A failed strict gate never spawns the advisor, the compiler or the Hermes sync.
 - [x] T013 Re-read every acceptance row against a real convert run (`acceptance-criteria.md`). Verify: all eight rows are Met and each cites the end-to-end case. Evidence: a temp-repo convert ends with strict PASS, root-metadata exit 0, `sync-skills-hermes.cjs --check` PASS, `skill-graph-freshness.cjs --strict` exit 0 and `readlink .skilled/changelog/brindle-lantern` printing `../skills/brindle-lantern/changelog`; `validate.sh --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 

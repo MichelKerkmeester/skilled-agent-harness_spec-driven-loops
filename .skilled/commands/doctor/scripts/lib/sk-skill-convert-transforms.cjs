@@ -795,7 +795,9 @@ function bodyContent(text) {
 
 // A target the plan renamed is the same document under its new name; any other
 // target is compared as written, so a link repointed somewhere else is a change
-// in what the line says rather than a formatting difference.
+// in what the line says rather than a formatting difference. The kebab name is
+// derived only when the plan named no rename at all: with a map in hand, a
+// spelling it does not list names a path the staged tree does not hold.
 function canonicalPreservationTarget(raw, renames) {
   if (!raw || /^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(raw)) return raw;
   const suffixAt = raw.search(/[?#]/);
@@ -806,14 +808,22 @@ function canonicalPreservationTarget(raw, renames) {
     decoded = decodeURIComponent(linkPath);
   } catch {}
   const normalized = path.posix.normalize(decoded.replace(/^\.\//, ''));
-  const renamed = renames.get(normalized) || resourceRenameMap([normalized]).get(normalized);
+  const derived = renames.size === 0 ? resourceRenameMap([normalized]).get(normalized) : null;
+  const renamed = renames.get(normalized) || derived;
   if (!renamed) return raw;
   const relative = linkPath.startsWith('./') && !renamed.startsWith('.') ? `./${renamed}` : renamed;
   return `${relative}${suffix}`;
 }
 
+// Every form that names a path gets the same canonicalization: a link in a
+// paragraph, a reference definition, an HTML attribute and a code span are all
+// the same document named four ways.
 function normalizePreservationLine(line, renames = new Map()) {
   let normalized = String(line).trim()
+    .replace(/^([ \t]*\[[^\]\n]+\]:[ \t]*)(<([^>\n]+)>|(\S+))/gm, (match, prefix, whole, anglePath, barePath) => {
+      const target = canonicalPreservationTarget(anglePath || barePath || '', renames);
+      return `${prefix}${anglePath ? `<${target}>` : target}`;
+    })
     .replace(/\[([^\]\n]*)\]\(\s*(?:<([^>\n]+)>|([^)\s]+))\s*\)/g, (match, label, anglePath, barePath) => {
       const target = canonicalPreservationTarget(anglePath || barePath || '', renames);
       return anglePath ? `[${label}](<${target}>)` : `[${label}](${target})`;
@@ -882,4 +892,5 @@ module.exports = {
   resourceRenameMap,
   rewriteResourceLinks,
   skillTitle,
+  splitInlineArray,
 };

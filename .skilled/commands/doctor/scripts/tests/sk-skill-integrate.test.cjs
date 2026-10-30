@@ -127,11 +127,19 @@ print('Compiled skill-graph.json: %d skills' % len(signals))
 
 const HERMES_STUB = `'use strict';
 const fs = require('node:fs');
+const path = require('node:path');
 const log = process.env.INTEGRATE_TEST_LOG;
 const argv = process.argv.slice(2);
 if (log) fs.appendFileSync(log, JSON.stringify({ tool: 'hermes', argv }) + '\\n');
 const check = argv.includes('--check');
 const exitCode = Number(process.env[check ? 'INTEGRATE_TEST_HERMES_CHECK_EXIT' : 'INTEGRATE_TEST_HERMES_SYNC_EXIT'] || 0);
+// A sync writes the copy folder; a --check only reads it. The write toggle keeps
+// the "sync reported success but wrote nothing" case reachable.
+if (!check && exitCode === 0 && process.env.INTEGRATE_TEST_HERMES_WRITE !== '0') {
+  const output = process.env.HERMES_SKILLS_OUTPUT_DIR || path.join(process.cwd(), '.hermes', 'skills');
+  fs.mkdirSync(output, { recursive: true });
+  fs.writeFileSync(path.join(output, 'copied.txt'), 'copy\\n');
+}
 process.stdout.write(check
   ? (exitCode === 0 ? 'PASS: in sync\\n' : 'DRIFT demo-skill\\n')
   : 'SYNCED\\n');
@@ -628,22 +636,36 @@ test('I4 keeps an adopter skill out of the framework corpus', (t) => {
   assert.deepEqual(rows.map((row) => row.priority), ['P0', 'P1', 'P1']);
   assert.deepEqual(rows[0].expected_top_any, [SKILL]);
   assert.match(bodyLines(outcomeOf(result, 'I4').lines), /--dataset .*benchmark\/advisor-cases\.jsonl/);
+  // The file did not exist before the row ran, so the undo removes it rather than
+  // asking version control to restore a path it never tracked.
+  const write = outcomeOf(result, 'I4').writes[0];
+  assert.equal(write.kind, 'create');
+  assert.equal(write.backup, undefined);
 });
 
 test('I4 appends a framework skill to the tracked corpus and appends once', (t) => {
   const repo = makeRepo(t);
   const corpus = writeCorpus(repo.repoRoot);
+  const corpusBytes = fs.readFileSync(corpus);
+  const backupDirectory = path.join(repo.repoRoot, 'backups');
 
-  const first = apply(repo);
+  const first = apply(repo, { backupDirectory });
   assert.equal(outcomeOf(first, 'I4').status, 'DONE');
   const afterFirst = fs.readFileSync(corpus, 'utf8').split('\n').filter(Boolean);
   assert.equal(afterFirst.length, 4);
   assert.ok(!fs.existsSync(path.join(repo.skillRoot, 'benchmark', 'advisor-cases.jsonl')));
+  // The corpus existed before the row ran, so the run keeps the operator's bytes
+  // in a backup instead of trusting version control to hold them.
+  const write = outcomeOf(first, 'I4').writes[0];
+  assert.equal(write.kind, 'overwrite');
+  assert.ok(write.backup, 'the overwritten corpus was not backed up');
+  assert.deepEqual(fs.readFileSync(write.backup), corpusBytes);
 
-  const second = apply(repo);
+  const second = apply(repo, { backupDirectory });
   const afterSecond = fs.readFileSync(corpus, 'utf8').split('\n').filter(Boolean);
   assert.equal(afterSecond.length, 4, 'a second run appended the same rows again');
   assert.match(bodyLines(outcomeOf(second, 'I4').lines), /already a case/);
+  assert.deepEqual(outcomeOf(second, 'I4').writes, [], 'a row that wrote nothing reported a write');
 });
 
 test('the package check accepts the skill-local case file', (t) => {
@@ -715,11 +737,40 @@ test('I5 records the override folder the copies land in', (t) => {
   const hermes = callLog(repo.repoRoot).filter((call) => call.tool === 'hermes');
   assert.deepEqual(hermes.map((call) => call.argv), [[], ['--check']]);
   assert.ok(!fs.existsSync(path.join(repo.repoRoot, '.hermes')), '.hermes was created');
-  assert.deepEqual(
-    outcomeOf(result, 'I5').writes.map((write) => write.file),
-    [output],
-    'the row records a folder other than the one the sync writes',
-  );
+  const write = outcomeOf(result, 'I5').writes[0];
+  assert.equal(write.file, output, 'the row records a folder other than the one the sync writes');
+  assert.equal(write.kind, 'create');
+  assert.equal(write.directory, true);
+  assert.equal(write.backup, undefined);
+});
+
+test('I5 backs up an existing mirror before the sync replaces it', (t) => {
+  const repo = makeRepo(t);
+  const output = path.join(repo.repoRoot, 'hermes-output');
+  writeFile(path.join(output, 'kept.txt'), 'operator copy\n');
+  const backupDirectory = path.join(repo.repoRoot, 'backups');
+
+  const result = apply(repo, { env: { HERMES_SKILLS_OUTPUT_DIR: output }, backupDirectory });
+
+  assert.equal(outcomeOf(result, 'I5').status, 'DONE');
+  const write = outcomeOf(result, 'I5').writes[0];
+  assert.equal(write.kind, 'overwrite');
+  assert.ok(write.backup, 'the existing mirror was not backed up');
+  assert.equal(fs.readFileSync(path.join(write.backup, 'kept.txt'), 'utf8'), 'operator copy\n');
+  assert.equal(fs.readFileSync(path.join(output, 'kept.txt'), 'utf8'), 'operator copy\n');
+});
+
+test('I5 records no write when the sync reports success but writes nothing', (t) => {
+  const repo = makeRepo(t);
+  const output = path.join(repo.repoRoot, 'hermes-output');
+
+  const result = apply(repo, {
+    env: { HERMES_SKILLS_OUTPUT_DIR: output, INTEGRATE_TEST_HERMES_WRITE: '0' },
+  });
+
+  assert.equal(outcomeOf(result, 'I5').status, 'DONE');
+  assert.ok(!fs.existsSync(output));
+  assert.deepEqual(outcomeOf(result, 'I5').writes, [], 'a folder the run never wrote was recorded');
 });
 
 test('I5 records the Hermes skills folder and not the runtime folder above it', (t) => {

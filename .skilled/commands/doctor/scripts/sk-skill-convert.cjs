@@ -32,6 +32,17 @@ class ConvertError extends Error {
   }
 }
 
+// A list typed at the prompt follows the same rule as a list read from
+// frontmatter, so one splitter owns both and an unbalanced parenthesis is a
+// usage error rather than a tool name cut in half.
+function splitToolList(value) {
+  try {
+    return transforms.splitInlineArray(value);
+  } catch (error) {
+    throw new ConvertError(error.code || 'ALLOWED_TOOLS_INVALID', error.message, 2);
+  }
+}
+
 function parseArguments(argv) {
   const args = [...argv];
   let command = 'plan';
@@ -64,9 +75,12 @@ function parseArguments(argv) {
         if (descriptionTrim !== null) throw new ConvertError('USAGE', 'Option --description-trim was specified more than once.', 2);
         descriptionTrim = value;
       } else if (token === '--approved-phrase') approvedPhrases.push(value);
-      // The comma list is the same approval the repeated flag carries, so both
-      // spell one list and a run may use either without reordering its tools.
-      else allowedTools.push(...value.split(','));
+      // A single tool is one grant however its arguments read, so the repeated
+      // flag keeps the value as written. The comma list splits only where a
+      // comma sits outside a tool's own parentheses, which is the same rule the
+      // frontmatter parser applies to the written field.
+      else if (token === '--allowed-tool') allowedTools.push(value);
+      else allowedTools.push(...splitToolList(value));
     } else if (token.startsWith('-')) {
       throw new ConvertError('USAGE', `Unknown option: ${token}`, 2);
     } else if (target === null) target = token;
@@ -1133,6 +1147,9 @@ function applyPlainPlan(plan, context) {
       description: plan.descriptionTrim || plan.description,
       phrases: plan.approvedPhrases,
       apply: true,
+      // The rows write outside the staged tree, so their overwrites are backed up
+      // beside the conversion's own backup and the undo can hand them back.
+      backupDirectory,
     });
     return {
       changed: true,
@@ -1143,6 +1160,7 @@ function applyPlainPlan(plan, context) {
       commandResults,
       integration,
       integrationWrites: integration.writes,
+      createdFiles: [plan.targetRoot],
       message: `Converted ${plan.name}; preservation and the format gates passed, and ${integration.results.length} integration row(s) ran.`,
     };
   } catch (error) {
@@ -1300,25 +1318,42 @@ function quoteArgument(value) {
   return JSON.stringify(String(value));
 }
 
+function isDirectoryPath(target) {
+  try {
+    return fs.lstatSync(target).isDirectory();
+  } catch {
+    return false;
+  }
+}
+
 // A write is only finished when the operator can undo it without remembering which files
-// the run touched, so each backup and each created file gets its own command beside the
-// check that proves the result.
+// the run touched, so each backup and each created path gets its own command beside the
+// check that proves the result. Version control is never the undo: an integration target
+// may be untracked, and a tracked one may hold edits that were never committed.
 function renderUndo(result, plan) {
   const lines = ['Undo:'];
   for (const backup of result.backedUpFiles || []) {
     lines.push(`  cp ${quoteArgument(backup)} ${quoteArgument(path.join(plan.skillRoot, path.basename(backup)))}`);
   }
-  for (const created of result.createdFiles || []) {
-    lines.push(`  rm ${quoteArgument(created)}`);
-  }
-  // Integration writes are recorded by the row that made them. A created file is
-  // removed; a tracked file the row overwrote is restored from version control.
+  // Children first: a created root owns every path inside it, so removing the
+  // root before the paths the rows wrote under it would fail on the second line.
   for (const write of result.integrationWrites || []) {
-    if (write.kind === 'create') lines.push(`  rm ${quoteArgument(write.file)}`);
-    else lines.push(`  git -c core.fsmonitor=false restore -- ${quoteArgument(write.file)}`);
+    if (write.kind === 'create') {
+      const directory = write.directory || isDirectoryPath(write.file);
+      lines.push(`  rm ${directory ? '-r ' : ''}${quoteArgument(write.file)}`);
+    } else if (write.backup) {
+      if (write.directory) lines.push(`  rm -r ${quoteArgument(write.file)}`);
+      lines.push(`  ${write.directory ? 'cp -R' : 'cp'} ${quoteArgument(write.backup)} ${quoteArgument(write.file)}`);
+    } else {
+      lines.push(`  # No backup was recorded for ${quoteArgument(write.file)}; restore it by hand.`);
+    }
+  }
+  for (const created of result.createdFiles || []) {
+    lines.push(`  rm ${isDirectoryPath(created) ? '-r ' : ''}${quoteArgument(created)}`);
   }
   const checkScript = path.join(SCRIPT_DIR, 'sk-skill-check.cjs');
-  lines.push(`Check: node ${quoteArgument(checkScript)} check ${quoteArgument(plan.skillRoot)}`);
+  const checkRoot = plan.targetRoot || plan.skillRoot;
+  lines.push(`Check: node ${quoteArgument(checkScript)} check ${quoteArgument(checkRoot)}`);
   return `${lines.join('\n')}\n`;
 }
 
