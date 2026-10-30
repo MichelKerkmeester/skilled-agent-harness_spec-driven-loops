@@ -1,0 +1,53 @@
+{
+  "skill": "fixture-hub-shared",
+  "version": "1.0.0.0",
+  "routerPolicy": {
+    "defaultMode": null,
+    "ambiguityDelta": 1,
+    "tieBreak": [
+      "fixture-shared-mode",
+      "fixture-shared-mode-parent"
+    ],
+    "outcomes": {
+      "single": "one dominant fixture intent routes to one mode",
+      "orderedBundle": "two separate fixture intents route to an ordered mode list",
+      "defer": "unclear intent asks for disambiguation"
+    },
+    "defaultResource": [],
+    "bundleRules": []
+  },
+  "routerSignals": {
+    "fixture-shared-mode": {
+      "weight": 4,
+      "classes": [
+        "fixture-shared-mode-aliases"
+      ],
+      "resources": [
+        "fixture-shared-mode/SKILL.md"
+      ]
+    },
+    "fixture-shared-mode-parent": {
+      "weight": 4,
+      "classes": [
+        "fixture-shared-mode-parent-aliases"
+      ],
+      "resources": [
+        "fixture-shared-mode/SKILL.md"
+      ]
+    }
+  },
+  "vocabularyClasses": {
+    "fixture-shared-mode-aliases": {
+      "keywords": [
+        "fixture shared request",
+        "fixture shared mode"
+      ]
+    },
+    "fixture-shared-mode-parent-aliases": {
+      "keywords": [
+        "fixture shared parent request",
+        "fixture shared parent mode"
+      ]
+    }
+  }
+}

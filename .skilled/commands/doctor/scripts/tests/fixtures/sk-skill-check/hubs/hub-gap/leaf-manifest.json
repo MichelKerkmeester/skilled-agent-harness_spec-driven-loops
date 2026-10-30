@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "skill": "fixture-hub-gap",
+  "modes": [
+    {
+      "workflowMode": "fixture-gap-mode",
+      "packet": "fixture-gap-mode",
+      "leaves": [
+        "references/fixture-mode.md"
+      ]
+    },
+    {
+      "workflowMode": "fixture-gap-mute",
+      "packet": "fixture-gap-mute",
+      "leaves": [
+        "references/fixture-mute.md"
+      ]
+    }
+  ],
+  "resourceContractVersion": 1
+}

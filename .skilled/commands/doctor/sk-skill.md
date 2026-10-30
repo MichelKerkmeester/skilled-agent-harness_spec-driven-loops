@@ -34,7 +34,9 @@ Load the presentation contract before showing the menu, a result table, a failur
 - The first positional token of `$ARGUMENTS` is the target. With no token the target is `check`, which only reads, so `/doctor:sk-skill` and `/doctor:sk-skill check` both run it. `list`, `?` and `menu` show the presentation contract's startup menu instead of binding a target.
 - The next positional token is a skill name or path, and the workflow passes it to the engine unchanged. With no token the engine checks the whole fleet and prints one row per skill root.
 - `--json` prints the engine's JSON report and nothing else.
-- An unknown target, an unknown flag, or a second skill argument fails before YAML load with the presentation contract's wording.
+- `--into-hub <hub>` prints the hub gap report instead of the format rows: the eleven surfaces a skill or mode must land on under that hub, each with the probe it ran. It reads and never writes, and mode-into-hub conversion stays refused.
+- `--into-hub` takes the next token as its value, so the hub is never a second skill argument; `--into-hub=<hub>` names it inline.
+- An unknown target, an unknown flag, a second skill argument, or `--into-hub` without a hub fails before YAML load with the presentation contract's wording.
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation text owns visible wording and layout.
 
@@ -50,6 +52,7 @@ Load the presentation contract before showing the menu, a result table, a failur
 |----------|------------|--------|
 | `<name-or-path>` | `check` | Check one skill instead of the fleet: a name under `.skilled/skills`, or a path to a skill root |
 | `--json` | `check` | Print the engine's JSON report and nothing else |
+| `--into-hub <hub>` | `check` | Report the eleven hub integration surfaces for the skill or mode named, or for the hub alone, instead of the format rows |
 | `list`, `?`, `menu` | the command | Show the startup menu and the route manifest, and load no workflow |
 
 1. Read `.skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt`.
@@ -69,6 +72,6 @@ The argument failure wording, the startup menu, the fleet and deep result tables
 ## 6. WORKFLOW SUMMARY
 
 1. Bind the target from the first positional token, `check` when there is none, then resolve its route from `_routes.yaml`.
-2. `check` runs `doctor-sk-skill-check.cjs` once, adding the skill name or path and `--json` only when the operator passed them. The engine reports rows C1 to C13 and writes nothing.
+2. `check` runs `sk-skill-check.cjs` once, adding the skill name or path, `--json` and `--into-hub <hub>` only when the operator passed them. The engine reports rows C1 to C13, or the eleven hub gap rows, and writes nothing.
 3. Render the fleet table or the deep report through the presentation contract, and name the repair for each finding.
 4. Close with the result template's status line and the next command the operator can run.

@@ -621,15 +621,458 @@ function runFleet(context) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 5. ARGUMENTS AND RENDERING
+// 5. HUB GAP REPORT
+// ─────────────────────────────────────────────────────────────────────────────
+
+// The eleven surfaces a mode must land on before it is integrated, in the order
+// the nested-packet reference lists them.
+const HUB_ROW_LABELS = [
+  ['H1', 'Packet registration'],
+  ['H2', 'Stage-one signals'],
+  ['H3', 'Stage-one tie-break'],
+  ['H4', 'Stage-two intent'],
+  ['H5', 'Stage-two inventory'],
+  ['H6', 'Advisor vocabulary'],
+  ['H7', 'Human-facing contract'],
+  ['H8', 'Doctor metadata'],
+  ['H9', 'Leaf manifest'],
+  ['H10', 'Projection maps and scorer'],
+  ['H11', 'Command mirrors'],
+];
+
+// Which surfaces a CI gate covers. The report repeats this so a green result is
+// never read as integration: half the table has no gate behind it.
+const HUB_GATE_COVERAGE = {
+  covered: ['H1', 'H2', 'H3', 'H9', 'H11'],
+  nameOnly: ['H7'],
+  ungated: ['H4', 'H5', 'H6', 'H8', 'H10'],
+};
+
+function addHubRow(rows, row, status, detail, evidence) {
+  rows.push({
+    row,
+    label: HUB_ROW_LABELS.find(([id]) => id === row)[1],
+    status,
+    detail,
+    evidence,
+  });
+}
+
+// Evidence names either the command a row ran or the file it read, so a reader
+// can repeat the probe rather than trust the verdict.
+function displayPath(target, context) {
+  const relative = path.relative(context.repoRoot, target);
+  if (!relative || relative.startsWith('..') || path.isAbsolute(relative)) return target;
+  return relative;
+}
+
+// A row that folds in a hub-wide checker is only as good as that checker's verdict.
+// Its confirming PASS line is the proof the checker reached the invariant; a checker
+// that stopped earlier prints no FAIL either, so its silence is unanswered, not green.
+function hubInvariantVerdict(parentCheck, patterns, confirmations = []) {
+  if (!parentCheck.ran) {
+    return {
+      status: 'UNKNOWN',
+      detail: parentCheck.reason
+        ? `parent-skill-check.cjs could not run: ${parentCheck.reason}`
+        : 'parent-skill-check.cjs could not run, so this row was not inferred.',
+      unresolved: true,
+    };
+  }
+  const failures = surface.invariantFailures(parentCheck.entries, patterns);
+  if (failures.length > 0) {
+    const [first] = failures;
+    const more = failures.length > 1 ? ` (and ${failures.length - 1} more)` : '';
+    return { status: 'FINDING', detail: `${first.id}: ${first.message}${more}` };
+  }
+  const missing = confirmations.filter((pattern) => !surface.invariantPasses(parentCheck.entries, pattern));
+  if (missing.length > 0) {
+    return {
+      status: 'UNKNOWN',
+      detail: `parent-skill-check.cjs printed no PASS for ${missing.join(' and ')}, so this row was not confirmed.`,
+      unresolved: true,
+    };
+  }
+  return null;
+}
+
+function withInvariantFailure(probe, parentCheck, patterns) {
+  const failure = hubInvariantVerdict(parentCheck, patterns);
+  if (!failure) return probe;
+  const detail = probe.status === 'N/A' ? failure.detail : `${failure.detail} ${probe.detail}`;
+  return { status: failure.status, detail, unresolved: failure.unresolved };
+}
+
+function hubReportSubject(parsed, hub, modes, context) {
+  if (parsed.target === null || parsed.target === undefined) return { root: null, name: null };
+  const value = String(parsed.target).trim();
+  let root = null;
+  let workflowMode = null;
+  let unresolved = null;
+  try {
+    root = surface.resolveSkillTarget(value, context);
+  } catch (error) {
+    unresolved = error;
+  }
+  if (root === null) {
+    // A mode may be named by its workflowMode while its packet folder carries a
+    // different name, so the hub registry resolves it before the target fails.
+    const bare = !value.includes('/') && !value.includes('\\') && !path.isAbsolute(value);
+    const registered = bare
+      ? modes.find((entry) => entry.workflowMode === value || entry.packet === value)
+      : null;
+    const candidate = registered && typeof registered.packet === 'string'
+      ? path.join(hub.root, registered.packet)
+      : null;
+    const candidateSkill = candidate ? surface.readSkillFields(candidate, context.fs) : null;
+    root = candidateSkill && candidateSkill.text !== null ? candidate : null;
+    if (root === null) throw unresolved;
+    // The registry entry decides which mode was asked for. Two modes may register one
+    // packet, and the packet name cannot tell them apart.
+    if (registered && typeof registered.workflowMode === 'string' && registered.workflowMode) {
+      workflowMode = registered.workflowMode;
+    }
+  }
+  if (surface.isReservedSkillName(path.basename(root))) {
+    throw new surface.CheckError(
+      'PRIVATE_ROOT_REFUSED',
+      'A private root is refused because every gate skips the roots carrying its prefix.',
+    );
+  }
+  const skill = surface.readSkillFields(root, context.fs);
+  return { root, name: skill.fields.name || path.basename(root), workflowMode };
+}
+
+function loadRouterParser(context) {
+  try {
+    return { parse: require(context.paths.routerReplay).parseRouter, reason: null };
+  } catch (error) {
+    return { parse: null, reason: firstLine(error && error.message) };
+  }
+}
+
+function runHubGapReport(parsed, context) {
+  const hub = surface.resolveHubTarget(parsed.intoHub, context);
+  const hubPath = displayPath(hub.root, context);
+  const parentCommand = `node ${displayPath(context.paths.parentSkillCheck, context)} ${hubPath}`;
+  const readEvidence = (file, fields) => `read ${displayPath(path.join(hub.root, file), context)} (${fields})`;
+
+  const registry = surface.readJsonFile(path.join(hub.root, 'mode-registry.json'), context.fs);
+  const hubRouter = surface.readJsonFile(path.join(hub.root, 'hub-router.json'), context.fs) || {};
+  const graphMetadata = surface.readJsonFile(path.join(hub.root, 'graph-metadata.json'), context.fs);
+  const description = surface.readJsonFile(path.join(hub.root, 'description.json'), context.fs);
+  const leafManifest = surface.readJsonFile(path.join(hub.root, 'leaf-manifest.json'), context.fs);
+  const skillDoc = surface.readTextFile(path.join(hub.root, 'SKILL.md'), context.fs);
+  const stageTwo = surface.readHubStageTwo(hub.root, context);
+  const modes = registry && Array.isArray(registry.modes)
+    ? registry.modes.filter((mode) => mode && typeof mode === 'object')
+    : [];
+  const modeIds = modes.map((mode) => mode.workflowMode).filter((id) => typeof id === 'string' && id);
+  const packets = [...new Set(modes.map(surface.modePacketName).filter((packet) => typeof packet === 'string' && packet))];
+  const subject = hubReportSubject(parsed, hub, modes, context);
+  const mode = subject.name ? surface.findHubMode(modes, subject.workflowMode || subject.name, subject.root) : null;
+  const subjectToken = mode ? mode.workflowMode : subject.name;
+  const unregistered = Boolean(subjectToken && !mode);
+  const hubId = (registry && typeof registry.skill === 'string' && registry.skill)
+    || (typeof hubRouter.skill === 'string' && hubRouter.skill)
+    || hub.name;
+  const vocabulary = mode ? surface.hubModeVocabulary(mode, hubRouter) : null;
+  const routingClass = mode && mode.advisorRouting && typeof mode.advisorRouting === 'object'
+    ? mode.advisorRouting.routingClass || null
+    : null;
+  const replayCommand = vocabulary && vocabulary.phrase
+    ? `node ${displayPath(context.paths.compiledRoute, context)} --hub ${hubId} --prompt "${vocabulary.phrase}"`
+    : null;
+
+  const parentCheck = surface.runParentSkillCheck(hub.root, context);
+  const routerParser = loadRouterParser(context);
+  const rows = [];
+  const unverified = [];
+
+  // H1: the registry entry. An unregistered skill fails here whatever the hub's
+  // own invariants say, because nothing routes to a mode the registry omits.
+  if (subject.name && !mode) {
+    addHubRow(rows, 'H1', 'FINDING',
+      `${subject.name} is not registered in mode-registry.json, so nothing routes to it.`,
+      readEvidence('mode-registry.json', 'modes'));
+  } else {
+    const failure = hubInvariantVerdict(parentCheck, ['3*'], ['3a', '3b']);
+    if (failure) {
+      if (failure.unresolved) unverified.push(failure.detail);
+      addHubRow(rows, 'H1', failure.status, failure.detail, parentCommand);
+    } else if (mode) {
+      const kind = typeof mode.packetKind === 'string' ? mode.packetKind : 'no packetKind';
+      addHubRow(rows, 'H1', 'PASS',
+        `Registered as ${mode.workflowMode} (${kind}); its packet resolves and the registry invariants pass.`,
+        parentCommand);
+    } else {
+      addHubRow(rows, 'H1', 'PASS',
+        `mode-registry.json declares ${modeIds.length} mode(s), and the registry invariants pass.`,
+        parentCommand);
+    }
+  }
+
+  // H2: stage-one selection. The routerSignals entry is a direct read; the
+  // compiled replay proves the hub actually selects the mode for its own phrase.
+  const signals = hubRouter.routerSignals && typeof hubRouter.routerSignals === 'object'
+    ? hubRouter.routerSignals
+    : null;
+  if (subject.name && !mode) {
+    addHubRow(rows, 'H2', 'FINDING',
+      `hub-router.json routerSignals has no entry for ${subject.name}; the hub never selects it.`,
+      readEvidence('hub-router.json', 'routerSignals'));
+  } else if (mode && (!signals || !signals[mode.workflowMode])) {
+    addHubRow(rows, 'H2', 'FINDING',
+      `hub-router.json routerSignals has no entry for ${mode.workflowMode}; the hub never selects it.`,
+      readEvidence('hub-router.json', 'routerSignals'));
+  } else {
+    const failure = hubInvariantVerdict(parentCheck, ['5a', '5b'], ['5b']);
+    if (failure) {
+      if (failure.unresolved) unverified.push(failure.detail);
+      addHubRow(rows, 'H2', failure.status, failure.detail, parentCommand);
+    } else if (!mode) {
+      addHubRow(rows, 'H2', 'PASS',
+        `routerSignals keys match the registry's ${modeIds.length} mode(s); no phrase was replayed because no mode was named.`,
+        parentCommand);
+    } else {
+      const replay = surface.runCompiledRoute(hubId, vocabulary.phrase, context);
+      if (replay.state === 'error') {
+        unverified.push(replay.detail);
+        addHubRow(rows, 'H2', 'UNKNOWN', replay.detail, replayCommand);
+      } else if (replay.state === 'legacy') {
+        addHubRow(rows, 'H2', 'UNKNOWN',
+          `${replay.detail} The stage-one replay was not inferred from the legacy path.`,
+          replayCommand);
+      } else {
+        const selected = replay.targets.some((target) => target && target.workflowMode === mode.workflowMode);
+        if (replay.state === 'route' && selected) {
+          addHubRow(rows, 'H2', 'PASS',
+            `routerSignals covers ${mode.workflowMode}, and the compiled route selects it for "${vocabulary.phrase}".`,
+            replayCommand);
+        } else {
+          addHubRow(rows, 'H2', 'FINDING',
+            `${mode.workflowMode} was not selected for its own phrase "${vocabulary.phrase}" (action: ${replay.state}).`,
+            replayCommand);
+        }
+      }
+    }
+  }
+
+  // H3: tie-break order. It permutes registered modes, so an unregistered skill
+  // has nothing to place yet.
+  if (subject.name && !mode) {
+    addHubRow(rows, 'H3', 'N/A',
+      'The tie-break order permutes registered modes, so it applies once the mode is registered.',
+      readEvidence('hub-router.json', 'routerPolicy.tieBreak'));
+  } else {
+    const failure = hubInvariantVerdict(parentCheck, ['5a', '5e', '5i'], ['5e', '5i']);
+    if (failure) {
+      if (failure.unresolved) unverified.push(failure.detail);
+      addHubRow(rows, 'H3', failure.status, failure.detail, parentCommand);
+    } else {
+      addHubRow(rows, 'H3', 'PASS',
+        `routerPolicy.tieBreak is an exact permutation of the ${modeIds.length} registered mode(s) and orders workflow modes first.`,
+        parentCommand);
+    }
+  }
+
+  // H4: stage two. The document keys must stay equal, and an intent must load the
+  // mode's own packet leaves or the selection loads nothing.
+  if (unregistered) {
+    addHubRow(rows, 'H4', 'N/A',
+      'Stage two maps a registered mode to its leaves, so it applies once the mode is registered.',
+      readEvidence('ROUTER.md', 'INTENT_SIGNALS, RESOURCE_MAP'));
+  } else if (!routerParser.parse) {
+    const detail = `The router parser could not load${routerParser.reason ? `: ${routerParser.reason}` : '.'}`;
+    unverified.push(detail);
+    addHubRow(rows, 'H4', 'UNKNOWN', detail, readEvidence('ROUTER.md', 'INTENT_SIGNALS, RESOURCE_MAP'));
+  } else {
+    let routerView = null;
+    let routerReason = null;
+    try {
+      routerView = routerParser.parse(null, hub.root);
+    } catch (error) {
+      routerReason = firstLine(error && error.message);
+    }
+    if (routerReason) {
+      addHubRow(rows, 'H4', 'FINDING', `Router parsing failed: ${routerReason}`,
+        readEvidence('ROUTER.md', 'INTENT_SIGNALS, RESOURCE_MAP'));
+    } else {
+      const probe = surface.stageTwoIntentProbe({ mode, stageTwo, parsedRouter: routerView });
+      addHubRow(rows, 'H4', probe.status, probe.detail, readEvidence('ROUTER.md', 'INTENT_SIGNALS, RESOURCE_MAP'));
+    }
+  }
+
+  // H5: the full-toolkit intent, where the hub declares one.
+  const inventory = unregistered
+    ? { status: 'N/A', detail: 'FULL_INVENTORY covers a registered mode, so it applies once the mode is registered.' }
+    : surface.stageTwoInventoryProbe({ mode, stageTwo });
+  addHubRow(rows, 'H5', inventory.status, inventory.detail, readEvidence('ROUTER.md', 'FULL_INVENTORY'));
+
+  // H6: the advisor vocabulary the hub is surfaced on. The vocabulary-parity
+  // invariants belong to the same surface.
+  const vocabularyProbe = unregistered
+    ? { status: 'N/A', detail: 'The hub vocabulary is scoped to a registered mode, so it applies once the mode is registered.' }
+    : withInvariantFailure(
+      surface.hubVocabularyProbe({ mode, vocabulary, graphMetadata }),
+      parentCheck,
+      ['5k-*'],
+    );
+  if (vocabularyProbe.unresolved) unverified.push(vocabularyProbe.detail);
+  addHubRow(rows, 'H6', vocabularyProbe.status, vocabularyProbe.detail,
+    readEvidence('graph-metadata.json', 'intent_signals, derived.trigger_phrases'));
+
+  // H7: the hub SKILL.md mode table, the runtime's fallback discovery surface.
+  const tableProbe = withInvariantFailure(
+    surface.hubModeTableProbe({ skillText: skillDoc, modeIds, packets, subject: subjectToken }),
+    parentCheck,
+    ['6b', '6c'],
+  );
+  if (tableProbe.unresolved) unverified.push(tableProbe.detail);
+  addHubRow(rows, 'H7', tableProbe.status, tableProbe.detail, readEvidence('SKILL.md', 'mode table'));
+
+  // H8: what the hub advertises in doctor metadata.
+  const descriptionProbe = withInvariantFailure(
+    surface.hubDescriptionProbe({ description, subject: subjectToken }),
+    parentCheck,
+    ['8a', '8b'],
+  );
+  if (descriptionProbe.unresolved) unverified.push(descriptionProbe.detail);
+  addHubRow(rows, 'H8', descriptionProbe.status, descriptionProbe.detail,
+    readEvidence('description.json', 'keywords, description'));
+
+  // H9: the leaf manifest. It is generated, so a missing mode entry is a
+  // regeneration, never a hand edit.
+  const manifestModes = leafManifest && Array.isArray(leafManifest.modes)
+    ? leafManifest.modes.map((entry) => entry && entry.workflowMode).filter(Boolean)
+    : [];
+  if (!leafManifest) {
+    addHubRow(rows, 'H9', 'FINDING',
+      'leaf-manifest.json is missing or unreadable; regenerate it rather than hand-editing.',
+      readEvidence('leaf-manifest.json', 'modes'));
+  } else if (subject.name && !mode) {
+    addHubRow(rows, 'H9', 'N/A',
+      'The leaf manifest lists registered packets, so it applies once the mode is registered.',
+      readEvidence('leaf-manifest.json', 'modes'));
+  } else if (mode && !manifestModes.includes(mode.workflowMode)) {
+    addHubRow(rows, 'H9', 'FINDING',
+      `leaf-manifest.json has no entry for ${mode.workflowMode}; regenerate it rather than hand-editing.`,
+      readEvidence('leaf-manifest.json', 'modes'));
+  } else {
+    const failure = hubInvariantVerdict(parentCheck, ['10*'], ['10a-manifest-source', '10b-byte-drift']);
+    if (failure) {
+      if (failure.unresolved) unverified.push(failure.detail);
+      addHubRow(rows, 'H9', failure.status, failure.detail, parentCommand);
+    } else {
+      addHubRow(rows, 'H9', 'PASS',
+        `leaf-manifest.json covers ${manifestModes.length} mode(s) and its freshness invariants pass.`,
+        `${parentCommand}; ${readEvidence('leaf-manifest.json', 'modes')}`);
+    }
+  }
+
+  // H10: projection maps and the scorer, for a non-metadata mode only.
+  if (!mode) {
+    addHubRow(rows, 'H10', 'N/A',
+      unregistered
+        ? 'No registered mode is scoped, so there is no projection entry to check.'
+        : 'No skill or mode was named, so no projection entry is scoped.',
+      readEvidence('mode-registry.json', 'advisorRouting'));
+  } else if (routingClass === 'metadata') {
+    addHubRow(rows, 'H10', 'N/A',
+      'A metadata-routed mode needs no projection map or scorer entry; the advisor resolves it by hub membership.',
+      readEvidence('mode-registry.json', 'advisorRouting.routingClass'));
+  } else if (!routingClass) {
+    addHubRow(rows, 'H10', 'UNKNOWN',
+      `The registry declares no advisorRouting.routingClass for ${mode.workflowMode}, so the projection maps cannot be scoped.`,
+      readEvidence('mode-registry.json', 'advisorRouting'));
+  } else {
+    const advisorCommand = `python3 ${displayPath(context.paths.advisorScorer, context)} "${vocabulary.phrase}" --threshold 0.5`;
+    const probe = surface.runAdvisorProjection(vocabulary.phrase, context);
+    if (probe.state === 'error') {
+      unverified.push(probe.detail);
+      addHubRow(rows, 'H10', 'UNKNOWN', probe.detail, advisorCommand);
+    } else if (probe.state === 'unavailable') {
+      addHubRow(rows, 'H10', 'UNKNOWN', probe.detail, advisorCommand);
+    } else {
+      const advisorIds = [...new Set([hubId, mode.advisorRouting.legacyAdvisorId].filter(Boolean))];
+      const hit = advisorIds.find((id) => probe.ids.has(id));
+      if (hit) {
+        addHubRow(rows, 'H10', 'PASS',
+          `The scorer surfaced ${hit} for "${vocabulary.phrase}" among ${probe.count} recommendation(s).`,
+          advisorCommand);
+      } else {
+        addHubRow(rows, 'H10', 'FINDING',
+          `The scorer returned ${probe.count} recommendation(s) and none named ${advisorIds.join(' or ')} for "${vocabulary.phrase}".`,
+          advisorCommand);
+      }
+    }
+  }
+
+  // H11: the command mirrors every runtime reads its commands from.
+  const mirrors = surface.runMirrorChecks(context);
+  const mirrorCommand = [
+    `bash ${displayPath(context.paths.commandTreeParity, context)}`,
+    `node ${displayPath(context.paths.codexPromptSync, context)} --check`,
+    `node ${displayPath(context.paths.piPromptSync, context)} --check`,
+  ].join('; ');
+  if (mirrors.broken.length) {
+    const detail = `A mirror checker could not run: ${mirrors.broken.map((entry) => `${entry.label}${entry.reason ? ` (${entry.reason})` : ''}`).join(', ')}.`;
+    unverified.push(detail);
+    addHubRow(rows, 'H11', 'UNKNOWN', detail, mirrorCommand);
+  } else if (mirrors.drifted.length) {
+    addHubRow(rows, 'H11', 'FINDING',
+      `Mirror drift: ${mirrors.drifted.map((entry) => entry.label).join(', ')}.`,
+      mirrorCommand);
+  } else {
+    addHubRow(rows, 'H11', 'PASS',
+      'Command-tree parity, the Codex prompt mirrors and the Pi prompt mirrors are all in sync.',
+      mirrorCommand);
+  }
+
+  const findingCount = rows.filter((row) => row.status === 'FINDING').length;
+  const unknownCount = rows.filter((row) => row.status === 'UNKNOWN').length;
+  const naCount = rows.filter((row) => row.status === 'N/A').length;
+  // A checker that could not run leaves the report incomplete, so it outranks a
+  // finding: exit 2 says the table is unfinished, never that the hub failed.
+  const exitCode = unverified.length ? 2 : findingCount ? 1 : 0;
+
+  return {
+    mode: 'hub',
+    skill: subjectToken ? displayName(subjectToken, subject.root || hub.root) : null,
+    hub: surface.safeSkillName(hub.name),
+    hubPath,
+    routingClass,
+    findingCount,
+    unknownCount,
+    naCount,
+    unverified: [...new Set(unverified)],
+    gates: HUB_GATE_COVERAGE,
+    exitCode,
+    rows,
+  };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. ARGUMENTS AND RENDERING
 // ─────────────────────────────────────────────────────────────────────────────
 
 function parseArguments(argv) {
-  const args = { target: null, json: false };
-  for (const token of argv) {
+  const args = { target: null, json: false, intoHub: null };
+  for (let index = 0; index < argv.length; index += 1) {
+    const token = argv[index];
     if (token === '--json') {
       if (args.json) throw new surface.CheckError('USAGE', 'Option --json was specified more than once.');
       args.json = true;
+    } else if (token === '--into-hub' || token.startsWith('--into-hub=')) {
+      if (args.intoHub !== null) throw new surface.CheckError('USAGE', 'Option --into-hub was specified more than once.');
+      // The inline form names the hub as its own value, so it consumes no next token.
+      const inline = token === '--into-hub' ? null : token.slice('--into-hub='.length);
+      const value = inline === null ? argv[index + 1] : inline;
+      if (value === undefined || value === '' || value.startsWith('-')) {
+        throw new surface.CheckError('USAGE', 'Option --into-hub needs a hub name or path.');
+      }
+      args.intoHub = value;
+      if (inline === null) index += 1;
     } else if (token.startsWith('-')) {
       throw new surface.CheckError('USAGE', `Unknown option: ${token}`);
     } else if (args.target === null) {
@@ -665,18 +1108,48 @@ function renderFleetText(report) {
   return `${lines.join('\n')}\n`;
 }
 
+function renderHubText(report) {
+  const subject = report.skill || 'hub';
+  const classSuffix = report.routingClass ? ` (${report.routingClass})` : '';
+  const lines = [`Hub gap report: ${subject} into ${report.hub}${classSuffix}`, ''];
+  for (const row of report.rows) {
+    lines.push(`${row.row.padEnd(4)}${row.status.padEnd(8)} ${row.label}: ${row.detail}`);
+    lines.push(`     Evidence: ${row.evidence}`);
+  }
+  const passed = report.rows.length - report.findingCount - report.unknownCount - report.naCount;
+  lines.push('');
+  lines.push(`Rows: ${report.rows.length}; ${passed} pass, ${report.findingCount} finding(s), ${report.unknownCount} unknown, ${report.naCount} n/a`);
+  lines.push(
+    `A green gate is not integration. No CI gate covers rows ${report.gates.ungated.join(', ')}; ${report.gates.nameOnly.join(', ')} is checked by name only.`,
+  );
+  // An unfinished table is not a verdict on the hub, so the text names every probe
+  // that could not answer and closes on INCOMPLETE, exactly as the JSON does.
+  if (report.exitCode === 2) {
+    for (const entry of report.unverified) lines.push(`Unverified: ${entry}`);
+    lines.push('Result: INCOMPLETE');
+  } else {
+    lines.push(resultText(report));
+  }
+  return `${lines.join('\n')}\n`;
+}
+
 function runCheck(argv = process.argv.slice(2), options = {}) {
   const context = options.context || surface.createContext(options.contextOptions || {});
   const stdout = options.stdout || context.stdout;
   const stderr = options.stderr || context.stderr;
   try {
     const [command, ...rest] = argv[0] === 'check' ? argv : ['check', ...argv];
-    if (command !== 'check') throw new surface.CheckError('USAGE', 'Usage: sk-skill-check.cjs check [<name-or-path>] [--json]');
+    if (command !== 'check') {
+      throw new surface.CheckError('USAGE', 'Usage: sk-skill-check.cjs check [<name-or-path>] [--json] [--into-hub <hub>]');
+    }
     const parsed = parseArguments(rest);
-    const report = parsed.target === null
-      ? runFleet(context)
-      : checkNamedSkill(surface.resolveSkillTarget(parsed.target, context), context);
+    const report = parsed.intoHub !== null
+      ? runHubGapReport(parsed, context)
+      : parsed.target === null
+        ? runFleet(context)
+        : checkNamedSkill(surface.resolveSkillTarget(parsed.target, context), context);
     if (parsed.json) stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+    else if (report.mode === 'hub') stdout.write(renderHubText(report));
     else stdout.write(report.mode === 'fleet' ? renderFleetText(report) : renderDeepText(report));
     return report.exitCode;
   } catch (error) {
@@ -700,8 +1173,10 @@ module.exports = {
   main,
   parseArguments,
   renderFleetText,
+  renderHubText,
   runCheck,
   runFleet,
+  runHubGapReport,
 };
 
 if (require.main === module) process.exitCode = main(process.argv.slice(2));

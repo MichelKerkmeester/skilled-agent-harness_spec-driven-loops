@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "skill": "fixture-hub-shared",
+  "modes": [
+    {
+      "workflowMode": "fixture-shared-mode",
+      "packet": "fixture-shared-mode",
+      "leaves": [
+        "references/fixture-shared.md"
+      ]
+    },
+    {
+      "workflowMode": "fixture-shared-mode-parent",
+      "packet": "fixture-shared-mode",
+      "leaves": [
+        "references/fixture-shared.md"
+      ]
+    }
+  ],
+  "resourceContractVersion": 1
+}

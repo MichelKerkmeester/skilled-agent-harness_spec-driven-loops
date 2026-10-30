@@ -405,13 +405,13 @@ routes:
   - command: /doctor:sk-skill
     target: check
     yaml: doctor-sk-skill-check.yaml
-    setup_vars: [execution_mode, skill_target, json_output]
-    allowed_flags: ["--json"]
+    setup_vars: [execution_mode, skill_target, json_output, into_hub]
+    allowed_flags: ["--json", "--into-hub <hub>"]
     mutating: read-only
     gate3_location: "n/a (read-only diagnostic; every validator runs in its check-only form and the route writes nothing)"
     mcp_tools: []   # script-only; no MCP calls
     script_invocations:
-      - 'node .skilled/commands/doctor/scripts/sk-skill-check.cjs  # the workflow adds the skill name or path when the operator passed one, and --json when asked'
+      - 'node .skilled/commands/doctor/scripts/sk-skill-check.cjs  # the workflow adds the skill name or path, --json and --into-hub <hub> only when the operator passed them'
     trigger_phrases:
       - "how far is a skill from the skilled format"
       - "check a skill against the skilled format"

@@ -19,8 +19,10 @@ const {
   directSkillRoots,
   parseArguments,
   renderFleetText,
+  renderHubText,
   runCheck,
   runFleet,
+  runHubGapReport,
 } = require('../sk-skill-check.cjs');
 const surface = require('../lib/sk-skill-surface.cjs');
 
@@ -835,6 +837,588 @@ test('reserved root paths are redacted and filtered validators remain UNKNOWN', 
   } finally {
     fs.rmSync(scratchDir, { recursive: true, force: true });
   }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. HUB GAP REPORT
+// ─────────────────────────────────────────────────────────────────────────────
+
+const HUB_FIXTURES = path.join(FIXTURE_ROOT, 'hubs');
+const HUB_GAP_ROOT = path.join(HUB_FIXTURES, 'hub-gap');
+const HUB_INVENTORY_ROOT = path.join(HUB_FIXTURES, 'hub-inventory');
+const HUB_SHARED_ROOT = path.join(HUB_FIXTURES, 'hub-shared-packet');
+
+// A clean parent-skill-check transcript. The hub fixtures answer the registry
+// membership, signal, manifest and table rows from their own files, so the
+// subprocess is only the hub-wide corroboration those rows fold in.
+const CLEAN_PARENT_OUTPUT = [
+  'PASS: 3a: mode-registry.json exists and parses as JSON',
+  'PASS: 3b: mode-registry.json declares 2 modes',
+  'PASS: 5b: routerSignals keys match the registry workflowMode set (2)',
+  'PASS: 5e: routerPolicy.tieBreak covers every registered mode',
+  'PASS: 5i: tieBreak orders workflow modes before surface/transport modes',
+  'PASS: 5k-alias: every registry alias is a keyword of its routerSignal classes',
+  'PASS: 6b: every registered mode (2) appears in the hub SKILL.md mode table',
+  'PASS: 6c: every mode-table row whose registry entry declares a command shows that exact command',
+  'PASS: 8a: description.json present with the required fields',
+  'PASS: 8b: description.json carries no registry-owned duplicate keys',
+  'PASS: 10a-manifest-source: leaf-manifest.json is present and well-formed',
+  'PASS: 10b-byte-drift: committed leaf-manifest.json matches a fresh regeneration byte for byte',
+].join('\n') + '\n';
+
+function makeHubContext({
+  routerTargets = {},
+  parentCode = 0,
+  parentOutput = CLEAN_PARENT_OUTPUT,
+  parentError = '',
+  realParentCheck = false,
+  advisorCode = 0,
+  advisorPayload = [],
+  mirrorCodes = {},
+} = {}) {
+  const invocations = [];
+  const context = surface.createContext({
+    repoRoot: REPO_ROOT,
+    skillsDir: SKILLS_DIR,
+    cwd: REPO_ROOT,
+    python: 'python3',
+    skipPreflight: true,
+  });
+  const mirror = (key) => ({ code: mirrorCodes[key] || 0, stdout: '', stderr: '', error: null });
+  context.runCommand = (command, args, options = {}) => {
+    invocations.push({ command, args, options });
+    const script = args[0] || '';
+    if (command === context.python && script === '-c') {
+      return { code: 0, stdout: '', stderr: '', error: null };
+    }
+    if (script.endsWith('parent-skill-check.cjs')) {
+      if (!realParentCheck) return { code: parentCode, stdout: parentOutput, stderr: parentError, error: null };
+      const child = spawnSync(process.execPath, args, {
+        cwd: options.cwd,
+        env: options.env,
+        encoding: 'utf8',
+        timeout: options.timeoutMs,
+      });
+      return {
+        code: Number.isInteger(child.status) ? child.status : null,
+        stdout: child.stdout || '',
+        stderr: child.stderr || '',
+        error: child.error ? child.error.message : null,
+      };
+    }
+    if (script.endsWith('compiled-route.cjs')) {
+      const hub = args[args.indexOf('--hub') + 1];
+      const targets = (routerTargets[hub] || []).map((mode) => ({ workflowMode: mode }));
+      return { code: 0, stdout: JSON.stringify({ hubId: hub, action: 'route', targets }), stderr: '', error: null };
+    }
+    if (script.endsWith('skill_advisor.py')) {
+      return { code: advisorCode, stdout: JSON.stringify(advisorPayload), stderr: '', error: null };
+    }
+    if (script.endsWith('validate-command-tree-parity.sh')) return mirror('parity');
+    if (script.endsWith('sync-prompts.cjs') || script.endsWith('sync-prompts-pi.cjs')) {
+      return mirror(script.includes('sync-prompts-pi') ? 'pi' : 'codex');
+    }
+    throw new Error(`Unexpected child command: ${script}`);
+  };
+  return { context, invocations };
+}
+
+function getHubRow(report, id) {
+  return report.rows.find((row) => row.row === id);
+}
+
+function copyHubFixture(source, { remove = [] } = {}) {
+  const scratchDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sk-skill-check-'));
+  const hubRoot = path.join(scratchDir, path.basename(source));
+  fs.cpSync(source, hubRoot, { recursive: true });
+  for (const name of remove) fs.rmSync(path.join(hubRoot, name), { force: true });
+  return { scratchDir, hubRoot };
+}
+
+function parentOutputWithout(...needles) {
+  return CLEAN_PARENT_OUTPUT
+    .split('\n')
+    .filter((line) => !needles.some((needle) => line.includes(needle)))
+    .join('\n');
+}
+
+test('the hub gap report carries all eleven rows and finds the mode with no stage-one signal', () => {
+  const { context } = makeHubContext({ routerTargets: { 'fixture-hub-gap': ['fixture-gap-mode'] } });
+  const report = runHubGapReport({ target: 'fixture-gap-mute', intoHub: HUB_GAP_ROOT }, context);
+
+  assert.equal(report.mode, 'hub');
+  assert.equal(report.skill, 'fixture-gap-mute');
+  assert.equal(report.hub, 'hub-gap');
+  assert.deepEqual(report.rows.map((row) => row.row), Array.from({ length: 11 }, (_, index) => `H${index + 1}`));
+  assert.ok(report.rows.every((row) => row.label && row.evidence), 'every row names a label and its evidence');
+
+  assert.equal(getHubRow(report, 'H2').status, 'FINDING');
+  assert.match(getHubRow(report, 'H2').detail, /routerSignals has no entry for fixture-gap-mute/);
+  assert.equal(report.findingCount, 1);
+  assert.equal(report.exitCode, 1);
+
+  for (const id of ['H1', 'H3', 'H4', 'H6', 'H7', 'H8', 'H9', 'H11']) {
+    assert.equal(getHubRow(report, id).status, 'PASS', id);
+  }
+  assert.equal(getHubRow(report, 'H5').status, 'N/A');
+  assert.equal(getHubRow(report, 'H10').status, 'N/A');
+});
+
+test('the hub gap report passes the mode the hub signals, replaying it once', () => {
+  const { context, invocations } = makeHubContext({
+    routerTargets: { 'fixture-hub-gap': ['fixture-gap-mode'] },
+  });
+  const report = runHubGapReport({ target: 'fixture-gap-mode', intoHub: HUB_GAP_ROOT }, context);
+
+  assert.equal(report.exitCode, 0);
+  assert.equal(report.findingCount, 0);
+  assert.equal(getHubRow(report, 'H2').status, 'PASS');
+  assert.match(getHubRow(report, 'H2').detail, /"fixture gap request"/);
+  assert.equal(getHubRow(report, 'H9').status, 'PASS');
+
+  const compiled = invocations.filter(({ args }) => String(args[0]).endsWith('compiled-route.cjs'));
+  assert.equal(compiled.length, 1);
+  assert.deepEqual(compiled[0].args.slice(1), ['--hub', 'fixture-hub-gap', '--prompt', 'fixture gap request']);
+  assert.equal(invocations.filter(({ args }) => String(args[0]).endsWith('parent-skill-check.cjs')).length, 1);
+  assert.ok(!invocations.some(({ args }) => String(args[0]).endsWith('skill_advisor.py')));
+  assert.ok(!invocations.some(({ command, args }) => command === context.python && args[0] === '-c'));
+});
+
+test('a full-toolkit hub fills the inventory row and the advisor row for a lexical mode', () => {
+  const { context, invocations } = makeHubContext({
+    routerTargets: { 'fixture-hub-inventory': ['fixture-inventory-mode'] },
+    advisorPayload: [{ skill: 'fixture-inventory-mode', workflowMode: 'fixture-inventory-mode' }],
+  });
+  const report = runHubGapReport({ target: 'fixture-inventory-mode', intoHub: HUB_INVENTORY_ROOT }, context);
+
+  assert.equal(report.routingClass, 'lexical');
+  assert.equal(report.exitCode, 0);
+  assert.equal(getHubRow(report, 'H5').status, 'PASS');
+  assert.match(getHubRow(report, 'H5').detail, /FULL_INVENTORY carries 1 fixture-inventory-mode\/ path/);
+  assert.equal(getHubRow(report, 'H10').status, 'PASS');
+  assert.match(getHubRow(report, 'H10').detail, /surfaced fixture-inventory-mode/);
+
+  const advisor = invocations.filter(({ args }) => String(args[0]).endsWith('skill_advisor.py'));
+  assert.equal(advisor.length, 1);
+  assert.deepEqual(advisor[0].args.slice(1), ['fixture inventory request', '--threshold', '0.5']);
+});
+
+test('advisor exit 75 leaves the projection row UNKNOWN and never a pass', () => {
+  const { context } = makeHubContext({
+    routerTargets: { 'fixture-hub-inventory': ['fixture-inventory-mode'] },
+    advisorCode: 75,
+    advisorPayload: { error: 'native advisor unavailable' },
+  });
+  const report = runHubGapReport({ target: 'fixture-inventory-mode', intoHub: HUB_INVENTORY_ROOT }, context);
+
+  assert.equal(getHubRow(report, 'H10').status, 'UNKNOWN');
+  assert.match(getHubRow(report, 'H10').detail, /exit 75/);
+  assert.equal(report.unknownCount, 1);
+  assert.equal(report.findingCount, 0);
+  assert.equal(report.exitCode, 0);
+  assert.deepEqual(report.unverified, []);
+});
+
+test('an advisor that returns no matching recommendation is a projection finding', () => {
+  const { context } = makeHubContext({
+    routerTargets: { 'fixture-hub-inventory': ['fixture-inventory-mode'] },
+    advisorPayload: [{ skill: 'another-skill' }],
+  });
+  const report = runHubGapReport({ target: 'fixture-inventory-mode', intoHub: HUB_INVENTORY_ROOT }, context);
+
+  assert.equal(getHubRow(report, 'H10').status, 'FINDING');
+  assert.equal(report.exitCode, 1);
+});
+
+test('mirror drift is a finding and an unreadable mirror checker exits 2', () => {
+  const drift = makeHubContext({
+    routerTargets: { 'fixture-hub-gap': ['fixture-gap-mode'] },
+    mirrorCodes: { parity: 1 },
+  });
+  const drifted = runHubGapReport({ target: 'fixture-gap-mode', intoHub: HUB_GAP_ROOT }, drift.context);
+  assert.equal(getHubRow(drifted, 'H11').status, 'FINDING');
+  assert.equal(drifted.exitCode, 1);
+
+  const broken = makeHubContext({
+    routerTargets: { 'fixture-hub-gap': ['fixture-gap-mode'] },
+    mirrorCodes: { codex: 2 },
+  });
+  const unreadable = runHubGapReport({ target: 'fixture-gap-mode', intoHub: HUB_GAP_ROOT }, broken.context);
+  assert.equal(getHubRow(unreadable, 'H11').status, 'UNKNOWN');
+  assert.equal(unreadable.unverified.length, 1);
+  assert.equal(unreadable.exitCode, 2);
+});
+
+test('parent-skill-check that cannot run leaves its rows UNKNOWN and exits 2', () => {
+  const { context } = makeHubContext({
+    routerTargets: { 'fixture-hub-gap': ['fixture-gap-mode'] },
+    parentCode: 2,
+    parentOutput: '',
+    parentError: 'ERROR: parent skill directory not found\n',
+  });
+  const report = runHubGapReport({ target: 'fixture-gap-mode', intoHub: HUB_GAP_ROOT }, context);
+
+  for (const id of ['H1', 'H3', 'H9']) {
+    assert.equal(getHubRow(report, id).status, 'UNKNOWN', id);
+  }
+  assert.equal(getHubRow(report, 'H2').status, 'UNKNOWN');
+  assert.equal(report.exitCode, 2);
+  assert.ok(report.unverified.length >= 1);
+});
+
+test('the hub gap text carries every row, its evidence and the ungated-rows footer', () => {
+  const { context } = makeHubContext({ routerTargets: { 'fixture-hub-gap': ['fixture-gap-mode'] } });
+  const report = runHubGapReport({ target: 'fixture-gap-mute', intoHub: HUB_GAP_ROOT }, context);
+  const text = renderHubText(report);
+
+  for (let index = 1; index <= 11; index += 1) {
+    assert.match(text, new RegExp(`^H${index}\\s`, 'm'));
+  }
+  assert.match(text, /^Hub gap report: fixture-gap-mute into hub-gap \(metadata\)$/m);
+  assert.match(text, /^     Evidence: node .*parent-skill-check\.cjs /m);
+  assert.match(text, /^Rows: 11; \d+ pass, 1 finding\(s\), 0 unknown, 2 n\/a$/m);
+  assert.match(
+    text,
+    /^A green gate is not integration\. No CI gate covers rows H4, H5, H6, H8, H10; H7 is checked by name only\.$/m,
+  );
+  assert.match(text, /^Result: FINDINGS \(1\)$/m);
+});
+
+test('the hub gap argument parses its hub and rejects a missing or repeated hub', () => {
+  assert.deepEqual(parseArguments(['fixture-gap-mode', '--into-hub', 'hub-gap']), {
+    target: 'fixture-gap-mode',
+    json: false,
+    intoHub: 'hub-gap',
+  });
+  assert.equal(parseArguments(['--into-hub', 'hub-gap', '--json']).intoHub, 'hub-gap');
+  assert.throws(() => parseArguments(['--into-hub']), (error) => error.code === 'USAGE');
+  assert.throws(() => parseArguments(['--into-hub', '--json']), (error) => error.code === 'USAGE');
+  assert.throws(
+    () => parseArguments(['--into-hub', 'hub-gap', '--into-hub', 'hub-inventory']),
+    (error) => error.code === 'USAGE',
+  );
+});
+
+test('a path that is not a hub and a private hub name are refused with exit 2', () => {
+  const { context } = makeHubContext({});
+  let stderr = '';
+  const run = (hubPath) => runCheck(['check', 'fixture-gap-mode', '--into-hub', hubPath], {
+    context,
+    stdout: { write: () => {} },
+    stderr: { write: (chunk) => { stderr += chunk; } },
+  });
+
+  const notHub = run(path.join(SKILLS_DIR, 'plain'));
+  assert.equal(notHub, 2);
+  assert.match(stderr, /HUB_NOT_A_HUB/);
+
+  const scratchDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sk-skill-check-'));
+  const privateHub = path.join(scratchDir, `${PREFIX}hub`);
+  fs.mkdirSync(privateHub);
+  try {
+    stderr = '';
+    const refused = run(privateHub);
+    assert.equal(refused, 2);
+    assert.match(stderr, /PRIVATE_ROOT_REFUSED/);
+    assert.ok(!stderr.includes(path.basename(privateHub)));
+  } finally {
+    fs.rmSync(scratchDir, { recursive: true, force: true });
+  }
+});
+
+test('a WARN line on stderr reaches the row that owns its invariant', () => {
+  const { context } = makeHubContext({
+    routerTargets: { 'fixture-hub-gap': ['fixture-gap-mode'] },
+    parentCode: 1,
+    parentError: 'WARN: 5k-alias: registry alias is not a keyword of its routerSignal classes\n',
+  });
+  const report = runHubGapReport({ target: 'fixture-gap-mode', intoHub: HUB_GAP_ROOT }, context);
+
+  assert.equal(getHubRow(report, 'H6').status, 'FINDING');
+  assert.match(getHubRow(report, 'H6').detail, /5k-alias/);
+  assert.equal(report.exitCode, 1);
+});
+
+test('the stage-two, vocabulary, table and description probes find a missing surface', () => {
+  const stageTwo = {
+    present: true,
+    intentKeys: ['ALPHA', 'BETA'],
+    resourceKeys: ['ALPHA'],
+    resources: { ALPHA: ['fixture-gap-mode/leaf.md'] },
+    pathCount: 1,
+    fullInventoryPresent: false,
+    fullInventoryPaths: [],
+  };
+  const uneven = surface.stageTwoIntentProbe({ mode: null, stageTwo, parsedRouter: null });
+  assert.equal(uneven.status, 'FINDING');
+  assert.match(uneven.detail, /no RESOURCE_MAP entry for BETA/);
+
+  const evenStageTwo = {
+    ...stageTwo,
+    resourceKeys: ['ALPHA', 'BETA'],
+    resources: { ALPHA: ['fixture-gap-mode/leaf.md'], BETA: ['fixture-gap-mode/other.md'] },
+    pathCount: 2,
+  };
+  const unreached = surface.stageTwoIntentProbe({
+    mode: { workflowMode: 'fixture-gap-mute', packet: 'fixture-gap-mute' },
+    stageTwo: evenStageTwo,
+    parsedRouter: null,
+  });
+  assert.equal(unreached.status, 'FINDING');
+  assert.match(unreached.detail, /loads nothing/);
+
+  const emptyInventory = surface.stageTwoInventoryProbe({
+    mode: null,
+    stageTwo: { ...stageTwo, fullInventoryPresent: true, fullInventoryPaths: [] },
+  });
+  assert.equal(emptyInventory.status, 'FINDING');
+
+  const absentVocabulary = surface.hubVocabularyProbe({
+    mode: { workflowMode: 'fixture-gap-mute' },
+    vocabulary: { keywords: ['absent phrase'] },
+    graphMetadata: { intent_signals: ['fixture gap request'] },
+  });
+  assert.equal(absentVocabulary.status, 'FINDING');
+
+  const noMetadata = surface.hubVocabularyProbe({ mode: null, vocabulary: null, graphMetadata: null });
+  assert.equal(noMetadata.status, 'FINDING');
+
+  const silentTable = surface.hubModeTableProbe({
+    skillText: '| Mode | Packet |\n|------|--------|\n| `fixture-gap-mode` | `fixture-gap-mode` |\n',
+    modeIds: ['fixture-gap-mode', 'fixture-gap-mute'],
+    subject: null,
+  });
+  assert.equal(silentTable.status, 'FINDING');
+  assert.match(silentTable.detail, /fixture-gap-mute/);
+
+  const absentDescription = surface.hubDescriptionProbe({
+    description: { name: 'fixture-hub-gap', description: 'Invented hub.', version: '1.0.0.0', keywords: ['fixture-hub-gap'] },
+    subject: 'fixture-gap-mute',
+  });
+  assert.equal(absentDescription.status, 'FINDING');
+});
+
+test('a hub whose hub-router.json is gone reports H2 and H3 as findings, never a pass by absence', () => {
+  const copy = copyHubFixture(HUB_GAP_ROOT, { remove: ['hub-router.json'] });
+  try {
+    const { context, invocations } = makeHubContext({ realParentCheck: true });
+    const report = runHubGapReport({ target: null, intoHub: copy.hubRoot }, context);
+
+    // The real checker stops after 5a, so 5b, 5e and 5i are never printed. Those rows
+    // used to read the silence as a pass; they must report the failure that stopped it.
+    assert.equal(invocations.filter(({ args }) => String(args[0]).endsWith('parent-skill-check.cjs')).length, 1);
+    for (const id of ['H2', 'H3']) {
+      assert.equal(getHubRow(report, id).status, 'FINDING', `${id}: ${getHubRow(report, id).detail}`);
+      assert.match(getHubRow(report, id).detail, /5a: hub-router\.json is missing/);
+    }
+    assert.deepEqual(report.unverified, []);
+    assert.equal(report.exitCode, 1);
+  } finally {
+    fs.rmSync(copy.scratchDir, { recursive: true, force: true });
+  }
+});
+
+test('a row whose confirming PASS line is absent stays UNKNOWN instead of passing', () => {
+  const cases = [
+    ['H1', ['3a:', '3b:'], '3a and 3b'],
+    ['H2', ['5b:'], '5b'],
+    ['H3', ['5e:', '5i:'], '5e and 5i'],
+    ['H9', ['10a-manifest-source:', '10b-byte-drift:'], '10a-manifest-source and 10b-byte-drift'],
+  ];
+  for (const [id, removed, named] of cases) {
+    const { context } = makeHubContext({
+      routerTargets: { 'fixture-hub-gap': ['fixture-gap-mode'] },
+      parentOutput: parentOutputWithout(...removed),
+    });
+    const report = runHubGapReport({ target: 'fixture-gap-mode', intoHub: HUB_GAP_ROOT }, context);
+    const row = getHubRow(report, id);
+    assert.equal(row.status, 'UNKNOWN', `${id}: ${row.detail}`);
+    assert.match(row.detail, new RegExp(`no PASS for ${named}`));
+    assert.ok(report.unverified.length >= 1, id);
+    assert.equal(report.exitCode, 2, id);
+  }
+});
+
+test('a stage-two intent that reaches the mode only through FULL_INVENTORY is a finding', () => {
+  const packetLeaves = 'fixture-inventory-mode/references/fixture-inventory.md';
+  const stageTwo = {
+    present: true,
+    intentKeys: ['INVENTORY', 'FULL_INVENTORY'],
+    resourceKeys: ['INVENTORY', 'FULL_INVENTORY'],
+    resources: {
+      INVENTORY: ['notes/hub-level.md'],
+      FULL_INVENTORY: [packetLeaves],
+    },
+    pathCount: 2,
+    fullInventoryPresent: true,
+    fullInventoryPaths: [packetLeaves],
+  };
+  const parsedRouter = {
+    resourceMap: {
+      INVENTORY: ['notes/hub-level.md'],
+      FULL_INVENTORY: [packetLeaves],
+    },
+  };
+  const probe = surface.stageTwoIntentProbe({
+    mode: { workflowMode: 'fixture-inventory-mode', packet: 'fixture-inventory-mode' },
+    stageTwo,
+    parsedRouter,
+  });
+  assert.equal(probe.status, 'FINDING');
+  assert.match(probe.detail, /loads nothing/);
+
+  const ownIntent = surface.stageTwoIntentProbe({
+    mode: { workflowMode: 'fixture-inventory-mode', packet: 'fixture-inventory-mode' },
+    stageTwo: {
+      ...stageTwo,
+      resources: { ...stageTwo.resources, INVENTORY: [packetLeaves] },
+    },
+    parsedRouter: { resourceMap: { INVENTORY: [packetLeaves] } },
+  });
+  assert.equal(ownIntent.status, 'PASS');
+  assert.match(ownIntent.detail, /INVENTORY/);
+});
+
+test('two modes that share one packet are reported as the mode that was named', () => {
+  const define = (target) => makeHubContext({
+    routerTargets: { 'fixture-hub-shared': ['fixture-shared-mode', 'fixture-shared-mode-parent'] },
+  });
+
+  const parent = runHubGapReport(
+    { target: 'fixture-shared-mode-parent', intoHub: HUB_SHARED_ROOT },
+    define().context,
+  );
+  assert.equal(parent.skill, 'fixture-shared-mode-parent');
+  assert.match(getHubRow(parent, 'H1').detail, /Registered as fixture-shared-mode-parent/);
+  assert.match(getHubRow(parent, 'H2').detail, /routerSignals covers fixture-shared-mode-parent/);
+  assert.match(getHubRow(parent, 'H7').detail, /including fixture-shared-mode-parent/);
+  assert.match(getHubRow(parent, 'H8').detail, /^fixture-shared-mode-parent appears/);
+  assert.equal(parent.findingCount, 0, JSON.stringify(parent.rows.filter((row) => row.status === 'FINDING')));
+
+  const base = runHubGapReport(
+    { target: 'fixture-shared-mode', intoHub: HUB_SHARED_ROOT },
+    define().context,
+  );
+  assert.equal(base.skill, 'fixture-shared-mode');
+  assert.match(getHubRow(base, 'H1').detail, /Registered as fixture-shared-mode \(workflow\)/);
+});
+
+test('advisor vocabulary matches whole tokens, so a short phrase cannot match inside a word', () => {
+  const mode = { workflowMode: 'fixture-go-mode' };
+  const inside = surface.hubVocabularyProbe({
+    mode,
+    vocabulary: { keywords: ['go'] },
+    graphMetadata: { intent_signals: ['google docs workflow'] },
+  });
+  assert.equal(inside.status, 'FINDING');
+
+  const standalone = surface.hubVocabularyProbe({
+    mode,
+    vocabulary: { keywords: ['go'] },
+    graphMetadata: { intent_signals: ['go to the docs'] },
+  });
+  assert.equal(standalone.status, 'PASS');
+});
+
+test('the mode table probe reads only the table whose header names Mode and checks the stated counts', () => {
+  const decoy = [
+    '| Term | Meaning |',
+    '|------|---------|',
+    '| `fixture-gap-mute` | A decoy row in a table that documents vocabulary |',
+    '',
+    '| Mode | Packet |',
+    '|------|--------|',
+    '| `fixture-gap-mode` | `fixture-gap-mode` |',
+  ].join('\n');
+  const absent = surface.hubModeTableProbe({
+    skillText: decoy,
+    modeIds: ['fixture-gap-mode', 'fixture-gap-mute'],
+    packets: ['fixture-gap-mode', 'fixture-gap-mute'],
+    subject: null,
+  });
+  assert.equal(absent.status, 'FINDING');
+  assert.match(absent.detail, /fixture-gap-mute/);
+
+  const matching = surface.hubModeTableProbe({
+    skillText: 'Two modes across one packet.\n\n| Mode | Packet |\n|---|---|\n| `a-mode` | `a-packet` |\n| `b-mode` | `a-packet` |\n',
+    modeIds: ['a-mode', 'b-mode'],
+    packets: ['a-packet'],
+    subject: null,
+  });
+  assert.equal(matching.status, 'PASS');
+  assert.match(matching.detail, /2 modes/);
+  assert.match(matching.detail, /1 packet/);
+
+  const overstated = surface.hubModeTableProbe({
+    skillText: 'Three modes across two packets.\n\n| Mode | Packet |\n|---|---|\n| `a-mode` | `a-packet` |\n| `b-mode` | `a-packet` |\n',
+    modeIds: ['a-mode', 'b-mode'],
+    packets: ['a-packet'],
+    subject: null,
+  });
+  assert.equal(overstated.status, 'FINDING');
+  assert.match(overstated.detail, /states 3 modes across 2 packets/);
+  assert.match(overstated.detail, /the registry declares 2 modes across 1 packets?/);
+});
+
+test('a projection recommendation counts only when it names the hub or the mode legacy advisor id', () => {
+  const { context } = makeHubContext({
+    routerTargets: { 'fixture-hub-inventory': ['fixture-inventory-mode'] },
+    advisorPayload: [{ skill: 'another-hub', workflowMode: 'fixture-inventory-mode', mode: 'fixture-inventory-mode' }],
+  });
+  const report = runHubGapReport({ target: 'fixture-inventory-mode', intoHub: HUB_INVENTORY_ROOT }, context);
+
+  assert.equal(getHubRow(report, 'H10').status, 'FINDING');
+  assert.match(getHubRow(report, 'H10').detail, /none named fixture-hub-inventory or fixture-inventory-mode/);
+});
+
+test('the hub gap text prints each unverified entry and INCOMPLETE when the table is unfinished', () => {
+  const { context } = makeHubContext({
+    routerTargets: { 'fixture-hub-gap': ['fixture-gap-mode'] },
+    parentCode: 2,
+    parentOutput: '',
+    parentError: 'ERROR: parent skill directory not found\n',
+  });
+  const report = runHubGapReport({ target: 'fixture-gap-mode', intoHub: HUB_GAP_ROOT }, context);
+  const text = renderHubText(report);
+
+  assert.equal(report.exitCode, 2);
+  assert.ok(report.unverified.length >= 1);
+  for (const entry of report.unverified) {
+    assert.ok(text.includes(`Unverified: ${entry}`), entry);
+  }
+  assert.match(text, /^Unverified: parent-skill-check\.cjs could not run/m);
+  assert.match(text, /^Result: INCOMPLETE$/m);
+  assert.doesNotMatch(text, /^Result: (PASS|FINDINGS|NO FINDINGS)/m);
+});
+
+test('the hub gap argument accepts the inline --into-hub=<hub> form', () => {
+  assert.deepEqual(parseArguments(['fixture-gap-mode', '--into-hub=hub-gap']), {
+    target: 'fixture-gap-mode',
+    json: false,
+    intoHub: 'hub-gap',
+  });
+  assert.equal(parseArguments(['--into-hub=hub-gap', '--json']).intoHub, 'hub-gap');
+  assert.throws(() => parseArguments(['--into-hub=']), (error) => error.code === 'USAGE');
+  assert.throws(() => parseArguments(['--into-hub=-hub']), (error) => error.code === 'USAGE');
+  assert.throws(
+    () => parseArguments(['--into-hub=hub-gap', '--into-hub=hub-inventory']),
+    (error) => error.code === 'USAGE',
+  );
+});
+
+test('the shipped hub and its mode report every applicable row present', () => {
+  const context = surface.createContext({ repoRoot: REPO_ROOT, cwd: REPO_ROOT });
+  const hubRoot = path.join(REPO_ROOT, '.skilled', 'skills', 'cli-classifier');
+  const report = runHubGapReport({ target: 'cli-jev', intoHub: hubRoot }, context);
+
+  assert.deepEqual(report.rows.map((row) => row.row), Array.from({ length: 11 }, (_, index) => `H${index + 1}`));
+  assert.equal(report.findingCount, 0, JSON.stringify(report.rows.filter((row) => row.status === 'FINDING')));
+  assert.equal(report.exitCode, 0);
+  for (const id of ['H1', 'H2', 'H3', 'H4', 'H6', 'H7', 'H8', 'H9', 'H11']) {
+    assert.equal(getHubRow(report, id).status, 'PASS', `${id}: ${getHubRow(report, id).detail}`);
+  }
+  assert.equal(getHubRow(report, 'H5').status, 'N/A');
+  assert.equal(getHubRow(report, 'H10').status, 'N/A');
 });
 
 // A converter backup is a state record, not a skill root. Counting its copy of

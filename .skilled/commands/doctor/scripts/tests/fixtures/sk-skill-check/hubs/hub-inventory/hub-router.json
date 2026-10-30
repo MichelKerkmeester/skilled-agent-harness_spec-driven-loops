@@ -1,0 +1,37 @@
+{
+  "skill": "fixture-hub-inventory",
+  "version": "1.0.0.0",
+  "routerPolicy": {
+    "defaultMode": null,
+    "ambiguityDelta": 1,
+    "tieBreak": [
+      "fixture-inventory-mode"
+    ],
+    "outcomes": {
+      "single": "one dominant fixture intent routes to one mode",
+      "orderedBundle": "separate fixture intents route to an ordered mode list",
+      "defer": "unclear intent asks for disambiguation"
+    },
+    "defaultResource": [],
+    "bundleRules": []
+  },
+  "routerSignals": {
+    "fixture-inventory-mode": {
+      "weight": 4,
+      "classes": [
+        "fixture-inventory-aliases"
+      ],
+      "resources": [
+        "fixture-inventory-mode/SKILL.md"
+      ]
+    }
+  },
+  "vocabularyClasses": {
+    "fixture-inventory-aliases": {
+      "keywords": [
+        "fixture inventory request",
+        "fixture inventory mode"
+      ]
+    }
+  }
+}

@@ -1,9 +1,9 @@
 # ─────────────────────────────────────────────────────────────────
 # DOCTOR: SKILL FORMAT CHECK (READ-ONLY DIAGNOSTIC)
 # ─────────────────────────────────────────────────────────────────
-role: Diagnostic Operator reporting how far one skill, or the whole fleet, is from the Skilled format
-purpose: Report rows C1 to C13 for one skill, or one row per skill root for the whole fleet, by running the shipped format and root-metadata validators in their check-only forms and naming the repair for each finding
-action: Run .skilled/commands/doctor/scripts/sk-skill-check.cjs once -> render its fleet table or deep report through the presentation contract
+role: Diagnostic Operator reporting how far one skill, or the whole fleet, is from the Skilled format, and which of the eleven hub integration surfaces a skill still needs
+purpose: Report rows C1 to C13 for one skill, one row per skill root for the whole fleet, or the eleven-surface hub gap table for a skill or mode headed into a hub, by running the shipped checkers in their check-only forms and naming the repair for each finding
+action: Run .skilled/commands/doctor/scripts/sk-skill-check.cjs once -> render its fleet table, deep report or hub gap report through the presentation contract
 skill_owner: ".skilled/skills/sk-doc/sk-create-skill/"
 
 # ─────────────────────────────────────────────────────────────────
@@ -25,7 +25,7 @@ mutation_boundaries:
   allowed_targets: []
   forbidden_targets:
     - "**/*"
-  invariant: "This route prints and never writes. Every validator it runs is invoked in its check-only or dry-run form, and a repair is an explicit operator action, never a side effect of the diagnostic. It MUST NOT convert a skill, refresh derived content, regenerate the skill graph or install a runtime mirror."
+  invariant: "This route prints and never writes. Every validator it runs is invoked in its check-only or dry-run form, and a repair is an explicit operator action, never a side effect of the diagnostic. It MUST NOT convert a skill, refresh derived content, regenerate the skill graph or install a runtime mirror. The hub gap report is a read pass over a hub: it never registers a mode, edits a hub surface or changes how the hub routes."
 
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS
@@ -36,8 +36,10 @@ upstream_assets:
   format_validator: ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py, run with --check --strict --json"
   root_metadata_validator: ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs"
   derived_validator: ".skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs, run with --root <dir> --dry-run"
-  router_parser: ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs, required in process for the router-replay row"
+  router_parser: ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs, required in process for the router-replay row and the stage-two hub rows"
   router_resolver: ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-file-resolver.cjs"
+  hub_checkers: ".skilled/commands/doctor/scripts/parent-skill-check.cjs, .skilled/bin/compiled-route.cjs and .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py, each run once by the engine for the hub gap rows"
+  mirror_checkers: ".skilled/skills/system-spec-kit/runtime/cli/validate-command-tree-parity.sh, codex/sync-prompts.cjs --check and pi/sync-prompts-pi.cjs --check, run once each for the command-mirror row"
 
 # ─────────────────────────────────────────────────────────────────
 # INPUTS
@@ -46,6 +48,7 @@ inputs:
   target: "check is the route's default target: /doctor:sk-skill and /doctor:sk-skill check both run it. Any other positional fails before this YAML loads."
   skill_target: "A skill name under .skilled/skills or a path to a skill root, passed to the engine unchanged. With none the engine checks the whole fleet and prints one row per direct child of .skilled/skills (default none, so the fleet table)."
   json_output: "true when --json is passed: the route prints the engine's JSON and nothing else (default false)."
+  into_hub: "The hub name or path when --into-hub is passed, inline as --into-hub=<hub> or as the token after it: the engine prints the eleven-surface hub gap report for the skill or mode named, or for the hub alone when no skill is named (default none, so no hub report)."
   execution_mode: "INTERACTIVE"
 
 # ─────────────────────────────────────────────────────────────────
@@ -53,11 +56,13 @@ inputs:
 # ─────────────────────────────────────────────────────────────────
 execution:
   steps:
-    - "Run node .skilled/commands/doctor/scripts/sk-skill-check.cjs once, adding the skill name or path when the operator passed one and --json when the operator asked for JSON."
-    - "The engine resolves the skill first: a name under .skilled/skills, an absolute or relative path to a skill root, or nothing for the fleet. A name or path that resolves to no SKILL.md exits 2 with SKILL_NOT_FOUND and a Provision line when it has one."
+    - "Run node .skilled/commands/doctor/scripts/sk-skill-check.cjs once, adding the skill name or path when the operator passed one, --json when the operator asked for JSON, and --into-hub <hub> when the operator gave a hub."
+    - "The engine resolves the skill first: a name under .skilled/skills, an absolute or relative path to a skill root, or nothing for the fleet. A name or path that resolves to no SKILL.md exits 2 with SKILL_NOT_FOUND and a Provision line when it has one. With --into-hub, a registered mode may be named by its workflowMode even when its packet folder carries another name."
     - "For one skill the engine reports thirteen rows. C1 location, C2 input kind, C3 strict format verdict, C4 root metadata contract, C5 slug-only routing defaults, C6 derived freshness, C7 router replay, C8 advisor home, C9 runtime mirrors, C10 changelog, C11 description budget, C12 collisions, C13 regression coverage. Each row carries PASS, FINDING, UNKNOWN or INFO, and the exit code is 1 when any row is FINDING. An UNKNOWN row means the row could not be answered, never that it passed."
     - "For the fleet the engine reports one row per direct child of .skilled/skills with its format verdict, its metadata verdict, the codes both validators printed and its own verdict."
-    - "Render the engine's output through .skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt: the fleet table or the deep report as printed, the DOCTOR DIAGNOSTIC RESULT summary, and the troubleshooting table."
+    - "With --into-hub the engine reports the eleven surfaces a mode must land on, each PASS, FINDING, UNKNOWN or N/A with the command it ran or the file it read: H1 packet registration, H2 stage-one signals, H3 stage-one tie-break, H4 stage-two intent, H5 stage-two inventory, H6 advisor vocabulary, H7 human-facing contract, H8 doctor metadata, H9 leaf manifest, H10 projection maps and scorer, H11 command mirrors. A hub without FULL_INVENTORY prints H5 n/a, a metadata-routed mode prints H10 n/a, and an advisor that answers exit 75 prints H10 UNKNOWN. A path that carries neither mode-registry.json nor hub-router.json exits 2 with HUB_NOT_A_HUB."
+    - "The hub gap rows H1, H2, H3, H9 and H11 are backed by a CI gate, H7 is checked by name only, and H4, H5, H6, H8 and H10 have no gate. Read a green table as the surfaces present, never as integration."
+    - "Render the engine's output through .skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt: the fleet table, the deep report or the hub gap report as printed, the DOCTOR DIAGNOSTIC RESULT summary, and the troubleshooting table."
     - "Map the engine's exit code to the route status: 0 no finding, 1 at least one finding, 2 a precondition or the invocation failed."
 
 # ─────────────────────────────────────────────────────────────────
@@ -66,4 +71,5 @@ execution:
 output: |
   STATUS=OK when the engine exits 0; show the fleet table or the deep report and the result line.
   STATUS=FINDINGS when the engine exits 1; show each row whose status is not PASS first, with its detail and codes, then the DOCTOR DIAGNOSTIC RESULT summary and the repair for each finding.
-  STATUS=ERROR when the engine exits 2 or crashes; report the error code, its message and its Provision line when it carries one, and the accepted invocation (/doctor:sk-skill check [<name-or-path>] [--json]).
+  STATUS=ERROR when the engine exits 2 or crashes; report the error code, its message and its Provision line when it carries one, and the accepted invocation (/doctor:sk-skill check [<name-or-path>] [--json] [--into-hub <hub>]).
+  A hub gap run shows the eleven-row table with each row's evidence line, then the footer that no CI gate covers rows H4, H5, H6, H8 and H10 and that H7 is checked by name only, and the remedy for each finding.

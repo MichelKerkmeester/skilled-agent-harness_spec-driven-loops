@@ -1,0 +1,10 @@
+{
+  "name": "fixture-hub-shared",
+  "description": "Invented hub fixture whose two modes share one packet.",
+  "version": "1.0.0.0",
+  "keywords": [
+    "fixture-hub-shared",
+    "fixture-shared-mode",
+    "fixture-shared-mode-parent"
+  ]
+}

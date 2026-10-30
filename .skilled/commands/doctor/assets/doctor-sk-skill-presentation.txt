@@ -9,7 +9,7 @@ Every argument failure happens before any workflow YAML loads and prints the wor
 | Situation | Wording |
 |-----------|---------|
 | The first token is not a target | `Unknown target: [target]` then `/doctor:sk-skill runs check. Try: /doctor:sk-skill menu` then `STATUS=FAIL ERROR="unknown_target"` |
-| A flag no target accepts | `Unknown argument: [argument]` then `check accepts --json.` then `STATUS=FAIL ERROR="unknown_argument"` |
+| A flag no target accepts | `Unknown argument: [argument]` then `check accepts --json and --into-hub <hub>.` then `STATUS=FAIL ERROR="unknown_argument"` |
 | A second skill name or path | `Only one skill name or path may be checked.` then `STATUS=FAIL ERROR="too_many_arguments"` |
 
 ## 2. Startup Presentation
@@ -27,7 +27,7 @@ Accepted answers:
 
 | Answer | Result | Meaning |
 |--------|--------|---------|
-| `1` | target = `check` | Report rows C1 to C13 for one skill, or one row per skill root for the whole fleet, and change nothing |
+| `1` | target = `check` | Report rows C1 to C13 for one skill, or one row per skill root for the whole fleet, and change nothing. With `--into-hub <hub>`, report the eleven hub integration surfaces instead |
 | `X`, empty, `cancel` | `STATUS=CANCELLED ACTION=cancelled` | Stop. Nothing changes |
 
 On any other response, re-emit the menu once. On a second invalid response, return `STATUS=FAIL ERROR="unknown_selection"`.
@@ -72,9 +72,33 @@ Result: [PASS|FINDINGS ([N])|NO FINDINGS ([N] UNKNOWN)]
 
 The engine prints each row's own label and detail, so quote the line rather than paraphrasing it, and lead the reply with the rows whose status is not `PASS`.
 
+### Hub Gap Report
+
+With `--into-hub <hub>` the engine reports the eleven surfaces a skill or mode must land on under that hub instead of the format rows. It writes nothing: no mode is registered, no hub file is edited, and the hub keeps routing exactly as it did. Every row carries `PASS`, `FINDING`, `UNKNOWN` or `N/A` plus the command it ran or the file it read, so a reader can repeat the probe.
+
+```text
+Hub gap report: [skill or hub] into [hub] ([routingClass])
+
+H1   [PASS|FINDING|UNKNOWN|N/A]  Packet registration: [detail]
+     Evidence: [command or file the row read]
+...
+H11  [PASS|FINDING|UNKNOWN|N/A]  Command mirrors: [detail]
+     Evidence: [the three mirror checkers]
+
+Rows: 11; [N] pass, [N] finding(s), [N] unknown, [N] n/a
+A green gate is not integration. No CI gate covers rows H4, H5, H6, H8, H10; H7 is checked by name only.
+Result: [PASS|FINDINGS ([N])|NO FINDINGS ([N] UNKNOWN)|INCOMPLETE]
+```
+
+When the engine exits 2 the table is unfinished rather than failed: it prints one `Unverified:` line per probe that could not answer and closes on `Result: INCOMPLETE`. Quote those lines, and read no row as present until the probe behind it answers.
+
+`PASS` means the surface carries the skill or mode. `FINDING` means it does not, and that surface is where no request reaches the mode. `UNKNOWN` means the probe could not answer, never that the row passed. `N/A` means the surface does not apply: a hub without `FULL_INVENTORY` prints `H5` n/a, and a `metadata`-routed mode prints `H10` n/a because the advisor resolves it by hub membership. When no skill or mode is named, the rows describe the hub's own surfaces.
+
+Quote each row's label, detail and evidence line rather than paraphrasing them, and lead the reply with the rows whose status is `FINDING`, then those that are `UNKNOWN`.
+
 ### JSON Passthrough
 
-With `--json` print the engine's JSON and nothing else: no table, no summary, no next-step line. The JSON carries `mode` (`fleet` or `deep`), `exitCode`, `findingCount`, `unknownCount`, and either `roots` or `rows`.
+With `--json` print the engine's JSON and nothing else: no table, no summary, no next-step line. The JSON carries `mode` (`fleet`, `deep` or `hub`), `exitCode`, `findingCount`, `unknownCount`, and either `roots` or `rows`. A hub gap report also carries `skill` (null when the hub itself is reported), `hub`, `routingClass`, `naCount`, `unverified` and `gates`, the rows' `evidence` strings, and the identical verdicts the text mode prints.
 
 ### Check Summary
 
@@ -114,6 +138,11 @@ An engine that exits 2 prints its code, its message and, when it carries one, a 
 | `PYTHON_MISSING` or `PYYAML_MISSING` | Install the interpreter or PyYAML the `Provision:` line names, then rerun |
 | `VALIDATOR_CANNOT_RUN` | A validator the row needs could not start. Fix that validator before reading the report as a verdict |
 | `CHECK_ERROR` | The engine hit an unexpected failure. Read the message, fix the cause, then rerun |
+| A hub gap row reports `FINDING` | That surface does not carry the mode. Name it and the file it reads, and treat the other rows as unmet surfaces rather than as integration |
+| A hub gap row reports `UNKNOWN` | The probe could not answer, not that the surface passed. Rerun once its checker or backend is reachable, and never report the row as present |
+| `HUB_NOT_A_HUB` | The `--into-hub` path carries neither `mode-registry.json` nor `hub-router.json`. Pass a hub root or a hub name under `.skilled/skills` |
+| `HUB_NOT_FOUND` | The hub name or path resolves to no directory. Check the spelling, or pass the hub root path |
+| `PRIVATE_ROOT_REFUSED` | A private root is skipped by every gate, so a report on it could only pass by being invisible. Point `--into-hub` and the skill at a public root |
 | Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
 
 End interactive presentations with: `What would you like to do next?`

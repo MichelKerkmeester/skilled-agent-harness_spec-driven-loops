@@ -1,0 +1,10 @@
+{
+  "name": "fixture-hub-gap",
+  "description": "Invented hub fixture carrying fixture-gap-mode and fixture-gap-mute.",
+  "version": "1.0.0.0",
+  "keywords": [
+    "fixture-hub-gap",
+    "fixture-gap-mode",
+    "fixture-gap-mute"
+  ]
+}

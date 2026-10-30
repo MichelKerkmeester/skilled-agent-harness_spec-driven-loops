@@ -3,6 +3,7 @@
   "packet_id": "sk-doc/075-doctor-sk-skill-command/008-hub-gap-report",
   "spec_folder": "sk-doc/075-doctor-sk-skill-command/008-hub-gap-report",
   "parent_id": "sk-doc/075-doctor-sk-skill-command",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -34,7 +35,7 @@
       "parent-skills-nested-packets"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,7 +43,14 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/commands/doctor/_routes.yaml"
+      ".skilled/commands/doctor/scripts/sk-skill-check.cjs",
+      ".skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs",
+      ".skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/assets/doctor-sk-skill-check.yaml",
+      ".skilled/commands/doctor/sk-skill.md",
+      ".skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json"
     ],
     "entities": [
       {
@@ -82,9 +90,51 @@
         "source": "derived"
       },
       {
+        "name": "sk-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/sk-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-surface.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs",
+        "source": "derived"
+      },
+      {
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-skill-check.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-sk-skill-check.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/sk-skill.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-skill-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
         "source": "derived"
       },
       {
@@ -146,53 +196,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`parent-skills-nested-packets.md:245-256` lists the 11 surfaces a mode must land on, and `:259-264` says `parent-skill-check` covers rows 1-3 and 9, the mirror checkers cover row 11, check 6b covers row 7 only by name, and \"Rows 4, 5, 6, 8 and 10 have no gate: a hub can pass every check with a mode that no request can reach.\" An operator who wants a skill under a hub has no single report of which surfaces are missing",
     "created_at": "2026-10-30T05:21:18Z",
-    "last_save_at": "2026-10-30T05:40:28.707Z",
+    "last_save_at": "2026-10-30T09:07:31.835Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e996c37d04be6acedf8a6f3b2d748a5eafa570babd3ee84c320073e8c1af2d16",
+    "source_fingerprint": "sha256:4f19b7e70f9469ce85943e3ec60869bab74b7bab4c15b71e06c561bfe51dd7b9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9ac888ffa8835fef38f004138280b272e2bdaff22bc1badf3017ae277e069680",
+      "spec.md": "67d933cdd4a37cbcbb02c18cc62c82c3223d6c4299388bf693ec545c60c48e8a",
       "plan.md": "7eaef070008d4dac0430b1448482f17257e241377b6a0a9c2b5b79f2697e4562",
-      "tasks.md": "b442ec96d4517d62265658ce900945f7c9151467f7e8682f27615de0778dfbf2",
-      "implementation-summary.md": "10ec538fc5e94b7e034255f49a2b49fc20e668c255f58b1253fbda262d849f81"
+      "tasks.md": "a9c75cddfdddb7e9f01f3485e586dbbd9513366cda2e53e2465165aa55cf3cfb",
+      "implementation-summary.md": "7e7059679786664478fe9c2d9f3c6dca044bc2f5a768c154f9e3f9ad78dd6068"
     },
     "last_active_at": null
   }

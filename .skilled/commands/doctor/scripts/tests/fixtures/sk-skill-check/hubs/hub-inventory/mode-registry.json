@@ -1,0 +1,47 @@
+{
+  "resourceContractVersion": 1,
+  "skill": "fixture-hub-inventory",
+  "version": "1.0.0.0",
+  "description": "Invented hub fixture that carries a full-toolkit intent and a lexical mode.",
+  "discriminator": {
+    "workflowMode": "Public hub/mode key used by the hub router and this registry.",
+    "packetKind": "Axis discriminator.",
+    "backendKind": "Which backend runs the mode."
+  },
+  "advisorRoutingContract": {
+    "routingClass": "lexical = weighted-regex scoring and projection maps."
+  },
+  "modes": [
+    {
+      "workflowMode": "fixture-inventory-mode",
+      "packet": "fixture-inventory-mode",
+      "packetKind": "workflow",
+      "backendKind": "fixture-backend",
+      "advisorRouting": {
+        "routingClass": "lexical",
+        "legacyAdvisorId": "fixture-inventory-mode",
+        "legacyAliases": [
+          "/fixture:inventory"
+        ]
+      },
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Write",
+          "Edit",
+          "Task"
+        ],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
+      "grandfatheredFolderMismatch": false,
+      "packetSkillName": "fixture-inventory-mode",
+      "aliases": []
+    }
+  ]
+}

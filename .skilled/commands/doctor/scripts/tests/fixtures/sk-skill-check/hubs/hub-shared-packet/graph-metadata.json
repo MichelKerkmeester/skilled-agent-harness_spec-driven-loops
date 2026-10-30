@@ -1,0 +1,16 @@
+{
+  "schema_version": 2,
+  "skill_id": "fixture-hub-shared",
+  "intent_signals": [
+    "fixture shared request",
+    "fixture shared parent request",
+    "fixture-shared-mode",
+    "fixture-shared-mode-parent"
+  ],
+  "derived": {
+    "trigger_phrases": [
+      "fixture hub shared",
+      "fixture shared report"
+    ]
+  }
+}

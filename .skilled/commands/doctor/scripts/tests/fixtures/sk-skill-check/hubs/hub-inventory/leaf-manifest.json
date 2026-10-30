@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "skill": "fixture-hub-inventory",
+  "modes": [
+    {
+      "workflowMode": "fixture-inventory-mode",
+      "packet": "fixture-inventory-mode",
+      "leaves": [
+        "references/fixture-inventory.md"
+      ]
+    }
+  ],
+  "resourceContractVersion": 1
+}

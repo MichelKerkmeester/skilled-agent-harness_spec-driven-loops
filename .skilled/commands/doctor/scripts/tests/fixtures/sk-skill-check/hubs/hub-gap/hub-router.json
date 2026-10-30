@@ -1,0 +1,44 @@
+{
+  "skill": "fixture-hub-gap",
+  "version": "1.0.0.0",
+  "routerPolicy": {
+    "defaultMode": null,
+    "ambiguityDelta": 1,
+    "tieBreak": [
+      "fixture-gap-mode",
+      "fixture-gap-mute"
+    ],
+    "outcomes": {
+      "single": "one dominant fixture intent routes to one mode",
+      "orderedBundle": "two separate fixture intents route to an ordered mode list",
+      "defer": "unclear intent asks for disambiguation"
+    },
+    "defaultResource": [],
+    "bundleRules": []
+  },
+  "routerSignals": {
+    "fixture-gap-mode": {
+      "weight": 4,
+      "classes": [
+        "fixture-gap-mode-aliases"
+      ],
+      "resources": [
+        "fixture-gap-mode/SKILL.md"
+      ]
+    }
+  },
+  "vocabularyClasses": {
+    "fixture-gap-mode-aliases": {
+      "keywords": [
+        "fixture gap request",
+        "fixture gap mode"
+      ]
+    },
+    "fixture-gap-mute-aliases": {
+      "keywords": [
+        "fixture gap mute",
+        "fixture mute mode"
+      ]
+    }
+  }
+}

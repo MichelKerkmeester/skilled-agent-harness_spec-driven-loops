@@ -1,0 +1,9 @@
+{
+  "name": "fixture-hub-inventory",
+  "description": "Invented hub fixture carrying fixture-inventory-mode.",
+  "version": "1.0.0.0",
+  "keywords": [
+    "fixture-hub-inventory",
+    "fixture-inventory-mode"
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "resourceContractVersion": 1,
+  "skill": "fixture-hub-shared",
+  "version": "1.0.0.0",
+  "description": "Invented hub fixture whose two modes share one packet.",
+  "discriminator": {
+    "workflowMode": "Public hub/mode key used by the hub router and this registry.",
+    "packetKind": "Axis discriminator.",
+    "backendKind": "Which backend runs the mode."
+  },
+  "advisorRoutingContract": {
+    "routingClass": "metadata = resolved by hub membership with no advisor map entry."
+  },
+  "modes": [
+    {
+      "workflowMode": "fixture-shared-mode",
+      "packet": "fixture-shared-mode",
+      "packetKind": "workflow",
+      "backendKind": "fixture-backend",
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "legacyAdvisorId": null,
+        "legacyAliases": []
+      },
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Write",
+          "Edit",
+          "Task"
+        ],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
+      "grandfatheredFolderMismatch": false,
+      "packetSkillName": "fixture-shared-mode",
+      "aliases": []
+    },
+    {
+      "workflowMode": "fixture-shared-mode-parent",
+      "packet": "fixture-shared-mode",
+      "packetKind": "workflow",
+      "backendKind": "fixture-backend",
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "legacyAdvisorId": null,
+        "legacyAliases": []
+      },
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Write",
+          "Edit",
+          "Task"
+        ],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
+      "grandfatheredFolderMismatch": false,
+      "packetSkillName": "fixture-shared-mode",
+      "aliases": []
+    }
+  ]
+}
