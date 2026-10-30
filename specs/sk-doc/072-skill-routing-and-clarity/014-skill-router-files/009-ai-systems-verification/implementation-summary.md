@@ -19,7 +19,7 @@ _memory:
       - "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/scratch/battery.txt"
       - "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/scratch/moneybird-resolve.txt"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:7407f357895fe71b4742c0131367dd98a9df1649bcaed66c3c9593f6b976a54f"
       session_id: "0269-skill-router-files"
       parent_session_id: null
     completion_pct: 100

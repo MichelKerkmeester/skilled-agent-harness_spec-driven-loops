@@ -1,18 +1,32 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files",
   "description": "Phase 14: skill-router-files",
   "keywords": [
     "phase",
     "skill-router-files"
   ],
-  "lastUpdated": "2026-10-29T07:52:40.723Z",
+  "lastUpdated": "2026-10-30T04:53:34.816Z",
   "specId": "014",
   "folderSlug": "skill-router-files",
   "parentChain": [
     "sk-doc",
     "072-skill-routing-and-clarity"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 13,
+  "memoryNameHistory": [
+    "29-10-26_21-54__the-gate-battery-is-still-progressing-40-of-41.md",
+    "30-10-26_01-57__criteria-1-2-and-4-all-hold-on-main-at-bf63156df0.md",
+    "30-10-26_01-59__the-goal-is-not-met-as-written-and-i-can-t-make.md",
+    "30-10-26_01-59__nothing-has-changed-since-my-last-message.md",
+    "30-10-26_02-00__still-waiting-on-your-call-the-active-goal-holds.md",
+    "30-10-26_02-00__the-goal-is-still-not-met-and-only-you-can.md",
+    "30-10-26_02-00__unchanged-the-goal-s-criterion-3-can-t-be-met-on.md",
+    "30-10-26_02-00__still-blocked-on-criterion-3-it-needs-one-of.md",
+    "30-10-26_02-00__no-change-criterion-3-still-needs-your-decision.md",
+    "30-10-26_02-00__still-waiting-on-you-for-criterion-3-re-set-goal.md",
+    "30-10-26_05-50__i-m-not-changing-anything-for-this-stop-hook.md",
+    "30-10-26_05-53__criterion-5-now-reads-cleanly-so-all-six-criteria.md",
+    "30-10-26_05-53__i-m-not-doing-any-more-work-on-this-hook-its-own.md"
+  ]
 }
