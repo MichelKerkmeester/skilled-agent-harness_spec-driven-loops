@@ -32,7 +32,7 @@
       "ORCA_CLI_COMMAND": null,
       "orca-dev": null,
       "orca-ide": null,
-      "orca": "/Users/michelkerkmeester/.local/bin/orca",
+      "orca": "~/.local/bin/orca",
       "note": "the bare name now resolves to a user-scoped link created 2026-09-20, after the root-owned /usr/local/bin/orca (mode 0700) proved unreadable to readlink; rollback is 'rm ~/.local/bin/orca'"
     },
     "unrelatedWorkingTreeChangesPreserved": true
@@ -210,7 +210,7 @@
         {
           "command": "command -v orca",
           "exitStatus": 0,
-          "observed": "/Users/michelkerkmeester/.local/bin/orca (the first run printed /usr/local/bin/orca)"
+          "observed": "~/.local/bin/orca (the first run printed /usr/local/bin/orca)"
         },
         {
           "command": "orca --version",
@@ -254,7 +254,7 @@
         {
           "command": "command -v orca",
           "exitStatus": 0,
-          "observed": "/Users/michelkerkmeester/.local/bin/orca"
+          "observed": "~/.local/bin/orca"
         },
         {
           "command": "orca terminal list --json",
@@ -310,7 +310,7 @@
         {
           "command": "command -v orca",
           "exitStatus": 0,
-          "observed": "/Users/michelkerkmeester/.local/bin/orca"
+          "observed": "~/.local/bin/orca"
         },
         {
           "command": "orca --version",
@@ -391,7 +391,7 @@
         {
           "command": "command -v orca",
           "exitStatus": 0,
-          "observed": "/Users/michelkerkmeester/.local/bin/orca"
+          "observed": "~/.local/bin/orca"
         },
         {
           "command": "orca open --json",

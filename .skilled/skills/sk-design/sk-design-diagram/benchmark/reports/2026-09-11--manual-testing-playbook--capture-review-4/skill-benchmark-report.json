@@ -474,7 +474,7 @@
     "dispatch": "manual",
     "evidenceClass": "registered-path",
     "variant": "capture-review",
-    "evidenceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "evidenceRoot": ".",
     "requireDurableEvidence": true,
     "command": "node scripts/check-diagram-corpus.cjs -> python3 -c 'import playwright' (SKIP) -> sk-design/shared/scripts/render-screenshots.cjs flags per file, --full-page, scale 1, stock + settled + no-fonts -> node scripts/apply-diagram-tokens.cjs --source palette-accent-violet.json --out <scratch> --forms swimlane -> label-mask measurement over the 7 arrow-label masks in swimlane.html and architecture.html -> six judged reads on the settled capture",
     "runtime": "headless Google Chrome 153.0.8010.36 via the packet's shared renderer, driven from Node on darwin 25.6.0",

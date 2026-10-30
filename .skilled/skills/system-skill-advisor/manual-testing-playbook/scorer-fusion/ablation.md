@@ -6,7 +6,7 @@ trigger_phrases:
   - "ablation protocol"
   - "lane ablation"
   - "scorer ablation"
-version: 0.8.0.16
+version: 0.8.1.0
 id: SC-005
 category: scorer_fusion
 stage: routing
@@ -68,7 +68,7 @@ node .skilled/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":
 
 ### Evidence
 
-Required command attempted as MCP `advisor_validate({"skillSlug":null})` with tool-required fields `confirmHeavyRun:true`, `workspaceRoot:"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public"`, and `outcomeEvents:[]`.
+Required command attempted as MCP `advisor_validate({"skillSlug":null})` with tool-required fields `confirmHeavyRun:true`, `workspaceRoot:"."`, and `outcomeEvents:[]`.
 
 First attempt output:
 

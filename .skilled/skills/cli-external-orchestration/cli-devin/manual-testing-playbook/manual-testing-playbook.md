@@ -1,7 +1,7 @@
 ---
 title: "cli-devin: Manual Testing Playbook"
 description: "Operator-facing split-document playbook for the Devin CLI surface: invocation, permissions, hooks, subagents, skills, rules, MCP, continuity, and cloud handoff."
-version: 1.4.0.8
+version: 1.4.1.0
 ---
 
 # cli-devin: Manual Testing Playbook
@@ -53,7 +53,7 @@ Executed live against `devin 3000.2.17` on 2026-07-27. Config-mutating scenarios
 | Scenario | Result | Evidence |
 |---|---|---|
 | `DV-001` | PASS | default devin -p dispatch returned the requested token |
-| `DV-002` | PASS | command -v devin resolves: /Users/michelkerkmeester/.local/bin/devin; version devin 3000.2.17 (2c489dfc) |
+| `DV-002` | PASS | command -v devin resolves: ~/.local/bin/devin; version devin 3000.2.17 (2c489dfc) |
 | `DV-003` | PASS | fabricated --reasoning-effort rejected: error: unexpected argument '--reasoning-effort' found |
 | `DV-004` | PASS | help advertises smart=yes but runtime rejects it: error: invalid value 'smart' for '--permission-mode <PERMISSION_MODE>': Invalid permission mode: smart. Valid options: normal (auto), accept-edits, dangerous (yolo, bypass), autonomous (requires --sandbox) |
 | `DV-005` | PASS | write-attempt matrix: auto=BLOCKED accept-edits=WROTE bypass=WROTE (auto blocks non-interactively, bypass auto-approves) |

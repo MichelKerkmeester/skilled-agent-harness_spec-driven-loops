@@ -12,7 +12,7 @@ expected_workflow_mode: sk-create-changelog
 expected_leaf_resources:
   - workflow_mode: sk-create-changelog
     leaf_resource_id: assets/changelog-template.md
-version: 2.1.1.0
+version: 2.1.2.0
 ---
 
 # Output existence + shape
@@ -55,7 +55,7 @@ Phase 003 renamed the documentation executor from `@create` to `@markdown` witho
 ```text
 PROMPT='Use the @markdown agent to scaffold a v0.1.0 changelog for a stub skill named sk-test-dummy via /create:changelog. Write the result to /tmp/sk-test-dummy-CHANGELOG-cli-claude-code.md. Do NOT install the stub skill into the .skilled/skills/ tree. Report which agent received the work, which sk-doc resources were loaded, and the changelog sections produced.'
 
-EVIDENCE='/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/<spec-folder>'
+EVIDENCE='<spec-folder>'
 
 # Dispatch via cli-claude-code (Opus 4.7 1M context)
 claude --model claude-opus-4-7 --print "$PROMPT" </dev/null 2>&1 | tee "$EVIDENCE"

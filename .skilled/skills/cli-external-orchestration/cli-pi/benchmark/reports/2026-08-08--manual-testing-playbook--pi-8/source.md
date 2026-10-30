@@ -6,7 +6,7 @@ This map separates the canonical contracts, the private gold, and the curated ou
 
 | Resource | Purpose |
 |---|---|
-| Target skill | `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0131-sk-code-injection-bloat-impl/.opencode/skills/cli-external-orchestration/cli-pi` |
+| Target skill | `.worktrees/0131-sk-code-injection-bloat-impl/.opencode/skills/cli-external-orchestration/cli-pi` |
 | Scenario corpus | `manual-testing-playbook` |
 | Scoring method | `not-applicable-manual-outcome` |
 | Topology digest | `not recorded` |

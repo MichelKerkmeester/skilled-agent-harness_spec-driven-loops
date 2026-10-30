@@ -6,7 +6,7 @@ This map separates the canonical contracts, the private gold, and the curated ou
 
 | Resource | Purpose |
 |---|---|
-| Target skill | `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit` |
+| Target skill | `.opencode/skills/system-spec-kit` |
 | Scenario corpus | `manual-testing-playbook` |
 | Scoring method | `not-applicable-manual-outcome` |
 | Topology digest | `not recorded` |

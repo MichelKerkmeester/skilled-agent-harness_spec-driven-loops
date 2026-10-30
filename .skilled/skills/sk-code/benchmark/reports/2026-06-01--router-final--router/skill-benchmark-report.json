@@ -6,7 +6,7 @@
   "traceMode": "router",
   "targetSkill": {
     "id": "sk-code",
-    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code"
+    "root": ".opencode/skills/sk-code"
   },
   "verdict": "PASS",
   "aggregateScore": 84,

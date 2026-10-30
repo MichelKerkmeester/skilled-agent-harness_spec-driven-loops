@@ -16,7 +16,7 @@ version: 1.0.0.0
 
 `launchagents/` contains a reviewable macOS LaunchAgent template for the orphan MCP sweeper. The template is not installed or loaded by default.
 
-The agent labeled `com.michelkerkmeester.orphan-sweep` runs [`orphan-mcp-sweeper.sh`](../orphan-mcp-sweeper.sh) every 600 seconds. It passes `--dry-run`, `--verbose` and an explicit log path, so the template reports candidate actions without killing processes or removing temporary files.
+The agent labeled `com.skilled.orphan-sweep` runs [`orphan-mcp-sweeper.sh`](../orphan-mcp-sweeper.sh) every 600 seconds. It passes `--dry-run`, `--verbose` and an explicit log path, so the template reports candidate actions without killing processes or removing temporary files.
 
 `RunAtLoad` is false. Loading the agent does not run an immediate sweep.
 
@@ -26,7 +26,7 @@ The agent labeled `com.michelkerkmeester.orphan-sweep` runs [`orphan-mcp-sweeper
 
 | File | Purpose |
 |---|---|
-| [`com.michelkerkmeester.orphan-sweep.plist`](com.michelkerkmeester.orphan-sweep.plist) | Defines the `com.michelkerkmeester.orphan-sweep` background LaunchAgent, its 600-second interval, dry-run sweeper arguments and output paths. |
+| [`com.skilled.orphan-sweep.plist`](com.skilled.orphan-sweep.plist) | Defines the `com.skilled.orphan-sweep` background LaunchAgent, its 600-second interval, dry-run sweeper arguments and output paths. |
 
 ---
 
@@ -34,41 +34,45 @@ The agent labeled `com.michelkerkmeester.orphan-sweep` runs [`orphan-mcp-sweeper
 
 | Setting | Value |
 |---|---|
-| Label | `com.michelkerkmeester.orphan-sweep` |
+| Label | `com.skilled.orphan-sweep` |
 | Interval | `600` seconds |
 | Run at load | `false` |
 | Program | `/bin/bash` |
-| Script | `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/orphan-mcp-sweeper.sh` |
-| Arguments | `--dry-run --verbose --log-path /Users/michelkerkmeester/.local/share/orphan-sweeper.log` |
+| Script | `/absolute/path/to/repo/.opencode/scripts/orphan-mcp-sweeper.sh` |
+| Arguments | `--dry-run --verbose --log-path /absolute/path/to/home/.local/share/orphan-sweeper.log` |
 | Process type | `Background` |
 | Priority | `Nice` value `5` with low-priority I/O |
 
-launchd requires absolute paths. Review and update every repository, working-directory and log path before installing the template on another machine.
+launchd requires absolute paths, so the template carries two placeholders. `/absolute/path/to/repo` stands for the repository root and `/absolute/path/to/home` for your home directory. The install step below fills both in.
 
 ---
 
 ## 4. INSTALLATION
 
-Copy the reviewed template into the user LaunchAgents directory:
+From the repository root, copy the reviewed template into the user LaunchAgents directory, filling in the two path placeholders:
 
 ```bash
-cp .opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist \
-  ~/Library/LaunchAgents/com.michelkerkmeester.orphan-sweep.plist
+sed -e "s#/absolute/path/to/repo#$(git rev-parse --show-toplevel)#g" \
+    -e "s#/absolute/path/to/home#$HOME#g" \
+    .opencode/scripts/launchagents/com.skilled.orphan-sweep.plist \
+    > ~/Library/LaunchAgents/com.skilled.orphan-sweep.plist
 ```
 
 Load the installed agent:
 
 ```bash
-launchctl load ~/Library/LaunchAgents/com.michelkerkmeester.orphan-sweep.plist
+launchctl load ~/Library/LaunchAgents/com.skilled.orphan-sweep.plist
 ```
 
 Unload the installed agent:
 
 ```bash
-launchctl unload ~/Library/LaunchAgents/com.michelkerkmeester.orphan-sweep.plist
+launchctl unload ~/Library/LaunchAgents/com.skilled.orphan-sweep.plist
 ```
 
 The repository template keeps `--dry-run`. Remove that argument only from the installed copy after reviewing dry-run output across multiple intervals.
+
+An agent installed before the template took its current label keeps working under the old one. To move it, run `launchctl bootout gui/$(id -u)/com.michelkerkmeester.orphan-sweep`, delete that label's plist from `~/Library/LaunchAgents/`, then install a fresh copy as above.
 
 ---
 
@@ -77,7 +81,7 @@ The repository template keeps `--dry-run`. Remove that argument only from the in
 Validate the repository template from the repository root:
 
 ```bash
-plutil -lint .opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist
+plutil -lint .opencode/scripts/launchagents/com.skilled.orphan-sweep.plist
 ```
 
 Review the scheduled command without mutation:

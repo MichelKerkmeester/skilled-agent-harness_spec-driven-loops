@@ -11,7 +11,7 @@ Generated: 2026-05-03T17:41:26.550Z
 
 ## Live Readiness Gate
 
-- Input: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/.state/smart-router-telemetry/compliance.jsonl
+- Input: .opencode/skills/.state/smart-router-telemetry/compliance.jsonl
 - Status: READY
 - Reason: Live wrapper telemetry with actual reads is present.
 - Live wrapper records: 2

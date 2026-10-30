@@ -4,7 +4,7 @@
   "scoringMethod": "not-applicable-manual-outcome",
   "targetSkill": {
     "id": "cli-cursor",
-    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0131-sk-code-injection-bloat-impl/.opencode/skills/cli-external-orchestration/cli-cursor"
+    "root": ".worktrees/0131-sk-code-injection-bloat-impl/.opencode/skills/cli-external-orchestration/cli-cursor"
   },
   "executor": "cursor",
   "model": "composer-2.5",

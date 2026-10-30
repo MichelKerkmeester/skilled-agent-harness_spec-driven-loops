@@ -88,7 +88,7 @@
     "runtime": "node",
     "nodeVersion": "v25.6.1",
     "requireDurableEvidence": true,
-    "evidenceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.pi/extensions/pi-cache-optimizer/benchmark/evidence",
+    "evidenceRoot": ".pi/extensions/pi-cache-optimizer/benchmark/evidence",
     "payloadFixture": "{\"model\":\"gpt-4o\",\"messages\":[],\"prompt_cache_key\":\"fake-session\"}",
     "executorNotApplicableReason": "deterministic in-process harness; no external executor",
     "modelNotApplicableReason": "extension code exercised directly; no model was invoked"

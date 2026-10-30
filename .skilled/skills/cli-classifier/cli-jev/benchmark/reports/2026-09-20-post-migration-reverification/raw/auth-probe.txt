@@ -1,6 +1,6 @@
 ### auth-status
 CMD: jev auth status
-{"ok": true, "stored": true, "store": "/Users/michelkerkmeester/.config/jev-cli/credentials.json"}
+{"ok": true, "stored": true, "store": "~/.config/jev-cli/credentials.json"}
 rc=0
 
 ### auth-status-absent-provider

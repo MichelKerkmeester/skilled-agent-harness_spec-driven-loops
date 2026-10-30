@@ -6,7 +6,7 @@ This map separates the canonical contracts, the private gold, and the curated ou
 
 | Resource | Purpose |
 |---|---|
-| Target skill | `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0145-sk-doc-sk-create-diagram/.opencode/skills/sk-design/sk-create-diagram` |
+| Target skill | `.worktrees/0145-sk-doc-sk-create-diagram/.opencode/skills/sk-design/sk-create-diagram` |
 | Scenario corpus | `manual-testing-playbook` |
 | Scoring method | `not-applicable-manual-outcome` |
 | Topology digest | `not recorded` |

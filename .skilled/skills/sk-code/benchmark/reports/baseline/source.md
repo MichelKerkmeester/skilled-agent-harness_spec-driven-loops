@@ -8,7 +8,7 @@ This map separates the canonical contracts, the private gold, and the curated ou
 
 | Resource | Purpose |
 |---|---|
-| Target skill | `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0063-skilled-router-collapse/.opencode/skills/sk-code` |
+| Target skill | `.worktrees/0063-skilled-router-collapse/.opencode/skills/sk-code` |
 | Scenario corpus | not recorded |
 | Scoring method | `mode-a-router-replay` |
 | Topology digest | `00259b9eb82e5159428fe06d9f551c60d77014035943b1dd5a8d0382fc3c3db2` |

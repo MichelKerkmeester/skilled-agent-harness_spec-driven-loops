@@ -46,7 +46,7 @@ Run shell syntax and plist checks from the repository root:
 bash -n .skilled/scripts/install-git-hooks.sh
 bash -n .skilled/scripts/orphan-mcp-sweeper.sh
 bash -n .skilled/scripts/session-cleanup.sh
-plutil -lint .skilled/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist
+plutil -lint .skilled/scripts/launchagents/com.skilled.orphan-sweep.plist
 ```
 
 Review the orphan sweeper without changing processes:

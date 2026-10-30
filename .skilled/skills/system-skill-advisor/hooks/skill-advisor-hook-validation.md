@@ -8,7 +8,7 @@ trigger_phrases:
   - "cross-runtime hook smoke"
 importance_tier: normal
 contextType: implementation
-version: 3.6.1.0
+version: 3.6.2.0
 ---
 
 # Skill Advisor Hook Validation Playbook
@@ -38,7 +38,7 @@ Hook validation must prove shared render parity, prompt-safe telemetry, disable-
 Run from the repository root:
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+cd "$(git rev-parse --show-toplevel)"
 npm --prefix .skilled/skills/system-spec-kit/runtime run build
 npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 ```

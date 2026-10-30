@@ -129,7 +129,9 @@ Options:
 
 Default scan roots:
   .opencode/specs
-  ~/.claude/projects/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/memory
+  ~/.claude/projects/<project-slug>/memory
+    (<project-slug> is the repository root path with every non-alphanumeric
+    character replaced by "-")
 `;
 
 function resolveProjectRoot(): string {
@@ -150,11 +152,14 @@ function resolveProjectRoot(): string {
 
 const PROJECT_ROOT = resolveProjectRoot();
 const LIVE_REPO_MEMORY_ROOT = path.join(PROJECT_ROOT, '.opencode', 'specs');
+// Claude Code names a project's directory under ~/.claude/projects after the
+// project's absolute path, with every non-alphanumeric character turned into "-".
+const CLAUDE_PROJECT_SLUG = path.resolve(PROJECT_ROOT).replace(/[^A-Za-z0-9]/g, '-');
 const GLOBAL_AUTO_MEMORY_ROOT = path.join(
   process.env.HOME || os.homedir(),
   '.claude',
   'projects',
-  '-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public',
+  CLAUDE_PROJECT_SLUG,
   'memory',
 );
 const TEMP_ROOT = path.resolve(os.tmpdir());

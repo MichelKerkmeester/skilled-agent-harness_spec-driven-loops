@@ -12,7 +12,7 @@ expected_workflow_mode: sk-create-changelog
 expected_leaf_resources:
   - workflow_mode: sk-create-changelog
     leaf_resource_id: assets/changelog-template.md
-version: 2.1.1.0
+version: 2.1.2.0
 ---
 
 # Output existence + shape
@@ -55,9 +55,9 @@ The DeepSeek API rejects MCP tool names containing `:` or `@` characters (memory
 ```text
 PROMPT='Use the @markdown agent to scaffold a v0.1.0 changelog for a stub skill named sk-test-dummy via /create:changelog. Write the result to /tmp/sk-test-dummy-CHANGELOG-cli-opencode.md. Do NOT install the stub skill into the .skilled/skills/ tree. Report which agent received the work, which sk-doc resources were loaded, and the changelog sections produced.'
 
-EVIDENCE='/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/<spec-folder>'
+EVIDENCE='<spec-folder>'
 
-REPO_ROOT='/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public'
+REPO_ROOT="$(git rev-parse --show-toplevel)"
 
 # Pre-flight: confirm deepseek provider is wired
 opencode providers list 2>&1 | grep -i deepseek || echo "[SKIP] deepseek provider not configured"

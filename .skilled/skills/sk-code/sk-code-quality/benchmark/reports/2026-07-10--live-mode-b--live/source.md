@@ -8,7 +8,7 @@ This map separates the canonical contracts, the private gold, and the curated ou
 
 | Resource | Purpose |
 |---|---|
-| Target skill | `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code/code-quality` |
+| Target skill | `.opencode/skills/sk-code/code-quality` |
 | Scenario corpus | not recorded |
 | Scoring method | `mode-b-live` |
 | Topology digest | `not recorded` |

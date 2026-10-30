@@ -6,7 +6,7 @@
   "traceMode": "live",
   "targetSkill": {
     "id": "code-review",
-    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code/code-review"
+    "root": ".opencode/skills/sk-code/code-review"
   },
   "verdict": "PASS",
   "aggregateScore": 100,

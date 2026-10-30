@@ -7,7 +7,7 @@ trigger_phrases:
   - "includeAttribution"
   - "laneBreakdown"
   - "why_recommended"
-version: 0.8.0.16
+version: 0.8.1.0
 id: SC-004
 category: scorer_fusion
 stage: routing
@@ -74,7 +74,7 @@ Repo root precondition check:
 
 ```text
 $ pwd
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+<repo-root>
 ```
 
 Advisor status precondition check:
@@ -112,7 +112,7 @@ Call with attribution enabled:
 {
   "status": "ok",
   "data": {
-    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "workspaceRoot": ".",
     "effectiveThresholds": {
       "confidenceThreshold": 0.8,
       "uncertaintyThreshold": 0.35,
@@ -149,7 +149,7 @@ Call with attribution disabled:
 {
   "status": "ok",
   "data": {
-    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "workspaceRoot": ".",
     "effectiveThresholds": {
       "confidenceThreshold": 0.8,
       "uncertaintyThreshold": 0.35,

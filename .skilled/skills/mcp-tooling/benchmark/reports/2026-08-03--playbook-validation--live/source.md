@@ -6,7 +6,7 @@ This map separates the canonical contracts, the private gold, and the curated ou
 
 | Resource | Purpose |
 |---|---|
-| Target skill | `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-tooling` |
+| Target skill | `.opencode/skills/mcp-tooling` |
 | Scenario corpus | `.opencode/skills/mcp-tooling/manual-testing-playbook` |
 | Scoring method | `mode-b-live` |
 | Topology digest | `ea7d031319ac3fc29f4e2462d2d34412ebf8c26c3b519922ba4567fc1e396257` |

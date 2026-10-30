@@ -4,7 +4,7 @@
   "scoringMethod": "not-applicable-manual-outcome",
   "targetSkill": {
     "id": "sk-create-diagram",
-    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0145-sk-doc-sk-create-diagram/.opencode/skills/sk-design/sk-create-diagram"
+    "root": ".worktrees/0145-sk-doc-sk-create-diagram/.opencode/skills/sk-design/sk-create-diagram"
   },
   "executor": "deepseek-v4-flash",
   "model": "deepseek/deepseek-v4-flash",

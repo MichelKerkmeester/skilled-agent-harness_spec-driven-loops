@@ -493,7 +493,7 @@
     "runtime": "macOS darwin 25.6.0, node v26.8.2, Google Chrome 153.0.8010.36 headless, Pillow 11.3.0",
     "nodeVersion": "v26.8.2",
     "requireDurableEvidence": true,
-    "evidenceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "evidenceRoot": ".",
     "payloadNotApplicableReason": "manual capture review; the payload is the corpus HTML the packet ships, rendered through its own scripts",
     "executorNotApplicableReason": "run in-session by the reviewing agent, not dispatched to an external CLI executor",
     "modelNotApplicableReason": "no provider model was scored; the scenario grades a rendered capture at the eye",

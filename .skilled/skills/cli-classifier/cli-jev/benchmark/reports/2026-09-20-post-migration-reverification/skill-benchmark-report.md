@@ -22,7 +22,7 @@ _Run for real from `.skilled/skills/cli-jev/cli-usage/` after the mode moved out
 |---|---|
 | Date | 2026-09-20 |
 | Playbook | `cli-usage/manual-testing-playbook/manual-testing-playbook.md` (read from its new home) |
-| Binary | `jev 0.6.2` (`/Users/michelkerkmeester/.local/bin/jev`) |
+| Binary | `jev 0.6.2` (`~/.local/bin/jev`) |
 | No-key half | provider variables cleared **and** `XDG_CONFIG_HOME` pointed at an empty directory, because a stored key otherwise resolves ahead of the key check |
 | Authenticated half | credential in the store (`jev auth status` → `stored`), no provider key variable set in the environment |
 | Dispatch gates | `node .skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs` fed Claude-shaped tool calls over stdin |

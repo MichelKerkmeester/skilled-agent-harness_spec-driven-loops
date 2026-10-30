@@ -4,7 +4,7 @@
   "scoringMethod": "not-applicable-manual-outcome",
   "targetSkill": {
     "id": "cli-codex",
-    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0131-sk-code-injection-bloat-impl/.opencode/skills/cli-external-orchestration/cli-codex"
+    "root": ".worktrees/0131-sk-code-injection-bloat-impl/.opencode/skills/cli-external-orchestration/cli-codex"
   },
   "executor": "codex",
   "model": "gpt-5.6-luna",

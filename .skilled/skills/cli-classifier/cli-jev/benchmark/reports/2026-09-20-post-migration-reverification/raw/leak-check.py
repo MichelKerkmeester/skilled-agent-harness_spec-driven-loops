@@ -13,10 +13,11 @@ key material echoed into a transcript, and its value is never printed.
 """
 
 import glob
+import os
 import re
 import sys
 
-STORE = "/Users/michelkerkmeester/.config/jev-cli/credentials.json"
+STORE = os.path.expanduser("~/.config/jev-cli/credentials.json")
 TOKEN = re.compile(r"[A-Za-z0-9_\-]{16,}")
 
 

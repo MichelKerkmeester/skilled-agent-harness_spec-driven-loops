@@ -3,7 +3,7 @@
   "hub": "system-deep-loop",
   "generatedAt": "2026-07-21T13:28:50.561Z",
   "executor": "Claude Sonnet (Claude Code agent), headless read-only sweep",
-  "cwd": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover",
+  "cwd": ".worktrees/0089-sk-doc-default-routing-cutover",
   "method": {
     "compiledCommand": "env -u SPECKIT_COMPILED_ROUTING node .opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs --hub system-deep-loop --prompt \"<user request>\"",
     "legacyCommand": "node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs --skill .opencode/skills/system-deep-loop --task \"<same>\"",

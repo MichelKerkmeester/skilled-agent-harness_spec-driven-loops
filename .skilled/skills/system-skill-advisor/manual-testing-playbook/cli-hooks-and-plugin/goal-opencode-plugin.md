@@ -6,7 +6,7 @@ trigger_phrases:
   - "goal opencode plugin"
   - "/goal-opencode command"
   - "opencode_goal"
-version: 0.8.3.0
+version: 0.8.4.0
 id: CL-007
 category: cli_hooks_and_plugin
 stage: routing
@@ -196,7 +196,7 @@ Grep evidence for direct state path and plugin tools in `.opencode/commands/goal
 
 ```text
 Found 17 matches
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/goal-opencode.md:
+.opencode/commands/goal-opencode.md:
   Line 4: allowed-tools: opencode_goal, opencode_goal_status
 
   Line 15: Manage the passive session goal through the `opencode-goal` plugin. `/goal-opencode` is a state-free router: it resolves the requested action from `$ARGUMENTS` and dispatches to the `opencode_goal` / `opencode_goal_status` plugin tools, which own all goal state and session resolution.
@@ -448,7 +448,7 @@ Grep evidence for continuation assertions:
 
 ```text
 Found 20 matches
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/tests/opencode-goal-continuation.test.cjs:
+.opencode/plugins/tests/opencode-goal-continuation.test.cjs:
   Line 38:   const originalAutonomy = process.env.OPENCODE_GOAL_AUTONOMY;
   Line 41:     delete process.env.OPENCODE_GOAL_AUTONOMY;
   Line 45:         async promptAsync() {
@@ -472,7 +472,7 @@ Grep evidence for lifecycle reset assertions:
 
 ```text
 Found 12 matches
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:
+.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:
   Line 103:     assert.equal(goal.tokensUsed, 60);
   Line 105:     assert.equal(goal.lastAccountedMessageID, 'msg-1');
   Line 111:     assert.equal(goal.tokensUsed, 60);
@@ -490,7 +490,7 @@ Grep evidence for injection clamp assertions:
 
 ```text
 Found 11 matches
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/tests/opencode-goal-state.test.cjs:
+.opencode/plugins/tests/opencode-goal-state.test.cjs:
   Line 106:     assert.match(injectionPreview, /\[active_goal:tool-goal\]/);
   Line 124:     assert.match(realisticOutput.system[1], /^\[active_goal:tool-goal\]\n/);
   Line 127:     assert.match(realisticOutput.system[1], /\n\[\/active_goal\]$/);

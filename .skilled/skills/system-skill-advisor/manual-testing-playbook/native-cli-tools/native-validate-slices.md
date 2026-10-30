@@ -6,7 +6,7 @@ trigger_phrases:
   - "native advisor_validate slice bundle"
   - "native advisor_validate"
   - "native"
-version: 0.8.0.12
+version: 0.8.1.0
 id: NC-003
 category: native_cli_tools
 stage: routing
@@ -127,7 +127,7 @@ Output:
 {
   "status": "ok",
   "data": {
-    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "workspaceRoot": ".",
     "skillSlug": null,
     "thresholdSemantics": {
       "aggregateValidation": {
@@ -302,7 +302,7 @@ Output:
 {
   "status": "ok",
   "data": {
-    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "workspaceRoot": ".",
     "skillSlug": "system-spec-kit",
     "thresholdSemantics": {
       "aggregateValidation": {

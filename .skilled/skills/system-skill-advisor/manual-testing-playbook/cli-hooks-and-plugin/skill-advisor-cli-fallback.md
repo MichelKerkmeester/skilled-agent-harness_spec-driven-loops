@@ -1,7 +1,7 @@
 ---
 title: "CL-006 -- skill-advisor CLI Fallback Surface"
 description: "Operator check for the daemon-backed skill-advisor CLI shipped by the 028 program: 9-command list-tools parity, warm-only no-spawn exit 75, fail-closed trusted-mutation refusal exit 64, and dist-freshness guard exit 69."
-version: 0.8.0.1
+version: 0.8.1.0
 id: CL-006
 category: cli_hooks_and_plugin
 stage: routing
@@ -65,7 +65,7 @@ rm -rf "$SANDBOX"
 
 ### Evidence
 
-Shell transcript from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`:
+Shell transcript from the repository root:
 
 ```text
 ok 9

@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/036-personal-name-scrub",
+  "spec_folder": "sk-git/036-personal-name-scrub",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "personal name scrub",
+      "remove the operator s personal account name",
+      "personal name scrub plan",
+      "personal name scrub tasks",
+      "personal name scrub implementation summary"
+    ],
+    "key_topics": [
+      "personal",
+      "name",
+      "scrub",
+      "remove",
+      "operator",
+      "account",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "tracked",
+      "files"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/scripts/launchagents/com.skilled.orphan-sweep.plist",
+      ".skilled/scripts/launchagents/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/continuity/migrate-trigger-phrase-residual.ts",
+      ".skilled/skills/cli-classifier/cli-jev/benchmark/reports/2026-09-20-post-migration-reverification/raw/leak-check.py",
+      ".skilled/skills/system-deep-loop/runtime/database/council-graph.sqlite",
+      ".skilled/changelog/skilled/v4.0.1.1.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
+      ".skilled/bin/compiled-route-guard.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "com.skilled.orphan-sweep.plist",
+        "kind": "file",
+        "path": ".skilled/scripts/launchagents/com.skilled.orphan-sweep.plist",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/scripts/launchagents/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "migrate-trigger-phrase-residual.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/continuity/migrate-trigger-phrase-residual.ts",
+        "source": "derived"
+      },
+      {
+        "name": "leak-check.py",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/cli-jev/benchmark/reports/2026-09-20-post-migration-reverification/raw/leak-check.py",
+        "source": "derived"
+      },
+      {
+        "name": "council-graph.sqlite",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/database/council-graph.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.1.1.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.1.1.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-route-replay.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Tracked",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose No",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Tracked files outside `specs/` named the operator's personal account name, mostly inside absolute paths into one machine's home folder",
+    "created_at": "2026-10-29T23:23:55Z",
+    "last_save_at": "2026-10-29T23:26:52.453Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:24ab973d7f7daea0eb81ea97adb08dc3e3c3c5c93c085f5bd16c3c5faa67c54c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fc0192ad631b57fd18438578347df7170cea6e4fae561324302c40ac91a37de1",
+      "plan.md": "865d037307c91d0f8a29f2ad9e2cc1b418d3c051f7dc6c6050a74abcc7060dad",
+      "tasks.md": "b5dd15d02452c292ddfe1aa88aace7a83376e1b7cb50c6be3c967f9eaa4cf760",
+      "implementation-summary.md": "6d6629d35e0e874fe3bd80250965311f7810f8259a813b99f3cc512f16b5b2ad"
+    },
+    "last_active_at": null
+  }
+}

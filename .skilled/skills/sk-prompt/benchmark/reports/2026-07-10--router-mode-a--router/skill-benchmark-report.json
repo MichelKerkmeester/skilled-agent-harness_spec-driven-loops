@@ -6,7 +6,7 @@
   "traceMode": "router",
   "targetSkill": {
     "id": "prompt-improve",
-    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-prompt/prompt-improve"
+    "root": ".opencode/skills/sk-prompt/prompt-improve"
   },
   "verdict": "NO-SCENARIOS",
   "aggregateScore": null,

@@ -6,7 +6,7 @@
   "traceMode": "router",
   "targetSkill": {
     "id": "sk-design",
-    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-design"
+    "root": ".worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-design"
   },
   "verdict": "PASS",
   "aggregateScore": 94,

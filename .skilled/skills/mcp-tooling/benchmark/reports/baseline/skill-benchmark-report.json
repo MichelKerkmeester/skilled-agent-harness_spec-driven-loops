@@ -6,7 +6,7 @@
   "traceMode": "router",
   "targetSkill": {
     "id": "mcp-tooling",
-    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-tooling"
+    "root": ".opencode/skills/mcp-tooling"
   },
   "verdict": "PASS",
   "aggregateScore": 95,

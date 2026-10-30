@@ -1,7 +1,7 @@
 ---
 title: "419 -- Orphan MCP Runtime Lifecycle Guardrails"
 description: "Manual validation for dry-run orphan MCP cleanup, preservation rules, LaunchAgent template lint, Claude cleanup syntax, and launcher idle-timeout discoverability."
-version: 1.6.0.8
+version: 1.6.1.0
 id: tooling-and-scripts-orphan-mcp-runtime-lifecycle-guardrails
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -40,9 +40,9 @@ Validate orphan MCP runtime lifecycle guardrails in dry-run mode and report cite
 ### Commands
 
 1. `bash -n .skilled/scripts/orphan-mcp-sweeper.sh`
-3. `plutil -lint .skilled/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist`
+3. `plutil -lint .skilled/scripts/launchagents/com.skilled.orphan-sweep.plist`
 4. `bash .skilled/scripts/orphan-mcp-sweeper.sh --dry-run --verbose --log-path /tmp/orphan-sweeper-review.log`
-6. `test ! -f ~/Library/LaunchAgents/com.michelkerkmeester.orphan-sweep.plist || echo "operator-installed copy exists outside repo"`
+6. `test ! -f ~/Library/LaunchAgents/com.skilled.orphan-sweep.plist || echo "operator-installed copy exists outside repo"`
 
 ### Expected
 
@@ -66,8 +66,8 @@ Command 2:
 Command 3:
 
 ```text
-$ plutil -lint .skilled/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist
-.skilled/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist: OK
+$ plutil -lint .skilled/scripts/launchagents/com.skilled.orphan-sweep.plist
+.skilled/scripts/launchagents/com.skilled.orphan-sweep.plist: OK
 ```
 
 Command 4 was not executed because the scenario command requires writing `/tmp/orphan-sweeper-review.log`, but the execution request allowed writes only to `.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md` and explicitly banned modifying, creating, or deleting any other file.

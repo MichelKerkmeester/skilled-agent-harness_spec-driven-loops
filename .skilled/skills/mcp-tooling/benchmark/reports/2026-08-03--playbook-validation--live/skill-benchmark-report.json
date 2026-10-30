@@ -6,7 +6,7 @@
   "traceMode": "live",
   "targetSkill": {
     "id": "mcp-tooling",
-    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-tooling"
+    "root": ".opencode/skills/mcp-tooling"
   },
   "verdict": "BLOCKED-BY-ROUTE-GOLD",
   "aggregateScore": 42,

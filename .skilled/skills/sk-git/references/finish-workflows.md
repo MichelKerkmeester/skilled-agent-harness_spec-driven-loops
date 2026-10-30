@@ -12,7 +12,7 @@ trigger_phrases:
   - "reconcile primary checkout after worktree push"
 importance_tier: normal
 contextType: implementation
-version: 1.7.3.0
+version: 1.7.4.0
 ---
 
 # Git Finish - Detailed Workflow Reference
@@ -888,7 +888,9 @@ gh auth switch --hostname github.com --user <previous-account>
 Switching changes the credential every session on the machine uses, so when the work is not yours to
 decide, report the mismatch and the one-line fix rather than switching underneath someone. When you do
 switch, note which account `gh auth status` showed as active first, and switch back to it right after
-the push, so a parallel session's next push does not run as the wrong account.
+the push, so a parallel session's next push does not run as the wrong account. A nested repository
+keeps its own remote, and its owner can differ from the outer repository's, so check `git remote -v`
+inside each one before you push it: the account that pushes the outer repository can get a 403 there.
 
 **No upstream remote**:
 ```bash

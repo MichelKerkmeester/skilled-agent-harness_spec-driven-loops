@@ -88,7 +88,7 @@
     "runtime": "node",
     "nodeVersion": "v25.6.1",
     "requireDurableEvidence": true,
-    "evidenceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.pi/extensions/pi-fast-mode-w-subagent-support/benchmark/evidence",
+    "evidenceRoot": ".pi/extensions/pi-fast-mode-w-subagent-support/benchmark/evidence",
     "payloadFixture": "{\"model\":\"gpt-5.6-luna\",\"messages\":[],\"service_tier\":\"priority\"}",
     "executorNotApplicableReason": "deterministic in-process harness; no external executor was dispatched",
     "modelNotApplicableReason": "the extension code path was exercised directly; no model was invoked"

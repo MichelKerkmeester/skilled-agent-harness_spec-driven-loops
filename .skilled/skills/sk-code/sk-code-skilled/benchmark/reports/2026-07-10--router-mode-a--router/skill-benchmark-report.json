@@ -6,7 +6,7 @@
   "traceMode": "router",
   "targetSkill": {
     "id": "code-opencode",
-    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0030-018-rust/.opencode/skills/sk-code/code-opencode"
+    "root": ".worktrees/0030-018-rust/.opencode/skills/sk-code/code-opencode"
   },
   "verdict": "PASS",
   "aggregateScore": 86,

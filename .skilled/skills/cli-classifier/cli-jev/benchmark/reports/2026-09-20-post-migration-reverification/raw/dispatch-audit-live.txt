@@ -1,5 +1,5 @@
 
- RUN  v5.0.1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ RUN  v5.0.1 .
 
  ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > matchDispatchShape > recognizes an opencode run dispatch 1ms
  ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > matchDispatchShape > recognizes a claude -p / --print dispatch 0ms

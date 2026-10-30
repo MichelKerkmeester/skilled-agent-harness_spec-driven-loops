@@ -5,7 +5,7 @@ trigger_phrases:
   - "op-001"
   - "degraded daemon"
   - "degraded"
-version: 0.8.0.12
+version: 0.8.1.0
 id: OP-001
 category: operator_h5
 stage: routing
@@ -87,7 +87,7 @@ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/pa
 
 ## 6. EVIDENCE
 
-Command run: `advisor_status({"workspaceRoot":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public"})`
+Command run: `advisor_status({"workspaceRoot":"."})`
 
 ```json
 {
@@ -119,7 +119,7 @@ Command run: `advisor_status({"workspaceRoot":"/Users/michelkerkmeester/MEGA/Dev
 Command run: `glob("**/*log*", ".skilled/skills/system-skill-advisor")`
 
 ```text
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature-catalog/feature-catalog.md
+.opencode/skills/system-skill-advisor/feature-catalog/feature-catalog.md
 ```
 
 Command run: `glob("runtime/**/*.log", ".skilled/skills/system-skill-advisor")`
@@ -137,11 +137,11 @@ No files found
 Command run: `glob("runtime/**/*err*", ".skilled/skills/system-skill-advisor")`
 
 ```text
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/runtime/tests/__fixtures__/errors.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-help-aliases-errors.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/runtime/lib/error-diagnostics.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/runtime/lib/utils/error-format.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/runtime/tests/scorer/lane-registry-env-override.vitest.ts
+.opencode/skills/system-skill-advisor/runtime/tests/__fixtures__/errors.ts
+.opencode/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-help-aliases-errors.vitest.ts
+.opencode/skills/system-skill-advisor/runtime/lib/error-diagnostics.ts
+.opencode/skills/system-skill-advisor/runtime/lib/utils/error-format.ts
+.opencode/skills/system-skill-advisor/runtime/tests/scorer/lane-registry-env-override.vitest.ts
 ```
 
 Command run: `skill_graph_scan({})`
@@ -153,7 +153,7 @@ Command run: `skill_graph_scan({})`
 }
 ```
 
-Command run: `advisor_status({"workspaceRoot":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public"})`
+Command run: `advisor_status({"workspaceRoot":"."})`
 
 ```json
 {

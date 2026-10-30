@@ -8,7 +8,7 @@ This map separates the canonical contracts, the private gold, and the curated ou
 
 | Resource | Purpose |
 |---|---|
-| Target skill | `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0030-018-rust/.opencode/skills/sk-code/code-skilled` |
+| Target skill | `.worktrees/0030-018-rust/.opencode/skills/sk-code/code-skilled` |
 | Scenario corpus | not recorded |
 | Scoring method | `mode-a-router-replay` |
 | Topology digest | `not recorded` |

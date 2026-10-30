@@ -6,7 +6,7 @@
   "traceMode": "router",
   "targetSkill": {
     "id": "system-deep-loop",
-    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop"
+    "root": ".opencode/skills/system-deep-loop"
   },
   "verdict": "CONDITIONAL",
   "aggregateScore": 71,

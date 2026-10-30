@@ -4,7 +4,7 @@
   "scoringMethod": "not-applicable-manual-outcome",
   "targetSkill": {
     "id": "cli-pi",
-    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0131-sk-code-injection-bloat-impl/.opencode/skills/cli-external-orchestration/cli-pi"
+    "root": ".worktrees/0131-sk-code-injection-bloat-impl/.opencode/skills/cli-external-orchestration/cli-pi"
   },
   "executor": "pi",
   "model": "deepseek-v4-flash",

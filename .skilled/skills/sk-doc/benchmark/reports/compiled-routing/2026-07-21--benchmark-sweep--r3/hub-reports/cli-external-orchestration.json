@@ -6,7 +6,7 @@
   "traceMode": "router",
   "targetSkill": {
     "id": "cli-external-orchestration",
-    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/cli-external-orchestration"
+    "root": ".worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/cli-external-orchestration"
   },
   "verdict": "PASS",
   "aggregateScore": 92,

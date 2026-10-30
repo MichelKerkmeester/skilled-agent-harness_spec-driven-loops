@@ -1,0 +1,28 @@
+{
+  "specFolder": "sk-git/036-personal-name-scrub",
+  "description": "Remove the operator's personal account name from tracked files outside specs and rename the orphan-sweep launch agent",
+  "keywords": [
+    "remove",
+    "operator",
+    "personal",
+    "account",
+    "name",
+    "tracked",
+    "files",
+    "outside",
+    "specs",
+    "rename",
+    "orphan-sweep",
+    "launch",
+    "agent"
+  ],
+  "lastUpdated": "2026-10-29T23:23:55.501Z",
+  "specId": "036",
+  "folderSlug": "personal-name-scrub",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

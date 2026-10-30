@@ -98,7 +98,7 @@ Totals: **8 PASS, 0 FAIL, 0 SKIP**.
 - Feature file: `runtime/preflight-executable-resolution.md`
 - Exact prompt: `Check which Orca CLI this shell will use, then load the Orca CLI guide for this version.`
 - Commands and transcripts:
-  1. `command -v orca` -- exit `0`, printing `/Users/michelkerkmeester/.local/bin/orca` after the resolution repair (it printed `/usr/local/bin/orca` on the first run)
+  1. `command -v orca` -- exit `0`, printing `~/.local/bin/orca` after the resolution repair (it printed `/usr/local/bin/orca` on the first run)
   2. `orca --version` -- exit `0`, printing `1.4.205`
   3. `orca agent-context --json` -- exit `0`, printing a JSON object with `schemaVersion` 1 and `commandCount` 234
   4. `orca skills get orca-cli --full` -- exit `0`, serving a 26661-byte, 382-line version-matched guide carrying 148 flag-bearing lines rather than a stub
@@ -111,7 +111,7 @@ Totals: **8 PASS, 0 FAIL, 0 SKIP**.
 
 - Prompt: `Send this instruction to the paired Orca terminal and make sure it actually landed.`
 - Commands and transcripts (exit status first):
-  1. `command -v orca` -- exit `0`, printing `/Users/michelkerkmeester/.local/bin/orca`
+  1. `command -v orca` -- exit `0`, printing `~/.local/bin/orca`
   2. `orca terminal list --json` -- exit `0`; four live terminals were listed, so a dedicated terminal was created with `orca terminal create` to make the pairing unambiguous and to keep every write away from any session's own terminal
   3. `orca terminal read --terminal <t> --json` -- exit `0`, the pre-send baseline
   4. `orca terminal send --terminal <t> --text "echo handshake" --enter --json` -- exit `0`, receipt `accepted: true` with requestId `7d0e145c-be05-467b-9ad3-12f90cb1018d`
@@ -125,7 +125,7 @@ Totals: **8 PASS, 0 FAIL, 0 SKIP**.
 
 - Prompt: `My Orca terminal went quiet. Work out whether the runtime is stopped and bring it back safely.`
 - Commands and transcripts (exit status first; full evidence in the packet's `scratch/orca-006-evidence.txt`):
-  1. `command -v orca` -- exit `0`, printing `/Users/michelkerkmeester/.local/bin/orca`
+  1. `command -v orca` -- exit `0`, printing `~/.local/bin/orca`
   2. `orca --version` -- exit `0`, `1.4.205`
   3. `orca agent-context --json` -- exit `0`; the registry answers without a running app, which separates a broken executable from a stopped runtime
   4. `orca terminal list --json` (pre-stop) -- exit `0`, the healthy state captured
@@ -144,7 +144,7 @@ Totals: **8 PASS, 0 FAIL, 0 SKIP**.
 - Prompt: `Open the page inside Orca and check the widget, then explain which browser I should use for an external site.`
 - Commands and transcripts (exit status first):
   1. `rg -n "embedded" .../mutation-and-browser-boundaries.md` -- exit `0`; ownership rule lines `:78` and `:82` captured
-  2. `command -v orca` -- exit `0`, printing `/Users/michelkerkmeester/.local/bin/orca`
+  2. `command -v orca` -- exit `0`, printing `~/.local/bin/orca`
   3. `orca open --json` -- exit `0`, runtime reachable
   4. `orca tab create --url http://127.0.0.1:6768/ --json` -- exit `0`; the runtime-hosted "Orca Web" page opened in the embedded browser
   5. `orca snapshot --json` -- exit `0`; accessibility tree with heading "Connect to Orca", textboxes "Server name" / "Pairing URL or code", buttons "Clear saved server" / "Connect"

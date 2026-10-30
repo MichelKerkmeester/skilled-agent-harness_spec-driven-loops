@@ -3,8 +3,8 @@
   "corpusBytes": 232996380,
   "corpusPathsMissing": 0,
   "indexBytes": 3814726,
-  "indexPath": "/Users/michelkerkmeester/worktrees/public/017-memory-decommission/.opencode/skills/system-spec-kit/data/trigger-index.json",
-  "lookupPath": "/Users/michelkerkmeester/worktrees/public/017-memory-decommission/.opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
+  "indexPath": ".opencode/skills/system-spec-kit/data/trigger-index.json",
+  "lookupPath": ".opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
   "manifestHash": "c0806077f0d2e22ae7b0e9b6f8ab4e17244fac5aef0f6da59c95f7fe0938d370",
   "measuredRuns": 36,
   "perPrompt": {

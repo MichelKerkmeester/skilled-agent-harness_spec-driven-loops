@@ -14,7 +14,7 @@ baseline: instructs share=35 of 90
 baseline: lexical right=68 of 90
 baseline: brier flag_nothing=0.389 lexical=0.244 comparator=0.244
 headroom: baseline wrong on 22 of 90 rows
-jev: path=/Users/michelkerkmeester/.local/bin/jev provider=official
+jev: path=~/.local/bin/jev provider=official
 jev: payload: sections of public vendored text and the operator's planted sentences; planned calls: 181 base, plus verification and review-band calls; estimated input tokens: 41626
 jev: auth test provider=official model=jev-1.13.0
 column jev: measured=90 of 90 brier=0.0642 flags_at_0.25=40 flags_at_0.60=33 flags_at_0.75=22 natural_recall=0.800 planted_recall=0.900 hybrid_floor_flags=35 latency_p50_ms=217 latency_p95_ms=293
