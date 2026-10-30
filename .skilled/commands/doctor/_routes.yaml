@@ -404,6 +404,7 @@ routes:
 
   - command: /doctor:sk-skill
     target: check
+    default_target: true
     yaml: doctor-sk-skill-check.yaml
     setup_vars: [execution_mode, skill_target, json_output, into_hub]
     allowed_flags: ["--json", "--into-hub <hub>"]
@@ -417,6 +418,26 @@ routes:
       - "check a skill against the skilled format"
       - "skill format check report"
       - "skill fleet format summary"
+
+  - command: /doctor:sk-skill
+    target: convert
+    yaml: doctor-sk-skill-convert.yaml
+    setup_vars: [execution_mode, skill_target, dry_run]
+    allowed_flags: ["--dry-run"]
+    mutating: mutates
+    gate3_location: "the one skill folder named by <name-or-path> under .skilled/skills (SKILL.md rewritten and ROUTER.md created), the resources the plan names beside it, and the backup folder .skilled/skills/.state/doctor-sk-skill/<name>/<timestamp>/"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/sk-skill-convert.cjs plan "{skill_target}"  # read-only: resolves the target, classifies the input and prints the plan, the follow-ups and the backup folder; writes nothing'
+      - 'node .skilled/commands/doctor/scripts/sk-skill-convert.cjs apply "{skill_target}" --apply  # the same plan, then the backup and the writes; run only after an explicit yes'
+      - 'node .skilled/commands/doctor/scripts/sk-skill-check.cjs "{skill_target}" --json  # the post-write re-read through the read-only check engine; the workflow adds the skill name or path'
+    trigger_phrases:
+      - "convert a skill to the skilled format"
+      - "convert a plain agent skill"
+      - "turn my old skill into a skilled skill"
+      - "skill format conversion plan"
+      - "move the machine router out of a skill"
+      - "skill folder conversion with a backup"
 
 # ─────────────────────────────────────────────────────────────────
 # COMPANION COMMAND ROUTES (/doctor:mcp sub-actions)

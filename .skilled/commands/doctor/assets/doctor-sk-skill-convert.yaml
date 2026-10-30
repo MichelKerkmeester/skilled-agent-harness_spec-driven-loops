@@ -1,0 +1,210 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: SKILL FORMAT CONVERT (INTERACTIVE, ONE SKILL FOLDER)
+# ─────────────────────────────────────────────────────────────────
+role: Careful operator moving one skill to the Skilled format without changing what it routes
+purpose: Re-read the target skill, refuse a target the converter must not touch, print the conversion plan with its separately approved follow-ups, and write SKILL.md and ROUTER.md only after an explicit yes, then re-read the result and print the undo
+action: Read the engine and the target -> refuse a dual declaration, a hub, nested packets, a reserved name or a collision -> run the plan -> print the plan and the follow-ups -> explicit yes -> run the apply -> re-read through the check engine -> print the undo
+skill_owner: ".skilled/skills/sk-doc/sk-create-skill/"
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: sequential_read_then_confirmed_conversion
+  compliance: MANDATORY
+  execution: interactive
+  approvals: explicit_yes_before_the_first_write
+  dry_run: run_the_plan_and_stop_before_the_approval
+  tracking: one_skill_folder
+  validation: re_read_the_converted_skill_through_the_check_engine
+  never_commit: true
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: false
+  allowed_targets:
+    - "SKILL.md in the one skill folder named by <name-or-path>, overwritten with the normalized frontmatter and the link to ROUTER.md"
+    - "ROUTER.md in that same skill folder, created once and never replaced when one is already there"
+    - "the resources the conversion adds beside SKILL.md, named one by one in the plan before the write"
+    - "the backup folder .skilled/skills/.state/doctor-sk-skill/<name>/<timestamp>/, which holds the pre-write SKILL.md, the pre-write router inputs and the router proof snapshot"
+    - "a field the operator approves separately in its own step: the trimmed description, or the allowed-tools list the operator confirms"
+  forbidden_targets:
+    - "any skill folder other than the one named by <name-or-path>"
+    - "a hub: a folder holding mode-registry.json or hub-router.json, or a folder holding a nested SKILL.md packet"
+    - "an existing ROUTER.md that the resolver does not read as this skill's machine router"
+    - ".skilled/commands/doctor/scripts/sk-skill-convert.cjs and its lib/, which own the conversion and never change here"
+    - "the skill graph, the advisor index, the runtime mirrors and the changelog, which other routes own"
+    - "the git index, history and remotes"
+  invariant: "Nothing under the skill folder changes until the plan has been printed and the operator has answered yes. The plan call writes nothing, the apply call writes only with --apply, and every write is preceded by a backup. A rerun on a converted skill reports that no conversion is needed and writes nothing."
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  convert_engine: ".skilled/commands/doctor/scripts/sk-skill-convert.cjs"
+  surface_library: ".skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs"
+  transforms_library: ".skilled/commands/doctor/scripts/lib/sk-skill-convert-transforms.cjs"
+  check_engine: ".skilled/commands/doctor/scripts/sk-skill-check.cjs"
+  router_template: ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md"
+  router_replay: ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs"
+  router_resolver: ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-file-resolver.cjs"
+  presentation: ".skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+inputs:
+  execution_mode: "INTERACTIVE"
+  skill_target: "<name-or-path> is the one skill to convert: a name under .skilled/skills, or a path to a skill root. Convert never infers it: with no name, ask for one once and stop until it is given. A path outside .skilled/skills is refused, because this route converts a skill in place."
+  dry_run: "--dry-run prints the plan and the follow-ups, then stops before the approval (default false). The plan call writes nothing either way; the flag only removes the question."
+
+# ─────────────────────────────────────────────────────────────────
+# REFUSALS
+# ─────────────────────────────────────────────────────────────────
+# The converter prints one machine code per refusal, and a refusal always means
+# nothing was written. The workflow prints the reason beside the code, so an
+# operator reads what stopped the run and which command takes the case instead.
+# A description over the budget and a missing allowed-tools are not refusals:
+# they are follow-ups, and each one needs its own yes in phase 4.
+refusals:
+  - code: PREFLIGHT_REFUSED
+    reason: "Only a direct child of .skilled/skills can be converted."
+    next: "Name a skill under .skilled/skills, or its folder. This route converts in place and never copies."
+  - code: PREFLIGHT_REFUSED
+    reason: "SKILL.md must declare a description before conversion."
+    next: "Add a description line to SKILL.md, then rerun the plan."
+  - code: PREFLIGHT_REFUSED
+    reason: "Expected a Skilled skill with a machine router; resolver verdict was <verdict>."
+    next: "A skill with no machine router anywhere belongs to the plain-skill conversion path, which reads the same plan and apply calls."
+  - code: PREFLIGHT_REFUSED
+    reason: "ROUTER.md already exists but does not declare the resolved machine router; it will not be replaced."
+    next: "Read that ROUTER.md. The conversion never overwrites a router file it did not write."
+  - code: RESERVED_PREFIX
+    reason: "A local- prefixed skill is filtered by the format and advisor gates."
+    next: "Rename the skill without the prefix, or leave it private and unconverted."
+  - code: PERSONA_PREFIX
+    reason: "An agent- prefixed skill collides with runtime persona mirrors."
+    next: "Rename the skill, then rerun the plan."
+  - code: NAME_NOT_KEBAB
+    reason: "The declared skill name is not a lowercase kebab-case name."
+    next: "Fix the name field, then rerun the plan."
+  - code: NESTED_PACKETS
+    reason: "Nested SKILL.md packets make this a hub candidate."
+    next: "/create:skill-parent <the parent skill folder>"
+  - code: HUB_DECLARATION
+    reason: "Hub declaration <mode-registry.json or hub-router.json> is present; conversion does not modify hubs."
+    next: "/create:skill-parent <the parent skill folder>"
+  - code: HUB_DECLARATION
+    reason: "The existing check classified this input as <input kind>; hub conversion is out of scope."
+    next: "/create:skill-parent <the parent skill folder>"
+  - code: DUAL_DECLARATION
+    reason: "Resolver verdict dual-declaration: both SKILL.md and ROUTER.md declare a machine router."
+    next: "Remove one of the two declarations by hand, then rerun the plan."
+  - code: NAME_COLLISION
+    reason: "Skill name collision: <the other root claiming the name>."
+    next: "Decide which root keeps the name, then rerun the plan."
+  - code: ROUTER_EXISTS
+    reason: "ROUTER.md appeared after planning; refusing to replace it."
+    next: "Rerun the plan. A file that appeared after it is never overwritten by a stale plan."
+  - code: STALE_PLAN
+    reason: "SKILL.md changed after planning; no files were written."
+    next: "Rerun the plan, which re-reads SKILL.md."
+  - code: ROUTER_CONTENT_CHANGED
+    reason: "parseRouter content output changed; no target files were written."
+    next: "Report the engine's message. Nothing changed."
+  - code: ROUTER_SEMANTICS_CHANGED
+    reason: "parseRouter semantics changed after the move; restoring the original skill files."
+    next: "Report the engine's message. Nothing changed."
+  - code: APPLY_FAILED
+    reason: "Conversion rolled back: <the message>."
+    next: "Read the engine's message, fix the cause, then rerun the plan."
+  - code: ROLLBACK_FAILED
+    reason: "Conversion rollback failed: <the message>. Backup retained at <the backup folder>."
+    next: "Restore from that backup folder by hand, then report it."
+  - code: FRONTMATTER_INVALID
+    reason: "SKILL.md needs a closed YAML frontmatter block."
+    next: "Close the frontmatter block, then rerun the plan."
+  - code: ALLOWED_TOOLS_MISSING
+    reason: "SKILL.md must declare allowed-tools exactly once before conversion."
+    next: "Confirm the allowed-tools proposal in phase 4, which writes it with its own yes."
+  - code: ALLOWED_TOOLS_AMBIGUOUS
+    reason: "allowed-tools has unbalanced parentheses."
+    next: "Fix that one list item, then rerun the plan."
+  - code: ALLOWED_TOOLS_INVALID
+    reason: "allowed-tools must be a top-level frontmatter field."
+    next: "Fix the allowed-tools line, then rerun the plan."
+  - code: "<any other code the engine prints>"
+    reason: "the engine's own message, quoted as printed"
+    next: "Treat it as the same class: nothing was written, fix that one condition, then rerun the plan."
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  phase_1_read:
+    purpose: "Load what the conversion is built from before asking anything"
+    activities:
+      - "Check that .skilled/commands/doctor/scripts/sk-skill-convert.cjs, its lib/sk-skill-surface.cjs and its lib/sk-skill-convert-transforms.cjs, .skilled/commands/doctor/scripts/sk-skill-check.cjs and .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md exist. If any is missing, report the missing path and stop with STATUS=FAIL. A conversion without its engine or its router template would invent a shape."
+      - "Read the target skill's SKILL.md frontmatter for the two field follow-ups: the description and whether allowed-tools is declared. Phase 4 proposes each of them, and a missing field is reported before the plan rather than after it."
+      - "Read .skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt for the plan, refusal and result wording. Every visible line comes from there."
+
+  phase_2_refuse:
+    purpose: "Refuse a target the converter must not touch, before any plan is shown"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/sk-skill-convert.cjs plan \"{skill_target}\". The plan call is read-only: it resolves the target, classifies the input, parses the router and prints the plan, and it creates neither a backup nor a file."
+      - "Exit 0 means the plan printed. Continue to phase 3 and quote the plan as printed, including its numbered steps and its follow-up items."
+      - "Exit 1 is a refusal. Print REFUSE: then the reason the refusals list carries for the code the engine printed, then STATUS=FAIL ERROR=\"<code>\", and stop. Do not offer to force, retry with another path, or edit the target by hand. A refusal whose next entry names /create:skill-parent also prints that line, because a hub belongs there."
+      - "Two codes are not failures of the operator's input: STALE_PLAN means the skill changed between the plan and the write, so rerun the plan; DESCRIPTION_TOO_LONG and ALLOWED_TOOLS_MISSING belong to phase 4's follow-ups, so carry them there instead of stopping. A code the refusals list does not carry is still a refusal: print the engine's own message and STATUS=FAIL ERROR=\"<code>\"."
+      - "Exit 2 means a precondition or the invocation failed: the engine's message names it, such as a router parser or resolver that could not load. Print the message, the accepted invocation /doctor:sk-skill convert <name-or-path> [--dry-run], and STATUS=FAIL ERROR=\"<code>\"."
+
+  phase_3_plan:
+    purpose: "Show exactly what will change, then ask for the follow-ups and the conversion"
+    activities:
+      - "Render the presentation contract's conversion plan from the engine's output: the skill name, each numbered step with its overwrite or create verb and its absolute path, the backup folder that will hold the pre-write files, and every follow-up item the engine listed. Quote the engine's lines rather than paraphrasing them."
+      - "Add the field follow-ups the engine reported or phase 1 found: an over-budget description is proposed as a trimmed description of 130 characters or fewer, and a missing or unconfirmed allowed-tools is proposed as the least-privilege list [Read, Grep, Glob] drawn from what the skill's own instructions use. State that both are proposals and that neither is written without its own yes."
+      - "If dry_run is true, render the dry-run line and go to phase 8 without asking anything and without writing anything."
+
+  phase_4_approval:
+    purpose: "Collect one answer per write, in the order the writes happen"
+    activities:
+      - "Ask the field follow-ups first, one at a time, each with its own question and its own yes. A no leaves that field untouched and records the follow-up as deferred in the result; it never cancels the conversion, because the conversion does not own the field."
+      - "Then ask the conversion question once, listing the files it will overwrite or create and the backup folder it will write. Any answer other than yes counts as no: record the conversion as cancelled, write nothing, and go to phase 8 with STATUS=CANCELLED."
+      - "Never default an answer, never write a permission grant on the operator's behalf, and never carry an approval from one question to the next."
+
+  phase_5_write:
+    purpose: "Write the approved conversion and nothing else"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/sk-skill-convert.cjs apply \"{skill_target}\" --apply once per approved conversion. The apply call prints the same plan, backs up SKILL.md and the pre-write router inputs, writes ROUTER.md with exclusive create, rewrites SKILL.md, and proves the router still resolves to the same signals."
+      - "A field the operator approved in phase 4 is written first, as that one frontmatter field in SKILL.md, and the plan is then rerun so the engine re-reads the field the operator just approved. The engine stays the only authority on what changes."
+      - "Exit 1 is a rolled-back conversion: print the refusals reason for the code, then the backup folder the message names when it names one, and STATUS=FAIL. A rollback leaves the skill folder as it was; never repair it by hand inside this route."
+      - "Exit 0 with the no-conversion message means a previous run already converted this skill: print that message, state that nothing changed, and go to phase 8 with STATUS=OK and Changed: none."
+
+  phase_6_reread:
+    purpose: "Prove the converted skill reads back and still routes"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/sk-skill-check.cjs \"{skill_target}\" --json and read the report. A skill that converted cleanly reports its rows with no FINDING; an exit of 1 means a row still finds something, which the result names instead of hiding."
+      - "Print the router source line the apply printed, which reads inline before the conversion and ROUTER.md after it, and the first line of the created ROUTER.md. A line that does not read back as the plan promised is a failure, not a warning."
+      - "When a row still reports FINDING, keep the result at STATUS=OK for the conversion and list that row and its repair as the next step; the conversion is complete, the remaining finding is a different requirement."
+
+  phase_7_undo:
+    purpose: "Give the operator the exact way back"
+    activities:
+      - "Print the backup folder the apply named and the undo commands that restore from it, one per file: copy the backed-up SKILL.md over the converted one and delete the created ROUTER.md. Quote the backup folder's own path so the commands run as printed."
+      - "Never run the undo inside this route. The undo is printed, and the operator runs it."
+
+  phase_8_report:
+    purpose: "Summarize the run"
+    activities:
+      - "When the conversion ran and read back, render the presentation contract's converted result with the files changed, the router source line, the check verdict, the deferred follow-ups and the undo (STATUS=OK)."
+      - "When the operator said no, or the run was a dry run, render the cancelled result (STATUS=CANCELLED ACTION=cancelled) and state Changed: none."
+      - "When a refusal, a missing asset or a failed read-back stopped the run, render the failure result naming the phase and the engine's code (STATUS=FAIL)."
+      - "End by saying the operator commits the converted skill themselves; this route stages and commits nothing."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output:
+  presentation: ".skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt"
+  statuses: [OK, CANCELLED, FAIL]

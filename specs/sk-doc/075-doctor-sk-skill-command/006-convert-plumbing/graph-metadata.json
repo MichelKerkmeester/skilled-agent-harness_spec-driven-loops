@@ -34,7 +34,7 @@
       "cjs"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,8 +42,7 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
-      ".skilled/commands/create/command.md",
+      ".skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml",
       ".skilled/commands/doctor/_routes.yaml",
       ".skilled/commands/doctor/sk-skill.md",
       ".skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt",
@@ -55,7 +54,8 @@
       ".cursor/commands/doctor-sk-skill.md",
       ".codex/prompts/doctor-sk-skill.md",
       ".pi/prompts/doctor-sk-skill.md",
-      ".hermes/prompts/doctor-sk-skill.md"
+      ".hermes/prompts/doctor-sk-skill.md",
+      "scratch/t016-authoring-log.md"
     ],
     "entities": [
       {
@@ -95,15 +95,9 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "command.md",
-        "kind": "doc",
-        "path": ".skilled/commands/create/command.md",
+        "name": "doctor-sk-skill-convert.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml",
         "source": "derived"
       },
       {
@@ -161,6 +155,12 @@
         "source": "derived"
       },
       {
+        "name": "t016-authoring-log.md",
+        "kind": "doc",
+        "path": "scratch/t016-authoring-log.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "After phase 5, `sk-skill-convert.cjs` can plan and apply a conversion, but only a person who knows the script path can run it",
     "created_at": "2026-10-30T05:21:16Z",
-    "last_save_at": "2026-10-30T07:52:25.305Z",
+    "last_save_at": "2026-10-30T09:02:50.900Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:30f070c98862d5f698b5f06842e4f15fc517b2307397d685ae0bc1f5ec4e1c73",
+    "source_fingerprint": "sha256:f86290c10e97c6d5f33b271dcec8b7b8dfe61b34b2a4e1f4bc34c431ce8fd405",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eb0828348716ae4eac7dd3d592af246be661bfc9f21ab8c7e7c61a9e782c05da",
+      "spec.md": "b7a4167258e53c767856f5e905733c817663abcb6f5731e4c270a284d4ab6fa9",
       "plan.md": "26fc9fffd4312c44f38bcc452ed8e209f797bfdb820589828e87153c3593beab",
-      "tasks.md": "19b0077f1689275bd6813a262de3c55b145edfc43306b46e1d93a04b8be6c17c",
-      "implementation-summary.md": "20434cac2f9ba07ba20c34866a0bc270e19da5f2f4e36e7afb098e6049fbf25d"
+      "tasks.md": "f3105147bff98c46738949d37dc210aeda8b27f3ad21345ab15a789cfeee562c",
+      "implementation-summary.md": "7f37289559d2ed6cce91f66a743a9103d06d33136bf7e50556d845abad8d890c"
     },
     "last_active_at": null
   }

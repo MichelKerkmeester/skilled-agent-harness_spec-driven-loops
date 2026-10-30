@@ -26,6 +26,7 @@ Render this table first, before any leg runs.
 | `/doctor:sk-code quality` | The repository quality config the gate reads with its tools, errors and disabled hygiene rules, then creating `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` once |
 | `/doctor:ci report` | Lists every workflow with its switch state, trigger, filters and drift flags, read against the repository CI profile; `scaffold` and `toggle` are the confirmed action routes |
 | `/doctor:sk-skill check [<name-or-path>] [--json]` | How far one skill, or the whole fleet, is from the Skilled format, row by row, with the repair for each finding |
+| `/doctor:sk-skill convert <name-or-path> [--dry-run]` | Moving one skill to the Skilled format: the plan, the follow-ups, one yes, the backup, the write and the undo |
 | `/doctor:speckit` | The generated trigger index, its lookup and the ripgrep recipes |
 | `/doctor:runtime-mirrors` | Whether each runtime's agent, command, prompt and hook mirrors match .skilled |
 | `/doctor:skill-advisor tune` | Advisor recommendation quality and scoring tuning |

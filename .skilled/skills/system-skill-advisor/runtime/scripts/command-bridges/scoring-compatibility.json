@@ -250,6 +250,18 @@
       "order": 26,
       "id": "command-doctor-sk-code-quality",
       "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-sk-skill-check",
+      "order": 27,
+      "id": "command-doctor-sk-skill-check",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-sk-skill-convert",
+      "order": 28,
+      "id": "command-doctor-sk-skill-convert",
+      "description": ""
     }
   ],
   "python": [
@@ -542,6 +554,18 @@
       "inventoryId": "command-doctor-sk-code-quality",
       "order": 37,
       "id": "command-doctor-sk-code-quality",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-sk-skill-check",
+      "order": 38,
+      "id": "command-doctor-sk-skill-check",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-sk-skill-convert",
+      "order": 39,
+      "id": "command-doctor-sk-skill-convert",
       "description": ""
     }
   ],

@@ -1,6 +1,6 @@
 # /doctor:sk-skill Presentation Contract
 
-This file is the single source of truth for user-facing presentation in `/doctor:sk-skill <target>`: the argument failure, the startup menu, the check result tables, result templates and next-step text. The command router owns target resolution and asset loading. The workflow YAML owns execution behavior.
+This file is the single source of truth for user-facing presentation in `/doctor:sk-skill <target>`: the argument failure, the startup menu, the check result tables, the conversion plan and its follow-ups, the refusals, result templates and next-step text. The command router owns target resolution and asset loading. The workflow YAML owns execution behavior.
 
 ## 1. Argument Failure
 
@@ -9,17 +9,22 @@ Every argument failure happens before any workflow YAML loads and prints the wor
 | Situation | Wording |
 |-----------|---------|
 | The first token is not a target | `Unknown target: [target]` then `/doctor:sk-skill runs check. Try: /doctor:sk-skill menu` then `STATUS=FAIL ERROR="unknown_target"` |
-| A flag no target accepts | `Unknown argument: [argument]` then `check accepts --json and --into-hub <hub>.` then `STATUS=FAIL ERROR="unknown_argument"` |
-| A second skill name or path | `Only one skill name or path may be checked.` then `STATUS=FAIL ERROR="too_many_arguments"` |
+| A flag no target accepts | `Unknown argument: [argument]` then `check accepts --json and --into-hub <hub>; convert accepts --dry-run.` then `STATUS=FAIL ERROR="unknown_argument"` |
+| A flag the other target owns | `Argument '[argument]' is not valid for target '[target]'. Did you mean /doctor:sk-skill [suggested-target] [argument]?` then `STATUS=FAIL ERROR="cross_target_flag"` |
+| `convert` with no skill name | `Convert needs one skill name or path.` then `Try: /doctor:sk-skill convert <name-or-path>` then `STATUS=FAIL ERROR="missing_skill_target"` |
+| A second skill name or path | `Only one skill name or path may be bound.` then `STATUS=FAIL ERROR="too_many_arguments"` |
+
+`convert` never infers the name it converts: with no name it asks once, in the wording `Which skill? Give one name under .skilled/skills, or a path to a skill root.`, and refuses to guess from the conversation or an open file. An answer that resolves to no skill root prints `Convert needs one skill name or path.` and ends `STATUS=FAIL ERROR="missing_skill_target"`.
 
 ## 2. Startup Presentation
 
 This command is always interactive and has no `:auto` mode. With no target, `check` runs because it only reads, so a bare invocation needs no answer. The menu below appears for `menu`, `list` and `?`. Ask it once, then wait.
 
 ```text
-What do you want to check?
+What do you want to do?
 
 1) check
+2) convert
 X) Cancel
 ```
 
@@ -28,11 +33,12 @@ Accepted answers:
 | Answer | Result | Meaning |
 |--------|--------|---------|
 | `1` | target = `check` | Report rows C1 to C13 for one skill, or one row per skill root for the whole fleet, and change nothing. With `--into-hub <hub>`, report the eleven hub integration surfaces instead |
+| `2` | target = `convert` | Move one skill to the Skilled format after a printed plan, and write only on yes |
 | `X`, empty, `cancel` | `STATUS=CANCELLED ACTION=cancelled` | Stop. Nothing changes |
 
 On any other response, re-emit the menu once. On a second invalid response, return `STATUS=FAIL ERROR="unknown_selection"`.
 
-Valid targets: check
+Valid targets: check, convert
 
 ### Route Manifest Display
 
@@ -41,6 +47,7 @@ Render this table for `menu`, `list` or `?`. Values should mirror `_routes.yaml`
 | Target | Workflow | Mutation Class | One-Line Purpose |
 |--------|----------|----------------|------------------|
 | `check` | `doctor-sk-skill-check.yaml` | read-only | Report how far one skill, or the whole fleet, is from the Skilled format and name the repair for each finding |
+| `convert` | `doctor-sk-skill-convert.yaml` | mutates | Move one skill to the Skilled format after a printed plan and an explicit yes, then re-read it and print the undo |
 
 ## 3. Check Results
 
@@ -113,25 +120,155 @@ Recommendation: [the repair for each finding, or none]
 STATUS=[status]
 ```
 
-## 4. Failure Summary
+## 4. Convert Plan, Follow-Ups and Approval
+
+### Setup
+
+Render this compact panel after target resolution and before the plan, when the target or flags were non-trivial.
+
+```text
+DOCTOR ROUTE SETUP
+Target: convert
+Workflow: .skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml
+Mutation class: mutates
+Execution mode: INTERACTIVE
+Skill: [the name or path the operator gave]
+Presentation: .skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt
+Next: run the plan, which writes nothing
+```
+
+### Conversion Plan And Approval
+
+The plan section quotes the engine's own lines: its `Conversion plan:` name, its numbered steps with the `Overwrite` or `Create` verb and the absolute path, its `Backup existing files under:` line, and its `Follow-up items:` list.
+
+```text
+SKILL CONVERSION PLAN
+Skill: [name]
+Folder: [the skill folder, relative to .skilled/skills]
+Steps: [one line per numbered step the engine printed]
+Backup folder: [the engine's backup line]
+Engine follow-ups: [one bullet per follow-up item, or none]
+
+Field follow-ups in this run:
+- Description: [n] characters, over the 130-character budget | within budget, so no trim is proposed
+- allowed-tools: [the list the skill declares | not declared, so a least-privilege list is proposed]
+
+Trim the description to 130 characters or fewer? [yes/no]
+Declare allowed-tools as [Read, Grep, Glob] for this skill? [yes/no]
+
+Convert this skill now? [yes/no]
+```
+
+Every follow-up above is a separate question with its own yes. A no leaves that field exactly as it was, records the follow-up as deferred, and does not cancel the conversion. The trim proposal names the trimmed description it would write. The allowed-tools proposal names the list it would write and is drawn from the tools the skill's own instructions already use; never write a permission grant without that yes.
+
+With `--dry-run`, follow the plan with `Dry run: nothing was written and nothing was asked.` and stop.
+
+Any answer to the conversion question other than yes counts as no: print the cancelled result and write nothing.
+
+## 5. Convert Refusals
+
+A refusal prints `REFUSE: [the engine's reason]`, then `STATUS=FAIL ERROR="[code]"`, and stops. Nothing was written. The file is never forced, edited by hand or retried at another path inside this route.
+
+| Code | Reason it prints | Next |
+|------|------------------|------|
+| `PREFLIGHT_REFUSED` | the engine's own sentence: not a direct child of `.skilled/skills`, no description, an input kind that is not an older Skilled skill, or an `ROUTER.md` the resolver does not read | Read the sentence, fix that one condition, then rerun the plan |
+| `RESERVED_PREFIX` | a `local-` prefixed skill is filtered by the format and advisor gates | Rename the skill without the prefix, or leave it private and unconverted |
+| `PERSONA_PREFIX` | an `agent-` prefixed skill collides with runtime persona mirrors | Rename the skill, then rerun |
+| `NAME_NOT_KEBAB` | the declared skill name is not a lowercase kebab-case name | Fix the `name` field, then rerun |
+| `NESTED_PACKETS` | nested `SKILL.md` packets make this a hub candidate | Convert it with `/create:skill-parent`, not here |
+| `HUB_DECLARATION` | a hub declaration (`mode-registry.json`, `hub-router.json`, or a hub input kind) is present, and conversion does not modify hubs | Convert it with `/create:skill-parent`, not here |
+| `DUAL_DECLARATION` | both `SKILL.md` and `ROUTER.md` declare a machine router | Remove one declaration by hand, then rerun |
+| `NAME_COLLISION` | another skill root declares the same name | Resolve which root keeps the name, then rerun |
+| `ROUTER_EXISTS` | an `ROUTER.md` appeared that the conversion would not replace | Read that file; a conversion never overwrites it |
+| `STALE_PLAN` | `SKILL.md` changed after planning, and no file was written | Rerun the plan, which re-reads the skill |
+| `ROUTER_CONTENT_CHANGED` | the router content proof failed before the write | Report it with the engine's message; nothing changed |
+| `ROUTER_SEMANTICS_CHANGED` | the converted router no longer resolved to the same signals, so the skill folder was restored | Report it with the engine's message; nothing changed |
+| `APPLY_FAILED` | the conversion rolled back and the skill folder holds its original files | Read the message, fix the cause, then rerun |
+| `ROLLBACK_FAILED` | the rollback could not restore every file and the backup is kept | Restore from the named backup folder by hand, then report it |
+| `ALLOWED_TOOLS_MISSING`, `ALLOWED_TOOLS_AMBIGUOUS`, `ALLOWED_TOOLS_INVALID`, `FRONTMATTER_INVALID` | the frontmatter cannot be normalized as written | Fix that one field, then rerun the plan |
+
+A hub candidate prints one extra line after the refusal, because a hub belongs to another command:
+
+```text
+Next: /create:skill-parent <the parent skill folder>
+```
+
+A description over 130 characters and a missing `allowed-tools` are not refusals. They are the field follow-ups of the plan section, and each one needs its own yes before the converter can plan the conversion.
+
+## 6. Result Templates
+
+### Converted
+
+```text
+DOCTOR MUTATING RESULT
+Target: convert
+Skill: [name]
+Files changed: [each overwritten or created path]
+Router source: [inline -> ROUTER.md | ROUTER.md -> ROUTER.md]
+Verification: [the check engine's result line and any row that still reports FINDING]
+Follow-ups deferred: [the fields left untouched, or none]
+Undo: [the restore commands, one per file]
+STATUS=OK
+```
+
+### Already Converted
+
+Render this when the engine reports that no conversion is needed.
+
+```text
+DOCTOR TARGET UNCHANGED
+Target: convert
+Skill: [name]
+State: [the engine's no-conversion message]
+Changed: none
+STATUS=OK
+```
+
+### Cancelled
+
+```text
+DOCTOR TARGET CANCELLED
+Target: convert
+Skill: [name]
+Changed: none
+STATUS=CANCELLED ACTION=cancelled
+```
+
+### Failure Summary
 
 ```text
 DOCTOR TARGET FAILED
 Target: check
 Step: [row or phase]
 Error: [message]
+Changed: none
 Next: [recommended command or manual action]
 STATUS=ERROR ERROR="[message]"
 ```
 
 An engine that exits 2 prints its code, its message and, when it carries one, a `Provision:` line. Quote all three: the code names which precondition failed.
 
-## 5. Troubleshooting Display
+### Convert Failed
+
+```text
+DOCTOR TARGET FAILED
+Target: convert
+Skill: [name]
+Step: [the phase that stopped the run]
+Error: [the engine's code and message]
+Changed: [changes applied before the failure, or none]
+Next: [the repair, or the refusal table's Next column]
+STATUS=FAIL ERROR="[code]"
+```
+
+A rolled-back conversion prints `Changed: none`. A `ROLLBACK_FAILED` prints the backup folder it kept instead, and nothing is restored by this route.
+
+## 7. Troubleshooting Display
 
 | Situation | Suggested Action |
 |-----------|------------------|
-| A row reports `FINDING` | Read that row's detail and codes, fix that one requirement, then rerun `/doctor:sk-skill check <name-or-path>` |
-| A row reports `UNKNOWN` | The row could not be answered, not failed. Rerun when the row's precondition is back, and never report an `UNKNOWN` row as a pass |
+| A check row reports `FINDING` | Read that row's detail and codes, fix that one requirement, then rerun `/doctor:sk-skill check <name-or-path>` |
+| A check row reports `UNKNOWN` | The row could not be answered, not failed. Rerun when the row's precondition is back, and never report an `UNKNOWN` row as a pass |
 | `C3` or `C4` prints codes | Run the validator the codes come from: `package_skill.py <dir> --check --strict` for the `RS` codes, `ci-skill-root-metadata.cjs` for the root-metadata codes |
 | `SKILL_NOT_FOUND` | The name or path resolved to no `SKILL.md`. Pass a name under `.skilled/skills` or a path to a skill root |
 | `SHARED_NOT_BUILT` | Run the provision command the `Provision:` line names, then rerun |
@@ -143,6 +280,18 @@ An engine that exits 2 prints its code, its message and, when it carries one, a 
 | `HUB_NOT_A_HUB` | The `--into-hub` path carries neither `mode-registry.json` nor `hub-router.json`. Pass a hub root or a hub name under `.skilled/skills` |
 | `HUB_NOT_FOUND` | The hub name or path resolves to no directory. Check the spelling, or pass the hub root path |
 | `PRIVATE_ROOT_REFUSED` | A private root is skipped by every gate, so a report on it could only pass by being invisible. Point `--into-hub` and the skill at a public root |
+| Convert exits 1 with a code that is not in the refusal table | The code is the engine's own; read its message and treat it as the same class: nothing was written, fix that one condition, then rerun the plan |
+| Convert reports the skill is already converted | A previous run converted it and a second apply writes nothing. Read the conversion result, not a failure |
+| Convert changed `SKILL.md` and you want it back | Copy the backed-up `SKILL.md` over the converted one and delete the created `ROUTER.md`, using the backup folder the result printed |
 | Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
+
+## 8. Next Step
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| A check row still reports `FINDING` after a conversion | `/doctor:sk-skill check <name-or-path>` | The conversion completes the format; the remaining row is a different requirement |
+| A converted skill still reports `C11` over budget | `/doctor:sk-skill convert <name-or-path>` | The trim is offered again with its own yes |
+| The converted skill should reach the advisor | `npm --prefix .skilled/skills/system-skill-advisor/runtime run build` | The advisor reads the rebuilt skill graph, not the files on disk |
+| The conversion was refused as a hub | `/create:skill-parent <the parent skill folder>` | A hub belongs to the parent-skill route |
 
 End interactive presentations with: `What would you like to do next?`

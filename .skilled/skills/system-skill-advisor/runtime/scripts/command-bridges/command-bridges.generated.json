@@ -4,10 +4,10 @@
   "counts": {
     "commandMetadata": 19,
     "allowList": 8,
-    "doctorRoutes": 23,
-    "generated": 50,
-    "typescriptActive": 27,
-    "pythonActive": 37
+    "doctorRoutes": 24,
+    "generated": 51,
+    "typescriptActive": 29,
+    "pythonActive": 39
   },
   "entries": [
     {
@@ -1006,17 +1006,87 @@
       }
     },
     {
-      "id": "command-doctor-sk-skill",
+      "id": "command-doctor-sk-skill-check",
       "command": "/doctor:sk-skill",
       "skillId": "sk-doc",
       "ownerMode": "sk-doc",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
-          "enabled": false
+          "enabled": true,
+          "inventoryId": "command-doctor-sk-skill-check",
+          "order": 27,
+          "id": "command-doctor-sk-skill-check",
+          "description": "",
+          "name": "/doctor:sk-skill check",
+          "keywords": [
+            "how far is a skill from the skilled format",
+            "check a skill against the skilled format",
+            "skill format check report",
+            "skill fleet format summary",
+            "/doctor:sk-skill"
+          ],
+          "intentSignals": [
+            "/doctor:sk-skill check"
+          ],
+          "readOnly": true,
+          "domains": [
+            "doctor",
+            "command"
+          ]
         },
         "python": {
-          "enabled": false
+          "enabled": true,
+          "inventoryId": "command-doctor-sk-skill-check",
+          "order": 38,
+          "id": "command-doctor-sk-skill-check",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:sk-skill check",
+            "/doctor:sk-skill"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-sk-skill-convert",
+      "command": "/doctor:sk-skill",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-doc",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-sk-skill-convert",
+          "order": 28,
+          "id": "command-doctor-sk-skill-convert",
+          "description": "",
+          "name": "/doctor:sk-skill convert",
+          "keywords": [
+            "convert a skill to the skilled format",
+            "convert a plain agent skill",
+            "turn my old skill into a skilled skill",
+            "skill format conversion plan",
+            "move the machine router out of a skill",
+            "skill folder conversion with a backup"
+          ],
+          "intentSignals": [
+            "/doctor:sk-skill convert"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-sk-skill-convert",
+          "order": 39,
+          "id": "command-doctor-sk-skill-convert",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:sk-skill convert"
+          ]
         }
       }
     },
