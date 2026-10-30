@@ -73,6 +73,8 @@ function pathsFor(repoRoot) {
     skillGraphCompiler: path.join(advisorScripts, 'skill_graph_compiler.py'),
     regressionCorpus: path.join(advisorScripts, 'fixtures', 'skill-advisor-regression-cases.jsonl'),
     goldenCorpus: path.join(advisorScripts, 'fixtures', 'gate2-golden-prompts.jsonl'),
+    regressionRunner: path.join(advisorScripts, 'skill_advisor_regression.py'),
+    skillGraphJson: path.join(advisorScripts, 'skill-graph.json'),
     graphFreshness: path.join(skilledScripts, 'skill-graph-freshness.cjs'),
     hermesSync: path.join(runtimeCli, 'hermes', 'sync-skills-hermes.cjs'),
     auditDescriptions: path.join(skilledScripts, 'audit_descriptions.py'),
@@ -1224,7 +1226,37 @@ function modeTokenPattern(token) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 7. EXPORTS
+// 7. INTEGRATION SPAWN WRAPPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// A skill's conversion ends by wiring it into surfaces no create script owns. Each
+// surface is a separate process with its own exit protocol, so the mapping from a
+// finished process to a written result stays here rather than in the caller.
+function pythonCommand(context) {
+  if (context.python) return context.python;
+  const fromEnv = context.env && context.env.PYTHON;
+  return fromEnv || 'python3';
+}
+
+function runAdvisorScan(context) {
+  return runChild(context, process.execPath, [context.paths.advisor, 'skill_graph_scan', '--trusted']);
+}
+
+function runSkillGraphCompiler(context) {
+  return runChild(context, pythonCommand(context), [context.paths.skillGraphCompiler, '--export-json']);
+}
+
+// Hermes keeps generated copies by frontmatter name while every other runtime
+// links the skills root whole, so it is the only mirror with a write to run and a
+// drift check to read back.
+function runHermesSync(context, { check = false } = {}) {
+  const args = [context.paths.hermesSync];
+  if (check) args.push('--check');
+  return runChild(context, process.execPath, args);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 8. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
@@ -1270,4 +1302,8 @@ module.exports = {
   stageTwoIntentProbe,
   stageTwoInventoryProbe,
   inspectCollisions,
+  pythonCommand,
+  runAdvisorScan,
+  runHermesSync,
+  runSkillGraphCompiler,
 };

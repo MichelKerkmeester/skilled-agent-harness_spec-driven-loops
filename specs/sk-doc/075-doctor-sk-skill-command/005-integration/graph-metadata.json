@@ -34,7 +34,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,8 +42,14 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/lib/sk-skill-integrate.cjs",
+      ".skilled/commands/doctor/scripts/tests/sk-skill-integrate.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/fixtures/sk-skill-integrate/router-reach-fleet-report.json",
+      ".skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py"
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+      ".skilled/commands/doctor/scripts/sk-skill-convert.cjs",
+      ".skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs"
     ],
     "entities": [
       {
@@ -83,6 +89,30 @@
         "source": "derived"
       },
       {
+        "name": "sk-skill-integrate.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/lib/sk-skill-integrate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-integrate.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/sk-skill-integrate.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "router-reach-fleet-report.json",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/scripts/tests/fixtures/sk-skill-integrate/router-reach-fleet-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-surface.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs",
+        "source": "derived"
+      },
+      {
         "name": "ci-router-vocabulary-reach.cjs",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
@@ -95,7 +125,25 @@
         "source": "derived"
       },
       {
+        "name": "sk-skill-convert.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/sk-skill-convert.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-convert.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -125,12 +173,6 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -153,47 +195,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow After",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The advisor reads only direct children of `.skilled/skills` holding `graph-metadata.json` (`projection.ts:1536-1556`), the compiled `skill-graph.json` is CI-gated for freshness (`routing-registry-drift.yml:241-246`), Hermes holds generated skill copies by frontmatter name (`sync-skills-hermes.cjs:150-152`), and the changelog index is a set of relative links that no script writes",
     "created_at": "2026-10-30T05:21:15Z",
-    "last_save_at": "2026-10-30T05:40:24.558Z",
+    "last_save_at": "2026-10-30T09:13:42.021Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:851082f094b58ef153100e8904fb3b2c9107a3a8c8156d93a6341a6e53ec3dae",
+    "source_fingerprint": "sha256:768c92727d78f2a2092c4ffd662840a2a2c7848898f18eccd38ad2567eeb4fd1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "77beaeaf692148707c1f65a1217f9ce60d3e77cdfecd95cf66323984cb06dbe0",
-      "plan.md": "5657b7f521b0c4073a14085cc83a497fab82c3e26d4b6833ea0b34e567e1040f",
-      "tasks.md": "d12346088f3ef688e6d5fd21de3bb3dc8281db6df267429216415ef29c053d30",
-      "implementation-summary.md": "79432042a421d987bd84a498312dab069354d8cd6710de3e0138343c793744e0"
+      "spec.md": "5892c615586fd8322f2aae77bc154a444190308e146eab8452932d24b4fe12a8",
+      "plan.md": "4d48a1cdf16f7bc76835311ab5a624c21aaa3d6c6833e01d96dcce996b34b67a",
+      "tasks.md": "68989f0dafa9447cbacf80f4dcd63bcc108f7d651533ef32188e0c9e0b76dd57",
+      "implementation-summary.md": "3702e5c456eaf85899a64d1bfe8d40559bc390a9d59c08f329076d63999c373c"
     },
     "last_active_at": null
   }

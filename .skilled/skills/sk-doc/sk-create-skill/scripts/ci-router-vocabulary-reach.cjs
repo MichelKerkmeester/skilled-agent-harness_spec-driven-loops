@@ -3,7 +3,7 @@
  * Check that a phrase a hub's router advertises actually reaches that hub.
  *
  * usage: ci-router-vocabulary-reach.cjs [--hub <id>] [--json] [--limit N]
- *        [--concurrency N]
+ *        [--concurrency N] [--skill <name-or-path>]
  *
  * A router's INTENT_SIGNALS resolves an intent inside a hub that has already been
  * chosen. A hub's graph-metadata.json intent_signals is what decides which hub
@@ -113,8 +113,8 @@ function hubs() {
     .sort();
 }
 
-function declaredPhrases(hub) {
-  const text = fs.readFileSync(path.join(SKILLS, hub, 'ROUTER.md'), 'utf8');
+function declaredPhrases(directory) {
+  const text = fs.readFileSync(path.join(directory, 'ROUTER.md'), 'utf8');
   const block = /INTENT_SIGNALS\s*=\s*\{([\s\S]*?)\n\}/.exec(text);
   if (!block) return [];
   const found = [...block[1].matchAll(/"([^"]{3,60})"/g)].map((m) => m[1]);
@@ -190,12 +190,32 @@ async function reaches(phrase, hub) {
   return { ...rankShippedFleet(above, hub), generation };
 }
 
+// A standalone skill declares its phrases in its own ROUTER.md and has no hub
+// registry to list, so the fleet scan cannot see it at all. Naming it directly is
+// the only way its reach can be reported, and the folder name is the id the
+// advisor's recommendation list carries.
+function skillTarget(value) {
+  if (typeof value !== 'string' || value.trim() === '') {
+    process.stderr.write('ci-router-vocabulary-reach.cjs: --skill needs a skill name or path\n');
+    process.exit(2);
+  }
+  const named = value.trim();
+  const directory = named.includes('/') || named.includes('\\')
+    ? path.resolve(named)
+    : path.join(SKILLS, named);
+  if (!fs.existsSync(path.join(directory, 'ROUTER.md'))) {
+    process.stderr.write(`ci-router-vocabulary-reach.cjs: no ROUTER.md under ${directory}\n`);
+    process.exit(2);
+  }
+  return { hub: path.basename(directory), directory };
+}
+
 async function main() {
   const args = process.argv.slice(2);
   // A misspelled flag must fail loudly rather than fall back to a default run.
   // Only a token in option position is checked: the token after a value-taking
   // option is its value even when it begins with a dash.
-  const valueOptions = new Set(['--hub', '--limit', '--concurrency']);
+  const valueOptions = new Set(['--hub', '--limit', '--concurrency', '--skill']);
   const knownOptions = new Set(['--json', ...valueOptions]);
   for (let i = 0; i < args.length; i += 1) {
     if (valueOptions.has(args[i])) {
@@ -208,8 +228,17 @@ async function main() {
     }
   }
   const only = args.includes('--hub') ? args[args.indexOf('--hub') + 1] : null;
+  const skill = args.includes('--skill') ? args[args.indexOf('--skill') + 1] : null;
   const limit = args.includes('--limit') ? Number(args[args.indexOf('--limit') + 1]) : Infinity;
   const asJson = args.includes('--json');
+
+  // The fleet path answers "which hub answers this", the named path answers "does
+  // this one root answer its own phrases", so mixing them would print a row whose
+  // verdict nobody can read.
+  if (skill !== null && only) {
+    process.stderr.write('ci-router-vocabulary-reach.cjs: --hub and --skill probe different sets: pass one of them\n');
+    process.exit(2);
+  }
 
   // A truncated inventory proves only what it sampled, which is how phrases stay
   // broken across green runs. Sampling stays available by hand and is refused
@@ -225,9 +254,12 @@ async function main() {
 
   const report = [];
   let generation = null;
-  for (const hub of hubs()) {
+  const targets = skill === null
+    ? hubs().map((hub) => ({ hub, directory: path.join(SKILLS, hub) }))
+    : [skillTarget(skill)];
+  for (const { hub, directory } of targets) {
     if (only && hub !== only) continue;
-    const phrases = declaredPhrases(hub).slice(0, limit);
+    const phrases = declaredPhrases(directory).slice(0, limit);
     const unreachable = [];
     // Probes overlap, but the report is emitted in declaration order, so a run is
     // diffable against the previous one.

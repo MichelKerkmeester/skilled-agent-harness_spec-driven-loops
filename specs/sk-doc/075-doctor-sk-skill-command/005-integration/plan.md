@@ -36,13 +36,18 @@ Append V9 to convert: six rows, each printed as its own plan line and run only a
 
 ### Definition of Ready
 - [ ] Phase 004 closed: the plain fixture ends strict PASS
-- [ ] Fleet reach output captured before the change in `scratch/reach-before.txt`
-- [ ] Dependencies identified
+- [x] Fleet reach output captured before the change in `scratch/reach-before.txt`
+- [x] Dependencies identified
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] `sync-skills-hermes.cjs --check` PASS, `skill-graph-freshness.cjs --strict` exit 0 and `cmp scratch/reach-before.txt scratch/reach-after.txt` prints nothing
-- [ ] Docs updated (spec/plan/tasks)
+- [x] `sync-skills-hermes.cjs --check` PASS, `skill-graph-freshness.cjs --strict` exit 0 and `cmp scratch/reach-before.txt scratch/reach-after.txt` prints nothing
+- [x] Docs updated (spec/plan/tasks)
+
+All acceptance criteria stay open until convert calls these rows; `implementation-summary.md` records the
+library evidence for each row and the reason the call site belongs to the conductor. Phase 004 is still open
+because it is being built in parallel: these rows take the converted skill root as an argument and never read
+the convert script, which is what let the two phases proceed side by side.
 <!-- /ANCHOR:quality-gates -->
 
 ---

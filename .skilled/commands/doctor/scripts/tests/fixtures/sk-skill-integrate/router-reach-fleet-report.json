@@ -1,0 +1,28 @@
+[
+  {
+    "hub": "mcp-tooling",
+    "declared": 4,
+    "unreachable": [
+      {
+        "phrase": "wire an mcp server",
+        "kind": "outranked",
+        "reaches": [
+          "sk-code=0.9500",
+          "mcp-tooling=0.9000"
+        ]
+      },
+      {
+        "phrase": "audit tool routing",
+        "kind": "wrong-hub",
+        "reaches": [
+          "sk-doc=0.9500"
+        ]
+      },
+      {
+        "phrase": "choose a transport layer",
+        "kind": "no-reach",
+        "reaches": []
+      }
+    ]
+  }
+]
