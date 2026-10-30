@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7309,
-    "ok": 16393,
+    "missing-frontmatter": 7311,
+    "ok": 16440,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27250,
+  "documentsScanned": 27299,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "78115c4d2166176fac31787d84879baf92650fb95b937511a4996b94b1f7e230",
+  "manifestHash": "73392abc85e68c6b847b7a51562ecc3283f0f0c7e1469ba3acace1b4e8ddebbd",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 39965,
+      "ok": 40025,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -33794,6 +33794,18 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-env-secret-and-per-invocation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-helper-read-only-pick.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-helper-writing-handoff.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -69555,6 +69567,34 @@
     },
     {
       "path": "specs/agents/020-router-file-rule-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/021-doctor-agents-md/001-doctor-agents-md/001-manifest-and-template-block/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/021-doctor-agents-md/001-doctor-agents-md/003-embed-engine/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/021-doctor-agents-md/001-doctor-agents-md/004-command-plumbing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/021-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/021-doctor-agents-md/001-doctor-agents-md/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/021-doctor-agents-md/002-doctor-helper/scratch",
       "reason": "excluded directory"
     },
     {

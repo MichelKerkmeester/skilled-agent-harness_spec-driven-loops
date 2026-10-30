@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1c2cf52b255f5a79eda928735b3d5a04b8177cc33088b2aaea415b901cde6c44",
+  "corpusHash": "277a4ae9f4551b2173c886fd4f8186391d4defa155640f3c29f3426caedd874d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27250,
+  "includedPathCount": 27299,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -92,6 +92,7 @@
     ".skilled/changelog/skilled/v4.0.1.0.md",
     ".skilled/changelog/skilled/v4.0.1.1.md",
     ".skilled/changelog/skilled/v4.0.1.2.md",
+    ".skilled/changelog/skilled/v4.0.1.3.md",
     ".skilled/hooks/README.md",
     ".skilled/hooks/classifier-injection-screen/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -7867,6 +7868,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.17.24.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.25.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.26.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.17.27.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.4.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.5.0.md",
@@ -8324,6 +8326,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.23.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.24.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.25.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.26.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
@@ -8433,6 +8436,8 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-env-inspect.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-env-save-preference.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-env-secret-and-per-invocation.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-helper-read-only-pick.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-helper-writing-handoff.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-runtime-mirrors-drift.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-runtime-mirrors-in-sync.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-speckit-legacy-target.md",
@@ -8958,6 +8963,50 @@
     "specs/agents/020-router-file-rule-alignment/plan.md",
     "specs/agents/020-router-file-rule-alignment/spec.md",
     "specs/agents/020-router-file-rule-alignment/tasks.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/001-manifest-and-template-block/acceptance-criteria.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/001-manifest-and-template-block/goal.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/001-manifest-and-template-block/implementation-summary.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/001-manifest-and-template-block/plan.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/001-manifest-and-template-block/spec.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/001-manifest-and-template-block/tasks.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine/acceptance-criteria.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine/goal.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine/implementation-summary.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine/plan.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine/spec.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine/tasks.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/003-embed-engine/acceptance-criteria.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/003-embed-engine/goal.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/003-embed-engine/implementation-summary.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/003-embed-engine/plan.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/003-embed-engine/spec.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/003-embed-engine/tasks.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/004-command-plumbing/acceptance-criteria.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/004-command-plumbing/goal.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/004-command-plumbing/implementation-summary.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/004-command-plumbing/plan.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/004-command-plumbing/spec.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/004-command-plumbing/tasks.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs/acceptance-criteria.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs/goal.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs/implementation-summary.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs/plan.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs/spec.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs/tasks.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/acceptance-criteria.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/goal.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/implementation-summary.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/plan.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/spec.md",
+    "specs/agents/021-doctor-agents-md/001-doctor-agents-md/tasks.md",
+    "specs/agents/021-doctor-agents-md/002-doctor-helper/acceptance-criteria.md",
+    "specs/agents/021-doctor-agents-md/002-doctor-helper/goal.md",
+    "specs/agents/021-doctor-agents-md/002-doctor-helper/implementation-summary.md",
+    "specs/agents/021-doctor-agents-md/002-doctor-helper/plan.md",
+    "specs/agents/021-doctor-agents-md/002-doctor-helper/spec.md",
+    "specs/agents/021-doctor-agents-md/002-doctor-helper/tasks.md",
+    "specs/agents/021-doctor-agents-md/goal.md",
+    "specs/agents/021-doctor-agents-md/spec.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/acceptance-criteria.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/goal.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/implementation-summary.md",
@@ -27281,7 +27330,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "78115c4d2166176fac31787d84879baf92650fb95b937511a4996b94b1f7e230",
+  "manifestHash": "73392abc85e68c6b847b7a51562ecc3283f0f0c7e1469ba3acace1b4e8ddebbd",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28101,6 +28150,34 @@
     },
     {
       "path": "specs/agents/020-router-file-rule-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/021-doctor-agents-md/001-doctor-agents-md/001-manifest-and-template-block/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/021-doctor-agents-md/001-doctor-agents-md/003-embed-engine/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/021-doctor-agents-md/001-doctor-agents-md/004-command-plumbing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/021-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/021-doctor-agents-md/001-doctor-agents-md/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/021-doctor-agents-md/002-doctor-helper/scratch",
       "reason": "excluded directory"
     },
     {
