@@ -62,7 +62,7 @@ This is **Phase 2** of the `/doctor:agents-md` build inside `agents/021-doctor-a
 
 **Deliverables**:
 - `scripts/agents-md-check.cjs` with the twelve rows, four states per row and exit codes 0, 1 and 2.
-- `scripts/tests/agents-md-check.test.cjs` and nine synthetic fixture trees.
+- `scripts/tests/agents-md-check.test.cjs` and nine fixture recipes, each composed into a throwaway tree per run.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -86,10 +86,10 @@ Measured on this worktree at `006d96370d`, before any implementation. These are 
 ```text
 $ node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js
 OK: all rule invariants present (8 exact-string file(s) + 2 Iron Law file(s) + 21 delivery-prefix anchor(s) + 6 extension floor(s) + 2 example output(s)).
-  16374  #### Blast-Radius Management
+  16368  #### Blast-Radius Management
 
 $ wc -c AGENTS.md
-   27679 AGENTS.md
+   27888 AGENTS.md
 ```
 <!-- /ANCHOR:measured-behavior -->
 
@@ -100,7 +100,7 @@ $ wc -c AGENTS.md
 
 ### In Scope
 - Twelve rows, each reporting `PASS`, `FINDING`, `UNKNOWN` or `INFO`, and a `--json` form of the same report.
-- Nine synthetic fixture trees: `pure`, `adopted`, `stale`, `forked`, `foreign`, `claude-only`, `absent`, `shadowed-pin` and `over-budget`.
+- Nine synthetic fixture recipes, composed into a throwaway tree per run: `pure`, `adopted`, `stale`, `forked`, `foreign`, `claude-only`, `absent`, `shadowed-pin` and `over-budget`.
 - Exit codes 0 for no finding, 1 for at least one finding and 2 for a failed precondition.
 
 ### Out of Scope
@@ -131,15 +131,16 @@ $ wc -c AGENTS.md
 |-----------|-------------|-------------|
 | `.skilled/commands/doctor/scripts/agents-md-check.cjs` | Create | The read-only engine |
 | `.skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs` | Create | The failing-first suite |
-| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/pure/` | Create | A tiny tree carrying the current shipped sections and no block |
-| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/adopted/` | Create | Current sections plus a non-empty block |
-| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/stale/` | Create | Sections one release behind |
-| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/forked/` | Create | Local sections among shipped ones and one edited section |
-| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/foreign/` | Create | A repository's own file with no shipped section |
-| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/claude-only/` | Create | A `CLAUDE.md` and no `AGENTS.md` |
-| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/absent/` | Create | No instruction file at all |
-| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/shadowed-pin/` | Create | A local lookup line placed before Gate 1 |
-| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/over-budget/` | Create | Markers out of order and a total above the ceiling |
+| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/pure/` | Create | The recipe for a tiny tree carrying the current shipped sections and no block |
+| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/adopted/` | Create | The recipe for current sections plus a non-empty block |
+| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/stale/` | Create | The recipe for sections one release behind |
+| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/forked/` | Create | The recipe for local sections among shipped ones and one edited section |
+| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/foreign/` | Create | The recipe for a repository's own file with no shipped section |
+| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/claude-only/` | Create | The recipe for a `CLAUDE.md` and no `AGENTS.md` |
+| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/absent/` | Create | The recipe for no instruction file at all |
+| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/shadowed-pin/` | Create | The recipe for a local lookup line placed before Gate 1 |
+| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/over-budget/` | Create | The recipe for markers out of order and a total above the ceiling |
+| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/compose-fixture.cjs` | Create | The composer every recipe is built by, also callable by hand |
 <!-- /ANCHOR:scope -->
 
 ---

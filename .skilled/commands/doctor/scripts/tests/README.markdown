@@ -31,6 +31,8 @@ Current state:
 |---|---|
 | `run-all.sh` | Runs every suite below, plus `route-validate.sh --self-test` and the skill-graph freshness panel |
 | `agent-roster-mirror-check.test.cjs` | `agent-roster-mirror-check.cjs` |
+| `agents-md-check.test.cjs` | `agents-md-check.cjs` against nine recipe folders composed into throwaway trees: the install state each recipe plants, the unmarked section and the local edit, the shadowed pin, the over-budget pair, the absent canary, the divergent `CLAUDE.md`, the three exit codes, the write-spy, the tree digests, JSON parity, and the case that keeps a recipe folder free of a composed tree |
+| `fixtures/agents-md/compose-fixture.cjs` | The composer the check suite drives: one recipe plus an empty folder becomes the tree it describes, which is also how a person points the engine at a planted defect by hand |
 | `command-catalog-mirror-check.test.cjs` | `command-catalog-mirror-check.cjs` |
 | `doctor-phrase-reach.test.cjs` | `doctor-phrase-reach.cjs`: every admitted phrase reaching its bridge on the built advisor, and the stale-build refusal with exit 2 |
 | `sk-code-setup-check.test.cjs` | `sk-code-setup-check.cjs` against throwaway fixture roots: the passing battery, the probe verdicts, the quality leg's verdicts, the repair line for each failing leg it drives, the provision-step skip and the usage error |

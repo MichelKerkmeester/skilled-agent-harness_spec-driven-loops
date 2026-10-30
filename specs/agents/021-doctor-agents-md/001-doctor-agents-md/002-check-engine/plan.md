@@ -56,7 +56,7 @@ Pure classifiers behind one report renderer.
 
 ### Key Components
 - **`agents-md-check.cjs`**: argument parsing, the twelve row functions, the renderer and the exit-code mapping.
-- **Fixtures**: nine trees under `scripts/tests/fixtures/agents-md/`, each built from the manifest with exactly one planted defect.
+- **Fixtures**: nine recipes under `scripts/tests/fixtures/agents-md/`, each composed into a throwaway tree from the manifest with exactly one planted defect.
 - **External tools it calls rather than reimplements**: the rule-copy canary for A6, the pointer sync for A10 and the repo-rules checker for A11.
 
 ### Data Flow

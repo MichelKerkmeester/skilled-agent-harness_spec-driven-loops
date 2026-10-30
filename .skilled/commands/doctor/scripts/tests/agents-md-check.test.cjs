@@ -10,11 +10,13 @@
 // answer on a synthetic repository carrying exactly one shape of drift, and proves the
 // run itself leaves the tree untouched.
 //
-// Every fixture is composed from the manifest's derived bodies into a throwaway
-// directory, never committed and never read twice. A fixture is therefore a statement
-// about the manifest that ships today rather than a snapshot of the template at the
-// time the fixture was written: refreshing a released body refreshes every fixture in
-// the same edit, and a fixture cannot describe a template the manifest does not ship.
+// Each synthetic repository is composed from the manifest's derived bodies into a
+// throwaway directory, never committed and never read twice. A fixture folder therefore
+// holds a recipe and no document: the tree is a statement about the template that ships
+// today rather than a snapshot of it at the time the recipe was written, and a fixture
+// cannot describe a template the manifest does not ship. Refreshing a released body in
+// the manifest refreshes every fixture in the same edit, and no copy of the template
+// sits in the tree for a link checker or a runtime to pick up.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS AND PATHS
@@ -30,18 +32,17 @@ const test = require('node:test');
 
 const { buildReport, main } = require('../agents-md-check.cjs');
 const { segment } = require('../lib/agents-md-sections.cjs');
-
-const SCRIPTS_DIR = path.resolve(__dirname, '..');
-const REPO_ROOT = path.resolve(SCRIPTS_DIR, '../../../..');
-const ENGINE = path.join(SCRIPTS_DIR, 'agents-md-check.cjs');
-const MANIFEST_PATH = path.join(SCRIPTS_DIR, '../assets/agents-md-manifest.json');
-const FIXTURES = path.join(__dirname, 'fixtures/agents-md');
-const POINTER_SYNC = path.join(
+const {
+  FIXTURES,
+  MANIFEST_PATH,
   REPO_ROOT,
-  '.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs',
-);
+  SCRIPTS_DIR,
+  composeFixture,
+  fixtureNames,
+  loadRecipe,
+} = require('./fixtures/agents-md/compose-fixture.cjs');
 
-const { TARGETS, applyBlock, readGateOneLine, renderBlock } = require(POINTER_SYNC);
+const ENGINE = path.join(SCRIPTS_DIR, 'agents-md-check.cjs');
 
 const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8'));
 
@@ -49,149 +50,17 @@ const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8'));
 const ROWS = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10', 'A11', 'A12'];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 2. FIXTURE COMPOSER
+// 2. FIXTURE TREES
 // ─────────────────────────────────────────────────────────────────────────────
 
-function loadRecipe(name) {
-  return JSON.parse(fs.readFileSync(path.join(FIXTURES, name, 'fixture.json'), 'utf8'));
-}
-
-function derivedBody(id) {
-  const entry = manifest.derived.sections[id];
-  assert.ok(entry, `the manifest's derived key holds section ${id}`);
-  return entry.body;
-}
-
-// The older body the manifest's release history holds for one section, found by the
-// heading the body opens with rather than by a tag, so the fixture names a section and
-// the history decides which released wording stands in for it.
-function historyBody(id) {
-  const entry = manifest.sections.find((row) => row.id === id);
-  assert.ok(entry, `the manifest declares section ${id}`);
-  const hit = manifest.derived.history.find((row) => row.body.split('\n')[0].includes(entry.match));
-  assert.ok(hit, `the manifest's history holds an older body for ${id}`);
-  return hit.body;
-}
-
-// A local line belongs inside the section it was written into, ahead of the divider that
-// closes it, so the fixture reads like an edit somebody made rather than a line appended
-// after the rule.
-function insertIntoSection(body, line) {
-  const divider = body.lastIndexOf('\n---\n');
-  if (divider === -1) return `${body}${line}\n`;
-  return `${body.slice(0, divider)}\n${line}\n${body.slice(divider)}`;
-}
-
-function composeDocument(recipe) {
-  if (recipe.base === 'none') return null;
-  if (recipe.base === 'own') return recipe.own_document;
-
-  const parts = [];
-  for (const entry of manifest.sections) {
-    let body = (recipe.replace_with_history || []).includes(entry.id)
-      ? historyBody(entry.id)
-      : derivedBody(entry.id);
-    for (const line of (recipe.section_edits || {})[entry.id] || []) {
-      body = insertIntoSection(body, line);
-    }
-    for (const row of recipe.insert_sections || []) {
-      if (row.before === entry.id) parts.push(row.text);
-    }
-    parts.push(body);
-  }
-  return parts.join('');
-}
-
-function blockText(recipe) {
-  const { markers } = manifest;
-  return `\n${markers.heading}\n\n${markers.note}\n${recipe.block.text || ''}`.trimEnd();
-}
-
-function composeDocumentWithBlock(recipe) {
-  const shipped = composeDocument(recipe);
-  if (!recipe.block) return shipped;
-
-  const { markers } = manifest;
-  if (recipe.block.markers === 'reversed') {
-    const filler = Array.from(
-      { length: recipe.block.pad_lines || 0 },
-      (_, index) => `${String(index + 1).padStart(2, '0')}. A repository note kept out of the shipped sections.`,
-    ).join('\n');
-    return `${shipped}${markers.end}\n${filler}\n${markers.start}\n`;
-  }
-  return `${shipped}${markers.start}\n${blockText(recipe)}\n${markers.end}\n`;
-}
-
-// The Cursor rule every runtime mirror is generated from. Writing it with the sync's own
-// renderer is what makes the fixture a repository that has run the generator, instead of
-// one carrying a hand-copied block that would only prove the copy.
-function writePointerMirror(dir) {
-  const line = readGateOneLine(dir);
-  if (!line) return;
-  const target = path.join(dir, TARGETS[0].file);
-  fs.mkdirSync(path.dirname(target), { recursive: true });
-  fs.writeFileSync(target, applyBlock('', renderBlock(TARGETS[0].intro, line)), 'utf8');
-}
-
-// Devin never sees past the delivery prefix of the root document, so a repository with a
-// non-empty block is expected to carry the generated mirror of it.
-function writeRepoLocalMirror(dir, recipe) {
-  if (!recipe.block || recipe.block.markers === 'reversed') return;
-  const target = path.join(dir, '.cursor/rules/repo-local.md');
-  fs.mkdirSync(path.dirname(target), { recursive: true });
-  fs.writeFileSync(target, `---\nalwaysApply: true\n---\n${blockText(recipe)}\n`, 'utf8');
-}
-
-// The tree a recipe describes: the root document, the files the recipe adds, and the two
-// runtime mirrors a repository that ran its generators would carry.
-function materialize(dir, recipe) {
-  fs.mkdirSync(dir, { recursive: true });
-  const document = composeDocumentWithBlock(recipe);
-  if (document !== null) fs.writeFileSync(path.join(dir, manifest.root_file), document, 'utf8');
-  for (const [relative, content] of Object.entries(recipe.files || {})) {
-    const target = path.join(dir, relative);
-    fs.mkdirSync(path.dirname(target), { recursive: true });
-    fs.writeFileSync(target, content, 'utf8');
-  }
-  writePointerMirror(dir);
-  writeRepoLocalMirror(dir, recipe);
-}
-
-// Every file under a tree that the recipe is responsible for, as relative path to bytes.
-// The recipe itself is not part of the tree a repository would hold.
-function treeFiles(dir, { skip = [] } = {}) {
-  const files = new Map();
-  const walk = (current) => {
-    for (const entry of fs.readdirSync(current, { withFileTypes: true })) {
-      const target = path.join(current, entry.name);
-      const relative = path.relative(dir, target).split(path.sep).join('/');
-      if (skip.includes(relative)) continue;
-      if (entry.isDirectory()) walk(target);
-      else files.set(relative, fs.readFileSync(target));
-    }
-  };
-  walk(dir);
-  return files;
-}
-
-function fixtureNames() {
-  return fs.readdirSync(FIXTURES).sort();
-}
-
-// The committed fixture is the artifact a reader opens and the path every command in the
-// packet names, while every engine run happens on a throwaway copy of it. The recipe and
-// this composer stay in the suite so the committed tree is derived, never hand-written:
-// the freshness case below recomposes it and fails when the manifest moved underneath.
-const REWRITE = process.env.AGENTS_MD_FIXTURE_WRITE === '1';
-
+// Every engine run happens on a tree composed for it and removed afterwards, so no case
+// can read a stale copy of a document, and the tree a case runs against is always the
+// template that ships in this repository.
 function buildFixture(t, name) {
   const parent = fs.mkdtempSync(path.join(os.tmpdir(), `agents-md-check-${name}-`));
   t.after(() => fs.rmSync(parent, { recursive: true, force: true }));
   const dir = path.join(parent, name);
-  fs.cpSync(path.join(FIXTURES, name), dir, {
-    recursive: true,
-    filter: (from) => path.basename(from) !== 'fixture.json',
-  });
+  composeFixture(name, dir);
   const documentPath = path.join(dir, manifest.root_file);
   return {
     dir,
@@ -257,38 +126,23 @@ function treeDigest(dir) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. THE FIXTURES DESCRIBE THE MANIFEST THAT SHIPS TODAY
+// 4. THE FIXTURES ARE RECIPES, NOT COPIES
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('the committed fixtures are what the recipes derive from the manifest today', (t) => {
-  const drift = [];
+// A composed tree committed beside its recipe would be a second copy of the template,
+// and the copy is what the repository would then have to keep: relative links would
+// resolve against the fixture folder, a runtime loading nested instruction files would
+// read it as somebody's own document, and each template edit would need a regeneration
+// commit. This case holds the rule the fixtures are arranged by.
+test('every fixture folder holds its recipe and no composed tree', () => {
+  const stray = [];
   for (const name of fixtureNames()) {
-    const recipe = loadRecipe(name);
-    const parent = fs.mkdtempSync(path.join(os.tmpdir(), `agents-md-derived-${name}-`));
-    t.after(() => fs.rmSync(parent, { recursive: true, force: true }));
-    const derived = path.join(parent, name);
-    materialize(derived, recipe);
-    const expected = treeFiles(derived);
-
-    if (REWRITE) {
-      for (const [relative, content] of expected) {
-        const target = path.join(FIXTURES, name, relative);
-        fs.mkdirSync(path.dirname(target), { recursive: true });
-        fs.writeFileSync(target, content);
-      }
-    }
-
-    const committed = treeFiles(path.join(FIXTURES, name), { skip: ['fixture.json'] });
-    for (const relative of new Set([...expected.keys(), ...committed.keys()])) {
-      if (!expected.has(relative)) drift.push(`${name}/${relative}: committed but not derived`);
-      else if (!committed.has(relative)) drift.push(`${name}/${relative}: derived but not committed`);
-      else if (!expected.get(relative).equals(committed.get(relative))) {
-        drift.push(`${name}/${relative}: differs from what the manifest derives`);
-      }
+    for (const entry of fs.readdirSync(path.join(FIXTURES, name), { withFileTypes: true })) {
+      if (entry.name !== 'fixture.json' || entry.isDirectory()) stray.push(`${name}/${entry.name}`);
     }
   }
-  assert.deepEqual(drift, [],
-    'recompose the committed fixtures with AGENTS_MD_FIXTURE_WRITE=1 node --test .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs');
+  assert.deepEqual(stray, [],
+    'compose a fixture into a temporary folder with the suite\'s composer instead of committing the tree it describes');
 });
 
 test('composer: the pure fixture rebuilds the shipped document from the manifest', (t) => {
@@ -307,8 +161,8 @@ test('composer: the pure fixture rebuilds the shipped document from the manifest
 });
 
 test('composer: each fixture declares the install state it plants', () => {
-  const names = fs.readdirSync(FIXTURES).sort();
-  assert.equal(names.length, 9, 'there are nine fixture trees');
+  const names = fixtureNames();
+  assert.equal(names.length, 9, 'there are nine fixture recipes');
   for (const name of names) {
     const recipe = loadRecipe(name);
     assert.equal(recipe.name, name, `${name} names itself`);

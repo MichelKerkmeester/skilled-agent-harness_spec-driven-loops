@@ -25,7 +25,7 @@ contextType: "general"
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
-**Variables.** `C` is `.skilled/commands/doctor/scripts/agents-md-check.cjs`. `T` is `.skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs`. `F` is `.skilled/commands/doctor/scripts/tests/fixtures/agents-md`.
+**Variables.** `C` is `.skilled/commands/doctor/scripts/agents-md-check.cjs`. `T` is `.skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs`. `F` is `.skilled/commands/doctor/scripts/tests/fixtures/agents-md`. `X` is `F/compose-fixture.cjs`, the composer that builds one recipe's tree into an empty folder.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -35,7 +35,7 @@ contextType: "general"
 
 - [x] T001 Record the six baseline commands into `scratch/baseline.txt` (`scratch/`). Verify: `rg -c 'route-validate' scratch/baseline.txt` prints at least `1`. Evidence: `rg -c` prints `3` for `route-validate` and `4` for `run-all`; the six commands, their output and their exit codes are in `scratch/baseline.txt`, and the baseline `run-all` ended `7 suite(s) passed, 0 failed` (`scratch/run-all-baseline.log`).
 - [x] T002 Confirm child 001's manifest is fresh (`agents-md-manifest.cjs`). Verify: `node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check` exits 0. Evidence: `[agents-md-manifest] PASS: 44 sections, 30 pins, derived matches AGENTS.md`, budget `16368 / 16384` to the last anchor and `27888 / 32768` total, exit 0.
-- [x] T003 Build the nine fixture trees from the manifest (`F`). Verify: `ls F | wc -l` prints `9` and each holds one `AGENTS.md` except `absent`. Evidence: `ls F | wc -l` prints `9`; `pure`, `adopted`, `stale`, `forked`, `foreign`, `shadowed-pin` and `over-budget` each hold an `AGENTS.md`, `claude-only` holds `CLAUDE.md` and no root document, `absent` holds none. Each tree also carries the `fixture.json` recipe it is derived from and the generated `.cursor/rules` mirrors a repository that ran the generators would hold; `find F -maxdepth 1 -type d | wc -l` prints `10`.
+- [x] T003 Build the nine fixture recipes from the manifest (`F`). Verify: `find F -mindepth 1 -maxdepth 1 -type d | wc -l` prints `9` and `find F -mindepth 2 -type f ! -name fixture.json | wc -l` prints `0`. Evidence: nine recipe folders and the composer beside them; `find F -maxdepth 1 -type d | wc -l` prints `10` and the only committed file inside a recipe folder is its `fixture.json`. The tree a recipe describes is composed by `X` into a temporary folder that the case removes, and composing all nine reproduces the sixteen files the recipes describe byte for byte: `pure`, `adopted`, `stale`, `forked`, `foreign`, `shadowed-pin` and `over-budget` each carry an `AGENTS.md`, `claude-only` carries `CLAUDE.md` and no root document, `absent` carries none, and `adopted` also carries the two generated `.cursor/rules` mirrors a repository that ran the generators would hold.
 - [x] T004 Write the failing suite first (`T`). Verify: `node --test T` exits non-zero on `Cannot find module`. Evidence: `Error: Cannot find module '../agents-md-check.cjs'` and `fail 1`, exit 1 (`scratch/failing-first.log`).
 <!-- /ANCHOR:phase-1 -->
 
@@ -50,7 +50,7 @@ contextType: "general"
 - [x] T008 Implement A8 and A9, unmarked content and unmarked edits (`C`). Verify: `node --test T` reports the `forked` case listing one section with its byte range. Evidence: `forked: A8 lists the unmarked section with its byte range and A9 lists the local line` passes; A8 reports `"## Local release checklist": lines 263-266, bytes 25101-25207`, outside the delivery prefix, and A9 lists the one local line of `s6-spec-folder`.
 - [x] T009 Implement A10 and A11, runtime copies and the router (`C`). Verify: `node --test T` reports the divergent `CLAUDE.md` case with its lines listed. Evidence: `a divergent CLAUDE.md fails A10 and lists the lines only it carries` passes with the three lines listed, and `A11 embeds the repo-rules checker's own summary line instead of re-deriving it` passes on `[repo-rules-check] RESULT: PASSED (11/11 checks)`.
 - [x] T010 Implement A12 and the exit-code mapping (`C`). Verify: `node --test T` reports the 0, 1 and 2 cases passing. Evidence: `exit codes: 0 on this repository, 1 on a finding, 2 on a failed precondition` passes, as do the absent-file case, the missing-canary case and `A12 reports INFO outside the source repository and runs inside it`.
-- [x] T011 Add the JSON renderer and `--root` (`C`). Verify: `node C --root F/forked --json` exits 1 and its `state` reads `forked`. Evidence: exit 1 with `"state": "forked"` and `"status": "FINDINGS"`; A8 and A9 both FINDING in the same payload.
+- [x] T011 Add the JSON renderer and `--root` (`C`). Verify: `node X forked <folder>` on an empty folder, then `node C --root <folder> --json`, exits 1 and its `state` reads `forked`. Evidence: exit 1 with `"state": "forked"` and `"status": "FINDINGS"`; A8 and A9 both FINDING in the same payload.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -59,7 +59,7 @@ contextType: "general"
 ## Phase 3: Verification
 
 - [x] T012 Run the engine on this repository (`C`). Verify: `node C` exits 0 and prints `STATUS=OK` with `A1 install state: pure`. Evidence: `A1 install state: pure   (PASS)` and `STATUS=OK rows=12 findings=0 unknown=0`, exit 0, in 0.27-0.30 s over three runs.
-- [x] T013 Prove the read-only promise (`C`). Verify: `git status --porcelain | shasum` prints the same digest before and after a run over every fixture. Evidence: `3a1b8e03cb5ed703a89e99627d486845095f4d7b` on both sides after two runs per fixture plus one run on this repository; the suite's own case hashes each temp tree with sha256 before and after.
+- [x] T013 Prove the read-only promise (`C`). Verify: `git status --porcelain | shasum` prints the same digest before and after a run over every fixture. Evidence: `e257400fe1ee97622e3d5e1fe2274bf7e0edb1f8` on both sides after composing each of the nine recipes into a temporary folder, running the engine twice on each and once on this repository; the suite's own case hashes each composed tree with sha256 before and after.
 - [x] T014 Confirm the canary gap (`C`). Verify: with the canary path moved aside in a temporary copy, A6 reads `UNKNOWN` and the exit code is 1. Evidence: the suite's missing-canary case passes with A6 `UNKNOWN`, `STATUS=UNKNOWN` and exit 1. The failure was produced by handing the harness an absent tool path rather than by moving a tracked file: the engine resolves its three child tools from this installation, and its only seam for that is the `tools` parameter `buildReport` takes. Moving `check-rule-copies.js` aside would have been an out-of-scope mutation of a tracked file.
 - [x] T015 Run the child gate (`specs/agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine/`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine --strict` prints `RESULT: PASSED`. Evidence: `Summary: Errors: 0  Warnings: 0` and `RESULT: PASSED`, exit 0.
 <!-- /ANCHOR:phase-3 -->
@@ -117,7 +117,7 @@ contextType: "general"
 - [x] CHK-010 [P0] The engine parses. Verify: `node --check .skilled/commands/doctor/scripts/agents-md-check.cjs` exits 0. Evidence: exit 0, no output.
 - [x] CHK-011 [P0] Every row appears in the report. Verify: `node .skilled/commands/doctor/scripts/agents-md-check.cjs | grep -c '^A'` prints `12`. Evidence: prints `12`.
 - [x] CHK-012 [P1] No code comment carries a packet, phase or task id. Verify: `rg -n 'AC-[0-9]{3}|REQ-[0-9]{3}|specs/' .skilled/commands/doctor/scripts/agents-md-check.cjs` prints nothing. Evidence: no match, exit 1. The same pattern over the suite and the fixture recipes is also empty.
-- [x] CHK-013 [P1] New names are lowercase kebab. Verify: `git status --porcelain` lists no path with an uppercase letter. Evidence: the new paths are `agents-md-check.cjs`, `agents-md-check.test.cjs`, `fixtures/agents-md/<name>/…`, and each fixture's `AGENTS.md`/`CLAUDE.md` are the names the manifest and the runtimes require.
+- [x] CHK-013 [P1] New names are lowercase kebab. Verify: `git status --porcelain` lists no path with an uppercase letter. Evidence: the new paths are `agents-md-check.cjs`, `agents-md-check.test.cjs`, `fixtures/agents-md/<recipe>/fixture.json` and `fixtures/agents-md/compose-fixture.cjs`; the `AGENTS.md` and `CLAUDE.md` names a recipe composes are the manifest's and the runtimes' own, and none is committed.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -157,7 +157,7 @@ contextType: "general"
 ## File Organization
 
 - [x] CHK-050 [P1] Fixtures live under the tests tree. Verify: `find .skilled/commands/doctor/scripts/tests/fixtures/agents-md -maxdepth 1 -type d | wc -l` prints `10`. Evidence: prints `10`.
-- [x] CHK-051 [P1] No temporary copy survives. Verify: `git status --porcelain` lists no path under a temporary directory. Evidence: `git status --porcelain` lists the engine, the suite, the nine fixture trees and this packet's docs only; every temp tree is removed by the case that made it.
+- [x] CHK-051 [P1] No temporary copy survives. Verify: `git status --porcelain` lists no path under a temporary directory. Evidence: `git status --porcelain` lists the engine, the suite, the nine fixture recipes and this packet's docs only; every composed tree is removed by the case that made it.
 <!-- /ANCHOR:file-org -->
 
 ---

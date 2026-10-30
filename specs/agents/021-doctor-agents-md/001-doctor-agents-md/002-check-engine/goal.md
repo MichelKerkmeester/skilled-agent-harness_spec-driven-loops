@@ -59,7 +59,7 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 
 - [ ] `node .skilled/commands/doctor/scripts/agents-md-check.cjs` on this repository exits 0 and prints `STATUS=OK` with `A1 install state: pure`
-- [ ] `node .skilled/commands/doctor/scripts/agents-md-check.cjs --root .skilled/commands/doctor/scripts/tests/fixtures/agents-md/forked --json` exits 1 and its `state` reads `forked`
+- [ ] `node .skilled/commands/doctor/scripts/tests/fixtures/agents-md/compose-fixture.cjs forked <folder>` on an empty folder, then `node .skilled/commands/doctor/scripts/agents-md-check.cjs --root <folder> --json`, exits 1 and its `state` reads `forked`
 - [ ] `node --test .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs` reports `fail 0`
 - [ ] `git status --porcelain | shasum` prints the same digest before and after a run over every fixture
 - [ ] The engine's text report names twelve rows, and its JSON carries the same twelve
