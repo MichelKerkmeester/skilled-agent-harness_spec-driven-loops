@@ -6,7 +6,8 @@
   "children_ids": [
     "sk-prompt/007-sk-prompt-parent",
     "sk-prompt/008-sk-prompt-standalone-conversion",
-    "sk-prompt/009-prompt-improver-model-eligibility"
+    "sk-prompt/009-prompt-improver-model-eligibility",
+    "sk-prompt/010-sk-prompt-improvements"
   ],
   "manual": {
     "depends_on": [],
