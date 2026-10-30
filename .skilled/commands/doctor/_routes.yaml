@@ -508,7 +508,7 @@ routes:
       - "embed the shipped instructions into agents md"
       - "add the agents md repository block"
       - "fold claude md into agents md"
-      - "write the repository specific instructions block"
+      - "write the agents md repository block"
       - "replace agents md with the shipped template"
       - "update agents md from the shipped template"
 
@@ -527,7 +527,7 @@ routes:
     trigger_phrases:
       - "undo an agents md embed run"
       - "restore agents md from the backup"
-      - "roll back the instruction file write"
+      - "roll back the agents md instruction file write"
       - "revert agents md to the file before the embed"
 
 # ─────────────────────────────────────────────────────────────────

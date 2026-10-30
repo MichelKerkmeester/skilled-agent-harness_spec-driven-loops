@@ -103,7 +103,7 @@ Read before and after on the same branch, with the same commands.
 | `doctor-phrase-reach.cjs` | `STATUS=OK phrases=142 bridges=24` | `STATUS=OK phrases=164 bridges=28` |
 | `capture-scorer-eval-baseline.mjs` | full corpus 155/195, holdout 49/66, ambiguity 19/24, unknown 13, false fire 5 | identical to the committed baseline |
 | `vitest run tests/parity tests/scorer` | 42 files, 381 passed, 4 skipped | 42 files, 381 passed, 4 skipped |
-| `npm --prefix …/runtime test` | 157 files, 1351 passed, 8 skipped | 157 files, 1351 passed, 8 skipped |
+| `npm --prefix …/runtime test` | 158 files, 1353 passed, 8 skipped | 158 files, 1353 passed, 8 skipped |
 | `doctor/scripts/tests/run-all.sh` | 41 files, 931 tests | 41 files, 931 passed, 0 failed, 7 suites |
 | `route-validate.sh` | 24 routes, 5 warnings | 24 routes, 5 warnings, no route edited |
 <!-- /ANCHOR:how-delivered -->
@@ -135,7 +135,7 @@ Read before and after on the same branch, with the same commands.
 | `vitest run tests/doctor-routing-slice.vitest.ts` | 2 tests passed, exit 0 |
 | `capture-scorer-eval-baseline.mjs` | metrics block identical to `scorer-eval-baseline.json`; no metric dropped |
 | `vitest run tests/parity tests/scorer` | 42 files, 381 passed, 4 skipped, 0 failed, exit 0 |
-| `npm --prefix .skilled/skills/system-skill-advisor/runtime test` | 157 files, 1351 passed, 8 skipped, 0 failed, exit 0 |
+| `npm --prefix .skilled/skills/system-skill-advisor/runtime test` | 158 files, 1353 passed, 8 skipped, 0 failed, exit 0 |
 | `pytest tests/python` | 8 passed, exit 0 |
 | `bash .skilled/commands/doctor/scripts/tests/run-all.sh` | `tests 931`, `pass 931`, `fail 0` over 41 files; `7 suite(s) passed, 0 failed`, exit 0 |
 | `bash .skilled/commands/doctor/scripts/route-validate.sh` | `OK: route-validate — 24 routes validated, 5 warnings`, exit 0 |

@@ -175,7 +175,7 @@ Twenty-eight derived doctor routes, twenty-four of them admitted. The four missi
 - **SC-001**: `node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs` prints `STATUS=OK phrases=164 bridges=28` and exits 0, against `phrases=142 bridges=24` before the change.
 - **SC-002**: `derive-command-bridges.cjs --check` reports `fresh`, `typescriptActive` 33 and `pythonActive` 43, against 29 and 39 before the change.
 - **SC-003**: The capture script prints full corpus 155 of 195, holdout 49 of 66, ambiguity 19 of 24, 13 unknown, 5 gold-none false fires and all three buckets unchanged, so nothing in the baseline moved.
-- **SC-004**: The advisor suite passes over 157 files and 1351 tests, the doctor suite over 41 node:test files and 931 tests, and the Python suite over its own file, each exit 0.
+- **SC-004**: The advisor suite passes over 158 files and 1353 tests, the doctor suite over 41 node:test files and 931 tests, and the Python suite over its own file, each exit 0.
 <!-- /ANCHOR:success-criteria -->
 
 ---

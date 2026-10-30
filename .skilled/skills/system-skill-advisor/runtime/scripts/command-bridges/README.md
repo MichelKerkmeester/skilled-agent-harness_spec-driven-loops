@@ -61,7 +61,7 @@ The deriver fills the TypeScript name, keywords, intent signals and domains from
 
 A doctor bridge surfaces only on its own wording (an explicit-author phrase match). A `/doctor:` command counts as typed when the prompt starts with `/doctor:` or when it directly follows `run`, `execute`, `start`, `launch`, `use` or `kick off` outside quotes and backticks. A quoted command or a bare mid-sentence mention does not count. A typed command puts its own passing bridge first. A prompt that contains one of a bridge's `lead_phrases` also puts that passing bridge first, so `check my environment variables` leads with `/doctor:env`. For other prompts, a passing skill keeps first place and passing doctor bridges sit right after the second passing skill or the only passing skill. This keeps a doctor line within the CLI's three shown results. A typed command shows its matching runnable string on the top line. A skill-first brief shows `Also: /doctor:<command> <target>` on the second line. The Python fallback matches a doctor bridge only on a typed slash command.
 
-Each `mcp_subroutes` entry becomes the bridge `command-doctor-mcp-<sub_action>`, with the runnable string `/doctor:mcp <sub_action>` and its owner from the `skill_agent` tag in `mcp.md`. `/doctor:deep-loop`, `/doctor:mcp install` and `/doctor:mcp debug` are active in both scorers.
+Each `mcp_subroutes` entry becomes the bridge `command-doctor-mcp-<sub_action>`, with the runnable string `/doctor:mcp <sub_action>` and its owner from the `skill_agent` tag in `mcp.md`. Every derived doctor bridge is active in both scorers, and `doctor-phrase-reach.cjs` proves each one.
 
 Check every admitted phrase with `node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs`.
 

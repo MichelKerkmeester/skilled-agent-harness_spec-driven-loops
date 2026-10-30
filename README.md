@@ -210,7 +210,7 @@ Every setting has a working default. To change one, see [Environment Settings](#
 
 ### Keep It Healthy
 
-The doctor commands check and repair one area each. `/doctor:helper` names the one that fits a problem you describe, and `/doctor:setup` lists them all. `/doctor:update` brings in a new release, `/doctor:runtime-mirrors` finds runtime copies that drifted from `.skilled/`, `/doctor:skill-advisor` rebuilds or tunes skill routing, `/doctor:sk-skill` reports how far a skill is from the Skilled format and converts one after a plan, `/doctor:agents-md` checks your root instruction file against the shipped template and embeds the shipped sections plus your own block after a plan, and `/doctor:ci` reports and toggles the CI workflow switches. The [Doctor](#doctor) commands section describes each one.
+The doctor commands check and repair one area each. `/doctor:helper` names the one that fits a problem you describe, and `/doctor:setup` lists them all. `/doctor:update` brings in a new release, `/doctor:runtime-mirrors` finds runtime copies that drifted from `.skilled/`, `/doctor:skill-advisor` rebuilds or tunes skill routing, `/doctor:sk-skill` reports how far a skill is from the Skilled format and converts one after a plan, `/doctor:agents-md` checks your root instruction file against the shipped template and embeds the shipped sections plus your own block after a plan, and `/doctor:ci` reports and toggles the CI workflow switches. The [Doctor](#doctor) commands section lists every command and target in one table, with which ones only read and which write after your yes, then describes each one.
 
 &nbsp;
 
@@ -1217,7 +1217,24 @@ The active autonomous loop families. See [Deep Loop](#6--deep-loop) for how they
 &nbsp;
 #### DOCTOR
 
-Fourteen commands check and repair the setup, one per area.
+Fourteen commands check and repair the setup, one per area. Every target that writes asks for your yes first. When a prompt describes a problem one of them owns, the skill advisor suggests that command, and `/doctor:helper` ranks them for you when you are not sure.
+
+| Command | Targets (default first) | Reads only | Writes after your yes |
+| --- | --- | --- | --- |
+| `/doctor:helper` | one problem in plain words | the ranked pick | none, a writing command is printed for you to run |
+| `/doctor:setup` | none | every leg | none |
+| `/doctor:speckit` | retrieval | the index, lookup and recipe checks | a report and state file in the packet's `scratch/` |
+| `/doctor:skill-advisor` | `tune`, `rebuild`, `skill-graph-freshness`, `router-reach`, `skill-budget`, `parent-skill` | the four audits | `tune`, `rebuild` |
+| `/doctor:deep-loop` | `--scope=research\|review\|council\|both\|all` | the graph and convergence read | a state file in the active spec folder's `scratch/` |
+| `/doctor:runtime-mirrors` | none | the mirror check | none |
+| `/doctor:sk-code` | `setup`, `quality` | `setup` | `quality` (creates the quality config once) |
+| `/doctor:sk-skill` | `check`, `convert` | `check` | `convert` |
+| `/doctor:ci` | `report`, `scaffold`, `toggle` | `report` | `scaffold`, `toggle` |
+| `/doctor:git` | `setup`, `hooks`, `standards` | `setup` | `hooks`, `standards` |
+| `/doctor:mcp` | `install`, `debug` | `debug` | `install`, and `debug --fix` repairs |
+| `/doctor:update` | `check`, `align`, `apply`, `rollback`, `record-base`, `compat` | `check` (`align` writes only its own run folder) | `apply`, `rollback`, `record-base`, `compat` |
+| `/doctor:agents-md` | `check`, `embed`, `restore` | `check` | `embed`, `restore` |
+| `/doctor:env` | `list`, a section or one variable | `list` and lookups | a saved preference |
 
 **`/doctor:helper [<problem in plain words>] [--json]`** - the way in when you do not know the command
 
@@ -1283,7 +1300,6 @@ Fourteen commands check and repair the setup, one per area.
 **`/doctor:update [check|align|apply|rollback|record-base|compat]`** - update the framework from a new release
 
 - Checks what a release changes, applies it after your approval and can roll it back
-
 - `compat` moves a v3 checkout to the v4 `specs/` layout, and `--dry-run` previews the move
 
 **`/doctor:agents-md [check|embed|restore] [--json] [--root <dir>] [--dry-run] [--plan-digest <digest>] [--run <dir>] [--yes]`** - your root `AGENTS.md` against the shipped template

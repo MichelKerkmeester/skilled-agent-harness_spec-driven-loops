@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Deriving a bridge and activating it are two different acts",
     "created_at": "2026-10-30T17:18:46Z",
-    "last_save_at": "2026-10-30T17:38:52.266Z",
+    "last_save_at": "2026-10-30T18:12:09.668Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b2b806343ef0409109da759e84415bbeda97e0bb2a1bf494df1cb0320f483b95",
+    "source_fingerprint": "sha256:9867b9c2e2269d42750d47e41321b11ae9ed9cd018e167efcb9343bb5b46ea9a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b8047c93d737fbcdb629a94b282df45b4c697de391b3d185afe894f8636820d0",
+      "spec.md": "76e6c53ab86547a1c3fdbde7a130192b129c58382f2725f4c710ba40471cfcdb",
       "plan.md": "8258a6ec54b977f8dbba8b402b404f6ee2dac1bff67d14a2ebc5951d891c47b5",
-      "tasks.md": "4313672adaf02a8e6ecf6fbbd7d7ed09c255cb580f3293564c86fe3afa03df03",
-      "implementation-summary.md": "b5d6a49401b2396f45afd044974b070ab65125a52f77f031a7d891d700eab927"
+      "tasks.md": "1c5ff0e23fde9daf6e8171b77951f32dda834a9358a700e69e74806d167973ee",
+      "implementation-summary.md": "e63f7b7b69172ba981c85399ded1a17fd7a53405c6e4eb027d3193ce67785797"
     },
     "last_active_at": null
   }
