@@ -84,5 +84,5 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| Vendored copy | The AI Systems copy of sk-prompt was identical before the fix and now differs by one line; left for that repo's sync |
+| Vendored copy | AI Systems keeps DEPTH by operator decision (2026-10-30); its copy is not resynced from Skilled |
 <!-- /ANCHOR:log -->

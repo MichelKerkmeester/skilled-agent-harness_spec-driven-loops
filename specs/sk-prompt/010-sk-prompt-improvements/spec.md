@@ -162,7 +162,7 @@ Uncovered work to add to the build: rename the confirm checkpoints `after_discov
 ## 7. OPEN QUESTIONS
 
 - Should the seven framework names survive as aliases a user can still ask for, or be removed outright (REQ-008)?
-- Should the vendored copy in AI Systems be refreshed from Skilled after the build, and by whom?
+- ~~Should the vendored copy in AI Systems be refreshed from Skilled after the build, and by whom?~~ Resolved 2026-10-30: no. The operator chose to keep DEPTH in the AI Systems copy, so it stays on the pre-v4 method by design.
 <!-- /ANCHOR:questions -->
 
 ---

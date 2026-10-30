@@ -205,7 +205,7 @@
     ],
     "causal_summary": "sk-prompt named a retired advisor script (`skilladvisor.py`), and the AI Systems Prompt Improver named a skill that no longer exists (`sk-prompt-small-model`)",
     "created_at": "2026-10-30T05:32:33Z",
-    "last_save_at": "2026-10-30T07:32:29.650Z",
+    "last_save_at": "2026-10-30T08:41:47.621Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e0f257285fee19bd77b62286e3e2c8874608797552bd1d6397d753a932cf313a",
+    "source_fingerprint": "sha256:5d5954beeae4f8d899a9baf76ef9ca35a37195c49e03c8786a0b7eccc8c474a8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fc2c8b1ef603d4fd6495e459193b1f36dfccf11be757fa0b0b6a7775e02508c9",
+      "spec.md": "b7f550139eadc06fbdedc1d8bf7e8f84a7fc78e4040c6606245d326dcb93ccd2",
       "plan.md": "8c1f3b86002ecd9ad81ca51c5f3a533ad28a4dd3c8bdffd406108586063e55f8",
       "tasks.md": "0f5b4978068d9000ab277a5117b291d53ce41b95710ec329aa8a8bac59f1df6f",
-      "implementation-summary.md": "a72708789e0d9ec1715e59997daf43ade27cd94e9f712488bb66f5a09f9fe4aa",
+      "implementation-summary.md": "0dd618690eebef025f748ee45771655b8e7f4f67c20dbb42ab18f36c6b85f371",
       "research/research.md": "fae816bb3b1de1631c47ab34ce6bd7ad01251f97f71ac8d534f66374f9551149"
     },
     "last_active_at": null

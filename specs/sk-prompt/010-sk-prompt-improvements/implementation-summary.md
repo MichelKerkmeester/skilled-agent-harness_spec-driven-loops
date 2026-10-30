@@ -90,7 +90,7 @@ A fresh Opus review then found 4 P1 and 10 P2 issues, all reproduced before fixi
 | One default skeleton, seven frameworks kept as optional presets | Luna's lineage found no evidence that scoring frameworks picks better prompts, while named frameworks still help callers who ask for one |
 | Repair up to 3 cycles everywhere | The skill, agent and command disagreed (one retry versus 3 cycles); one number removes the drift |
 | No per-model profiles | The operator chose model-agnostic |
-| Leave the vendored AI Systems copy of sk-prompt alone | Its sync belongs to that repo |
+| AI Systems keeps DEPTH | The operator chose it on 2026-10-30; its copy of sk-prompt stays on the pre-v4 method and is not resynced from Skilled |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -115,7 +115,7 @@ A fresh Opus review then found 4 P1 and 10 P2 issues, all reproduced before fixi
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The AI Systems vendored copy of sk-prompt now differs from Skilled.** It still describes DEPTH until that repo resyncs.
+1. **The AI Systems copy of sk-prompt keeps DEPTH on purpose.** It differs from Skilled v4 by the operator's choice, so a diff between the two is expected, not drift.
 2. **Older changelogs and benchmark reports still say DEPTH.** They are history and stay as written.
 <!-- /ANCHOR:limitations -->
 
