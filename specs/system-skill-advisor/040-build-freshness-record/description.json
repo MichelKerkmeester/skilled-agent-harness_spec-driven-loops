@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-skill-advisor/040-build-freshness-record",
+  "description": "Record the advisor runtime dist build so a fresh build writes its own freshness attestation",
+  "keywords": [
+    "record",
+    "advisor",
+    "runtime",
+    "dist",
+    "fresh",
+    "writes",
+    "own",
+    "freshness",
+    "attestation"
+  ],
+  "lastUpdated": "2026-10-30T17:20:26.745Z",
+  "specId": "040",
+  "folderSlug": "build-freshness-record",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/040-build-freshness-record",
+  "spec_folder": "system-skill-advisor/040-build-freshness-record",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "build freshness record",
+      "record the advisor runtime dist build",
+      "advisor build writes its own attestation",
+      "dist freshness record after provision",
+      "build freshness record plan",
+      "advisor prebuild record-build plan",
+      "build freshness record tasks",
+      "advisor prebuild record-build tasks",
+      "build freshness record implementation summary",
+      "advisor build attestation summary"
+    ],
+    "key_topics": [
+      "freshness",
+      "record",
+      "advisor",
+      "runtime",
+      "dist",
+      "writes",
+      "own",
+      "attestation",
+      "provision",
+      "plan",
+      "prebuild",
+      "record-build"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/package.json",
+      ".skilled/skills/system-skill-advisor/runtime/tests/dist-build-record-contract.vitest.ts",
+      ".skilled/skills/system-skill-advisor/SKILL.md",
+      ".skilled/skills/system-skill-advisor/changelog/v0.17.29.0.md",
+      ".hermes/skills/system-skill-advisor/SKILL.md",
+      "scripts/finalize-dist.mjs",
+      ".skilled/commands/doctor/scripts/tests/sk-code-quality-config.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/run-all.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "dist-build-record-contract.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/dist-build-record-contract.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.17.29.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/changelog/v0.17.29.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "finalize-dist.mjs",
+        "kind": "file",
+        "path": "scripts/finalize-dist.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-quality-config.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/sk-code-quality-config.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-all.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/tests/run-all.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior Commands",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Prepare",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor runtime package built with `tsc` and a `postbuild` that copied data, and it never wrote a dist freshness record",
+    "created_at": "2026-10-30T17:20:26Z",
+    "last_save_at": "2026-10-30T17:32:37.610Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:05289dce9930c1dd5eed67d4b05d50252396110db3e2d8e0aecdd72f2faf5c15",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3fcb15d759898a74aa084b05ca08c4356d0a3a63f65ace753d4c27e8bd41d551",
+      "plan.md": "801bbc56d23a245f5d6a1ba3f6d0a355fb40560121563774940eb88d139101f2",
+      "tasks.md": "ea9f5b6c9d38d2b36b05f057d0b63452053566926fc85f566f3c4fabebb67d0c",
+      "implementation-summary.md": "d19455bc17793cfe82b628ed977a6b6a4932ecb8809c1097f058871a1dd47df3"
+    },
+    "last_active_at": null
+  }
+}

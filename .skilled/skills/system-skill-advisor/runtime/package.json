@@ -8,8 +8,9 @@
   },
   "scripts": {
     "clean": "rm -rf dist",
+    "prebuild": "node ../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs prepare-build --package system-skill-advisor/runtime --entry default && node ../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs prepare-build --package system-skill-advisor/runtime --entry skill-advisor-cli",
     "build": "npm --prefix ../../system-spec-kit/shared run build && ../../system-spec-kit/node_modules/.bin/tsc -p tsconfig.build.json",
-    "postbuild": "mkdir -p dist/runtime/data && cp data/*.json dist/runtime/data/",
+    "postbuild": "mkdir -p dist/runtime/data && cp data/*.json dist/runtime/data/ && (node ../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs record-build --package system-skill-advisor/runtime --entry default || node -e \"const r=require('../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs').writePackageSourceHashCache('system-skill-advisor/runtime',{entry:'default'});if(r.status!=='cached')throw new Error(r.message)\") && (node ../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs record-build --package system-skill-advisor/runtime --entry skill-advisor-cli || node -e \"const r=require('../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs').writePackageSourceHashCache('system-skill-advisor/runtime',{entry:'skill-advisor-cli'});if(r.status!=='cached')throw new Error(r.message)\")",
     "typecheck": "../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.build.json",
     "test": "vitest run",
     "test:stress": "SPECKIT_RUN_STRESS=true vitest run"
