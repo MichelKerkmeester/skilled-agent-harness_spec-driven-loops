@@ -93,6 +93,37 @@ function displayName(skillName, skillRoot) {
   return surface.safeSkillName(skillName) || surface.safeSkillName(path.basename(skillRoot)) || 'unknown';
 }
 
+// Which child tool each row runs. A row read against another repository can only
+// be read as a verdict on that repository when the reader knows which of its tools
+// answered, so a tool the owning repository does not ship is named with the
+// checkout that supplied it.
+const ROW_TOOL_KEYS = {
+  C2: ['resolver'],
+  C3: ['packageSkill'],
+  C4: ['rootMetadata'],
+  C6: ['regenerateDerived'],
+  C7: ['routerReplay'],
+  C8: ['advisor', 'skillGraphCompiler', 'graphFreshness'],
+  C9: ['hermesSync'],
+  C11: ['auditDescriptions'],
+  C13: ['regressionCorpus', 'goldenCorpus'],
+};
+
+function annotateRowRepositories(rows, context, sourceContext) {
+  const borrowed = new Set((context.borrowedPaths || [])
+    .map((key) => path.basename(context.paths[key])));
+  for (const row of rows) {
+    const tools = [...new Set((ROW_TOOL_KEYS[row.row] || [])
+      .map((key) => path.basename(context.paths[key]))
+      .filter((name) => borrowed.has(name)))];
+    const borrowedText = tools.length
+      ? ` ${sourceContext.repoRoot} supplied ${tools.join(', ')}.`
+      : '';
+    row.repository = context.repoRoot;
+    row.detail = `${row.detail} Read against ${context.repoRoot}.${borrowedText}`;
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. NAMED SKILL REPORT
 // ─────────────────────────────────────────────────────────────────────────────
@@ -462,7 +493,11 @@ function checkDescription(skillName, context, location, description) {
   return { status: item.status === 'OVER-SOFT' ? 'INFO' : 'PASS', detail: `Description is ${item.status} at ${item.length} characters.`, length: item.length };
 }
 
-function checkNamedSkill(skillRoot, context) {
+function checkNamedSkill(skillRoot, sourceContext) {
+  // The context follows the target into its own repository, so no row reads this
+  // checkout's changelog index, mirrors or repository-relative paths by accident.
+  const scoped = surface.contextForSkillTarget(skillRoot, sourceContext);
+  const context = scoped.context;
   if (!context.skipPreflight) surface.ensurePreconditions(context);
   const location = surface.classifyLocation(skillRoot, context.skillsDir, context.fs);
   const skill = surface.readSkillFields(skillRoot, context.fs);
@@ -587,12 +622,15 @@ function checkNamedSkill(skillRoot, context) {
     ...(coverage.total === undefined ? {} : { total: coverage.total || null }),
   });
 
+  if (scoped.repository) annotateRowRepositories(rows, context, sourceContext);
+
   const counts = countRows(rows);
 
   return {
     mode: 'deep',
     skill: safeName,
     inputKind,
+    ...(scoped.repository ? { repository: scoped.repository } : {}),
     ...counts,
     exitCode: statusForOverall(rows),
     rows,

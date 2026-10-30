@@ -55,10 +55,10 @@ Thin validator orchestration
 
 ### Key Components
 - **`sk-skill-check.cjs`**: argument parsing, the C1 to C13 row loop, text and JSON rendering, exit 0/1/2.
-- **`lib/sk-skill-surface.cjs`**: locate a skill by name or path, classify its input kind, scan collisions, wrap each spawned validator with its exit-code mapping.
+- **`lib/sk-skill-surface.cjs`**: locate a skill by name or path, classify its input kind, scan collisions, wrap each spawned validator with its exit-code mapping, and build the context a target from another repository must be read with.
 
 ### Data Flow
-The script resolves the target to a skill root, runs each row's probe through `sk-skill-surface.cjs`, and collects one `{row, status, detail}` record per row. Text mode prints a table; `--json` prints the records. No argument walks every direct child of `.skilled/skills` holding `SKILL.md` and prints one row per root.
+The script resolves the target to a skill root, runs each row's probe through `sk-skill-surface.cjs`, and collects one `{row, status, detail}` record per row. Text mode prints a table; `--json` prints the records. A target that resolves inside another repository's `.skilled/skills` first re-roots the context to that repository, keeping the checker's own copy of any tool that repository does not ship, and each row's detail then names the repository it read. No argument walks every direct child of `.skilled/skills` holding `SKILL.md` and prints one row per root.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -86,7 +86,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Unit | Classifier, slug-default compare, collision scan, changelog probe and Python interpreter discovery in `lib/sk-skill-surface.cjs` | `node --test` |
-| Integration | `sk-skill-check.cjs` over the seven fixtures, text and `--json` | `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` |
+| Integration | `sk-skill-check.cjs` over the seven fixtures, a converted skill in a second repository, text and `--json` | `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` |
 | Manual | Fleet run compared with `scratch/baseline/` | `node .skilled/commands/doctor/scripts/sk-skill-check.cjs check --json` |
 <!-- /ANCHOR:testing -->
 

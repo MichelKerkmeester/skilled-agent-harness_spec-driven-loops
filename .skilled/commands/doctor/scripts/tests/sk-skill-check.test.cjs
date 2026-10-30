@@ -63,10 +63,13 @@ function makeContext({
   auditCode = 0,
   auditPayload = { items: [] },
   pythonProbeResult = { code: 0, stdout: '', stderr: '', error: null },
+  explicitRepoRoot = true,
 } = {}) {
   const invocations = [];
   const context = surface.createContext({
-    repoRoot: REPO_ROOT,
+    // A caller that names the repository pins every read to it, so a test that
+    // exercises the other repository's path leaves the option out as the CLI does.
+    ...(explicitRepoRoot ? { repoRoot: REPO_ROOT } : {}),
     skillsDir,
     cwd: REPO_ROOT,
     fs: fileSystem,
@@ -291,6 +294,96 @@ function removePythonPathFixture(fixture) {
   fs.rmSync(fixture.scratchDir, { recursive: true, force: true });
 }
 
+// A converted skill in a second Skilled repository: its own skills root, its own
+// changelog index link and its own derived validator, whose repository root is the
+// folder it was copied into. The validator is the shipped one, so a run that reads
+// it proves the repository the row actually resolved its key files against.
+function createConvertedRepo(skillName = 'fixture-cross-repo') {
+  const repoRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'sk-skill-check-'));
+  const skillsDir = path.join(repoRoot, '.skilled', 'skills');
+  const skillRoot = path.join(skillsDir, skillName);
+  const changelogDir = path.join(skillRoot, 'changelog');
+  fs.mkdirSync(changelogDir, { recursive: true });
+  fs.writeFileSync(path.join(skillRoot, 'SKILL.md'), [
+    '---',
+    `name: ${skillName}`,
+    'description: A converted skill that lives in a second Skilled repository.',
+    'version: 1.0.0.0',
+    'allowed-tools:',
+    '  - "Read"',
+    '---',
+    '',
+    `# ${skillName}`,
+    '',
+    'Load `references/field-notes.md` before choosing a review path.',
+    '',
+  ].join('\n'));
+  fs.writeFileSync(path.join(skillRoot, 'ROUTER.md'), [
+    '---',
+    `title: "${skillName} Router"`,
+    'description: "The sibling router the resolver reads."',
+    'importance_tier: normal',
+    'contextType: general',
+    'version: 1.0.0.0',
+    'router_state: active',
+    'skill_pointer: SKILL.md',
+    '---',
+    '',
+    '## 3. MACHINE ROUTER',
+    '',
+    '```python',
+    'INTENT_SIGNALS = {',
+    '    "PRIMARY": {"weight": 4, "keywords": ["cross repo review"]},',
+    '}',
+    '',
+    'RESOURCE_MAP = {',
+    '    "PRIMARY": ["references/field-notes.md"],',
+    '}',
+    '```',
+    '',
+  ].join('\n'));
+  fs.writeFileSync(path.join(skillRoot, 'graph-metadata.json'), `${JSON.stringify({
+    schema_version: 2,
+    skill_id: skillName,
+    family: 'sk-util',
+    category: 'utility',
+    intent_signals: ['cross repo review', 'read cross repo notes'],
+    derived: {
+      trigger_phrases: ['cross repo review', 'read cross repo notes'],
+      key_topics: ['cross repo review'],
+      key_files: [`.skilled/skills/${skillName}/SKILL.md`],
+      entities: [{ name: skillName, kind: 'skill', path: `.skilled/skills/${skillName}/SKILL.md`, source: 'derived' }],
+      source_docs: ['SKILL.md'],
+      causal_summary: 'Reports a converted skill against the repository that owns it.',
+    },
+  }, null, 2)}\n`);
+  fs.writeFileSync(path.join(changelogDir, 'v1.0.0.0.md'), [
+    '---',
+    `title: "${skillName} v1.0.0.0"`,
+    'importance_tier: normal',
+    'contextType: general',
+    'version: 1.0.0.0',
+    '---',
+    '',
+    'The conversion made this skill a standalone Skilled root.',
+    '',
+  ].join('\n'));
+  const createSkillScripts = path.join(skillsDir, 'sk-doc', 'sk-create-skill', 'scripts');
+  fs.mkdirSync(createSkillScripts, { recursive: true });
+  fs.copyFileSync(
+    path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'regenerate-skill-derived.cjs'),
+    path.join(createSkillScripts, 'regenerate-skill-derived.cjs'),
+  );
+  const changelogIndex = path.join(repoRoot, '.skilled', 'changelog');
+  fs.mkdirSync(changelogIndex, { recursive: true });
+  fs.symlinkSync(path.join('..', 'skills', skillName, 'changelog'), path.join(changelogIndex, skillName), 'dir');
+  return { repoRoot, skillsDir, skillRoot, changelogDir };
+}
+
+function removeConvertedRepo(fixture) {
+  fs.rmSync(fixture.repoRoot, { recursive: true, force: true });
+}
+
 function getRow(report, id) {
   return report.rows.find((entry) => entry.row === id);
 }
@@ -365,6 +458,60 @@ test('outside-root and nested packet fixtures report their locations', () => {
   assert.equal(getRow(nested.report, 'C1').status, 'INFO');
   assert.equal(getRow(nested.report, 'C2').status, 'INFO');
   assert.equal(nested.report.inputKind, 'hub-packet');
+});
+
+// A skill can sit in a second Skilled repository. The skills root it is classified
+// against, the changelog index and every validator that resolves repository-relative
+// paths belong to the repository that owns the target, so a converted skill is judged
+// by its own tree rather than by the checkout that happened to run the check.
+test('a skill in another Skilled repository is judged against its own repository', () => {
+  const fixture = createConvertedRepo();
+  try {
+    const { context } = makeContext({
+      skillsDir: path.join(REPO_ROOT, '.skilled', 'skills'),
+      explicitRepoRoot: false,
+    });
+    const ownerRoot = fs.realpathSync(fixture.repoRoot);
+    const derivedRuns = [];
+    const canned = context.runCommand;
+    // The derived validator is not faked: it is the real one, and its repository
+    // root is the folder it runs from, which is what the row has to get right.
+    context.runCommand = (command, args, options = {}) => {
+      const script = String(args[0] || '');
+      if (!script.endsWith('regenerate-skill-derived.cjs')) return canned(command, args, options);
+      derivedRuns.push(script);
+      const result = spawnSync(command, args, {
+        cwd: options.cwd,
+        env: options.env,
+        encoding: 'utf8',
+        timeout: options.timeoutMs,
+      });
+      return {
+        code: Number.isInteger(result.status) ? result.status : null,
+        stdout: result.stdout || '',
+        stderr: result.stderr || '',
+        error: result.error ? result.error.message : null,
+      };
+    };
+
+    const report = checkNamedSkill(path.join(fixture.skillsDir, 'fixture-cross-repo'), context);
+
+    assert.equal(getRow(report, 'C1').location, 'direct');
+    assert.equal(getRow(report, 'C1').status, 'PASS');
+    assert.equal(getRow(report, 'C6').status, 'PASS', getRow(report, 'C6').detail);
+    assert.equal(derivedRuns.length, 1);
+    assert.equal(
+      path.dirname(derivedRuns[0]),
+      path.join(ownerRoot, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts'),
+    );
+    assert.equal(getRow(report, 'C10').status, 'PASS', getRow(report, 'C10').detail);
+    for (const row of report.rows) {
+      assert.ok(row.detail.includes(ownerRoot), `${row.row} names its repository: ${row.detail}`);
+    }
+    assert.equal(report.exitCode, 0, JSON.stringify(report.rows.filter((row) => row.status === 'FINDING')));
+  } finally {
+    removeConvertedRepo(fixture);
+  }
 });
 
 test('a direct hub and its router packet are informational and use parent metadata', () => {

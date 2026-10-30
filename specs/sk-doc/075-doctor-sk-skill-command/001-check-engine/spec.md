@@ -147,6 +147,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-006 | A missing built shared parser, Hermes dependency or resolver exits 2 and names the cause and the provision command. |
 | REQ-007 | `--json` output parses with `JSON.parse` and carries one object per row C1 to C13. |
 | REQ-008 | When `PYTHON` is set, `check` uses only that value; an empty value reports `PYTHON_MISSING` without PATH fallback. When unset, it probes distinct `python3` executables on `PATH` in order and selects the first that imports `yaml`. If none does, it exits 2 with `PYYAML_MISSING` and names every interpreter tried; explicit-interpreter `PYTHON_MISSING` and `PYYAML_MISSING` behavior remains. |
+| REQ-009 | A single target that resolves inside another repository's `.skilled/skills` is judged against that repository when the caller named no repository root: its skills root, changelog index, runtime mirrors and every repository-relative validator come from the checkout that owns the target, a tool that checkout does not ship keeps running from the checker's own, and each row's detail names the repository it read. A target outside any `.skilled/skills`, a target in the checker's own repository, a caller-named repository root and the no-argument fleet report keep the existing behavior. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -201,6 +202,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - Empty input: no argument prints the one-row-per-root fleet table and exits 0 when no root has a FINDING.
 - Unknown-only report: when all non-PASS/INFO rows are UNKNOWN, text prints `Result: NO FINDINGS (<n> UNKNOWN)`, JSON includes both counters, and the command exits 0.
 - Maximum input: a path outside `.skilled/skills` still runs C3 and C4 via `--skills-dir <its parent>` (design R5); C1 reports it outside the advisor's view (`projection.ts:1536-1556`).
+- Second repository: a path that resolves inside another repository's `.skilled/skills` is read against that repository, so its changelog index, mirrors, skills root and repository-relative validators answer for the tree that owns the skill rather than for the checkout that ran the command; a row whose tool that tree does not ship names the checkout that supplied it.
 - Failure path: a dual declaration reports verdict `dual-declaration` as a finding, exit 1 (design R2); a missing shared parser exits 2 with `SHARED_NOT_BUILT`.
 - Collision: a frontmatter name equal to another `SKILL.md` name, or an `agent-` prefix, is a C12 finding, since Hermes flattens by name and throws on a duplicate (`sync-skills-hermes.cjs:224-226, 239-244`).
 - Slug defaults: `intent_signals` equal to the `init_skill.py:381-390` defaults are a C5 finding (`.skilled/skills/sk-doc/sk-create-skill/SKILL.md:89`).

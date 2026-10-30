@@ -8,9 +8,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/075-doctor-sk-skill-command/001-check-engine"
-    last_updated_at: "2026-10-30T07:00:15Z"
+    last_updated_at: "2026-10-30T12:00:00Z"
     last_updated_by: "codex"
-    recent_action: "Recorded final interpreter-discovery evidence and phase closure"
+    recent_action: "Read a target from another Skilled repository against its own repository"
     next_safe_action: "No further work is pending in this phase"
     blockers: []
     key_files: []
@@ -66,6 +66,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-013 | REQ-001 | Given a fleet with one passing root and one finding root, When `runFleet`, `directSkillRoots`, and `renderFleetText` run, Then both roots and their statuses are represented correctly | The mixed-root fleet fixture passed with one PASS, one FINDING and the expected codes column in the 57-test suite; `.skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs:542` | Met | - |
 | AC-014 | REQ-008 | Given two distinct `python3` executables on `PATH`, the first without PyYAML and the second with it, When `PYTHON` is unset and `check` preconditions run, Then the second is selected; when all tried interpreters lack PyYAML, exit 2 names each; when `PYTHON` is set, only that interpreter is used, and an empty value yields `PYTHON_MISSING` without PATH fallback | PATH tests confirmed second-interpreter selection, all-candidate guidance, explicit-interpreter exclusivity and empty-value behavior; `.skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs:722`, `.skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs:737`, `.skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs:754`, `.skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs:770` | Met | - |
 | AC-015 | REQ-004 | Given a router that declares its intent map under `INTENT_MODEL` or routes by pseudocode alone, When C7 runs on a skill or a hub packet, Then the row is INFO and names the reason, never FINDING and never PASS; given a dual declaration or a hub root whose map cannot be read, When C7 runs, Then the row is FINDING; given a router the reader can parse, Then the row is PASS with its counts | The router-row test passed for all six shapes; `.skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs:404`. Pre-fix it failed with `'FINDING' !== 'INFO'`. All nine sk-doc packets the strict gate accepts now report C7 INFO, and `check sk-doc` keeps C7 PASS | Met | - |
+| AC-016 | REQ-009 | Given a converted skill inside another Skilled repository's `.skilled/skills`, When `check` runs on its path with no repository root named, Then C1 reports that skills root, C6 runs the derived validator that repository ships, C10 resolves its own changelog index link, and every row's detail names the repository it read; given a target outside any `.skilled/skills`, a target in the checker's own repository, a caller-named repository root or the fleet run, Then today's behavior is unchanged | The new test failed on the pre-fix code (`'outside' !== 'direct'` on C1; with that assertion lifted, C6 printed `derived.key_files is missing or empty after repair` and C10 `The changelog index link is missing or does not resolve`) and passes in the 58-test suite; `.skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs:467`. `check` on a scratch copy of a freshly converted `brindle-lantern` in its own repository reported C1 PASS `direct`, C6 PASS, C10 PASS, `Result: PASS`, exit 0, where the same target read from this checkout reported C6 and C10 FINDING and exited 1; `tasks.md:64` | Met | - |
 
 ### Status values
 
@@ -90,7 +91,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** Yes. All fifteen acceptance rows are Met with fresh test or command evidence, and strict phase validation passed.
+**Closeable:** Yes. All sixteen acceptance rows are Met with fresh test or command evidence, and strict phase validation passed.
 
-All fifteen acceptance criteria have fresh test or command evidence recorded above and in `tasks.md`. Strict phase validation reported `RESULT: PASSED` with 0 errors and 0 warnings.
+All sixteen acceptance criteria have fresh test or command evidence recorded above and in `tasks.md`. Strict phase validation reported `RESULT: PASSED` with 0 errors and 0 warnings.
 <!-- /ANCHOR:closure -->

@@ -110,6 +110,9 @@ function createContext(options = {}) {
     : options.python;
   return {
     repoRoot,
+    // A caller that names the repository pins every repository-relative read to
+    // it, so only a context that inherited its root follows the target instead.
+    repoRootExplicit: Boolean(options.repoRoot),
     paths,
     skillsDir: path.resolve(options.skillsDir || paths.skillsDir),
     cwd: path.resolve(options.cwd || process.cwd()),
@@ -126,6 +129,58 @@ function createContext(options = {}) {
 
 function resolveModuleFromFile(specifier, fromFile) {
   return createRequire(path.resolve(fromFile)).resolve(specifier);
+}
+
+// A skill root belongs to the repository whose .skilled/skills holds it. Every
+// repository-relative path a check reads — the skills root it is classified
+// against, the changelog index, the runtime mirrors, and a validator that resolves
+// key files from its own location — belongs to that repository too, so a target
+// from a second Skilled checkout is judged against that checkout rather than
+// against the one the command happened to run from.
+function skillRepositoryRoot(skillRoot, fileSystem = fs) {
+  let current = realPath(path.resolve(skillRoot), fileSystem);
+  while (current !== path.dirname(current)) {
+    if (path.basename(current) === 'skills'
+        && path.basename(path.dirname(current)) === '.skilled') {
+      return path.dirname(path.dirname(current));
+    }
+    current = path.dirname(current);
+  }
+  return null;
+}
+
+// The owning repository ships some of the tools a row runs and not others. A tool
+// it does not ship keeps running from the checker's own checkout, and the borrowed
+// keys stay recorded so the report can say which tool answered from where.
+function rerootContext(context, repoRoot) {
+  const ownerPaths = pathsFor(repoRoot);
+  const paths = {};
+  const borrowedPaths = [];
+  for (const [key, value] of Object.entries(ownerPaths)) {
+    const shipped = context.fs.existsSync(value);
+    paths[key] = shipped ? value : context.paths[key];
+    if (!shipped && context.paths[key]) borrowedPaths.push(key);
+  }
+  return {
+    ...context,
+    repoRoot,
+    paths,
+    skillsDir: paths.skillsDir,
+    borrowedPaths,
+  };
+}
+
+// Returns the context the report should read, plus the owning repository when it
+// differed. A target outside any .skilled/skills, a target in the checker's own
+// repository and a caller-named repository all keep the context they arrived with.
+function contextForSkillTarget(skillRoot, context) {
+  if (context.repoRootExplicit) return { context, repository: null };
+  const owner = skillRepositoryRoot(skillRoot, context.fs);
+  // Both sides are compared as real paths so one repository reached through two
+  // spellings of its own path is not mistaken for a second one.
+  const ownRoot = realPath(path.resolve(context.repoRoot), context.fs);
+  if (!owner || owner === ownRoot) return { context, repository: null };
+  return { context: rerootContext(context, owner), repository: owner };
 }
 
 function runProcess(command, args, options = {}) {
@@ -1272,6 +1327,7 @@ module.exports = {
   changelogStatus,
   checkSlugDefaults,
   collectSkillFiles,
+  contextForSkillTarget,
   countRegressionCases,
   extractRootMetadata,
   findHubMode,
@@ -1299,6 +1355,7 @@ module.exports = {
   runMirrorChecks,
   runParentSkillCheck,
   safeSkillName,
+  skillRepositoryRoot,
   stageTwoIntentProbe,
   stageTwoInventoryProbe,
   inspectCollisions,

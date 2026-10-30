@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/075-doctor-sk-skill-command/001-check-engine"
-    last_updated_at: "2026-10-30T10:43:41Z"
+    last_updated_at: "2026-10-30T12:00:00Z"
     last_updated_by: "codex"
-    recent_action: "Fixed the router row's false positive and aligned the route documents with the engine's labels"
-    next_safe_action: "No phase work pending; act on the sk-prompt gate finding"
+    recent_action: "Read a target from another Skilled repository against its own repository"
+    next_safe_action: "No phase work pending"
     blockers: []
     key_files: []
     session_dedup:
@@ -58,13 +58,17 @@ Row C7 grades a router by what the replay reader can read. The skill router temp
 
 The check workflow and the presentation now name each row the way the engine prints it, and the presentation's fleet result line carries `PASS` and `FINDINGS (N)`, matching `Roots: [N]; result: ...`.
 
+#### A target from another Skilled repository
+
+A skill can live in a second checkout. The changelog index link, the runtime mirrors, the skills root a location is classified against and any validator that resolves repository-relative paths all belong to the repository that owns the skill, so a single target that resolves inside another repository's `.skilled/skills` is read against that repository. A tool the owning repository does not ship keeps running from the checker's own checkout, and each row's detail then names the repository it read and, where a tool was borrowed, which checkout supplied it. A target outside any `.skilled/skills`, a target in the checker's own repository, a caller-named repository root and the no-argument fleet report are unchanged.
+
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
 | `.skilled/commands/doctor/scripts/sk-skill-check.cjs` | Created | Runs C1-C13 checks and renders deep and fleet reports |
-| `.skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs` | Created | Locates and classifies inputs, maps child exit codes, discovers a Python interpreter with PyYAML, and shares probes |
-| `.skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | Updated | Covers 57 cases for fixture classification, rendering, failure mappings, fleet behavior, target-aware probes, advisor envelopes, Python discovery, the router row's four verdict shapes, and route-document parity |
+| `.skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs` | Created | Locates and classifies inputs, maps child exit codes, discovers a Python interpreter with PyYAML, re-roots a target to the repository that owns it, and shares probes |
+| `.skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | Updated | Covers 58 cases for fixture classification, rendering, failure mappings, fleet behavior, target-aware probes, advisor envelopes, Python discovery, the router row's four verdict shapes, route-document parity and a converted skill read from its own repository |
 | `.skilled/commands/doctor/scripts/tests/fixtures/sk-skill-check/` | Updated | Holds plain, pre-migration, canon, dual, mode-template, outside-root, reserved-prefix, direct-hub, and nested-packet fixtures |
 | `.skilled/commands/doctor/assets/doctor-sk-skill-check.yaml` | Updated | Names rows C1 to C13 and H1 to H11 with the labels the engine prints |
 | `.skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt` | Updated | Documents the fleet result line the engine prints |
@@ -104,7 +108,11 @@ The fixture suite passed all 31 tests. With `PYTHON` unset, the fleet check retu
 | `node --check .skilled/commands/doctor/scripts/sk-skill-check.cjs` | PASS, exit 0 |
 | `node --check .skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs` | PASS, exit 0 |
 | `node --check` on checker, surface library, and test file | PASS, exit 0 |
-| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | 31 passed, 0 failed, exit 0; 57 passed, 0 failed, exit 0 after the router-row follow-up |
+| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | 31 passed, 0 failed, exit 0; 57 passed after the router-row follow-up; 58 passed after the second-repository follow-up |
+| New second-repository test on the pre-fix engine | Failed with `'outside' !== 'direct'`; with that assertion lifted, C6 printed `derived.key_files is missing or empty after repair` and C10 `The changelog index link is missing or does not resolve` |
+| `check` on a converted skill in a second repository, before the fix | C6 and C10 FINDING, `Result: FINDINGS (2)`, exit 1 |
+| `check` on the same skill after the fix | C1 PASS `direct`, C6 PASS, C10 PASS, `Result: PASS`, exit 0, every row naming the repository it read |
+| `check sk-git` after the fix | Same rows as before the change, no repository note, exit 0 |
 | `node --test .skilled/commands/doctor/scripts/tests/doctor-sk-skill-contract.test.cjs` | 32 passed, 0 failed, exit 0 |
 | `check <each of the 14 sk-doc packets>` against `package_skill.py --check --strict --json` | Every packet: gate `valid: true` exit 0, check C3 PASS, `findingCount: 0`, exit 0; no C7 FINDING |
 | Three new tests on the pre-fix engine | Failed with `'FINDING' !== 'INFO'`, `the workflow names C1 Location`, and `the documented result line names PASS` |
@@ -127,7 +135,7 @@ The fixture suite passed all 31 tests. With `PYTHON` unset, the fleet check retu
 
 No known blockers remain for the read-only check engine.
 
-The fleet now reports `Roots: 13; result: FINDINGS (1)` where it reported `Roots: 13; result: PASS` when this phase closed. The finding is `sk-prompt`, whose Format cell is `package_skill.py --check --strict`'s own verdict on `benchmark/router/run_fixtures.sh`; the deep report's C3 row prints that same message. The engine therefore reports nothing the gate does not, and the delta sits in a root this phase does not own.
+The fleet reports `Roots: 13; result: PASS`. An earlier run of this phase reported `Roots: 13; result: FINDINGS (1)`, whose one finding was `sk-prompt`'s Format cell: `package_skill.py --check --strict`'s own verdict on `benchmark/router/run_fixtures.sh`. That gate now returns `valid: true` for `sk-prompt`, exit 0, and `sk-skill-check.cjs` reports nothing the gate does not.
 <!-- /ANCHOR:limitations -->
 
 ---
