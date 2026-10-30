@@ -11,18 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md/003-embed-engine"
-    last_updated_at: "2026-10-30T12:40:00Z"
+    last_updated_at: "2026-10-30T13:45:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
-    blockers:
-      - "Waits on /doctor:sk-skill (packet sk-doc/075-doctor-sk-skill-command) landing on main"
+    recent_action: "Met every completion criterion"
+    next_safe_action: "Child 004 invokes plan, apply and restore from the command plumbing"
+    blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-292-doctor-agents-md"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -58,11 +57,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node --test .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs` reports `fail 0`
-- [ ] `node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan` on this repository prints `NOTHING TO DO` and exits 0
-- [ ] On a temporary copy of the `foreign` fixture, plan then apply prints `preservation: kept <n>, carried <m>, shipped-replaced <k>, dropped 0`
-- [ ] On the same copy, `restore --run=<dir>` followed by a comparison against the pristine copy exits 0
-- [ ] Every path the engine writes appears in the allowlist, and a path outside it is refused with a named cause
+- [x] `node --test .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs` reports `fail 0`. Met: `pass 23`, `fail 0`, exit 0.
+- [x] `node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan` on this repository prints `NOTHING TO DO` and exits 0. Met: `plan for <root> (state: pure)` then `NOTHING TO DO`, exit 0.
+- [x] On a temporary copy of the `foreign` fixture, plan then apply prints `preservation: kept <n>, carried <m>, shipped-replaced <k>, dropped 0`. Met: `kept 5, carried 0, shipped-replaced 44, dropped 0`, `STATUS=OK`.
+- [x] On the same copy, `restore --run=<dir>` followed by a comparison against the pristine copy exits 0. Met: `restore --run=<dir> --yes` exited 0 and `cmp` against the pristine copy exited 0.
+- [x] Every path the engine writes appears in the allowlist, and a path outside it is refused with a named cause. Met: `.skilled/repo-rules/scope-discipline.md` and `.cursorrules` refused by name, `../outside-the-root.md` refused for leaving the root.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -79,11 +78,13 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Specification, plan, tasks and criteria authored | Done | This packet's four documents |
-| Implementation | Pending | Waits on the doctor sk-skill command and on the check engine |
+| Implementation | Done | `agents-md-embed.cjs` and its 22-case suite; every acceptance criterion reads `Met` |
+| Verification | Done | `scratch/baseline.txt`, `scratch/evidence.txt`; the doctor suite ends `0 failed` and `validate.sh --strict` prints `RESULT: PASSED` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | No work has run |
+| `--create-router` comes from the approved design, not from this child's requirements | The requirements say only that the router gains the missing shipped rows; an absent router is therefore reported and left alone unless the flag is given, as the design states |
+| A plan on an already-current template writes no empty block | Adding two marker lines to a document that carries nothing of its own would be a write with no content behind it |
 <!-- /ANCHOR:log -->

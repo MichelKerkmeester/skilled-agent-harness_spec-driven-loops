@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** `agents/021-doctor-agents-md/001-doctor-agents-md/003-embed-engine`
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-30
 <!-- /ANCHOR:metadata -->
 
@@ -51,18 +51,18 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a plan run, When the write-spy is read, Then it recorded zero writes | the suite's plan-writes-nothing case passes | Unmet | - |
-| AC-002 | REQ-002 | Given an apply without the matching digest, When it runs, Then it exits 2 and writes nothing | the suite's digest-mismatch case passes | Unmet | - |
-| AC-003 | REQ-003 | Given temporary copies of the `foreign` and `forked` fixtures, When plan then apply runs, Then the ledger reads `dropped: []` and the fourth part of the invariant holds | `node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan` then `apply --plan-digest <d>` on a copy prints `preservation: kept <n>, carried <m>, shipped-replaced <k>, dropped 0` | Unmet | - |
-| AC-004 | REQ-004 | Given a composition that omits a carried line, When the post-write proof runs, Then it restores from the backup and ends `STATUS=FAIL` with the dropped lines printed | the suite's planted-drop case passes | Unmet | - |
-| AC-005 | REQ-005 | Given a completed run, When `restore --run=<dir>` runs, Then every recorded file is byte-identical to its backup | `restore --run=<dir>` followed by a comparison against the pristine fixture copy exits 0 | Unmet | - |
-| AC-006 | REQ-006 | Given a completed apply, When `embed` runs again, Then it prints `NOTHING TO DO` | the second-run case prints `NOTHING TO DO` and exits 0 | Unmet | - |
-| AC-007 | REQ-007 | Given any plan, When the written paths are collected, Then every one is inside the allowlist and a path outside it is refused | the suite's allowlist case passes and names the refused path | Unmet | - |
-| AC-008 | REQ-008 | Given a backup path the ignore check does not match, When the plan runs, Then it shows the OS temp path instead | the suite's fallback case passes | Unmet | - |
-| AC-009 | REQ-009 | Given the `claude-only` fixture, When apply runs, Then `AGENTS.md` is created and `CLAUDE.md` removed, and `--keep-claude-md` keeps it | the suite's two `claude-only` cases pass | Unmet | - |
-| AC-010 | REQ-010 | Given a router missing shipped rows, When apply runs, Then only the missing rows are added and the checker passes | `node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs --root <tmp>` prints `RESULT: PASSED (11/11 checks)` | Unmet | - |
-| AC-011 | REQ-011 | Given an empty block, When apply runs, Then no `.cursor/rules/repo-local.md` is written, and a non-empty block writes one | the suite's mirror case passes on both sides | Unmet | - |
-| AC-012 | REQ-012 | Given a completed run, When the backup directory is inspected, Then it still exists and no commit was staged | the suite's backup-retention case passes and `git status --porcelain` shows no staged change | Unmet | - |
+| AC-001 | REQ-001 | Given a plan run, When the write-spy is read, Then it recorded zero writes | the suite's `a plan run records zero writes` case passes, with the tree digest unchanged and no backup directory created — see .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs:306 | Met | - |
+| AC-002 | REQ-002 | Given an apply without the matching digest, When it runs, Then it exits 2 and writes nothing | the suite's `apply without a plan digest exits 2 and writes nothing` and `apply refuses a digest that the tree no longer produces` cases pass, each leaving the tree digest unchanged — see .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs:338 | Met | - |
+| AC-003 | REQ-003 | Given temporary copies of the `foreign` and `forked` fixtures, When plan then apply runs, Then the ledger reads `dropped: []` and the fourth part of the invariant holds | `plan` then `apply --plan-digest` printed `preservation: kept 5, carried 0, shipped-replaced 44, dropped 0` (foreign) and `kept 3, carried 0, shipped-replaced 44, dropped 0` (forked), and `preservationCheck` on the disk bytes returned no `dropped` and no `foreign` — see .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs:408 and scratch/evidence.txt:1 | Met | - |
+| AC-004 | REQ-004 | Given a composition that omits a carried line, When the post-write proof runs, Then it restores from the backup and ends `STATUS=FAIL` with the dropped lines printed | the suite's `a planted drop restores the backup and ends STATUS=FAIL` case passes, printing the dropped line and `restored: 1 file(s)`, with the file byte-identical to its pre-run bytes — see .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs:489 | Met | - |
+| AC-005 | REQ-005 | Given a completed run, When `restore --run=<dir>` runs, Then every recorded file is byte-identical to its backup | `restore --run=<dir> --yes` exited 0 on both fixtures and `cmp` against the pristine copy exited 0; the suite also covers a recreated `CLAUDE.md` and a deleted `AGENTS.md` — see .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs:517 | Met | - |
+| AC-006 | REQ-006 | Given a completed apply, When `embed` runs again, Then it prints `NOTHING TO DO` | the suite's `a second run prints NOTHING TO DO` case passes for `plan` and for `apply`, and `node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan` on this repository prints `NOTHING TO DO`, exit 0 — see .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs:565 | Met | - |
+| AC-007 | REQ-007 | Given any plan, When the written paths are collected, Then every one is inside the allowlist and a path outside it is refused | the suite's `every written path is inside the allowlist and a path outside it is refused` case passes, naming `.skilled/repo-rules/scope-discipline.md` and `.cursorrules` as refused, and `../outside-the-root.md` as outside the root — see .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs:595 | Met | - |
+| AC-008 | REQ-008 | Given a backup path the ignore check does not match, When the plan runs, Then it shows the OS temp path instead | the suite's `an ignored output path holds the backup and a non-ignored one falls back` case passes: a composed tree prints `$TMPDIR/doctor-agents-md/<stamp>` with a `backup-fallback:` reason, and this repository resolves to `.skilled/output/doctor-agents-md/<stamp>` — see .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs:636 | Met | - |
+| AC-009 | REQ-009 | Given the `claude-only` fixture, When apply runs, Then `AGENTS.md` is created and `CLAUDE.md` removed, and `--keep-claude-md` keeps it | the suite's `claude-only creates the root document and removes the copy` and `--keep-claude-md keeps the copy it folded` cases pass — see .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs:692 | Met | - |
+| AC-010 | REQ-010 | Given a router missing shipped rows, When apply runs, Then only the missing rows are added and the checker passes | the suite writes a router holding 3 of 13 shipped rows; after apply every original line is intact, the tables hold 13 and 13 rows, and `check-repo-rules.cjs --root <tmp>` printed `RESULT: PASSED (11/11 checks)`, exit 0 — see .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs:724 | Met | - |
+| AC-011 | REQ-011 | Given an empty block, When apply runs, Then no `.cursor/rules/repo-local.md` is written, and a non-empty block writes one | the suite's `.cursor/rules/repo-local.md exists exactly when the block carries content` case passes on both sides — see .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs:769 | Met | - |
+| AC-012 | REQ-012 | Given a completed run, When the backup directory is inspected, Then it still exists and no commit was staged | the suite's `the backup survives the run and records what it holds` case passes: `manifest.json` carries the plan digest and each pre-run sha256, the directory is still there after the run, and the suite asserts the engine contains no `git add`, `git commit` or `git stash` — see .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs:670 | Met | - |
 
 ### Status values
 
@@ -87,7 +87,10 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-001 through AC-012 are unmet: the child is specified and not started.
+AC-001 through AC-012 are Met, each one naming the case or command that proved it. The
+engine writes only inside its allowlist, refuses a plan it cannot replay, and restores its
+backup when the post-write proof finds a lost line. The suite passes 23 of 23 cases, the
+doctor suite ends `0 failed`, and `validate.sh --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:closure -->

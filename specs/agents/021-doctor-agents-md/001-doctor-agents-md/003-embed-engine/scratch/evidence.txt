@@ -1,0 +1,86 @@
+=== foreign
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan --root /Users/michelkerkmeester/worktrees/public/.scratch-dc90/021-13/evidence/foreign-work
+exit=0
+budget: 0 -> 16368 of 16384 bytes to the last anchor, 197 -> 28085 of 32768 bytes total, 4683 bytes headroom
+preservation: kept 5, carried 0, shipped-replaced 44, dropped 0
+backup: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/doctor-agents-md/20261030T133339Z
+plan-digest: dc795043c2faeddfd0dc506fb1004acc6d5b5c3159aabbe32b97161a0e7473cc
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --root /Users/michelkerkmeester/worktrees/public/.scratch-dc90/021-13/evidence/foreign-work --plan-digest <digest>
+exit=0
+wrote AGENTS.md
+wrote .cursor/rules/repo-local.md
+preservation: kept 5, carried 0, shipped-replaced 44, dropped 0
+check-after: state=adopted findings=2 unknown=0
+backup: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/doctor-agents-md/20261030T133339Z
+STATUS=OK
+$ diff /Users/michelkerkmeester/worktrees/public/.scratch-dc90/021-13/evidence/foreign-pristine/AGENTS.md /Users/michelkerkmeester/worktrees/public/.scratch-dc90/021-13/evidence/foreign-work/AGENTS.md
+exit=1 (1 = the run changed it, as expected)
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/doctor-agents-md/20261030T133339Z --yes
+exit=0
+restore AGENTS.md: put back
+restore .cursor/rules/repo-local.md: delete
+restore: 2 path(s) put back, the backup at /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/doctor-agents-md/20261030T133339Z is kept
+STATUS=OK
+$ cmp /Users/michelkerkmeester/worktrees/public/.scratch-dc90/021-13/evidence/foreign-pristine/AGENTS.md /Users/michelkerkmeester/worktrees/public/.scratch-dc90/021-13/evidence/foreign-work/AGENTS.md
+exit=0
+
+=== forked
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan --root /Users/michelkerkmeester/worktrees/public/.scratch-dc90/021-13/evidence/forked-work
+exit=0
+budget: 16368 -> 16368 of 16384 bytes to the last anchor, 27850 -> 28095 of 32768 bytes total, 4673 bytes headroom
+preservation: kept 3, carried 0, shipped-replaced 44, dropped 0
+backup: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/doctor-agents-md/20261030T133339Z-2
+plan-digest: 65c9d678be2228df5471c824b4255078213665880108737e0efee79a9340a527
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --root /Users/michelkerkmeester/worktrees/public/.scratch-dc90/021-13/evidence/forked-work --plan-digest <digest>
+exit=0
+wrote AGENTS.md
+wrote .cursor/rules/repo-local.md
+preservation: kept 3, carried 0, shipped-replaced 44, dropped 0
+check-after: state=adopted findings=1 unknown=0
+backup: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/doctor-agents-md/20261030T133340Z
+STATUS=OK
+$ diff /Users/michelkerkmeester/worktrees/public/.scratch-dc90/021-13/evidence/forked-pristine/AGENTS.md /Users/michelkerkmeester/worktrees/public/.scratch-dc90/021-13/evidence/forked-work/AGENTS.md
+exit=1 (1 = the run changed it, as expected)
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/doctor-agents-md/20261030T133340Z --yes
+exit=0
+restore AGENTS.md: put back
+restore .cursor/rules/repo-local.md: delete
+restore .cursor/rules/skill-routing.md: put back
+restore: 3 path(s) put back, the backup at /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/doctor-agents-md/20261030T133340Z is kept
+STATUS=OK
+$ cmp /Users/michelkerkmeester/worktrees/public/.scratch-dc90/021-13/evidence/forked-pristine/AGENTS.md /Users/michelkerkmeester/worktrees/public/.scratch-dc90/021-13/evidence/forked-work/AGENTS.md
+exit=0
+
+=== second run on the applied tree (foreign, before restore is gone: use a fresh copy)
+first apply exit=0
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan --root /Users/michelkerkmeester/worktrees/public/.scratch-dc90/021-13/evidence/foreign-second
+[agents-md-embed] plan for /Users/michelkerkmeester/worktrees/public/.scratch-dc90/021-13/evidence/foreign-second (state: adopted)
+note: router: no REPO RULES.md, so no repository rule can load; pass --create-router to create one from the shipped rows
+NOTHING TO DO
+exit=0
+
+=== this repository
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan
+[agents-md-embed] plan for /Users/michelkerkmeester/worktrees/public/292-doctor-agents-md (state: pure)
+NOTHING TO DO
+exit=0
+
+=== failing first, before the engine existed (also kept verbatim in scratch/failing-first.log, which is gitignored by the root *.log rule)
+$ node --test .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs
+node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '../agents-md-embed.cjs'
+Require stack:
+...
+
+test at .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs:1:1
+✖ .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs (40.711417ms)
+  'test failed'
+
+=== the suite after the engine landed
+$ node --test .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs
+exit=0
+pass 23
+fail 0
