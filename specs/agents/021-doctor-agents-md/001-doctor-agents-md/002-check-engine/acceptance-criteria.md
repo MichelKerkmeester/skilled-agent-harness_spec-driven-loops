@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine"
-    last_updated_at: "2026-10-30T12:40:00Z"
+    last_updated_at: "2026-10-30T12:35:33Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet the open criteria, then mark each one Met with its command output"
+    recent_action: "Met all twelve criteria and recorded the run behind each one"
+    next_safe_action: "Hand the report to the embed engine, which composes from A4, A7, A8, A9 and A10"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-292-doctor-agents-md"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** `agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine`
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-30
 <!-- /ANCHOR:metadata -->
 
@@ -51,18 +51,18 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given each of the seven classified fixtures, When the engine runs, Then A1 reports that fixture's state | the suite's per-fixture state cases pass | Unmet | - |
-| AC-002 | REQ-002 | Given the `forked` fixture, When the engine runs, Then it lists the unmarked section with its byte range and the edited section's local-only lines | `node .skilled/commands/doctor/scripts/agents-md-check.cjs --root .skilled/commands/doctor/scripts/tests/fixtures/agents-md/forked --json` exits 1 and its `state` reads `forked` | Unmet | - |
-| AC-003 | REQ-003 | Given the `shadowed-pin` fixture, When A5 runs, Then it fails because the local lookup line precedes Gate 1 | the suite's shadowed-pin case passes | Unmet | - |
-| AC-004 | REQ-004 | Given the `over-budget` fixture, When A6 and A7 run, Then both fail | the suite's over-budget case passes | Unmet | - |
-| AC-005 | REQ-005 | Given no canary on the path, When A6 runs, Then it reports `UNKNOWN` and never `PASS` | the suite's missing-canary case passes | Unmet | - |
-| AC-006 | REQ-006 | Given a divergent `CLAUDE.md`, When A10 runs, Then it fails and lists the divergent lines | the suite's divergent-copy case passes | Unmet | - |
-| AC-007 | REQ-007 | Given a clean tree, a finding and a failed precondition, When the engine runs, Then it exits 0, 1 and 2 respectively | the suite's three exit-code cases pass | Unmet | - |
-| AC-008 | REQ-008 | Given a write-spy over the run, When every row executes, Then zero filesystem writes are recorded | the suite's write-spy case passes | Unmet | - |
-| AC-009 | REQ-001 | Given this repository, When the engine runs, Then it exits 0 with `STATUS=OK` and `A1 install state: pure` | `node .skilled/commands/doctor/scripts/agents-md-check.cjs` exits 0 and prints both lines | Unmet | - |
-| AC-010 | REQ-008 | Given a run over every fixture, When the working tree is hashed before and after, Then the digests are identical | `git status --porcelain \| shasum` prints the same digest on both sides | Unmet | - |
-| AC-011 | REQ-009 | Given `--json`, When the engine runs on any fixture, Then the JSON carries the same rows and the same `state` as the text form | the suite's JSON parity case passes | Unmet | - |
-| AC-012 | REQ-010 | Given A11, When it reports, Then its summary line is the repo-rules checker's own line | `rg -n 'repo-rules-check' .skilled/commands/doctor/scripts/agents-md-check.cjs` prints the reuse site | Unmet | - |
+| AC-001 | REQ-001 | Given each of the seven classified fixtures, When the engine runs, Then A1 reports that fixture's state | the suite's per-fixture state cases pass (nine `A1 install state: the … fixture classifies as …` cases, `pass 29`, `fail 0`) — see .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs:325 | Met | - |
+| AC-002 | REQ-002 | Given the `forked` fixture, When the engine runs, Then it lists the unmarked section with its byte range and the edited section's local-only lines | `node .skilled/commands/doctor/scripts/agents-md-check.cjs --root .skilled/commands/doctor/scripts/tests/fixtures/agents-md/forked --json` exited 1 with `"state": "forked"`; A8 reported `"## Local release checklist": lines 263-266, bytes 25101-25207` and A9 listed the one local line of `s6-spec-folder` — see .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs:344 | Met | - |
+| AC-003 | REQ-003 | Given the `shadowed-pin` fixture, When A5 runs, Then it fails because the local lookup line precedes Gate 1 | the suite's `shadowed-pin: A5 fails because the local lookup line comes before Gate 1` case passes, with `gate1-lookup` FINDING and the other 29 pins holding — see .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs:372 | Met | - |
+| AC-004 | REQ-004 | Given the `over-budget` fixture, When A6 and A7 run, Then both fail | the suite's `over-budget: A6 and A7 both fail` case passes; A7 names the end marker ahead of the start marker and the 33341-byte total against the 32768-byte ceiling — see .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs:384 | Met | - |
+| AC-005 | REQ-005 | Given no canary on the path, When A6 runs, Then it reports `UNKNOWN` and never `PASS` | the suite's missing-canary case passes: A6 `UNKNOWN`, `STATUS=UNKNOWN`, exit 1, and the same row measures on a root where the canary is installed — see .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs:397 | Met | - |
+| AC-006 | REQ-006 | Given a divergent `CLAUDE.md`, When A10 runs, Then it fails and lists the divergent lines | the suite's `a divergent CLAUDE.md fails A10 and lists the lines only it carries` case passes with kind `divergent copy` and the three lines listed — see .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs:418 | Met | - |
+| AC-007 | REQ-007 | Given a clean tree, a finding and a failed precondition, When the engine runs, Then it exits 0, 1 and 2 respectively | the suite's `exit codes: 0 on this repository, 1 on a finding, 2 on a failed precondition` case passes; both a missing root and a missing manifest exit 2 and name the path — see .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs:457 | Met | - |
+| AC-008 | REQ-008 | Given a write-spy over the run, When every row executes, Then zero filesystem writes are recorded | the suite's `the write-spy records no filesystem write while every row executes` case passes with twenty write functions patched and every row executed — see .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs:480 | Met | - |
+| AC-009 | REQ-001 | Given this repository, When the engine runs, Then it exits 0 with `STATUS=OK` and `A1 install state: pure` | `node .skilled/commands/doctor/scripts/agents-md-check.cjs` printed `A1 install state: pure   (PASS)` and `STATUS=OK rows=12 findings=0 unknown=0`, exit 0 — see .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs:547 | Met | - |
+| AC-010 | REQ-008 | Given a run over every fixture, When the working tree is hashed before and after, Then the digests are identical | `git status --porcelain \| shasum` printed `615c34b159e662c45e2645a7d4797f7ef1b62e4e` on both sides of two runs per fixture plus one run on this repository; the suite also hashes each temp tree by sha256 before and after — see .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs:509 | Met | - |
+| AC-011 | REQ-009 | Given `--json`, When the engine runs on any fixture, Then the JSON carries the same rows and the same `state` as the text form | the suite's `--json carries the same rows and the same state as the text form` case passes, comparing all twelve verdicts parsed out of the text report with the JSON rows and both exit codes — see .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs:533 | Met | - |
+| AC-012 | REQ-010 | Given A11, When it reports, Then its summary line is the repo-rules checker's own line | `rg -n 'repo-rules-check' .skilled/commands/doctor/scripts/agents-md-check.cjs` prints the reuse site (the `REPO_RULES_TAG` constant and the filter that carries the checker's line); A11 reports `[repo-rules-check] RESULT: PASSED (11/11 checks)` on this repository, and the suite asserts that line — see .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs:554 | Met | - |
 
 ### Status values
 
@@ -87,7 +87,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-001 through AC-012 are unmet: the child is specified and not started.
+AC-001 through AC-012 are met, each with the run that proves it named in its Verification cell. No row is waived or superseded, so no decision record is needed.
 <!-- /ANCHOR:closure -->

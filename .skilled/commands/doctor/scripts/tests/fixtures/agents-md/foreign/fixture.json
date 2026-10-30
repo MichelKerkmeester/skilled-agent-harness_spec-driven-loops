@@ -1,0 +1,8 @@
+{
+  "name": "foreign",
+  "expect_state": "foreign",
+  "base": "own",
+  "own_document": "# Our own instructions\n\nThis repository predates the harness. Build with `make`, test with `make check`.\n\n## Local conventions\n\n- Keep every export beside its use.\n- Never commit a generated file.\n",
+  "files": {},
+  "notes": "A repository's own file. It carries no shipped section at all, so it is the repository's to keep and the template has to arrive around it."
+}

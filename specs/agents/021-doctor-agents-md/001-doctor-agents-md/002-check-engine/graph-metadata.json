@@ -38,14 +38,19 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs",
+      "scratch/failing-first.log",
+      "scratch/baseline.txt",
+      "scratch/run-all-baseline.log"
     ],
     "entities": [
       {
@@ -82,6 +87,36 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "failing-first.log",
+        "kind": "file",
+        "path": "scratch/failing-first.log",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "run-all-baseline.log",
+        "kind": "file",
+        "path": "scratch/run-all-baseline.log",
         "source": "derived"
       },
       {
@@ -161,41 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A repository that took the framework can be in any of seven states, and nothing names which one it is in",
     "created_at": "2026-10-30T11:22:42Z",
-    "last_save_at": "2026-10-30T11:31:12.386Z",
+    "last_save_at": "2026-10-30T12:40:51.802Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db25c1df6b62f6173f5b2412f0d472939919f5592fc54112bda7f5f1306e61e6",
+    "source_fingerprint": "sha256:8e81644e2fd16870326d5ad13d926b6cb278013094f262c6bf80b8ac2d507d95",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "434677728dd9afcad5970d83d4355d08b6f76ffb7f71e2c5c589df35aca5df4a",
+      "spec.md": "f50f3135fd179b12e4ecae8d9b3fe7588e67f6f0f57a3562e86ce11b32565a2f",
       "plan.md": "4faa6a33401784b82266db84dab259b9f17c777af1960a8fb45dd9b119ed7dcd",
-      "tasks.md": "00d221f8479809d2b562e1dcc92f4c41eff9b4c501f6c9c4a643705730222f85",
-      "implementation-summary.md": "b73aa17b9687b50b26ba9967d9b6542e6def23f22c58a982a89b901a10066f07"
+      "tasks.md": "ed65ad02b73009ecb18844fd4e40c2b162ea76cf4b01bbe99ed3387f94fac790",
+      "implementation-summary.md": "3d59ad960b208ba0717237cbea36f4c53320d9ca7a14453d40c02ff9109dc717"
     },
     "last_active_at": null
   }

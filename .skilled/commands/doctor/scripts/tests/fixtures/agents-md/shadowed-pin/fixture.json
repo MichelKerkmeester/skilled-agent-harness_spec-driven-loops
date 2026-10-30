@@ -1,0 +1,14 @@
+{
+  "name": "shadowed-pin",
+  "expect_state": "forked",
+  "base": "template",
+  "insert_sections": [
+    {
+      "before": "s2-mandatory-gates",
+      "text": "## Repository lookup\n\nEvery prompt starts with `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json`.\n\n"
+    }
+  ],
+  "block": null,
+  "files": {},
+  "notes": "A repository line naming the trigger-index lookup ahead of Gate 1. Anything downstream that reads the first such line would follow this one instead, and the byte it adds also pushes the last anchor past the delivery prefix, which is the second finding the same defect earns."
+}

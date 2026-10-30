@@ -1,0 +1,7 @@
+{
+  "name": "absent",
+  "expect_state": "absent",
+  "base": "none",
+  "files": {},
+  "notes": "No instruction file of any kind, so nothing delivers the framework and nothing of the repository's own is at risk."
+}

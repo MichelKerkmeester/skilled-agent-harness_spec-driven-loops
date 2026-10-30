@@ -1,0 +1,19 @@
+{
+  "name": "forked",
+  "expect_state": "forked",
+  "base": "template",
+  "section_edits": {
+    "s6-spec-folder": [
+      "Local rule: name the packet in the first line of every pull request."
+    ]
+  },
+  "insert_sections": [
+    {
+      "before": "s7-escalation",
+      "text": "## Local release checklist\n\nRun `make verify` and post the result in the release channel before tagging.\n\n"
+    }
+  ],
+  "block": null,
+  "files": {},
+  "notes": "One local line inside a shipped section and one repository section between two shipped ones. Both sit past the delivery prefix so the fixture plants its two defects without also moving an anchor."
+}

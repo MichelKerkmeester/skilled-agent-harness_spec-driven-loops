@@ -1,0 +1,9 @@
+{
+  "name": "stale",
+  "expect_state": "stale",
+  "base": "template",
+  "replace_with_history": ["operational-mandates"],
+  "block": null,
+  "files": {},
+  "notes": "One shipped section still carries the body an earlier release shipped, so the repository is one release behind. The section is the document's last one, so replacing it moves no byte offset above it."
+}

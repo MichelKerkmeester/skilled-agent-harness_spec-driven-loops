@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "This packet is specified and not started: it records the twelve check rows, the nine fixtures and the criteria that will decide it, with no implementation claim."
+description: "The read-only check engine landed with its twelve rows, its nine fixtures and the suite that proves each state, each planted defect, the three exit codes and a zero-write run."
 trigger_phrases:
   - "agents md check implementation summary"
 importance_tier: "normal"
@@ -8,18 +8,20 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine"
-    last_updated_at: "2026-10-30T12:40:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Recorded the specification state; implementation has not started"
-    next_safe_action: "Start with the failing suite once the doctor sk-skill command is on main"
-    blockers:
-      - "Waits on /doctor:sk-skill (packet sk-doc/075-doctor-sk-skill-command) landing on main"
-    key_files: []
+    last_updated_at: "2026-10-30T12:35:33Z"
+    last_updated_by: "code-agent"
+    recent_action: "Landed the engine, the suite and the nine fixtures; every criterion met"
+    next_safe_action: "Child 003 composes the embed plan from A4, A7, A8, A9 and A10"
+    blockers: []
+    key_files:
+      - ".skilled/commands/doctor/scripts/agents-md-check.cjs"
+      - ".skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs"
+      - ".skilled/commands/doctor/scripts/tests/fixtures/agents-md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-292-doctor-agents-md"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +39,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-check-engine |
-| **Completed** | Not started |
+| **Completed** | 2026-10-30 |
+| **Status** | Complete |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -46,19 +49,19 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing is built. This packet holds the specification, the plan and the acceptance criteria for one read-only engine that classifies a repository against the shipped manifest, and no code has run against it.
+One command that answers, without writing a byte, what a repository holds against the template it was shipped. It reports the install state, the sections it still carries, whether their order and numbering survive, the currency of each body, every pinned string, the delivery budget, the shape of the repository block, the repository's own content outside that block, the local lines hiding inside shipped sections, each runtime copy, the router, and the source repository's own purity.
 
 ### Phase 2: check engine
 
-When it is built, an operator will learn in one command which of seven install states a repository is in, which shipped sections it has lost, which of its own sections sit outside the markers with their byte ranges, and how each runtime copy stands. The report is the input the embed engine composes from.
+`agents-md-check.cjs` prints twelve rows, each `PASS`, `FINDING`, `UNKNOWN` or `INFO`, with `--json` carrying the same report. It segments the root document with the shared library child 001 landed, compares each body by sha256 against the manifest's derived copies and its release history, and runs three neighbour tools as children instead of re-deriving what they own: the rule-copy canary for the budget, the gate 1 pointer sync for the Cursor rule, and the repo-rules checker for the router. Exit codes are 0 for nothing to report, 1 for a finding or a row it could not prove, and 2 for a failed precondition.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/commands/doctor/scripts/agents-md-check.cjs` | Planned create | The read-only engine |
-| `.skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs` | Planned create | The failing-first suite |
-| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/<nine trees>/` | Planned create | One planted defect per fixture |
+| `.skilled/commands/doctor/scripts/agents-md-check.cjs` | Created | The read-only engine: argument parsing, twelve row functions, two renderers, the exit-code mapping |
+| `.skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs` | Created | The suite: one case per install state, one per planted defect, the exit codes, the write-spy, the tree digests, the JSON parity, and the freshness check on the committed fixtures |
+| `.skilled/commands/doctor/scripts/tests/fixtures/agents-md/<nine trees>/` | Created | Nine synthetic repositories, each derived from the manifest and each carrying one planted shape. Every tree also holds the `fixture.json` recipe it is derived from |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -66,7 +69,11 @@ When it is built, an operator will learn in one command which of seven install s
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. The baseline commands were captured on this worktree at `006d96370d` and are recorded in `spec.md` section 2; they are re-measured when implementation starts.
+Tests first: the suite was written and run before the engine existed, and it failed with `Cannot find module '../agents-md-check.cjs'` (`scratch/failing-first.log`). The six baseline commands were recorded before the first edit (`scratch/baseline.txt`), and implementation proceeded one row group at a time against the focused suite.
+
+Two decisions shaped the fixtures. The first is that each committed fixture is derived, not hand-written: `fixture.json` names the planted shape and the suite recomposes the tree from the manifest, so a fixture cannot describe a template the manifest no longer ships, and a changed body fails the freshness case instead of passing quietly. Regenerating is one command, printed by that case's failure message. The second is that every engine run happens on a throwaway copy of a committed tree, so the assertion in `git status` and the tree digests both prove the fixtures themselves were never read as writable.
+
+The trade-off the second decision does not remove: six of the nine committed fixtures carry a full copy of the shipped document (172 KB across the trees, 252 KB with the mirrors). That is what the criteria require, since AC-002 names the fixture path itself as the run target, and it means the framework's own prose now exists in the fixtures as well as at the root. The freshness case is the guard against those copies drifting.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,8 +84,12 @@ Not delivered. The baseline commands were captured on this worktree at `006d9637
 | Decision | Why |
 |----------|-----|
 | One fixture per row rather than one large fixture | A fixture that fails several rows cannot tell which row broke |
-| Fixtures are built from the manifest | A hand-written fixture drifts from the data it is supposed to exercise |
+| Fixtures are derived from the manifest, with the recipe committed beside the tree | A hand-written fixture drifts from the data it is supposed to exercise, and the freshness case is what makes the derivation checkable |
 | An absent canary is `UNKNOWN`, never `PASS` | A green result with no evidence behind it is the failure mode this row exists to prevent |
+| `UNKNOWN` fails the run | A row that could not be proven is not an all-clear, so the status line may not read `OK` while one exists |
+| A local edit outranks a missed release in the install-state reading | An edited section is the case that loses text when somebody replaces the document; staleness only loses a patch |
+| The canary's `AGENTS.md` findings are filtered by their own prefixes | Its other pins belong to the skill it ships in, so a consumer's missing skill files must not read as this document's verdict |
+| The block is empty when nothing but the shipped heading and note sits between its markers | The template itself ships those two lines inside the markers, so counting them as content would classify the source repository as `adopted` |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -88,9 +99,14 @@ Not delivered. The baseline commands were captured on this worktree at `006d9637
 
 | Check | Result |
 |-------|--------|
-| `node .skilled/commands/doctor/scripts/agents-md-check.cjs` | PENDING: script does not exist yet |
-| `node --test .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs` | PENDING: suite does not exist yet |
-| Read-only promise | NOT RUN: `git status --porcelain \| shasum` is the check, and it runs once the engine exists |
+| `node .skilled/commands/doctor/scripts/agents-md-check.cjs` | `A1 install state: pure   (PASS)`, `STATUS=OK rows=12 findings=0 unknown=0`, exit 0 |
+| Runtime on this repository | 0.27-0.30 seconds over three runs of `time -p`, and 0.27 seconds for the `--json` form, against a five-second target |
+| `node --test .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs` | `tests 29`, `pass 29`, `fail 0`, exit 0 |
+| `node --test .skilled/commands/doctor/scripts/tests/agents-md-manifest.test.cjs` | `tests 28`, `pass 28`, `fail 0`, exit 0 |
+| `bash .skilled/commands/doctor/scripts/tests/run-all.sh` | `node:test (37 files)` PASS, `unittest (1 files)` PASS, three shell suites PASS, `route-validate.sh --self-test` PASS, freshness panel PASS, `7 suite(s) passed, 0 failed`, exit 0 |
+| Read-only promise | `git status --porcelain \| shasum` gave `615c34b159e662c45e2645a7d4797f7ef1b62e4e` before and after two runs per fixture plus one run on this repository; the suite additionally hashes each temp tree by sha256 before and after, and a write-spy over every row records no call |
+| Every fixture's state | `pure`, `adopted`, `stale`, `forked`, `foreign`, `claude-only`, `absent` classify as named; `shadowed-pin` and `over-budget` classify as `forked` |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine --strict` | `Summary: Errors: 0  Warnings: 0`, `RESULT: PASSED`, exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -98,7 +114,10 @@ Not delivered. The baseline commands were captured on this worktree at `006d9637
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The fixtures are small trees.** They carry the shipped sections and one planted defect each, not a full 27 KB template, so a defect that only appears at full size can pass the suite.
+1. **The three child tools are this installation's copies.** The canary, the pointer sync and the router checker are resolved from the tree the engine ships in and pointed at the target with `--root`, which is what lets a consumer's own `AGENTS.md` be measured. The consequence is that a repository carrying a newer copy of a tool is measured by the older one it installed alongside the engine.
+2. **The canary gap is proven through the harness rather than by moving a file.** T014 asks for the canary to be moved aside; the suite instead hands `buildReport` an absent tool path, because moving a tracked file was outside this packet's scope. The row logic, the `UNKNOWN` state and the exit code are the same either way.
+3. **`claude-only` and `absent` fixtures fail several rows.** Their `A5`, `A10` and `A11` rows report the pins and copies a repository with no root document cannot carry. That is honest output, not a planted defect, and it is why only the `pure` fixture could ever exit 0 — and in fact no temp-root fixture does, since A11's router needs the shipped rule corpus to pass.
+4. **A7 measures the block's own byte span, not the block's contribution to the delivery budget.** The headroom it reports is the whole document's headroom against the ceiling, which is what a truncating runtime acts on.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -1,0 +1,8 @@
+{
+  "name": "pure",
+  "expect_state": "pure",
+  "base": "template",
+  "block": null,
+  "files": {},
+  "notes": "Every shipped section current, no repository block. The document is rebuilt from the manifest's derived bodies, so it cannot describe a template the manifest does not ship."
+}

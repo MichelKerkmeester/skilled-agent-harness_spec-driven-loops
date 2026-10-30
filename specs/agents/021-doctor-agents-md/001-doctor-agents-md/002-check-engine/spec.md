@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine"
-    last_updated_at: "2026-10-30T12:40:00Z"
+    last_updated_at: "2026-10-30T12:35:33Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored the child spec from the approved design"
-    next_safe_action: "Wait for the doctor sk-skill command, then write the failing tests first"
+    recent_action: "Landed the read-only engine, its suite and nine fixtures"
+    next_safe_action: "Child 003 composes an embed plan from this report's A4, A7, A8, A9 and A10 rows"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-292-doctor-agents-md"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-30 |
 | **Branch** | `worktrees/292-doctor-agents-md` |
 | **Parent Spec** | ../spec.md |

@@ -1,0 +1,13 @@
+{
+  "name": "adopted",
+  "expect_state": "adopted",
+  "base": "template",
+  "block": {
+    "markers": "ordered",
+    "text": "\nOur stack is Node 20 with no web framework.\nBuild: `node --test scripts/`.\nTest: `node --test scripts/` and `bash scripts/lint.sh`.\n"
+  },
+  "files": {
+    "CLAUDE.md": "# Project notes\n\nRun `make check` before you open a pull request.\nUpdate the changelog in the same commit as the code.\n"
+  },
+  "notes": "Shipped sections current with a non-empty repository block, plus the hand-kept CLAUDE.md copy a repository that upgraded halfway keeps: two lines the root document does not carry."
+}

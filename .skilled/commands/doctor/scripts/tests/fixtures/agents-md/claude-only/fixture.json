@@ -1,0 +1,9 @@
+{
+  "name": "claude-only",
+  "expect_state": "claude-only",
+  "base": "none",
+  "files": {
+    "CLAUDE.md": "# Project notes\n\nRun `make check` before you open a pull request.\n"
+  },
+  "notes": "No root document, one Claude-only file. The only instruction file this repository has is the one Claude reads second."
+}
