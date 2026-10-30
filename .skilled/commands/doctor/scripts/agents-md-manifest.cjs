@@ -115,6 +115,24 @@ function parseArgs(argv) {
  * @param {{root: string, manifest: Object, readOrigin?: Function}} input
  * @returns {{isSource: boolean, identity: string|null, origin: string, reason: string}}
  */
+// GITHUB_REPOSITORY names the checkout a CI job runs in, not every folder the job can see,
+// so it only identifies a root that is that checkout. Any other root, such as a temporary
+// copy, is identified by its own origin remote.
+function identityEnv(root, env = process.env) {
+  const workspace = typeof env.GITHUB_WORKSPACE === 'string' ? env.GITHUB_WORKSPACE.trim() : '';
+  if (!env.GITHUB_REPOSITORY) return env;
+  const same = (a, b) => {
+    try {
+      return fs.realpathSync(a) === fs.realpathSync(b);
+    } catch {
+      return false;
+    }
+  };
+  if (workspace && same(root, workspace)) return env;
+  const { GITHUB_REPOSITORY: _ignored, ...rest } = env;
+  return rest;
+}
+
 function sourceStatus({ root, manifest, readOrigin = null }) {
   const declared = manifest.source_repository;
   const expected = normalizeRemote(declared);
@@ -126,7 +144,7 @@ function sourceStatus({ root, manifest, readOrigin = null }) {
     origin = `origin remote ${url === null || url === undefined ? '(unreadable)' : url}`;
     identity = normalizeRemote(url);
   } else {
-    const current = currentRepository({ root });
+    const current = currentRepository({ root, env: identityEnv(root) });
     identity = current.identity;
     origin = identity === null
       ? `origin remote (unreadable under ${root})`

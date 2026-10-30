@@ -55,8 +55,8 @@ const NOT_SOURCE = source.isSource ? false : source.reason;
 // 2. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
-function runGenerator(args) {
-  const result = spawnSync(process.execPath, [GENERATOR, ...args], { encoding: 'utf8' });
+function runGenerator(args, env = process.env) {
+  const result = spawnSync(process.execPath, [GENERATOR, ...args], { encoding: 'utf8', env });
   return { code: result.status, out: result.stdout || '', err: result.stderr || '' };
 }
 
@@ -233,6 +233,20 @@ test('generator: --write outside the source repository exits 2 and names the ori
   assert.equal(result.code, 2, `exit 2, stdout=${result.out} stderr=${result.err}`);
   assert.match(`${result.err}${result.out}`, /source repository/);
   assert.equal(fs.readFileSync(copy, 'utf8'), before, 'the manifest is untouched');
+});
+
+test('generator: a CI job names its own checkout, so another root is still refused', (t) => {
+  const dir = scratch(t);
+  const copy = copyManifest(dir);
+  const env = {
+    ...process.env,
+    GITHUB_REPOSITORY: manifest.source_repository.replace(/^https:\/\/github\.com\//, ''),
+    GITHUB_WORKSPACE: REPO_ROOT,
+  };
+  const result = runGenerator(['--write', '--root', dir, '--manifest', copy], env);
+
+  assert.equal(result.code, 2, `exit 2, stdout=${result.out} stderr=${result.err}`);
+  assert.match(`${result.err}${result.out}`, /source repository/);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
