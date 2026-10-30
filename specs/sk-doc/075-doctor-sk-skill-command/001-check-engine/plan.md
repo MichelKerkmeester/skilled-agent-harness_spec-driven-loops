@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 1: check-engine"
-description: "Build sk-skill-check.cjs and lib/sk-skill-surface.cjs as thin Node orchestration over the existing format validators, resolver, parser and advisor CLI. Prove it with a node --test suite over seven fixtures and a fleet run that matches the recorded baseline."
+description: "Build sk-skill-check.cjs and lib/sk-skill-surface.cjs as thin Node orchestration over the existing format validators, resolver, parser and advisor CLI. Select a Python interpreter that can import PyYAML and prove the behavior with PATH stubs, fixture tests and a fleet run against the recorded baseline."
 trigger_phrases:
   - "check engine plan"
 importance_tier: "normal"
@@ -26,7 +26,7 @@ contextType: "general"
 | **Testing** | `node --test` |
 
 ### Overview
-Add one check script and one shared probe library under `.skilled/commands/doctor/scripts/`. Each row C1 to C13 either calls an existing validator and parses its JSON, or runs a small new probe (path test, slug-default compare, changelog link, collision scan, regression row count). Prove it with seven fixtures and a fleet run that reports the baseline verdict for every shipped root.
+Add one check script and one shared probe library under `.skilled/commands/doctor/scripts/`. Each row C1 to C13 either calls an existing validator and parses its JSON, or runs a small new probe (path test, slug-default compare, changelog link, collision scan, regression row count). When `PYTHON` is unset, select the first distinct `python3` on `PATH` that imports PyYAML; when set, use only that interpreter. Prove the precondition with PATH stubs, fixture tests and a fleet run that reports the baseline verdict for every shipped root.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -40,9 +40,9 @@ Add one check script and one shared probe library under `.skilled/commands/docto
 - [ ] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` exits 0
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` exits 0
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -85,7 +85,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | Classifier, slug-default compare, collision scan, changelog probe in `lib/sk-skill-surface.cjs` | `node --test` |
+| Unit | Classifier, slug-default compare, collision scan, changelog probe and Python interpreter discovery in `lib/sk-skill-surface.cjs` | `node --test` |
 | Integration | `sk-skill-check.cjs` over the seven fixtures, text and `--json` | `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` |
 | Manual | Fleet run compared with `scratch/baseline/` | `node .skilled/commands/doctor/scripts/sk-skill-check.cjs check --json` |
 <!-- /ANCHOR:testing -->

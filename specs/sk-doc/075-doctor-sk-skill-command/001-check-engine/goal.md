@@ -8,17 +8,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-doc/075-doctor-sk-skill-command/001-check-engine"
-    last_updated_at: "2026-10-30T06:50:00Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-10-30T07:06:56Z"
+    last_updated_by: "codex"
+    recent_action: "Completed interpreter discovery and verified the phase"
+    next_safe_action: "No further work is pending in this phase"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-281-doctor-skill-command"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -53,10 +53,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` exits 0 over the plain, pre-migration, canon, dual-declaration, outside-root, `local-` prefix and nested-packet fixtures
-- [ ] A fleet `sk-skill-check.cjs check --json` run reports the baseline verdict for every shipped root in `scratch/baseline/`
-- [ ] `git status --porcelain` prints the same lines before and after a fleet `check` run
-- [ ] With the resolver path hidden, `check` exits 2 and names the missing resolver
+- [x] `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` exits 0 over the plain, pre-migration, canon, dual-declaration, outside-root, `local-` prefix and nested-packet fixtures
+- [x] A fleet `sk-skill-check.cjs check --json` run reports the baseline verdict for every shipped root in `scratch/baseline/`
+- [x] `git status --porcelain` prints the same lines before and after a fleet `check` run
+- [x] With the resolver path hidden, `check` exits 2 and names the missing resolver
+- [x] With `PYTHON` unset, interpreter discovery selects the first `python3` on `PATH` that imports PyYAML; with `PYTHON` set, only that interpreter is used
 <!-- /ANCHOR:completion -->
 
 ---
@@ -72,7 +73,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase planned | Pending | spec.md, plan.md, tasks.md authored |
+| Phase 1 verification | Complete | 22 test cases pass; fleet and named checks pass; strict validation passes |
 
 ### Deviations and findings
 

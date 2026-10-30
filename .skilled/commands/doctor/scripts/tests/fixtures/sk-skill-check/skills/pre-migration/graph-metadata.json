@@ -1,0 +1,14 @@
+{
+  "schema_version": 2,
+  "skill_id": "fixture-pre-migration",
+  "intent_signals": [
+    "fixture-pre-migration",
+    "fixture-pre-migration skill",
+    "fixture-pre-migration workflow",
+    "how to use fixture-pre-migration",
+    "use fixture-pre-migration",
+    "fixture-pre-migration guide",
+    "fixture-pre-migration reference",
+    "fixture-pre-migration setup"
+  ]
+}

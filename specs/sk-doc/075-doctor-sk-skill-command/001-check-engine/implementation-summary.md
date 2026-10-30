@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Planned stub. Phase 1 has not started, so no check engine has been built and nothing has been verified yet."
+description: "Read-only skill check engine with C1-C13 reports, findings-only exit codes, target-aware probes, Python interpreter discovery, and fleet verification."
 trigger_phrases:
   - "check engine implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/075-doctor-sk-skill-command/001-check-engine"
-    last_updated_at: "2026-10-30T06:50:00Z"
-    last_updated_by: "claude-opus-worker"
-    recent_action: "Authored the planned stub"
-    next_safe_action: "Start task T001 in tasks.md"
+    last_updated_at: "2026-10-30T07:06:56Z"
+    last_updated_by: "codex"
+    recent_action: "Recorded final interpreter-discovery evidence and phase closure"
+    next_safe_action: "No further work is pending in this phase"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-281-doctor-skill-command"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,8 +36,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-check-engine |
-| **Status** | Planned |
-| **Completed** | Not started |
+| **Status** | Complete |
+| **Completed** | 2026-10-30 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -46,17 +46,23 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. This phase is planned and no implementation has been delivered.
+The read-only checker resolves a skill name or path, runs the existing package, metadata, routing, graph, advisor, mirror, description, and corpus probes, and reports rows C1 to C13. Only FINDING rows determine exit 1; UNKNOWN rows remain distinct, are counted separately, and alone produce exit 0. With no target it reports format and metadata verdicts for every direct shipped root.
 
 ### Phase 1: check-engine
 
-When built, `sk-skill-check.cjs` will report rows C1 to C13 for a named skill, or one row per shipped root with no argument, and `lib/sk-skill-surface.cjs` will hold the probes the convert phases reuse.
+`sk-skill-check.cjs` renders deep text or JSON reports and a fleet JSON/table. `lib/sk-skill-surface.cjs` holds path resolution, classification, collision checks, validator exit mapping, and the shared probes.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None yet | Planned | See the Files to Change table in `spec.md` |
+| `.skilled/commands/doctor/scripts/sk-skill-check.cjs` | Created | Runs C1-C13 checks and renders deep and fleet reports |
+| `.skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs` | Created | Locates and classifies inputs, maps child exit codes, discovers a Python interpreter with PyYAML, and shares probes |
+| `.skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | Created | Covers 23 cases for fixture classification, rendering, failure mappings, fleet behavior, target-aware probes, and Python discovery |
+| `.skilled/commands/doctor/scripts/tests/fixtures/sk-skill-check/` | Created | Holds plain, pre-migration, canon, dual, outside-root, reserved-prefix, direct-hub, and nested-packet fixtures |
+| `scratch/baseline/package-skill.json` | Created | Captures strict package results for 13 shipped roots before implementation |
+| `scratch/baseline/ci-skill-root-metadata.json` | Created | Captures metadata results for 13 shipped roots before implementation |
+| `tasks.md`, `acceptance-criteria.md`, `implementation-summary.md` | Updated | Records completed tasks, evidence, and outcome |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -64,7 +70,7 @@ When built, `sk-skill-check.cjs` will report rows C1 to C13 for a named skill, o
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. The plan is to record the fleet baseline, build the two scripts, then run the fixture suite and a fleet comparison.
+The fixture suite passed all 23 tests. With `PYTHON` unset, the fleet check returned 13 roots with PASS package and metadata verdicts, matching the recorded baseline, and the working tree remained unchanged across a fleet run. The requested `sk-git` report contained no FINDING rows and one UNKNOWN because the advisor backend was unavailable; it printed `Result: NO FINDINGS (1 UNKNOWN)` and exited 0. PATH stubs confirmed that discovery skips an interpreter without PyYAML, selects the next usable one, and does not fall back when `PYTHON` is explicitly empty.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -74,7 +80,10 @@ Not delivered. The plan is to record the fleet baseline, build the two scripts, 
 
 | Decision | Why |
 |----------|-----|
-| No decisions taken during implementation yet | The phase has not started; planning decisions live in `goal.md` |
+| Existing validators remain authoritative | The checker parses their results instead of duplicating format, metadata, graph, mirror, or description rules |
+| Advisor exit 75 is UNKNOWN | An unavailable warm-only backend cannot count as a pass or a finding; only FINDING rows determine exit 1 |
+| Reserved-prefix fixture value is generated during tests | Tracked fixture files do not contain a private skill name |
+| Python preconditions are explicit | A set `PYTHON` is used exclusively; otherwise the checker selects the first distinct `python3` on PATH that imports PyYAML, or exits 2 with guidance naming the attempted interpreters |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -84,8 +93,18 @@ Not delivered. The plan is to record the fleet baseline, build the two scripts, 
 
 | Check | Result |
 |-------|--------|
-| Implementation | NOT STARTED |
-| `ls .skilled/commands/doctor/scripts/sk-skill-check.cjs` on 2026-10-30 | No such file or directory, as expected before work starts |
+| `node --check .skilled/commands/doctor/scripts/sk-skill-check.cjs` | PASS, exit 0 |
+| `node --check .skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs` | PASS, exit 0 |
+| `node --check` on checker, surface library, and test file | PASS, exit 0 |
+| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | 23 passed, 0 failed, exit 0 |
+| `env -u PYTHON node .skilled/commands/doctor/scripts/sk-skill-check.cjs check` | 13 roots PASS; exit 0 |
+| `env -u PYTHON node .skilled/commands/doctor/scripts/sk-skill-check.cjs check sk-git` | `Result: NO FINDINGS (1 UNKNOWN)`; exit 0 |
+| PATH interpreter stubs | Second interpreter selected; all-candidate failure names each interpreter; explicit `PYTHON` remains exclusive; empty `PYTHON` returns `PYTHON_MISSING` without PATH fallback |
+| `check --json` fleet comparison with the recorded package and metadata baselines | 13 roots; all PASS; `baseline_match=true`; exit 0 |
+| `git status` around fleet check | `status_unchanged=true fleet_exit=0` |
+| Scoped `quality-gate.cjs` | `NO_BLOCKER_FOUND`, findings 0, exit 0 |
+| `repair-derived.cjs --apply --folder specs/sk-doc/075-doctor-sk-skill-command/001-check-engine` | Generated metadata refreshed; exit 0 |
+| `validate.sh specs/sk-doc/075-doctor-sk-skill-command/001-check-engine --strict` | `RESULT: PASSED`; exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -93,7 +112,7 @@ Not delivered. The plan is to record the fleet baseline, build the two scripts, 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Planned only.** This summary is a stub and claims no delivered behavior; fill it when the phase closes.
+No known blockers remain for the read-only check engine.
 <!-- /ANCHOR:limitations -->
 
 ---

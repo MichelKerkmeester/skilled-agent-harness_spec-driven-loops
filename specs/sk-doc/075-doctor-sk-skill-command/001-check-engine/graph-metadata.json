@@ -35,14 +35,19 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/sk-skill-check.cjs",
+      ".skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs",
+      ".skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs",
+      "scratch/baseline/package-skill.json",
+      "scratch/baseline/ci-skill-root-metadata.json"
     ],
     "entities": [
       {
@@ -79,6 +84,36 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/sk-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-surface.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "package-skill.json",
+        "kind": "config",
+        "path": "scratch/baseline/package-skill.json",
+        "source": "derived"
+      },
+      {
+        "name": "ci-skill-root-metadata.json",
+        "kind": "config",
+        "path": "scratch/baseline/ci-skill-root-metadata.json",
         "source": "derived"
       },
       {
@@ -158,41 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Each format gate answers one question on its own: `packageskill.py` gives RS codes, `ci-skill-root-metadata.cjs` gives class and RRC codes, the router resolver gives a verdict, and the advisor, Hermes mirror and changelog index have no check at all",
     "created_at": "2026-10-30T05:21:11Z",
-    "last_save_at": "2026-10-30T05:40:18.700Z",
+    "last_save_at": "2026-10-30T07:08:06.631Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9ea2bc3020447b5127c884deac829b06e6ab32f7b18c6e9c2cc8b6d6fd8f4499",
+    "source_fingerprint": "sha256:f802a34a224e45eaa786e394d697a5ebe2ee3675ad64507b9414ab4d66f5833f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3a4fe146eaaafd618724409a513b16e207a3411928eb62b3fcaa9f6f260d250c",
-      "plan.md": "75bba224bfe2c86cc6e26efc9a80a5d554e34018c434dff93564521fbdc12a12",
-      "tasks.md": "8ea159f8184f13c76110f2a10aa5d67da952e5392cbb0716cafe3b2f1b2f5156",
-      "implementation-summary.md": "135d38dd2ea2d33c023a78e235aff2b3e4ec3680033fb88d26bb84bb744dcbe4"
+      "spec.md": "e9173bd97b24a9fd2d5857ffadf25a2e315906e5ec646d5190c3e833235ca9c1",
+      "plan.md": "530ed0ce3fea57af683411f98d6aad5ab995308c28207655a63bbe35054be64a",
+      "tasks.md": "d852f1275beeda628f208f2c5ffbf84cc32810601281704355d2e33f9b9a655a",
+      "implementation-summary.md": "bc180e450c1ab09f164d10cb255cbda255b3ff330ce7dd477d638b6b8dceb6fe"
     },
     "last_active_at": null
   }

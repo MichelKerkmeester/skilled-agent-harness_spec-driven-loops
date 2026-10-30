@@ -1,0 +1,177 @@
+{
+  "schema": "sk-skill-check-fleet-baseline/v1",
+  "recordedAt": "2026-10-30T05:46:24.686084+00:00",
+  "commandTemplate": "/usr/bin/python3 package_skill.py <root> --check --strict --json",
+  "rootCount": 13,
+  "results": [
+    {
+      "skill": "cli-classifier",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        ".skilled/skills/cli-classifier",
+        "--check",
+        "--strict",
+        "--json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"valid\": true,\n  \"message\": \"Skill is valid!\",\n  \"warnings\": [],\n  \"path\": \"$REPO/.skilled/skills/cli-classifier\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "cli-external-orchestration",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        ".skilled/skills/cli-external-orchestration",
+        "--check",
+        "--strict",
+        "--json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"valid\": true,\n  \"message\": \"Skill is valid!\",\n  \"warnings\": [],\n  \"path\": \"$REPO/.skilled/skills/cli-external-orchestration\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "cli-orca",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        ".skilled/skills/cli-orca",
+        "--check",
+        "--strict",
+        "--json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"valid\": true,\n  \"message\": \"Skill is valid!\",\n  \"warnings\": [],\n  \"path\": \"$REPO/.skilled/skills/cli-orca\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "mcp-code-mode",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        ".skilled/skills/mcp-code-mode",
+        "--check",
+        "--strict",
+        "--json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"valid\": true,\n  \"message\": \"Skill is valid!\",\n  \"warnings\": [],\n  \"path\": \"$REPO/.skilled/skills/mcp-code-mode\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "mcp-tooling",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        ".skilled/skills/mcp-tooling",
+        "--check",
+        "--strict",
+        "--json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"valid\": true,\n  \"message\": \"Skill is valid!\",\n  \"warnings\": [],\n  \"path\": \"$REPO/.skilled/skills/mcp-tooling\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "sk-code",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        ".skilled/skills/sk-code",
+        "--check",
+        "--strict",
+        "--json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"valid\": true,\n  \"message\": \"Skill is valid!\",\n  \"warnings\": [],\n  \"path\": \"$REPO/.skilled/skills/sk-code\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "sk-design",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        ".skilled/skills/sk-design",
+        "--check",
+        "--strict",
+        "--json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"valid\": true,\n  \"message\": \"Skill is valid!\",\n  \"warnings\": [],\n  \"path\": \"$REPO/.skilled/skills/sk-design\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "sk-doc",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        ".skilled/skills/sk-doc",
+        "--check",
+        "--strict",
+        "--json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"valid\": true,\n  \"message\": \"Skill is valid!\",\n  \"warnings\": [],\n  \"path\": \"$REPO/.skilled/skills/sk-doc\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "sk-git",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        ".skilled/skills/sk-git",
+        "--check",
+        "--strict",
+        "--json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"valid\": true,\n  \"message\": \"Skill is valid!\",\n  \"warnings\": [\n    \"SKILL.md has 4342 words (recommended max: 3000)\"\n  ],\n  \"path\": \"$REPO/.skilled/skills/sk-git\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "sk-prompt",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        ".skilled/skills/sk-prompt",
+        "--check",
+        "--strict",
+        "--json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"valid\": true,\n  \"message\": \"Skill is valid!\",\n  \"warnings\": [],\n  \"path\": \"$REPO/.skilled/skills/sk-prompt\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "system-deep-loop",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        ".skilled/skills/system-deep-loop",
+        "--check",
+        "--strict",
+        "--json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"valid\": true,\n  \"message\": \"Skill is valid!\",\n  \"warnings\": [],\n  \"path\": \"$REPO/.skilled/skills/system-deep-loop\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "system-skill-advisor",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        ".skilled/skills/system-skill-advisor",
+        "--check",
+        "--strict",
+        "--json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"valid\": true,\n  \"message\": \"Skill is valid!\",\n  \"warnings\": [],\n  \"path\": \"$REPO/.skilled/skills/system-skill-advisor\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "system-spec-kit",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        ".skilled/skills/system-spec-kit",
+        "--check",
+        "--strict",
+        "--json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"valid\": true,\n  \"message\": \"Skill is valid!\",\n  \"warnings\": [\n    \"SKILL.md has 3364 words (recommended max: 3000)\"\n  ],\n  \"path\": \"$REPO/.skilled/skills/system-spec-kit\"\n}\n",
+      "stderr": ""
+    }
+  ]
+}

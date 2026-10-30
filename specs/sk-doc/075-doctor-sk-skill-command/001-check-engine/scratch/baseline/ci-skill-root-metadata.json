@@ -1,0 +1,203 @@
+{
+  "schema": "sk-skill-check-fleet-baseline/v1",
+  "recordedAt": "2026-10-30T05:46:24.686084+00:00",
+  "commandTemplate": "node ci-skill-root-metadata.cjs --skills-dir .skilled/skills --skill <root> --format json",
+  "rootCount": 13,
+  "results": [
+    {
+      "skill": "cli-classifier",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "--skills-dir",
+        ".skilled/skills",
+        "--skill",
+        "cli-classifier",
+        "--format",
+        "json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"skillsDir\": \"$REPO/.skilled/skills\",\n  \"checked\": 1,\n  \"passed\": 1,\n  \"failed\": 0,\n  \"fixed\": 0,\n  \"byClass\": {\n    \"H\": [\n      \"cli-classifier\"\n    ],\n    \"S\": [],\n    \"unclassified\": []\n  },\n  \"results\": [\n    {\n      \"skill\": \"cli-classifier\",\n      \"skillClass\": \"H\",\n      \"reason\": \"declares the complete mode-registry + hub-router pair\",\n      \"status\": \"pass\",\n      \"fixed\": false,\n      \"written\": [],\n      \"digest\": \"a24927396214ab841312a00a75e03ae22c74b0002f3b1edbd2925288a5002197\",\n      \"violations\": [],\n      \"notes\": []\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "cli-external-orchestration",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "--skills-dir",
+        ".skilled/skills",
+        "--skill",
+        "cli-external-orchestration",
+        "--format",
+        "json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"skillsDir\": \"$REPO/.skilled/skills\",\n  \"checked\": 1,\n  \"passed\": 1,\n  \"failed\": 0,\n  \"fixed\": 0,\n  \"byClass\": {\n    \"H\": [\n      \"cli-external-orchestration\"\n    ],\n    \"S\": [],\n    \"unclassified\": []\n  },\n  \"results\": [\n    {\n      \"skill\": \"cli-external-orchestration\",\n      \"skillClass\": \"H\",\n      \"reason\": \"declares the complete mode-registry + hub-router pair\",\n      \"status\": \"pass\",\n      \"fixed\": false,\n      \"written\": [],\n      \"digest\": \"6cd87adea8cbe4a8e64c8b18880ce8373305abb3453f1cf7b5efcda115576035\",\n      \"violations\": [],\n      \"notes\": []\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "cli-orca",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "--skills-dir",
+        ".skilled/skills",
+        "--skill",
+        "cli-orca",
+        "--format",
+        "json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"skillsDir\": \"$REPO/.skilled/skills\",\n  \"checked\": 1,\n  \"passed\": 1,\n  \"failed\": 0,\n  \"fixed\": 0,\n  \"byClass\": {\n    \"H\": [],\n    \"S\": [\n      \"cli-orca\"\n    ],\n    \"unclassified\": []\n  },\n  \"results\": [\n    {\n      \"skill\": \"cli-orca\",\n      \"skillClass\": \"S\",\n      \"reason\": \"declares neither mode-registry nor hub-router\",\n      \"status\": \"pass\",\n      \"fixed\": false,\n      \"written\": [],\n      \"digest\": \"9193b5032798148726de1eaabf59627d5834ecbadb9592eec7f24247818d7600\",\n      \"violations\": [],\n      \"notes\": []\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "mcp-code-mode",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "--skills-dir",
+        ".skilled/skills",
+        "--skill",
+        "mcp-code-mode",
+        "--format",
+        "json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"skillsDir\": \"$REPO/.skilled/skills\",\n  \"checked\": 1,\n  \"passed\": 1,\n  \"failed\": 0,\n  \"fixed\": 0,\n  \"byClass\": {\n    \"H\": [],\n    \"S\": [\n      \"mcp-code-mode\"\n    ],\n    \"unclassified\": []\n  },\n  \"results\": [\n    {\n      \"skill\": \"mcp-code-mode\",\n      \"skillClass\": \"S\",\n      \"reason\": \"declares neither mode-registry nor hub-router\",\n      \"status\": \"pass\",\n      \"fixed\": false,\n      \"written\": [],\n      \"digest\": \"e8614e5a111ea5e51370589f56929693242c8a71496af4f9d6914526dfc79b11\",\n      \"violations\": [],\n      \"notes\": []\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "mcp-tooling",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "--skills-dir",
+        ".skilled/skills",
+        "--skill",
+        "mcp-tooling",
+        "--format",
+        "json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"skillsDir\": \"$REPO/.skilled/skills\",\n  \"checked\": 1,\n  \"passed\": 1,\n  \"failed\": 0,\n  \"fixed\": 0,\n  \"byClass\": {\n    \"H\": [\n      \"mcp-tooling\"\n    ],\n    \"S\": [],\n    \"unclassified\": []\n  },\n  \"results\": [\n    {\n      \"skill\": \"mcp-tooling\",\n      \"skillClass\": \"H\",\n      \"reason\": \"declares the complete mode-registry + hub-router pair\",\n      \"status\": \"pass\",\n      \"fixed\": false,\n      \"written\": [],\n      \"digest\": \"ae46caf44c544357cb42c1db8fe59f16f8c8c36d208762a044641533713d7d6c\",\n      \"violations\": [],\n      \"notes\": []\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "sk-code",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "--skills-dir",
+        ".skilled/skills",
+        "--skill",
+        "sk-code",
+        "--format",
+        "json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"skillsDir\": \"$REPO/.skilled/skills\",\n  \"checked\": 1,\n  \"passed\": 1,\n  \"failed\": 0,\n  \"fixed\": 0,\n  \"byClass\": {\n    \"H\": [\n      \"sk-code\"\n    ],\n    \"S\": [],\n    \"unclassified\": []\n  },\n  \"results\": [\n    {\n      \"skill\": \"sk-code\",\n      \"skillClass\": \"H\",\n      \"reason\": \"declares the complete mode-registry + hub-router pair\",\n      \"status\": \"pass\",\n      \"fixed\": false,\n      \"written\": [],\n      \"digest\": \"ca3140a9cc674676d41f81b4dca887bdb7818cfd4507594c88fe493aa30475f7\",\n      \"violations\": [],\n      \"notes\": [\n        {\n          \"code\": \"INTENT_SIGNALS_TRIGGER_RECONCILIATION\",\n          \"message\": \"sk-code: intent_signals/derived.trigger_phrases Jaccard=0.025\"\n        }\n      ]\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "sk-design",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "--skills-dir",
+        ".skilled/skills",
+        "--skill",
+        "sk-design",
+        "--format",
+        "json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"skillsDir\": \"$REPO/.skilled/skills\",\n  \"checked\": 1,\n  \"passed\": 1,\n  \"failed\": 0,\n  \"fixed\": 0,\n  \"byClass\": {\n    \"H\": [\n      \"sk-design\"\n    ],\n    \"S\": [],\n    \"unclassified\": []\n  },\n  \"results\": [\n    {\n      \"skill\": \"sk-design\",\n      \"skillClass\": \"H\",\n      \"reason\": \"declares the complete mode-registry + hub-router pair\",\n      \"status\": \"pass\",\n      \"fixed\": false,\n      \"written\": [],\n      \"digest\": \"1cdca644379a5ebd716621fd8abb38a6ecdd0af0ae15df1a9bce6da62f78c723\",\n      \"violations\": [],\n      \"notes\": []\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "sk-doc",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "--skills-dir",
+        ".skilled/skills",
+        "--skill",
+        "sk-doc",
+        "--format",
+        "json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"skillsDir\": \"$REPO/.skilled/skills\",\n  \"checked\": 1,\n  \"passed\": 1,\n  \"failed\": 0,\n  \"fixed\": 0,\n  \"byClass\": {\n    \"H\": [\n      \"sk-doc\"\n    ],\n    \"S\": [],\n    \"unclassified\": []\n  },\n  \"results\": [\n    {\n      \"skill\": \"sk-doc\",\n      \"skillClass\": \"H\",\n      \"reason\": \"declares the complete mode-registry + hub-router pair\",\n      \"status\": \"pass\",\n      \"fixed\": false,\n      \"written\": [],\n      \"digest\": \"6a6f43c89c0e179080f2649894488095ebf8c53f4212812e56e6d8f36469c600\",\n      \"violations\": [],\n      \"notes\": []\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "sk-git",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "--skills-dir",
+        ".skilled/skills",
+        "--skill",
+        "sk-git",
+        "--format",
+        "json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"skillsDir\": \"$REPO/.skilled/skills\",\n  \"checked\": 1,\n  \"passed\": 1,\n  \"failed\": 0,\n  \"fixed\": 0,\n  \"byClass\": {\n    \"H\": [],\n    \"S\": [\n      \"sk-git\"\n    ],\n    \"unclassified\": []\n  },\n  \"results\": [\n    {\n      \"skill\": \"sk-git\",\n      \"skillClass\": \"S\",\n      \"reason\": \"declares neither mode-registry nor hub-router\",\n      \"status\": \"pass\",\n      \"fixed\": false,\n      \"written\": [],\n      \"digest\": \"7a43047865f9ddf8917e365ab30f18f5653fa50a0b58eb12dea365a4f64edab3\",\n      \"violations\": [],\n      \"notes\": []\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "sk-prompt",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "--skills-dir",
+        ".skilled/skills",
+        "--skill",
+        "sk-prompt",
+        "--format",
+        "json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"skillsDir\": \"$REPO/.skilled/skills\",\n  \"checked\": 1,\n  \"passed\": 1,\n  \"failed\": 0,\n  \"fixed\": 0,\n  \"byClass\": {\n    \"H\": [],\n    \"S\": [\n      \"sk-prompt\"\n    ],\n    \"unclassified\": []\n  },\n  \"results\": [\n    {\n      \"skill\": \"sk-prompt\",\n      \"skillClass\": \"S\",\n      \"reason\": \"declares neither mode-registry nor hub-router\",\n      \"status\": \"pass\",\n      \"fixed\": false,\n      \"written\": [],\n      \"digest\": \"922a3899ce9d8ff96ed63d41689318e6b802471452a0647c8ab261c0d84bdb71\",\n      \"violations\": [],\n      \"notes\": []\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "system-deep-loop",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "--skills-dir",
+        ".skilled/skills",
+        "--skill",
+        "system-deep-loop",
+        "--format",
+        "json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"skillsDir\": \"$REPO/.skilled/skills\",\n  \"checked\": 1,\n  \"passed\": 1,\n  \"failed\": 0,\n  \"fixed\": 0,\n  \"byClass\": {\n    \"H\": [\n      \"system-deep-loop\"\n    ],\n    \"S\": [],\n    \"unclassified\": []\n  },\n  \"results\": [\n    {\n      \"skill\": \"system-deep-loop\",\n      \"skillClass\": \"H\",\n      \"reason\": \"declares the complete mode-registry + hub-router pair\",\n      \"status\": \"pass\",\n      \"fixed\": false,\n      \"written\": [],\n      \"digest\": \"839a2b3e0d8968484af6a562e5b605b6ade7527579e1fca636496098d1ad60c0\",\n      \"violations\": [],\n      \"notes\": []\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "system-skill-advisor",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "--skills-dir",
+        ".skilled/skills",
+        "--skill",
+        "system-skill-advisor",
+        "--format",
+        "json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"skillsDir\": \"$REPO/.skilled/skills\",\n  \"checked\": 1,\n  \"passed\": 1,\n  \"failed\": 0,\n  \"fixed\": 0,\n  \"byClass\": {\n    \"H\": [],\n    \"S\": [\n      \"system-skill-advisor\"\n    ],\n    \"unclassified\": []\n  },\n  \"results\": [\n    {\n      \"skill\": \"system-skill-advisor\",\n      \"skillClass\": \"S\",\n      \"reason\": \"declares neither mode-registry nor hub-router\",\n      \"status\": \"pass\",\n      \"fixed\": false,\n      \"written\": [],\n      \"digest\": \"14ce65e7ff94fe7a5b50c089acd7422d4b843e3623c850cc7a1888b6b38a27c4\",\n      \"violations\": [],\n      \"notes\": []\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "skill": "system-spec-kit",
+      "command": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "--skills-dir",
+        ".skilled/skills",
+        "--skill",
+        "system-spec-kit",
+        "--format",
+        "json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"skillsDir\": \"$REPO/.skilled/skills\",\n  \"checked\": 1,\n  \"passed\": 1,\n  \"failed\": 0,\n  \"fixed\": 0,\n  \"byClass\": {\n    \"H\": [],\n    \"S\": [\n      \"system-spec-kit\"\n    ],\n    \"unclassified\": []\n  },\n  \"results\": [\n    {\n      \"skill\": \"system-spec-kit\",\n      \"skillClass\": \"S\",\n      \"reason\": \"declares neither mode-registry nor hub-router\",\n      \"status\": \"pass\",\n      \"fixed\": false,\n      \"written\": [],\n      \"digest\": \"1fbc955023a8eb474ff4c18b7eb12d7bb0b7e2aa5f29725c1dd69e1ca440c0d1\",\n      \"violations\": [],\n      \"notes\": []\n    }\n  ]\n}\n",
+      "stderr": ""
+    }
+  ]
+}

@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-30 |
 | **Branch** | `worktrees/281-doctor-skill-command` |
 | **Parent Spec** | ../spec.md |
@@ -46,7 +46,7 @@ This is **Phase 1** of the Doctor skill command: check and convert a skill to th
 **Deliverables**:
 - `.skilled/commands/doctor/scripts/sk-skill-check.cjs` with `check [<name-or-path>] [--json]`
 - `.skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs` with the shared probes
-- `.skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` with seven fixtures
+- `.skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` covering plain, pre-migration, canon, dual-declaration, outside-root, reserved-prefix, direct-hub, and nested-packet cases
 - A fleet baseline of `package_skill.py --check --strict` and `ci-skill-root-metadata.cjs` results in `scratch/baseline/`
 
 **Changelog**:
@@ -62,7 +62,15 @@ This is **Phase 1** of the Doctor skill command: check and convert a skill to th
 Each format gate answers one question on its own: `package_skill.py` gives RS codes, `ci-skill-root-metadata.cjs` gives class and RRC codes, the router resolver gives a verdict, and the advisor, Hermes mirror and changelog index have no check at all. An operator cannot see in one report whether a skill is plain, older Skilled, canon, a dual declaration or a hub, and a later convert phase has no baseline to report a delta against.
 
 ### Purpose
-`sk-skill-check.cjs` prints one report with rows C1 to C13 for a named skill, or a one-row-per-root fleet table with no argument, and exits 0 clean, 1 with findings, 2 when it cannot run.
+`sk-skill-check.cjs` prints one report with rows C1 to C13 for a named skill, or a one-row-per-root fleet table with no argument. `findingCount` counts only FINDING rows; `unknownCount` counts UNKNOWN rows, which remain UNKNOWN and never count as PASS. Exit 0 means there are no FINDING rows, exit 1 means at least one FINDING row exists, and exit 2 means the check cannot run.
+
+### Exit Codes
+
+| Exit | Meaning |
+|------|---------|
+| 0 | No FINDING rows. UNKNOWN rows may be present; when they are the only non-PASS/INFO rows, text prints `Result: NO FINDINGS (<n> UNKNOWN)`. |
+| 1 | At least one FINDING row. |
+| 2 | The checker cannot run because a required precondition is missing. |
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
@@ -96,9 +104,10 @@ exit=0
 ### In Scope
 - Build `sk-skill-check.cjs` with rows C1 to C13 (design section 2.1) in text and `--json` output.
 - Build `lib/sk-skill-surface.cjs` with the locate, classify, collision and spawn-wrapper probes the convert phases reuse.
+- When `PYTHON` is set, use only that interpreter; otherwise select the first distinct `python3` on `PATH` that imports PyYAML, and name attempted interpreters when none can.
 - Report preconditions as exit 2: `SHARED_NOT_BUILT` from the root-router contract (`ci-skill-root-metadata.cjs:57-68`), a missing `@spec-kit/shared` for Hermes sync (`sync-skills-hermes.cjs:18`), and an absent resolver.
 - Record the fleet baseline before any later phase changes a root.
-- Test seven fixtures: plain, pre-migration with a trailing `MACHINE ROUTER`, canon, dual declaration, outside the skills root, a name with the `local-` prefix, and nested `SKILL.md` packets.
+- Test the fixture scenarios: plain, pre-migration with a trailing `MACHINE ROUTER`, canon, dual declaration, outside the skills root, a name with the `local-` prefix, a direct hub with a nested packet, and nested `SKILL.md` packets.
 
 ### Out of Scope
 - The `/doctor:sk-skill` router, route, YAML and mirrors - phase 002 owns the command plumbing.
@@ -111,8 +120,8 @@ exit=0
 |-----------|-------------|-------------|
 | `.skilled/commands/doctor/scripts/sk-skill-check.cjs` | Create | `check [<name-or-path>] [--json]`, rows C1 to C13, exit 0/1/2 |
 | `.skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs` | Create | Shared probes: locate, classify, collisions, spawn wrappers |
-| `.skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | Create | `node --test` suite over seven fixtures, picked up by the node glob in `tests/run-all.sh:87` |
-| `.skilled/commands/doctor/scripts/tests/fixtures/sk-skill-check/` | Create | Seven fixture skills with invented names |
+| `.skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | Create | `node --test` suite over the fixture scenarios and report/failure branches, picked up by the node glob in `tests/run-all.sh:87` |
+| `.skilled/commands/doctor/scripts/tests/fixtures/sk-skill-check/` | Create | Fixture skills with invented names, including direct and nested hub cases |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -134,9 +143,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement |
 |----|-------------|
-| REQ-005 | C8 reports UNKNOWN, never a pass, when `advisor_recommend --warm-only` exits 75. |
+| REQ-005 | C8 reports UNKNOWN, never a pass, when `advisor_recommend --warm-only` exits 75; UNKNOWN increments `unknownCount` but does not increment `findingCount` or the exit code. |
 | REQ-006 | A missing built shared parser, Hermes dependency or resolver exits 2 and names the cause and the provision command. |
 | REQ-007 | `--json` output parses with `JSON.parse` and carries one object per row C1 to C13. |
+| REQ-008 | When `PYTHON` is set, `check` uses only that value; an empty value reports `PYTHON_MISSING` without PATH fallback. When unset, it probes distinct `python3` executables on `PATH` in order and selects the first that imports `yaml`. If none does, it exits 2 with `PYYAML_MISSING` and names every interpreter tried; explicit-interpreter `PYTHON_MISSING` and `PYYAML_MISSING` behavior remains. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -181,14 +191,15 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 ### Reliability
 - **NFR-R01**: Exit 2 is never reported as a pass in text or JSON.
-- **NFR-R02**: Exit 75 from the advisor maps to UNKNOWN, not to a failure or a pass.
+- **NFR-R02**: Exit 75 from the advisor maps to UNKNOWN, never PASS. Only FINDING rows increment `findingCount` and determine exit 1; UNKNOWN rows increment `unknownCount`, do not count as findings, and alone produce `Result: NO FINDINGS (<n> UNKNOWN)` with exit 0. Exit 2 remains reserved for a checker that cannot run.
 
 ---
 
 <!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
 
-- Empty input: no argument prints the one-row-per-root fleet table and exits 0 when every row is clean.
+- Empty input: no argument prints the one-row-per-root fleet table and exits 0 when no root has a FINDING.
+- Unknown-only report: when all non-PASS/INFO rows are UNKNOWN, text prints `Result: NO FINDINGS (<n> UNKNOWN)`, JSON includes both counters, and the command exits 0.
 - Maximum input: a path outside `.skilled/skills` still runs C3 and C4 via `--skills-dir <its parent>` (design R5); C1 reports it outside the advisor's view (`projection.ts:1536-1556`).
 - Failure path: a dual declaration reports verdict `dual-declaration` as a finding, exit 1 (design R2); a missing shared parser exits 2 with `SHARED_NOT_BUILT`.
 - Collision: a frontmatter name equal to another `SKILL.md` name, or an `agent-` prefix, is a C12 finding, since Hermes flattens by name and throws on a duplicate (`sync-skills-hermes.cjs:224-226, 239-244`).
@@ -202,7 +213,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 12/25 | Two new scripts, one test file, seven fixtures |
+| Scope | 12/25 | Two new scripts, one test file, fixture skills for the C1-C13 scenarios |
 | Risk | 6/25 | Read-only; the risk is a false pass |
 | Research | 6/20 | Every probe target is cited in design section 2.1 |
 | **Total** | **24/70** | **Level 2** |

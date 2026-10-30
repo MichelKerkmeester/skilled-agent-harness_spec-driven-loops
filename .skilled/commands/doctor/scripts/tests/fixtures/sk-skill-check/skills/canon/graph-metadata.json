@@ -1,0 +1,14 @@
+{
+  "schema_version": 2,
+  "skill_id": "fixture-canon",
+  "intent_signals": [
+    "route a fixture",
+    "synthetic routing map",
+    "choose a fixture resource",
+    "fixture routing rules",
+    "inspect the fixture router",
+    "load a fixture reference",
+    "fixture navigation",
+    "fixture route selection"
+  ]
+}

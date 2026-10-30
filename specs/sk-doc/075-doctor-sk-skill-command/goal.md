@@ -25,7 +25,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Goal: Doctor skill command: check and convert a skill to the Skilled format and wire it into the advisor
+# Goal: /doctor:sk-skill check and convert
 
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
@@ -51,7 +51,7 @@ Frozen choices. Changing one is an amendment.
 | D5 | Run `skill_graph_scan --trusted`; print `/doctor:skill-advisor rebuild` as the fallback, never run it unasked. |
 | D6 | The convert workflow's agent step writes reshaped SKILL.md prose, bounded by the preservation check. |
 | D7 | No default `allowed-tools`: propose `[Read, Grep, Glob]`, plus `Bash` when `scripts/` exists, and the operator confirms. |
-| D8 | `/doctor:runtime-mirrors` gains `sync-skills-hermes.cjs --check` in its route and YAML (phase 009). |
+| D8 | `/doctor:runtime-mirrors` gains `sync-skills-hermes.cjs --check` and `sync-prompts-hermes.cjs --check` in its route and YAML (phase 009). |
 | D9 | `skill-leaf-manifest-config-template.json` says "the router in the sibling ROUTER.md", not "in-SKILL.md router" (phase 009). |
 
 <!-- /ANCHOR:directive -->
@@ -94,7 +94,7 @@ string, not these files.
 - [ ] `node --test` on `sk-skill-check.test.cjs` and `sk-skill-convert.test.cjs` exits 0
 - [ ] After convert in a temp repo, `sync-skills-hermes.cjs --check` passes, `skill-graph-freshness.cjs --strict` exits 0 and `.skilled/changelog/<name>` resolves
 - [ ] `doctor-phrase-reach.cjs` reaches `/doctor:sk-skill`, and a scratch convert prints a plan, then `CANCELLED` on no and `OK` on yes
-- [ ] `grep -c 'in-SKILL.md router'` on the leaf-manifest config template prints 0 and `doctor-runtime-mirrors.yaml` invokes `sync-skills-hermes.cjs --check`
+- [ ] `grep -c 'in-SKILL.md router'` on the leaf-manifest config template prints 0 and `doctor-runtime-mirrors.yaml` invokes both Hermes `--check` scripts
 <!-- /ANCHOR:completion -->
 
 ---
