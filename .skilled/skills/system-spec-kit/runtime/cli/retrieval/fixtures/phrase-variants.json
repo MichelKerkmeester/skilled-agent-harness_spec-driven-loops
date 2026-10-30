@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e88229b53e6f257f975956fe3d20d43a31aff7ff49e397c733b6d6f99f7ab7c9",
+  "manifestHash": "5f969294ec36b07d82d8e5ec052c22314bfb566f1129499d08cb0938e68655d9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8484,8 +8484,17 @@
     "advisor brief contents": [
       "advisor brief contents"
     ],
+    "advisor build attestation summary": [
+      "advisor build attestation summary"
+    ],
     "advisor build better sqlite3 declaration": [
       "advisor build better-sqlite3 declaration"
+    ],
+    "advisor build freshness record": [
+      "advisor build freshness record"
+    ],
+    "advisor build writes its own attestation": [
+      "advisor build writes its own attestation"
     ],
     "advisor cache tests": [
       "advisor cache tests"
@@ -9066,6 +9075,12 @@
     ],
     "advisor post decommission verification": [
       "advisor post-decommission verification"
+    ],
+    "advisor prebuild record build plan": [
+      "advisor prebuild record-build plan"
+    ],
+    "advisor prebuild record build tasks": [
+      "advisor prebuild record-build tasks"
     ],
     "advisor preserve set": [
       "advisor preserve set"
@@ -15065,6 +15080,18 @@
     ],
     "build doc dispatch shape": [
       "build doc dispatch shape"
+    ],
+    "build freshness record": [
+      "build freshness record"
+    ],
+    "build freshness record implementation summary": [
+      "build freshness record implementation summary"
+    ],
+    "build freshness record plan": [
+      "build freshness record plan"
+    ],
+    "build freshness record tasks": [
+      "build freshness record tasks"
     ],
     "build obsidian theme": [
       "build obsidian theme"
@@ -39170,6 +39197,9 @@
     ],
     "dist freshness provisioning tasks": [
       "dist freshness provisioning tasks"
+    ],
+    "dist freshness record after provision": [
+      "dist freshness record after provision"
     ],
     "dist freshness test": [
       "dist freshness test"
@@ -83759,6 +83789,9 @@
     "record replay cassette harness runtime": [
       "record-replay cassette harness runtime"
     ],
+    "record the advisor runtime dist build": [
+      "record the advisor runtime dist build"
+    ],
     "recorded adjacent defects": [
       "recorded adjacent defects"
     ],
@@ -111468,6 +111501,9 @@
     "system skill advisor 0 17 28 0": [
       "system-skill-advisor 0.17.28.0"
     ],
+    "system skill advisor 0 17 29 0": [
+      "system-skill-advisor 0.17.29.0"
+    ],
     "system skill advisor 0 17 3 0": [
       "system-skill-advisor 0.17.3.0"
     ],
@@ -111737,6 +111773,9 @@
     ],
     "system skill advisor v0 17 28 0": [
       "system-skill-advisor v0.17.28.0"
+    ],
+    "system skill advisor v0 17 29 0": [
+      "system-skill-advisor v0.17.29.0"
     ],
     "system skill advisor v0 17 3 0": [
       "system-skill-advisor v0.17.3.0"

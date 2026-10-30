@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7313,
-    "ok": 16449,
+    "ok": 16454,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27310,
+  "documentsScanned": 27315,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "e88229b53e6f257f975956fe3d20d43a31aff7ff49e397c733b6d6f99f7ab7c9",
+  "manifestHash": "5f969294ec36b07d82d8e5ec052c22314bfb566f1129499d08cb0938e68655d9",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40050,
+      "ok": 40063,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -73795,6 +73795,10 @@
     },
     {
       "path": "specs/system-skill-advisor/039-executor-workflow-owner-guard/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/040-build-freshness-record/scratch",
       "reason": "excluded directory"
     },
     {

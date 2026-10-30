@@ -1,5 +1,5 @@
 {
-  "corpusHash": "93ac71ec7702573fc9658fdabfe51624c90c80bb61a2939508a849ba4a7f9905",
+  "corpusHash": "981c87310d54d1f33e8d9cb8abe0020910cc7ebb78c91602912868034311ade2",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27310,
+  "includedPathCount": 27315,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7873,6 +7873,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.17.26.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.27.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.28.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.17.29.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.4.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.5.0.md",
@@ -17236,6 +17237,10 @@
     "specs/system-skill-advisor/039-executor-workflow-owner-guard/plan.md",
     "specs/system-skill-advisor/039-executor-workflow-owner-guard/spec.md",
     "specs/system-skill-advisor/039-executor-workflow-owner-guard/tasks.md",
+    "specs/system-skill-advisor/040-build-freshness-record/implementation-summary.md",
+    "specs/system-skill-advisor/040-build-freshness-record/plan.md",
+    "specs/system-skill-advisor/040-build-freshness-record/spec.md",
+    "specs/system-skill-advisor/040-build-freshness-record/tasks.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -27341,7 +27346,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e88229b53e6f257f975956fe3d20d43a31aff7ff49e397c733b6d6f99f7ab7c9",
+  "manifestHash": "5f969294ec36b07d82d8e5ec052c22314bfb566f1129499d08cb0938e68655d9",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -32377,6 +32382,10 @@
     },
     {
       "path": "specs/system-skill-advisor/039-executor-workflow-owner-guard/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/040-build-freshness-record/scratch",
       "reason": "excluded directory"
     },
     {
