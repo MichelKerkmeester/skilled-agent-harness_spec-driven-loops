@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ce361a193a93332eda33e507603989cc44352673896117a7baf106c5aea66565",
+  "manifestHash": "78115c4d2166176fac31787d84879baf92650fb95b937511a4996b94b1f7e230",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -28748,6 +28748,9 @@
     ],
     "convert a skill in place": [
       "convert a skill in place"
+    ],
+    "convert a skill to the skilled format": [
+      "convert a skill to the skilled format"
     ],
     "convert advisor hermes changelog integration": [
       "convert advisor hermes changelog integration"
@@ -104079,6 +104082,9 @@
     "skill format command docs": [
       "skill format command docs"
     ],
+    "skill format doctor": [
+      "skill format doctor"
+    ],
     "skill frontmatter alignment": [
       "skill frontmatter alignment"
     ],
@@ -105169,6 +105175,9 @@
     ],
     "skilled v4 0 1 1": [
       "skilled v4.0.1.1"
+    ],
+    "skilled v4 0 1 2": [
+      "skilled v4.0.1.2"
     ],
     "skilled verification phase goal": [
       "skilled verification phase goal"
@@ -117351,6 +117360,9 @@
     ],
     "v4 0 1 1 release notes": [
       "v4.0.1.1 release notes"
+    ],
+    "v4 0 1 2 release notes": [
+      "v4.0.1.2 release notes"
     ],
     "v4 changelog": [
       "v4 changelog"

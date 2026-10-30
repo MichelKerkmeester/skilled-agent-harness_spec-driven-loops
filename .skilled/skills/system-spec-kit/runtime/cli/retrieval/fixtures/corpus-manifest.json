@@ -1,5 +1,5 @@
 {
-  "corpusHash": "604cc573b5420cbc5cbcf3ffe14fabf91bd1bec16fbda28a9d252a8e2b37dc2f",
+  "corpusHash": "1c2cf52b255f5a79eda928735b3d5a04b8177cc33088b2aaea415b901cde6c44",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27249,
+  "includedPathCount": 27250,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -91,6 +91,7 @@
     ".skilled/changelog/skilled/v4.0.0.9.md",
     ".skilled/changelog/skilled/v4.0.1.0.md",
     ".skilled/changelog/skilled/v4.0.1.1.md",
+    ".skilled/changelog/skilled/v4.0.1.2.md",
     ".skilled/hooks/README.md",
     ".skilled/hooks/classifier-injection-screen/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -27280,7 +27281,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ce361a193a93332eda33e507603989cc44352673896117a7baf106c5aea66565",
+  "manifestHash": "78115c4d2166176fac31787d84879baf92650fb95b937511a4996b94b1f7e230",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
