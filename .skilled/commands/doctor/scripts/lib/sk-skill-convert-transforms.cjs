@@ -5,7 +5,11 @@
 
 const MACHINE_ROUTER_HEADING_RE = /^##\s+(?:\d+\.\s+)?MACHINE ROUTER\s*$/;
 const SMART_ROUTING_HEADING_RE = /^##\s+(?:\d+\.\s+)?SMART ROUTING\s*$/i;
-const MACHINE_ASSIGNMENT_RE = /^\s*(?:INTENT_SIGNALS|RESOURCE_MAP|DEFAULT_RESOURCES?)\s*=/m;
+// The routing canon calls a fenced or indented block a machine router when a line in it
+// declares one of the router's maps or one of the two router helpers. Convert moves every
+// block this names out of SKILL.md, so the list is the canon's own plus DEFAULT_RESOURCE,
+// which the resolver reads as a declaration too.
+const MACHINE_ASSIGNMENT_RE = /^(?:\s*(?:INTENT_SIGNALS|RESOURCE_MAP|DEFAULT_RESOURCES?|UNKNOWN_FALLBACK_CHECKLIST)\s*=|\s*def\s+(?:discover_markdown_resources|_guard_in_skill)\b)/m;
 const ROUTER_LINK_RE = /\[[^\]]+\]\((?:\.\/)?ROUTER\.md(?:#[^)]*)?\)/;
 const ROUTER_LINK_LINE = 'The machine router lives in [ROUTER.md](./ROUTER.md).';
 
@@ -171,7 +175,13 @@ function inspectVersion(lines) {
   if (versionIndexes.length > 1) throw transformError('VERSION_INVALID', 'SKILL.md has duplicate version fields.');
   if (versionIndexes.length === 1) {
     const split = splitYamlComment(lines[versionIndexes[0]].replace(/^version\s*:\s*/i, ''));
-    const originalVersion = parseYamlScalar(split.value);
+    // A version field with no value is a version problem, and naming it as one keeps the
+    // operator on the line that is actually wrong instead of the tool list below it.
+    const rawVersion = split.value.trim();
+    if (rawVersion === '' || /^(?:null|~)$/i.test(rawVersion)) {
+      throw transformError('VERSION_INVALID', 'version must contain one to four numeric components.');
+    }
+    const originalVersion = parseYamlScalar(rawVersion);
     if (!/^\d+(?:\.\d+){0,3}$/.test(originalVersion)) {
       throw transformError('VERSION_INVALID', 'version must contain one to four numeric components.');
     }
@@ -318,34 +328,80 @@ function sectionFor(text, pattern) {
   return { ...headings[index], sectionEnd: headings[index + 1] ? headings[index + 1].start : text.length };
 }
 
-function smartRoutingMachineBlocks(text) {
-  const section = sectionFor(text, SMART_ROUTING_HEADING_RE);
-  if (!section) throw transformError('SMART_ROUTING_MISSING', 'SKILL.md has no SMART ROUTING section to receive the router link.');
-  const scanned = scanFencedBlocks(text, section.end, section.sectionEnd);
-  if (scanned.unclosed) throw transformError('SMART_ROUTING_FENCE_UNCLOSED', 'SMART ROUTING has an unclosed fenced block.');
-  const fencedRanges = scanned.blocks;
-  const blocks = fencedRanges
-    .filter((block) => MACHINE_ASSIGNMENT_RE.test(block.body))
-    .map(({ start, end, text: blockText }) => ({ start, end, text: blockText }));
-  let withoutFencedCode = text.slice(section.end, section.sectionEnd);
-  for (const range of fencedRanges.sort((left, right) => right.start - left.start)) {
-    withoutFencedCode = `${withoutFencedCode.slice(0, range.start - section.end)}${withoutFencedCode.slice(range.end - section.end)}`;
+// The body is what the canon reads: the frontmatter block is not prose and cannot hold a
+// machine block, so scanning starts after it, and a document without one starts at zero.
+function bodyOffset(text) {
+  const match = /^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/.exec(text);
+  return match ? match[0].length : 0;
+}
+
+function fencedRanges(text, start, end) {
+  const scanned = scanFencedBlocks(text, start, end);
+  return {
+    blocks: scanned.blocks,
+    unclosed: scanned.unclosed,
+    limit: scanned.unclosed ? Math.min(end, scanned.unclosed.start) : end,
+  };
+}
+
+// The text a reader actually reads as prose: every fenced block is a sample of the
+// grammar, so it is not the document speaking.
+function unfencedText(text, start, end) {
+  const scanned = fencedRanges(text, start, end);
+  let out = '';
+  let cursor = start;
+  for (const block of scanned.blocks) {
+    if (block.end <= start) continue;
+    out += text.slice(cursor, Math.min(block.start, scanned.limit));
+    cursor = Math.min(block.end, scanned.limit);
   }
-  if (MACHINE_ASSIGNMENT_RE.test(withoutFencedCode)) {
-    throw transformError('SMART_ROUTING_MACHINE_BLOCK_UNFENCED', 'A machine assignment in SMART ROUTING is not inside a complete fenced block.');
+  return out + text.slice(cursor, scanned.limit);
+}
+
+// A router pointer counts only where the skill itself makes it. A link inside a fence or
+// an inline code span is text about the link, and it loads the router for nobody.
+function proseText(text, start, end) {
+  return unfencedText(text, start, end).replace(/`[^`\n]*`/g, '');
+}
+
+// The canon reads a machine block above the machine-router section as a second declaration,
+// so convert collects them all rather than only the fenced sample SMART ROUTING happens to
+// hold: every fenced block carrying a machine line, in document order, because the parser
+// takes the first declaration it meets.
+function machineRouterBlocks(text, limit) {
+  const start = bodyOffset(text);
+  const scanned = fencedRanges(text, start, limit);
+  if (scanned.unclosed) {
+    throw transformError('MACHINE_BLOCK_FENCE_UNCLOSED', 'A fenced block before the machine router section is not closed.');
   }
-  return blocks;
+  const unfencedMachineLine = unfencedText(text, start, limit)
+    .split(/\r?\n/)
+    .find((line) => MACHINE_ASSIGNMENT_RE.test(line));
+  if (unfencedMachineLine !== undefined) {
+    throw transformError(
+      'MACHINE_BLOCK_UNFENCED',
+      `A machine declaration is not inside a complete fenced block: ${unfencedMachineLine.trim()}`,
+    );
+  }
+  return scanned.blocks
+    .filter((block) => block.end <= limit && MACHINE_ASSIGNMENT_RE.test(block.body))
+    .map(({ start: blockStart, end: blockEnd, text: blockText }) => ({ start: blockStart, end: blockEnd, text: blockText }));
 }
 
 function addRouterLink(text) {
   const section = sectionFor(text, SMART_ROUTING_HEADING_RE);
   if (!section) throw transformError('SMART_ROUTING_MISSING', 'SKILL.md has no SMART ROUTING section to receive the router link.');
-  const body = text.slice(section.end, section.sectionEnd);
-  const existingLinks = body.match(new RegExp(ROUTER_LINK_RE.source, 'g')) || [];
+  if (scanFencedBlocks(text, section.end, section.sectionEnd).unclosed) {
+    throw transformError('SMART_ROUTING_FENCE_UNCLOSED', 'SMART ROUTING has an unclosed fenced block.');
+  }
+  // Only a pointer in the section's prose is the pointer, so the link is added when every
+  // other match sits in a sample or in inline code.
+  const existingLinks = proseText(text, section.end, section.sectionEnd).match(new RegExp(ROUTER_LINK_RE.source, 'g')) || [];
   if (existingLinks.length > 1) {
     throw transformError('ROUTER_LINK_DUPLICATE', 'SMART ROUTING contains more than one ROUTER.md link.');
   }
   if (existingLinks.length === 1) return text;
+  const body = text.slice(section.end, section.sectionEnd);
   const newline = text.includes('\r\n') ? '\r\n' : '\n';
   const trailingMatch = /(?:\r?\n[ \t]*)*$/.exec(body);
   const trailing = trailingMatch ? trailingMatch[0] : '';
@@ -395,15 +451,15 @@ function moveLegacyRouter(text, template, skillName, resolvedSection = null) {
       || scanHeadings(text).some((heading) => heading.start > machineSection.start)) {
     throw transformError('MACHINE_ROUTER_NOT_TRAILING', 'The MACHINE ROUTER section must be the final level-two section.');
   }
-  const smartBlocks = smartRoutingMachineBlocks(text);
+  const machineBlocks = machineRouterBlocks(text, machineSection.start);
   const movedBody = text.slice(machineSection.end);
-  const parts = [...smartBlocks.map((block) => block.text), movedBody].filter((part) => part.length > 0);
+  const parts = [...machineBlocks.map((block) => block.text), movedBody].filter((part) => part.length > 0);
   let machineBody = '';
   for (const part of parts) {
     if (machineBody && !machineBody.endsWith('\n') && !part.startsWith('\n')) machineBody += '\n';
     machineBody += part;
   }
-  const ranges = [...smartBlocks.map(({ start, end }) => ({ start, end })), { start: machineSection.start, end: text.length }]
+  const ranges = [...machineBlocks.map(({ start, end }) => ({ start, end })), { start: machineSection.start, end: text.length }]
     .sort((left, right) => right.start - left.start);
   let skillMd = text;
   for (const range of ranges) skillMd = `${skillMd.slice(0, range.start)}${skillMd.slice(range.end)}`;
@@ -413,18 +469,8 @@ function moveLegacyRouter(text, template, skillName, resolvedSection = null) {
   return { skillMd, routerMd, machineBody, movedBlocks: parts };
 }
 
-function extractMachineCodeBlock(text) {
-  const section = sectionFor(text, MACHINE_ROUTER_HEADING_RE);
-  if (!section) return null;
-  const scanned = scanFencedBlocks(text, section.end, section.sectionEnd);
-  if (scanned.unclosed) return null;
-  const block = scanned.blocks.find((candidate) => MACHINE_ASSIGNMENT_RE.test(candidate.body));
-  return block ? block.text : null;
-}
-
 module.exports = {
   addRouterLink,
   moveLegacyRouter,
   normalizeSkillFrontmatter,
-  smartRoutingMachineBlocks,
 };

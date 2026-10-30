@@ -836,3 +836,36 @@ test('reserved root paths are redacted and filtered validators remain UNKNOWN', 
     fs.rmSync(scratchDir, { recursive: true, force: true });
   }
 });
+
+// A converter backup is a state record, not a skill root. Counting its copy of
+// SKILL.md as a second declaration would make a converted skill look like a
+// duplicate of itself to the check that runs after the conversion.
+test('the shared skill scan skips state directories so a backup SKILL.md is not a duplicate name', () => {
+  const scratchDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sk-skill-check-state-'));
+  try {
+    const skillsDir = path.join(scratchDir, 'skills');
+    const skillRoot = path.join(skillsDir, 'state-skip');
+    const source = [
+      '---',
+      'name: state-skip',
+      'description: A short skill description.',
+      '---',
+      '',
+      '# State Skip',
+      '',
+    ].join('\n');
+    fs.mkdirSync(skillRoot, { recursive: true });
+    fs.writeFileSync(path.join(skillRoot, 'SKILL.md'), source);
+
+    const backup = path.join(skillsDir, '.state', 'doctor-sk-skill', 'state-skip', 'stamp');
+    fs.mkdirSync(backup, { recursive: true });
+    fs.writeFileSync(path.join(backup, 'SKILL.md'), source);
+
+    assert.deepEqual(surface.collectSkillFiles(skillsDir), [path.join(skillRoot, 'SKILL.md')]);
+    const collisions = surface.inspectCollisions('state-skip', skillRoot, skillsDir);
+    assert.equal(collisions.status, 'PASS');
+    assert.deepEqual(collisions.findings, []);
+  } finally {
+    fs.rmSync(scratchDir, { recursive: true, force: true });
+  }
+});

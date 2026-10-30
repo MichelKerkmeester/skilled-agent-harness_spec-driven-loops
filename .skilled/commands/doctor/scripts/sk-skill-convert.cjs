@@ -89,8 +89,22 @@ function runCheck(skillRoot, context) {
   return report;
 }
 
-function refuse(message, code = 'PREFLIGHT_REFUSED') {
-  throw new ConvertError(code, message, 1);
+function refuse(message, code = 'PREFLIGHT_REFUSED', details = null) {
+  const error = new ConvertError(code, message, 1);
+  if (Array.isArray(details) && details.length) error.details = details;
+  throw error;
+}
+
+function readText(fileSystem, file) {
+  try {
+    return String(fileSystem.readFileSync(file, 'utf8'));
+  } catch (error) {
+    return `(unreadable: ${firstLine(error.message)})`;
+  }
+}
+
+function backupBaseFor(context, name) {
+  return path.join(context.skillsDir, '.state', 'doctor-sk-skill', name);
 }
 
 function routerSemantics(parsed) {
@@ -189,17 +203,6 @@ function planFollowUps(template, skillMd, routerMd) {
   return followUps;
 }
 
-function inspectSkillNameCollisions(name, skillRoot, skillsDir, fileSystem) {
-  const collisionFileSystem = Object.create(fileSystem);
-  collisionFileSystem.readdirSync = (directory, options) => {
-    const entries = fileSystem.readdirSync(directory, options);
-    // Converter backups are state records, not candidate skill roots.
-    if (path.resolve(directory) !== path.resolve(skillsDir)) return entries;
-    return entries.filter((entry) => entry.name !== '.state');
-  };
-  return surface.inspectCollisions(name, skillRoot, skillsDir, collisionFileSystem);
-}
-
 function buildPlan(target, context) {
   const { fs: fileSystem, skillsDir, paths } = context;
   let skillRoot;
@@ -210,7 +213,7 @@ function buildPlan(target, context) {
   }
   const location = surface.classifyLocation(skillRoot, skillsDir, fileSystem);
   // This converter writes in place; staging or copying outside the skills root belongs to another route.
-  if (location.kind !== 'direct') refuse('Only a direct child of .skilled/skills can be converted.');
+  if (location.kind !== 'direct') refuse('Only a direct child of .skilled/skills can be converted.', 'NOT_DIRECT_CHILD');
   // The private prefix is checked before reading so private skill content never enters the conversion path.
   if (surface.isReservedSkillName(path.basename(skillRoot))) {
     refuse('A local- prefixed skill is filtered by the format and advisor gates.', 'RESERVED_PREFIX');
@@ -219,13 +222,13 @@ function buildPlan(target, context) {
   const skillFile = path.join(skillRoot, 'SKILL.md');
   const routerFile = path.join(skillRoot, 'ROUTER.md');
   const skill = surface.readSkillFields(skillRoot, fileSystem);
-  if (typeof skill.text !== 'string') refuse('SKILL.md could not be read.');
+  if (typeof skill.text !== 'string') refuse('SKILL.md could not be read.', 'SKILL_UNREADABLE');
   const name = skill.fields.name || path.basename(skillRoot);
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(name)) {
     refuse('The declared skill name is not a lowercase kebab-case name.', 'NAME_NOT_KEBAB');
   }
   if (typeof skill.fields.description !== 'string' || skill.fields.description.length === 0) {
-    refuse('SKILL.md must declare a description before conversion.');
+    refuse('SKILL.md must declare a description before conversion.', 'DESCRIPTION_MISSING');
   }
 
   if (findNestedSkillFile(skillRoot, fileSystem)) {
@@ -248,10 +251,10 @@ function buildPlan(target, context) {
     refuse('Resolver verdict dual-declaration: both SKILL.md and ROUTER.md declare a machine router.', 'DUAL_DECLARATION');
   }
   if (resolved.verdict !== 'router-md' && resolved.verdict !== 'skill-md') {
-    refuse(`Expected a Skilled skill with a machine router; resolver verdict was ${resolved.verdict}.`);
+    refuse(`Expected a Skilled skill with a machine router; resolver verdict was ${resolved.verdict}.`, 'NO_MACHINE_ROUTER');
   }
 
-  const collisions = inspectSkillNameCollisions(name, skillRoot, skillsDir, fileSystem);
+  const collisions = surface.inspectCollisions(name, skillRoot, skillsDir, fileSystem);
   if (collisions.status === 'FINDING') {
     const findings = collisions.findings || [];
     if (findings.includes('reserved name prefix')) {
@@ -281,6 +284,7 @@ function buildPlan(target, context) {
       skillFile,
       routerFile,
       name,
+      backupBase: backupBaseFor(context, name),
       noop: !skillChanged,
       frontmatterOnly: true,
       originalSkill: skill.text,
@@ -294,7 +298,18 @@ function buildPlan(target, context) {
   }
 
   if (fileSystem.existsSync(routerFile)) {
-    refuse('ROUTER.md already exists but does not declare the resolved machine router; it will not be replaced.');
+    // Two declarations that disagree is a fault to report, and the report is only useful
+    // when the operator can compare both sides without opening the files by hand.
+    refuse(
+      'ROUTER.md already exists but declares no machine router while SKILL.md does; it will not be replaced.',
+      'ROUTER_EXISTS',
+      [
+        `ROUTER.md (${routerFile}):`,
+        readText(fileSystem, routerFile),
+        `SKILL.md machine router section (${skillFile}):`,
+        String(resolved.text),
+      ],
+    );
   }
 
   const report = runCheck(skillRoot, context);
@@ -302,7 +317,7 @@ function buildPlan(target, context) {
     refuse(`The existing check classified this input as ${report.inputKind}; hub conversion is out of scope.`, 'HUB_DECLARATION');
   }
   if (report.inputKind !== 'older-skilled') {
-    refuse(`The existing check classified this input as ${report.inputKind || 'unknown'}; only older Skilled skills are in scope.`);
+    refuse(`The existing check classified this input as ${report.inputKind || 'unknown'}; only older Skilled skills are in scope.`, 'INPUT_KIND_UNSUPPORTED');
   }
   const descriptionRow = Array.isArray(report.rows) ? report.rows.find((row) => row.row === 'C11') : null;
   const descriptionLength = Number.isInteger(descriptionRow && descriptionRow.length)
@@ -345,6 +360,7 @@ function buildPlan(target, context) {
     skillFile,
     routerFile,
     name,
+    backupBase: backupBaseFor(context, name),
     noop: false,
     frontmatterOnly: false,
     originalSkill: skill.text,
@@ -355,7 +371,7 @@ function buildPlan(target, context) {
   };
 }
 function makeBackupDirectory(context, name) {
-  const base = path.join(context.skillsDir, '.state', 'doctor-sk-skill', name);
+  const base = backupBaseFor(context, name);
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
   context.fs.mkdirSync(base, { recursive: true });
   let suffix = 0;
@@ -408,7 +424,7 @@ function applyPlan(plan, context) {
     throw new ConvertError('ROUTER_EXISTS', 'ROUTER.md appeared after planning; refusing to replace it.', 1);
   }
 
-  const backupBase = path.join(context.skillsDir, '.state', 'doctor-sk-skill', plan.name);
+  const backupBase = plan.backupBase;
   const backupBaseExisted = fileSystem.existsSync(backupBase);
   const backupDirectory = makeBackupDirectory(context, plan.name);
   const backupFile = path.join(backupDirectory, 'SKILL.md');
@@ -455,6 +471,8 @@ function applyPlan(plan, context) {
     return {
       changed: true,
       backupDirectory,
+      backedUpFiles: [backupFile],
+      createdFiles: plan.frontmatterOnly ? [] : [plan.routerFile],
       message: plan.frontmatterOnly
         ? `Normalized ${plan.name}; router semantics match the snapshot.`
         : `Converted ${plan.name}; router semantics match the snapshot.`,
@@ -492,6 +510,26 @@ function renderPlan(plan) {
   return `${lines.join('\n')}\n`;
 }
 
+function quoteArgument(value) {
+  return JSON.stringify(String(value));
+}
+
+// A write is only finished when the operator can undo it without remembering which files
+// the run touched, so each backup and each created file gets its own command beside the
+// check that proves the result.
+function renderUndo(result, plan) {
+  const lines = ['Undo:'];
+  for (const backup of result.backedUpFiles || []) {
+    lines.push(`  cp ${quoteArgument(backup)} ${quoteArgument(path.join(plan.skillRoot, path.basename(backup)))}`);
+  }
+  for (const created of result.createdFiles || []) {
+    lines.push(`  rm ${quoteArgument(created)}`);
+  }
+  const checkScript = path.join(SCRIPT_DIR, 'sk-skill-check.cjs');
+  lines.push(`Check: node ${quoteArgument(checkScript)} check ${quoteArgument(plan.skillRoot)}`);
+  return `${lines.join('\n')}\n`;
+}
+
 function runConvert(argv = process.argv.slice(2), options = {}) {
   const context = createContext(options);
   const stdout = options.stdout || context.stdout || process.stdout;
@@ -499,7 +537,6 @@ function runConvert(argv = process.argv.slice(2), options = {}) {
   try {
     const { command, target, apply } = parseArguments(argv);
     const plan = buildPlan(target, context);
-    if (!plan.backupBase) plan.backupBase = path.join(context.skillsDir, '.state', 'doctor-sk-skill', plan.name);
     stdout.write(renderPlan(plan));
     if (plan.noop) return 0;
     if (command !== 'apply' || !apply) {
@@ -510,6 +547,8 @@ function runConvert(argv = process.argv.slice(2), options = {}) {
     stdout.write(`${result.message}\n`);
     if (result.backupDirectory) stdout.write(`Backup: ${result.backupDirectory}\n`);
     if (result.provenance) stdout.write(`Router source: ${result.provenance}\n`);
+    // The undo block closes the run, so its check command is the last thing the operator reads.
+    if (result.backupDirectory) stdout.write(renderUndo(result, plan));
     return 0;
   } catch (error) {
     const code = error instanceof ConvertError ? error.code : 'CONVERT_ERROR';
@@ -519,6 +558,9 @@ function runConvert(argv = process.argv.slice(2), options = {}) {
       stderr.write(`USAGE: ${detail}\n${USAGE}\n`);
     } else {
       stderr.write(`${code}: ${firstLine(error.message)}\n`);
+      // A refusal that compares two documents prints both whole: half a declaration is
+      // not the side the operator needs to read.
+      for (const detail of error.details || []) stderr.write(`${String(detail).replace(/\s+$/, '')}\n`);
     }
     return exitCode;
   }

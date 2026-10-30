@@ -622,3 +622,298 @@ test('usage errors print the complete usage message', () => {
   assert.match(stderr, /sk-skill-convert\.cjs apply <skill-name-or-path> \[--apply\]/);
   assert.match(stderr, /plan is read-only/);
 });
+
+// A plan is self-contained: rendering it must not need a caller to patch a field
+// the builder forgot, so the backup base belongs to the plan itself.
+test('a plan carries its own backup base so the printed plan renders without patching', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const skillRoot = path.join(fixtureSkillsDir(tempRoot), 'plan-backup-base');
+  writeOldSkill(skillRoot);
+  const context = makeContext(tempRoot);
+
+  const plan = convert.buildPlan(skillRoot, context);
+  assert.equal(
+    plan.backupBase,
+    path.join(fixtureSkillsDir(tempRoot), '.state', 'doctor-sk-skill', 'plan-backup-base'),
+  );
+  assert.match(convert.renderPlan(plan), /^Backup existing files under: .*plan-backup-base/m);
+});
+
+// A version field with no value is a version problem. Reporting it as a malformed
+// tool list sends the operator to the wrong line of the frontmatter.
+test('a blank version is refused as a version problem rather than a tool-list problem', () => {
+  const source = (versionLine) => [
+    '---',
+    'name: blank-version',
+    'description: short',
+    versionLine,
+    'allowed-tools: Read',
+    '---',
+    '',
+    '# Blank Version',
+    '',
+    '## SMART ROUTING',
+    '',
+    'Route by intent.',
+    '',
+    '## MACHINE ROUTER',
+    '',
+    '```python',
+    'INTENT_SIGNALS = {"PRIMARY": {"keywords": ["example"]}}',
+    '```',
+    '',
+  ].join('\n');
+
+  for (const versionLine of ['version:', 'version: null', 'version: ~']) {
+    assert.throws(
+      () => transforms.normalizeSkillFrontmatter(source(versionLine)),
+      { code: 'VERSION_INVALID' },
+      versionLine,
+    );
+  }
+});
+
+// The fixture is the pre-move sk-git folder, so its folder name is part of the
+// package contract the strict gate enforces.
+function prepareFixtureSkill(tempRoot) {
+  const skillRoot = path.join(fixtureSkillsDir(tempRoot), 'sk-git');
+  copyPreMoveFixture(skillRoot);
+  return skillRoot;
+}
+
+function rewriteSkill(skillRoot, replace, replacement) {
+  const skillFile = path.join(skillRoot, 'SKILL.md');
+  const text = fs.readFileSync(skillFile, 'utf8');
+  assert.ok(text.includes(replace), `SKILL.md carries ${JSON.stringify(replace)}`);
+  fs.writeFileSync(skillFile, text.replace(replace, replacement));
+}
+
+function assertStrictRoutingShape(skillRoot) {
+  const strict = invokeStrictPackageCheck(skillRoot);
+  assert.equal(strict.status, 0, `${strict.stdout}\n${strict.stderr}`);
+  assert.match(strict.stdout, /Result: PASS/);
+  assert.doesNotMatch(`${strict.stdout}\n${strict.stderr}`, /RS-002|RS-005/);
+}
+
+// The strict gate flags a machine block anywhere above the machine-router section,
+// not only in SMART ROUTING and not only for the three map heads. Convert has to
+// move every block the gate would flag, or the two disagree about one skill.
+test('converted skills carry no machine block the strict gate would flag', (t) => {
+  const helperTempRoot = makeTempRoot(t);
+  const helperRoot = prepareFixtureSkill(helperTempRoot);
+  rewriteSkill(
+    helperRoot,
+    'The tables and the pseudocode sit in the final `MACHINE ROUTER` section of this file.',
+    [
+      '```python',
+      'def discover_markdown_resources() -> set[str]:',
+      '    return {path.name for path in RESOURCE_BASES}',
+      '```',
+    ].join('\n'),
+  );
+  assert.match(fs.readFileSync(path.join(helperRoot, 'SKILL.md'), 'utf8'), /def discover_markdown_resources/);
+  assert.notEqual(invokeStrictPackageCheck(helperRoot).status, 0, 'the injected helper trips the gate');
+
+  const helperApply = invoke(helperTempRoot, 'apply', helperRoot, ['--apply']);
+  assert.equal(helperApply.exitCode, 0, helperApply.stderr);
+  const helperSkill = fs.readFileSync(path.join(helperRoot, 'SKILL.md'), 'utf8');
+  const helperRouter = fs.readFileSync(path.join(helperRoot, 'ROUTER.md'), 'utf8');
+  assert.doesNotMatch(helperSkill, /def discover_markdown_resources/);
+  assert.match(helperRouter, /def discover_markdown_resources/);
+  assertStrictRoutingShape(helperRoot);
+
+  const strayTempRoot = makeTempRoot(t);
+  const strayRoot = prepareFixtureSkill(strayTempRoot);
+  rewriteSkill(
+    strayRoot,
+    '## 9. MACHINE ROUTER',
+    [
+      '```python',
+      'RESOURCE_MAP = {"STRAY": ["references/quick-reference.md"]}',
+      '```',
+      '',
+      '## 9. MACHINE ROUTER',
+    ].join('\n'),
+  );
+  assert.match(fs.readFileSync(path.join(strayRoot, 'SKILL.md'), 'utf8'), /RESOURCE_MAP = \{"STRAY"/);
+  assert.notEqual(invokeStrictPackageCheck(strayRoot).status, 0, 'the injected map trips the gate');
+
+  const strayApply = invoke(strayTempRoot, 'apply', strayRoot, ['--apply']);
+  assert.equal(strayApply.exitCode, 0, strayApply.stderr);
+  const straySkill = fs.readFileSync(path.join(strayRoot, 'SKILL.md'), 'utf8');
+  const strayRouter = fs.readFileSync(path.join(strayRoot, 'ROUTER.md'), 'utf8');
+  assert.doesNotMatch(straySkill, /RESOURCE_MAP = \{"STRAY"/);
+  assert.ok(strayRouter.indexOf('RESOURCE_MAP = {"STRAY"') < strayRouter.indexOf('INTENT_SIGNALS = {'));
+  assert.match(straySkill, /\[ROUTER\.md\]\(\.\/ROUTER\.md\)/);
+  assertStrictRoutingShape(strayRoot);
+});
+
+// RS-005 asks for a pointer the document really makes. A sample inside a fence and
+// a pattern inside inline code are the document talking about the link, so neither
+// may stand in for the pointer convert is supposed to add.
+test('a router link inside a fence or inline code does not stand in for the pointer', (t) => {
+  const cases = [
+    [
+      'fenced-link',
+      'The tables and the pseudocode sit in the final `MACHINE ROUTER` section of this file.',
+      ['```markdown', 'See [ROUTER.md](./ROUTER.md) for the machine tables.', '```'].join('\n'),
+    ],
+    [
+      'inline-code-link',
+      'The tables and the pseudocode sit in the final `MACHINE ROUTER` section of this file.',
+      'The pointer line reads `[ROUTER.md](./ROUTER.md)` once the move is done.',
+    ],
+  ];
+
+  for (const [name, replace, replacement] of cases) {
+    const tempRoot = makeTempRoot(t);
+    const skillRoot = prepareFixtureSkill(tempRoot);
+    rewriteSkill(skillRoot, replace, replacement);
+
+    const plan = invoke(tempRoot, 'plan', skillRoot);
+    assert.equal(plan.exitCode, 0, plan.stderr);
+    assert.match(plan.stdout, /Overwrite: .*SKILL\.md/);
+
+    const applied = invoke(tempRoot, 'apply', skillRoot, ['--apply']);
+    assert.equal(applied.exitCode, 0, applied.stderr);
+    const skillText = fs.readFileSync(path.join(skillRoot, 'SKILL.md'), 'utf8');
+    const pointerLines = skillText.split('\n')
+      .filter((line) => line.trim() === 'The machine router lives in [ROUTER.md](./ROUTER.md).');
+    assert.equal(pointerLines.length, 1, name);
+    assertStrictRoutingShape(skillRoot);
+  }
+});
+
+// A refusal is only actionable when its code names the one condition that stopped
+// the run, so every preflight refusal owns a code of its own.
+test('each preflight refusal reports its own code', async (t) => {
+  const tempRoot = makeTempRoot(t);
+  const skillsDir = fixtureSkillsDir(tempRoot);
+  const codes = [];
+
+  await t.test('NOT_DIRECT_CHILD', () => {
+    const nestedRoot = path.join(skillsDir, 'nested-parent', 'child');
+    writeOldSkill(nestedRoot, 'child');
+    const result = invoke(tempRoot, 'plan', nestedRoot);
+    assert.equal(result.exitCode, 1, result.stderr);
+    assert.match(result.stderr, /^NOT_DIRECT_CHILD:/);
+    codes.push('NOT_DIRECT_CHILD');
+  });
+
+  await t.test('SKILL_UNREADABLE', () => {
+    const skillRoot = path.join(skillsDir, 'unreadable');
+    writeOldSkill(skillRoot);
+    const context = makeContext(tempRoot);
+    const fileSystem = Object.create(context.fs);
+    fileSystem.readFileSync = (file, ...rest) => {
+      if (path.basename(file) === 'SKILL.md') {
+        const error = new Error('permission denied');
+        error.code = 'EACCES';
+        throw error;
+      }
+      return context.fs.readFileSync(file, ...rest);
+    };
+    context.fs = fileSystem;
+    const result = invoke(tempRoot, 'plan', skillRoot, [], context);
+    assert.equal(result.exitCode, 1, result.stderr);
+    assert.match(result.stderr, /^SKILL_UNREADABLE:/);
+    codes.push('SKILL_UNREADABLE');
+  });
+
+  await t.test('DESCRIPTION_MISSING', () => {
+    const skillRoot = path.join(skillsDir, 'no-description');
+    writeOldSkill(skillRoot, 'no-description');
+    const skillFile = path.join(skillRoot, 'SKILL.md');
+    fs.writeFileSync(skillFile, fs.readFileSync(skillFile, 'utf8')
+      .replace('description: A short skill description.\n', ''));
+    const result = invoke(tempRoot, 'plan', skillRoot);
+    assert.equal(result.exitCode, 1, result.stderr);
+    assert.match(result.stderr, /^DESCRIPTION_MISSING:/);
+    codes.push('DESCRIPTION_MISSING');
+  });
+
+  await t.test('NO_MACHINE_ROUTER', () => {
+    const skillRoot = path.join(skillsDir, 'routerless');
+    const source = writeOldSkill(skillRoot, 'routerless');
+    const routerStart = source.indexOf('\n## MACHINE ROUTER\n');
+    assert.notEqual(routerStart, -1);
+    fs.writeFileSync(path.join(skillRoot, 'SKILL.md'), `${source.slice(0, routerStart)}\n`);
+    const result = invoke(tempRoot, 'plan', skillRoot);
+    assert.equal(result.exitCode, 1, result.stderr);
+    assert.match(result.stderr, /^NO_MACHINE_ROUTER:/);
+    codes.push('NO_MACHINE_ROUTER');
+  });
+
+  await t.test('ROUTER_EXISTS', () => {
+    const skillRoot = path.join(skillsDir, 'undeclared-router');
+    writeOldSkill(skillRoot);
+    fs.writeFileSync(path.join(skillRoot, 'ROUTER.md'), '# Notes\n\nNothing machine-readable here.\n');
+    const result = invoke(tempRoot, 'plan', skillRoot);
+    assert.equal(result.exitCode, 1, result.stderr);
+    assert.match(result.stderr, /^ROUTER_EXISTS:/);
+    codes.push('ROUTER_EXISTS');
+  });
+
+  await t.test('INPUT_KIND_UNSUPPORTED', () => {
+    const skillRoot = path.join(skillsDir, 'unexpected-kind');
+    writeOldSkill(skillRoot);
+    const context = makeContext(tempRoot);
+    // The guard exists for a check that classifies a skill differently from the resolver,
+    // which no on-disk shape produces, so the report is supplied rather than built.
+    const checker = require('../sk-skill-check.cjs');
+    const original = checker.runCheck;
+    checker.runCheck = (argv, options) => {
+      options.stdout.write(JSON.stringify({ inputKind: 'unclassified', rows: [] }));
+      return 0;
+    };
+    t.after(() => { checker.runCheck = original; });
+    const result = invoke(tempRoot, 'plan', skillRoot, [], context);
+    assert.equal(result.exitCode, 1, result.stderr);
+    assert.match(result.stderr, /^INPUT_KIND_UNSUPPORTED:/);
+    codes.push('INPUT_KIND_UNSUPPORTED');
+  });
+
+  assert.equal(new Set(codes).size, 6);
+});
+
+// Two declarations that disagree is a fault to report, and the report is only
+// useful when the operator can see both sides of it.
+test('a router file that declares nothing is refused with both declarations printed', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const skillRoot = path.join(fixtureSkillsDir(tempRoot), 'undeclared-both');
+  writeOldSkill(skillRoot, 'undeclared-both');
+  const routerFile = path.join(skillRoot, 'ROUTER.md');
+  const routerText = '# Undeclared Both Router\n\nThe tables were listed here once.\n';
+  fs.writeFileSync(routerFile, routerText);
+
+  const result = invoke(tempRoot, 'plan', skillRoot);
+  assert.equal(result.exitCode, 1);
+  assert.match(result.stderr, /^ROUTER_EXISTS:/);
+  assert.match(result.stderr, /ROUTER\.md/);
+  assert.match(result.stderr, /The tables were listed here once\./);
+  assert.match(result.stderr, /INTENT_SIGNALS = \{"PRIMARY"/);
+  assert.equal(fs.readFileSync(routerFile, 'utf8'), routerText);
+  assert.doesNotMatch(fs.readFileSync(path.join(skillRoot, 'SKILL.md'), 'utf8'), /ROUTER\.md\]\(\.\//);
+});
+
+// A run that wrote files owes the operator a way back that does not depend on
+// remembering which files it touched.
+test('a write prints the undo commands and the check rerun command', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const skillRoot = path.join(fixtureSkillsDir(tempRoot), 'undo-print');
+  const original = writeOldSkill(skillRoot, 'undo-print');
+
+  const applied = invoke(tempRoot, 'apply', skillRoot, ['--apply']);
+  assert.equal(applied.exitCode, 0, applied.stderr);
+  assert.equal(applied.stdout.split('Conversion plan: undo-print').length - 1, 1);
+  const backupDir = /^Backup: (.+)$/m.exec(applied.stdout)[1];
+  // The converter resolves the skill root, so its undo commands quote the resolved path.
+  const resolvedRoot = fs.realpathSync(skillRoot);
+  assert.match(applied.stdout, /^Undo:$/m);
+  assert.ok(applied.stdout.includes(
+    `  cp "${path.join(backupDir, 'SKILL.md')}" "${path.join(resolvedRoot, 'SKILL.md')}"`,
+  ), applied.stdout);
+  assert.ok(applied.stdout.includes(`  rm "${path.join(resolvedRoot, 'ROUTER.md')}"`), applied.stdout);
+  assert.match(applied.stdout, /^Check: node ".*sk-skill-check\.cjs" check ".*undo-print"$/m);
+  assert.equal(fs.readFileSync(path.join(backupDir, 'SKILL.md'), 'utf8'), original);
+});

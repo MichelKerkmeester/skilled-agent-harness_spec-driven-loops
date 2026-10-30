@@ -60,6 +60,7 @@ The legacy Skilled converter now plans and applies an in-place router move. It p
 | `.skilled/commands/doctor/scripts/lib/sk-skill-convert-transforms.cjs` | Added | Pure frontmatter normalization and legacy router move |
 | `.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` | Added | Fixture golden, shallow-history skip, strict-package, idempotence, refusal, no-replace, snapshot cleanup and rollback coverage |
 | `.skilled/commands/doctor/scripts/tests/fixtures/sk-skill-convert/` | Added | Pre-move `sk-git` source and routed resources plus expected post-move `ROUTER.md` |
+| `.skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs` | Updated | Skips `.state`, so a converter backup is not read as a second skill declaring the same name |
 | `tasks.md`, `acceptance-criteria.md`, `implementation-summary.md` | Updated | Recorded review fixes, acceptance evidence and verification |
 <!-- /ANCHOR:what-built -->
 
@@ -80,7 +81,7 @@ The golden test first runs `plan` and checks that no fixture bytes change. `appl
 |----------|-----|
 | Compare content output and resolved routing separately | The full text-parser result is deep-equal on the pre-edit snapshot and new router text. On actual roots, `routerSource` necessarily changes from `inline` to `ROUTER.md`; all routing-semantic fields remain deep-equal. |
 | Keep the golden fixture in the test fixture folder and history comparison separate | CI may have only one commit; committed inputs keep the byte-equality test stable while the optional history check skips cleanly when its parent is unavailable. |
-| Exclude `.state` from the shared collision scan's candidate roots | Converter backups are state records rather than skill roots, so they must not make the second `apply` look like a duplicate name. The converter still delegates persona and duplicate-name findings to `inspectCollisions`. |
+| Skip `.state` in the shared skill-file scan | A converter backup copies `SKILL.md` verbatim, so reading state records would make one skill look like a duplicate of itself in every caller, not only in the converter. The converter still delegates persona and duplicate-name findings to `inspectCollisions`. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -93,9 +94,11 @@ The golden test first runs `plan` and checks that no fixture bytes change. `appl
 | `node --check .skilled/commands/doctor/scripts/sk-skill-convert.cjs` | Exit 0 |
 | `node --check .skilled/commands/doctor/scripts/lib/sk-skill-convert-transforms.cjs` | Exit 0 |
 | `node --check .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` | Exit 0 |
-| `PYTHON=/usr/bin/python3 node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` | Exit 0; 14/14 passed |
-| `PATH=/Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin:$PATH PYTHON=/usr/bin/python3 node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` in the shallow clone | Exit 0; 13 passed, 1 history test skipped with the missing-parent reason |
-| `PYTHON=/usr/bin/python3 node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | Exit 0; 23/23 passed |
+| `PYTHON=/usr/bin/python3 node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` | Exit 0; 27/27 passed |
+| `PATH="$PATH" PYTHON=/usr/bin/python3 node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` on a checkout without `ca10a236d2^` | The history test skips with its missing-parent reason, and every other case runs from the committed fixture |
+| `PYTHON=/usr/bin/python3 node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | Exit 0; 32/32 passed |
+| Check on a converted skill in an `os.tmpdir()` copy, after `apply --apply` | Exit 0; row C12 `PASS`, no duplicate-name finding with a backup on disk |
+| `package_skill.py --check --strict` on converted variants holding a router helper fence, a map outside SMART ROUTING, a fenced pointer and an inline-code pointer | Exit 0 with `Result: PASS` and no RS-002 or RS-005 in every case |
 | `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` | Exit 0; 65 Hermes copies in sync |
 | Advisor fixture-discovery inspection | Exit 0; advisor scans direct `.skilled/skills` children for `graph-metadata.json`, and the converter fixture has none |
 | Golden `package_skill.py --check --strict` assertion | Exit 0; `Result: PASS`; no RS-002, RS-004 or RS-005 |

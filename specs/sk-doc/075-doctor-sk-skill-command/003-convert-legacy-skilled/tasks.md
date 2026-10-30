@@ -43,7 +43,7 @@ contextType: "general"
 ## Phase 2: Implementation
 
 - [x] T003 Write the V2 frontmatter transform: four-part `version`, `allowed-tools` as a YAML array when needed, `name` and `description` bytes kept, and existing flow sequences preserved byte-for-byte (`DOC/scripts/lib/sk-skill-convert-transforms.cjs`). Verify: unit assertions cover scalar normalization, flow-sequence preservation, and version planning.
-- [x] T004 Write the V3(b) move: trailing section plus any SMART ROUTING machine block into `ROUTER.md` under `## 3. MACHINE ROUTER`, link line appended (`DOC/scripts/lib/sk-skill-convert-transforms.cjs`). Verify: the unit case preserves both source blocks and removes them from `SKILL.md`.
+- [x] T004 Write the V3(b) move: trailing section plus every machine block the strict gate flags, anywhere above that section, into `ROUTER.md` under `## 3. MACHINE ROUTER`, link line appended (`DOC/scripts/lib/sk-skill-convert-transforms.cjs`). Verify: the unit case preserves both source blocks and removes them from `SKILL.md`; a converted skill holding a helper fence, a map outside SMART ROUTING, a fenced pointer or an inline-code pointer passes `package_skill.py --check --strict` with no RS-002 or RS-005.
 - [x] T005 Write V0 preflight refusals and the `plan` printout naming every overwrite (`DOC/scripts/sk-skill-convert.cjs`). Verify: every refusal has its required code, including a hub declaration containing only `hub-router.json`.
 - [x] T006 Write `apply` with backups to `.skilled/skills/.state/doctor-sk-skill/<name>/<timestamp>/`, snapshot only the router parser inputs, and use exclusive creates (`DOC/scripts/sk-skill-convert.cjs`). Verify: the golden case checks the saved `SKILL.md` and parser-input snapshot; pre-write failures remove empty backups.
 - [x] T007 Write the `parseRouter` proof with rollback (`DOC/scripts/sk-skill-convert.cjs`). Verify: the forced map-change test restores `SKILL.md` and removes the new router.
@@ -54,12 +54,12 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T008 Run the fixture golden, idempotence, refusal, transform and rollback tests (`DOC/scripts/tests/sk-skill-convert.test.cjs`). Verify: `PYTHON=/usr/bin/python3 node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` passes 14/14; the history test skips with a reason in a shallow clone.
+- [x] T008 Run the fixture golden, idempotence, refusal, transform and rollback tests (`DOC/scripts/tests/sk-skill-convert.test.cjs`). Verify: `PYTHON=/usr/bin/python3 node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` passes 27/27; the history test skips with a reason in a shallow clone.
 - [x] T009 Run the strict gate on the converted fixture created by the golden test. Verify: its `package_skill.py --check --strict` assertion observes exit 0, `Result: PASS`, and no RS-002, RS-004 or RS-005.
 - [x] T010 Remove test-managed `TMPDIR` changes and use `fs.mkdtempSync(path.join(os.tmpdir(), 'sk-skill-convert-'))` with named-root cleanup. Verify: the test source contains no `SCRATCH_ROOT` or `process.env.TMPDIR` mutation.
 - [x] T011 Preserve transform refusal codes and print full usage on `USAGE`; keep input refusal exit 1 and prerequisite failure exit 2. Verify: tests assert the printed code and both exit classes.
 - [x] T012 Split `allowed-tools` commas only at parenthesis depth zero and reject unbalanced parentheses. Verify: `Bash(git log, git show)` remains one item and malformed input reports `ALLOWED_TOOLS_AMBIGUOUS`.
-- [x] T013 Give each refusal a distinct code, keep the reserved-path check before reading, and route persona/collision checks through `inspectCollisions`. Verify: tests cover dual declaration, both hub files independently, nested packets, reserved/persona prefixes, name collision, long description and non-kebab name.
+- [x] T013 Give each refusal a distinct code, keep the reserved-path check before reading, and route persona/collision checks through `inspectCollisions`. Verify: tests cover dual declaration, both hub files independently, nested packets, reserved/persona prefixes, name collision, long description and non-kebab name, plus the six preflight codes `NOT_DIRECT_CHILD`, `SKILL_UNREADABLE`, `DESCRIPTION_MISSING`, `NO_MACHINE_ROUTER`, `ROUTER_EXISTS` and `INPUT_KIND_UNSUPPORTED`.
 - [x] T014 Keep V2 active when `ROUTER.md` already declares the router; remove trailing divider residue and list retained template TODOs and stale SKILL wording as plan follow-ups. Verify: targeted plan/apply and golden-output assertions pass.
 - [x] T015 Run the converter tests in a shallow clone and confirm the fixture is ignored by Hermes and advisor discovery. Verify: shallow history test skips with a reason, Hermes `--check` passes, and advisor discovery remains scoped to `.skilled/skills`.
 <!-- /ANCHOR:phase-3 -->
@@ -130,7 +130,7 @@ A blocked task is marked `[B]` with the blocking cause on the same line.
 - [x] CHK-020 [P0] All acceptance criteria met. Evidence: AC-001 through AC-015 are `Met` with test evidence.
 - [x] CHK-021 [P0] Golden machine section byte-equal. Evidence: the converted machine section equals `FX/expected/ROUTER.md`; the moved source section body is preserved as its suffix.
 - [x] CHK-022 [P1] Second `apply` is a no-op. Evidence: fixture tree hash is unchanged on the second run.
-- [x] CHK-023 [P1] Each V0 refusal tested with its own code. Evidence: dual, mode-registry-only, hub-router-only, nested, reserved-prefix, persona-prefix, name-collision, long-description and non-kebab cases refuse without writes.
+- [x] CHK-023 [P1] Each V0 refusal tested with its own code. Evidence: dual, mode-registry-only, hub-router-only, nested, reserved-prefix, persona-prefix, name-collision, long-description and non-kebab cases refuse without writes, and the six preflight refusals each report a distinct code.
 <!-- /ANCHOR:testing -->
 
 ---

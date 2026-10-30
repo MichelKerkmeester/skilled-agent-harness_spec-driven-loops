@@ -45,7 +45,8 @@
       "implementation-summary.md",
       ".skilled/commands/doctor/scripts/sk-skill-convert.cjs",
       ".skilled/commands/doctor/scripts/lib/sk-skill-convert-transforms.cjs",
-      ".skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs"
+      ".skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs",
+      ".skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs"
     ],
     "entities": [
       {
@@ -100,6 +101,12 @@
         "name": "sk-skill-convert.test.cjs",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-surface.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The fleet move to `ROUTER.md` took each trailing `MACHINE ROUTER` section verbatim into `ROUTER.md` under `## 3",
     "created_at": "2026-10-30T05:21:13Z",
-    "last_save_at": "2026-10-30T08:23:52.839Z",
+    "last_save_at": "2026-10-30T08:58:40.791Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98c67f8ca7183c5627a27bc8df48f9e235ed2e637bee35c976c04f1114f1ba7b",
+    "source_fingerprint": "sha256:06d6b3b0283a25d36815a9c22273626f3f06ec66de365ab7ef9d0ee272076d2f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "be0f1bacfa0babaf97d96477dac084cdc6c5b9ccdf4df8c8e2f309b3fc2d89f5",
-      "plan.md": "d6c722e47357ab8d8f714b137539ad693155b05d3b799514ca20e8680930a436",
-      "tasks.md": "547f62a886bb041ef7e7643ded48be4791891313f41195b01cde8163cc5fc9c5",
-      "implementation-summary.md": "bb8ce471a9db7690c00dc206c79fd2a4ca569389726d90f4cbb9bdeacd67dc66"
+      "plan.md": "4d8f2986a9d95be5e5e594f4ef7018ce64b1705360b21152d9839499f578ced9",
+      "tasks.md": "a37295be61d68bbfba845720ad50d1839192ff7cb0c527b2bd9b083f2d3a7acf",
+      "implementation-summary.md": "324fdeca42a89aa46fee33d2a6b2e1bad594d15371140caef55eb099a661f170"
     },
     "last_active_at": null
   }

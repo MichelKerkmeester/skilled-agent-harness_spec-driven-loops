@@ -24,8 +24,11 @@ const PYTHON_MISSING_PROVISION = 'Install Python 3 and make python3 available on
 const RESERVED_PREFIX = ['lo', 'cal', String.fromCharCode(45)].join('');
 const SHARED_PROVISION = 'bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .';
 const HERMES_PROVISION = 'npm install --prefix .skilled/skills/system-spec-kit/runtime';
+// `.state` holds converter backups and other run records. A backup copies SKILL.md
+// verbatim, so walking it would read one skill's own backup as a second skill
+// declaring the same name.
 const SKIP_DIRECTORIES = new Set([
-  '.git', 'benchmark', 'dist', 'fixtures', 'node_modules', 'scratch', 'z_archive',
+  '.git', '.state', 'benchmark', 'dist', 'fixtures', 'node_modules', 'scratch', 'z_archive',
 ]);
 
 // ─────────────────────────────────────────────────────────────────────────────

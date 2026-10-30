@@ -36,12 +36,12 @@ Add `sk-skill-convert.cjs` with a default `plan` and an `apply` gated by `--appl
 
 ### Definition of Ready
 - [x] `route-validate.sh` exits 0 with the `check` route (phase 002 closed): `OK: route-validate — 18 routes validated, 3 warnings`.
-- [x] The golden test materializes the pre-move `sk-git` tree from `ca10a236d2^` in its scratch-backed temporary folder and compares the result with today's `ROUTER.md`.
+- [x] The golden test copies the committed pre-move `sk-git` fixture into an `os.tmpdir()` root and compares the converted machine section with the committed `tests/fixtures/sk-skill-convert/expected/ROUTER.md`; a separate check compares both with the Git history and skips with a reason when the parent commit is absent.
 - [x] Dependencies identified: phase 001 checker and surface library, router resolver/parser, and router template.
 
 ### Definition of Done
 - [x] All acceptance criteria met with evidence in `acceptance-criteria.md`.
-- [x] `node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` exits 0 (5/5 tests).
+- [x] `node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` exits 0 (27/27 tests).
 - [x] Docs updated (spec/plan/tasks and implementation summary).
 <!-- /ANCHOR:quality-gates -->
 

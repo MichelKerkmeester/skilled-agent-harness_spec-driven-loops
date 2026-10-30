@@ -73,7 +73,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase implementation | Complete | Converter test: 5/5; route validator: 18 routes; drift guards: 4/4; golden strict gate: PASS |
+| Phase implementation | Complete | Converter test: 27/27; check test: 32/32; route validator: 18 routes; drift guards: 4/4; golden strict gate: PASS |
 
 ### Deviations and findings
 
