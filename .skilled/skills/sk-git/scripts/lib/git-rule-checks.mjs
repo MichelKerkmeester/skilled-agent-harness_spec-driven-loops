@@ -32,7 +32,12 @@ const GIT_INVOCATION = /(?:^|[;&|]\s*)(?:\w+=\S+\s+)*git\s+(?:-C\s+(\S+)\s+)?([a
 // `cd <dir> && git ...` moves the directory of the invocation just as `git -C <dir>` does, so
 // both resolve to one effective directory. Only a `cd` immediately before the invocation counts:
 // a `cd` earlier in a longer pipeline may not be the one the git command inherits.
-const CD_BEFORE_GIT = /(?:^|[;&|]\s*)cd\s+(?:"([^"]*)"|'([^']*)'|(\S+))\s*&&\s*(?:\w+=\S+\s+)*git\s/;
+//
+// An environment step in between is the one thing allowed there, because assigning a variable
+// never changes the directory: `cd wt && export A=1 B=2; git add f1` still runs the git command
+// in `wt`. The step must be assignments alone, optionally behind `export`, and ended by `;` or
+// `&&`, so any other command in that position still breaks the chain and the `cd` does not count.
+const CD_BEFORE_GIT = /(?:^|[;&|]\s*)cd\s+(?:"([^"]*)"|'([^']*)'|(\S+))\s*&&\s*(?:(?:export\s+)?\w+=[^\s;&|]*(?:\s+\w+=[^\s;&|]*)*\s*(?:;|&&)\s*)*(?:\w+=\S+\s+)*git\s/;
 
 // Flags whose value is a separate argument. Without this list a commit message lands in the
 // pathspec, and every path-sensitive check below then reasons about a word from the message.

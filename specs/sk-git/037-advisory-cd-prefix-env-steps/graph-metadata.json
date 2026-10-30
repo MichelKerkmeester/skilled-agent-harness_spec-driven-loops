@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/037-advisory-cd-prefix-env-steps",
+  "spec_folder": "sk-git/037-advisory-cd-prefix-env-steps",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisory cd prefix env steps",
+      "environment step between cd and git",
+      "export between cd and git",
+      "false add-pathspec-matches-nothing",
+      "advisory cd prefix env steps plan",
+      "assignment step between cd and git plan",
+      "advisory cd prefix env steps tasks",
+      "assignment step between cd and git tasks",
+      "advisory cd prefix env steps implementation summary",
+      "assignment step between cd and git summary"
+    ],
+    "key_topics": [
+      "advisory",
+      "prefix",
+      "env",
+      "steps",
+      "environment",
+      "step",
+      "between",
+      "git",
+      "export",
+      "false",
+      "add-pathspec-matches-nothing",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-git/scripts/lib/git-rule-checks.mjs",
+      ".skilled/skills/sk-git/scripts/lib/git-rule-checks.test.mjs",
+      ".skilled/skills/sk-git/SKILL.md",
+      ".skilled/skills/sk-git/changelog/v1.11.7.0.md",
+      "specs/sk-git/graph-metadata.json",
+      ".skilled/skills/sk-git/scripts/lib/message-contract.test.mjs",
+      ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.test.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/lib/git-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-rule-checks.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/lib/git-rule-checks.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.11.7.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/changelog/v1.11.7.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/sk-git/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "message-contract.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/lib/message-contract.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-preflight-advisory.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The preflight advisory resolves the directory a git command runs in, so a command typed against a worktree is judged by that worktree's state",
+    "created_at": "2026-10-30T16:23:34Z",
+    "last_save_at": "2026-10-30T16:26:22.948Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5be3db914c7b862ebce557e9dda15aea189803009535f80a09e30dc85bb9a7b9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e34861771340c1f1157ebeb3cf25aebaa28c8d3ea70c35ef4ef324b6191377d7",
+      "plan.md": "c2430690bccda53c7e87fa8b2cee24c24666ad20103f9daffe41a30a07b51ef6",
+      "tasks.md": "96c4800628bd9835ad69b6004c04f9ba6470726f594ce08924f9cb6487d6a389",
+      "implementation-summary.md": "b549261b662e10c7d5f9209041217f9ae2c505cbd05f01a465f9d65b20827235"
+    },
+    "last_active_at": null
+  }
+}

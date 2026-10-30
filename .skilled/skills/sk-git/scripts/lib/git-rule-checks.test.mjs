@@ -304,6 +304,30 @@ test('a command that changes directory is evaluated against that directory', () 
     'a leading cd target holding the paths yields no advisory',
   );
 
+  // A shell commonly sets environment between the `cd` and the git command. Assigning a variable
+  // never moves the directory, so the `cd` still owns the invocation and each of these shapes
+  // must stay silent. A step that is anything else must not, because the chain is then unproven.
+  assert.equal(
+    check('add-pathspec-matches-nothing', `cd ${wt} && export A=1 B=2 C=3; git add ${paths}`, main),
+    true,
+    'an export step holding several assignments keeps the cd',
+  );
+  assert.equal(
+    check('add-pathspec-matches-nothing', `cd ${wt} && export A=1 && git add ${paths}`, main),
+    true,
+    'an export step closed by && keeps the cd',
+  );
+  assert.equal(
+    check('add-pathspec-matches-nothing', `cd ${wt} && A=1; git add ${paths}`, main),
+    true,
+    'a bare assignment step keeps the cd',
+  );
+  assert.equal(
+    check('add-pathspec-matches-nothing', `cd ${wt} && echo hi; git add ${paths}`, main),
+    false,
+    'a non-assignment step between the cd and the git command breaks the chain',
+  );
+
   // The direction that matters is false silence: a dirty worktree reset from a session whose
   // own checkout is clean must still warn, or the uncommitted work is destroyed unremarked.
   fs.writeFileSync(path.join(wt, 'seed.txt'), 'uncommitted work\n');

@@ -1,0 +1,23 @@
+{
+  "specFolder": "sk-git/037-advisory-cd-prefix-env-steps",
+  "description": "Teach the git preflight advisory that environment assignments between cd and git keep the cd",
+  "keywords": [
+    "teach",
+    "git",
+    "preflight",
+    "advisory",
+    "environment",
+    "assignments",
+    "between",
+    "keep"
+  ],
+  "lastUpdated": "2026-10-30T16:23:34.154Z",
+  "specId": "037",
+  "folderSlug": "advisory-cd-prefix-env-steps",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
