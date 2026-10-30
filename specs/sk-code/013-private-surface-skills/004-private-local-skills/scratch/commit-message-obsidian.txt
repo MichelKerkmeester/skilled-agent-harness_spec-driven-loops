@@ -1,0 +1,5 @@
+feat(skills): restore local-obsidian
+
+Add the local-obsidian skill tree under local-skills so the operator checkout
+can link it as a private skill. The tree holds the Note Database plugin
+evidence, its references, and a skill-root graph-metadata.json.

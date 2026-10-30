@@ -1,0 +1,5 @@
+feat(skills): restore local-webflow
+
+Add the local-webflow skill tree under local-skills so the operator checkout
+can link it as a private skill. The tree holds the Webflow frontend evidence,
+its references and assets, and a skill-root graph-metadata.json.
