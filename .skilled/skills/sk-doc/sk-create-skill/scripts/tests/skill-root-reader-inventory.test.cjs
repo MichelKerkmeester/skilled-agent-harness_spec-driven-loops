@@ -60,6 +60,8 @@ const SCREENED = {
     'reads through Dirent.isDirectory() and only hubs that hold mode-registry.json and ROUTER.md',
   '.skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs':
     'reads through Dirent.isDirectory(), skips the private prefix by name and keeps only hubs that hold mode-registry.json, hub-router.json and ROUTER.md',
+  '.skilled/commands/doctor/scripts/sk-skill-check.cjs':
+    'reads through Dirent.isDirectory(), drops links, skips the private prefix through sk-skill-surface.cjs isReservedSkillName and writes nothing',
   // The plugin's sk-code surface reader applies the trusted-root rule itself; this reason
   // covers only its cache-signature reader.
   '.opencode/plugins/system-skill-advisor.js':
