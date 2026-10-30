@@ -153,6 +153,7 @@ routes:
       - "skill char count drift"
       - "frontmatter description trim"
       - "skill description too long"
+      - "description longer than the limit"
 
   - command: /doctor:skill-advisor
     target: parent-skill
@@ -237,6 +238,7 @@ routes:
       - "discovery mirror out of sync"
       - "hermes prompt copy drift"
       - "runtime copies drift from source"
+      - "runtime prompts out of date after a pull"
 
   - command: /doctor:sk-code
     target: setup
@@ -355,6 +357,7 @@ routes:
       - "skilled setup check"
       - "getting started with skilled"
       - "overview of every doctor command"
+      - "model server or helper process still running after the session closed"
 
   - command: /doctor:ci
     target: report

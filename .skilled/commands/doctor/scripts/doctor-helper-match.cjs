@@ -55,6 +55,11 @@ const DEFAULTS = {
   descriptionWeight: 0.5,
 };
 
+// The nominal runnable column and the minimum gap before the class. A printed set
+// wider than the column widens it; it never narrows below these.
+const CLASS_COLUMN = 30;
+const CLASS_GAP = 2;
+
 // Words that carry no routing signal: articles, pronouns, auxiliaries and the
 // fillers an operator writes ("please", "just"). A term kept by mistake costs
 // nothing, but a filler shared by every entry dilutes the ranking, so the small
@@ -573,13 +578,24 @@ function parseArgs(argv) {
   return { options };
 }
 
+// The runnable column has to end in a gap, never in a fused word: `/doctor:` runnables
+// range from seventeen to forty-three characters, so a fixed column would glue the
+// mutation class onto the long ones and the operator would copy a broken command.
+// The column is therefore measured over the set about to be printed, with the short
+// sets keeping their familiar alignment at the nominal width.
+function runnableColumn(rows) {
+  const widest = rows.reduce((width, row) => Math.max(width, row.runnable.length), 0);
+  return Math.max(CLASS_COLUMN, widest + CLASS_GAP);
+}
+
 function printText(result) {
   if (result.status !== 'match') {
     process.stdout.write(`STATUS=NO_MATCH FALLBACK=${FALLBACK}\n`);
     return;
   }
+  const column = runnableColumn(result.candidates);
   for (const candidate of result.candidates) {
-    const runnable = candidate.runnable.padEnd(30, ' ');
+    const runnable = candidate.runnable.padEnd(column, ' ');
     process.stdout.write(`${candidate.rank}) ${runnable}${candidate.mutating.padEnd(10, ' ')}${candidate.reason}\n`);
   }
   process.stdout.write(`STATUS=OK MATCHES=${result.candidates.length}\n`);
@@ -615,8 +631,9 @@ function main() {
       }, null, 2)}\n`);
       return 0;
     }
+    const column = runnableColumn(visible);
     for (const [index, entry] of visible.entries()) {
-      process.stdout.write(`${index + 1}) ${entry.runnable.padEnd(30, ' ')}${entry.mutating}\n`);
+      process.stdout.write(`${index + 1}) ${entry.runnable.padEnd(column, ' ')}${entry.mutating}\n`);
     }
     process.stdout.write(`STATUS=OK ENTRIES=${table.entries} COMMANDS=${table.commands}\n`);
     return 0;
@@ -633,8 +650,9 @@ function main() {
       }, null, 2)}\n`);
       return 0;
     }
+    const column = runnableColumn(commands.map((command) => ({ runnable: command.name })));
     for (const [index, command] of commands.entries()) {
-      process.stdout.write(`${index + 1}) ${command.name.padEnd(30, ' ')}${command.readOnly ? 'read-only' : 'writes'}\n`);
+      process.stdout.write(`${index + 1}) ${command.name.padEnd(column, ' ')}${command.readOnly ? 'read-only' : 'writes'}\n`);
     }
     process.stdout.write(`STATUS=OK AREAS=${commands.length}\n`);
     return 0;

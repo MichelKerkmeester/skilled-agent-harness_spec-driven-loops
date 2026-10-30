@@ -1,59 +1,102 @@
-BASELINE — re-measured on worktree/294-doctor-helper at d389077c91, before any edit
-====================================================================================
+BASELINE — the start commit's own figures beside the delivered gate output
+================================================================================
 
 Why this file exists: the packet's criteria are read against counts, and every count
-shifts when a sibling doctor route lands. These numbers replace the older ones quoted
-in the approved design, which were measured on a different checkout.
+shifts when a sibling doctor route lands. Two blocks, so a reader can tell an
+observed figure from a derived one.
+
+  START      read from 06e32903d9 (`6cc5180^`), the commit this work starts on, with
+             the `git show` / `git ls-tree` command named beside each figure.
+  DELIVERED  the gate output on this branch after the work.
+
+This replaces an earlier capture taken at d389077c91. That checkout predates
+`/doctor:sk-skill`'s convert route, so it carried 19 routes where the start commit
+carries 20, and every route-derived figure in it was one low. The packet's
+precondition requires the measurement on the branch the work starts on, which is why
+the START block below is read from that commit rather than from an older tree.
 
 1) Route manifest
-   $ bash .skilled/commands/doctor/scripts/route-validate.sh
-   -> OK: route-validate — 19 routes validated, 3 warnings  (exit 0)
-   -> J1: targets are in parity with their router and presentation across 9 commands
-   -> L1: all 47 route script invocations are invoked by their workflow YAML
+   START      $ git show 06e32903d9:.skilled/commands/doctor/_routes.yaml
+              -> 20 routes, 2 standalone, 2 mcp_subroutes
+              $ git ls-tree --name-only 06e32903d9 .skilled/commands/doctor/
+              -> 12 router files
+   DELIVERED  $ bash .skilled/commands/doctor/scripts/route-validate.sh
+              -> OK: route-validate — 21 routes validated, 3 warnings  (exit 0)
+              -> J1: targets are in parity with their router and presentation across 10 commands
+              -> L1: all 53 route script invocations are invoked by their workflow YAML
 
-2) Family test runner
-   $ bash .skilled/commands/doctor/scripts/tests/run-all.sh
-   -> [run-all] node:test (36 files): tests 723, pass 723, fail 0
-   -> [run-all] 7 suite(s) passed, 0 failed  (exit 0)
+2) Bridge deriver
+   START      $ git show 06e32903d9:…/command-bridges.generated.json
+              -> 51 generated entries, 24 of them `command-doctor-*`
+              $ git show 06e32903d9:…/scoring-compatibility.json
+              -> typescript 29 active, python 39 active
+   DELIVERED  $ node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check
+              -> "status": "fresh"
+              -> "doctorRoutes": 25   (routes 21 + standalone 2 + mcp_subroutes 2)
+              -> "generated": 52      "commandMetadata": 19   "allowList": 8
+              -> "typescriptActive": 29   "pythonActive": 39   (exit 0)
+              The two active counts are unchanged, because the helper's own bridge
+              ships inactive: 24 of the 25 doctor ids are in both activation lists.
 
 3) Doctor phrase reach probe
-   $ node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs
-   -> STATUS=OK phrases=118 bridges=22  (exit 0)
+   START      derived from the start commit's manifest by the probe's own rule, one
+              row per declared phrase plus the runnable string:
+              -> phrases=130 bridges=24
+   DELIVERED  $ node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs
+              -> STATUS=OK phrases=142 bridges=24  (exit 0)
+              The rule was checked against the delivered run: the same derivation over
+              the delivered manifest also gives 142, which is what the probe prints.
 
-4) Bridge deriver
-   $ node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check
-   -> "status": "fresh"
-   -> "doctorRoutes": 23   (routes 19 + standalone 2 + mcp_subroutes 2)
-   -> "generated": 50      "commandMetadata": 19   "allowList": 8
-   -> "typescriptActive": 27   "pythonActive": 37   (exit 0)
+4) Family test runner
+   START      the two suites this packet adds did not exist at 06e32903d9; the
+              tests tree gained only those two files since, so the node:test totals
+              there are the delivered ones minus the 43 cases they carry today:
+              -> 36 files, 749 tests
+   DELIVERED  $ bash .skilled/commands/doctor/scripts/tests/run-all.sh
+              -> [run-all] node:test (38 files): tests 792, pass 792, fail 0
+              -> [run-all] 7 suite(s) passed, 0 failed  (exit 0)
 
 5) Generated mirrors and prompt stubs
-   $ node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs --check
-   -> [hermes-prompt-sync] PASS: 39 prompts are in sync.  (exit 0)
-   $ node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs --check
-   -> [codex-prompt-sync] PASS: 39 prompts are in sync.  (exit 0)
-   $ node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check
-   -> [pi-prompt-sync] PASS: 39 prompts are in sync.  (exit 0)
-   $ node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check
-   -> [runtime-mirror-sync] PASS: 203 mirrors across 9 trees are in sync.  (exit 0)
+   START      one prompt stub set and two mirrors short of the delivered figures, one
+              per new command file:
+              -> hermes 39, codex 39, pi 39, mirrors 203
+   DELIVERED  $ node .skilled/skills/system-spec-kit/runtime/cli/{hermes,codex,pi}/sync-prompts* --check
+              -> [hermes-prompt-sync] PASS: 40 prompts are in sync.  (exit 0)
+              -> [codex-prompt-sync]  PASS: 40 prompts are in sync.  (exit 0)
+              -> [pi-prompt-sync]     PASS: 40 prompts are in sync.  (exit 0)
+              $ node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check
+              -> [runtime-mirror-sync] PASS: 205 mirrors across 9 trees are in sync.  (exit 0)
 
 6) Command contract and catalog
-   $ node .skilled/skills/system-spec-kit/runtime/cli/codex/generate-command-routers.cjs --check
-   -> routers=36 clean=36 path-drift=0 shape-drift=0  (exit 0)
-   $ node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs
-   -> STATUS=OK command-catalog-mirror  (exit 0)
+   START      $ git show 06e32903d9:.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json
+              -> 102 router_path entries, so two short of the delivered 104
+              -> routers 36 clean 36
+   DELIVERED  $ node .skilled/skills/system-spec-kit/runtime/cli/codex/generate-command-routers.cjs --check
+              -> routers=38 clean=38 path-drift=0 shape-drift=0  (exit 0)
+              $ node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs
+              -> STATUS=OK command-catalog-mirror  (exit 0)
 
 7) Advisor doctor suites
-   $ (cd .skilled/skills/system-skill-advisor/runtime) ./node_modules/.bin/vitest run \
-       tests/doctor-command-bridges.vitest.ts tests/command-bridges-drift-guard.vitest.ts \
-       tests/doctor-routing-slice.vitest.ts tests/scorer/doctor-bridge-isolation.vitest.ts \
-       tests/scorer/doctor-ordering.vitest.ts
-   -> Test Files 5 passed (5); Tests 96 passed (96)  (exit 0)
+   START      the same five files and the same 96 cases; this packet adds no advisor
+              test, so the figure is unchanged.
+   DELIVERED  $ (cd .skilled/skills/system-skill-advisor/runtime) ./node_modules/.bin/vitest run \
+                  tests/doctor-command-bridges.vitest.ts tests/command-bridges-drift-guard.vitest.ts \
+                  tests/doctor-routing-slice.vitest.ts tests/scorer/doctor-bridge-isolation.vitest.ts \
+                  tests/scorer/doctor-ordering.vitest.ts
+              -> Test Files 5 passed (5); Tests 96 passed (96)  (exit 0)
 
 8) Doctor routers on disk
-   $ ls .skilled/commands/doctor/*.md | wc -l
-   -> 12
+   START      $ git ls-tree --name-only 06e32903d9 .skilled/commands/doctor/ | grep '\.md$' | wc -l
+              -> 12
+   DELIVERED  $ ls .skilled/commands/doctor/*.md | wc -l
+              -> 13
 
-Manifest vocabulary at this commit: 100 route/standalone/mcp_subroute phrases, plus 3
-`/doctor:update compat` action phrases, over 23 derived entries. A helper entry adds one
-route and three phrases, and the compat action adds the 24th helper entry.
+9) The helper's own numbers
+   DELIVERED  $ node .skilled/commands/doctor/scripts/tests/doctor-helper-match.test.cjs
+              -> [doctor-helper] held-out top1=0.917 top3=0.938 negatives=1.000
+                 (rows=60 positive=48 negative=12)   and 23 tests, fail 0
+              $ node .skilled/commands/doctor/scripts/tests/doctor-helper-contract.test.cjs
+              -> 20 tests, fail 0
+   The tune set the constants were chosen on carries 61 rows after the three probes
+   this pass adds: top1 0.891, top3 0.945, negatives 0.833. The held-out set is not
+   read while tuning and is unchanged, so its bar is unaffected by that addition.

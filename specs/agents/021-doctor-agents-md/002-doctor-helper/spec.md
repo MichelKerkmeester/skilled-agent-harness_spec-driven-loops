@@ -41,7 +41,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-10-30 |
-| **Branch** | `worktrees/292-doctor-agents-md` |
+| **Branch** | `worktrees/294-doctor-helper` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 2 of 2 |
 | **Predecessor** | 001-doctor-agents-md |
@@ -74,7 +74,7 @@ This is **Phase 2** of `agents/021-doctor-agents-md`.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The doctor family now carries nineteen routes across twelve commands, and the only way to find the right one is to read the manifest. The advisor cannot fill that gap: its doctor bridges are tuned never to outrank a skill and never to move a skill's score, and in a measured run forty realistic paraphrases reached the gold doctor bridge in the top three zero times, against thirty-three of forty top-1 for a local token matcher over the same phrases. A fleet of doctor commands with no entry point is a fleet nobody uses.
+The doctor family now carries twenty routes across twelve commands, and the only way to find the right one is to read the manifest. The advisor cannot fill that gap: its doctor bridges are tuned never to outrank a skill and never to move a skill's score, and in a measured run forty realistic paraphrases reached the gold doctor bridge in the top three zero times, against thirty-three of forty top-1 for a local token matcher over the same phrases. A fleet of doctor commands with no entry point is a fleet nobody uses.
 
 ### Purpose
 Give the family one read-only command that takes a problem in plain words and ranks the doctor commands that fit, with the class and the reason on every line. A read-only pick runs in place; a writing pick is printed as a line for the operator to run, so each writer's own plan and yes still govern its change.
@@ -85,15 +85,27 @@ Implementation starts only after `/doctor:sk-skill` (packet `sk-doc/075-doctor-s
 
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
-Measured on this worktree at `006d96370d`, before any implementation. These are the numbers this packet's criteria are read against, and the shipped command counts shift by one for every sibling route that lands first.
+The start commit is `06e32903d9`, the parent of the commit that carries this work, and it already includes `/doctor:sk-skill`'s convert route: twenty routes over twelve router files, twenty-four derived doctor entries and fifty-one generated bridges.
+
 ```text
+$ git show 06e32903d9:.skilled/commands/doctor/_routes.yaml
+20 routes, 2 standalone, 2 mcp_subroutes
+
+$ git ls-tree --name-only 06e32903d9 .skilled/commands/doctor/
+12 router files
+
+$ git show 06e32903d9:.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json
+51 generated entries, 24 of them command-doctor-*
+
 $ bash .skilled/commands/doctor/scripts/route-validate.sh
-OK: route-validate — 19 routes validated, 3 warnings
+OK: route-validate — 21 routes validated, 3 warnings
 
 $ bash .skilled/commands/doctor/scripts/tests/run-all.sh
-[run-all] node:test (35 files): tests 699, pass 699, fail 0
+[run-all] node:test (38 files): tests 792, pass 792, fail 0
 [run-all] 7 suite(s) passed, 0 failed
 ```
+
+`scratch/baseline.txt` records that block beside the delivered gate output, one command and one basis per figure. It replaces an earlier capture taken on a checkout that predated the convert route, so every route-derived figure in it was one low. Every criterion below is read against the delivered figures in that file rather than against a remembered absolute.
 <!-- /ANCHOR:measured-behavior -->
 
 ---
@@ -164,7 +176,7 @@ Copied from the approved design with the reasons that decided them. A change to 
 | D10 | At most three questions in one prompt, with the area list generated from the manifest. | It follows the consolidated question protocol, and a new command appears with no helper edit. |
 | D11 | No match falls back to the read-only setup command. | Setup lists every doctor command and writes nothing, so it is the one safe fallback. |
 | D12 | The helper's own advisor bridge is activated only if the reach probe, the routing slice, the bridge isolation suite and the ratchet all pass. | An advisor answer to "which doctor command" is useful, but it must not cost a passing prompt. |
-| D13 | Two existing drifts are fixed here: the contract's missing router paths and the root README doctor count with its missing sibling entry. | Both sentences are rewritten by this packet anyway, and leaving a false count would break the precedent that a count must match. |
+| D13 | Two existing drifts are fixed here: the contract's missing router paths and the root README doctor count, together with the duplicate `/doctor:sk-skill` block that was appended beside the correct one. | Both sentences are rewritten by this packet anyway, and leaving a false count would break the precedent that a count must match. The sibling entry was not missing by the time the work landed, so the README repair this decision names is the duplicate removal, not an addition. |
 | D14 | The plan is Level 2 with no children. | `recommend-level.sh --loc 900 --files 24` returns level 2 and no phases. |
 | D15 | No helper edit is needed for the sibling command, in either landing order. | The helper reads the manifest at run time, so its acceptance counts shift by one and the success criteria state the baseline plus one. |
 <!-- /ANCHOR:decisions -->
@@ -180,10 +192,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement |
 |----|-------------|
 | REQ-001 | `doctor-helper-match.cjs -- "my pre-commit hook keeps rejecting my commit"` exits 0 and its first candidate line starts `1) /doctor:git hooks`. |
-| REQ-002 | `--json -- "is this skill in the skilled format"` exits 0 with `candidates[0].runnable == "/doctor:sk-skill"` and `candidates[0].mutating == "read-only"`, which proves an inactive bridge stays routable. |
+| REQ-002 | `--json -- "is this skill in the skilled format"` exits 0 with `candidates[0].runnable == "/doctor:sk-skill check"` and `candidates[0].mutating == "read-only"`, which proves the runnable the helper prints is the deriver's own multi-target name rather than a second derivation of it. |
 | REQ-003 | `-- "write me a poem about cats"` exits 1 and its last line reads `STATUS=NO_MATCH FALLBACK=/doctor:setup`. |
 | REQ-004 | `--table --json` exits 0, no runnable starts with the helper's own name, and the output contains no local-only name. |
-| REQ-005 | The held-out set clears top-1 at least 0.80, top-3 at least 0.90 and negatives returning no match at least 0.90, with the pinned sha256 unchanged. |
+| REQ-005 | The held-out set clears top-1 at least 0.80, top-3 at least 0.90 and negatives returning no match at least 0.90, with the pinned sha256 unchanged at `e5a41fbcad7db0bd8f5e67034579b74573c6eedf096b60b378d393c32f143191`. It was re-pinned exactly once, when `/doctor:sk-skill` split into `check` and `convert`: two expected labels gained the target name and no prompt changed, so the bar did not move. |
 | REQ-006 | Every doctor router, except the helper's own and any local-only name, owns at least one helper entry, and every manifest entry's phrases self-recall top-1. |
 | REQ-007 | The helper's ids and runnables equal the doctor entries in the generated bridge file, plus only the standalone action extras. |
 

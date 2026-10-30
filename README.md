@@ -1292,12 +1292,6 @@ Thirteen commands check and repair the setup, one per area.
 - Saves a preference to `hook-flags.env` or Claude Code's `.claude/settings.local.json` only after showing the exact line and getting your yes, or prints an `export` line for your shell profile
 - Never asks for or saves a secret
 
-**`/doctor:sk-skill [check] [<name-or-path>] [--json]`** - skill format check
-
-- Reports how far one skill, or the whole fleet, is from the Skilled format, row by row, and names the repair for each finding
-- `--into-hub <hub>` reports the eleven hub integration surfaces a skill or mode still needs
-- Reads and never writes, so a conversion stays an explicit decision
-
 &nbsp;
 #### UTILITY
 

@@ -877,7 +877,8 @@
             "cursor devin codex sync check",
             "discovery mirror out of sync",
             "hermes prompt copy drift",
-            "runtime copies drift from source"
+            "runtime copies drift from source",
+            "runtime prompts out of date after a pull"
           ],
           "intentSignals": [
             "/doctor:runtime-mirrors"
@@ -920,7 +921,8 @@
             "is my skilled install healthy",
             "skilled setup check",
             "getting started with skilled",
-            "overview of every doctor command"
+            "overview of every doctor command",
+            "model server or helper process still running after the session closed"
           ],
           "intentSignals": [
             "/doctor:setup"
@@ -1257,7 +1259,8 @@
             "description budget check",
             "skill char count drift",
             "frontmatter description trim",
-            "skill description too long"
+            "skill description too long",
+            "description longer than the limit"
           ],
           "intentSignals": [
             "/doctor:skill-advisor skill-budget"

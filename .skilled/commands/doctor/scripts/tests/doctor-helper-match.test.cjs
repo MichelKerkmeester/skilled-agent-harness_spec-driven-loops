@@ -381,6 +381,37 @@ test('a match prints one numbered candidate line per pick and exits 0', () => {
   assert.match(lines[lines.length - 1], /^STATUS=OK MATCHES=\d+$/);
 });
 
+test('a runnable longer than the class column keeps a gap before the class', () => {
+  // These lines are the ones the operator is told to copy, and the advisory
+  // targets are the longest runnables the manifest carries, so a fixed column
+  // would fuse the class onto the command and hand over a line that cannot run.
+  const CLASSES = 'read-only|add-only|mutates|writes';
+  const longest = '/doctor:skill-advisor skill-budget';
+
+  const match = run(['--top=2', '--', "my skill's description is longer than the limit allows"]);
+  assert.equal(match.status, 0, match.stderr);
+  const candidateLines = match.stdout.trim().split('\n').filter((line) => /^\d+\) /.test(line));
+  assert.ok(candidateLines.some((line) => line.includes(longest)), match.stdout);
+  for (const line of candidateLines) {
+    assert.match(line, new RegExp(`^\\d+\\) .+? {2,}(?:${CLASSES}) `), line);
+  }
+
+  // The table and areas views print the same two columns over the whole family.
+  for (const args of [['--table'], ['--areas']]) {
+    const result = run(args);
+    assert.equal(result.status, 0, result.stderr);
+    const rows = result.stdout.trim().split('\n').filter((line) => /^\d+\) /.test(line));
+    assert.ok(rows.length >= 11);
+    for (const row of rows) {
+      assert.match(row, new RegExp(`^\\d+\\) \\S.*? {2,}(?:${CLASSES})$`), row);
+    }
+  }
+
+  // A set that fits the nominal column keeps the alignment it always had.
+  const short = run(['--', 'my pre-commit hook keeps rejecting my commit']);
+  assert.match(short.stdout.split('\n')[0], /^1\) \/doctor:git hooks {13}mutates {3}matches /);
+});
+
 test('no candidate above the floor exits 1 and names the read-only fallback last', () => {
   const result = run(['--', 'write me a poem about cats']);
   assert.equal(result.status, 1);

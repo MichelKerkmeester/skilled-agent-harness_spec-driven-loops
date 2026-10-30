@@ -23,6 +23,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const assert = require('node:assert/strict');
+const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
@@ -152,6 +153,29 @@ test('the presentation never offers a flag and closes on the family convention',
   assert.match(PRESENTATION, /^STATUS=OK MATCHES=\[n\]$/m);
   assert.match(PRESENTATION, /^STATUS=FAIL ERROR="\[message\]"$/m);
   assert.match(PRESENTATION, /^End interactive presentations with: `What would you like to do next\?`$/m);
+});
+
+test('the area list is rendered from the manifest and never written into the presentation', () => {
+  // The question prompt keeps a placeholder: a command that lands tomorrow has to
+  // reach the prompt without an edit here, and a hardcoded list would silently go
+  // stale the day it does not.
+  assert.match(PRESENTATION, /^1\) Area: {2}\[the area list, printed from the manifest/m);
+
+  const { entries } = matcher.loadEntries(REPO_ROOT);
+  const names = [...new Set(entries
+    .filter((entry) => entry.command !== '/doctor:helper')
+    .map((entry) => entry.command.replace('/doctor:', '')))];
+  assert.ok(names.length >= 11, names.join(' '));
+  for (const name of names) {
+    assert.doesNotMatch(PRESENTATION, new RegExp(`\\d+\\) ${name}(?![\\w-])`), `${name} belongs to the rendered list`);
+  }
+
+  // And the rendering the placeholder promises exists: one numbered row per area,
+  // in the manifest's own order, minus the helper itself.
+  const rendered = spawnSync(process.execPath, [MATCHER, '--areas'], { encoding: 'utf8' });
+  assert.equal(rendered.status, 0, rendered.stderr);
+  const rows = rendered.stdout.trim().split('\n').filter((line) => /^\d+\) /.test(line));
+  assert.deepEqual(rows.map((line) => line.replace(/^\d+\) /, '').split(/ {2,}/)[0]), names);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

@@ -62,9 +62,9 @@ Frozen choices. Changing one is an amendment.
 - [x] `node .skilled/commands/doctor/scripts/doctor-helper-match.cjs -- "my pre-commit hook keeps rejecting my commit"` exits 0 and its first candidate line starts `1) /doctor:git hooks`
 - [x] `node .skilled/commands/doctor/scripts/doctor-helper-match.cjs -- "write me a poem about cats"` exits 1 with last line `STATUS=NO_MATCH FALLBACK=/doctor:setup`
 - [x] `node --test .skilled/commands/doctor/scripts/tests/doctor-helper-match.test.cjs` prints `top1=0.917 top3=0.938 negatives=1.000` and reports `fail 0`
-- [x] `node --test .skilled/commands/doctor/scripts/tests/doctor-helper-contract.test.cjs` reports 19 tests, `fail 0`, which proves every doctor router is reachable and the helper's derivation matches the deriver's
-- [x] `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 with `20 routes validated, 3 warnings` and `J1: … across 10 commands`
-- [x] `bash .skilled/commands/doctor/scripts/tests/run-all.sh` ends `7 suite(s) passed, 0 failed`, with `tests 764, pass 764, fail 0` over 38 files
+- [x] `node --test .skilled/commands/doctor/scripts/tests/doctor-helper-contract.test.cjs` reports 20 tests, `fail 0`, which proves every doctor router is reachable and the helper's derivation matches the deriver's
+- [x] `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 with `21 routes validated, 3 warnings` and `J1: … across 10 commands`
+- [x] `bash .skilled/commands/doctor/scripts/tests/run-all.sh` ends `7 suite(s) passed, 0 failed`, with `tests 792, pass 792, fail 0` over 38 files
 <!-- /ANCHOR:completion -->
 
 ---

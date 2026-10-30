@@ -13,13 +13,12 @@ An unknown argument fails before any workflow YAML loads and prints the wording 
 
 ## 2. No-Argument Prompt
 
-With no argument, ask all three questions in one prompt, then wait. This follows the consolidated question protocol, and the area list is generated from the route manifest, so a new doctor command appears here with no edit to this file.
+With no argument, ask all three questions in one prompt, then wait. This follows the consolidated question protocol. The `1) Area:` line carries a placeholder and never the names: the list is replaced by the matcher's `--areas` output, whose entries are derived from the route manifest, so a new doctor command appears in the question with no edit to this file.
 
 ```text
 Tell me what is wrong. Answer any or all in one reply, for example "2, commit blocked, change".
 
-1) Area:  1) speckit  2) skill-advisor  3) deep-loop  4) runtime-mirrors  5) sk-code  6) git
-          7) ci  8) sk-skill  9) setup  10) update  11) env  12) mcp  or "not sure"
+1) Area:  [the area list, printed from the manifest: one N) name per doctor command] or "not sure"
 2) What happened? An error line or a few words.
 3) Check only, or change something?  check / change / not sure
 ```
@@ -34,11 +33,11 @@ Accepted answers:
 | `check` | `--intent=check` | Prefer a route that only reads |
 | `change` | `--intent=change` | Prefer a route that writes |
 
-The area list is printed from the manifest: never write a doctor command name into this contract's own prose. On any other response, re-emit the prompt once. On a second invalid response, return `STATUS=FAIL ERROR="unknown_selection"`.
+The area list is printed from the manifest at run time: this contract holds a placeholder for it and never the command names, so a new doctor command needs no edit here. On any other response, re-emit the prompt once. On a second invalid response, return `STATUS=FAIL ERROR="unknown_selection"`.
 
 ## 3. Ranked List
 
-Render the matcher's text output through this template. The class column is the manifest's value for that route, verbatim, and the reason quotes the manifest phrase the matcher named, so the line is repeatable evidence.
+Render the matcher's text output through this template. The class column is the manifest's value for that route, verbatim, and the reason quotes the manifest phrase the matcher named, so the line is repeatable evidence. The class always starts at least two spaces after the longest runnable printed, so a long `/doctor:` runnable never runs into it and the operator can copy the line as it stands.
 
 ```text
 DOCTOR HELPER

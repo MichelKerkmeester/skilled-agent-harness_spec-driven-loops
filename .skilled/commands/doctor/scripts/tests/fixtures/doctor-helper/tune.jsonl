@@ -56,3 +56,6 @@
 {"prompt": "convert this spreadsheet to a pdf", "expected": null}
 {"prompt": "explain quantum entanglement to a child", "expected": null}
 {"prompt": "rename the variable in the config file", "expected": null}
+{"prompt": "a teammate's runtime prompts are out of date after a pull", "expected": "/doctor:runtime-mirrors"}
+{"prompt": "my skill's description is longer than the limit allows", "expected": "/doctor:skill-advisor skill-budget"}
+{"prompt": "the model server process is still running after I closed the session", "expected": "/doctor:setup"}
