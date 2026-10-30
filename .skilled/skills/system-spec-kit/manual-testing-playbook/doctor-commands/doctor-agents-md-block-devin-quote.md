@@ -1,7 +1,7 @@
 ---
 title: "DOC-396 -- Doctor agents md block reaches a live Devin session"
 description: "Manual scenario settling the claim the Cursor mirror is built on: that a live Devin session can read the repository block that embed writes into the root instruction file."
-version: 1.0.0.0
+version: 1.0.1.0
 id: doctor-commands-doctor-agents-md-block-devin-quote
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -58,7 +58,7 @@ The plan and the apply behave as the engine suites already prove, so the only un
 | Field | Value |
 |---|---|
 | Answer | UNKNOWN |
-| Reason | No live Devin session is reachable from this run. The row needs one observation from a person with a Devin session, and a default pass would claim a fact nobody observed. |
+| Reason | Steps 1 to 4 ran and step 6 restored the tree byte-identical (`diff -r` exit 0), but step 5 could not: `devin -p` (devin 3000.11.234) refused with `resource_exhausted`, the account's weekly usage quota. The row needs one observation from a Devin session with quota, and a default pass would claim a fact nobody observed. |
 | Engine side | Proven, not inferred: every transcript under `scratch/e2e/` shows the block written and the restore returning the tree byte-identical. |
 | Recorded | 2026-10-30 |
 
@@ -78,7 +78,7 @@ An operator answers this row by running steps 1 to 6 with a live session and rep
 
 ### Failure Triage
 
-If the apply refuses the digest, the folder changed between the plan and the apply, so re-plan and use the new digest. If the session answers from the wrong file, confirm it was rooted at `<throwaway>/devin-block` and not at the checkout this scenario runs from. If the restore leaves the `.cursor` folder behind, that is the engine's known behaviour: it removes the files a run wrote and not the empty folders above them.
+If the apply refuses the digest, the folder changed between the plan and the apply, so re-plan and use the new digest. If the session answers from the wrong file, confirm it was rooted at `<throwaway>/devin-block` and not at the checkout this scenario runs from. If the restore leaves a `.cursor` folder behind, the run predates the record of the folders it created, or the folder held another file by restore time: a restore removes only the empty folders its own run made.
 
 ---
 

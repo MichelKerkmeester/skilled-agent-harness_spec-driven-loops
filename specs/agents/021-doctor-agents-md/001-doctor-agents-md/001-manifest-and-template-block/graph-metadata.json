@@ -38,7 +38,7 @@
       "packet"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Nothing in the framework states in machine-readable form what the template ships",
     "created_at": "2026-10-30T11:22:40Z",
-    "last_save_at": "2026-10-30T15:30:09.757Z",
+    "last_save_at": "2026-10-30T16:52:26.285Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:afc8cd5c8101dd786e2e8681afbd7f1998e2f217d3b5a2cbaad7e1730cef166d",
+    "source_fingerprint": "sha256:35a3c6f01496feb2ffb2c2baf1169682344b2a263ba9baf03bd86e8c624518e4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "59ee98b8a5efe67fb27cfd196c76d2e36b5090ec9fe330c72319c8768961194a",
+      "spec.md": "c43ab38f246f69b428febaf16fe9118b64a8e579e5683a42a2861114f1612807",
       "plan.md": "cb6eee78541b885c6112680bd0ce55e6d8785f9ef77c1616196eab066be7202a",
       "tasks.md": "2ca4de72460ff1aa713bc946ad2ebd1ccb9e20f3b54cc4a022af3d2aa2d7bb1c",
       "implementation-summary.md": "c1660d9b52c3e93a2a1c9f13e5542cf439d6210b271165a2b9a5b0ea19749fcf"

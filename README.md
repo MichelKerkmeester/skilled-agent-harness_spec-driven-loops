@@ -1036,7 +1036,7 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
 
 ## 11. ⌨️ COMMAND LIBRARY
 
-41 commands: 40 in six groups plus one utility. The grouped ones are Markdown files under `.skilled/commands/`, and most hand their steps to a YAML workflow beside them. The OpenCode-only `/goal-opencode` is authored in `.opencode/commands/`.
+42 commands: 41 in six groups plus one utility. The grouped ones are Markdown files under `.skilled/commands/`, and most hand their steps to a YAML workflow beside them. The OpenCode-only `/goal-opencode` is authored in `.opencode/commands/`.
 
 #### SPEC KIT
 

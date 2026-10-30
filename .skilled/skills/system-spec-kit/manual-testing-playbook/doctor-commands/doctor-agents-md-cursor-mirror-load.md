@@ -1,7 +1,7 @@
 ---
 title: "DOC-397 -- Doctor agents md mirror loads in Cursor"
 description: "Manual scenario settling whether a Cursor window loads the generated .cursor/rules/repo-local.md, which is the one file the Devin mirror writes for a non-empty repository block."
-version: 1.0.0.0
+version: 1.0.1.0
 id: doctor-commands-doctor-agents-md-cursor-mirror-load
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -58,7 +58,7 @@ The engine guarantees step 4 and no more. An agent that quotes a line only the r
 | Field | Value |
 |---|---|
 | Answer | UNKNOWN |
-| Reason | No Cursor window is reachable from this run. The row needs one observation from a person with Cursor, and a default pass would claim a fact nobody observed. |
+| Reason | Steps 1 to 4 ran and step 6 restored the tree byte-identical (`diff -r` exit 0), but step 5 could not: `cursor-agent -p` (2026.09.28-64d2043) reported `Your stored authentication is invalid`, which only an operator's `agent login` repairs. The row needs one observation from an authenticated Cursor agent, and a default pass would claim a fact nobody observed. |
 | Engine side | Proven, not inferred: the embed suite proves the mirror exists exactly when the block carries content, and every transcript under `scratch/e2e/` shows it written and then restored. |
 | Recorded | 2026-10-30 |
 
@@ -78,7 +78,7 @@ An operator answers this row by running steps 1 to 6 with a Cursor window and re
 
 ### Failure Triage
 
-If `.cursor/rules/repo-local.md` is missing after the apply, the block was empty, which is the one case the engine does not write the mirror for. If the agent answers from the root file instead, ask for a line that exists only in the rule file so the two sources cannot be confused. If the restore leaves the `.cursor` folder behind, that is the engine's known behaviour: it removes the files a run wrote and not the empty folders above them.
+If `.cursor/rules/repo-local.md` is missing after the apply, the block was empty, which is the one case the engine does not write the mirror for. If the agent answers from the root file instead, ask for a line that exists only in the rule file so the two sources cannot be confused. If the restore leaves a `.cursor` folder behind, the run predates the record of the folders it created, or the folder held another file by restore time: a restore removes only the empty folders its own run made.
 
 ---
 

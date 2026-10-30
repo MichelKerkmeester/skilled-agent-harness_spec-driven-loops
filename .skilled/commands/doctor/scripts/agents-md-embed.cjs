@@ -202,6 +202,21 @@ function isSymlink(target) {
   }
 }
 
+function sameDirectory(a, b) {
+  try {
+    return fs.realpathSync(a) === fs.realpathSync(b);
+  } catch {
+    return false;
+  }
+}
+
+// The undo a run prints must work as printed. A restore runs against this engine's own
+// repository unless told otherwise, so the line names the root whenever it is another one.
+function undoCommand(dir, root) {
+  const base = `node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=${dir}`;
+  return sameDirectory(root, REPO_ROOT) ? base : `${base} --root ${root}`;
+}
+
 // A line is compared trimmed, and the two lines that carry no content of their own are
 // dropped, because a composition may legitimately re-place either of them.
 function countLines(text) {
@@ -959,13 +974,61 @@ function planFor(composition) {
   throw new PreconditionError(`every backup directory for this composition under ${base.dir} is taken, so nothing was written`);
 }
 
+// The folders a new file needs that do not exist yet, deepest first. A restore removes
+// only these, so on a record the run wrote, a folder that was there before the run is never
+// taken away with it.
+function missingParents(root, relative) {
+  const missing = [];
+  let dir = path.posix.dirname(relative);
+  while (dir !== '.' && dir !== '' && !fs.existsSync(path.join(root, dir))) {
+    missing.push(dir);
+    dir = path.posix.dirname(dir);
+  }
+  return missing;
+}
+
+// A record is data, so a recorded folder counts only while it is a proper ancestor of the
+// entry's own allowlisted path; the list stops at the first one that is not.
+function recordedCreatedDirs(entry) {
+  const dirs = [];
+  if (entry.existed || !Array.isArray(entry.createdDirs)) return dirs;
+  for (const dir of entry.createdDirs) {
+    if (typeof dir !== 'string' || dir === '' || dir.split('/').includes('..') || !entry.path.startsWith(`${dir}/`)) break;
+    dirs.push(dir);
+  }
+  return dirs;
+}
+
+// Runs after every file is back, because two new files can share one new folder. Only the
+// folders above a file this restore just deleted are considered, and only an empty one is
+// removed, so a hand-edited record can at most take away an empty folder on the path to a
+// file the run created.
+function removeCreatedDirs(root, entries, deleted) {
+  const removed = [];
+  for (const entry of entries) {
+    if (!deleted.has(entry.path)) continue;
+    for (const dir of recordedCreatedDirs(entry)) {
+      const absolute = path.join(root, dir);
+      let names;
+      try { names = fs.readdirSync(absolute); } catch { continue; }
+      if (names.length > 0) break;
+      fs.rmdirSync(absolute);
+      removed.push(dir);
+    }
+  }
+  return removed;
+}
+
 // What one path looked like before the run, kept beside a copy of it so a restore is a
 // copy rather than a reconstruction.
 function backupEntry(root, file) {
   const absolute = path.join(root, file.path);
   const exists = fs.existsSync(absolute);
   const entry = { path: file.path, action: file.action, existed: exists, sha256: null, backup: null, mode: null, symlink: false };
-  if (!exists) return entry;
+  if (!exists) {
+    entry.createdDirs = missingParents(root, file.path);
+    return entry;
+  }
   const stats = fs.lstatSync(absolute);
   entry.mode = stats.mode.toString(8).slice(-4);
   entry.symlink = stats.isSymbolicLink();
@@ -1148,7 +1211,7 @@ function renderPlan(composition, plan) {
   lines.push(`preservation: kept ${composition.ledger.kept}, carried ${composition.ledger.carried}, shipped-replaced ${composition.ledger.shippedReplaced}, dropped ${composition.ledger.dropped}`);
   lines.push(`backup: ${plan.dir}`);
   if (plan.fallback) lines.push(`backup-fallback: ${plan.reason}`);
-  lines.push(`undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=${plan.dir}`);
+  lines.push(`undo: ${undoCommand(plan.dir, composition.root)}`);
   lines.push(`plan-digest: ${plan.digest}`);
   return lines;
 }
@@ -1205,10 +1268,14 @@ function runTool(script, args) {
 function restoreFromBackup({ root, dir, output }) {
   const record = JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8'));
   let restored = 0;
+  const deleted = new Set();
   for (const entry of record.paths) {
     const target = path.join(root, entry.path);
     if (!entry.existed) {
-      if (fs.existsSync(target)) fs.rmSync(target);
+      if (fs.existsSync(target)) {
+        fs.rmSync(target);
+        deleted.add(entry.path);
+      }
       continue;
     }
     const source = path.join(dir, entry.backup);
@@ -1216,6 +1283,7 @@ function restoreFromBackup({ root, dir, output }) {
     fs.copyFileSync(source, target);
     restored += 1;
   }
+  removeCreatedDirs(root, record.paths, deleted);
   output.warn(`${TAG} restored: ${restored} file(s) from ${dir}`);
   return restored;
 }
@@ -1321,7 +1389,7 @@ function commandApply(options, output, hooks) {
     output.log(`check-after: state=${report.state} findings=${report.findings} unknown=${report.unknown}`);
   }
   output.log(`backup: ${plan.dir}`);
-  output.log(`undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=${plan.dir}`);
+  output.log(`undo: ${undoCommand(plan.dir, options.root)}`);
   for (const entry of record.paths) {
     if (!entry.existed) continue;
     output.log(`cp ${path.join(plan.dir, entry.backup)} ${entry.path}`);
@@ -1355,6 +1423,13 @@ function commandRestore(options, output, hooks) {
 
   const record = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
   const root = record.root;
+  // The record names its own root, and a record is data: it is trusted only when it names
+  // the root this restore runs against, so a record repointed at another folder is refused
+  // instead of written to. Restoring another folder takes --root naming that folder.
+  if (typeof root !== 'string' || !sameDirectory(root, options.root)) {
+    output.warn(`${TAG} ERROR: the record names the root ${root}, and this restore runs against ${options.root}; pass --root ${root} to restore that folder. Nothing was written`);
+    return 2;
+  }
   const steps = [];
   for (const entry of record.paths) {
     // A record is data, and data can be wrong: the same allowlist decides what it may
@@ -1384,6 +1459,8 @@ function commandRestore(options, output, hooks) {
       : '';
     output.log(`restore ${step.entry.path}: ${step.action}${note}`);
   }
+  const createdDirs = new Set(steps.flatMap((step) => (step.action === 'delete' ? recordedCreatedDirs(step.entry) : [])));
+  for (const dir of createdDirs) output.log(`restore ${dir}/: remove if empty (this run created it)`);
 
   if (options.dryRun) {
     output.log('dry-run: nothing was written');
@@ -1399,9 +1476,11 @@ function commandRestore(options, output, hooks) {
   }
 
   let touched = 0;
+  const deleted = new Set();
   for (const step of steps) {
     if (step.action === 'delete') {
       fs.rmSync(step.absolute);
+      deleted.add(step.entry.path);
       touched += 1;
       continue;
     }
@@ -1410,6 +1489,7 @@ function commandRestore(options, output, hooks) {
     fs.writeFileSync(step.absolute, step.bytes);
     touched += 1;
   }
+  for (const dir of removeCreatedDirs(root, record.paths, deleted)) output.log(`restore ${dir}/: removed the empty folder this run created`);
 
   // Byte equality after the write, measured against the recorded hash rather than against
   // the copy that was just read.

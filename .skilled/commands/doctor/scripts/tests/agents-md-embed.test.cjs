@@ -622,7 +622,7 @@ test('restore puts every recorded file back byte for byte', (t) => {
   assert.ok(fs.existsSync(backup), 'the backup exists after the run');
   assert.ok(treeDigest(dir) !== before, 'the run changed the tree');
 
-  const restored = run([`restore`, `--run=${backup}`], { input: 'yes\n' });
+  const restored = run([`restore`, `--run=${backup}`, '--root', dir], { input: 'yes\n' });
   assert.equal(restored.code, 0, `${restored.err}${restored.out}`);
   assert.match(restored.out, /restore: /u);
   assert.equal(treeDigest(dir), before, 'every recorded file is byte-identical to its backup');
@@ -638,10 +638,51 @@ test('restore recreates a removed file and deletes a file the run created', (t) 
   assert.equal(existsInside(dir, 'CLAUDE.md'), false, 'the folded copy is gone');
   assert.equal(existsInside(dir, manifest.root_file), true, 'the root document was created');
 
-  const restored = run(['restore', `--run=${backup}`], { input: 'yes\n' });
+  const restored = run(['restore', `--run=${backup}`, '--root', dir], { input: 'yes\n' });
   assert.equal(restored.code, 0, `${restored.err}${restored.out}`);
   assert.equal(readInside(dir, 'CLAUDE.md'), claude, 'the removed file is recreated byte for byte');
   assert.equal(existsInside(dir, manifest.root_file), false, 'the created file is removed again');
+});
+
+test('restore removes the folders a run created and keeps a folder that was already there', (t) => {
+  const fresh = composeTree(t, 'claude-only');
+  const freshApplied = planAndApply(fresh).applied;
+  assert.equal(freshApplied.code, 0, `${freshApplied.err}${freshApplied.out}`);
+  const freshRestored = run(['restore', `--run=${trackBackup(t, freshApplied.out)}`, '--root', fresh], { input: 'yes\n' });
+  assert.equal(freshRestored.code, 0, `${freshRestored.err}${freshRestored.out}`);
+  assert.equal(existsInside(fresh, '.cursor'), false, 'a folder the run created is gone after the restore');
+
+  const kept = composeTree(t, 'claude-only');
+  fs.mkdirSync(path.join(kept, '.cursor'));
+  const keptApplied = planAndApply(kept).applied;
+  assert.equal(keptApplied.code, 0, `${keptApplied.err}${keptApplied.out}`);
+  const keptRestored = run(['restore', `--run=${trackBackup(t, keptApplied.out)}`, '--root', kept], { input: 'yes\n' });
+  assert.equal(keptRestored.code, 0, `${keptRestored.err}${keptRestored.out}`);
+  assert.equal(existsInside(kept, '.cursor'), true, 'an empty folder that predates the run stays');
+  assert.equal(existsInside(kept, '.cursor/rules'), false, 'the folder the run made inside it is gone');
+});
+
+test('restore refuses a record whose root is not the one it runs against', (t) => {
+  const dir = composeTree(t, 'foreign');
+  const applied = planAndApply(dir).applied;
+  assert.equal(applied.code, 0, `${applied.err}${applied.out}`);
+  const backup = trackBackup(t, applied.out);
+  assert.match(field(applied.out, 'undo'), new RegExp(`--root ${dir.replace(/[.*+?^${}()|[\]\\]/gu, '\\$&')}$`, 'u'), 'the printed undo names the root it needs');
+
+  const other = composeTree(t, 'foreign');
+  const before = treeDigest(other);
+  const recordPath = path.join(backup, 'manifest.json');
+  const record = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  fs.writeFileSync(recordPath, JSON.stringify({ ...record, root: other }));
+
+  const repointed = run(['restore', `--run=${backup}`, '--root', dir], { input: 'yes\n' });
+  assert.equal(repointed.code, 2, 'a record naming another root is refused');
+  assert.match(repointed.err + repointed.out, /names the root/u);
+  assert.equal(treeDigest(other), before, 'the folder the record was repointed at is untouched');
+
+  fs.writeFileSync(recordPath, JSON.stringify(record));
+  const unnamed = run(['restore', `--run=${backup}`], { input: 'yes\n' });
+  assert.equal(unnamed.code, 2, 'a restore of another root without --root is refused');
 });
 
 test('restore cancels without a yes', (t) => {
@@ -650,7 +691,7 @@ test('restore cancels without a yes', (t) => {
   const backup = trackBackup(t, applied.out);
   const afterApply = treeDigest(dir);
 
-  const cancelled = run(['restore', `--run=${backup}`], { input: 'no\n' });
+  const cancelled = run(['restore', `--run=${backup}`, '--root', dir], { input: 'no\n' });
   assert.equal(cancelled.code, 1, 'a cancelled restore is not a completed one');
   assert.match(cancelled.out, /cancelled/u);
   assert.equal(treeDigest(dir), afterApply, 'a cancelled restore writes nothing');
@@ -1054,7 +1095,7 @@ test('the plan names the backup apply uses, and a taken directory is re-planned'
   assert.equal(field(applied.out, 'undo'), field(planned.out, 'undo'), 'the undo command is the one the plan printed');
   assert.ok(field(planned.out, 'undo').includes(plannedBackup), 'and it names that directory');
 
-  const restored = run(['restore', `--run=${plannedBackup}`], { input: 'yes\n' });
+  const restored = run(['restore', `--run=${plannedBackup}`, '--root', dir], { input: 'yes\n' });
   assert.equal(restored.code, 0, `${restored.err}${restored.out}`);
 
   const again = plan(dir);

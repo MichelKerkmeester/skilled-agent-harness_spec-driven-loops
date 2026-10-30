@@ -117,8 +117,8 @@ Then the documentation pass, in the order the sk-doc router resolved it: the scr
 | The runner shortens absolute paths on the way into a transcript | The transcripts are committed, and a committed transcript must carry no checkout path. Each transcript's header says what was shortened. |
 | The throwaway backup root is redirected into the run root | A composed tree is not a git repository, so the engine falls back to the OS temp folder. Pointing `TMPDIR` at the run root keeps that path out of the committed evidence and leaves the engine unchanged. |
 | `adopted` is recorded as planning on the pre-apply tree | Its lines sit in an unmarked block, so the plan has real work to show. Recording it as `NOTHING TO DO` would describe a state the fixture does not have. |
-| Both manual rows record `UNKNOWN` | No live Devin session and no Cursor window existed in this run. A default pass would claim a fact nobody observed, which is the one thing the design forbids. |
-| The empty `.cursor` folders are recorded rather than tidied | Restore removes the files a run recorded and leaves the folders above them. The engine belongs to the child that owns it, and the transcripts show exactly what it did. |
+| Both manual rows record `UNKNOWN` | A follow-up run on 2026-10-30 reached both CLIs. Devin refused with `resource_exhausted`, its weekly quota, and Cursor reported invalid stored authentication. Steps 1 to 4 and the restore ran for both. A default pass would claim a fact nobody observed, which is the one thing the design forbids. |
+| The empty `.cursor` folders were fixed in the embed engine | The first transcripts showed restore leaving the folders a run created. Each backup entry for a new file now records the parent folders that did not exist yet, and restore removes those, deepest first and only while empty. An embed test fails on the old engine and passes on the new one, and a rerun of `claude-only` restores with `diff -r` exit 0. |
 | A skill whose files changed gets a changelog at its next free version | The packet touched sk-doc's command contract, the advisor's generated bridges and system-spec-kit's catalogs, and each of those is a reader-visible change in that skill. |
 <!-- /ANCHOR:decisions -->
 
@@ -162,11 +162,8 @@ Then the documentation pass, in the order the sk-doc router resolved it: the scr
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Both manual rows are open.** DOC-396 and DOC-397 each need one observation from a live session. Until an operator runs them, the claim behind the Cursor mirror stays inferred, which is what both rows say.
-2. **Restore leaves an empty folder behind.** After restoring `claude-only` and `foreign`, `diff -r` reports only the `.cursor` folder the embed created. Every recorded file is byte-identical, and the engine that owns folder cleanup is the embed child.
-3. **The root README's command total is one behind.** `README.md:1039` reads `41 commands: 40 in six groups plus one utility`, which was correct at thirteen doctor commands. It now needs `42 commands: 41 in six groups plus one utility`, and this child's scope covered only the doctor section and the sentence near the top.
-4. **One child spec still reads Draft.** `001-doctor-agents-md/001-manifest-and-template-block/spec.md` carries `Status: Draft` while its 42 tasks, its 18 criteria and its implementation summary are all closed. The one-line fix is that status row.
-5. **Two scenario files add a path warning.** The playbook package validator warns that the backticked `.cursor/rules/repo-local.md` resolves from no base, because the file is generated per repository and never shipped.
+1. **Both manual rows are open.** DOC-396 needs a Devin session with quota left and DOC-397 needs an authenticated Cursor agent (`agent login`). Until an operator runs step 5 of each, the claim behind the Cursor mirror stays inferred, which is what both rows say.
+2. **Two scenario files add a path warning.** The playbook package validator warns that the backticked `.cursor/rules/repo-local.md` resolves from no base, because the file is generated per repository and never shipped.
 <!-- /ANCHOR:limitations -->
 
 ---

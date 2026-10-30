@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-30 |
 | **Branch** | `worktrees/292-doctor-agents-md` |
 | **Parent Spec** | ../spec.md |
