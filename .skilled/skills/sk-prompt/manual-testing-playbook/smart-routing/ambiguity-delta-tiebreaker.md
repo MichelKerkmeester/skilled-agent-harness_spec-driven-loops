@@ -1,7 +1,7 @@
 ---
 title: "SP-007 -- AMBIGUITY_DELTA top-2 tiebreaker"
 description: "This scenario validates AMBIGUITY_DELTA top-2 selection for `SP-007`. It focuses on confirming both intents load when scores differ by 1 or less."
-version: 2.3.4.0
+version: 2.3.5.0
 ---
 
 # SP-007 -- AMBIGUITY_DELTA top-2 tiebreaker
@@ -28,7 +28,7 @@ Operators run the exact prompt and command sequence for `SP-007` and confirm the
 - Real user request: `Improve this prompt against a framework and its scoring.`
 - Prompt: `Improve this prompt against a framework and its scoring; verify both near-tied intents load a deduplicated union of resources.`
 - Expected execution process: sk-prompt scores both intents, computes the delta, finds it <= AMBIGUITY_DELTA=1, returns (primary, secondary) tuple, and loads union of RESOURCE_MAP entries with seen-set dedup.
-- Expected signals: `references/depth-framework.md` AND `references/patterns-evaluation.md` both in loaded list with no duplicates.
+- Expected signals: `references/improvement-checklist.md` AND `references/patterns-evaluation.md` both in loaded list with no duplicates.
 - Desired user-visible outcome: Routing trace listing both intents with their scores, plus the deduplicated resource list.
 - Pass/fail: PASS if both intents appear and resources are deduplicated; FAIL if only one intent loads or duplicates appear in the resource list.
 
@@ -49,7 +49,7 @@ Improve this prompt against a framework and its scoring; verify both near-tied i
 
 ### Expected
 
-Routing trace lists `(TEXT_ENHANCE, FRAMEWORK)` (or vice versa) with scores within 1 point: the documented input ties at 7 against 7. Resources loaded: both `references/depth-framework.md` AND `references/patterns-evaluation.md`, no duplicates.
+Routing trace lists `(TEXT_ENHANCE, FRAMEWORK)` (or vice versa) with scores within 1 point: the documented input ties at 7 against 7. Resources loaded: both `references/improvement-checklist.md` AND `references/patterns-evaluation.md`, no duplicates.
 
 ### Evidence
 
@@ -85,7 +85,7 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 
 | File | Role |
 |---|---|
-| `../../references/depth-framework.md` | TEXT_ENHANCE branch resource |
+| `../../references/improvement-checklist.md` | TEXT_ENHANCE default resource |
 | `../../references/patterns-evaluation.md` | FRAMEWORK branch resource |
 
 ---

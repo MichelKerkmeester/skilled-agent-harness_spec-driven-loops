@@ -10,7 +10,7 @@ trigger_phrases:
   - "prompt weakness detection"
 importance_tier: normal
 contextType: implementation
-version: 2.3.0.4
+version: 2.4.0.0
 ---
 
 # Prompt Patterns & Evaluation Reference
@@ -37,6 +37,10 @@ Systematic prompt engineering requires matching the right framework to each task
 
 ## 2. FRAMEWORK LIBRARY & SELECTION
 
+### Default Skeleton
+
+Every prompt starts from one default skeleton, in this order: task and outcome, context, constraints and priorities, output format, examples when they help, success criteria. Add a role or steps only when they change the response. The seven frameworks below are optional presets: apply one when the user or caller names it, or when its fit is clear from the task. No preset is required.
+
 ### Complete Framework Matrix
 
 | Framework   | Elements                                                     | Best For                         | Avoid When               |
@@ -49,53 +53,18 @@ Systematic prompt engineering requires matching the right framework to each task
 | **CRISPE**  | Capacity, Insight, Statement, Personality, Experiment        | Strategy, exploration            | Routine tasks            |
 | **CRAFT**   | Context, Role, Action, Format, Target                        | Complex projects, planning       | Simple queries           |
 
-### Framework Selection Algorithm
+### Choosing a Preset
 
-```yaml
-select_optimal_framework:
-  description: "Enhanced framework selection with pattern recognition"
-  input: [task_analysis]
+Use the default skeleton unless one of these holds:
 
-  analyze_characteristics:
-    complexity: {scale: 1_to_10}
-    urgency: {boolean: true_false}
-    audience_specific: {boolean: true_false}
-    creative_element: {boolean: true_false}
-    precision_critical: {boolean: true_false}
-    compliance_needs: {boolean: true_false}
+- The user or caller names a preset ("use COSTAR"). Apply it.
+- The task clearly matches a preset's "Best For" column in the matrix above, and the preset adds an element the skeleton lacks, such as COSTAR's style, tone and audience. Apply it and name it in the change report.
 
-  score_frameworks:
-    rcaf:
-      base_score: 5
-      modifiers:
-        - if: "complexity <= 6" then add: 5
-        - if: "not audience_specific" then add: 3
+Never score every preset to pick one. A preset is a shape, not a quality gate.
 
-    costar:
-      base_score: 3
-      modifiers:
-        - if: "audience_specific" then add: 7
-        - if: "creative_element" then add: 5
+### Preset Fit Table
 
-    race:
-      base_score: 2
-      modifiers:
-        - if: "urgency" then add: 8
-        - if: "complexity <= 3" then add: 5
-        - if: "precision_critical" then subtract: 5
-
-    tidd_ec:
-      base_score: 3
-      modifiers:
-        - if: "precision_critical" then add: 7
-        - if: "compliance_needs" then add: 5
-
-  select_best:
-    method: highest_score
-    output: [primary, confidence, alternative, reasoning]
-```
-
-### Framework Selection Decision Table
+A quick guide to where each preset fits. The default skeleton covers every row it does not name.
 
 | Complexity | Urgency | Audience | Creative | Precision | Recommended |
 | ---------- | ------- | -------- | -------- | --------- | ----------- |
@@ -462,7 +431,7 @@ enhancement_pipeline:
     structural_enhancement:
       description: "Improve organization and framework"
       process:
-        apply_framework: {check: has_framework, if_missing: apply_best}
+        apply_skeleton: {check: has_skeleton_rows, if_missing: add_missing_rows}
         reorganize_elements: {check: organization_quality, if_poor: reorganize}
 
     clarity_enhancement:
@@ -589,8 +558,8 @@ repair_framework:
 
   iterate:
     description: "Iterate until quality target met"
-    config: {max_iterations: 5, target_clear_score: target_score}
-    process: "while iterations < max AND score < target: calculate, recognize, propose, apply"
+    config: {max_iterations: 3, target_clear_score: target_score}
+    process: "while iterations < max AND score < target: calculate, recognize, propose, apply; after the last cycle, deliver the best version with a note"
 
   record:
     description: "Record for pattern learning"
@@ -701,21 +670,11 @@ contextual_clear_scoring:
 | **A** - Arrangement | 7 | 10 | 20% |
 | **R** - Reusability | 3 | 5 | 10% |
 
-A deliverable scoring 40+ overall but failing a per-dimension floor must still be revised until the floor is met.
+A deliverable scoring 40+ overall but failing a per-dimension floor is repaired too, up to 3 cycles; if a floor is still missed, deliver the best version with a note naming that dimension.
 
 ---
 
 ## 11. ADVANCED SCORING TECHNIQUES
-
-### Multi-Pass Scoring
-
-| Pass | Name                | Checks                                                      | Depth         | Weight |
-| ---- | ------------------- | ----------------------------------------------------------- | ------------- | ------ |
-| 1    | Surface Evaluation  | Framework presence, basic completeness, obvious issues      | Shallow       | 0.25   |
-| 2    | Deep Analysis       | Ambiguity detection, hidden assumptions, edge case coverage | Thorough      | 0.40   |
-| 3    | Interaction Testing | AI interpretation, failure modes, output predictability     | Comprehensive | 0.35   |
-
-**Aggregation:** Use weighted average of pass scores.
 
 ### Comparative Scoring
 
@@ -845,7 +804,6 @@ excellence_formula:
       x (Concise Expression)
       x (1 + Reasoning Pattern Bonus)
       x (1 - Token Overhead Penalty)
-      + DEPTH Processing Bonus
 
   targets:
     minimum: "CLEAR >= 40/50"
@@ -859,24 +817,25 @@ excellence_formula:
     expression: [0.8, 1.0]
     reasoning_bonus: [0, 0.2]
     token_penalty: [0, 0.2]
-    depth_bonus: 5  # points
 ```
 
 ---
 
 ## 15. QUICK REFERENCE CARD
 
-### Framework Quick Select
+### Preset Quick Select
 
-| Complexity/Need     | Framework |
-| ------------------- | --------- |
-| 1-3, speed          | RACE      |
-| 1-4, balance        | RCAF      |
-| 3-6, audience       | COSTAR    |
-| 4-6, instructions   | CIDI      |
-| 5-7, creative       | CRISPE    |
-| 6-8, precision      | TIDD-EC   |
-| 7-10, comprehensive | CRAFT     |
+Use the default skeleton unless a preset is named or one of these needs is clear.
+
+| Need          | Preset  |
+| ------------- | ------- |
+| Speed         | RACE    |
+| Role, format  | RCAF    |
+| Audience      | COSTAR  |
+| Instructions  | CIDI    |
+| Creative      | CRISPE  |
+| Precision     | TIDD-EC |
+| Comprehensive | CRAFT   |
 
 ### Enhancement Priority Matrix
 

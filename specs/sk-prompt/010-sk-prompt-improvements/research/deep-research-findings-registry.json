@@ -1,0 +1,1600 @@
+{
+  "mergedFrom": [
+    "codex-luna",
+    "devin-swe2"
+  ],
+  "lineageExecutors": {
+    "codex-luna": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    },
+    "devin-swe2": {
+      "kind": "cli-devin",
+      "model": "swe-2-max",
+      "reasoningEffort": null
+    }
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-exactly-replaces-depth-what-are-the-contents-of-the-one-pass-checklist-whic",
+      "inboxId": null,
+      "text": "What exactly replaces DEPTH: what are the contents of the one-pass checklist (which components, yes/no+reason marking, the self-check step), and does REQ-002's ~10-component list match what surveyed improvers and sk-prompt's own references actually check?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "question-1-what-one-pass-checklist-and-component-skeleton-should-replace-depth-and-which-el",
+      "inboxId": null,
+      "text": "What one-pass checklist and component skeleton should replace DEPTH, and which elements are required versus optional?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "_lineages": [
+        "codex-luna"
+      ]
+    },
+    {
+      "id": "question-2-should-the-seven-named-frameworks-rcaf-costar-race-cidi-tidd-ec-crispe-craft-col",
+      "inboxId": null,
+      "text": "Should the seven named frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT) collapse into one component skeleton, and should the names survive as user-facing aliases or be removed outright (REQ-008 + spec Open Question 1)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "question-2-which-req-002-through-req-011-claims-are-supported-overclaimed-or-contradicted-b",
+      "inboxId": null,
+      "text": "Which REQ-002 through REQ-011 claims are supported, overclaimed, or contradicted by repository and primary-source evidence?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "_lineages": [
+        "codex-luna"
+      ]
+    },
+    {
+      "id": "question-3-how-should-quality-be-judged-clear-self-score-vs-test-inputs-first-what-does-req",
+      "inboxId": null,
+      "text": "How should quality be judged: CLEAR self-score vs test inputs first — what does REQ-007's \"quick test\" concretely look like, and does CLEAR survive as a short screen?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "question-3-what-exact-caller-and-workflow-couplings-must-change-in-the-prompt-improver-agen",
+      "inboxId": null,
+      "text": "What exact caller and workflow couplings must change in the prompt-improver agent and prompt commands?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "_lineages": [
+        "codex-luna"
+      ]
+    },
+    {
+      "id": "question-4-deliver-first-vs-ask-first-plus-the-early-exit-for-already-good-prompts-what-are",
+      "inboxId": null,
+      "text": "Deliver-first vs ask-first plus the early exit for already-good prompts: what are the exact interaction rules, and do they hold for both interactive and agent (non-interactive) runs (REQ-003, REQ-004)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "question-4-how-should-quality-evaluation-interaction-defaults-model-profiles-and-effort-sel",
+      "inboxId": null,
+      "text": "How should quality evaluation, interaction defaults, model profiles, and effort selection work without DEPTH?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "_lineages": [
+        "codex-luna"
+      ]
+    },
+    {
+      "id": "question-5-what-do-the-callers-need-skilled-agents-prompt-improver-md-structured-output-blo",
+      "inboxId": null,
+      "text": "What do the callers need — .skilled/agents/prompt-improver.md structured output block + model eligibility, and .skilled/commands/prompt/ modes — for the rebuild to stay compatible, and do per-model output profiles (REQ-010) and the change report/length cap (REQ-011) fit that contract?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "_lineages": [
+        "devin-swe2"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-depth-is-the-router-s-default-load-not-an-optional-reference-default-resource-re",
+      "text": "DEPTH is the router's default load, not an optional reference: `DEFAULT_RESOURCE = \"references/depth-framework.md\"` loads for every intent except FRAMEWORK and RAW — including UNKNOWN_FALLBACK — so a DEPTH-less build must either name a new default or delete the default-load step; leaving the pointer orphaned would break every routed run. [SOURCE: .skilled/skills/sk-prompt/ROUTER.md:116,144,254]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:32-112 (problem, scope, REQ-001..011)",
+        "specs/sk-prompt/010-sk-prompt-improvements/scratch/prompt-improver-survey.md:1-34",
+        ".skilled/skills/sk-prompt/SKILL.md:60-292 (routing, pipeline, rules, agent contract)",
+        ".skilled/skills/sk-prompt/ROUTER.md:23-268 (intent model, machine router)",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:16-413",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:20-739 (section map + CLEAR §10-11)",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:1-56",
+        ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md:17-206",
+        ".skilled/agents/prompt-improver.md:24-338",
+        ".skilled/commands/prompt/improve.md:1-89",
+        "grep counts: DEPTH/depth-framework across skill, agent, command, playbook (25/29 playbook files)"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-1-1-req-002-is-directionally-validated-replace-discover-engineer-prototype-test-harm",
+      "text": "REQ-002 is directionally validated. Replace Discover/Engineer/Prototype/Test/Harmonize with one pass: mark task and outcome, audience or role, source facts and context, constraints and priority, necessary steps or tools, output format, examples when behavior is ambiguous, success checks, contradictions and assumptions, length, and target-model fit as present, absent, or not needed, each with a short reason; draft once and check once against explicit criteria. Components are optional when they do not serve the task, so this is a completeness screen rather than a mandatory template. This exact row set is a design inference from vendor guidance, not a quoted vendor recipe. [SOURCE: specs/sk-prompt/010-sk-prompt-improvements/spec.md:97] [SOURCE: .skilled/skills/sk-prompt/SKILL.md:82] [SOURCE: .skilled/skills/sk-prompt/references/depth-framework.md:45] [SOURCE: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices] [SOURCE: https://developers.openai.com/api/docs/guides/prompt-generation]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:97",
+        ".skilled/skills/sk-prompt/SKILL.md:82",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:45",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+        "https://developers.openai.com/api/docs/guides/prompt-generation",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:98",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:104",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:105",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:67",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/route_contract.py:203",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/fixtures.json",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:106",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/run_fixtures.sh:13",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/README.md:5",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:107",
+        "https://developers.openai.com/api/docs/guides/prompt-optimizer",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:52",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:108",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:3",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:44",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:191",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:110",
+        ".skilled/agents/prompt-improver.md:85",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5",
+        "https://developers.openai.com/api/docs/guides/prompt-engineering",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:111",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:124",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml:19",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:98",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:142",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt:140",
+        ".skilled/agents/prompt-improver.md:88",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:165",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:602",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:18",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:75",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:142",
+        ".skilled/commands/prompt/improve.md:2",
+        ".skilled/agents/prompt-improver.md:3",
+        ".skilled/agents/prompt-improver.md:226"
+      ],
+      "_lineages": [
+        "codex-luna"
+      ]
+    },
+    {
+      "id": "finding-1-10-req-010-is-validated-but-should-be-version-scoped-the-current-agent-accepts-targ",
+      "text": "REQ-010 is validated but should be version-scoped: the current agent accepts target_cli and complexity_hint but no target_model, so CLI is not enough to select model-specific behavior. Add an optional target_model or model-version input and keep each profile short, capability-checked, and dated; use these as conditional hints, not universal instructions for every Claude, GPT, or Gemini model. [SOURCE: specs/sk-prompt/010-sk-prompt-improvements/spec.md:110] [SOURCE: .skilled/agents/prompt-improver.md:85] [SOURCE: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5] [SOURCE: https://developers.openai.com/api/docs/guides/prompt-engineering] [SOURCE: https://ai.google.dev/gemini-api/docs/prompting-strategies]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:97",
+        ".skilled/skills/sk-prompt/SKILL.md:82",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:45",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+        "https://developers.openai.com/api/docs/guides/prompt-generation",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:98",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:104",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:105",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:67",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/route_contract.py:203",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/fixtures.json",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:106",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/run_fixtures.sh:13",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/README.md:5",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:107",
+        "https://developers.openai.com/api/docs/guides/prompt-optimizer",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:52",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:108",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:3",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:44",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:191",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:110",
+        ".skilled/agents/prompt-improver.md:85",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5",
+        "https://developers.openai.com/api/docs/guides/prompt-engineering",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:111",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:124",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml:19",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:98",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:142",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt:140",
+        ".skilled/agents/prompt-improver.md:88",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:165",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:602",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:18",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:75",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:142",
+        ".skilled/commands/prompt/improve.md:2",
+        ".skilled/agents/prompt-improver.md:3",
+        ".skilled/agents/prompt-improver.md:226"
+      ],
+      "_lineages": [
+        "codex-luna"
+      ]
+    },
+    {
+      "id": "finding-1-10-spec-s-measured-footprint-checks-out-with-one-refinement-manual-testing-playbook",
+      "text": "Spec's measured footprint checks out with one refinement: `manual-testing-playbook` carries DEPTH-or-depth-framework in 25 of 29 markdown files (exactly the spec's \"25 files\"); `.skilled/commands/prompt/` is `improve.md` plus a 3-file `assets/` dir, i.e. the spec's \"(4 files)\" is right only when assets are counted. [SOURCE: specs/sk-prompt/010-sk-prompt-improvements/spec.md:82; verified by grep counts this iteration]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:32-112 (problem, scope, REQ-001..011)",
+        "specs/sk-prompt/010-sk-prompt-improvements/scratch/prompt-improver-survey.md:1-34",
+        ".skilled/skills/sk-prompt/SKILL.md:60-292 (routing, pipeline, rules, agent contract)",
+        ".skilled/skills/sk-prompt/ROUTER.md:23-268 (intent model, machine router)",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:16-413",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:20-739 (section map + CLEAR §10-11)",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:1-56",
+        ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md:17-206",
+        ".skilled/agents/prompt-improver.md:24-338",
+        ".skilled/commands/prompt/improve.md:1-89",
+        "grep counts: DEPTH/depth-framework across skill, agent, command, playbook (25/29 playbook files)"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-1-11-req-011-is-partly-validated-and-partly-overclaimed-report-additions-changes-remo",
+      "text": "REQ-011 is partly validated and partly overclaimed: report additions, changes, removals, and intentionally skipped edits, and preserve user facts, constraints, placeholders, and intent; preserve text verbatim when requested. The official OpenAI prompt-generation guidance allows preserving content entirely or as closely as possible, so universal word-for-word retention is not its rule, and no primary source here justifies a hard three-times growth cap. Make size control an explicit user or task constraint, with a warning threshold if useful. [SOURCE: specs/sk-prompt/010-sk-prompt-improvements/spec.md:111] [SOURCE: https://developers.openai.com/api/docs/guides/prompt-generation] [SOURCE: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:97",
+        ".skilled/skills/sk-prompt/SKILL.md:82",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:45",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+        "https://developers.openai.com/api/docs/guides/prompt-generation",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:98",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:104",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:105",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:67",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/route_contract.py:203",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/fixtures.json",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:106",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/run_fixtures.sh:13",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/README.md:5",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:107",
+        "https://developers.openai.com/api/docs/guides/prompt-optimizer",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:52",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:108",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:3",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:44",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:191",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:110",
+        ".skilled/agents/prompt-improver.md:85",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5",
+        "https://developers.openai.com/api/docs/guides/prompt-engineering",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:111",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:124",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml:19",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:98",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:142",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt:140",
+        ".skilled/agents/prompt-improver.md:88",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:165",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:602",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:18",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:75",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:142",
+        ".skilled/commands/prompt/improve.md:2",
+        ".skilled/agents/prompt-improver.md:3",
+        ".skilled/agents/prompt-improver.md:226"
+      ],
+      "_lineages": [
+        "codex-luna"
+      ]
+    },
+    {
+      "id": "finding-1-12-the-four-uncovered-caller-couplings-are-real-replace-confirm-checkpoints-after-d",
+      "text": "The four uncovered caller couplings are real: replace confirm checkpoints after_discover/after_prototype/after_test and the DEPTH Rounds display; choose one retry policy because both command YAMLs declare up to three cycles while the agent and depth reference say one retry; define a named effort control for $short, $refine, and complexity_hint; and keep one canonical CLEAR definition, preferably patterns-evaluation, deleting the duplicate in depth-framework. Do not claim the YAML/agent retry behavior is resolved until an end-to-end run confirms the selected policy. [SOURCE: specs/sk-prompt/010-sk-prompt-improvements/spec.md:124] [SOURCE: .skilled/commands/prompt/assets/prompt_improve_confirm.yaml:19] [SOURCE: .skilled/commands/prompt/assets/prompt_improve_auto.yaml:98] [SOURCE: .skilled/commands/prompt/assets/prompt_improve_auto.yaml:142] [SOURCE: .skilled/commands/prompt/assets/prompt_improve_presentation.txt:140] [SOURCE: .skilled/agents/prompt-improver.md:88] [SOURCE: .skilled/skills/sk-prompt/references/depth-framework.md:165] [SOURCE: .skilled/skills/sk-prompt/references/patterns-evaluation.md:602]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:97",
+        ".skilled/skills/sk-prompt/SKILL.md:82",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:45",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+        "https://developers.openai.com/api/docs/guides/prompt-generation",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:98",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:104",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:105",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:67",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/route_contract.py:203",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/fixtures.json",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:106",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/run_fixtures.sh:13",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/README.md:5",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:107",
+        "https://developers.openai.com/api/docs/guides/prompt-optimizer",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:52",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:108",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:3",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:44",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:191",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:110",
+        ".skilled/agents/prompt-improver.md:85",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5",
+        "https://developers.openai.com/api/docs/guides/prompt-engineering",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:111",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:124",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml:19",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:98",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:142",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt:140",
+        ".skilled/agents/prompt-improver.md:88",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:165",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:602",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:18",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:75",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:142",
+        ".skilled/commands/prompt/improve.md:2",
+        ".skilled/agents/prompt-improver.md:3",
+        ".skilled/agents/prompt-improver.md:226"
+      ],
+      "_lineages": [
+        "codex-luna"
+      ]
+    },
+    {
+      "id": "finding-1-13-correct-the-prior-synthesis-generalization-that-no-surveyed-improver-specifies-a",
+      "text": "Correct the prior synthesis generalization that no surveyed improver specifies a multi-round, multi-perspective process: the sibling skill explicitly mandates DEPTH energy levels and a minimum three perspectives, while OpenAI describes optional repeat optimization cycles based on eval feedback. The defensible claim is narrower: public vendor guidance does not establish that seven acronym frameworks or multi-perspective rituals improve quality; it does support measured iteration for testable tasks. [SOURCE: specs/sk-prompt/010-sk-prompt-improvements/research/research.md:18] [SOURCE: ../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:75] [SOURCE: ../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:142] [SOURCE: https://developers.openai.com/api/docs/guides/prompt-optimizer]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:97",
+        ".skilled/skills/sk-prompt/SKILL.md:82",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:45",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+        "https://developers.openai.com/api/docs/guides/prompt-generation",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:98",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:104",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:105",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:67",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/route_contract.py:203",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/fixtures.json",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:106",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/run_fixtures.sh:13",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/README.md:5",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:107",
+        "https://developers.openai.com/api/docs/guides/prompt-optimizer",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:52",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:108",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:3",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:44",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:191",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:110",
+        ".skilled/agents/prompt-improver.md:85",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5",
+        "https://developers.openai.com/api/docs/guides/prompt-engineering",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:111",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:124",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml:19",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:98",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:142",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt:140",
+        ".skilled/agents/prompt-improver.md:88",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:165",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:602",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:18",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:75",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:142",
+        ".skilled/commands/prompt/improve.md:2",
+        ".skilled/agents/prompt-improver.md:3",
+        ".skilled/agents/prompt-improver.md:226"
+      ],
+      "_lineages": [
+        "codex-luna"
+      ]
+    },
+    {
+      "id": "finding-1-14-one-caller-surface-is-additionally-easy-to-miss-the-prompt-improve-command-descr",
+      "text": "One caller surface is additionally easy to miss: the /prompt:improve command description and prompt-improver agent description still advertise frameworks and DEPTH. Update both with the replacement terms, and either preserve the structured FRAMEWORK/CLEAR_SCORE/RATIONALE/ENHANCED_PROMPT/ESCALATION_NOTES contract for compatibility or migrate every consumer in the same scoped change. [SOURCE: .skilled/commands/prompt/improve.md:2] [SOURCE: .skilled/agents/prompt-improver.md:3] [SOURCE: .skilled/agents/prompt-improver.md:226]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:97",
+        ".skilled/skills/sk-prompt/SKILL.md:82",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:45",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+        "https://developers.openai.com/api/docs/guides/prompt-generation",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:98",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:104",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:105",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:67",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/route_contract.py:203",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/fixtures.json",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:106",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/run_fixtures.sh:13",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/README.md:5",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:107",
+        "https://developers.openai.com/api/docs/guides/prompt-optimizer",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:52",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:108",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:3",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:44",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:191",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:110",
+        ".skilled/agents/prompt-improver.md:85",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5",
+        "https://developers.openai.com/api/docs/guides/prompt-engineering",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:111",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:124",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml:19",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:98",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:142",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt:140",
+        ".skilled/agents/prompt-improver.md:88",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:165",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:602",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:18",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:75",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:142",
+        ".skilled/commands/prompt/improve.md:2",
+        ".skilled/agents/prompt-improver.md:3",
+        ".skilled/agents/prompt-improver.md:226"
+      ],
+      "_lineages": [
+        "codex-luna"
+      ]
+    },
+    {
+      "id": "finding-1-2-req-003-is-validated-add-a-simple-change-already-good-early-exit-that-returns-th",
+      "text": "REQ-003 is validated: add a simple-change / already-good early exit that returns the original or makes only the requested small edit, and say when no substantive improvement was needed. This prevents a checklist from becoming an excuse to expand a clean prompt. [SOURCE: specs/sk-prompt/010-sk-prompt-improvements/spec.md:98] [SOURCE: https://developers.openai.com/api/docs/guides/prompt-generation]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:97",
+        ".skilled/skills/sk-prompt/SKILL.md:82",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:45",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+        "https://developers.openai.com/api/docs/guides/prompt-generation",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:98",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:104",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:105",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:67",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/route_contract.py:203",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/fixtures.json",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:106",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/run_fixtures.sh:13",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/README.md:5",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:107",
+        "https://developers.openai.com/api/docs/guides/prompt-optimizer",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:52",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:108",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:3",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:44",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:191",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:110",
+        ".skilled/agents/prompt-improver.md:85",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5",
+        "https://developers.openai.com/api/docs/guides/prompt-engineering",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:111",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:124",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml:19",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:98",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:142",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt:140",
+        ".skilled/agents/prompt-improver.md:88",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:165",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:602",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:18",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:75",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:142",
+        ".skilled/commands/prompt/improve.md:2",
+        ".skilled/agents/prompt-improver.md:3",
+        ".skilled/agents/prompt-improver.md:226"
+      ],
+      "_lineages": [
+        "codex-luna"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-confirm-workflow-s-checkpoints-are-literally-depth-phases-improve-md-says-th",
+      "text": "The confirm workflow's checkpoints are literally DEPTH phases: `improve.md` says the confirm YAML \"pauses at the Discover phase, the Prototype phase and the Test phase,\" so removing DEPTH breaks the command's checkpoint contract, not just its prose; the three owned assets (`prompt_improve_presentation.txt`, `prompt_improve_auto.yaml`, `prompt_improve_confirm.yaml`) are the real carriers of the pipeline. [SOURCE: .skilled/commands/prompt/improve.md:39-45,88]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:32-112 (problem, scope, REQ-001..011)",
+        "specs/sk-prompt/010-sk-prompt-improvements/scratch/prompt-improver-survey.md:1-34",
+        ".skilled/skills/sk-prompt/SKILL.md:60-292 (routing, pipeline, rules, agent contract)",
+        ".skilled/skills/sk-prompt/ROUTER.md:23-268 (intent model, machine router)",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:16-413",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:20-739 (section map + CLEAR §10-11)",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:1-56",
+        ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md:17-206",
+        ".skilled/agents/prompt-improver.md:24-338",
+        ".skilled/commands/prompt/improve.md:1-89",
+        "grep counts: DEPTH/depth-framework across skill, agent, command, playbook (25/29 playbook files)"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-1-3-req-004-is-validated-with-a-hard-blocker-boundary-deliver-a-useful-draft-when-th",
+      "text": "REQ-004 is validated with a hard-blocker boundary: deliver a useful draft when the goal and source prompt make one possible, then list defaults as numbered open items; ask one consolidated question only when the task or input is absent or an ambiguity changes the deliverable materially. The sibling skill supports deliver-first for soft gaps, while its own hard-question rules still wait for an answer. [SOURCE: specs/sk-prompt/010-sk-prompt-improvements/spec.md:104] [SOURCE: ../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:109] [SOURCE: https://developers.openai.com/api/docs/guides/prompt-generation]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:97",
+        ".skilled/skills/sk-prompt/SKILL.md:82",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:45",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+        "https://developers.openai.com/api/docs/guides/prompt-generation",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:98",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:104",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:105",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:67",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/route_contract.py:203",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/fixtures.json",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:106",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/run_fixtures.sh:13",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/README.md:5",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:107",
+        "https://developers.openai.com/api/docs/guides/prompt-optimizer",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:52",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:108",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:3",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:44",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:191",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:110",
+        ".skilled/agents/prompt-improver.md:85",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5",
+        "https://developers.openai.com/api/docs/guides/prompt-engineering",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:111",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:124",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml:19",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:98",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:142",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt:140",
+        ".skilled/agents/prompt-improver.md:88",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:165",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:602",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:18",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:75",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:142",
+        ".skilled/commands/prompt/improve.md:2",
+        ".skilled/agents/prompt-improver.md:3",
+        ".skilled/agents/prompt-improver.md:226"
+      ],
+      "_lineages": [
+        "codex-luna"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-one-pass-checklist-shape-req-002-demands-already-exists-inside-this-repo-as-",
+      "text": "The one-pass-checklist shape REQ-002 demands already exists inside this repo as the fast path: `cli-prompt-quality-card.md` runs a task→framework table, a CLEAR 5-question pre-dispatch check, and explicit escalation triggers, and three `cli-*` cards mirror it via a no-inlining guard script — the rebuild can promote that proven pattern rather than invent one. [SOURCE: .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md:17,27,66,85,188]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:32-112 (problem, scope, REQ-001..011)",
+        "specs/sk-prompt/010-sk-prompt-improvements/scratch/prompt-improver-survey.md:1-34",
+        ".skilled/skills/sk-prompt/SKILL.md:60-292 (routing, pipeline, rules, agent contract)",
+        ".skilled/skills/sk-prompt/ROUTER.md:23-268 (intent model, machine router)",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:16-413",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:20-739 (section map + CLEAR §10-11)",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:1-56",
+        ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md:17-206",
+        ".skilled/agents/prompt-improver.md:24-338",
+        ".skilled/commands/prompt/improve.md:1-89",
+        "grep counts: DEPTH/depth-framework across skill, agent, command, playbook (25/29 playbook files)"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-1-4-depth-s-load-bearing-internals-the-checklist-must-absorb-or-deliberately-drop-fo",
+      "text": "DEPTH's load-bearing internals the checklist must absorb or deliberately drop: four energy levels (Raw/Quick/Standard/Deep), a blocking 3–5-perspective minimum, five cognitive techniques, RICCE parts-check before CLEAR, CLEAR 40+/50 with per-dimension floors (C7 L7 E10 A7 R3), a max-1 improvement cycle, and proof-through-output metadata (Mode/Framework/Perspectives/Score). REQ-002's ~10-component list subsumes RICCE and part of the Test phase but silently drops perspectives, techniques and energy scaling — that is a design decision to record, not an oversight to inherit. [SOURCE: .skilled/skills/sk-prompt/references/depth-framework.md:45-50,98-102,259-274,371-398]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:32-112 (problem, scope, REQ-001..011)",
+        "specs/sk-prompt/010-sk-prompt-improvements/scratch/prompt-improver-survey.md:1-34",
+        ".skilled/skills/sk-prompt/SKILL.md:60-292 (routing, pipeline, rules, agent contract)",
+        ".skilled/skills/sk-prompt/ROUTER.md:23-268 (intent model, machine router)",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:16-413",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:20-739 (section map + CLEAR §10-11)",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:1-56",
+        ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md:17-206",
+        ".skilled/agents/prompt-improver.md:24-338",
+        ".skilled/commands/prompt/improve.md:1-89",
+        "grep counts: DEPTH/depth-framework across skill, agent, command, playbook (25/29 playbook files)"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-1-4-req-005-is-validated-strip-pasted-prompt-text-before-intent-detection-and-preser",
+      "text": "REQ-005 is validated: strip pasted prompt text before intent detection and preserve exact-token matching, word boundaries, quote and prompt-label fallbacks, and explicit conflicting-command disambiguation. The sibling route contract includes a pasted prompt containing a format token as a regression case; this behavior is not merely a style preference. [SOURCE: specs/sk-prompt/010-sk-prompt-improvements/spec.md:105] [SOURCE: ../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:67] [SOURCE: ../../AI Systems/AI Systems/Prompt Improver/benchmark/router/route_contract.py:203] [SOURCE: ../../AI Systems/AI Systems/Prompt Improver/benchmark/router/fixtures.json]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:97",
+        ".skilled/skills/sk-prompt/SKILL.md:82",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:45",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+        "https://developers.openai.com/api/docs/guides/prompt-generation",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:98",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:104",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:105",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:67",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/route_contract.py:203",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/fixtures.json",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:106",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/run_fixtures.sh:13",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/README.md:5",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:107",
+        "https://developers.openai.com/api/docs/guides/prompt-optimizer",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:52",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:108",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:3",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:44",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:191",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:110",
+        ".skilled/agents/prompt-improver.md:85",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5",
+        "https://developers.openai.com/api/docs/guides/prompt-engineering",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:111",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:124",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml:19",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:98",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:142",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt:140",
+        ".skilled/agents/prompt-improver.md:88",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:165",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:602",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:18",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:75",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:142",
+        ".skilled/commands/prompt/improve.md:2",
+        ".skilled/agents/prompt-improver.md:3",
+        ".skilled/agents/prompt-improver.md:226"
+      ],
+      "_lineages": [
+        "codex-luna"
+      ]
+    },
+    {
+      "id": "finding-1-5-req-006-is-validated-with-a-path-correction-the-sibling-runner-lives-at-the-prom",
+      "text": "REQ-006 is validated, with a path correction: the sibling runner lives at the Prompt Improver project root, one level above sk-prompt-improver, not inside the skill folder. Running that read-only suite returned PASSED 32/32 fixtures and a kernel/router parity pass. It tests deterministic routing and duplicated-router drift, not whether generated prompts perform well; put the new local route fixtures under sk-prompt and keep prompt-quality cases separate. [SOURCE: specs/sk-prompt/010-sk-prompt-improvements/spec.md:106] [SOURCE: ../../AI Systems/AI Systems/Prompt Improver/benchmark/router/run_fixtures.sh:13] [SOURCE: ../../AI Systems/AI Systems/Prompt Improver/benchmark/router/README.md:5] [SOURCE: ../../AI Systems/AI Systems/Prompt Improver/benchmark/router/fixtures.json]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:97",
+        ".skilled/skills/sk-prompt/SKILL.md:82",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:45",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+        "https://developers.openai.com/api/docs/guides/prompt-generation",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:98",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:104",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:105",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:67",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/route_contract.py:203",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/fixtures.json",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:106",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/run_fixtures.sh:13",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/README.md:5",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:107",
+        "https://developers.openai.com/api/docs/guides/prompt-optimizer",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:52",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:108",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:3",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:44",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:191",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:110",
+        ".skilled/agents/prompt-improver.md:85",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5",
+        "https://developers.openai.com/api/docs/guides/prompt-engineering",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:111",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:124",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml:19",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:98",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:142",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt:140",
+        ".skilled/agents/prompt-improver.md:88",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:165",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:602",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:18",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:75",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:142",
+        ".skilled/commands/prompt/improve.md:2",
+        ".skilled/agents/prompt-improver.md:3",
+        ".skilled/agents/prompt-improver.md:226"
+      ],
+      "_lineages": [
+        "codex-luna"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-modes-table-encodes-effort-as-depth-rounds-10-3-0-for-text-short-raw-and-the",
+      "text": "The modes table encodes effort as DEPTH rounds (10/3/0 for text/$short/$raw) and the agent's COMPOSE step \"chooses DEPTH energy\" from `complexity_hint` — with DEPTH gone, `$short`, `$refine`, `dispatch_mode` and `complexity_hint` lose their meaning unless a non-DEPTH effort knob replaces rounds. REQ-002 does not answer this; it is an extension the build needs. [SOURCE: .skilled/skills/sk-prompt/SKILL.md:99-108,271; .skilled/agents/prompt-improver.md:88,285]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:32-112 (problem, scope, REQ-001..011)",
+        "specs/sk-prompt/010-sk-prompt-improvements/scratch/prompt-improver-survey.md:1-34",
+        ".skilled/skills/sk-prompt/SKILL.md:60-292 (routing, pipeline, rules, agent contract)",
+        ".skilled/skills/sk-prompt/ROUTER.md:23-268 (intent model, machine router)",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:16-413",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:20-739 (section map + CLEAR §10-11)",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:1-56",
+        ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md:17-206",
+        ".skilled/agents/prompt-improver.md:24-338",
+        ".skilled/commands/prompt/improve.md:1-89",
+        "grep counts: DEPTH/depth-framework across skill, agent, command, playbook (25/29 playbook files)"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-1-6-clear-is-specified-twice-with-different-depth-depth-framework-md-4-dimensions-fl",
+      "text": "CLEAR is specified twice with different depth: `depth-framework.md` §4 (dimensions, floors, checkpoint yaml) and `patterns-evaluation.md` §10 \"CLEAR EVALUATION MASTERY\" plus §11 multi-pass/comparative scoring. If CLEAR survives as REQ-007's \"short screen,\" exactly one canonical home must be chosen — patterns-evaluation §10 is the richer source. [SOURCE: .skilled/skills/sk-prompt/references/depth-framework.md:257-365; .skilled/skills/sk-prompt/references/patterns-evaluation.md:602-739]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:32-112 (problem, scope, REQ-001..011)",
+        "specs/sk-prompt/010-sk-prompt-improvements/scratch/prompt-improver-survey.md:1-34",
+        ".skilled/skills/sk-prompt/SKILL.md:60-292 (routing, pipeline, rules, agent contract)",
+        ".skilled/skills/sk-prompt/ROUTER.md:23-268 (intent model, machine router)",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:16-413",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:20-739 (section map + CLEAR §10-11)",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:1-56",
+        ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md:17-206",
+        ".skilled/agents/prompt-improver.md:24-338",
+        ".skilled/commands/prompt/improve.md:1-89",
+        "grep counts: DEPTH/depth-framework across skill, agent, command, playbook (25/29 playbook files)"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-1-6-req-007-is-validated-with-a-distinction-between-static-review-and-behavioral-evi",
+      "text": "REQ-007 is validated with a distinction between static review and behavioral evidence: when the target model can be run, judge the old and new prompt on a small representative set with observable criteria first; keep CLEAR only as a short explanatory coverage screen, and do not present a self-assigned number as proof. OpenAI documents dataset-backed optimization with at least three response rows and a grader result or human annotation per row, then recommends testing and optionally repeating with feedback, so two or three local smoke inputs are not equivalent to a durable eval set. [SOURCE: specs/sk-prompt/010-sk-prompt-improvements/spec.md:107] [SOURCE: https://developers.openai.com/api/docs/guides/prompt-optimizer] [SOURCE: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:97",
+        ".skilled/skills/sk-prompt/SKILL.md:82",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:45",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+        "https://developers.openai.com/api/docs/guides/prompt-generation",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:98",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:104",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:105",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:67",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/route_contract.py:203",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/fixtures.json",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:106",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/run_fixtures.sh:13",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/README.md:5",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:107",
+        "https://developers.openai.com/api/docs/guides/prompt-optimizer",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:52",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:108",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:3",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:44",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:191",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:110",
+        ".skilled/agents/prompt-improver.md:85",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5",
+        "https://developers.openai.com/api/docs/guides/prompt-engineering",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:111",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:124",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml:19",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:98",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:142",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt:140",
+        ".skilled/agents/prompt-improver.md:88",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:165",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:602",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:18",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:75",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:142",
+        ".skilled/commands/prompt/improve.md:2",
+        ".skilled/agents/prompt-improver.md:3",
+        ".skilled/agents/prompt-improver.md:226"
+      ],
+      "_lineages": [
+        "codex-luna"
+      ]
+    },
+    {
+      "id": "finding-1-7-assets-framework-registry-json-which-req-008-says-to-retire-or-reduce-to-aliases",
+      "text": "`assets/framework-registry.json` — which REQ-008 says to retire or reduce to aliases — is not a user-facing framework registry; it is data-only benchmark scaffold (slot templates `{{task}}`, `{{constraints}}`, `{{output_contract}}`) for five of the seven code frameworks, consumed by benchmark rigs. Retiring it touches benchmark tooling, not routing or prompting behavior — the REQ's acceptance criterion is aimed at the wrong artifact. [SOURCE: .skilled/skills/sk-prompt/assets/framework-registry.json:1-4]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:32-112 (problem, scope, REQ-001..011)",
+        "specs/sk-prompt/010-sk-prompt-improvements/scratch/prompt-improver-survey.md:1-34",
+        ".skilled/skills/sk-prompt/SKILL.md:60-292 (routing, pipeline, rules, agent contract)",
+        ".skilled/skills/sk-prompt/ROUTER.md:23-268 (intent model, machine router)",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:16-413",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:20-739 (section map + CLEAR §10-11)",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:1-56",
+        ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md:17-206",
+        ".skilled/agents/prompt-improver.md:24-338",
+        ".skilled/commands/prompt/improve.md:1-89",
+        "grep counts: DEPTH/depth-framework across skill, agent, command, playbook (25/29 playbook files)"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-1-7-correct-the-prior-synthesis-timeline-as-of-this-run-on-2026-10-30-openai-evals-i",
+      "text": "Correct the prior synthesis timeline: as of this run on 2026-10-30, OpenAI Evals is scheduled to become read-only on 2026-10-31 and shut down on 2026-11-30; it is not already read-only today. Treat it as a near-term migration constraint and keep sk-prompt evaluation local or portable rather than depending on Evals. [SOURCE: specs/sk-prompt/010-sk-prompt-improvements/research/research.md:52] [SOURCE: https://developers.openai.com/api/docs/guides/prompt-optimizer]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:97",
+        ".skilled/skills/sk-prompt/SKILL.md:82",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:45",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+        "https://developers.openai.com/api/docs/guides/prompt-generation",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:98",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:104",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:105",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:67",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/route_contract.py:203",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/fixtures.json",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:106",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/run_fixtures.sh:13",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/README.md:5",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:107",
+        "https://developers.openai.com/api/docs/guides/prompt-optimizer",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:52",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:108",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:3",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:44",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:191",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:110",
+        ".skilled/agents/prompt-improver.md:85",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5",
+        "https://developers.openai.com/api/docs/guides/prompt-engineering",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:111",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:124",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml:19",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:98",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:142",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt:140",
+        ".skilled/agents/prompt-improver.md:88",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:165",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:602",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:18",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:75",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:142",
+        ".skilled/commands/prompt/improve.md:2",
+        ".skilled/agents/prompt-improver.md:3",
+        ".skilled/agents/prompt-improver.md:226"
+      ],
+      "_lineages": [
+        "codex-luna"
+      ]
+    },
+    {
+      "id": "finding-1-8-req-005-s-gap-is-confirmed-strip-source-prompt-has-zero-hits-in-router-md-and-sc",
+      "text": "REQ-005's gap is confirmed: `strip_source_prompt` has zero hits in ROUTER.md, and `score_intents()` runs keyword weights over the raw task text — a `$json` or \"yaml\" substring inside a pasted prompt steers intent today. The pasted-prompt guard is a real missing control. [SOURCE: .skilled/skills/sk-prompt/ROUTER.md:197-204; specs/sk-prompt/010-sk-prompt-improvements/spec.md:105]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:32-112 (problem, scope, REQ-001..011)",
+        "specs/sk-prompt/010-sk-prompt-improvements/scratch/prompt-improver-survey.md:1-34",
+        ".skilled/skills/sk-prompt/SKILL.md:60-292 (routing, pipeline, rules, agent contract)",
+        ".skilled/skills/sk-prompt/ROUTER.md:23-268 (intent model, machine router)",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:16-413",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:20-739 (section map + CLEAR §10-11)",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:1-56",
+        ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md:17-206",
+        ".skilled/agents/prompt-improver.md:24-338",
+        ".skilled/commands/prompt/improve.md:1-89",
+        "grep counts: DEPTH/depth-framework across skill, agent, command, playbook (25/29 playbook files)"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-1-8-req-008-is-an-inference-not-a-directly-sourced-requirement-public-guidance-share",
+      "text": "REQ-008 is an inference, not a directly sourced requirement. Public guidance shares components such as task, context, instructions, examples, and format but does not prescribe collapsing every named framework. Use one flexible default component skeleton with optional task presets or aliases; do not turn it into a rigid fill-every-slot form. Also, framework-registry.json describes five code-task benchmark scaffolds, not the runtime seven-framework selector, so retiring it is not a valid acceptance proxy. The sibling itself retains framework selection. [SOURCE: specs/sk-prompt/010-sk-prompt-improvements/spec.md:108] [SOURCE: .skilled/skills/sk-prompt/assets/framework-registry.json:3] [SOURCE: .skilled/skills/sk-prompt/references/patterns-evaluation.md:44] [SOURCE: ../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:191] [SOURCE: https://developers.openai.com/api/docs/guides/prompt-generation] [SOURCE: https://ai.google.dev/gemini-api/docs/prompting-strategies]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:97",
+        ".skilled/skills/sk-prompt/SKILL.md:82",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:45",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+        "https://developers.openai.com/api/docs/guides/prompt-generation",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:98",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:104",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:105",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:67",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/route_contract.py:203",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/fixtures.json",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:106",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/run_fixtures.sh:13",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/README.md:5",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:107",
+        "https://developers.openai.com/api/docs/guides/prompt-optimizer",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:52",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:108",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:3",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:44",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:191",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:110",
+        ".skilled/agents/prompt-improver.md:85",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5",
+        "https://developers.openai.com/api/docs/guides/prompt-engineering",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:111",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:124",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml:19",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:98",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:142",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt:140",
+        ".skilled/agents/prompt-improver.md:88",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:165",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:602",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:18",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:75",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:142",
+        ".skilled/commands/prompt/improve.md:2",
+        ".skilled/agents/prompt-improver.md:3",
+        ".skilled/agents/prompt-improver.md:226"
+      ],
+      "_lineages": [
+        "codex-luna"
+      ]
+    },
+    {
+      "id": "finding-1-9-req-004-s-target-is-verified-at-skill-md-4-always-1-always-ask-one-comprehensive",
+      "text": "REQ-004's target is verified at SKILL.md §4 ALWAYS#1 (\"ALWAYS ask ONE comprehensive question ... in an interactive run whose request leaves the goal open\"), but the same rule already exempts non-interactive runs (\"proceeds on stated assumptions and flags each one\") — deliver-first already half-exists for agents; the gap is interactive runs and the command's input gate, which BLOCKS until `prompt_input` is bound. [SOURCE: .skilled/skills/sk-prompt/SKILL.md:134-137; .skilled/commands/prompt/improve.md:13-19]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:32-112 (problem, scope, REQ-001..011)",
+        "specs/sk-prompt/010-sk-prompt-improvements/scratch/prompt-improver-survey.md:1-34",
+        ".skilled/skills/sk-prompt/SKILL.md:60-292 (routing, pipeline, rules, agent contract)",
+        ".skilled/skills/sk-prompt/ROUTER.md:23-268 (intent model, machine router)",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:16-413",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:20-739 (section map + CLEAR §10-11)",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:1-56",
+        ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md:17-206",
+        ".skilled/agents/prompt-improver.md:24-338",
+        ".skilled/commands/prompt/improve.md:1-89",
+        "grep counts: DEPTH/depth-framework across skill, agent, command, playbook (25/29 playbook files)"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-1-9-req-009-needs-re-scoping-retain-contradiction-checks-and-use-examples-when-they-",
+      "text": "REQ-009 needs re-scoping: retain contradiction checks and use examples when they disambiguate desired behavior, but do not require three to five examples on every prompt or ban MUST/CRITICAL universally. Vendor guidance treats example count as something to experiment with and warns about overfitting; direct wording is a useful default, while a hard constraint may still need explicit emphasis. [SOURCE: specs/sk-prompt/010-sk-prompt-improvements/spec.md:109] [SOURCE: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices] [SOURCE: https://ai.google.dev/gemini-api/docs/prompting-strategies]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:97",
+        ".skilled/skills/sk-prompt/SKILL.md:82",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:45",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+        "https://developers.openai.com/api/docs/guides/prompt-generation",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:98",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:104",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:105",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:67",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/route_contract.py:203",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/fixtures.json",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:106",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/run_fixtures.sh:13",
+        "../../AI Systems/AI Systems/Prompt Improver/benchmark/router/README.md:5",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:107",
+        "https://developers.openai.com/api/docs/guides/prompt-optimizer",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:52",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:108",
+        ".skilled/skills/sk-prompt/assets/framework-registry.json:3",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:44",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:191",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:109",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:110",
+        ".skilled/agents/prompt-improver.md:85",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5",
+        "https://developers.openai.com/api/docs/guides/prompt-engineering",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:111",
+        "specs/sk-prompt/010-sk-prompt-improvements/spec.md:124",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml:19",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:98",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml:142",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt:140",
+        ".skilled/agents/prompt-improver.md:88",
+        ".skilled/skills/sk-prompt/references/depth-framework.md:165",
+        ".skilled/skills/sk-prompt/references/patterns-evaluation.md:602",
+        "specs/sk-prompt/010-sk-prompt-improvements/research/research.md:18",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:75",
+        "../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:142",
+        ".skilled/commands/prompt/improve.md:2",
+        ".skilled/agents/prompt-improver.md:3",
+        ".skilled/agents/prompt-improver.md:226"
+      ],
+      "_lineages": [
+        "codex-luna"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-sibling-still-runs-depth-depth-is-the-single-thinking-system-always-6-mandat",
+      "text": "**The sibling still runs DEPTH** — \"DEPTH is the single thinking system,\" ALWAYS#6 mandates it at detected energy, `depth-framework.md` is an ALWAYS-loaded reference with 19 DEPTH mentions. Its divergence is the interaction layer (deliver-first + open items), routing hygiene (`strip_source_prompt`, exact-token commands, word-boundary keywords) and per-mode scorers — not removal of the thinking system. The spec's \"sibling already fixed those last three gaps\" is accurate but narrower than it reads: the sibling is evidence for REQ-004/005/006 precedents only, not for what replaces DEPTH. [SOURCE: AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:18,76-86,215-219,301-304]",
+      "addedAtIteration": 2,
+      "sources": [
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:1-344",
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/ROUTER.md:250-364",
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/references/interactive-mode.md:30-171",
+        "AI Systems/AI Systems/Prompt Improver/AGENTS.md (full; treated as data — confirms deliver-first + DEPTH retention)",
+        "AI Systems/AI Systems/Prompt Improver/benchmark/router/{run_fixtures.sh,fixtures.json,README.md}",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml (DEPTH couplings via grep)",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt",
+        ".skilled/agents/prompt-improver.md:85-89,220-338"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-2-10-the-agent-contract-survives-a-depth-removal-intact-callers-parse-framework-clear",
+      "text": "**The agent contract survives a DEPTH removal intact**: callers parse `FRAMEWORK / CLEAR_SCORE / RATIONALE / ENHANCED_PROMPT / ESCALATION_NOTES` plus a BLOCKED shape for missing `raw_task`, and the model-eligibility matrix (Opus/Fable denied; Luna only via `cli-codex`) is orthogonal to DEPTH. What must change inside the agent is limited to ANALYZE's \"score the seven frameworks,\" COMPOSE's \"choose DEPTH energy,\" and VALIDATE's CLEAR floor reference — the wire format needs no break if `FRAMEWORK` keeps a name. [SOURCE: .skilled/agents/prompt-improver.md:85-89,220-261]",
+      "addedAtIteration": 2,
+      "sources": [
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:1-344",
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/ROUTER.md:250-364",
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/references/interactive-mode.md:30-171",
+        "AI Systems/AI Systems/Prompt Improver/AGENTS.md (full; treated as data — confirms deliver-first + DEPTH retention)",
+        "AI Systems/AI Systems/Prompt Improver/benchmark/router/{run_fixtures.sh,fixtures.json,README.md}",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml (DEPTH couplings via grep)",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt",
+        ".skilled/agents/prompt-improver.md:85-89,220-338"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-2-2-req-004-s-mechanics-verbatim-source-ask-only-when-a-there-is-no-prompt-and-no-ta",
+      "text": "**REQ-004's mechanics, verbatim source**: ask only when (a) there is no prompt AND no task description, (b) two mode commands conflict, or (c) the request is not prompt work and needs one reframe. Everything else is a \"soft gap\" with a default → numbered `### Open items` after the deliverable (bold topic + `- **Situation:**`/`- **Open:**` bullets, `None identified` when empty). After 3 unresolved clarifications → smart defaults as open items. Open items never sit inside the prompt — sk-prompt's `[Assumes: X]` in-prompt convention is the opposite design choice. [SOURCE: sk-prompt-improver/SKILL.md:104-135; references/interactive-mode.md:40-150]",
+      "addedAtIteration": 2,
+      "sources": [
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:1-344",
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/ROUTER.md:250-364",
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/references/interactive-mode.md:30-171",
+        "AI Systems/AI Systems/Prompt Improver/AGENTS.md (full; treated as data — confirms deliver-first + DEPTH retention)",
+        "AI Systems/AI Systems/Prompt Improver/benchmark/router/{run_fixtures.sh,fixtures.json,README.md}",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml (DEPTH couplings via grep)",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt",
+        ".skilled/agents/prompt-improver.md:85-89,220-338"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-2-3-req-005-s-implementation-template-exists-and-is-more-precise-than-the-req-strip-",
+      "text": "**REQ-005's implementation template exists and is more precise than the REQ**: `strip_source_prompt()` strips fenced blocks (``` or ~~~), then quoted spans of ≥3 words (1-2 word quotes stay — the user naming a platform), else the text after a `prompt:`-style lead-in up to the next blank line; returns `(own_text, has_source)`. Commands match whole `$[a-z]+` tokens only; ≥2 distinct mode commands is a conflict → INTERACTIVE fallback; keywords score on word boundaries; a bare pasted prompt routes IMPROVE. REQ-005 captures the guard but not the conflict-detection and word-boundary refinements. [SOURCE: sk-prompt-improver/ROUTER.md:264-331]",
+      "addedAtIteration": 2,
+      "sources": [
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:1-344",
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/ROUTER.md:250-364",
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/references/interactive-mode.md:30-171",
+        "AI Systems/AI Systems/Prompt Improver/AGENTS.md (full; treated as data — confirms deliver-first + DEPTH retention)",
+        "AI Systems/AI Systems/Prompt Improver/benchmark/router/{run_fixtures.sh,fixtures.json,README.md}",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml (DEPTH couplings via grep)",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt",
+        ".skilled/agents/prompt-improver.md:85-89,220-338"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-2-4-req-006-s-precedent-verified-benchmark-router-sits-at-the-project-level-not-insi",
+      "text": "**REQ-006's precedent verified**: `benchmark/router/` sits at the project level (not inside the skill) holding a 32-case `fixtures.json` array, executable `route_contract.py`, `kernel_parity.py` (kernel Router Code must equal the skill router minus comments), and `run_fixtures.sh` that fails on any route mismatch or parity break. One executable contract file, one JSON fixture list, one shell runner — that is the shape `benchmark/router/` in sk-prompt should copy. [SOURCE: AI Systems/AI Systems/Prompt Improver/benchmark/router/run_fixtures.sh:1-20; fixtures.json array length 32 verified]",
+      "addedAtIteration": 2,
+      "sources": [
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:1-344",
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/ROUTER.md:250-364",
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/references/interactive-mode.md:30-171",
+        "AI Systems/AI Systems/Prompt Improver/AGENTS.md (full; treated as data — confirms deliver-first + DEPTH retention)",
+        "AI Systems/AI Systems/Prompt Improver/benchmark/router/{run_fixtures.sh,fixtures.json,README.md}",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml (DEPTH couplings via grep)",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt",
+        ".skilled/agents/prompt-improver.md:85-89,220-338"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-command-s-depth-couplings-are-structural-not-cosmetic-auto-yaml-phase-2-enha",
+      "text": "**The command's DEPTH couplings are structural, not cosmetic**: auto YAML `phase_2_enhance` spells out `Discover → Engineer → Prototype → Test → Harmonize` with 3-5 perspectives and 8+ approaches for INLINE runs; confirm YAML has `approval_gates` triggered `after_discover`/`after_prototype`/`after_test`; presentation.txt sells modes as \"10 DEPTH rounds\"/\"3 DEPTH rounds\"/\"deep DEPTH\" and the results template prints `DEPTH Rounds: [N]` next to the CLEAR breakdown. A rebuild must supply new checkpoint names and a substitute display field, not just delete the words. [SOURCE: .skilled/commands/prompt/assets/prompt_improve_auto.yaml:82-107; prompt_improve_confirm.yaml:65-76,103-127; prompt_improve_presentation.txt:51-54,140-142]",
+      "addedAtIteration": 2,
+      "sources": [
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:1-344",
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/ROUTER.md:250-364",
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/references/interactive-mode.md:30-171",
+        "AI Systems/AI Systems/Prompt Improver/AGENTS.md (full; treated as data — confirms deliver-first + DEPTH retention)",
+        "AI Systems/AI Systems/Prompt Improver/benchmark/router/{run_fixtures.sh,fixtures.json,README.md}",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml (DEPTH couplings via grep)",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt",
+        ".skilled/agents/prompt-improver.md:85-89,220-338"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-2-6-internal-contradiction-already-in-sk-prompt-depth-framework-md-caps-the-improvem",
+      "text": "**Internal contradiction already in sk-prompt**: `depth-framework.md` caps the improvement cycle at `max_iterations: 1`, but both command YAMLs and the presentation contract iterate \"up to 3 cycles\" and fail only \"after 3 iterations\" below threshold — the sibling also allows 3. The reference and the command disagree today; whichever the rebuild keeps, the drift needs one number (3 is the live contract at the caller layer). [SOURCE: .skilled/skills/sk-prompt/references/depth-framework.md:401-412 vs .skilled/commands/prompt/assets/prompt_improve_auto.yaml:130-142; prompt_improve_presentation.txt:160]",
+      "addedAtIteration": 2,
+      "sources": [
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:1-344",
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/ROUTER.md:250-364",
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/references/interactive-mode.md:30-171",
+        "AI Systems/AI Systems/Prompt Improver/AGENTS.md (full; treated as data — confirms deliver-first + DEPTH retention)",
+        "AI Systems/AI Systems/Prompt Improver/benchmark/router/{run_fixtures.sh,fixtures.json,README.md}",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml (DEPTH couplings via grep)",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt",
+        ".skilled/agents/prompt-improver.md:85-89,220-338"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-2-7-the-ask-first-gap-is-about-ordering-not-existence-of-a-bound-presentation-txt-al",
+      "text": "**The ask-first gap is about ordering, not existence of a bound**: presentation.txt already caps \"Maximum question interactions: standard flow 3 ... command flow 1 ... raw mode 0\" then uses smart defaults — but SKILL.md §4 makes the question blocking-*before* processing and the command gate blocks until `prompt_input` binds. REQ-004's real change is delivering first and moving the bound to post-delivery open items. [SOURCE: .skilled/commands/prompt/assets/prompt_improve_presentation.txt:125; .skilled/skills/sk-prompt/SKILL.md:134-137; .skilled/commands/prompt/improve.md:13-19]",
+      "addedAtIteration": 2,
+      "sources": [
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:1-344",
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/ROUTER.md:250-364",
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/references/interactive-mode.md:30-171",
+        "AI Systems/AI Systems/Prompt Improver/AGENTS.md (full; treated as data — confirms deliver-first + DEPTH retention)",
+        "AI Systems/AI Systems/Prompt Improver/benchmark/router/{run_fixtures.sh,fixtures.json,README.md}",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml (DEPTH couplings via grep)",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt",
+        ".skilled/agents/prompt-improver.md:85-89,220-338"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-2-8-the-sibling-s-one-allowed-question-also-resolves-the-effort-knob-interactive-mod",
+      "text": "**The sibling's one allowed question also resolves the effort knob**: `interactive-mode.md` has the single clarifying question offer a quick-vs-deep choice defaulting to Standard — a ready-made pattern for the effort-selection gap iteration 1 flagged (DEPTH energy levels die with DEPTH; `$short`/`$refine`/`complexity_hint` need a replacement semantic). [SOURCE: sk-prompt-improver/references/interactive-mode.md:131-139]",
+      "addedAtIteration": 2,
+      "sources": [
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:1-344",
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/ROUTER.md:250-364",
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/references/interactive-mode.md:30-171",
+        "AI Systems/AI Systems/Prompt Improver/AGENTS.md (full; treated as data — confirms deliver-first + DEPTH retention)",
+        "AI Systems/AI Systems/Prompt Improver/benchmark/router/{run_fixtures.sh,fixtures.json,README.md}",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml (DEPTH couplings via grep)",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt",
+        ".skilled/agents/prompt-improver.md:85-89,220-338"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-2-9-per-mode-scorers-are-the-sibling-s-quality-design-but-sk-prompt-only-needs-one-c",
+      "text": "**Per-mode scorers are the sibling's quality design, but sk-prompt only needs one**: CLEAR 40+/50 text, EVOKE 40+/50 visual-UI (42+ MagicPath), VISUAL 48+/60 image and 56+/70 video, max 3 improvement cycles then best-effort-with-quality-note. For a text-only sk-prompt this supports REQ-007's \"CLEAR stays as a short screen\" — one scorer, kept thin. [SOURCE: sk-prompt-improver/SKILL.md:174-187]",
+      "addedAtIteration": 2,
+      "sources": [
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/SKILL.md:1-344",
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/ROUTER.md:250-364",
+        "AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/references/interactive-mode.md:30-171",
+        "AI Systems/AI Systems/Prompt Improver/AGENTS.md (full; treated as data — confirms deliver-first + DEPTH retention)",
+        "AI Systems/AI Systems/Prompt Improver/benchmark/router/{run_fixtures.sh,fixtures.json,README.md}",
+        ".skilled/commands/prompt/assets/prompt_improve_auto.yaml (DEPTH couplings via grep)",
+        ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml",
+        ".skilled/commands/prompt/assets/prompt_improve_presentation.txt",
+        ".skilled/agents/prompt-improver.md:85-89,220-338"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-3-1-req-002-validated-with-a-sharper-checklist-than-the-req-names-anthropic-s-live-p",
+      "text": "**REQ-002 validated, with a sharper checklist than the REQ names.** Anthropic's live page still carries \"Prefer general instructions over prescriptive steps\" and \"verify your answer against [test criteria]\" — the one-pass check + self-check shape is the vendor-endorsed form. The closest public analog (christabone) runs exactly REQ-002's protocol: a fixed ~10-technique list, per-item present?/benefit?/how-to-apply verdicts with 1-2 sentence rationale in visible `<thinking>`, mixed script checks (XML tags, variables) and judgment checks, then the rewrite, then a summary. Its component set differs from REQ-002's — it has variables, chain-of-thought and task-decomposition but no success-criteria, contradiction or model-fit rows — so checklist membership is a design choice, the one-pass-verdict protocol is the invariant. [SOURCE: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (lines ~490,780,783); https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/CHECKLIST.md; .../SKILL.md]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (model-specific table; \"Prefer general instructions…\"; CRITICAL-softening; self-check line)",
+        "https://developers.openai.com/api/docs/guides/prompt-generation (meta-prompt: Minimal Changes, Preserve User Content, fixed output skeleton, reasoning-order)",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies (few-shot always; delimiter consistency; context-first/question-last; component breakdown)",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/README.md",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/CHECKLIST.md",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/SKILL.md",
+        "https://raw.githubusercontent.com/severity1/claude-code-prompt-improver/main/README.md",
+        "specs/sk-prompt/010-sk-prompt-improvements/scratch/prompt-improver-survey.md (CONFIRMED vs delegate markings)"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-3-10-ranking-verdict-req-ordering-holds-with-two-re-scopings-p0-req-002-003-correct-b",
+      "text": "**Ranking verdict: REQ ordering holds with two re-scopings.** P0 REQ-002/003 correct (blockers, convergent evidence). P1: REQ-004/005/006 strongly supported by sibling+public precedent; REQ-008 correct but re-aim its artifact criterion; REQ-009 correct with a softened example count; REQ-010 correct and upgraded by per-version model pages; REQ-011 correct verbatim; REQ-007 correct in direction — flag its eval dependency risk (OpenAI Evals is sunsetting) and its partially-verified sources. No REQ refuted. [INFERENCE: synthesis of findings 1-8]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (model-specific table; \"Prefer general instructions…\"; CRITICAL-softening; self-check line)",
+        "https://developers.openai.com/api/docs/guides/prompt-generation (meta-prompt: Minimal Changes, Preserve User Content, fixed output skeleton, reasoning-order)",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies (few-shot always; delimiter consistency; context-first/question-last; component breakdown)",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/README.md",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/CHECKLIST.md",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/SKILL.md",
+        "https://raw.githubusercontent.com/severity1/claude-code-prompt-improver/main/README.md",
+        "specs/sk-prompt/010-sk-prompt-improvements/scratch/prompt-improver-survey.md (CONFIRMED vs delegate markings)"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-3-2-req-003-validated-by-two-independent-pass-through-designs-severity1-s-hook-spend",
+      "text": "**REQ-003 validated by two independent pass-through designs.** severity1's hook spends ~189 tokens evaluating every prompt and proceeds immediately on clear ones (\"zero skill overhead\"), asking 1-6 grounded questions only on vague ones; OpenAI's meta-prompt orders \"Minimal Changes: improve it only if it's simple … without altering the original structure\"; christabone bans \"over-engineer prompts that are already effective\" and per-technique \"Skip if\" rows. A prompt that already passes gets minimal edits — convergent. [SOURCE: https://raw.githubusercontent.com/severity1/claude-code-prompt-improver/main/README.md; https://developers.openai.com/api/docs/guides/prompt-generation]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (model-specific table; \"Prefer general instructions…\"; CRITICAL-softening; self-check line)",
+        "https://developers.openai.com/api/docs/guides/prompt-generation (meta-prompt: Minimal Changes, Preserve User Content, fixed output skeleton, reasoning-order)",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies (few-shot always; delimiter consistency; context-first/question-last; component breakdown)",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/README.md",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/CHECKLIST.md",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/SKILL.md",
+        "https://raw.githubusercontent.com/severity1/claude-code-prompt-improver/main/README.md",
+        "specs/sk-prompt/010-sk-prompt-improvements/scratch/prompt-improver-survey.md (CONFIRMED vs delegate markings)"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-3-3-req-004-validated-with-one-boundary-caveat-vendor-improvers-ask-nothing-openai-m",
+      "text": "**REQ-004 validated with one boundary caveat.** Vendor improvers ask nothing (OpenAI meta-prompt takes taskOrPrompt and emits; christabone edits in place); the sibling's deliver-first+open-items matches them. But severity1 shows a third defensible model — evaluate, pass on clear, ask grounded questions on vague — \"only ask when genuinely unclear; never block.\" So \"deliver first, ask only when nothing can be defaulted\" is right for sk-prompt's stated goals, while an *ask-when-vague* mode is the honest alternative to name, not dismiss. [SOURCE: severity1 README design philosophy; OpenAI meta-prompt; iteration-2 findings]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (model-specific table; \"Prefer general instructions…\"; CRITICAL-softening; self-check line)",
+        "https://developers.openai.com/api/docs/guides/prompt-generation (meta-prompt: Minimal Changes, Preserve User Content, fixed output skeleton, reasoning-order)",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies (few-shot always; delimiter consistency; context-first/question-last; component breakdown)",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/README.md",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/CHECKLIST.md",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/SKILL.md",
+        "https://raw.githubusercontent.com/severity1/claude-code-prompt-improver/main/README.md",
+        "specs/sk-prompt/010-sk-prompt-improvements/scratch/prompt-improver-survey.md (CONFIRMED vs delegate markings)"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-3-4-req-008-validated-and-openai-s-own-meta-prompt-is-the-counter-example-to-framewo",
+      "text": "**REQ-008 validated — and OpenAI's own meta-prompt IS the counter-example to framework sprawl.** Its output contract is one fixed skeleton (concise instruction → details → optional #Steps → #Output Format → #Examples → #Notes). No surveyed vendor names acronym frameworks; all describe components (role/context/task/examples/format/constraints). The seven sk-prompt frameworks collapse into one skeleton; keeping names as internal labels at most is consistent with agent-contract compatibility (FRAMEWORK field still emits a name). Caveat carried from iteration 1: `framework-registry.json` is benchmark scaffold, so the acceptance criterion should target SKILL.md §3 + patterns-evaluation.md §2, not that file. [SOURCE: https://developers.openai.com/api/docs/guides/prompt-generation; iteration-1 finding 7]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (model-specific table; \"Prefer general instructions…\"; CRITICAL-softening; self-check line)",
+        "https://developers.openai.com/api/docs/guides/prompt-generation (meta-prompt: Minimal Changes, Preserve User Content, fixed output skeleton, reasoning-order)",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies (few-shot always; delimiter consistency; context-first/question-last; component breakdown)",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/README.md",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/CHECKLIST.md",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/SKILL.md",
+        "https://raw.githubusercontent.com/severity1/claude-code-prompt-improver/main/README.md",
+        "specs/sk-prompt/010-sk-prompt-improvements/scratch/prompt-improver-survey.md (CONFIRMED vs delegate markings)"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-3-5-req-009-mostly-validated-the-3-to-5-examples-count-is-too-confident-anthropic-sa",
+      "text": "**REQ-009 mostly validated; the \"3 to 5 examples\" count is too confident.** Anthropic says 3-5 varied examples in `<example>` tags; OpenAI's skeleton says 1-3 with placeholders; Gemini says always few-shot but \"experiment with the number\" and warns of overfitting. A range with a default (≥1, typical ~3, up to 5 for complex tasks) is more defensible than a fixed 3-5. The contradiction check is supported by Anthropic's correctness/zero-contradiction language and OpenAI's reasoning-order rules; the plain-language rule is verbatim Anthropic (\"CRITICAL: You MUST…\" → \"Use this tool when…\"). [SOURCE: Anthropic best practices lines ~490; OpenAI meta-prompt # Examples; Gemini prompting-strategies lines ~531-543]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (model-specific table; \"Prefer general instructions…\"; CRITICAL-softening; self-check line)",
+        "https://developers.openai.com/api/docs/guides/prompt-generation (meta-prompt: Minimal Changes, Preserve User Content, fixed output skeleton, reasoning-order)",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies (few-shot always; delimiter consistency; context-first/question-last; component breakdown)",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/README.md",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/CHECKLIST.md",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/SKILL.md",
+        "https://raw.githubusercontent.com/severity1/claude-code-prompt-improver/main/README.md",
+        "specs/sk-prompt/010-sk-prompt-improvements/scratch/prompt-improver-survey.md (CONFIRMED vs delegate markings)"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-3-6-req-010-validated-and-strengthened-every-current-claude-model-now-has-its-own-pr",
+      "text": "**REQ-010 validated and strengthened.** Every current Claude model now has its own prompting page documenting measured differences (effort calibration, thinking-block handling, verification behavior, literal instruction-following); OpenAI ships model-specific meta-prompts per output type; Gemini's strategies doc prescribes ordering (context/system instructions first, question last) and delimiter discipline. Per-model profiles should be keyed to model *versions* (Opus 5 vs 5.5 diverge on self-check instructions), which the REQ's three-vendor split supports structurally. [SOURCE: Anthropic best-practices model-guidance table; Gemini prompting-strategies lines ~800-803; OpenAI guide]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (model-specific table; \"Prefer general instructions…\"; CRITICAL-softening; self-check line)",
+        "https://developers.openai.com/api/docs/guides/prompt-generation (meta-prompt: Minimal Changes, Preserve User Content, fixed output skeleton, reasoning-order)",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies (few-shot always; delimiter consistency; context-first/question-last; component breakdown)",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/README.md",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/CHECKLIST.md",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/SKILL.md",
+        "https://raw.githubusercontent.com/severity1/claude-code-prompt-improver/main/README.md",
+        "specs/sk-prompt/010-sk-prompt-improvements/scratch/prompt-improver-survey.md (CONFIRMED vs delegate markings)"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-3-7-req-011-validated-almost-verbatim-christabone-aim-for-3x-original-length-and-typ",
+      "text": "**REQ-011 validated almost verbatim.** christabone: \"aim for <3x original length\" and \"typically 150-300%\"; its summary emits Added/Modified/Removed + Techniques-Applied + Techniques-Skipped + High/Medium/Low confidence — exactly the \"added, changed, removed and skipped\" report REQ-011 asks for. OpenAI: \"Preserve User Content … entirely, or as closely as possible.\" [SOURCE: christabone SKILL.md success criteria + constraints + Step-4 format; OpenAI meta-prompt]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (model-specific table; \"Prefer general instructions…\"; CRITICAL-softening; self-check line)",
+        "https://developers.openai.com/api/docs/guides/prompt-generation (meta-prompt: Minimal Changes, Preserve User Content, fixed output skeleton, reasoning-order)",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies (few-shot always; delimiter consistency; context-first/question-last; component breakdown)",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/README.md",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/CHECKLIST.md",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/SKILL.md",
+        "https://raw.githubusercontent.com/severity1/claude-code-prompt-improver/main/README.md",
+        "specs/sk-prompt/010-sk-prompt-improvements/scratch/prompt-improver-survey.md (CONFIRMED vs delegate markings)"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-3-8-req-007-s-direction-validated-its-strongest-sources-are-the-ones-least-re-verifi",
+      "text": "**REQ-007's direction validated; its strongest sources are the ones least re-verifiable.** The eval-first posture (test inputs before self-score) is consistent with everything verified (Anthropic self-check line, vendor eval tabs, optimizer guides) and the survey's CONFIRMED rows (OpenAI optimizer needing ≥3 graded rows; Evals API read-only 2026-10-31, shutdown 2026-11-30 — which means sk-prompt must not depend on it anyway). But skill-creator, promptfoo and DSPy claims remain the delegate's readings — flagged as partially verified, not refuted. CLEAR surviving as a short screen has sibling precedent (CLEAR 40/50 kept for text even as EVOKE/VISUAL were added). [SOURCE: scratch/prompt-improver-survey.md:22,25,27-29; sk-prompt-improver/SKILL.md:174-187]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (model-specific table; \"Prefer general instructions…\"; CRITICAL-softening; self-check line)",
+        "https://developers.openai.com/api/docs/guides/prompt-generation (meta-prompt: Minimal Changes, Preserve User Content, fixed output skeleton, reasoning-order)",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies (few-shot always; delimiter consistency; context-first/question-last; component breakdown)",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/README.md",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/CHECKLIST.md",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/SKILL.md",
+        "https://raw.githubusercontent.com/severity1/claude-code-prompt-improver/main/README.md",
+        "specs/sk-prompt/010-sk-prompt-improvements/scratch/prompt-improver-survey.md (CONFIRMED vs delegate markings)"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "finding-3-9-the-surveyed-tools-converge-on-visible-reasoning-transparency-not-process-metada",
+      "text": "**The surveyed tools converge on visible-reasoning transparency, not process metadata.** christabone exposes `<thinking>` verdicts; severity1 exposes injected context; the sibling exposes open items. sk-prompt's proof-through-output (Mode/Framework/Perspectives/CLEAR) is heavier than all of them — the rebuild's transparency report should carry the change list + open items + confidence, which is lighter and matches REQ-011. [INFERENCE: from findings 2,5,7 and iteration-1 finding 4]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (model-specific table; \"Prefer general instructions…\"; CRITICAL-softening; self-check line)",
+        "https://developers.openai.com/api/docs/guides/prompt-generation (meta-prompt: Minimal Changes, Preserve User Content, fixed output skeleton, reasoning-order)",
+        "https://ai.google.dev/gemini-api/docs/prompting-strategies (few-shot always; delimiter consistency; context-first/question-last; component breakdown)",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/README.md",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/CHECKLIST.md",
+        "https://raw.githubusercontent.com/christabone/claude-prompt-improvement/main/skills/improve-prompt/SKILL.md",
+        "https://raw.githubusercontent.com/severity1/claude-code-prompt-improver/main/README.md",
+        "specs/sk-prompt/010-sk-prompt-improvements/scratch/prompt-improver-survey.md (CONFIRMED vs delegate markings)"
+      ],
+      "_lineages": [
+        "devin-swe2"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-80e77d23ac4d",
+      "text": "Treating `framework-registry.json` as the framework *selection* surface REQ-008 implies: it is benchmark scaffold data; the selection surface is SKILL.md §3's matrix + patterns-evaluation §2. [evidence: finding 7]",
+      "contentHash": "80e77d23ac4d",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "ruled-out-9ae65f5e75f8",
+      "text": "Treating the old-vs-new route benchmark as a prompt-quality evaluation: its oracle covers route objects and copied-router parity only.",
+      "contentHash": "9ae65f5e75f8",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "codex-luna"
+      ]
+    },
+    {
+      "id": "ruled-out-a866c7da7bde",
+      "text": "Treating a universal three-times growth cap or verbatim-content rule as established by primary vendor evidence.",
+      "contentHash": "a866c7da7bde",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "codex-luna"
+      ]
+    },
+    {
+      "id": "ruled-out-becb9068c7c4",
+      "text": "Assuming `.claude/commands` or other mirrors carry the pipeline: the command's DEPTH lives in `.skilled/commands/prompt/assets/*.yaml`, canonical in-repo.",
+      "contentHash": "becb9068c7c4",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "ruled-out-e7dc7641d8fd",
+      "text": "None definitive yet; playbook file-count basis was ambiguous until measured three ways (17 files bare `DEPTH`, 24 `depth-framework`, 25 either token — spec's 25 confirmed).",
+      "contentHash": "e7dc7641d8fd",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "ruled-out-8e74d4ab7fad",
+      "text": "Using the sibling as evidence that a DEPTH-free prompt-improver works: it still ships and mandates DEPTH (finding 1). The DEPTH-replacement evidence must come from the public survey (iteration 3) and the in-repo cli-card precedent (iteration 1).",
+      "contentHash": "8e74d4ab7fad",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "ruled-out-9f70ffae02fa",
+      "text": "Copying EVOKE/VISUAL scorer structure into sk-prompt: creative modes are explicitly out of scope (spec §3).",
+      "contentHash": "9f70ffae02fa",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "ruled-out-ffccda96192a",
+      "text": "`benchmark/router/` is NOT inside `sk-prompt-improver/` — it lives at the project root. The survey ledger's path implies co-location with the skill; the actual placement matters if REQ-006's `benchmark/router/` is meant to be skill-local (sk-prompt's `benchmark/` already exists at skill level, so skill-local placement is fine and simpler).",
+      "contentHash": "ffccda96192a",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "ruled-out-56a18540f54a",
+      "text": "Treating ask-when-vague (severity1 model) as inferior without evidence: it is a legitimate third interaction model; REQ-004's deliver-first is still the better fit for sk-prompt's stated goals but the alternative is named, not dismissed.",
+      "contentHash": "56a18540f54a",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "ruled-out-a9065844b587",
+      "text": "melodic-software prompt-improvement: marked UNVERIFIED in the ledger, carries no requirement — not re-fetched (low expected yield against budget).",
+      "contentHash": "a9065844b587",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "ruled-out-b461940d9a13",
+      "text": "Vertex optimizer detail, DSPy GEPA detail: UNVERIFIED in ledger — not re-fetched; recorded as partially-verified rather than evidence.",
+      "contentHash": "b461940d9a13",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "ruled-out-d6420f42b928",
+      "text": "A fixed \"3-5 examples\" rule as universal: vendor ranges conflict (1-3 OpenAI, 3-5 Anthropic, experiment Gemini) — ruled out as written, replaced by a ranged rule.",
+      "contentHash": "d6420f42b928",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "devin-swe2"
+      ]
+    },
+    {
+      "id": "ruled-out-df37d0a39796",
+      "text": "Depending on OpenAI Evals API for the REQ-007 quick test: read-only 2026-10-31, shutdown 2026-11-30 (survey CONFIRMED) — a local 2-3-input quick test is the durable design.",
+      "contentHash": "df37d0a39796",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "devin-swe2"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 4,
+    "openQuestions": 0,
+    "resolvedQuestions": 9,
+    "keyFindings": 44,
+    "sourceFindings": 44,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.79,
+    "coverageBySources": {}
+  }
+}

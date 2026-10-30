@@ -9,7 +9,7 @@ trigger_phrases:
   - "markdown delivery standards"
 importance_tier: normal
 contextType: implementation
-version: 2.3.0.3
+version: 2.3.1.0
 ---
 
 # Format Guide -- Markdown
@@ -112,7 +112,7 @@ Mode: $improve | Complexity: Medium | Framework: RCAF
 ...
 
 **Processing Applied:**
-DEPTH rounds completed
+Checklist pass completed (effort: standard)
 ```
 
 ---

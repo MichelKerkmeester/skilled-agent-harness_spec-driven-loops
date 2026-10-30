@@ -1,7 +1,7 @@
 ---
 title: "SP-027 -- Format mode delivery"
 description: "This scenario validates format-mode output delivery for `SP-027`. It focuses on `$json`, `$yaml`, and markdown mode producing format-correct structures."
-version: 2.3.1.0
+version: 2.3.2.0
 ---
 
 # SP-027 -- Format mode delivery
@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `SP-027` and confirm the
 - Objective: Confirm `$json`, `$yaml`, and default markdown deliver format-specific structures.
 - Real user request: `$json improve my API request prompt — return the enhanced prompt structured as JSON, not markdown.`
 - Prompt: `$json improve my API request prompt; verify the enhanced prompt is valid JSON with format-specific keys, not markdown sections.`
-- Expected execution process: sk-prompt detects `$json`, applies standard DEPTH/CLEAR, loads applicable format guidance when requested, and delivers JSON structure.
+- Expected execution process: sk-prompt detects `$json`, applies the standard checklist and CLEAR, loads applicable format guidance when requested, and delivers JSON structure.
 - Expected signals: Output parses as JSON; no markdown H2/H3 section wrappers around the enhanced prompt; CLEAR metadata is still present.
 - Desired user-visible outcome: Valid JSON enhanced prompt plus transparency report.
 - Pass/fail: PASS if the enhanced prompt is valid JSON and format-specific; FAIL if markdown is returned as the primary prompt body.

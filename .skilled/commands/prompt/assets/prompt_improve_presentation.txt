@@ -48,10 +48,10 @@ Q0. Prompt Input (if not provided in command):
 
 Q1. Enhancement Mode (if no $mode prefix detected):
     A) Auto-detect from content (Recommended)
-    B) $improve — Standard enhancement (10 DEPTH rounds)
-    C) $short — Quick refinement (3 DEPTH rounds)
-    D) $refine — Maximum optimization (deep DEPTH)
-    E) $raw — Skip DEPTH, format only
+    B) $improve — Standard enhancement (all ten checklist rows)
+    C) $short — Quick refinement (four checklist rows)
+    D) $refine — Maximum optimization (all rows plus the quick test)
+    E) $raw — No checklist, format only
 
 Q2. Save Location (required):
     A) Save to existing spec folder: [list if found]
@@ -61,7 +61,7 @@ Q2. Save Location (required):
 
 Q3. Execution Mode (if no :auto/:confirm suffix):
     A) Autonomous — run end-to-end (Recommended)
-    B) Interactive — confirm at each DEPTH phase
+    B) Interactive — confirm after the checklist, the draft and the screen
 
 Q4. Dispatch Mode (if not auto-selected):
     A) Inline skill — direct, in-context (default)
@@ -88,28 +88,13 @@ STATUS=FAIL ERROR="prompt_input required and not provided"
 
 Confirm-mode pauses reuse these templates.
 
-Framework choice (complexity 5-6):
+Checklist checkpoint (confirm mode, after the checklist pass):
 
 ```
-Framework Choice — Complexity [5-6]/10
+Checklist — [n] present, [n] absent, [n] not needed
+Shape: [default skeleton | preset name and reason]
 
-I can optimise your prompt using different frameworks:
-- Option A: RCAF — 92% success | General tasks, clarity focus | Baseline tokens
-- Option B: COSTAR — 94% success | Content creation, audience-specific | +5% tokens
-- Option C: TIDD-EC — 93% success | Precision-critical tasks | +8% tokens
-
-Your choice? (A, B, or C)
-```
-
-Simplification choice (complexity 7+):
-
-```
-High Complexity Detected — Level [X]/10
-
-- Option A: Streamline — simplify to core essentials, clearer focused result
-- Option B: Comprehensive — keep all complexity, detailed but longer
-
-Your preference? (A or B)
+Continue to the draft, or revise the checklist? (continue / revise)
 ```
 
 Error recovery:
@@ -117,12 +102,12 @@ Error recovery:
 | Situation | Response |
 |---|---|
 | No prompt provided | "I need a prompt or request to enhance. What would you like me to improve?" |
-| Ambiguous intent | "Are you looking to improve an existing prompt, or create a new one from scratch?" |
+| Ambiguous intent | Improve the existing prompt by default and list "treated as an improvement, not a new prompt" as open item 1 |
 | Invalid command | "Available modes: $text, $improve, $refine, $short, $json, $yaml, $raw" |
-| Pasted content, no context | "What should I do with this? Improve clarity, restructure, change format, or full enhancement?" |
-| Conflicting signals | "You mentioned both [A] and [B]. Which mode should I use?" |
+| Pasted content, no context | Run a standard improvement and list the assumed goal as open item 1 |
+| Two mode commands | "You used both [$a] and [$b]. Which mode do you want?" |
 
-Maximum question interactions: standard flow 3 (welcome + framework/simplification + format); command flow 1 (format question); raw mode 0. After the maximum, use smart defaults and flag the assumptions in the output.
+Questions: at most one, and only when there is no prompt and no task or two mode commands conflict; raw mode asks none. Every other gap gets a stated default, listed as a numbered open item after the prompt.
 
 ## 3. Results Display
 
@@ -134,13 +119,15 @@ Enhanced Prompt ([FRAMEWORK] Framework):
 [Enhanced prompt, formatted per resolved mode: markdown default, JSON, or YAML]
 ─────────────────────────────────
 Transparency Report:
-  Framework: [SELECTED]
-  Mode: $[MODE] | Energy: [LEVEL]
+  Framework: [default skeleton | preset name]
+  Mode: $[MODE] | Effort: [quick|standard|thorough]
   Dispatch: [INLINE|AGENT]
-  DEPTH Rounds: [N]
-  Perspectives: [COUNT] ([LIST])
+  Checklist: [N present, N added, N not needed]
+  Quick test: [ran: summary | NOT RUN]
   CLEAR Score: [TOTAL]/50
     C: [X]/10 | L: [X]/10 | E: [X]/15 | A: [X]/10 | R: [X]/5
+  Open items: [numbered list or None]
+  Changes: Added [..] | Changed [..] | Removed [..] | Skipped [..]
 
 [If saved] Saved to: [path]
 

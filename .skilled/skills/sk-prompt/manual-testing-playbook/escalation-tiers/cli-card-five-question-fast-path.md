@@ -1,7 +1,7 @@
 ---
 title: "SP-023 -- Inline fast path: low-complexity prompts are not escalated"
 description: "This scenario validates the inline fast path for `SP-023`. It focuses on passing routine prompts inline through the CLEAR check without escalating to `@prompt-improver`."
-version: 2.3.0.7
+version: 2.3.1.0
 ---
 
 # SP-023 -- Inline fast path: low-complexity prompts are not escalated
@@ -63,7 +63,7 @@ Capture the five-dimension CLEAR result and routing decision.
 ### Failure Triage
 
 1. Inspect `references/patterns-evaluation.md` for the CLEAR dimension definitions and floors.
-2. Inspect `SKILL.md` §7 for when `@prompt-improver` escalation applies (Quick vs Standard DEPTH energy).
+2. Inspect `SKILL.md` §7 for when `@prompt-improver` escalation applies (quick vs standard effort).
 3. Re-run with a simpler prompt and no compliance, policy, or multi-stakeholder language.
 
 ### Optional Supplemental Checks
@@ -86,7 +86,7 @@ Verify the delivered prompt includes role, context, constraints, output, and ver
 | File | Role |
 |---|---|
 | `../../references/patterns-evaluation.md` | CLEAR five-dimension definitions and floors |
-| `../../references/depth-framework.md` | Quick vs Standard DEPTH energy that distinguishes inline from escalated handling |
+| `../../references/improvement-checklist.md` | Quick vs standard effort that separates inline from escalated handling |
 
 ---
 

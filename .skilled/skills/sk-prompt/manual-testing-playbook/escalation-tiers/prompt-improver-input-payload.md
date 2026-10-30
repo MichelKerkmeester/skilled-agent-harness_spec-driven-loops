@@ -1,7 +1,7 @@
 ---
 title: "SP-025 -- @prompt-improver input payload"
 description: "This scenario validates the `@prompt-improver` input contract for `SP-025`. It focuses on required `raw_task` plus four optional fields."
-version: 2.3.0.7
+version: 2.3.1.0
 ---
 
 # SP-025 -- @prompt-improver input payload
@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `SP-025` and confirm the
 - Objective: Confirm `@prompt-improver` accepts `raw_task` and the four optional fields.
 - Real user request: `Use @prompt-improver to enhance my prompt with task_type=review, target_cli=opencode, complexity_hint=8, and constraints around safety.`
 - Prompt: `As a CLI orchestrator, dispatch @prompt-improver with raw_task plus task_type=review, target_cli=opencode, complexity_hint=8, and safety constraints. Verify the agent accepts the payload, preserves constraints, and returns the structured output block.`
-- Expected execution process: The orchestrator builds the payload, `@prompt-improver` consumes it, applies DEPTH/CLEAR, and carries the constraints into `ENHANCED_PROMPT` or `ESCALATION_NOTES`.
+- Expected execution process: The orchestrator builds the payload, `@prompt-improver` consumes it, applies the checklist and CLEAR, and carries the constraints into `ENHANCED_PROMPT` or `ESCALATION_NOTES`.
 - Expected signals: Payload fields echoed or reflected; structured output block present.
 - Desired user-visible outcome: Enhanced prompt that visibly respects safety constraints.
 - Pass/fail: PASS if all payload fields are accepted and constraints are preserved; FAIL if optional fields are ignored without explanation.
@@ -87,7 +87,7 @@ Verify `target_cli=opencode` influences output wording toward OpenCode-compatibl
 | File | Role |
 |---|---|
 | `../../SKILL.md` | §7 `@prompt-improver` contract -- the escalation surface that dispatches the payload |
-| `../../references/depth-framework.md` | DEPTH processing applied after payload acceptance |
+| `../../references/improvement-checklist.md` | Checklist pass applied after payload acceptance |
 
 ---
 

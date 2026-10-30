@@ -33,7 +33,7 @@
     "scoring",
     "enhancement",
     "clear",
-    "depth",
+    "improvement-checklist",
     "framework-selection",
     "prompt-engineering"
   ],
@@ -46,7 +46,7 @@
     "rewrite instructions",
     "select prompt framework",
     "score prompt quality",
-    "depth thinking pass",
+    "one-pass prompt checklist",
     "build a prompt template",
     "design-generation brief",
     "design generation brief",
@@ -61,7 +61,7 @@
       "clear score",
       "improve this prompt",
       "prompt engineering framework",
-      "depth thinking workflow",
+      "prompt improvement checklist",
       "score prompt quality",
       "sk-prompt",
       "prompt-engineering",
@@ -73,8 +73,7 @@
       "costar",
       "crispe",
       "tidd-ec",
-      "craft",
-      "ricce"
+      "craft"
     ],
     "key_topics": [
       "prompt",
@@ -85,7 +84,7 @@
       "prompt engineering",
       "framework selection",
       "clear scoring",
-      "depth methodology",
+      "early exit for good prompts",
       "structured prompting",
       "format modes",
       "escalation tiers"
@@ -99,7 +98,7 @@
     ],
     "key_files": [
       ".skilled/skills/sk-prompt/SKILL.md",
-      ".skilled/skills/sk-prompt/references/depth-framework.md",
+      ".skilled/skills/sk-prompt/references/improvement-checklist.md",
       ".skilled/skills/sk-prompt/references/patterns-evaluation.md",
       ".skilled/skills/sk-prompt/assets/framework-registry.json",
       ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
@@ -114,9 +113,9 @@
         "source": "derived"
       },
       {
-        "name": "DEPTH framework",
+        "name": "Improvement checklist",
         "kind": "reference",
-        "path": ".skilled/skills/sk-prompt/references/depth-framework.md",
+        "path": ".skilled/skills/sk-prompt/references/improvement-checklist.md",
         "source": "derived"
       },
       {
@@ -138,11 +137,11 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "sk-prompt is the single advisor identity for prompt engineering: it transforms a request into a structured, scored AI prompt through automatic selection among 7 frameworks, DEPTH thinking, and a CLEAR quality score, and owns the canonical CLI prompt-quality card that every cli-* executor delegates to. The /prompt:improve command and the @prompt-improver agent are its two entry points.",
+    "causal_summary": "sk-prompt is the single advisor identity for prompt engineering: it transforms a request into a structured, scored AI prompt through a one-pass checklist, a component skeleton with optional framework presets, and CLEAR screening, and owns the canonical CLI prompt-quality card that every cli-* executor delegates to. The /prompt:improve command and the @prompt-improver agent are its two entry points.",
     "source_docs": [
       "SKILL.md",
       "README.md",
-      "references/depth-framework.md",
+      "references/improvement-checklist.md",
       "references/patterns-evaluation.md"
     ],
     "created_at": "2026-04-13T00:00:00Z",

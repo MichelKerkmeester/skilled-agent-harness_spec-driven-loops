@@ -1,7 +1,7 @@
 ---
 title: "SP-018 -- CLEAR dimension rationale included"
 description: "This scenario validates per-dimension CLEAR rationale for `SP-018`. It focuses on explaining why each score was assigned."
-version: 2.3.0.5
+version: 2.3.1.0
 ---
 
 # SP-018 -- CLEAR dimension rationale included
@@ -87,7 +87,7 @@ Verify rationale points to the actual prompt content, not abstract CLEAR definit
 | File | Role |
 |---|---|
 | `../../references/patterns-evaluation.md` | CLEAR scoring rubrics and dimension criteria |
-| `../../references/depth-framework.md` | Transparency model for user-visible scoring evidence |
+| `../../references/improvement-checklist.md` | Reason written before each score |
 
 ---
 

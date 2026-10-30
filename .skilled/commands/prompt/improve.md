@@ -1,5 +1,5 @@
 ---
-description: "Improve or create AI prompts via sk-prompt: frameworks, DEPTH, CLEAR scoring. Modes :auto, :confirm."
+description: "Improve or create AI prompts via sk-prompt: one-pass checklist, CLEAR screening. Modes :auto, :confirm."
 argument-hint: "<prompt_or_topic> [:auto|:confirm] [$text|$improve|$refine|$short|$json|$yaml|$raw] [--agent]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
@@ -30,7 +30,7 @@ If any blocking phase was skipped, stop, report the skipped phase through the pr
 
 ## 1. ROUTER CONTRACT
 
-This Markdown owns the blocking input gate, input binding, and execution-target selection. Agent dispatch (`@prompt-improver`), the DEPTH pipeline, CLEAR scoring, and prompt-file saving belong to the workflow YAML assets.
+This Markdown owns the blocking input gate, input binding, and execution-target selection. Agent dispatch (`@prompt-improver`), the one-pass checklist, CLEAR scoring, and prompt-file saving belong to the workflow YAML assets.
 
 Load the presentation contract before showing any startup question, checkpoint, dashboard, success output, failure output, or next-step prompt.
 
@@ -81,9 +81,9 @@ The following content lives only in `.skilled/commands/prompt/assets/prompt_impr
 
 The YAML workflow verifies the orchestrating agent and resolves setup inputs.
 It loads the `sk-prompt` skill.
-It runs the DEPTH pipeline for the resolved enhancement mode, either inline or dispatched to `@prompt-improver` when `--agent` or high complexity is resolved.
+It runs the one-pass checklist at the resolved effort level, either inline or dispatched to `@prompt-improver` when `--agent` or high complexity is resolved.
 It scores the result with CLEAR.
 It delivers the enhanced prompt with a transparency report.
 It optionally saves the prompt into a spec folder's `prompts/` directory.
-The confirm workflow pauses at the Discover phase, the Prototype phase and the Test phase.
-The auto workflow runs end to end and stops only if CLEAR stays below threshold after three iterations.
+The confirm workflow pauses after the checklist pass, after the draft and after the CLEAR screen.
+The auto workflow runs end to end; a prompt still below threshold after three repair cycles is delivered as the best version with a note.

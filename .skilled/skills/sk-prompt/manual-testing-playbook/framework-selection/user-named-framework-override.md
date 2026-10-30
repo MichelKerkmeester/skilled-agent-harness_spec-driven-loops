@@ -1,7 +1,7 @@
 ---
 title: "SP-020 -- User-named framework override wins"
 description: "This scenario validates explicit framework override handling for `SP-020`. It focuses on honoring a user-named framework over automatic routing."
-version: 2.3.3.0
+version: 2.3.4.0
 ---
 
 # SP-020 -- User-named framework override wins
@@ -88,7 +88,7 @@ Verify the enhanced prompt includes CRAFT elements: Context, Role, Action, Forma
 | File | Role |
 |---|---|
 | `../../references/patterns-evaluation.md` | CRAFT definition and framework matrix |
-| `../../references/depth-framework.md` | DEPTH phases applying selected framework |
+| `../../references/improvement-checklist.md` | One-pass checklist applied to the named preset |
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "SP-006 -- ON_DEMAND keyword loads full RESOURCE_MAP"
 description: "This scenario validates ON_DEMAND_KEYWORDS for `SP-006`. It focuses on confirming keywords like \"deep dive\", \"all frameworks\", \"format guide\" trigger loading every RESOURCE_MAP entry."
-version: 2.3.2.0
+version: 2.3.3.0
 ---
 
 # SP-006 -- ON_DEMAND keyword loads full RESOURCE_MAP
@@ -28,7 +28,7 @@ Operators run the exact prompt and command sequence for `SP-006` and confirm the
 - Real user request: `Give me a deep dive on all frameworks — I want to compare RCAF vs COSTAR vs TIDD-EC for an executive briefing.`
 - Prompt: `Run sk-prompt on my deep-dive framework comparison; verify ON_DEMAND loads every RESOURCE_MAP value, not only the scored intent.`
 - Expected execution process: sk-prompt scores intents, loads the default resource, then detects the ON_DEMAND keyword and unions every RESOURCE_MAP entry into the loaded set, deduplicated.
-- Expected signals: Loaded list includes BOTH `references/depth-framework.md` AND `references/patterns-evaluation.md` regardless of which intent scored higher.
+- Expected signals: Loaded list includes BOTH `references/improvement-checklist.md` AND `references/patterns-evaluation.md` regardless of which intent scored higher.
 - Desired user-visible outcome: Routing trace listing both reference files, with a note that ON_DEMAND keyword "deep dive" or "all frameworks" was matched.
 - Pass/fail: PASS if both reference files appear in the loaded list; FAIL if only one loads.
 
@@ -49,7 +49,7 @@ Run sk-prompt on my deep-dive framework comparison; verify ON_DEMAND loads every
 
 ### Expected
 
-Routing trace lists both `references/depth-framework.md` and `references/patterns-evaluation.md` even though FRAMEWORK is the higher-scoring intent for this input.
+Routing trace lists both `references/improvement-checklist.md` and `references/patterns-evaluation.md` even though FRAMEWORK is the higher-scoring intent for this input.
 
 ### Evidence
 
@@ -58,7 +58,7 @@ Routing trace; ON_DEMAND keyword match log; full resource list.
 ### Pass / Fail
 
 - **Pass**: Both references appear in loaded list; ON_DEMAND match logged.
-- **Fail**: Only the FRAMEWORK-mapped resource loads (depth-framework.md missing from trace).
+- **Fail**: Only the FRAMEWORK-mapped resource loads (improvement-checklist.md missing from trace).
 
 ### Failure Triage
 
@@ -85,7 +85,7 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 
 | File | Role |
 |---|---|
-| `../../references/depth-framework.md` | Always-load on ON_DEMAND |
+| `../../references/improvement-checklist.md` | Default resource loaded on ON_DEMAND |
 | `../../references/patterns-evaluation.md` | Always-load on ON_DEMAND |
 
 ---

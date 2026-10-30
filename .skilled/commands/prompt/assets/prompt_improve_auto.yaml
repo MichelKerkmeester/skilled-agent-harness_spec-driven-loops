@@ -3,7 +3,7 @@
 # ─────────────────────────────────────────────────────────────────
 role: Expert prompt engineer running the sk-prompt improvement pipeline autonomously
 purpose: Transform a prompt or topic into a structured, CLEAR-scored prompt without pausing
-action: Confirm bound inputs -> load sk-prompt -> run DEPTH -> score with CLEAR -> deliver -> optionally save
+action: Confirm bound inputs -> load sk-prompt -> run the one-pass checklist -> score with CLEAR -> deliver -> optionally save
 skill_owner: ".skilled/skills/sk-prompt/"
 
 # ─────────────────────────────────────────────────────────────────
@@ -39,10 +39,10 @@ mutation_boundaries:
 # UPSTREAM ASSETS
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
-  skill: ".skilled/skills/sk-prompt/SKILL.md"   # the DEPTH/CLEAR engine
+  skill: ".skilled/skills/sk-prompt/SKILL.md"   # the checklist/CLEAR engine
   agent: "prompt-improver"                                       # fresh-context dispatch target for dispatch_mode AGENT
   conditional_references:
-    depth: "references/depth-framework.md + references/patterns-evaluation.md"   # for text/improve/refine/short
+    checklist: "references/improvement-checklist.md + references/patterns-evaluation.md"   # for text/improve/refine/short
     json: "assets/format-guide-json.md"                                          # additionally for json mode
     yaml: "assets/format-guide-yaml.md"                                          # additionally for yaml mode
 
@@ -51,7 +51,7 @@ upstream_assets:
 # ─────────────────────────────────────────────────────────────────
 inputs:
   prompt_input: "The prompt or topic to improve. Required; never inferred from context, files, or history."
-  enhancement_mode: "auto|text|improve|refine|short|json|yaml|raw — selects DEPTH depth + output format. Default auto (detect from content)."
+  enhancement_mode: "auto|text|improve|refine|short|json|yaml|raw — selects effort (short quick, refine thorough, else standard) + output format. Default auto (detect from content)."
   save_choice: "A existing spec folder | B new spec folder | C specific path | D skip. Default D."
   save_path: "Resolved save target when save_choice is A/B/C; unused for D."
   dispatch_mode: "INLINE (in-context) or AGENT (fresh @prompt-improver). Default AGENT when --agent or complexity >= 7/10, else INLINE."
@@ -74,7 +74,7 @@ workflow:
     purpose: Load the sk-prompt engine and the references this mode needs
     activities:
       - "Read upstream_assets.skill."
-      - "Load conditional_references per enhancement_mode (depth set for text/improve/refine/short; json/yaml guides added for those formats; none for raw)."
+      - "Load conditional_references per enhancement_mode (checklist set for text/improve/refine/short; json/yaml guides added for those formats; none for raw)."
     on_missing_skill:
       status: 'STATUS=FAIL ERROR="sk-prompt skill not found at .skilled/skills/sk-prompt/SKILL.md"'
     validation: skill_loaded
@@ -82,20 +82,23 @@ workflow:
   phase_2_enhance:
     purpose: Produce the enhanced prompt via the resolved dispatch path
     activities:
-      - "dispatch_mode AGENT: dispatch Task(subagent_type=prompt-improver) with raw_task, task_type, complexity_hint, constraints; capture FRAMEWORK, CLEAR_SCORE, RATIONALE, ENHANCED_PROMPT, ESCALATION_NOTES."
-      - "dispatch_mode INLINE, standard/deep (text/improve/refine/auto): Discover (3-5 perspectives, audit assumptions, select framework — RCAF default 92%) -> Engineer (8+ approaches, constraint reversal) -> Prototype (build with framework) -> Test (CLEAR, iterate) -> Harmonize (polish)."
-      - "dispatch_mode INLINE, quick (short): Discover (1-2 perspectives) -> Prototype -> Harmonize."
-      - "dispatch_mode INLINE, raw: pass through with no DEPTH; format only."
+      - "dispatch_mode AGENT: dispatch Task(subagent_type=prompt-improver) with raw_task, task_type, complexity_hint, constraints; capture FRAMEWORK, CLEAR_SCORE, TEST, CHANGES, RATIONALE, ENHANCED_PROMPT, ESCALATION_NOTES."
+      - "dispatch_mode INLINE, standard or thorough (text/improve/refine/auto): run the ten-row checklist (each row present, absent or not needed with a reason); exit early if the prompt already passes; write from the default skeleton or a named preset; self-check against the success criteria; thorough also runs the quick test."
+      - "dispatch_mode INLINE, quick (short): checklist rows 1, 3, 4 and 6 only; no quick test."
+      - "dispatch_mode INLINE, raw: pass through with no checklist; format only."
     outputs:
-      - framework: "selected framework name"
+      - framework: "default skeleton or preset name"
       - enhanced_prompt: "formatted per enhancement_mode (markdown default, json, or yaml)"
+      - test: "quick test result or NOT RUN"
+      - changes: "Added, Changed, Removed and Skipped report"
     validation: enhancement_produced
 
   phase_3_score:
     purpose: Score the enhanced prompt and iterate to threshold
     activities:
       - "Score with CLEAR: C/10 (floor 7), L/10 (floor 7), E/15 (floor 10), A/10 (floor 7), R/5 (floor 3)."
-      - "Pass at 40+/50 with all floors met; revise (return to Prototype, max 3 cycles) at 30-39; restart from Engineer below 30."
+      - "Write the reason before each dimension score."
+      - "Pass at 40+/50 with all floors met; below that, revise the weakest dimension, up to 3 repair cycles, then deliver the best version with a note."
       - "raw mode skips scoring."
     outputs:
       - clear_score: "total/50 plus per-dimension breakdown"
@@ -104,7 +107,7 @@ workflow:
   phase_4_deliver:
     purpose: Present the enhanced prompt and its transparency report
     activities:
-      - "Render presentation.Results.Success with framework, mode, dispatch, DEPTH rounds, perspectives, and the CLEAR breakdown."
+      - "Render presentation.Results.Success with framework or preset, mode, dispatch, effort, the checklist result, the quick test result or NOT RUN, the CLEAR breakdown, open items and the change report."
     validation: delivered
 
   phase_5_save:
@@ -116,7 +119,7 @@ workflow:
       - "D: write nothing."
     file_frontmatter:
       title: "[Descriptive title]"
-      framework: "[RCAF|COSTAR|CRAFT|...]"
+      framework: "[default skeleton|RCAF|COSTAR|...]"
       mode: "[MODE used]"
       clear_score: "[N]/50"
       created: "[YYYY-MM-DD]"
@@ -128,10 +131,10 @@ workflow:
 quality_gates:
   clear_threshold:
     location: "After phase_3_score"
-    blocking: hard
+    blocking: soft
     checks:
       - "CLEAR total >= 40/50 with every dimension at or above its floor (skipped in raw mode)"
-    on_fail: 'After 3 iterations still below threshold: STATUS=FAIL ERROR="CLEAR score below threshold after 3 iterations: [SCORE]/50"'
+    on_fail: 'After 3 repair cycles still below threshold: deliver the best version with STATUS=OK, the score and a note naming the weakest dimension'
 
 # ─────────────────────────────────────────────────────────────────
 # ERROR RECOVERY
@@ -139,7 +142,7 @@ quality_gates:
 error_recovery:
   skill_missing: "Emit the phase_1 skill-missing STATUS=FAIL and stop."
   prompt_missing_under_auto: "Render presentation.AutoFailFast; STATUS=FAIL."
-  clear_below_threshold: "Iterate up to 3 cycles from Prototype, then fail with the score."
+  clear_below_threshold: "Revise up to 3 repair cycles, then deliver the best version with the score and a note."
   save_path_escapes_tree: "Reject and stop; tell the user to move the file manually after an in-tree save."
 
 # ─────────────────────────────────────────────────────────────────
@@ -163,4 +166,5 @@ rules:
 output: |
   STATUS=OK SCORE=[N]/50 FRAMEWORK=[NAME] when delivered without saving.
   STATUS=OK SCORE=[N]/50 FRAMEWORK=[NAME] SAVED=[path] when the prompt was saved.
-  STATUS=FAIL ERROR="..." on skill-missing, a missing prompt under :auto, or sub-threshold CLEAR.
+  STATUS=OK SCORE=[N]/50 FRAMEWORK=[NAME] NOTE="below threshold after 3 repair cycles" when CLEAR never reached 40/50.
+  STATUS=FAIL ERROR="..." on skill-missing or a missing prompt under :auto.

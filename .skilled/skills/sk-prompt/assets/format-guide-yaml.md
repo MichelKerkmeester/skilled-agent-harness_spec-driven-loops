@@ -9,7 +9,7 @@ trigger_phrases:
   - "configuration-style prompt template"
 importance_tier: normal
 contextType: implementation
-version: 2.3.0.3
+version: 2.3.1.0
 ---
 
 # Format Guide -- YAML
@@ -426,13 +426,13 @@ task_1:
 
 ### Performance Metrics
 
-| Metric             | Target | Average |
-| ------------------ | ------ | ------- |
-| Parse Success Rate | >99%   | 99.5%   |
-| Token Overhead     | <7%    | 5.2%    |
-| Base CLEAR Score   | >40/50 | 42/50   |
-| CLEAR with DEPTH   | >45/50 | 47/50   |
-| Human Readability  | High   | 9/10    |
+| Metric                | Target | Average |
+| --------------------- | ------ | ------- |
+| Parse Success Rate    | >99%   | 99.5%   |
+| Token Overhead        | <7%    | 5.2%    |
+| Base CLEAR Score      | >40/50 | 42/50   |
+| CLEAR after checklist | >45/50 | 47/50   |
+| Human Readability     | High   | 9/10    |
 
 ---
 

@@ -1,15 +1,15 @@
 ---
 name: sk-prompt
-description: "Prompt engineering: transforms a request into a structured, scored AI prompt via 7 frameworks, DEPTH thinking and CLEAR scoring."
+description: "Prompt engineering: turns a request into a structured, checked AI prompt in one pass, with a component skeleton and CLEAR screening."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 3.0.11.0
+version: 4.0.0.0
 ---
 
-<!-- Keywords: prompt-engineering, prompt-improvement, improve prompt, improve this prompt, improve the prompt, enhance prompt, prompt improvement, DEPTH, RICCE, CLEAR-scoring, framework-selection, RCAF, COSTAR, CRAFT, TIDD-EC, CRISPE -->
+<!-- Keywords: prompt-engineering, prompt-improvement, improve prompt, improve this prompt, improve the prompt, enhance prompt, prompt improvement, improvement-checklist, early-exit, CLEAR-scoring, framework-selection, RCAF, COSTAR, CRAFT, TIDD-EC, CRISPE -->
 
-# Prompt Engineering Specialist - Multi-Framework Enhancement with DEPTH Processing
+# Prompt Engineering Specialist - One-Pass Prompt Improvement
 
-Transforms vague or basic inputs into highly effective, structured AI prompts. Provides 7 text frameworks with automatic framework selection and CLEAR quality scoring.
+Transforms vague or basic inputs into structured AI prompts in one pass: a ten-row checklist, one component skeleton with optional framework presets, and CLEAR screening.
 
 **Core Principle**: Clarity, logic, expression, and reliability through structured methodology.
 
@@ -28,14 +28,14 @@ Transforms vague or basic inputs into highly effective, structured AI prompts. P
 
 **Keyword Triggers**:
 - `$improve`, `$text`, `$short`, `$refine`, `$json`, `$yaml`
-- `$raw` (skip DEPTH, fast pass-through)
+- `$raw` (no checklist pass, fast pass-through)
 - "improve my prompt", "enhance this prompt", "prompt engineering"
 - "create a prompt for", "optimize this prompt"
 
 ### Use Cases
 
 #### Text Prompt Enhancement
-Transform vague requests into structured prompts using RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, or CRAFT frameworks with CLEAR scoring (40+/50 threshold).
+Transform vague requests into structured prompts from one default skeleton, with RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE or CRAFT as optional presets, and CLEAR screening (40+/50 threshold).
 
 #### Design-Generation Prompt
 Construct a grounded, anti-default generation brief for a design-generation run. The `DESIGN_GEN` intent loads `references/patterns-evaluation.md`, the framework library and the CLEAR rubric, so the brief is built from a named framework rather than a design-specific reference this skill does not ship. This skill owns the prompt only, never the measured design-reference extraction (`sk-design-md-generator`) or the run transport.
@@ -57,7 +57,7 @@ The prefix is authoritative: it fixes the operating mode, and the intent scores 
 With no prefix, weighted keyword scoring picks the top intent, or the top two when their scores sit within `AMBIGUITY_DELTA`.
 A zero score falls back to `TEXT_ENHANCE` with the disambiguation checklist rather than guessing.
 
-`references/depth-framework.md` loads first on every run except `$raw` and the `FRAMEWORK` intent, and `references/patterns-evaluation.md` joins it for the text, design-generation, Markdown, JSON and YAML intents; on `FRAMEWORK` it replaces the DEPTH default instead of joining it.
+`references/improvement-checklist.md` loads first on every run except `$raw` and the `FRAMEWORK` intent, and `references/patterns-evaluation.md` joins it for the text, design-generation, Markdown, JSON and YAML intents; on `FRAMEWORK` it replaces the checklist default instead of joining it.
 Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
 
 ---
@@ -66,64 +66,48 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
 
 ### Enhancement Pipeline
 
-Every prompt enhancement follows this pipeline:
+Every improvement runs one pass, described in [improvement-checklist.md](./references/improvement-checklist.md):
 
-```
-STEP 1: Mode Detection
-       ├─ Command prefix check ($text, $improve, $refine, $short, etc.)
-       ├─ Keyword signal analysis (>=80% confidence = auto-route)
-       └─ Ambiguous? Ask ONE comprehensive question
-       ↓
-STEP 2: Framework Selection
-       ├─ Evaluate 7 frameworks against request characteristics
-       ├─ Score: complexity, urgency, audience, creativity, precision
-       └─ Select primary framework + alternative
-       ↓
-STEP 3: DEPTH Processing (5-10 rounds)
-       ├─ Discover: 5 perspectives, assumption audit, RICCE Role & Context
-       ├─ Engineer: Framework application, RICCE Constraints & Instructions
-       ├─ Prototype: Template build, RICCE validation
-       ├─ Test: Scoring (CLEAR), quality gates
-       └─ Harmonize: Final polish, RICCE completeness
-       ↓
-STEP 4: Scoring & Delivery
-       ├─ Apply context-appropriate scoring system
-       ├─ Verify threshold met (CLEAR 40+/50)
-       └─ Deliver enhanced prompt with transparency report
-```
+1. Detect the mode from the command token or the user's own words. A pasted prompt is set aside before routing, so text inside it never picks the mode.
+2. Check the prompt once against the ten checklist rows, marking each present, absent or not needed with a reason. A prompt that passes exits early, unchanged or minimally edited.
+3. Write the prompt from the default component skeleton, applying a framework preset only when the request names one or its fit is clear from the task.
+4. Self-check once against the success criteria, run the quick test when the effort level calls for it, and screen with CLEAR.
+5. Deliver the prompt first, then the numbered open items and the change report.
 
-See the Smart Routing pseudocode in `ROUTER.md` for the complete routing logic.
+See the Smart Router Pseudocode in `ROUTER.md` for the complete routing logic.
 
 ### Operating Modes
 
-| Mode | Command | DEPTH Rounds | Scoring | Use Case |
-|------|---------|-------------|---------|----------|
-| Interactive | (default) | 10 | CLEAR | Guided enhancement |
-| Text | `$text` | 10 | CLEAR | Standard text prompt |
-| Short | `$short` | 3 | CLEAR | Quick refinement |
-| Improve | `$improve` | 10 | CLEAR | Standard enhancement |
-| Refine | `$refine` | 10 | CLEAR | Maximum optimization |
-| JSON | `$json` | 10 | CLEAR | API-ready format |
-| YAML | `$yaml` | 10 | CLEAR | Config format |
-| Raw | `$raw` | 0 | None | Skip DEPTH |
+| Mode | Command | Effort | Scoring | Use Case |
+|------|---------|--------|---------|----------|
+| Interactive | (default) | standard | CLEAR | Guided enhancement |
+| Text | `$text` | standard | CLEAR | Standard text prompt |
+| Short | `$short` | quick | CLEAR | Quick refinement |
+| Improve | `$improve` | standard | CLEAR | Standard enhancement |
+| Refine | `$refine` | thorough | CLEAR | Maximum optimization |
+| JSON | `$json` | standard | CLEAR | API-ready format |
+| YAML | `$yaml` | standard | CLEAR | Config format |
+| Raw | `$raw` | none | None | No checklist pass |
 
-### Framework Selection Matrix
+### Framework Presets
 
-| Complexity | Primary Need | Framework |
-|-----------|-------------|-----------|
-| 1-3 | Speed | RACE |
-| 1-4 | Clarity | RCAF |
-| 3-6 | Audience | COSTAR |
-| 4-6 | Instructions | CIDI |
-| 5-7 | Creativity | CRISPE |
-| 6-8 | Precision | TIDD-EC |
-| 7-10 | Comprehensive | CRAFT |
+Every prompt starts from one default skeleton: task, context, constraints, output format, optional examples and success criteria. The seven framework names stay as optional presets. Apply one only when the user or caller names it, or when its fit is clear from the task; the table shows where each fits.
+
+| Preset | Fits when |
+|--------|-----------|
+| RACE | Urgent tasks and quick iterations |
+| RCAF | General tasks that need a clear role and format |
+| COSTAR | Content where style, tone and audience matter |
+| CIDI | Process documentation and tutorials |
+| CRISPE | Strategy and exploration |
+| TIDD-EC | Quality-critical or compliance work that needs do's, don'ts and examples |
+| CRAFT | Complex projects and planning |
+
 See [patterns-evaluation.md](./references/patterns-evaluation.md) for complete framework details.
-See [depth-framework.md](./references/depth-framework.md) for the DEPTH methodology.
 
 ### Scoring Systems
 
-**CLEAR** (50-point scale): Correctness (10) + Logic (10) + Expression (15) + Arrangement (10) + Reusability (5). Threshold: 40+.
+**CLEAR** (50-point scale): Correctness (10) + Logic (10) + Expression (15) + Arrangement (10) + Reusability (5). Threshold: 40+. CLEAR is a structural screen, not proof the prompt works; repair up to 3 cycles.
 
 ---
 
@@ -131,37 +115,37 @@ See [depth-framework.md](./references/depth-framework.md) for the DEPTH methodol
 
 ### ✅ ALWAYS
 
-1. **ALWAYS ask ONE comprehensive question** before processing, in an interactive run whose request leaves the goal open
-   - Gather: What needs enhancement? Use case/goal? Requirements?
-   - Exception: `$raw` mode skips questions entirely
-   - An agent or other non-interactive run never asks: it proceeds on stated assumptions and flags each one in the transparency report
+1. **ALWAYS deliver first**
+   - A request that carries a prompt or a task gets the improved prompt in the same reply
+   - List every default and assumption as a numbered open item after the prompt, never inside it
+   - Ask one question only when there is no prompt and no task, or when two mode commands conflict; `$raw` never asks
 
-2. **ALWAYS apply DEPTH processing** for the detected mode
-   - 10 rounds for text modes, 3 for $short, 0 for $raw
+2. **ALWAYS run the one-pass checklist** at the detected effort level
+   - Quick for `$short`, standard by default, thorough for `$refine`, none for `$raw`
+   - Mark each row present, absent or not needed with a one-line reason
 
-3. **ALWAYS enforce minimum 3 perspectives** during DEPTH Discover phase
-   - Target 5 perspectives; 3 is the blocking minimum
-   - Perspectives: Prompt Engineering, AI Interpretation, User Clarity, Framework Selection, Token Efficiency
+3. **ALWAYS exit early on a prompt that already passes**
+   - Return it unchanged or with the smallest edit asked for, and say so
 
-4. **ALWAYS validate with RICCE** before delivery
-   - Role, Instructions, Context, Constraints, Examples must be present or justified
+4. **ALWAYS route on the user's own words**
+   - Set a pasted prompt aside before detecting the mode
 
-5. **ALWAYS apply scoring** and verify threshold met
-   - CLEAR 40+/50
+5. **ALWAYS screen with CLEAR** before delivery
+   - Write the reason before each score; pass at 40/50; repair up to 3 cycles
 
-6. **ALWAYS provide a transparency report** after delivering the enhanced prompt
-   - Framework selected, DEPTH rounds applied, score breakdown, assumptions flagged
+6. **ALWAYS end with a change report**
+   - Added, Changed, Removed, Skipped, plus `Quick test: NOT RUN` when the test did not run
 
 ### ⛔ NEVER
 
-1. **NEVER answer own questions**
-   - In an interactive run, wait for the user's response before proceeding with enhancement
+1. **NEVER stall on questions**
+   - Deliver first: write from stated defaults and list each assumption as a numbered open item; ask one question only when there is no prompt and no task, or two mode commands conflict, and then wait for the answer
 
-2. **NEVER skip framework evaluation**
-   - Even for simple prompts, score at least 3 frameworks before selecting
+2. **NEVER force a framework preset**
+   - Use the default skeleton unless the request names a preset or its fit is clear
 
 3. **NEVER deliver without scoring**
-   - Every enhanced prompt must have a CLEAR score (except $raw)
+   - Every improved prompt carries a CLEAR screen (except $raw)
 
 4. **NEVER write the enhanced prompt in the operator's voice**
    - Address the executing model: the role line in the second person ("You are..."), task steps in the imperative
@@ -169,13 +153,16 @@ See [depth-framework.md](./references/depth-framework.md) for the DEPTH methodol
 5. **NEVER exceed context with full reference loading**
    - Load only the references needed for the detected mode
 
+6. **NEVER rewrite user guidelines or examples needlessly**
+   - Preserve them as closely as possible, word for word when asked; warn when the prompt grows past about 3 times the original
+
 ### ⚠️ ESCALATE IF
 
-1. **ESCALATE IF mode detection confidence < 50%**
-   - Ask: "What type of prompt are you creating? Can you describe the use case?"
+1. **ESCALATE IF there is no prompt and no task, or two mode commands conflict**
+   - Ask one question, such as "Which mode do you want: $raw or $text?"; any other uncertainty is delivered with the assumption as open item 1
 
-2. **ESCALATE IF CLEAR score below threshold after DEPTH**
-   - Suggest: "Score is below target. Options: A) Additional refinement round B) Switch framework C) Accept as-is"
+2. **ESCALATE IF CLEAR score stays below threshold after 3 repair cycles**
+   - Deliver the best version with a note naming the weakest dimension
 
 3. **ESCALATE IF request conflicts with prompt engineering scope**
    - Redirect: "This appears to be a [code/doc/debug] task. Consider using [sk-code/sk-doc] instead."
@@ -186,8 +173,8 @@ See [depth-framework.md](./references/depth-framework.md) for the DEPTH methodol
 
 ### Core References
 
-- [depth-framework.md](./references/depth-framework.md) - DEPTH methodology (Discover, Engineer, Prototype, Test, Harmonize), RICCE integration
-- [patterns-evaluation.md](./references/patterns-evaluation.md) - 7 framework definitions, CLEAR scoring
+- [improvement-checklist.md](./references/improvement-checklist.md) - One-pass checklist, early exit, effort levels, self-check, quick test and change report
+- [patterns-evaluation.md](./references/patterns-evaluation.md) - default skeleton, seven framework presets, CLEAR scoring (canonical rubric)
 
 ### Asset Files
 
@@ -208,17 +195,16 @@ See [depth-framework.md](./references/depth-framework.md) for the DEPTH methodol
 
 ### Enhancement Complete When
 
-- ✅ Mode detected and framework selected with reasoning
-- ✅ DEPTH rounds completed per mode specification
-- ✅ Scoring applied and threshold verified
-- ✅ RICCE validation passed
-- ✅ Enhanced prompt delivered with transparency report
+- ✅ Mode detected from the user's own words, effort level set
+- ✅ Checklist pass recorded, or early exit stated
+- ✅ CLEAR screen applied and threshold met, or best version delivered with a note
+- ✅ Prompt delivered first, with open items and the change report
 - ✅ User can iterate or accept
 
 ### Quality Targets
 
 - **CLEAR Score**: 40+ out of 50
-- **Framework Selection Accuracy**: Match task characteristics to framework with >85% alignment
+- **Early exit**: a prompt that already passes the checklist comes back unchanged or minimally edited
 
 ---
 
@@ -233,7 +219,7 @@ See [depth-framework.md](./references/depth-framework.md) for the DEPTH methodol
 | `raw_task` | Yes | Raw task description or draft prompt to improve |
 | `task_type` | No | One of `generation`, `review`, `research`, `edit`, `analyze` |
 | `target_cli` | No | One of `claude-code`, `opencode`, `copilot` |
-| `complexity_hint` | No | Integer `1-10` used to choose Quick vs Standard DEPTH energy |
+| `complexity_hint` | No | Integer `1-10` mapped to effort: 1-3 quick, 4-7 standard, 8-10 thorough |
 | `constraints` | No | Compliance, security, audience, or output requirements |
 
 ### Model Eligibility
@@ -266,17 +252,19 @@ The canonical home of this contract is `.skilled/agents/prompt-improver.md`, so 
 
 ### Deterministic Agent Rules
 
-- Use `references/patterns-evaluation.md` as the framework-selection source of truth. Read only `## 2. FRAMEWORK LIBRARY & SELECTION`, the chosen framework's subsection of `## 3. FRAMEWORK DEEP DIVES` and `## 10. CLEAR EVALUATION MASTERY`. A framework switch reads the new framework's subsection, and an on-demand keyword reads the whole file.
-- Use `references/depth-framework.md` for DEPTH flow and CLEAR dimension floors.
-- Choose Quick DEPTH energy for low-complexity routine prompts and Standard DEPTH energy for escalated prompts.
-- Require `CLEAR >= 40/50` and all per-dimension floors before returning success.
-- If the first pass scores below threshold, retry once and then return the best validated prompt with explicit escalation notes.
+- Use `references/improvement-checklist.md` for the one-pass checklist, effort levels, quick test and change report.
+- Use `references/patterns-evaluation.md` for the default skeleton and presets: read `## 2. FRAMEWORK LIBRARY & SELECTION`, a named preset's subsection of `## 3. FRAMEWORK DEEP DIVES`, and `## 10. CLEAR EVALUATION MASTERY`, the one CLEAR rubric. An on-demand keyword reads the whole file.
+- Map `complexity_hint` onto effort as the payload table says; with no hint, use standard.
+- Require `CLEAR >= 40/50` before returning success.
+- If the screen scores below threshold, repair up to 3 cycles, then return the best version with explicit escalation notes.
 
 ### Structured Output Block
 
 ```text
-FRAMEWORK: <name>
+FRAMEWORK: <default skeleton | preset name>
 CLEAR_SCORE: <n>/50 (C:<n> L:<n> E:<n> A:<n> R:<n>)
+TEST: <ran: summary of old vs new on 2-3 inputs | NOT RUN>
+CHANGES: <Added ...; Changed ...; Removed ...; Skipped ...>
 RATIONALE: <1-2 lines>
 ENHANCED_PROMPT: |
   <multi-line ready-to-dispatch prompt>
@@ -285,7 +273,7 @@ ESCALATION_NOTES: <remaining ambiguity, risk, or follow-up>
 
 ### Contract Guarantees
 
-- The returned prompt is ready for CLI handoff without another framework-selection pass.
+- The returned prompt is ready for CLI handoff without another pass.
 - The output preserves caller-supplied constraints unless the agent flags them as contradictory or underspecified.
 - The agent remains read-only and leaf-only; it does not write files or spawn other sub-agents.
 
@@ -298,7 +286,7 @@ ESCALATION_NOTES: <remaining ambiguity, risk, or follow-up>
 This skill operates within the behavioral framework defined in AGENTS.md.
 
 Key integrations:
-- **Gate 2**: Skill routing via `skill_advisor.py` with prompt-related intent boosters
+- **Gate 2**: Skill routing via `.skilled/bin/skill-advisor.cjs` with prompt-related intent boosters
 - **Tool Routing**: Per AGENTS.md Section 5 decision tree
 - **Continuity**: Context preserved by `/speckit:save`, which writes through `generate-context.js`
 
@@ -313,7 +301,7 @@ Key integrations:
 
 ## 9. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/depth-framework.md`, `references/patterns-evaluation.md`, `assets/format-guide-json.md`, `assets/format-guide-markdown.md`, `assets/format-guide-yaml.md`, `assets/cli-prompt-quality-card.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/improvement-checklist.md`, `references/patterns-evaluation.md`, `assets/format-guide-json.md`, `assets/format-guide-markdown.md`, `assets/format-guide-yaml.md`, `assets/cli-prompt-quality-card.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 ## RELATED PLAYBOOK
 

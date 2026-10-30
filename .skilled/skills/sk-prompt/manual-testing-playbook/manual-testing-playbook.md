@@ -1,12 +1,12 @@
 ---
 title: "sk-prompt: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the sk-prompt skill."
-version: 2.3.3.0
+version: 3.0.0.0
 ---
 
 # sk-prompt: Manual Testing Playbook
 
-> **EXECUTION POLICY**: Every scenario MUST be executed against the live `sk-prompt` skill and `@prompt-improver` agent — no mocks, no stubs, no "unautomatable" classification. Operators run the exact prompt and capture the actual mode detection, framework selection, DEPTH-round count, CLEAR score, and structured output block. Acceptable verdicts: PASS, PARTIAL, FAIL, or SKIP (with documented blocker).
+> **EXECUTION POLICY**: Every scenario MUST be executed against the live `sk-prompt` skill and `@prompt-improver` agent — no mocks, no stubs, no "unautomatable" classification. Operators run the exact prompt and capture the actual mode detection, effort level, checklist result, CLEAR score, and structured output block. Acceptable verdicts: PASS, PARTIAL, FAIL, or SKIP (with documented blocker).
 
 This document combines the full manual-validation contract for the `sk-prompt` skill into a single reference. The root playbook acts as the operator directory, review protocol, and orchestration guide: it explains how realistic user-driven prompt-engineering tests should be run, how evidence should be captured, how results should be graded, and where each per-feature validation file lives. The per-feature files provide the deeper execution contract for each scenario, including the user request, orchestrator prompt, execution process, source anchors, and validation criteria.
 
@@ -19,7 +19,7 @@ Canonical package artifacts:
 - `manual-testing-playbook.md`
 - `mode-detection/`
 - `smart-routing/`
-- `depth-clear-loop/`
+- `checklist-pass/`
 - `clear-scoring/`
 - `framework-selection/`
 - `escalation-tiers/`
@@ -31,12 +31,12 @@ Canonical package artifacts:
 
 This playbook provides 28 deterministic scenarios across 7 categories validating the `sk-prompt` skill surface and its escalation agent `@prompt-improver`. Each feature keeps its original ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-05-06): the playbook covers mode detection across 7 command prefixes, INTENT_MODEL keyword scoring, the DEPTH+CLEAR processing loop with phase exit gates, CLEAR five-dimension scoring with floors, framework selection across 7 frameworks, escalation routing to `@prompt-improver`, and on-demand format-guide loading for `$json` and `$yaml`. No scenario drives the CLI fast-path card (`assets/cli-prompt-quality-card.md`) or the `CLI_FAST_PATH` intent, so a regression in either one stays uncovered here. `sk-prompt` does not ship a `feature-catalog/`, so per-feature files anchor directly to `SKILL.md`, `../ROUTER.md`, `references/`, and `assets/` on disk.
+Coverage note (2026-05-06): the playbook covers mode detection across 7 command prefixes, INTENT_MODEL keyword scoring, the one-pass improvement checklist with its three effort levels and up to 3 repair cycles, CLEAR five-dimension scoring with floors, framework selection across 7 frameworks, escalation routing to `@prompt-improver`, and on-demand format-guide loading for `$json` and `$yaml`. No scenario drives the CLI fast-path card (`assets/cli-prompt-quality-card.md`) or the `CLI_FAST_PATH` intent, so a regression in either one stays uncovered here. `sk-prompt` does not ship a `feature-catalog/`, so per-feature files anchor directly to `SKILL.md`, `../ROUTER.md`, `references/`, and `assets/` on disk.
 
 ### Realistic Test Model
 
 1. A realistic user request (a draft prompt or an ask to improve one) is given to an orchestrator that routes through `sk-prompt`.
-2. The orchestrator decides whether to keep the request inline (fast path) or escalate to `@prompt-improver` for full DEPTH+CLEAR processing.
+2. The orchestrator decides whether to keep the request inline (fast path) or escalate to `@prompt-improver` for the full checklist pass with CLEAR repair.
 3. The operator captures both the routing decision and the user-visible enhanced prompt with its transparency report.
 4. The scenario passes only when the workflow is sound and the returned prompt would dispatch cleanly to a downstream CLI without another framework-selection pass.
 
@@ -54,7 +54,7 @@ Coverage note (2026-05-06): the playbook covers mode detection across 7 command 
 
 1. Working directory is project root.
 2. `.skilled/skills/sk-prompt/ROUTER.md` is at HEAD-of-main and contains the `## 3. MACHINE ROUTER` section's routing tables (INTENT_MODEL, RESOURCE_MAP, ON_DEMAND_KEYWORDS, AMBIGUITY_DELTA, UNKNOWN_FALLBACK_CHECKLIST), and `.skilled/skills/sk-prompt/SKILL.md` holds the §3 operating modes table and §7 agent invocation contract.
-3. `.skilled/skills/sk-prompt/references/depth-framework.md`, `.skilled/skills/sk-prompt/references/patterns-evaluation.md`, `.skilled/skills/sk-prompt/assets/format-guide-markdown.md`, `.skilled/skills/sk-prompt/assets/format-guide-json.md`, and `.skilled/skills/sk-prompt/assets/format-guide-yaml.md` resolve on disk.
+3. `.skilled/skills/sk-prompt/references/improvement-checklist.md`, `.skilled/skills/sk-prompt/references/patterns-evaluation.md`, `.skilled/skills/sk-prompt/assets/format-guide-markdown.md`, `.skilled/skills/sk-prompt/assets/format-guide-json.md`, and `.skilled/skills/sk-prompt/assets/format-guide-yaml.md` resolve on disk.
 4. `@prompt-improver` agent is canonical at `.skilled/agents/prompt-improver.md` (verify with `ls .skilled/agents/prompt-improver.md`).
 5. Destructive scenario: none in this playbook. All scenarios are read+score+return, no file mutation outside the operator's own evidence capture under `/tmp/`.
 
@@ -67,7 +67,7 @@ Coverage note (2026-05-06): the playbook covers mode detection across 7 command 
 - Orchestrator or agent-facing prompt used
 - Routing decision: which mode prefix detected (or which keyword-scored intent), fast-path vs deep-path
 - Resource-loading trace: which `references/` and `assets/` files the router reports as loaded
-- DEPTH-round count actually executed
+- Effort level and checklist result
 - CLEAR score breakdown (C, L, E, A, R) and total
 - Framework picked plus rationale line
 - Final delivered prompt + transparency report
@@ -101,7 +101,7 @@ For each executed scenario, check:
 
 1. Preconditions were satisfied.
 2. Prompt and command sequence were executed as written.
-3. Expected signals (mode detected, DEPTH rounds run, CLEAR score range, framework family) are present.
+3. Expected signals (mode detected, effort level and checklist result, CLEAR score range, framework family) are present.
 4. Evidence is complete and readable.
 5. Outcome rationale is explicit.
 
@@ -109,7 +109,7 @@ Scenario verdict:
 
 - `PASS`: all acceptance checks true
 - `PARTIAL`: core behavior works but non-critical evidence or metadata is incomplete (for example transparency report missing one dimension breakdown)
-- `FAIL`: expected behavior missing, contradictory output, or critical check failed (for example wrong DEPTH-round count for the detected mode)
+- `FAIL`: expected behavior missing, contradictory output, or critical check failed (for example wrong effort level for the detected mode)
 
 ### Feature Verdict Rules
 
@@ -157,7 +157,7 @@ This section records wave planning and capacity guidance for executing the 28-sc
 | Wave | Categories | Scenarios | Rationale |
 |---|---|---|---|
 | 1 | Mode Detection + Smart Routing | SP-001..SP-008 | Cheap, fast, exposes routing infrastructure first |
-| 2 | DEPTH+CLEAR Loop | SP-009..SP-014 | Heavier (5-phase exec); run after routing is trusted |
+| 2 | Checklist Pass | SP-009..SP-014 | Run after routing is trusted |
 | 3 | CLEAR Scoring + Framework Selection | SP-015..SP-022 | Framework battery; isolate to keep decisions auditable |
 | 4 | Escalation Tiers + Format Modes | SP-023..SP-028 | Cross-surface (agent + format guides) |
 
@@ -165,7 +165,7 @@ This section records wave planning and capacity guidance for executing the 28-sc
 
 - Real user request (operator phrasing of the underlying ask)
 - Prompt field with the canonical text for this scenario
-- Expected DEPTH-round count and CLEAR score range
+- Effort level and checklist result
 - Expected framework or framework family
 - Desired user-visible outcome (enhanced prompt shape + transparency report)
 - Feature-specific acceptance caveats
@@ -174,73 +174,73 @@ This section records wave planning and capacity guidance for executing the 28-sc
 
 ## 7. MODE DETECTION (`SP-001..SP-004`)
 
-### SP-001 | Default mode routing through 10-round DEPTH
+### SP-001 | Default mode runs the standard checklist
 
 #### Description
 
-Verify that an unmarked prompt request (no `$` prefix) routes to default mode and runs the full 10-round DEPTH cycle with CLEAR scoring.
+Confirm that a request with no mode token runs standard effort, the full ten-row checklist, the CLEAR screen, and prompt-first delivery.
 
 #### Scenario Contract
 
-Prompt: `Run sk-prompt on my meeting-notes action-item prompt in default mode; verify 10 DEPTH rounds, CLEAR scoring, and threshold enforcement.`
+Prompt: `Run sk-prompt on my meeting-notes action-item prompt in default mode; confirm all ten checklist rows run with reasons, the CLEAR screen appears with a reason before each dimension, and the prompt is delivered before any commentary.`
 
-Mode picked: default (10 DEPTH rounds, CLEAR scoring, 40+/50 threshold). Desired outcome: enhanced prompt with explicit framework rationale and CLEAR breakdown.
+Expected signals: Effort: standard; ten rows each marked present, absent or not needed with a one-line reason; a CLEAR score with reasons written before the dimensions it explains; the prompt as the first deliverable. Desired outcome: prompt-first delivery that asks no question ahead of the prompt.
 
-Desired user-visible outcome: A delivered enhanced prompt + transparency report stating "Mode: default", "DEPTH rounds: 10", and a CLEAR score >= 40/50.
+Desired user-visible outcome: The improved prompt first, then a numbered open-items list, then a change report under Added, Changed, Removed and Skipped.
 
 #### Test Execution
 
 > **Feature File:** [SP-001](../manual-testing-playbook/mode-detection/default-mode-routing.md)
 
-### SP-002 | `$raw` skips DEPTH entirely
+### SP-002 | `$raw` passes through with no checklist
 
 #### Description
 
-Verify that the `$raw` prefix bypasses DEPTH (0 rounds), skips CLEAR scoring, and emits no transparency report.
+Confirm that `$raw` skips the checklist and the CLEAR screen and returns the input with only the asked-for cleanup.
 
 #### Scenario Contract
 
-Prompt: `$raw clean up my prompt's whitespace only; verify DEPTH and CLEAR stay skipped and no transparency report is emitted.`
+Prompt: `$raw clean up my prompt's whitespace only; confirm the checklist and the CLEAR screen stay skipped and that no change report is emitted.`
 
-Mode picked: $raw. Desired outcome: input echoed with light formatting only.
+Expected signals: a one-line notice reading `Mode: $raw (no checklist)`; no CLEAR breakdown; no open items; no change report. Desired outcome: the input returned with whitespace and line-wrap cleanup applied.
 
-Desired user-visible outcome: Output that is structurally identical to input plus a one-line "Mode: $raw (DEPTH skipped)" notice.
+Desired user-visible outcome: Output that matches the input apart from whitespace, followed by the single mode notice.
 
 #### Test Execution
 
 > **Feature File:** [SP-002](../manual-testing-playbook/mode-detection/raw-mode-passthrough.md)
 
-### SP-003 | `$short` runs 3-round DEPTH (D-P-H only)
+### SP-003 | `$short` runs the quick checklist
 
 #### Description
 
-Verify that the `$short` prefix runs only the Discover, Prototype, and Harmonize phases for a total of 3 DEPTH rounds, omitting Engineer and Test.
+Confirm that `$short` checks only rows 1, 3, 4 and 6, runs no quick test, and still applies the CLEAR screen.
 
 #### Scenario Contract
 
-Prompt: `$short tighten my prompt; verify only Discover, Prototype, and Harmonize run, Engineer/Test are skipped, and CLEAR still applies.`
+Prompt: `$short tighten my prompt; check only rows 1, 3, 4 and 6, run no quick test, and apply the CLEAR screen.`
 
-Mode picked: $short. Desired outcome: trimmed enhancement with phases-skipped note.
+Expected signals: Effort: quick; rows 1, 3, 4 and 6 marked with reasons; `Quick test: NOT RUN`; CLEAR screen present. Desired outcome: one rewrite covering task, context, constraints and output format.
 
-Desired user-visible outcome: Enhanced prompt + transparency report stating "Mode: $short", "DEPTH rounds: 3", "Phases skipped: Engineer, Test".
+Desired user-visible outcome: the prompt first, then the four row marks with reasons, the `Quick test: NOT RUN` line, and a CLEAR score with one reason per dimension.
 
 #### Test Execution
 
-> **Feature File:** [SP-003](../manual-testing-playbook/mode-detection/short-mode-three-rounds.md)
+> **Feature File:** [SP-003](../manual-testing-playbook/mode-detection/short-mode-quick-effort.md)
 
-### SP-004 | Mode prefix wins over keyword scoring
+### SP-004 | Mode token wins over keyword scoring
 
 #### Description
 
-Verify that when an explicit mode prefix and conflicting keyword signals coexist (for example `$short` on a prompt full of "improve" and "refine" keywords), the prefix wins.
+Confirm that a whole `$short` token fixes the mode even when the request also says improve and refine, and that keyword scores do not change it.
 
 #### Scenario Contract
 
-Prompt: `$short improve and refine my prompt; verify the prefix overrides keyword scoring, runs 3 DEPTH rounds, and logs the override.`
+Prompt: `$short improve and refine my prompt`
 
-Mode picked: $short (prefix wins). Desired outcome: 3-round enhancement, not 10.
+Expected signals: Mode = `$short`, effort = quick, and the transparency report shows Mode `$short` and Effort quick, with no thorough-effort step and no quick test. Desired outcome: the improve and refine wording read as task description rather than as a signal that raises effort.
 
-Desired user-visible outcome: Enhanced prompt + transparency report stating "Mode prefix detected: $short; intent scores do not affect selection".
+Desired user-visible outcome: An improved prompt plus a short report note saying the `$short` token set the mode and the keyword scores did not change it.
 
 #### Test Execution
 
@@ -280,7 +280,7 @@ Prompt: `Run sk-prompt on my deep-dive framework comparison; verify ON_DEMAND lo
 
 Trigger keyword detected: yes. Desired outcome: full resource set loaded, even when only one intent scored above zero.
 
-Desired user-visible outcome: Routing trace listing all of `references/depth-framework.md`, `references/patterns-evaluation.md`, plus any format guides keyed by the keyword.
+Desired user-visible outcome: Routing trace listing all of `references/improvement-checklist.md`, `references/patterns-evaluation.md`, plus any format guides keyed by the keyword.
 
 #### Test Execution
 
@@ -324,115 +324,115 @@ Desired user-visible outcome: Routing trace showing default = TEXT_ENHANCE, plus
 
 ---
 
-## 9. DEPTH+CLEAR LOOP (`SP-009..SP-014`)
+## 9. CHECKLIST PASS (`SP-009..SP-014`)
 
-### SP-009 | DEPTH executes 5 phases in mandatory order
-
-#### Description
-
-Verify that DEPTH runs Discover -> Engineer -> Prototype -> Test -> Harmonize in that order with no phase skipped (default mode).
-
-#### Scenario Contract
-
-Prompt: `Improve my legal-contract summarization prompt with @prompt-improver; verify DEPTH runs Discover through Harmonize in order with no skipped phase.`
-
-Phase order observed: D-E-P-T-H. Desired outcome: per-phase log entries in order.
-
-Desired user-visible outcome: Transparency report including a 5-line per-phase log with phase name + 1-line outcome.
-
-#### Test Execution
-
-> **Feature File:** [SP-009](../manual-testing-playbook/depth-clear-loop/depth-five-phases-order.md)
-
-### SP-010 | Discover phase blocks below 3 perspectives
+### SP-009 | One-pass checklist marks every row
 
 #### Description
 
-Verify that the Discover-phase exit gate blocks advancement when fewer than 3 perspectives have been collected (target 5, blocking minimum 3).
+Confirm that one improvement pass marks all ten checklist rows present, absent or not needed with a one-line reason each, and that the reply presents the check as a single pass rather than a counted sequence of stages.
 
 #### Scenario Contract
 
-Prompt: `Tighten my code-review feedback prompt; verify Discover evaluates at least 3 perspectives before Engineer starts or blocks for a rerun.`
+Prompt: `Improve my onboarding-email prompt and show me what you checked.`
 
-Floor enforced: yes. Desired outcome: blocked advancement until 3+ perspectives collected.
+Expected signals: Ten rows in checklist order, each marked present, absent or not needed with a reason; the improved prompt holds only rows marked absent; the change report separates Added, Changed, Removed and Skipped. Desired outcome: no counted sequence of stages anywhere in the reply.
 
-Desired user-visible outcome: Transparency report stating either "Discover phase: 3+ perspectives collected" or "Discover phase: floor unmet, re-ran perspective discovery".
+Desired user-visible outcome: The improved onboarding-email prompt, the full ten-row marking list with reasons, and a change report naming which rows were skipped and why.
 
 #### Test Execution
 
-> **Feature File:** [SP-010](../manual-testing-playbook/depth-clear-loop/perspectives-floor-three.md)
+> **Feature File:** [SP-009](../manual-testing-playbook/checklist-pass/one-pass-checklist-rows.md)
 
-### SP-011 | Iteration cap at one CLEAR retry
+### SP-010 | Early exit returns a good prompt unchanged
 
 #### Description
 
-Verify that after one CLEAR retry, the loop terminates and delivers the best version with a quality note instead of retrying again.
+Confirm that a prompt already covering every needed row comes back unchanged or minimally edited, with a statement that no broader improvement was needed.
 
 #### Scenario Contract
 
-Prompt: `Improve my technical-writing prompt; verify CLEAR improvement stops after one retry and returns the best version with a quality note.`
+Prompt: `Here is my prompt, it already has a task, context, constraints and an output format. Improve it if it needs it.`
 
-Iteration cap enforced: one retry. Desired outcome: deliver-best-with-note, no infinite loop.
+Expected signals: The prompt comes back unchanged or with a minimal edit; the covered rows are named; the reply states that no broader improvement was needed. Desired outcome: an early exit that preserves the prompt.
 
-Desired user-visible outcome: Enhanced prompt + transparency report stating "Retries: 1", "Best CLEAR: <score>/50", "Note: retry limit reached, delivering best version".
+Desired user-visible outcome: The delivered prompt, followed by a short list of the rows already covered and one sentence saying no broader improvement was needed.
 
 #### Test Execution
 
-> **Feature File:** [SP-011](../manual-testing-playbook/depth-clear-loop/depth-iteration-cap.md)
+> **Feature File:** [SP-010](../manual-testing-playbook/checklist-pass/early-exit-good-prompt.md)
 
-### SP-012 | RICCE validation gate
+### SP-011 | CLEAR repair stops after 3 cycles
 
 #### Description
 
-Verify that the Harmonize-phase exit gate validates Role, Instructions, Context, Constraints, Examples (RICCE) presence or explicit justification before delivery.
+Confirm that CLEAR-driven repair stops after at most 3 cycles and delivers the best version with a note naming the weakest dimension.
 
 #### Scenario Contract
 
-Prompt: `Strengthen my new-engineer onboarding prompt; verify the final output accounts for Role, Instructions, Context, Constraints, and Examples.`
+Prompt: `Improve my technical-writing prompt; verify CLEAR repair stops after at most 3 cycles and returns the best version with a note naming the weakest dimension.`
 
-RICCE coverage: 5/5 present-or-justified. Desired outcome: no silent omissions.
+Expected signals: Repair cycles 3 or fewer; best CLEAR score shown; a note naming the weakest dimension when the threshold is unmet. Desired outcome: the best observed version returned once the score reaches 40/50 or 3 repair cycles have run.
 
-Desired user-visible outcome: Transparency report listing each RICCE element with status `present` or `omitted because <reason>`.
+Desired user-visible outcome: Enhanced prompt plus `CLEAR_SCORE` showing the best score reached, and a note in `ESCALATION_NOTES` or the open items saying the 3-cycle repair cap was reached and naming the weakest dimension whenever the score stays below 40.
 
 #### Test Execution
 
-> **Feature File:** [SP-012](../manual-testing-playbook/depth-clear-loop/ricce-validation-gate.md)
+> **Feature File:** [SP-011](../manual-testing-playbook/checklist-pass/repair-cycle-cap.md)
 
-### SP-013 | Mechanism-first prototype (WHY before WHAT)
+### SP-012 | Deliver first with numbered open items
 
 #### Description
 
-Verify that the Prototype phase produces a prompt structure that leads with mechanism (WHY/role/context) before delivering the action (WHAT/instructions).
+Confirm that a request with soft gaps gets the improved prompt in the same reply, with every default listed afterwards as a numbered open item and no question asked first.
 
 #### Scenario Contract
 
-Prompt: `Refactor my microservices explanation prompt; verify Prototype orders WHY and context before WHAT and instructions.`
+Prompt: `Improve this prompt for summarising support tickets.`
 
-Mechanism-first ordering: yes. Desired outcome: structural alignment with WHY-before-WHAT contract.
+Expected signals: The improved prompt appears before any prose; defaults such as format and audience appear after it as numbered open items; no clarifying question precedes the prompt; no assumption sits inside the prompt. Desired outcome: one reply holding the prompt and every default it chose.
 
-Desired user-visible outcome: Enhanced prompt whose first 1-2 sentences establish role + context before any imperative verb.
+Desired user-visible outcome: One reply holding the improved prompt, followed by a numbered list naming each default such as the output format and the intended audience.
 
 #### Test Execution
 
-> **Feature File:** [SP-013](../manual-testing-playbook/depth-clear-loop/mechanism-first-prototype.md)
+> **Feature File:** [SP-012](../manual-testing-playbook/checklist-pass/deliver-first-open-items.md)
 
-### SP-014 | Phase exit gates block advancement until met
+### SP-013 | Contradiction check resolves clashing rules
 
 #### Description
 
-Verify that each DEPTH phase has a named exit criterion and the loop refuses to advance until that criterion is met.
+Confirm that the checklist's contradiction row catches two rules that fight and resolves them with a stated priority.
 
 #### Scenario Contract
 
-Prompt: `Improve my SQL query prompt; verify every DEPTH phase reports exit criteria and failed gates block or rerun before advancing.`
+Prompt: `Improve this prompt: be extremely brief, and also explain every step in full detail; name the clash and state which rule wins.`
 
-Gate enforcement: per-phase. Desired outcome: blocked advancement on simulated failure.
+Expected signals: The contradiction row is marked and reasoned; the improved prompt states which rule wins and when; the change report lists the resolution under Changed or Removed. Desired outcome: a priority clause that decides real cases rather than a compromise.
 
-Desired user-visible outcome: Transparency report listing each phase with `gate: <criterion>` and `status: passed|re-ran|blocked`.
+Desired user-visible outcome: An improved prompt whose priority clause decides real cases, with the resolution named in the change report.
 
 #### Test Execution
 
-> **Feature File:** [SP-014](../manual-testing-playbook/depth-clear-loop/phase-exit-gate-blocking.md)
+> **Feature File:** [SP-013](../manual-testing-playbook/checklist-pass/clashing-rules-resolved.md)
+
+### SP-014 | Change report and length warning
+
+#### Description
+
+Confirm that every reply ends with an Added, Changed, Removed and Skipped change report, and warns when the prompt grows past about 3 times the original.
+
+#### Scenario Contract
+
+Prompt: `Make this two-line prompt as good as possible: Write a haiku about rain. Keep it gentle.`
+
+Expected signals: A change report with all four headings, short entries or an explicit `none` under each; a growth warning whenever the delivered prompt is longer than about 3 times the original; the words `haiku`, `rain` and `gentle` still carrying the user's own phrasing. Desired outcome: the prompt written and self-checked once before the report.
+
+Desired user-visible outcome: The improved haiku prompt, a numbered list of defaults and assumptions, and a change report closing the reply.
+
+#### Test Execution
+
+> **Feature File:** [SP-014](../manual-testing-playbook/checklist-pass/change-report-length-warning.md)
 
 ---
 
@@ -474,19 +474,19 @@ Desired user-visible outcome: Transparency report listing `re-score reason: dime
 
 > **Feature File:** [SP-016](../manual-testing-playbook/clear-scoring/dimension-floors-block.md)
 
-### SP-017 | Total below 40/50 triggers improvement cycle (one retry)
+### SP-017 | Total below 40/50 triggers targeted repair
 
 #### Description
 
-Verify that a total CLEAR score below 40/50 triggers another DEPTH iteration, capped at one retry (per SP-011).
+Confirm that a CLEAR total below 40 of 50 triggers repair of the weakest dimension, up to 3 cycles, and that the reason is written before each score.
 
 #### Scenario Contract
 
-Prompt: `Improve my ML hyperparameter tuning prompt; verify CLEAR below 40 triggers one retry and stops there.`
+Prompt: `Improve my ML hyperparameter tuning prompt; only deliver it at CLEAR 40, and repair the weakest dimension while the total stays below that.`
 
-Improvement cycle: yes. Cap honored: yes.
+Expected signals: Score progression shows the initial total, the dimension repaired in each cycle and the final total; the run stops by cycle 3; a note names what stayed weak when 40 is not reached. Desired outcome: repair aimed at the weakest dimension only.
 
-Desired user-visible outcome: Transparency report showing the first score and the retry score, with a "delivering best version" note if the retry falls short.
+Desired user-visible outcome: The improved prompt, the reason written before each score, the dimension named weakest per cycle, and an honest final status.
 
 #### Test Execution
 
@@ -514,23 +514,23 @@ Desired user-visible outcome: Transparency report containing five lines of the f
 
 ## 11. FRAMEWORK SELECTION (`SP-019..SP-022`)
 
-### SP-019 | Complexity score routes to correct framework family
+### SP-019 | Default skeleton unless a preset clearly fits
 
 #### Description
 
-Verify that complexity scoring routes a request to the correct framework: low complexity (1-3) -> RACE, low-medium (1-4) -> RCAF, medium (3-6) -> COSTAR, instruction-heavy (4-6) -> CIDI, creative (5-7) -> CRISPE, precision (6-8) -> TIDD-EC, comprehensive (7-10) -> CRAFT.
+Confirm that an ordinary request is built from the default skeleton with no preset, and that a preset is applied only when its fit is clear.
 
 #### Scenario Contract
 
-Prompt: `Improve my customer-support response prompt; verify framework selection evaluates complexity, chooses the right family, and returns score plus rationale.`
+Prompt: `Improve my prompt for a quick project status update.`
 
-Matrix alignment: 1/1 on the primary prompt, with an optional second variant. Desired outcome: framework family matches complexity bucket.
+Expected signals: The delivered prompt follows the default skeleton; the report states that the default skeleton was used; no preset is scored and no preset name appears. Desired outcome: one line naming the default skeleton.
 
-Desired user-visible outcome: One transparency report from the primary prompt, and a second from the optional low-complexity variant, each naming the selected framework and the complexity score that drove the choice.
+Desired user-visible outcome: An improved prompt, a one-line note naming the default skeleton, and Added / Changed / Removed / Skipped.
 
 #### Test Execution
 
-> **Feature File:** [SP-019](../manual-testing-playbook/framework-selection/framework-by-complexity.md)
+> **Feature File:** [SP-019](../manual-testing-playbook/framework-selection/default-skeleton-unless-preset-fits.md)
 
 ### SP-020 | User-named framework override wins
 
@@ -550,41 +550,41 @@ Desired user-visible outcome: Transparency report containing `Framework: CRAFT (
 
 > **Feature File:** [SP-020](../manual-testing-playbook/framework-selection/user-named-framework-override.md)
 
-### SP-021 | Selection rationale required
+### SP-021 | An applied preset is named with its reason
 
 #### Description
 
-Verify that every framework selection includes a "why this over alternatives" justification listing at least one rejected framework and the reason.
+Confirm that when a preset is applied, the change report names it and the reason it fits.
 
 #### Scenario Contract
 
-Prompt: `Tighten my code documentation prompt; verify the framework rationale names the choice, a rejected alternative, and the differentiating criterion.`
+Prompt: `Improve my product-launch announcement prompt for a non-technical audience; state whether the default skeleton or a named preset shaped it, and give the reason for that choice.`
 
-Rationale completeness: chosen + 1+ rejected + criterion. Desired outcome: auditable selection.
+Expected signals: a `Skeleton: default` line, or a preset line such as `Preset: COSTAR` followed by a reason like "adds style, tone and audience". Desired outcome: the structure used and the reason stated in the change report.
 
-Desired user-visible outcome: Transparency report containing `Framework: <name>; rejected: <other>; reason: <one-line>`.
+Desired user-visible outcome: an improved announcement prompt, followed by a change report that names the structure used and why it fits.
 
 #### Test Execution
 
-> **Feature File:** [SP-021](../manual-testing-playbook/framework-selection/framework-rationale-required.md)
+> **Feature File:** [SP-021](../manual-testing-playbook/framework-selection/preset-named-in-change-report.md)
 
-### SP-022 | Mid-flight framework switch on Test-phase failure
+### SP-022 | Repair keeps the chosen preset
 
 #### Description
 
-Verify that when the first framework underdelivers at the Test phase (CLEAR below threshold and dimension floors breached), DEPTH switches framework and restarts from the Engineer phase rather than ending.
+Confirm that a user-named preset survives CLEAR repair cycles, and that any change of preset is named in the change report.
 
 #### Scenario Contract
 
-Prompt: `Improve my sentiment-analysis prompt; verify a failing first framework switches to another and restarts from Engineer before final delivery.`
+Prompt: `Improve my compliance checklist prompt using TIDD-EC; keep TIDD-EC as the shape through any repair, and report any switch away from it with the reason.`
 
-Switch behavior: framework swap + Engineer restart. Desired outcome: second framework attempt before iteration cap.
+Expected signals: TIDD-EC sections present in the delivered prompt; a change report line naming TIDD-EC; either no switch statement at all, or a switch statement naming the preset that replaced it and the reason it did. Desired outcome: the named preset kept on every repair.
 
-Desired user-visible outcome: Transparency report containing `Framework switch: <first> -> <second> (Test-phase floor breach)`.
+Desired user-visible outcome: A compliance checklist prompt built from TIDD-EC, plus a change report that either confirms the preset was kept or names the preset that replaced it and why.
 
 #### Test Execution
 
-> **Feature File:** [SP-022](../manual-testing-playbook/framework-selection/framework-switch-mid-flight.md)
+> **Feature File:** [SP-022](../manual-testing-playbook/framework-selection/preset-kept-through-repair.md)
 
 ---
 
@@ -648,11 +648,11 @@ Desired user-visible outcome: Structured output block listing FRAMEWORK / CLEAR_
 
 #### Description
 
-Verify that every `@prompt-improver` return contains the five-block contract: FRAMEWORK, CLEAR_SCORE, RATIONALE, ENHANCED_PROMPT, ESCALATION_NOTES.
+Verify that every `@prompt-improver` return contains the seven-field contract: FRAMEWORK, CLEAR_SCORE, TEST, CHANGES, RATIONALE, ENHANCED_PROMPT, ESCALATION_NOTES.
 
 #### Scenario Contract
 
-Prompt: `As a CLI orchestrator, dispatch @prompt-improver on a data-extraction prompt. Verify the response contains FRAMEWORK, CLEAR_SCORE, RATIONALE, ENHANCED_PROMPT, and ESCALATION_NOTES. Return the structured block verdict.`
+Prompt: `As a CLI orchestrator, dispatch @prompt-improver on a data-extraction prompt. Verify the response contains FRAMEWORK, CLEAR_SCORE, TEST, CHANGES, RATIONALE, ENHANCED_PROMPT, and ESCALATION_NOTES. Return the structured block verdict.`
 
 Output-block coverage: 5/5 fields. Desired outcome: ready-for-CLI-handoff structure.
 
@@ -718,28 +718,28 @@ Desired user-visible outcome: Routing trace listing `assets/format-guide-yaml.md
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
-| SP-001 | Default mode routing | Mode Detection | [SP-001](../manual-testing-playbook/mode-detection/default-mode-routing.md) |
-| SP-002 | `$raw` passthrough | Mode Detection | [SP-002](../manual-testing-playbook/mode-detection/raw-mode-passthrough.md) |
-| SP-003 | `$short` 3-round DEPTH | Mode Detection | [SP-003](../manual-testing-playbook/mode-detection/short-mode-three-rounds.md) |
-| SP-004 | Mode prefix vs keyword collision | Mode Detection | [SP-004](../manual-testing-playbook/mode-detection/mode-prefix-keyword-collision.md) |
+| SP-001 | Default mode runs the standard checklist | Mode Detection | [SP-001](../manual-testing-playbook/mode-detection/default-mode-routing.md) |
+| SP-002 | `$raw` passes through with no checklist | Mode Detection | [SP-002](../manual-testing-playbook/mode-detection/raw-mode-passthrough.md) |
+| SP-003 | `$short` runs the quick checklist | Mode Detection | [SP-003](../manual-testing-playbook/mode-detection/short-mode-quick-effort.md) |
+| SP-004 | Mode token wins over keyword scoring | Mode Detection | [SP-004](../manual-testing-playbook/mode-detection/mode-prefix-keyword-collision.md) |
 | SP-005 | INTENT_MODEL keyword scoring | Smart Routing | [SP-005](../manual-testing-playbook/smart-routing/intent-model-keyword-scoring.md) |
 | SP-006 | ON_DEMAND keyword loading | Smart Routing | [SP-006](../manual-testing-playbook/smart-routing/on-demand-keyword-loading.md) |
 | SP-007 | AMBIGUITY_DELTA tiebreaker | Smart Routing | [SP-007](../manual-testing-playbook/smart-routing/ambiguity-delta-tiebreaker.md) |
 | SP-008 | UNKNOWN_FALLBACK checklist | Smart Routing | [SP-008](../manual-testing-playbook/smart-routing/unknown-fallback-checklist.md) |
-| SP-009 | DEPTH 5-phase order | DEPTH+CLEAR Loop | [SP-009](../manual-testing-playbook/depth-clear-loop/depth-five-phases-order.md) |
-| SP-010 | Perspectives floor (3) | DEPTH+CLEAR Loop | [SP-010](../manual-testing-playbook/depth-clear-loop/perspectives-floor-three.md) |
-| SP-011 | DEPTH iteration cap (one retry) | DEPTH+CLEAR Loop | [SP-011](../manual-testing-playbook/depth-clear-loop/depth-iteration-cap.md) |
-| SP-012 | RICCE validation gate | DEPTH+CLEAR Loop | [SP-012](../manual-testing-playbook/depth-clear-loop/ricce-validation-gate.md) |
-| SP-013 | Mechanism-first prototype | DEPTH+CLEAR Loop | [SP-013](../manual-testing-playbook/depth-clear-loop/mechanism-first-prototype.md) |
-| SP-014 | Phase exit gate blocking | DEPTH+CLEAR Loop | [SP-014](../manual-testing-playbook/depth-clear-loop/phase-exit-gate-blocking.md) |
+| SP-009 | One-pass checklist marks every row | Checklist Pass | [SP-009](../manual-testing-playbook/checklist-pass/one-pass-checklist-rows.md) |
+| SP-010 | Early exit returns a good prompt unchanged | Checklist Pass | [SP-010](../manual-testing-playbook/checklist-pass/early-exit-good-prompt.md) |
+| SP-011 | CLEAR repair stops after 3 cycles | Checklist Pass | [SP-011](../manual-testing-playbook/checklist-pass/repair-cycle-cap.md) |
+| SP-012 | Deliver first with numbered open items | Checklist Pass | [SP-012](../manual-testing-playbook/checklist-pass/deliver-first-open-items.md) |
+| SP-013 | Contradiction check resolves clashing rules | Checklist Pass | [SP-013](../manual-testing-playbook/checklist-pass/clashing-rules-resolved.md) |
+| SP-014 | Change report and length warning | Checklist Pass | [SP-014](../manual-testing-playbook/checklist-pass/change-report-length-warning.md) |
 | SP-015 | CLEAR five dimensions | CLEAR Scoring | [SP-015](../manual-testing-playbook/clear-scoring/clear-five-dimensions.md) |
 | SP-016 | Dimension floors block | CLEAR Scoring | [SP-016](../manual-testing-playbook/clear-scoring/dimension-floors-block.md) |
-| SP-017 | 40/50 threshold + one-retry cap | CLEAR Scoring | [SP-017](../manual-testing-playbook/clear-scoring/forty-of-fifty-threshold.md) |
+| SP-017 | Total below 40/50 triggers targeted repair | CLEAR Scoring | [SP-017](../manual-testing-playbook/clear-scoring/forty-of-fifty-threshold.md) |
 | SP-018 | Per-dimension rationale | CLEAR Scoring | [SP-018](../manual-testing-playbook/clear-scoring/dimension-drilldown-rationale.md) |
-| SP-019 | Framework by complexity | Framework Selection | [SP-019](../manual-testing-playbook/framework-selection/framework-by-complexity.md) |
+| SP-019 | Default skeleton unless a preset clearly fits | Framework Selection | [SP-019](../manual-testing-playbook/framework-selection/default-skeleton-unless-preset-fits.md) |
 | SP-020 | User-named framework override | Framework Selection | [SP-020](../manual-testing-playbook/framework-selection/user-named-framework-override.md) |
-| SP-021 | Framework rationale required | Framework Selection | [SP-021](../manual-testing-playbook/framework-selection/framework-rationale-required.md) |
-| SP-022 | Framework switch mid-flight | Framework Selection | [SP-022](../manual-testing-playbook/framework-selection/framework-switch-mid-flight.md) |
+| SP-021 | An applied preset is named with its reason | Framework Selection | [SP-021](../manual-testing-playbook/framework-selection/preset-named-in-change-report.md) |
+| SP-022 | Repair keeps the chosen preset | Framework Selection | [SP-022](../manual-testing-playbook/framework-selection/preset-kept-through-repair.md) |
 | SP-023 | Inline fast path (no escalation) | Escalation Tiers | [SP-023](../manual-testing-playbook/escalation-tiers/cli-card-five-question-fast-path.md) |
 | SP-024 | Escalation trigger thresholds | Escalation Tiers | [SP-024](../manual-testing-playbook/escalation-tiers/escalation-trigger-thresholds.md) |
 | SP-025 | `@prompt-improver` input payload | Escalation Tiers | [SP-025](../manual-testing-playbook/escalation-tiers/prompt-improver-input-payload.md) |

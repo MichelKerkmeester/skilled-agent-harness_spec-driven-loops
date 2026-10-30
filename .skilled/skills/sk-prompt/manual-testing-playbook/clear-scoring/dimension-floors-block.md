@@ -1,7 +1,7 @@
 ---
 title: "SP-016 -- CLEAR dimension floors trigger re-score"
 description: "This scenario validates CLEAR dimension-floor enforcement for `SP-016`. It focuses on re-iteration when any dimension falls below its floor."
-version: 2.3.0.5
+version: 2.3.1.0
 ---
 
 # SP-016 -- CLEAR dimension floors trigger re-score
@@ -46,7 +46,7 @@ Improve my user-story prompt; verify any CLEAR dimension below its floor trigger
 
 1. `sk-prompt: If any CLEAR dimension scores below its floor, re-iterate. Apply this to my prompt for generating user stories.`
 2. `agent: @prompt-improver raw_task="Improve a user-story generation prompt and enforce CLEAR dimension floors." task_type=generation target_cli=opencode complexity_hint=7 constraints="Re-score if C<7, L<7, E<10, A<7, or R<3."`
-3. `bash: rg 'Floor|dimension falls below floor|C >= 7|E >= 10' .skilled/skills/sk-prompt/references/depth-framework.md .skilled/skills/sk-prompt/references/patterns-evaluation.md`
+3. `bash: rg 'Floor|dimension falls below floor|C >= 7|E >= 10' .skilled/skills/sk-prompt/references/improvement-checklist.md .skilled/skills/sk-prompt/references/patterns-evaluation.md`
 
 ### Expected
 
@@ -64,7 +64,7 @@ Capture initial CLEAR score, floor comparison, re-score reason, and final score.
 ### Failure Triage
 
 1. Inspect CLEAR Dimensions in `patterns-evaluation.md` for floor values.
-2. Inspect `depth-framework.md` Test phase for improvement triggers.
+2. Inspect `improvement-checklist.md` section 6 for the repair rule.
 3. Re-run through `@prompt-improver` with a deliberately weak Expression section and require `floor_status` output.
 
 ### Optional Supplemental Checks
@@ -87,7 +87,7 @@ Verify the re-score targets the breached dimension rather than rewriting unrelat
 | File | Role |
 |---|---|
 | `../../references/patterns-evaluation.md` | CLEAR dimension floors and thresholds |
-| `../../references/depth-framework.md` | Improvement trigger on floor breach |
+| `../../references/improvement-checklist.md` | Repair up to 3 cycles on a floor breach |
 
 ---
 

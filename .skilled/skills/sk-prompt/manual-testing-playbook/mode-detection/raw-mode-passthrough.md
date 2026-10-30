@@ -1,10 +1,17 @@
 ---
-title: "SP-002 -- $raw mode skips DEPTH entirely"
-description: "This scenario validates `$raw` passthrough for `SP-002`. It focuses on confirming DEPTH runs 0 rounds, CLEAR scoring is skipped, and no transparency report is emitted."
-version: 2.3.0.4
+title: "SP-002 -- $raw passes through with no checklist"
+description: "This scenario validates `$raw` passthrough for `SP-002`. It focuses on confirming the prefix skips the checklist and the CLEAR screen, and returns the input with only the cleanup the operator asked for."
+trigger_phrases:
+  - "raw mode passthrough"
+  - "no checklist mode"
+  - "prompt cleanup only"
+  - "skip clear screen"
+importance_tier: important
+contextType: implementation
+version: 3.0.0.0
 ---
 
-# SP-002 -- $raw mode skips DEPTH entirely
+# SP-002 -- $raw passes through with no checklist
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `SP-002`.
 
@@ -12,11 +19,13 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates `$raw` passthrough for `SP-002`. It focuses on confirming the prefix bypasses DEPTH (0 rounds), skips CLEAR, and does not invoke `@prompt-improver` for deep enhancement; the input passes through with minimal structural cleanup only.
+This scenario validates `$raw` passthrough for `SP-002`. It focuses on confirming the prefix bypasses the checklist and the CLEAR screen, and that the prompt comes back carrying only the change the operator requested.
+
+`$raw` exists for the caller that already owns its prompt handling. It asks for no pass over the ten rows, no score, and no commentary about the work. The text goes in, the requested cleanup comes out.
 
 ### Why This Matters
 
-Operators sometimes already have a polished prompt and just want minimal cleanup. Without a clean passthrough, sk-prompt would over-process and risk altering tested prompts that should remain stable.
+An operator who asks for whitespace cleanup and receives a rewritten prompt learns that sk-prompt cannot be trusted with a prompt that already works. Once output text is no longer predictable, tested prompts stop being stable, and every later comparison has to account for edits nobody asked for. The passthrough is the mode that keeps a working prompt working.
 
 ---
 
@@ -24,13 +33,13 @@ Operators sometimes already have a polished prompt and just want minimal cleanup
 
 Operators run the exact prompt and command sequence for `SP-002` and confirm the expected signals without contradictory evidence.
 
-- Objective: Confirm `$raw` skips DEPTH and CLEAR entirely
-- Real user request: `$raw I already wrote this prompt — just clean up whitespace, do not rewrite it.`
-- Prompt: `$raw clean up my prompt's whitespace only; verify DEPTH and CLEAR stay skipped and no transparency report is emitted.`
-- Expected execution process: sk-prompt detects `$raw` prefix, bypasses INTENT_MODEL scoring, executes 0 DEPTH rounds, skips CLEAR scoring, returns the input with whitespace and line-wrap cleanup only.
-- Expected signals: Mode = `$raw`, DEPTH rounds = 0, no CLEAR breakdown, no transparency report
-- Desired user-visible outcome: Output that is structurally identical to input plus a one-line "Mode: $raw (DEPTH skipped)" notice.
-- Pass/fail: PASS if zero DEPTH rounds and no CLEAR breakdown; FAIL if any DEPTH phase runs, CLEAR is computed, or output diverges from input beyond whitespace cleanup.
+- Objective: Confirm `$raw` skips the checklist and the CLEAR screen and returns the input with only the asked-for cleanup.
+- Real user request: `$raw clean up my prompt's whitespace only`
+- Prompt: `$raw clean up my prompt's whitespace only; confirm the checklist and the CLEAR screen stay skipped and that no change report is emitted.`
+- Expected execution process: sk-prompt detects the `$raw` prefix, runs no checklist pass, computes no CLEAR score, and returns the input with whitespace and line-wrap cleanup applied.
+- Expected signals: a one-line notice reading `Mode: $raw (no checklist)`, no CLEAR breakdown, no open items, no change report.
+- Desired user-visible outcome: Output that matches the input apart from whitespace, followed by the single mode notice.
+- Pass/fail: PASS if the output differs from the input only in whitespace and no screen or report appears; FAIL if any checklist row, CLEAR score or rewrite appears.
 
 ---
 
@@ -39,36 +48,40 @@ Operators run the exact prompt and command sequence for `SP-002` and confirm the
 ### Prompt
 
 ```
-$raw clean up my prompt's whitespace only; verify DEPTH and CLEAR stay skipped and no transparency report is emitted.
+$raw clean up my prompt's whitespace only; confirm the checklist and the CLEAR screen stay skipped and that no change report is emitted.
 ```
 
 ### Commands
 
-1. `sk-prompt: $raw I already wrote this prompt — just clean up whitespace, do not rewrite it. <draft body>`
-2. `bash: rg '\$raw' .skilled/skills/sk-prompt/SKILL.md` (confirm $raw alias documented)
+1. `sk-prompt: $raw clean up my prompt's whitespace only`
+2. `agent: @prompt-improver $raw clean up my prompt's whitespace only; return the draft with whitespace and line-wrap fixes only, no checklist rows, no CLEAR score, no open items and no change report. <draft body>`
+3. `bash: rg -n 'NO_LOAD_INTENTS' .skilled/skills/sk-prompt/ROUTER.md` (confirm `$raw` sits in the no-load intent set)
 
 ### Expected
 
-Output preserves input semantics; one-line notice "Mode: $raw (DEPTH skipped)"; no per-phase log; no CLEAR breakdown.
+The output preserves the input text apart from whitespace. One line reads `Mode: $raw (no checklist)`. No checklist rows are listed, no CLEAR score appears, and no Added, Changed, Removed or Skipped section closes the answer.
 
 ### Evidence
 
-Capture full response. Diff input against output (excluding whitespace) and confirm zero semantic edits.
+Capture the full response and the input side by side. Diff the two after collapsing whitespace and confirm the remaining lines are identical. Quote the mode notice line as it appears.
 
 ### Pass / Fail
 
-- **Pass**: Zero DEPTH rounds executed, no CLEAR score reported, output diff vs input shows whitespace-only changes.
-- **Fail**: Any DEPTH phase executes, CLEAR is computed, or output text differs from input beyond whitespace.
+- **Pass**: The output differs from the input only in whitespace, the mode notice appears once, and no checklist, CLEAR score, open item or change report is present.
+- **Fail**: Any checklist row is listed, a CLEAR score or dimension is reported, a rewrite appears, or an Added/Changed/Removed/Skipped report is emitted.
 
 ### Failure Triage
 
-1. Confirm `$raw` is the literal first token in the input (no leading whitespace before the `$`).
-2. Inspect SKILL.md §3 operating-modes row for `$raw`: should show `DEPTH Rounds: 0, Scoring: None`.
-3. Re-dispatch with the prefix lowercased to confirm case-sensitivity behavior.
+1. Confirm `$raw` is the literal first token of the input, with no leading whitespace before the `$`.
+2. Inspect the mode table in `../../SKILL.md`: the `$raw` entry should show no checklist pass and no scoring.
+3. Inspect `NO_LOAD_INTENTS` in `../../ROUTER.md`: `RAW` must be listed, otherwise a reference file loads and pulls the pass back in.
+4. Re-run with the prefix lowercased to learn whether the prefix is case-sensitive.
 
 ### Optional Supplemental Checks
 
 Use this subsection only when the feature needs a tightly scoped follow-up variant, compatibility check, or artifact note.
+
+A useful variant sends a body containing a deliberate contradiction as well as double blank lines. The contradiction must pass through untouched while the blank lines collapse, which separates "no checklist" from "no editing at all".
 
 ---
 
@@ -79,14 +92,16 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../SKILL.md` | sk-prompt skill source: §3 operating-modes table for `$raw` |
+| `../../SKILL.md` | sk-prompt skill source: mode table entry naming `$raw` as the no-pass mode |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` | §1 Keyword Triggers (`$raw` listed) and §3 operating-modes table |
-| `../../references/depth-framework.md` | DEPTH bypass contract |
+| `../../ROUTER.md` | Routing rules; `NO_LOAD_INTENTS = ("RAW",)` is what keeps reference files from loading for `$raw` |
+| `../../SKILL.md` | Mode table and keyword triggers that define what `$raw` turns off |
+| `../../references/improvement-checklist.md` | The ten rows and effort levels, including `$raw` as the level that runs no pass |
+| `../../references/patterns-evaluation.md` | The CLEAR screen definition that `$raw` skips |
 
 ---
 

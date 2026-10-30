@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/010-sk-prompt-improvements",
+  "spec_folder": "sk-prompt/010-sk-prompt-improvements",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk prompt improvements",
+      "fix sk prompt drift and recommend improvements",
+      "replace depth in sk-prompt",
+      "prompt improver survey",
+      "sk prompt improvements plan",
+      "sk prompt improvements tasks",
+      "sk prompt improvements goal",
+      "sk prompt improvements implementation summary"
+    ],
+    "key_topics": [
+      "prompt",
+      "improvements",
+      "drift",
+      "recommend",
+      "replace",
+      "depth",
+      "sk-prompt",
+      "improver",
+      "survey",
+      "plan",
+      "tasks",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".skilled/skills/sk-prompt/SKILL.md",
+      ".skilled/skills/sk-prompt/references/improvement-checklist.md",
+      ".skilled/skills/sk-prompt/ROUTER.md",
+      ".skilled/skills/sk-prompt/references/patterns-evaluation.md",
+      ".skilled/skills/sk-prompt/README.md",
+      ".skilled/skills/sk-prompt/changelog/v4.0.0.0.md",
+      ".skilled/agents/prompt-improver.md",
+      ".skilled/commands/prompt/improve.md",
+      ".skilled/bin/skill-advisor.cjs",
+      "scratch/prompt-improver-survey.md",
+      "research/lineages/codex-luna/research.md",
+      "PI/README.md",
+      "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/description.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "improvement-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/references/improvement-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "patterns-evaluation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/references/patterns-evaluation.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/changelog/v4.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.md",
+        "kind": "doc",
+        "path": ".skilled/agents/prompt-improver.md",
+        "source": "derived"
+      },
+      {
+        "name": "improve.md",
+        "kind": "doc",
+        "path": ".skilled/commands/prompt/improve.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver-survey.md",
+        "kind": "doc",
+        "path": "scratch/prompt-improver-survey.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Systems Prompt Improver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-prompt named a retired advisor script (`skilladvisor.py`), and the AI Systems Prompt Improver named a skill that no longer exists (`sk-prompt-small-model`)",
+    "created_at": "2026-10-30T05:32:33Z",
+    "last_save_at": "2026-10-30T07:32:29.650Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:e0f257285fee19bd77b62286e3e2c8874608797552bd1d6397d753a932cf313a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fc2c8b1ef603d4fd6495e459193b1f36dfccf11be757fa0b0b6a7775e02508c9",
+      "plan.md": "8c1f3b86002ecd9ad81ca51c5f3a533ad28a4dd3c8bdffd406108586063e55f8",
+      "tasks.md": "0f5b4978068d9000ab277a5117b291d53ce41b95710ec329aa8a8bac59f1df6f",
+      "implementation-summary.md": "a72708789e0d9ec1715e59997daf43ade27cd94e9f712488bb66f5a09f9fe4aa",
+      "research/research.md": "fae816bb3b1de1631c47ab34ce6bd7ad01251f97f71ac8d534f66374f9551149"
+    },
+    "last_active_at": null
+  }
+}

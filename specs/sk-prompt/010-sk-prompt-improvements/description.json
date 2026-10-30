@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/010-sk-prompt-improvements",
+  "description": "sk-prompt named a retired advisor script (`skilladvisor.py`), and the AI Systems Prompt Improver named a skill that no longer exists",
+  "keywords": [
+    "sk-prompt",
+    "named",
+    "retired",
+    "advisor",
+    "script",
+    "skilladvisor",
+    "systems",
+    "prompt",
+    "improver",
+    "skill",
+    "longer",
+    "exists"
+  ],
+  "lastUpdated": "2026-10-30T05:57:50.352Z",
+  "specId": "010",
+  "folderSlug": "sk-prompt-improvements",
+  "parentChain": [
+    "sk-prompt"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "30-10-26_06-58__deep-research-ran-3-iterations-on-devin-swe-2-max.md"
+  ]
+}

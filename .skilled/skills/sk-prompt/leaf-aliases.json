@@ -26,6 +26,36 @@
   },
   {
     "workflowMode": "sk-prompt",
+    "leafResourceId": "manual-testing-playbook/checklist-pass/change-report-length-warning.md",
+    "diskPath": "manual-testing-playbook/checklist-pass/change-report-length-warning.md"
+  },
+  {
+    "workflowMode": "sk-prompt",
+    "leafResourceId": "manual-testing-playbook/checklist-pass/clashing-rules-resolved.md",
+    "diskPath": "manual-testing-playbook/checklist-pass/clashing-rules-resolved.md"
+  },
+  {
+    "workflowMode": "sk-prompt",
+    "leafResourceId": "manual-testing-playbook/checklist-pass/deliver-first-open-items.md",
+    "diskPath": "manual-testing-playbook/checklist-pass/deliver-first-open-items.md"
+  },
+  {
+    "workflowMode": "sk-prompt",
+    "leafResourceId": "manual-testing-playbook/checklist-pass/early-exit-good-prompt.md",
+    "diskPath": "manual-testing-playbook/checklist-pass/early-exit-good-prompt.md"
+  },
+  {
+    "workflowMode": "sk-prompt",
+    "leafResourceId": "manual-testing-playbook/checklist-pass/one-pass-checklist-rows.md",
+    "diskPath": "manual-testing-playbook/checklist-pass/one-pass-checklist-rows.md"
+  },
+  {
+    "workflowMode": "sk-prompt",
+    "leafResourceId": "manual-testing-playbook/checklist-pass/repair-cycle-cap.md",
+    "diskPath": "manual-testing-playbook/checklist-pass/repair-cycle-cap.md"
+  },
+  {
+    "workflowMode": "sk-prompt",
     "leafResourceId": "manual-testing-playbook/clear-scoring/clear-five-dimensions.md",
     "diskPath": "manual-testing-playbook/clear-scoring/clear-five-dimensions.md"
   },
@@ -43,36 +73,6 @@
     "workflowMode": "sk-prompt",
     "leafResourceId": "manual-testing-playbook/clear-scoring/forty-of-fifty-threshold.md",
     "diskPath": "manual-testing-playbook/clear-scoring/forty-of-fifty-threshold.md"
-  },
-  {
-    "workflowMode": "sk-prompt",
-    "leafResourceId": "manual-testing-playbook/depth-clear-loop/depth-five-phases-order.md",
-    "diskPath": "manual-testing-playbook/depth-clear-loop/depth-five-phases-order.md"
-  },
-  {
-    "workflowMode": "sk-prompt",
-    "leafResourceId": "manual-testing-playbook/depth-clear-loop/depth-iteration-cap.md",
-    "diskPath": "manual-testing-playbook/depth-clear-loop/depth-iteration-cap.md"
-  },
-  {
-    "workflowMode": "sk-prompt",
-    "leafResourceId": "manual-testing-playbook/depth-clear-loop/mechanism-first-prototype.md",
-    "diskPath": "manual-testing-playbook/depth-clear-loop/mechanism-first-prototype.md"
-  },
-  {
-    "workflowMode": "sk-prompt",
-    "leafResourceId": "manual-testing-playbook/depth-clear-loop/perspectives-floor-three.md",
-    "diskPath": "manual-testing-playbook/depth-clear-loop/perspectives-floor-three.md"
-  },
-  {
-    "workflowMode": "sk-prompt",
-    "leafResourceId": "manual-testing-playbook/depth-clear-loop/phase-exit-gate-blocking.md",
-    "diskPath": "manual-testing-playbook/depth-clear-loop/phase-exit-gate-blocking.md"
-  },
-  {
-    "workflowMode": "sk-prompt",
-    "leafResourceId": "manual-testing-playbook/depth-clear-loop/ricce-validation-gate.md",
-    "diskPath": "manual-testing-playbook/depth-clear-loop/ricce-validation-gate.md"
   },
   {
     "workflowMode": "sk-prompt",
@@ -106,18 +106,18 @@
   },
   {
     "workflowMode": "sk-prompt",
-    "leafResourceId": "manual-testing-playbook/framework-selection/framework-by-complexity.md",
-    "diskPath": "manual-testing-playbook/framework-selection/framework-by-complexity.md"
+    "leafResourceId": "manual-testing-playbook/framework-selection/default-skeleton-unless-preset-fits.md",
+    "diskPath": "manual-testing-playbook/framework-selection/default-skeleton-unless-preset-fits.md"
   },
   {
     "workflowMode": "sk-prompt",
-    "leafResourceId": "manual-testing-playbook/framework-selection/framework-rationale-required.md",
-    "diskPath": "manual-testing-playbook/framework-selection/framework-rationale-required.md"
+    "leafResourceId": "manual-testing-playbook/framework-selection/preset-kept-through-repair.md",
+    "diskPath": "manual-testing-playbook/framework-selection/preset-kept-through-repair.md"
   },
   {
     "workflowMode": "sk-prompt",
-    "leafResourceId": "manual-testing-playbook/framework-selection/framework-switch-mid-flight.md",
-    "diskPath": "manual-testing-playbook/framework-selection/framework-switch-mid-flight.md"
+    "leafResourceId": "manual-testing-playbook/framework-selection/preset-named-in-change-report.md",
+    "diskPath": "manual-testing-playbook/framework-selection/preset-named-in-change-report.md"
   },
   {
     "workflowMode": "sk-prompt",
@@ -141,8 +141,8 @@
   },
   {
     "workflowMode": "sk-prompt",
-    "leafResourceId": "manual-testing-playbook/mode-detection/short-mode-three-rounds.md",
-    "diskPath": "manual-testing-playbook/mode-detection/short-mode-three-rounds.md"
+    "leafResourceId": "manual-testing-playbook/mode-detection/short-mode-quick-effort.md",
+    "diskPath": "manual-testing-playbook/mode-detection/short-mode-quick-effort.md"
   },
   {
     "workflowMode": "sk-prompt",
@@ -166,8 +166,8 @@
   },
   {
     "workflowMode": "sk-prompt",
-    "leafResourceId": "references/depth-framework.md",
-    "diskPath": "references/depth-framework.md"
+    "leafResourceId": "references/improvement-checklist.md",
+    "diskPath": "references/improvement-checklist.md"
   },
   {
     "workflowMode": "sk-prompt",

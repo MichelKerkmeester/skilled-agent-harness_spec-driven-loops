@@ -1,7 +1,7 @@
 ---
 title: "SP-024 -- Escalation trigger thresholds"
 description: "This scenario validates deep-path escalation to `@prompt-improver` for `SP-024`. It focuses on complexity, sensitivity, multi-stakeholder, and ambiguity routing to the deep path."
-version: 2.3.0.7
+version: 2.3.1.0
 ---
 
 # SP-024 -- Escalation trigger thresholds
@@ -46,7 +46,7 @@ Run sk-prompt on a HIPAA-bound, high-complexity prompt. Verify it escalates to @
 
 1. `sk-prompt: Help with a compliance-sensitive prompt for HIPAA-bound data handling -- escalate to @prompt-improver.`
 2. `agent: @prompt-improver raw_task="Enhance a HIPAA-bound data-handling prompt for safe dispatch." task_type=review target_cli=opencode complexity_hint=8 constraints="HIPAA compliance; preserve privacy and safety requirements."`
-3. `bash: rg 'ESCALATE IF|@prompt-improver|complexity_hint|Standard DEPTH energy' .skilled/skills/sk-prompt/SKILL.md`
+3. `bash: rg 'ESCALATE IF|@prompt-improver|complexity_hint|standard effort' .skilled/skills/sk-prompt/SKILL.md`
 
 ### Expected
 
@@ -63,7 +63,7 @@ Capture the routing decision, escalation reason, and the `@prompt-improver` inpu
 
 ### Failure Triage
 
-1. Inspect `SKILL.md` §7 `@prompt-improver` contract (`complexity_hint`, Standard DEPTH energy for escalated prompts) and §4 ESCALATE IF.
+1. Inspect `SKILL.md` §7 `@prompt-improver` contract (`complexity_hint`, thorough effort for complexity 8-10) and §4 ESCALATE IF.
 2. Confirm the operator input contains compliance-sensitive or high-complexity language.
 3. Re-run with `complexity_hint=8` and explicit `constraints="HIPAA compliance"` in the payload.
 
@@ -87,7 +87,7 @@ Run a multi-stakeholder variant and verify it also escalates with a different re
 | File | Role |
 |---|---|
 | `../../references/patterns-evaluation.md` | CLEAR floors that, when unmet, justify escalation |
-| `../../references/depth-framework.md` | Deep-path DEPTH processing after escalation |
+| `../../references/improvement-checklist.md` | Thorough effort applied after escalation |
 
 ---
 

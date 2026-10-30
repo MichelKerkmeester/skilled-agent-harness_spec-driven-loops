@@ -1,0 +1,28 @@
+{
+  "researchTopic": "How should sk-prompt (.skilled/skills/sk-prompt) be rebuilt without the DEPTH thinking framework? Validate, refute or extend the ranked recommendations REQ-002 to REQ-011 in specs/sk-prompt/010-sk-prompt-improvements/spec.md and the source ledger scratch/prompt-improver-survey.md: what exactly replaces DEPTH (one-pass checklist contents), whether the seven named frameworks should collapse into one component skeleton, how quality should be judged (CLEAR self-score vs test inputs), deliver-first vs ask-first, model profiles, and what the callers .skilled/agents/prompt-improver.md and .skilled/commands/prompt/ need. Compare against the AI Systems Prompt Improver (../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver) and public prompt improvers. Read-only research: write only inside the research lineage directory.",
+  "specFolder": "specs/sk-prompt/010-sk-prompt-improvements",
+  "maxIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "concurrency": 1,
+    "executors": [
+      {
+        "kind": "cli-devin",
+        "model": "swe-2-max",
+        "label": "devin-swe2",
+        "iterations": 3,
+        "timeoutSeconds": 1800
+      }
+    ]
+  },
+  "status": "complete"
+}

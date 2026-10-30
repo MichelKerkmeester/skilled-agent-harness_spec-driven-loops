@@ -1,7 +1,7 @@
 ---
 title: "SP-005 -- INTENT_MODEL keyword scoring routes between TEXT_ENHANCE and FRAMEWORK"
 description: "This scenario validates INTENT_MODEL routing for `SP-005`. It focuses on confirming weighted keyword scoring picks TEXT_ENHANCE for improve-heavy input and FRAMEWORK for framework-named input."
-version: 2.3.2.0
+version: 2.3.3.0
 ---
 
 # SP-005 -- INTENT_MODEL keyword scoring routes between TEXT_ENHANCE and FRAMEWORK
@@ -51,7 +51,7 @@ Score these two sk-prompt inputs through INTENT_MODEL; verify TEXT_ENHANCE and F
 
 ### Expected
 
-Input A: intent = TEXT_ENHANCE, resources include `references/depth-framework.md` + `references/patterns-evaluation.md`. Input B: intent = FRAMEWORK, resources include `references/patterns-evaluation.md`.
+Input A: intent = TEXT_ENHANCE, resources include `references/improvement-checklist.md` + `references/patterns-evaluation.md`. Input B: intent = FRAMEWORK, resources include `references/patterns-evaluation.md`.
 
 ### Evidence
 
@@ -87,7 +87,7 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 
 | File | Role |
 |---|---|
-| `../../references/depth-framework.md` | TEXT_ENHANCE conditional load |
+| `../../references/improvement-checklist.md` | TEXT_ENHANCE default resource |
 | `../../references/patterns-evaluation.md` | FRAMEWORK conditional load |
 
 ---

@@ -1,0 +1,207 @@
+[
+  {
+    "id": "improve-command",
+    "request": "$improve make this better",
+    "expect": {
+      "intents": [
+        "TEXT_ENHANCE"
+      ],
+      "resources": [
+        "references/improvement-checklist.md",
+        "references/patterns-evaluation.md"
+      ]
+    }
+  },
+  {
+    "id": "raw-command",
+    "request": "$raw just pass it through",
+    "expect": {
+      "intents": [
+        "RAW"
+      ],
+      "resources": [],
+      "load_level": "RAW"
+    }
+  },
+  {
+    "id": "raw-mid-text",
+    "request": "please $raw this one",
+    "expect": {
+      "resources": [],
+      "load_level": "RAW"
+    }
+  },
+  {
+    "id": "short-command",
+    "request": "$short tighten this",
+    "expect": {
+      "intents": [
+        "TEXT_ENHANCE"
+      ]
+    }
+  },
+  {
+    "id": "json-command",
+    "request": "$json turn this into an API prompt",
+    "expect": {
+      "intents": [
+        "FORMAT_JSON"
+      ],
+      "resources": [
+        "references/improvement-checklist.md",
+        "assets/format-guide-json.md",
+        "references/patterns-evaluation.md"
+      ]
+    }
+  },
+  {
+    "id": "pasted-fence-json",
+    "request": "improve this:\n```\nReturn json that matches the json schema and is api-ready\n```",
+    "expect": {
+      "intents": [
+        "TEXT_ENHANCE"
+      ]
+    }
+  },
+  {
+    "id": "pasted-quote-yaml",
+    "request": "improve \"write a yaml config file for nginx please\" for me",
+    "expect": {
+      "intents": [
+        "TEXT_ENHANCE"
+      ]
+    }
+  },
+  {
+    "id": "not-a-command-token",
+    "request": "$jsonx improve this prompt",
+    "expect": {
+      "intents": [
+        "TEXT_ENHANCE"
+      ]
+    }
+  },
+  {
+    "id": "unknown-fallback",
+    "request": "hello there",
+    "expect": {
+      "load_level": "UNKNOWN_FALLBACK",
+      "resources": [
+        "references/improvement-checklist.md"
+      ]
+    }
+  },
+  {
+    "id": "framework-named",
+    "request": "use the costar framework",
+    "expect": {
+      "intents": [
+        "FRAMEWORK"
+      ],
+      "resources": [
+        "references/patterns-evaluation.md"
+      ]
+    }
+  },
+  {
+    "id": "cli-card",
+    "request": "show the cli prompt quality card",
+    "expect": {
+      "intents": [
+        "CLI_FAST_PATH"
+      ],
+      "resources": [
+        "references/improvement-checklist.md",
+        "assets/cli-prompt-quality-card.md"
+      ]
+    }
+  },
+  {
+    "id": "lead-in-guard",
+    "request": "improve this. prompt: write yaml for my server config\n\nthanks",
+    "expect": {
+      "intents": [
+        "TEXT_ENHANCE"
+      ]
+    }
+  },
+  {
+    "id": "conflict-raw-text",
+    "request": "$text $raw improve this",
+    "expect": {
+      "intents": [],
+      "resources": [],
+      "load_level": "COMMAND_CONFLICT"
+    }
+  },
+  {
+    "id": "conflict-improve-json",
+    "request": "$improve $json make this an api prompt",
+    "expect": {
+      "intents": [],
+      "resources": [],
+      "load_level": "COMMAND_CONFLICT"
+    }
+  },
+  {
+    "id": "conflict-short-refine",
+    "request": "$short $refine this prompt",
+    "expect": {
+      "intents": [],
+      "resources": [],
+      "load_level": "COMMAND_CONFLICT"
+    }
+  },
+  {
+    "id": "same-intent-no-conflict",
+    "request": "$text $improve make this clearer",
+    "expect": {
+      "intents": [
+        "TEXT_ENHANCE"
+      ],
+      "resources": [
+        "references/improvement-checklist.md",
+        "references/patterns-evaluation.md"
+      ]
+    }
+  },
+  {
+    "id": "pasted-fence-command",
+    "request": "improve this:\n```\n$json Return the user record\n```",
+    "expect": {
+      "intents": [
+        "TEXT_ENHANCE"
+      ],
+      "resources": [
+        "references/improvement-checklist.md",
+        "references/patterns-evaluation.md"
+      ]
+    }
+  },
+  {
+    "id": "pasted-single-quote",
+    "request": "Improve 'write a json schema for users' please",
+    "expect": {
+      "intents": [
+        "TEXT_ENHANCE"
+      ],
+      "resources": [
+        "references/improvement-checklist.md",
+        "references/patterns-evaluation.md"
+      ]
+    }
+  },
+  {
+    "id": "generic-lead-in",
+    "request": "please improve: Generate a YAML config for nginx",
+    "expect": {
+      "intents": [
+        "TEXT_ENHANCE"
+      ],
+      "resources": [
+        "references/improvement-checklist.md",
+        "references/patterns-evaluation.md"
+      ]
+    }
+  }
+]

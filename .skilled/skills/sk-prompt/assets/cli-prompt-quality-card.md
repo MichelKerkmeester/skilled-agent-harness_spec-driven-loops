@@ -9,7 +9,7 @@ trigger_phrases:
   - "escalate to prompt improver"
 importance_tier: important
 contextType: general
-version: 0.8.0.19
+version: 0.8.1.0
 ---
 
 # CLI Prompt Quality Card
@@ -96,8 +96,10 @@ Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inlin
 Expected structured return:
 
 ```text
-FRAMEWORK: <name>
-CLEAR_SCORE: <n>/50
+FRAMEWORK: <default skeleton | preset name>
+CLEAR_SCORE: <n>/50 (C:<n> L:<n> E:<n> A:<n> R:<n>)
+TEST: <ran: summary of old vs new on 2-3 inputs | NOT RUN>
+CHANGES: <Added ...; Changed ...; Removed ...; Skipped ...>
 RATIONALE: <short explanation>
 ENHANCED_PROMPT: |
   <ready-to-dispatch prompt>
@@ -203,6 +205,6 @@ When editing this file, no mirroring step is required — the delegating cards r
 
 - `../SKILL.md`
 - `../references/patterns-evaluation.md`
-- `../references/depth-framework.md`
+- `../references/improvement-checklist.md`
 - `../../../cli-claude-code/assets/prompt-quality-card.md`
 - `../../../cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md`

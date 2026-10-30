@@ -1,10 +1,10 @@
 ---
-title: "SP-017 -- CLEAR 40/50 threshold triggers improvement"
-description: "This scenario validates total CLEAR threshold enforcement for `SP-017`. It focuses on iterating when total score is below 40/50, capped at one retry."
-version: 2.3.0.5
+title: "SP-017 -- Total below 40/50 triggers targeted repair"
+description: "This scenario validates targeted CLEAR repair for `SP-017`. It focuses on a total below 40 of 50 sending the prompt to its weakest dimension, capped at 3 repair cycles, with an honest best-version note when the target is not reached."
+version: 3.0.0.0
 ---
 
-# SP-017 -- CLEAR 40/50 threshold triggers improvement
+# SP-017 -- Total below 40/50 triggers targeted repair
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `SP-017`.
 
@@ -12,11 +12,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates that a total CLEAR score below 40 triggers an improvement cycle. The operator asks for ML hyperparameter tuning prompt improvement and verifies that `@prompt-improver` retries once before delivering the best version with notes.
+This scenario validates that a CLEAR total below 40 of 50 sends the prompt into targeted repair instead of straight delivery. The operator asks for an ML hyperparameter tuning prompt and states that nothing ships until CLEAR reaches 40, so the run has to show the starting total, the dimension repaired each cycle, and where the progression stopped.
 
 ### Why This Matters
 
-The 40/50 threshold is the delivery quality bar. Without it, below-target prompts can ship without any repair attempt.
+The 40 of 50 pass mark is the delivery bar, and repair is how a prompt under the bar gets a fair chance at it inside a bounded pass. Repair aimed at the weakest dimension moves the total by the largest step available. Repair that rewrites everything moves the total in both directions at once. The cap at 3 cycles keeps an answer arriving, and the closing note keeps an unmet target visible instead of rounded up into a pass.
 
 ---
 
@@ -24,13 +24,13 @@ The 40/50 threshold is the delivery quality bar. Without it, below-target prompt
 
 Operators run the exact prompt and command sequence for `SP-017` and confirm the expected signals without contradictory evidence.
 
-- Objective: Confirm total CLEAR <40 triggers one improvement cycle and no more.
-- Real user request: `Improve my prompt for ML hyperparameter tuning — only deliver if you can hit CLEAR >= 40, otherwise retry once.`
-- Prompt: `Improve my ML hyperparameter tuning prompt; verify CLEAR below 40 triggers one retry and stops there.`
-- Expected execution process: `@prompt-improver` scores the prompt, checks total >=40, retries once on failure, and then stops.
-- Expected signals: Score progression shows initial score and subsequent score(s); final status says pass or best-version delivery after one retry.
-- Desired user-visible outcome: Enhanced prompt plus CLEAR progression and final threshold status.
-- Pass/fail: PASS if total <40 triggers a retry and the one-retry cap is honored; FAIL if a below-40 result ships as pass or a second retry starts.
+- Objective: Confirm a CLEAR total below 40 of 50 triggers repair of the weakest dimension, up to 3 cycles, and that the reason is written before each score.
+- Real user request: `Improve my prompt for ML hyperparameter tuning and only deliver if it reaches CLEAR 40.`
+- Prompt: `Improve my ML hyperparameter tuning prompt; only deliver it at CLEAR 40, and repair the weakest dimension while the total stays below that.`
+- Expected execution process: `@prompt-improver` writes a reason for each dimension, scores, checks whether the total reaches 40, repairs the weakest dimension, and repeats no more than 3 times.
+- Expected signals: Score progression shows the initial total, the dimension repaired in each cycle and the final total; the run stops by cycle 3; a note names what stayed weak when 40 is not reached.
+- Desired user-visible outcome: The improved prompt, the reason written before each score, the dimension named weakest per cycle, and an honest final status.
+- Pass/fail: PASS if repair targets the weakest dimension and stops by cycle 3 with an honest note; FAIL if repair is untargeted, exceeds 3 cycles, or a sub-40 result is presented as passing.
 
 ---
 
@@ -39,37 +39,37 @@ Operators run the exact prompt and command sequence for `SP-017` and confirm the
 ### Prompt
 
 ```
-Improve my ML hyperparameter tuning prompt; verify CLEAR below 40 triggers one retry and stops there.
+Improve my prompt for ML hyperparameter tuning and only deliver if it reaches CLEAR 40.
 ```
 
 ### Commands
 
-1. `sk-prompt: Improve my prompt for ML hyperparameter tuning — only deliver if you can hit CLEAR >= 40, otherwise retry once.`
-2. `agent: @prompt-improver raw_task="Improve an ML hyperparameter tuning prompt and enforce CLEAR >= 40 before success." task_type=generation target_cli=opencode complexity_hint=8 constraints="Retry once on total CLEAR <40."`
-3. `bash: rg '40\\+/50|required|30-39|One retry at most|CLEAR >= 40' .skilled/skills/sk-prompt/references/depth-framework.md .skilled/skills/sk-prompt/references/patterns-evaluation.md`
+1. `sk-prompt: Improve my prompt for ML hyperparameter tuning and only deliver if it reaches CLEAR 40.`
+2. `agent: @prompt-improver raw_task="Improve an ML hyperparameter tuning prompt and reach a CLEAR total of 40 of 50 before delivery." task_type=generation target_cli=opencode complexity_hint=8 constraints="Repair the weakest dimension only; at most 3 repair cycles; write the reason before each score; if 40 is still not reached, deliver the best version with a note naming what stayed weak."`
+3. `bash: rg '40 of 50|weakest dimension|3 repair cycles|best version' .skilled/skills/sk-prompt/references/improvement-checklist.md`
 
 ### Expected
 
-The transparency report shows CLEAR >=40 on success, or one retry plus best-version notes on failure.
+The report shows the initial total, the dimension named weakest in each repair cycle, and the final total, each one preceded by its reason. Delivery happens at or above 40, or with the best version plus a note naming what stayed weak.
 
 ### Evidence
 
-Capture score progression, iteration count, final threshold status, and `ESCALATION_NOTES` if target is unmet.
+Capture the reason written before each score, the initial total, the dimension repaired per cycle, the cycle count, the final total, and the best-version note when the target is unmet.
 
 ### Pass / Fail
 
-- **Pass**: Total <40 causes one improvement cycle and never a second.
-- **Fail**: Below-40 output is marked successful or a second retry begins.
+- **Pass**: Repair targets the weakest dimension, stops by cycle 3, and an unmet target is reported with a note.
+- **Fail**: Repair is untargeted, a fourth cycle starts, or a total under 40 is reported as passing.
 
 ### Failure Triage
 
-1. Inspect CLEAR Thresholds in `patterns-evaluation.md`.
-2. Inspect Improvement Protocol in `depth-framework.md`.
-3. Re-dispatch to `@prompt-improver` with `constraints="print score_before, score_after, iteration_count"`.
+1. Inspect the CLEAR screen in `../../references/improvement-checklist.md` section 6 for the pass mark, the weakest-dimension rule and the cycle cap.
+2. Check that a reason was written before each score. A total with no argument behind it cannot point at a weakest dimension.
+3. Re-dispatch to `@prompt-improver` with `constraints="print the reason per dimension, the total, the weakest dimension and the cycle count before delivering"`.
 
 ### Optional Supplemental Checks
 
-Verify a final score >=40 also satisfies all dimension floors from SP-016.
+Feed a prompt that already scores at or above 40 and confirm it is delivered with its score and no repair cycle.
 
 ---
 
@@ -79,15 +79,17 @@ Verify a final score >=40 also satisfies all dimension floors from SP-016.
 
 | File | Role |
 |---|---|
-| `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../SKILL.md` | sk-prompt skill source: §3 scoring systems and §7 `@prompt-improver` deterministic rules |
+| `../../manual-testing-playbook.md` | Root directory page and scenario summary |
+| `../../SKILL.md` | Skill source the scenario contract mirrors: workflow, mode commands and dispatch rules |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `../../references/patterns-evaluation.md` | CLEAR threshold table |
-| `../../references/depth-framework.md` | One-retry improvement protocol |
+| `../../references/improvement-checklist.md` | Section 6 carries the 40 of 50 pass mark, the weakest-dimension repair rule and the 3-cycle cap |
+| `../../references/patterns-evaluation.md` | The CLEAR screen, defined once in section 10 |
+| `../../ROUTER.md` | Routes a request to the mode that owns the work |
+| `../../SKILL.md` | One-pass workflow and the `@prompt-improver` dispatch contract |
 
 ---
 

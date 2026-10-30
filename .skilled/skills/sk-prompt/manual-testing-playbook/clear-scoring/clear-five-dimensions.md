@@ -1,7 +1,7 @@
 ---
 title: "SP-015 -- CLEAR scores all five dimensions"
 description: "This scenario validates five-dimension CLEAR scoring for `SP-015`. It focuses on Correctness, Logic, Expression, Arrangement, and Reusability being scored separately."
-version: 2.3.0.5
+version: 2.3.1.0
 ---
 
 # SP-015 -- CLEAR scores all five dimensions
@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `SP-015` and confirm the
 - Objective: Confirm Correctness, Logic, Expression, Arrangement, and Reusability are each scored.
 - Real user request: `Score my prompt for parsing customer feedback across all 5 CLEAR dimensions, not just the total.`
 - Prompt: `Score and improve my customer-feedback parsing prompt; verify CLEAR reports all five dimension scores plus the total.`
-- Expected execution process: `@prompt-improver` applies CLEAR after DEPTH Test and emits the five-dimension score breakdown.
+- Expected execution process: `@prompt-improver` applies CLEAR after the checklist pass and emits the five-dimension score breakdown.
 - Expected signals: `CLEAR_SCORE: <n>/50 (C:<n> L:<n> E:<n> A:<n> R:<n>)`.
 - Desired user-visible outcome: Enhanced prompt plus a five-dimension CLEAR breakdown.
 - Pass/fail: PASS if all five dimension labels and numeric values appear; FAIL if any dimension is missing or only a total is provided.
@@ -87,7 +87,7 @@ Check that Expression is scored out of 15 and Reusability out of 5, not all dime
 | File | Role |
 |---|---|
 | `../../references/patterns-evaluation.md` | CLEAR dimension definitions and scoring rubrics |
-| `../../references/depth-framework.md` | Test-phase CLEAR checkpoint |
+| `../../references/improvement-checklist.md` | CLEAR screen after the checklist pass |
 
 ---
 
