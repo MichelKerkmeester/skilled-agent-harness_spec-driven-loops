@@ -7,6 +7,10 @@ on:
       - '.opencode/skills/system-spec-kit/**'
       - '.skilled/skills/system-spec-kit/**'
       - '.github/workflows/spec-kit-check.yml'
+      # The root instruction files are the shipped template the manifest copies, so an
+      # edit to either one has to run the suite that keeps that copy fresh.
+      - 'AGENTS.md'
+      - 'REPO RULES.md'
       # The rebuild workflow's own suite pins the commit message it writes, so a
       # change to that workflow has to run the suite that guards it.
       - '.github/workflows/trigger-index-rebuild.yml'
@@ -41,6 +45,10 @@ on:
       - '.opencode/skills/system-spec-kit/**'
       - '.skilled/skills/system-spec-kit/**'
       - '.github/workflows/spec-kit-check.yml'
+      # The root instruction files are the shipped template the manifest copies, so an
+      # edit to either one has to run the suite that keeps that copy fresh.
+      - 'AGENTS.md'
+      - 'REPO RULES.md'
       # The rebuild workflow's own suite pins the commit message it writes, so a
       # change to that workflow has to run the suite that guards it.
       - '.github/workflows/trigger-index-rebuild.yml'

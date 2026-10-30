@@ -1,6 +1,6 @@
 # AI Assistant Framework (Universal Template)
 
-> **Universal behavior framework** shared across repositories. Anything belonging to one repository lives in that repository's root `REPO RULES.md`, loaded by Gate 5 (§2).
+> **Universal behavior framework** shared across repositories. A repository's own content goes in the marked block at the end, or in rules its `REPO RULES.md` routes.
 
 ---
 
@@ -294,3 +294,9 @@ Command and skill inventories are injected by the runtime and live in `.opencode
 - **CLI dispatch:** read `.skilled/skills/cli-external-orchestration/cli-X/SKILL.md` before composing any `cli-X` prompt. What a brief carries and how to weigh what comes back: [`delegation-and-orchestration.md`](.skilled/repo-rules/delegation-and-orchestration.md).
 - **Name the source of a pause.** When a rule, skill or gate makes you ask, wait, stop or leave requested work undone, name the file, quote the line and say what it requires apart from your reading of it.
 - **Close substantive turns with honest status.** Then name the one thing that is the operator's to do, or say nothing is. What the status holds is listed in `.skilled/repo-rules/communication-handoff.md` §1, which Gate 6 loads before a turn ends. What counts as proof behind it, and how a green run lies, is [`evidence-and-proof.md`](.skilled/repo-rules/evidence-and-proof.md)'s.
+
+<!-- skilled:repo-local:start -->
+## REPOSITORY-SPECIFIC INSTRUCTIONS
+
+<!-- Repository-owned. /doctor:agents-md keeps every line here; the sections above are shipped by Skilled. -->
+<!-- skilled:repo-local:end -->

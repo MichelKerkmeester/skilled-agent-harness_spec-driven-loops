@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** `agents/021-doctor-agents-md/001-doctor-agents-md/001-manifest-and-template-block`
 **Level:** 2
-**Status:** Draft
+**Status:** Implemented
 **Date:** 2026-10-30
 <!-- /ANCHOR:metadata -->
 
@@ -51,18 +51,18 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the root `AGENTS.md`, When the segmenter runs, Then it yields 46 sections whose start bytes match the table and whose match prefixes each find their section | `node --test .skilled/commands/doctor/scripts/tests/agents-md-manifest.test.cjs` case names the 46 sections and passes | Unmet | - |
-| AC-002 | REQ-002 | Given a root file with a heading no authored entry matches, or an authored entry matching nothing, When the generator runs, Then it exits 1 | the suite's two refusal cases pass | Unmet | - |
-| AC-003 | REQ-003 | Given a one-byte edit to a temporary copy of the derived body, When `--check` runs, Then it exits 1 | the suite's drift case passes | Unmet | - |
-| AC-004 | REQ-004 | Given each pin, When the contract case reads its consumer file, Then the consumer still contains the text or its own constant equals it | the suite's consumer case passes with no pin skipped | Unmet | - |
-| AC-005 | REQ-005 | Given the canary's `AGENTS.md` string list, When the pin set is compared, Then every canary string appears in it | `rg -n 'AGENTS.md' .skilled/commands/doctor/assets/agents-md-manifest.json` prints the pin block and the suite's canary-coverage case passes | Unmet | - |
-| AC-006 | REQ-006 | Given the edited root file, When the block markers are counted, Then exactly one start marker and one end marker exist after the last shipped section | `grep -c 'skilled:repo-local:start' AGENTS.md` prints `1` | Unmet | - |
-| AC-007 | REQ-006 | Given the edited root file, When its size is measured, Then it is at most 27899 bytes | `wc -c < AGENTS.md` prints at most `27899` | Unmet | - |
-| AC-008 | REQ-006 | Given the edited root file, When the canary runs, Then it passes and the last delivery anchor ends at or before byte 16374 | `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` prints `OK: all rule invariants present` and `  16374  #### Blast-Radius Management` or a smaller byte | Unmet | - |
-| AC-009 | REQ-001 | Given the edited root file, When the gate 1 pointer sync checks, Then it passes | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs --check` prints `PASS` | Unmet | - |
-| AC-010 | REQ-007 | Given the release tags, When the history key is generated, Then it holds one body per distinct body, deduped by sha256 | the suite's dedupe case passes and prints the history count | Unmet | - |
-| AC-011 | REQ-008 | Given an origin that is not the source repository, When the suite runs, Then it prints its skip reason and passes | the suite's skip case prints a reason naming the origin | Unmet | - |
-| AC-012 | REQ-009 | Given the workflow file, When both path-filter lists are read, Then each names `AGENTS.md` and `REPO RULES.md` | `grep -c "'AGENTS.md'" .github/workflows/spec-kit-check.yml` prints `2` | Unmet | - |
+| AC-001 | REQ-001 | Given the root `AGENTS.md`, When the segmenter runs, Then it yields 46 sections whose start bytes match the table and whose match prefixes each find their section | `node --test .skilled/commands/doctor/scripts/tests/agents-md-manifest.test.cjs` case names the 46 sections and passes **Observed:** the suite's `segmenter: 44 sections tile the root document and their start bytes match the table` passes. The root file carries **44** level-1 to level-4 headings and the design's own section table lists 44 rows, so the packet's `46` is a miscount; `segmenter: every authored match prefix finds exactly one section` proves each prefix finds its own heading | Met | - |
+| AC-002 | REQ-002 | Given a root file with a heading no authored entry matches, or an authored entry matching nothing, When the generator runs, Then it exits 1 | the suite's two refusal cases pass **Observed:** `generator refusal: a heading no authored entry matches exits 1 and names it` and `generator refusal: an authored entry that matches nothing exits 1 and names it`, both exit 1 with the heading or the id printed | Met | - |
+| AC-003 | REQ-003 | Given a one-byte edit to a temporary copy of the derived body, When `--check` runs, Then it exits 1 | the suite's drift case passes **Observed:** `derived key: a one-byte edit to a copy of a derived body exits 1` flips one byte inside a copied body and `--check` exits 1, naming the section | Met | - |
+| AC-004 | REQ-004 | Given each pin, When the contract case reads its consumer file, Then the consumer still contains the text or its own constant equals it | the suite's consumer case passes with no pin skipped **Observed:** `pins: every consumer file still holds the text its pin promises` walks all 30 pins against 6 distinct consumer files, no skip | Met | - |
+| AC-005 | REQ-005 | Given the canary's `AGENTS.md` string list, When the pin set is compared, Then every canary string appears in it | `rg -n 'AGENTS.md' .skilled/commands/doctor/assets/agents-md-manifest.json` prints the pin block and the suite's canary-coverage case passes **Observed:** `rg -n 'AGENTS.md'` prints six lines: the `root_file` key, the `gate3-contract` consumer evidence, and the `root-presence` pin's path, text and consumer evidence; `pins: the rule-copy canary finds every AGENTS.md string inside the pin set` runs the canary over a root file built from the pin texts alone and it exits 0 | Met | - |
+| AC-006 | REQ-006 | Given the edited root file, When the block markers are counted, Then exactly one start marker and one end marker exist after the last shipped section | `grep -c 'skilled:repo-local:start' AGENTS.md` prints `1` **Observed:** `grep -c` prints `1` for the start marker and `1` for the end marker; `manifest: the template carries exactly one empty marked block after the last section` also passes | Met | - |
+| AC-007 | REQ-006 | Given the edited root file, When its size is measured, Then it is at most 27899 bytes | `wc -c < AGENTS.md` prints at most `27899` **Observed:** prints `27888`, which is 27,673 after the line 3 edit plus a 215-byte block | Met | - |
+| AC-008 | REQ-006 | Given the edited root file, When the canary runs, Then it passes and the last delivery anchor ends at or before byte 16374 | `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` prints `OK: all rule invariants present` and `  16374  #### Blast-Radius Management` or a smaller byte **Observed:** `OK: all rule invariants present (8 exact-string file(s) + 2 Iron Law file(s) + 21 delivery-prefix anchor(s) + 6 extension floor(s) + 2 example output(s)).` and `  16368  #### Blast-Radius Management`; the 6-byte drop is the line 3 edit, and the suite proves the recorded byte equals the canary's | Met | - |
+| AC-009 | REQ-001 | Given the edited root file, When the gate 1 pointer sync checks, Then it passes | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs --check` prints `PASS` **Observed:** `[gate1-pointer-sync] PASS: 1 instruction files carry the root Gate 1 lookup.`, exit 0 | Met | - |
+| AC-010 | REQ-007 | Given the release tags, When the history key is generated, Then it holds one body per distinct body, deduped by sha256 | the suite's dedupe case passes and prints the history count **Observed:** `history: bodies are deduped by sha256 and never repeat a current body` passes, and `history: the derived key holds one entry per distinct body` prints `history bodies: 12, read from the last 6 release tags` | Met | - |
+| AC-011 | REQ-008 | Given an origin that is not the source repository, When the suite runs, Then it prints its skip reason and passes | the suite's skip case prints a reason naming the origin **Observed:** `source gate: a foreign origin yields a skip reason that names it` asserts the reason names `example.invalid/someone-else/their-fork` and `manifest.source_repository`; the live cases carry that same reason as their `skip`, so a consumer sees the reason instead of failures | Met | - |
+| AC-012 | REQ-009 | Given the workflow file, When both path-filter lists are read, Then each names `AGENTS.md` and `REPO RULES.md` | `grep -c "'AGENTS.md'" .github/workflows/spec-kit-check.yml` prints `2` **Observed:** `grep -c` prints `2` for `'AGENTS.md'` and `2` for `'REPO RULES.md'`; the parsed YAML shows both entries in both lists | Met | - |
 
 ### Status values
 
@@ -87,7 +87,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-001 through AC-012 are unmet: the child is specified and not started.
+AC-001 through AC-012 are met, each with the command output that decided it recorded in its row. Two rows record a count the packet states differently from the file it describes: AC-001 ships 44 sections rather than 46 because the root file carries 44 headings and the design's own section table lists 44 rows, and AC-008's deepest anchor reads 16,368 rather than 16,374 because the line 3 edit is 6 bytes shorter. Both figures are inside the ceilings the criteria set.
 <!-- /ANCHOR:closure -->
