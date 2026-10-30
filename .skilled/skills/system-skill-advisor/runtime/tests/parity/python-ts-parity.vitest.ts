@@ -73,6 +73,11 @@ const ACCEPTED_PARITY_REGRESSION_IDS: string[] = [
   // gold.
   'rr-iter2-020',
   'rr-iter3-092',
+  // rr-iter3-093 rejoined when the sk-prompt description stopped claiming
+  // scoring: the Python reference now reaches its sk-code gold, while the
+  // pinned native scorer misses it as it did before. The native side did not
+  // change, and with a live skill graph the hook scorer keeps the gold.
+  'rr-iter3-093',
   'rr-iter3-097',
   'rr-iter3-099',
   'rr-iter3-146',
@@ -250,8 +255,12 @@ describe('027/003 AC-1/AC-2 regression-protection parity and §11 gates', () => 
     // one sanitizer-versioned content-hash recipe, and the sk-code description
     // names its languages (TypeScript, Python, shell, JSON) instead of relying
     // on incidental tokens. The regression list above is unchanged.
-    expect(pythonCorrect).toBe(107);
-    expect(tsAlsoCorrect).toBe(100);
+    // 107 -> 109 and 100 -> 101: the sk-prompt description no longer claims
+    // scoring or a single pass, which returns two prompts to their gold in the
+    // Python reference; the native scorer keeps one of them. The other is
+    // rr-iter3-093, recorded above.
+    expect(pythonCorrect).toBe(109);
+    expect(tsAlsoCorrect).toBe(101);
     expect(regressions).toBe(ACCEPTED_PARITY_REGRESSION_IDS.length);
     expect(regressionIds).toEqual(ACCEPTED_PARITY_REGRESSION_IDS);
     expect(tsAbstainsOnPythonCorrect).toBe(0);

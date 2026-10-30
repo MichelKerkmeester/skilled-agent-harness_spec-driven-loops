@@ -157,8 +157,12 @@ describe('advisor 195-prompt corpus regression-protection parity', () => {
       // languages (TypeScript, Python, shell, JSON), which restores a JSON-edit
       // prompt the shorter wording lost, and the native scorer keeps it too.
       // The accepted regression list is unchanged.
-      expect(pythonCorrect).toBe(113);
-      expect(hookPreservedPythonCorrect).toBe(109);
+      // 113 -> 114 and 109 -> 110: the sk-prompt description no longer claims
+      // scoring, so a duplicated-intent scoring prompt reaches its sk-code gold
+      // in the Python reference, and the native scorer keeps it. The accepted
+      // regression list is unchanged.
+      expect(pythonCorrect).toBe(114);
+      expect(hookPreservedPythonCorrect).toBe(110);
       expect(hookGoldNoneFalseFire).toBeLessThanOrEqual(pythonGoldNoneFalseFire);
       expect(
         regressions.map((regression) => regression.id),

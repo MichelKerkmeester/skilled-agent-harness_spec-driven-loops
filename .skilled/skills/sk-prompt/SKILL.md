@@ -1,6 +1,6 @@
 ---
 name: sk-prompt
-description: "Prompt engineering: turns a request into a structured, checked AI prompt in one pass, with a component skeleton and CLEAR screening."
+description: "Prompt engineering: turns a request into a structured, checked AI prompt, with a component skeleton and CLEAR screening."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 4.0.0.0
 ---
