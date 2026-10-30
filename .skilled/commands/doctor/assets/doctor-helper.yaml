@@ -1,0 +1,71 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: HELPER (READ-ONLY ROUTING)
+# ─────────────────────────────────────────────────────────────────
+role: Diagnostic guide that turns a problem stated in plain words into the doctor command that fits, with the class and the reason on every line
+purpose: Rank the doctor commands the route manifest describes against a described problem, then run a read-only pick in place or print a writing pick as one line for the operator to run themselves
+action: Run .skilled/commands/doctor/scripts/doctor-helper-match.cjs once -> render its candidates through the presentation contract -> run a read-only pick under its own router, or stop at a writing pick
+skill_owner: ".skilled/skills/system-spec-kit/"
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: single-step
+  compliance: MANDATORY
+  execution: read_only
+  approvals: none
+  tracking: single_run
+  validation: read_only_assertion
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES (READ-ONLY)
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: true
+  allowed_targets: []
+  forbidden_targets:
+    - "**/*"
+  invariant: "This route ranks and stops. It reads the route manifest, runs the matcher once and prints. It MUST NOT run a target that writes, and it MUST NOT add an argument to a runnable it prints: every switch such as an apply or a fix flag is a decision that target's own gate owns. A pick whose class is read-only runs in place under that command's own router and frontmatter. A pick classed add-only or mutates is printed as one line for the operator to run, so that command's plan, its approval and its gate all run under its own frontmatter and never under this one."
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  matcher: ".skilled/commands/doctor/scripts/doctor-helper-match.cjs, run once in its text or json form"
+  route_manifest: ".skilled/commands/doctor/_routes.yaml, the one phrase table the matcher ranks from"
+  presentation: ".skilled/commands/doctor/assets/doctor-helper-presentation.txt"
+  doctor_routers: ".skilled/commands/doctor/<name>.md, loaded by name only for a read-only pick"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+inputs:
+  target: "helper is the route's only target: /doctor:helper and /doctor:helper helper both run it, and no positional target exists."
+  problem_text: "The problem in the operator's own words, taken from everything after -- so a pasted error line keeps its own dashes. Empty only when the three-question prompt is used instead."
+  json_output: "true when --json is passed: the route prints the matcher's JSON and nothing else (default false)."
+  area: "The doctor command named by the area answer, passed to the matcher as --area=<command> so only that command's routes rank (default none, so every route ranks)."
+  intent: "check or change, taken from the third answer and passed as --intent= so a read-only route is preferred for check and a writing one for change (default none, so neither is preferred)."
+  execution_mode: "INTERACTIVE"
+
+# ─────────────────────────────────────────────────────────────────
+# EXECUTION
+# ─────────────────────────────────────────────────────────────────
+execution:
+  steps:
+    - "Run node .skilled/commands/doctor/scripts/doctor-helper-match.cjs once, passing the problem text after -- and adding --json, --area=<command> and --intent=check|change only when the operator supplied them."
+    - "The matcher reads _routes.yaml, derives one entry per route, standalone command, standalone action and mcp sub-action exactly as the bridge deriver does, and scores each entry against the problem text. Its entries never include this route itself, and never include a private name."
+    - "Each candidate carries its runnable line, its mutation class verbatim from the manifest, its score and the manifest phrase that best matched with the terms it matched, so the reason on every line is evidence rather than invention."
+    - "Render at most three candidates through the presentation contract. The class column decides what happens next, and the operator chooses by number."
+    - "A pick whose class is read-only runs in place: load .skilled/commands/doctor/<name>.md with that route's target as its argument and follow that router from its first section, so its presentation contract and its workflow govern."
+    - "A pick classed add-only or mutates is handed back: print the exact runnable line for the operator to run as its own command and stop. This route loads no writing workflow, adds no flag to the line, and never asks for an approval on the target's behalf."
+    - "With no candidate above the floor, offer the read-only /doctor:setup fallback, which lists every doctor command and writes nothing."
+    - "Map the matcher's exit code to the route status: 0 a match, 1 no candidate above the floor, 2 a bad argument or an unreadable manifest."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output: |
+  Exit 0 is a match: STATUS=OK MATCHES=[n], showing the DOCTOR HELPER header, the problem as quoted, the ranked list and the offer line.
+  A writing pick closes on STATUS=OK ACTION=handoff: show the exact line the operator runs, and nothing else.
+  Exit 1 is no candidate above the floor: STATUS=NO_MATCH FALLBACK=/doctor:setup, showing the no-match template and offering the read-only fallback.
+  Exit 2 is a bad argument, an unreadable manifest or a missing parser: STATUS=FAIL ERROR="[message]", naming the cause and the accepted invocation (/doctor:helper [<problem in plain words>] [--json]).

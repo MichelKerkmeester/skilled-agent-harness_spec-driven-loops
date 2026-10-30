@@ -210,7 +210,7 @@ Every setting has a working default. To change one, see [Environment Settings](#
 
 ### Keep It Healthy
 
-The doctor commands check and repair one area each. `/doctor:setup` lists them all. `/doctor:update` brings in a new release, `/doctor:runtime-mirrors` finds runtime copies that drifted from `.skilled/`, `/doctor:skill-advisor` rebuilds or tunes skill routing, `/doctor:sk-skill` reports how far a skill is from the Skilled format and converts one after a plan, and `/doctor:ci` reports and toggles the CI workflow switches. The [Doctor](#doctor) commands section describes each one.
+The doctor commands check and repair one area each. `/doctor:helper` names the one that fits a problem you describe, and `/doctor:setup` lists them all. `/doctor:update` brings in a new release, `/doctor:runtime-mirrors` finds runtime copies that drifted from `.skilled/`, `/doctor:skill-advisor` rebuilds or tunes skill routing, `/doctor:sk-skill` reports how far a skill is from the Skilled format and converts one after a plan, and `/doctor:ci` reports and toggles the CI workflow switches. The [Doctor](#doctor) commands section describes each one.
 
 &nbsp;
 
@@ -1036,7 +1036,7 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
 
 ## 11. ⌨️ COMMAND LIBRARY
 
-39 commands: 38 in six groups plus one utility. The grouped ones are Markdown files under `.skilled/commands/`, and most hand their steps to a YAML workflow beside them. The OpenCode-only `/goal-opencode` is authored in `.opencode/commands/`.
+41 commands: 40 in six groups plus one utility. The grouped ones are Markdown files under `.skilled/commands/`, and most hand their steps to a YAML workflow beside them. The OpenCode-only `/goal-opencode` is authored in `.opencode/commands/`.
 
 #### SPEC KIT
 
@@ -1217,7 +1217,13 @@ The active autonomous loop families. See [Deep Loop](#6--deep-loop) for how they
 &nbsp;
 #### DOCTOR
 
-Twelve commands check and repair the setup, one per area.
+Thirteen commands check and repair the setup, one per area.
+
+**`/doctor:helper [<problem in plain words>] [--json]`** - the way in when you do not know the command
+
+- Ranks the doctor commands against a problem in your own words and shows at most three, each with its mutation class and the route phrase it matched
+- Runs a read-only pick in place. A command that writes is printed as one line for you to run, so it asks for its own yes under its own gate
+- Built from `_routes.yaml` at run time, so a new doctor command appears in it with no edit to it
 
 **`/doctor:setup`** - read-only onboarding and health check
 
@@ -1285,6 +1291,12 @@ Twelve commands check and repair the setup, one per area.
 - Shows each setting in `ENV-REFERENCE.md` and `.env.example`, with its default, its purpose and where it is set, by name only and never by value
 - Saves a preference to `hook-flags.env` or Claude Code's `.claude/settings.local.json` only after showing the exact line and getting your yes, or prints an `export` line for your shell profile
 - Never asks for or saves a secret
+
+**`/doctor:sk-skill [check] [<name-or-path>] [--json]`** - skill format check
+
+- Reports how far one skill, or the whole fleet, is from the Skilled format, row by row, and names the repair for each finding
+- `--into-hub <hub>` reports the eleven hub integration surfaces a skill or mode still needs
+- Reads and never writes, so a conversion stays an explicit decision
 
 &nbsp;
 #### UTILITY

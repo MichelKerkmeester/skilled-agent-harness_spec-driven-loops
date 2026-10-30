@@ -7,7 +7,7 @@ trigger_phrases:
   - "run doctor subsystem diagnostic"
   - "skill advisor rebuild doctor"
   - "how do I diagnose and repair a spec-kit subsystem"
-version: 1.7.5.0
+version: 1.7.6.0
 ---
 
 # Doctor commands
@@ -42,6 +42,7 @@ The playbook peer at `manual-testing-playbook/doctor-commands/` holds the scenar
 | `.skilled/commands/doctor/runtime-mirrors.md` | Router | `/doctor:runtime-mirrors` mirror-parity diagnostic |
 | `.skilled/commands/doctor/sk-code.md` | Router | `/doctor:sk-code setup` read-only sk-code setup check |
 | `.skilled/commands/doctor/setup.md` | Router | `/doctor:setup` read-only onboarding check that lists every doctor target and runs five setup checks |
+| `.skilled/commands/doctor/helper.md` | Router | `/doctor:helper` free-text routing over the route manifest, with a read-only pick run in place and a writing pick handed back as one line |
 | `.skilled/commands/doctor/_routes.yaml` | Manifest | Route manifest exposing each target's location and mutation class |
 | `.skilled/commands/doctor/update.md` | Command | `/doctor:update` release-aware check, align, apply, rollback, record-base and compat workflows |
 | `.skilled/commands/doctor/mcp.md` | Command | `/doctor:mcp install\|debug` MCP infra surface |

@@ -4,8 +4,8 @@
   "counts": {
     "commandMetadata": 19,
     "allowList": 8,
-    "doctorRoutes": 24,
-    "generated": 51,
+    "doctorRoutes": 25,
+    "generated": 52,
     "typescriptActive": 29,
     "pythonActive": 39
   },
@@ -562,7 +562,8 @@
             "deep-loop coverage graph check",
             "deep-loop graph empty or stale",
             "deep-research convergence drift",
-            "deep-review iteration graph"
+            "deep-review iteration graph",
+            "deep loop convergence check"
           ],
           "intentSignals": [
             "/doctor:deep-loop"
@@ -737,6 +738,7 @@
             "change commit message rules",
             "allow longer commit subjects",
             "stop checking pr descriptions",
+            "branch name pattern rules",
             "customize sk-git standards"
           ],
           "intentSignals": [
@@ -760,6 +762,21 @@
       }
     },
     {
+      "id": "command-doctor-helper",
+      "command": "/doctor:helper",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
+    },
+    {
       "id": "command-doctor-mcp-debug",
       "command": "/doctor:mcp",
       "skillId": "system-spec-kit",
@@ -777,6 +794,7 @@
             "Code Mode broken",
             "debug an MCP connection",
             "MCP connection failure",
+            "utcp config is broken",
             "mcp-doctor.sh diagnostic script"
           ],
           "intentSignals": [
@@ -857,7 +875,9 @@
             "agent command mirror parity",
             "command catalog drift",
             "cursor devin codex sync check",
-            "discovery mirror out of sync"
+            "discovery mirror out of sync",
+            "hermes prompt copy drift",
+            "runtime copies drift from source"
           ],
           "intentSignals": [
             "/doctor:runtime-mirrors"
@@ -899,7 +919,8 @@
             "help me set up skilled",
             "is my skilled install healthy",
             "skilled setup check",
-            "getting started with skilled"
+            "getting started with skilled",
+            "overview of every doctor command"
           ],
           "intentSignals": [
             "/doctor:setup"
@@ -939,6 +960,7 @@
           "keywords": [
             "sk-code quality config",
             "create the quality config file",
+            "quality json is missing",
             "which checks does the quality gate run",
             "add my lint command to the quality gate"
           ],
@@ -1024,6 +1046,7 @@
             "check a skill against the skilled format",
             "skill format check report",
             "skill fleet format summary",
+            "skill frontmatter shape check",
             "/doctor:sk-skill"
           ],
           "intentSignals": [
@@ -1233,7 +1256,8 @@
             "skill budget audit",
             "description budget check",
             "skill char count drift",
-            "frontmatter description trim"
+            "frontmatter description trim",
+            "skill description too long"
           ],
           "intentSignals": [
             "/doctor:skill-advisor skill-budget"

@@ -1,0 +1,58 @@
+{"prompt": "the pre-commit gate blocks every commit i try", "expected": "/doctor:git hooks"}
+{"prompt": "turn the commit-msg hook on", "expected": "/doctor:git hooks"}
+{"prompt": "stop the hook from complaining about wip commits", "expected": "/doctor:git hooks"}
+{"prompt": "check my git hooks setup", "expected": "/doctor:git setup"}
+{"prompt": "is my sk-git install working", "expected": "/doctor:git setup"}
+{"prompt": "which git rules are live", "expected": "/doctor:git setup"}
+{"prompt": "why is git setup reporting a broken trust entry", "expected": "/doctor:git setup"}
+{"prompt": "stop checking pr descriptions", "expected": "/doctor:git standards"}
+{"prompt": "customize sk-git standards", "expected": "/doctor:git standards"}
+{"prompt": "make branch names follow a pattern", "expected": "/doctor:git standards"}
+{"prompt": "is my skilled install healthy", "expected": "/doctor:setup"}
+{"prompt": "is skilled installed correctly", "expected": "/doctor:setup"}
+{"prompt": "set up skilled in this repository", "expected": "/doctor:setup"}
+{"prompt": "getting started with skilled", "expected": "/doctor:setup"}
+{"prompt": "trigger index drift", "expected": "/doctor:speckit"}
+{"prompt": "retrieval doctor for the spec kit", "expected": "/doctor:speckit"}
+{"prompt": "ripgrep recipe for the specs folder", "expected": "/doctor:speckit"}
+{"prompt": "the deep research run is not converging", "expected": "/doctor:deep-loop"}
+{"prompt": "deep loop scope for reviews and research", "expected": "/doctor:deep-loop"}
+{"prompt": "re-tune the routing lanes", "expected": "/doctor:skill-advisor tune"}
+{"prompt": "the advisor keeps picking the wrong skill", "expected": "/doctor:skill-advisor tune"}
+{"prompt": "recreate the skill graph from the metadata files", "expected": "/doctor:skill-advisor rebuild"}
+{"prompt": "the graph database has to be rebuilt after the scan", "expected": "/doctor:skill-advisor rebuild"}
+{"prompt": "skill description character budget", "expected": "/doctor:skill-advisor skill-budget"}
+{"prompt": "which descriptions are too long", "expected": "/doctor:skill-advisor skill-budget"}
+{"prompt": "the parent skill hub is missing a registry entry", "expected": "/doctor:skill-advisor parent-skill"}
+{"prompt": "audit a hub with nested mode packets", "expected": "/doctor:skill-advisor parent-skill"}
+{"prompt": "compiled graph and sqlite graph are out of step", "expected": "/doctor:skill-advisor skill-graph-freshness"}
+{"prompt": "graph freshness across the three representations", "expected": "/doctor:skill-advisor skill-graph-freshness"}
+{"prompt": "a hub phrase does not reach the hub", "expected": "/doctor:skill-advisor router-reach"}
+{"prompt": "router reach across every hub", "expected": "/doctor:skill-advisor router-reach"}
+{"prompt": "are the runtime mirrors in sync", "expected": "/doctor:runtime-mirrors"}
+{"prompt": "one mirror differs from .skilled", "expected": "/doctor:runtime-mirrors"}
+{"prompt": "claude commands mirror is missing a file", "expected": "/doctor:runtime-mirrors"}
+{"prompt": "the hermes prompt copies are stale", "expected": "/doctor:runtime-mirrors"}
+{"prompt": "the sk-code setup battery fails on the doctor leg", "expected": "/doctor:sk-code setup"}
+{"prompt": "finish the sk-code provisioning", "expected": "/doctor:sk-code setup"}
+{"prompt": "which quality config does the gate read", "expected": "/doctor:sk-code quality"}
+{"prompt": "quality json is missing from the repository folder", "expected": "/doctor:sk-code quality"}
+{"prompt": "ci workflow inventory", "expected": "/doctor:ci report"}
+{"prompt": "github actions drift report", "expected": "/doctor:ci report"}
+{"prompt": "scaffold a workflow from the ci template", "expected": "/doctor:ci scaffold"}
+{"prompt": "turn off a protected workflow switch", "expected": "/doctor:ci toggle"}
+{"prompt": "the skill has the wrong frontmatter shape", "expected": "/doctor:sk-skill"}
+{"prompt": "how far is this skill from the format", "expected": "/doctor:sk-skill"}
+{"prompt": "code mode install is half done", "expected": "/doctor:mcp install"}
+{"prompt": "code mode will not connect", "expected": "/doctor:mcp debug"}
+{"prompt": "the utcp config looks wrong", "expected": "/doctor:mcp debug"}
+{"prompt": "check for skilled updates", "expected": "/doctor:update"}
+{"prompt": "pre-v4 spec folder upgrade", "expected": "/doctor:update compat"}
+{"prompt": "skilled environment switch values", "expected": "/doctor:env list"}
+{"prompt": "which environment variables can i set", "expected": "/doctor:env list"}
+{"prompt": "create a new skill for pdf parsing", "expected": null}
+{"prompt": "what time is it in tokyo", "expected": null}
+{"prompt": "buy milk and bread on the way home", "expected": null}
+{"prompt": "convert this spreadsheet to a pdf", "expected": null}
+{"prompt": "explain quantum entanglement to a child", "expected": null}
+{"prompt": "rename the variable in the config file", "expected": null}

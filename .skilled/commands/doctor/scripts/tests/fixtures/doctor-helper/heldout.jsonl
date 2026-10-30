@@ -1,0 +1,60 @@
+{"prompt": "my pre-commit hook keeps rejecting my commit", "expected": "/doctor:git hooks"}
+{"prompt": "switch off the pre-push gate for this repo", "expected": "/doctor:git hooks"}
+{"prompt": "which git hook checks are enabled right now", "expected": "/doctor:git hooks"}
+{"prompt": "check whether the git hook install is healthy", "expected": "/doctor:git setup"}
+{"prompt": "is sk-git set up correctly here", "expected": "/doctor:git setup"}
+{"prompt": "show which git rules are active", "expected": "/doctor:git setup"}
+{"prompt": "allow commit subjects longer than seventy two characters", "expected": "/doctor:git standards"}
+{"prompt": "change the commit message rules for this repo", "expected": "/doctor:git standards"}
+{"prompt": "give me an overview of every doctor command", "expected": "/doctor:setup"}
+{"prompt": "health check the whole skilled install", "expected": "/doctor:setup"}
+{"prompt": "onboarding check for a fresh checkout", "expected": "/doctor:setup"}
+{"prompt": "the trigger index lookup returns nothing", "expected": "/doctor:speckit"}
+{"prompt": "is the generated trigger index out of date", "expected": "/doctor:speckit"}
+{"prompt": "the review loop never converges", "expected": "/doctor:deep-loop"}
+{"prompt": "coverage graph for a council run", "expected": "/doctor:deep-loop"}
+{"prompt": "routing quality got worse after the last lane change", "expected": "/doctor:skill-advisor tune"}
+{"prompt": "rebuild the skill graph database", "expected": "/doctor:skill-advisor rebuild"}
+{"prompt": "the skill graph sqlite file is empty", "expected": "/doctor:skill-advisor rebuild"}
+{"prompt": "skill descriptions are over the character budget", "expected": "/doctor:skill-advisor skill-budget"}
+{"prompt": "how long is each skill description", "expected": "/doctor:skill-advisor skill-budget"}
+{"prompt": "my hub skill folder structure looks wrong", "expected": "/doctor:skill-advisor parent-skill"}
+{"prompt": "the parent skill registry does not list a mode", "expected": "/doctor:skill-advisor parent-skill"}
+{"prompt": "compiled and on disk skill graph disagree", "expected": "/doctor:skill-advisor skill-graph-freshness"}
+{"prompt": "skill graph freshness drift", "expected": "/doctor:skill-advisor skill-graph-freshness"}
+{"prompt": "a routing phrase does not reach its hub", "expected": "/doctor:skill-advisor router-reach"}
+{"prompt": "which declared phrases actually route", "expected": "/doctor:skill-advisor router-reach"}
+{"prompt": "the claude commands folder drifted from skilled", "expected": "/doctor:runtime-mirrors"}
+{"prompt": "hermes prompts are out of sync", "expected": "/doctor:runtime-mirrors"}
+{"prompt": "the runtime copies of the agents no longer match", "expected": "/doctor:runtime-mirrors"}
+{"prompt": "sk-code provisioning is incomplete", "expected": "/doctor:sk-code setup"}
+{"prompt": "run the whole sk-code setup battery", "expected": "/doctor:sk-code setup"}
+{"prompt": "the repository quality config is missing", "expected": "/doctor:sk-code quality"}
+{"prompt": "create the sk-code quality json file", "expected": "/doctor:sk-code quality"}
+{"prompt": "which github actions workflows are switched off", "expected": "/doctor:ci report"}
+{"prompt": "list every ci workflow with its trigger", "expected": "/doctor:ci report"}
+{"prompt": "add a new github actions workflow from the template", "expected": "/doctor:ci scaffold"}
+{"prompt": "switch a ci variable off", "expected": "/doctor:ci toggle"}
+{"prompt": "disable the ci switch for a workflow group", "expected": "/doctor:ci toggle"}
+{"prompt": "is this skill in the skilled format", "expected": "/doctor:sk-skill"}
+{"prompt": "check the whole skill fleet for format problems", "expected": "/doctor:sk-skill"}
+{"prompt": "set up code mode for the first time", "expected": "/doctor:mcp install"}
+{"prompt": "code mode is broken after the upgrade", "expected": "/doctor:mcp debug"}
+{"prompt": "mcp connection fails on startup", "expected": "/doctor:mcp debug"}
+{"prompt": "is there a newer skilled release", "expected": "/doctor:update"}
+{"prompt": "update the framework to the latest release", "expected": "/doctor:update"}
+{"prompt": "migrate an old spec folder layout to the new one", "expected": "/doctor:update compat"}
+{"prompt": "show me the environment switches", "expected": "/doctor:env list"}
+{"prompt": "which environment variable turns off the model server", "expected": "/doctor:env list"}
+{"prompt": "write me a poem about cats", "expected": null}
+{"prompt": "what is the weather in amsterdam tomorrow", "expected": null}
+{"prompt": "summarise the plot of a novel", "expected": null}
+{"prompt": "refactor the payment service to use dependency injection", "expected": null}
+{"prompt": "write a blog post about our release process", "expected": null}
+{"prompt": "what should we have for dinner tonight", "expected": null}
+{"prompt": "translate this paragraph into french", "expected": null}
+{"prompt": "add a new endpoint to the users api", "expected": null}
+{"prompt": "make the unit test suite run faster", "expected": null}
+{"prompt": "design a logo for the newsletter", "expected": null}
+{"prompt": "how tall is mount everest", "expected": null}
+{"prompt": "book a flight to lisbon next friday", "expected": null}

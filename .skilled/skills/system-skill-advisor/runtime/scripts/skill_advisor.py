@@ -2862,6 +2862,15 @@ GENERATED_COMMAND_BRIDGES = {
         "owner_mode": "sk-design-md-generator",
         "routing_enabled": False,
     },
+    "command-doctor-helper": {
+        "description": "",
+        "slash_markers": ["/doctor:helper"],
+        "inventory_id": "command-doctor-helper",
+        "command": "/doctor:helper",
+        "skill_id": "system-spec-kit",
+        "owner_mode": "system-spec-kit",
+        "routing_enabled": False,
+    },
     "memory:save": {
         "description": "",
         "slash_markers": ["/memory:save"],

@@ -1,0 +1,117 @@
+# /doctor:helper Presentation Contract
+
+This file is the single source of truth for user-facing presentation in `/doctor:helper`: the argument failure, the three-question prompt, the ranked list, the offer to run, the no-match fallback, result templates and next-step text. The command router owns free-text binding and asset loading. The workflow YAML owns execution behavior.
+
+## 1. Argument Failure
+
+An unknown argument fails before any workflow YAML loads and prints the wording below with the bracketed parts filled in, then ends with the status line. Nothing is read or changed.
+
+| Situation | Wording |
+|-----------|---------|
+| A flag other than a leading `--json` | `Unknown argument: [argument]` then `/doctor:helper takes --json and then your problem in plain words after --.` then `STATUS=FAIL ERROR="unknown_argument"` |
+| An empty problem with no area answered | Re-emit the three-question prompt once. On a second unparseable reply, `STATUS=FAIL ERROR="unknown_selection"` |
+
+## 2. No-Argument Prompt
+
+With no argument, ask all three questions in one prompt, then wait. This follows the consolidated question protocol, and the area list is generated from the route manifest, so a new doctor command appears here with no edit to this file.
+
+```text
+Tell me what is wrong. Answer any or all in one reply, for example "2, commit blocked, change".
+
+1) Area:  1) speckit  2) skill-advisor  3) deep-loop  4) runtime-mirrors  5) sk-code  6) git
+          7) ci  8) sk-skill  9) setup  10) update  11) env  12) mcp  or "not sure"
+2) What happened? An error line or a few words.
+3) Check only, or change something?  check / change / not sure
+```
+
+Accepted answers:
+
+| Answer | Result | Meaning |
+|--------|--------|---------|
+| A number or a command name | `--area=<command>` | Rank only that doctor command's routes, in its own tie-break order when no problem text follows |
+| `not sure`, empty, `any` | no area filter | Rank every doctor command |
+| Any text | the problem text, passed after `--` | Rank against that description |
+| `check` | `--intent=check` | Prefer a route that only reads |
+| `change` | `--intent=change` | Prefer a route that writes |
+
+The area list is printed from the manifest: never write a doctor command name into this contract's own prose. On any other response, re-emit the prompt once. On a second invalid response, return `STATUS=FAIL ERROR="unknown_selection"`.
+
+## 3. Ranked List
+
+Render the matcher's text output through this template. The class column is the manifest's value for that route, verbatim, and the reason quotes the manifest phrase the matcher named, so the line is repeatable evidence.
+
+```text
+DOCTOR HELPER
+Problem: "[the problem as the operator wrote it]"
+
+1) [runnable]       [read-only|add-only|mutates]   matches "[manifest phrase]" ([matched terms])
+2) [runnable]       [read-only|add-only|mutates]   matches "[manifest phrase]" ([matched terms])
+3) [runnable]       [read-only|add-only|mutates]   matches "[manifest phrase]" ([matched terms])
+
+Run one? Reply 1-3, or X to stop.
+STATUS=OK MATCHES=[n]
+```
+
+Show at most three lines. Drop the header when `--json` was passed, because the matcher's JSON is the whole answer then.
+
+A standalone action entry is ranked like a route: `/doctor:update compat` is its own line, and the bare `/doctor:update` shows the class of the check action the bare command runs.
+
+## 4. The Offer to Run
+
+The class on the chosen line decides the next step, and the operator never gets a surprise.
+
+- **A read-only pick runs in place.** Load `.skilled/commands/doctor/<name>.md` with that route's target as its argument and follow it from its first section, so that command's own presentation contract and workflow govern the run. This command adds nothing to it.
+- **A pick classed add-only or mutates is shown for you to run.** Print the exact runnable line, for example `/doctor:git hooks`, and stop with `STATUS=OK ACTION=handoff`. A writing target's plan, its own approval and its own gate then run under its own frontmatter, which is the only place they belong.
+
+This command never appends an argument to a runnable line. A target that needs a switch asks for it itself, under its own gate.
+
+## 5. No Match
+
+When the matcher exits 1, nothing scored above the floor. Say so plainly and offer the one read-only command that lists the whole family.
+
+```text
+No doctor command matched "[the problem]".
+/doctor:setup lists every doctor command and runs the read-only checks. Run it now? Y / X
+STATUS=NO_MATCH FALLBACK=/doctor:setup
+```
+
+`/doctor:setup` only reads, so a `Y` runs it in place under the rule in the previous section. An `X` stops with `STATUS=CANCELLED ACTION=cancelled`.
+
+## 6. Result Templates
+
+### Summary
+
+```text
+DOCTOR HELPER RESULT
+Problem: "[the problem]"
+Status: [OK|NO_MATCH|ERROR]
+Candidates: [n] shown of [n] above the floor
+Choice: [the runnable line, or none]
+Action: [ran in place|handed back|offered the fallback|stopped]
+Mutation class: [the chosen route's class, or none]
+Evidence: [the manifest phrase and the matched terms, quoted]
+STATUS=OK MATCHES=[n]
+```
+
+### Failure Summary
+
+```text
+DOCTOR TARGET FAILED
+Target: helper
+Step: [the step that failed]
+Error: [message]
+Next: [the accepted invocation, or the manifest command to rerun]
+STATUS=FAIL ERROR="[message]"
+```
+
+## 7. Troubleshooting Display
+
+| Situation | Suggested Action |
+|-----------|------------------|
+| The ranked list names a route you did not expect | Read the quoted phrase and the matched terms: the line says which manifest wording it ranked on. Rerun `/doctor:helper -- "the same problem in more words"` |
+| No candidate above the floor | Answer the three questions, or describe the symptom with the words the tool prints. The fallback lists every doctor command |
+| The matcher exits 2 | The problem text or the manifest failed. Run `bash .skilled/commands/doctor/scripts/route-validate.sh` for the manifest |
+| A writing pick was handed back | Run the printed line on its own. That command plans, asks for its own approval and writes under its own gate |
+| The helper names the family you meant but not the route | The route's `trigger_phrases` in `_routes.yaml` are missing your wording. Add one there and rerun the reach probe |
+
+End interactive presentations with: `What would you like to do next?`

@@ -17,6 +17,7 @@ Render this table first, before any leg runs.
 | Command | What it checks |
 |---------|----------------|
 | `/doctor:setup` | This overview: the doctor target list and the five read-only setup legs |
+| `/doctor:helper [<problem in plain words>] [--json]` | Rank the doctor commands that fit a described problem, with the class and the reason on every line |
 | `/doctor:env list` | The documented environment switches and where each value comes from |
 | `/doctor:update` | Whether a newer spec-kit release is available (bare runs the read-only check) |
 | `/doctor:git setup` | Whether the sk-git install, hooks, trust and standards are live |

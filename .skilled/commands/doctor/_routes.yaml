@@ -12,6 +12,7 @@
 #   /doctor:ci              .skilled/commands/doctor/ci.md
 #   /doctor:sk-skill        .skilled/commands/doctor/sk-skill.md
 #   /doctor:setup           .skilled/commands/doctor/setup.md
+#   /doctor:helper          .skilled/commands/doctor/helper.md
 # A command that owns one route needs no positional target.
 # Validated by: .skilled/commands/doctor/scripts/route-validate.sh
 # Consumed by: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs
@@ -47,6 +48,7 @@
 #   2. List the target in that command's router and presentation, and add its row to the /doctor:setup target list in .skilled/commands/doctor/assets/doctor-setup-presentation.txt.
 #   3. To let the advisor suggest it, add its activation entry to both the "typescript" and "python" lists in .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json. A bridge without one stays inactive.
 #   4. Rerun node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs, then bash .skilled/commands/doctor/scripts/route-validate.sh and node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs.
+#   5. /doctor:helper needs no edit: it ranks this manifest at run time, and its contract test fails until the new route is reachable and listed in the /doctor:setup target list.
 # To remove a target: delete the route AND its corresponding assets/doctor-<target>.yaml.
 # ─────────────────────────────────────────────────────────────────
 schema_version: 1
@@ -89,6 +91,7 @@ routes:
       - "deep-loop graph empty or stale"
       - "deep-research convergence drift"
       - "deep-review iteration graph"
+      - "deep loop convergence check"
 
   - command: /doctor:skill-advisor
     target: tune
@@ -149,6 +152,7 @@ routes:
       - "description budget check"
       - "skill char count drift"
       - "frontmatter description trim"
+      - "skill description too long"
 
   - command: /doctor:skill-advisor
     target: parent-skill
@@ -231,6 +235,8 @@ routes:
       - "command catalog drift"
       - "cursor devin codex sync check"
       - "discovery mirror out of sync"
+      - "hermes prompt copy drift"
+      - "runtime copies drift from source"
 
   - command: /doctor:sk-code
     target: setup
@@ -264,6 +270,7 @@ routes:
     trigger_phrases:
       - "sk-code quality config"
       - "create the quality config file"
+      - "quality json is missing"
       - "which checks does the quality gate run"
       - "add my lint command to the quality gate"
 
@@ -306,6 +313,7 @@ routes:
       - "change commit message rules"
       - "allow longer commit subjects"
       - "stop checking pr descriptions"
+      - "branch name pattern rules"
       - "customize sk-git standards"
 
   - command: /doctor:git
@@ -346,6 +354,7 @@ routes:
       - "is my skilled install healthy"
       - "skilled setup check"
       - "getting started with skilled"
+      - "overview of every doctor command"
 
   - command: /doctor:ci
     target: report
@@ -418,6 +427,22 @@ routes:
       - "check a skill against the skilled format"
       - "skill format check report"
       - "skill fleet format summary"
+      - "skill frontmatter shape check"
+
+  - command: /doctor:helper
+    target: helper
+    yaml: doctor-helper.yaml
+    setup_vars: [execution_mode, problem_text, json_output, area, intent]
+    allowed_flags: ["--json"]
+    mutating: read-only
+    gate3_location: "n/a (read-only matcher; it ranks the manifest, runs a read-only pick under that command's own router and prints a writing pick as one line for the operator)"
+    mcp_tools: []   # no MCP calls and no background service; one script reads one YAML file
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/doctor-helper-match.cjs --json -- "<problem text>"  # also --table and --areas; the matcher reads the manifest and writes nothing'
+    trigger_phrases:
+      - "which doctor command should I run"
+      - "find the right doctor command"
+      - "what doctor command fixes this"
 
   - command: /doctor:sk-skill
     target: convert
@@ -468,6 +493,7 @@ mcp_subroutes:
       - "Code Mode broken"
       - "debug an MCP connection"
       - "MCP connection failure"
+      - "utcp config is broken"
       - "mcp-doctor.sh diagnostic script"
 
 # ─────────────────────────────────────────────────────────────────

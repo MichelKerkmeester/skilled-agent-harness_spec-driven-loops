@@ -1,0 +1,59 @@
+BASELINE — re-measured on worktree/294-doctor-helper at d389077c91, before any edit
+====================================================================================
+
+Why this file exists: the packet's criteria are read against counts, and every count
+shifts when a sibling doctor route lands. These numbers replace the older ones quoted
+in the approved design, which were measured on a different checkout.
+
+1) Route manifest
+   $ bash .skilled/commands/doctor/scripts/route-validate.sh
+   -> OK: route-validate — 19 routes validated, 3 warnings  (exit 0)
+   -> J1: targets are in parity with their router and presentation across 9 commands
+   -> L1: all 47 route script invocations are invoked by their workflow YAML
+
+2) Family test runner
+   $ bash .skilled/commands/doctor/scripts/tests/run-all.sh
+   -> [run-all] node:test (36 files): tests 723, pass 723, fail 0
+   -> [run-all] 7 suite(s) passed, 0 failed  (exit 0)
+
+3) Doctor phrase reach probe
+   $ node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs
+   -> STATUS=OK phrases=118 bridges=22  (exit 0)
+
+4) Bridge deriver
+   $ node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check
+   -> "status": "fresh"
+   -> "doctorRoutes": 23   (routes 19 + standalone 2 + mcp_subroutes 2)
+   -> "generated": 50      "commandMetadata": 19   "allowList": 8
+   -> "typescriptActive": 27   "pythonActive": 37   (exit 0)
+
+5) Generated mirrors and prompt stubs
+   $ node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs --check
+   -> [hermes-prompt-sync] PASS: 39 prompts are in sync.  (exit 0)
+   $ node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs --check
+   -> [codex-prompt-sync] PASS: 39 prompts are in sync.  (exit 0)
+   $ node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check
+   -> [pi-prompt-sync] PASS: 39 prompts are in sync.  (exit 0)
+   $ node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check
+   -> [runtime-mirror-sync] PASS: 203 mirrors across 9 trees are in sync.  (exit 0)
+
+6) Command contract and catalog
+   $ node .skilled/skills/system-spec-kit/runtime/cli/codex/generate-command-routers.cjs --check
+   -> routers=36 clean=36 path-drift=0 shape-drift=0  (exit 0)
+   $ node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs
+   -> STATUS=OK command-catalog-mirror  (exit 0)
+
+7) Advisor doctor suites
+   $ (cd .skilled/skills/system-skill-advisor/runtime) ./node_modules/.bin/vitest run \
+       tests/doctor-command-bridges.vitest.ts tests/command-bridges-drift-guard.vitest.ts \
+       tests/doctor-routing-slice.vitest.ts tests/scorer/doctor-bridge-isolation.vitest.ts \
+       tests/scorer/doctor-ordering.vitest.ts
+   -> Test Files 5 passed (5); Tests 96 passed (96)  (exit 0)
+
+8) Doctor routers on disk
+   $ ls .skilled/commands/doctor/*.md | wc -l
+   -> 12
+
+Manifest vocabulary at this commit: 100 route/standalone/mcp_subroute phrases, plus 3
+`/doctor:update compat` action phrases, over 23 derived entries. A helper entry adds one
+route and three phrases, and the compat action adds the 24th helper entry.

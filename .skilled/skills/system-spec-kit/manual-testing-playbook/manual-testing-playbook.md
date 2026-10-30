@@ -2,7 +2,7 @@
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
 last_updated: "2026-10-29"
-version: 2.1.9.0
+version: 2.1.10.0
 ---
 
 # Spec Kit: Manual Testing Playbook
@@ -276,6 +276,8 @@ Category notes and the retired ID ranges: [`doctor-commands/README.md`](doctor-c
 | DOC-361 | Doctor update record-base | [DOC-361](doctor-commands/doctor-update-record-base.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
 | DOC-379 | Doctor update test environment | [DOC-379](doctor-commands/doctor-update-test-environment.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
 | DOC-381 | Doctor update compat | [DOC-381](doctor-commands/doctor-update-compat.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-393 | Doctor helper ranks a problem and runs a read-only pick | [DOC-393](doctor-commands/doctor-helper-read-only-pick.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-394 | Doctor helper hands a writing pick back and offers the fallback | [DOC-394](doctor-commands/doctor-helper-writing-handoff.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
 
 ### 7.3 Spec-Doc Quality and Metadata
 

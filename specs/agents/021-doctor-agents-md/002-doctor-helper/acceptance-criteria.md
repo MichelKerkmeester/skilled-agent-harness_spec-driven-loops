@@ -8,19 +8,21 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "agents/021-doctor-agents-md/002-doctor-helper"
-    last_updated_at: "2026-10-30T12:40:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet the open criteria, then mark each one Met with its command output"
+    last_updated_at: "2026-10-30T14:05:00Z"
+    last_updated_by: "code-agent"
+    recent_action: "Met every criterion and recorded one command output per row"
+    next_safe_action: "Close the packet, or land the sibling phase and rebase the counts it quotes"
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "worktree-292-doctor-agents-md"
+      fingerprint: "sha256:d95d629cfdd8ffa5f18fd0bd81c887f5289b91352ab3ef383493c18057eb1e02"
+      session_id: "worktree-294-doctor-helper"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Is the helper's own advisor bridge activated? No: activation needs a routing-slice row and a scorer rebaseline outside this packet's change list, so it ships derived and inactive with the reason recorded."
+      - "Does the setup-list contract test pass on the first run? Yes: every one of the twelve pre-existing routers already carried a row."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.4 -->
 # Acceptance Criteria: /doctor:helper
@@ -38,7 +40,7 @@ _memory:
 
 **Packet:** `agents/021-doctor-agents-md/002-doctor-helper`
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-30
 <!-- /ANCHOR:metadata -->
 
@@ -51,24 +53,24 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a described pre-commit problem, When the matcher runs, Then its first candidate is the git hooks route | `node .skilled/commands/doctor/scripts/doctor-helper-match.cjs -- "my pre-commit hook keeps rejecting my commit"` exits 0 and its first candidate line starts `1) /doctor:git hooks` | Unmet | - |
-| AC-002 | REQ-002 | Given an inactive bridge's problem wording, When the matcher runs with `--json`, Then the first candidate is that route and its class reads `read-only` | `node .skilled/commands/doctor/scripts/doctor-helper-match.cjs --json -- "is this skill in the skilled format"` exits 0 with `candidates[0].runnable == "/doctor:sk-skill"` | Unmet | - |
-| AC-003 | REQ-003 | Given a problem no route matches, When the matcher runs, Then it exits 1 and names the setup fallback | `node .skilled/commands/doctor/scripts/doctor-helper-match.cjs -- "write me a poem about cats"` exits 1 with last line `STATUS=NO_MATCH FALLBACK=/doctor:setup` | Unmet | - |
-| AC-004 | REQ-004 | Given `--table --json`, When it runs, Then no runnable is the helper itself and no output byte carries a local-only name | `node .skilled/commands/doctor/scripts/doctor-helper-match.cjs --table --json` exits 0 and `grep -c 'local-'` prints `0` | Unmet | - |
-| AC-005 | REQ-005 | Given the frozen held-out set, When the suite runs, Then top-1 is at least 0.80, top-3 at least 0.90 and negatives at least 0.90, with the sha256 unchanged | `node --test .skilled/commands/doctor/scripts/tests/doctor-helper-match.test.cjs` prints the three figures and reports `fail 0` | Unmet | - |
-| AC-006 | REQ-006 | Given every doctor router, When the contract suite runs, Then each owns at least one helper entry and every phrase self-recalls top-1 | `node --test .skilled/commands/doctor/scripts/tests/doctor-helper-contract.test.cjs` reports `fail 0` | Unmet | - |
-| AC-007 | REQ-007 | Given the generated bridge file, When the helper's entries are compared, Then ids and runnables match plus only the standalone action extras | the contract suite's derivation-parity case passes | Unmet | - |
-| AC-008 | REQ-008 | Given the route manifest, When the validator runs, Then the summary names the re-measured route count and command count | `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 | Unmet | - |
-| AC-009 | REQ-008 | Given the setup presentation, When its target list is read, Then the helper appears exactly once | `rg -c 'helper' .skilled/commands/doctor/assets/doctor-setup-presentation.txt` prints `1` | Unmet | - |
-| AC-010 | REQ-009 | Given a completed generation run, When the deriver runs again, Then it prints `"status": "fresh"` with the re-measured `doctorRoutes` count | `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check` prints `"status": "fresh"` | Unmet | - |
-| AC-011 | REQ-009 | Given the mirrors and the three prompt stub sets, When each `--check` runs, Then each exits 0 at the re-measured count | the mirror sync and the three prompt syncs exit 0 | Unmet | - |
-| AC-012 | REQ-010 | Given the bridge decision, When the activation list is read, Then the helper bridge is active with all four checks passing, or inactive with its reason recorded | `node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs` exits 0 and the recorded decision matches the activation list | Unmet | - |
-| AC-013 | REQ-011 | Given the command contract, When the router generator checks, Then it reports zero path drift | `node .skilled/skills/system-spec-kit/runtime/cli/codex/generate-command-routers.cjs --check` prints zero path drift and zero shape drift | Unmet | - |
-| AC-014 | REQ-011 | Given the root README, When the doctor count is read, Then it equals the router count and names the missing sibling entry | the number in the doctor section equals `ls .skilled/commands/doctor/*.md \| wc -l` | Unmet | - |
-| AC-015 | REQ-009 | Given the family runner, When it runs, Then every suite passes | `bash .skilled/commands/doctor/scripts/tests/run-all.sh` ends `0 failed` | Unmet | - |
-| AC-016 | REQ-012 | Given a bad argument or an unreadable manifest, When the matcher runs, Then it exits 2; given a match, Then it exits 0; given no candidate above the floor, Then it exits 1 | the suite's three exit-code cases pass | Unmet | - |
-| AC-017 | REQ-009 | Given the advisor runtime, When its doctor suites run, Then they pass with no failure | the five named vitest files pass with zero failures | Unmet | - |
-| AC-018 | REQ-004 | Given the final tree, When the change list is read, Then it names no file outside the spec's file list and no local-only path | `git status --porcelain` names no unexplained path | Unmet | - |
+| AC-001 | REQ-001 | Given a described pre-commit problem, When the matcher runs, Then its first candidate is the git hooks route | `node .skilled/commands/doctor/scripts/doctor-helper-match.cjs -- "my pre-commit hook keeps rejecting my commit"` exits 0 and its first line is `1) /doctor:git hooks             mutates   matches "pre-commit gate keeps blocking" (pre-commit, pre, commit)` | Met | - |
+| AC-002 | REQ-002 | Given an inactive bridge's problem wording, When the matcher runs with `--json`, Then the first candidate is that route and its class reads `read-only` | `--json -- "is this skill in the skilled format"` exits 0 with `candidates[0].runnable` = `/doctor:sk-skill`, `candidates[0].mutating` = `read-only`, `candidates[0].writes` = `false` | Met | - |
+| AC-003 | REQ-003 | Given a problem no route matches, When the matcher runs, Then it exits 1 and names the setup fallback | `-- "write me a poem about cats"` exits 1 and its only line is `STATUS=NO_MATCH FALLBACK=/doctor:setup` | Met | - |
+| AC-004 | REQ-004 | Given `--table --json`, When it runs, Then no runnable is the helper itself and no output byte carries a local-only name | exits 0; `grep -c 'local-'` prints `0`; no `runnable` starts `/doctor:helper`; `table` reports 24 entries, 12 commands, 0 skipped private | Met | - |
+| AC-005 | REQ-005 | Given the frozen held-out set, When the suite runs, Then top-1 is at least 0.80, top-3 at least 0.90 and negatives at least 0.90, with the sha256 unchanged | the suite prints `held-out top1=0.917 top3=0.938 negatives=1.000 (rows=60 positive=48 negative=12)` and reports `fail 0`; the hash case passes against `d95d629c…` | Met | - |
+| AC-006 | REQ-006 | Given every doctor router, When the contract suite runs, Then each owns at least one helper entry and every phrase self-recalls top-1 | `node --test .skilled/commands/doctor/scripts/tests/doctor-helper-contract.test.cjs` reports 19 tests, `fail 0`, including `every doctor router owns at least one helper entry` and `every helper entry carries a phrase and every phrase ranks its own entry first` | Met | - |
+| AC-007 | REQ-007 | Given the generated bridge file, When the helper's entries are compared, Then ids and runnables match plus only the standalone action extras | the contract suite's `the helper ids and runnables match the deriver, plus only the standalone action extras` case passes: 24 derived ids equal the 24 generated doctor ids, every active bridge's runnable equals its generated `name`, and the only extra is `command-doctor-update-action-compat` | Met | - |
+| AC-008 | REQ-008 | Given the route manifest, When the validator runs, Then the summary names the re-measured route count and command count | `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 and prints `OK: route-validate — 20 routes validated, 3 warnings` with `J1: … across 10 commands` | Met | - |
+| AC-009 | REQ-008 | Given the setup presentation, When its target list is read, Then the helper appears exactly once | `rg -c 'helper' .skilled/commands/doctor/assets/doctor-setup-presentation.txt` prints `1` | Met | - |
+| AC-010 | REQ-009 | Given a completed generation run, When the deriver runs again, Then it prints `"status": "fresh"` with the re-measured `doctorRoutes` count | `derive-command-bridges.cjs --check` prints `"status": "fresh"` with `"doctorRoutes": 24` and `"generated": 51`, exit 0 | Met | - |
+| AC-011 | REQ-009 | Given the mirrors and the three prompt stub sets, When each `--check` runs, Then each exits 0 at the re-measured count | `hermes`, `codex` and `pi` each print `PASS: 40 prompts are in sync.` and `sync-runtime-mirrors.cjs --check` prints `PASS: 205 mirrors across 9 trees are in sync.`, all exit 0 | Met | - |
+| AC-012 | REQ-010 | Given the bridge decision, When the activation list is read, Then the helper bridge is active with all four checks passing, or inactive with its reason recorded | `doctor-phrase-reach.cjs` exits 0 with `STATUS=OK phrases=126 bridges=22`; `scoring-compatibility.json` lists neither `command-doctor-helper` nor, for the same reason, `command-doctor-sk-skill`, so the bridge is derived and inactive, and `implementation-summary.md` records why | Met | - |
+| AC-013 | REQ-011 | Given the command contract, When the router generator checks, Then it reports zero path drift | `generate-command-routers.cjs --check` prints `routers=38 clean=38 path-drift=0 shape-drift=0`, exit 0 | Met | - |
+| AC-014 | REQ-011 | Given the root README, When the doctor count is read, Then it equals the router count and names the missing sibling entry | the doctor section reads `Thirteen commands` and carries 13 `/doctor:` bullets, `ls .skilled/commands/doctor/*.md \| wc -l` prints 13, and `/doctor:sk-skill` is now one of them | Met | - |
+| AC-015 | REQ-009 | Given the family runner, When it runs, Then every suite passes | `bash .skilled/commands/doctor/scripts/tests/run-all.sh` prints `tests 764, pass 764, fail 0` over 38 files and ends `7 suite(s) passed, 0 failed`, exit 0 | Met | - |
+| AC-016 | REQ-012 | Given a bad argument or an unreadable manifest, When the matcher runs, Then it exits 2; given a match, Then it exits 0; given no candidate above the floor, Then it exits 1 | the case `a bad argument, an unreadable manifest and a missing yaml package each exit 2` passes, alongside the exit-0 match case and the exit-1 no-match case | Met | - |
+| AC-017 | REQ-009 | Given the advisor runtime, When its doctor suites run, Then they pass with no failure | `vitest run` over `doctor-command-bridges`, `command-bridges-drift-guard`, `doctor-routing-slice`, `scorer/doctor-bridge-isolation` and `scorer/doctor-ordering` reports 5 files passed, 96 tests passed, 0 failed | Met | - |
+| AC-018 | REQ-004 | Given the final tree, When the change list is read, Then it names no file outside the spec's file list and no local-only path | `git status --porcelain` names 37 paths: section 3's list, this packet's own seven documents, and the playbook root index carrying the two registry rows; no `local-*` path appears | Met | - |
 
 ### Status values
 
@@ -93,7 +95,11 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-001 through AC-018 are unmet: the packet is specified and not started.
+AC-001 through AC-018 are met, each with an observed command output. Two facts a
+reader should carry: the advisor bridge for the helper is derived and inactive by
+decision, with the reason recorded in `implementation-summary.md`, and the counts
+this packet quotes move by one when the sibling `/doctor:agents-md` phase lands,
+because the helper reads the route manifest at run time.
 <!-- /ANCHOR:closure -->

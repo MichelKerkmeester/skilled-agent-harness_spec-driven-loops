@@ -204,15 +204,17 @@
         ".skilled/commands/doctor/mcp.md",
         ".skilled/commands/doctor/update.md",
         ".skilled/commands/doctor/env.md",
-        ".skilled/commands/doctor/sk-skill.md"
+        ".skilled/commands/doctor/sk-skill.md",
+        ".skilled/commands/doctor/helper.md",
+        ".skilled/commands/doctor/setup.md"
       ],
       "input": {
         "required": true,
         "gate_owner": "router",
-        "argument_hint": "per-command: [speckit-retrieval] | list | ? (speckit); <tune|rebuild|skill-graph-freshness|router-reach|skill-budget|parent-skill> [flags] | list | ? (skill-advisor); [--scope=research|review|council|both|all] (deep-loop); no arguments (runtime-mirrors); [setup] [--prompt=<text>] (sk-code); <hooks|standards> [--dry-run] | list | ? (git); [report|scaffold|toggle] [flags] | list | ? (ci); <install [--runtime <name>]|debug [--fix]> (mcp); [check|align|apply|rollback|record-base|compat] [--release=<tag>] [--scope=all|<unit,...>] [--remote=<name-or-url>] [--dry-run] [flags] (update); [list | <section> | <VARIABLE>] [--dry-run] (env); [check|convert] [<name-or-path>] [--json] [--into-hub <hub>] [--dry-run] (sk-skill)"
+        "argument_hint": "per-command: [speckit-retrieval] | list | ? (speckit); <tune|rebuild|skill-graph-freshness|router-reach|skill-budget|parent-skill> [flags] | list | ? (skill-advisor); [--scope=research|review|council|both|all] (deep-loop); no arguments (runtime-mirrors); [setup] [--prompt=<text>] (sk-code); <hooks|standards> [--dry-run] | list | ? (git); [report|scaffold|toggle] [flags] | list | ? (ci); <install [--runtime <name>]|debug [--fix]> (mcp); [check|align|apply|rollback|record-base|compat] [--release=<tag>] [--scope=all|<unit,...>] [--remote=<name-or-url>] [--dry-run] [flags] (update); [list | <section> | <VARIABLE>] [--dry-run] (env); [check|convert] [<name-or-path>] [--json] [--into-hub <hub>] [--dry-run] (sk-skill); [<problem in plain words>] [--json] | list | ? (helper)"
       },
       "execution_targets": [
-        { "selector": "<target> resolved via _routes.yaml for speckit, skill-advisor, deep-loop, runtime-mirrors, sk-code, git, ci and sk-skill", "target": ".skilled/commands/doctor/assets/<the route's yaml>, named per route in _routes.yaml" },
+        { "selector": "<target> resolved via _routes.yaml for speckit, skill-advisor, deep-loop, runtime-mirrors, sk-code, git, ci, sk-skill and helper", "target": ".skilled/commands/doctor/assets/<the route's yaml>, named per route in _routes.yaml" },
         { "selector": "install | debug", "target": ".skilled/commands/doctor/assets/doctor-mcp-<sub>.yaml" },
         { "selector": "check", "target": ".skilled/commands/doctor/assets/doctor-update-check.yaml" },
         { "selector": "align", "target": ".skilled/commands/doctor/assets/doctor-update-align.yaml" },
@@ -222,7 +224,8 @@
         { "selector": "compat", "target": ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml" },
         { "selector": "list | section | variable [--dry-run]", "target": ".skilled/commands/doctor/assets/doctor-env.yaml" },
         { "selector": "check [<name-or-path>] [--json] (sk-skill)", "target": ".skilled/commands/doctor/assets/doctor-sk-skill-check.yaml" },
-        { "selector": "convert <name-or-path> [--dry-run] (sk-skill)", "target": ".skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml" }
+        { "selector": "convert <name-or-path> [--dry-run] (sk-skill)", "target": ".skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml" },
+        { "selector": "[<problem in plain words>] [--json] | list | ? (helper)", "target": ".skilled/commands/doctor/assets/doctor-helper.yaml" }
       ],
       "mode_matrix": {
         "default_policy": "confirm-only",
@@ -243,6 +246,9 @@
         { "purpose": "presentation", "path": ".skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt" },
         { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-sk-skill-check.yaml" },
         { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml" },
+        { "purpose": "presentation", "path": ".skilled/commands/doctor/assets/doctor-helper-presentation.txt" },
+        { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-helper.yaml" },
+        { "purpose": "script", "path": ".skilled/commands/doctor/scripts/doctor-helper-match.cjs (ranks the manifest at run time)" },
         { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-<target>.yaml (per-route target workflows, named by each route's yaml field)" },
         { "purpose": "script", "path": ".skilled/commands/doctor/scripts/route-validate.sh (validates _routes.yaml)" }
       ],
@@ -259,7 +265,8 @@
         "/doctor:env has no required positional; it writes only an explicitly confirmed eligible preference to hook-flags.env or Claude settings and never writes .env or a shell profile",
         "/doctor:sk-skill check is the read-only default target: with no positional it reports the whole fleet, with one it reports that skill, and it names the repair for each finding while it changes nothing",
         "/doctor:sk-skill convert plans first and asks one question per write: sk-skill-convert.cjs plan writes nothing, the trim and the allowed-tools list are each their own yes, the plan is rerun with the approved flags so the operator approves a plan that already carries those writes, apply writes only with --apply and those same flags, every overwritten file is backed up first, a no at any question ends the run with STATUS=CANCELLED and nothing written, and the undo block the engine printed is quoted as printed",
-        "/doctor:sk-skill convert refuses a dual declaration, a hub or half hub declaration, a nested SKILL.md packet, a local- prefixed name, an agent- prefixed name and a name collision; a description over 130 characters and a missing allowed-tools are follow-up questions rather than refusals, and a plain skill is staged under .skilled/skills/<name> after the workflow agent reshapes its prose and preserve --snapshot proves the body survived"
+        "/doctor:sk-skill convert refuses a dual declaration, a hub or half hub declaration, a nested SKILL.md packet, a local- prefixed name, an agent- prefixed name and a name collision; a description over 130 characters and a missing allowed-tools are follow-up questions rather than refusals, and a plain skill is staged under .skilled/skills/<name> after the workflow agent reshapes its prose and preserve --snapshot proves the body survived",
+        "/doctor:helper ranks the route manifest doctor-command against doctor-command and runs no writing target: a read-only pick runs in place under that command's own router, a pick classed add-only or mutates is printed as one line for the operator to run under its own gate, and no argument is ever appended to that line"
       ],
       "presentation": { "owner": "presentation-asset", "exceptions": [] },
       "destructive_policy": {
@@ -270,7 +277,7 @@
       },
       "routing_source": "manifest",
       "timeout_bounds": { "warm_probe_timeout_ms": 500 },
-      "invocation_aliases": ["/doctor:speckit", "/doctor:speckit list", "/doctor:skill-advisor <target>", "/doctor:skill-advisor list", "/doctor:deep-loop [--scope=<scope>]", "/doctor:runtime-mirrors", "/doctor:sk-code [setup] [--prompt=<text>]", "/doctor:git <hooks|standards|setup>", "/doctor:git list", "/doctor:ci [report|scaffold|toggle]", "/doctor:ci list", "/doctor:mcp <install|debug>", "/doctor:update [check|align|apply|rollback|record-base|compat] [flags]", "/doctor:env [list | <section> | <VARIABLE>] [--dry-run]", "/doctor:sk-skill [check|convert] [<name-or-path>] [--json] [--into-hub <hub>] [--dry-run]"],
+      "invocation_aliases": ["/doctor:speckit", "/doctor:speckit list", "/doctor:skill-advisor <target>", "/doctor:skill-advisor list", "/doctor:deep-loop [--scope=<scope>]", "/doctor:runtime-mirrors", "/doctor:sk-code [setup] [--prompt=<text>]", "/doctor:git <hooks|standards|setup>", "/doctor:git list", "/doctor:ci [report|scaffold|toggle]", "/doctor:ci list", "/doctor:mcp <install|debug>", "/doctor:update [check|align|apply|rollback|record-base|compat] [flags]", "/doctor:env [list | <section> | <VARIABLE>] [--dry-run]", "/doctor:sk-skill [check|convert] [<name-or-path>] [--json] [--into-hub <hub>] [--dry-run]", "/doctor:helper [<problem in plain words>] [--json]"],
       "workflow_schema_ref": null
     },
     "deep": {

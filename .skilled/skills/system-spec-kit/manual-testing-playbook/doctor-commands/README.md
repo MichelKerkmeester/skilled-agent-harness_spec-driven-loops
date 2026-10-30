@@ -2,7 +2,7 @@
 id: doctor-commands-readme
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
-version: 2.3.5.0
+version: 2.3.6.0
 ---
 
 # Doctor Commands
@@ -15,8 +15,9 @@ Manual testing scenarios for the doctor command surface.
 
 ## 2. SCOPE
 
-15 scenarios covering the four doctor commands this skill owns and the test environment they share:
+17 scenarios covering the five doctor commands this skill owns and the test environment they share:
 
+- `/doctor:helper`: 2 scenarios (DOC-393 and DOC-394): a described problem ranked with a read-only pick run in place, and a writing pick handed back with the no-match fallback
 - `/doctor:speckit`: 3 scenarios (DOC-349 to DOC-351): a healthy index, a stale index and a target another command owns now
 - `/doctor:runtime-mirrors`: 2 scenarios (DOC-352 and DOC-353): every mirror in sync, and one drifted mirror
 - `/doctor:env`: 3 scenarios (DOC-354 to DOC-356): inspecting switches, saving a preference behind a yes, and secrets and per-invocation switches that are never saved

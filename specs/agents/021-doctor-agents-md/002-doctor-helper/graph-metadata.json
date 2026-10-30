@@ -38,7 +38,7 @@
       "goal"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -46,17 +46,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/doctor-helper-match.cjs",
+      ".skilled/commands/doctor/assets/doctor-helper.yaml",
+      ".skilled/commands/doctor/helper.md",
+      ".skilled/commands/doctor/assets/doctor-helper-presentation.txt",
+      ".skilled/commands/doctor/scripts/tests/doctor-helper-match.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/doctor-helper-contract.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/fixtures/doctor-helper/heldout.jsonl",
+      ".skilled/commands/doctor/scripts/tests/fixtures/doctor-helper/tune.jsonl",
       ".skilled/commands/doctor/_routes.yaml",
       ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
       ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
-      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
-      ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
-      ".skilled/commands/README.txt",
-      ".skilled/commands/doctor/scripts/README.markdown",
-      ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md"
+      ".claude/commands/doctor/helper.md",
+      ".cursor/commands/doctor-helper.md",
+      ".codex/prompts/doctor-helper.md"
     ],
     "entities": [
       {
@@ -96,6 +99,54 @@
         "source": "derived"
       },
       {
+        "name": "doctor-helper-match.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/doctor-helper-match.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-helper.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-helper.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "helper.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/helper.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-helper-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-helper-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-helper-match.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-helper-match.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-helper-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-helper-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "heldout.jsonl",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/fixtures/doctor-helper/heldout.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "tune.jsonl",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/fixtures/doctor-helper/tune.jsonl",
+        "source": "derived"
+      },
+      {
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/_routes.yaml",
@@ -114,51 +165,9 @@
         "source": "derived"
       },
       {
-        "name": "command-bridges.generated.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
-        "source": "derived"
-      },
-      {
-        "name": "projection.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
-        "source": "derived"
-      },
-      {
-        "name": "skill_advisor.py",
-        "kind": "file",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
-        "source": "derived"
-      },
-      {
-        "name": "render.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
-        "source": "derived"
-      },
-      {
-        "name": "scoring-compatibility.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".skilled/commands/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "README.markdown",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/README.markdown",
-        "source": "derived"
-      },
-      {
-        "name": "category-overview.md",
+        "name": "doctor-helper.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+        "path": ".cursor/commands/doctor-helper.md",
         "source": "derived"
       },
       {
@@ -196,17 +205,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The doctor family now carries nineteen routes across twelve commands, and the only way to find the right one is to read the manifest",
     "created_at": "2026-10-30T11:22:12Z",
-    "last_save_at": "2026-10-30T11:39:30.776Z",
+    "last_save_at": "2026-10-30T12:52:18.178Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c782341153b081146804a4534ab860b610a6e6edd444c21227b0fd5fd9e767fe",
+    "source_fingerprint": "sha256:2b089107a1274a54f912da8ab3072e93ac898d13fa8938155f4b16dffcd97260",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "288643c083c363f8ef8e5e34cd0b29c98ccb860df6af068737d6e9d96c04f631",
+      "spec.md": "f35d73bc1b818d0be163f8aafa39a6b8d2b34efb3a863bd666e7e8927ba88cb9",
       "plan.md": "08381b5af0792003ae08ccbc072ef02897cb313ef0fe4b8af668af653e1c2613",
-      "tasks.md": "fb4090468d75bd77133a490d14a2162d44f1792df4b79acb152b8b1df9684e21",
-      "implementation-summary.md": "343fb4ff642d02554ee38082f2b862b5d73f2fd387b809a0a43a91a5adbf54f6"
+      "tasks.md": "b6a75f0db25e3da980f1a6c80285022649692af1a5ed42b555cd8731d677b730",
+      "implementation-summary.md": "4715924a50d2052e5b737b500dab400338e8dfcf09fec30c3d01cb0279c38c7f"
     },
     "last_active_at": null
   }

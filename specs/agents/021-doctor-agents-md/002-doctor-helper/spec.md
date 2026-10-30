@@ -10,17 +10,19 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "agents/021-doctor-agents-md/002-doctor-helper"
-    last_updated_at: "2026-10-30T12:40:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored the packet from the approved design"
-    next_safe_action: "Re-measure the route, phrase and bridge counts, then write the failing suites first"
+    last_updated_at: "2026-10-30T14:10:00Z"
+    last_updated_by: "code-agent"
+    recent_action: "Shipped the command, its matcher, both suites and every generated surface"
+    next_safe_action: "Land the sibling /doctor:agents-md phase and rebase the counts this packet quotes by one"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/commands/doctor/scripts/doctor-helper-match.cjs"
+      - ".skilled/commands/doctor/assets/doctor-helper.yaml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "worktree-292-doctor-agents-md"
+      session_id: "worktree-294-doctor-helper"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-30 |
 | **Branch** | `worktrees/292-doctor-agents-md` |
 | **Parent Spec** | ../spec.md |
