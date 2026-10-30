@@ -42,7 +42,7 @@ _memory:
 
 **Packet:** sk-doc/075-doctor-sk-skill-command/009-mirror-and-template-fixes
 **Level:** 2
-**Status:** Implemented
+**Status:** Complete
 **Date:** 2026-10-30
 <!-- /ANCHOR:metadata -->
 
@@ -123,7 +123,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 **Closeable:** Yes
 
 Every criterion is `Met`, and each one's evidence is the command output recorded in section 2.
-One checklist item is not done and is not hidden by that: `CHK-041` in `tasks.md`, the
-`sk-create-skill` changelog entry for the template fix, is blocked because the changelog sits
-outside this run's write authority. `007-docs-and-changelogs` owns that file.
+`CHK-041` in `tasks.md` closed with them: the `sk-create-skill` changelog entry for the template fix
+was outside this run's write authority, `007-docs-and-changelogs` wrote it, and the row now cites
+that entry.
 <!-- /ANCHOR:closure -->

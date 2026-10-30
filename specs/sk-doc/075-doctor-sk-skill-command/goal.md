@@ -89,12 +89,12 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `validate.sh specs/sk-doc/075-doctor-sk-skill-command --recursive --strict` prints `RESULT: PASSED`
-- [ ] `route-validate.sh` exits 0 with `/doctor:sk-skill` `check` and `convert` routes, and `tests/run-all.sh` reports all PASS
-- [ ] `node --test` on `sk-skill-check.test.cjs` and `sk-skill-convert.test.cjs` exits 0
-- [ ] After convert in a temp repo, `sync-skills-hermes.cjs --check` passes, `skill-graph-freshness.cjs --strict` exits 0 and `.skilled/changelog/<name>` resolves
-- [ ] `doctor-phrase-reach.cjs` reaches `/doctor:sk-skill`, and a scratch convert prints a plan, then `CANCELLED` on no and `OK` on yes
-- [ ] `grep -c 'in-SKILL.md router'` on the leaf-manifest config template prints 0 and `doctor-runtime-mirrors.yaml` invokes both Hermes `--check` scripts
+- [x] `validate.sh specs/sk-doc/075-doctor-sk-skill-command --recursive --strict` prints `RESULT: PASSED`
+- [x] `route-validate.sh` exits 0 with `/doctor:sk-skill` `check` and `convert` routes, and `tests/run-all.sh` reports all PASS
+- [x] `node --test` on `sk-skill-check.test.cjs` and `sk-skill-convert.test.cjs` exits 0
+- [x] After convert in a temp repo, `sync-skills-hermes.cjs --check` passes, `skill-graph-freshness.cjs --strict` exits 0 and `.skilled/changelog/<name>` resolves
+- [x] `doctor-phrase-reach.cjs` reaches `/doctor:sk-skill`, and a scratch convert prints a plan, then `CANCELLED` on no and `OK` on yes
+- [x] `grep -c 'in-SKILL.md router'` on the leaf-manifest config template prints 0 and `doctor-runtime-mirrors.yaml` invokes both Hermes `--check` scripts
 <!-- /ANCHOR:completion -->
 
 ---

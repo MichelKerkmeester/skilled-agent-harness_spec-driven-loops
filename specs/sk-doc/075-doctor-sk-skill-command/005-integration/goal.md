@@ -8,17 +8,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-doc/075-doctor-sk-skill-command/005-integration"
-    last_updated_at: "2026-10-30T09:15:00Z"
-    last_updated_by: "code-agent-worker"
-    recent_action: "Built and tested the integration rows; recorded the deviation"
-    next_safe_action: "Conductor wires applyIntegration into the convert apply path"
+    last_updated_at: "2026-10-30T14:53:02Z"
+    last_updated_by: "markdown-agent-close"
+    recent_action: "Closed the last checklist rows; the convert apply paths run the six rows"
+    next_safe_action: "None inside this phase"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-281-doctor-skill-command"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -54,10 +54,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] In a temp repo with `HERMES_SKILLS_OUTPUT_DIR` set, `sync-skills-hermes.cjs --check` passes after convert
-- [ ] In that temp repo with `SKILL_GRAPH_FRESHNESS_ROOT` set, `skill-graph-freshness.cjs --strict` exits 0 after convert
-- [ ] `readlink .skilled/changelog/<name>` prints `../skills/<name>/changelog` for the converted skill
-- [ ] `cmp` of the reach script's fleet output before and after the change prints nothing
+- [x] In a temp repo with `HERMES_SKILLS_OUTPUT_DIR` set, `sync-skills-hermes.cjs --check` passes after convert
+- [x] In that temp repo with `SKILL_GRAPH_FRESHNESS_ROOT` set, `skill-graph-freshness.cjs --strict` exits 0 after convert
+- [x] `readlink .skilled/changelog/<name>` prints `../skills/<name>/changelog` for the converted skill
+- [x] `cmp` of the reach script's fleet output before and after the change prints nothing
 <!-- /ANCHOR:completion -->
 
 ---

@@ -60,7 +60,7 @@ contextType: "general"
 
 - [x] T012 Confirm the worktree holds no scratch skill. Verify: `git status --porcelain` shows no path under `.skilled/skills/` or `.skilled/changelog/` from T008 or T009. Evidence: `git status --porcelain` printed 0 lines, and the same read scoped to `.skilled/skills .skilled/changelog` printed 0 lines; both scratch skills lived only inside `runs/t008` and `runs/t009` (`scratch/after.md` T012).
 - [x] T013 Write the framework release entry through create-changelog (`.skilled/changelog/skilled/v<next>.md`). Verify: `validate_document.py <entry> --type changelog` exits 0. Evidence: `.skilled/changelog/skilled/v4.0.1.2.md` printed `VALID` with `Total issues: 0` at exit 0, the voice scan reported 0 hard blockers and the structure read 38 lines in the compact shape, after a bullet was added for the edge proposal and one for the in-place wiring (`scratch/after.md` T013). The version step is recorded there too: `v4.0.1.0` is tagged on origin and `v4.0.1.1` is not.
-- [ ] T014 After the operator merges, read CI on main. Verify: `gh run list --branch main --commit <merge-sha>` shows every run `success` or switched off. Note: not run in this phase. It needs the merge commit the operator creates, so it stays open and is recorded in `scratch/after.md` T014.
+- [x] T014 After the operator merges, read CI on main. Verify: `gh run list --commit <merge-sha> --json name,status,conclusion` shows every run success or switched off. Evidence: `gh run list --commit 5dc15c537385ce2a40d7b1797b23b3c8afea9f22 --json name,status,conclusion` printed 12 runs, every one `"status":"completed"` and `"conclusion":"success"`, none switched off; the three landing commits read the same way at 19 runs for `0a8bd93611`, 15 for `c6bee18a45` and 15 for `afb71aa136` (`scratch/after.md` T014).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -68,8 +68,8 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`: T001 to T013 are `[x]` and T014 waits on the operator's merge
-- [ ] No `[B]` blocked tasks remaining: two checklist rows wait on that merge
+- [x] All tasks marked `[x]`: T001 to T014
+- [x] No `[B]` blocked tasks remaining: the two checklist rows that waited on the merge turned with the CI read
 - [x] Manual verification passed: `OUT` holds every check with output and exit code
 <!-- /ANCHOR:completion -->
 
@@ -125,10 +125,10 @@ A failed check is marked `[B]` with the owning phase named; a P0 item never clos
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [B] CHK-020 [P0] All acceptance criteria met: met by AC-001 to AC-007 and AC-009; AC-008 needs the merge and the CI read, owned by T014 and the operator. The packet is not closeable until that row turns
+- [x] CHK-020 [P0] All acceptance criteria met: AC-001 to AC-009, with AC-008 turned by T014's CI read, and every row naming evidence that was observed
 - [x] CHK-021 [P0] Scorer and replay baselines unchanged: T005 and T006, every number identical
 - [x] CHK-022 [P0] Both scratch conversions end strict PASS with a resolving changelog link: T008 and T009
-- [B] CHK-023 [P1] CI green on main: T014, which waits on the operator's merge
+- [x] CHK-023 [P1] CI green on main: T014, 12 of 12 runs success on `5dc15c5373`, and every run on the three landing commits success as well
 <!-- /ANCHOR:testing -->
 
 ---
@@ -158,7 +158,7 @@ N/A: verification phase; it fixes no reported finding.
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized: this update, `implementation-summary.md`, the acceptance rows and the parent's completion fields
 - [x] CHK-041 [P1] Framework release changelog written through create-changelog: T013
-- [x] CHK-042 [P2] Parent packet status updated after close: the parent spec and graph metadata now read phase 010 as in progress with the CI read outstanding
+- [x] CHK-042 [P2] Parent packet status updated after close — Evidence: the phase 010 close set the parent's status line to "In Progress (phase 010 Complete; 005, 007 and 009 carry open checklist rows)", and the follow-up close turned those rows and then set the parent to Complete with its phase map reading Complete for all ten phases and its derived metadata re-deriving to `complete`
 <!-- /ANCHOR:docs -->
 
 ---
@@ -167,7 +167,7 @@ N/A: verification phase; it fixes no reported finding.
 ## File Organization
 
 - [x] CHK-050 [P1] Results live in `scratch/after.md`; scratch skills only in the temp repo: T012
-- [x] CHK-051 [P1] scratch/ cleaned of everything but `after.md` before completion: the folder holds `.gitkeep` and `after.md`, and every temporary file lives under the operator scratch area
+- [x] CHK-051 [P1] scratch/ cleaned of everything but its own records before completion: the folder holds `.gitkeep`, `after.md` and `workflow-run.md`, and every throwaway file lives under the operator scratch area
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -177,8 +177,8 @@ N/A: verification phase; it fixes no reported finding.
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 8/9 met, 1 blocked on the merge |
-| P1 Items | 9 | 8/9 met, 1 blocked on the merge |
+| P0 Items | 9 | 9/9 met |
+| P1 Items | 9 | 9/9 met |
 | P2 Items | 2 | 2/2 met |
 
 **Verification Date**: 2026-10-30

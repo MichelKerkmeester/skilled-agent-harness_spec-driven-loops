@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-convert-plumbing"
+    packet_pointer: "sk-doc/075-doctor-sk-skill-command/006-convert-plumbing"
     last_updated_at: "2026-10-30T05:21:17Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"

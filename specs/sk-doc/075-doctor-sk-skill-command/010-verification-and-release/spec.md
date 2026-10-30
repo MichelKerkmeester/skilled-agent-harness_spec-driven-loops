@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-30 |
 | **Branch** | `worktrees/281-doctor-skill-command` |
 | **Parent Spec** | ../spec.md |
@@ -46,6 +46,7 @@ This is **Phase 10** of the Doctor skill command: check and convert a skill to t
 **Deliverables**:
 - `scratch/after.md` with the output and exit code of every check in section 4.
 - The framework release entry under `.skilled/changelog/skilled/`, written by create-changelog.
+- `scratch/workflow-run.md`, the workflow-level convert run: one run cancelled with the tree unchanged, and one run completed with its four post-checks passing.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -102,6 +103,7 @@ Run in the worktree on 2026-10-30 at `66157ee7e6` (the scorer JSON is abridged t
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `specs/sk-doc/075-doctor-sk-skill-command/010-verification-and-release/scratch/after.md` | Create | Every check's command, output and exit code |
+| `specs/sk-doc/075-doctor-sk-skill-command/010-verification-and-release/scratch/workflow-run.md` | Create | The workflow-level convert run: the cancelled path, the completed path, and the four checks after it |
 | `.skilled/changelog/skilled/v<next>.md` | Create | Framework release entry, version after `v4.0.1.1` computed by create-changelog |
 <!-- /ANCHOR:scope -->
 

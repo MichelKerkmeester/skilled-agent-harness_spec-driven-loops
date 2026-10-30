@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/075-doctor-sk-skill-command"
-    last_updated_at: "2026-10-30T14:50:00Z"
-    last_updated_by: "markdown-agent-010"
-    recent_action: "Both conversions were rerun after the fix and each ends green; the CI read is still open"
-    next_safe_action: "Read CI on main after the operator merges, then close phase 10"
+    last_updated_at: "2026-10-30T14:53:02Z"
+    last_updated_by: "markdown-agent-close"
+    recent_action: "Closed the last unticked rows in 005, 007 and 009 and re-derived the packet"
+    next_safe_action: "None inside the packet: every child reads Complete and the parent's derived status is complete"
     blockers: []
     key_files:
       - "scratch/design.md"
@@ -21,10 +21,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-281-doctor-skill-command"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Decisions D1 to D9 accepted as recommended, including optional phase 8"
+      - "Does every workflow run for the release commit conclude success? Twelve runs, every one success"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: phase-parent-spec | v2.2 -->
 
@@ -49,7 +50,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-30 |
 | **Branch** | `worktrees/281-doctor-skill-command` |
 | **Parent Spec** | None (top-level packet) |
@@ -127,8 +128,13 @@ Ship `/doctor:sk-skill` with a read-only `check` target that reports rows C1 to 
 | 6 | 006-convert-plumbing/ | Convert YAML, presentation states, advisor bridge activation, refusal-string contract test | Complete |
 | 7 | 007-docs-and-changelogs/ | Docs list from design section 3 and a changelog for every touched skill | Complete |
 | 8 | 008-hub-gap-report/ | Read-only `check --into-hub <hub>` 11-row gap report | Complete |
-| 9 | 009-mirror-and-template-fixes/ | Hermes skills check in `/doctor:runtime-mirrors` (D8) and the template wording fix (D9) | Implemented |
-| 10 | 010-verification-and-release/ | Final verification across the program and release notes | In progress, CI on main pending |
+| 9 | 009-mirror-and-template-fixes/ | Hermes skills check in `/doctor:runtime-mirrors` (D8) and the template wording fix (D9) | Complete |
+| 10 | 010-verification-and-release/ | Final verification across the program and release notes | Complete |
+
+> Every phase closes Complete. The last three rows turned against evidence recorded on this worktree:
+> `005-integration`'s ordering and acceptance rows against the convert call sites and a 99-test run,
+> `007-docs-and-changelogs`'s scenario row against the check forms read here plus the convert
+> transcript, and `009-mirror-and-template-fixes`'s changelog row against the entry phase 7 wrote.
 
 ### Phase Transition Rules
 

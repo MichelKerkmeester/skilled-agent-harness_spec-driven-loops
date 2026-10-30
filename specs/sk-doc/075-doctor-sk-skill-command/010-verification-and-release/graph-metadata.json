@@ -34,7 +34,7 @@
       "edits"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -43,8 +43,10 @@
       "goal.md",
       "implementation-summary.md",
       "scratch/after.md",
+      "scratch/workflow-run.md",
       ".skilled/changelog/skilled/v4.0.1.2.md",
       "specs/sk-doc/075-doctor-sk-skill-command/010-verification-and-release/scratch/after.md",
+      "specs/sk-doc/075-doctor-sk-skill-command/010-verification-and-release/scratch/workflow-run.md",
       ".skilled/commands/doctor/assets/doctor-setup-presentation.txt"
     ],
     "entities": [
@@ -91,6 +93,12 @@
         "source": "derived"
       },
       {
+        "name": "workflow-run.md",
+        "kind": "doc",
+        "path": "scratch/workflow-run.md",
+        "source": "derived"
+      },
+      {
         "name": "v4.0.1.2.md",
         "kind": "doc",
         "path": ".skilled/changelog/skilled/v4.0.1.2.md",
@@ -104,12 +112,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,6 +136,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -185,17 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The program edits doctor routes, sk-doc docs and manifests, advisor bridges and a skill template",
     "created_at": "2026-10-30T05:21:20Z",
-    "last_save_at": "2026-10-30T13:56:23.532Z",
+    "last_save_at": "2026-10-30T15:10:58.931Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9ba3da1e21afdf52227a708f2f65d452a37edb9189e2a5c9fa405f5dbf0ffe5e",
+    "source_fingerprint": "sha256:596a299a84641d3365cb5917c3e97b9894210200cab15d802d519b4a3a43dc5e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a410d2e106ba634837a133d78e8fa72fbe97c5bca5dc9d29a0acd62c544641ed",
-      "plan.md": "11e0067834ff40f5d63d6f0e499f8e215631d2cdfdbaa4e4c2a1b8d9939143ee",
-      "tasks.md": "076e372a9ca01e701910f70d3048a5ef17399cbb6ee76064fbf1c5186908def0",
-      "implementation-summary.md": "3388215fefa29c3379b580e8b9ff1cb1a80fe43866f30b201122a4f0f9a02fb4"
+      "spec.md": "c4675186c79449975e3ce5f31c5b42810133f21a06d463b53cd4e033ed51ce3f",
+      "plan.md": "d004744c3ac935c76dfc9103370e2bddf2bb9fb3fed2ffda4f6479ceb7b3a207",
+      "tasks.md": "e52024cc24b129355867f00273d522b7f26884a6d084572cea347729433475f0",
+      "implementation-summary.md": "54a7f4827447c3f371eb2925efab6acd8d511fc51c116ef8c1f24b92d1a6f3c5"
     },
     "last_active_at": null
   }

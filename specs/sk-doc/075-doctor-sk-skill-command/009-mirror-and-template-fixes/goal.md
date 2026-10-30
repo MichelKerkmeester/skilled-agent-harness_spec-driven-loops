@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "scaffold/009-mirror-and-template-fixes"
+    packet_pointer: "sk-doc/075-doctor-sk-skill-command/009-mirror-and-template-fixes"
     last_updated_at: "2026-10-30T07:05:00Z"
     last_updated_by: "code-agent"
     recent_action: "Implemented both decisions and met every completion criterion"

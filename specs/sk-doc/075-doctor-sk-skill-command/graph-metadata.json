@@ -45,7 +45,7 @@
       "goal"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -172,12 +172,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -202,6 +196,12 @@
         "source": "derived"
       },
       {
+        "name": "Purpose Ship",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Decisions Frozen",
         "kind": "proper_noun",
         "path": "goal.md",
@@ -216,17 +216,17 @@
     ],
     "causal_summary": "An adopter who brings a plain agent skill, or a Skilled skill whose machine router still sits inside `SKILL.md`, has no command that says how far the skill is from the current Skilled format, and no path that converts it in place",
     "created_at": "2026-10-30T05:21:11Z",
-    "last_save_at": "2026-10-30T13:54:12.721Z",
+    "last_save_at": "2026-10-30T15:10:51.161Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:8f45ca79cc42e08c48edf07c5bef899737a02f1a683b34f93390c9ac4a3c2b05",
+    "source_fingerprint": "sha256:5555dd5ad9a7daf8c058c6c015c863339bf60816779f8a3e38f76bc792d17306",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8df83d861c402f17ba747bf35b68791332a3370679d88fb8c96c8400ba65b924"
+      "spec.md": "1184bbc471f2ddd74006588e579c5af5a0f1013ed23f7282b6f3de24ca218a06"
     },
     "last_active_at": null
   }

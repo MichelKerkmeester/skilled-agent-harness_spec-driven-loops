@@ -65,7 +65,7 @@ contextType: "general"
 ## Completion Criteria
 
 - [x] All tasks marked `[x]`
-- [x] No `[B]` blocked tasks remaining (T### items; CHK-041 is blocked and named below)
+- [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed: the T010 transcript is saved in `scratch/t010-drift-transcript.md`
 <!-- /ANCHOR:completion -->
 
@@ -152,7 +152,7 @@ A blocked task is marked `[B]` with the blocker named; a P0 item never closes bl
 ## Documentation
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized
-- [B] CHK-041 [P1] The sk-create-skill changelog records the template fix (phase 7 entry, or a new one if phase 7 already closed). Blocked, not met: the changelog under `.skilled/skills/sk-doc/sk-create-skill/changelog/` is outside this run's write authority, which named the template and the doctor files only. `007-docs-and-changelogs` owns that changelog, and this fix belongs in the entry it writes.
+- [x] CHK-041 [P1] The sk-create-skill changelog records the template fix (phase 7 entry, or a new one if phase 7 already closed) — Evidence: `007-docs-and-changelogs` wrote it in `.skilled/skills/sk-doc/sk-create-skill/changelog/v1.9.1.0.md:16` ("The leaf manifest config template now names the router in the sibling `ROUTER.md` rather than in `SKILL.md`") and `:24` (the bullet stating the new `leafRoots` wording), and both commits that touch the entry (`f26c2945ee` created it, `0a8bd93611` extended it) are ancestors of this worktree's head. Phase 7's entry covers the fix, so no separate entry was needed
 - [x] CHK-042 [P1] `sync-prompts-hermes.cjs --check` is in the route, the YAML and the contract test
 <!-- /ANCHOR:docs -->
 
@@ -173,11 +173,12 @@ A blocked task is marked `[B]` with the blocker named; a P0 item never closes bl
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 9 | 9/9 |
-| P1 Items | 12 | 11/12 |
+| P1 Items | 12 | 12/12 |
 | P2 Items | 0 | 0/0 |
 
-CHK-041 is the one unverified row, blocked on a changelog outside this run's write authority
-and named under Documentation above.
+CHK-041 closed once the changelog it waited on existed. The block named a file outside this phase's write
+authority, and `007-docs-and-changelogs` wrote that entry, so the row is verified from the entry rather than
+waived.
 
 **Verification Date**: 2026-10-30
 <!-- /ANCHOR:summary -->

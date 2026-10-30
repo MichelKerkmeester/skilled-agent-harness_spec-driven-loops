@@ -40,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 009-mirror-and-template-fixes |
-| **Status** | Implemented |
+| **Status** | Complete |
 | **Completed** | 2026-10-30 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

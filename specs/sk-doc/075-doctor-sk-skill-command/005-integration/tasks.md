@@ -91,9 +91,9 @@ below records the call site, and `implementation-summary.md` records the deviati
 - [x] Manual verification passed
 - [x] Temp-repo checks pass and reach fleet output is byte-identical
 
-**Remaining outside this phase**: the conductor adds `applyIntegration` to the convert apply path. Until it
-does, the acceptance criteria in `acceptance-criteria.md` stay `Unmet`, because each one reads "when convert
-finishes".
+**Closed by the call sites T012 added**: `applyIntegration` runs on the plain path
+(`sk-skill-convert.cjs:1434`) and on the older Skilled path (`:1574`), so every acceptance row that reads
+"when convert finishes" is satisfied by the same call the temp-repo cases exercise.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -140,7 +140,7 @@ A blocked task is marked `[B]` with the blocking cause on the same line.
 - [x] CHK-010 [P0] `node --check` exits 0 on every changed script
 - [x] CHK-011 [P0] Reach default path unchanged
 - [x] CHK-012 [P1] Every integration step records created and overwritten paths
-- [ ] CHK-013 [P1] No integration step runs after a failed V8
+- [x] CHK-013 [P1] No integration step runs after a failed V8 — Evidence: on the plain path the strict gate runs at `.skilled/commands/doctor/scripts/sk-skill-convert.cjs:1413-1422`, the second validator at `:1424-1431`, and `applyIntegration` sits after both at `:1434`, so a refused gate throws first. The regression case named `a failing strict package check stops before the second package validator` (`.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs:1061`) asserts exit 1 with `STRICT_PACKAGE_FAILED` (`:1091`) and `assert.deepEqual(integrationSpawns, [])` (`:1099`), so no advisor scan, graph compile or Hermes sync is spawned. The older Skilled in-place path runs no strict gate of its own: its rows follow the router-equivalence proof (`sk-skill-convert.cjs:1553`) at `:1574`, and the converted root passes that same gate afterwards (`../010-verification-and-release/scratch/after.md:770`, `Result: PASS`, exit 0)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -148,7 +148,7 @@ A blocked task is marked `[B]` with the blocking cause on the same line.
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-020 [P0] All acceptance criteria met — Evidence: the eight rows in `acceptance-criteria.md` are `Met` and the closure statement reads `Closeable: Yes`; the two suites they cite pass at this head, `node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs .skilled/commands/doctor/scripts/tests/sk-skill-integrate.test.cjs` reporting 99 tests, 99 pass, 0 fail; and a convert of a scratch plain skill prints the six rows and reads back `Result: PASS` with 13 rows (`../010-verification-and-release/scratch/workflow-run.md:522`, §3.4 to §3.5)
 - [x] CHK-021 [P0] Temp-repo Hermes and freshness checks pass
 - [x] CHK-022 [P1] Hermes-absent case tested
 - [x] CHK-023 [P1] Adopter regression case tested
@@ -198,17 +198,14 @@ N/A: this phase fixes no reported finding.
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | 7/8 |
-| P1 Items | 10 | 9/10 |
+| P0 Items | 8 | 8/8 |
+| P1 Items | 10 | 10/10 |
 | P2 Items | 1 | 1/1 |
 
-**CHK-020 stays open on purpose.** Every acceptance row reads "when convert finishes" and convert does not
-call this library yet, so the criteria are documented as `Unmet` with the evidence observed so far rather
-than ticked.
-
-**CHK-013 stays open for the same reason.** The library runs a row only under `apply: true` and never calls
-itself, but "nothing runs after a failed V8" is the convert step's ordering promise, and the conductor owns
-that call site.
+**CHK-020 and CHK-013 closed with the wiring.** Both were held open while `applyIntegration` had no call
+site, because every acceptance row reads "when convert finishes" and the ordering promise needed the call
+site to exist. T012 added it to both apply paths, so both rows are read there now: the criteria are `Met`
+and the ordering is the one `.skilled/commands/doctor/scripts/sk-skill-convert.cjs:1413-1434` enforces.
 
 **Verification Date**: 2026-10-30
 <!-- /ANCHOR:summary -->

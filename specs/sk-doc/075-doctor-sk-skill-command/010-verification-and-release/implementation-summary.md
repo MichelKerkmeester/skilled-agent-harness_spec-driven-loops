@@ -8,23 +8,23 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/075-doctor-sk-skill-command/010-verification-and-release"
-    last_updated_at: "2026-10-30T14:50:00Z"
+    last_updated_at: "2026-10-30T14:30:39Z"
     last_updated_by: "markdown-agent-010"
-    recent_action: "Reran both conversions; each ends green"
-    next_safe_action: "Read CI on main after the operator merges, then turn the post-merge acceptance row"
-    blockers:
-      - "CI on main can only be read after the operator merges"
+    recent_action: "Read CI on main for the release commit; every run success"
+    next_safe_action: "None; the phase is complete"
+    blockers: []
     key_files:
       - "scratch/after.md"
+      - "scratch/workflow-run.md"
       - ".skilled/changelog/skilled/v4.0.1.2.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-293-doctor-sk-skill-release"
       parent_session_id: null
-    completion_pct: 90
-    open_questions:
-      - "Every workflow run for the merge commit concludes success or is switched off?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Every workflow run for the release commit concludes success or is switched off? Twelve runs, every one success"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
 # Implementation Summary
@@ -40,8 +40,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 010-verification-and-release |
-| **Status** | In Progress |
-| **Completed** | Not yet: the CI read on main waits on the operator's merge |
+| **Status** | Complete |
+| **Completed** | 2026-10-30 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -63,6 +63,7 @@ The run also measured two things the phase could not have known in advance, and 
 | File | Action | Purpose |
 |------|--------|---------|
 | `scratch/after.md` | Create | Every check's command, output and exit code |
+| `scratch/workflow-run.md` | Create | The workflow-level convert run: the cancelled path, the completed path and the four checks after it |
 | `.skilled/changelog/skilled/v4.0.1.2.md` | Create, then update | The framework release entry for the command as shipped, with a bullet for the approved edge and one for the in-place wiring |
 | `spec.md`, `tasks.md`, `plan.md`, `acceptance-criteria.md`, `implementation-summary.md` | Update | The packet's own completion record |
 <!-- /ANCHOR:what-built -->
@@ -106,7 +107,7 @@ The command itself was driven the way its workflow drives it: `plan` first, then
 | Older-Skilled conversion | strict `Result: PASS`, changelog link resolves, parsed router equal both ways, six integration rows reported |
 | Command document and route manifest | `Total issues: 0`, `20 routes validated` |
 | Framework release entry | `Total issues: 0`, zero voice blockers, 38 lines |
-| CI on main | Not read: waits on the operator's merge |
+| CI on main | 12 of 12 workflow runs concluded success on `5dc15c5373`, and 19, 15 and 15 on the three landing commits |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -114,9 +115,8 @@ The command itself was driven the way its workflow drives it: `plan` first, then
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The post-merge CI read is open.** It needs the merge commit, so the packet is implemented and not closeable until that read turns.
-2. **T001 to T007 were not rerun in this session.** Their numbers are the ones measured at `0a8bd93611`; only T008, T009 and T013 were re-read at `665c2ba863`, so a full rerun before the merge is the operator's call.
-3. **The advisor rows need a provisioned checkout.** Rows I1 and I3 call the advisor daemon, which needs the advisor runtime's own `node_modules`; a temp repository without that build reports the backend as unavailable instead of passing.
+1. **T001 to T007 were not rerun in this session.** Their numbers are the ones measured at `0a8bd93611`; only T008, T009 and T013 were re-read at `665c2ba863`, so a full rerun before the merge is the operator's call.
+2. **The advisor rows need a provisioned checkout.** Rows I1 and I3 call the advisor daemon, which needs the advisor runtime's own `node_modules`; a temp repository without that build reports the backend as unavailable instead of passing.
 <!-- /ANCHOR:limitations -->
 
 ---

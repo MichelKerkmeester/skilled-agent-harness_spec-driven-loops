@@ -75,7 +75,7 @@ contextType: "general"
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed: one new playbook scenario was followed end to end — the check forms were observed against `sk-git` (`Result: PASS`), the fleet (`Roots: 13; result: FINDINGS (1)`, the one finding a generated `sk-prompt` benchmark script whose name is not kebab-case and which predates this phase), the JSON keys and the hub gap report for a shipped mode, but the scenario's own fixtures live under `.skilled/skills/`, which this phase may not write
+- [x] Manual verification passed: one new playbook scenario was followed end to end. The read-only half was observed at this head: `node .skilled/commands/doctor/scripts/sk-skill-check.cjs check sk-git` prints `Result: PASS`, exit 0; `check` prints `Roots: 13; result: PASS`, exit 0; `check sk-git --json` prints `mode`, `exitCode`, `findingCount`, `unknownCount` and 13 `rows`, exit 0; and `check sk-create-skill --into-hub sk-doc` prints `Rows: 11; 10 pass, 0 finding(s), 0 unknown, 1 n/a` and `Result: PASS`, exit 0. The fixture half is the SKL-011 arc against a scratch plain skill in a temporary repository, which is where that fixture belongs, so this phase writes nothing under `.skilled/skills/`: `../010-verification-and-release/scratch/workflow-run.md` records the plan, the three follow-up questions answered, `preserve --snapshot` returning `Preservation PASS: 6 original body line(s) found.`, `STATUS=CANCELLED ACTION=cancelled` with `git status --porcelain` at 0 lines when the conversion question is answered no, and on yes `Result: PASS`, six integration rows reporting and a read-back of 13 rows with no finding
 <!-- /ANCHOR:completion -->
 
 ---
@@ -133,7 +133,7 @@ A blocked task is marked `[B]` with the blocking phase named; a P0 item never cl
 - [x] CHK-020 [P0] All acceptance criteria met — Evidence: every row in `acceptance-criteria.md` is `Met`, with AC-002 and AC-003 closed by the five entries and their resolving links
 - [x] CHK-021 [P0] Every changelog link resolves to the new entry — Evidence: `ls .skilled/changelog/{sk-doc/create-skill,sk-doc/create-command,sk-doc/parent,system-skill-advisor,sk-prompt}/v<version>.md` resolves for all five, and `parent-skill-check` prints `13b` and `13d` PASS
 - [x] CHK-022 [P1] The five doc gates exit 0 — Evidence: `scratch/after.md`, five exit codes of 0
-- [ ] CHK-023 [P1] One playbook scenario followed end to end — the command forms were observed against shipped skills, the JSON keys, the fleet table and the hub gap report, and the fixture half of each scenario needs a write this phase is not allowed
+- [x] CHK-023 [P1] One playbook scenario followed end to end — Evidence: SKL-009's read-only steps run against shipped skills at this head (`check sk-git` `Result: PASS` exit 0, `check` `Roots: 13; result: PASS` exit 0, `--json` carrying `mode`, `exitCode`, `findingCount`, `unknownCount` and 13 `rows` exit 0, and `check sk-create-skill --into-hub sk-doc` `Rows: 11; 10 pass, 0 finding(s), 0 unknown, 1 n/a` with `Result: PASS` exit 0), and SKL-011's nine steps run against a scratch plain skill in a temporary repository (`../010-verification-and-release/scratch/workflow-run.md`), so both halves of the scenario are followed rather than inferred: the checklist statuses, the cancelled run with a clean tree and the applied run with `Result: PASS` are all in the transcripts
 <!-- /ANCHOR:testing -->
 
 ---
@@ -183,7 +183,7 @@ N/A: documentation phase; it fixes no reported finding.
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 8 | 8/8 |
-| P1 Items | 10 | 9/10 |
+| P1 Items | 10 | 10/10 |
 | P2 Items | 2 | 2/2 |
 
 **Verification Date**: 2026-10-30

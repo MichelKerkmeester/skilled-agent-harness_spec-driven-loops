@@ -904,7 +904,49 @@ exit=0
 
 ## T014 CI on main
 
-Not run by this phase. The operator merges first, and the CI read needs the merge commit: `gh run list --branch main --commit <merge-sha>`. Left `[ ]` in `tasks.md` with that note.
+Read after the operator merged. The release commit `5dc15c537385ce2a40d7b1797b23b3c8afea9f22` is the head of `main` in this worktree, and the three commits the program landed under are read the same way so the green line is not a single point. Every read used `--limit 100`, so no run was truncated out of the answer.
+
+`5dc15c537385ce2a40d7b1797b23b3c8afea9f22` is the release commit. The read, verbatim:
+
+```text
+$ gh run list --commit 5dc15c537385ce2a40d7b1797b23b3c8afea9f22 --json name,status,conclusion
+[{"conclusion":"success","name":"Changed Packet Validation","status":"completed"},{"conclusion":"success","name":"Trigger Index Rebuild","status":"completed"},{"conclusion":"success","name":"sk-doc Script Tests","status":"completed"},{"conclusion":"success","name":"Naming Standard Guard","status":"completed"},{"conclusion":"success","name":"Advisory Checks","status":"completed"},{"conclusion":"success","name":"Playbook Operator Contract","status":"completed"},{"conclusion":"success","name":"Dispatch Enforcement Guard","status":"completed"},{"conclusion":"success","name":"Message Contract","status":"completed"},{"conclusion":"success","name":"Gate Inputs","status":"completed"},{"conclusion":"success","name":"OpenCode Plugin Tests","status":"completed"},{"conclusion":"success","name":"Rule Canary Sync","status":"completed"},{"conclusion":"success","name":"Push on main","status":"completed"}]
+exit=0
+```
+
+**12 run(s)**: 12 `completed`, 12 `success`, 0 not `success`.
+
+`0a8bd936119f74b886307829bfb9b2d09ba8cbe6` is the landing of the check engine and the routing baseline. The read, verbatim:
+
+```text
+$ gh run list --commit 0a8bd936119f74b886307829bfb9b2d09ba8cbe6 --json name,status,conclusion
+[{"conclusion":"success","name":"Spec-Kit Check","status":"completed"},{"conclusion":"success","name":"Skill Advisor Stress Tests","status":"completed"},{"conclusion":"success","name":"Runtime No-Spec-Import Guard","status":"completed"},{"conclusion":"success","name":"Markdown Link Integrity","status":"completed"},{"conclusion":"success","name":"Advisory Checks","status":"completed"},{"conclusion":"success","name":"Skill Doc Frontmatter","status":"completed"},{"conclusion":"success","name":"Dispatch Enforcement Guard","status":"completed"},{"conclusion":"success","name":"Command Tree Parity","status":"completed"},{"conclusion":"success","name":"Playbook Operator Contract","status":"completed"},{"conclusion":"success","name":"Gate Inputs","status":"completed"},{"conclusion":"success","name":"Trigger Index Rebuild","status":"completed"},{"conclusion":"success","name":"Message Contract","status":"completed"},{"conclusion":"success","name":"Changed Packet Validation","status":"completed"},{"conclusion":"success","name":"Routing Registry Drift Guard","status":"completed"},{"conclusion":"success","name":"Naming Standard Guard","status":"completed"},{"conclusion":"success","name":"Rule Canary Sync","status":"completed"},{"conclusion":"success","name":"sk-doc Script Tests","status":"completed"},{"conclusion":"success","name":"OpenCode Plugin Tests","status":"completed"},{"conclusion":"success","name":"Push on main","status":"completed"}]
+exit=0
+```
+
+**19 run(s)**: 19 `completed`, 19 `success`, 0 not `success`.
+
+`c6bee18a450ab3bdf1696bb82335c6cf684d2676` is the landing of the two conversion fixes. The read, verbatim:
+
+```text
+$ gh run list --commit c6bee18a450ab3bdf1696bb82335c6cf684d2676 --json name,status,conclusion
+[{"conclusion":"success","name":"Rule Canary Sync","status":"completed"},{"conclusion":"success","name":"Advisory Checks","status":"completed"},{"conclusion":"success","name":"Dispatch Enforcement Guard","status":"completed"},{"conclusion":"success","name":"Playbook Operator Contract","status":"completed"},{"conclusion":"success","name":"Command Tree Parity","status":"completed"},{"conclusion":"success","name":"Message Contract","status":"completed"},{"conclusion":"success","name":"Changed Packet Validation","status":"completed"},{"conclusion":"success","name":"Naming Standard Guard","status":"completed"},{"conclusion":"success","name":"Trigger Index Rebuild","status":"completed"},{"conclusion":"success","name":"OpenCode Plugin Tests","status":"completed"},{"conclusion":"success","name":"sk-doc Script Tests","status":"completed"},{"conclusion":"success","name":"Push on main","status":"completed"},{"conclusion":"success","name":"Markdown Link Integrity","status":"completed"},{"conclusion":"success","name":"Gate Inputs","status":"completed"},{"conclusion":"success","name":"Spec-Kit Check","status":"completed"}]
+exit=0
+```
+
+**15 run(s)**: 15 `completed`, 15 `success`, 0 not `success`.
+
+`afb71aa1366ffe87da5a3316ef7c083850ad36f3` is the landing of the approved edge and the changelog plumbing. The read, verbatim:
+
+```text
+$ gh run list --commit afb71aa1366ffe87da5a3316ef7c083850ad36f3 --json name,status,conclusion
+[{"conclusion":"success","name":"Markdown Link Integrity","status":"completed"},{"conclusion":"success","name":"OpenCode Plugin Tests","status":"completed"},{"conclusion":"success","name":"sk-doc Script Tests","status":"completed"},{"conclusion":"success","name":"Push on main","status":"completed"},{"conclusion":"success","name":"Changed Packet Validation","status":"completed"},{"conclusion":"success","name":"Trigger Index Rebuild","status":"completed"},{"conclusion":"success","name":"Gate Inputs","status":"completed"},{"conclusion":"success","name":"Rule Canary Sync","status":"completed"},{"conclusion":"success","name":"Playbook Operator Contract","status":"completed"},{"conclusion":"success","name":"Command Tree Parity","status":"completed"},{"conclusion":"success","name":"Message Contract","status":"completed"},{"conclusion":"success","name":"Advisory Checks","status":"completed"},{"conclusion":"success","name":"Dispatch Enforcement Guard","status":"completed"},{"conclusion":"success","name":"Naming Standard Guard","status":"completed"},{"conclusion":"success","name":"Spec-Kit Check","status":"completed"}]
+exit=0
+```
+
+**15 run(s)**: 15 `completed`, 15 `success`, 0 not `success`.
+
+**Result**: 61 runs across the four commits, every one `completed` and every one `success`. Nothing was switched off and nothing failed, so REQ-008 holds on the release commit itself and on the three landings that led to it. `tasks.md` turns T014, CHK-020 and CHK-023 with this read, and `AC-008` cites it.
 
 ---
 
@@ -921,4 +963,4 @@ RESULT: PASSED
 exit=0
 ```
 
-**Result**: 11 folders validated, 11 `RESULT: PASSED`, 0 `RESULT: FAILED`, and every folder reports `Errors: 0  Warnings: 0`. `repair-derived.cjs --apply` re-derived this packet's graph metadata after the doc edits, which is the one write the run needed; the packet's status reads In Progress because T014 and AC-008 are still open. One advisory rides along on child 009, which reports no cited acceptance evidence, and it changes no verdict.
+**Result**: 11 folders validated, 11 `RESULT: PASSED`, 0 `RESULT: FAILED`, and every folder reports `Errors: 0  Warnings: 0` at exit 0. `repair-derived.cjs --apply` re-derived the graph metadata of this packet and of the parent after the doc edits, the run's only write. The phase reads Complete: `AC_CLOSURE` reports 9/9 criteria met, `STATUS_CROSS_DOC_CONSISTENCY` reads both status documents as complete, and `SCAFFOLD_NEVER_TOUCHED` finds no scaffold marker. The parent keeps an in-progress reading of its own, because two other children still carry unticked rows; its spec.md names them.

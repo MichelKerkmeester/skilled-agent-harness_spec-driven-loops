@@ -96,7 +96,7 @@ A file that does not exist is created with an exclusive create, never a replace,
 | V5 resource docs | Add the five-field frontmatter plus `version` to `references/` and `assets/` markdown (strict-promoted, `package_skill.py:242-245`); rename non-kebab paths and rewrite their links | none | frontmatter insert; rename plus link rewrite, shown file by file |
 | V6 metadata | Run `init_skill.py <name> --path <tmp>` and copy only absent files (`graph-metadata.json`, `leaf-manifest.config.json`, `manual-testing-playbook/`, `benchmark/`); replace the slug defaults with the approved phrases | `init_skill.py:310-466` | phrase proposal from description, keyword comment and old `INTENT_SIGNALS`, at least 8 (`ci-skill-root-metadata.cjs:605-611`) |
 | V7 generated files | `ci-skill-root-metadata.cjs --fix --skills-dir .skilled/skills --skill <name>`, then `regenerate-skill-derived.cjs --root <dir> --write` | exactly as `init_skill.py:276-307` scopes it | none |
-| V8 format gate | `package_skill.py <dir> --check --strict`, then `validate_skill_package.py <dir>` (`SCS/SKILL.md:95`) | both | stop on fail, no integration |
+| V8 format gate | `package_skill.py <dir> --check --strict`, then `validate_skill_package.py <dir>` (`SCS/SKILL.md:95`) | plain (as shipped, the in-place path is gated by the router-semantics proof instead, and its output passes the same strict check) | stop on fail, no integration |
 | V9 integration | Section 3 rows I1-I6, each its own plan line | listed there | listed there |
 | V10 verify and undo | Rerun `check`; print every created path, every overwritten path with its backup, and the undo commands | `skill-check.cjs` | undo list |
 

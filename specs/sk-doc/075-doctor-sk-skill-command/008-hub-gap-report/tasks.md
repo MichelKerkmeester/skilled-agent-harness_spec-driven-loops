@@ -72,7 +72,7 @@ contextType: "general"
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed: one `/doctor:sk-skill check --into-hub` run in an agent runtime renders the table — deferred: no agent runtime is reachable from this non-interactive worker. The render path is covered by `renderHubText` assertions in the test suite and by the CLI runs pasted in `implementation-summary.md`.
+- [x] Manual verification passed: one `/doctor:sk-skill check --into-hub` run in an agent runtime renders the table. Evidence: on 2026-10-30, in a Claude Code session on main at `2c46091a30`, `/doctor:sk-skill check sk-git --into-hub sk-doc` loaded the router, the check YAML and the presentation contract, ran `sk-skill-check.cjs check sk-git --into-hub sk-doc` (exit 1) and rendered the eleven-row table with each evidence line, the CI-coverage footer, `Rows: 11; 1 pass, 4 finding(s), 0 unknown, 6 n/a`, `Result: FINDINGS (4)` and the `DOCTOR DIAGNOSTIC RESULT` block ending `STATUS=FINDINGS`. The four findings (H1, H2, H7, H8) are expected, because sk-git is a standalone skill and not an sk-doc mode.
 <!-- /ANCHOR:completion -->
 
 ---

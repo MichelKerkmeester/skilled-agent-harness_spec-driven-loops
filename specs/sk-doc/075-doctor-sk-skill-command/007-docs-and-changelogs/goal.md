@@ -89,7 +89,7 @@ and findings belong here.
 | Two files already failed the reference gate | The playbook test-module table and the command index example. Both repaired so the gate exits 0 over the files this phase changes |
 | The sk-doc leaf manifest did not change | Its config lists routed mode resources. Playbook scenarios and catalog entries are not resources, so `--fix` reported `fixed=0` and freshness stayed green |
 | The activation manifest needed no refresh | `compiled-route-sync.cjs --check` prints `all 55 served copies match their authored files` |
-| No scenario run end to end | The fixtures live under `.skilled/skills/`, outside this phase's write authority. The check, fleet, hub gap, JSON and refusal forms were observed against shipped skills and scratch fixtures |
+| No scenario run in this worktree | The fixtures live under `.skilled/skills/`, outside this phase's write authority. The check, fleet, hub gap, JSON and refusal forms were observed against shipped skills, and the conversion arc ran end to end against a scratch plain skill in a temporary repository, which is where that fixture belongs: `../010-verification-and-release/scratch/workflow-run.md` |
 | The first docs draft described the design, not the command | A correction pass re-read every claim against the shipped route, workflow, contract and engines. The plain-skill command sequence, the hub refusal code and the gate output spacing were all wrong as first written |
 | The scripts README keeps its repo-root inline paths | Its `code_folder` reading resolves them from its own folder, so 25 rows stand before and after. None of them is new, and its auto-detected type reports no issue |
 <!-- /ANCHOR:log -->
