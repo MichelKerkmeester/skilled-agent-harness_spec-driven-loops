@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files"
-    last_updated_at: "2026-10-29T13:20:00Z"
-    last_updated_by: "claude-haiku-5-5"
-    recent_action: "Authored the durable directive"
+    last_updated_at: "2026-10-30T00:30:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Amended D3 and criterion 3 to the replay baseline the routing-data follow-up recorded"
     next_safe_action: "Execute against the completion criteria"
     blockers: []
     key_files: []
@@ -46,7 +46,7 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | The move changes where a router lives. No skill or mode routes differently after it. |
 | D2 | Every skill and mode owns a sibling `ROUTER.md`. A hub's moved prose joins its existing root `ROUTER.md`. |
-| D3 | Routing baseline: advisor scorer 155/195, 49/66 and 19/24, and replay `gold=64 exact=49`. Moving either number is an amendment. |
+| D3 | Routing baseline: advisor scorer 155/195, 49/66 and 19/24. The replay read `gold=64 exact=49` through the move, and `015-routing-data-alignment` amended it to `gold=65 exact=50` by adding one gold row. Moving any of these numbers again is an amendment. |
 | D4 | The AI Systems repository changes only in phase 008, and its remote push waits for operator approval. |
 | D5 | Phases 007 to 009 do not wait for phases 004 to 006. |
 
@@ -86,7 +86,7 @@ string, not these files.
 
 - [ ] `package_skill.py --check --strict` prints `Result: PASS` for every skill under `.skilled/skills`, and `routing-shape-known-debt.json` holds 0 debt entries.
 - [ ] `capture-scorer-eval-baseline.mjs` reads 155/195, 49/66 and 19/24 after regeneration.
-- [ ] `leaf-route-replay.cjs` totals read `gold=64 scored=56 tied=3 mean_f1=0.9161 exact=49`, and its `--report` output is byte-identical before and after regeneration.
+- [ ] `leaf-route-replay.cjs` totals read the amended `gold=65 scored=57 tied=3 mean_f1=0.9176 exact=50`, and its `--report` output is byte-identical before and after regeneration.
 - [ ] `parent-skill-check.cjs` prints `OK` for seven hubs, and `compiled-route-guard.cjs` prints seven `fresh` lines.
 - [ ] Each of the 16 AI Systems skills has a `ROUTER.md` linked from its `SKILL.md`, with checks passing in `Barter-BV/marketing-ai-systems`.
 - [ ] `validate.sh specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files --recursive --strict` ends with `RESULT: PASSED`.
