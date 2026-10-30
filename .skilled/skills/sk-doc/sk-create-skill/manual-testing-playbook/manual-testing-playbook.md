@@ -1,7 +1,7 @@
 ---
 title: "sk-create-skill: Manual Testing Playbook"
 description: "Operator-facing scenarios for scaffolding standalone skills, building parent hubs, validating root metadata and preserving routing boundaries."
-version: 1.2.0.6
+version: 1.2.1.0
 ---
 
 # sk-create-skill: Manual Testing Playbook
@@ -23,9 +23,9 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 ## 1. OVERVIEW
 
-This package tests the two authoring paths owned by `sk-create-skill`. It checks the standalone scaffold and its metadata, the handoff to quality control, parent-hub registry and router parity, the `ready` boundary and the single-advisor-identity rule.
+This package tests the authoring paths owned by `sk-create-skill` and `/doctor:sk-skill`, the command that brings an existing skill onto them. It checks the standalone scaffold and its metadata, the handoff to quality control, parent-hub registry and router parity, the `ready` boundary, the single-advisor-identity rule, and the format check and in-place conversion of a skill that already exists.
 
-Coverage is split into seven scenarios across two categories. Three scenarios cover standalone skills. Four cover parent hubs.
+Coverage is split into eleven scenarios across two categories. Seven scenarios cover standalone skills. Four cover parent hubs.
 
 ### Realistic Test Model
 
@@ -136,7 +136,7 @@ Wave planning keeps standalone scaffolding separate from parent-hub routing work
 
 ---
 
-## 7. STANDALONE SKILL (`SKL-001..SKL-003`)
+## 7. STANDALONE SKILL (`SKL-001..SKL-003`, `SKL-009..SKL-012`)
 
 ### SKL-001 | Scaffold a standalone skill
 
@@ -198,6 +198,90 @@ Desired user-visible outcome: an existing-document report from the quality workf
 
 > **Feature File:** [SKL-003](standalone-skill/leave-quality-audits-alone.md)
 > **Catalog:** no feature-catalog entry applies to this package.
+
+---
+
+### SKL-009 | Check a skill against the Skilled format
+
+#### Description
+
+Verify that the read-only check reports one skill and the whole fleet against the Skilled format row by row, carries the same verdict in its JSON form and writes nothing.
+
+#### Scenario Contract
+
+Prompt: `How far is invoice-review from the Skilled format? Do not change anything.`
+
+The mode should run the check for one skill, read all thirteen rows with their own status and detail, run the JSON form, run the fleet form and confirm the skills tree did not change. An `UNKNOWN` row means the question could not be answered and is never read as a pass.
+
+Desired user-visible outcome: a per-row reading of the skill's distance from the format, with the repair named for each finding.
+
+#### Test Execution
+
+> **Feature File:** [SKL-009](standalone-skill/check-a-skill-against-the-skilled-format.md)
+> **Catalog:** [skill-format-check-and-convert](../../feature-catalog/skill-format-conversion/skill-format-check-and-convert.md) in the sk-doc hub catalog.
+
+---
+
+### SKL-010 | Convert an older Skilled skill
+
+#### Description
+
+Verify that a skill whose machine router sits inside `SKILL.md` converts in place, keeps the parsed router equal, backs up the bytes it replaces and becomes a no-op on a second run.
+
+#### Scenario Contract
+
+Prompt: `The release-notes skill still keeps its machine router inside SKILL.md. Convert it to the current Skilled shape.`
+
+The operator runs the plan, runs `apply` with no `--apply` to prove the gate writes nothing, then applies, reads the backup path and the router source line, plans again and runs the strict format gate. A file that exists is never replaced, and a router that would change restores the backup.
+
+Desired user-visible outcome: a skill on the current Skilled shape with the routing it had before and a backup that names every byte the run replaced.
+
+#### Test Execution
+
+> **Feature File:** [SKL-010](standalone-skill/convert-an-older-skilled-skill.md)
+> **Catalog:** [skill-format-check-and-convert](../../feature-catalog/skill-format-conversion/skill-format-check-and-convert.md) in the sk-doc hub catalog.
+
+---
+
+### SKL-011 | Convert a plain skill
+
+#### Description
+
+Verify that a plain agent skill becomes a class S standalone root with the authored metadata replacing the slug defaults, every original body line preserved and both gates clean.
+
+#### Scenario Contract
+
+Prompt: `invoice-review is a plain agent skill with no version, no ROUTER.md and no graph metadata. Convert it so it passes the strict format gate and the advisor can find it.`
+
+The operator reads the plan with its harvested resource map and its intent phrases before any write, applies, runs the preservation check against the snapshot the run names, then runs the strict format gate, the root metadata gate, the completion gate and the changelog check. Fewer than eight approved phrases stops the plan, and a lost body line stops the run.
+
+Desired user-visible outcome: a converted skill that passes both gates, keeps every original line somewhere in the package and reaches the advisor and the changelog index.
+
+#### Test Execution
+
+> **Feature File:** [SKL-011](standalone-skill/convert-a-plain-skill.md)
+> **Catalog:** [skill-format-check-and-convert](../../feature-catalog/skill-format-conversion/skill-format-check-and-convert.md) in the sk-doc hub catalog.
+
+---
+
+### SKL-012 | Refuse a hub candidate
+
+#### Description
+
+Verify that a hub declaration, a nested packet tree and a two-job answer each stop the conversion with their own named reason and no write.
+
+#### Scenario Contract
+
+Prompt: `Convert the field-notes skill into the Skilled format. Both of its modes share one folder, so convert them as one skill.`
+
+The operator plans the conversion of a declared hub, compares the tree, then answers the job question with more than one job. Each refusal names its own reason, and the multi-job answer ends at the `/create:skill-parent` command line rather than a write.
+
+Desired user-visible outcome: a refusal the operator can act on, with the tree untouched and the hub path named.
+
+#### Test Execution
+
+> **Feature File:** [SKL-012](standalone-skill/refuse-a-hub-candidate.md)
+> **Catalog:** [skill-format-check-and-convert](../../feature-catalog/skill-format-conversion/skill-format-check-and-convert.md) in the sk-doc hub catalog.
 
 ---
 
@@ -291,11 +375,13 @@ Desired user-visible outcome: the per-hub replay counts and a plain statement th
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `init_skill.py` | Standalone and parent scaffolding paths plus compiled-routing initialization | SKL-001 and SKL-005 |
-| `package_skill.py` | Strict skill package structure and frontmatter checks | SKL-001 |
-| `ci-skill-root-metadata.cjs` | Root class, authored and generated metadata, forbidden files and freshness | SKL-002 and SKL-006 |
-| `parent-skill-check.cjs` | Parent registry, router, packet and root-router conformance | SKL-004 |
-| `leaf-route-replay.test.cjs` | Router parsing, keyword scoring, gold loading and row scoring, the read recount, the replay verdict and the baseline and verdict math | SKL-008 |
+| `sk-create-skill/scripts/init_skill.py` | Standalone and parent scaffolding paths plus compiled-routing initialization | SKL-001 and SKL-005 |
+| `sk-create-skill/scripts/package_skill.py` | Strict skill package structure and frontmatter checks | SKL-001 |
+| `sk-create-skill/scripts/ci-skill-root-metadata.cjs` | Root class, authored and generated metadata, forbidden files and freshness | SKL-002 and SKL-006 |
+| `.skilled/commands/doctor/scripts/parent-skill-check.cjs` | Parent registry, router, packet and root-router conformance | SKL-004 |
+| `sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` | Router parsing, keyword scoring, gold loading and row scoring, the read recount, the replay verdict and the baseline and verdict math | SKL-008 |
+| `.skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | The thirteen rows, the fleet form, the JSON shape, the exit statuses and the fixtures for a plain, pre-migration, canon, dual-declaration and outside-root skill | SKL-009 and SKL-012 |
+| `.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` | The golden router move, idempotence, the refusals, no-replace, the rollback, the preservation check and the temp-repo integration cases | SKL-010, SKL-011 and SKL-012 |
 
 The gates prove file and schema state. They do not by themselves prove that a new mode is reachable from every routing surface or that a ready manifest serves compiled traffic.
 
@@ -314,3 +400,7 @@ This package has no feature catalog of its own. The root index below is the sour
 | SKL-005 | Keep ready separate from compiled serving | PARENT HUB | [SKL-005](parent-hub/keep-ready-separate-from-compiled-serving.md) |
 | SKL-006 | Keep one parent identity | PARENT HUB | [SKL-006](parent-hub/keep-one-parent-identity.md) |
 | SKL-008 | Replay Stage-Two leaf routes | PARENT HUB | [SKL-008](parent-hub/replay-stage-two-leaf-routes.md) |
+| SKL-009 | Check a skill against the Skilled format | STANDALONE SKILL | [SKL-009](standalone-skill/check-a-skill-against-the-skilled-format.md) |
+| SKL-010 | Convert an older Skilled skill | STANDALONE SKILL | [SKL-010](standalone-skill/convert-an-older-skilled-skill.md) |
+| SKL-011 | Convert a plain skill | STANDALONE SKILL | [SKL-011](standalone-skill/convert-a-plain-skill.md) |
+| SKL-012 | Refuse a hub candidate | STANDALONE SKILL | [SKL-012](standalone-skill/refuse-a-hub-candidate.md) |

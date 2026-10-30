@@ -1,6 +1,6 @@
 ---
 title: "sk-doc: Feature Catalog"
-description: "Current-state inventory for the sk-doc hub, covering its packet-authored, registry-projected routing across fourteen documentation-authoring packets, the default-on compiled-routing fast path that resolves ahead of it, the stage-two leaf route replay with its keep rule, the shared validator's changelog entry check and the advisory goal-criteria lint."
+description: "Current-state inventory for the sk-doc hub, covering its packet-authored, registry-projected routing across fourteen documentation-authoring packets, the default-on compiled-routing fast path that resolves ahead of it, the stage-two leaf route replay with its keep rule, the shared validator's changelog entry check, the advisory goal-criteria lint and the skill format check that converts a skill in place."
 trigger_phrases:
   - "sk-doc feature catalog"
   - "sk-doc hub capabilities"
@@ -10,13 +10,15 @@ trigger_phrases:
   - "goal criteria lint"
   - "citation drift census across doc families"
   - "shared frontmatter value warning"
-last_updated: "2026-10-04"
-version: 2.2.2.0
+  - "skill format check and convert"
+  - "convert a skill in place"
+last_updated: "2026-10-30"
+version: 2.3.0.0
 ---
 
 # sk-doc: Feature Catalog
 
-This catalog inventories the live `sk-doc` hub surface. The skill advisor routes any documentation- or component-authoring query to the single identity `sk-doc`; the hub resolves one of fifteen workflow modes — spread across fourteen packets, since one packet backs two modes — whose routing vocabulary is authored at the packet and projected into `mode-registry.json`/`hub-router.json` at runtime. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to. The hub's shared validator also holds every changelog entry to its search metadata. An advisory lint in `sk-create-goal` flags goal criteria a reader cannot check from the line alone.
+This catalog inventories the live `sk-doc` hub surface. The skill advisor routes any documentation- or component-authoring query to the single identity `sk-doc`; the hub resolves one of fifteen workflow modes — spread across fourteen packets, since one packet backs two modes — whose routing vocabulary is authored at the packet and projected into `mode-registry.json`/`hub-router.json` at runtime. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to. The hub's shared validator also holds every changelog entry to its search metadata. An advisory lint in `sk-create-goal` flags goal criteria a reader cannot check from the line alone. The skill format command reads one skill against that same surface, row by row, and converts a plain or older Skilled skill in place.
 
 ---
 
@@ -86,7 +88,7 @@ Blocks a changelog entry that lacks the search metadata a spec document carries,
 
 #### Current Reality
 
-`validate_document.py` types every document under a `changelog/` folder as a changelog and holds each `v{VERSION}.md` and `changelog-*.md` entry to the five-key block that the sk-create-changelog Frontmatter Contract defines.
+`validate_document.py` types every document under a `changelog/` folder as a changelog and holds each `v{VERSION}.md` entry and each `changelog-` prefixed entry to the five-key block that the sk-create-changelog Frontmatter Contract defines.
 
 #### Source Files
 
@@ -128,10 +130,30 @@ Warns, never blocks, when a document's contextType or importance_tier is outside
 
 #### Current Reality
 
-`validate_document.py` reads sk-create-frontmatter's `assets/frontmatter-values.json` and adds a `frontmatter_value_outside_list` warning, never an error, for a `contextType` or `importance_tier` outside the list, for every document type. Aliases are legal, and a checkout without the list stays silent.
+`validate_document.py` reads sk-create-frontmatter's `sk-create-frontmatter/assets/frontmatter-values.json` and adds a `frontmatter_value_outside_list` warning, never an error, for a `contextType` or `importance_tier` outside the list, for every document type. Aliases are legal, and a checkout without the list stays silent.
 
 #### Source Files
 
 See [`document-validation/shared-frontmatter-value-warning.md`](document-validation/shared-frontmatter-value-warning.md) for the two keys, the silent cases and source anchors.
 
-Note: this catalog documents `sk-doc`'s own hub-level routing and shared validation, plus the leaf route replay of `sk-create-skill`, which ships no catalog of its own. `create-diff` already owns a per-packet child-mode catalog (`sk-create-diff/feature-catalog/feature-catalog.md`); this root catalog does not duplicate or supersede it.
+---
+
+## 5. SKILL FORMAT CONVERSION
+
+### Skill Format Check And Convert
+
+#### Description
+
+Reports how far one skill, or the whole fleet, sits from the Skilled format row by row, then converts a plain or older Skilled skill in place after a plan and a yes.
+
+#### Current Reality
+
+`/doctor:sk-skill check` binds by default and writes nothing. For one skill it prints rows `C1` to `C13`, from the location and the input kind through the format gate, the root metadata contract, the intent signals, the derived blocks, the router equivalence, the advisor home, the runtime mirrors, the changelog, the description budget, the collisions and the regression coverage. For the fleet it prints one row per direct child of `.skilled/skills`. A row reports `PASS`, `FINDING`, `UNKNOWN`, `INFO` or `N/A`, only a `FINDING` fails the run, and `--json` prints the same report alone.
+
+`/doctor:sk-skill convert` plans first and names every write, the gitignored backup directory at the skills root that receives the bytes it replaces, and each integration row. It writes only with `--apply`. An older Skilled skill has its machine router moved verbatim into a sibling `ROUTER.md`, and the parsed router is compared before and after so a changed intent, map or default restores the backup. A plain skill is staged under its frontmatter name, gets a rendered `ROUTER.md`, a reshaped `SKILL.md` bounded by a preservation check, resource frontmatter, scaffolder metadata with the approved intent phrases, regenerated root metadata and derived blocks, then the strict format gate and the completion gate. Integration follows a clean gate: the advisor scan, the compiled graph, a warm reach probe with the budget row, proposed regression rows, the Hermes mirror and the changelog file and link. A hub declaration, a nested packet tree, a reserved or persona name prefix, a name collision and a description past 130 characters each refuse with a named reason and no write.
+
+#### Source Files
+
+See [`skill-format-conversion/skill-format-check-and-convert.md`](skill-format-conversion/skill-format-check-and-convert.md) for the two targets, the plan and apply boundary, the refusal set and source anchors.
+
+Note: this catalog documents `sk-doc`'s own hub-level routing and shared validation, plus the leaf route replay and the skill format command of `sk-create-skill`, which ships no catalog of its own. `create-diff` already owns a per-packet child-mode catalog (`sk-create-diff/feature-catalog/feature-catalog.md`); this root catalog does not duplicate or supersede it.

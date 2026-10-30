@@ -35,14 +35,14 @@ This phase writes the docs for the shipped command and one changelog per touched
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified: phases 2 and 6 closed, and the list of skills each phase changed is recorded in `scratch/touched-skills.md`
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified: phases 2 and 6 closed, and the list of skills each phase changed is recorded in `scratch/touched-skills.md` — phase 2 is closed, phase 6 is being built in parallel, so the convert docs describe the behavior its spec and the script state rather than a landed route
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] The five gates in spec REQ-005 exit 0 and each changelog link in spec section 3 resolves with `ls`
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] All acceptance criteria met — open on the two changelog criteria the conductor owns
+- [x] The five gates in spec REQ-005 exit 0 and each changelog link in spec section 3 resolves with `ls`
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

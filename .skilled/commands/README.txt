@@ -142,7 +142,7 @@ Twelve command files cover the diagnostic surface, one per owner. Backed by `_ro
 | MCP Install | `/doctor:mcp install [--runtime <name>]` | Install Code Mode and configure its UTCP file and selected runtime |
 | Update | `/doctor:update [check\|align\|apply\|rollback\|record-base\|compat]` | Release-aware spec-kit updater with read-only check, decision alignment, gated apply, rollback, base-recording and compat workflows, where compat moves a v3 spec layout to v4 behind two approvals |
 | Environment Switches | `/doctor:env [list \| <section> \| <VARIABLE>] [--dry-run]` | Inspect documented environment switches and optionally save a confirmed preference |
-| Skill Format Check | `/doctor:sk-skill [check] [<name-or-path>] [--json]` | Report how far one skill, or the whole fleet, is from the Skilled format, row by row, and name the repair for each finding |
+| Skill Format Check | `/doctor:sk-skill [check\|convert] [<name-or-path>] [--json]` | Report how far one skill, or the whole fleet, is from the Skilled format row by row, and convert a plain or older Skilled skill in place after a plan and a yes |
 
 ### Deep Commands
 
@@ -208,7 +208,7 @@ Structured workflows for the spec folder development lifecycle, plus packet cont
 /create:manual-testing-playbook system-spec-kit update :auto
 /create:skill my-new-skill full-create :auto
 /prompt:improve $improve "Build a clearer CLI handoff prompt" :auto
-/speckit:save specs/007-feature
+/speckit:save specs/<track>/007-feature
 /speckit:plan "Add user authentication" :auto
 ```
 

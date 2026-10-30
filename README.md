@@ -210,7 +210,7 @@ Every setting has a working default. To change one, see [Environment Settings](#
 
 ### Keep It Healthy
 
-The doctor commands check and repair one area each. `/doctor:setup` lists them all. `/doctor:update` brings in a new release, `/doctor:runtime-mirrors` finds runtime copies that drifted from `.skilled/`, `/doctor:skill-advisor` rebuilds or tunes skill routing and `/doctor:ci` reports and toggles the CI workflow switches. The [Doctor](#doctor) commands section describes each one.
+The doctor commands check and repair one area each. `/doctor:setup` lists them all. `/doctor:update` brings in a new release, `/doctor:runtime-mirrors` finds runtime copies that drifted from `.skilled/`, `/doctor:skill-advisor` rebuilds or tunes skill routing, `/doctor:sk-skill` reports how far a skill is from the Skilled format and converts one after a plan, and `/doctor:ci` reports and toggles the CI workflow switches. The [Doctor](#doctor) commands section describes each one.
 
 &nbsp;
 
@@ -1217,7 +1217,7 @@ The active autonomous loop families. See [Deep Loop](#6--deep-loop) for how they
 &nbsp;
 #### DOCTOR
 
-Eleven commands check and repair the setup, one per area.
+Twelve commands check and repair the setup, one per area.
 
 **`/doctor:setup`** - read-only onboarding and health check
 
@@ -1248,6 +1248,11 @@ Eleven commands check and repair the setup, one per area.
 
 - `setup` runs the provisioning, doctor, root-metadata, route guard, sync, drift-guard, derived-freshness, route-probe and quality checks and names the repair command for each failing leg
 - `quality` shows which quality config the gate reads, checks it, names the comment-hygiene rules it switches off and lists the checklists and override rows the gate would apply, failing on a refused section or an unknown rule id. When there is none it creates `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` once after your yes, and in a repository with no `specs/` folder it suggests the spec-kit hygiene rules without writing them
+
+**`/doctor:sk-skill [check|convert] [<name-or-path>] [--json]`** - how far a skill is from the Skilled format, and the conversion that closes the gap
+
+- `check` (the default, read-only) reports rows C1 to C13 for one skill, or one row per skill root for the whole fleet, and names the repair for each finding. `--json` prints that report and nothing else
+- `convert` prints a plan for a plain agent skill or an older Skilled one, writes only after your yes, copies each file it overwrites to `.skilled/skills/.state/` first and stops when the parsed router would change. It refuses a hub candidate and points to `/create:skill-parent`
 
 **`/doctor:ci [report|scaffold|toggle]`** - GitHub Actions workflows and their on/off switches
 

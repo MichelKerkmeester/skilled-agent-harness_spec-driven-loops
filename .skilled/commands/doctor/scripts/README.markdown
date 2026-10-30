@@ -21,7 +21,7 @@ importance_tier: "important"
 
 `.skilled/commands/doctor/scripts/` contains shell, JavaScript and Python tools that support doctor routes.
 
-The scripts validate route manifests, inspect MCP installations, audit parent skill hubs, report graph freshness, and plan and apply framework release updates. Most are read-only. The release updater's apply and rollback paths write local state. Every script has a test under `tests/`, except `skill-graph-freshness.cjs`, whose freshness panel test lives in the skill advisor runtime. One runner executes them all.
+The scripts validate route manifests, inspect MCP installations, audit parent skill hubs, report graph freshness, check one skill's distance from the Skilled format and convert one, and plan and apply framework release updates. Most are read-only. The release updater's apply and rollback paths write local state, and so does the skill converter's `--apply`. Every script has a test under `tests/`, except `skill-graph-freshness.cjs`, whose freshness panel test lives in the skill advisor runtime. One runner executes them all.
 
 ---
 
@@ -50,6 +50,8 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 +-- release-update.cjs
 +-- sk-code-quality-config.cjs
 +-- sk-code-setup-check.cjs
++-- sk-skill-check.cjs
++-- sk-skill-convert.cjs
 +-- skill-graph-freshness.cjs
 +-- lib/
 |   +-- ci-profile.cjs             # the repository CI profile loader the report, scaffold and toggle scripts share
@@ -62,7 +64,9 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 |   +-- quality-config-source.cjs  # the config source, its trust state and the hygiene rules it switches off
 |   +-- quality-report-view.cjs    # the read-only status and check modes
 |   +-- quality-script-io.cjs      # the request error and the one place a report reaches stdout
-|   `-- quality-skill-paths.cjs    # the one sk-code quality folder and the handles every mode reads
+|   +-- quality-skill-paths.cjs    # the one sk-code quality folder and the handles every mode reads
+|   +-- sk-skill-convert-transforms.cjs  # the pure frontmatter, router-move and legacy-router text transforms
+|   `-- sk-skill-surface.cjs         # shared probes the check engine and the converter both call: locate, classify, collisions, spawn
 +-- tests/            # one suite per script, plus run-all.sh
 |   `-- opencode-version-battery.test.cjs
 `-- README.markdown
@@ -82,6 +86,8 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 | `parent-skill-check.cjs` | Audits parent skill hubs against structural and routing invariants. |
 | `release-update.cjs` | Plans, aligns, applies, rolls back and records framework release bases for the five `/doctor:update` workflows. |
 | `skill-graph-freshness.cjs` | Compares compiled, SQLite and on-disk skill graph representations without writing. |
+| `sk-skill-check.cjs` | The `/doctor:sk-skill check` engine. With no argument it prints one row per direct child of `.skilled/skills`, and with a skill name or a path one line per row `C1` to `C13`, each carrying its own status and detail. It calls the format gate, the root-metadata gate, the derived-block regeneration in dry-run form, the router replay, the advisor graph and mirror checks and the description audit, and writes nothing. `--json` prints the report and nothing else. It exits 0 when no row is a finding, 1 when one is, and 2 when a precondition it needs is missing, with the provision command on its own line. |
+| `sk-skill-convert.cjs` | Plans, and on request applies, the in-place conversion of one skill. `plan` reads, refuses and prints every step, and `apply` prints the same plan and writes only with `--apply`. Preflight refuses a skill that is not a direct child of `.skilled/skills`, a `local-` or `agent-` prefixed name, a name collision, a nested packet tree, a hub declaration, a dual router declaration and a description over 130 characters. A skill whose router already lives in `ROUTER.md` gets its frontmatter normalized, and an older Skilled skill gets that plus its machine router moved verbatim into a new sibling `ROUTER.md`. `apply` backs the pre-edit `SKILL.md` up under `.skilled/skills/.state/doctor-sk-skill/<name>/`, creates `ROUTER.md` exclusively and restores the backup when the parsed router would change. |
 | `sk-code-setup-check.cjs` | Runs the sk-code setup battery from a repository root: one verdict per setup leg, one repair command per failing leg and no writes. Its quality leg runs the quality runner's own tests, which build throwaway repositories under the OS temp folder and remove them. |
 | `sk-code-quality-config.cjs` | The quality config doctor's entry, kept thin: the arguments, the run context, the one call that starts the runner, the mode table and the exit status are here, and each mode sits in the quality modules under `lib/`. It reports which quality config the sk-code quality gate reads, whether each tool it names is on PATH, and the trust state the runner applies to that config: `trusted`, `untrusted` or `none`. `status` and `check` both print it, and when the config is untrusted they print `git config --local skilled.trustRepoChecks true` as the repair. It prints the hygiene layers, a `Hygiene:` line naming the core rules `commentHygiene.disableRules` switches off and an applied-rules block built by calling `quality-gate.cjs --explain` over a sample of one file per first three folders and extension: each checklist with its seat, its override rows or the reasons its section was refused, each same-level conflict and a `Hygiene rules:` line for the rules in force. A refused section, an unknown rule id or a missing checklist fails the status with `CONFIG_INVALID` or `CHECKLIST_MISSING`, and a conflict is listed without failing it. It validates that config and creates `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` once from the shipped template for `/doctor:sk-code quality`, and in a repository with no `specs/` folder its plan suggests the spec-kit hygiene rules without writing them. It never runs a command the config names. It exits 0 on success, 1 on an invalid or missing config, a refused checklist section or a refused init and 2 on a usage error or outside a git repository. |
 | `audit_descriptions.py` | Audits description lengths across skills, commands and agents. |
@@ -106,6 +112,8 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 | `lib/quality-config-init.cjs` | The one mode that can write: it shows the config it would create from the shipped template and writes it only with `--apply`, through a hard link from a temporary file, so it never replaces a config that already exists. An existing config is refused rather than merged. |
 | `lib/quality-report-view.cjs` | The two read-only modes. `status` reports the config, its trust, the tools it names, the hygiene layers and what the gate would apply here, and `check` stops at the config itself. Both render the lines a route prints and the document `--json` carries from one set of readings, and neither starts a configured check. |
 | `lib/quality-applied-rules.cjs` | Which checklists and hygiene rules the gate would apply to a repository and which override rows inside them it would honour, asked of the runner itself through `--explain` over a sampled file per folder group and extension, so the doctor keeps no second copy of checklist discovery or of the override grammar. |
+| `lib/sk-skill-surface.cjs` | The probes `/doctor:sk-skill` shares between its check engine and its converter: resolve a name or a path to a skill root, classify where that root sits (a direct child of `.skilled/skills`, outside it or nested in a hub), read the frontmatter fields, inspect name collisions against the reserved and persona prefixes, and wrap a spawned validator so its JSON, its exit status and its missing-tool cases read the same in both scripts. |
+| `lib/sk-skill-convert-transforms.cjs` | The pure text transforms the converter applies, kept free of the repository so they are unit-tested on strings: normalize the `version` and `allowed-tools` frontmatter, find the machine blocks a Smart Routing section still holds, move a legacy trailing machine router section into the sibling router template, and add the router link line. |
 | `orphan-process-check.cjs` | Lists the helper processes and model servers this user started that were reparented to init and are older than a minimum age (60 minutes by default), classifying each as a node test, vitest, tail monitor, grep search, executor worker, session-relaunch test helper, model server or git-live-follow, and reports each one's age and memory with a total. `--reap` sends `SIGTERM` after re-checking each process's identity, `--yes` confirms it, and `--json` and `--summary` print machine-readable and one-line forms. It exits 0 on a printed report, 1 on an unexpected error and 2 on a bad argument. |
 
 ---
@@ -151,6 +159,9 @@ bash .skilled/commands/doctor/scripts/route-validate.sh --self-test
 | `bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json` | Emit machine-readable MCP diagnostics. |
 | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs <skill-dir>` | Audit one parent skill hub. |
 | `node .skilled/commands/doctor/scripts/skill-graph-freshness.cjs` | Report skill graph drift. |
+| `node .skilled/commands/doctor/scripts/sk-skill-check.cjs check [<name-or-path>] [--json]` | Report how far one skill, or the whole fleet, is from the Skilled format, row by row. |
+| `node .skilled/commands/doctor/scripts/sk-skill-convert.cjs plan <name-or-path>` | Print the conversion plan for one skill and write nothing. |
+| `node .skilled/commands/doctor/scripts/sk-skill-convert.cjs apply <name-or-path> --apply` | Write a plan already shown and approved: normalize the frontmatter and move a legacy machine router into `ROUTER.md`. Without `--apply` it prints the plan and stops. |
 | `python3 .skilled/commands/doctor/scripts/audit_descriptions.py --repo-root .` | Audit description budgets. |
 | `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` | Report agent-roster coverage drift across runtimes. |
 | `node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs` | Report command-catalog and hub-metadata drift. |
@@ -189,6 +200,8 @@ On this repository all legs pass on OpenCode 1.19.3 and 2.0.32. OpenCode 1.19.3 
 | `check-mcp-mutation-class.sh` | Read-only contract scan. |
 | `parent-skill-check.cjs` | Read-only audit. |
 | `skill-graph-freshness.cjs` | Read-only report. |
+| `sk-skill-check.cjs` | Read-only. Every validator it calls runs in its check-only form and its derived-block probe is a dry run. |
+| `sk-skill-convert.cjs` | `plan` is read-only. `apply` is a dry run until `--apply`, then writes only the converted skill's `SKILL.md` and a new sibling `ROUTER.md`, backs the overwritten file up under `.skilled/skills/.state/doctor-sk-skill/<name>/` and refuses to replace a file that exists. |
 | `audit_descriptions.py` | Read-only audit. |
 | `agent-roster-mirror-check.cjs`, `command-catalog-mirror-check.cjs` | Read-only reports. |
 | `release-update.cjs` | `check` and `align --dry-run` are read-only. `align` writes a run directory. `apply`, `rollback` and `record-base` write framework files and release records under a lock. The `unlock` subcommand removes a lock only when its owner process is gone. |

@@ -9,7 +9,7 @@ trigger_phrases:
   - "remove repo parent skill"
 importance_tier: normal
 contextType: implementation
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # Upgrading a Customized Skill to v4
@@ -28,6 +28,7 @@ v4 reshaped `sk-code` into a parent hub: one advisor identity that dispatches to
 - You customized `sk-code` or `sk-git` and a framework update now ships a different shape
 - You are deciding whether a flat skill should become a parent hub
 - You want to keep a customized skill single and avoid a false migration
+- You have a single skill in a plain or older Skilled shape, and you want it converted in place so it passes the format gate
 
 **When not to Use**:
 - You are creating a brand-new skill from scratch. Use `/create:skill` or `/create:skill-parent` directly. See [creation-workflow.md](creation-workflow.md) and [parent-skills-nested-packets.md](../parent-skill/parent-skills-nested-packets.md)
@@ -42,6 +43,8 @@ v4 reshaped `sk-code` into a parent hub: one advisor identity that dispatches to
 - [skill-root-metadata-contract.md](../shared/skill-root-metadata-contract.md) - class H (hub) vs class S (standalone) file matrix
 - `scripts/validate_skill_package.py` - completion gate
 - `.skilled/commands/doctor/scripts/parent-skill-check.cjs` - parent-hub structural and routing audit
+- `/doctor:sk-skill convert <name-or-path>` - in-place conversion for a skill that stays single: it plans, waits for your yes, and moves a legacy machine router into the sibling `ROUTER.md`. It refuses a hub candidate, so a skill with two or more jobs still goes to `/create:skill-parent`
+- `/doctor:sk-skill check <name-or-path>` - reads the same requirements row by row without writing, so you can see the gap before converting
 
 The live layout to copy from is `.skilled/skills/sk-code/` (parent hub) and `.skilled/skills/sk-git/` (single skill).
 
@@ -76,7 +79,7 @@ You have two legal outcomes:
 1. **Convert-to-parent.** Follow [Section 4](#4-convert-a-single-skill-into-a-parent-hub) so your customized stack becomes nested packets under one hub identity.
 2. **Remove-repo-and-keep-own-single.** Keep your customized standalone `.skilled/skills/sk-code/` (class S: `graph-metadata.json`, `leaf-manifest.config.json` and `ROUTER.md`, with no `mode-registry.json` or `hub-router.json`). When you take a framework update, do not replace that folder with the repo's parent-hub tree.
 
-There is no convert-in-place flag. Keeping your own single skill is a merge-time choice, not a `/create:*` operation.
+`/create:skill-parent` has no convert-in-place flag, so keeping your own single skill is a merge-time choice, not a `/create:*` operation. A skill that stays single does convert in place, and that path is `/doctor:sk-skill convert`.
 
 ### `sk-git`: the repo ships it single
 
@@ -92,7 +95,7 @@ Keep it single if git work stays one job (worktree, commit, finish under one con
 
 ## 4. CONVERT A SINGLE SKILL INTO A PARENT HUB
 
-Use existing tooling only. `/create:skill-parent` is the scaffold. `create` will not write on top of an occupied folder (`requires_existing_skill: false`). There is no in-place `--convert` flag.
+Use existing tooling only. `/create:skill-parent` is the scaffold. `create` will not write on top of an occupied folder (`requires_existing_skill: false`). There is no in-place `--convert` flag here, because converting a skill into a hub is a scaffold-then-move, not an edit. A single skill does convert in place, through `/doctor:sk-skill convert`, and that command refuses a hub candidate so your two-job skill lands here.
 
 The command requires `@markdown` for template-first generation. Restart with that prefix if the self-check blocks.
 
@@ -195,6 +198,10 @@ If you need another mode later, use `/create:skill-parent <skill-name> update --
 Stay on class S when the skill still has one job.
 
 A standalone root keeps `SKILL.md`, `ROUTER.md`, `graph-metadata.json`, and `leaf-manifest.config.json`. Its `SKILL.md` links to `./ROUTER.md`. It must not gain `mode-registry.json`, `hub-router.json`, `description.json`, or `command-metadata.json`. Repair that package with `/create:skill <skill-name> full-update` (or `reference-only` / `asset-only` for a scoped add). `/create:skill <skill-name> full-create` is only for a folder that does not exist yet.
+
+**Convert a single skill in place.** When the skill has one job and is still in a plain shape, or its machine router still sits inside `SKILL.md`, run `/doctor:sk-skill convert <name-or-path>`. It prints the plan first and writes only after your yes. It adds the four-part `version`, normalizes `allowed-tools`, moves the machine router section verbatim into the sibling `ROUTER.md` and links to it from Smart Routing. The write stops and restores the pre-edit bytes when the parsed router would come out different. Run `/doctor:sk-skill check <name-or-path>` first if you want the gap row by row without any write.
+
+**Failure this prevents:** a hand conversion that passes the format gate but drops a routing intent, or one that leaves the skill with no `ROUTER.md` at all.
 
 **Keeping your own `sk-code` while the repo ships a parent hub.** Leave your customized `.skilled/skills/sk-code/` in place. Do not copy the repo hub's `mode-registry.json` or `hub-router.json` into it. Adding only one of those two files makes `validate_skill_package.py` report a partial hub declaration and refuse to classify the root.
 

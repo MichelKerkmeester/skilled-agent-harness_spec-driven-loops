@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented, open on the conductor's changelog entries |
 | **Created** | 2026-10-30 |
 | **Branch** | `worktrees/281-doctor-skill-command` |
 | **Parent Spec** | ../spec.md |
@@ -81,7 +81,7 @@ Run in the worktree on 2026-10-30. The last command shows the sk-create-command 
 
 ### In Scope
 - Add `/doctor:sk-skill` to the doctor list at `README.md:213` and an entry with its `check` and `convert` targets to the Doctor section near `README.md:1247-1257`.
-- Add a row to `.skilled/commands/README.txt:130-140` and update the command-file count at `:128`; add the new scripts to `.skilled/commands/doctor/scripts/README.markdown` sections 3 and 5.
+- Add a row to `.skilled/commands/README.txt:130-140` and keep the command-file count at `:128` true; add the new scripts and the two libs to `.skilled/commands/doctor/scripts/README.markdown` sections 2, 3, 5 and 6.
 - Update the sk-create-skill docs: `SKILL.md` section 6, `references/skill/upgrading-a-skill-to-v4.md` sections 1 and 5, new scenarios under `manual-testing-playbook/standalone-skill/`, and one entry in `.skilled/skills/sk-doc/feature-catalog/`.
 - Write one changelog entry per touched skill through create-changelog, through each skill's `.skilled/changelog/` link.
 - Regenerate the sk-doc leaf manifest with `ci-skill-root-metadata.cjs --fix --skill sk-doc`, and refresh `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json` only if its freshness check reports drift (design section 3 marks this inferred, to confirm here).
@@ -108,8 +108,8 @@ Run in the worktree on 2026-10-30. The last command shows the sk-create-command 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `README.md` | Modify | Doctor list (`:213`) and Doctor section entry (near `:1247-1257`) |
-| `.skilled/commands/README.txt` | Modify | Count line (`:128`) and a table row |
-| `.skilled/commands/doctor/scripts/README.markdown` | Modify | Key files and diagnostic entrypoints for `sk-skill-check.cjs`, `sk-skill-convert.cjs` and the two libs |
+| `.skilled/commands/README.txt` | Modify | Count line (`:128`) kept true, and the Skill Format Check row |
+| `.skilled/commands/doctor/scripts/README.markdown` | Modify | Directory tree, key files, diagnostic entrypoints and mutation boundaries for `sk-skill-check.cjs`, `sk-skill-convert.cjs` and the two libs |
 | `.skilled/skills/sk-doc/sk-create-skill/SKILL.md` | Modify | Section 6 REFERENCES names the command |
 | `.skilled/skills/sk-doc/sk-create-skill/references/skill/upgrading-a-skill-to-v4.md` | Modify | Sections 1 and 5 point at `/doctor:sk-skill convert` for a single skill |
 | `.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/*.md` | Create | Scenarios: check a skill, convert an older Skilled skill, convert a plain skill, refuse a hub candidate |

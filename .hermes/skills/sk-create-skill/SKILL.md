@@ -346,5 +346,6 @@ Use these only for overflow detail, exhaustive examples, or schema checks beyond
 - `scripts/init_skill.py` - standalone skill scaffold helper.
 - `scripts/package_skill.py` - validation and packaging helper.
 - `scripts/leaf-route-replay.cjs` - zero-call stage-two keyword replay and read recount. It scores the `ROUTER.md` keyword block against the committed gold scenarios. `--transcripts` recounts reads and `--prose` compares the prose arm.
+- `.skilled/commands/doctor/sk-skill.md` - the `/doctor:sk-skill` router outside this packet. Its `check` target reports how far one skill, or the whole fleet, is from this format row by row, and its `convert` target converts an older Skilled skill or a plain agent skill into a class S standalone root after a plan and a yes.
 - `../shared/references/core-standards.md` - shared markdown standards.
 - `../shared/references/validation.md` - shared validation workflow.
