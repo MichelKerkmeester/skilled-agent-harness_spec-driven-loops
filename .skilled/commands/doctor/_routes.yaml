@@ -11,6 +11,7 @@
 #   /doctor:git             .skilled/commands/doctor/git.md
 #   /doctor:ci              .skilled/commands/doctor/ci.md
 #   /doctor:sk-skill        .skilled/commands/doctor/sk-skill.md
+#   /doctor:agents-md       .skilled/commands/doctor/agents-md.md
 #   /doctor:setup           .skilled/commands/doctor/setup.md
 #   /doctor:helper          .skilled/commands/doctor/helper.md
 # A command that owns one route needs no positional target.
@@ -468,6 +469,62 @@ routes:
       - "skill format conversion plan"
       - "move the machine router out of a skill"
       - "skill folder conversion with a backup"
+
+  - command: /doctor:agents-md
+    target: check
+    default_target: true
+    yaml: doctor-agents-md-check.yaml
+    setup_vars: [execution_mode, root, json_output]
+    allowed_flags: ["--json", "--root <dir>"]
+    mutating: read-only
+    gate3_location: "n/a (read-only diagnostic; the engine reads the root instruction file, its runtime copies and its REPO RULES.md and writes nothing)"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/agents-md-check.cjs  # the workflow adds --root <dir> and --json only when the operator passed them'
+    trigger_phrases:
+      - "check the shipped agents instruction file"
+      - "agents md section check"
+      - "which agents md sections are stale"
+      - "agents md delivery budget report"
+      - "agents md template drift report"
+
+  - command: /doctor:agents-md
+    target: embed
+    yaml: doctor-agents-md-embed.yaml
+    setup_vars: [execution_mode, root, dry_run, plan_digest, digest_confirmation, keep_claude_md, create_router]
+    allowed_flags: ["--dry-run", "--root <dir>", "--plan-digest <digest>", "--keep-claude-md", "--remove-claude-md", "--create-router"]
+    mutating: mutates
+    gate3_location: "AGENTS.md (created when absent, replaced with the shipped sections plus the composed block), CLAUDE.md and .codex/AGENTS.md (folded into the block and removed, unless --keep-claude-md), .cursor/rules/repo-local.md (the generated mirror of a non-empty block) and REPO RULES.md (missing shipped rows appended, or the file created behind --create-router), with a copy of every touched path taken to the plan's backup folder under .skilled/output/doctor-agents-md/<timestamp>/ before the first byte, and .cursor/rules/skill-routing.md rewritten by the pointer generator the engine calls; the write runs only against the plan digest the operator approved"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan  # read-only: composes every target in memory and prints the targets, the diffs, the block, the budget, the preservation ledger, the backup folder and the plan digest; the workflow adds --root <dir>, --keep-claude-md, --create-router and --dry-run only when the operator passed them'
+      - 'node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest <digest>  # recomposes, refuses a digest that no longer matches, backs up, writes only inside its own allowlist and proves the composition against the bytes on disk; the workflow runs it only after the operator approves the plan that printed that digest'
+      - 'node .skilled/commands/doctor/scripts/agents-md-check.cjs  # the post-write re-read of the written repository; the workflow adds --root <dir> only when this run was pointed at another repository'
+    trigger_phrases:
+      - "embed the shipped instructions into agents md"
+      - "add the agents md repository block"
+      - "fold claude md into agents md"
+      - "write the repository specific instructions block"
+      - "replace agents md with the shipped template"
+      - "update agents md from the shipped template"
+
+  - command: /doctor:agents-md
+    target: restore
+    yaml: doctor-agents-md-restore.yaml
+    setup_vars: [execution_mode, run_dir, yes, dry_run]
+    allowed_flags: ["--run <dir>", "--yes", "--dry-run"]
+    mutating: mutates
+    gate3_location: "the paths one run's own manifest.json under its backup directory records, each one re-checked against the engine's write allowlist before it is touched: a recorded file is copied back from its copy and a path the recorded run created (an AGENTS.md, CLAUDE.md, .codex/AGENTS.md, .cursor/rules/repo-local.md or REPO RULES.md it created) is removed, and the backup directory itself is read and kept"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<dir> --dry-run  # prints the restore plan the record and its copies describe and writes nothing'
+      - 'node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<dir> --yes  # puts the recorded paths back and checks every restored file against its recorded hash; the workflow passes --yes only after its own yes'
+      - 'node .skilled/commands/doctor/scripts/agents-md-check.cjs  # the post-restore re-read of the restored repository, adding --root <the recorded root> when that root is not this repository'
+    trigger_phrases:
+      - "undo an agents md embed run"
+      - "restore agents md from the backup"
+      - "roll back the instruction file write"
+      - "revert agents md to the file before the embed"
 
 # ─────────────────────────────────────────────────────────────────
 # COMPANION COMMAND ROUTES (/doctor:mcp sub-actions)

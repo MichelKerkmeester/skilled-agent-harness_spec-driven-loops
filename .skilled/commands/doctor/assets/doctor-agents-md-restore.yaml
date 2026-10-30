@@ -1,0 +1,111 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: SHIPPED INSTRUCTION RESTORE (INTERACTIVE, ONE RECORDED RUN)
+# ─────────────────────────────────────────────────────────────────
+role: Careful operator putting one repository back exactly as the recorded run found it
+purpose: Show the restore plan the engine derives from one run's own record and its copies, ask once, and put the recorded paths back only after that yes
+action: Read the record -> run the engine's restore dry run -> show the plan -> explicit yes -> run the restore with --yes -> re-read the restored repository through the check engine -> report
+skill_owner: ".skilled/skills/sk-doc/sk-create-repo-rule/"
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: sequential_read_plan_confirmed_restore
+  compliance: MANDATORY
+  execution: interactive
+  approvals: explicit_yes
+  dry_run: print_the_restore_plan_then_status_ok_without_asking
+  tracking: one_recorded_run
+  validation: re_read_the_restored_files_through_the_check_engine
+  never_commit: true
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: false
+  allowed_targets:
+    - "the paths one run's own manifest.json records, each one re-checked against the engine's write allowlist before it is touched, so a hand-edited record cannot turn a restore into an arbitrary write: a recorded file is copied back from its copy, and a path the run created is removed"
+    - "the backup directory the run printed, which the restore reads and never changes: the record and its copies are kept after the restore, because the backup is the way back from the way back"
+  forbidden_targets:
+    - "a path that is not in that record, however plausible it looks"
+    - ".skilled/**, which /doctor:update owns, including the manifest the check engine reads"
+    - ".skilled/commands/doctor/scripts/agents-md-embed.cjs and its lib/, which own the restore and never change here"
+    - "the git index, history and remotes, so a restore is never a version-control operation"
+  invariant: "A restore puts back only the paths one apply recorded, and it reads each recorded hash before it writes a byte, so a record or a copy that no longer matches stops the run with nothing written. The engine reads its own record and its own copies. This workflow never reconstructs a file from the plan text. A no at the question ends the run with STATUS=CANCELLED and nothing written."
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  embed_engine: ".skilled/commands/doctor/scripts/agents-md-embed.cjs, whose restore subcommand owns the whole restore"
+  check_engine: ".skilled/commands/doctor/scripts/agents-md-check.cjs, run once afterwards to read the restored tree"
+  presentation: ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+inputs:
+  execution_mode: "INTERACTIVE"
+  run_dir: "The backup directory one apply printed, as --run <dir> requires. Its manifest.json is the only description of what that run wrote, and a directory without one is refused rather than guessed at."
+  yes: "--yes takes the engine's own confirmation as given. This workflow passes it only after the operator has answered its own question, because a route that answers a confirmation on the operator's behalf has removed the confirmation."
+  dry_run: "--dry-run prints the restore plan the engine derives from the record and writes nothing (default false)."
+  target: "restore is a writing target and is never reached by a bare invocation."
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  phase_1_read:
+    purpose: "Read what a restore may touch before offering it"
+    activities:
+      - "Check that .skilled/commands/doctor/scripts/agents-md-embed.cjs and .skilled/commands/doctor/scripts/agents-md-check.cjs exist. If either is missing, report the missing path and stop with STATUS=FAIL."
+      - "Read the run directory the operator named: {run_dir}/manifest.json records the root, the digest of the plan that wrote, and one entry per path with whether it existed, its mode, its hash and the copy beside it. A directory without that file is not a record, and the engine refuses it with exit 2 rather than inventing one."
+      - "Read .skilled/commands/doctor/assets/doctor-agents-md-presentation.txt for the plan, question and result wording. Every visible line comes from there."
+      - "Read nothing else about the tree: the restored bytes come from the copies under {run_dir}, never from a plan a previous run printed and never from this workflow's own reading."
+
+  phase_2_plan:
+    purpose: "Show the restore plan the engine derives, which writes nothing"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run={run_dir} --dry-run. It prints the restore plan: the root, each recorded path with put back, delete or absent, and the engine's own note when a created AGENTS.md would be removed. It writes nothing."
+      - "Keep the plan's exact lines. A path the run created shows delete. A path it overwrote shows put back. A path that was already absent shows absent and is not touched."
+      - "Exit 0 with a plan is the case this route asks about. Exit 0 with --dry-run never asks anything, so a dry run renders the presentation contract's dry-run result and goes to phase 6 with STATUS=OK."
+      - "Exit 2 means the record or one of its copies cannot be trusted: no manifest.json under the directory, a copy missing beside it, or a copy whose hash no longer matches its recorded hash. Quote the engine's message and end with STATUS=FAIL. Nothing was written, and nothing is repaired by hand here."
+
+  phase_3_approval:
+    purpose: "Ask the one restore question against the plan on screen"
+    activities:
+      - "Ask the restore question once, in the presentation contract's wording, naming the run directory, each path that will be put back and each path that will be removed because the recorded run created it."
+      - "Any answer other than yes is a no: print the cancelled result naming the declined restore, state Changed: none, and end with STATUS=CANCELLED ACTION=cancelled. Nothing is written."
+      - "Never pass --yes before this answer, and never answer the engine's own confirmation here. The flag exists so that one confirmation reaches the operator, not so that two do."
+
+  phase_4_write:
+    purpose: "Put the recorded paths back, only after the restore yes"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run={run_dir} --yes, only after the restore yes."
+      - "Exit 0 means the paths are back. The engine writes each recorded file from its copy, removes each path the run created, measures every restored file against its recorded hash, prints one restore line per path, then the count and STATUS=OK. Keep those lines as printed."
+      - "Exit 1 means a restored file does not match its recorded hash after the write. Quote the file and the message, then STATUS=FAIL, and tell the operator the backup at {run_dir} is kept."
+      - "An allowlist refusal exits 2, which means the record named a path the engine will not touch. Quote the message and end with STATUS=FAIL. Nothing was written for that path."
+
+  phase_5_reread:
+    purpose: "Read the restored tree through the read-only engine"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/agents-md-check.cjs once against the root the record named, with --root \"<the recorded root>\" when that root is not this repository."
+      - "Read the rows beside the restore plan: a path the restore put back reads as it did before the embed, and a path it removed reads as absent. A row that disagrees with the plan is a failure, not a warning."
+      - "A row that still reports FINDING is the tree's own state and not a failed restore: report it as the next step and keep the result at STATUS=OK."
+
+  phase_6_report:
+    purpose: "Report what came back and what did not"
+    activities:
+      - "Render the presentation contract's restored result with the run directory, each path put back, each path removed, the re-read verdict and STATUS=OK."
+      - "A no answered the question: render the cancelled result naming what was declined, state Changed: none and end with STATUS=CANCELLED ACTION=cancelled."
+      - "A dry run: render the dry-run result with the plan and the dry-run line, and end with STATUS=OK."
+      - "A refusal or a failed restore stopped the run: render the failure result naming the phase and the engine's code, with STATUS=FAIL, and name the backup the engine kept."
+      - "End by saying the operator commits nothing: a restore returns the tree to a state it was already in, and the record stays where it is."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output:
+  presentation: ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt"
+  statuses: [OK, CANCELLED, FAIL]

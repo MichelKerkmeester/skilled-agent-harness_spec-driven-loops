@@ -1,0 +1,68 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: SHIPPED INSTRUCTION CHECK (READ-ONLY DIAGNOSTIC)
+# ─────────────────────────────────────────────────────────────────
+role: Diagnostic Operator reporting what one repository's root instruction file holds against the shipped template, without changing a byte of it
+purpose: Report rows A1 to A12 for the root AGENTS.md, its repo-local block, its runtime copies and its REPO RULES.md router, by running the shipped check engine once and naming the repair for each finding
+action: Run .skilled/commands/doctor/scripts/agents-md-check.cjs once -> render its row table through the presentation contract
+skill_owner: ".skilled/skills/sk-doc/sk-create-repo-rule/"
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: single-step
+  compliance: MANDATORY
+  execution: read_only
+  approvals: none
+  tracking: single_run
+  validation: read_only_assertion
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES (READ-ONLY)
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: true
+  allowed_targets: []
+  forbidden_targets:
+    - "**/*"
+  invariant: "This route prints and never writes. It runs the check engine only, never the embed engine's plan, apply or restore, and it never runs the pointer generator or the repo-rules checker in a writing mode. Every child tool the engine starts is a read-only mode of that tool, and a repair is an explicit action the operator runs through another route."
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  check_engine: ".skilled/commands/doctor/scripts/agents-md-check.cjs"
+  section_library: ".skilled/commands/doctor/scripts/lib/agents-md-sections.cjs"
+  template_manifest: ".skilled/commands/doctor/assets/agents-md-manifest.json"
+  rule_copy_canary: ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js, started once by the engine for the A6 row"
+  repo_rules_checker: ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs, started once by the engine for the A11 row"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+inputs:
+  target: "check is the route's default target: /doctor:agents-md and /doctor:agents-md check both run it. Any other positional fails before this YAML loads."
+  root: "The repository to classify when --root <dir> is passed, resolved by the engine (default none, so the repository this command ships in)."
+  json_output: "true when --json is passed: the route prints the engine's JSON and nothing else (default false)."
+  execution_mode: "INTERACTIVE"
+
+# ─────────────────────────────────────────────────────────────────
+# EXECUTION
+# ─────────────────────────────────────────────────────────────────
+execution:
+  steps:
+    - "Run node .skilled/commands/doctor/scripts/agents-md-check.cjs once, adding --root <dir> only when the operator passed one, and --json when the operator asked for JSON."
+    - "The engine reads the target's root document, its runtime copies and its REPO RULES.md against the shipped manifest and reports twelve rows, each PASS, FINDING, UNKNOWN or INFO. An UNKNOWN row means the row could not be answered, never that it passed, and an INFO row reports a fact the row does not grade."
+    - "A1 install state is one of pure, adopted, stale, forked, foreign, claude-only or absent, and it is the row that says which of them the repository is in. A2 counts the shipped sections that survive, A3 their order and numbering, and A4 tells a current body from a stale-known one, a local edit and an unknown base."
+    - "A5 reports the pins each tooling consumer greps for, A6 the delivery budget through the rule-copy canary, and A7 the repo-local block's own size against its ceiling. A8 and A9 report the content that sits outside a shipped section and the lines typed inside one, and they are the two rows that name a line somebody wrote."
+    - "A10 reports each runtime copy the manifest expects, A11 the REPO RULES.md rows through the repo-rules checker, and A12 the template purity of the shipped body. The three rows the engine must not invent belong to the tools this workflow never re-implements: the canary, the pointer sync and the repo-rules checker."
+    - "Render the engine's output through .skilled/commands/doctor/assets/doctor-agents-md-presentation.txt: the row table as printed, the DOCTOR DIAGNOSTIC RESULT summary and the repair for each finding."
+    - "Map the engine's exit code to the route status: 0 nothing to report, 1 at least one finding or an unproven row, 2 a precondition failed."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output: |
+  STATUS=OK when the engine exits 0; show the row table and the result line.
+  STATUS=FINDINGS when the engine exits 1; show each row whose status is not PASS first, with its detail and codes, then the DOCTOR DIAGNOSTIC RESULT summary and the repair for each finding.
+  STATUS=ERROR when the engine exits 2 or crashes; report the code, its message and the accepted invocation (/doctor:agents-md check [--json] [--root <dir>]).

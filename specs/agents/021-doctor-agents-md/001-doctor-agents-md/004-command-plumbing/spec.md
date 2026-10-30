@@ -10,17 +10,20 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md/004-command-plumbing"
-    last_updated_at: "2026-10-30T12:40:00Z"
+    last_updated_at: "2026-10-30T15:20:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored the child spec from the approved design"
-    next_safe_action: "Wait for the doctor sk-skill command, then write the contract test first"
+    recent_action: "Implemented the command plumbing on this branch"
+    next_safe_action: "Run the end-to-end verification pass"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/commands/doctor/agents-md.md"
+      - ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt"
+      - ".skilled/commands/doctor/scripts/tests/doctor-agents-md-contract.test.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-292-doctor-agents-md"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +40,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-30 |
 | **Branch** | `worktrees/292-doctor-agents-md` |
 | **Parent Spec** | ../spec.md |

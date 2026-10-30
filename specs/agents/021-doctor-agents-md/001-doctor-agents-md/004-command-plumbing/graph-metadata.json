@@ -38,7 +38,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -46,6 +46,12 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/commands/doctor/agents-md.md",
+      ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt",
+      ".skilled/commands/doctor/scripts/tests/doctor-agents-md-contract.test.cjs",
+      ".skilled/commands/doctor/assets/doctor-agents-md-check.yaml",
+      ".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml",
+      ".skilled/commands/doctor/assets/doctor-agents-md-restore.yaml",
       ".skilled/commands/doctor/_routes.yaml",
       ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
       ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
@@ -53,8 +59,7 @@
       ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
       ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
-      ".skilled/skills/system-skill-advisor/runtime/lib/render.ts"
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
     ],
     "entities": [
       {
@@ -91,6 +96,42 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/agents-md.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-agents-md-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-agents-md-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-agents-md-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-agents-md-check.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-agents-md-check.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-agents-md-embed.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-agents-md-restore.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-agents-md-restore.yaml",
         "source": "derived"
       },
       {
@@ -142,12 +183,6 @@
         "source": "derived"
       },
       {
-        "name": "render.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -170,41 +205,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Author",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The doctor family is validated by shape, not by intent",
     "created_at": "2026-10-30T11:22:44Z",
-    "last_save_at": "2026-10-30T11:33:53.448Z",
+    "last_save_at": "2026-10-30T15:16:12.814Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f00582397f659a5b87d49bdd626b3e26bbef3333ee7c6b3dc5f3d00f5497c672",
+    "source_fingerprint": "sha256:6b1104bbb99f4f8a526e0da67145d0146e95ae6124fb008769a8e2dca53182a4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4c9c46a7a682e17c8217f524f22f56f983c981d08043ff82e8836dbfdf204688",
+      "spec.md": "4ae746376f082069c623e998c59df70d242c568800d36d35cfb0cb24ae42ccd0",
       "plan.md": "a77fdc08ae9b6f5d4b708715179097974a5c0bc7ad02d118cba28c43f3ab90fb",
-      "tasks.md": "023610156483b3ceea5e017ec5107fd90745988cd52c968f2a8cce2635896850",
-      "implementation-summary.md": "db6806d7d18877750a14489ccda75e670e70aff27a39493932a139b4c5383d75"
+      "tasks.md": "7a34b0960ec4276b9b401c1fb9c914b851a6b1fbb7350e322bd2983dcba9f588",
+      "implementation-summary.md": "5971193218e18c53cb6f06ca2a70eaf7572d535c7c74c1684384d32a40b3f73c"
     },
     "last_active_at": null
   }

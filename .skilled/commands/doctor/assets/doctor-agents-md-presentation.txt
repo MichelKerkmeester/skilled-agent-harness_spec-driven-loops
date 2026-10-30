@@ -1,0 +1,267 @@
+# /doctor:agents-md Presentation Contract
+
+This file is the single source of truth for user-facing presentation in `/doctor:agents-md <target>`: the argument failure, the startup menu, the check table, the embed and restore plans and their questions, result templates and next-step text. The command router owns target resolution and asset loading. The workflow YAML owns execution behavior.
+
+## 1. Argument Failure
+
+Every argument failure happens before any workflow YAML loads, prints the wording below with the bracketed parts filled in, and ends with the status line. Nothing is read and nothing is changed.
+
+| Situation | Wording |
+|-----------|---------|
+| The first token is not a target | `Unknown target: [target]` then `/doctor:agents-md runs check. Try: /doctor:agents-md menu` then `STATUS=FAIL ERROR="unknown_target"` |
+| A flag none of the three targets accepts | `Unknown argument: [argument]` then `check accepts --json and --root <dir>; embed accepts --dry-run, --root <dir>, --plan-digest <digest>, --keep-claude-md, --remove-claude-md and --create-router; restore accepts --run <dir>, --yes and --dry-run.` then `STATUS=FAIL ERROR="unknown_argument"` |
+| A flag another target owns | `Argument '[argument]' is not valid for target '[target]'. Did you mean /doctor:agents-md [suggested-target] [argument]?` then `STATUS=FAIL ERROR="cross_target_flag"` |
+| `embed` bound with a second positional | `Only one target may be bound.` then `Try: /doctor:agents-md embed [--dry-run]` then `STATUS=FAIL ERROR="too_many_arguments"` |
+| `restore` with no run directory | `Restore needs --run=<dir>, the backup directory one apply printed.` then `STATUS=FAIL ERROR="missing_run_dir"` |
+| An engine invoked with a subcommand or option it does not take | `USAGE: [the engine's first message line]` then the engine's usage block, exit 2. The workflow only ever runs the documented calls, so this is the engine's own contract rather than a route the operator reaches |
+
+## 2. Startup Presentation
+
+This command is always interactive and has no `:auto` mode. With no target, `check` runs because it only reads, so a bare invocation needs no answer. The menu below appears for `menu`, `list` and `?`. Ask it once, then wait.
+
+```text
+What do you want to do?
+
+1) check
+2) embed
+3) restore
+X) Cancel
+```
+
+Accepted answers:
+
+| Answer | Result | Meaning |
+|--------|--------|---------|
+| `1` | target = `check` | Report rows A1 to A12 for one repository's root instruction file and change nothing |
+| `2` | target = `embed` | Compose the shipped sections plus the repository block, show the plan and its digest, and write only on yes |
+| `3` | target = `restore` | Put back the paths one recorded run wrote, after its plan and one yes |
+| `X`, empty, `cancel` | `STATUS=CANCELLED ACTION=cancelled` | Stop. Nothing changes |
+
+On any other response, re-emit the menu once. On a second invalid response, return `STATUS=FAIL ERROR="unknown_selection"`.
+
+Valid targets: check, embed, restore
+
+### Route Manifest Display
+
+Render this table for `menu`, `list` or `?`. Values mirror `_routes.yaml`.
+
+| Target | Workflow | Mutation Class | One-Line Purpose |
+|--------|----------|----------------|------------------|
+| `check` | `doctor-agents-md-check.yaml` | read-only | Report what the root instruction file holds against the shipped template, row by row |
+| `embed` | `doctor-agents-md-embed.yaml` | mutates | Bring the root instruction file up to the template after a plan, a digest and one yes |
+| `restore` | `doctor-agents-md-restore.yaml` | mutates | Put back exactly the paths one recorded run wrote |
+
+## 3. Check Results
+
+The engine prints one line per row, A1 to A12, each carrying its own status and detail, then the result line. Quote the line rather than paraphrasing it, and lead the reply with the rows whose status is not `PASS`.
+
+`PASS` holds, `FINDING` fails, `UNKNOWN` means the row could not be answered and no pass was inferred, and `INFO` reports a fact the row does not grade.
+
+```text
+Agents instruction check: [the root the engine read]
+
+A1  [PASS|FINDING|UNKNOWN|INFO]  install state: [pure|adopted|stale|forked|foreign|claude-only|absent]
+A2  [PASS|FINDING|UNKNOWN|INFO]  sections present: [n]/[n] matched
+...
+A12 [PASS|FINDING|UNKNOWN|INFO]  template purity: [detail]
+STATUS=[OK|FINDINGS]
+```
+
+The twelve rows are A1 install state, A2 sections present, A3 order and numbering, A4 section currency, A5 pins, A6 delivery budget, A7 repo-local block, A8 unmarked repo-unique content, A9 unmarked local edits, A10 runtime copies, A11 REPO RULES.md and A12 template purity. Read A1 first: it says which state the repository is in, and every other row is a detail of that state. A8 and A9 are the two rows that name a line somebody wrote, so quote them in full.
+
+With `--json` print the engine's JSON and nothing else: no table, no summary, no next-step line. The JSON carries the state, the twelve rows with their own status and detail, and the finding and unknown counts.
+
+### Check Summary
+
+```text
+DOCTOR DIAGNOSTIC RESULT
+Target: check
+Status: [OK|FINDINGS|ERROR]
+Mutation class: read-only
+Scope: [the root the engine read]
+Evidence: [n] rows, [n] pass, [n] findings, [n] unknown, [n] info
+Recommendation: [the repair for each finding, or none]
+STATUS=[status]
+```
+
+Statuses this route prints, each on its own line so a workflow never has to compose one:
+
+```text
+STATUS=OK
+STATUS=FINDINGS
+STATUS=ERROR ERROR="[message]"
+```
+
+## 4. Embed Plan, Digest and Approval
+
+### Setup
+
+Render this compact panel after target resolution and before the plan, when the target or flags were non-trivial.
+
+```text
+DOCTOR ROUTE SETUP
+Target: embed
+Workflow: .skilled/commands/doctor/assets/doctor-agents-md-embed.yaml
+Mutation class: mutates
+Execution mode: INTERACTIVE
+Root: [the repository the run composes for]
+Presentation: .skilled/commands/doctor/assets/doctor-agents-md-presentation.txt
+Next: run the plan, which writes nothing
+```
+
+### The Plan The Operator Approves
+
+The plan section quotes the engine's own lines: its `[agents-md-embed] plan for <root> (state: <state>)` line, one `target <path>: <create|replace|remove|unchanged>` line per path, its `note:` lines, a `diff` per path it would write, the new `block:` between its two markers, the `budget:` and `preservation:` lines, the `backup:` folder, the `undo:` command and the digest.
+
+```text
+AGENTS INSTRUCTION EMBED PLAN
+Root: [the repository]
+State: [pure|adopted|stale|forked|foreign|claude-only|absent]
+Targets: [one line per target the engine printed, in its order]
+Notes: [one bullet per note, or none]
+Block: [the composed block, quoted whole]
+Budget: [the engine's budget line]
+Preservation: [the engine's preservation line]
+Backup folder: [the engine's backup line]
+Undo: [the engine's undo line]
+Plan digest: [the engine's plan-digest line]
+
+Embed these files now? [yes/no]
+```
+
+The digest is not decoration: the digest on screen is the digest the apply repeats, and an apply whose digest no longer matches writes nothing. Show it in full, immediately above the question, and never compose a plan digest of your own.
+
+A plan whose repository already matches the template prints `[agents-md-embed] plan for <root> (state: <state>)` and `NOTHING TO DO` with no target lines. Render the unchanged result and ask nothing.
+
+### Dry Run
+
+With `--dry-run`, follow the plan and the digest with `Dry run: nothing was written and nothing was asked.` and end with `STATUS=OK`. No question is asked and nothing is written.
+
+### The Embed Question
+
+`Embed these files now? [yes/no]` covers the whole write: every path the plan names, the router rows it would add, the backup folder and the digest. Any answer other than yes counts as no: print the cancelled result and write nothing.
+
+## 5. Restore Plan and Approval
+
+The restore plan is the engine's own dry run of one run's record, so it names what will be put back and what will be removed.
+
+```text
+AGENTS INSTRUCTION RESTORE PLAN
+Run directory: [the --run directory]
+Root: [the root the record names]
+Put back: [one line per recorded file, in the engine's order]
+Remove: [one line per path the recorded run created, or none]
+
+Restore these paths from that backup now? [yes/no]
+```
+
+A recorded `AGENTS.md` that did not exist before the embed shows `delete` with the engine's own note: without it, Gate 3 no longer detects that directory as a workspace root. Quote that note.
+
+`Restore these paths from that backup now? [yes/no]` covers the whole restore. Any answer other than yes counts as no: print the cancelled result and write nothing. The `--yes` flag is passed only after that yes, so the operator confirms once and the engine's own confirmation is satisfied by it.
+
+## 6. Result Templates
+
+### Embedded
+
+```text
+DOCTOR MUTATING RESULT
+Target: embed
+Root: [the repository]
+Files changed: [each path the apply printed as wrote or removed]
+Backup: [the engine's backup line]
+Re-read: [the check engine's result line and any row that still reports FINDING]
+Preservation: [the engine's preservation line]
+Undo: [the engine's undo block, quoted whole: its Undo: line, its restore command and one copy line per overwritten file]
+STATUS=OK
+```
+
+### Unchanged
+
+Render this when the engine reports `NOTHING TO DO`.
+
+```text
+DOCTOR TARGET UNCHANGED
+Target: embed
+Root: [the repository]
+State: [the engine's plan line]
+Changed: none
+STATUS=OK
+```
+
+### Cancelled
+
+Render this when the operator declines either question, and name what was declined.
+
+```text
+DOCTOR TARGET CANCELLED
+Target: [embed|restore]
+Declined: [the embed | the restore]
+Changed: none
+STATUS=CANCELLED ACTION=cancelled
+```
+
+### Dry Run
+
+```text
+DOCTOR DRY RUN
+Target: [embed|restore]
+Plan: [the engine's plan lines, quoted as printed]
+Dry run: nothing was written and nothing was asked.
+Changed: none
+STATUS=OK
+```
+
+### Restored
+
+```text
+DOCTOR MUTATING RESULT
+Target: restore
+Run directory: [the --run directory]
+Put back: [each path the restore printed as restored, or none]
+Removed: [each path it printed as removed, or none]
+Re-read: [the check engine's result line]
+STATUS=OK
+```
+
+### Failure Summary
+
+```text
+DOCTOR TARGET FAILED
+Target: [check|embed|restore]
+Step: [the phase or row that stopped the run]
+Error: [the engine's code and message]
+Changed: [what was written before the failure, or none]
+Next: [the repair, or the accepted invocation]
+STATUS=FAIL ERROR="[code]"
+```
+
+A check that exits 2 prints its message and ends `STATUS=ERROR ERROR="[message]"`. An embed that exits 1 after its proof found a dropped line restored from the backup by itself, so its `Changed:` is `none` and its `Next:` names the file whose line went missing.
+
+## 7. Troubleshooting Display
+
+| Situation | Suggested Action |
+|-----------|------------------|
+| A check row reports `FINDING` | Read that row's detail, fix that one requirement, then rerun `/doctor:agents-md check` |
+| A check row reports `UNKNOWN` | The row could not be answered, not failed. Rerun when its precondition is back, and never report an `UNKNOWN` row as a pass |
+| `A1` reports `stale`, `forked` or `foreign` | `/doctor:agents-md embed` shows what the run would compose and what it would carry before anything is written |
+| `A8` or `A9` reports content | The lines are the repository's own. An embed carries them into the block. A line that must stay routed belongs in a rule file authored through the create-repo-rule route |
+| `A6` reports a budget finding | The composed document is past the byte ceiling a truncating runtime stops at. Every carried line is still kept, and the finding is the operator's to resolve |
+| `A11` reports missing router rows | `/doctor:agents-md embed` adds the shipped rows that are missing and touches no other row |
+| The embed question was answered no | Nothing was written. Rerun `/doctor:agents-md embed` when the plan is acceptable |
+| The apply reports a digest that does not match | The tree changed after the plan. Rerun `/doctor:agents-md embed` so the plan and the digest describe the tree in front of you |
+| The apply reports a dropped line | The engine restored from the backup by itself. Read the dropped line, keep it in the block or in a reference document, then rerun the plan |
+| The embed is not wanted after all | `/doctor:agents-md restore --run=<the backup folder the apply printed>` puts back the files that run wrote |
+| A restore reports a hash that does not match | The record or one of its copies changed, so nothing was written. Read the message. The backup at that directory is kept |
+| Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
+
+## 8. Next Step
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| A check row still reports `FINDING` after an embed | `/doctor:agents-md check` | The write is complete, and the remaining row is a different requirement |
+| The composed document is past the byte ceiling | `/doctor:agents-md check` | A6 names the ceiling and what the run kept anyway |
+| The repository has no `REPO RULES.md` | `/doctor:agents-md embed --create-router` | The router is created from the shipped rows and the checker runs after it |
+| A rule belongs in a routed file rather than the always-on block | `/create:repo-rule` | Action-triggered rules belong in a rule file that `REPO RULES.md` routes, not in a document every agent loads |
+| A release unit or a `.skilled/**` path needs changing | `/doctor:update` | This command owns the root instruction files, and the release tree belongs to the updater |
+
+End interactive presentations with: `What would you like to do next?`

@@ -24,7 +24,7 @@ Commands are organized into six groups:
 |-------|------|----------|---------|
 | **create** | `commands/create/` | 13 | Scaffold OpenCode components, documentation packages, changelogs, charts, diagrams, diffs and repo rules |
 | **deep** | `commands/deep/` | 3 | Deep research, review and AI council loops |
-| **doctor** | `commands/doctor/` | 13 | Setup overview, problem-to-command routing, spec-kit retrieval, skill advisor, deep-loop, runtime-mirror, sk-code setup, CI workflow switches, skill format check, git hook and standards, MCP, release-update and environment-switch diagnostics |
+| **doctor** | `commands/doctor/` | 14 | Setup overview, problem-to-command routing, spec-kit retrieval, skill advisor, deep-loop, runtime-mirror, sk-code setup, CI workflow switches, skill format check, git hook and standards, MCP, release-update, root instruction-file check and embed, and environment-switch diagnostics |
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
 | **speckit** | `commands/speckit/` | 7 | Spec folder workflows (plan, implement, resume and complete), context save (save), lexical search (search) and the manual trigger for the session relaunch loop (handoff) |
@@ -126,7 +126,7 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 
 ### Doctor Commands
 
-Thirteen command files cover the diagnostic surface, one per owner, with one entry point that names the others. Backed by `_routes.yaml`, `mcp-doctor.sh`, interactive YAML workflows, and the live environment switch reference.
+Fourteen command files cover the diagnostic surface, one per owner, with one entry point that names the others. Backed by `_routes.yaml`, `mcp-doctor.sh`, interactive YAML workflows, and the live environment switch reference.
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
@@ -144,6 +144,7 @@ Thirteen command files cover the diagnostic surface, one per owner, with one ent
 | Update | `/doctor:update [check\|align\|apply\|rollback\|record-base\|compat]` | Release-aware spec-kit updater with read-only check, decision alignment, gated apply, rollback, base-recording and compat workflows, where compat moves a v3 spec layout to v4 behind two approvals |
 | Environment Switches | `/doctor:env [list \| <section> \| <VARIABLE>] [--dry-run]` | Inspect documented environment switches and optionally save a confirmed preference |
 | Skill Format Check | `/doctor:sk-skill [check\|convert] [<name-or-path>] [--json] [--into-hub <hub>] [--dry-run]` | Report how far one skill, or the whole fleet, is from the Skilled format row by row, or how far a skill or mode is from a hub's eleven surfaces, and convert one skill after a plan and a yes |
+| Agents Instruction File | `/doctor:agents-md [check\|embed\|restore] [--json] [--root <dir>] [--dry-run] [--plan-digest <digest>]` | Report what the root `AGENTS.md` holds against the shipped template row by row, embed the template plus the repository block after a plan and its digest, and restore one recorded run |
 
 ### Deep Commands
 

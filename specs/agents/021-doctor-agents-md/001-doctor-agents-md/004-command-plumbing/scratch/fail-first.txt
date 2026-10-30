@@ -1,0 +1,38 @@
+node:fs:621
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: ENOENT: no such file or directory, open '/Users/michelkerkmeester/worktrees/public/296-agents-md-command/.skilled/commands/doctor/agents-md.md'
+    at Object.readFileSync (node:fs:621:20)
+    at read (/Users/michelkerkmeester/worktrees/public/296-agents-md-command/.skilled/commands/doctor/scripts/tests/doctor-agents-md-contract.test.cjs:36:27)
+    at Object.<anonymous> (/Users/michelkerkmeester/worktrees/public/296-agents-md-command/.skilled/commands/doctor/scripts/tests/doctor-agents-md-contract.test.cjs:42:16)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14)
+    at Object..js (node:internal/modules/cjs/loader:2074:10)
+    at Module.load (node:internal/modules/cjs/loader:1656:32)
+    at Module._load (node:internal/modules/cjs/loader:1448:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/michelkerkmeester/worktrees/public/296-agents-md-command/.skilled/commands/doctor/agents-md.md'
+}
+
+Node.js v26.8.2
+✖ .skilled/commands/doctor/scripts/tests/doctor-agents-md-contract.test.cjs (54.358833ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 58.385625
+
+✖ failing tests:
+
+test at .skilled/commands/doctor/scripts/tests/doctor-agents-md-contract.test.cjs:1:1
+✖ .skilled/commands/doctor/scripts/tests/doctor-agents-md-contract.test.cjs (54.358833ms)
+  'test failed'
+EXIT=1

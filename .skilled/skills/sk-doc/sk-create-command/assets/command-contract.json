@@ -206,15 +206,16 @@
         ".skilled/commands/doctor/env.md",
         ".skilled/commands/doctor/sk-skill.md",
         ".skilled/commands/doctor/helper.md",
+        ".skilled/commands/doctor/agents-md.md",
         ".skilled/commands/doctor/setup.md"
       ],
       "input": {
         "required": true,
         "gate_owner": "router",
-        "argument_hint": "per-command: [speckit-retrieval] | list | ? (speckit); <tune|rebuild|skill-graph-freshness|router-reach|skill-budget|parent-skill> [flags] | list | ? (skill-advisor); [--scope=research|review|council|both|all] (deep-loop); no arguments (runtime-mirrors); [setup] [--prompt=<text>] (sk-code); <hooks|standards> [--dry-run] | list | ? (git); [report|scaffold|toggle] [flags] | list | ? (ci); <install [--runtime <name>]|debug [--fix]> (mcp); [check|align|apply|rollback|record-base|compat] [--release=<tag>] [--scope=all|<unit,...>] [--remote=<name-or-url>] [--dry-run] [flags] (update); [list | <section> | <VARIABLE>] [--dry-run] (env); [check|convert] [<name-or-path>] [--json] [--into-hub <hub>] [--dry-run] (sk-skill); [<problem in plain words>] [--json] | list | ? (helper)"
+        "argument_hint": "per-command: [speckit-retrieval] | list | ? (speckit); <tune|rebuild|skill-graph-freshness|router-reach|skill-budget|parent-skill> [flags] | list | ? (skill-advisor); [--scope=research|review|council|both|all] (deep-loop); no arguments (runtime-mirrors); [setup] [--prompt=<text>] (sk-code); <hooks|standards> [--dry-run] | list | ? (git); [report|scaffold|toggle] [flags] | list | ? (ci); <install [--runtime <name>]|debug [--fix]> (mcp); [check|align|apply|rollback|record-base|compat] [--release=<tag>] [--scope=all|<unit,...>] [--remote=<name-or-url>] [--dry-run] [flags] (update); [list | <section> | <VARIABLE>] [--dry-run] (env); [check|convert] [<name-or-path>] [--json] [--into-hub <hub>] [--dry-run] (sk-skill); [<problem in plain words>] [--json] | list | ? (helper); [check|embed|restore] [--json] [--root <dir>] [--dry-run] [--plan-digest <digest>] [--run <dir>] [--yes] (agents-md)"
       },
       "execution_targets": [
-        { "selector": "<target> resolved via _routes.yaml for speckit, skill-advisor, deep-loop, runtime-mirrors, sk-code, git, ci, sk-skill and helper", "target": ".skilled/commands/doctor/assets/<the route's yaml>, named per route in _routes.yaml" },
+        { "selector": "<target> resolved via _routes.yaml for speckit, skill-advisor, deep-loop, runtime-mirrors, sk-code, git, ci, sk-skill, helper and agents-md", "target": ".skilled/commands/doctor/assets/<the route's yaml>, named per route in _routes.yaml" },
         { "selector": "install | debug", "target": ".skilled/commands/doctor/assets/doctor-mcp-<sub>.yaml" },
         { "selector": "check", "target": ".skilled/commands/doctor/assets/doctor-update-check.yaml" },
         { "selector": "align", "target": ".skilled/commands/doctor/assets/doctor-update-align.yaml" },
@@ -225,7 +226,10 @@
         { "selector": "list | section | variable [--dry-run]", "target": ".skilled/commands/doctor/assets/doctor-env.yaml" },
         { "selector": "check [<name-or-path>] [--json] (sk-skill)", "target": ".skilled/commands/doctor/assets/doctor-sk-skill-check.yaml" },
         { "selector": "convert <name-or-path> [--dry-run] (sk-skill)", "target": ".skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml" },
-        { "selector": "[<problem in plain words>] [--json] | list | ? (helper)", "target": ".skilled/commands/doctor/assets/doctor-helper.yaml" }
+        { "selector": "[<problem in plain words>] [--json] | list | ? (helper)", "target": ".skilled/commands/doctor/assets/doctor-helper.yaml" },
+        { "selector": "check [--json] [--root <dir>] (agents-md)", "target": ".skilled/commands/doctor/assets/doctor-agents-md-check.yaml" },
+        { "selector": "embed [--dry-run] [--root <dir>] [--keep-claude-md] [--remove-claude-md] [--create-router] [--plan-digest <digest>] (agents-md)", "target": ".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml" },
+        { "selector": "restore --run <dir> [--yes] [--dry-run] (agents-md)", "target": ".skilled/commands/doctor/assets/doctor-agents-md-restore.yaml" }
       ],
       "mode_matrix": {
         "default_policy": "confirm-only",
@@ -249,6 +253,13 @@
         { "purpose": "presentation", "path": ".skilled/commands/doctor/assets/doctor-helper-presentation.txt" },
         { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-helper.yaml" },
         { "purpose": "script", "path": ".skilled/commands/doctor/scripts/doctor-helper-match.cjs (ranks the manifest at run time)" },
+        { "purpose": "presentation", "path": ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt" },
+        { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-agents-md-check.yaml" },
+        { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml" },
+        { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-agents-md-restore.yaml" },
+        { "purpose": "other", "path": ".skilled/commands/doctor/assets/agents-md-manifest.json (the shipped template the check and embed engines read, generated by agents-md-manifest.cjs)" },
+        { "purpose": "script", "path": ".skilled/commands/doctor/scripts/agents-md-check.cjs (read-only: the twelve rows)" },
+        { "purpose": "script", "path": ".skilled/commands/doctor/scripts/agents-md-embed.cjs (plan, digest-confirmed apply and restore)" },
         { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-<target>.yaml (per-route target workflows, named by each route's yaml field)" },
         { "purpose": "script", "path": ".skilled/commands/doctor/scripts/route-validate.sh (validates _routes.yaml)" }
       ],
@@ -266,18 +277,23 @@
         "/doctor:sk-skill check is the read-only default target: with no positional it reports the whole fleet, with one it reports that skill, and it names the repair for each finding while it changes nothing",
         "/doctor:sk-skill convert plans first and asks one question per write: sk-skill-convert.cjs plan writes nothing, the trim and the allowed-tools list are each their own yes, the plan is rerun with the approved flags so the operator approves a plan that already carries those writes, apply writes only with --apply and those same flags, every overwritten file is backed up first, a no at any question ends the run with STATUS=CANCELLED and nothing written, and the undo block the engine printed is quoted as printed",
         "/doctor:sk-skill convert refuses a dual declaration, a hub or half hub declaration, a nested SKILL.md packet, a local- prefixed name, an agent- prefixed name and a name collision; a description over 130 characters and a missing allowed-tools are follow-up questions rather than refusals, and a plain skill is staged under .skilled/skills/<name> after the workflow agent reshapes its prose and preserve --snapshot proves the body survived",
-        "/doctor:helper ranks the route manifest doctor-command against doctor-command and runs no writing target: a read-only pick runs in place under that command's own router, a pick classed add-only or mutates is printed as one line for the operator to run under its own gate, and no argument is ever appended to that line"
+        "/doctor:helper ranks the route manifest doctor-command against doctor-command and runs no writing target: a read-only pick runs in place under that command's own router, a pick classed add-only or mutates is printed as one line for the operator to run under its own gate, and no argument is ever appended to that line",
+        "/doctor:agents-md check is the read-only default target: it reports rows A1 to A12 for one repository's root instruction file and changes nothing, so a bare /doctor:agents-md runs it and never reaches a target that writes",
+        "/doctor:agents-md embed composes in memory, prints every target, the diff, the block, the budget, the backup folder and the plan digest, and writes only after an explicit yes to that plan: the apply repeats the plan digest, refuses a digest that no longer matches and writes nothing in that case, every path it touches is on the engine's own write allowlist and is copied to the backup before the first byte, the proof runs against the bytes on disk, and a no ends the run with STATUS=CANCELLED and nothing written",
+        "/doctor:agents-md restore shows the plan one run's own manifest.json records, asks once, and puts back only those paths after that yes: it passes the engine's --yes only then, checks every recorded hash before writing, and a no ends the run with STATUS=CANCELLED and nothing written"
       ],
       "presentation": { "owner": "presentation-asset", "exceptions": [] },
       "destructive_policy": {
         "has_destructive_ops": true,
         "gated": true,
         "operations": ["skill-advisor tune writes lib/scorer/lanes sources", "skill-advisor rebuild rewrites skill-graph.sqlite through the advisor CLI after a backup", "git hooks sets or unsets one speckit.hooks.<key> git config value per approved change", "git standards copies the shipped sk-git templates into .sk-git/ and edits those copies per approved change, re-validated before each write", "mcp install writes the Code Mode build, selected runtime config and .utcp_config.json; credential values remain operator-managed in root .env", "update apply writes only the engine's displayed release plan after one startup approval, records rollback.json before target writes and runs the post-apply battery", "update rollback restores a run's rollback record after one approval and clears a stale apply lock only with its own approval", "update record-base writes .skilled/release/base.json after one approval", "update compat moves .opencode/specs to specs/ after one approval and runs upgrade-legacy --apply after a second approval, logging each move step in the git directory", "ci scaffold writes one new .github/workflows/ file after an approved plan and refuses an existing or protected name", "ci toggle sets one switch variable from the repository CI profile to off or deletes it after an approved plan, refuses a variable behind a status check the live ruleset requires, a neverOff variable, one the workflows README keeps unset and a no-op change, and asks a second named confirmation before it switches off a protected workflow", "env updates one eligible preference in hook-flags.env or the Claude settings env block after explicit confirmation",
-        "sk-skill convert writes the staged or converted skill folder (its SKILL.md and ROUTER.md, the scaffold metadata and the renamed resources), backs the pre-write files up under .skilled/skills/.state/doctor-sk-skill/ first, writes an approved description trim or allowed-tools list as its own separately approved flag, creates the skill's changelog entry and its .skilled/changelog link, and then runs the integration rows it planned: the advisor graph scan, the compiled skill-graph.json, the advisor cases file and the Hermes skills mirror"]
+        "sk-skill convert writes the staged or converted skill folder (its SKILL.md and ROUTER.md, the scaffold metadata and the renamed resources), backs the pre-write files up under .skilled/skills/.state/doctor-sk-skill/ first, writes an approved description trim or allowed-tools list as its own separately approved flag, creates the skill's changelog entry and its .skilled/changelog link, and then runs the integration rows it planned: the advisor graph scan, the compiled skill-graph.json, the advisor cases file and the Hermes skills mirror",
+        "agents-md embed writes only the six paths its engine allowlists, after one approval of a plan whose digest the apply repeats: AGENTS.md, a folded and removed CLAUDE.md and .codex/AGENTS.md, the generated .cursor/rules/repo-local.md, the .cursor/rules/skill-routing.md the pointer generator owns, and the missing shipped rows of REPO RULES.md, with every touched path copied to a backup under .skilled/output/doctor-agents-md/ first and the proof run against the bytes on disk",
+        "agents-md restore puts back only the paths one run's manifest.json records, after one approval: a recorded file is copied back from its copy and a path that run created is removed, each recorded hash is checked before the first write, and the backup directory is kept"]
       },
       "routing_source": "manifest",
       "timeout_bounds": { "warm_probe_timeout_ms": 500 },
-      "invocation_aliases": ["/doctor:speckit", "/doctor:speckit list", "/doctor:skill-advisor <target>", "/doctor:skill-advisor list", "/doctor:deep-loop [--scope=<scope>]", "/doctor:runtime-mirrors", "/doctor:sk-code [setup] [--prompt=<text>]", "/doctor:git <hooks|standards|setup>", "/doctor:git list", "/doctor:ci [report|scaffold|toggle]", "/doctor:ci list", "/doctor:mcp <install|debug>", "/doctor:update [check|align|apply|rollback|record-base|compat] [flags]", "/doctor:env [list | <section> | <VARIABLE>] [--dry-run]", "/doctor:sk-skill [check|convert] [<name-or-path>] [--json] [--into-hub <hub>] [--dry-run]", "/doctor:helper [<problem in plain words>] [--json]"],
+      "invocation_aliases": ["/doctor:speckit", "/doctor:speckit list", "/doctor:skill-advisor <target>", "/doctor:skill-advisor list", "/doctor:deep-loop [--scope=<scope>]", "/doctor:runtime-mirrors", "/doctor:sk-code [setup] [--prompt=<text>]", "/doctor:git <hooks|standards|setup>", "/doctor:git list", "/doctor:ci [report|scaffold|toggle]", "/doctor:ci list", "/doctor:mcp <install|debug>", "/doctor:update [check|align|apply|rollback|record-base|compat] [flags]", "/doctor:env [list | <section> | <VARIABLE>] [--dry-run]", "/doctor:sk-skill [check|convert] [<name-or-path>] [--json] [--into-hub <hub>] [--dry-run]", "/doctor:helper [<problem in plain words>] [--json]", "/doctor:agents-md [check|embed|restore] [--json] [--root <dir>] [--dry-run] [--plan-digest <digest>] [--run <dir>] [--yes]"],
       "workflow_schema_ref": null
     },
     "deep": {

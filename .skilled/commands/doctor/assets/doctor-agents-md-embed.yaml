@@ -1,0 +1,129 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: SHIPPED INSTRUCTION EMBED (INTERACTIVE, ONE REPOSITORY)
+# ─────────────────────────────────────────────────────────────────
+role: Careful operator bringing one repository's root instruction file up to the shipped template without losing a line the repository wrote
+purpose: Compose in memory, print the plan with its digest, ask once, write only after that yes and only against the digest the plan printed, then prove on disk that nothing was dropped and hand back the engine's own undo block
+action: Read the engine and the target -> run the plan -> show the plan, the diff, the budget and the digest -> explicit yes -> apply with that digest -> re-read the written files through the check engine -> print the engine's undo block
+skill_owner: ".skilled/skills/sk-doc/sk-create-repo-rule/"
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: sequential_read_plan_confirmed_embed
+  compliance: MANDATORY
+  execution: interactive
+  approvals: explicit_yes
+  dry_run: print_the_plan_then_status_ok_without_asking
+  tracking: one_repository_root
+  validation: re_read_the_written_files_through_the_check_engine
+  never_commit: true
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: false
+  allowed_targets:
+    - "AGENTS.md, the root document: created when the repository has none, replaced with the shipped sections plus the composed block, and left alone when it already matches"
+    - "CLAUDE.md, folded into the block and removed by default; kept, with its lines still moved into the block, when --keep-claude-md was given"
+    - ".codex/AGENTS.md, folded into the block and removed"
+    - ".cursor/rules/repo-local.md, the generated mirror of a non-empty block; removed when the block is empty"
+    - ".cursor/rules/skill-routing.md, rewritten by its own generator, sync-gate1-pointers.cjs, which this engine calls and never composes a byte of"
+    - "REPO RULES.md, the router: shipped rows that are missing are appended and no other row is touched, and a missing file is created only behind --create-router"
+    - "the backup directory the plan prints, .skilled/output/doctor-agents-md/<timestamp>/ or the operating system's temporary directory when git does not ignore that path: every path the run touches is copied there before the first write, and the record beside the copies is what restore reads"
+  forbidden_targets:
+    - "any path outside that allowlist, which the engine checks in code before every write rather than trusting this document"
+    - ".skilled/**, which /doctor:update owns, including the manifest this engine reads"
+    - ".skilled/commands/doctor/scripts/agents-md-embed.cjs and its lib/, which own the composition and never change here"
+    - "a rule file a REPO RULES.md row points at, which is authored through the create-repo-rule route and never by this one"
+    - "the git index, history and remotes"
+  invariant: "Nothing is written until the plan has printed its digest and the operator has answered yes to that plan. The plan call composes in memory and writes nothing, the apply refuses a digest that no longer matches and writes nothing in that case, and every path the run touches is copied to the backup before the first byte. The proof that no repository line was dropped runs against the bytes now on disk, and a violation restores from the backup automatically. A no at the question ends the run with STATUS=CANCELLED and nothing written."
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  embed_engine: ".skilled/commands/doctor/scripts/agents-md-embed.cjs"
+  check_engine: ".skilled/commands/doctor/scripts/agents-md-check.cjs"
+  section_library: ".skilled/commands/doctor/scripts/lib/agents-md-sections.cjs"
+  template_manifest: ".skilled/commands/doctor/assets/agents-md-manifest.json"
+  pointer_generator: ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs, called by the engine and never by this workflow"
+  repo_rules_checker: ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs, called by the engine after a router write"
+  presentation: ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+inputs:
+  execution_mode: "INTERACTIVE"
+  root: "The repository to compose for when --root <dir> is passed, resolved by the engine (default none, so the repository this command ships in)."
+  dry_run: "--dry-run prints the plan and its digest, then STATUS=OK without asking a question (default false). The plan call writes nothing either way; the flag only removes the question and the write."
+  plan_digest: "The plan digest the plan printed. It is what makes the approved bytes checkable: the apply recomposes and refuses any digest that no longer matches."
+  digest_confirmation: "true once the operator has answered yes to the plan whose digest was on screen. A plan approved at one tree is never applied at another, because the digest would not match."
+  keep_claude_md: "--keep-claude-md folds a divergent CLAUDE.md into the block and keeps the file; --remove-claude-md folds it and removes it, which is the default (default false, so removal)."
+  create_router: "--create-router creates REPO RULES.md from the shipped rows when it is missing (default false, so a missing router is a note and a finding)."
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  phase_1_read:
+    purpose: "Load what the run is built from before anything is composed or asked"
+    activities:
+      - "Check that .skilled/commands/doctor/scripts/agents-md-embed.cjs, .skilled/commands/doctor/scripts/agents-md-check.cjs, .skilled/commands/doctor/scripts/lib/agents-md-sections.cjs and .skilled/commands/doctor/assets/agents-md-manifest.json exist. If any is missing, report the missing path and stop with STATUS=FAIL. An embed without its engine or its manifest would invent a template."
+      - "Read the engine's interface before driving it: node .skilled/commands/doctor/scripts/agents-md-embed.cjs with no subcommand prints its usage block and exits 2, and that block is the whole list of calls this workflow may make. plan composes in memory and writes nothing. apply --plan-digest <digest> refuses a digest that does not match the composition and otherwise backs up, writes and proves. restore --run=<dir> puts back the paths one apply recorded. --dry-run prints a plan and writes nothing. --yes takes the confirmation as given."
+      - "Read .skilled/commands/doctor/assets/doctor-agents-md-presentation.txt for the plan, question, refusal and result wording. Every visible line comes from there."
+      - "Read nothing out of the target to decide the composition. The three-way section classification, the block and the budget are the engine's answers, and a second reading here would be a second opinion that drifts from it."
+
+  phase_2_plan:
+    purpose: "Run the read-only plan and keep its notes, its findings and its digest apart"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan, adding --root \"{root}\" when the operator passed one, --keep-claude-md when the divergent copy is to be kept, --create-router when a missing router is to be created, and --dry-run when the operator asked for one. The plan call writes nothing: it composes every target in memory, prints each target with its action, the diff, the new block, the budget, the survival ledger, the backup folder and the plan digest."
+      - "Keep the engine's exact lines: the target list, each note, each diff, the budget line, the preservation line, the backup line, the undo line and the plan-digest line. They are what the operator approves, and no other plan is ever the one this run applies."
+      - "Exit 0 with NOTHING TO DO means the repository is already in its target state, which the engine prints without a plan. Render the presentation contract's unchanged result with the engine's own notes, ask nothing, write nothing and go to phase 6 with STATUS=OK."
+      - "A finding line that says the composed document is past the byte ceiling is a finding rather than a refusal: every carried line is kept, because preservation outranks the budget. Show it with the plan and let the operator decide. A run whose composition drops a line refuses instead, exits 1 and writes nothing; print the dropped lines, then STATUS=FAIL and stop."
+      - "If dry_run is true, render the presentation contract's dry-run result from the plan's own lines, print the dry-run line and go to phase 6 with STATUS=OK. A dry run asks nothing and writes nothing, so it runs no question and no apply."
+      - "Exit 2 means a precondition failed, such as a missing manifest, a symlinked root document or one of the two markers present without the other. Quote the engine's message, name the accepted invocation (/doctor:agents-md embed), and end with STATUS=FAIL. Nothing was written."
+
+  phase_3_approval:
+    purpose: "Ask the one embed question against the plan on screen, and write only after its yes"
+    activities:
+      - "Ask the embed question once, in the presentation contract's wording, naming the files the plan will create, replace or remove, the backup folder, the router rows the plan would add and the plan digest. The operator answers about the plan the operator has just read, which is this run's plan."
+      - "Any answer other than yes is a no: print the cancelled result naming the declined embed, state Changed: none, and end with STATUS=CANCELLED ACTION=cancelled. Nothing is written."
+      - "Never default an answer, never carry an approval from an earlier run, and never accept a digest the operator has not seen. Phase 4 runs only after this phase's yes."
+
+  phase_4_write:
+    purpose: "Write the approved composition and nothing else, only after the embed yes"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest \"{plan_digest}\" with exactly the flags the plan ran with: --root \"{root}\" when it was given, --keep-claude-md or --remove-claude-md as approved, and --create-router when it was approved. Run it only after the embed yes."
+      - "Exit 2 with a message that the plan digest does not match the composition now means the tree changed after the plan, so nothing was written. Quote the engine's message, offer the plan again against the current tree, and end with STATUS=FAIL. Never retry the apply with a recomposed digest of your own: the point of the digest is that the approved bytes are the written bytes."
+      - "Exit 0 means the write ran. Keep exactly the lines the engine printed: its apply line, one wrote or removed line per path, the pointer-sync line, the repo-rules line after a router write, the preservation line, the check-after line, the backup line, the undo line, one copy line per overwritten file and STATUS=OK."
+      - "Exit 1 means the proof found a dropped line. The engine restored from the backup by itself and kept the backup. Quote the dropped lines, then STATUS=FAIL, and say the tree is as the plan found it. Never repair a file by hand inside this route."
+      - "An allowlist refusal exits 2 before a backup exists, because every path the run would touch is resolved before the first byte. Quote the message and end with STATUS=FAIL. Nothing was written."
+
+  phase_5_reread:
+    purpose: "Prove the written repository reads back through the read-only engine"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/agents-md-check.cjs once, with --root \"{root}\" when this run was pointed at another repository, and read the twelve rows against the plan's claims: the block the plan composed is the block on disk, and the paths the apply printed as written are the paths the check reads."
+      - "The engine prints its own check-after line at the end of a successful apply. Keep that line and the re-read beside each other: two readings of the same tree disagreeing is a failure, not a warning."
+      - "A row that still reports FINDING after a clean write is not a failed embed: the write completed and the row names a different requirement, so report it as the next step and keep the result at STATUS=OK."
+      - "When the re-read cannot run at all, report its message, keep the write result, and name the missing check as the next step. Never report an embed as verified when the re-read never answered."
+
+  phase_6_report:
+    purpose: "Summarize the run and hand the way back to the operator"
+    activities:
+      - "When the write ran and read back, render the presentation contract's embedded result with the paths the engine wrote or removed, the backup folder, the re-read verdict and the undo block the engine printed."
+      - "Print the engine's undo block exactly as the apply printed it: its Undo: line, the restore command it names and the copy line per overwritten file, in that order and with no path shortened. Never compose an undo of this route's own and never run it here. Never run the undo inside this route."
+      - "A no answered a question: render the cancelled result naming what was declined, state Changed: none and end with STATUS=CANCELLED ACTION=cancelled."
+      - "A dry run: render the dry-run result with the plan, the digest and the dry-run line, and end with STATUS=OK."
+      - "NOTHING TO DO: render the unchanged result with the engine's notes and STATUS=OK."
+      - "A refusal, a missing asset, a dropped line or a digest mismatch stopped the run: render the failure result naming the phase and the engine's code, with STATUS=FAIL."
+      - "End by saying the operator commits the written files themselves; this route stages and commits nothing."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output:
+  presentation: ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt"
+  statuses: [OK, CANCELLED, FAIL]

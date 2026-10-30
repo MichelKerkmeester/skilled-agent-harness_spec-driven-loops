@@ -4,8 +4,8 @@
   "counts": {
     "commandMetadata": 19,
     "allowList": 8,
-    "doctorRoutes": 25,
-    "generated": 52,
+    "doctorRoutes": 28,
+    "generated": 55,
     "typescriptActive": 29,
     "pythonActive": 39
   },
@@ -400,6 +400,51 @@
       "skillId": "sk-design",
       "ownerMode": "sk-design-md-generator",
       "source": ".skilled/skills/sk-design/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
+    },
+    {
+      "id": "command-doctor-agents-md-check",
+      "command": "/doctor:agents-md",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-doc",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
+    },
+    {
+      "id": "command-doctor-agents-md-embed",
+      "command": "/doctor:agents-md",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-doc",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
+    },
+    {
+      "id": "command-doctor-agents-md-restore",
+      "command": "/doctor:agents-md",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-doc",
+      "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
           "enabled": false

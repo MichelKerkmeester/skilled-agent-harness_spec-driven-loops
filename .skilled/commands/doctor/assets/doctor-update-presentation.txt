@@ -76,6 +76,7 @@ Only update or new units need writes: /doctor:update apply [same release and sco
 Removed, blocked or unknown units need review before applying: inspect the status details, then choose align or apply as appropriate.
 Downgrade units are older in the selected release than in this checkout. Apply never writes them. Roll back the apply that took the newer release, or use git, to return to an older release.
 Advisor graph rebuild after an update: /doctor:skill-advisor rebuild
+Shipped AGENTS.md sections after an update: /doctor:agents-md check
 No selected units need an update.
 ```
 
