@@ -1,0 +1,148 @@
+# Fixture: shadowed-pin
+# Composed from .skilled/commands/doctor/scripts/tests/fixtures/agents-md/shadowed-pin/fixture.json
+# Absolute paths are shortened: this checkout to <repo>, the run root to the fixture
+# name, and the throwaway backup root to <tmp>. Nothing else is edited.
+
+$ node .skilled/commands/doctor/scripts/tests/fixtures/agents-md/compose-fixture.cjs shadowed-pin <run>
+[compose-fixture] shadowed-pin -> shadowed-pin
+  AGENTS.md
+  .cursor/rules/skill-routing.md
+exit=0
+
+$ node .skilled/commands/doctor/scripts/agents-md-check.cjs --root <run>
+A1 install state: forked   (FINDING)
+  unmarked section "## Repository lookup"
+A2 sections present: 44/44 matched   (PASS)
+A3 order and numbering: manifest order and section numbers unchanged   (PASS)
+A4 section currency: 44 current, 0 stale-known, 0 edited, 0 unknown-base   (PASS)
+A5 pins: 28/30 pins hold   (FINDING)
+  anchor-blast-radius-management (delivery-anchor): blast-radius ends at byte 16510, past the 16384-byte delivery prefix
+  gate1-lookup (first-occurrence): the first occurrence at byte 2826 sits outside gate-1 (3099..3762), so anything reading the first line of the document follows it instead
+A6 delivery budget: 16510 of 16384 bytes to the last anchor, 27816 of 32768 bytes total   (FINDING)
+  MISSING: AGENTS.md: "#### Blast-Radius Management" ends at byte 16510, past the 16384-byte delivery prefix
+A7 repo-local block: no block; 27816 of 32768 bytes used   (PASS)
+A8 unmarked repo-unique content: 1 section(s) outside the block match no shipped section   (FINDING)
+  "## Repository lookup": lines 45-48, bytes 2748-2890, inside the delivery prefix
+A9 unmarked local edits: no edited section   (PASS)
+A10 runtime copies: 6/6 copies as expected   (PASS)
+A11 REPO RULES.md: absent   (FINDING)
+  no REPO RULES.md: no repository rule can load
+A12 template purity: runs only in the source repository; the origin remote (unreadable under shadowed-pin) differs from the source repository manifest.source_repository (https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops)   (INFO)
+STATUS=FINDINGS rows=12 findings=5 unknown=0
+exit=1
+
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan --root <run>
+[agents-md-embed] plan for shadowed-pin (state: forked)
+target AGENTS.md: replace
+target REPO RULES.md: absent
+target .cursor/rules/repo-local.md: create
+note: router: no REPO RULES.md, so no repository rule can load; pass --create-router to create one from the shipped rows
+diff AGENTS.md:
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -42,10 +42,6 @@
+ 
+ ---
+ 
+-## Repository lookup
+-
+-Every prompt starts with `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json`.
+-
+ ## 2. ⛔ MANDATORY GATES — STOP BEFORE ACTING
+ 
+ **⚠️ BEFORE using ANY tool (except Gate Actions: the trigger index lookup, `.skilled/bin/skill-advisor.cjs`), you MUST pass all applicable gates below.**
+@@ -299,3 +295,11 @@
+ - **Name the source of a pause.** When a rule, skill or gate makes you ask, wait, stop or leave requested work undone, name the file, quote the line and say what it requires apart from your reading of it.
+ - **Close substantive turns with honest status.** Then name the one thing that is the operator's to do, or say nothing is. What the status holds is listed in `.skilled/repo-rules/communication-handoff.md` §1, which Gate 6 loads before a turn ends. What counts as proof behind it, and how a green run lies, is [`evidence-and-proof.md`](.skilled/repo-rules/evidence-and-proof.md)'s.
+ 
++<!-- skilled:repo-local:start -->
++## REPOSITORY-SPECIFIC INSTRUCTIONS
++
++<!-- Repository-owned. /doctor:agents-md keeps every line here; the sections above are shipped by Skilled. -->
++## Repository lookup
++
++Every prompt starts with `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json`.
++<!-- skilled:repo-local:end -->
+diff .cursor/rules/repo-local.md:
+--- /dev/null
++++ b/.cursor/rules/repo-local.md
+@@ -0,0 +1,10 @@
++---
++alwaysApply: true
++---
++
++## REPOSITORY-SPECIFIC INSTRUCTIONS
++
++<!-- Repository-owned. /doctor:agents-md keeps every line here; the sections above are shipped by Skilled. -->
++## Repository lookup
++
++Every prompt starts with `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json`.
+block:
+<!-- skilled:repo-local:start -->
+## REPOSITORY-SPECIFIC INSTRUCTIONS
+
+<!-- Repository-owned. /doctor:agents-md keeps every line here; the sections above are shipped by Skilled. -->
+## Repository lookup
+
+Every prompt starts with `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json`.
+<!-- skilled:repo-local:end -->
+block-end:
+budget: 16510 -> 16368 of 16384 bytes to the last anchor, 27816 -> 28029 of 32768 bytes total, 4739 bytes headroom
+preservation: kept 2, carried 0, shipped-replaced 44, dropped 0
+backup: <tmp>/doctor-agents-md/5975d71cb4521f9d
+backup-fallback: git cannot answer whether .skilled/output/doctor-agents-md is ignored under shadowed-pin (exit 128)
+undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/5975d71cb4521f9d
+plan-digest: 5975d71cb4521f9d448c2e6f77edbb6ca332bb0691fe9dab698b5c3b715583fe
+exit=0
+
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest 5975d71cb4521f9d448c2e6f77edbb6ca332bb0691fe9dab698b5c3b715583fe --root <run>
+[agents-md-embed] apply on shadowed-pin (state: forked)
+wrote AGENTS.md
+wrote .cursor/rules/repo-local.md
+pointer-sync: in sync ([gate1-pointer-sync] Wrote 1 of 1 pointer blocks.)
+preservation: kept 2, carried 0, shipped-replaced 44, dropped 0
+check-after: state=adopted findings=1 unknown=0
+backup: <tmp>/doctor-agents-md/5975d71cb4521f9d
+undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/5975d71cb4521f9d
+cp <tmp>/doctor-agents-md/5975d71cb4521f9d/files/AGENTS.md AGENTS.md
+cp <tmp>/doctor-agents-md/5975d71cb4521f9d/files/.cursor/rules/skill-routing.md .cursor/rules/skill-routing.md
+STATUS=OK
+exit=0
+
+$ node .skilled/commands/doctor/scripts/agents-md-check.cjs --root <run>
+A1 install state: adopted   (PASS)
+  every shipped section is current and the repository block carries content
+A2 sections present: 44/44 matched   (PASS)
+A3 order and numbering: manifest order and section numbers unchanged   (PASS)
+A4 section currency: 44 current, 0 stale-known, 0 edited, 0 unknown-base   (PASS)
+A5 pins: 30/30 pins hold   (PASS)
+A6 delivery budget: 16368 of 16384 bytes to the last anchor, 28029 of 32768 bytes total   (PASS)
+  the canary exits 1 over 12 line(s) outside AGENTS.md, which belong to other files' pins
+A7 repo-local block: block 289 bytes, 4739 bytes of headroom   (PASS)
+A8 unmarked repo-unique content: no section outside the block   (PASS)
+A9 unmarked local edits: no edited section   (PASS)
+A10 runtime copies: 6/6 copies as expected   (PASS)
+A11 REPO RULES.md: absent   (FINDING)
+  no REPO RULES.md: no repository rule can load
+A12 template purity: runs only in the source repository; the origin remote (unreadable under shadowed-pin) differs from the source repository manifest.source_repository (https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops)   (INFO)
+STATUS=FINDINGS rows=12 findings=1 unknown=0
+exit=1
+
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan --root <run>   # the reconfigured tree
+[agents-md-embed] plan for shadowed-pin (state: adopted)
+note: router: no REPO RULES.md, so no repository rule can load; pass --create-router to create one from the shipped rows
+NOTHING TO DO
+exit=0
+
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --yes
+[agents-md-embed] restore plan for shadowed-pin from <tmp>/doctor-agents-md/5975d71cb4521f9d
+restore AGENTS.md: put back
+restore .cursor/rules/repo-local.md: delete
+restore .cursor/rules/skill-routing.md: put back
+restore: 3 path(s) put back, the backup at <tmp>/doctor-agents-md/5975d71cb4521f9d is kept
+STATUS=OK
+exit=0
+
+$ diff -r <pristine-run> <run>
+
+exit=0

@@ -1,0 +1,40 @@
+# Fixture: pure
+# Composed from .skilled/commands/doctor/scripts/tests/fixtures/agents-md/pure/fixture.json
+# Absolute paths are shortened: this checkout to <repo>, the run root to the fixture
+# name, and the throwaway backup root to <tmp>. Nothing else is edited.
+
+$ node .skilled/commands/doctor/scripts/tests/fixtures/agents-md/compose-fixture.cjs pure <run>
+[compose-fixture] pure -> pure
+  AGENTS.md
+  .cursor/rules/skill-routing.md
+exit=0
+
+$ node .skilled/commands/doctor/scripts/agents-md-check.cjs --root <run>
+A1 install state: pure   (PASS)
+  every shipped section is current and the repository block is empty
+A2 sections present: 44/44 matched   (PASS)
+A3 order and numbering: manifest order and section numbers unchanged   (PASS)
+A4 section currency: 44 current, 0 stale-known, 0 edited, 0 unknown-base   (PASS)
+A5 pins: 30/30 pins hold   (PASS)
+A6 delivery budget: 16368 of 16384 bytes to the last anchor, 27674 of 32768 bytes total   (PASS)
+  the canary exits 1 over 12 line(s) outside AGENTS.md, which belong to other files' pins
+A7 repo-local block: no block; 27674 of 32768 bytes used   (PASS)
+A8 unmarked repo-unique content: no section outside the block   (PASS)
+A9 unmarked local edits: no edited section   (PASS)
+A10 runtime copies: 6/6 copies as expected   (PASS)
+A11 REPO RULES.md: absent   (FINDING)
+  no REPO RULES.md: no repository rule can load
+A12 template purity: runs only in the source repository; the origin remote (unreadable under pure) differs from the source repository manifest.source_repository (https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops)   (INFO)
+STATUS=FINDINGS rows=12 findings=1 unknown=0
+exit=1
+
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan --root <run>
+[agents-md-embed] plan for pure (state: pure)
+note: block: the template is already current and this repository carries nothing of its own, so no empty block is written
+note: router: no REPO RULES.md, so no repository rule can load; pass --create-router to create one from the shipped rows
+NOTHING TO DO
+exit=0
+
+$ diff -r <pristine-run> <run>   # the plan wrote nothing, so there is nothing to restore
+
+exit=0

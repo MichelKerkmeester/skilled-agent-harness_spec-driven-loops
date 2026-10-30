@@ -210,7 +210,7 @@ Every setting has a working default. To change one, see [Environment Settings](#
 
 ### Keep It Healthy
 
-The doctor commands check and repair one area each. `/doctor:helper` names the one that fits a problem you describe, and `/doctor:setup` lists them all. `/doctor:update` brings in a new release, `/doctor:runtime-mirrors` finds runtime copies that drifted from `.skilled/`, `/doctor:skill-advisor` rebuilds or tunes skill routing, `/doctor:sk-skill` reports how far a skill is from the Skilled format and converts one after a plan, and `/doctor:ci` reports and toggles the CI workflow switches. The [Doctor](#doctor) commands section describes each one.
+The doctor commands check and repair one area each. `/doctor:helper` names the one that fits a problem you describe, and `/doctor:setup` lists them all. `/doctor:update` brings in a new release, `/doctor:runtime-mirrors` finds runtime copies that drifted from `.skilled/`, `/doctor:skill-advisor` rebuilds or tunes skill routing, `/doctor:sk-skill` reports how far a skill is from the Skilled format and converts one after a plan, `/doctor:agents-md` checks your root instruction file against the shipped template and embeds the shipped sections plus your own block after a plan, and `/doctor:ci` reports and toggles the CI workflow switches. The [Doctor](#doctor) commands section describes each one.
 
 &nbsp;
 
@@ -1217,7 +1217,7 @@ The active autonomous loop families. See [Deep Loop](#6--deep-loop) for how they
 &nbsp;
 #### DOCTOR
 
-Thirteen commands check and repair the setup, one per area.
+Fourteen commands check and repair the setup, one per area.
 
 **`/doctor:helper [<problem in plain words>] [--json]`** - the way in when you do not know the command
 
@@ -1285,6 +1285,13 @@ Thirteen commands check and repair the setup, one per area.
 - Checks what a release changes, applies it after your approval and can roll it back
 
 - `compat` moves a v3 checkout to the v4 `specs/` layout, and `--dry-run` previews the move
+
+**`/doctor:agents-md [check|embed|restore] [--json] [--root <dir>] [--dry-run] [--plan-digest <digest>] [--run <dir>]`** - your root `AGENTS.md` against the shipped template
+
+- `check` (the default, read-only) reports twelve rows: the install state, the sections lost or reordered, how current each shipped body is, every pin, the delivery budget, the shape of your own block, the content only you carry, the runtime copies, `REPO RULES.md` and the template's own purity. A row it cannot prove reads `UNKNOWN` rather than `PASS`
+- `embed` composes in memory, shows every target with its diff, the new block, the byte budget and the lines it will keep, then prints a plan digest. It writes only when you give that digest back, backs up every path it touches first and proves afterwards that not one of your lines was dropped, restoring from the backup itself when one is
+- `restore` puts back exactly the paths one recorded run wrote, and removes a file that run created
+- A bare invocation runs `check`, a repository already in its target state prints `NOTHING TO DO`, and the run stages nothing and commits nothing
 
 **`/doctor:env [list | <section> | <VARIABLE>] [--dry-run]`** - guided environment switches
 

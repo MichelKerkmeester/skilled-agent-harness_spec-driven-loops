@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md"
-    last_updated_at: "2026-10-30T12:40:00Z"
+    last_updated_at: "2026-10-30T17:45:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored the phase parent and its five child phases from the approved design"
-    next_safe_action: "Start child 001 once the doctor sk-skill command is on main"
+    recent_action: "Closed the phase and all five children"
+    next_safe_action: "Close the top 021 packet"
     blockers: []
     key_files:
       - "specs/agents/021-doctor-agents-md/001-doctor-agents-md/001-manifest-and-template-block/spec.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-292-doctor-agents-md"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-30 |
 | **Branch** | `worktrees/292-doctor-agents-md` |
 | **Parent Spec** | ../spec.md |
@@ -179,11 +179,11 @@ Copied from the approved design with the reasons that decided them. A change to 
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-manifest-and-template-block/ | The manifest, the shared segmenter, the line 3 edit, the empty block and the CI path filters | Draft |
-| 2 | 002-check-engine/ | The read-only check engine, its twelve rows and nine synthetic fixtures | Draft |
-| 3 | 003-embed-engine/ | Plan, digest, apply, the preservation check and restore | Draft |
-| 4 | 004-command-plumbing/ | Router, three workflows, presentation, route entry, contract test and generated mirrors | Draft |
-| 5 | 005-verification-and-docs/ | End-to-end runs, the manual playbook rows and the documentation refresh | Draft |
+| 1 | 001-manifest-and-template-block/ | The manifest, the shared segmenter, the line 3 edit, the empty block and the CI path filters | Complete |
+| 2 | 002-check-engine/ | The read-only check engine, its twelve rows and nine synthetic fixtures | Complete |
+| 3 | 003-embed-engine/ | Plan, digest, apply, the preservation check and restore | Complete |
+| 4 | 004-command-plumbing/ | Router, three workflows, presentation, route entry, contract test and generated mirrors | Complete |
+| 5 | 005-verification-and-docs/ | End-to-end runs, the manual playbook rows and the documentation refresh | Complete |
 
 ### Phase Transition Rules
 

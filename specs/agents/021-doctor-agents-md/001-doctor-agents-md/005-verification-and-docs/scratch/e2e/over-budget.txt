@@ -1,0 +1,61 @@
+# Fixture: over-budget
+# Composed from .skilled/commands/doctor/scripts/tests/fixtures/agents-md/over-budget/fixture.json
+# Absolute paths are shortened: this checkout to <repo>, the run root to the fixture
+# name, and the throwaway backup root to <tmp>. Nothing else is edited.
+
+$ node .skilled/commands/doctor/scripts/tests/fixtures/agents-md/compose-fixture.cjs over-budget <run>
+[compose-fixture] over-budget -> over-budget
+  AGENTS.md
+  .cursor/rules/skill-routing.md
+exit=0
+
+$ node .skilled/commands/doctor/scripts/agents-md-check.cjs --root <run>
+A1 install state: forked   (FINDING)
+  operational-mandates: unknown-base
+A2 sections present: 44/44 matched   (PASS)
+A3 order and numbering: manifest order and section numbers unchanged   (PASS)
+A4 section currency: 43 current, 0 stale-known, 0 edited, 1 unknown-base   (FINDING)
+  operational-mandates: unknown-base (closest known body none)
+A5 pins: 30/30 pins hold   (PASS)
+A6 delivery budget: 16368 of 16384 bytes to the last anchor, 33341 of 32768 bytes total   (FINDING)
+  MISSING: AGENTS.md: 33341 bytes exceeds the 32768-byte ceiling
+A7 repo-local block: block unreadable, -573 bytes of headroom   (FINDING)
+  the end marker sits before the start marker, so the block is out of order and unreadable
+  33341 bytes exceeds the 32768-byte ceiling
+A8 unmarked repo-unique content: no section outside the block   (PASS)
+A9 unmarked local edits: 1 section(s) carry 102 local line(s)   (FINDING)
+  operational-mandates: <!-- skilled:repo-local:end -->
+  operational-mandates: 01. A repository note kept out of the shipped sections.
+  operational-mandates: 02. A repository note kept out of the shipped sections.
+  operational-mandates: 03. A repository note kept out of the shipped sections.
+  operational-mandates: 04. A repository note kept out of the shipped sections.
+  operational-mandates: 05. A repository note kept out of the shipped sections.
+  operational-mandates: 06. A repository note kept out of the shipped sections.
+  operational-mandates: 07. A repository note kept out of the shipped sections.
+  operational-mandates: 08. A repository note kept out of the shipped sections.
+  operational-mandates: 09. A repository note kept out of the shipped sections.
+  operational-mandates: 10. A repository note kept out of the shipped sections.
+  operational-mandates: 11. A repository note kept out of the shipped sections.
+  operational-mandates: 12. A repository note kept out of the shipped sections.
+  operational-mandates: 13. A repository note kept out of the shipped sections.
+  operational-mandates: 14. A repository note kept out of the shipped sections.
+  operational-mandates: 15. A repository note kept out of the shipped sections.
+  operational-mandates: 16. A repository note kept out of the shipped sections.
+  operational-mandates: 17. A repository note kept out of the shipped sections.
+  operational-mandates: 18. A repository note kept out of the shipped sections.
+  operational-mandates: 19. A repository note kept out of the shipped sections.
+  ... 82 more line(s), all of them in the JSON report
+A10 runtime copies: 6/6 copies as expected   (PASS)
+A11 REPO RULES.md: absent   (FINDING)
+  no REPO RULES.md: no repository rule can load
+A12 template purity: runs only in the source repository; the origin remote (unreadable under over-budget) differs from the source repository manifest.source_repository (https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops)   (INFO)
+STATUS=FINDINGS rows=12 findings=6 unknown=0
+exit=1
+
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan --root <run>
+[agents-md-embed] ERROR: the repository block in AGENTS.md carries one of its two markers and not the other, near byte 33307; the block cannot be placed, so nothing can be carried out of it
+exit=2
+
+$ diff -r <pristine-run> <run>   # the plan wrote nothing, so there is nothing to restore
+
+exit=0

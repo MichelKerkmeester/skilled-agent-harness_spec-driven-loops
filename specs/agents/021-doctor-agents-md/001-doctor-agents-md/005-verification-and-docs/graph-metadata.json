@@ -38,7 +38,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -46,7 +46,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/commands/doctor/scripts/README.markdown"
+      "scratch/run-e2e.sh",
+      ".skilled/commands/doctor/scripts/README.markdown",
+      ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-agents-md-block-devin-quote.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-agents-md-cursor-mirror-load.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/changelog/skilled/v4.0.1.4.md",
+      ".skilled/skills/system-spec-kit/changelog/v2.12.27.0.md",
+      ".skilled/skills/system-skill-advisor/changelog/v0.17.28.0.md",
+      ".skilled/skills/sk-doc/changelog/v2.3.34.0.md",
+      "scratch/baseline.txt",
+      "scratch/doc-locations.txt"
     ],
     "entities": [
       {
@@ -86,9 +99,87 @@
         "source": "derived"
       },
       {
+        "name": "run-e2e.sh",
+        "kind": "script",
+        "path": "scratch/run-e2e.sh",
+        "source": "derived"
+      },
+      {
         "name": "README.markdown",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/README.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "category-overview.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-agents-md-block-devin-quote.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-agents-md-block-devin-quote.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-agents-md-cursor-mirror-load.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-agents-md-cursor-mirror-load.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.1.4.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.1.4.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.12.27.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/changelog/v2.12.27.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.17.28.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/changelog/v0.17.28.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.3.34.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/changelog/v2.3.34.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doc-locations.txt",
+        "kind": "file",
+        "path": "scratch/doc-locations.txt",
         "source": "derived"
       },
       {
@@ -114,89 +205,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Resolve",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Each",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The engines can each pass their own suite and still fail together: a check that classifies correctly and an embed that composes correctly can still disagree about the same tree",
     "created_at": "2026-10-30T11:22:45Z",
-    "last_save_at": "2026-10-30T11:39:46.189Z",
+    "last_save_at": "2026-10-30T16:22:49.850Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e100c65b31aeb2edfee01471285a50ec0c3c94ffdf7a98ca7c037312c54dae45",
+    "source_fingerprint": "sha256:5a214ae82265ce412a5db689b80c2b70562af8b831a6a7fd3e54cdbaee52de8c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6d6d25a6930021f4adc2a8f944815d8aa97c760791a622c46381e2832d6554ef",
-      "plan.md": "a5c3beb662c81ddb3240e1cd770ae10a8d330bd9171ae5e06a8c68e94b2910da",
-      "tasks.md": "e6b5a53cdd7479cc1c18cc9dd9229639de47b38336c0a4a05ffbcaf849ceafe5",
-      "implementation-summary.md": "21cb2c6dc64caefccfdfae13b1f13c4d3a37cca5c33b64323e9e4403bd9af15c"
+      "spec.md": "2a8c461952300ca21d396449e666d94416507ed6367d9580d59095254fd319c1",
+      "plan.md": "21fdf8abc9a63bf5e56b46d848354f34134df5e5f2e05b5459b24c5ec338eec1",
+      "tasks.md": "dd53bc87f337b6f11058b387fef25d1a9566d3470bba9bd996c12c8fd6bb1ac2",
+      "implementation-summary.md": "aee1c53c70c02d0abf782b210548ea5374c2782043cf4c65ee811d852579d319"
     },
     "last_active_at": null
   }

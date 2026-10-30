@@ -11,18 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs"
-    last_updated_at: "2026-10-30T12:40:00Z"
+    last_updated_at: "2026-10-30T17:30:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
-    blockers:
-      - "Waits on /doctor:sk-skill (packet sk-doc/075-doctor-sk-skill-command) landing on main"
+    recent_action: "Pass captured, both rows answered, docs landed"
+    next_safe_action: "Close the 001 phase parent and the top 021 packet"
+    blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-292-doctor-agents-md"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -57,11 +56,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] Every baseline command from the parent phase spec reruns from the final tree with the same pass line
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`
-- [ ] `ls scratch/e2e | wc -l` prints `9`, one transcript per fixture
-- [ ] Both manual rows carry a recorded observation or a recorded unknown with its reason
-- [ ] `git status --porcelain` names only files named by children 001 to 005 and no local-only path
+- [x] Every baseline command from the parent phase spec reruns from the final tree with the same pass line
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`
+- [x] `ls scratch/e2e | wc -l` prints `9`, one transcript per fixture
+- [x] Both manual rows carry a recorded observation or a recorded unknown with its reason
+- [x] `git status --porcelain` names only files named by children 001 to 005 and no local-only path
 <!-- /ANCHOR:completion -->
 
 ---
@@ -78,11 +77,15 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Specification, plan, tasks and criteria authored | Done | This packet's four documents |
-| Implementation | Pending | Waits on children 001 to 004 |
+| Implementation | Done | `scratch/e2e/` holds nine transcripts, `scratch/baseline.txt` holds both captures, and the recursive gate prints `RESULT: PASSED` |
+| Documentation rows | Done | The script README, the catalog category, the two playbook scenarios and the four changelogs |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | No work has run |
+| `adopted` plans on the pre-apply tree | Its lines sit in an unmarked block, so the plan has real work to show. The `NOTHING TO DO` pairing holds on the reconfigured tree. |
+| Restore leaves one empty `.cursor` folder | Every recorded file is byte-identical; the folder cleanup belongs to the engine's own child. |
+| The retrieval corpus and the sk-doc activation manifest were regenerated | The new documents staled the index, and the version bump staled the hub's compiled policy manifest. Both were republished by their own tools. |
+| Both manual rows record `UNKNOWN` | No live session was reachable, and a default pass would claim a fact nobody observed. |
 <!-- /ANCHOR:log -->

@@ -35,15 +35,15 @@ Resolve the three documentation locations first, because they decide where the w
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Children 001 to 004 are complete and their suites pass
-- [ ] The three documentation locations are resolved and recorded
-- [ ] The six baseline commands are recorded in `scratch/baseline.txt`
+- [x] Children 001 to 004 are complete and their suites pass
+- [x] The three documentation locations are resolved and recorded in `scratch/doc-locations.txt`
+- [x] The six baseline commands are recorded in `scratch/baseline.txt`
 
 ### Definition of Done
-- [ ] Every baseline command reruns from the final tree with the same pass lines
-- [ ] Nine transcripts exist under `scratch/e2e/`
-- [ ] The two manual rows carry a recorded answer or a recorded unknown with its reason
-- [ ] `validate.sh specs/agents/021-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`
+- [x] Every baseline command reruns from the final tree with the same pass lines
+- [x] Nine transcripts exist under `scratch/e2e/`
+- [x] The two manual rows carry a recorded unknown with its reason and the steps that answer it
+- [x] `validate.sh specs/agents/021-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:quality-gates -->
 
 ---

@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "agents/021-doctor-agents-md"
-    last_updated_at: "2026-10-30T12:40:00Z"
+    last_updated_at: "2026-10-30T17:50:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Closed both phases and the packet"
+    next_safe_action: "None: the packet is complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-292-doctor-agents-md"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -77,12 +77,12 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`
-- [ ] `node .skilled/commands/doctor/scripts/agents-md-check.cjs` on this repository exits 0 and prints `STATUS=OK`
-- [ ] `node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan` on this repository prints `NOTHING TO DO` and exits 0
-- [ ] `node .skilled/commands/doctor/scripts/doctor-helper-match.cjs -- "my pre-commit hook keeps rejecting my commit"` exits 0 and its first candidate line starts `1) /doctor:git hooks`
-- [ ] `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 and its summary line names both new commands' routes at the re-measured count
-- [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` exits 0 and `node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs` prints `RESULT: PASSED`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`
+- [x] `node .skilled/commands/doctor/scripts/agents-md-check.cjs` on this repository exits 0 and prints `STATUS=OK`
+- [x] `node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan` on this repository prints `NOTHING TO DO` and exits 0
+- [x] `node .skilled/commands/doctor/scripts/doctor-helper-match.cjs -- "my pre-commit hook keeps rejecting my commit"` exits 0 and its first candidate line starts `1) /doctor:git hooks`
+- [x] `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 and its summary line names both new commands' routes at the re-measured count
+- [x] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` exits 0 and `node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -99,12 +99,13 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet authored from two approved designs | Done | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md --recursive --strict` printed `RESULT: PASSED` at authoring time |
-| Phase 001 | Pending | Five Level 2 children scaffolded, none started |
-| Phase 002 | Pending | One Level 2 packet scaffolded, none started |
+| Phase 001 | Done | Five child folders closed; `agents-md-manifest.cjs --check`, `agents-md-check.cjs` and `agents-md-embed.cjs plan` all pass from the final tree |
+| Phase 002 | Done | `/doctor:helper` ships, its held-out suite passes and its bridge is derived and inactive by decision |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| No implementation has run | Every completion criterion is unanswered; the packet records a plan, not a result |
+| Both live-session rows stay open | DOC-396 and DOC-397 record `UNKNOWN` with their reasons, because no Devin session and no Cursor window existed in this build. The claim behind the Cursor mirror therefore stays inferred. |
+| Two follow-ups outside this packet | `README.md:1039` still reads `41 commands: 40 in six groups plus one utility` and needs `42 commands: 41 in six groups plus one utility`, and `001-doctor-agents-md/001-manifest-and-template-block/spec.md` still carries `Status: Draft` while that child is closed |
 <!-- /ANCHOR:log -->

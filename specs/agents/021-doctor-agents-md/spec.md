@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "agents/021-doctor-agents-md"
-    last_updated_at: "2026-10-30T12:40:00Z"
+    last_updated_at: "2026-10-30T17:50:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored the phase parent from the two approved designs"
-    next_safe_action: "Start phase 001 once the doctor sk-skill command is on main"
+    recent_action: "Closed both phases and the packet"
+    next_safe_action: "None: the packet is complete"
     blockers: []
     key_files:
       - "specs/agents/021-doctor-agents-md/001-doctor-agents-md/spec.md"
@@ -23,9 +23,8 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-292-doctor-agents-md"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Which of the two phases lands first: they touch different files and each must re-measure shared counts"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Phase 001 carries five Level 2 children and phase 002 is a single Level 2 packet"
 ---
@@ -52,7 +51,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-30 |
 | **Branch** | `worktrees/292-doctor-agents-md` |
 | **Parent Spec** | None (top-level packet) |
@@ -121,8 +120,8 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md,
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-doctor-agents-md/ | The `/doctor:agents-md` build, a nested phase parent with five Level 2 children: manifest and template block, check engine, embed engine, command plumbing, verification and docs | Draft |
-| 2 | 002-doctor-helper/ | `/doctor:helper`, one Level 2 packet with no children: the deterministic matcher, its contract suite and its command plumbing | Draft |
+| 1 | 001-doctor-agents-md/ | The `/doctor:agents-md` build, a nested phase parent with five Level 2 children: manifest and template block, check engine, embed engine, command plumbing, verification and docs | Complete |
+| 2 | 002-doctor-helper/ | `/doctor:helper`, one Level 2 packet with no children: the deterministic matcher, its contract suite and its command plumbing | Complete |
 
 ### Phase Transition Rules
 

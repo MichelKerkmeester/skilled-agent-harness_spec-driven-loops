@@ -1,0 +1,3 @@
+1. Script README: .skilled/commands/doctor/scripts/README.markdown
+2. Playbook: .skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/ plus the row-set in ../manual-testing-playbook.md section 7.2
+3. Changelogs: .skilled/changelog/skilled/v4.0.1.4.md for the framework, and one entry beside each skill whose files this packet changed

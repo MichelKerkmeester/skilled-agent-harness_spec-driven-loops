@@ -21,7 +21,7 @@ importance_tier: "important"
 
 `.skilled/commands/doctor/scripts/` contains shell, JavaScript and Python tools that support doctor routes.
 
-The scripts validate route manifests, inspect MCP installations, audit parent skill hubs, report graph freshness, check a skill's distance from the Skilled format and convert one, then plan and apply framework release updates. Most are read-only. The release updater's apply and rollback paths write local state, and so does the skill converter's `--apply`. Every script has a test under `tests/`, except `skill-graph-freshness.cjs`, whose freshness panel test lives in the skill advisor runtime. One runner executes them all.
+The scripts validate route manifests, inspect MCP installations, audit parent skill hubs, report graph freshness, check a skill's distance from the Skilled format and convert one, read the root instruction file against the shipped template and embed or restore it, then plan and apply framework release updates. Most are read-only. The release updater's apply and rollback paths write local state, and so does the skill converter's `--apply`. Every script has a test under `tests/`, except `skill-graph-freshness.cjs`, whose freshness panel test lives in the skill advisor runtime. One runner executes them all.
 
 ---
 
@@ -31,6 +31,8 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 .skilled/commands/doctor/scripts/
 +-- agent-roster-mirror-check.cjs
 +-- agents-md-check.cjs
++-- agents-md-embed.cjs
++-- agents-md-manifest.cjs
 +-- audit_descriptions.py
 +-- command-catalog-mirror-check.cjs
 +-- check-mcp-mutation-class.sh
@@ -56,6 +58,7 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 +-- sk-skill-convert.cjs
 +-- skill-graph-freshness.cjs
 +-- lib/
+|   +-- agents-md-sections.cjs      # the one segmenter, classifier, block reader and delivery measurement the two engines and their suites share
 |   +-- ci-profile.cjs             # the repository CI profile loader the report, scaffold and toggle scripts share
 |   +-- ci-report-render.cjs       # the report document, its JSON form and its fixed-width table
 |   +-- ci-report-sources.cjs      # repository variables, the branch runs come from and the newest non-rebuild commit
@@ -95,6 +98,8 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 | `audit_descriptions.py` | Audits description lengths across skills, commands and agents. |
 | `agent-roster-mirror-check.cjs` | Verifies every canonical agent reaches all five runtime surfaces, and that mirror surfaces stay symlinked rather than forked. |
 | `agents-md-check.cjs` | The read-only AGENTS.md check: twelve rows reporting the install state, the sections lost or reordered, the currency of each body, every pin, the delivery budget, the shape of the repository block, the repository's own content and its local edits, each runtime copy, the `REPO RULES.md` router and the source template's purity. Three of them run their owner as a child instead of re-deriving it, carrying the rule-copy canary's budget lines, the gate 1 pointer sync's Cursor block and the repo-rules checker's summary. `--root <dir>` classifies another repository and `--json` prints the same report for a machine. A row it cannot prove reads `UNKNOWN` rather than `PASS`, so it exits 0 on no finding, 1 on a finding or an unproven row and 2 on a failed precondition. |
+| `agents-md-embed.cjs` | The writing half of `/doctor:agents-md`, in three subcommands. `plan` composes every target in memory and prints the targets, the diffs, the new block, the byte budget, the preservation ledger, the backup folder and the plan digest, and writes nothing. `apply --plan-digest <digest>` recomposes, refuses a digest the tree no longer produces, backs up every path it will touch, writes only inside the allowlist it checks in code and then proves the composition against the bytes on disk, restoring from the backup and ending `STATUS=FAIL` when one line went missing. `restore --run=<dir>` puts back exactly the paths that run's `manifest.json` records, removes the file it created and keeps the backup. It exits 0 when there was nothing to do or the work finished, 1 on a failed proof or a declined run and 2 on a failed precondition or a path outside the allowlist. |
+| `agents-md-manifest.cjs` | Generates and gates the shipped manifest's `derived` key: a copy of every shipped body, its hash and the router rows, taken from the root documents. `--write` refreshes it and `--check` is the freshness gate, so a body that drifted from the template fails here instead of surfacing as a check finding. It refuses a heading no authored entry matches, an authored entry that matches nothing, and text above the first heading, and `--write` runs only in the repository that ships the template. Each of the three engines has its own suite: `agents-md-check.test.cjs`, `agents-md-embed.test.cjs` and `agents-md-manifest.test.cjs`, driven from the recipe folders under `tests/fixtures/agents-md/`. |
 | `git-hook-gates.cjs` | Lists the shipped hook gates from `scripts/git-hooks/lib/gates.tsv` with their saved `speckit.hooks.<key>` values, and sets or unsets one in local or global git config for `/doctor:git hooks`. Refuses the per-push approvals. |
 | `git-standards.cjs` | Shows where a repository's commit, PR and branch rules come from, copies the shipped sk-git templates into `.sk-git/`, and changes a rules block setting or removes a kind's rules section in those copies for `/doctor:git standards`, re-validating each change with sk-git's own contract check. |
 | `git-setup-check.cjs` | Runs the read-only sk-git setup battery for `/doctor:git setup`: eleven checks, each PASS, FAIL, SKIP, UNKNOWN or DEGRADED with the source it read and one repair per failure. It exits 0 when every check passes or skips, 3 when none failed but a check is UNKNOWN or DEGRADED, 1 on any failure and 2 on a usage error. It loads every helper from its own install root and never runs code from the repository it inspects. |
@@ -159,6 +164,11 @@ bash .skilled/commands/doctor/scripts/route-validate.sh --self-test
 
 | Command | Purpose |
 |---|---|
+| `node .skilled/commands/doctor/scripts/agents-md-check.cjs [--root <dir>] [--json]` | Report the twelve AGENTS.md rows for this repository or another one, and write nothing. |
+| `node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan [--root <dir>] [--keep-claude-md] [--create-router]` | Print every target with its diff, the new block, the budget, the preservation ledger, the backup folder and the plan digest. Writes nothing, and prints `NOTHING TO DO` when the repository is already in its target state. |
+| `node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest <digest> [--root <dir>]` | Back up, write inside the allowlist and prove the composition, only with the digest the plan printed. |
+| `node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<dir> --yes` | Put back exactly the paths one run recorded, and remove the file that run created. |
+| `node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check` | Fail when the manifest's derived key no longer matches the shipped documents. |
 | `bash .skilled/commands/doctor/scripts/mcp-doctor.sh` | Diagnose all supported MCP servers. |
 | `bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json` | Emit machine-readable MCP diagnostics. |
 | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs <skill-dir>` | Audit one parent skill hub. |
@@ -214,6 +224,9 @@ On this repository all legs pass on OpenCode 1.19.3 and 2.0.32. OpenCode 1.19.3 
 | `git-standards.cjs` | `status` and `check` are read-only. `init`, `set` and `disable` are dry runs until `--apply`, which writes only `.sk-git/` or the `skgit.contractDir` directory, never the shipped sk-git templates. |
 | `git-setup-check.cjs` | Read-only. It writes no file and no git config value, and calls no allocator or `--apply` mode. |
 | `sk-code-quality-config.cjs` | `status` and `check` are read-only; `status` starts the runner's `--explain` once per batch of up to 500 sampled paths and no configured check. `init` is a dry run until `--apply`, which creates only `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` and refuses with `CONFIG_EXISTS` when that file exists. |
+| `agents-md-check.cjs` | Read-only over any root: it reads the instruction file, its runtime copies and `REPO RULES.md`, runs three owner tools as children in their check-only forms and writes nothing. |
+| `agents-md-embed.cjs` | `plan` is read-only. `apply` writes only the paths in its own allowlist, all of them under the target root, after backing each one up under `.skilled/output/doctor-agents-md/<digest>/` (or the OS temp folder when that path is not ignored), and restores from that backup itself when its post-write proof fails. `restore` writes only the paths the run's `manifest.json` records and keeps the backup folder. It never runs `git add`, `git commit` or `git stash`. |
+| `agents-md-manifest.cjs` | `--check` is read-only. `--write` rewrites the manifest's `derived` key and refuses to run outside the repository that ships the template. |
 | `opencode-version-battery.cjs` | The battery itself writes only the `--out` file and temporary folders it removes when each step ends. The private server's folder is also removed on `SIGINT` and `SIGTERM`, and the server is stopped. The import check runs each plugin's v1 factory in a child process rooted at the repository, so anything a plugin does when it loads happens during the check. It never touches the shared v2 service and never prints the private server's password. OpenCode 1 writes into a temporary data folder, not the user's. |
 
 Do not invoke a mutating path from a route classified as read-only.

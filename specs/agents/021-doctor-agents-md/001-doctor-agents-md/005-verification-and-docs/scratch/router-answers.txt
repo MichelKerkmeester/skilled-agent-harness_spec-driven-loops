@@ -1,0 +1,23 @@
+# Documentation locations resolved from the sk-doc router at this child's start
+
+## Router answers
+$ node .skilled/bin/compiled-route.cjs --hub sk-doc --prompt "<task>"
+  "author a changelog entry for a doctor command"
+    -> sk-create-changelog
+  "add a manual testing playbook scenario for a doctor command"
+    -> sk-create-manual-testing-playbook
+  "add a feature catalog entry for a doctor command"
+    -> sk-create-feature-catalog
+
+## Leaves the router loaded
+  sk-create-changelog               -> sk-create-changelog/assets/changelog-template.md
+  sk-create-manual-testing-playbook -> sk-create-manual-testing-playbook/references/README.md
+  sk-create-feature-catalog         -> sk-create-feature-catalog/references/README.md
+
+## The three locations the child spec left unresolved
+1. Script README: .skilled/commands/doctor/scripts/README.markdown
+2. Playbook: .skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/ plus the row-set in ../manual-testing-playbook.md section 7.2
+3. Changelogs: .skilled/changelog/skilled/v4.0.1.4.md for the framework, and one entry beside each skill whose files this packet changed
+
+## A fourth location this task named
+4. Feature catalog: .skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md, plus its index row-set in ../feature-catalog.md section 5

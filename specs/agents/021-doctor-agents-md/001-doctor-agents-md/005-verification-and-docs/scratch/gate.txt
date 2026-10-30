@@ -1,0 +1,21 @@
+$ bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md --recursive --strict
+  Folder: /Users/michelkerkmeester/worktrees/public/298-agents-md-docs/specs/agents/021-doctor-agents-md
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/worktrees/public/298-agents-md-docs/specs/agents/021-doctor-agents-md/001-doctor-agents-md
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/worktrees/public/298-agents-md-docs/specs/agents/021-doctor-agents-md/002-doctor-helper
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+exit=0
+
+# Each folder on its own
+specs/agents/021-doctor-agents-md                                                               3 x PASSED
+specs/agents/021-doctor-agents-md/001-doctor-agents-md                                          6 x PASSED
+specs/agents/021-doctor-agents-md/002-doctor-helper                                             1 x PASSED
+specs/agents/021-doctor-agents-md/001-doctor-agents-md/001-manifest-and-template-block          1 x PASSED
+specs/agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine                         1 x PASSED
+specs/agents/021-doctor-agents-md/001-doctor-agents-md/003-embed-engine                         1 x PASSED
+specs/agents/021-doctor-agents-md/001-doctor-agents-md/004-command-plumbing                     1 x PASSED
+specs/agents/021-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs                1 x PASSED

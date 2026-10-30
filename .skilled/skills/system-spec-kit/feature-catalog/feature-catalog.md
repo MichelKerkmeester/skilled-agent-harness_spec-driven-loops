@@ -7,8 +7,8 @@ trigger_phrases:
   - "spec kit feature inventory"
   - "what does spec kit do"
   - "spec kit capability inventory"
-last_updated: "2026-10-29"
-version: 2.1.16.0
+last_updated: "2026-10-30"
+version: 2.1.17.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -913,11 +913,11 @@ See [`governance/feature-flag-governance.md`](governance/feature-flag-governance
 
 #### Description
 
-The eight doctor routers split checks by owner (`/doctor:speckit`, `/doctor:skill-advisor`, `/doctor:deep-loop`, `/doctor:runtime-mirrors`, `/doctor:sk-code`, `/doctor:git`, `/doctor:ci` and `/doctor:setup`) and dispatch to their subsystem routes.
+The doctor routers split checks by owner (`/doctor:speckit`, `/doctor:skill-advisor`, `/doctor:deep-loop`, `/doctor:runtime-mirrors`, `/doctor:sk-code`, `/doctor:git`, `/doctor:ci`, `/doctor:sk-skill`, `/doctor:agents-md` and `/doctor:setup`) and dispatch to their subsystem routes.
 
 #### Current Reality
 
-The spec-kit retrieval, skill-advisor, deep-loop, runtime-mirrors, update and MCP-infrastructure routes survive. The memory and causal-graph routes were removed with the engine, and the standalone rebuild orchestrator was removed in favor of `/doctor:skill-advisor rebuild`.
+The spec-kit retrieval, skill-advisor, deep-loop, runtime-mirrors, update, MCP-infrastructure, skill-format and root instruction-file routes survive. The memory and causal-graph routes were removed with the engine, and the standalone rebuild orchestrator was removed in favor of `/doctor:skill-advisor rebuild`. `/doctor:agents-md` reads the root instruction file against the shipped manifest, embeds the shipped sections plus one repository block after a plan digest, and restores the paths one recorded run wrote.
 
 #### Source Files
 

@@ -1,0 +1,163 @@
+# Fixture: adopted
+# Composed from .skilled/commands/doctor/scripts/tests/fixtures/agents-md/adopted/fixture.json
+# Absolute paths are shortened: this checkout to <repo>, the run root to the fixture
+# name, and the throwaway backup root to <tmp>. Nothing else is edited.
+
+$ node .skilled/commands/doctor/scripts/tests/fixtures/agents-md/compose-fixture.cjs adopted <run>
+[compose-fixture] adopted -> adopted
+  AGENTS.md
+  CLAUDE.md
+  .cursor/rules/skill-routing.md
+  .cursor/rules/repo-local.md
+exit=0
+
+$ node .skilled/commands/doctor/scripts/agents-md-check.cjs --root <run>
+A1 install state: adopted   (PASS)
+  every shipped section is current and the repository block carries content
+A2 sections present: 44/44 matched   (PASS)
+A3 order and numbering: manifest order and section numbers unchanged   (PASS)
+A4 section currency: 44 current, 0 stale-known, 0 edited, 0 unknown-base   (PASS)
+A5 pins: 30/30 pins hold   (PASS)
+A6 delivery budget: 16368 of 16384 bytes to the last anchor, 28022 of 32768 bytes total   (PASS)
+  the canary exits 1 over 12 line(s) outside AGENTS.md, which belong to other files' pins
+A7 repo-local block: block 282 bytes, 4746 bytes of headroom   (PASS)
+A8 unmarked repo-unique content: no section outside the block   (PASS)
+A9 unmarked local edits: no edited section   (PASS)
+A10 runtime copies: 5/6 copies as expected   (FINDING)
+  CLAUDE.md: divergent copy - 3 line(s) only this file carries
+A11 REPO RULES.md: absent   (FINDING)
+  no REPO RULES.md: no repository rule can load
+A12 template purity: runs only in the source repository; the origin remote (unreadable under adopted) differs from the source repository manifest.source_repository (https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops)   (INFO)
+STATUS=FINDINGS rows=12 findings=2 unknown=0
+exit=1
+
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan --root <run>
+[agents-md-embed] plan for adopted (state: adopted)
+target AGENTS.md: replace
+target REPO RULES.md: absent
+target .cursor/rules/repo-local.md: replace
+target CLAUDE.md: remove
+note: router: no REPO RULES.md, so no repository rule can load; pass --create-router to create one from the shipped rows
+diff AGENTS.md:
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -296,12 +296,15 @@
+ - **Close substantive turns with honest status.** Then name the one thing that is the operator's to do, or say nothing is. What the status holds is listed in `.skilled/repo-rules/communication-handoff.md` §1, which Gate 6 loads before a turn ends. What counts as proof behind it, and how a green run lies, is [`evidence-and-proof.md`](.skilled/repo-rules/evidence-and-proof.md)'s.
+ 
+ <!-- skilled:repo-local:start -->
+-
+ ## REPOSITORY-SPECIFIC INSTRUCTIONS
+ 
+ <!-- Repository-owned. /doctor:agents-md keeps every line here; the sections above are shipped by Skilled. -->
+-
+ Our stack is Node 20 with no web framework.
+ Build: `node --test scripts/`.
+ Test: `node --test scripts/` and `bash scripts/lint.sh`.
++
++### Carried from CLAUDE.md
++# Project notes
++Run `make check` before you open a pull request.
++Update the changelog in the same commit as the code.
+ <!-- skilled:repo-local:end -->
+diff .cursor/rules/repo-local.md:
+--- a/.cursor/rules/repo-local.md
++++ b/.cursor/rules/repo-local.md
+@@ -5,7 +5,11 @@
+ ## REPOSITORY-SPECIFIC INSTRUCTIONS
+ 
+ <!-- Repository-owned. /doctor:agents-md keeps every line here; the sections above are shipped by Skilled. -->
+-
+ Our stack is Node 20 with no web framework.
+ Build: `node --test scripts/`.
+ Test: `node --test scripts/` and `bash scripts/lint.sh`.
++
++### Carried from CLAUDE.md
++# Project notes
++Run `make check` before you open a pull request.
++Update the changelog in the same commit as the code.
+diff CLAUDE.md:
+--- a/CLAUDE.md
++++ /dev/null
+@@ -1,4 +0,0 @@
+-# Project notes
+-
+-Run `make check` before you open a pull request.
+-Update the changelog in the same commit as the code.
+block:
+<!-- skilled:repo-local:start -->
+## REPOSITORY-SPECIFIC INSTRUCTIONS
+
+<!-- Repository-owned. /doctor:agents-md keeps every line here; the sections above are shipped by Skilled. -->
+Our stack is Node 20 with no web framework.
+Build: `node --test scripts/`.
+Test: `node --test scripts/` and `bash scripts/lint.sh`.
+
+### Carried from CLAUDE.md
+# Project notes
+Run `make check` before you open a pull request.
+Update the changelog in the same commit as the code.
+<!-- skilled:repo-local:end -->
+block-end:
+budget: 16368 -> 16368 of 16384 bytes to the last anchor, 28022 -> 28166 of 32768 bytes total, 4602 bytes headroom
+preservation: kept 3, carried 3, shipped-replaced 44, dropped 0
+backup: <tmp>/doctor-agents-md/339eefaa508a23a9
+backup-fallback: git cannot answer whether .skilled/output/doctor-agents-md is ignored under adopted (exit 128)
+undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/339eefaa508a23a9
+plan-digest: 339eefaa508a23a9956e96ca6f90690339c43e82022a5a38b735f617e701327d
+exit=0
+
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest 339eefaa508a23a9956e96ca6f90690339c43e82022a5a38b735f617e701327d --root <run>
+[agents-md-embed] apply on adopted (state: adopted)
+wrote AGENTS.md
+wrote .cursor/rules/repo-local.md
+removed CLAUDE.md (backed up first)
+pointer-sync: in sync ([gate1-pointer-sync] Wrote 0 of 1 pointer blocks.)
+preservation: kept 3, carried 3, shipped-replaced 44, dropped 0
+check-after: state=adopted findings=1 unknown=0
+backup: <tmp>/doctor-agents-md/339eefaa508a23a9
+undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/339eefaa508a23a9
+cp <tmp>/doctor-agents-md/339eefaa508a23a9/files/AGENTS.md AGENTS.md
+cp <tmp>/doctor-agents-md/339eefaa508a23a9/files/.cursor/rules/repo-local.md .cursor/rules/repo-local.md
+cp <tmp>/doctor-agents-md/339eefaa508a23a9/files/CLAUDE.md CLAUDE.md
+cp <tmp>/doctor-agents-md/339eefaa508a23a9/files/.cursor/rules/skill-routing.md .cursor/rules/skill-routing.md
+STATUS=OK
+exit=0
+
+$ node .skilled/commands/doctor/scripts/agents-md-check.cjs --root <run>
+A1 install state: adopted   (PASS)
+  every shipped section is current and the repository block carries content
+A2 sections present: 44/44 matched   (PASS)
+A3 order and numbering: manifest order and section numbers unchanged   (PASS)
+A4 section currency: 44 current, 0 stale-known, 0 edited, 0 unknown-base   (PASS)
+A5 pins: 30/30 pins hold   (PASS)
+A6 delivery budget: 16368 of 16384 bytes to the last anchor, 28166 of 32768 bytes total   (PASS)
+  the canary exits 1 over 12 line(s) outside AGENTS.md, which belong to other files' pins
+A7 repo-local block: block 426 bytes, 4602 bytes of headroom   (PASS)
+A8 unmarked repo-unique content: no section outside the block   (PASS)
+A9 unmarked local edits: no edited section   (PASS)
+A10 runtime copies: 6/6 copies as expected   (PASS)
+A11 REPO RULES.md: absent   (FINDING)
+  no REPO RULES.md: no repository rule can load
+A12 template purity: runs only in the source repository; the origin remote (unreadable under adopted) differs from the source repository manifest.source_repository (https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops)   (INFO)
+STATUS=FINDINGS rows=12 findings=1 unknown=0
+exit=1
+
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan --root <run>   # the reconfigured tree
+[agents-md-embed] plan for adopted (state: adopted)
+note: router: no REPO RULES.md, so no repository rule can load; pass --create-router to create one from the shipped rows
+NOTHING TO DO
+exit=0
+
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --yes
+[agents-md-embed] restore plan for adopted from <tmp>/doctor-agents-md/339eefaa508a23a9
+restore AGENTS.md: put back
+restore .cursor/rules/repo-local.md: put back
+restore CLAUDE.md: put back
+restore .cursor/rules/skill-routing.md: put back
+restore: 4 path(s) put back, the backup at <tmp>/doctor-agents-md/339eefaa508a23a9 is kept
+STATUS=OK
+exit=0
+
+$ diff -r <pristine-run> <run>
+
+exit=0

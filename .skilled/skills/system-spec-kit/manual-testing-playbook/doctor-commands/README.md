@@ -2,7 +2,7 @@
 id: doctor-commands-readme
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
-version: 2.3.6.0
+version: 2.3.7.0
 ---
 
 # Doctor Commands
@@ -15,9 +15,10 @@ Manual testing scenarios for the doctor command surface.
 
 ## 2. SCOPE
 
-17 scenarios covering the five doctor commands this skill owns and the test environment they share:
+19 scenarios covering the six doctor commands this skill owns and the test environment they share:
 
 - `/doctor:helper`: 2 scenarios (DOC-393 and DOC-394): a described problem ranked with a read-only pick run in place, and a writing pick handed back with the no-match fallback
+- `/doctor:agents-md`: 2 scenarios (DOC-396 and DOC-397): the two claims the design could only infer. DOC-396 asks a live Devin session to quote the last line of the repository block, and DOC-397 asks a Cursor window to quote a line of the generated `.cursor/rules/repo-local.md`
 - `/doctor:speckit`: 3 scenarios (DOC-349 to DOC-351): a healthy index, a stale index and a target another command owns now
 - `/doctor:runtime-mirrors`: 2 scenarios (DOC-352 and DOC-353): every mirror in sync, and one drifted mirror
 - `/doctor:env`: 3 scenarios (DOC-354 to DOC-356): inspecting switches, saving a preference behind a yes, and secrets and per-invocation switches that are never saved
@@ -49,6 +50,7 @@ Scenarios that change state run in one of two long-lived local worktrees instead
 | Used by | DOC-349, DOC-350, DOC-352 to DOC-356 here, and the stateful doctor scenarios in system-skill-advisor, system-deep-loop, sk-git, mcp-code-mode and sk-code |
 
 - **Before a scenario:** run `git -C .worktrees/.doctor-test-environment fetch origin` and `git -C .worktrees/.doctor-test-environment merge --ff-only origin/main`, then confirm `git status --porcelain` prints nothing.
+- **Scenarios outside it:** DOC-396 and DOC-397 do not use this environment. Each composes the `adopted` fixture into its own throwaway folder outside the checkout, applies the embed there and restores it, so nothing in a worktree is touched. Both need a live session beside the folder: a Devin session for DOC-396 and a Cursor window for DOC-397. Until one is available, each row records `UNKNOWN` with its reason rather than a default pass.
 - **Dependencies:** the worktree is created without dependencies. A scenario that needs a built runtime runs `bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .worktrees/.doctor-test-environment` once first.
 - **Advisor state:** an advisor rebuild, which DOC-348 and DOC-362 both run, leaves `advisor_recommend` reporting `stale` with reason `advisor_rebuild` until the next trusted scan. Before DOC-364, run `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --json '{}'` in the environment, or every router-reach probe fails as `probe-error`.
 - **After a scenario:** restore every file it changed with `git checkout -- <path>`, remove any file it added, and confirm `git status --porcelain` prints nothing.
@@ -98,7 +100,7 @@ Execute each scenario directly per the root playbook's execution policy: run the
 
 ### See Also
 
-- Router sources: `.skilled/commands/doctor/speckit.md`, `runtime-mirrors.md`, `env.md` and `update.md`
+- Router sources: `.skilled/commands/doctor/speckit.md`, `runtime-mirrors.md`, `env.md`, `update.md`, `helper.md` and `agents-md.md`
 - Route manifest: `.skilled/commands/doctor/_routes.yaml`
 - CI assertion: `.skilled/commands/doctor/scripts/route-validate.sh`
 - Root playbook index: [`../manual-testing-playbook.md`](../manual-testing-playbook.md)
