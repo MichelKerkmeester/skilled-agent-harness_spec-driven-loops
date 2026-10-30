@@ -57,7 +57,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check` exits 0 and its `PASS` line names 46 sections, the pin count and a fresh derived key
+- [ ] `node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check` exits 0 and its `PASS` line names 44 sections, the pin count and a fresh derived key
 - [ ] `node --test .skilled/commands/doctor/scripts/tests/agents-md-manifest.test.cjs` reports `fail 0`
 - [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` prints `OK: all rule invariants present` with the last delivery anchor at or before byte 16374
 - [ ] `grep -c 'skilled:repo-local:start' AGENTS.md` prints `1` and `wc -c < AGENTS.md` prints at most `27899`

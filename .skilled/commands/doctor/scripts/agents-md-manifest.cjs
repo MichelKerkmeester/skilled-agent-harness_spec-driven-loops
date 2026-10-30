@@ -22,9 +22,21 @@
 // authored entry that matches nothing would keep a section in the manifest that no longer
 // exists. Both are a manifest edit or a template edit, and never an accident.
 //
+// A checkout can hold no release tags at all, because a shallow CI clone fetches none. The
+// history comparison is skipped there instead of reported as drift: an empty tag list is
+// not evidence that a release dropped a body, and failing on it would make the gate refuse
+// every shallow run. The bodies the manifest records stay current and are still compared.
+//
+// The authored ceilings are not trusted either: a byte ceiling and the concept list the
+// canary accepts are both stated in the canary, so `--check` reads them there and refuses a
+// manifest that disagrees. A constant copied into the manifest can drift from the file that
+// actually refuses an oversized document, and a copy that cannot be checked is a copy that
+// lies.
+//
 // Usage: agents-md-manifest.cjs [--check | --write] [--root <dir>] [--manifest <path>]
-//   --check           compare `derived` with the root documents and exit 1 on any drift
-//                     (the default: the read-only target)
+//   --check           compare `derived` with the root documents, compare the authored
+//                     ceilings and concept lists with the canary's, and exit 1 on any
+//                     drift (the default: the read-only target)
 //   --write           regenerate `derived`, in the source repository only
 //   --root <dir>      read the root documents under this directory instead of this tree
 //   --manifest <path> read and write this file instead of the shipped manifest
@@ -53,6 +65,11 @@ const REPO_ROOT = path.resolve(__dirname, '../../../..');
 const MANIFEST_PATH = path.resolve(__dirname, '../assets/agents-md-manifest.json');
 const USAGE = 'Usage: node .skilled/commands/doctor/scripts/agents-md-manifest.cjs [--check | --write] [--root <dir>] [--manifest <path>]';
 const GIT_TIMEOUT_MS = 10000;
+// The canary ships beside this script in the same installation, so it is resolved from this
+// file rather than from `--root`, which relocates only the root documents.
+const CANARY_RELATIVE = '.skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js';
+// An authored budget key a pin may name, and the field the canary states the same ceiling in.
+const CANARY_LIMIT_FIELDS = { max_bytes: 'maxBytes', prefix_bytes: 'prefixBytes' };
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. ARGUMENTS
@@ -91,16 +108,6 @@ function parseArgs(argv) {
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. SOURCE-REPOSITORY GUARD
 // ─────────────────────────────────────────────────────────────────────────────
-
-function readOriginUrl(root) {
-  const run = spawnSync('git', ['-C', root, '-c', 'core.fsmonitor=false', 'remote', 'get-url', 'origin'], {
-    encoding: 'utf8',
-    timeout: GIT_TIMEOUT_MS,
-  });
-  if (run.status !== 0 || typeof run.stdout !== 'string') return null;
-  const url = run.stdout.trim();
-  return url === '' ? null : url;
-}
 
 /**
  * Whether this working tree is the repository the manifest ships from.
@@ -198,8 +205,12 @@ function dedupeBodies(entries, known = new Set()) {
 /**
  * Read the release tags the manifest records and collect their shipped bodies.
  *
+ * `available` answers whether the comparison is meaningful at all: a git that cannot list
+ * tags and a tag list that matches nothing both leave no history to compare against, and
+ * saying so is the honest answer rather than an empty set that looks like a lost release.
+ *
  * @param {{root: string, manifest: Object}} input
- * @returns {{ok: boolean, bodies: Array<{body: string, tag: string}>, tags: Array<string>, reason: string}}
+ * @returns {{available: boolean, bodies: Array<{body: string, tag: string}>, tags: Array<string>, reason: string}}
  */
 function readReleaseHistory({ root, manifest }) {
   const pattern = new RegExp(manifest.history.tag_pattern);
@@ -208,13 +219,13 @@ function readReleaseHistory({ root, manifest }) {
     timeout: GIT_TIMEOUT_MS,
   });
   if (listed.status !== 0 || typeof listed.stdout !== 'string') {
-    return { ok: false, bodies: [], tags: [], reason: `no release tags readable under ${root}: git tag exited ${listed.status}` };
+    return { available: false, bodies: [], tags: [], reason: `git tag exited ${listed.status} under ${root}` };
   }
 
   const tags = listed.stdout.split('\n').map((line) => line.trim()).filter((line) => pattern.test(line));
   const recent = tags.slice(-Math.max(0, manifest.history.tags));
   if (recent.length === 0) {
-    return { ok: true, bodies: [], tags: [], reason: `no tag matches ${manifest.history.tag_pattern}` };
+    return { available: false, bodies: [], tags: [], reason: `git tag matched no ${manifest.history.tag_pattern} tag under ${root}` };
   }
 
   const bodies = [];
@@ -228,7 +239,7 @@ function readReleaseHistory({ root, manifest }) {
     if (shown.status !== 0 || typeof shown.stdout !== 'string') continue;
     for (const section of segment(shown.stdout, manifest.markers).sections) bodies.push({ body: section.body, tag });
   }
-  return { ok: true, bodies, tags: recent, reason: '' };
+  return { available: true, bodies, tags: recent, reason: '' };
 }
 
 /**
@@ -354,7 +365,109 @@ function drift(stored, fresh, { compareHistory }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 7. MAIN
+// 7. CANARY LIMITS
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * The ceilings and the concept list the rule-copy canary enforces.
+ *
+ * The canary is a script rather than a module, so its values are read out of its source:
+ * that is the file refusing an oversized document, and the only reading of it that cannot
+ * drift from the refusal is the source itself. An unreadable canary is an answer of its
+ * own — a consumer may install this command without the review skill beside it — so the
+ * caller reports the skip instead of failing on it.
+ *
+ * @returns {{ok: boolean, maxBytes: number|null, prefixBytes: number|null, ironLawRequired: Array<string>|null, reason: string}}
+ */
+function readCanaryLimits() {
+  const missing = [];
+  const file = path.join(REPO_ROOT, CANARY_RELATIVE);
+  if (!fs.existsSync(file)) {
+    return {
+      ok: false,
+      maxBytes: null,
+      prefixBytes: null,
+      ironLawRequired: null,
+      reason: `cannot read ${CANARY_RELATIVE} under ${REPO_ROOT}`,
+    };
+  }
+
+  const text = fs.readFileSync(file, 'utf8');
+  const number = (field) => {
+    const match = new RegExp(`\\b${field}:\\s*(\\d+)`, 'u').exec(text);
+    return match === null ? null : Number(match[1]);
+  };
+  const maxBytes = number('maxBytes');
+  const prefixBytes = number('prefixBytes');
+  if (maxBytes === null) missing.push('maxBytes');
+  if (prefixBytes === null) missing.push('prefixBytes');
+
+  const list = /IRON_LAW_REQUIRED\s*=\s*\[([^\]]*)\]/u.exec(text);
+  const ironLawRequired = list === null
+    ? null
+    : [...list[1].matchAll(/'([^']*)'|"([^"]*)"/gu)].map((match) => match[1] ?? match[2]);
+  if (ironLawRequired === null || ironLawRequired.length === 0) missing.push('IRON_LAW_REQUIRED');
+
+  return {
+    ok: missing.length === 0,
+    maxBytes,
+    prefixBytes,
+    ironLawRequired,
+    reason: missing.length === 0 ? '' : `${CANARY_RELATIVE} states no ${missing.join(', ')}`,
+  };
+}
+
+/**
+ * The ways the authored budget and the pins that name a canary limit disagree with it.
+ *
+ * A pin carrying `limit_key` is a three-way claim: the root document carries the number as
+ * text, the authored budget states it, and the canary enforces it. Comparing all three is
+ * what keeps the number from becoming decoration in two of the three places.
+ *
+ * @param {Object} manifest
+ * @param {Object} limits - the answer from readCanaryLimits
+ * @returns {Array<string>}
+ */
+function limitDrift(manifest, limits) {
+  const diffs = [];
+  const budget = manifest.budget || {};
+  const pins = manifest.pins || [];
+
+  for (const [key, field] of Object.entries(CANARY_LIMIT_FIELDS)) {
+    if (budget[key] !== undefined && budget[key] !== limits[field]) {
+      diffs.push(`budget ${key}: the manifest states ${budget[key]}, the canary enforces ${limits[field]}`);
+    }
+  }
+
+  for (const pin of pins) {
+    if (pin.limit_key === undefined) continue;
+    const field = CANARY_LIMIT_FIELDS[pin.limit_key];
+    const declared = budget[pin.limit_key];
+    if (field === undefined) {
+      diffs.push(`pin ${pin.id}: limit_key ${pin.limit_key} names no ceiling the canary states`);
+      continue;
+    }
+    if (declared === undefined || declared === null) {
+      diffs.push(`pin ${pin.id}: limit_key ${pin.limit_key} names no authored budget key`);
+      continue;
+    }
+    if (!(pin.texts || []).includes(String(declared))) diffs.push(`pin ${pin.id}: no pinned text carries the ${pin.limit_key} value ${declared}`);
+    if (declared !== limits[field]) diffs.push(`pin ${pin.id}: ${pin.limit_key} ${declared} differs from the canary's ${limits[field]}`);
+  }
+
+  for (const pin of pins) {
+    if (!Array.isArray(pin.requires)) continue;
+    const stated = pin.requires.map((entry) => String(entry).toLowerCase());
+    for (const required of limits.ironLawRequired) {
+      if (!stated.includes(required.toLowerCase())) diffs.push(`pin ${pin.id}: requires omits ${JSON.stringify(required)}, which the canary requires`);
+    }
+  }
+
+  return diffs;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 8. MAIN
 // ─────────────────────────────────────────────────────────────────────────────
 
 function report(errors) {
@@ -399,7 +512,7 @@ function main(argv, hooks = {}) {
   const composed = composeDerived({
     root: options.root,
     manifest,
-    history: history.ok ? history.bodies : [],
+    history: history.bodies,
   });
   if (!composed.ok) {
     // A root document that is not there is a precondition, not a drift: there is nothing
@@ -416,19 +529,31 @@ function main(argv, hooks = {}) {
     const next = { ...manifest, derived: composed.derived };
     (hooks.write || fs.writeFileSync)(options.manifest, `${JSON.stringify(next, null, 2)}\n`, 'utf8');
     console.log(`${TAG} WROTE: ${Object.keys(composed.derived.sections).length} sections, ${manifest.pins.length} pins, ${composed.derived.history.length} history bodies to ${options.manifest}`);
-    if (!history.ok) console.log(`${TAG} NOTE: ${history.reason}; the history key is empty`);
+    if (!history.available) console.log(`${TAG} NOTE: ${history.reason}; the history key is empty`);
     return 0;
   }
 
-  const compareHistory = history.ok;
-  const diffs = drift(manifest.derived || {}, composed.derived, { compareHistory });
-  if (diffs.length > 0) {
+  const compareHistory = history.available;
+  const derivedDiffs = drift(manifest.derived || {}, composed.derived, { compareHistory });
+  const limits = readCanaryLimits();
+  const limitDiffs = limits.ok ? limitDrift(manifest, limits) : [];
+
+  // Two headers, because the two remedies differ: a stale derived key is regenerated by
+  // `--write`, while a ceiling the canary does not share is an authored edit that no
+  // generator run can make.
+  if (derivedDiffs.length > 0) {
     console.error(`${TAG} FAIL: the manifest's derived key does not match ${manifest.root_file}`);
-    for (const line of diffs) console.error(`${TAG}   ${line}`);
+    for (const line of derivedDiffs) console.error(`${TAG}   ${line}`);
     console.error(`${TAG} Run: node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --write`);
-    return 1;
   }
-  if (!compareHistory) console.log(`${TAG} WARN: ${history.reason}; the history key was not compared`);
+  if (limitDiffs.length > 0) {
+    console.error(`${TAG} FAIL: the authored budget and pins disagree with ${CANARY_RELATIVE}`);
+    for (const line of limitDiffs) console.error(`${TAG}   ${line}`);
+  }
+  if (derivedDiffs.length > 0 || limitDiffs.length > 0) return 1;
+
+  if (!compareHistory) console.log(`${TAG} NOTE: history was not compared because no release tags are available (${history.reason})`);
+  if (!limits.ok) console.log(`${TAG} NOTE: the canary's ceilings were not compared because ${limits.reason}`);
   console.log(`${TAG} PASS: ${Object.keys(composed.derived.sections).length} sections, ${manifest.pins.length} pins, derived matches ${manifest.root_file}`);
   console.log(`${TAG} Budget: ${composed.derived.budget.prefix_end_bytes} / ${manifest.budget.prefix_bytes} bytes to the last anchor, ${composed.derived.budget.total_bytes} / ${manifest.budget.max_bytes} bytes total, ${composed.derived.history.length} history bodies`);
   return 0;
@@ -448,6 +573,8 @@ module.exports = {
   MANIFEST_PATH,
   composeDerived,
   dedupeBodies,
+  limitDrift,
   main,
+  readCanaryLimits,
   sourceStatus,
 };

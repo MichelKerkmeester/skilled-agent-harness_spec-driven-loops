@@ -7,8 +7,9 @@
 // The manifest claims to hold the template a consumer receives, so its claims have to be
 // checkable without trusting the file that makes them: the segmenter must tile the root
 // document, the generator must refuse a surface it does not recognise, every pin's
-// consumer must still hold the text the pin promises, and the rule-copy canary must find
-// its own AGENTS.md strings inside the pin set alone.
+// consumer must still hold the text the pin promises, the authored ceilings must be the
+// ones the canary enforces, and the rule-copy canary must find its own AGENTS.md strings
+// inside the pin set alone.
 //
 // The suite ships with the manifest into consumer repositories, whose root AGENTS.md is
 // their own file. The cases that read this repository's root document are therefore
@@ -31,7 +32,9 @@ const {
   MANIFEST_PATH,
   composeDerived,
   dedupeBodies,
+  limitDrift,
   main,
+  readCanaryLimits,
   sourceStatus,
 } = require('../agents-md-manifest.cjs');
 
@@ -297,6 +300,10 @@ test('pins: every consumer file still holds the text its pin promises', () => {
   for (const pin of manifest.pins) {
     const consumerPath = path.join(REPO_ROOT, pin.consumer);
     assert.ok(fs.existsSync(consumerPath), `${pin.id}: consumer ${pin.consumer} exists`);
+    assert.ok(
+      Array.isArray(pin.consumer_evidence) && pin.consumer_evidence.length > 0,
+      `${pin.id}: names the evidence its consumer still holds`,
+    );
     const consumerText = fs.readFileSync(consumerPath, 'utf8');
     for (const evidence of pin.consumer_evidence) {
       assert.equal(
@@ -304,6 +311,20 @@ test('pins: every consumer file still holds the text its pin promises', () => {
         true,
         `${pin.id}: ${pin.consumer} no longer holds ${JSON.stringify(evidence)}`,
       );
+    }
+  }
+});
+
+// A pin whose text nobody reads is a stale copy waiting for a rename to pass unnoticed, so
+// the strings are checked where the document itself puts them, not just their consumers.
+test('pins: every pinned string still sits inside the section it names', { skip: NOT_SOURCE }, () => {
+  const { sections } = segment(rootText, manifest.markers, manifest.sections);
+  for (const pin of manifest.pins) {
+    if (!pin.section) continue;
+    const section = sections.find((candidate) => candidate.id === pin.section);
+    assert.ok(section, `${pin.id}: names a shipped section`);
+    for (const text of pin.texts) {
+      assert.equal(section.body.includes(text), true, `${pin.id}: ${pin.section} no longer holds ${JSON.stringify(text)}`);
     }
   }
 });
@@ -410,6 +431,28 @@ test('history: the derived key holds one entry per distinct body', { skip: NOT_S
   }
 });
 
+// A shallow CI checkout fetches no tags. Its empty tag list is not a release that dropped a
+// body, so the comparison is skipped there and the gate still passes; this reproduces that
+// checkout with the source origin and no tags at all.
+test('history: a checkout holding no release tags skips the comparison and passes', { skip: NOT_SOURCE }, (t) => {
+  const dir = scratch(t);
+  fs.copyFileSync(path.join(REPO_ROOT, manifest.root_file), path.join(dir, manifest.root_file));
+  fs.copyFileSync(path.join(REPO_ROOT, manifest.router_file), path.join(dir, manifest.router_file));
+  const copy = copyManifest(dir);
+  const git = (...args) => spawnSync('git', ['-C', dir, ...args], { encoding: 'utf8' });
+
+  const init = git('init', '--quiet');
+  assert.equal(init.status, 0, `a throwaway repository is initialised: ${init.stderr}`);
+  const remote = git('remote', 'add', 'origin', manifest.source_repository);
+  assert.equal(remote.status, 0, `the origin names the source repository: ${remote.stderr}`);
+  assert.equal(git('tag', '--list').stdout.trim(), '', 'the checkout holds no release tags');
+
+  const result = runGenerator(['--check', '--root', dir, '--manifest', copy]);
+  assert.equal(result.code, 0, `exit 0, stdout=${result.out} stderr=${result.err}`);
+  assert.match(result.out, /history was not compared because no release tags are available/);
+  assert.match(result.out, /PASS: 44 sections/);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 9. CLASSIFIER
 // ─────────────────────────────────────────────────────────────────────────────
@@ -462,14 +505,52 @@ test('manifest: the template carries exactly one empty marked block after the la
   assert.deepEqual(blockLines(block.content), [manifest.markers.heading, manifest.markers.note], 'the shipped block is empty');
 });
 
-test('manifest: the measured budget is recorded and inside the authored ceilings', { skip: NOT_SOURCE }, () => {
+test('manifest: the measured budget is recorded and inside the canary ceiling', { skip: NOT_SOURCE }, () => {
+  const limits = readCanaryLimits();
+  assert.equal(limits.ok, true, `the canary's ceilings are readable: ${limits.reason}`);
+  assert.deepEqual(
+    Object.keys(manifest.budget).sort(),
+    ['anchor_count', 'last_anchor_id', 'max_bytes', 'prefix_bytes'],
+    'the authored budget names decisions; the document size is only ever measured',
+  );
+  assert.equal(manifest.budget.max_bytes, limits.maxBytes, 'the authored ceiling is the one the canary enforces');
+
   const total = Buffer.byteLength(rootText, 'utf8');
   assert.equal(manifest.derived.budget.total_bytes, total, 'the recorded document size is the live one');
-  assert.ok(total <= manifest.budget.max_bytes, `${total} bytes is inside ${manifest.budget.max_bytes}`);
-  assert.ok(total <= manifest.budget.template_bytes, `${total} bytes is inside the recorded template ceiling ${manifest.budget.template_bytes}`);
+  assert.ok(total <= limits.maxBytes, `${total} bytes is inside the canary's ${limits.maxBytes}-byte ceiling`);
 
   const { sections } = segment(rootText, manifest.markers, manifest.sections);
   const blast = sections.find((section) => section.id === 'blast-radius');
   assert.equal(manifest.derived.budget.prefix_end_bytes, blast.end, 'the recorded delivery-prefix end is the live one');
   assert.ok(blast.end <= manifest.budget.prefix_bytes, `the delivery prefix ends at ${blast.end}, inside ${manifest.budget.prefix_bytes}`);
+});
+
+test('limits: the canary states the ceiling and the concepts the pins claim', { skip: NOT_SOURCE }, () => {
+  const limits = readCanaryLimits();
+  assert.equal(limits.ok, true, limits.reason);
+  assert.equal(manifest.budget.prefix_bytes, limits.prefixBytes, 'the authored delivery prefix is the canary prefixBytes');
+
+  const ceiling = manifest.pins.find((pin) => pin.id === 'max-bytes');
+  assert.equal(ceiling.limit_key, 'max_bytes', 'the byte-ceiling pin names the budget key it is about');
+  assert.ok(ceiling.texts.includes(String(limits.maxBytes)), 'the pinned text is the ceiling the canary enforces');
+
+  const ironLaw = manifest.pins.find((pin) => pin.id === 'iron-law');
+  for (const concept of limits.ironLawRequired) {
+    assert.ok(ironLaw.requires.includes(concept), `the iron law pin requires ${JSON.stringify(concept)}`);
+  }
+
+  assert.deepEqual(limitDrift(manifest, limits), [], 'the manifest and the canary agree today');
+});
+
+test('limits: a budget ceiling the canary does not state exits 1', { skip: NOT_SOURCE }, (t) => {
+  const dir = scratch(t);
+  const copy = copyManifest(dir);
+  const edited = JSON.parse(fs.readFileSync(copy, 'utf8'));
+  edited.budget.max_bytes = 40960;
+  fs.writeFileSync(copy, `${JSON.stringify(edited, null, 2)}\n`);
+
+  const result = runGenerator(['--check', '--root', REPO_ROOT, '--manifest', copy]);
+  assert.equal(result.code, 1, `exit 1, stdout=${result.out} stderr=${result.err}`);
+  assert.match(`${result.err}${result.out}`, /max_bytes: the manifest states 40960, the canary enforces 32768/);
+  assert.doesNotMatch(result.err, /--write/, 'no regeneration is offered, because no write can change an authored ceiling');
 });

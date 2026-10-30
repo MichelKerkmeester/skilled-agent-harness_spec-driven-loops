@@ -101,7 +101,7 @@ $ wc -c AGENTS.md
 ## 3. SCOPE
 
 ### In Scope
-- Author every manifest key: 46 section ids with their match prefixes, levels and parents; the pins with their consumers; the runtime-copy expectations; the delivery budget; the block markers; the source repository URL.
+- Author every manifest key: 44 section ids with their match prefixes, levels and parents; the pins with their consumers; the runtime-copy expectations; the delivery budget; the block markers; the source repository URL.
 - Generate the `derived` key from the root `AGENTS.md` and `REPO RULES.md`: each shipped body with its sha256, the release-tag history and the shipped router rows.
 - Rewrite `AGENTS.md:3` and append the empty marked block.
 - Add `AGENTS.md` and `REPO RULES.md` to both path-filter lists of the spec-kit workflow.
@@ -133,12 +133,13 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | The segmenter splits the root file at every heading from level 1 to level 4 into 46 sections whose start bytes match the section table, and gives each a match prefix that finds it. |
+| REQ-001 | The segmenter splits the root file at every heading from level 1 to level 4 into 44 sections whose start bytes match the section table, and gives each a match prefix that finds it. |
 | REQ-002 | The generator exits 1 when the root file carries a heading no authored entry matches, and 1 when an authored entry matches nothing. |
-| REQ-003 | `--check` exits 1 after a one-byte edit to a temporary copy of the manifest's derived body, and 0 when the derived key matches the root file. |
+| REQ-003 | `--check` exits 1 after a one-byte edit to a temporary copy of the manifest's derived body, and 0 when the derived key matches the root file. It also exits 1 when an authored ceiling disagrees with the canary that enforces it. |
 | REQ-004 | Every pin names a consumer file that still contains the pin text, or whose own constant equals it, so the pin list cannot rot. |
 | REQ-005 | Every `AGENTS.md` string the rule-copy canary requires appears in the manifest's pin set. |
 | REQ-006 | `AGENTS.md:3` carries the measured wording from the parent phase spec, and the file ends with exactly one empty marked block. |
+| REQ-010 | `--check` does not fail on a checkout that holds no release tags: it reports that the history was not compared and compares everything else. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -169,7 +170,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | A release tag must exist on the branch for the history key to fill | The history is empty on a branch with no tags | The key is written empty and the check reports the count rather than failing |
+| Dependency | A release tag must exist on the branch for the history key to fill | The history is empty on a branch with no tags | The key is written empty, and `--check` prints that the history was not compared instead of failing on a tag list that holds nothing |
 | Risk | Every future `AGENTS.md` edit must be followed by a manifest write in the same commit or CI goes red | Medium: new friction on a file edited often | Named in the manifest's own `--check` message and in the parents' decisions |
 | Risk | The manifest's derived bodies duplicate about 28 KB of text | Low: a generated copy drifts silently | `--check` is the freshness gate and CI runs it |
 <!-- /ANCHOR:risks -->
@@ -216,7 +217,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 10. OPEN QUESTIONS
 
 - What is the manifest's final byte count? Report it from this child rather than estimating, and add pruning only if the measured number earns it.
-- Does a repository without any release tag still get a usable history key? The design says the history grows only between tags, so an untagged branch holds one body.
+- Does a repository without any release tag still get a usable history key? It gets an empty one, and `--check` reports that the history was not compared instead of failing: a shallow checkout passes, while a tag set that drops a body the manifest records still fails.
 <!-- /ANCHOR:questions -->
 
 ---

@@ -13,7 +13,6 @@
     "prefix_bytes": 16384,
     "max_bytes": 32768,
     "anchor_count": 21,
-    "template_bytes": 27899,
     "last_anchor_id": "anchor-blast-radius-management"
   },
   "history": {
@@ -650,13 +649,14 @@
       "kind": "exact",
       "section": "gate-3",
       "texts": [
-        "gate-3-classifier.ts"
+        "gate-3-classifier.ts",
+        "classifyPrompt"
       ],
       "consumer": ".skilled/skills/system-spec-kit/shared/gate-3-classifier.ts",
       "consumer_evidence": [
-        "'AGENTS.md'"
+        "export function classifyPrompt"
       ],
-      "why": "The gate names its machine contract by file, and the classifier decides the workspace root by that document, so the pointer and the reader have to keep naming each other."
+      "why": "The gate names its machine contract by file and by the function it exports, so the pointer and the exported symbol have to keep naming each other."
     },
     {
       "id": "child-exemption",
@@ -680,7 +680,7 @@
       ],
       "consumer": "REPO RULES.md",
       "consumer_evidence": [
-        "Gate 5 (§2)"
+        "**Gate 5 (§2)** makes reading this mandatory"
       ],
       "why": "The router names the gate that loads it and the gate names the router, so either name moving alone breaks the load path."
     },
@@ -701,7 +701,8 @@
       ],
       "consumer": "REPO RULES.md",
       "consumer_evidence": [
-        "§1 hard blocker"
+        "## 1. HOW TO USE THIS",
+        "## 4. SCOPE OF THIS DOCUMENT"
       ],
       "why": "Hundreds of citations elsewhere name these numbers, and the document carries §4 before §3, so the citation order is not the reading order."
     },
