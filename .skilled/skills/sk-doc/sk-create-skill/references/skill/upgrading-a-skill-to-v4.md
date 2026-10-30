@@ -9,7 +9,7 @@ trigger_phrases:
   - "remove repo parent skill"
 importance_tier: normal
 contextType: implementation
-version: 1.2.6.0
+version: 1.2.7.0
 ---
 
 # Upgrading a Customized Skill to v4
@@ -199,7 +199,7 @@ Stay on class S when the skill still has one job.
 
 A standalone root keeps `SKILL.md`, `ROUTER.md`, `graph-metadata.json`, and `leaf-manifest.config.json`. Its `SKILL.md` links to `./ROUTER.md`. It must not gain `mode-registry.json`, `hub-router.json`, `description.json`, or `command-metadata.json`. Repair that package with `/create:skill <skill-name> full-update` (or `reference-only` / `asset-only` for a scoped add). `/create:skill <skill-name> full-create` is only for a folder that does not exist yet.
 
-**Convert a single skill in place.** When the skill has one job and is still in a plain shape, or its machine router still sits inside `SKILL.md`, run `/doctor:sk-skill convert <name-or-path>`. It prints the plan first and writes only after your yes. It adds the four-part `version`, writes an `allowed-tools` list only after you approve one, moves the machine router section verbatim into the sibling `ROUTER.md` and links to it from Smart Routing. A plain skill is staged under its own name as a new root, and the workflow proves the reshaped prose kept every original body line. The write stops and restores the pre-edit bytes when the parsed router would come out different. Run `/doctor:sk-skill check <name-or-path>` first if you want the gap row by row without any write.
+**Convert a single skill in place.** When the skill has one job and is still in a plain shape, or its machine router still sits inside `SKILL.md`, run `/doctor:sk-skill convert <name-or-path>`. It prints the plan first and writes only after your yes. It adds the four-part `version`, writes an `allowed-tools` list only after you approve the list its plan proposes, moves the machine router section verbatim into the sibling `ROUTER.md` and links to it from Smart Routing. A plain skill is staged under its own name as a new root once you approve at least eight intent phrases, and the workflow proves the reshaped prose kept every original body line. The write stops and restores the pre-edit bytes when the parsed router would come out different. Run `/doctor:sk-skill check <name-or-path>` first if you want the gap row by row without any write.
 
 **Failure this prevents:** a hand conversion that passes the format gate but drops a routing intent, or one that leaves the skill with no `ROUTER.md` at all.
 
