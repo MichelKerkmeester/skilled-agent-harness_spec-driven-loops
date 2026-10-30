@@ -53,11 +53,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` exits 0
-- [ ] The converted pre-move fixture's `ROUTER.md` machine section is byte-equal to the post-move file and `parseRouter` before equals after
-- [ ] `package_skill.py --check --strict` on the converted fixture prints `Result: PASS`
-- [ ] A second `apply --apply` on the converted fixture changes no file hash
-- [ ] A target file that already exists is byte-identical after `apply --apply`
+- [x] `node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` exits 0
+- [x] The converted pre-move fixture's machine section is byte-equal to the post-move file, `parseRouter` text output deep-equals, and actual routing semantics are unchanged
+- [x] `package_skill.py --check --strict` on the converted fixture prints `Result: PASS`
+- [x] A second `apply --apply` on the converted fixture changes no file hash
+- [x] A target file that already exists is byte-identical after `apply --apply`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -73,7 +73,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase planned | Pending | spec.md, plan.md, tasks.md authored |
+| Phase implementation | Complete | Converter test: 5/5; route validator: 18 routes; drift guards: 4/4; golden strict gate: PASS |
 
 ### Deviations and findings
 

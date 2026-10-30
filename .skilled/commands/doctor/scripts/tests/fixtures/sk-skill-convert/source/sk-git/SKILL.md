@@ -1,0 +1,611 @@
+---
+name: sk-git
+description: "Git: numbered worktrees, conventional commits, PRs, merge/rebase, and finish; single-skill workflow guidance with no spec."
+allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
+argument-hint: "[worktree|commit|finish]"
+version: 1.11.5.0
+---
+
+<!-- Keywords: git-workflow, git-worktree, create-worktree, numbered-worktree, restructure-worktrees, worktree-prefix, wt-branch, worktree-branch, branch-naming-allocator, skilled-branch, branch, commit, conventional-commits, pull-request, PR, merge, rebase, finish-work, integrate-changes, commit-hygiene, workspace-isolation, version-control, github, issues, pr-review, gitkraken, gitlens, gitlens-launchpad, gitlens-commit-composer, cross-platform-pr, multi-provider-issue -->
+<!-- Owns: git worktree / create worktree / numbered worktree / restructure worktrees / worktree prefix / wt/ branch / worktree branch / branch naming allocator / skilled branch / branch / commit / conventional commits / pull request / PR / merge / rebase / finish work / integrate changes / git workflow / gitkraken / gitlens / gitlens launchpad / gitlens commit composer / cross-platform pr / multi-provider issue. Does NOT own: spec folders, memory, continuity, save context (system-spec-kit). Code implementation, tests (sk-code). -->
+
+# Git Workflows - Git Development Guide
+
+Unified workflow guidance across workspace isolation, commit hygiene, and work completion.
+
+## 1. WHEN TO USE
+
+### When to Use This Guide
+
+Use this guide when starting new git-based work, following a complete git workflow (setup, work,
+complete), unsure which git skill to use, or seeking git best practices (branch naming, commits).
+
+### When NOT to Use
+
+- Simple `git status`/`git log` queries (use Bash directly)
+- Non-git version control systems
+
+### Keyword Triggers
+
+**Owned:** `git worktree`, `worktree`, `create worktree`, `numbered worktree`, `restructure worktrees`, `worktree prefix`, `wt/ branch`, `worktree branch`,
+`branch naming allocator`, `skilled branch`, `branch`, `commit`, `conventional commits`, `pull request`, `pr`, `pr review`, `merge`, `rebase`,
+`finish work`, `integrate changes`, `git workflow`, `github`, `issue`, `gitkraken`, `gitlens`, `gitlens launchpad`, `commit composer`
+
+**Not owned:** spec folders / memory / continuity / save context → `system-spec-kit`. Code implementation / writing tests → `sk-code`.
+
+---
+
+## 2. SMART ROUTING
+
+sk-git is a standalone skill, so the skill advisor scores its owned keywords against the request and selects it here.
+A request that names a worktree, a commit, a pull request, a merge, a finish, GitKraken or GitLens lands here, while spec folders and code implementation belong elsewhere.
+
+`references/quick-reference.md` loads first on every invocation, then the winning intent loads its phase reference.
+`references/gitkraken-mcp-integration.md` follows for GitKraken and GitLens, and `references/shared-patterns.md` carries what every phase shares.
+
+A request whose scores stay near zero loads the shared patterns and asks a disambiguation checklist instead of guessing.
+
+The tables and the pseudocode sit in the final `MACHINE ROUTER` section of this file.
+
+---
+
+## 3. HOW IT WORKS
+
+### Workspace Choice Enforcement
+
+**MANDATORY**: The AI must NEVER autonomously choose between a git worktree and the current branch, and must NEVER create a branch directly with `git branch`, `git checkout` plus `-b`, or `git switch` plus `-c`.
+
+When a git workspace trigger fires, the AI MUST ask the user to explicitly choose:
+
+| Option                        | Description                              | Best For                        |
+| ----------------------------- | ---------------------------------------- | ------------------------------- |
+| **A) Create a git worktree**  | Isolated workspace in separate directory | Parallel work, complex features |
+| **B) Work on current branch** | No new worktree created                  | Trivial changes, exploration    |
+
+**AI Behavior**: ASK before proceeding, WAIT for explicit selection (A/B), NEVER assume, RESPECT choice for the session unless the user requests a change. Create any needed branch only through `git worktree add -b ...`.
+
+### Launch-Wrapper Worktrees vs the In-Session Ask-First Rule
+
+The ask-first rule above governs **in-session** decisions: once running, an AI must not autonomously create a worktree.
+`.skilled/bin/worktree-session.sh` is a **launch wrapper** you opt into at the shell, and it is different. It runs *before* the AI starts, so it does not violate the ask-first rule. It places each top-level session in its own worktree + branch + isolated MCP databases, and it execs in place for an orchestrated child with `AI_SESSION_CHILD=1` or for a session already inside a linked worktree.
+
+**Deliberate per-session deps override.** The wrapper **symlinks** the shared `node_modules`/`dist` into each worktree and gives each its own MCP DBs (via `SPEC_KIT_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`), rather than paying an install per session.
+
+> **Known gap.** Wholesale-linked dependency trees mean a wrapper session reads the main checkout's first-party code, which is why strict-validate and metadata regeneration run on `main`. Detail: [worktree-workflows.md](references/worktree-workflows.md) §9.
+
+### Continuous Integration: the always-current live branch
+
+Each launch-wrapper session **autosyncs** every commit to one shared **live branch**, the primary checkout's own branch. The IDE fast-forward-follows it, so you see active work seconds behind each commit and never an uncommitted buffer.
+Configured by `SPECKIT_LIVE_BRANCH`, `SPECKIT_AUTOSYNC`, the `post-commit` publish through `git-sync.sh` and its non-force fetch → rebase-or-abort push: [continuous-integration.md](references/continuous-integration.md).
+
+### Remote Push Permission Enforcement
+
+**MANDATORY**: The AI must NEVER push a branch to `origin` outside the remote allowlist without a fresh, explicit go-ahead for THAT push. Allowlist, what counts as a go-ahead, `SPECKIT_ALLOW_REMOTE_PUSH`, the [pre-push hook](../../scripts/git-hooks/pre-push) backstop and the launch-wrapper autosync exception: [remote-branch-policy.md](references/remote-branch-policy.md).
+
+### Preflight Advisory: the rules reach you at command time
+
+The rules in `hard-rules.json` beside this file are executed, not just documented: a preflight
+advisory hook evaluates every visible `git` command against live repository state, fires on the
+specific risky state rather than a bare verb, and prints the matching rule as typed, advising and
+never blocking, with the pre-commit, commit-msg and pre-push hooks enforcing.
+
+Seven runtimes share it, and `SKGIT_ADVISORY=0`, `SKGIT_ADVISORY_SKIP=<rule-id>` or a
+`SKGIT_ADVISORY_SKIP=commit`-style prefix silences it. Delivery and fail-open:
+[scripts/hooks/README.md](scripts/hooks/README.md). Rule engine and tests:
+[scripts/lib/README.md](scripts/lib/README.md). Operator scenario:
+[manual-testing-playbook/](manual-testing-playbook/manual-testing-playbook.md).
+
+### Repository Settings: /doctor:git
+
+A repository adapts sk-git through git config and `.sk-git/`, never by editing this skill.
+`/doctor:git` (`.skilled/commands/doctor/git.md`) changes and checks those settings:
+
+- `hooks` switches an optional pre-commit or pre-push gate on or off.
+- `standards` copies the commit, PR and branch rule templates into `.sk-git/` and edits them.
+- `setup` runs eleven read-only checks and names one repair per failure.
+
+When asked whether sk-git is set up or why a rule is not enforced, run `/doctor:git setup` before reading config by hand.
+
+### Git Development Lifecycle Map
+
+Git development flows through 3 phases:
+
+| Phase | Goal | Prevents | Output | See |
+|-------|------|----------|--------|-----|
+| **1. Workspace Setup** | Isolate work in a short-lived temp branch | Branch juggling, stash chaos | Clean, focused workspace | [worktree-workflows.md](./references/worktree-workflows.md) |
+| **2. Work & Commit** | Analyze changes, filter artifacts, write Conventional Commits | Bad commits, unclear history | Clean commit history | [commit-workflows.md](./references/commit-workflows.md) |
+| **3. Complete & Integrate** | Merge, create a PR, or discard work (tests-gated) | Untested code merged | Work integrated or discarded | [finish-workflows.md](./references/finish-workflows.md) |
+
+### Phase Transitions
+Setup (worktree created) → Work → Complete (committed, tests passing) → back to Setup (integrated).
+
+### Workflow Selection Guide
+- New feature/fix → Phase 1. Quick fix → Phase 2.
+- Ready to commit → Phase 2. No changes yet → keep coding.
+- Tests pass → Phase 3. Failing → return to Phase 2.
+
+### Common Workflow Patterns
+
+- **Full**: all 3 phases.
+- **Quick fix**: skip Phase 1.
+- **Parallel**: repeat Phases 1-2 per feature, then Phase 3 for each.
+
+---
+
+## 4. RULES
+
+### ✅ ALWAYS
+
+1. **Use deterministic conventional commit format** - All authored commits follow `type(scope): summary`. Preserve the explicitly exempt Git-generated subjects defined below
+2. **Create worktree for parallel work** - Never work on multiple features in the same worktree
+3. **Verify branch is up-to-date** - Pull latest changes before creating PR
+4. **Name worktree-created branches with the numbered-worktree grammar** - `worktrees/{NNN}-{slug}` for a worktree-backed branch, `branches/{NNN}-{slug}` for a dedicated branch with none.
+    - Each namespace counts 001..999 independently, sequential, never skipped or reused.
+    - Never hand-compute `{NNN}`. Allocate through `.skilled/skills/sk-git/scripts/worktree-naming.sh` (`create`, `create-branch` or `allocate`), which locks and seeds each counter from its high-water mark plus every matching ref.
+    - The script header carries the full grammar, the relocatable `{base}` rule and the reserved `skilled/v*`, `main` and `backup/` lanes.
+    - This is distinct from the launch wrapper's unnumbered `work/{runtime}/{slug}` lane (see above).
+5. **Reference the spec packet in a `Spec:` trailer** - Put the packet path in a `Spec:` trailer shaped `Spec: <track>/<packet>[/<phase>...]`: the packet's path below `specs/`, with nested phases included and without the `specs/` segment itself.
+    - The packet query is anchored on that line, `git log -E --grep='^Spec: sk-git/028'`, so a leading `specs/` makes every commit for that packet unfindable.
+    - Omit the line when the commit is not packet work.
+    - `Refs:` is for external links only: issues, pull requests and URLs.
+6. **Clean up after merge** - Delete local and remote feature branches after successful merge
+7. **Squash commits for clean history** - Use squash merge for feature branches with many WIP commits
+8. **Provision a worktree before you trust anything it reports** - Every dependency tree here is gitignored, so a fresh worktree has none of them and fails in ways that read as broken code. A build can exit 0 having compiled nothing, and a hub-conformance check that copies a skill into a temp directory loses that skill's dependencies and reports a correct hub broken.
+    - `worktree-naming.sh create` installs them, and `--no-provision` opts out. `worktree-naming.sh provision [dir]` fixes a worktree made another way. Both are idempotent.
+    - Both also link the operator's private `local-*` commands in from the primary checkout, because git ignores them and a new worktree would otherwise start without them. An existing path is never replaced.
+    - `provision` rebuilds a listed build output when it is missing or when its tracked sources changed since provisioning last built it, so it also refreshes a checkout whose built plugin went stale after a pull.
+    - Provisioning **installs** by default, but what binds is narrower than the technique: **no path shared into a worktree may resolve a repository-internal reference back to the source checkout.**
+    - Two mechanisms break that, and each has its own remedy. A package's `node_modules` carries relative workspace self-links that re-anchor through wherever the link physically sits, so a wholesale link leaves the worktree reading the source checkout's code however much it edits its own.
+    - Share such a tree by linking its third-party entries individually and recreating each self-link relative to the worktree's own copy.
+    - The second mechanism is a compiled entry point reached through a link. It compares the path it was invoked with against the location it derives from its own file, finds them different, and exits 0 having done nothing. Invoke such a script by its canonical path, or give the worktree its own build.
+    - A dependency tree that does neither may be linked wholesale. `worktree-naming.sh provision` installs, which satisfies the invariant the blunt way.
+    - On a large reorg, still do file/`git mv` ops in the worktree and run the spec-kit toolchain and ALL metadata regeneration on `main` after merge. See [large-reorg-playbook.md](references/large-reorg-playbook.md).
+9. **Scan for gitignored leftovers after a rename wave** - After `git mv` + merge, detect dirs with disk files but 0 tracked files (`git ls-files <dir>` empty, `git status --porcelain --untracked-files=all` clean) and `rm -rf` them, stale cruft left by `git mv`.
+10. **Verify rename history is preserved** - After a rename wave confirm `R`-status (not delete+add) before commit, and after merge confirm the tree has no old+new duplicate folders.
+11. **GitHub release bodies never start with an H1** - The release title field already renders `vX.X.X.X — Title`, so a body-leading `# vX.X.X.X` duplicates it. The H1 belongs ONLY to the repo's changelog md.
+    - When you publish from a changelog, strip the leading H1 (and blank lines) into a temp notes file before `gh release create/edit --notes-file`.
+    - Full mechanics: [finish-workflows.md](references/finish-workflows.md) Step 6.
+12. **Route GitKraken MCP's local-mutation tools back to Bash** - GitKraken MCP (`gitkraken.gitkraken_*`) exposes `git_add_or_commit`, `git_push`, `git_pull`, `git_fetch`, `git_checkout`, `git_branch`, `git_worktree`, and `git_stash`. These duplicate mutations already gated by NEVER #2, ALWAYS #4, and the commit-message logic, so never call them as a Bash substitute.
+    - Reserve the MCP surface for GitLens AI workflows and cross-platform issue/PR/repository ops with no local equivalent.
+    - Full detail: [gitkraken-mcp-integration.md](references/gitkraken-mcp-integration.md) §2.
+13. **Honor an authorized operator's explicit direct-push directive on a protected branch** - Protected-branch rules primarily gate EXTERNAL contributors. When the operator holds bypass rights and explicitly asks for one, do it.
+    - Do NOT default to a PR detour, re-ask, or frame the bypass as a problem.
+    - Still apply full commit hygiene: scope to intended files, never blind `git add -A`, and use Conventional Commits.
+    - Report plainly that the push bypassed protection. Bypass authority lives in operator memory, not this codebase-agnostic skill.
+14. **Commit substantial work before an autostash-prone operation** - `git merge|pull|rebase --autostash` (or `pull.rebase=true`/`rebase.autoStash=true`) stashes the tree, runs the operation, then re-applies it. A re-apply CONFLICT strands the changeset behind an easily-missed warning, one `git stash drop`/`clear`/gc from permanent loss.
+    - Before you merge, pull or rebase a large or shared-branch changeset, COMMIT it, or stash and pop it yourself, instead of `--autostash`.
+    - The `post-merge`/`post-rewrite` guard ([git-hooks/lib/autostash-orphan-guard.sh](../../scripts/git-hooks/lib/autostash-orphan-guard.sh)) is a safety net, not a substitute: it anchors autostashes under `refs/autostash-rescue/<sha>` and alerts visibly if not re-applied.
+    - Recover with `git stash pop` and commit immediately, before any `git stash drop/clear`.
+15. **Reconcile the primary checkout after pushing a detached/worktree HEAD to a shared branch** - `git push origin HEAD:<branch>` from a detached HEAD or a worktree advances the remote but not the primary checkout's local ref. The work is safe on origin yet invisible there.
+    - Say so plainly and hand over the safe sync recipe.
+    - Never stash, rebase or reset a primary tree that is dirty, diverged or concurrently owned.
+    - See [finish-workflows.md](references/finish-workflows.md) Step 5b.
+16. **Let launch-wrapper sessions autosync, and never hand-roll the publish** - Under the continuous-integration model, autosync publishes every commit to the live branch through `git-sync.sh`.
+    - Never `git push origin HEAD:<live>` or rebase onto the live branch by hand: that risks the invariants the sync protects.
+    - If autosync prints a conflict, resolve it per its message and never force it.
+    - The primary checkout follows fast-forward-only and is never worked in. Full contract: [continuous-integration.md](references/continuous-integration.md).
+17. **Reap worktrees before branches, and only reaper-owned lanes** - Remove the worktree (`git worktree remove`) before its branch. A checked-out branch cannot be deleted.
+    - `.skilled/bin/worktree-reaper.sh` auto-reaps `work/{runtime}/{slug}` pairs that are clean, merged and marker-dead.
+    - With `--numbered` it also reaps an unlocked, clean, merged, stash-free `worktrees/NNN-slug` worktree idle 48 hours, process-free and holding no non-regenerable ignored path (any under `specs/` counts), never forced.
+    - A session-start sweep runs the numbered reaper at most every 6 hours, and `SPECKIT_WORKTREE_AUTOREAP=0` stops it. All else stays report-only.
+    - Naming is enforced by a migration-tolerant pre-push hook on new remote branches only, never `skilled/v*`.
+18. **Ask before every push to a branch outside the remote allowlist** - See [Remote Push Permission Enforcement](#remote-push-permission-enforcement) above for mechanics. A prior approval never carries forward to the next push. Allowlist: [remote-branch-policy.md](references/remote-branch-policy.md).
+
+### Commit Message Logic (Human-Clear and AI-Deterministic)
+
+Use this logic whenever an AI writes or rewrites a commit message: the subject explains the
+outcome in `git log --oneline`, and the body explains the reason without packet knowledge or
+jargon. The hooks enforce structure, not clarity. The structure they enforce is the "Enforced
+rules" JSON block in [commit-message-template.md](assets/commit-message-template.md) §7, read by
+[validate-message.mjs](scripts/validate-message.mjs) at commit time, at push time, in the agent
+gate and in CI. PR descriptions follow the block in [pr-template.md](assets/pr-template.md) and
+new branch names the block in [worktree-checklist.md](assets/worktree-checklist.md). Each repository
+supplies its own copies (`.sk-git/` or git config `skgit.contractDir`). A repository with no rules
+block is not checked. There is no bypass: when a rule is wrong, change the template.
+
+#### 1. Classify Special Git Messages
+
+Preserve Git-generated subjects unchanged when they begin with `Merge `, `Revert "`, `fixup! `,
+`squash! `, or `amend! `. Intentional checkpoints are not exempt: write them as
+`chore(wip): checkpoint <specific state>`.
+
+#### 2. Authored Subject Contract
+
+Format:
+
+```text
+type(scope)[!]: imperative summary
+```
+
+Hard requirements:
+
+- Type and scope are required. Scope is lowercase kebab-case, a stable subsystem name, never a
+  packet, phase, task, or other numeric-only identifier.
+- Summary starts with a lowercase imperative verb, names the changed behavior or artifact (not
+  the work process), ends without punctuation, has no repeated spaces, and is specific enough to
+  distinguish this commit from adjacent work.
+- Subject has an 80-character target (`subject.length-target`, warning) and a 100-character hard limit (`subject.max-length`).
+- A `!` requires a `BREAKING CHANGE:` footer.
+
+Do not use vague summaries like `update`, `changes`, `cleanup`, or `work in progress`.
+
+Move process metadata (packet numbers, phases, waves, lanes, task counts, model names, review
+rounds, remediation labels, verification claims) to the body or `Refs:` line unless part of the
+behavior being changed.
+
+#### 3. Type Selection Order
+
+Use first match:
+
+1. `release`: publishing a release.
+2. `docs`: every substantive path is documentation.
+3. `fix`: existing behavior was incorrect, unsafe, or failing.
+4. `feat`: adds new usable behavior or support.
+5. `perf`: measured performance improves, behavior unchanged.
+6. `refactor`: structure changes without behavior changes.
+7. `test`: only tests or fixtures change.
+8. `ci`: only CI workflow behavior changes.
+9. `build`: only build or dependency mechanics change.
+10. `style`: only formatting changes.
+11. `revert`/`merge`: authored revert or merge messages.
+12. `chore`: no more specific type applies.
+
+Tests and documentation shipped with a feature or fix inherit that feature or fix type. Do not
+choose `chore` merely because the commit touches many files.
+
+#### 4. Scope Selection Order
+
+First match, by logical owner:
+
+1. `.skilled/skills/<name>/...` -> `<name>`.
+2. `.skilled/scripts/git-hooks/...` or installer -> `git-hooks`.
+3. `AGENTS.md` or runtime agent definitions -> `agents`.
+4. `.skilled/commands/...` -> `commands`.
+5. `opencode.json`, `.utcp_config.json`, or equivalent config -> `config`.
+6. Root `README.md` only -> `readme`.
+7. Spec-doc or generated packet-metadata maintenance only -> `specs`.
+8. Documentation spanning multiple owners -> `docs`.
+9. A dominant top-level component -> its lowercase name.
+10. Inseparable cross-repository change -> `repo`.
+
+Use the full skill folder name as the canonical scope. For example, `.skilled/skills/system-spec-kit/...` uses `system-spec-kit`. Files in `.skilled/repo-rules/` use `repo-rules`. The template's `subject.scope-alias` rule rejects short forms listed in its `scopeAliases` map.
+
+If two independent owners remain, split the commit instead of inventing a combined scope.
+
+#### 5. Summary Construction
+
+Apply this sequence:
+
+1. State the primary outcome of the staged diff.
+2. Start with a precise imperative action (`add`, `remove`, `route`, `clarify`, etc.) naming the
+   affected behavior or artifact.
+3. Add the visible effect when the object alone is ambiguous.
+4. Remove chronology, review claims, and duplicate Conventional Commit prefixes.
+5. Read only the subject and ask: "Would a maintainer understand what changed without opening
+   the packet?" If not, rewrite it.
+
+#### 6. Body Contract
+
+Every authored commit carries a body: at least one prose line, separated from the subject by a
+blank line, that says why the change exists. The number of staged paths never excuses a missing
+body, because a later search reads the body to learn the reason, and a one-path commit is
+searched as often as a large one. Trailers such as `Spec:` and `Commit-Id:` are machine data and
+do not count as a body. Only the Git-generated subjects in §1 are exempt.
+
+Use the full structure below when any condition applies:
+
+- The change fixes a regression, failure, race, security issue, or data risk, or it is breaking or has migration requirements. A breaking commit MUST carry the `Context`, `Changes` and `Verification` sections below. They are required, not preferred.
+- The reason or tradeoff is not obvious from the subject.
+- The commit spans code plus generated metadata or multiple repository areas.
+
+Required structure for breaking commits. Recommended for the other cases above:
+
+```text
+Context: <plain-language problem or reason>
+
+Changes:
+- <observable change>
+- <observable change>
+
+Verification:
+- `<command>` -> <observed result>
+
+Spec: <track>/<packet>[/<phase>...]
+Commit-Id: NNNNNNN
+Refs: <issue, PR or URL>
+```
+
+The trailer paragraph is the commit's final paragraph, contiguous and separated from the prose
+above it by a blank line. The `Commit-Id:` ordinal is stamped by the `prepare-commit-msg` hook
+and never typed by hand. An amend keeps its id, unless the message is replaced with `-m`, which mints a fresh one. A cherry-pick re-mints a fresh one. A rebase keeps the id, and the commit it replaced is recognised as a copy by its author email and author date.
+
+Use only sections that carry useful information, explain internal terms on first use, and state
+in verification what actually ran and its result.
+
+#### 7. Deterministic Self-Check
+
+Before committing, verify message format (§1-2), type (§3), scope (§4), summary (§5), body
+(§6) and the final trailer paragraph satisfy their rule, and that the same staged diff would
+produce the same subject again.
+
+### ⛔ NEVER
+
+1. **Force push to main/master** - Protected branches must never receive force pushes
+2. **Never create branches directly** - Via `git worktree add -b ...`. Never `git branch`, `git checkout` plus `-b`, or `git switch` plus `-c`
+3. **Commit directly to protected branches WITHOUT operator authorization** - Default to feature branches + PRs, except when the operator has bypass authority and explicitly directs a direct commit/push (see ALWAYS #13). Don't force a PR detour.
+4. **Leave worktrees uncleaned** - Remove worktree directories after merge
+5. **Commit secrets or credentials** - Use environment variables or secret management
+6. **Create PRs without description** - Always include context, changes, and testing notes
+7. **Merge without CI passing** - Wait for all checks to complete
+8. **Rebase public/shared branches** - Only rebase local, unpushed commits
+9. **Bypass a git hook with `--no-verify`** - Never skip commit-msg, pre-commit, or pre-push validation this way. If a message rule is genuinely wrong, change the rules block in the template. `--no-verify` only defers the block to pre-push and CI
+10. **Amend a commit that has already been pushed or merged** - Rewriting published history breaks other clones and any autosynced live branch. Commit a new change (or `git revert`) instead once it's left the local repo
+11. **Hand-write or edit a `Commit-Id:` value** - The `prepare-commit-msg` hook stamps the ordinal from the allocator. A typed or edited id collides with history, so the commit-msg hook refuses it
+
+### ⚠️ ESCALATE IF
+
+1. **Merge conflicts cannot be auto-resolved** - Needs a human decision on which changes to keep
+2. **GitHub MCP returns authentication errors** - Token may be expired or permissions insufficient
+3. **Worktree directory is locked or corrupted** - May require manual cleanup with `git worktree prune`
+4. **Force push to protected branch is requested** - Requires explicit approval and understanding of consequences
+5. **CI/CD pipeline fails repeatedly** - May indicate infrastructure issues beyond code problems
+6. **Branch divergence exceeds 50 commits** - Suggests an incremental merging strategy
+7. **Submodule conflicts detected** - Updates require careful coordination
+8. **Strict-validate run inside a bare worktree** - Its exit code is meaningless (ALWAYS #8: missing gitignored deps). Re-run on `main` post-merge before trusting any result. See [large-reorg-playbook.md](references/large-reorg-playbook.md).
+
+---
+
+## 5. REFERENCES
+
+### Core Workflows
+| Document | Purpose | Key Insight |
+|----------|---------|-------------|
+| [worktree-workflows.md](references/worktree-workflows.md) | 7-step workspace creation | Directory selection, branch strategies, large-reorg caveats |
+| [large-reorg-playbook.md](references/large-reorg-playbook.md) | Step-ordered large rename/reorg runbook | Worktree-only renames. Toolchain + DB run on main |
+| [commit-workflows.md](references/commit-workflows.md) | 7-step commit workflow | Artifact filtering, Conventional Commits, scoped-staging |
+| [finish-workflows.md](references/finish-workflows.md) | 5-step completion flow | PR creation, cleanup, merge |
+| [continuous-integration.md](references/continuous-integration.md) | Always-current live branch | Autosync each commit. The IDE follows |
+| [shared-patterns.md](references/shared-patterns.md) | Reusable git patterns | Error recovery, conflict resolution, large-reorg verification |
+| [quick-reference.md](references/quick-reference.md) | Command cheat sheet | Common operations |
+| [github-mcp-integration.md](references/github-mcp-integration.md) | GitHub MCP remote ops | PRs, issues, CI/CD via Code Mode |
+| [gitkraken-mcp-integration.md](references/gitkraken-mcp-integration.md) | GitKraken MCP cross-platform ops | GitLens AI, cross-platform PRs/issues |
+
+### Assets
+| Asset | Purpose |
+|-------|---------|
+| [worktree-checklist.md](assets/worktree-checklist.md) | Worktree creation checklist |
+| [commit-message-template.md](assets/commit-message-template.md) | Commit format guide |
+| [pr-template.md](assets/pr-template.md) | PR description template |
+
+---
+
+## 6. SUCCESS CRITERIA
+
+### Workspace Setup Complete
+- Workspace prepared in the selected mode (`git worktree` or current branch), user-confirmed
+- Any worktree lives in the correct directory (`.worktrees/` or user-specified), branch named per convention (`worktrees/{NNN}-{slug}` or `branches/{NNN}-{slug}`)
+
+### Commit Complete
+- All changes reviewed, categorized, and artifact-filtered (build files, coverage, etc.). Only public-value files staged
+- Commit message follows Conventional Commits format
+
+### Integration Complete
+- Tests pass and branch up-to-date before merge/PR
+- PR description includes context, changes, and testing notes
+- Worktree cleaned up and local/remote feature branches deleted after merge (if used)
+
+### Quality Gates
+
+| Gate | Criteria | Blocking |
+|------|----------|----------|
+| **Pre-commit** | Artifacts excluded and staged-content gates pass | Yes |
+| **Commit-msg** | Message structure passes. Clarity warnings reviewed | Structure only |
+| **Pre-merge** | Tests pass, branch up-to-date | Yes |
+| **Pre-PR** | Description complete, CI passing | Yes |
+| **Post-merge** | Worktree removed, branches cleaned | No |
+
+---
+
+## 7. INTEGRATION POINTS
+
+### Framework Integration
+
+This skill operates within the framework in [AGENTS.md](../../../AGENTS.md):
+- **Gate 2**: Skill routing via `.skilled/bin/skill-advisor.cjs`
+- **Gate 3**: File modifications require the spec folder question (AGENTS.md, HARD BLOCK)
+- **Tool Routing**: AGENTS.md Section 5 decision tree
+- **Continuity**: see Continuity Integration below
+
+### Continuity Integration
+
+Recovery sequence (widen with ripgrep only once packet-native sources are exhausted):
+
+```text
+// Recover the active packet before planning git work
+/speckit:resume
+// Recovery order: handover.md -> _memory.continuity -> spec docs
+
+// If packet-native sources are exhausted, widen with the ripgrep recipe in
+// system-spec-kit/references/retrieval/retrieval-conventions.md §2.1.
+// Exit 1 is a clean no-hit, not an error.
+rg --no-config --json --fixed-strings --ignore-case \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
+  -- 'branch strategy decisions' specs .skilled
+
+// After major commits or workflow completion
+// Save context with: /speckit:save or "save context to [spec-folder]"
+```
+
+---
+
+## 8. REFERENCES AND RELATED RESOURCES
+
+The router discovers reference, asset, and script docs dynamically from `references/`, `assets/`, and `scripts/`. See §5 for the core set.
+
+### Manual Testing Playbook
+
+Manual testing scenarios live in `manual-testing-playbook/manual-testing-playbook.md`, the root index that lists every category and scenario, plus one file per scenario under `manual-testing-playbook/<topic>/<scenario>.md`.
+
+Validate the structure from the repository root with `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package sk-git`, then run the scenarios in an AI runtime for behavioral checks.
+
+### Feature Catalog
+
+A companion `feature-catalog/feature-catalog.md` lists every sk-git capability with its entry point and source files.
+
+Related: `system-spec-kit` (packet recovery, continuity), `sk-doc` (PR, release, documentation quality).
+
+---
+
+## 9. MACHINE ROUTER
+
+The routing detail behind the short summary: the loading levels and the router pseudocode.
+
+### Resource Loading Levels
+
+| Level       | When to Load             | Resources                  |
+| ----------- | ------------------------ | -------------------------- |
+| ALWAYS      | Every skill invocation   | Quick reference baseline   |
+| CONDITIONAL | If intent signals match  | Setup/commit/finish docs   |
+| ON_DEMAND   | Only on explicit request | Extended patterns/templates|
+
+### Smart Router Pseudocode
+
+Authoritative routing logic: scoped loading, weighted intent scoring, ambiguity handling.
+
+```python
+import re
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/quick-reference.md"
+
+INTENT_SIGNALS = {
+    "WORKSPACE_SETUP": {"weight": 4, "keywords": ["worktree", "create worktree", "numbered worktree", "restructure worktrees", "workspace", "parallel work"]},
+    "COMMIT": {"weight": 4, "keywords": ["commit", "staged", "message", "conventional commit"]},
+    "FINISH": {"weight": 4, "keywords": ["finish", "merge", "pr", "pull request", "integrate"]},
+    "GITKRAKEN_MCP": {"weight": 4, "keywords": ["gitkraken", "gitlens", "launchpad", "commit composer", "cross-platform pr", "multi-provider issue", "gitlens start review", "gitlens start work"]},
+    "SHARED_PATTERNS": {"weight": 3, "keywords": ["convention", "pattern", "reference", "branch naming"]},
+}
+
+NOISY_SYNONYMS = {
+    "WORKSPACE_SETUP": {"dirty workspace": 2.2, "unclean": 1.4, "mixed changes": 1.5},
+    "COMMIT": {"half-staged": 2.0, "boundary": 1.4, "split commit": 1.4},
+    "FINISH": {"ship": 1.5, "hotfix": 1.6, "trunk": 1.8, "minimal risk": 1.4},
+}
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm base branch (main/master/trunk)",
+    "Confirm whether staged/unstaged changes should be split",
+    "Provide required PR policy (squash, template fields, checks)",
+    "Confirm hotfix urgency versus cleanup tolerance",
+]
+
+RESOURCE_MAP = {
+    "WORKSPACE_SETUP": ["references/worktree-workflows.md", "assets/worktree-checklist.md"],
+    "COMMIT": ["references/commit-workflows.md", "assets/commit-message-template.md"],
+    "FINISH": ["references/finish-workflows.md", "assets/pr-template.md", "references/github-mcp-integration.md"],
+    "GITKRAKEN_MCP": ["references/gitkraken-mcp-integration.md"],
+    "SHARED_PATTERNS": ["references/shared-patterns.md"],
+}
+
+LOADING_LEVELS = {
+    "ALWAYS": [DEFAULT_RESOURCE],
+    "ON_DEMAND_KEYWORDS": ["full git flow", "all templates", "full reference", "git worktree", "create worktree", "numbered worktree", "restructure worktrees", "worktree prefix", "wt/ branch", "worktree branch", "branch naming allocator", "skilled branch", "experiment branch", "clean experiment branch", "routing-hardening", "routing-accuracy experiment"],
+    "ON_DEMAND": ["references/shared-patterns.md", "assets/commit-message-template.md"],
+}
+
+def _task_text(task) -> str:
+    return " ".join([
+        str(getattr(task, "text", "")),
+        str(getattr(task, "query", "")),
+        " ".join(getattr(task, "keywords", []) or []),
+    ]).lower()
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(p for p in base.rglob("*.md") if p.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def keyword_present(keyword: str, text: str) -> bool:
+    """Boundary-aware match: bare substrings misroute ('pr' in 'improve prompt')."""
+    return re.search(rf"(?<![a-z0-9]){re.escape(keyword)}(?![a-z0-9])", text) is not None
+
+def score_intents(task) -> dict[str, float]:
+    """Weighted intent scoring from request text and workflow flags."""
+    text = _task_text(task)
+    scores = {intent: 0.0 for intent in INTENT_SIGNALS}
+    for intent, cfg in INTENT_SIGNALS.items():
+        for keyword in cfg["keywords"]:
+            if keyword_present(keyword, text):
+                scores[intent] += cfg["weight"]
+    for intent, synonyms in NOISY_SYNONYMS.items():
+        for term, weight in synonyms.items():
+            if keyword_present(term, text):
+                scores[intent] += weight
+    if getattr(task, "needs_isolated_workspace", False):
+        scores["WORKSPACE_SETUP"] += 4
+    if getattr(task, "has_staged_changes", False):
+        scores["COMMIT"] += 4
+    if getattr(task, "ready_to_integrate", False):
+        scores["FINISH"] += 4
+    return scores
+
+def select_intents(scores: dict[str, float], task_text: str, ambiguity_delta: float = 1.0, base_max_intents: int = 2, adaptive_max_intents: int = 3) -> list[str]:
+    """Ambiguity selection: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md.
+
+    Keep intents within ambiguity_delta of the top score, up to 2, or 3 under NOISY_SYNONYMS noise.
+    """
+
+def route_git_resources(task):
+    inventory = discover_markdown_resources()
+    task_text = _task_text(task)
+    scores = score_intents(task)
+    intents = select_intents(scores, task_text, ambiguity_delta=1.0)
+    loaded = []
+    seen = set()
+
+    def load_if_available(relative_path: str) -> None:
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in seen:
+            load(guarded)
+            loaded.append(guarded)
+            seen.add(guarded)
+
+    for relative_path in LOADING_LEVELS["ALWAYS"]:
+        load_if_available(relative_path)
+
+    if sum(scores.values()) < 0.5:
+        load_if_available("references/shared-patterns.md")
+        return {
+            "intents": ["SHARED_PATTERNS"],
+            "intent_scores": scores,
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
+    for intent in intents:
+        for relative_path in RESOURCE_MAP.get(intent, []):
+            load_if_available(relative_path)
+
+    text = _task_text(task)
+    if any(keyword_present(keyword, text) for keyword in LOADING_LEVELS["ON_DEMAND_KEYWORDS"]):
+        for relative_path in LOADING_LEVELS["ON_DEMAND"]:
+            load_if_available(relative_path)
+
+    if not loaded:
+        load_if_available(DEFAULT_RESOURCE)
+
+    return {"intents": intents, "intent_scores": scores, "resources": loaded}
+```

@@ -35,14 +35,14 @@ Add `sk-skill-convert.cjs` with a default `plan` and an `apply` gated by `--appl
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `route-validate.sh` exits 0 with the `check` route (phase 002 closed)
-- [ ] The golden fixture pair exists under `tests/fixtures/sk-skill-convert/`
-- [ ] Dependencies identified
+- [x] `route-validate.sh` exits 0 with the `check` route (phase 002 closed): `OK: route-validate — 18 routes validated, 3 warnings`.
+- [x] The golden test materializes the pre-move `sk-git` tree from `ca10a236d2^` in its scratch-backed temporary folder and compares the result with today's `ROUTER.md`.
+- [x] Dependencies identified: phase 001 checker and surface library, router resolver/parser, and router template.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` exits 0
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met with evidence in `acceptance-criteria.md`.
+- [x] `node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` exits 0 (5/5 tests).
+- [x] Docs updated (spec/plan/tasks and implementation summary).
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -58,7 +58,7 @@ Plan, gate, apply
 - **`lib/sk-skill-convert-transforms.cjs`**: pure functions for the V2 frontmatter edit and the V3(b) section move; no file access, unit-tested without a repo.
 
 ### Data Flow
-The script snapshots the skill, takes the machine section from `resolveMachineRouter(...).text`, and passes text through the transforms. `apply` backs up each file it will overwrite, writes new files with an exclusive create, then compares `parseRouter` on the snapshot with `parseRouter` on the result. Equal keeps the change; different restores the backup.
+The script snapshots the skill, takes the machine section from `resolveMachineRouter(...).text`, and passes text through the transforms. `apply` deep-compares the full `parseRouter` content output on the pre-edit snapshot and new `ROUTER.md` text, then compares the routing semantics from the actual before/after roots: intent signals, resource map, default resource, default semantics, and parseability. The actual root's `routerSource` label is provenance and is expected to change from `inline` to `ROUTER.md`. A content or semantic difference leaves the original files in place or restores the backup and removes the new router.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -87,7 +87,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 |-----------|-------|-------|
 | Unit | V2 and V3(b) transforms on strings | `node --test` |
 | Integration | Golden conversion, second `apply`, no-replace, V0 refusals | `node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` |
-| Manual | Strict gate on the converted fixture | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py <fixture> --check --strict` |
+| Manual | Strict gate on the converted pre-move `sk-git` copy, materialized and cleaned by the golden test | `package_skill.py --check --strict` prints `Result: PASS`; no RS-002, RS-004 or RS-005 |
 <!-- /ANCHOR:testing -->
 
 ---
