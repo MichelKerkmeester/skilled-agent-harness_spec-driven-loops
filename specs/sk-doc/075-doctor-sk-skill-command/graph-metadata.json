@@ -50,11 +50,15 @@
       "spec.md",
       "goal.md",
       "scratch/design.md",
+      ".skilled/commands/doctor/sk-skill.md",
       ".skilled/commands/doctor/scripts/sk-skill-check.cjs",
       ".skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs",
       ".skilled/commands/doctor/_routes.yaml",
       ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".skilled/commands/doctor/scripts/sk-skill-convert.cjs",
+      ".skilled/commands/doctor/scripts/lib/sk-skill-convert-transforms.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
+      ".skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml",
       ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
       ".skilled/commands/README.txt",
       ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
@@ -62,11 +66,7 @@
       "001-check-engine/goal.md",
       "002-check-plumbing/goal.md",
       "003-convert-legacy-skilled/goal.md",
-      "004-convert-plain-skill/goal.md",
-      "005-integration/goal.md",
-      "006-convert-plumbing/goal.md",
-      "007-docs-and-changelogs/goal.md",
-      "008-hub-gap-report/goal.md"
+      "004-convert-plain-skill/goal.md"
     ],
     "entities": [
       {
@@ -85,6 +85,12 @@
         "name": "design.md",
         "kind": "doc",
         "path": "scratch/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/sk-skill.md",
         "source": "derived"
       },
       {
@@ -112,9 +118,27 @@
         "source": "derived"
       },
       {
+        "name": "sk-skill-convert.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/sk-skill-convert.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-convert-transforms.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/lib/sk-skill-convert-transforms.cjs",
+        "source": "derived"
+      },
+      {
         "name": "ci-router-vocabulary-reach.cjs",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-skill-convert.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml",
         "source": "derived"
       },
       {
@@ -148,6 +172,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -172,12 +202,6 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Ship",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Decisions Frozen",
         "kind": "proper_noun",
         "path": "goal.md",
@@ -188,45 +212,21 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. BINDING",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "An adopter who brings a plain agent skill, or a Skilled skill whose machine router still sits inside `SKILL.md`, has no command that says how far the skill is from the current Skilled format, and no path that converts it in place",
     "created_at": "2026-10-30T05:21:11Z",
-    "last_save_at": "2026-10-30T07:12:39.377Z",
+    "last_save_at": "2026-10-30T12:23:24.651Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:067226704086b2bc224cb0cc608019890b4d501033258acdbdec1d95eda953e3",
+    "source_fingerprint": "sha256:4fed8e80beef85ce7b4f07da6d55a07a9877f89028fa4f9b68426c0b34117636",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0f4a14c1abefaf0fd15b00dd5d968b17674a35ea6f0571e61b46aa9dbaafd763"
+      "spec.md": "20579cadac0f701e0e40565bb255cf8cc7f9eae796c966fc6c7ba91806bb485d"
     },
     "last_active_at": null
   }

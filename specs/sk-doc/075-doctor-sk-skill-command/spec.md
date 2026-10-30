@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/075-doctor-sk-skill-command"
-    last_updated_at: "2026-10-30T06:30:00Z"
-    last_updated_by: "claude-opus-worker"
-    recent_action: "Filled the phase map, problem, scope and open questions from the approved design"
-    next_safe_action: "Plan or resume a child phase folder"
+    last_updated_at: "2026-10-30T13:20:00Z"
+    last_updated_by: "markdown-agent-010"
+    recent_action: "Phases 1 to 9 are closed and phase 10 recorded the final verification and the release entry"
+    next_safe_action: "Read CI on main after the operator merges, then close phase 10"
     blockers: []
     key_files:
       - "scratch/design.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-281-doctor-skill-command"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 95
     open_questions: []
     answered_questions:
       - "Decisions D1 to D9 accepted as recommended, including optional phase 8"
@@ -49,7 +49,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-10-30 |
 | **Branch** | `worktrees/281-doctor-skill-command` |
 | **Parent Spec** | None (top-level packet) |
@@ -119,16 +119,16 @@ Ship `/doctor:sk-skill` with a read-only `check` target that reports rows C1 to 
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-check-engine/ | `sk-skill-check.cjs` and `lib/sk-skill-surface.cjs`: rows C1 to C13 in text and JSON, plus the fleet baseline | Pending |
-| 2 | 002-check-plumbing/ | Router, presentation, check YAML, route, command contract, setup row, mirrors and contract test | Pending |
-| 3 | 003-convert-legacy-skilled/ | `sk-skill-convert.cjs plan/apply` for older Skilled skills: V2, V3(b), backups, exclusive create, `parseRouter` proof | Pending |
-| 4 | 004-convert-plain-skill/ | Plain-skill conversion: V1, V3(a), V4 preservation check, V5, V6, V7, V8 | Pending |
-| 5 | 005-integration/ | Integration rows I1 to I6 and the opt-in `--skill` flag on the reach script | Pending |
-| 6 | 006-convert-plumbing/ | Convert YAML, presentation states, advisor bridge activation, refusal-string contract test | Pending |
-| 7 | 007-docs-and-changelogs/ | Docs list from design section 3 and a changelog for every touched skill | Pending |
-| 8 | 008-hub-gap-report/ | Read-only `check --into-hub <hub>` 11-row gap report | Pending |
-| 9 | 009-mirror-and-template-fixes/ | Hermes skills check in `/doctor:runtime-mirrors` (D8) and the template wording fix (D9) | Pending |
-| 10 | 010-verification-and-release/ | Final verification across the program and release notes | Pending |
+| 1 | 001-check-engine/ | `sk-skill-check.cjs` and `lib/sk-skill-surface.cjs`: rows C1 to C13 in text and JSON, plus the fleet baseline | Complete |
+| 2 | 002-check-plumbing/ | Router, presentation, check YAML, route, command contract, setup row, mirrors and contract test | Complete |
+| 3 | 003-convert-legacy-skilled/ | `sk-skill-convert.cjs plan/apply` for older Skilled skills: V2, V3(b), backups, exclusive create, `parseRouter` proof | Complete |
+| 4 | 004-convert-plain-skill/ | Plain-skill conversion: V1, V3(a), V4 preservation check, V5, V6, V7, V8 | Complete |
+| 5 | 005-integration/ | Integration rows I1 to I6 and the opt-in `--skill` flag on the reach script | Complete |
+| 6 | 006-convert-plumbing/ | Convert YAML, presentation states, advisor bridge activation, refusal-string contract test | Complete |
+| 7 | 007-docs-and-changelogs/ | Docs list from design section 3 and a changelog for every touched skill | Complete |
+| 8 | 008-hub-gap-report/ | Read-only `check --into-hub <hub>` 11-row gap report | Complete |
+| 9 | 009-mirror-and-template-fixes/ | Hermes skills check in `/doctor:runtime-mirrors` (D8) and the template wording fix (D9) | Implemented |
+| 10 | 010-verification-and-release/ | Final verification across the program and release notes | Implemented, CI on main pending |
 
 ### Phase Transition Rules
 

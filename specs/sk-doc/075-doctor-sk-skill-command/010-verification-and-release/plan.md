@@ -40,9 +40,9 @@ This phase changes no code. It runs every check in spec section 4 on the final t
 - [ ] Dependencies identified: phases 1 to 9 closed, and the phase 1 baseline file is readable
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `scratch/after.md` shows `total gold=65 scored=57 tied=3 mean_f1=0.9176 exact=50`, scorer 155/195, 49/66, 19/24, and `run-all.sh` PASS
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] All acceptance criteria met: eight of nine rows, and the post-merge CI read waits on the operator's merge
+- [x] `scratch/after.md` shows `total gold=65 scored=57 tied=3 mean_f1=0.9176 exact=50`, scorer 155/195, 49/66, 19/24, and `run-all.sh` PASS
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
