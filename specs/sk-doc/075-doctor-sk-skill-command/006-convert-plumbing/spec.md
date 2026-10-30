@@ -131,6 +131,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-005 | `bash .skilled/commands/doctor/scripts/tests/run-all.sh` passes, with `doctor-sk-skill-contract.test.cjs` asserting each refusal string the YAML prints. |
 | REQ-006 | A description over 130 characters is proposed as a separately named trim with its own yes, and `allowed-tools` for a plain skill is proposed, never defaulted (decisions D1 and D7). |
 | REQ-007 | The router, presentation and convert YAML are authored through the sk-create-command mode from its three templates, and `.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json` still validates against `.skilled/skills/sk-doc/sk-create-command/assets/command-contract.schema.json`. |
+| REQ-008 | Adding the `convert` route makes `/doctor:sk-skill` multi-target, so the `check` route gains `default_target: true` in the same change; `derive-command-bridges.cjs` then runs without error and the bare command still reaches `check`. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

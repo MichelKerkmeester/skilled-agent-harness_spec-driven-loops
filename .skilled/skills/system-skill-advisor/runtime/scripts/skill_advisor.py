@@ -2844,6 +2844,15 @@ GENERATED_COMMAND_BRIDGES = {
         "owner_mode": "sk-design-md-generator",
         "routing_enabled": False,
     },
+    "command-doctor-sk-skill": {
+        "description": "",
+        "slash_markers": ["/doctor:sk-skill"],
+        "inventory_id": "command-doctor-sk-skill",
+        "command": "/doctor:sk-skill",
+        "skill_id": "sk-doc",
+        "owner_mode": "sk-doc",
+        "routing_enabled": False,
+    },
     "memory:save": {
         "description": "",
         "slash_markers": ["/memory:save"],

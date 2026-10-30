@@ -45,11 +45,17 @@
       ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
       ".skilled/commands/create/command.md",
       ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/sk-skill.md",
+      ".skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt",
       ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
       ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
       ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
       ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
-      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.schema.json"
+      ".skilled/commands/doctor/scripts/tests/doctor-sk-skill-contract.test.cjs",
+      ".cursor/commands/doctor-sk-skill.md",
+      ".codex/prompts/doctor-sk-skill.md",
+      ".pi/prompts/doctor-sk-skill.md",
+      ".hermes/prompts/doctor-sk-skill.md"
     ],
     "entities": [
       {
@@ -107,6 +113,18 @@
         "source": "derived"
       },
       {
+        "name": "sk-skill.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/sk-skill.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-skill-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt",
+        "source": "derived"
+      },
+      {
         "name": "doctor-setup-presentation.txt",
         "kind": "file",
         "path": ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
@@ -131,9 +149,15 @@
         "source": "derived"
       },
       {
-        "name": "command-contract.schema.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.schema.json",
+        "name": "doctor-sk-skill-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-sk-skill-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-skill.md",
+        "kind": "doc",
+        "path": ".cursor/commands/doctor-sk-skill.md",
         "source": "derived"
       },
       {
@@ -177,29 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Doctor",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After phase 5, `sk-skill-convert.cjs` can plan and apply a conversion, but only a person who knows the script path can run it",
     "created_at": "2026-10-30T05:21:16Z",
-    "last_save_at": "2026-10-30T05:40:25.946Z",
+    "last_save_at": "2026-10-30T07:52:25.305Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +216,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:14890ad01bf9c890b2c78e7dbb39bd942ec1cafedfd28a26b394ef6481031a40",
+    "source_fingerprint": "sha256:30f070c98862d5f698b5f06842e4f15fc517b2307397d685ae0bc1f5ec4e1c73",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3e942e2663e0967711664996114ed78857b988f9675ed303ab87d3334ae9609d",
+      "spec.md": "eb0828348716ae4eac7dd3d592af246be661bfc9f21ab8c7e7c61a9e782c05da",
       "plan.md": "26fc9fffd4312c44f38bcc452ed8e209f797bfdb820589828e87153c3593beab",
-      "tasks.md": "0fc0323b34f5b98914c938a3b797f75aa560c16e1a00a53e96df15cd520dd7d8",
+      "tasks.md": "19b0077f1689275bd6813a262de3c55b145edfc43306b46e1d93a04b8be6c17c",
       "implementation-summary.md": "20434cac2f9ba07ba20c34866a0bc270e19da5f2f4e36e7afb098e6049fbf25d"
     },
     "last_active_at": null

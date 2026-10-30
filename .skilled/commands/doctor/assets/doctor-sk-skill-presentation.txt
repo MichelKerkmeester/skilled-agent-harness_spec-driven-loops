@@ -1,0 +1,119 @@
+# /doctor:sk-skill Presentation Contract
+
+This file is the single source of truth for user-facing presentation in `/doctor:sk-skill <target>`: the argument failure, the startup menu, the check result tables, result templates and next-step text. The command router owns target resolution and asset loading. The workflow YAML owns execution behavior.
+
+## 1. Argument Failure
+
+Every argument failure happens before any workflow YAML loads and prints the wording below with the bracketed parts filled in, then ends with the status line. Nothing is read or changed.
+
+| Situation | Wording |
+|-----------|---------|
+| The first token is not a target | `Unknown target: [target]` then `/doctor:sk-skill runs check. Try: /doctor:sk-skill menu` then `STATUS=FAIL ERROR="unknown_target"` |
+| A flag no target accepts | `Unknown argument: [argument]` then `check accepts --json.` then `STATUS=FAIL ERROR="unknown_argument"` |
+| A second skill name or path | `Only one skill name or path may be checked.` then `STATUS=FAIL ERROR="too_many_arguments"` |
+
+## 2. Startup Presentation
+
+This command is always interactive and has no `:auto` mode. With no target, `check` runs because it only reads, so a bare invocation needs no answer. The menu below appears for `menu`, `list` and `?`. Ask it once, then wait.
+
+```text
+What do you want to check?
+
+1) check
+X) Cancel
+```
+
+Accepted answers:
+
+| Answer | Result | Meaning |
+|--------|--------|---------|
+| `1` | target = `check` | Report rows C1 to C13 for one skill, or one row per skill root for the whole fleet, and change nothing |
+| `X`, empty, `cancel` | `STATUS=CANCELLED ACTION=cancelled` | Stop. Nothing changes |
+
+On any other response, re-emit the menu once. On a second invalid response, return `STATUS=FAIL ERROR="unknown_selection"`.
+
+Valid targets: check
+
+### Route Manifest Display
+
+Render this table for `menu`, `list` or `?`. Values should mirror `_routes.yaml`.
+
+| Target | Workflow | Mutation Class | One-Line Purpose |
+|--------|----------|----------------|------------------|
+| `check` | `doctor-sk-skill-check.yaml` | read-only | Report how far one skill, or the whole fleet, is from the Skilled format and name the repair for each finding |
+
+## 3. Check Results
+
+### Fleet Table
+
+With no skill name or path the engine prints one row per direct child of `.skilled/skills`, then a root count and the result line. Render the engine's table as printed; do not re-column it.
+
+```text
+Skill fleet check
+Skill  Format  Metadata  Codes  Verdict
+[skill]  [PASS|FINDING]  [PASS|FINDING]  [codes, or empty]  [PASS|FINDING]
+Roots: [N]; result: [pass|findings] ([N])
+```
+
+`Codes` carries the machine-readable format and metadata codes the two validators printed for that root, and is empty when both pass.
+
+### Deep Report
+
+With a skill name or path the engine prints one line per row, C1 to C13, each carrying its own status and label, then the result line. `PASS` holds, `FINDING` fails, `UNKNOWN` means the row could not be answered and no pass was inferred, `INFO` reports a fact the row does not grade, and `N/A` means the row does not apply to this skill, for example a skill outside the description audit. `N/A` neither passes nor fails.
+
+```text
+Skill check: [skill] ([inputKind])
+
+C1  [PASS|FINDING|UNKNOWN|INFO|N/A]  Location: [detail][ Codes: [codes].]
+...
+C13 [PASS|FINDING|UNKNOWN|INFO|N/A]  Regression coverage: [detail][ Codes: [codes].]
+Result: [PASS|FINDINGS ([N])|NO FINDINGS ([N] UNKNOWN)]
+```
+
+The engine prints each row's own label and detail, so quote the line rather than paraphrasing it, and lead the reply with the rows whose status is not `PASS`.
+
+### JSON Passthrough
+
+With `--json` print the engine's JSON and nothing else: no table, no summary, no next-step line. The JSON carries `mode` (`fleet` or `deep`), `exitCode`, `findingCount`, `unknownCount`, and either `roots` or `rows`.
+
+### Check Summary
+
+```text
+DOCTOR DIAGNOSTIC RESULT
+Target: check
+Status: [OK|FINDINGS|ERROR]
+Mutation class: read-only
+Scope: [the skill, or the fleet of [N] skill roots]
+Evidence: [N] rows, [N] pass, [N] findings, [N] unknown, [N] info, [N] n/a
+Recommendation: [the repair for each finding, or none]
+STATUS=[status]
+```
+
+## 4. Failure Summary
+
+```text
+DOCTOR TARGET FAILED
+Target: check
+Step: [row or phase]
+Error: [message]
+Next: [recommended command or manual action]
+STATUS=ERROR ERROR="[message]"
+```
+
+An engine that exits 2 prints its code, its message and, when it carries one, a `Provision:` line. Quote all three: the code names which precondition failed.
+
+## 5. Troubleshooting Display
+
+| Situation | Suggested Action |
+|-----------|------------------|
+| A row reports `FINDING` | Read that row's detail and codes, fix that one requirement, then rerun `/doctor:sk-skill check <name-or-path>` |
+| A row reports `UNKNOWN` | The row could not be answered, not failed. Rerun when the row's precondition is back, and never report an `UNKNOWN` row as a pass |
+| `C3` or `C4` prints codes | Run the validator the codes come from: `package_skill.py <dir> --check --strict` for the `RS` codes, `ci-skill-root-metadata.cjs` for the root-metadata codes |
+| `SKILL_NOT_FOUND` | The name or path resolved to no `SKILL.md`. Pass a name under `.skilled/skills` or a path to a skill root |
+| `SHARED_NOT_BUILT` | Run the provision command the `Provision:` line names, then rerun |
+| `PYTHON_MISSING` or `PYYAML_MISSING` | Install the interpreter or PyYAML the `Provision:` line names, then rerun |
+| `VALIDATOR_CANNOT_RUN` | A validator the row needs could not start. Fix that validator before reading the report as a verdict |
+| `CHECK_ERROR` | The engine hit an unexpected failure. Read the message, fix the cause, then rerun |
+| Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
+
+End interactive presentations with: `What would you like to do next?`

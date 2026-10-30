@@ -53,10 +53,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 with the `/doctor:sk-skill` `check` route
-- [ ] `bash .skilled/commands/doctor/scripts/tests/run-all.sh` reports all PASS, including `doctor-sk-skill-contract.test.cjs`
-- [ ] `validate-command-tree-parity.sh`, `codex/sync-prompts.cjs --check`, `pi/sync-prompts-pi.cjs --check` and `command-catalog-mirror-check.cjs` all exit 0
-- [ ] `command-contract.json` validates against `command-contract.schema.json` with the `/doctor:sk-skill` entry in `families.doctor`
+- [x] `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 with the `/doctor:sk-skill` `check` route
+- [x] `bash .skilled/commands/doctor/scripts/tests/run-all.sh` reports all PASS, including `doctor-sk-skill-contract.test.cjs`
+- [x] `validate-command-tree-parity.sh`, `codex/sync-prompts.cjs --check`, `pi/sync-prompts-pi.cjs --check` and `command-catalog-mirror-check.cjs` all exit 0
+- [x] `command-contract.json` validates against `command-contract.schema.json` with the `/doctor:sk-skill` entry in `families.doctor`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -72,11 +72,19 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase planned | Pending | spec.md, plan.md, tasks.md authored |
+| Phase planned | Complete | spec.md, plan.md, tasks.md authored |
+| Owning workflow read | Complete | sk-create-command `SKILL.md`, `ROUTER.md`, `references/router-presentation-split.md`, then the three templates |
+| Surfaces authored | Complete | `DOC/sk-skill.md`, `DOC/assets/doctor-sk-skill-presentation.txt`, `DOC/assets/doctor-sk-skill-check.yaml` |
+| Route, contract, setup row | Complete | `_routes.yaml` 19 routes, `families.doctor` validates with 0 errors, one setup row |
+| Mirrors generated | Complete | Four sync scripts, five mirror files, four checks exit 0 |
+| Gates green | Complete | `route-validate.sh` 0, `run-all.sh` 0 with 600 tests, contract test 14 of 14, `validate_document.py` 0 issues |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Owning workflow | The operator required sk-create-command authoring; the design named the surfaces but not the mode |
+| Command index row added | `.skilled/commands/README.txt` gained the doctor row and the group count, because the required catalog gate reads that index. The rest of the docs stay with phase 007 |
+| Bridge deriver vs. `default_target` | `derive-command-bridges.cjs` refuses `default_target` on a single-target command, and `/doctor:setup` shows the precedent: one target, no flag, and the bare command reaches it. Amended 2026-10-30: the `check` route ships without the flag, and phase 006 adds `default_target: true` to `check` when `convert` makes the command multi-target |
+| One unreproduced suite failure | A single `run-all.sh` run counted 599 node tests and failed; six later runs counted 600 and passed. The failing log was not kept, so the cause is unknown and recorded, not dismissed |
 <!-- /ANCHOR:log -->

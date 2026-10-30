@@ -59,6 +59,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-006 | REQ-005 | Given the extended contract test, When `bash .skilled/commands/doctor/scripts/tests/run-all.sh` runs, Then every suite prints PASS | run-all output | Unmet | - |
 | AC-007 | REQ-006 | Given a plain skill with a 140-character description and no `allowed-tools`, When convert plans, Then the plan lists the trim as its own yes and proposes `[Read, Grep, Glob]` for confirmation | Manual transcript in `scratch/` | Unmet | - |
 | AC-008 | REQ-007 | Given the edited contract and router, When a JSON Schema validator checks `.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json` against `command-contract.schema.json` and `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/commands/doctor/sk-skill.md --type command` runs, Then both exit 0 and the task log names the `/create:command` run that produced the surfaces | Validator outputs and the T016 log entry. No repository script runs this schema check today (`rg -l 'command-contract.schema.json' .skilled --glob '*.{cjs,mjs,js,py,ts,sh}'` finds none), so the run is recorded in `scratch/` | Unmet | - |
+| AC-009 | REQ-008 | Given the `convert` route in `_routes.yaml`, When `derive-command-bridges.cjs` and the contract test run, Then the `check` route carries `default_target: true`, the deriver exits 0 and the contract test asserts the flag | Deriver output and test run | Unmet | - |
 
 ### Status values
 

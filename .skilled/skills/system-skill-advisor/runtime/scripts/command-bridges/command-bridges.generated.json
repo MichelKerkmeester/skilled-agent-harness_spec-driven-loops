@@ -4,8 +4,8 @@
   "counts": {
     "commandMetadata": 19,
     "allowList": 8,
-    "doctorRoutes": 22,
-    "generated": 49,
+    "doctorRoutes": 23,
+    "generated": 50,
     "typescriptActive": 27,
     "pythonActive": 37
   },
@@ -1002,6 +1002,21 @@
             "/doctor:sk-code setup",
             "/doctor:sk-code"
           ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-sk-skill",
+      "command": "/doctor:sk-skill",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-doc",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
         }
       }
     },

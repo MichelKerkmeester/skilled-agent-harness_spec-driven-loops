@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-30 |
 | **Branch** | `worktrees/281-doctor-skill-command` |
 | **Parent Spec** | ../spec.md |
@@ -48,7 +48,7 @@ This is **Phase 2** of the Doctor skill command: check and convert a skill to th
 
 **Deliverables**:
 - Router `.skilled/commands/doctor/sk-skill.md`, presentation `assets/doctor-sk-skill-presentation.txt` and workflow `assets/doctor-sk-skill-check.yaml`
-- A `check` route in `_routes.yaml` with `default_target: true` and `mutating: read-only`
+- A `check` route in `_routes.yaml` with `mutating: read-only` and, while it is the only target, no `default_target`
 - The `families.doctor` contract entry, the `/doctor:setup` row and generated command mirrors
 - `scripts/tests/doctor-sk-skill-contract.test.cjs`
 
@@ -88,7 +88,7 @@ exit=0
 
 ### In Scope
 - Author the router, presentation and check YAML from the sk-create-command templates, following the router and presentation split.
-- Append the `check` route to `.skilled/commands/doctor/_routes.yaml` per its header steps (`_routes.yaml:44-48`), with `default_target: true` and `mutating: read-only`, since a bare command must land on a read-only target (`_routes.yaml:36-40`).
+- Append the `check` route to `.skilled/commands/doctor/_routes.yaml` per its header steps (`_routes.yaml:44-48`), with `mutating: read-only`. A bare command must land on a read-only target (`_routes.yaml:36-40`); as the only target, `check` is reached without `default_target`, which the bridge deriver refuses on a single-target command.
 - Add `/doctor:sk-skill` to `families.doctor` in `command-contract.json` (`router_path`, `input.argument_hint`, `execution_targets`, `loader_requirements`) and keep it valid against `command-contract.schema.json`.
 - Add the `/doctor:sk-skill check` row to `.skilled/commands/doctor/assets/doctor-setup-presentation.txt` (list at `:19-37`).
 - Generate the command mirrors with the sync scripts and add the contract test.
@@ -105,7 +105,7 @@ exit=0
 | `.skilled/commands/doctor/sk-skill.md` | Create | Router, from `command-router-template.md` |
 | `.skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt` | Create | Presentation and target menu, from `command-presentation-template.md` |
 | `.skilled/commands/doctor/assets/doctor-sk-skill-check.yaml` | Create | Check workflow, from `command-template.md` |
-| `.skilled/commands/doctor/_routes.yaml` | Modify | `check` route, `default_target: true`, `mutating: read-only`, `script_invocations` naming `sk-skill-check.cjs` |
+| `.skilled/commands/doctor/_routes.yaml` | Modify | `check` route, `mutating: read-only`, no `default_target`, `script_invocations` naming `sk-skill-check.cjs` |
 | `.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json` | Modify | `families.doctor` entry (`:194`) |
 | `.skilled/commands/doctor/assets/doctor-setup-presentation.txt` | Modify | One `/doctor:sk-skill check` row |
 | `.claude/commands/doctor/sk-skill.md` | Create | Link, written by the sync scripts |
@@ -132,7 +132,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement |
 |----|-------------|
-| REQ-005 | A bare `/doctor:sk-skill` resolves to the `check` route, which carries `default_target: true` and `mutating: read-only`. |
+| REQ-005 | A bare `/doctor:sk-skill` resolves to the `check` route, which carries `mutating: read-only`. While `check` is the only target it carries no `default_target`; phase 006 adds `default_target: true` with the `convert` route. |
 | REQ-006 | `/doctor:setup` lists the `/doctor:sk-skill check` row. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,

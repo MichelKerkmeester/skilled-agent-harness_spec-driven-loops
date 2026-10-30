@@ -125,6 +125,7 @@ const DOCTOR_COMMAND_STRINGS: Readonly<Record<string, string>> = Object.freeze({
   'command-doctor-setup': '/doctor:setup',
   'command-doctor-sk-code-quality': '/doctor:sk-code quality',
   'command-doctor-sk-code-setup': '/doctor:sk-code setup',
+  'command-doctor-sk-skill': '/doctor:sk-skill',
   'command-doctor-skill-advisor-parent-skill': '/doctor:skill-advisor parent-skill',
   'command-doctor-skill-advisor-rebuild': '/doctor:skill-advisor rebuild',
   'command-doctor-skill-advisor-router-reach': '/doctor:skill-advisor router-reach',

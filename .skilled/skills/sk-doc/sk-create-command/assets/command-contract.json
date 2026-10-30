@@ -203,15 +203,16 @@
         ".skilled/commands/doctor/ci.md",
         ".skilled/commands/doctor/mcp.md",
         ".skilled/commands/doctor/update.md",
-        ".skilled/commands/doctor/env.md"
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/sk-skill.md"
       ],
       "input": {
         "required": true,
         "gate_owner": "router",
-        "argument_hint": "per-command: [speckit-retrieval] | list | ? (speckit); <tune|rebuild|skill-graph-freshness|router-reach|skill-budget|parent-skill> [flags] | list | ? (skill-advisor); [--scope=research|review|council|both|all] (deep-loop); no arguments (runtime-mirrors); [setup] [--prompt=<text>] (sk-code); <hooks|standards> [--dry-run] | list | ? (git); [report|scaffold|toggle] [flags] | list | ? (ci); <install [--runtime <name>]|debug [--fix]> (mcp); [check|align|apply|rollback|record-base|compat] [--release=<tag>] [--scope=all|<unit,...>] [--remote=<name-or-url>] [--dry-run] [flags] (update); [list | <section> | <VARIABLE>] [--dry-run] (env)"
+        "argument_hint": "per-command: [speckit-retrieval] | list | ? (speckit); <tune|rebuild|skill-graph-freshness|router-reach|skill-budget|parent-skill> [flags] | list | ? (skill-advisor); [--scope=research|review|council|both|all] (deep-loop); no arguments (runtime-mirrors); [setup] [--prompt=<text>] (sk-code); <hooks|standards> [--dry-run] | list | ? (git); [report|scaffold|toggle] [flags] | list | ? (ci); <install [--runtime <name>]|debug [--fix]> (mcp); [check|align|apply|rollback|record-base|compat] [--release=<tag>] [--scope=all|<unit,...>] [--remote=<name-or-url>] [--dry-run] [flags] (update); [list | <section> | <VARIABLE>] [--dry-run] (env); [check] [<name-or-path>] [--json] (sk-skill)"
       },
       "execution_targets": [
-        { "selector": "<target> resolved via _routes.yaml for speckit, skill-advisor, deep-loop, runtime-mirrors, sk-code, git and ci", "target": ".skilled/commands/doctor/assets/<the route's yaml>, named per route in _routes.yaml" },
+        { "selector": "<target> resolved via _routes.yaml for speckit, skill-advisor, deep-loop, runtime-mirrors, sk-code, git, ci and sk-skill", "target": ".skilled/commands/doctor/assets/<the route's yaml>, named per route in _routes.yaml" },
         { "selector": "install | debug", "target": ".skilled/commands/doctor/assets/doctor-mcp-<sub>.yaml" },
         { "selector": "check", "target": ".skilled/commands/doctor/assets/doctor-update-check.yaml" },
         { "selector": "align", "target": ".skilled/commands/doctor/assets/doctor-update-align.yaml" },
@@ -219,7 +220,8 @@
         { "selector": "rollback", "target": ".skilled/commands/doctor/assets/doctor-update-rollback.yaml" },
         { "selector": "record-base", "target": ".skilled/commands/doctor/assets/doctor-update-record-base.yaml" },
         { "selector": "compat", "target": ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml" },
-        { "selector": "list | section | variable [--dry-run]", "target": ".skilled/commands/doctor/assets/doctor-env.yaml" }
+        { "selector": "list | section | variable [--dry-run]", "target": ".skilled/commands/doctor/assets/doctor-env.yaml" },
+        { "selector": "check [<name-or-path>] [--json] (sk-skill)", "target": ".skilled/commands/doctor/assets/doctor-sk-skill-check.yaml" }
       ],
       "mode_matrix": {
         "default_policy": "confirm-only",
@@ -237,6 +239,8 @@
         { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml" },
         { "purpose": "presentation", "path": ".skilled/commands/doctor/assets/doctor-update-presentation.txt" },
         { "purpose": "presentation", "path": ".skilled/commands/doctor/assets/doctor-env-presentation.txt" },
+        { "purpose": "presentation", "path": ".skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt" },
+        { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-sk-skill-check.yaml" },
         { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-<target>.yaml (per-route target workflows, named by each route's yaml field)" },
         { "purpose": "script", "path": ".skilled/commands/doctor/scripts/route-validate.sh (validates _routes.yaml)" }
       ],
@@ -245,12 +249,13 @@
         "Parse the positional target before any flag; reject cross-target flags before loading the target YAML",
         "Bare /doctor:update runs the read-only check action, and /doctor:update apply, rollback, record-base and compat each request approval before their first write",
         "The manifest exposes each route's mutation class (read-only | add-only | mutates) and gate-3 location before acting",
-        "Each _routes.yaml route names its owning command; a command that owns one route (speckit, deep-loop, runtime-mirrors, sk-code) takes no required positional, and input.required is true for the skill-advisor, git and mcp routers only",
+        "Each _routes.yaml route names its owning command; a command that owns one route (speckit, deep-loop, runtime-mirrors, sk-code, sk-skill) takes no required positional, and input.required is true for the skill-advisor, git and mcp routers only",
         "/doctor:speckit answers a target another doctor command owns with a moved-target notice and loads no workflow",
         "/doctor:skill-advisor rebuild backs up skill-graph.sqlite before advisor_rebuild and restores it when the rebuild or its validation fails",
         "/doctor:git hooks writes only git config speckit.hooks.<key> in local or global scope after an approved plan, and refuses the per-push approvals; /doctor:git standards writes only .sk-git/ or the skgit.contractDir directory, never the shipped sk-git templates; /doctor:git setup is read-only and writes nothing",
         "/doctor:env reads ENV-REFERENCE.md at every invocation, reports only secret source presence, and supports list plus section or variable selectors and --dry-run",
-        "/doctor:env has no required positional; it writes only an explicitly confirmed eligible preference to hook-flags.env or Claude settings and never writes .env or a shell profile"
+        "/doctor:env has no required positional; it writes only an explicitly confirmed eligible preference to hook-flags.env or Claude settings and never writes .env or a shell profile",
+        "/doctor:sk-skill check is the read-only default target: with no positional it reports the whole fleet, with one it reports that skill, and it names the repair for each finding while it changes nothing"
       ],
       "presentation": { "owner": "presentation-asset", "exceptions": [] },
       "destructive_policy": {
@@ -260,7 +265,7 @@
       },
       "routing_source": "manifest",
       "timeout_bounds": { "warm_probe_timeout_ms": 500 },
-      "invocation_aliases": ["/doctor:speckit", "/doctor:speckit list", "/doctor:skill-advisor <target>", "/doctor:skill-advisor list", "/doctor:deep-loop [--scope=<scope>]", "/doctor:runtime-mirrors", "/doctor:sk-code [setup] [--prompt=<text>]", "/doctor:git <hooks|standards|setup>", "/doctor:git list", "/doctor:ci [report|scaffold|toggle]", "/doctor:ci list", "/doctor:mcp <install|debug>", "/doctor:update [check|align|apply|rollback|record-base|compat] [flags]", "/doctor:env [list | <section> | <VARIABLE>] [--dry-run]"],
+      "invocation_aliases": ["/doctor:speckit", "/doctor:speckit list", "/doctor:skill-advisor <target>", "/doctor:skill-advisor list", "/doctor:deep-loop [--scope=<scope>]", "/doctor:runtime-mirrors", "/doctor:sk-code [setup] [--prompt=<text>]", "/doctor:git <hooks|standards|setup>", "/doctor:git list", "/doctor:ci [report|scaffold|toggle]", "/doctor:ci list", "/doctor:mcp <install|debug>", "/doctor:update [check|align|apply|rollback|record-base|compat] [flags]", "/doctor:env [list | <section> | <VARIABLE>] [--dry-run]", "/doctor:sk-skill [check] [<name-or-path>] [--json]"],
       "workflow_schema_ref": null
     },
     "deep": {

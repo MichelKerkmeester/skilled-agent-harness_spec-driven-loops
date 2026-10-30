@@ -1,0 +1,69 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: SKILL FORMAT CHECK (READ-ONLY DIAGNOSTIC)
+# ─────────────────────────────────────────────────────────────────
+role: Diagnostic Operator reporting how far one skill, or the whole fleet, is from the Skilled format
+purpose: Report rows C1 to C13 for one skill, or one row per skill root for the whole fleet, by running the shipped format and root-metadata validators in their check-only forms and naming the repair for each finding
+action: Run .skilled/commands/doctor/scripts/sk-skill-check.cjs once -> render its fleet table or deep report through the presentation contract
+skill_owner: ".skilled/skills/sk-doc/sk-create-skill/"
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: single-step
+  compliance: MANDATORY
+  execution: read_only
+  approvals: none
+  tracking: single_run
+  validation: read_only_assertion
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES (READ-ONLY)
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: true
+  allowed_targets: []
+  forbidden_targets:
+    - "**/*"
+  invariant: "This route prints and never writes. Every validator it runs is invoked in its check-only or dry-run form, and a repair is an explicit operator action, never a side effect of the diagnostic. It MUST NOT convert a skill, refresh derived content, regenerate the skill graph or install a runtime mirror."
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  check_engine: ".skilled/commands/doctor/scripts/sk-skill-check.cjs"
+  surface_library: ".skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs"
+  format_validator: ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py, run with --check --strict --json"
+  root_metadata_validator: ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs"
+  derived_validator: ".skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs, run with --root <dir> --dry-run"
+  router_parser: ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs, required in process for the router-replay row"
+  router_resolver: ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-file-resolver.cjs"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+inputs:
+  target: "check is the route's default target: /doctor:sk-skill and /doctor:sk-skill check both run it. Any other positional fails before this YAML loads."
+  skill_target: "A skill name under .skilled/skills or a path to a skill root, passed to the engine unchanged. With none the engine checks the whole fleet and prints one row per direct child of .skilled/skills (default none, so the fleet table)."
+  json_output: "true when --json is passed: the route prints the engine's JSON and nothing else (default false)."
+  execution_mode: "INTERACTIVE"
+
+# ─────────────────────────────────────────────────────────────────
+# EXECUTION
+# ─────────────────────────────────────────────────────────────────
+execution:
+  steps:
+    - "Run node .skilled/commands/doctor/scripts/sk-skill-check.cjs once, adding the skill name or path when the operator passed one and --json when the operator asked for JSON."
+    - "The engine resolves the skill first: a name under .skilled/skills, an absolute or relative path to a skill root, or nothing for the fleet. A name or path that resolves to no SKILL.md exits 2 with SKILL_NOT_FOUND and a Provision line when it has one."
+    - "For one skill the engine reports thirteen rows. C1 location, C2 input kind, C3 strict format verdict, C4 root metadata contract, C5 slug-only routing defaults, C6 derived freshness, C7 router replay, C8 advisor home, C9 runtime mirrors, C10 changelog, C11 description budget, C12 collisions, C13 regression coverage. Each row carries PASS, FINDING, UNKNOWN or INFO, and the exit code is 1 when any row is FINDING. An UNKNOWN row means the row could not be answered, never that it passed."
+    - "For the fleet the engine reports one row per direct child of .skilled/skills with its format verdict, its metadata verdict, the codes both validators printed and its own verdict."
+    - "Render the engine's output through .skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt: the fleet table or the deep report as printed, the DOCTOR DIAGNOSTIC RESULT summary, and the troubleshooting table."
+    - "Map the engine's exit code to the route status: 0 no finding, 1 at least one finding, 2 a precondition or the invocation failed."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output: |
+  STATUS=OK when the engine exits 0; show the fleet table or the deep report and the result line.
+  STATUS=FINDINGS when the engine exits 1; show each row whose status is not PASS first, with its detail and codes, then the DOCTOR DIAGNOSTIC RESULT summary and the repair for each finding.
+  STATUS=ERROR when the engine exits 2 or crashes; report the error code, its message and its Provision line when it carries one, and the accepted invocation (/doctor:sk-skill check [<name-or-path>] [--json]).
