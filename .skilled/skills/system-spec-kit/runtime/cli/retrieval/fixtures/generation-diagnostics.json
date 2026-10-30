@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7303,
-    "ok": 16308,
+    "ok": 16313,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27159,
+  "documentsScanned": 27164,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "5665ac31960e4b3b202b1427456cdd82245ee907dc18f1f1e16f5ead37def0f7",
+  "manifestHash": "66433913f925559ad190d470ef9574cebbdd3bdc7aaf80e30437cf5864730689",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 39838,
+      "ok": 39847,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -72707,6 +72707,10 @@
     },
     {
       "path": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/036-personal-name-scrub/scratch",
       "reason": "excluded directory"
     },
     {

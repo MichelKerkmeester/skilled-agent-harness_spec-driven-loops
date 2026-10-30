@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5665ac31960e4b3b202b1427456cdd82245ee907dc18f1f1e16f5ead37def0f7",
+  "manifestHash": "66433913f925559ad190d470ef9574cebbdd3bdc7aaf80e30437cf5864730689",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -72409,6 +72409,9 @@
     "orphan sweep discoverer not deleter": [
       "orphan sweep discoverer not deleter"
     ],
+    "orphan sweep launch agent label": [
+      "orphan sweep launch agent label"
+    ],
     "orphan sweep launchagent install": [
       "orphan sweep launchagent install"
     ],
@@ -74471,6 +74474,18 @@
     ],
     "personal api token wizard": [
       "personal api token wizard"
+    ],
+    "personal name scrub": [
+      "personal name scrub"
+    ],
+    "personal name scrub implementation summary": [
+      "personal name scrub implementation summary"
+    ],
+    "personal name scrub plan": [
+      "personal name scrub plan"
+    ],
+    "personal name scrub tasks": [
+      "personal name scrub tasks"
     ],
     "perspective inversion technique": [
       "perspective inversion technique"
@@ -85859,6 +85874,9 @@
     "remove the llmgateway gpt 6 luna route": [
       "remove the llmgateway gpt 6 luna route"
     ],
+    "remove the operator s personal account name": [
+      "remove the operator s personal account name"
+    ],
     "remove track narrowing scorer": [
       "remove track narrowing scorer"
     ],
@@ -86586,6 +86604,9 @@
     ],
     "repository quality json": [
       "repository/quality.json"
+    ],
+    "repository relative paths": [
+      "repository relative paths"
     ],
     "repository root resolution": [
       "repository root resolution"
@@ -104816,6 +104837,9 @@
     "skilled v4 0 1 0": [
       "skilled v4.0.1.0"
     ],
+    "skilled v4 0 1 1": [
+      "skilled v4.0.1.1"
+    ],
     "skilled verification phase goal": [
       "skilled verification phase goal"
     ],
@@ -116985,6 +117009,9 @@
     ],
     "v4 0 1 0 release notes": [
       "v4.0.1.0 release notes"
+    ],
+    "v4 0 1 1 release notes": [
+      "v4.0.1.1 release notes"
     ],
     "v4 changelog": [
       "v4 changelog"
