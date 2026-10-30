@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8c1af02742346e5a4ea9e7ae6350357eb05d20fb14bd089fe3dbf323ff47625e",
+  "corpusHash": "75be9d5817158ea147ba7345f65512e454fc19e610391c2b5b3ef68b1b61bb13",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27164,
+  "includedPathCount": 27168,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8942,6 +8942,10 @@
     "specs/agents/019-haiku-explore-and-context-agents/plan.md",
     "specs/agents/019-haiku-explore-and-context-agents/spec.md",
     "specs/agents/019-haiku-explore-and-context-agents/tasks.md",
+    "specs/agents/020-router-file-rule-alignment/implementation-summary.md",
+    "specs/agents/020-router-file-rule-alignment/plan.md",
+    "specs/agents/020-router-file-rule-alignment/spec.md",
+    "specs/agents/020-router-file-rule-alignment/tasks.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/acceptance-criteria.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/goal.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/implementation-summary.md",
@@ -27195,7 +27199,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "c1980bfb837f37eb805e1d7ee267faa8ace6503864966590273466551d6457a5",
+  "manifestHash": "8b16cc01b06e4e7afe88aa6d4976f089da0340965dcbb54fd3cb1261e8cfad6f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28011,6 +28015,10 @@
     },
     {
       "path": "specs/agents/019-haiku-explore-and-context-agents/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/020-router-file-rule-alignment/scratch",
       "reason": "excluded directory"
     },
     {
