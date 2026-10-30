@@ -1,0 +1,23 @@
+{
+  "specFolder": "agents/020-router-file-rule-alignment",
+  "description": "Align the hub routing repo rule with the per-skill ROUTER.md layout",
+  "keywords": [
+    "align",
+    "hub",
+    "routing",
+    "repo",
+    "rule",
+    "per-skill",
+    "router",
+    "layout"
+  ],
+  "lastUpdated": "2026-10-30T05:09:03.801Z",
+  "specId": "020",
+  "folderSlug": "router-file-rule-alignment",
+  "parentChain": [
+    "agents"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

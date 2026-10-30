@@ -23,7 +23,7 @@ trigger_phrases:
   - "hub registry"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.2
+version: 1.0.0.3
 ---
 
 # Rule: Skill hub routing
@@ -35,7 +35,7 @@ version: 1.0.0.2
 
 - Adding, renaming or removing a mode in a hub that carries `mode-registry.json` and `hub-router.json`.
 - Creating a new skill that will live under a hub, or refactoring one that already does.
-- Editing `graph-metadata.json`, `hub-router.json`, a root `ROUTER.md`, or a hub's `SKILL.md` mode table.
+- Editing `graph-metadata.json`, `hub-router.json`, a root `ROUTER.md`, a mode packet's own `ROUTER.md`, or a hub's `SKILL.md` mode table.
 - Reporting that a mode is registered, routed, reachable or integrated.
 - Running a per-hub gate and quoting its result.
 
@@ -57,6 +57,8 @@ So routing runs in two stages, and each can pass while the other is broken:
 |-------|-------|-------|
 | One | the advisor, reading the hub's `graph-metadata.json` | the hub |
 | Two | the hub's `hub-router.json` and root `ROUTER.md` | the mode, then its leaves |
+
+Every hub and every mode packet owns the `ROUTER.md` in its own folder. The hub root's file is the stage-two control document, and a packet's file holds that packet's machine router under its `## MACHINE ROUTER` heading. A packet's `SKILL.md` keeps only short routing prose and a link to it, so a router edit belongs in the `ROUTER.md`, never in `SKILL.md`.
 
 A `metadata` mode's vocabulary reaches the advisor **only** through the hub's `graph-metadata.json`. A `lexical` or `alias-fold` mode also needs its projection maps and scorer entries. A stage-one hit with no stage-two intent, or the reverse, means the two disagree about the same phrasing: fix both sides, not the one that happens to be failing.
 
@@ -105,7 +107,7 @@ This rule carries the discipline. The mechanics belong to the skills that own th
 | Question | Read |
 |----------|------|
 | What must a new mode land on, and in what order | `parent-skills-nested-packets.md` §7 |
-| Hub doctrine, one identity, the `routingClass` table | `parent-skills-nested-packets.md` §1-2 |
+| Hub doctrine, one identity, the `routingClass` table, where each `ROUTER.md` lives | `parent-skills-nested-packets.md` §1-2 |
 | Which metadata file is required or forbidden at which root | `skill-root-metadata-contract.md` |
 | How the advisor scores, and its regression corpus | the skill-advisor system skill |
 | Authoring or repairing a hub | `sk-doc` → `sk-create-skill` |
