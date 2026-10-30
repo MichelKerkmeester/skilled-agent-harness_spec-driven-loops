@@ -1,5 +1,5 @@
 {
-  "corpusHash": "981c87310d54d1f33e8d9cb8abe0020910cc7ebb78c91602912868034311ade2",
+  "corpusHash": "9536f14a6e5a53dd9efe514869f99d3b88253c957f8f36f6bc54476c4dfa2aae",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27315,
+  "includedPathCount": 27316,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -90,10 +90,6 @@
     ".skilled/changelog/skilled/v4.0.0.8.md",
     ".skilled/changelog/skilled/v4.0.0.9.md",
     ".skilled/changelog/skilled/v4.0.1.0.md",
-    ".skilled/changelog/skilled/v4.0.1.1.md",
-    ".skilled/changelog/skilled/v4.0.1.2.md",
-    ".skilled/changelog/skilled/v4.0.1.3.md",
-    ".skilled/changelog/skilled/v4.0.1.4.md",
     ".skilled/hooks/README.md",
     ".skilled/hooks/classifier-injection-screen/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -7875,6 +7871,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.17.28.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.29.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.3.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.17.30.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.4.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.5.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.6.0.md",
@@ -9013,6 +9010,10 @@
     "specs/agents/021-doctor-agents-md/002-doctor-helper/plan.md",
     "specs/agents/021-doctor-agents-md/002-doctor-helper/spec.md",
     "specs/agents/021-doctor-agents-md/002-doctor-helper/tasks.md",
+    "specs/agents/021-doctor-agents-md/003-advisor-bridge-activation/implementation-summary.md",
+    "specs/agents/021-doctor-agents-md/003-advisor-bridge-activation/plan.md",
+    "specs/agents/021-doctor-agents-md/003-advisor-bridge-activation/spec.md",
+    "specs/agents/021-doctor-agents-md/003-advisor-bridge-activation/tasks.md",
     "specs/agents/021-doctor-agents-md/goal.md",
     "specs/agents/021-doctor-agents-md/spec.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/acceptance-criteria.md",
@@ -27346,7 +27347,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5f969294ec36b07d82d8e5ec052c22314bfb566f1129499d08cb0938e68655d9",
+  "manifestHash": "aafaf0b027df1b95c6c6e2a66f1a5d862696a9c7ce3eadfb5a81ac8f636c33c4",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28194,6 +28195,10 @@
     },
     {
       "path": "specs/agents/021-doctor-agents-md/002-doctor-helper/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/021-doctor-agents-md/003-advisor-bridge-activation/scratch",
       "reason": "excluded directory"
     },
     {

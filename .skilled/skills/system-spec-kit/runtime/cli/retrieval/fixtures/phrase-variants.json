@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5f969294ec36b07d82d8e5ec052c22314bfb566f1129499d08cb0938e68655d9",
+  "manifestHash": "aafaf0b027df1b95c6c6e2a66f1a5d862696a9c7ce3eadfb5a81ac8f636c33c4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7796,6 +7796,9 @@
     "activate authorized ledger": [
       "activate authorized ledger"
     ],
+    "activate the doctor bridges": [
+      "activate the doctor bridges"
+    ],
     "activate theme": [
       "activate theme"
     ],
@@ -8477,6 +8480,18 @@
     ],
     "advisor behavior table": [
       "advisor behavior table"
+    ],
+    "advisor bridge activation": [
+      "advisor bridge activation"
+    ],
+    "advisor bridge activation implementation summary": [
+      "advisor bridge activation implementation summary"
+    ],
+    "advisor bridge activation plan": [
+      "advisor bridge activation plan"
+    ],
+    "advisor bridge activation tasks": [
+      "advisor bridge activation tasks"
     ],
     "advisor bridge import repair": [
       "advisor bridge import repair"
@@ -10314,6 +10329,9 @@
     "agents md": [
       "agents.md"
     ],
+    "agents md advisor bridge": [
+      "agents md advisor bridge"
+    ],
     "agents md alignment": [
       "agents.md alignment"
     ],
@@ -10334,6 +10352,9 @@
     ],
     "agents md bloat audit plan": [
       "agents.md bloat audit plan"
+    ],
+    "agents md bridge activation": [
+      "agents md bridge activation"
     ],
     "agents md byte budget": [
       "agents md byte budget"
@@ -14876,6 +14897,9 @@
     ],
     "breaking change footer": [
       "breaking change footer"
+    ],
+    "bridge activation gates": [
+      "bridge activation gates"
     ],
     "bridge banner silenced summary": [
       "bridge banner silenced summary"
@@ -28902,9 +28926,6 @@
     "convert a skill in place": [
       "convert a skill in place"
     ],
-    "convert a skill to the skilled format": [
-      "convert a skill to the skilled format"
-    ],
     "convert advisor hermes changelog integration": [
       "convert advisor hermes changelog integration"
     ],
@@ -39759,9 +39780,6 @@
     "doctor agents md catalog entry": [
       "doctor agents md catalog entry"
     ],
-    "doctor agents md command": [
-      "doctor agents md command"
-    ],
     "doctor agents md phase": [
       "doctor agents md phase"
     ],
@@ -39809,6 +39827,9 @@
     ],
     "doctor bridge inventory helper": [
       "doctor bridge inventory helper"
+    ],
+    "doctor bridges route": [
+      "doctor bridges route"
     ],
     "doctor causal graph": [
       "/doctor causal-graph",
@@ -39998,6 +40019,9 @@
     ],
     "doctor commands author presentation markdown tasks": [
       "doctor commands author presentation markdown tasks"
+    ],
+    "doctor commands for skills": [
+      "doctor commands for skills"
     ],
     "doctor commands handover": [
       "doctor commands handover"
@@ -40281,6 +40305,12 @@
     ],
     "doctor helper acceptance criteria": [
       "doctor helper acceptance criteria"
+    ],
+    "doctor helper advisor bridge": [
+      "doctor helper advisor bridge"
+    ],
+    "doctor helper bridge activation": [
+      "doctor helper bridge activation"
     ],
     "doctor helper command": [
       "doctor helper command"
@@ -72838,9 +72868,6 @@
     "orphan sweep discoverer not deleter": [
       "orphan sweep discoverer not deleter"
     ],
-    "orphan sweep launch agent label": [
-      "orphan sweep launch agent label"
-    ],
     "orphan sweep launchagent install": [
       "orphan sweep launchagent install"
     ],
@@ -79544,6 +79571,9 @@
     ],
     "portable guard cores": [
       "portable guard cores"
+    ],
+    "portable paths and launch agent": [
+      "portable paths and launch agent"
     ],
     "portable shebang sweep": [
       "portable shebang sweep"
@@ -87100,9 +87130,6 @@
     "repository quality json": [
       "repository/quality.json"
     ],
-    "repository relative paths": [
-      "repository relative paths"
-    ],
     "repository root resolution": [
       "repository root resolution"
     ],
@@ -90616,6 +90643,9 @@
     ],
     "root governance alignment": [
       "root governance alignment"
+    ],
+    "root instruction file doctor": [
+      "root instruction file doctor"
     ],
     "root instruction files drift": [
       "root instruction files drift"
@@ -104328,9 +104358,6 @@
     "skill format command docs": [
       "skill format command docs"
     ],
-    "skill format doctor": [
-      "skill format doctor"
-    ],
     "skill frontmatter alignment": [
       "skill frontmatter alignment"
     ],
@@ -105418,18 +105445,6 @@
     ],
     "skilled v4 0 1 0": [
       "skilled v4.0.1.0"
-    ],
-    "skilled v4 0 1 1": [
-      "skilled v4.0.1.1"
-    ],
-    "skilled v4 0 1 2": [
-      "skilled v4.0.1.2"
-    ],
-    "skilled v4 0 1 3": [
-      "skilled v4.0.1.3"
-    ],
-    "skilled v4 0 1 4": [
-      "skilled v4.0.1.4"
     ],
     "skilled verification phase goal": [
       "skilled verification phase goal"
@@ -111507,6 +111522,9 @@
     "system skill advisor 0 17 3 0": [
       "system-skill-advisor 0.17.3.0"
     ],
+    "system skill advisor 0 17 30 0": [
+      "system-skill-advisor 0.17.30.0"
+    ],
     "system skill advisor 0 17 4 0": [
       "system-skill-advisor 0.17.4.0"
     ],
@@ -111779,6 +111797,9 @@
     ],
     "system skill advisor v0 17 3 0": [
       "system-skill-advisor v0.17.3.0"
+    ],
+    "system skill advisor v0 17 30 0": [
+      "system-skill-advisor v0.17.30.0"
     ],
     "system skill advisor v0 17 4 0": [
       "system-skill-advisor v0.17.4.0"
@@ -117642,18 +117663,6 @@
     ],
     "v4 0 1 0 release notes": [
       "v4.0.1.0 release notes"
-    ],
-    "v4 0 1 1 release notes": [
-      "v4.0.1.1 release notes"
-    ],
-    "v4 0 1 2 release notes": [
-      "v4.0.1.2 release notes"
-    ],
-    "v4 0 1 3 release notes": [
-      "v4.0.1.3 release notes"
-    ],
-    "v4 0 1 4 release notes": [
-      "v4.0.1.4 release notes"
     ],
     "v4 changelog": [
       "v4 changelog"
