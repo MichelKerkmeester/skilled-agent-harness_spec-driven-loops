@@ -131,7 +131,7 @@ The design's section table was measured before the line 3 edit. That edit is 6 b
 | Check | Result |
 |-------|--------|
 | `node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check` | exit 0: `PASS: 44 sections, 30 pins, derived matches AGENTS.md`, `16368 / 16384` and `27888 / 32768` bytes |
-| `node --test .skilled/commands/doctor/scripts/tests/agents-md-manifest.test.cjs` | `tests 28, pass 28, fail 0, skipped 0` |
+| `node --test .skilled/commands/doctor/scripts/tests/agents-md-manifest.test.cjs` | `tests 30, pass 30, fail 0, skipped 0` |
 | `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` | exit 0, `  16368  #### Blast-Radius Management` |
 | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs --check` | `PASS: 1 instruction files carry the root Gate 1 lookup.` |
 | `bash .skilled/commands/doctor/scripts/tests/run-all.sh` | `6 suite(s) passed, 1 failed`: the node:test suite reports `fail 15`, every failure inside `agents-md-check.test.cjs`, the sibling child's suite, which was being written in this worktree at the same time. This child's suite moved from 24 to 28 cases and reports 0 fail in that run |

@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Carrying a repository's own lines into a block is where this command can do real damage",
     "created_at": "2026-10-30T11:22:43Z",
-    "last_save_at": "2026-10-30T14:31:17.580Z",
+    "last_save_at": "2026-10-30T15:43:38.591Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9cb38fb0f48016f2fdf63ce67a386300abc27abe324fc4f77d6924a3d8e2f5a7",
+    "source_fingerprint": "sha256:6c98162d5e3220f0c72c1ed04a66b1a00c372e649d8e63489ca2d529043c1d39",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b67f1851f1a741692317f93f894feb6d392f4b57f41e31b59a211c10750cb522",
+      "spec.md": "71be144b4b5b256cac6455667df7a6429267d5a2161179da4bbfb179050f7d34",
       "plan.md": "c6b151264ff64b2fcde3530319c333dcf198bc96138be91fe7e6e5f5a44c1247",
-      "tasks.md": "0bc31416303e8f6f74b87ea4b3cf9231c961e1fb8856efc612163f1dc66ecb4c",
-      "implementation-summary.md": "327d1d0b5aae4d8849ceb15907b7238181e6b52c4be674343dedaf3ead05ba97"
+      "tasks.md": "638531e82cfc25c96291cc130f1d1a4a4bdbb28aaa8cc788ed4a20039874aaea",
+      "implementation-summary.md": "90e12baca38bf6dc00fb66665ea9bb6a28884b4f4fb390732b26ff1a264af2fe"
     },
     "last_active_at": null
   }

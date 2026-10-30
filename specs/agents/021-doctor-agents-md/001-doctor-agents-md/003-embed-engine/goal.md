@@ -57,7 +57,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `node --test .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs` reports `fail 0`. Met: `pass 23`, `fail 0`, exit 0.
+- [x] `node --test .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs` reports `fail 0`. Met: `tests 33`, `pass 33`, `fail 0`, exit 0.
 - [x] `node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan` on this repository prints `NOTHING TO DO` and exits 0. Met: `plan for <root> (state: pure)` then `NOTHING TO DO`, exit 0.
 - [x] On a temporary copy of the `foreign` fixture, plan then apply prints `preservation: kept <n>, carried <m>, shipped-replaced <k>, dropped 0`. Met: `kept 5, carried 0, shipped-replaced 44, dropped 0`, `STATUS=OK`.
 - [x] On the same copy, `restore --run=<dir>` followed by a comparison against the pristine copy exits 0. Met: `restore --run=<dir> --yes` exited 0 and `cmp` against the pristine copy exited 0.
@@ -78,7 +78,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Specification, plan, tasks and criteria authored | Done | This packet's four documents |
-| Implementation | Done | `agents-md-embed.cjs` and its 22-case suite; every acceptance criterion reads `Met` |
+| Implementation | Done | `agents-md-embed.cjs` and its 33-case suite; every acceptance criterion reads `Met` |
 | Verification | Done | `scratch/baseline.txt`, `scratch/evidence.txt`; the doctor suite ends `0 failed` and `validate.sh --strict` prints `RESULT: PASSED` |
 
 ### Deviations and findings
@@ -87,4 +87,6 @@ and findings belong here.
 |------|------|
 | `--create-router` comes from the approved design, not from this child's requirements | The requirements say only that the router gains the missing shipped rows; an absent router is therefore reported and left alone unless the flag is given, as the design states |
 | A plan on an already-current template writes no empty block | Adding two marker lines to a document that carries nothing of its own would be a write with no content behind it |
+| A marker is the whole line, not the bytes anywhere | A repository documents the block by quoting the markers in prose; reading that sentence as the block's edge cut it in three and lost the fragments silently |
+| The backup directory is named by the plan digest | The plan is the artefact the yes is given against, so apply has to land where it pointed without a second clock reading; a taken directory is planned again instead of suffixed |
 <!-- /ANCHOR:log -->

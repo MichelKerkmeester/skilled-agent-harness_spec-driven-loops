@@ -139,6 +139,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-004 | Every pin names a consumer file that still contains the pin text, or whose own constant equals it, so the pin list cannot rot. |
 | REQ-005 | Every `AGENTS.md` string the rule-copy canary requires appears in the manifest's pin set. |
 | REQ-006 | `AGENTS.md:3` carries the measured wording from the parent phase spec, and the file ends with exactly one empty marked block. |
+| REQ-011 | A marker is the whole line, apart from the whitespace around it: the segmenter counts marker lines, treats the same bytes inside a sentence as repository content, and reports the document lines each part it returns occupies. |
+| REQ-012 | The generator exits 1 and names the line when the root file carries text above its first heading, which no derived body can hold. |
 | REQ-010 | `--check` does not fail on a checkout that holds no release tags: it reports that the history was not compared and compares everything else. |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -196,6 +198,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - Empty input: a root file with no `##` heading yields a single section and the generator exits 1 because the authored entries match nothing.
 - Maximum input: the observed 38 KB fork shape still segments, and its sections past the delivery prefix are reported rather than refused.
 - Failure path: an unregistered heading exits 1 and prints the heading text and its byte offset.
+- A template that grew text above its first heading: the prelude is reported as `unmarked-prelude`, with the line it starts on and the line's own text, and the generator exits 1 before it could write a derived key that omits it.
+- A root file whose prose quotes both marker lines: no marker line exists, so the document carries no block and the quoted sentence is ordinary content.
 <!-- /ANCHOR:edge-cases -->
 
 ---

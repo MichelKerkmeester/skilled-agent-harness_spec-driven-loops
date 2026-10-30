@@ -82,7 +82,7 @@ wherever it sits, because the shared segmenter reads the whole document.
 | File | Action | Purpose |
 |------|--------|---------|
 | `.skilled/commands/doctor/scripts/agents-md-embed.cjs` | Created | `plan`, `apply`, `restore`, the composer, the write allowlist, the backups and the preservation proof |
-| `.skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs` | Created | 26 cases over temporary copies: composition, carry order, the three document shapes, the four invariant parts, the digest gate, the allowlist, the backups, the fallback, the copies, the router and the mirror |
+| `.skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs` | Created | 33 cases over temporary copies: composition, carry order, the document shapes, the marker line rule, the four invariant parts, the digest gate, the dry run, the allowlist, the backups and their directory, the fallback, the copies, the router and the mirror |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -137,9 +137,9 @@ flag is given, and a router that exists gains only the rows it is missing.
 
 | Check | Result |
 |-------|--------|
-| `node --test .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs` | `tests 26`, `pass 26`, `fail 0`, exit 0 (`pass 23` before the review repair) |
+| `node --test .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs` | `tests 33`, `pass 33`, `fail 0`, exit 0 (`tests 26` before the second review repair) |
 | `node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan` | `NOTHING TO DO`, exit 0, on this repository |
-| `bash .skilled/commands/doctor/scripts/tests/run-all.sh` | `38` files, `816` node cases, `0 failed`, exit 0 (`805` cases before the review repair) |
+| `bash .skilled/commands/doctor/scripts/tests/run-all.sh` | `38` files, `827` node cases, `7` suites passed, `0 failed`, exit 0 (`816` cases before the second review repair) |
 | `node .skilled/commands/doctor/scripts/agents-md-check.cjs` | `A1 install state: pure`, `STATUS=OK rows=12 findings=0 unknown=0`, exit 0 |
 | `node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs` | `RESULT: PASSED (11/11 checks)`, exit 0 |
 | `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` | `OK: all rule invariants present`, `#### Blast-Radius Management` ends at byte `16368` |
@@ -163,6 +163,20 @@ A review of the check engine it composes from found that a block written anywher
 | Text above the first heading | It was carried by a preamble chunk the proof did not count, so a composition that lost it read clean | The segmenter returns it as `prelude`, the preservation check requires it under part one, and the chunk is sourced from there |
 
 Three cases were added, one per shape. Each failed first (`fail 3`) and passes now; the third also drives the proof directly by removing the prelude from a composed document and asserting that the check names it.
+
+A second review ran thirty scenarios against this engine and returned seven findings. All seven are repaired, each held by a case that failed first:
+
+| Finding | What was wrong | What changed |
+|---------|----------------|--------------|
+| A marker inside a sentence | `findBlock` searched for the marker bytes, so a line that quotes both markers became the block: its two fragments belonged to no section and to no prelude, the rewrite deleted them, and the proof reported `dropped 0` | A marker is the whole line, apart from surrounding whitespace; the same bytes inside other text are repository content and are carried like any other line |
+| The proof followed the segmentation | It required the parts the segmenter produced, so a line the reader placed nowhere was required by nothing | It requires the old document's own lines in reading order, and the segmentation supplies only the part number that names a missing line |
+| `apply --dry-run` wrote | The flag was parsed and never read, so an operator asking to stay safe got a full write with a fresh backup | The dry run stops after the digest, the proof and the allowlist, prints the plan and creates nothing |
+| The plan's backup path did not survive | Apply stamped its own clock reading, the digest did not cover the directory, and `uniqueDirectory` could suffix it, so the undo command the plan printed was dead | The directory is named by the plan digest, which covers the target root, the composed bytes and the directory ordinal; apply derives the same path from that digest, and a taken directory is planned again |
+| Carried lines were trimmed | `localLinesOf` pushed the trimmed line, so the four spaces of a nested bullet did not reach the block | It compares trimmed and returns the line as written |
+| A9 reported a finding with no line | A body that carried every shipped line and differed by one space produced `0 local line(s)` and no line to act on | The row names the line where the two bodies part company and prints the two raw lines, or reports `INFO` if it cannot name one |
+| A two-block document was refused as lost lines | The second block's marker bytes were reported as repository lines the run dropped, which named nothing actionable | The run refuses before composing, says the block is duplicated, names the line each of the four markers sits on, and prints no `dropped:` line |
+
+The seven cases failed first in one run (`fail 8`, the eighth being the existing case whose helper was renamed `backupPlan` to `backupBase`), the two probes that covered the engine end `PROBE OK` and `PROBE3 OK`, and the reviewer's two remaining probe assertions were stale rather than findings: one treated a printed backup path as a created directory, the other accepted only exits 0 and 1 for a document the review itself asked to be refused as a precondition.
 <!-- /ANCHOR:review-repair -->
 
 ---
@@ -172,8 +186,9 @@ Three cases were added, one per shape. Each failed first (`fail 3`) and passes n
 
 1. **A fork copied from a non-release commit classifies as `unknown-base`.** Its old template lines are carried into the block, which is noisy but never lossy, because only known shipped lines are dropped.
 2. **A budget overflow is a finding, not a refusal.** A carried document can push the result past the 32,768-byte ceiling a truncating runtime stops at; the plan says so and still keeps every line, because moving a line into a rule file changes when it binds.
-3. **The plan's backup path is advisory to the second.** Apply takes its own stamp when it runs, so a run started a second later prints a different directory than the plan did. The path apply names is the one that exists.
-4. **A router without a trigger table or an index table is reported, not repaired.** Adding a second table of either kind would number a section the checker reads by number.
+3. **A duplicated block is refused, not merged.** Two blocks leave no way to tell which one the repository treats as its own, so the engine names both positions and writes nothing rather than choosing.
+4. **A backup directory is named by the plan digest, not by a clock reading.** A plan replayed after its run already happened is refused by name instead of writing beside that run's record; the operator plans again for a directory of its own.
+5. **A router without a trigger table or an index table is reported, not repaired.** Adding a second table of either kind would number a section the checker reads by number.
 <!-- /ANCHOR:limitations -->
 
 ---

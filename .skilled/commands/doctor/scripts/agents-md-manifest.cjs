@@ -284,7 +284,7 @@ function composeDerived({ root, manifest, history = null }) {
     ? fs.readFileSync(path.join(root, manifest.router_file), 'utf8')
     : null;
 
-  const { sections, block } = segment(rootFile.text, manifest.markers);
+  const { sections, block, prelude } = segment(rootFile.text, manifest.markers);
   if (block !== null && block.complete === false) {
     return {
       ok: false,
@@ -296,7 +296,11 @@ function composeDerived({ root, manifest, history = null }) {
     };
   }
 
-  const { matched, unregistered, unmatched, conflicts } = matchSections(sections, manifest.sections);
+  // The prelude is passed with the sections because text above the first heading is the
+  // one piece of the template a heading-shaped comparison cannot reach: carried nowhere, a
+  // `--write` would persist a derived key that silently omits it, and every consumer would
+  // receive a template missing a line its source repository has.
+  const { matched, unregistered, unmatched, conflicts } = matchSections(sections, manifest.sections, prelude);
   const errors = [...conflicts, ...unregistered, ...unmatched];
   if (errors.length > 0) return { ok: false, derived: null, errors };
 

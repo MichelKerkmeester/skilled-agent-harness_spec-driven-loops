@@ -182,6 +182,28 @@ test('segmenter: the block heading is not a shipped section', () => {
   assert.equal(sections[1].end, block.start, 'the last shipped section ends where the block begins');
 });
 
+// A repository documents the block by writing its markers inside a sentence. The same bytes
+// are the block's edge only when the line carries nothing else, because an edge in the
+// middle of a line leaves the text on either side in no section, in no prelude and in no
+// block, where a rewrite deletes it and nothing is left holding a claim about it.
+test('segmenter: a marker is the whole line, and the block reports the lines it owns', () => {
+  const shipped = manifest.sections.map((entry) => manifest.derived.sections[entry.id].body).join('');
+  const quoted = 'The block is fenced by `<!-- skilled:repo-local:start -->` and `<!-- skilled:repo-local:end -->` in this framework.';
+
+  const prose = segment(`${shipped}${quoted}\n`, manifest.markers, manifest.sections);
+  assert.equal(prose.block, null, 'prose that quotes both markers is not a block');
+  assert.ok(prose.sections[prose.sections.length - 1].body.includes(quoted), 'the sentence is a line of the section it ends');
+  assert.equal(prose.prelude, null, 'nothing sits above the first heading');
+
+  // Whitespace around a marker does not stop it being one, and the block names the line
+  // range it owns so a caller that reports where it sits has the figure already.
+  const block = [`  ${manifest.markers.start}`, manifest.markers.heading, '', manifest.markers.note, `  ${manifest.markers.end}`, ''].join('\n');
+  const found = segment(`${shipped}${block}`, manifest.markers);
+  assert.equal(found.block.complete, true, 'an indented marker line is still a marker line');
+  assert.equal(found.block.markerLines.start.length, 1);
+  assert.equal(found.block.rows.last - found.block.rows.first + 1, block.split('\n').length - 1, 'the block owns its five lines, markers included');
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. GENERATOR REFUSALS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -222,6 +244,29 @@ test('generator: a missing root file exits 2 with a named cause and writes nothi
   assert.equal(result.code, 2, `exit 2, stdout=${result.out} stderr=${result.err}`);
   assert.match(`${result.err}${result.out}`, /AGENTS\.md/);
   assert.equal(fs.readFileSync(copy, 'utf8'), before, 'the manifest is untouched');
+});
+
+// Text above the first heading belongs to no section, so no derived body can carry it and
+// a `--write` would persist a copy of the template that quietly omits the line. The check
+// engine reports that text; the generator has to refuse it for the same reason.
+test('generator refusal: text above the first heading exits 1 and names the line', (t) => {
+  const dir = scratch(t);
+  const template = manifest.sections.map((entry) => manifest.derived.sections[entry.id].body).join('');
+  const line = 'Read this first: the harness ships these instructions.';
+  fs.writeFileSync(path.join(dir, manifest.root_file), `${line}\n${template}`);
+
+  const composed = composeDerived({ root: dir, manifest, history: [] });
+  assert.equal(composed.ok, false, 'a template with a prelude is not the clean surface the derived key describes');
+  const prelude = (composed.errors || []).find((error) => error.code === 'unmarked-prelude');
+  assert.ok(prelude, `the refusal names the text above the first heading: ${JSON.stringify(composed.errors)}`);
+  assert.match(prelude.message, /before its first heading/u);
+  assert.match(prelude.message, /line 1\b/u, 'the message names the line it sits on');
+  assert.ok(prelude.message.includes(line), 'and carries the line itself');
+
+  const result = runGenerator(['--check', '--root', dir]);
+  assert.equal(result.code, 1, `exit 1, stdout=${result.out} stderr=${result.err}`);
+  assert.match(`${result.err}${result.out}`, /unmarked-prelude/u);
+  assert.match(`${result.err}${result.out}`, /before its first heading/u);
 });
 
 test('generator: --write outside the source repository exits 2 and names the origin', (t) => {

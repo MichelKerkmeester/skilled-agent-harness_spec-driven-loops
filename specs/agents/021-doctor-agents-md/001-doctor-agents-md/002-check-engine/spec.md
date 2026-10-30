@@ -118,9 +118,9 @@ $ wc -c AGENTS.md
 | A4 section currency | Per section, sha256 against `derived`: `current`; `stale-known` (matches a release-history body, so replacement is safe); `edited` (matches none but the closest known body is identifiable, so it lists the local-only lines); `unknown-base`. `INFO` when no shipped section matched, because an empty classification is not a verified one |
 | A5 pins | Each pin per its rule, including first-occurrence placement, so local text never shadows the gate 1 lookup line. A pin kind with no rule is `UNKNOWN`, never a hold |
 | A6 delivery budget | Runs the rule-copy canary and keeps only its `AGENTS.md` lines; `UNKNOWN` when the canary is not installed. Reports the end byte of the last anchor and the total bytes |
-| A7 repo-local block | Markers well formed (exactly one start and one end, in order), the block's position among the sections — one written between shipped sections is reported by byte and by the section that follows it — its byte size and its headroom |
+| A7 repo-local block | Markers well formed (exactly one start marker line and one end marker line, in order, since a marker is the whole line and the same bytes quoted in a sentence are prose), the line each marker sits on when a document carries more than one block, the block's position among the sections — one written between shipped sections is reported by byte and by the section that follows it — its byte size and its headroom |
 | A8 unmarked repo-unique content | Every section outside the markers that matches no manifest entry, with its line range, its byte range and whether it sits in the 16 KB prefix, plus the text above the first heading, which no heading-shaped section covers |
-| A9 unmarked local edits | For `edited` and `unknown-base` sections, the lines not present in the current shipped body, once per occurrence, so a line written twice is two lines to keep |
+| A9 unmarked local edits | For `edited` and `unknown-base` sections, the lines not present in the current shipped body, once per occurrence, so a line written twice is two lines to keep. A body that carries every shipped line and still differs — by whitespace, by order or by a repeat — is named by the line where the two bodies part company, because a finding with no line under it names nothing to act on |
 | A10 runtime copies | Each expected copy. The cursor block runs the pointer sync `--check`; `CLAUDE.md` and `.codex/AGENTS.md` are classified as pointer, symlink, identical copy or divergent copy, with the divergent lines listed. A copy whose own tool is missing is `UNKNOWN` and counted in `unknown=` |
 | A11 REPO RULES.md | Present or absent, missing shipped trigger and index rows, and the summary line of the repo-rules checker, reused rather than reimplemented |
 | A12 template purity | Runs only with `--source`, or when the origin equals the source repository: block empty and `derived` fresh |
@@ -166,6 +166,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-007 | Exit codes are 0 for no finding, 1 for at least one finding and 2 for a failed precondition. |
 | REQ-008 | A write-spy proves the run makes zero filesystem writes. |
 | REQ-012 | A block written anywhere is read as the block: the whole document is segmented, so A7 reports a block that sits before shipped sections, and the sections below it classify as shipped ones. |
+| REQ-015 | A marker is the whole line: A7 counts marker lines rather than the bytes anywhere, so a sentence quoting both markers is not a block, and a document carrying more than one block has each marker named by line. |
+| REQ-016 | A9 never reports a finding with no line: a body that differs only in whitespace, order or a repeat is named with the line of the body and the two raw lines, and `INFO` is reserved for a difference it cannot name. |
 
 ### P1 - Required (complete OR user-approved deferral)
 

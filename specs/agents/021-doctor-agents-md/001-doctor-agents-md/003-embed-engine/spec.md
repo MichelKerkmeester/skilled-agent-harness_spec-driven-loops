@@ -101,6 +101,7 @@ $ node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs
 ### In Scope
 - `plan`: compose in memory, print each target path with its action, a unified diff per file, the full new block, the byte budget before and after, the preservation ledger, the backup location, the undo command and a plan digest.
 - `apply --plan-digest <d>`: recompose, refuse a digest mismatch, back up first, check every path against the allowlist and write.
+- `apply --plan-digest <d> --dry-run`: the same run with every precondition checked and the same plan printed, and no backup or write.
 - `restore --run=<dir>`: put back exactly the recorded files, print its own plan, take one yes and verify byte equality.
 - The preservation check as a pure function, `preservationCheck(old, new, manifest) -> {dropped, foreign}`.
 
@@ -113,16 +114,24 @@ $ node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs
 
 `AGENTS.md` becomes every current shipped section from `derived`, in manifest order, then the block. The block is found wherever it sits: the segmenter reads the whole document, so a block written between shipped sections is still the block, and the sections below it are replaced like any other. Text above the first heading and a line below the end marker are repository content for the same reason.
 
-The block carries, in this order: the existing block content verbatim; the text above the first heading verbatim; every unmarked section verbatim in original order; for each edited or unknown-base section, a `### Carried from <id>` subheading followed by its local-only lines verbatim; and the unique lines of a divergent `CLAUDE.md` and `.codex/AGENTS.md`, each under `### Carried from <path>`. A `stale-known` section is replaced with no carry, because every line of it is a known shipped line. For an edited section whose base is known, the engine first tries a three-way merge through the update engine's exported classifier; when that merge is clean it still defaults to adopt-and-carry, because a merged section stays edited forever.
+A marker is the whole line and nothing else, apart from the whitespace around it. A repository that documents the block writes its bytes inside a sentence, and that sentence is repository content like any other line; reading it as the block's edge would cut the line in three and leave the two fragments in no section, in no prelude and in no block, where a rewrite deletes them and no part of the proof is left holding a claim about them. The same rule makes the half-written block truthful: one marker line without the other is a document fault, refused with exit 2 and nothing written. A document carrying two blocks has no single block to carry out of, so it is refused as well, and the message says the block is duplicated and names the line each marker sits on rather than reporting the framework's own marker bytes as repository lines that were dropped.
+
+The block carries, in this order: the existing block content verbatim; the text above the first heading verbatim; every unmarked section verbatim in original order; for each edited or unknown-base section, a `### Carried from <id>` subheading followed by its local-only lines verbatim; and the unique lines of a divergent `CLAUDE.md` and `.codex/AGENTS.md`, each under `### Carried from <path>`. Verbatim includes the leading whitespace: the four spaces that make a nested bullet or an indented sample render are part of the line, and a trim would silently reflow the repository's own text. A `stale-known` section is replaced with no carry, because every line of it is a known shipped line. For an edited section whose base is known, the engine first tries a three-way merge through the update engine's exported classifier; when that merge is clean it still defaults to adopt-and-carry, because a merged section stays edited forever.
+
+### The backup directory
+
+The plan names one directory, inside `.skilled/output/doctor-agents-md` when git ignores it and under the OS temp directory otherwise, and the name is the plan digest's first 16 hex characters. The digest covers the composed bytes, the target root and which of this composition's directories the plan takes, so apply derives the same directory from the digest it was given and writes exactly there: the undo command the plan printed resolves after the run. A directory an earlier run already owns is never suffixed into a second name, because that undo command would then point at the earlier run's bytes; the plan steps to the next directory and prints a different digest instead.
 
 ### The preservation invariant
 
-A line is a trimmed line, excluding blank lines and lines that are only `---`. A known shipped line is any line of any body in `derived.sections` or `derived.history`. Checked after every apply:
+A line is a trimmed line, excluding blank lines and lines that are only `---`. A known shipped line is any line of any body in `derived.sections` or `derived.history`. The framework's own bytes — the two marker lines and the block's heading and note — are not repository lines: the new document carries one of each whatever the old one carried, so requiring them would report a duplicated block as lost content. Checked after every apply:
 
 1. Every line of the old `AGENTS.md` that sat in an unmarked section, in the text above the first heading or in the old block appears in the new block at least as many times as before.
 2. Every line of the old `AGENTS.md` that sat in a matched shipped section and is not a known shipped line appears in the new block at least as many times as before.
 3. Every unique line of a removed `CLAUDE.md` or `.codex/AGENTS.md` appears in the new `AGENTS.md` at least as many times as before.
 4. Every line of the new `AGENTS.md` outside the block is a line of a current shipped body.
+
+The requirement is read from the old document's own lines, in reading order, and the segmentation supplies only the part number that names where a missing line sat. A proof built from the segmentation's parts instead could require only what that reader managed to place, so a line it placed nowhere would be required by nothing and a composition that lost it would still report `dropped 0`.
 
 ### Write allowlist
 
@@ -154,6 +163,11 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-006 | A second `embed` on the result prints `NOTHING TO DO`. |
 | REQ-007 | The set of written paths is a subset of the allowlist, checked before each write. |
 | REQ-013 | A block written between shipped sections, a line below its end marker and the text above the first heading are all carried into the one block at the end, and the preservation check counts each of them. |
+| REQ-014 | A marker is the whole line: a sentence quoting both marker literals is carried as repository content, a lone marker line is refused as a half-written block with exit 2, and a document carrying two blocks is refused with a message that says the block is duplicated and names the line each marker sits on. |
+| REQ-015 | The preservation proof requires the old document's own lines, so a line the segmenter placed in no part still fails the run, and the framework's marker and heading lines are never required. |
+| REQ-016 | `apply --plan-digest <d> --dry-run` prints the same plan and creates no backup directory and no file. |
+| REQ-017 | The backup directory is named after the plan digest, covered by that digest, and used by apply exactly, so the undo command the plan printed resolves after the run; a directory an earlier run holds is re-planned rather than suffixed. |
+| REQ-018 | A carried line keeps its leading whitespace: a nested bullet or an indented line reaches the block as it was written, while the proof compares it trimmed. |
 
 ### P1 - Required (complete OR user-approved deferral)
 

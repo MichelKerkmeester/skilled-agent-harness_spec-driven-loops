@@ -102,7 +102,7 @@ The first shape of this committed the composed tree beside each recipe, six of t
 |-------|--------|
 | `node .skilled/commands/doctor/scripts/agents-md-check.cjs` | `A1 install state: pure   (PASS)`, `STATUS=OK rows=12 findings=0 unknown=0`, exit 0 |
 | Runtime on this repository | 0.39-0.44 seconds over three runs of `time -p`, and 0.41 seconds for the `--json` form, against a five-second target (0.27-0.30 before the review repair) |
-| `node --test .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs` | `tests 37`, `pass 37`, `fail 0`, exit 0 (`tests 29` before the review repair) |
+| `node --test .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs` | `tests 39`, `pass 39`, `fail 0`, exit 0 (`tests 37` before the second review repair) |
 | `node --test .skilled/commands/doctor/scripts/tests/agents-md-manifest.test.cjs` | `tests 28`, `pass 28`, `fail 0`, exit 0 |
 | `bash .skilled/commands/doctor/scripts/tests/run-all.sh` | `node:test (37 files)` PASS, `unittest (1 files)` PASS, three shell suites PASS, `route-validate.sh --self-test` PASS, freshness panel PASS, `7 suite(s) passed, 0 failed`, exit 0 |
 | Read-only promise | `git status --porcelain \| shasum` gave `e257400fe1ee97622e3d5e1fe2274bf7e0edb1f8` before and after composing each of the nine recipes, running the engine twice on each and once on this repository; the suite additionally hashes each composed tree by sha256 before and after, and a write-spy over every row records no call |
@@ -131,6 +131,13 @@ A review of the engine found ten defects, four of them the kind that read as a p
 | A9 collapsed repeated local lines | A line is counted once per occurrence, because a replacement loses both |
 
 The repair is eight new cases in this suite and three in the embed suite. Tests came first: the eight cases failed on `fail 8` against the old engine, and every one passes now.
+
+A second review of the embed engine it feeds reported two rows that could not be acted on. Both are repaired, each held by a case that failed first:
+
+| Finding | What was wrong | What changed |
+|---------|----------------|--------------|
+| A7 counted marker bytes anywhere | The row counted substring occurrences, so a document whose prose quotes the start and end markers read as carrying two blocks, and a `pure` tree with no block at all reported one 7 bytes long | The row reads the segmenter's marker lines, so a sentence is prose; a document with more than one block has the line of each marker printed under the finding |
+| A9 reported a finding with no line | A body that carried every shipped line and differed by one leading space produced `0 local line(s)` and an empty line list, so the operator had a finding and nothing to look at | The row prints the line where the two bodies part company with the shipped and the document line, and `INFO` is kept for a difference it cannot name |
 <!-- /ANCHOR:review-repair -->
 
 ---

@@ -311,6 +311,49 @@ test('text before the first shipped heading is reported as unmarked repository c
   assert.match(unmarked.lines.join(' '), /before the first heading/);
 });
 
+// A body can carry every line the shipped body carries and still not be it: one extra
+// space on an indented bullet is a real difference and a rewrite replaces it. A finding
+// with nothing under it names no line to look at, so the row says what the difference is
+// and where the two bodies part company.
+test('A9 names a body that differs only in whitespace, by line', (t) => {
+  const fixture = buildFixture(t, 'pure');
+  const shipped = manifest.derived.sections['gate-3'].body;
+  const lines = shipped.split('\n');
+  const indented = lines.findIndex((row) => row.startsWith('  '));
+  assert.notEqual(indented, -1, 'the shipped body carries an indented line');
+  lines[indented] = ` ${lines[indented]}`;
+  assert.notEqual(lines[indented], shipped.split('\n')[indented]);
+  rewriteDocument(fixture, fixture.document.replace(shipped, lines.join('\n')));
+
+  const run = runJson(['--root', fixture.dir]);
+  assert.equal(rowOf(run.report, 'A4').entries.find((entry) => entry.id === 'gate-3').state, 'edited', 'the body is not the shipped one');
+
+  const edits = rowOf(run.report, 'A9');
+  assert.equal(edits.state, 'FINDING', 'the section is not the shipped one, so the row reports it');
+  assert.ok(edits.lines.length > 0, 'a finding names at least one line to act on');
+  assert.match(edits.lines[0], /gate-3/u, 'the line names the section');
+  assert.match(edits.lines[0], new RegExp(`line ${indented + 1}\\b`, 'u'), 'and the line of the body where the two differ');
+  assert.match(edits.lines[0], /whitespace/u, 'and says the difference is whitespace');
+
+  const text = runCheck(['--root', fixture.dir]);
+  assert.match(text.out, /A9 unmarked local edits: .*\(FINDING\)/u);
+  assert.match(text.out, /gate-3: only whitespace/u, 'the text form prints the same line');
+});
+
+// A marker is the whole line, so a sentence that quotes both markers is prose. Counting
+// the bytes instead would report a document with no block as carrying two of them, which
+// is a finding about a file nobody can fix.
+test('A7 counts marker lines, not the marker text quoted inside a sentence', (t) => {
+  const fixture = buildFixture(t, 'pure');
+  const sentence = 'The block is fenced by `<!-- skilled:repo-local:start -->` and `<!-- skilled:repo-local:end -->` in this framework.';
+  rewriteDocument(fixture, `${fixture.document}${sentence}\n`);
+
+  const run = runJson(['--root', fixture.dir]);
+  const block = rowOf(run.report, 'A7');
+  assert.equal(block.state, 'PASS', `a sentence quoting both markers is prose, not a block: ${block.lines.join(' | ')}`);
+  assert.match(block.detail, /no block/u, 'the document carries no block, because neither marker is a line of its own');
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 7. PINS, BUDGET AND BLOCK SHAPE
 // ─────────────────────────────────────────────────────────────────────────────

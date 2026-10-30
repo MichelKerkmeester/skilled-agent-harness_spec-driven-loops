@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Nothing in the framework states in machine-readable form what the template ships",
     "created_at": "2026-10-30T11:22:40Z",
-    "last_save_at": "2026-10-30T12:36:09.495Z",
+    "last_save_at": "2026-10-30T15:30:09.757Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f29435b0b731205c2e29c457b5fc32ceeaef06fcba8bdd246ee333c0683df54",
+    "source_fingerprint": "sha256:afc8cd5c8101dd786e2e8681afbd7f1998e2f217d3b5a2cbaad7e1730cef166d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3f07c268829961a7037538d3c9e1b0aceb337ed184ccdcf13b008ff3cad23920",
+      "spec.md": "59ee98b8a5efe67fb27cfd196c76d2e36b5090ec9fe330c72319c8768961194a",
       "plan.md": "cb6eee78541b885c6112680bd0ce55e6d8785f9ef77c1616196eab066be7202a",
-      "tasks.md": "4dce003ee37542952e981e310d507da9bcfafaed1d37d9edfaf18c06c7cd4d3f",
-      "implementation-summary.md": "a88d87622e1b662a328984b4f1534290e3d1634fd4ff29acf0796c0260d78307"
+      "tasks.md": "2ca4de72460ff1aa713bc946ad2ebd1ccb9e20f3b54cc4a022af3d2aa2d7bb1c",
+      "implementation-summary.md": "c1660d9b52c3e93a2a1c9f13e5542cf439d6210b271165a2b9a5b0ea19749fcf"
     },
     "last_active_at": null
   }

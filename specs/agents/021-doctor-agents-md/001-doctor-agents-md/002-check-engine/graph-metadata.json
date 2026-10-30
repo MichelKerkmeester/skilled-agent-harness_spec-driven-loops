@@ -201,7 +201,7 @@
     ],
     "causal_summary": "A repository that took the framework can be in any of seven states, and nothing names which one it is in",
     "created_at": "2026-10-30T11:22:42Z",
-    "last_save_at": "2026-10-30T14:17:11.979Z",
+    "last_save_at": "2026-10-30T15:43:36.648Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9bee14d18cb3b8be370c17322c307d58e54c2d387970e04758fd4e319c9a574b",
+    "source_fingerprint": "sha256:4455c2524bac2c5fb419696ce6c6357dfee43aa12bd5a06767121093f5624266",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8f967b88268a92bc6d00fdb1d2b1fc7f9d55af451e3119c0962467314b5a7692",
+      "spec.md": "ed7e21890f523973f1094f88fa77abd6f78d9390f27f0d269650420059000f77",
       "plan.md": "076b1a969dcbf71f6ee68721bec26c6d53c4c83d703e22455af26a619e68ed5d",
-      "tasks.md": "15f9a882f1ab35d3daa24af4473ec05860943b9515deea9067b5679ddcb8297e",
-      "implementation-summary.md": "ad9627689c56a8a0f125175c258d99bee511d805af44d9c42dffb976047ed39b"
+      "tasks.md": "7d1bc891eede4ab4f6c6da3f1a50c3b6e8ea4e7a8a06545e95356f88fed3b4b3",
+      "implementation-summary.md": "a0f115705518f52ef21fa93acfcea7cc472dcf34414d1c9ff583bb16a68c611d"
     },
     "last_active_at": null
   }

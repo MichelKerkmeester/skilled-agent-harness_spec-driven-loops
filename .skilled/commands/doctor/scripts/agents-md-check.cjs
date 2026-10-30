@@ -44,7 +44,6 @@ const path = require('node:path');
 const {
   classifyBody,
   deliveryAnchorEnd,
-  findBlock,
   matchSections,
   segment,
 } = require('./lib/agents-md-sections.cjs');
@@ -116,16 +115,6 @@ function parseArgs(argv) {
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. READING THE TARGET ONCE
 // ─────────────────────────────────────────────────────────────────────────────
-
-function countOccurrences(text, needle) {
-  let count = 0;
-  let at = text.indexOf(needle);
-  while (at !== -1) {
-    count += 1;
-    at = text.indexOf(needle, at + needle.length);
-  }
-  return count;
-}
 
 // Section offsets are byte offsets because the delivery budget is a byte count, while a
 // reader opens the file by line number. One conversion, in one place.
@@ -506,23 +495,28 @@ function rowBudget(context, manifest, tools) {
     { lines: [...failures, ...notes] });
 }
 
-// A7. The repository block: one start marker, one end marker, in that order, after every
-// shipped section, small enough to leave headroom.
+// A7. The repository block: one start marker line, one end marker line, in that order,
+// after every shipped section, small enough to leave headroom. A marker is the whole line,
+// so the same bytes quoted inside a sentence are prose and do not make a second block.
 function rowBlock(context, manifest) {
-  const { markers, budget } = manifest;
-  const starts = context.exists ? countOccurrences(context.text, markers.start) : 0;
-  const ends = context.exists ? countOccurrences(context.text, markers.end) : 0;
+  const { budget } = manifest;
+  const block = context.block;
+  const starts = block === null ? 0 : block.markerLines.start.length;
+  const ends = block === null ? 0 : block.markerLines.end.length;
 
   if (starts === 0 && ends === 0) {
     return row('A7', 'repo-local block', PASS, `no block; ${context.totalBytes} of ${budget.max_bytes} bytes used`);
   }
   if (starts !== 1 || ends !== 1) {
+    const lines = ['the block cannot be placed, so nothing inside it can be carried'];
+    const where = [];
+    if (block !== null && starts > 0) where.push(`the start marker sits on line ${block.markerLines.start.join(' and line ')}`);
+    if (block !== null && ends > 0) where.push(`the end marker on line ${block.markerLines.end.join(' and line ')}`);
+    if (where.length > 0) lines.push(where.join(', '));
     return row('A7', 'repo-local block', FINDING,
-      `expected one start and one end marker, found ${starts} and ${ends}`,
-      { lines: [`the block cannot be placed, so nothing inside it can be carried`] });
+      `expected one start and one end marker line, found ${starts} and ${ends}`, { lines });
   }
 
-  const block = context.block || findBlock(context.text, markers);
   const lines = [];
   if (!block || !block.complete) {
     lines.push('the end marker sits before the start marker, so the block is out of order and unreadable');
@@ -577,27 +571,58 @@ function rowUnmarked(context, manifest) {
     });
 }
 
+// The line where two bodies first part company, with the two raw lines. A body can carry
+// every line the shipped body carries and still not be it — an extra space on an indent, a
+// line written twice, two lines swapped — and the operator needs the line to look at
+// rather than a finding with nothing under it.
+function bodyDifference(actual, expected) {
+  const left = String(actual).split('\n');
+  const right = String(expected).split('\n');
+  const last = Math.max(left.length, right.length);
+  for (let index = 0; index < last; index += 1) {
+    if (left[index] === right[index]) continue;
+    return {
+      line: index + 1,
+      actual: left[index] === undefined ? null : left[index],
+      shipped: right[index] === undefined ? null : right[index],
+    };
+  }
+  return null;
+}
+
 // A9. For a section that is not the shipped body, the lines the shipped body does not
-// carry. Those are the lines a replacement would lose.
+// carry, once per occurrence. A body that carries every shipped line can still differ, so
+// the row names that difference by line instead of reporting a finding with no line under
+// it: a finding nobody can act on reads like a bug in the checker.
 function rowUnmarkedEdits(context, manifest) {
   const entries = [];
   for (const entry of context.currency) {
     if (entry.state !== 'edited' && entry.state !== 'unknown-base') continue;
     const shipped = manifest.derived.sections[entry.id];
+    const body = shipped ? shipped.body : '';
+    const lines = localLinesOf(entry.section.body, body);
     entries.push({
       id: entry.id,
       state: entry.state,
-      lines: localLinesOf(entry.section.body, shipped ? shipped.body : ''),
+      lines,
+      difference: lines.length === 0 ? bodyDifference(entry.section.body, body) : null,
     });
   }
   if (entries.length === 0) return row('A9', 'unmarked local edits', PASS, 'no edited section');
 
   const total = entries.reduce((sum, entry) => sum + entry.lines.length, 0);
-  return row('A9', 'unmarked local edits', FINDING,
-    `${entries.length} section(s) carry ${total} local line(s)`, {
-      lines: entries.flatMap((entry) => entry.lines.map((line) => `${entry.id}: ${line}`)),
-      entries,
-    });
+  const formatting = entries.filter((entry) => entry.lines.length === 0).length;
+  const detail = [`${entries.length} section(s) carry ${total} local line(s)`];
+  if (formatting > 0) detail.push(`${formatting} of them differ only in whitespace, order or a repeat`);
+
+  const lines = [];
+  for (const entry of entries) {
+    for (const line of entry.lines) lines.push(`${entry.id}: ${line}`);
+    if (entry.difference === null) continue;
+    lines.push(`${entry.id}: only whitespace, order or a repeat differs from the shipped body, at line ${entry.difference.line}: shipped ${JSON.stringify(entry.difference.shipped)}, the document carries ${JSON.stringify(entry.difference.actual)}`);
+  }
+  return row('A9', 'unmarked local edits', lines.length === 0 ? INFO : FINDING,
+    detail.join('; '), { lines, entries });
 }
 
 // A10. The copies each runtime loads. Claude reads the root document directly, so a full

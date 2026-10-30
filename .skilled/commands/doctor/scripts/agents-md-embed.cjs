@@ -13,16 +13,18 @@
 // So this engine never writes what it has not first shown and hashed. Composition happens
 // in memory and produces one new document per target; the plan prints every target, the
 // diff, the new block, the byte budget and the survival ledger, and hashes the composed
-// bytes. Apply recomposes and refuses a digest that differs, which is what makes "what you
-// saw is what will be written" checkable instead of promised. It backs up every path it
-// will touch before the first byte, then writes only inside a fixed allowlist that is
-// checked in code rather than described in a document.
+// bytes. The backup directory is named after that digest, so apply lands exactly where the
+// plan pointed and the plan is the artefact the yes is given against. It backs up every
+// path it will touch before the first byte, then writes only inside a fixed allowlist that
+// is checked in code rather than described in a document.
 //
 // After the write it proves the composition against the bytes now on disk: every line the
 // repository had, inside or outside the template, must still be there, and every line
 // outside the repository block must be one the template ships. A violation restores from
 // the backup automatically and ends the run as a failure. The proof is a pure function so
-// it can also be read and driven on its own.
+// it can also be read and driven on its own, and it requires the old document's own lines
+// rather than the parts the segmenter produced: a proof built from those parts can require
+// only what the reader managed to place, and a line it placed nowhere goes unclaimed.
 //
 // The four carry groups, in order, are the shape a repository's own text keeps: the block
 // it already had, the sections that match no shipped section, the local lines of a section
@@ -71,6 +73,14 @@ const TOOL_TIMEOUT_MS = 120000;
 
 const BACKUP_DIR = path.join('.skilled', 'output', 'doctor-agents-md');
 const BACKUP_FALLBACK_DIR = 'doctor-agents-md';
+// The digest is 64 hex characters and a path segment is better short, so the directory is
+// named by its first 16. A plan and an apply that share a digest share the directory; 64
+// bits of it is what makes two different plans sharing one a non-event.
+const BACKUP_NAME_CHARS = 16;
+// How many of this composition's directories a plan will step past before it gives up. The
+// loop only moves when a directory is taken, so the number bounds a pathological tree, not
+// a normal one.
+const BACKUP_ATTEMPTS = 64;
 const MIRROR_FILE = '.cursor/rules/repo-local.md';
 const POINTER_FILE = '.cursor/rules/skill-routing.md';
 
@@ -221,14 +231,16 @@ function lineCount(text) {
 }
 
 // The lines of one body that its reference does not carry, in order and with repeats,
-// because the proof counts occurrences rather than membership.
+// because the proof counts occurrences rather than membership. The comparison is trimmed
+// and the line comes back as it was written: the proof cares that the line survived, and
+// the indentation is what makes a nested bullet or a code sample read as one.
 function localLinesOf(body, reference) {
   const known = lineSet(reference);
   const lines = [];
   for (const raw of String(body).split('\n')) {
     const line = raw.trim();
     if (line === '' || line === '---' || known.has(line)) continue;
-    lines.push(line);
+    lines.push(raw);
   }
   return lines;
 }
@@ -265,6 +277,16 @@ function renderMirror(markers, body) {
   const text = chunkText(body);
   const between = text === '' ? '' : `${text}\n`;
   return `---\nalwaysApply: true\n---\n\n${markers.heading}\n\n${markers.note}\n${between}`;
+}
+
+// A document carrying two blocks has no single block to carry out of, and replacing it
+// would have to choose one of them. Naming both positions is what makes the refusal
+// actionable: reporting the second block's marker bytes as repository lines the run
+// dropped would name nothing anybody could look at and hide the fault behind the proof.
+function duplicateBlockMessage(rootFile, block) {
+  const starts = block.markerLines.start.map((line) => `line ${line}`).join(' and ');
+  const ends = block.markerLines.end.map((line) => `line ${line}`).join(' and ');
+  return `the repository block in ${rootFile} is duplicated: the start marker appears on ${starts} and the end marker on ${ends}; one block is all the engine can place, so it carries nothing out of either`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -420,9 +442,10 @@ function renderRouter(manifest) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Every byte the run would put on disk, in a canonical order, keyed by the root it was
-// composed for: the same plan replayed against an edited tree composes something else and
-// cannot match.
-function planDigest(composition) {
+// composed for and by the backup directory the plan takes: the same plan replayed against
+// an edited tree composes something else and cannot match, and a plan whose directory an
+// earlier run already owns is a different plan, so the digest covers which one it is.
+function planDigest(composition, plan) {
   const written = composition.files
     .filter((file) => file.action === 'create' || file.action === 'replace')
     .map((file) => [file.path, file.action, sha256(file.content)])
@@ -431,7 +454,26 @@ function planDigest(composition) {
     .filter((file) => file.action === 'remove')
     .map((file) => [file.path, file.action, null])
     .sort((left, right) => (left[0] < right[0] ? -1 : left[0] > right[0] ? 1 : 0));
-  return sha256(JSON.stringify([composition.root, ...written, ...removed]));
+  return sha256(JSON.stringify([composition.root, plan.base, plan.ordinal, ...written, ...removed]));
+}
+
+// Where each line of the old document sat, so a lost line is reported with the part it
+// belonged to. The block wins over the section it interrupts, because those bytes are the
+// repository's and not the section's.
+function placementOf(before) {
+  const places = new Map();
+  for (const section of before.sections) {
+    const place = section.id === null
+      ? { part: 1, from: 'unmarked section' }
+      : { part: 2, from: section.id };
+    for (const index of section.rows || []) places.set(index, place);
+  }
+  const preludeRows = before.prelude === null ? [] : before.prelude.rows;
+  for (const index of preludeRows) places.set(index, { part: 1, from: 'text before the first heading' });
+  if (before.block && before.block.complete && before.block.rows) {
+    for (let index = before.block.rows.first; index <= before.block.rows.last; index += 1) places.set(index, { part: 1, from: 'the block' });
+  }
+  return places;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -441,11 +483,17 @@ function planDigest(composition) {
 /**
  * Prove that a composition lost nothing the repository had.
  *
- * Four claims, one per part of the returned record: the lines of the old block and of the
- * sections no shipped entry matches still sit in the new block; the local lines of a
- * matched section still sit in the new block; the unique lines of a removed runtime copy
- * still sit in the new document; and every line of the new document outside the block is
- * one the template ships. Pure by construction: same inputs, same answer, no file read.
+ * Four claims, one per part of the returned record: every line of the old document no
+ * shipped body carries still sits in the new block; the local lines of a matched shipped
+ * section still sit there too, which the part number keeps distinct; the unique lines of a
+ * removed runtime copy still sit in the new document; and every line of the new document
+ * outside the block is one the template ships. Pure by construction: same inputs, same
+ * answer, no file read.
+ *
+ * The claim is read from the old document's own lines, in reading order, rather than from
+ * the parts the segmentation produced. A proof built from those parts can require only
+ * what the reader managed to place, so a line it placed nowhere would be required by
+ * nothing and a composition that lost it would still report `dropped 0`.
  *
  * @param {string|null} oldText - The document as it was.
  * @param {string} newText - The document as it would be, or as it now is.
@@ -465,6 +513,16 @@ function preservationCheck(oldText, newText, manifest, options = {}) {
     for (const line of lineSet(entry.body)) knownShipped.add(line);
   }
 
+  // The framework's own bytes: the two markers and the heading and note that come with
+  // them. The new document carries one of each whatever the old one carried, so requiring
+  // them would report a duplicated block as repository lines the run dropped.
+  const framework = new Set([
+    markers.start.trim(),
+    markers.end.trim(),
+    markers.heading.trim(),
+    markers.note.trim(),
+  ]);
+
   const before = oldText === null || oldText === undefined
     ? { sections: [], block: null, prelude: null }
     : segment(oldText, markers, manifest.sections);
@@ -473,39 +531,35 @@ function preservationCheck(oldText, newText, manifest, options = {}) {
   const newBlockCounts = countLines(newBlock);
   const newDocumentCounts = countLines(newText);
 
-  const require = (line, part, from, available) => {
-    const need = available.get(line) || 0;
+  const require = (line, part, from, need) => {
     const have = part === 3 ? (newDocumentCounts.get(line) || 0) : (newBlockCounts.get(line) || 0);
     if (have < need) dropped.push({ part, line, before: need, after: have, from });
   };
 
-  // Part 1. The repository's own sections and whatever its block already held.
-  if (before.prelude) {
-    for (const [line, count] of countLines(before.prelude.text)) require(line, 1, 'text before the first heading', new Map([[line, count]]));
+  // Parts 1 and 2. Every line of the old document that no known body carries has to be in
+  // the new block at least as often as it was there. Where the line sat decides only which
+  // part names it when it goes missing.
+  const places = placementOf(before);
+  const needed = new Map();
+  const oldLines = oldText === null || oldText === undefined ? [] : String(oldText).split('\n');
+  for (let index = 0; index < oldLines.length; index += 1) {
+    const line = oldLines[index].trim();
+    if (line === '' || line === '---') continue;
+    if (framework.has(line) || knownShipped.has(line)) continue;
+    const place = places.get(index) || { part: 1, from: 'the document' };
+    const entry = needed.get(line);
+    if (entry === undefined) needed.set(line, { need: 1, part: place.part, from: place.from });
+    else entry.need += 1;
   }
-  for (const section of before.sections) {
-    if (section.id !== null) continue;
-    for (const [line, count] of countLines(section.body)) require(line, 1, 'unmarked section', new Map([[line, count]]));
-  }
-  if (before.block && before.block.complete) {
-    for (const [line, count] of countLines(before.block.content)) require(line, 1, 'the block', new Map([[line, count]]));
-  }
-
-  // Part 2. Lines typed inside a shipped section that no known body carries.
-  for (const section of before.sections) {
-    if (section.id === null) continue;
-    for (const [line, count] of countLines(section.body)) {
-      if (knownShipped.has(line)) continue;
-      require(line, 2, section.id, new Map([[line, count]]));
-    }
-  }
+  for (const [line, entry] of needed) require(line, entry.part, entry.from, entry.need);
 
   // Part 3. Lines that only a runtime copy carried, counted against the whole document.
   const oldDocumentCounts = oldText === null || oldText === undefined ? new Map() : countLines(oldText);
   for (const copy of options.removed || []) {
     for (const [line, count] of countLines(copy.content)) {
+      if (framework.has(line)) continue;
       if ((oldDocumentCounts.get(line) || 0) > 0) continue;
-      require(line, 3, copy.path, new Map([[line, count]]));
+      require(line, 3, copy.path, count);
     }
   }
 
@@ -584,6 +638,9 @@ function compose({ root, manifest, keepClaudeMd = false, createRouter = false })
   const oldText = fs.existsSync(rootPath) ? fs.readFileSync(rootPath, 'utf8') : null;
 
   const block = oldText === null ? null : findBlock(oldText, markers);
+  if (block !== null && (block.markerLines.start.length > 1 || block.markerLines.end.length > 1)) {
+    throw new PreconditionError(duplicateBlockMessage(rootFile, block));
+  }
   if (block !== null && block.complete === false) {
     throw new PreconditionError(`the repository block in ${rootFile} carries one of its two markers and not the other, near byte ${block.start}; the block cannot be placed, so nothing can be carried out of it`);
   }
@@ -780,7 +837,6 @@ function compose({ root, manifest, keepClaudeMd = false, createRouter = false })
 
   // What the run would put on disk, which is exactly the three actions a target can take.
   composition.writes = composition.files.filter((file) => ['create', 'replace', 'remove'].includes(file.action));
-  composition.digest = planDigest(composition);
   return composition;
 }
 
@@ -838,39 +894,69 @@ function utcStamp(date = new Date()) {
   return date.toISOString().replace(/[-:]/gu, '').replace(/\.\d+Z$/u, 'Z');
 }
 
-function uniqueDirectory(candidate) {
-  if (!fs.existsSync(candidate)) return candidate;
-  let suffix = 2;
-  while (fs.existsSync(`${candidate}-${suffix}`)) suffix += 1;
-  return `${candidate}-${suffix}`;
+/**
+ * The directory a plan's backup sits in, named after the plan digest.
+ *
+ * Named by the digest rather than by a clock reading because apply has to land exactly
+ * where the plan pointed and the digest is the only thing the operator carries across. The
+ * consequence is that a directory is a plan's own: a second plan of the same work finds it
+ * taken and moves to the next ordinal instead of writing beside it.
+ *
+ * @param {string} base
+ * @param {string} digest
+ * @returns {string}
+ */
+function backupDirectoryOf(base, digest) {
+  return path.join(base, digest.slice(0, BACKUP_NAME_CHARS));
 }
 
 /**
- * Where a run's backup would go, without creating anything.
+ * Where a run's backup goes, without creating anything.
  *
  * The output directory is used only when git ignores it, because a backup inside a tracked
  * path is a backup the next commit publishes. Everything else leaves the repository.
  *
- * @param {{root: string, manifest: Object, stamp?: string}} input
+ * @param {{root: string}} input
  * @returns {{dir: string, fallback: boolean, reason: string}}
  */
-function backupPlan({ root, stamp = utcStamp() }) {
-  const candidate = path.join(root, BACKUP_DIR, stamp);
-  const ignored = spawnSync('git', ['-C', root, '-c', 'core.fsmonitor=false', 'check-ignore', '-q', candidate], {
+function backupBase({ root }) {
+  const candidate = path.join(root, BACKUP_DIR);
+  // The question is the one the run depends on: would a plan directory under this one be
+  // published by the next commit? Asking about the base alone would miss a rule written as
+  // `.skilled/output/*`, which ignores the per-plan directories and not their parent, so
+  // the probe is a path of the same shape as the one the plan takes.
+  const probe = path.join(candidate, 'probe');
+  const ignored = spawnSync('git', ['-C', root, '-c', 'core.fsmonitor=false', 'check-ignore', '-q', probe], {
     encoding: 'utf8',
     timeout: TOOL_TIMEOUT_MS,
   });
-  if (ignored.status === 0) {
-    return { dir: uniqueDirectory(candidate), fallback: false, reason: '' };
-  }
+  if (ignored.status === 0) return { dir: candidate, fallback: false, reason: '' };
   const reason = ignored.status === 1
     ? `git does not ignore ${BACKUP_DIR} under ${root}`
     : `git cannot answer whether ${BACKUP_DIR} is ignored under ${root} (exit ${ignored.status})`;
-  return {
-    dir: uniqueDirectory(path.join(os.tmpdir(), BACKUP_FALLBACK_DIR, stamp)),
-    fallback: true,
-    reason,
-  };
+  return { dir: path.join(os.tmpdir(), BACKUP_FALLBACK_DIR), fallback: true, reason };
+}
+
+/**
+ * The plan a run stands on: the composition, plus where its backup goes and the digest
+ * that says both.
+ *
+ * The loop is what makes a re-plan honest. A directory an earlier run already holds is not
+ * suffixed into a second name, because the printed undo command would then point at that
+ * run's bytes; the next ordinal is a different plan with a different digest and a
+ * directory of its own.
+ *
+ * @param {Object} composition
+ * @returns {{dir: string, fallback: boolean, reason: string, digest: string, ordinal: number, base: string}}
+ */
+function planFor(composition) {
+  const base = backupBase({ root: composition.root });
+  for (let ordinal = 0; ordinal < BACKUP_ATTEMPTS; ordinal += 1) {
+    const digest = planDigest(composition, { ordinal, base: base.dir });
+    const dir = backupDirectoryOf(base.dir, digest);
+    if (!fs.existsSync(dir)) return { dir, fallback: base.fallback, reason: base.reason, digest, ordinal, base: base.dir };
+  }
+  throw new PreconditionError(`every backup directory for this composition under ${base.dir} is taken, so nothing was written`);
 }
 
 // What one path looked like before the run, kept beside a copy of it so a restore is a
@@ -889,7 +975,12 @@ function backupEntry(root, file) {
   return entry;
 }
 
-function writeBackup({ root, manifest, composition, plan, stamp }) {
+function writeBackup({ root, manifest, composition, plan }) {
+  // The plan chose a directory nothing owned, so a directory here is somebody else's run
+  // finishing first: writing beside its record would make the undo ambiguous.
+  if (fs.existsSync(plan.dir)) {
+    throw new PreconditionError(`the backup directory ${plan.dir} already exists; nothing was written`);
+  }
   fs.mkdirSync(plan.dir, { recursive: true });
 
   const entries = [];
@@ -913,8 +1004,8 @@ function writeBackup({ root, manifest, composition, plan, stamp }) {
   const record = {
     schema: 1,
     root,
-    created_at: stamp,
-    plan_digest: composition.digest,
+    created_at: utcStamp(),
+    plan_digest: plan.digest,
     paths: entries,
   };
   fs.writeFileSync(path.join(plan.dir, 'manifest.json'), `${JSON.stringify(record, null, 2)}\n`, 'utf8');
@@ -1058,7 +1149,7 @@ function renderPlan(composition, plan) {
   lines.push(`backup: ${plan.dir}`);
   if (plan.fallback) lines.push(`backup-fallback: ${plan.reason}`);
   lines.push(`undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=${plan.dir}`);
-  lines.push(`plan-digest: ${composition.digest}`);
+  lines.push(`plan-digest: ${plan.digest}`);
   return lines;
 }
 
@@ -1080,7 +1171,6 @@ function commandPlan(options, output, hooks) {
 
   const checked = preflight(composition, manifest);
   composition.ledger.dropped = checked.dropped.length;
-  const plan = backupPlan({ root: options.root, manifest });
 
   if (composition.writes.length === 0) {
     output.log(`${TAG} plan for ${composition.root} (state: ${composition.state})`);
@@ -1089,6 +1179,7 @@ function commandPlan(options, output, hooks) {
     return 0;
   }
 
+  const plan = planFor(composition);
   for (const line of renderPlan(composition, plan)) output.log(line);
   if (checked.dropped.length > 0) {
     for (const line of renderDropped(checked.dropped)) output.warn(line);
@@ -1145,8 +1236,17 @@ function commandApply(options, output, hooks) {
     return 0;
   }
 
-  if (composition.digest !== options.digest) {
-    output.warn(`${TAG} ERROR: the plan digest ${options.digest} does not match the composition now (${composition.digest}); the tree changed since the plan, so nothing was written`);
+  const plan = planFor(composition);
+  if (plan.digest !== options.digest) {
+    // The digest also names the backup directory, so an operator replaying a plan whose run
+    // already happened gets told which directory holds those bytes instead of a claim
+    // about the tree that would be false.
+    const held = backupDirectoryOf(plan.base, options.digest);
+    if (fs.existsSync(held)) {
+      output.warn(`${TAG} ERROR: the plan digest ${options.digest} names the backup ${held}, which an earlier run already holds; nothing was written. Plan again for a directory of its own`);
+      return 2;
+    }
+    output.warn(`${TAG} ERROR: the plan digest ${options.digest} does not match the composition now (${plan.digest}); the tree changed since the plan, so nothing was written`);
     return 2;
   }
 
@@ -1166,9 +1266,15 @@ function commandApply(options, output, hooks) {
   const targets = [];
   for (const file of composition.writes) targets.push({ file, absolute: assertWritable(options.root, file.path) });
 
-  const stamp = utcStamp();
-  const plan = backupPlan({ root: options.root, manifest, stamp });
-  const record = writeBackup({ root: options.root, manifest, composition, plan, stamp });
+  // A dry run is the same plan the operator would give a yes to, minus the write: it stops
+  // here, where every precondition has already passed and nothing has been created.
+  if (options.dryRun) {
+    for (const line of renderPlan(composition, plan)) output.log(line);
+    output.log('dry-run: nothing was written');
+    return 0;
+  }
+
+  const record = writeBackup({ root: options.root, manifest, composition, plan });
   output.log(`${TAG} apply on ${composition.root} (state: ${composition.state})`);
 
   const write = hooks.write || ((file, content) => fs.writeFileSync(file, content, 'utf8'));
@@ -1385,10 +1491,11 @@ module.exports = {
   MANIFEST_PATH,
   addRouterRows,
   assertWritable,
-  backupPlan,
+  backupBase,
   compose,
   main,
   planDigest,
+  planFor,
   preservationCheck,
   renderBlock,
   renderMirror,

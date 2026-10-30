@@ -24,6 +24,16 @@
 // interrupts carries its text on both sides, and a section below the hole keeps its own
 // body word for word.
 //
+// A marker is the whole line and nothing else, apart from the whitespace around it. A
+// repository documents the block by writing its bytes in a sentence, and reading that
+// sentence as the block's edge would cut the line in three: the two fragments would
+// belong to no section and to no prelude, so a rewrite would delete them and no part of
+// the proof would be left holding a claim about them.
+//
+// Every part also reports the document lines it occupies. A report that names a lost line
+// has to say where it sat, and a caller comparing the document's own lines needs the same
+// mapping this module already made rather than a second one that could disagree.
+//
 // One piece of content is not heading-shaped: text above the first heading belongs to no
 // section at all. It is returned as `prelude` so the caller can report it and keep it,
 // because a document carrying it is not the clean template it otherwise looks like.
@@ -70,50 +80,56 @@ function sha256(text) {
 /**
  * Locate the repository-owned block, in byte offsets, without copying it into a section.
  *
+ * `start` is the first byte of the start-marker line and `end` the byte after the line
+ * that ends the block, so the two offsets bracket the block and nothing else. `markerLines`
+ * carries the number of every marker line: a document with more than one block has no
+ * single block to carry out of, and the caller that refuses it can only point at the
+ * duplicated block by naming where each marker sits.
+ *
  * @param {string} text - The whole root document.
  * @param {{start: string, end: string}} markers - The two marker lines.
- * @returns {null|{start: number, end: number, content: string, complete: boolean}}
- *   Null when the document carries neither marker. `end` is the byte after the end
- *   marker, so the two offsets bracket the block and nothing else.
+ * @returns {null|{start: number, end: number, content: string, complete: boolean,
+ *   markerLines: {start: number[], end: number[]}}} Null when the document carries no
+ *   marker line at all.
  */
 function findBlock(text, markers) {
   const buffer = Buffer.from(text, 'utf8');
-  const start = buffer.indexOf(markers.start);
-  const end = buffer.indexOf(markers.end);
-  if (start === -1 && end === -1) return null;
-
-  if (start === -1 || end === -1 || end < start) {
-    // A half-written block is a document fault, not a section: report where the marker
-    // that does exist sits so the caller can name the spot instead of guessing.
-    const only = start === -1 ? end : start;
-    return { start: only, end: only, content: '', complete: false };
+  const lines = text.split('\n');
+  const byteStarts = [0];
+  for (let index = 0; index < lines.length; index += 1) {
+    byteStarts.push(byteStarts[index] + Buffer.byteLength(lines[index], 'utf8') + 1);
   }
 
-  const contentStart = start + Buffer.byteLength(markers.start, 'utf8');
+  const wanted = { start: markers.start.trim(), end: markers.end.trim() };
+  const markerLines = { start: [], end: [] };
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index].trim();
+    if (line === wanted.start) markerLines.start.push(index + 1);
+    else if (line === wanted.end) markerLines.end.push(index + 1);
+  }
+  if (markerLines.start.length === 0 && markerLines.end.length === 0) return null;
+
+  if (markerLines.start.length === 0 || markerLines.end.length === 0 || markerLines.end[0] < markerLines.start[0]) {
+    // A half-written block is a document fault, not a section: report where the marker
+    // that does exist sits so the caller can name the spot instead of guessing.
+    const only = markerLines.start.length > 0 ? markerLines.start[0] : markerLines.end[0];
+    return { start: byteStarts[only - 1], end: byteStarts[only - 1], content: '', complete: false, markerLines };
+  }
+
+  const first = markerLines.start[0] - 1;
+  const last = markerLines.end[0] - 1;
   return {
-    start,
-    end: end + Buffer.byteLength(markers.end, 'utf8'),
-    content: buffer.subarray(contentStart, end).toString('utf8'),
+    start: byteStarts[first],
+    end: last + 1 < lines.length ? byteStarts[last + 1] : buffer.length,
+    content: buffer.subarray(byteStarts[first + 1], byteStarts[last]).toString('utf8'),
     complete: true,
+    markerLines,
   };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. SEGMENTATION
 // ─────────────────────────────────────────────────────────────────────────────
-
-/**
- * The line holding a byte, as an index into the document's lines.
- *
- * @param {number[]} byteStarts - The first byte of every line.
- * @param {number} offset
- * @returns {number}
- */
-function lineOf(byteStarts, offset) {
-  let line = 0;
-  while (line + 1 < byteStarts.length && byteStarts[line + 1] <= offset) line += 1;
-  return line;
-}
 
 /**
  * The lines one section body is made of.
@@ -169,13 +185,13 @@ function bodyOf(lines, byteStarts, rows, docBytes) {
  * @param {Array<Object>} [authored] - Manifest section entries; when given, each section
  *   gets the `id` of the entry its heading matches, or null.
  * @returns {{sections: Array<Object>, block: Object|null,
- *   prelude: {start: number, end: number, text: string}|null}}
+ *   prelude: {start: number, end: number, text: string, rows: number[]}|null}} Every part
+ *   carries the document lines it occupies: a section and the prelude in `rows`, the block
+ *   in `rows` as a `first`/`last` pair, which is null unless both markers are present.
  */
 function segment(text, markers, authored = []) {
   const buffer = Buffer.from(text, 'utf8');
   const block = findBlock(text, markers);
-  const hole = block && block.complete ? block : null;
-
   const lines = text.split('\n');
   const byteStarts = [0];
   for (let index = 0; index < lines.length; index += 1) {
@@ -187,21 +203,21 @@ function segment(text, markers, authored = []) {
 
   // The lines the block owns, markers included. They are the repository's bytes, so they
   // join no body and the first line after them starts a body of its own.
-  const holeLines = hole === null ? null : {
-    first: lineOf(byteStarts, hole.start),
-    last: lineOf(byteStarts, Math.max(hole.start, hole.end - 1)),
-  };
+  const hole = block !== null && block.complete
+    ? { first: block.markerLines.start[0] - 1, last: block.markerLines.end[0] - 1 }
+    : null;
 
   const headings = [];
   for (let index = 0; index < lastLine; index += 1) {
     if (!HEADING.test(lines[index])) continue;
-    if (holeLines !== null && index >= holeLines.first && index <= holeLines.last) continue;
+    if (hole !== null && index >= hole.first && index <= hole.last) continue;
     headings.push(index);
   }
 
   const sections = headings.map((lineIndex, position) => {
     const nextHeading = position + 1 < headings.length ? headings[position + 1] : lines.length;
-    const body = bodyOf(lines, byteStarts, bodyRows(lines, lineIndex, nextHeading, holeLines), docBytes);
+    const rows = bodyRows(lines, lineIndex, nextHeading, hole);
+    const body = bodyOf(lines, byteStarts, rows, docBytes);
     return {
       id: null,
       start: byteStarts[lineIndex],
@@ -209,6 +225,7 @@ function segment(text, markers, authored = []) {
       level: lines[lineIndex].match(HEADING)[1].length,
       heading: lines[lineIndex],
       body: body.text,
+      rows,
       lineStarts: body.lineStarts,
       sha256: sha256(body.text),
     };
@@ -218,7 +235,11 @@ function segment(text, markers, authored = []) {
     for (const row of matchSections(sections, authored).matched) row.section.id = row.entry.id;
   }
 
-  return { sections, block, prelude: preludeOf(lines, byteStarts, headings, holeLines, docBytes) };
+  return {
+    sections,
+    block: block === null ? null : { ...block, rows: hole },
+    prelude: preludeOf(lines, byteStarts, headings, hole, docBytes),
+  };
 }
 
 /**
@@ -229,7 +250,8 @@ function segment(text, markers, authored = []) {
  * @param {number[]} headings - The heading line indexes, in order.
  * @param {{first: number, last: number}|null} hole
  * @param {number} docBytes
- * @returns {{start: number, end: number, text: string}|null} Null when that text is blank.
+ * @returns {{start: number, end: number, text: string, rows: number[]}|null} Null when
+ *   that text is blank.
  */
 function preludeOf(lines, byteStarts, headings, hole, docBytes) {
   const limit = headings.length > 0 ? headings[0] : lines.length;
@@ -245,7 +267,7 @@ function preludeOf(lines, byteStarts, headings, hole, docBytes) {
   const first = rows[0];
   const last = rows[rows.length - 1];
   const end = last + 1 < lines.length ? byteStarts[last + 1] : docBytes;
-  return { start: byteStarts[first], end, text };
+  return { start: byteStarts[first], end, text, rows };
 }
 
 /**
@@ -253,9 +275,9 @@ function preludeOf(lines, byteStarts, headings, hole, docBytes) {
  *
  * @param {Array<Object>} sections - Segmented sections, in document order.
  * @param {Array<{id: string, match: string, level: number}>} authored
- * @param {{start: number, end: number, text: string}|null} [prelude] - The text above the
- *   first heading, reported beside the unmatched headings because it is repository content
- *   no shipped entry covers either.
+ * @param {{start: number, end: number, text: string, rows?: number[]}|null} [prelude] - The
+ *   text above the first heading, reported beside the unmatched headings because it is
+ *   repository content no shipped entry covers either.
  * @returns {{matched: Array<{section: Object, entry: Object}>, unregistered: Array<Object>,
  *   unmatched: Array<Object>, conflicts: Array<Object>}}
  */
@@ -266,14 +288,19 @@ function matchSections(sections, authored, prelude = null) {
   const conflicts = [];
 
   // Text above the first heading has a byte range and no heading, so a heading-shaped
-  // comparison can never reach it. Naming it here is what lets a caller keep it.
+  // comparison can never reach it. Naming it here is what lets a caller keep it, and the
+  // line it starts on is what lets a reader find it in the document.
   if (prelude !== null && prelude.text.trim() !== '') {
+    const where = Array.isArray(prelude.rows) && prelude.rows.length > 0
+      ? ` at line ${prelude.rows[0] + 1}`
+      : ` at bytes ${prelude.start}-${prelude.end}`;
+    const opening = prelude.text.split('\n').find((line) => line.trim() !== '');
     unregistered.push({
       code: 'unmarked-prelude',
       heading: null,
       start: prelude.start,
       end: prelude.end,
-      message: `the root document carries text before its first heading, at bytes ${prelude.start}-${prelude.end}, which no shipped section covers`,
+      message: `the root document carries text before its first heading${where}, starting with ${JSON.stringify(opening)}, which no shipped section covers`,
     });
   }
 

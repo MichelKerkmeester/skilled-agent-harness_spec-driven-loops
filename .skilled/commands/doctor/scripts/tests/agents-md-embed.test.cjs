@@ -110,13 +110,34 @@ function occurrences(text, needle) {
   return count;
 }
 
-// The repository block of a composed document, with the markers stripped.
+// The repository block of a composed document, with the markers stripped. The search runs
+// over lines, because a marker is the whole line: slicing between the first occurrences of
+// the two marker strings would cut a sentence that quotes them in half.
 function blockIn(text) {
-  const { start, end } = manifest.markers;
-  const from = text.indexOf(start);
-  const to = text.indexOf(end);
+  const lines = text.split('\n');
+  const from = lines.findIndex((line) => line.trim() === manifest.markers.start.trim());
+  const to = lines.findIndex((line) => line.trim() === manifest.markers.end.trim());
   assert.ok(from !== -1 && to > from, 'the composed document carries one well-formed block');
-  return text.slice(from + start.length, to);
+  return lines.slice(from + 1, to).join('\n');
+}
+
+// A marker is the whole line, so a case counts whole lines: a sentence that quotes the
+// marker's bytes is prose, and counting substrings would read it as a second block.
+function markerLinesOf(text, marker) {
+  return text.split('\n').filter((line) => line.trim() === marker.trim()).length;
+}
+
+// A line typed inside a shipped section is what makes that section an edit, and the way a
+// person plants one is ahead of the divider that closes the section.
+function insertInsideSection(text, id, line) {
+  const body = manifest.derived.sections[id].body;
+  const at = text.indexOf(body);
+  assert.ok(at !== -1, `the composed document carries the shipped body of ${id}`);
+  const divider = body.lastIndexOf('\n---\n');
+  const edited = divider === -1
+    ? `${body}${line}\n`
+    : `${body.slice(0, divider)}\n${line}\n${body.slice(divider)}`;
+  return `${text.slice(0, at)}${edited}${text.slice(at + body.length)}`;
 }
 
 // The engine prints one field per line, so a case reads the plan the way an operator
@@ -738,10 +759,10 @@ test('an ignored output path holds the backup and a non-ignored one falls back',
 
   // This repository ignores its output directory, so the same question answers with the
   // path the operator expects there, and the answer creates nothing.
-  const here = embed.backupPlan({ root: REPO_ROOT, manifest, stamp: '20260101T000000Z' });
+  const here = embed.backupBase({ root: REPO_ROOT });
   assert.equal(here.fallback, false, here.reason);
-  assert.equal(here.dir, path.join(REPO_ROOT, '.skilled', 'output', 'doctor-agents-md', '20260101T000000Z'));
-  assert.equal(fs.existsSync(here.dir), false, 'planning a backup location creates nothing');
+  assert.equal(here.dir, path.join(REPO_ROOT, '.skilled', 'output', 'doctor-agents-md'));
+  assert.equal(fs.existsSync(here.dir), false, 'naming a backup location creates nothing');
 });
 
 test('the backup survives the run and records what it holds', (t) => {
@@ -865,4 +886,183 @@ test('.cursor/rules/repo-local.md exists exactly when the block carries content'
   for (const line of trimmedLines(blockIn(readInside(carried, manifest.root_file)))) {
     assert.ok(mirror.includes(line), `${line} reaches the mirror`);
   }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 17. THE MARKER LINE, AND THE PROOF THAT READS THE DOCUMENT'S OWN LINES
+// ─────────────────────────────────────────────────────────────────────────────
+
+// A sentence that quotes both markers is how a repository documents the block. Reading
+// those bytes as the block would put its edges in the middle of that line, and the text on
+// either side belongs to no section, to no prelude and to the block's own span: a rewrite
+// deletes it and no part of the proof is left that could name what went.
+const QUOTED = 'The block is fenced by `<!-- skilled:repo-local:start -->` and `<!-- skilled:repo-local:end -->` in this framework.';
+
+test('a sentence quoting both markers is repository content, not the block', (t) => {
+  const dir = composeTree(t, 'pure');
+  const original = insertInsideSection(readInside(dir, manifest.root_file), 's2-mandatory-gates', QUOTED);
+  writeInside(dir, manifest.root_file, original);
+
+  const applied = planAndApply(dir).applied;
+  trackBackup(t, applied.out);
+  assert.equal(applied.code, 0, `${applied.err}${applied.out}`);
+  assert.match(applied.out, /dropped 0/u, 'the run loses nothing');
+
+  const composed = readInside(dir, manifest.root_file);
+  assert.equal(occurrences(composed, QUOTED), 1, 'the sentence survives exactly once');
+  assert.ok(blockIn(composed).includes(QUOTED), 'it sits in the block as the repository content it is');
+  assert.notEqual(blockIn(composed).trim(), '` and `', 'the marker literals are not read as the block edges');
+  assert.equal(markerLinesOf(composed, manifest.markers.start), 1, 'the document carries one start marker line');
+  assert.equal(markerLinesOf(composed, manifest.markers.end), 1, 'and one end marker line');
+
+  const checked = embed.preservationCheck(original, composed, manifest);
+  assert.deepEqual(checked.dropped, []);
+  assert.deepEqual(checked.foreign, []);
+});
+
+// The proof has to read the old document's own lines. Built from the segmentation's
+// parts instead, it would only require what the reader managed to place, and a line the
+// reader cut into two fragments would be required by neither part.
+test('the preservation proof requires the raw lines of the old document', () => {
+  const shipped = manifest.sections.map((entry) => manifest.derived.sections[entry.id].body).join('');
+  const withBlock = (body) => `${shipped}${manifest.markers.start}\n${manifest.markers.heading}\n\n${manifest.markers.note}\n${body === '' ? '' : `${body}\n`}${manifest.markers.end}\n`;
+  const lost = embed.preservationCheck(withBlock(`One kept line.\n${QUOTED}`), withBlock('One kept line.'), manifest);
+
+  assert.deepEqual(lost.dropped.map((entry) => entry.line), [QUOTED], 'the line the composition lost is the line named');
+  assert.deepEqual(lost.dropped.map((entry) => entry.part), [1], 'and the part it sat in');
+});
+
+// The bytes are the same; the line they sit on is not. Text ahead of a marker literal is
+// prose, and the same bytes alone on a line are a marker — which makes a document with an
+// end marker and no start marker a half-written block, refused before anything is written.
+test('a marker literal after text is content, and a lone marker line is refused', (t) => {
+  const dir = composeTree(t, 'pure');
+  const note = `Do not edit below this line: ${manifest.markers.start}`;
+  writeInside(dir, manifest.root_file, `${readInside(dir, manifest.root_file)}${note}\n`);
+
+  const applied = planAndApply(dir).applied;
+  trackBackup(t, applied.out);
+  assert.equal(applied.code, 0, `${applied.err}${applied.out}`);
+  const composed = readInside(dir, manifest.root_file);
+  assert.equal(occurrences(composed, note), 1, 'the whole line survives, marker literal included');
+  assert.equal(markerLinesOf(composed, manifest.markers.start), 1, 'the only start marker line is the one the engine wrote');
+
+  const half = composeTree(t, 'pure');
+  writeInside(half, manifest.root_file, `${readInside(half, manifest.root_file)}${manifest.markers.end}\n`);
+  const before = treeDigest(half);
+  const refused = plan(half);
+  assert.equal(refused.code, 2, `${refused.out}${refused.err}`);
+  assert.match(refused.err, /one of its two markers/u, 'a lone marker line is a half-written block');
+  assert.equal(treeDigest(half), before, 'and the refusal writes nothing');
+});
+
+// Two blocks have no single block to carry out of, so the run refuses. Reporting the
+// second block's marker bytes as repository lines it dropped would blame the repository
+// for the framework's own bytes and name nothing anybody could act on.
+test('a document carrying two blocks is refused by name, not as dropped lines', (t) => {
+  const dir = composeTree(t, 'adopted');
+  const original = readInside(dir, manifest.root_file);
+  const second = `${manifest.markers.start}\n${blockIn(original)}\n${manifest.markers.end}\n`;
+  writeInside(dir, manifest.root_file, `${original.trimEnd()}\n\n${second}`);
+  const before = treeDigest(dir);
+
+  const refused = plan(dir);
+  assert.equal(refused.code, 2, `${refused.out}${refused.err}`);
+  assert.match(refused.err, /duplicated/u, 'the refusal says the block is duplicated');
+  assert.doesNotMatch(refused.err, /^dropped:/mu, 'and does not read the marker bytes as lost repository lines');
+
+  const lines = readInside(dir, manifest.root_file).split('\n');
+  const positions = [];
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index].trim();
+    if (line === manifest.markers.start.trim() || line === manifest.markers.end.trim()) positions.push(index + 1);
+  }
+  assert.equal(positions.length, 4, 'the document carries two blocks');
+  for (const position of positions) {
+    assert.match(refused.err, new RegExp(`\\b${position}\\b`, 'u'), `the refusal names line ${position}`);
+  }
+  assert.equal(treeDigest(dir), before, 'a duplicated block writes nothing');
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 18. A CARRIED LINE IS CARRIED VERBATIM
+// ─────────────────────────────────────────────────────────────────────────────
+
+// The proof compares lines trimmed because a composition may re-place them; the write is
+// what makes a nested bullet render, so it keeps the indentation the repository typed.
+test('a carried line keeps its leading whitespace', (t) => {
+  const dir = composeTree(t, 'pure');
+  const nested = '    - A nested local rule written four spaces in.';
+  writeInside(dir, manifest.root_file, insertInsideSection(readInside(dir, manifest.root_file), 'blast-radius', nested));
+
+  const applied = planAndApply(dir).applied;
+  trackBackup(t, applied.out);
+  assert.equal(applied.code, 0, `${applied.err}${applied.out}`);
+  assert.match(applied.out, /dropped 0/u);
+  assert.ok(readInside(dir, manifest.root_file).split('\n').includes(nested), 'the nested bullet keeps its four spaces');
+
+  const copy = composeTree(t, 'claude-only');
+  const indented = '    - An indented copy line kept in the Claude file.';
+  fs.appendFileSync(path.join(copy, 'CLAUDE.md'), `${indented}\n`);
+  const copyApplied = planAndApply(copy).applied;
+  trackBackup(t, copyApplied.out);
+  assert.equal(copyApplied.code, 0, `${copyApplied.err}${copyApplied.out}`);
+  assert.ok(readInside(copy, manifest.root_file).split('\n').includes(indented), 'a line a folded copy hands over keeps its four spaces');
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 19. THE DRY RUN AND THE BACKUP DIRECTORY
+// ─────────────────────────────────────────────────────────────────────────────
+
+// An operator passing --dry-run to stay safe gets an answer, not a write.
+test('apply --dry-run prints the plan and writes nothing', (t) => {
+  const dir = composeTree(t, 'forked');
+  const digest = field(plan(dir).out, 'plan-digest');
+  const before = treeDigest(dir);
+
+  const dry = apply(dir, digest, ['--dry-run']);
+  assert.equal(dry.code, 0, `${dry.err}${dry.out}`);
+  assert.equal(treeDigest(dir), before, 'apply --dry-run leaves the tree byte for byte');
+  assert.match(dry.out, /target AGENTS\.md: replace/u, 'it prints what it would write');
+  assert.match(dry.out, new RegExp(`plan-digest: ${digest}`, 'u'), 'and the digest it accepted');
+  assert.match(dry.out, /preservation: /u);
+  assert.match(dry.out, /undo: node .*restore --run=/u);
+  assert.doesNotMatch(dry.out, /STATUS=OK/u, 'nothing was written, so nothing claims a write');
+  assert.match(dry.out, /dry-run: nothing was written/u);
+
+  const backup = field(dry.out, 'backup');
+  assert.ok(backup, 'it names the directory it would back up into');
+  assert.equal(fs.existsSync(backup), false, 'and creates none');
+});
+
+// The plan is the artefact the yes is given against, so the directory it prints is the
+// directory apply uses and the undo line it prints is the undo line apply prints. A plan
+// whose directory an earlier run already owns is planned again, because a suffixed copy
+// would leave the printed undo command pointing at that earlier run's bytes.
+test('the plan names the backup apply uses, and a taken directory is re-planned', (t) => {
+  const dir = composeTree(t, 'foreign');
+  const planned = plan(dir);
+  const digest = field(planned.out, 'plan-digest');
+  const plannedBackup = field(planned.out, 'backup');
+  assert.ok(plannedBackup, 'the plan prints the backup directory');
+  assert.equal(fs.existsSync(plannedBackup), false, 'and creates none');
+
+  const applied = apply(dir, digest);
+  trackBackup(t, applied.out);
+  assert.equal(applied.code, 0, `${applied.err}${applied.out}`);
+  assert.equal(field(applied.out, 'backup'), plannedBackup, 'apply backs up into the directory the plan printed');
+  assert.equal(field(applied.out, 'undo'), field(planned.out, 'undo'), 'the undo command is the one the plan printed');
+  assert.ok(field(planned.out, 'undo').includes(plannedBackup), 'and it names that directory');
+
+  const restored = run(['restore', `--run=${plannedBackup}`], { input: 'yes\n' });
+  assert.equal(restored.code, 0, `${restored.err}${restored.out}`);
+
+  const again = plan(dir);
+  assert.equal(again.code, 0, again.err);
+  const secondBackup = field(again.out, 'backup');
+  assert.ok(secondBackup, 'the second plan prints a directory');
+  assert.notEqual(secondBackup, plannedBackup, 'the taken directory is not reused');
+  assert.doesNotMatch(path.basename(secondBackup), /-\d+$/u, 'and it is not a suffixed copy of it');
+  assert.equal(fs.existsSync(secondBackup), false, 'the second plan creates nothing');
+  assert.notEqual(field(again.out, 'plan-digest'), digest, 'the digest covers which backup directory the plan takes');
 });
