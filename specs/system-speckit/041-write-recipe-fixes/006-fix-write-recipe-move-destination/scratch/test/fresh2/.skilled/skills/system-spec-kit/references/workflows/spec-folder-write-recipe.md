@@ -1,0 +1,140 @@
+---
+title: Spec Folder Write Recipe
+description: Step-by-step recipe for writing a new spec folder that satisfies validate.sh --strict on first try.
+trigger_phrases:
+  - "spec folder write recipe"
+  - "scaffold spec folder steps"
+  - "level one docs authoring"
+  - "strict validate first try"
+importance_tier: normal
+contextType: implementation
+version: 2.7.0.23
+---
+
+# Spec Folder Write Recipe
+
+## 1. OVERVIEW
+
+When `/speckit:complete` or any other workflow needs to write a new spec folder, this recipe is the canonical path. Follow each step in order. Each step has a verification gate.
+
+---
+
+## 2. PRE-CONDITIONS
+
+- Spec folder track decided (e.g., `skilled-agent-orchestration/`, `00--ai-systems/`, etc.)
+- Next packet number known (highest `[0-9][0-9][0-9]-*` + 1 in track)
+- Documentation level decided (Level 1, 2, 3, or 3+)
+
+---
+
+## 3. STEPS
+
+### Step 1: Scaffold via create.sh
+
+Run the system-spec-kit scaffold from the repository root:
+
+```bash
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh \
+  --skip-branch \
+  --short-name "opencode-authoring-recipe" \
+  --number 078 \
+  --level 1
+```
+
+Verification gate: confirm the scaffolded folder exists and contains the expected Level contract files.
+
+### Step 2: Move to track
+
+Move the scaffolded folder from the default location into the selected track, for example:
+
+```bash
+mv specs/078-opencode-authoring-recipe \
+  specs/system-speckit/078-opencode-authoring-recipe
+```
+
+The `system-speckit` track in the destination above is an example, so substitute the track you chose in the pre-conditions.
+
+Verification gate: confirm the final path is under `specs/` or `.opencode/specs/` and matches the packet pointer.
+
+### Step 3: Author 4 Level-1 docs
+
+- `spec.md` (7 anchors: metadata, problem, scope, requirements, success-criteria, risks, questions)
+- `plan.md` (7 anchors: summary, quality-gates, architecture, phases, testing, dependencies, rollback)
+- `tasks.md` (6 anchors: notation, phase-1, phase-2, phase-3, completion, cross-refs; phase headers MUST be canonical "Phase 1: Setup" / "Phase 2: Implementation" / "Phase 3: Verification")
+- `implementation-summary.md` (6 anchors: metadata, what-built, how-delivered, decisions, verification, limitations)
+
+Verification gate: run `rg -n "ANCHOR:" <folder>` and confirm each doc has the full anchor count.
+
+### Step 4: Frontmatter `_memory.continuity` block
+
+- `packet_pointer`: slash-separated relative path (NOT just folder name)
+- `recent_action`: keep compact (NOT verbose multi-clause)
+- `last_updated_at`: ISO-8601 UTC
+
+Verification gate: run `rg -n "_memory:|packet_pointer|recent_action|last_updated_at" <folder>`.
+
+### Step 5: Refresh metadata
+
+```bash
+node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js \
+  <folder> \
+  <repo-root> \
+  --description "Short description for memory search" \
+  --level N
+
+node .skilled/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js \
+  <folder>
+```
+
+Verification gate: confirm `description.json` and `graph-metadata.json` exist and describe the same folder.
+
+### Step 6: validate.sh --strict gate
+
+```bash
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <folder> --strict
+```
+
+Must print `RESULT: PASSED` with 0 errors. A warning does not fail `--strict`, so read each one and fix the ones that are real.
+
+Common pitfalls: `SPECDOC_SUFFICIENCY_004` (research.md needs anchor + citation pattern), `TEMPLATE_HEADERS` (canonical phase header names required), `ANCHORS_VALID` (full 7/7/6/6 anchor count per doc-type).
+
+### Step 7: Commit + push
+
+- Workspace: use the one the operator chose, a worktree or the current branch. Never pick it yourself and never create a branch with git primitives (see "Workspace Choice Enforcement" in `.skilled/skills/sk-git/SKILL.md`). `main` is on the remote allowlist, so pushing it needs no extra approval, and a branch off the allowlist needs the operator's go-ahead for that push (see "Remote Push Permission Enforcement" in the same file).
+- Subject: `type(subsystem): summary`. Take the type from the first match in the priority list in `.skilled/skills/sk-git/SKILL.md` (a doc-only packet is `docs`) and name the owning subsystem as the scope, such as `spec-kit`. Never use the packet number or path as the scope.
+- Body: at least one prose line that says why. Trailers do not count as a body.
+- Trailers: `Spec: <track>/<packet>`, the packet's path below `specs/` without the `specs/` segment. `prepare-commit-msg` stamps `Commit-Id:`, so never type it.
+- No attribution trailers. The `commit-msg` hook refuses `Co-Authored-By:` and `Claude-Session:`.
+
+The full contract is `.skilled/skills/sk-git/assets/commit-message-template.md`.
+
+Verification gate: stage the packet files by explicit path, then confirm `git diff --cached --name-only` lists only the intended packet files before commit. In a shared tree `git status --short` also lists other sessions' changes, so it cannot be the test (see "Step 7: Scoped-Staging Discipline" in `.skilled/skills/sk-git/references/commit-workflows.md`).
+
+---
+
+## 4. POST-CHECKS
+
+- [ ] validate.sh --strict exit 0
+- [ ] The commit holds only the new packet files (in a shared tree, `git status` may still list other sessions' changes)
+- [ ] The commit reached origin on the branch you worked on (the Workspace bullet in Step 7 says which pushes need approval)
+- [ ] /speckit:save via generate-context.js (optional but recommended)
+
+---
+
+## 5. COMMON FAILURES
+
+| Failure | Fix |
+|---|---|
+| TEMPLATE_HEADERS error | tasks.md must use canonical "Phase 1: Setup" / "Phase 2: Implementation" / "Phase 3: Verification" headers |
+| ANCHORS_VALID error | plan.md needs all 7 anchors (summary/quality-gates/architecture/phases/testing/dependencies/rollback) |
+| SPECDOC_SUFFICIENCY_004 | research.md needs at least one ANCHOR block containing a citation pattern (file path in backticks, markdown link, or "iteration-N" reference) |
+| FRONTMATTER_VALID error on packet_pointer | Use the full slash-separated relative path for the active work packet, not only its leaf folder name |
+
+---
+
+## 6. RELATED RESOURCES
+
+- spec-folder-authoring-checklist.md (companion checklist, same directory)
+- system-spec-kit/runtime/cli/spec/validate.sh (the gate)
+- system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js (metadata refresh)
+- system-spec-kit/templates/{spec,plan,tasks,implementation-summary}.md.tmpl (canonical templates)
