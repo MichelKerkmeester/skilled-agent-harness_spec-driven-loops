@@ -1,0 +1,19 @@
+{
+  "level": "2",
+  "specFolder": "agents/021-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs",
+  "description": "Phase: 005-verification-and-docs",
+  "keywords": [
+    "phase",
+    "005-verification-and-docs"
+  ],
+  "lastUpdated": "2026-10-30T11:29:51.441Z",
+  "specId": "005",
+  "folderSlug": "verification-and-docs",
+  "parentChain": [
+    "agents",
+    "021-doctor-agents-md",
+    "001-doctor-agents-md"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

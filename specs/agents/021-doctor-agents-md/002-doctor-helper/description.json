@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "agents/021-doctor-agents-md/002-doctor-helper",
+  "description": "Build /doctor:helper: a deterministic matcher that names the doctor command which fits a described problem",
+  "keywords": [
+    "doctor",
+    "helper",
+    "deterministic",
+    "matcher",
+    "names",
+    "command",
+    "fits",
+    "described",
+    "problem"
+  ],
+  "lastUpdated": "2026-10-30T11:29:51.531Z",
+  "specId": "002",
+  "folderSlug": "doctor-helper",
+  "parentChain": [
+    "agents",
+    "021-doctor-agents-md"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

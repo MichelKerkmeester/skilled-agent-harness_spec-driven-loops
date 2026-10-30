@@ -1,0 +1,19 @@
+{
+  "level": "2",
+  "specFolder": "agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine",
+  "description": "Phase: 002-check-engine",
+  "keywords": [
+    "phase",
+    "002-check-engine"
+  ],
+  "lastUpdated": "2026-10-30T11:29:51.216Z",
+  "specId": "002",
+  "folderSlug": "check-engine",
+  "parentChain": [
+    "agents",
+    "021-doctor-agents-md",
+    "001-doctor-agents-md"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

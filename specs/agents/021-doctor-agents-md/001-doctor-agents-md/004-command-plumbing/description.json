@@ -1,0 +1,19 @@
+{
+  "level": "2",
+  "specFolder": "agents/021-doctor-agents-md/001-doctor-agents-md/004-command-plumbing",
+  "description": "Phase: 004-command-plumbing",
+  "keywords": [
+    "phase",
+    "004-command-plumbing"
+  ],
+  "lastUpdated": "2026-10-30T11:29:51.364Z",
+  "specId": "004",
+  "folderSlug": "command-plumbing",
+  "parentChain": [
+    "agents",
+    "021-doctor-agents-md",
+    "001-doctor-agents-md"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,19 @@
+{
+  "level": "2",
+  "specFolder": "agents/021-doctor-agents-md/001-doctor-agents-md/003-embed-engine",
+  "description": "Phase: 003-embed-engine",
+  "keywords": [
+    "phase",
+    "003-embed-engine"
+  ],
+  "lastUpdated": "2026-10-30T11:29:51.291Z",
+  "specId": "003",
+  "folderSlug": "embed-engine",
+  "parentChain": [
+    "agents",
+    "021-doctor-agents-md",
+    "001-doctor-agents-md"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

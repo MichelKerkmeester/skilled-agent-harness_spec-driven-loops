@@ -1,0 +1,19 @@
+{
+  "level": "2",
+  "specFolder": "agents/021-doctor-agents-md/001-doctor-agents-md/001-manifest-and-template-block",
+  "description": "Phase: 001-manifest-and-template-block",
+  "keywords": [
+    "phase",
+    "001-manifest-and-template-block"
+  ],
+  "lastUpdated": "2026-10-30T11:29:51.148Z",
+  "specId": "001",
+  "folderSlug": "manifest-and-template-block",
+  "parentChain": [
+    "agents",
+    "021-doctor-agents-md",
+    "001-doctor-agents-md"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

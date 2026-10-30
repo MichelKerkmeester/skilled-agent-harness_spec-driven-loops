@@ -23,7 +23,8 @@
     "agents/017-thinking-discipline",
     "agents/018-communication-rules-consolidation",
     "agents/019-haiku-explore-and-context-agents",
-    "agents/020-router-file-rule-alignment"
+    "agents/020-router-file-rule-alignment",
+    "agents/021-doctor-agents-md"
   ],
   "manual": {
     "depends_on": [],

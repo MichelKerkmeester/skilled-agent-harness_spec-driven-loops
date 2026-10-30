@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "agents/021-doctor-agents-md/001-doctor-agents-md",
+  "description": "Build /doctor:agents-md: the shipped manifest, a read-only check, an embed that preserves every repo-unique line, and a restore",
+  "keywords": [
+    "doctor",
+    "agents-md",
+    "shipped",
+    "manifest",
+    "read-only",
+    "check",
+    "embed",
+    "preserves",
+    "every",
+    "repo-unique",
+    "line",
+    "restore"
+  ],
+  "lastUpdated": "2026-10-30T11:29:51.082Z",
+  "specId": "001",
+  "folderSlug": "doctor-agents-md",
+  "parentChain": [
+    "agents",
+    "021-doctor-agents-md"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
