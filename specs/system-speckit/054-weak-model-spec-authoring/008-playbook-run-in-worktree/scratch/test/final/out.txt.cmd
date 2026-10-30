@@ -1,0 +1,1 @@
+echo FIXTURE_OK

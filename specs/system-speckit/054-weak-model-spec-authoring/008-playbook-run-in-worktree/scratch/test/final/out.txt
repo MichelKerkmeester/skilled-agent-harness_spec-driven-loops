@@ -1,0 +1,2 @@
+FIXTURE_OK
+exit=0

@@ -1,0 +1,310 @@
+# ─────────────────────────────────────────────────────────────────
+# SMART SPECKIT: RESUME WORKFLOW (INTERACTIVE MODE)
+# ─────────────────────────────────────────────────────────────────
+role: Expert Developer using Smart SpecKit for interactive session resume
+purpose: Resume previous work session with user confirmation at each step
+action: Detect session, confirm selection, load context, and present options
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: utility
+  compliance: OPTIONAL
+  execution: interactive
+  approvals: step_by_step
+  tracking: session_state_detection
+  validation: checkpoint_based
+
+resume_philosophy:
+  principle: "Context continuity with user control and useful defaults"
+  approach: "Detect, recover just enough state, then let the user deepen only if needed"
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  spec_folder: "[SPEC_FOLDER] - Spec folder path. Leave empty to auto-detect from most recent memory."
+  goal_prompt_choice: "[offer|skip|set] - Optional session-goal behavior. Defaults to offer unless the user chooses skip or set; set records goal_objective for handoff only on this read-only surface."
+  goal_objective: "[TEXT] - Objective text captured only when goal_prompt_choice is set; resume does not call opencode_goal."
+
+goal_prompting:
+  default_choice: offer
+  choices:
+    offer: "Render or reference the current session-goal status in the resume brief; do not call opencode_goal."
+    skip: "Suppress session-goal status in the resume brief; do not call opencode_goal."
+    set: "Carry goal_objective into the resume brief and route actual setting to a mutation-capable surface."
+  set_handling:
+    when:
+      field: goal_prompt_choice
+      op: "=="
+      value: set
+    require: goal_objective
+    behavior: "Do not call opencode_goal from resume; present the objective as a follow-up action."
+  status_tool: opencode_goal_status
+  packet_goal:
+    read: "Read the packet goal.md durable slice from the file; resume never mutates it and never binds."
+    reminder: "If the runtime reports resend_pending, or the operator copy is known to be behind, render the parent goal.md chat slice once and ask the operator to set it, then continue the resume. Send the `chat_slice` that `node .skilled/hooks/goal/bin/goal.cjs packet <spec_path> --workspace <repo root>` prints. What it contains, and the `packet_budget=ok` check before it is sent, are section 4 of sk-create-goal's references/budget-and-handoff.md."
+    never_halts: "Work never stops because a goal is unset. After the operator sets it, acknowledge in one line and continue."
+
+# ─────────────────────────────────────────────────────────────────
+# SESSION DETECTION
+# ─────────────────────────────────────────────────────────────────
+session_detection:
+  priority_order: ["CLI argument", "Deterministic candidate ranking", "Trigger phrase matching", "Most recent canonical spec document by mtime"]
+  note: "Stateless architecture - no .spec-active marker file used. Interactive mode confirms ambiguous ranked detections."
+  deterministic_ranking:
+    roots: ["specs/", ".opencode/specs/"]
+    normalization: "Canonicalize alias roots before ranking (specs/ vs .opencode/specs/)"
+    filters: ["archive", "test", "fixture", "scratch"]
+    tie_breakers: ["artifact completeness", "recent activity", "stable path sort"]
+    confidence_contract:
+      high_confidence: "present top candidate for confirmation"
+      low_confidence_interactive: "present top 3 ranked candidates and require explicit user selection"
+  tier_details:
+    tier_1_cli:
+      method: "Parse $ARGUMENTS for spec folder path"
+      priority: "highest"
+    tier_1b_ranked_candidates:
+      method: "Enumerate candidate folders from both roots, normalize aliases, filter non-active folders, rank deterministically"
+      fallback: "tier_2"
+    tier_2_recent_packets:
+      method: "glob {.opencode/,}specs/**/implementation-summary.md | filter active folders | sort by mtime | head -3"
+      fallback: "tier_3"
+    tier_3_triggers:
+      method: "node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- \"resume work session context\" (exit 0 = hits, 1 = clean no-hit, 2+ = error; a no-hit falls through, never guesses)"
+      fallback: "tier_4"
+    tier_4_recent_artifacts:
+      method: "glob {.opencode/,}specs/**/{handover.md,implementation-summary.md,tasks.md} | filter active folders | sort by mtime | head -1"
+      fallback: "report no session"
+  phase_folder_detection:
+    trigger: "After spec folder resolved, check if it contains [0-9][0-9][0-9]-*/ child directories"
+    action: "If phase children found and --no-redirect is absent → read the pointer first, from the telemetry store and then from graph-metadata.json derived.last_active_child_id + derived.last_active_at. If the pointer names an existing child packet inside the parent (a bare child id or a track-relative child path), report the target plus last_active_at and redirect/recurse directly to that child; when last_active_at is older than 24h, ask the user to confirm the redirect first. If pointer is null, missing, malformed, points outside the parent, or the child is missing, fall back to listing children with per-child tasks.md completion status and present phase selection UI."
+    no_redirect: "If --no-redirect is provided, skip pointer redirect entirely and show the parent spec.md plus child list."
+    skip: "If --phase-folder was provided in $ARGUMENTS, skip detection and use the specified child directly"
+    detection_method_value: "phase-folder"
+  fallback: { on_no_memory: "Report no active session, suggest /speckit:complete" }
+
+# ─────────────────────────────────────────────────────────────────
+# CONTEXT LOADING
+# ─────────────────────────────────────────────────────────────────
+context_loading_priority:
+  # The canonical packet is the recovery ladder. Grep only fills a gap the packet named and did not answer.
+  order: ["Primary: handover.md (<24h old)", "Primary: _memory.continuity in implementation-summary.md", "Primary: supporting spec docs (tasks/plan/decision-record/resource-map)", "Secondary: graph-metadata.json packet hints", "Secondary: the packet-scoped ripgrep context recipe (retrieval-conventions.md section 2.4) for a named gap"]
+  note: "Recover from the canonical packet first, then let the user choose whether a scoped ripgrep pass is needed"
+
+packet_graph_metadata:
+  role: "secondary packet hint"
+  allowed_signals: ["dependencies", "supersession", "related packets", "key files"]
+  constraint: "Never replace the canonical handover/continuity/spec-doc recovery ladder."
+
+memory_loading:
+  mode: interactive
+  behavior: "Check handover.md (<24h) first, then walk the continuity ladder below, and only ask for extra context when the recovery packet is still missing something important"
+  options:
+    - { id: A, label: "Fast resume", description: "Just enough context to continue safely" }
+    - { id: B, label: "Fill missing next step / blockers", description: "Target only the missing recovery gaps" }
+    - { id: C, label: "Deep context", description: "Load up to 3 recent files for a fuller picture" }
+    - { id: D, label: "Artifacts only", description: "Use handover, _memory.continuity, and supporting spec docs with no supplemental search" }
+  continuity_ladder:
+    note: "Read the packet's own files in order. No background service is involved."
+    order:
+      - "Read {spec_folder_path}/handover.md when present and recent"
+      - "Read the _memory.continuity frontmatter block in {spec_folder_path}/implementation-summary.md"
+      - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, acceptance-criteria.md, decision-record.md, resource-map.md"
+      - "Only for a still-missing named gap, run the context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_folder_path} as the search root"
+    unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. Recovery is lexical and file-local; a miss is a clean no-hit reported as such, never an inferred session state."
+
+smart_memory_logic:
+  objective: "Recover enough state to continue safely, then let the user choose whether to deepen context"
+  essentials: ["current phase or task", "last confirmed action", "next safe action", "blockers or none", "relevant artifact or file"]
+  sufficiency_rule: "Stop and present the resume brief once next safe action is known plus any two supporting essentials"
+  gap_fill_order:
+    - "If current phase or task is missing, inspect tasks.md/acceptance-criteria.md/handover.md"
+    - "If next safe action is missing, read `_memory.continuity`, then run the packet-scoped ripgrep context recipe on next-steps/state anchors"
+    - "If blockers are missing, target blockers/summary"
+    - "If a concrete starting point is missing, use tasks.md or implementation-summary.md before loading more memory"
+    - "If ambiguity remains, show the uncertainty and ask the user which direction to investigate"
+
+checkpoint_options:
+  session_selection:
+    - { label: "Confirm", description: "This is the correct spec folder" }
+    - { label: "Select Different", description: "Choose a different spec folder" }
+    - { label: "Cancel", description: "Cancel resume operation" }
+  continuation:
+    - { label: "Continue from pending work", description: "Pick up where you left off" }
+    - { label: "Run /speckit:implement", description: "Execute remaining tasks" }
+    - { label: "Just chat", description: "Work on it manually" }
+
+stale_session_detection:
+  check: "last_modified > 7 days"
+  interactive_behavior:
+    options:
+      - { label: "Resume anyway", description: "Load context and continue" }
+      - { label: "Fresh start", description: "Keep artifacts, restart workflow" }
+      - { label: "Review first", description: "Show what changed in codebase" }
+      - { label: "Cancel", description: "Do not resume" }
+
+# ─────────────────────────────────────────────────────────────────
+# CONFIDENCE & CLARIFICATION FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+confidence_framework:
+  thresholds:
+    high: { range: "80-100%", action: "Proceed with context loading and resume" }
+    medium: { range: "40-79%", action: "Proceed with caution - present stale session options" }
+    low: { range: "0-39%", action: "STOP - Ask user about context reliability and avoid guessing the next step" }
+  scoring_weights: { session_recency: 0.40, artifact_completeness: 0.30, memory_availability: 0.20, codebase_changes: 0.10 }
+  reply_format: ["Confidence: NN%", "Context source: handover|memory", "Now", "Last confirmed", "Next safe action"]
+  escalation: { timebox_minutes: 5, failed_threshold: 2, action: "Present options to user with current findings" }
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  step_1_session_detection:
+    purpose: Detect active session from CLI argument or recent canonical spec artifacts
+    activities:
+      - Check CLI argument for spec folder
+      - If no argument, build deterministic candidates from `specs/` and `.opencode/specs/`
+      - Canonicalize aliases and filter archive/test/fixture/scratch paths
+      - Rank candidates deterministically with stable tie-breakers
+      - If low confidence, present top-ranked candidates for explicit selection
+      - If no ranked candidate, continue to semantic/memory fallback
+      - Validate resolved spec folder exists
+    outputs: { spec_folder: detected_path, detection_method: argument_or_memory }
+    validation: session_detected
+    checkpoint:
+      question: "Found session. Is this the correct spec folder?"
+      options:
+        - { label: "Confirm", description: "This is the correct spec folder" }
+        - { label: "Select Different", description: "Choose a different spec folder" }
+        - { label: "Cancel", description: "Cancel resume operation" }
+
+  step_2_memory_selection:
+    purpose: Recover the default resume packet first, then let the user deepen only where the packet is still weak
+    activities:
+      - Check for handover.md in spec_folder (<24h old)
+      - If recent handover exists, load and display contents
+      - Walk the continuity ladder for the resolved spec folder: handover.md, then _memory.continuity, then the packet-first spec docs
+      - Extract Resume Essentials (current phase/task, last confirmed action, next safe action, blockers, relevant artifact/file)
+      - Present targeted depth options instead of raw file-loading choices
+      - Present numbered options to user, wait for selection
+    context_priority: ["handover.md", "_memory.continuity", "supporting spec docs", "packet-scoped ripgrep context recipe", "packet-scoped ripgrep anchor recipe"]
+    outputs: { handover_loaded: "true|false", primary_recovery_loaded: "true|false", selected_memory: user_choice, load_count: number }
+    checkpoint:
+      question: "Do you want more context, or is the resume brief already enough?"
+      note: "Prefer the smallest context packet that makes the next action clear"
+      options:
+        - { label: "A) Fast resume", description: "Current resume brief is enough" }
+        - { label: "B) Fill missing next step / blockers", description: "Target only the missing recovery gaps" }
+        - { label: "C) Deep context", description: "Load up to 3 recent files for a fuller picture" }
+        - { label: "D) Artifacts only", description: "Continue with the canonical packet and no supplemental search" }
+
+  step_3_load_memory:
+    purpose: Fill specific recovery gaps instead of broad-loading memory by default
+    activities:
+      - If the user chose Fast resume, keep the current recovery packet and do not load more
+      - If the user chose Fill missing next step / blockers, run the anchor recipe (retrieval-conventions.md section 2.4) only for those gaps
+      - If the user chose Deep context, run the packet-scoped context recipe plus the anchor recipe to enrich the canonical packet
+      - If the user chose Artifacts only, rely on handover, `_memory.continuity`, and supporting spec docs and skip supplemental search
+      - Merge supplemental results with handover and primary recovery context
+      - Extract Project State Snapshot (Phase, Active File, Last confirmed action, Next safe action, Blockers)
+      - Parse and summarize combined context
+    retrieval_recipe:
+      reference: ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
+      note: "Use it only after the canonical packet is still thin, scoped to {detected_spec_folder}. Exit 1 is a clean no-hit and is reported as such; exit 2 or higher is an error with stderr attached, never reported as no-hit."
+      command: "rg --no-config --json --fixed-strings --ignore-case -C 2 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'resume previous work continue session' {detected_spec_folder}"
+    outputs: { memory_loaded: true, context_source: "handover|continuity|spec_docs|ripgrep_context|ripgrep_anchor|combined", context_summary: extracted_context, resume_packet: "now|last|next|blockers|artifact" }
+    validation: context_loaded
+
+  step_4_calculate_progress:
+    purpose: Calculate task and checklist progress
+    activities: [Parse tasks.md for completion status, Parse acceptance-criteria.md rows and the tasks.md verification checklist, Calculate percentages, Identify pending items]
+    outputs: { tasks_progress: percentage, checklist_progress: percentage, pending_items: list }
+    validation: progress_calculated
+
+  step_5_present_resume:
+    purpose: Display a concise resume brief and offer continuation options
+    activities: [Display spec folder and last activity, Show progress bars, Show Now/Last confirmed/Next safe action/Blockers, Cite the artifact or task that justifies the recommendation, Present continuation options]
+    outputs: { resume_summary: displayed }
+    validation: resume_complete
+    checkpoint:
+      question: "Ready to continue. What would you like to do?"
+      options:
+        - { label: "Continue from pending work", description: "Pick up where you left off" }
+        - { label: "Run /speckit:implement", description: "Execute remaining tasks" }
+        - { label: "Just chat", description: "Work on it manually" }
+
+stale_session:
+  threshold_days: 7
+  detection: { check: "last_modified > 7 days", action: "Present warning and options" }
+  # 026: stale sessions score low on the confidence framework (session_recency weight = 0.40)
+  # Apply dual-threshold check: if confidence < 0.70 OR uncertainty > 0.35, present options
+  interactive_behavior:
+    options:
+      - { label: "Resume anyway", description: "Load context and continue" }
+      - { label: "Fresh start", description: "Keep artifacts, restart workflow" }
+      - { label: "Review first", description: "Show what changed" }
+      - { label: "Cancel", description: "Do not resume" }
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW TERMINATION
+# ─────────────────────────────────────────────────────────────────
+termination:
+  after_step: 5
+  message: "Session resume complete. Ready to continue work."
+  next_steps:
+    - "Continue from pending work"
+    - "Review implementation summary"
+    - "Run /speckit:implement if tasks remain"
+
+# ─────────────────────────────────────────────────────────────────
+# INTERACTIVE EXECUTION GUIDANCE
+# ─────────────────────────────────────────────────────────────────
+interactive_execution:
+  principle: "Execute resume with user approval at each checkpoint"
+  checkpoint_behavior: [Complete step activities, Present results summary, Present options for selection, Wait for response, Process feedback, Proceed or redirect as directed]
+  user_feedback_handling: { confirm: "Proceed to next step", select_different: "Show folder selection options", skip: "Proceed without loading memory", cancel: "Abort resume operation" }
+
+crash_recovery:
+  command_reference: "/speckit:resume"
+  description: "Recovery is handled inside the resume workflow through handover.md, then _memory.continuity, then supporting spec docs, with MCP enrichment only when the canonical packet is thin"
+  when_to_use: ["Session interrupted unexpectedly", "Context compaction detected", "Need to recover without handover.md"]
+  integration_with_resume:
+    relationship: "/speckit:resume = standard continuation + interrupted-session recovery"
+    recommendation: "Use /speckit:resume for both ordinary continuation and crash recovery"
+
+# ─────────────────────────────────────────────────────────────────
+# ERROR RECOVERY
+# ─────────────────────────────────────────────────────────────────
+error_recovery:
+  no_active_session: "Report no session, suggest /speckit:complete"
+  spec_folder_missing: "Report not found, ask user to specify or create"
+  retrieval_failed: { action: "Report that supplemental anchored recovery failed; a ripgrep exit of 2 or higher is an error with stderr, an exit of 1 is a clean no-hit", fallback: "Offer to continue with the current /speckit:resume context or start fresh" }
+  stale_session_detected: "Present stale session options to user"
+  user_cancels: "Acknowledge cancellation, exit gracefully"
+  crash_detected: "Continue with the built-in resume recovery chain"
+  insufficient_context: "Show what is known, call out what is still unclear, and ask which missing area to investigate"
+
+# ─────────────────────────────────────────────────────────────────
+# RULES
+# ─────────────────────────────────────────────────────────────────
+rules:
+  ALWAYS:
+  - detect_session_before_loading
+  - confirm_spec_folder_with_user
+  - present_memory_options
+  - calculate_progress_from_artifacts
+  - display_clear_summary
+  - use_mcp_tools_directly
+  - respect_user_selections
+  - stop_loading_when_context_is_sufficient
+  - recommend_one_safe_next_action
+  NEVER:
+  - auto_load_without_confirmation
+  - proceed_without_user_approval
+  - proceed_without_valid_spec_folder
+  - call_mcp_through_code_mode
+  - ignore_user_cancellation
+  - dump_extra_memory_when_the_next_step_is_already_clear
+  - guess_missing_state_when_confidence_is_low

@@ -1,0 +1,74 @@
+{
+  "metrics": [
+    {
+      "metric": "strict_passed",
+      "baseline": {
+        "min": 1,
+        "max": 1,
+        "mean": 1
+      },
+      "final": {
+        "min": 1,
+        "max": 1,
+        "mean": 1
+      },
+      "delta_mean": 0
+    },
+    {
+      "metric": "leftover_hints",
+      "baseline": {
+        "min": 95,
+        "max": 99,
+        "mean": 97
+      },
+      "final": {
+        "min": 70,
+        "max": 90,
+        "mean": 80
+      },
+      "delta_mean": -17
+    },
+    {
+      "metric": "missing_anchors",
+      "baseline": {
+        "min": 0,
+        "max": 1,
+        "mean": 0.3333333333333333
+      },
+      "final": {
+        "min": 0,
+        "max": 2,
+        "mean": 0.6666666666666666
+      },
+      "delta_mean": 0.3333333333333333
+    },
+    {
+      "metric": "out_of_scope_writes",
+      "baseline": {
+        "min": 0,
+        "max": 0,
+        "mean": 0
+      },
+      "final": {
+        "min": 0,
+        "max": 0,
+        "mean": 0
+      },
+      "delta_mean": 0
+    },
+    {
+      "metric": "seconds",
+      "baseline": {
+        "min": 400,
+        "max": 420,
+        "mean": 410
+      },
+      "final": {
+        "min": 390,
+        "max": 430,
+        "mean": 407
+      },
+      "delta_mean": -3
+    }
+  ]
+}

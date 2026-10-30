@@ -1,0 +1,3 @@
+VALUE=FIXTURE_OK
+echo "$VALUE"
+echo "${VALUE}_SECOND"

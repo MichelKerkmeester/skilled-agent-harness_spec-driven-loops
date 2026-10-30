@@ -1,0 +1,14 @@
+E1.1 .skilled/skills/system-spec-kit/README.md: APPLIED
+E1.2 .skilled/skills/system-spec-kit/README.md: APPLIED
+E1.3 .skilled/skills/system-spec-kit/README.md: APPLIED
+E1.4 .skilled/skills/system-spec-kit/README.md: APPLIED
+E1.5 .skilled/skills/system-spec-kit/README.md: APPLIED
+E2.1 .skilled/skills/system-spec-kit/templates/README.md: APPLIED
+E2.2 .skilled/skills/system-spec-kit/templates/README.md: APPLIED
+E3.1 .skilled/skills/system-spec-kit/references/validation/validation-rules.md: APPLIED
+E3.2 .skilled/skills/system-spec-kit/references/validation/validation-rules.md: APPLIED
+E4.1 .skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md: APPLIED
+E4.2 .skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md: APPLIED
+E5.1 .skilled/skills/system-spec-kit/references/templates/template-style-guide.md: APPLIED
+E5.2 .skilled/skills/system-spec-kit/references/templates/template-style-guide.md: APPLIED
+E6.1 .skilled/skills/system-spec-kit/references/workflows/quick-reference.md: APPLIED

@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/test/zz-track/001-quiet-flag",
+  "description": "Add a quiet flag to recommend-level.sh",
+  "keywords": [
+    "quiet",
+    "flag",
+    "recommend-level"
+  ],
+  "lastUpdated": "2026-10-23T13:15:34.263Z",
+  "specId": "001",
+  "folderSlug": "quiet-flag",
+  "parentChain": [
+    "system-speckit",
+    "054-weak-model-spec-authoring",
+    "005-weak-model-authoring-card",
+    "scratch",
+    "test",
+    "zz-track"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

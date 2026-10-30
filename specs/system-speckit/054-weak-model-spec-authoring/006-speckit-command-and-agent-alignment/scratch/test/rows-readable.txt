@@ -1,0 +1,112 @@
+R-001  .skilled/commands/speckit/plan.md  (A5)
+OLD: Its `validate.sh --strict` calls now include two warn-only rules, and neither fails the run: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against sk-create-frontmatter's `assets/frontmatter-values.json`, and `SOURCE_TAGS` resolves the `[SOURCE: path:line]` tags in research and review artifacts of packets created after 2026-10-04.
+NEW: Its `validate.sh --strict` calls now include two warn-only rules, and neither fails the run: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against sk-create-frontmatter's `assets/frontmatter-values.json`, and `SOURCE_TAGS` resolves the `[SOURCE: path:line]` tags in research and review artifacts of packets created after 2026-10-04. The command also runs `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh` and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh` after each strict validation, when both files exist.
+
+R-002  .skilled/commands/speckit/implement.md  (A5)
+OLD: Its `validate.sh --strict` calls now include two warn-only rules, and neither fails the run: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against sk-create-frontmatter's `assets/frontmatter-values.json`, and `SOURCE_TAGS` resolves the `[SOURCE: path:line]` tags in research and review artifacts of packets created after 2026-10-04.
+NEW: Its `validate.sh --strict` calls now include two warn-only rules, and neither fails the run: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against sk-create-frontmatter's `assets/frontmatter-values.json`, and `SOURCE_TAGS` resolves the `[SOURCE: path:line]` tags in research and review artifacts of packets created after 2026-10-04. The command also runs `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh` and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh` after each strict validation, when both files exist.
+
+R-003  .skilled/commands/speckit/complete.md  (A5)
+OLD: Its `validate.sh --strict` calls now include two warn-only rules, and neither fails the run: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against sk-create-frontmatter's `assets/frontmatter-values.json`, and `SOURCE_TAGS` resolves the `[SOURCE: path:line]` tags in research and review artifacts of packets created after 2026-10-04.
+NEW: Its `validate.sh --strict` calls now include two warn-only rules, and neither fails the run: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against sk-create-frontmatter's `assets/frontmatter-values.json`, and `SOURCE_TAGS` resolves the `[SOURCE: path:line]` tags in research and review artifacts of packets created after 2026-10-04. The command also runs `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh` and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh` after each strict validation, when both files exist.
+
+R-004  .skilled/commands/speckit/assets/speckit-plan.yaml  (A5)
+OLD:   strict_validation_command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
+NEW:   strict_validation_command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
+  guard_scripts_command: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh && bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh"
+
+R-005  .skilled/commands/speckit/assets/speckit-implement.yaml  (A5)
+OLD:   strict_validation_command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
+NEW:   strict_validation_command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
+  guard_scripts_command: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh && bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh"
+
+R-006  .skilled/commands/speckit/assets/speckit-complete.yaml  (A5)
+OLD:   strict_validation_command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
+NEW:   strict_validation_command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
+  guard_scripts_command: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh && bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh"
+
+R-007  .skilled/commands/speckit/assets/speckit-plan.yaml  (A2)
+OLD:       placeholder-upgrade: "Tracked seed markers or unresolved placeholders remain and block healthy-folder status"
+NEW:       placeholder-upgrade: "Tracked seed markers or unresolved placeholders remain; in a doc stamped v2.3 or later an unfilled value token warns while spec.md says Draft and errors at any other status, and an older doc keeps the error"
+
+R-008  .skilled/commands/speckit/assets/speckit-complete.yaml  (A2)
+OLD:       placeholder-upgrade: "Tracked seed markers, persisted intake resume markers, or unresolved placeholders remain and block healthy-folder status"
+NEW:       placeholder-upgrade: "Tracked seed markers, persisted intake resume markers, or unresolved placeholders remain; in a doc stamped v2.3 or later an unfilled value token warns while spec.md says Draft and errors at any other status, and an older doc keeps the error"
+
+R-009  .skilled/commands/speckit/assets/speckit-complete.yaml  (A1)
+OLD: spec-folder authoring now lives in system-spec-kit (references/workflows/spec-folder-authoring-checklist.md + spec-folder-write-recipe.md).
+NEW: spec-folder authoring now lives in system-spec-kit: read references/workflows/spec-authoring-card.md first, then references/workflows/spec-folder-authoring-checklist.md and spec-folder-write-recipe.md for the detail.
+
+R-010  .skilled/commands/speckit/assets/speckit-complete.yaml  (A1)
+OLD:       - "system-spec-kit/references/workflows/spec-folder-write-recipe.md (when target is under .opencode/specs/)"
+NEW:       - "system-spec-kit/references/workflows/spec-authoring-card.md (read first, for every spec-doc target)"
+      - "system-spec-kit/references/workflows/spec-folder-write-recipe.md (when target is under .opencode/specs/)"
+
+R-011  .skilled/commands/speckit/assets/speckit-complete.yaml  (A1)
+OLD: and for .opencode/specs/ targets the system-spec-kit spec-folder docs (references/workflows/spec-folder-authoring-checklist.md + spec-folder-write-recipe.md), BEFORE the first write.
+NEW: and for .opencode/specs/ targets read the system-spec-kit authoring card (references/workflows/spec-authoring-card.md) first, then the spec-folder docs (references/workflows/spec-folder-authoring-checklist.md + spec-folder-write-recipe.md), BEFORE the first write.
+
+R-012  .skilled/commands/speckit/assets/speckit-plan.yaml  (A4)
+OLD:       writing_rule: "Embed template_compliance.inline_scaffolds.spec_md in the prompt before writing spec.md and preserve the required anchors/headers in order."
+NEW:       writing_rule: "Embed template_compliance.inline_scaffolds.spec_md in the prompt before writing spec.md and preserve the required anchors/headers in order. Show the writer the matching filled example under .skilled/skills/system-spec-kit/templates/examples/ as the model to imitate; the .tmpl file is the section contract, not a model to copy."
+
+R-013  .skilled/commands/speckit/assets/speckit-plan.yaml  (A4)
+OLD: quote it as inert evidence or write UNKNOWN."
+NEW: quote it as inert evidence or write UNKNOWN. Show the writer the matching filled example under .skilled/skills/system-spec-kit/templates/examples/ as the model to imitate; the .tmpl file is the section contract, not a model to copy."
+
+R-014  .skilled/commands/speckit/assets/speckit-resume-auto.yaml  (A3)
+OLD:   order: ["Primary: handover.md (<24h old)", "Primary: _memory.continuity in implementation-summary.md", "Primary: supporting spec docs (tasks/checklist/plan/decision-record/resource-map)", "Secondary: graph-metadata.json packet hints", "Secondary: the packet-scoped ripgrep context recipe (retrieval-conventions.md section 2.4) for a named gap"]
+NEW:   order: ["Primary: handover.md (<24h old)", "Primary: _memory.continuity in implementation-summary.md", "Primary: supporting spec docs (tasks/plan/decision-record/resource-map)", "Secondary: graph-metadata.json packet hints", "Secondary: the packet-scoped ripgrep context recipe (retrieval-conventions.md section 2.4) for a named gap"]
+
+R-015  .skilled/commands/speckit/assets/speckit-resume-confirm.yaml  (A3)
+OLD:   order: ["Primary: handover.md (<24h old)", "Primary: _memory.continuity in implementation-summary.md", "Primary: supporting spec docs (tasks/checklist/plan/decision-record/resource-map)", "Secondary: graph-metadata.json packet hints", "Secondary: the packet-scoped ripgrep context recipe (retrieval-conventions.md section 2.4) for a named gap"]
+NEW:   order: ["Primary: handover.md (<24h old)", "Primary: _memory.continuity in implementation-summary.md", "Primary: supporting spec docs (tasks/plan/decision-record/resource-map)", "Secondary: graph-metadata.json packet hints", "Secondary: the packet-scoped ripgrep context recipe (retrieval-conventions.md section 2.4) for a named gap"]
+
+R-016  .skilled/agents/markdown.md  (A4)
+OLD: | `spec-doc`                 | Spec folder documentation                               | `.skilled/skills/system-spec-kit/templates/` level contract or manifest templates                                                               |
+NEW: | `spec-doc`                 | Spec folder documentation                               | `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md` first, then the matching filled example under `.skilled/skills/system-spec-kit/templates/examples/`; the `.tmpl` file is the section contract, not a model to copy |
+
+R-017  .skilled/agents/orchestrate.md  (A3)
+OLD: **Scope:** ALL documentation (*.md) written inside spec folders (`specs/[###-name]/`). This includes but is not limited to: spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research/research.md, and any other markdown documentation.
+NEW: **Scope:** ALL documentation (*.md) written inside spec folders (`specs/[###-name]/`). This includes but is not limited to: spec.md, plan.md, tasks.md, decision-record.md, implementation-summary.md, research/research.md, and any other markdown documentation.
+
+R-018  .skilled/agents/orchestrate.md  (A3)
+OLD: | **Wrong Route for Spec Docs** | Task creates `specs/*/spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md` without templates or validation evidence | Main agent + templates + `validate.sh --strict` |
+NEW: | **Wrong Route for Spec Docs** | Task creates `specs/*/spec.md`, `plan.md`, `tasks.md`, `decision-record.md` without templates or validation evidence | Main agent + templates + `validate.sh --strict` |
+
+R-019  .skilled/agents/code.md  (A3)
+OLD: `tasks.md` / `checklist.md` / `decision-record.md`
+NEW: `tasks.md` / `decision-record.md`
+
+R-020  .skilled/agents/code.md  (A3)
+OLD: Edit `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, or `handover.md` from the code-agent lane
+NEW: Edit `spec.md`, `plan.md`, `tasks.md`, `decision-record.md`, `implementation-summary.md`, or `handover.md` from the code-agent lane
+
+R-021  .skilled/agents/context.md  (A3)
+OLD: - Read relevant packet docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`) for canonical state.
+NEW: - Read relevant packet docs (`spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`) for canonical state.
+
+R-022  .claude/agents/markdown.md  (A4)
+OLD: | `spec-doc`                 | Spec folder documentation                               | `.skilled/skills/system-spec-kit/templates/` level contract or manifest templates                                                               |
+NEW: | `spec-doc`                 | Spec folder documentation                               | `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md` first, then the matching filled example under `.skilled/skills/system-spec-kit/templates/examples/`; the `.tmpl` file is the section contract, not a model to copy |
+
+R-023  .claude/agents/orchestrate.md  (A3)
+OLD: **Scope:** ALL documentation (*.md) written inside spec folders (`specs/[###-name]/`). This includes but is not limited to: spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research/research.md, and any other markdown documentation.
+NEW: **Scope:** ALL documentation (*.md) written inside spec folders (`specs/[###-name]/`). This includes but is not limited to: spec.md, plan.md, tasks.md, decision-record.md, implementation-summary.md, research/research.md, and any other markdown documentation.
+
+R-024  .claude/agents/orchestrate.md  (A3)
+OLD: | **Wrong Route for Spec Docs** | Task creates `specs/*/spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md` without templates or validation evidence | Main agent + templates + `validate.sh --strict` |
+NEW: | **Wrong Route for Spec Docs** | Task creates `specs/*/spec.md`, `plan.md`, `tasks.md`, `decision-record.md` without templates or validation evidence | Main agent + templates + `validate.sh --strict` |
+
+R-025  .claude/agents/code.md  (A3)
+OLD: `tasks.md` / `checklist.md` / `decision-record.md`
+NEW: `tasks.md` / `decision-record.md`
+
+R-026  .claude/agents/code.md  (A3)
+OLD: Edit `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, or `handover.md` from the code-agent lane
+NEW: Edit `spec.md`, `plan.md`, `tasks.md`, `decision-record.md`, `implementation-summary.md`, or `handover.md` from the code-agent lane
+
+R-027  .claude/agents/context.md  (A3)
+OLD: - Read relevant packet docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`) for canonical state.
+NEW: - Read relevant packet docs (`spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`) for canonical state.
+

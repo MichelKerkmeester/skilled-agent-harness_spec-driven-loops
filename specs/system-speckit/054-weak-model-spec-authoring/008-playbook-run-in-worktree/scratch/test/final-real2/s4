@@ -1,0 +1,4 @@
+clean_exit=0
+EXAMPLE_DRIFT_OK
+broken_exit=1
+cleanup=ok

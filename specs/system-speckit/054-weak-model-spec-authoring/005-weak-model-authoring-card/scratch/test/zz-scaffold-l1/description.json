@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/test/zz-scaffold-l1",
+  "description": "Add a quiet flag",
+  "keywords": [
+    "quiet",
+    "flag"
+  ],
+  "lastUpdated": "2026-10-23T12:55:16.779Z",
+  "specId": "",
+  "folderSlug": "zz-scaffold-l1",
+  "parentChain": [
+    "system-speckit",
+    "054-weak-model-spec-authoring",
+    "005-weak-model-authoring-card",
+    "scratch",
+    "test"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

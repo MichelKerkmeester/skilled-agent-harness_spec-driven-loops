@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/test/scaffold/001-scaffold-demo",
+  "description": "Scaffold demo",
+  "keywords": [
+    "scaffold",
+    "demo"
+  ],
+  "lastUpdated": "2026-10-23T13:46:01.513Z",
+  "specId": "001",
+  "folderSlug": "scaffold-demo",
+  "parentChain": [
+    "system-speckit",
+    "054-weak-model-spec-authoring",
+    "007-playbook-catalog-readme-alignment",
+    "scratch",
+    "test",
+    "scaffold"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

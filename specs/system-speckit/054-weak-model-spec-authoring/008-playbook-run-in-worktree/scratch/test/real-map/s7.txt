@@ -1,0 +1,3 @@
+CARD SYNC OK
+broken_exit=1
+CARD SYNC FAILED

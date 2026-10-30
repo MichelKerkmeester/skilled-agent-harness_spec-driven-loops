@@ -1,0 +1,93 @@
+---
+description: "Implementation workflow, 9 steps: execute pre-planned work from plan.md. Modes :auto, :confirm, :autopilot."
+argument-hint: "<spec-folder> [:auto|:confirm|:autopilot|:unattended|--unattended] [--phase-folder=PATH]"
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, opencode_goal, opencode_goal_status
+---
+
+# SpecKit Implement
+
+Thin router for implementing an already planned SpecKit packet. This command resolves mode and target folder, loads the presentation contract, then executes the owned workflow YAML.
+
+## 1. ROUTER CONTRACT
+
+Do not dispatch agents from this Markdown file. Agent dispatch, implementation steps, debug offers, review gates, and context-save behavior are owned by the workflow YAML assets.
+
+Load the presentation contract before showing startup questions, checkpoints, dashboards, success output, failure output, or next-step prompts.
+
+---
+
+## 2. OWNED ASSETS
+
+| Purpose | Asset |
+|---------|-------|
+| Presentation source of truth | `.skilled/commands/speckit/assets/speckit-implement-presentation.txt` |
+| Workflow (all execution modes) | `.skilled/commands/speckit/assets/speckit-implement.yaml` |
+| Shared save-context tail | `.skilled/commands/speckit/assets/speckit-save-context-tail.yaml` |
+
+---
+
+## 3. MODE ROUTING
+
+1. Parse `$ARGUMENTS` for `:auto`, `:confirm`, `:autopilot`, `:unattended`, or `--unattended`.
+2. Treat `--phase-folder` and the positional spec-folder path as workflow inputs.
+3. If no mode suffix is present, use the presentation contract's startup prompt to ask for execution mode.
+4. For `:auto`, resolve required setup inputs using the presentation contract's auto-resolution rules before loading YAML.
+5. For `:autopilot`, `:unattended`, or `--unattended`, bind execution mode to `autopilot`; do not alias it to `:auto`.
+6. Validate that the target has the required planning artifacts before executing the workflow asset.
+7. Load the selected workflow asset and execute it step by step.
+
+### Workflow Flag Surface
+
+The argument hint names the invocation shape; the whole flag surface is here. Every entry below
+is a workflow input, never an execution mode.
+
+| Input | Value | Effect |
+|-------|-------|--------|
+| `<spec-folder>` | `PATH` | The packet to implement. It must already carry `plan.md`. |
+| `--phase-folder` | `PATH` | Targets one phase child of that packet instead of the parent. |
+
+Under `:auto` a `PRE-BOUND SETUP ANSWERS:` block in the prompt body binds the required setup
+values without an interactive prompt.
+
+---
+
+## 4. EXECUTION TARGETS
+
+| Mode | Target |
+|------|----------|
+| `:auto` | `.skilled/commands/speckit/assets/speckit-implement.yaml` with `execution_mode` auto: confirm-only checkpoint blocks skipped |
+| `:autopilot`, `:unattended`, or `--unattended` | `.skilled/commands/speckit/assets/speckit-implement.yaml` with `execution_mode` autopilot and branch-preserved failure semantics |
+| `:confirm` or interactive choice | `.skilled/commands/speckit/assets/speckit-implement.yaml` with `execution_mode` confirm: every `applies_to: confirm` checkpoint runs and `mode_overrides.confirm` wording applies |
+
+### UNATTENDED TERMINATION
+
+`:autopilot`, `:unattended`, and `--unattended` must never end with prose-only failure output.
+
+Terminal failure/no-op reason codes are exactly:
+
+- `no_eligible_tasks`
+- `retry_exhausted`
+- `verification_failed`
+- `uncertainty_blocked`
+
+On any of those results, preserve the active branch, do not merge, and emit one machine-readable result line with prefix `SPECKIT_AUTOPILOT_RESULT`. Successful completion emits `reason: null`; it does not add a fifth terminal reason code.
+
+---
+
+## 5. PRESENTATION BOUNDARY
+
+The following content lives only in `.skilled/commands/speckit/assets/speckit-implement-presentation.txt`:
+
+- Startup-question wording and reply format.
+- `:auto` pre-bound setup answer schema, default table, targeted-ask rules, and fail-fast display.
+- Prerequisite, quality-gate, debug-offer, review, and closeout dashboards.
+- Success and failure result templates.
+- Next-step suggestions and final user prompt wording.
+
+---
+
+## 6. WORKFLOW SUMMARY
+
+The YAML workflow requires prior planning artifacts, executes implementation tasks, verifies acceptance-criteria rows and the tasks checklist, writes completion artifacts, refreshes context, and closes the implementation pass.
+
+Its `validate.sh --strict` calls now include two warn-only rules, and neither fails the run: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against sk-create-frontmatter's `assets/frontmatter-values.json`, and `SOURCE_TAGS` resolves the `[SOURCE: path:line]` tags in research and review artifacts of packets created after 2026-10-04. The command also runs `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh` and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh` after each strict validation, when both files exist.
