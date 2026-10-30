@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a237eeacf9bef70e27f9756b45c21b727aa0b99b46cf977fd3c4d9aef5263abf",
+  "manifestHash": "518d010d512a6883650b3452eba315c0654e5bba9f574535db2b002e65ff2779",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -37251,11 +37251,8 @@
     "depth detection parallel vs sequential": [
       "depth detection parallel vs sequential"
     ],
-    "depth phase exit criteria": [
-      "depth phase exit criteria"
-    ],
-    "depth thinking rounds": [
-      "depth thinking rounds"
+    "depth thinking framework removed": [
+      "depth thinking framework removed"
     ],
     "derive addendum fragment": [
       "derive addendum fragment"
@@ -42904,9 +42901,6 @@
     "endless sessions readme": [
       "endless sessions readme"
     ],
-    "energy level routing": [
-      "energy level routing"
-    ],
     "enforce session caps": [
       "enforce session caps"
     ],
@@ -47275,9 +47269,6 @@
     "five phase remediation train": [
       "five phase remediation train"
     ],
-    "five phase thinking system": [
-      "five-phase thinking system"
-    ],
     "five port storage seam": [
       "five port storage seam"
     ],
@@ -47472,6 +47463,9 @@
     ],
     "fix sk doc sk code alignment and 3 remaining changelog": [
       "fix sk doc sk code alignment and 3 remaining changelog"
+    ],
+    "fix sk prompt drift and recommend improvements": [
+      "fix sk prompt drift and recommend improvements"
     ],
     "fix stress test coverage gap": [
       "fix stress test coverage gap"
@@ -55919,6 +55913,9 @@
     ],
     "improvement artifacts rule": [
       "IMPROVEMENT_ARTIFACTS rule"
+    ],
+    "improvement checklist": [
+      "improvement checklist"
     ],
     "improvement config rule": [
       "improvement config rule"
@@ -69136,6 +69133,9 @@
     "no bridge socket worktree fixed": [
       "no-bridge-socket worktree fixed"
     ],
+    "no checklist mode": [
+      "no checklist mode"
+    ],
     "no command ships decision": [
       "no command ships decision"
     ],
@@ -70868,6 +70868,12 @@
     ],
     "one page carrying every chart form twice once": [
       "one page carrying every chart form twice once"
+    ],
+    "one pass prompt check": [
+      "one pass prompt check"
+    ],
+    "one pass prompt checklist": [
+      "one-pass prompt checklist"
     ],
     "one question at the first save": [
       "one question at the first save"
@@ -74669,9 +74675,6 @@
     ],
     "personal name scrub tasks": [
       "personal name scrub tasks"
-    ],
-    "perspective inversion technique": [
-      "perspective inversion technique"
     ],
     "phantom children after rename": [
       "phantom children after rename"
@@ -80736,6 +80739,12 @@
     "prompt card sync verification": [
       "prompt card sync verification"
     ],
+    "prompt change report": [
+      "prompt change report"
+    ],
+    "prompt cleanup only": [
+      "prompt cleanup only"
+    ],
     "prompt command plan": [
       "prompt command plan"
     ],
@@ -80753,6 +80762,12 @@
     ],
     "prompt composition guidance": [
       "prompt-composition guidance"
+    ],
+    "prompt early exit": [
+      "prompt early exit"
+    ],
+    "prompt effort level": [
+      "prompt effort level"
     ],
     "prompt engineering": [
       "prompt engineering"
@@ -80838,6 +80853,9 @@
     ],
     "prompt improver model eligibility tasks": [
       "prompt improver model eligibility tasks"
+    ],
+    "prompt improver survey": [
+      "prompt improver survey"
     ],
     "prompt injection classifier test": [
       "prompt injection classifier test"
@@ -80941,6 +80959,9 @@
     "prompt quality card template": [
       "prompt-quality card template"
     ],
+    "prompt quick test": [
+      "prompt quick test"
+    ],
     "prompt safe bounded context query": [
       "prompt-safe bounded context query"
     ],
@@ -81021,9 +81042,6 @@
     ],
     "proof over appearance removed": [
       "proof over appearance removed"
-    ],
-    "proof through output metadata": [
-      "proof through output metadata"
     ],
     "propagate enhances": [
       "propagate enhances"
@@ -82234,6 +82252,9 @@
     ],
     "raw cdp method": [
       "raw cdp method"
+    ],
+    "raw mode passthrough": [
+      "raw mode passthrough"
     ],
     "raw typescript extension package": [
       "raw typescript extension package"
@@ -86402,6 +86423,9 @@
     ],
     "rephrased queries": [
       "rephrased queries"
+    ],
+    "replace depth in sk prompt": [
+      "replace depth in sk-prompt"
     ],
     "replace mcp with cli": [
       "replace mcp with cli"
@@ -102012,6 +102036,9 @@
     "sk prompt 3 0 9 0": [
       "sk-prompt 3.0.9.0"
     ],
+    "sk prompt 4 0 0 0": [
+      "sk-prompt 4.0.0.0"
+    ],
     "sk prompt 7 against 5 frameworks": [
       "sk-prompt 7 against 5 frameworks"
     ],
@@ -102143,6 +102170,21 @@
     ],
     "sk prompt improve verification path": [
       "sk-prompt-improve verification path"
+    ],
+    "sk prompt improvements": [
+      "sk prompt improvements"
+    ],
+    "sk prompt improvements goal": [
+      "sk prompt improvements goal"
+    ],
+    "sk prompt improvements implementation summary": [
+      "sk prompt improvements implementation summary"
+    ],
+    "sk prompt improvements plan": [
+      "sk prompt improvements plan"
+    ],
+    "sk prompt improvements tasks": [
+      "sk prompt improvements tasks"
     ],
     "sk prompt improver workflow": [
       "sk prompt improver workflow"
@@ -102332,6 +102374,9 @@
     ],
     "sk prompt v3 0 9 0": [
       "sk-prompt v3.0.9.0"
+    ],
+    "sk prompt v4 0 0 0": [
+      "sk-prompt v4.0.0.0"
     ],
     "sk vision": [
       "sk-vision"
@@ -105154,6 +105199,9 @@
     ],
     "skip ci token decision": [
       "skip ci token decision"
+    ],
+    "skip clear screen": [
+      "skip clear screen"
     ],
     "skip closed in sweep causal": [
       "skip closed in sweep causal"

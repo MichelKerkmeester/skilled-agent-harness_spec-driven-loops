@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e470d525d2cd5cb820d8373d328d4d82d5886ac67fae43b91a45fa1ecd53e910",
+  "corpusHash": "92f0b0f81683298e82ba7dff9915321c61bee028b42ab3de1ad816aca393bc83",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27230,
+  "includedPathCount": 27239,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7057,36 +7057,37 @@
     ".skilled/skills/sk-prompt/changelog/v3.0.7.0.md",
     ".skilled/skills/sk-prompt/changelog/v3.0.8.0.md",
     ".skilled/skills/sk-prompt/changelog/v3.0.9.0.md",
+    ".skilled/skills/sk-prompt/changelog/v4.0.0.0.md",
+    ".skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/change-report-length-warning.md",
+    ".skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/clashing-rules-resolved.md",
+    ".skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/deliver-first-open-items.md",
+    ".skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/early-exit-good-prompt.md",
+    ".skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/one-pass-checklist-rows.md",
+    ".skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/repair-cycle-cap.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/clear-five-dimensions.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/dimension-drilldown-rationale.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/dimension-floors-block.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/forty-of-fifty-threshold.md",
-    ".skilled/skills/sk-prompt/manual-testing-playbook/depth-clear-loop/depth-five-phases-order.md",
-    ".skilled/skills/sk-prompt/manual-testing-playbook/depth-clear-loop/depth-iteration-cap.md",
-    ".skilled/skills/sk-prompt/manual-testing-playbook/depth-clear-loop/mechanism-first-prototype.md",
-    ".skilled/skills/sk-prompt/manual-testing-playbook/depth-clear-loop/perspectives-floor-three.md",
-    ".skilled/skills/sk-prompt/manual-testing-playbook/depth-clear-loop/phase-exit-gate-blocking.md",
-    ".skilled/skills/sk-prompt/manual-testing-playbook/depth-clear-loop/ricce-validation-gate.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/escalation-tiers/cli-card-five-question-fast-path.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/escalation-tiers/escalation-trigger-thresholds.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/escalation-tiers/prompt-improver-input-payload.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/escalation-tiers/prompt-improver-output-block.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/format-modes/format-guide-on-demand.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/format-modes/format-mode-delivery.md",
-    ".skilled/skills/sk-prompt/manual-testing-playbook/framework-selection/framework-by-complexity.md",
-    ".skilled/skills/sk-prompt/manual-testing-playbook/framework-selection/framework-rationale-required.md",
-    ".skilled/skills/sk-prompt/manual-testing-playbook/framework-selection/framework-switch-mid-flight.md",
+    ".skilled/skills/sk-prompt/manual-testing-playbook/framework-selection/default-skeleton-unless-preset-fits.md",
+    ".skilled/skills/sk-prompt/manual-testing-playbook/framework-selection/preset-kept-through-repair.md",
+    ".skilled/skills/sk-prompt/manual-testing-playbook/framework-selection/preset-named-in-change-report.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/framework-selection/user-named-framework-override.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/mode-detection/default-mode-routing.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/mode-detection/mode-prefix-keyword-collision.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/mode-detection/raw-mode-passthrough.md",
-    ".skilled/skills/sk-prompt/manual-testing-playbook/mode-detection/short-mode-three-rounds.md",
+    ".skilled/skills/sk-prompt/manual-testing-playbook/mode-detection/short-mode-quick-effort.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/ambiguity-delta-tiebreaker.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/intent-model-keyword-scoring.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/on-demand-keyword-loading.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/unknown-fallback-checklist.md",
-    ".skilled/skills/sk-prompt/references/depth-framework.md",
+    ".skilled/skills/sk-prompt/references/improvement-checklist.md",
     ".skilled/skills/sk-prompt/references/patterns-evaluation.md",
     ".skilled/skills/system-deep-loop/ARCHITECTURE.md",
     ".skilled/skills/system-deep-loop/README.md",
@@ -14583,6 +14584,14 @@
     "specs/sk-prompt/009-prompt-improver-model-eligibility/plan.md",
     "specs/sk-prompt/009-prompt-improver-model-eligibility/spec.md",
     "specs/sk-prompt/009-prompt-improver-model-eligibility/tasks.md",
+    "specs/sk-prompt/010-sk-prompt-improvements/goal.md",
+    "specs/sk-prompt/010-sk-prompt-improvements/implementation-summary.md",
+    "specs/sk-prompt/010-sk-prompt-improvements/plan.md",
+    "specs/sk-prompt/010-sk-prompt-improvements/research/fanout-attribution.md",
+    "specs/sk-prompt/010-sk-prompt-improvements/research/research.md",
+    "specs/sk-prompt/010-sk-prompt-improvements/research/resource-map.md",
+    "specs/sk-prompt/010-sk-prompt-improvements/spec.md",
+    "specs/sk-prompt/010-sk-prompt-improvements/tasks.md",
     "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/001-research/decision-record.md",
     "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/001-research/implementation-summary.md",
     "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/001-research/plan.md",
@@ -27261,7 +27270,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a237eeacf9bef70e27f9756b45c21b727aa0b99b46cf977fd3c4d9aef5263abf",
+  "manifestHash": "518d010d512a6883650b3452eba315c0654e5bba9f574535db2b002e65ff2779",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30180,6 +30189,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/scratch",
       "reason": "excluded directory"
     },
@@ -31393,6 +31410,14 @@
     },
     {
       "path": "specs/sk-prompt/009-prompt-improver-model-eligibility/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-prompt/010-sk-prompt-improvements/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-prompt/010-sk-prompt-improvements/scratch",
       "reason": "excluded directory"
     },
     {
