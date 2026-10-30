@@ -43,6 +43,8 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | Each integration row I1 to I6 is its own plan line and runs only after V8 passes. |
 | D2 | The reach script's `--skill` flag is opt-in; its default fleet output does not change. |
+| D3 | The older Skilled in-place path plans and runs the same six rows through `planIntegration`/`applyIntegration`, not a second runner. A row that is already satisfied skips itself with its own line, so a re-run of a converted root reports the existing changelog entry and index link instead of rewriting them. |
+| D4 | The undo block covers what those rows overwrite, exactly as for the plain path: the rows write beside the conversion's own backup, so one printed block restores the converted root and every integration target. |
 
 <!-- /ANCHOR:directive -->
 

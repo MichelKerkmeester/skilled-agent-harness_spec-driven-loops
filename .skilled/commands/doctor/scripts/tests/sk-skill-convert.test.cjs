@@ -82,6 +82,30 @@ function phraseArgs(phrases = PLAIN_PHRASES) {
   return phrases.flatMap((phrase) => ['--approved-phrase', phrase]);
 }
 
+// A converted root starts with an empty edges map and the advisor refuses a
+// zero-edge skill, so a plain conversion is approved with one edge to a skill
+// that already exists. Every case that applies stages that peer and names it.
+const EDGE_PEER = 'peer-lantern';
+
+function writePeerSkill(tempRoot, name = EDGE_PEER) {
+  const peerRoot = path.join(fixtureSkillsDir(tempRoot), name);
+  fs.mkdirSync(peerRoot, { recursive: true });
+  fs.writeFileSync(path.join(peerRoot, 'SKILL.md'), [
+    '---',
+    `name: ${name}`,
+    'description: A peer skill the converted root may enhance.',
+    '---',
+    '',
+    `# ${name}`,
+    '',
+  ].join('\n'));
+  return peerRoot;
+}
+
+function edgeArgs(peer = EDGE_PEER) {
+  return ['--edge', `enhances:${peer}`];
+}
+
 function copyPlainSource(destination) {
   fs.mkdirSync(path.dirname(destination), { recursive: true });
   fs.cpSync(path.join(FIXTURE_ROOT, 'plain', 'before'), destination, { recursive: true });
@@ -121,7 +145,14 @@ const CONVERT_COMPILER_STUB = `#!/usr/bin/env python3
 import glob
 import json
 import os
+import sys
 from datetime import datetime, timezone
+
+# The real compiler validates without writing unless --export-json is passed, so the
+# stand-in answers a validation run with a pass and writes only when asked to compile.
+if '--export-json' not in sys.argv:
+    print('VALIDATION PASSED: all metadata files are valid')
+    sys.exit(0)
 
 here = os.path.dirname(os.path.realpath(__file__))
 skills = os.path.abspath(os.path.join(here, '..', '..', '..'))
@@ -164,7 +195,7 @@ process.exit(0);
 // changelog link, so a case that lets the integration rows run owns a whole
 // temporary repository: the advisor, the compiler and the Hermes sync are
 // stand-ins inside it, and nothing outside it is read as the repo root.
-function makeIntegrationContext(tempRoot) {
+function makeIntegrationContext(tempRoot, options = {}) {
   writeTree(tempRoot, {
     '.skilled/bin/skill-advisor.cjs': CONVERT_ADVISOR_STUB,
     '.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py': CONVERT_COMPILER_STUB,
@@ -179,8 +210,14 @@ function makeIntegrationContext(tempRoot) {
   fs.mkdirSync(path.dirname(sharedLink), { recursive: true });
   fs.symlinkSync(path.join(REPO_ROOT, '.skilled', 'skills', 'system-spec-kit', 'shared'), sharedLink, 'dir');
   const scripts = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts');
+  // The converted skill ranks first, so a case that wants an edge proposal adds the
+  // skills it expects the advisor to rank beside it and gets them back in that order.
+  const ranked = [{ skillId: 'brindle-lantern', confidence: 0.95 }];
+  for (const candidate of options.edgeCandidates || []) {
+    ranked.push({ skillId: candidate, confidence: 0.9 });
+  }
   const scenario = {};
-  for (const phrase of PLAIN_PHRASES) scenario[phrase] = [{ skillId: 'brindle-lantern', confidence: 0.95 }];
+  for (const phrase of PLAIN_PHRASES) scenario[phrase] = ranked.map((entry) => ({ ...entry }));
   return surface.createContext({
     repoRoot: tempRoot,
     skillsDir: fixtureSkillsDir(tempRoot),
@@ -195,6 +232,9 @@ function makeIntegrationContext(tempRoot) {
       packageSkill: path.join(scripts, 'package_skill.py'),
       rootMetadata: path.join(scripts, 'ci-skill-root-metadata.cjs'),
       regenerateDerived: makeTemporaryDerivedGenerator(tempRoot),
+      // The description audit reads a whole repository and ships with this one, so it
+      // is the one checker a temporary repository borrows rather than carries.
+      auditDescriptions: path.join(REPO_ROOT, '.skilled', 'commands', 'doctor', 'scripts', 'audit_descriptions.py'),
       advisor: path.join(tempRoot, '.skilled', 'bin', 'skill-advisor.cjs'),
       skillGraphCompiler: path.join(
         tempRoot, '.skilled', 'skills', 'system-skill-advisor', 'runtime', 'scripts', 'skill_graph_compiler.py',
@@ -459,8 +499,11 @@ test('golden fixture conversion preserves routing bytes, passes strict validatio
   const expectedRouter = fs.readFileSync(path.join(FIXTURE_ROOT, 'expected', 'ROUTER.md'), 'utf8');
   const routerReplay = require(path.join(REPO_ROOT, '.skilled', 'skills', 'sk-code', 'sk-code-skilled', 'assets', 'scripts', 'router-replay-lib.cjs'));
   const beforeParse = routerReplay.parseRouter(null, skillRoot);
+  // The in-place path ends with the same integration rows as the plain one, so the
+  // case owns a repository: the stand-ins and the skills root live in this tree.
+  const context = makeIntegrationContext(tempRoot);
 
-  const plan = invoke(tempRoot, 'plan', skillRoot);
+  const plan = invoke(tempRoot, 'plan', skillRoot, [], context);
   assert.equal(plan.exitCode, 0, plan.stderr);
   assert.match(plan.stdout, /Overwrite: .*SKILL\.md/);
   assert.match(plan.stdout, /Create: .*ROUTER\.md/);
@@ -472,13 +515,13 @@ test('golden fixture conversion preserves routing bytes, passes strict validatio
   assert.equal(fs.readFileSync(path.join(skillRoot, 'SKILL.md'), 'utf8'), beforeSkill);
   assert.ok(!fs.existsSync(path.join(skillRoot, 'ROUTER.md')));
 
-  const gatedApply = invoke(tempRoot, 'apply', skillRoot);
+  const gatedApply = invoke(tempRoot, 'apply', skillRoot, [], context);
   assert.equal(gatedApply.exitCode, 0, gatedApply.stderr);
   assert.match(gatedApply.stdout, /Apply gate: no writes without --apply/);
   assert.equal(fs.readFileSync(path.join(skillRoot, 'SKILL.md'), 'utf8'), beforeSkill);
   assert.ok(!fs.existsSync(path.join(skillRoot, 'ROUTER.md')));
 
-  const applied = invoke(tempRoot, 'apply', skillRoot, ['--apply']);
+  const applied = invoke(tempRoot, 'apply', skillRoot, ['--apply'], context);
   assert.equal(applied.exitCode, 0, applied.stderr);
   assert.match(applied.stdout, /router semantics match the snapshot/i);
   assert.match(applied.stdout, /inline -> ROUTER\.md/);
@@ -855,11 +898,13 @@ test('plain apply stages a copy, preserves the source, generates metadata, and p
     }
     return originalRunCommand(command, args, options);
   };
+  writePeerSkill(tempRoot);
   const decisions = [
     ...phraseArgs(),
     '--allowed-tool', 'Read',
     '--allowed-tool', 'Grep',
     '--allowed-tool', 'Glob',
+    ...edgeArgs(),
     '--agent-output', afterSkill,
   ];
   const plan = invokeArgs(tempRoot, ['plan', sourceRoot, ...decisions], context);
@@ -1006,12 +1051,14 @@ test('a failing strict package check stops before the second package validator',
     invokedCommands.push({ command, args });
     return originalRunCommand(command, args, options);
   };
+  writePeerSkill(tempRoot);
   const result = invokeArgs(tempRoot, [
     'apply', sourceRoot,
     ...phraseArgs(),
     '--allowed-tool', 'Read',
     '--allowed-tool', 'Grep',
     '--allowed-tool', 'Glob',
+    ...edgeArgs(),
     '--agent-output', invalidAgentRoot,
     '--apply',
   ], context);
@@ -1031,11 +1078,13 @@ test('plain conversion and preserve stop at a dropped source body line', (t) => 
   const tempRoot = makeTempRoot(t);
   const sourceRoot = path.join(FIXTURE_ROOT, 'plain', 'before');
   const sourceBefore = hashTree(sourceRoot);
+  writePeerSkill(tempRoot);
   const decisions = [
     ...phraseArgs(),
     '--allowed-tool', 'Read',
     '--allowed-tool', 'Grep',
     '--allowed-tool', 'Glob',
+    ...edgeArgs(),
     '--agent-output', path.join(FIXTURE_ROOT, 'plain', 'dropped', 'SKILL.md'),
   ];
   const context = makeContext(tempRoot);
@@ -1114,6 +1163,7 @@ test('long descriptions get a separate proposed trim and block apply before the 
 
   const approvedTrim = 'Review lantern samples and confirm the evidence.';
   const context = makeIntegrationContext(tempRoot);
+  writePeerSkill(tempRoot);
   const approved = invokeArgs(tempRoot, [
     'apply', sourceRoot,
     ...phraseArgs(),
@@ -1121,6 +1171,7 @@ test('long descriptions get a separate proposed trim and block apply before the 
     '--allowed-tool', 'Grep',
     '--allowed-tool', 'Glob',
     '--description-trim', approvedTrim,
+    ...edgeArgs(),
     '--agent-output', path.join(FIXTURE_ROOT, 'plain', 'after'),
     '--apply',
   ], context);
@@ -1232,7 +1283,7 @@ test('converted skills carry no machine block the strict gate would flag', (t) =
   assert.match(fs.readFileSync(path.join(helperRoot, 'SKILL.md'), 'utf8'), /def discover_markdown_resources/);
   assert.notEqual(invokeStrictPackageCheck(helperRoot).status, 0, 'the injected helper trips the gate');
 
-  const helperApply = invoke(helperTempRoot, 'apply', helperRoot, ['--apply']);
+  const helperApply = invoke(helperTempRoot, 'apply', helperRoot, ['--apply'], makeIntegrationContext(helperTempRoot));
   assert.equal(helperApply.exitCode, 0, helperApply.stderr);
   const helperSkill = fs.readFileSync(path.join(helperRoot, 'SKILL.md'), 'utf8');
   const helperRouter = fs.readFileSync(path.join(helperRoot, 'ROUTER.md'), 'utf8');
@@ -1256,7 +1307,7 @@ test('converted skills carry no machine block the strict gate would flag', (t) =
   assert.match(fs.readFileSync(path.join(strayRoot, 'SKILL.md'), 'utf8'), /RESOURCE_MAP = \{"STRAY"/);
   assert.notEqual(invokeStrictPackageCheck(strayRoot).status, 0, 'the injected map trips the gate');
 
-  const strayApply = invoke(strayTempRoot, 'apply', strayRoot, ['--apply']);
+  const strayApply = invoke(strayTempRoot, 'apply', strayRoot, ['--apply'], makeIntegrationContext(strayTempRoot));
   assert.equal(strayApply.exitCode, 0, strayApply.stderr);
   const straySkill = fs.readFileSync(path.join(strayRoot, 'SKILL.md'), 'utf8');
   const strayRouter = fs.readFileSync(path.join(strayRoot, 'ROUTER.md'), 'utf8');
@@ -1292,7 +1343,7 @@ test('a router link inside a fence or inline code does not stand in for the poin
     assert.equal(plan.exitCode, 0, plan.stderr);
     assert.match(plan.stdout, /Overwrite: .*SKILL\.md/);
 
-    const applied = invoke(tempRoot, 'apply', skillRoot, ['--apply']);
+    const applied = invoke(tempRoot, 'apply', skillRoot, ['--apply'], makeIntegrationContext(tempRoot));
     assert.equal(applied.exitCode, 0, applied.stderr);
     const skillText = fs.readFileSync(path.join(skillRoot, 'SKILL.md'), 'utf8');
     const pointerLines = skillText.split('\n')
@@ -1421,7 +1472,7 @@ test('a write prints the undo commands and the check rerun command', (t) => {
   const skillRoot = path.join(fixtureSkillsDir(tempRoot), 'undo-print');
   const original = writeOldSkill(skillRoot, 'undo-print');
 
-  const applied = invoke(tempRoot, 'apply', skillRoot, ['--apply']);
+  const applied = invoke(tempRoot, 'apply', skillRoot, ['--apply'], makeIntegrationContext(tempRoot));
   assert.equal(applied.exitCode, 0, applied.stderr);
   assert.equal(applied.stdout.split('Conversion plan: undo-print').length - 1, 1);
   const backupDir = /^Backup: (.+)$/m.exec(applied.stdout)[1];
@@ -1585,10 +1636,12 @@ test('apply refuses a staged tree that still names an old resource path', (t) =>
   const context = makeContext(tempRoot);
   context.paths.regenerateDerived = makeTemporaryDerivedGenerator(tempRoot);
 
+  writePeerSkill(tempRoot);
   const result = invokeArgs(tempRoot, [
     'apply', sourceRoot,
     ...phraseArgs(),
     '--allowed-tool', 'Read',
+    ...edgeArgs(),
     '--agent-output', agentRoot,
     '--apply',
   ], context);
@@ -1825,7 +1878,7 @@ test('an approved description trim is its own plan line and the backup restores 
   assert.equal(overLong.exitCode, 1, overLong.stdout);
   assert.match(overLong.stderr, /^DESCRIPTION_TOO_LONG:/);
 
-  const applied = invoke(tempRoot, 'apply', skillRoot, ['--description-trim', trim, '--apply']);
+  const applied = invoke(tempRoot, 'apply', skillRoot, ['--description-trim', trim, '--apply'], makeIntegrationContext(tempRoot));
   assert.equal(applied.exitCode, 0, `${applied.stdout}\n${applied.stderr}`);
   assert.match(fs.readFileSync(path.join(skillRoot, 'SKILL.md'), 'utf8'), new RegExp(`^description: ${JSON.stringify(trim)}$`, 'm'));
 
@@ -1899,7 +1952,7 @@ test('the approved allowed-tools list is written only when the flag names it', (
   assert.ok(!plan.stdout.includes('approval required'), plan.stdout);
   assert.equal(fs.readFileSync(skillFile, 'utf8'), withoutField);
 
-  const applied = invoke(tempRoot, 'apply', skillRoot, ['--allowed-tools', 'Read, Grep, Glob', '--apply']);
+  const applied = invoke(tempRoot, 'apply', skillRoot, ['--allowed-tools', 'Read, Grep, Glob', '--apply'], makeIntegrationContext(tempRoot));
   assert.equal(applied.exitCode, 0, `${applied.stdout}\n${applied.stderr}`);
   const written = fs.readFileSync(skillFile, 'utf8');
   assert.match(written, /^allowed-tools:\n  - "Read"\n  - "Grep"\n  - "Glob"$/m);
@@ -1991,10 +2044,12 @@ test('the undo removes the staged root and recreates an overwritten target from 
   fs.mkdirSync(path.dirname(compiled), { recursive: true });
   fs.writeFileSync(compiled, 'PRE-RUN GRAPH\n');
 
+  writePeerSkill(tempRoot);
   const applied = invokeArgs(tempRoot, [
     'apply', sourceRoot,
     ...phraseArgs(),
     '--allowed-tool', 'Read',
+    ...edgeArgs(),
     '--agent-output', path.join(FIXTURE_ROOT, 'plain', 'after'),
     '--apply',
   ], context);
@@ -2014,4 +2069,162 @@ test('the undo removes the staged root and recreates an overwritten target from 
   const checkLine = undo.split('\n').find((line) => line.startsWith('Check: '));
   assert.ok(checkLine, undo);
   assert.ok(checkLine.includes(`check "${stagedRoot}"`), checkLine);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// THE EDGE A CONVERTED ROOT NEEDS, AND THE ROWS THE IN-PLACE PATH RUNS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// A converted root starts with an empty edges map, and the advisor graph refuses a
+// skill with no edges at all. The advisor already ranks which skill answers a phrase,
+// so the plan proposes the name it ranks highest and never writes an edge nobody named.
+test('a plain conversion proposes one enhances edge and writes the approved one before the rows run', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const sourceRoot = path.join(tempRoot, 'plain-source');
+  copyPlainSource(sourceRoot);
+  const context = makeIntegrationContext(tempRoot, {
+    edgeCandidates: ['sk-doc', 'sk-code', 'sk-git', 'sk-prompt'],
+  });
+  for (const peer of ['sk-doc', 'sk-code', 'sk-git', 'sk-prompt']) writePeerSkill(tempRoot, peer);
+
+  const plan = invokeArgs(tempRoot, ['plan', sourceRoot, ...phraseArgs()], context);
+  assert.equal(plan.exitCode, 0, plan.stderr);
+  assert.match(plan.stdout, /^edges: approval required; propose enhances -> sk-doc$/m);
+  assert.match(plan.stdout, /^Other edge candidates.*\["sk-code","sk-git"\]$/m);
+
+  const applied = invokeArgs(tempRoot, [
+    'apply', sourceRoot,
+    ...phraseArgs(),
+    '--allowed-tool', 'Read',
+    ...edgeArgs('sk-doc'),
+    '--agent-output', path.join(FIXTURE_ROOT, 'plain', 'after'),
+    '--apply',
+  ], context);
+  assert.equal(applied.exitCode, 0, `${applied.stdout}\n${applied.stderr}`);
+  assert.match(applied.stdout, /I2 compiled skill graph: recompiled/);
+
+  const metadataFile = path.join(fixtureSkillsDir(tempRoot), 'brindle-lantern', 'graph-metadata.json');
+  const metadata = JSON.parse(fs.readFileSync(metadataFile, 'utf8'));
+  assert.deepEqual(
+    metadata.edges.enhances.map((edge) => [edge.target, edge.weight]),
+    [['sk-doc', 0.3]],
+    'the approved edge is not the one the run wrote',
+  );
+  assert.match(metadata.edges.enhances[0].context, /^Enhances sk-doc: /);
+  assert.match(metadata.edges.enhances[0].context, /lantern/);
+  t.diagnostic(`edge written: ${JSON.stringify(metadata.edges.enhances)}`);
+});
+
+test('apply without an approved edge for a zero-edge skill refuses and writes nothing', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const sourceRoot = path.join(FIXTURE_ROOT, 'plain', 'before');
+  const sourceBefore = hashTree(sourceRoot);
+  const context = makeIntegrationContext(tempRoot);
+
+  const refused = invokeArgs(tempRoot, [
+    'apply', sourceRoot,
+    ...phraseArgs(),
+    '--allowed-tool', 'Read',
+    '--agent-output', path.join(FIXTURE_ROOT, 'plain', 'after'),
+    '--apply',
+  ], context);
+
+  assert.equal(refused.exitCode, 1, refused.stdout);
+  assert.match(refused.stderr, /^EDGES_APPROVAL_REQUIRED:/);
+  assert.ok(!fs.existsSync(path.join(fixtureSkillsDir(tempRoot), 'brindle-lantern')));
+  assert.ok(!fs.existsSync(path.join(fixtureSkillsDir(tempRoot), '.state')), 'the refused apply took a backup');
+  assert.equal(hashTree(sourceRoot), sourceBefore);
+});
+
+test('only an edge type that needs no mirrored edge is accepted, and its target is a skill here', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const sourceRoot = path.join(FIXTURE_ROOT, 'plain', 'before');
+  writePeerSkill(tempRoot);
+
+  for (const value of [
+    'siblings:peer-lantern',
+    'depends_on:peer-lantern',
+    'conflicts_with:peer-lantern',
+    'enhances:Brindle Lantern',
+    'enhances:brindle-lantern',
+    'enhances:absent-skill',
+  ]) {
+    const refused = invokeArgs(tempRoot, ['plan', sourceRoot, ...phraseArgs(), '--edge', value]);
+    assert.equal(refused.exitCode, 1, `${value}: ${refused.stdout}`);
+    assert.match(refused.stderr, /^EDGE_TYPE_REFUSED:/, value);
+  }
+
+  const approved = invokeArgs(tempRoot, ['plan', sourceRoot, ...phraseArgs(), ...edgeArgs()]);
+  assert.equal(approved.exitCode, 0, approved.stderr);
+  assert.match(approved.stdout, /^edges: enhances -> peer-lantern \(the approved edge, weight 0\.3\)$/m);
+});
+
+test('a plan whose advisor answers nothing asks the operator to name the edge target', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const sourceRoot = path.join(FIXTURE_ROOT, 'plain', 'before');
+  const context = makeIntegrationContext(tempRoot);
+
+  // The advisor ranked only the skill itself, and a skill is never its own candidate.
+  const rankedSelf = invokeArgs(tempRoot, ['plan', sourceRoot, ...phraseArgs()], context);
+  assert.equal(rankedSelf.exitCode, 0, rankedSelf.stderr);
+  assert.match(rankedSelf.stdout, /^edges: approval required; the advisor ranked no skill .*--edge enhances:<skill>$/m);
+
+  const withoutAdvisor = {
+    ...context,
+    paths: { ...context.paths, advisor: path.join(tempRoot, 'absent-advisor.cjs') },
+  };
+  const missing = invokeArgs(tempRoot, ['plan', sourceRoot, ...phraseArgs()], withoutAdvisor);
+  assert.equal(missing.exitCode, 0, missing.stderr);
+  assert.match(missing.stdout, /^edges: approval required; the advisor is unavailable.*--edge enhances:<skill>$/m);
+});
+
+// The in-place path ends with the same rows as the plain one, because a converted
+// skill with a drifted mirror or a stale compiled graph is not wired either.
+test('the older Skilled plan lists the integration rows it will run', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const skillRoot = path.join(fixtureSkillsDir(tempRoot), 'rows-listed');
+  writeOldSkill(skillRoot, 'rows-listed');
+
+  const plan = invoke(tempRoot, 'plan', skillRoot);
+
+  assert.equal(plan.exitCode, 0, plan.stderr);
+  assert.match(plan.stdout, /^Integration plan: rows-listed$/m);
+  for (const id of ['I1', 'I2', 'I3', 'I4', 'I5', 'I6']) {
+    assert.match(plan.stdout, new RegExp(`^${id} `, 'm'), `the plan omits row ${id}`);
+  }
+  assert.ok(!fs.existsSync(path.join(skillRoot, 'ROUTER.md')));
+  assert.ok(!fs.existsSync(path.join(skillRoot, 'changelog')));
+  assert.ok(!fs.existsSync(path.join(fixtureSkillsDir(tempRoot), '.state')));
+});
+
+test('the older Skilled apply runs the integration rows, keeps a satisfied one, and the undo covers them', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const skillRoot = path.join(fixtureSkillsDir(tempRoot), 'rows-ran');
+  writeOldSkill(skillRoot, 'rows-ran');
+  // The entry and its index link already exist, so the row reports that instead of
+  // writing them again and the undo carries no line for either.
+  const entry = path.join(skillRoot, 'changelog', 'v1.0.0.0.md');
+  fs.mkdirSync(path.dirname(entry), { recursive: true });
+  fs.writeFileSync(entry, 'kept entry\n');
+  const indexLink = path.join(tempRoot, '.skilled', 'changelog', 'rows-ran');
+  fs.mkdirSync(path.dirname(indexLink), { recursive: true });
+  fs.symlinkSync('../skills/rows-ran/changelog', indexLink);
+  const context = makeIntegrationContext(tempRoot);
+
+  const applied = invoke(tempRoot, 'apply', skillRoot, ['--apply'], context);
+
+  assert.equal(applied.exitCode, 0, `${applied.stdout}\n${applied.stderr}`);
+  for (const id of ['I1', 'I2', 'I3', 'I4', 'I5', 'I6']) {
+    assert.match(applied.stdout, new RegExp(`^${id} `, 'm'), `the run omits row ${id}`);
+  }
+  assert.match(applied.stdout, /I5 runtime mirrors: Hermes synced and checked/);
+  assert.match(applied.stdout, /I6 changelog: .*already exists and was left as it is/);
+  assert.equal(fs.readFileSync(entry, 'utf8'), 'kept entry\n');
+
+  const undo = applied.stdout.slice(applied.stdout.indexOf('Undo:'));
+  assert.ok(undo.includes(`  rm "${context.paths.skillGraphJson}"`), undo);
+  assert.ok(undo.includes(`  rm -r "${path.join(tempRoot, 'hermes-out')}"`), undo);
+  assert.ok(undo.includes(`  rm "${path.join(fs.realpathSync(skillRoot), 'ROUTER.md')}"`), undo);
+  assert.ok(!undo.includes(`  rm "${indexLink}"`), undo);
+  t.diagnostic(`in-place undo: ${undo.split('\n').slice(0, 6).join(' | ')}`);
 });

@@ -51,6 +51,8 @@ This is **Phase 4** of the Doctor skill command: check and convert a skill to th
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
+
+**Post-release repair (D4)**: the release verification converted a plain skill and printed an empty `edges` map, which the advisor graph counts as an orphan and refuses, so integration row I2 failed with `ZERO-EDGE WARNINGS (1)` and the run exited 1 with the conversion kept. The plan now proposes one `enhances` edge to the skill the advisor ranks highest, the operator approves it with `--edge enhances:<skill>`, and the edge is written into `graph-metadata.json` before the rows run. Evidence: release phase 010's `scratch/after.md`, section T008, and finding 1 of `.scratch-dc90/075-010-out/deepseek.out`.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -125,6 +127,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-005 | With fewer than 8 approved phrases, the plan stops with `INTENT_SIGNALS_BELOW_FLOOR`; slug-only defaults are never shipped. |
 | REQ-006 | A plain skill with no `allowed-tools` gets no default: the plan proposes `[Read, Grep, Glob]`, plus `Bash` when `scripts/` exists, and waits for the operator. |
 | REQ-007 | A source outside `.skilled/skills` is copied, and the source folder is byte-identical afterwards. |
+| REQ-008 | A converted plain root carries one approved `enhances` edge in its `graph-metadata.json`, and an apply without it refuses with `EDGES_APPROVAL_REQUIRED` and writes nothing. |
+| REQ-009 | `--edge` accepts only a type the advisor's symmetry check does not require mirrored, naming an existing public skill of the skills root; any other value is refused with `EDGE_TYPE_REFUSED`. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

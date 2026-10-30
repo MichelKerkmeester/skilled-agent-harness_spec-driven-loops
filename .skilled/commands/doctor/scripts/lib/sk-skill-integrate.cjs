@@ -72,9 +72,19 @@ function pathLabel(repoRoot, target) {
 }
 
 // A folder one level under a root is the only shape a fixed relative path can
-// address, so this is the test a path built from a name requires.
-function isDirectChild(parent, child) {
-  const relative = path.relative(path.resolve(parent), path.resolve(child));
+// address, so this is the test a path built from a name requires. Both sides are compared
+// as real paths, because a skills root reached through a symlinked parent and a skill root
+// resolved from it are one folder, not two.
+function resolveReal(candidate, fileSystem) {
+  try {
+    return fileSystem.realpathSync(candidate);
+  } catch {
+    return path.resolve(candidate);
+  }
+}
+
+function isDirectChild(parent, child, fileSystem = fs) {
+  const relative = path.relative(resolveReal(parent, fileSystem), resolveReal(child, fileSystem));
   if (!relative || relative.startsWith('..') || path.isAbsolute(relative)) return false;
   return relative.split(path.sep).filter(Boolean).length === 1;
 }
@@ -334,7 +344,15 @@ function probePhrase(context, phrase) {
 }
 
 function integrateI3ReachAndBudget(options) {
-  const { name, description, phrases } = options;
+  const { context, fileSystem, name, description, phrases } = options;
+  const advisorLabel = pathLabel(context.repoRoot, context.paths.advisor);
+  // A repository that ships the doctor command without the advisor has no rank to report,
+  // and an absent tool is not a failed probe: the row reports n/a, exactly as I1 does.
+  if (!fileSystem.existsSync(context.paths.advisor)) {
+    return makeRow('I3', [
+      `I3 ${ROW_TITLES.I3}: n/a - the advisor CLI is absent (${advisorLabel}); no phrase is probed.`,
+    ], () => ({ status: 'N/A', lines: [] }), { status: 'N/A' });
+  }
   const quoted = phrases.map((phrase) => `"${phrase}"`).join(', ');
   const budgetDetail = `description budget ${description.length}/${DESCRIPTION_BUDGET} characters`;
   return makeRow('I3', [
@@ -372,6 +390,59 @@ function integrateI3ReachAndBudget(options) {
       : `I3 ${ROW_TITLES.I3}: ${budgetDetail}.`);
     return { status, lines };
   });
+}
+
+// A converted root's scaffold writes every edge group empty, and the advisor graph counts
+// a skill with no edges as an orphan and refuses it. The advisor already ranks which skill
+// answers a phrase, so its ranking is what the plan proposes: the conversion offers one
+// name and the operator approves it, and no edge is ever written on the converter's word.
+const EDGE_CANDIDATE_LIMIT = 3;
+
+function proposeEnhanceTargets(options = {}) {
+  const { context, excludeName } = options;
+  const phrases = selectPhrases(options.phrases, excludeName);
+  if (!context.fs.existsSync(context.paths.advisor)) {
+    return {
+      candidates: [],
+      unavailable: true,
+      detail: 'the advisor is unavailable (its CLI is absent)',
+    };
+  }
+  const candidates = [];
+  const seen = new Set();
+  let answered = 0;
+  let failureDetail = null;
+  for (const phrase of phrases) {
+    const probed = probePhrase(context, phrase);
+    if (probed.status !== 'OK') {
+      failureDetail = probed.detail;
+      continue;
+    }
+    answered += 1;
+    // The advisor already ordered its answer, so the first name it returns is the one it
+    // ranks highest. The converted skill is never its own candidate, and a private root is
+    // skipped because every gate filters it.
+    for (const entry of probed.envelope.recommendations) {
+      if (!entry || typeof entry.skillId !== 'string' || entry.skillId === '') continue;
+      if (typeof entry.confidence === 'number' && entry.confidence < probed.envelope.bar) continue;
+      if (entry.skillId === excludeName || surface.isReservedSkillName(entry.skillId)) continue;
+      if (seen.has(entry.skillId)) continue;
+      seen.add(entry.skillId);
+      candidates.push(entry.skillId);
+    }
+  }
+  if (answered === 0) {
+    return {
+      candidates: [],
+      unavailable: true,
+      detail: `the advisor is unavailable (${failureDetail || 'no phrase could be scored'})`,
+    };
+  }
+  return {
+    candidates: candidates.slice(0, EDGE_CANDIDATE_LIMIT),
+    unavailable: false,
+    detail: candidates.length ? null : 'the advisor ranked no skill above its threshold',
+  };
 }
 
 function caseToken(skillName) {
@@ -442,7 +513,7 @@ function buildCaseRows(skillName, phrases, existingRows = []) {
 // its rows in its own folder, where the harness can still be pointed at them.
 function isFrameworkSkill({ context, fileSystem, skillRoot }) {
   if (!fileSystem.existsSync(context.paths.regressionCorpus)) return false;
-  return isDirectChild(context.skillsDir, skillRoot);
+  return isDirectChild(context.skillsDir, skillRoot, fileSystem);
 }
 
 function renderCaseRow(row) {
@@ -617,7 +688,7 @@ function integrateI6Changelog(options) {
   // The index resolves the folder name one level up, so only a root sitting directly
   // in the skills folder is what ../skills/<name>/changelog can reach. A link for any
   // other root would be a path the operator cannot follow, so it is reported instead.
-  const linkable = isDirectChild(context.skillsDir, skillRoot);
+  const linkable = isDirectChild(context.skillsDir, skillRoot, fileSystem);
   const entryExists = fileSystem.existsSync(entry);
   const linkExists = linkable && pathOccupied(fileSystem, link);
   const linkNotApplicable = `I6 ${ROW_TITLES.I6}: n/a - ${pathLabel(context.repoRoot, skillRoot)} is not a direct child of `
@@ -756,5 +827,6 @@ module.exports = {
   integrateI6Changelog,
   isFrameworkSkill,
   planIntegration,
+  proposeEnhanceTargets,
   selectPhrases,
 };

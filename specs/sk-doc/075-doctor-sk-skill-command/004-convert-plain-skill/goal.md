@@ -44,6 +44,7 @@ Frozen choices. Changing one is an amendment.
 | D1 | Stage under the frontmatter name by copy, never move or rename the source. |
 | D2 | Metadata comes from a temp `init_skill.py` run; only absent files are copied. |
 | D3 | A failed V8 gate stops convert before any integration write. |
+| D4 | A converted plain root ends with one `enhances` edge to the existing public skill the advisor ranks highest for its approved phrases, approved with `--edge enhances:<skill>`, written into the skill's own `graph-metadata.json` before any integration row runs. `enhances` is the one type the advisor's symmetry check does not require mirrored, so no other skill is written. The edge is never defaulted: `apply` refuses a zero-edge root with `EDGES_APPROVAL_REQUIRED`, and when the advisor is unavailable the plan asks the operator to name the target. |
 
 <!-- /ANCHOR:directive -->
 

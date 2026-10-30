@@ -90,9 +90,14 @@ const deriveCodes = () => {
 
 const CONVERT_REFUSAL_CODES = [...deriveCodes()].sort();
 
-// The three messages that are a question rather than a stop: the workflow asks
+// The four messages that are a question rather than a stop: the workflow asks
 // about them and reruns the plan with the approved flag.
-const FOLLOW_UP_CODES = ['INTENT_SIGNALS_BELOW_FLOOR', 'DESCRIPTION_TOO_LONG', 'ALLOWED_TOOLS_MISSING'];
+const FOLLOW_UP_CODES = [
+  'INTENT_SIGNALS_BELOW_FLOOR',
+  'DESCRIPTION_TOO_LONG',
+  'ALLOWED_TOOLS_MISSING',
+  'EDGES_APPROVAL_REQUIRED',
+];
 
 const CONVERT_WORKFLOW = parseYaml(CONVERT_YAML);
 const PHASES = Object.keys(CONVERT_WORKFLOW.workflow);
@@ -304,7 +309,7 @@ test('the presentation closes on the converted, unchanged, cancelled, dry-run an
   assert.match(PRESENTATION, /^STATUS=FAIL ERROR="\[code\]"$/m);
   assert.match(PRESENTATION, /^End interactive presentations with: `What would you like to do next\?`$/m);
   // A declined question says what was declined, and a dry run ends at OK.
-  assert.match(PRESENTATION, /^Declined: \[the intent phrases \| the description trim \| the allowed-tools list \| the conversion\]$/m);
+  assert.match(PRESENTATION, /^Declined: \[the intent phrases \| the description trim \| the allowed-tools list \| the edge \| the conversion\]$/m);
   assert.match(PRESENTATION, /^### Dry Run$/m);
   assert.match(PRESENTATION, /^DOCTOR DRY RUN$/m);
 });
@@ -324,7 +329,7 @@ test('the presentation points the three follow-up messages at their questions in
   assert.ok(followUpSection, 'the follow-up section is missing');
   for (const code of FOLLOW_UP_CODES) {
     assert.ok(followUpSection.includes(`\`${code}\``), `${code} is not named as a follow-up`);
-    assert.ok(/intent-phrase question|trim question|allowed-tools question/.test(followUpSection), code);
+    assert.ok(/intent-phrase question|trim question|allowed-tools question|edge question/.test(followUpSection), code);
   }
   // The stopping tables above it never carry them. The plan section names all three
   // as questions, so only the refusal table between the two headings is checked here.
@@ -397,7 +402,7 @@ test('the convert workflow runs its phases in the read, plan, follow-up, yes, wr
 
 // Every flag the plain-skill plan and apply need, named as the engine's own usage
 // block names them: a rerun or an apply that drops one leaves the engine refusing.
-const PLAIN_APPROVAL_FLAGS = ['--approved-phrase', '--description-trim', '--allowed-tools', '--agent-output'];
+const PLAIN_APPROVAL_FLAGS = ['--approved-phrase', '--description-trim', '--allowed-tools', '--edge', '--agent-output'];
 
 test('the plan is rendered before the conversion question and the flags reach the apply', () => {
   assert.match(phaseText('phase_2_plan'), new RegExp(`${CONVERT_ENGINE} plan`));

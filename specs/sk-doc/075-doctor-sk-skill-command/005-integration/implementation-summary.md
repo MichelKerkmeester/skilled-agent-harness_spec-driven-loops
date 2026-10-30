@@ -120,6 +120,10 @@ keeping the rows where their tests can isolate them.
 | The first proposed case row is P0 and the rest P1 | A dataset with no P0 row can never satisfy the harness's P0 gate, and the skill's primary phrase is the one that must route |
 | The printed `--dataset` command sizes `--min-total-cases` to the file | The harness defaults to fifty cases, so a skill-local file would otherwise fail on its size rather than on its routing |
 | The reach comparison uses a stand-in advisor | A live advisor answer changes between runs; a fixed answer makes the before-and-after byte comparison mean something |
+| The older Skilled in-place path runs the same six rows, through the same plan and apply | A conversion that finishes with a drifting Hermes copy and a stale compiled graph is not wired. One runner is also the only way the two paths cannot disagree about what a row means, and a row that is already satisfied reports that instead of rewriting the surface |
+| An absent advisor is n/a for the reach row, the same as for the discovery row | A repository that ships the doctor command without the advisor would otherwise read a missing tool as a failed probe, and a failure is a verdict that tool never gave |
+| A skills root and a skill root are compared as real paths when a row decides a skill is a direct child | A checkout reached through a symlinked parent resolves the two sides differently, so a converted root was read as nested and its index link skipped |
+| The undo block covers the rows' overwrites on both paths | The rows write outside the converted root, so one backup beside the conversion's own is what lets the printed block restore every lane it touched |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -142,6 +146,10 @@ keeping the rows where their tests can isolate them.
 | Temp-repo convert, end state | `package_skill.py --check --strict` `Result: PASS`, `ci-skill-root-metadata.cjs --skill` exit 0, `sync-skills-hermes.cjs --check` `PASS: in sync`, `skill-graph-freshness.cjs --strict` exit 0 with `STALE COMPILED: none`, and `readlink .skilled/changelog/brindle-lantern` printing `../skills/brindle-lantern/changelog` |
 | Temp-repo convert, undo list | `rm -r` for the staged root and the created folders, `rm` for the created files, and a `cp` from the backup for each overwritten target; no `git restore` line |
 | `validate.sh … --strict` | `RESULT: PASSED` |
+| `node --test …/sk-skill-integrate.test.cjs` after the in-place repair | 28 tests, 28 pass, 0 fail, exit 0 |
+| `node --test …/sk-skill-convert.test.cjs` after the in-place repair | 60 tests, 60 pass, 0 fail, exit 0 |
+| Release-run evidence for the repair, T009 of release phase 010's `scratch/after.md` | Before: `DRIFT ferry-commit`, `skill-graph-freshness.cjs --strict` exit 1, and rows C8, C9 as findings on a finished conversion. After: `PASS: 66 Hermes skill copies in sync`, freshness exit 0 with `STALE COMPILED: none`, and `sk-skill-check.cjs check ferry-commit` printing `Result: PASS` |
+| Release-run evidence for the companion edge repair, T008 of the same run | Before: `I2 compiled skill graph: FAILED - the compiler exited 2: ZERO-EDGE WARNINGS (1)`, and the run exited 1 with the conversion kept |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -963,3 +963,59 @@ test('the fleet report matches the golden recorded before the flag existed', (t)
   assert.equal(result.status, 1, `${result.stdout}${result.stderr}`);
   assert.equal(result.stdout, fs.readFileSync(FLEET_REPORT, 'utf8'), 'the fleet report changed');
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 12. THE ENHANCE PROPOSAL A ZERO-EDGE ROOT NEEDS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// A converted root's edges map starts empty and the compiler refuses a skill with
+// no edges, so the conversion proposes one target: the skill the advisor ranks
+// highest for the phrases it approved, never the skill itself and never a private one.
+test('the enhance proposal ranks the advisor answer without the skill itself or a private one', (t) => {
+  const repo = makeRepo(t);
+  // Assembled at run time so this file names no private skill.
+  const reserved = ['local', 'peer'].join('-');
+  const context = makeContext(repo.repoRoot, repo.skillsDir, {
+    INTEGRATE_TEST_SCENARIO: JSON.stringify({
+      [PHRASES[0]]: [
+        { skillId: SKILL, confidence: 0.95 },
+        { skillId: 'peer-one', confidence: 0.9 },
+        { skillId: reserved, confidence: 0.9 },
+        { skillId: 'peer-two', confidence: 0.85 },
+      ],
+    }),
+  });
+
+  const proposed = integrate.proposeEnhanceTargets({
+    context,
+    phrases: [...PHRASES, 'demo phrase four', 'demo phrase five'],
+    excludeName: SKILL,
+  });
+
+  assert.equal(proposed.unavailable, false);
+  assert.deepEqual(proposed.candidates, ['peer-one', 'peer-two']);
+  const probes = callLog(repo.repoRoot).filter((call) => call.argv[0] === 'advisor_recommend');
+  assert.equal(probes.length, 3, 'the proposal probed more phrases than the reach row does');
+});
+
+test('the enhance proposal says nobody ranked, rather than calling the advisor unavailable', (t) => {
+  const repo = makeRepo(t);
+  const context = makeContext(repo.repoRoot, repo.skillsDir);
+
+  const proposed = integrate.proposeEnhanceTargets({ context, phrases: PHRASES, excludeName: SKILL });
+
+  assert.equal(proposed.unavailable, false);
+  assert.deepEqual(proposed.candidates, []);
+  assert.match(proposed.detail, /ranked no skill/);
+});
+
+test('the enhance proposal reports the backend unavailable rather than ranking nobody', (t) => {
+  const repo = makeRepo(t);
+  const context = makeContext(repo.repoRoot, repo.skillsDir, { INTEGRATE_TEST_ADVISOR_EXIT: '75' });
+
+  const proposed = integrate.proposeEnhanceTargets({ context, phrases: PHRASES, excludeName: SKILL });
+
+  assert.equal(proposed.unavailable, true);
+  assert.deepEqual(proposed.candidates, []);
+  assert.match(proposed.detail, /unavailable/);
+});

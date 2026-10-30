@@ -53,6 +53,13 @@ points, because the plain-skill phase owns the convert script and its test file 
 plans the rows beside the conversion and applies them only after both format validators pass.
 `implementation-summary.md` records the deviation and its evidence.
 
+**Post-release repair (D3, D4)**: the first run of the release verification converted an older Skilled skill in
+place and printed no integration rows, so the Hermes copy drifted and the compiled graph went stale. The in-place
+path now plans and runs the same six rows, and each row reports an already-satisfied surface instead of rewriting
+it. The evidence is release phase 010's `scratch/after.md`, section T009: `DRIFT ferry-commit`, freshness exit 1,
+and check rows C8 and C9 as findings on a conversion that had otherwise finished. The same run's T008 records the
+companion defect the sibling plain-skill phase repaired: row I2 failed with `ZERO-EDGE WARNINGS (1)`.
+
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
@@ -92,6 +99,7 @@ lrwxr-xr-x@ 1 michelkerkmeester  staff  26 30 Oct 06:20 .skilled/changelog/sk-gi
 - I4 regression corpus: print proposed case rows; append to `skill-advisor-regression-cases.jsonl` only for a framework skill in this repository, and for an adopter skill write them to the skill's own `benchmark/advisor-cases.jsonl`, the skill-local home this phase establishes (parent D2). `package_skill.py --check --strict` must accept that file, with a test, and `skill_advisor_regression.py --dataset <skill>/benchmark/advisor-cases.jsonl` must run it.
 - I5 runtime mirrors: `sync-skills-hermes.cjs` then `--check`; skip with n/a when `.hermes/` is absent (parent D4). Claude, OpenCode, Pi and Devin are whole-directory links and need no write.
 - I6 changelog: create `changelog/v<version>.md` when absent and the relative link `.skilled/changelog/<name> -> ../skills/<name>/changelog`.
+- The older Skilled in-place conversion (`applyPlan`) plans and runs the same six rows, and the undo block it prints covers what they overwrite (D3, D4).
 
 ### Out of Scope
 - The convert YAML, presentation states and command bridge - phase 006.

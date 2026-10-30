@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The advisor reads only direct children of `.skilled/skills` holding `graph-metadata.json` (`projection.ts:1536-1556`), the compiled `skill-graph.json` is CI-gated for freshness (`routing-registry-drift.yml:241-246`), Hermes holds generated skill copies by frontmatter name (`sync-skills-hermes.cjs:150-152`), and the changelog index is a set of relative links that no script writes",
     "created_at": "2026-10-30T05:21:15Z",
-    "last_save_at": "2026-10-30T09:57:53.412Z",
+    "last_save_at": "2026-10-30T13:06:21.250Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9a3102d67fa5f87c0ff773ad4a1a6317b08bc2996d04d282e23257eaf492db76",
+    "source_fingerprint": "sha256:d700ffaa9061dea8ee64f16e85b5bb4a307908d815926fffc9c67d77b3f7641d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "71626a1c639be25ffb555c5e1f4771e1909eba049d2e0a5ead709d25a7f25a88",
+      "spec.md": "dd298f8ff96d33efbd17fc27574f6b50a3a3165d86be25a82d4f26d684fc9db4",
       "plan.md": "6724ef32e19be4d82510be8480a6af05cf2f7c582f50ba41dfc27cd2d21cca9d",
       "tasks.md": "95a5f887178f14c2f676ecb47142e14baf2cfdf676f3622b6af2565c12096c31",
-      "implementation-summary.md": "ba3e4306e5b1d817b4581b1fdb7150218f1930780b93142c59cc1d7d1d67413b"
+      "implementation-summary.md": "5a384fe370c12ff64a580e5e20c21a80c7187dbd71d5ed822a0019bbdd33f886"
     },
     "last_active_at": null
   }

@@ -155,15 +155,18 @@ Field values approved in this run:
 - Intent phrases: [the eight or more phrases the operator approved, or the phrases the skill already declares]
 - Description: [the trim the operator approved, or within budget so no trim was asked]
 - allowed-tools: [the list the operator approved, or the list the skill already declares]
+- Edge: [the enhances edge the operator approved, or the one the plan proposed and nobody has approved yet]
 
 Convert this skill now? [yes/no]
 ```
 
-The plan quoted here is the rerun's, the one that already carries each approved field as its own line. An older Skilled rerun prints each approved field as a step: `Set description: "..."` and `Set allowed-tools: [...]`. A plain-skill rerun prints them as its own lines: `Approved intent phrases (N): [...]`, `allowed-tools: [...]` and `Approved description trim: "..."`. A plan printed before those questions is never the one the operator approves, because it does not contain the writes to be approved.
+The plan quoted here is the rerun's, the one that already carries each approved field as its own line. An older Skilled rerun prints each approved field as a step: `Set description: "..."` and `Set allowed-tools: [...]`. A plain-skill rerun prints them as its own lines: `Approved intent phrases (N): [...]`, `allowed-tools: [...]`, `edges: [...]` and `Approved description trim: "..."`. A plan printed before those questions is never the one the operator approves, because it does not contain the writes to be approved.
+
+A plain-skill plan always carries an `edges:` line, because a converted root's edges map starts empty and the advisor graph refuses a skill with no edges. `edges: approval required; propose enhances -> <skill>` is the question the next section asks; `edges: enhances -> <skill> (the approved edge, weight 0.3)` is the write an approved edge becomes. An older Skilled skill keeps its own `graph-metadata.json`, so its plan carries no such line.
 
 ### Field Follow-Ups
 
-Three messages are questions rather than refusals. Each one is asked on its own, in the order the plan raises it, and each answer is its own yes: the intent phrases first, because a plain skill's plan cannot print until the engine has them, then the description trim, then the allowed-tools list.
+The four messages below are questions rather than refusals. Each one is asked on its own, in the order the plan raises it, and each answer is its own yes: the intent phrases first, because a plain skill's plan cannot print until the engine has them, then the description trim, then the allowed-tools list, then the one edge a converted root may declare alone.
 
 ```text
 Approve these [N] intent phrases as this skill's PRIMARY keywords? [yes/no]
@@ -172,13 +175,15 @@ Approve these [N] intent phrases as this skill's PRIMARY keywords? [yes/no]
 
 Trim the description to 130 characters or fewer? [yes/no]
 Declare allowed-tools as [the proposed list] for this skill? [yes/no]
+Approve [the skill the plan proposes] as the skill this one enhances? [yes/no]
 ```
 
 - **A plain skill with no approved intent phrases.** `INTENT_SIGNALS_BELOW_FLOOR` names the count the engine needs and prints the phrases it suggests. Show every suggested phrase on its own line, let the operator approve or edit the list, and require at least eight distinct phrases of three or more words each: these become the skill's `PRIMARY` keywords, so a short phrase routes nothing. Whichever list the operator approves is what goes to repeated `--approved-phrase` flags.
 - **A description over the budget.** `DESCRIPTION_TOO_LONG` names the length and the 130-character limit. Ask the trim question and show the text in full: the engine's `Proposed description trim` line when the plan printed one, or, when the refusal printed no proposal, a trim of 130 characters or fewer that keeps the skill's own wording. Whichever text the operator approves is what goes to `--description-trim`.
 - **No `allowed-tools`.** A plain skill has no approved list yet, and an older Skilled skill can declare no field at all; both print the same line, `allowed-tools: approval required; propose [...]`. The question offers that line's own list and no other — the engine's proposal, which carries `Bash` only when the skill folder holds a `scripts/` folder. Read the list back in full and let the operator edit it before answering. That answer is what goes to `--allowed-tools`; the rerun then prints it as its own `Set allowed-tools: [...]` step for an older Skilled skill and as the plan's `allowed-tools:` line for a plain one. Never default the list and never write a permission grant without that yes.
+- **The one edge a plain conversion needs.** A converted root starts with an empty edges map, and the advisor graph counts such a skill as an orphan and refuses it. The plan prints `edges: approval required; propose enhances -> <skill>`: the skill the advisor ranks highest for the phrases just approved, never the skill itself and never a private one. The question offers that name; `Other edge candidates` on the plan line lists the next two if the operator would rather pick another. When the line says the advisor is unavailable, or that it ranked no skill, the question asks the operator to name one instead. That answer is what goes to `--edge enhances:<skill>` — the only edge type accepted, because it is the only one the compiler does not require mirrored by the skill at the other end.
 - **The workflow never edits a field.** No field value is written by hand. Each approved value becomes a flag, the plan is rerun with it so the operator sees the field as its own plan line, and the engine writes it beside the same backup.
-- **The plan is rerun.** After each batch of answers the workflow runs `sk-skill-convert.cjs apply <skill-target> <the approved flags>` with no `--apply`: that form prints the plan, closes on the engine's own `Apply gate: no writes without --apply.` line, and writes nothing. The rerun carries `--approved-phrase` repeated for each phrase, `--description-trim`, `--allowed-tools` and, for a plain skill, `--agent-output`. The workflow then prints that plan and asks the conversion question against it.
+- **The plan is rerun.** After each batch of answers the workflow runs `sk-skill-convert.cjs apply <skill-target> <the approved flags>` with no `--apply`: that form prints the plan, closes on the engine's own `Apply gate: no writes without --apply.` line, and writes nothing. The rerun carries `--approved-phrase` repeated for each phrase, `--description-trim`, `--allowed-tools`, `--edge` and, for a plain skill, `--agent-output`. The workflow then prints that plan and asks the conversion question against it.
 
 A no at any question ends the run, and it says which value was declined. Nothing is written, and the one scratch root the plain path uses is deleted.
 
@@ -186,7 +191,7 @@ A no at any question ends the run, and it says which value was declined. Nothing
 DOCTOR TARGET CANCELLED
 Target: convert
 Skill: [name]
-Declined: [the intent phrases | the description trim | the allowed-tools list | the conversion]
+Declined: [the intent phrases | the description trim | the allowed-tools list | the edge | the conversion]
 Changed: none
 STATUS=CANCELLED ACTION=cancelled
 ```
@@ -227,6 +232,7 @@ A refusal prints `REFUSE: [the engine's reason]`, then `STATUS=FAIL ERROR="[code
 | `DESCRIPTION_MISSING` | `SKILL.md` must declare a description | Add one, then rerun |
 | `RESOURCE_LINK_MISSING` | `SKILL.md` links to a reference document that is not there | Add the document, or drop the link |
 | `RESOURCE_RENAME_COLLISION` | a planned resource rename would replace an existing file | Rename one of the two, then rerun |
+| `EDGE_TYPE_REFUSED` | `--edge` names something other than an `enhances` edge to a public skill that already exists here. Every other edge type is mirrored by the skill at the other end, and a conversion never writes to another skill | Run the plan again and read its `edges:` line, then approve one of the names it proposes with `--edge enhances:<skill>` |
 | `SNAPSHOT_INVALID` | the preserve snapshot holds no `SKILL.md` | Point `--snapshot` at a folder holding the source `SKILL.md` |
 
 ### 5.2 Frontmatter and router
@@ -285,13 +291,14 @@ A refusal prints `REFUSE: [the engine's reason]`, then `STATUS=FAIL ERROR="[code
 
 ### 5.5 Messages that are a follow-up question
 
-The first three are not stopping refusals: each names a write the operator has not approved yet, so the workflow asks that question in section 4 and reruns the plan with the approved flag. The last three mean the apply ran without a flag the plan was approved with; that is the workflow's own fault, and it is repaired by passing the same flags to the plan and to the apply.
+The first four are not stopping refusals: each names a write the operator has not approved yet, so the workflow asks that question in section 4 and reruns the plan with the approved flag. The last three mean the apply ran without a flag the plan was approved with; that is the workflow's own fault, and it is repaired by passing the same flags to the plan and to the apply.
 
 | Code | What it means | Where it is answered |
 |------|---------------|----------------------|
 | `INTENT_SIGNALS_BELOW_FLOOR` | a plain skill has fewer than eight approved intent phrases | the intent-phrase question, then the plan is rerun with a repeated `--approved-phrase` per phrase |
 | `DESCRIPTION_TOO_LONG` | the description is over 130 characters and no trim was approved | the trim question, then the plan is rerun with `--description-trim` |
 | `ALLOWED_TOOLS_MISSING` | `SKILL.md` declares no `allowed-tools` field, so there is no list to write. The convert command does not stop on it: its plan prints the proposal line instead, and only a caller of the transform library sees the code | the allowed-tools question: the plan prints `allowed-tools: approval required; propose [...]` and the plan and the apply are rerun with `--allowed-tools` |
+| `EDGES_APPROVAL_REQUIRED` | the apply ran without an approved `--edge`, and the scaffold's empty edges map is a skill the advisor graph refuses | the edge question: the plan prints `edges: approval required; propose enhances -> <skill>` and the plan and the apply are rerun with `--edge enhances:<skill>` |
 | `ALLOWED_TOOLS_APPROVAL_REQUIRED` | the apply was run without the approved `--allowed-tools` value | rerun the plan and the apply with the list the operator named |
 | `DESCRIPTION_TRIM_REQUIRED` | the apply was run without the approved `--description-trim` value | rerun the plan and the apply with the approved trim |
 | `AGENT_RESHAPE_REQUIRED` | the plain-skill apply was run without `--agent-output` | run the agent step and the preserve check, then the plan and the apply with that flag |
@@ -314,12 +321,12 @@ Files changed: [each path the apply printed as overwritten or created]
 Router source: [the engine's Router source line, an older Skilled skill converted in place only]
 Verification: [the check engine's result line and any row that still reports FINDING]
 Fields approved: [the intent phrases, the trimmed description and the allowed-tools list the operator approved, or none]
-Integration: [one line per integration row line a plain skill's apply printed, and the row that failed when one did; an older Skilled skill prints none]
+Integration: [one line per integration row the engine printed, and the row that failed when one did. Both paths run the same six rows]
 Undo: [the engine's undo block, quoted whole: its Undo: line, the cp of the converted SKILL.md from the backup, one cp (cp -R for a folder) per overwritten integration file, one rm (rm -r for a folder) for each path the run created, the engine's own "No backup was recorded" comment where it printed one, and its Check: line]
 STATUS=OK
 ```
 
-Quote the lines this path printed, and only those. An older Skilled skill converted in place prints its message, `Backup:`, `Router source:` and the undo block. A plain skill prints its message, `Backup:`, `Snapshot:`, `Converted skill:`, `Preservation PASS:`, each command line with its own output and the integration row lines its rows printed, and no `Router source:` line, because its router was written rather than moved. A line the path never prints is not a missing line: reading one as missing turns a clean run into a false failure.
+Quote the lines this path printed, and only those. An older Skilled skill converted in place prints its message, `Backup:`, `Router source:`, one line per integration row and the undo block. A plain skill prints its message, `Backup:`, `Snapshot:`, `Converted skill:`, `Preservation PASS:`, each command line with its own output and the integration row lines its rows printed, and no `Router source:` line, because its router was written rather than moved. A line the path never prints is not a missing line: reading one as missing turns a clean run into a false failure.
 
 ### Already Converted
 
@@ -342,7 +349,7 @@ Render this when the operator declines any question, and name what was declined.
 DOCTOR TARGET CANCELLED
 Target: convert
 Skill: [name]
-Declined: [the intent phrases | the description trim | the allowed-tools list | the conversion]
+Declined: [the intent phrases | the description trim | the allowed-tools list | the edge | the conversion]
 Changed: none
 STATUS=CANCELLED ACTION=cancelled
 ```
@@ -410,7 +417,8 @@ A rolled-back conversion prints `Changed: none`. A `ROLLBACK_FAILED` prints the 
 | Convert exits 1 with a code that is not in the refusal table | The code is the engine's own; read its message and treat it as the same class: nothing was written, fix that one condition, then rerun the plan |
 | Convert reports `INTENT_SIGNALS_BELOW_FLOOR` or `DESCRIPTION_TOO_LONG`, or its plan prints `allowed-tools: approval required; propose [...]` | Not a failure: each one is a follow-up question. Ask the intent-phrase, trim or allowed-tools question, then rerun the plan with the flag the answer gives |
 | Convert reports `PRESERVATION_FAILED` | The reshaped prose dropped an original body line. Put that line back into `SKILL.md` or into a reference document, rerun `preserve --snapshot <dir> <staging dir>` until it prints `Preservation PASS`, then rerun the plan |
-| Convert reports `AGENT_RESHAPE_REQUIRED`, `DESCRIPTION_TRIM_REQUIRED` or `ALLOWED_TOOLS_APPROVAL_REQUIRED` | The apply ran without a flag the plan was approved with. Rerun the plan and then the apply with the same flags |
+| Convert reports `AGENT_RESHAPE_REQUIRED`, `DESCRIPTION_TRIM_REQUIRED`, `ALLOWED_TOOLS_APPROVAL_REQUIRED` or `EDGES_APPROVAL_REQUIRED` | The apply ran without a flag the plan was approved with. Rerun the plan and then the apply with the same flags |
+| Convert reports `EDGE_TYPE_REFUSED` | `--edge` named something other than an `enhances` edge to a public skill that exists here. Approve a name the plan proposes, or one of the other candidates it lists |
 | Convert exits 1 from the apply but printed an `Undo:` block | The conversion and its format gates finished and one integration row failed, so the converted skill is kept and the block is the way back. Render the failed result with that row as the error, the block quoted whole and `Changed:` naming the conversion, then repair that one row |
 | Convert reports the skill is already converted | The plan printed `Writes: none` and nothing was asked. Read the unchanged result, not a failure |
 | Convert changed `SKILL.md` and you want it back | Run the engine's own `Undo:` block, exactly as printed. It copies each overwritten file back from the backup, removes each path the run created and closes on the `Check:` command. Never recompose it by hand |
@@ -424,6 +432,7 @@ A rolled-back conversion prints `Changed: none`. A `ROLLBACK_FAILED` prints the 
 |-----------|-------------------|--------|
 | A check row still reports `FINDING` after a conversion | `/doctor:sk-skill check <name-or-path>` | The conversion completes the format; the remaining row is a different requirement |
 | A converted skill still reports `C11` over budget | `/doctor:sk-skill convert <name-or-path>` | The trim is offered again with its own yes, and the plan is rerun with it |
+| The converted skill reports no edges, or the advisor graph refused it | `/doctor:sk-skill convert <name-or-path>` | The plan proposes the skill the advisor ranks highest, and the approved edge is written into the skill's own `graph-metadata.json` |
 | The converted skill should reach the advisor | `/doctor:skill-advisor rebuild` | The advisor reads its own skill graph, which is rebuilt from its database, not from the files on disk |
 | The conversion was refused as a hub | `/create:skill-parent <the parent skill folder>` | A hub belongs to the parent-skill route |
 

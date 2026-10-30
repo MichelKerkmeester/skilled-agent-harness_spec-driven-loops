@@ -17,7 +17,7 @@ const integrate = require('./lib/sk-skill-integrate.cjs');
 const SCRIPT_DIR = __dirname;
 const USAGE = [
   'Usage: sk-skill-convert.cjs plan <skill-name-or-path>',
-  '       sk-skill-convert.cjs apply <skill-name-or-path> [--approved-phrase <text>] [--allowed-tool <tool>] [--allowed-tools <comma list>] [--description-trim <text>] [--agent-output <path>] [--apply]',
+  '       sk-skill-convert.cjs apply <skill-name-or-path> [--approved-phrase <text>] [--allowed-tool <tool>] [--allowed-tools <comma list>] [--edge <type>:<skill>] [--description-trim <text>] [--agent-output <path>] [--apply]',
   '       sk-skill-convert.cjs preserve --snapshot <dir> [<skill-dir>]',
   '',
   'plan is read-only. apply prints the plan and writes only when --apply is present.',
@@ -54,12 +54,13 @@ function parseArguments(argv) {
   let descriptionTrim = null;
   const approvedPhrases = [];
   const allowedTools = [];
+  const edges = [];
   for (let index = 0; index < args.length; index += 1) {
     const token = args[index];
     if (token === '--apply') {
       if (apply) throw new ConvertError('USAGE', 'Option --apply was specified more than once.', 2);
       apply = true;
-    } else if (['--snapshot', '--agent-output', '--description-trim', '--approved-phrase', '--allowed-tool', '--allowed-tools'].includes(token)) {
+    } else if (['--snapshot', '--agent-output', '--description-trim', '--approved-phrase', '--allowed-tool', '--allowed-tools', '--edge'].includes(token)) {
       const value = args[index + 1];
       if (typeof value !== 'string' || value.startsWith('--')) {
         throw new ConvertError('USAGE', `${token} requires a value.`, 2);
@@ -75,6 +76,9 @@ function parseArguments(argv) {
         if (descriptionTrim !== null) throw new ConvertError('USAGE', 'Option --description-trim was specified more than once.', 2);
         descriptionTrim = value;
       } else if (token === '--approved-phrase') approvedPhrases.push(value);
+      // The one edge a converted root may declare on its own, named by the operator as
+      // <type>:<skill>. A repeated flag keeps every approved pair in order.
+      else if (token === '--edge') edges.push(value);
       // A single tool is one grant however its arguments read, so the repeated
       // flag keeps the value as written. The comma list splits only where a
       // comma sits outside a tool's own parentheses, which is the same rule the
@@ -88,7 +92,7 @@ function parseArguments(argv) {
   }
   if (command === 'preserve') {
     if (!snapshot) throw new ConvertError('USAGE', 'preserve requires --snapshot <dir>.', 2);
-    if (apply || agentOutput || descriptionTrim || approvedPhrases.length || allowedTools.length) {
+    if (apply || agentOutput || descriptionTrim || approvedPhrases.length || allowedTools.length || edges.length) {
       throw new ConvertError('USAGE', 'preserve accepts only --snapshot and an optional skill directory.', 2);
     }
   } else {
@@ -96,7 +100,7 @@ function parseArguments(argv) {
     if (command !== 'apply' && apply) throw new ConvertError('USAGE', '--apply is valid only with the apply subcommand.', 2);
     if (snapshot) throw new ConvertError('USAGE', '--snapshot is valid only with the preserve subcommand.', 2);
   }
-  return { command, target, apply, snapshot, agentOutput, descriptionTrim, approvedPhrases, allowedTools };
+  return { command, target, apply, snapshot, agentOutput, descriptionTrim, approvedPhrases, allowedTools, edges };
 }
 
 function createContext(options = {}) {
@@ -133,6 +137,79 @@ function allowedToolsApprovalRequired(proposedTools) {
   return new ConvertError(
     'ALLOWED_TOOLS_APPROVAL_REQUIRED',
     `The plan proposes ${JSON.stringify(proposedTools)}; pass repeated --allowed-tool values, or one --allowed-tools list, to approve the permission grant.`,
+    1,
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// THE EDGE A CONVERTED ROOT MAY DECLARE ON ITS OWN
+// ─────────────────────────────────────────────────────────────────────────────
+
+// The scaffold writes every edge list empty, and the advisor graph counts a skill with
+// no edges as an orphan and refuses it. Only an edge the compiler's symmetry check does
+// not require mirrored can be declared by one side, because the skill at the other end
+// belongs to nobody this run may write. The weight sits at the low end of the band the
+// compiler accepts for that type, and the context sentence is the skill's own
+// description rather than a relationship the converter asserts on its own word.
+const EDGE_WEIGHT = 0.3;
+const UNMIRRORED_EDGE_TYPES = new Set(['enhances']);
+const EDGE_GROUPS = ['depends_on', 'enhances', 'siblings', 'conflicts_with', 'prerequisite_for'];
+const EDGE_VALUE = /^([a-z_]+):([a-z0-9]+(?:-[a-z0-9]+)*)$/;
+
+function edgeRefusal(value) {
+  return new ConvertError(
+    'EDGE_TYPE_REFUSED',
+    `Only --edge enhances:<skill> is accepted, and ${JSON.stringify(value)} is not an enhances edge naming a kebab-case skill of this skills root.`,
+    1,
+  );
+}
+
+// A candidate only helps if it exists: the compiler rejects an edge whose target is not
+// a known skill, so a name is accepted only where it resolves to a public root here.
+function edgeTargetExists(target, context) {
+  if (surface.isReservedSkillName(target)) return false;
+  return context.fs.existsSync(path.join(context.skillsDir, target, 'SKILL.md'));
+}
+
+function parseEdgeApprovals(values, context, name) {
+  const approved = [];
+  const seen = new Set();
+  for (const value of values || []) {
+    const match = EDGE_VALUE.exec(String(value === undefined ? '' : value).trim());
+    if (!match) throw edgeRefusal(value);
+    const type = match[1];
+    const target = match[2];
+    if (!UNMIRRORED_EDGE_TYPES.has(type)) throw edgeRefusal(value);
+    if (target === name || !edgeTargetExists(target, context)) throw edgeRefusal(value);
+    const key = `${type}:${target}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    approved.push({ type, target });
+  }
+  return approved;
+}
+
+function edgeContextSentence(type, target, description) {
+  const text = String(description || '').replace(/\s+/g, ' ').trim();
+  const stem = text.length > 160 ? `${text.slice(0, 157).trimEnd()}...` : text;
+  return `${type === 'enhances' ? 'Enhances' : type} ${target}: ${stem}`;
+}
+
+// The advisor is asked only while the run has no approved edge: a plan that already
+// carries the operator's decision needs no proposal beside it.
+function planEdgeProposal(context, name, phrases, approved) {
+  if (approved.length) return { candidates: [], unavailable: false, detail: null };
+  const probe = integrate.proposeEnhanceTargets({ context, phrases, excludeName: name });
+  return { candidates: probe.candidates, unavailable: probe.unavailable, detail: probe.detail };
+}
+
+function edgesApprovalRequired(proposal) {
+  const named = proposal && proposal.candidates.length
+    ? ` The advisor proposes ${proposal.candidates[0]}.`
+    : '';
+  return new ConvertError(
+    'EDGES_APPROVAL_REQUIRED',
+    `The converted skill would have zero edges, which the advisor graph refuses; approve one edge with --edge enhances:<skill> before applying.${named}`,
     1,
   );
 }
@@ -407,6 +484,16 @@ function buildPlainPlan(skillRoot, skill, context, decisions) {
     }
   }
   const proposedTrim = sourceDescriptionTrim(skill.fields.description);
+  // The edge is the last approval a plain conversion needs: the scaffold starts with an
+  // empty edges map, so the plan proposes the name the advisor ranks and writes nothing
+  // until the operator names one with --edge.
+  const edgeDescription = descriptionTrim || skill.fields.description;
+  const approvedEdges = parseEdgeApprovals(decisions.edges, context, name)
+    .map((edge) => ({
+      ...edge,
+      context: edgeContextSentence(edge.type, edge.target, edgeDescription),
+    }));
+  const edgeProposal = planEdgeProposal(context, name, phrases, approvedEdges);
   const agentSkill = getAgentSkillText(decisions.agentOutput, context);
   const nextBodySource = agentSkill ? reshapeBody(skill.text, agentSkill) : skill.text;
   let template;
@@ -504,6 +591,8 @@ function buildPlainPlan(skillRoot, skill, context, decisions) {
     suggestedPhrases,
     proposedTools,
     allowedTools: tools,
+    approvedEdges,
+    edgeProposal,
     resourceDocs,
     renames: [...renames.entries()],
     mapResources,
@@ -713,11 +802,22 @@ function buildPlan(target, context, decisions = {}) {
     steps.push({ kind: 'overwrite', file: skillFile, detail: 'Remove inline machine router and link to ROUTER.md.' });
   }
   steps.push({ kind: 'create', file: routerFile, detail: 'Create sibling ROUTER.md from the router template.' });
+  // A converted skill is still unreachable while its mirrors drift and its compiled graph
+  // is stale, so this path plans the same rows as the plain one and runs them after the
+  // router proof. The plan the operator approves covers the reach writes as well.
+  const integrationPlan = planIntegrationRows(context, {
+    skillRoot,
+    name,
+    version: skill.fields.version,
+    description: descriptionTrim || skill.fields.description,
+  });
   return {
     skillRoot,
     skillFile,
     routerFile,
     name,
+    version: skill.fields.version,
+    description: descriptionTrim || skill.fields.description,
     backupBase: backupBaseFor(context, name),
     noop: false,
     frontmatterOnly: false,
@@ -728,6 +828,8 @@ function buildPlan(target, context, decisions = {}) {
     nextSkill: moved.skillMd,
     nextRouter: moved.routerMd,
     steps,
+    integrationPlan: integrationPlan.lines,
+    integrationWrites: integrationPlan.writes,
     followUps: planFollowUps(template, moved.skillMd, moved.routerMd),
   };
 }
@@ -921,6 +1023,20 @@ function runStep(context, code, command, args, label, options = {}) {
   return { command: [command, ...args], stdout: result.stdout, stderr: result.stderr, exitCode: result.code };
 }
 
+// The scaffold writes every edge group as an empty list, so the approved edge is the one
+// entry this run adds. It is written here, ahead of the format gates and the integration
+// rows, so the compiled graph reads the same file the check engine does.
+function writeApprovedEdges(metadata, plan) {
+  const edges = metadata.edges && typeof metadata.edges === 'object' ? metadata.edges : {};
+  for (const group of EDGE_GROUPS) {
+    if (!Array.isArray(edges[group])) edges[group] = [];
+  }
+  for (const edge of plan.approvedEdges || []) {
+    edges[edge.type].push({ target: edge.target, weight: EDGE_WEIGHT, context: edge.context });
+  }
+  metadata.edges = edges;
+}
+
 function updateGraphMetadata(skillRoot, plan, fileSystem) {
   const metadataFile = path.join(skillRoot, 'graph-metadata.json');
   let metadata;
@@ -930,6 +1046,7 @@ function updateGraphMetadata(skillRoot, plan, fileSystem) {
     throw new ConvertError('GRAPH_METADATA_INVALID', `The scaffold step could not read graph-metadata.json: ${firstLine(error.message)}`, 1);
   }
   metadata.intent_signals = plan.approvedPhrases;
+  writeApprovedEdges(metadata, plan);
   const derived = metadata.derived && typeof metadata.derived === 'object' ? metadata.derived : {};
   derived.trigger_phrases = plan.approvedPhrases;
   derived.key_topics = plan.approvedPhrases;
@@ -1066,6 +1183,11 @@ function applyPlainPlan(plan, context) {
   }
   if (!plan.agentOutput) {
     throw new ConvertError('AGENT_RESHAPE_REQUIRED', 'Provide the workflow agent output with --agent-output before applying the plain-skill plan.', 1);
+  }
+  // An empty edges map is not a finished conversion: the advisor graph counts such a
+  // skill as an orphan and refuses to compile, so the edge is approved or nothing runs.
+  if (plan.approvedEdges.length === 0) {
+    throw edgesApprovalRequired(plan.edgeProposal);
   }
 
   const fileSystem = context.fs;
@@ -1279,14 +1401,31 @@ function applyPlan(plan, context) {
     if (!isDeepStrictEqual(beforeSemantics, routerSemantics(after))) {
       throw new ConvertError('ROUTER_SEMANTICS_CHANGED', 'parseRouter semantics changed after the move; restoring the original skill files.', 1);
     }
+    // The format work is done, so the same rows the plain path ends with run here: a
+    // converted skill whose Hermes copy drifts or whose compiled graph is stale is not
+    // wired, and the backup beside this one is what makes their overwrites undoable. A
+    // frontmatter-only normalisation moves no router, so it wires nothing.
+    const integration = plan.frontmatterOnly
+      ? null
+      : integrate.applyIntegration({
+        context,
+        skillRoot: plan.skillRoot,
+        name: plan.name,
+        version: plan.version,
+        description: plan.description,
+        apply: true,
+        backupDirectory,
+      });
     return {
       changed: true,
       backupDirectory,
       backedUpFiles: [backupFile],
       createdFiles: plan.frontmatterOnly ? [] : [plan.routerFile],
+      integration,
+      integrationWrites: integration ? integration.writes : [],
       message: plan.frontmatterOnly
         ? `Normalized ${plan.name}; router semantics match the snapshot.`
-        : `Converted ${plan.name}; router semantics match the snapshot.`,
+        : `Converted ${plan.name}; router semantics match the snapshot, and ${integration.results.length} integration row(s) ran.`,
       provenance: `${before.routerSource || 'unknown'} -> ${after.routerSource || 'unknown'}`,
     };
   } catch (error) {
@@ -1304,6 +1443,33 @@ function applyPlan(plan, context) {
     throw new ConvertError('APPLY_FAILED', `Conversion rolled back: ${firstLine(error.message)}`, 1);
   }
 }
+// The edge line is the question the workflow asks, printed from the one place that knows
+// the answer: an approval already given reads as the write it will become, and a run with
+// no name to propose says so instead of offering a default.
+function appendEdgeLines(lines, plan) {
+  if (plan.approvedEdges.length) {
+    for (const edge of plan.approvedEdges) {
+      lines.push(`edges: ${edge.type} -> ${edge.target} (the approved edge, weight ${EDGE_WEIGHT})`);
+    }
+    return;
+  }
+  const first = plan.edgeProposal.candidates[0];
+  if (!first) {
+    const reason = plan.edgeProposal.unavailable
+      ? 'the advisor is unavailable'
+      : 'the advisor ranked no skill for these phrases';
+    lines.push(`edges: approval required; ${reason}, so name the target with --edge enhances:<skill>`);
+    lines.push('No edge is written until one is approved with --edge enhances:<skill>.');
+    return;
+  }
+  const rest = plan.edgeProposal.candidates.slice(1);
+  lines.push(`edges: approval required; propose enhances -> ${first}`);
+  if (rest.length) {
+    lines.push(`Other edge candidates, approve one with --edge enhances:<skill>: ${JSON.stringify(rest)}`);
+  }
+  lines.push('No edge is written until one is approved with --edge enhances:<skill>.');
+}
+
 function renderPlan(plan) {
   const lines = [`Conversion plan: ${plan.name}`];
   if (plan.noop) {
@@ -1323,6 +1489,7 @@ function renderPlan(plan) {
     if (plan.suggestedPhrases.length) lines.push(`Suggested intent phrases (approve with repeated --approved-phrase values): ${JSON.stringify(plan.suggestedPhrases)}`);
     lines.push(`allowed-tools: ${plan.allowedTools.length ? JSON.stringify(plan.allowedTools) : `approval required; propose ${JSON.stringify(plan.proposedTools)}`}`);
     if (!plan.allowedTools.length) lines.push('No allowed-tools field will be written until approved with repeated --allowed-tool values or one --allowed-tools list.');
+    appendEdgeLines(lines, plan);
     if (plan.proposedTrim) {
       lines.push(`Proposed description trim (approve with --description-trim): ${JSON.stringify(plan.proposedTrim)}`);
     }
