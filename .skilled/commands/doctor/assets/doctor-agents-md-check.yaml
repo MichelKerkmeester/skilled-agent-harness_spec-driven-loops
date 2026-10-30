@@ -57,12 +57,13 @@ execution:
     - "A5 reports the pins each tooling consumer greps for, A6 the delivery budget through the rule-copy canary, and A7 the repo-local block's own size against its ceiling. A8 and A9 report the content that sits outside a shipped section and the lines typed inside one, and they are the two rows that name a line somebody wrote."
     - "A10 reports each runtime copy the manifest expects, A11 the REPO RULES.md rows through the repo-rules checker, and A12 the template purity of the shipped body. The three rows the engine must not invent belong to the tools this workflow never re-implements: the canary, the pointer sync and the repo-rules checker."
     - "Render the engine's output through .skilled/commands/doctor/assets/doctor-agents-md-presentation.txt: the row table as printed, the DOCTOR DIAGNOSTIC RESULT summary and the repair for each finding."
-    - "Map the engine's exit code to the route status: 0 nothing to report, 1 at least one finding or an unproven row, 2 a precondition failed."
+    - "Map the engine's three outcomes to the route status: exit 0 is nothing to report, exit 1 with at least one finding is a finding, exit 1 with no finding is an unproven row, and exit 2 is a precondition that failed."
 
 # ─────────────────────────────────────────────────────────────────
 # OUTPUT
 # ─────────────────────────────────────────────────────────────────
 output: |
   STATUS=OK when the engine exits 0; show the row table and the result line.
-  STATUS=FINDINGS when the engine exits 1; show each row whose status is not PASS first, with its detail and codes, then the DOCTOR DIAGNOSTIC RESULT summary and the repair for each finding.
+  STATUS=FINDINGS when the engine exits 1 with at least one row at FINDING; show each row whose status is not PASS first, with its detail and codes, then the DOCTOR DIAGNOSTIC RESULT summary and the repair for each finding.
+  STATUS=UNKNOWN when the engine exits 1 with findings=0: a row could not be answered and no finding was made, so name that row and the precondition it is missing and never report a finding that was never found.
   STATUS=ERROR when the engine exits 2 or crashes; report the code, its message and the accepted invocation (/doctor:agents-md check [--json] [--root <dir>]).

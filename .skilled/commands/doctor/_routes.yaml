@@ -2,7 +2,8 @@
 # DOCTOR ROUTER — CANONICAL ROUTE MANIFEST
 # ─────────────────────────────────────────────────────────────────
 # Source of truth for the routed doctor commands. Each route names the command
-# that owns it, so one manifest serves every router:
+# that owns it, so one manifest serves every router. The list below is every one of
+# the 14 router files in this folder, in no particular order:
 #   /doctor:speckit         .skilled/commands/doctor/speckit.md
 #   /doctor:skill-advisor   .skilled/commands/doctor/skill-advisor.md
 #   /doctor:deep-loop       .skilled/commands/doctor/deep-loop.md
@@ -14,6 +15,9 @@
 #   /doctor:agents-md       .skilled/commands/doctor/agents-md.md
 #   /doctor:setup           .skilled/commands/doctor/setup.md
 #   /doctor:helper          .skilled/commands/doctor/helper.md
+#   /doctor:env             .skilled/commands/doctor/env.md
+#   /doctor:update          .skilled/commands/doctor/update.md
+#   /doctor:mcp             .skilled/commands/doctor/mcp.md
 # A command that owns one route needs no positional target.
 # Validated by: .skilled/commands/doctor/scripts/route-validate.sh
 # Consumed by: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs

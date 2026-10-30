@@ -129,7 +129,7 @@ contextType: "general"
 ## Testing Checklist
 
 - [x] CHK-020 [P0] Every acceptance criterion is met. Verify: the rows in `acceptance-criteria.md` read `Met`. Evidence: every row in `acceptance-criteria.md` reads `Met`.
-- [x] CHK-021 [P0] The contract suite passes. Verify: `node --test .skilled/commands/doctor/scripts/tests/doctor-agents-md-contract.test.cjs` reports `fail 0`. Evidence: `node --test .skilled/commands/doctor/scripts/tests/doctor-agents-md-contract.test.cjs` reports 31 tests with `fail 0`.
+- [x] CHK-021 [P0] The contract suite passes. Verify: `node --test .skilled/commands/doctor/scripts/tests/doctor-agents-md-contract.test.cjs` reports `fail 0`. Evidence: `node --test .skilled/commands/doctor/scripts/tests/doctor-agents-md-contract.test.cjs` reports 37 tests with `fail 0`.
 - [x] CHK-022 [P1] The family validators pass. Verify: `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0. Evidence: `route-validate.sh` exits 0 with 24 routes validated.
 - [x] CHK-023 [P1] The runner passes. Verify: `bash .skilled/commands/doctor/scripts/tests/run-all.sh` ends `0 failed`. Evidence: `run-all.sh` ends `7 suite(s) passed, 0 failed`.
 <!-- /ANCHOR:testing -->

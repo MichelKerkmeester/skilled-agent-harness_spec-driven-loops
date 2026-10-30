@@ -36,7 +36,7 @@ Load the presentation contract before showing the menu, a plan, a digest, a resu
 - The first positional token of `$ARGUMENTS` is the target. With no token the target is `check`, the route marked `default_target` because it only reads, so `/doctor:agents-md` and `/doctor:agents-md check` both run it. A bare `/doctor:agents-md` never reaches `embed` or `restore`, which write. `list`, `?` and `menu` show the presentation contract's startup menu instead of binding a target.
 - `--json` and `--root <dir>` belong to `check`. `--dry-run`, `--root <dir>`, `--plan-digest <digest>`, `--keep-claude-md`, `--remove-claude-md` and `--create-router` belong to `embed`. `--run <dir>`, `--yes` and `--dry-run` belong to `restore`.
 - `--plan-digest` takes the digest the same run's plan printed, and it is the only way `embed` writes: the workflow never runs `apply` without the digest its own plan printed, and never runs a writing target without its yes.
-- An unknown target, an unknown flag, a flag from another target, or `--plan-digest` without a digest fails before YAML load with the presentation contract's wording.
+- An unknown target, an unknown flag, a flag from another target, a value flag without its value, or a second positional fails before YAML load with the presentation contract's wording. The second positional's suggestion is the bound target's own invocation, not one target's invocation for all three.
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation text owns visible wording and layout.
 

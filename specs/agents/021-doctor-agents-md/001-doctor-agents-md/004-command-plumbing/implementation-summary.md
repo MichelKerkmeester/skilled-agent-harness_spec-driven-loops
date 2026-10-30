@@ -54,7 +54,7 @@ _memory:
 
 The router carries the six canonical sections and one `sk-doc` skill tag, and it composes nothing: the check engine and the embed engine own every read, every composition and every write. The three workflows name those engines and their subcommands, and the embed workflow's allowlist is the engine's own exported `ALLOWLIST` rather than a second list that could drift from it.
 
-The contract suite was written before the router, and its first run failed on the missing file. It now reports 31 tests with `fail 0` in about a quarter of a second, because it reads files instead of running engines.
+The contract suite was written before the router, and its first run failed on the missing file. It now reports 37 tests with `fail 0`, because most cases read files rather than run engines; the four that run an engine compose a throwaway repository first and remove it afterwards.
 
 ### Files Changed
 
@@ -77,6 +77,20 @@ The contract suite was written before the router, and its first run failed on th
 | `.skilled/skills/system-skill-advisor/runtime/lib/render.ts` | Regenerated | The generated command list |
 
 The runtime command mirrors and the three prompt stub sets were written by their own scripts and are not listed one by one: two mirror links, and one prompt file per runtime.
+
+### Review Fixes
+
+A fresh review of the wiring raised seven findings. Each one is closed by a change to the router, a workflow, the presentation or the manifest, and each one carries a case in the contract suite that failed before the change.
+
+| Finding | What was wrong | What changed |
+|---------|----------------|--------------|
+| F1 | An embed whose pointer generator exited nonzero ended `STATUS=OK` with no field to carry the line, and no repair for the `A10` row that still reported it | `Pointer sync:`, `Router:` and `Next:` are fields of the embedded result, the write phase turns a nonzero line into a `Next:` naming `/doctor:runtime-mirrors`, `A10` has a troubleshooting row with that repair, and the presentation says the generator never creates a missing `.cursor/rules/skill-routing.md` so it is never listed as written |
+| F2 | The plan and the apply resolved different backup folders from a clock reading | Fixed in the engine before this pass: the folder is named after the plan digest, so plan and apply resolve one directory. The suite now asserts the plan's `backup:` and `undo:` are the apply's, on a composed fixture |
+| F3 | The plan's `absent` target action had no place in the enumeration | The plan paragraph and its `Targets:` field name `<create\|replace\|remove\|unchanged\|absent>` and say what `absent` means |
+| F4 | `backup-fallback:` was printed by every plan and named by nothing | It is in the plan phase's keep-list and has a `Backup note:` field |
+| F5 | A value flag without its value, and a second positional on `check` or `restore`, had no defined failure | The argument table has a `missing_argument` row and a `too_many_arguments` row naming each target's own suggestion, and the router promises both |
+| F6 | An engine exit 1 with `findings=0` is `UNKNOWN`, and the route only knew `FINDINGS` | `STATUS=UNKNOWN` is a status the route prints, the check output block has a third clause, and the summary's status list carries it |
+| F7 | The `_routes.yaml` header named 11 of the 14 router files | It names all 14, and the suite compares that list against the folder |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -122,8 +136,8 @@ The counts after the change, all measured on this branch:
 | Check | Result |
 |-------|--------|
 | `bash .skilled/commands/doctor/scripts/route-validate.sh` | `OK: route-validate — 24 routes validated, 5 warnings`, exit 0 |
-| `node --test .skilled/commands/doctor/scripts/tests/doctor-agents-md-contract.test.cjs` | 31 tests, 31 pass, `fail 0`, exit 0 |
-| `node --test` on the three agents-md engines | 91 tests, 91 pass, `fail 0`, exit 0 |
+| `node --test .skilled/commands/doctor/scripts/tests/doctor-agents-md-contract.test.cjs` | 37 tests, 37 pass, `fail 0`, exit 0 |
+| `node --test` on the three agents-md engines | 103 tests, 103 pass, `fail 0`, exit 0 |
 | `node --test .skilled/commands/doctor/scripts/tests/doctor-helper-contract.test.cjs` | 20 tests, 20 pass, `fail 0`, exit 0 |
 | `bash .skilled/commands/doctor/scripts/tests/run-all.sh` | 7 suites passed, 0 failed, exit 0 (node:test: 41 files, 911 tests) |
 | `node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs` | `STATUS=OK phrases=142 bridges=24`, exit 0 |

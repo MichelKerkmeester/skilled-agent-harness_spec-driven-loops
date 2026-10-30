@@ -23,9 +23,12 @@
 const assert = require('node:assert/strict');
 const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
 const { parse: parseYaml } = require('yaml');
+
+const { composeFixture } = require('./fixtures/agents-md/compose-fixture.cjs');
 
 const DOCTOR = path.resolve(__dirname, '..', '..');
 const ASSETS = path.join(DOCTOR, 'assets');
@@ -56,6 +59,7 @@ const FAMILY_SCHEMA = SCHEMA.definitions.familyContract;
 const CHECK_ENGINE = '.skilled/commands/doctor/scripts/agents-md-check.cjs';
 const EMBED_ENGINE = '.skilled/commands/doctor/scripts/agents-md-embed.cjs';
 const HELPER = path.join(SCRIPTS, 'doctor-helper-match.cjs');
+const EMBED_SCRIPT = path.join(SCRIPTS, 'agents-md-embed.cjs');
 
 // The engine's own write boundary, read from the engine. A second copy in the
 // workflow is the drift this suite exists to catch, so the allowlist cases compare
@@ -117,6 +121,19 @@ test('the manifest holds a check, an embed and a restore route, and only check a
     '--root <dir>',
   ].sort());
   assert.deepEqual([...routeFor('restore').allowed_flags].sort(), ['--dry-run', '--run <dir>', '--yes'].sort());
+});
+
+// The header is the file's own table of contents, and a reader who trusts it misses every
+// router it omits. The count is the folder's, so a new router file fails here until the
+// header names it.
+test('the route manifest header lists every router file in the folder', () => {
+  const header = read(path.join(DOCTOR, '_routes.yaml')).split(/^schema_version:/m)[0];
+  const listed = [...header.matchAll(/^#   \/doctor:(\S+)\s+\S+\.md$/gm)].map((match) => match[1]).sort();
+  const routers = fs.readdirSync(DOCTOR)
+    .filter((file) => file.endsWith('.md') && !file.startsWith('local-'))
+    .map((file) => file.replace(/\.md$/, ''))
+    .sort();
+  assert.deepEqual(listed, routers, 'the header names every router or the count in it is wrong');
 });
 
 test('the writing routes name every place the engines write and nothing else', () => {
@@ -268,6 +285,45 @@ test('the presentation carries the menu, the accepted answers, the manifest rows
   assert.match(PRESENTATION, /^\| `restore` \| `doctor-agents-md-restore\.yaml` \| mutates \|/m);
 });
 
+// A failure the router promises to catch has to have wording, or the agent invents one and
+// the operand hears a sentence the contract never approved. A value flag at the end of the
+// line and a second positional are the two an operator reaches by hand.
+test('the argument table defines a missing value and a second positional for every target', () => {
+  const table = PRESENTATION.split('## 1. Argument Failure')[1].split(/\n## 2\./u)[0];
+  const rows = table.split('\n').filter((line) => line.startsWith('| '));
+
+  const missing = rows.find((line) => /value flag/u.test(line));
+  assert.ok(missing, 'no row for a value flag given without its value');
+  for (const flag of ['--plan-digest', '--root']) assert.ok(missing.includes(flag), `${flag} is not named`);
+  assert.match(missing, /STATUS=FAIL ERROR="missing_argument"/u);
+  assert.match(missing, /Try: /u);
+
+  const second = rows.find((line) => /second positional/u.test(line));
+  assert.ok(second, 'no row for a second positional');
+  // One suggestion per target, because the right next command differs by target.
+  assert.match(second, /\/doctor:agents-md check \[--json\] \[--root <dir>\]/u);
+  assert.match(second, /\/doctor:agents-md embed \[--dry-run\]/u);
+  assert.match(second, /\/doctor:agents-md restore --run=<dir>/u);
+  assert.match(second, /STATUS=FAIL ERROR="too_many_arguments"/u);
+
+  // The router promises this table covers both cases, so it has to name them.
+  assert.match(ROUTER, /a value flag without its value/u);
+  assert.match(ROUTER, /a second positional/u);
+});
+
+// The engine has three outcomes for an exit 1 and the route has to mirror all three: a row
+// that could not be answered is not a finding, and reporting it as one sends the operator
+// looking for a fault that was never found.
+test('an unproven row ends the check as UNKNOWN, never as a finding', () => {
+  assert.match(PRESENTATION, /^Status: \[OK\|FINDINGS\|UNKNOWN\|ERROR\]$/mu);
+  assert.match(PRESENTATION, /^STATUS=\[OK\|FINDINGS\|UNKNOWN\]$/mu);
+  assert.match(PRESENTATION, /exit 1 with `findings=0` ends `STATUS=UNKNOWN`/u);
+  assert.match(PRESENTATION, /never `STATUS=FINDINGS`/u);
+  const { output } = CHECK_WORKFLOW;
+  assert.match(output, /STATUS=UNKNOWN/u);
+  assert.match(output, /findings=0/u);
+});
+
 test('the presentation keeps the check table, the JSON passthrough and the digest it makes the operator approve', () => {
   assert.match(PRESENTATION, /^Agents instruction check: \[the root the engine read\]$/m);
   assert.match(PRESENTATION, /^DOCTOR TARGET UNCHANGED$/m);
@@ -283,7 +339,7 @@ test('the presentation keeps the check table, the JSON passthrough and the diges
 test('the presentation closes on the unchanged, cancelled, dry-run, restored and failed templates', () => {
   // Every status a route can print appears as its own line, because a workflow that
   // ends on one of them must have been told the exact string.
-  for (const status of ['STATUS=OK', 'STATUS=FINDINGS', 'STATUS=CANCELLED ACTION=cancelled', 'STATUS=FAIL ERROR="[code]"', 'STATUS=ERROR ERROR="[message]"']) {
+  for (const status of ['STATUS=OK', 'STATUS=FINDINGS', 'STATUS=UNKNOWN', 'STATUS=CANCELLED ACTION=cancelled', 'STATUS=FAIL ERROR="[code]"', 'STATUS=ERROR ERROR="[message]"']) {
     assert.match(PRESENTATION, new RegExp(`^${status.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'm'), status);
   }
   assert.match(PRESENTATION, /^STATUS=CANCELLED ACTION=cancelled$/m);
@@ -324,6 +380,11 @@ test('the check workflow maps the engine exit classes to a route status', () => 
   const { output } = CHECK_WORKFLOW;
   assert.match(output, /STATUS=OK/);
   assert.match(output, /STATUS=FINDINGS/);
+  // Exit 1 covers two outcomes, and the route has to keep them apart: a row nobody could
+  // answer is not a finding, and calling it one sends the operator after a fault that was
+  // never found.
+  assert.match(output, /STATUS=UNKNOWN/);
+  assert.match(output, /findings=0/);
   assert.match(output, /STATUS=ERROR/);
 });
 
@@ -557,4 +618,163 @@ test('every phrase on the three routes ranks its own route first', () => {
     }
   }
   assert.deepEqual(misses, []);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 8. THE LINES THE ENGINES PRINT AND THE FIELDS THAT CARRY THEM
+// ─────────────────────────────────────────────────────────────────────────────
+
+// A line an engine prints and neither the workflow keep-list nor the presentation names is
+// a line an agent can only drop, and a dropped pointer-sync line is a mirror reported as
+// verified when nothing wrote it.
+const embedRun = (args) => {
+  const result = spawnSync(process.execPath, [EMBED_SCRIPT, ...args], { encoding: 'utf8', input: '' });
+  return { code: result.status, out: result.stdout || '', err: result.stderr || '' };
+};
+
+const printField = (text, name) => {
+  const match = new RegExp(`^${name}: (.*)$`, 'mu').exec(text);
+  return match === null ? null : match[1].trim();
+};
+
+// One composed repository per case, in a directory the case removes. Composition reads the
+// manifest, so a case describes the template that ships today rather than a stored copy.
+const composedTree = (t, name) => {
+  const parent = fs.mkdtempSync(path.join(os.tmpdir(), `doctor-agents-md-contract-${name}-`));
+  t.after(() => fs.rmSync(parent, { recursive: true, force: true }));
+  const dir = path.join(parent, name);
+  composeFixture(name, dir);
+  return dir;
+};
+
+// The engine never deletes a backup, so the case does: only the directory a run printed,
+// and only when it sits under the temporary directory it was created in.
+const trackBackup = (t, text) => {
+  for (const line of text.split('\n')) {
+    const hit = /^backup: (\S+)$/u.exec(line);
+    if (hit === null) continue;
+    const dir = hit[1];
+    t.after(() => {
+      if (!dir.startsWith(os.tmpdir() + path.sep)) return;
+      fs.rmSync(dir, { recursive: true, force: true });
+    });
+  }
+};
+
+// The label of each field line an engine prints, read off its output rather than off its
+// source, so a line one of them gains arrives here as a failure with its own name. The
+// block body is skipped: its first word is the repository's, not the engine's.
+const printedLabels = (text) => {
+  const labels = new Set();
+  let inBlock = false;
+  for (const line of text.split('\n')) {
+    if (line === 'block:') { inBlock = true; continue; }
+    if (line === 'block-end:') { inBlock = false; labels.add('block-end'); continue; }
+    if (inBlock) continue;
+    const hit = /^([a-z][a-z-]*)\b/u.exec(line);
+    if (hit !== null) labels.add(hit[1]);
+  }
+  return labels;
+};
+
+// Where an operator meets each field line: the presentation's own field, and the phrase the
+// workflow keep-list uses. `note` and `finding` are pinned here too, though the fixtures
+// below happen not to print them, because the field has to exist for the run that does.
+const PRINTED_FIELDS = new Map([
+  ['target', { shown: /^Targets: /mu, kept: /the target list/u }],
+  ['note', { shown: /^Notes: /mu, kept: /each note/u }],
+  ['diff', { shown: /a `diff` per path/u, kept: /each diff/u }],
+  ['block', { shown: /^Block: /mu, kept: /`block:` and `block-end:`/u }],
+  ['block-end', { shown: /^Block: /mu, kept: /`block:` and `block-end:`/u }],
+  ['budget', { shown: /^Budget: /mu, kept: /the budget line/u }],
+  ['finding', { shown: /^Findings: /mu, kept: /each finding line/u }],
+  ['preservation', { shown: /^Preservation: /mu, kept: /the preservation line/u }],
+  ['backup', { shown: /^Backup folder: /mu, kept: /the backup line/u }],
+  ['backup-fallback', { shown: /^Backup note: /mu, kept: /the backup-fallback line/u }],
+  ['undo', { shown: /^Undo: /mu, kept: /the undo line/u }],
+  ['plan-digest', { shown: /^Plan digest: /mu, kept: /the plan-digest line/u }],
+  ['wrote', { shown: /^Files changed: /mu, kept: /one wrote or removed line per path/u }],
+  ['removed', { shown: /^Files changed: /mu, kept: /one wrote or removed line per path/u }],
+  ['pointer-sync', { shown: /^Pointer sync: /mu, kept: /the pointer-sync line/u }],
+  ['repo-rules', { shown: /^Router: /mu, kept: /the repo-rules line/u }],
+  ['check-after', { shown: /^Re-read: /mu, kept: /the check-after line/u }],
+  ['cp', { shown: /one copy line per overwritten file/u, kept: /one copy line per overwritten file/u }],
+]);
+
+test('every field the writing engines print has a field in the presentation and a line in the keep-list', (t) => {
+  const dir = composedTree(t, 'claude-only');
+  const planned = embedRun(['plan', '--create-router', '--root', dir]);
+  trackBackup(t, planned.out);
+  assert.equal(planned.code, 0, planned.err);
+  const digest = printField(planned.out, 'plan-digest');
+  assert.match(digest || '', /^[0-9a-f]{64}$/u, 'the plan prints its digest');
+
+  const applied = embedRun(['apply', '--create-router', '--root', dir, '--plan-digest', digest]);
+  trackBackup(t, applied.out);
+  assert.equal(applied.code, 0, applied.err);
+
+  // The directory is named after the digest rather than after a clock reading, so the
+  // folder and the undo the operator approved are the ones apply used. A clock re-resolved
+  // at apply time named a directory no run ever created, and the approved undo exited 2.
+  assert.equal(printField(applied.out, 'backup'), printField(planned.out, 'backup'), 'apply backs up where the plan pointed');
+  assert.equal(printField(applied.out, 'undo'), printField(planned.out, 'undo'), 'the undo that was approved is the undo apply printed');
+
+  // The generator rewrites an existing pointer file and never creates a missing one, so a
+  // repository without one carries a nonzero verdict on a run that still ends STATUS=OK.
+  // That is the case the result template has to be able to show.
+  assert.match(applied.out, /^pointer-sync: exit 1 \(.*skill-routing\.md: missing/mu);
+  assert.doesNotMatch(applied.out, /wrote \.cursor\/rules\/skill-routing\.md/u);
+
+  const printed = [...printedLabels(planned.out), ...printedLabels(applied.out)];
+  const unnamed = [...new Set(printed)].filter((label) => !PRINTED_FIELDS.has(label)).sort();
+  assert.deepEqual(unnamed, [], 'an engine line no field carries');
+
+  const kept = `${phaseText(EMBED_WORKFLOW, 'phase_2_plan')}\n${phaseText(EMBED_WORKFLOW, 'phase_4_write')}`;
+  for (const [label, where] of PRINTED_FIELDS) {
+    assert.ok(where.kept.test(kept), `${label}: the workflow keep-list does not name it`);
+    assert.ok(where.shown.test(PRESENTATION), `${label}: the presentation shows no field for it`);
+  }
+});
+
+test('a plan on a repository with no router names the absent target and the backup note', (t) => {
+  const dir = composedTree(t, 'foreign');
+  const planned = embedRun(['plan', '--root', dir]);
+  assert.equal(planned.code, 0, planned.err);
+
+  // Two lines a plan prints that no field carried: the fifth target action, and the note
+  // that explains a backup placed outside the repository.
+  assert.match(planned.out, /^target REPO RULES\.md: absent$/mu);
+  assert.match(planned.out, /^note: /mu);
+  assert.match(planned.out, /^backup-fallback: /mu);
+
+  assert.match(PRESENTATION, /<create\|replace\|remove\|unchanged\|absent>/u);
+  assert.match(PRESENTATION, /`absent` means the path is not there/u);
+  assert.match(PRESENTATION, /^Backup note: /mu);
+  const plan = phaseText(EMBED_WORKFLOW, 'phase_2_plan');
+  assert.match(plan, /absent/u);
+  assert.match(plan, /backup-fallback/u);
+});
+
+test('an embed whose pointer sync did not verify names the mirror it could not write', () => {
+  const embedded = PRESENTATION.split('### Embedded')[1].split('### Unchanged')[0];
+  for (const name of ['Pointer sync:', 'Router:', 'Next:']) {
+    assert.match(embedded, new RegExp(`^${name} `, 'mu'), `${name} is not a field of the result`);
+  }
+
+  const write = phaseText(EMBED_WORKFLOW, 'phase_4_write');
+  assert.match(write, /nonzero/u);
+  assert.match(write, /Next:.*\/doctor:runtime-mirrors/u, 'a nonzero pointer sync names the mirror route as the next step');
+  assert.match(write, /never creates/u, 'the generator cannot create a missing pointer file');
+  assert.match(write, /Files changed/u, 'the file it cannot create is never listed as written');
+
+  // A repair for the row the re-read still reports, and a next step for the line that says
+  // why: the check route can only report that row again.
+  const troubleshooting = PRESENTATION.split('## 7. Troubleshooting Display')[1].split(/\n## 8\./u)[0];
+  const row = troubleshooting.split('\n').find((line) => /^\| `A10`/u.test(line));
+  assert.ok(row, 'the troubleshooting table has no A10 row');
+  assert.match(row, /\/doctor:runtime-mirrors/u);
+
+  const nextRow = PRESENTATION.split('## 8. Next Step')[1].split('\n').find((line) => /pointer-sync/u.test(line));
+  assert.ok(nextRow, 'the next-step table has no pointer-sync row');
+  assert.match(nextRow, /\/doctor:runtime-mirrors/u);
 });

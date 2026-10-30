@@ -11,7 +11,8 @@ Every argument failure happens before any workflow YAML loads, prints the wordin
 | The first token is not a target | `Unknown target: [target]` then `/doctor:agents-md runs check. Try: /doctor:agents-md menu` then `STATUS=FAIL ERROR="unknown_target"` |
 | A flag none of the three targets accepts | `Unknown argument: [argument]` then `check accepts --json and --root <dir>; embed accepts --dry-run, --root <dir>, --plan-digest <digest>, --keep-claude-md, --remove-claude-md and --create-router; restore accepts --run <dir>, --yes and --dry-run.` then `STATUS=FAIL ERROR="unknown_argument"` |
 | A flag another target owns | `Argument '[argument]' is not valid for target '[target]'. Did you mean /doctor:agents-md [suggested-target] [argument]?` then `STATUS=FAIL ERROR="cross_target_flag"` |
-| `embed` bound with a second positional | `Only one target may be bound.` then `Try: /doctor:agents-md embed [--dry-run]` then `STATUS=FAIL ERROR="too_many_arguments"` |
+| A value flag given without its value, such as `--plan-digest` or `--root` at the end of the line | `Missing value: [argument] needs [a directory for --root, the digest the plan printed for --plan-digest, the backup directory one apply printed for --run]` then `Try: [the accepted invocation for the bound target]` then `STATUS=FAIL ERROR="missing_argument"` |
+| A target bound with a second positional (`check foo`, `embed foo`, `restore foo`) | `Only one target may be bound.` then `Try: /doctor:agents-md check [--json] [--root <dir>] for check, /doctor:agents-md embed [--dry-run] for embed, /doctor:agents-md restore --run=<dir> for restore` then `STATUS=FAIL ERROR="too_many_arguments"` |
 | `restore` with no run directory | `Restore needs --run=<dir>, the backup directory one apply printed.` then `STATUS=FAIL ERROR="missing_run_dir"` |
 | An engine invoked with a subcommand or option it does not take | `USAGE: [the engine's first message line]` then the engine's usage block, exit 2. The workflow only ever runs the documented calls, so this is the engine's own contract rather than a route the operator reaches |
 
@@ -64,7 +65,7 @@ A1  [PASS|FINDING|UNKNOWN|INFO]  install state: [pure|adopted|stale|forked|forei
 A2  [PASS|FINDING|UNKNOWN|INFO]  sections present: [n]/[n] matched
 ...
 A12 [PASS|FINDING|UNKNOWN|INFO]  template purity: [detail]
-STATUS=[OK|FINDINGS]
+STATUS=[OK|FINDINGS|UNKNOWN]
 ```
 
 The twelve rows are A1 install state, A2 sections present, A3 order and numbering, A4 section currency, A5 pins, A6 delivery budget, A7 repo-local block, A8 unmarked repo-unique content, A9 unmarked local edits, A10 runtime copies, A11 REPO RULES.md and A12 template purity. Read A1 first: it says which state the repository is in, and every other row is a detail of that state. A8 and A9 are the two rows that name a line somebody wrote, so quote them in full.
@@ -76,7 +77,7 @@ With `--json` print the engine's JSON and nothing else: no table, no summary, no
 ```text
 DOCTOR DIAGNOSTIC RESULT
 Target: check
-Status: [OK|FINDINGS|ERROR]
+Status: [OK|FINDINGS|UNKNOWN|ERROR]
 Mutation class: read-only
 Scope: [the root the engine read]
 Evidence: [n] rows, [n] pass, [n] findings, [n] unknown, [n] info
@@ -89,8 +90,11 @@ Statuses this route prints, each on its own line so a workflow never has to comp
 ```text
 STATUS=OK
 STATUS=FINDINGS
+STATUS=UNKNOWN
 STATUS=ERROR ERROR="[message]"
 ```
+
+An engine exit 1 with `findings=0` ends `STATUS=UNKNOWN`, never `STATUS=FINDINGS`: no finding was made, a row could not be answered, and the reply names that row and the precondition it is missing rather than sending the operator after a fault that was never found.
 
 ## 4. Embed Plan, Digest and Approval
 
@@ -111,7 +115,7 @@ Next: run the plan, which writes nothing
 
 ### The Plan The Operator Approves
 
-The plan section quotes the engine's own lines: its `[agents-md-embed] plan for <root> (state: <state>)` line, one `target <path>: <create|replace|remove|unchanged>` line per path, its `note:` lines, a `diff` per path it would write, the new `block:` between its two markers, the `budget:` and `preservation:` lines, the `backup:` folder, the `undo:` command and the digest.
+The plan section quotes the engine's own lines: its `[agents-md-embed] plan for <root> (state: <state>)` line, one `target <path>: <create|replace|remove|unchanged|absent>` line per path, its `note:` lines, a `diff` per path it would write, the new block between its `block:` and `block-end:` markers, the `budget:` line, each `finding:` line, the `preservation:` line, the `backup:` folder, its `backup-fallback:` line when one prints, the `undo:` command and the `plan-digest:` line. `absent` means the path is not there, so nothing is written to it and the note beside it says why it stays absent.
 
 ```text
 AGENTS INSTRUCTION EMBED PLAN
@@ -121,8 +125,10 @@ Targets: [one line per target the engine printed, in its order]
 Notes: [one bullet per note, or none]
 Block: [the composed block, quoted whole]
 Budget: [the engine's budget line]
+Findings: [one bullet per finding line, or none]
 Preservation: [the engine's preservation line]
 Backup folder: [the engine's backup line]
+Backup note: [the engine's backup-fallback line, or none: it says why the folder sits outside the repository]
 Undo: [the engine's undo line]
 Plan digest: [the engine's plan-digest line]
 
@@ -151,6 +157,7 @@ Run directory: [the --run directory]
 Root: [the root the record names]
 Put back: [one line per recorded file, in the engine's order]
 Remove: [one line per path the recorded run created, or none]
+Already absent: [one line per path the recorded run created and that is already gone, or none]
 
 Restore these paths from that backup now? [yes/no]
 ```
@@ -168,12 +175,17 @@ DOCTOR MUTATING RESULT
 Target: embed
 Root: [the repository]
 Files changed: [each path the apply printed as wrote or removed]
+Pointer sync: [the engine's pointer-sync line]
+Router: [the engine's repo-rules line, or none when no router was written]
 Backup: [the engine's backup line]
 Re-read: [the check engine's result line and any row that still reports FINDING]
 Preservation: [the engine's preservation line]
 Undo: [the engine's undo block, quoted whole: its Undo: line, its restore command and one copy line per overwritten file]
+Next: [the repair the lines above name, or none: a nonzero pointer-sync ends here with /doctor:runtime-mirrors]
 STATUS=OK
 ```
+
+A nonzero `pointer-sync` line is not a verified mirror, and the run's `STATUS=OK` covers the files it wrote and nothing else. The generator rewrites an existing `.cursor/rules/skill-routing.md` and never creates a missing one, so on a repository that has no such file the line reads `exit 1 … missing` and the file is still absent when the run ends: it is never one of the files this run wrote, it never appears in `Files changed`, and the allowlist naming it is not evidence that it was written. Show `Pointer sync:` exactly as the engine printed it, show the run's own `STATUS=OK`, and let `Next:` carry the route that names the drifting mirror: `/doctor:runtime-mirrors`. What has to happen before that mirror can be written is in the troubleshooting table, because the file has to exist before the generator has a block to put in it.
 
 ### Unchanged
 
@@ -247,6 +259,7 @@ A check that exits 2 prints its message and ends `STATUS=ERROR ERROR="[message]"
 | `A8` or `A9` reports content | The lines are the repository's own. An embed carries them into the block. A line that must stay routed belongs in a rule file authored through the create-repo-rule route |
 | `A6` reports a budget finding | The composed document is past the byte ceiling a truncating runtime stops at. Every carried line is still kept, and the finding is the operator's to resolve |
 | `A11` reports missing router rows | `/doctor:agents-md embed` adds the shipped rows that are missing and touches no other row |
+| `A10` reports a runtime copy out of sync, or the apply's `pointer-sync:` line reported a nonzero exit | The generator rewrites an existing `.cursor/rules/skill-routing.md` and never creates a missing one, so a missing file stays missing however often the embed reruns. `/doctor:runtime-mirrors` lists the generated runtime mirrors that drift, each with the write form of the checker that owns it; the pointer block is not one of the files that route checks, so a `missing` line on it means the file has to exist first. Create `.cursor/rules/skill-routing.md`, run `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs --root <root>`, then rerun `/doctor:agents-md check` and read `A10` again |
 | The embed question was answered no | Nothing was written. Rerun `/doctor:agents-md embed` when the plan is acceptable |
 | The apply reports a digest that does not match | The tree changed after the plan. Rerun `/doctor:agents-md embed` so the plan and the digest describe the tree in front of you |
 | The apply reports a dropped line | The engine restored from the backup by itself. Read the dropped line, keep it in the block or in a reference document, then rerun the plan |
@@ -261,6 +274,7 @@ A check that exits 2 prints its message and ends `STATUS=ERROR ERROR="[message]"
 | A check row still reports `FINDING` after an embed | `/doctor:agents-md check` | The write is complete, and the remaining row is a different requirement |
 | The composed document is past the byte ceiling | `/doctor:agents-md check` | A6 names the ceiling and what the run kept anyway |
 | The repository has no `REPO RULES.md` | `/doctor:agents-md embed --create-router` | The router is created from the shipped rows and the checker runs after it |
+| The apply's `pointer-sync:` line reported a nonzero exit | `/doctor:runtime-mirrors` | It lists each generated runtime mirror that drifts with the write form of its checker, and `A10` names the copy that is still unverified |
 | A rule belongs in a routed file rather than the always-on block | `/create:repo-rule` | Action-triggered rules belong in a rule file that `REPO RULES.md` routes, not in a document every agent loads |
 | A release unit or a `.skilled/**` path needs changing | `/doctor:update` | This command owns the root instruction files, and the release tree belongs to the updater |
 
