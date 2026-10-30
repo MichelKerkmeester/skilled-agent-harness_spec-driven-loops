@@ -1,0 +1,16 @@
+All five edits landed in `.skilled/skills/sk-prompt/SKILL.md`, sections 7–9 only. Frontmatter shape intact, section 1–6 headings unmoved (`## 7` still at line 210, `## 8` at 281, `## 9` at 301), and the `### Model Eligibility` subsection is byte-identical to before (all its line hashes match the pre-edit read).
+
+What changed:
+
+- `### Expected Input Payload` — `complexity_hint` now reads `Integer 1-10 mapped to effort: 1-3 quick, 4-7 standard, 8-10 thorough`.
+- `### Deterministic Agent Rules` — the five DEPTH bullets replaced by the five specified bullets: checklist reference, patterns-evaluation read targets, `complexity_hint` to effort mapping with standard as the no-hint default, `CLEAR >= 40/50`, and repair up to 3 cycles then return best version with escalation notes.
+- `### Structured Output Block` — `FRAMEWORK: <default skeleton | preset name>`, and `TEST:` / `CHANGES:` inserted directly after `CLEAR_SCORE:` with `RATIONALE:`, `ENHANCED_PROMPT:` and `ESCALATION_NOTES:` preserved.
+- `### Contract Guarantees` — first bullet is now `The returned prompt is ready for CLI handoff without another pass.`
+- Section 9 — the router sentence now starts from `references/improvement-checklist.md` in place of `references/depth-framework.md`.
+
+Verification both passed: the forbidden-term rg returned no rows (exit 1, no match anywhere in the file — nothing above section 7 remains to report), and `^TEST:|^CHANGES:` returned exactly two lines (265, 266). `git status` for the skill directory also shows `ROUTER.md` modified and `depth-framework.md` renamed to `improvement-checklist.md` by other work in this packet; I did not touch those paths.
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/SKILL.md
+verify: `rg -c "DEPTH|depth-framework|retry once|RICCE" .skilled/skills/sk-prompt/SKILL.md` → no output, exit 1 (clean); `rg -n "^TEST:|^CHANGES:" .skilled/skills/sk-prompt/SKILL.md` → 2 lines: `265:TEST: <ran: summary of old vs new on 2-3 inputs | NOT RUN>` and `266:CHANGES: <Added ...; Changed ...; Removed ...; Skipped ...>`
+notes: none — no DEPTH/depth-framework/retry-once/RICCE residue anywhere in the file, so nothing above section 7 needed reporting.

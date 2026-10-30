@@ -1,0 +1,47 @@
+TASK: update one file, .skilled/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md,
+the playbook index, to match feature files that were already rewritten. Keep its structure, its
+section numbering and every SP block's sub-heading shape (#### Description, #### Scenario
+Contract, #### Test Execution with the Feature File link).
+
+Feature files that changed (ID | new title | path relative to the playbook folder):
+SP-001 | Default mode runs the standard checklist | mode-detection/default-mode-routing.md
+SP-002 | `$raw` passes through with no checklist | mode-detection/raw-mode-passthrough.md
+SP-003 | `$short` runs the quick checklist | mode-detection/short-mode-quick-effort.md
+SP-004 | Mode token wins over keyword scoring | mode-detection/mode-prefix-keyword-collision.md
+SP-009 | One-pass checklist marks every row | checklist-pass/one-pass-checklist-rows.md
+SP-010 | Early exit returns a good prompt unchanged | checklist-pass/early-exit-good-prompt.md
+SP-011 | CLEAR repair stops after 3 cycles | checklist-pass/repair-cycle-cap.md
+SP-012 | Deliver first with numbered open items | checklist-pass/deliver-first-open-items.md
+SP-013 | Contradiction check resolves clashing rules | checklist-pass/clashing-rules-resolved.md
+SP-014 | Change report and length warning | checklist-pass/change-report-length-warning.md
+SP-017 | Total below 40/50 triggers targeted repair | clear-scoring/forty-of-fifty-threshold.md
+SP-019 | Default skeleton unless a preset clearly fits | framework-selection/default-skeleton-unless-preset-fits.md
+SP-021 | An applied preset is named with its reason | framework-selection/preset-named-in-change-report.md
+SP-022 | Repair keeps the chosen preset | framework-selection/preset-kept-through-repair.md
+
+For each of these 14: read ONLY section "## 2. SCENARIO CONTRACT" of its feature file (about 12
+lines). In the index, set the block's ### heading to "### SP-xxx | <new title>", rewrite its
+Description (one sentence from the Objective), its Scenario Contract (the Prompt line from the
+feature file's Prompt bullet, then the expected signals and desired outcome in the existing
+short shape), and point the Feature File link at the new path. Update the matching row of the
+summary table near the end of the file the same way (title, group, link).
+
+Global edits in the index:
+- Frontmatter version: 2.3.3.0 -> 3.0.0.0.
+- EXECUTION POLICY line: replace "framework selection, DEPTH-round count, CLEAR score" with
+  "effort level, checklist result, CLEAR score".
+- Package list: `depth-clear-loop/` -> `checklist-pass/`.
+- Section 9 heading: "## 9. DEPTH+CLEAR LOOP (`SP-009..SP-014`)" -> "## 9. CHECKLIST PASS (`SP-009..SP-014`)".
+- Group name "DEPTH+CLEAR Loop" -> "Checklist Pass" everywhere (wave table and summary table).
+- `references/depth-framework.md` -> `references/improvement-checklist.md` everywhere.
+- Evidence and review lines that say "DEPTH-round count" or "DEPTH rounds run" -> "effort level and checklist result".
+- The wave-table cell "Heavier (5-phase exec); run after routing is trusted" -> "Run after routing is trusted".
+- The SP-022 description that speaks of the Test phase: covered by the SP-022 rewrite above.
+- Any other remaining "DEPTH", "RICCE", "perspectives", "rounds" or "one retry" wording: rewrite to
+  the checklist terms (effort, checklist rows, repair up to 3 cycles) and list each in notes.
+
+VERIFY
+Run: rg -n "DEPTH|depth-framework|depth-clear-loop|RICCE|erspective|rounds|one retry" .skilled/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md
+Expected: rg prints nothing (exit 1).
+Run: rg -c "^### SP-" .skilled/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md
+Expected: the same count as before your edit (report both numbers).

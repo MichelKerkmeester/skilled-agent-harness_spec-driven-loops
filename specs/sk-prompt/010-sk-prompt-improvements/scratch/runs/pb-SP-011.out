@@ -1,0 +1,10 @@
+File rewritten and both verification commands pass.
+
+- Shape preserved: frontmatter (title, description, version), H1, five numbered H2 sections including "Why This Matters", the full TEST EXECUTION block, both SOURCE FILES tables, SOURCE METADATA bullets, and the `---` dividers.
+- Content is new: 3-cycle cap, best-version delivery, note naming the weakest dimension; command 3 points `rg` at section 6 of `improvement-checklist.md`, which the rule line confirms.
+- No DEPTH, RICCE, perspective, Harmonize or `depth-framework` references, and no spec paths or IDs inside the file.
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/repair-cycle-cap.md
+verify: `rg -c "DEPTH|RICCE|erspective|Harmonize|depth-framework" <file>` → no output, exit 1; `rg -c "^## " <file>` → `5`, exit 0
+notes: SKILL.md was not read, so its role lines describe the contract without citing section numbers; also confirmed the section 6 rule line the new command greps for.

@@ -1,0 +1,39 @@
+TASK: edit one file, .skilled/skills/sk-prompt/references/patterns-evaluation.md. Read only this
+file.
+
+EDIT 1 - in "## 2. FRAMEWORK LIBRARY & SELECTION", directly under the H2 heading and above
+"### Complete Framework Matrix", insert:
+
+### Default Skeleton
+
+Every prompt starts from one default skeleton, in this order: task and outcome, context, constraints and priorities, output format, examples when they help, success criteria. Add a role or steps only when they change the response. The seven frameworks below are optional presets: apply one when the user or caller names it, or when its fit is clear from the task. No preset is required.
+
+EDIT 2 - replace the whole "### Framework Selection Algorithm" subsection (its heading and the
+yaml fence through the closing ```) with:
+
+### Choosing a Preset
+
+Use the default skeleton unless one of these holds:
+
+- The user or caller names a preset ("use COSTAR"). Apply it.
+- The task clearly matches a preset's "Best For" column in the matrix above, and the preset adds an element the skeleton lacks, such as COSTAR's style, tone and audience. Apply it and name it in the change report.
+
+Never score every preset to pick one. A preset is a shape, not a quality gate.
+
+EDIT 3 - the "### Framework Selection Decision Table" heading becomes
+"### Preset Fit Table" and add this line directly above the table:
+A quick guide to where each preset fits. The default skeleton covers every row it does not name.
+
+EDIT 4 - in the `excellence_formula` yaml near the end of the file, delete the line
+`      + DEPTH Processing Bonus`.
+
+EDIT 5 - frontmatter: bump the patch-level version by one minor step, for example 2.3.0.6 becomes
+2.4.0.0. Keep every other frontmatter field.
+
+Do not change "## 10. CLEAR EVALUATION MASTERY"; it stays the one CLEAR rubric.
+
+VERIFY
+Run: rg -c "DEPTH|select_optimal_framework|score_frameworks" .skilled/skills/sk-prompt/references/patterns-evaluation.md
+Expected: rg prints nothing (exit 1).
+Run: rg -n "^### Default Skeleton|^### Choosing a Preset|^### Preset Fit Table" .skilled/skills/sk-prompt/references/patterns-evaluation.md
+Expected: three lines.

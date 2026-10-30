@@ -1,0 +1,59 @@
+TASK: edit lines 1-128 of one file, .skilled/skills/sk-prompt/SKILL.md (frontmatter through the
+end of section 3, "## 3. HOW IT WORKS"). Do not touch section 4 or later. Read only this file and
+.skilled/skills/sk-prompt/references/improvement-checklist.md.
+
+EDIT 1 - frontmatter. Set exactly:
+description: "Prompt engineering: turns a request into a structured, checked AI prompt in one pass, with a component skeleton and CLEAR screening."
+version: 4.0.0.0
+
+EDIT 2 - line 8 keywords comment: remove `DEPTH, RICCE, ` and add `improvement-checklist, early-exit, `
+after `prompt improvement, `.
+
+EDIT 3 - line 10 H1 becomes: # Prompt Engineering Specialist - One-Pass Prompt Improvement
+Line 12 becomes: Transforms vague or basic inputs into structured AI prompts in one pass: a ten-row checklist, one component skeleton with optional framework presets, and CLEAR screening.
+
+EDIT 4 - line 31: `- `$raw` (skip DEPTH, fast pass-through)` becomes `- `$raw` (no checklist pass, fast pass-through)`.
+
+EDIT 5 - section 2, line 60: replace `references/depth-framework.md` with
+`references/improvement-checklist.md`, and change the clause "on `FRAMEWORK` it replaces the DEPTH
+default" to "on `FRAMEWORK` it replaces the checklist default".
+
+EDIT 6 - replace the whole "### Enhancement Pipeline" subsection (the heading, its sentence and
+the fenced pipeline diagram, through the line "See the Smart Router Pseudocode ...") with:
+
+### Enhancement Pipeline
+
+Every improvement runs one pass, described in [improvement-checklist.md](./references/improvement-checklist.md):
+
+1. Detect the mode from the command token or the user's own words. A pasted prompt is set aside before routing, so text inside it never picks the mode.
+2. Check the prompt once against the ten checklist rows, marking each present, absent or not needed with a reason. A prompt that passes exits early, unchanged or minimally edited.
+3. Write the prompt from the default component skeleton, applying a framework preset only when the request names one.
+4. Self-check once against the success criteria, run the quick test when the effort level calls for it, and screen with CLEAR.
+5. Deliver the prompt first, then the numbered open items and the change report.
+
+See the Smart Router Pseudocode in `ROUTER.md` for the complete routing logic.
+
+EDIT 7 - the "### Operating Modes" table: rename the column header `DEPTH Rounds` to `Effort`.
+Set the Effort cell per row: Interactive standard, Text standard, Short quick, Improve standard,
+Refine thorough, JSON standard, YAML standard, Raw none. In the Raw row change `Skip DEPTH` to
+`No checklist pass`.
+
+EDIT 8 - replace the "### Framework Selection Matrix" heading and the sentence or two above its
+table with:
+
+### Framework Presets
+
+Every prompt starts from one default skeleton: task, context, constraints, output format, optional examples and success criteria. The seven framework names stay as optional presets. Apply one only when the user or caller names it, or when its fit is clear from the task; the table shows where each fits.
+
+Keep the table. Directly below it, delete the line
+`See [depth-framework.md](./references/depth-framework.md) for the DEPTH methodology.`
+and keep the patterns-evaluation line.
+
+EDIT 9 - "### Scoring Systems": after the existing CLEAR line add this sentence on the same
+paragraph: CLEAR is a structural screen, not proof the prompt works; repair up to 3 cycles.
+
+VERIFY
+Run: sed -n 1,130p .skilled/skills/sk-prompt/SKILL.md | rg -c "DEPTH|depth-framework|RICCE"
+Expected: rg prints nothing (exit 1).
+Run: rg -n "^version: 4.0.0.0" .skilled/skills/sk-prompt/SKILL.md
+Expected: one line.

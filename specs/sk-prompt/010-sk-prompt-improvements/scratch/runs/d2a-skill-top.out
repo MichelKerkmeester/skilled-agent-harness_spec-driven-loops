@@ -1,0 +1,6 @@
+All nine edits applied. The version check passes; the DEPTH/RICCE check as literally written does not, and the reason is a range shift rather than leftover edits in my scope.
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/SKILL.md (lines 1-112; sections 1-3 reworked, section 4 onward untouched)
+verify: `sed -n 1,130p ... | rg -c "DEPTH|depth-framework|RICCE"` → printed `3`, exit 0. Section-bounded equivalent `sed -n 1,113p ... | rg -c "DEPTH|depth-framework|RICCE"` → printed nothing, exit 1. `rg -n "^version: 4.0.0.0"` → `5:version: 4.0.0.0`, exit 0.
+notes: The 3 remaining matches are confounded by line shift, not by my edits — removing the pipeline diagram and the depth-framework line shrank the file from 323 to 305 lines, so `## 4. RULES` moved from line 130 to line 113 and the 1-130 window now reaches into section 4 (hits at scaled lines 122, 125, 129: "ALWAYS apply DEPTH processing", "minimum 3 perspectives during DEPTH Discover phase", "ALWAYS validate with RICCE"). Those are stale references to the removed framework that the brief explicitly placed out of scope, so they need a follow-up edit to section 4 (and likely sections 6-8) before the gate passes as written.

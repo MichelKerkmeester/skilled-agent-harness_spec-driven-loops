@@ -1,0 +1,59 @@
+TASK: edit sections 4, 5 and 6 of one file, .skilled/skills/sk-prompt/SKILL.md: from the line
+"## 4. RULES" up to, not including, "## 7. AGENT INVOCATION CONTRACT". Touch nothing outside that
+span. Read only this file.
+
+EDIT 1 - replace the whole "### ✅ ALWAYS" list (items 1 to 6) with exactly:
+
+1. **ALWAYS deliver first**
+   - A request that carries a prompt or a task gets the improved prompt in the same reply
+   - List every default and assumption as a numbered open item after the prompt, never inside it
+   - Ask one question only when there is no prompt and no task, or when two mode commands conflict; `$raw` never asks
+
+2. **ALWAYS run the one-pass checklist** at the detected effort level
+   - Quick for `$short`, standard by default, thorough for `$refine`, none for `$raw`
+   - Mark each row present, absent or not needed with a one-line reason
+
+3. **ALWAYS exit early on a prompt that already passes**
+   - Return it unchanged or with the smallest edit asked for, and say so
+
+4. **ALWAYS route on the user's own words**
+   - Set a pasted prompt aside before detecting the mode
+
+5. **ALWAYS screen with CLEAR** before delivery
+   - Write the reason before each score; pass at 40/50; repair up to 3 cycles
+
+6. **ALWAYS end with a change report**
+   - Added, Changed, Removed, Skipped, plus `Quick test: NOT RUN` when the test did not run
+
+EDIT 2 - in "### ⛔ NEVER": replace item 2 ("NEVER skip framework evaluation" and its sub-bullet)
+with:
+2. **NEVER force a framework preset**
+   - Use the default skeleton unless the request names a preset or its fit is clear
+Replace item 3's sub-bullet text with: Every improved prompt carries a CLEAR screen (except $raw)
+Add item 6:
+6. **NEVER rewrite user guidelines or examples needlessly**
+   - Preserve them as closely as possible, word for word when asked; warn when the prompt grows past about 3 times the original
+Keep items 1, 4 and 5 unchanged.
+
+EDIT 3 - in "### ⚠️ ESCALATE IF": item 2's heading becomes
+**ESCALATE IF CLEAR score stays below threshold after 3 repair cycles**
+and its "Suggest:" line becomes
+   - Deliver the best version with a note naming the weakest dimension
+
+EDIT 4 - section 5 "### Core References": replace the depth-framework bullet with:
+- [improvement-checklist.md](./references/improvement-checklist.md) - One-pass checklist, early exit, effort levels, self-check, quick test and change report
+In the patterns-evaluation bullet change "7 framework definitions, CLEAR scoring" to
+"default skeleton, seven framework presets, CLEAR scoring (canonical rubric)".
+
+EDIT 5 - section 6 "### Enhancement Complete When": replace the bullets with:
+- ✅ Mode detected from the user's own words, effort level set
+- ✅ Checklist pass recorded, or early exit stated
+- ✅ CLEAR screen applied and threshold met, or best version delivered with a note
+- ✅ Prompt delivered first, with open items and the change report
+- ✅ User can iterate or accept
+In "### Quality Targets" replace the "Framework Selection Accuracy" bullet with:
+- **Early exit**: a prompt that already passes the checklist comes back unchanged or minimally edited
+
+VERIFY
+Run: sed -n '/^## 4. RULES/,/^## 7. AGENT/p' .skilled/skills/sk-prompt/SKILL.md | rg -c "DEPTH|RICCE|perspectives|depth-framework"
+Expected: rg prints nothing (exit 1).

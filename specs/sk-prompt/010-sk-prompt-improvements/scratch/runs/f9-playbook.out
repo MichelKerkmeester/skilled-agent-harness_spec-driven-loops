@@ -1,0 +1,6 @@
+All five files edited; nothing else touched.
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/manual-testing-playbook/{escalation-tiers/prompt-improver-output-block.md, mode-detection/mode-prefix-keyword-collision.md, checklist-pass/repair-cycle-cap.md, escalation-tiers/escalation-trigger-thresholds.md, manual-testing-playbook.md}
+verify: `rg -n "five-field|resolved the mode ahead|Repair cycles: <n>|Best CLEAR:|standard effort for escalated" .skilled/skills/sk-prompt/manual-testing-playbook` → no output, exit 1; repair-cycle-cap.md residual check for `Repair cycles:|Best CLEAR:` → no output, exit 1
+notes: within prompt-improver-output-block.md the remaining field-count phrases ("five labelled fields", "All five labels present", "all five documented labels") were also moved to seven so the pass criterion and its expected-signal lines agree; the enumerated five-name field lists in that file's description/objective/prompt lines were left byte-identical as instructed.

@@ -1,0 +1,6 @@
+Both verify commands pass, fence balance holds, and section 10 keeps the only CLEAR rubric.
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/references/patterns-evaluation.md
+verify: `rg -c "DEPTH|select_optimal_framework|score_frameworks"` → no output, exit 1; `rg -n "^### Default Skeleton|^### Choosing a Preset|^### Preset Fit Table"` → 40:### Default Skeleton, 56:### Choosing a Preset, 65:### Preset Fit Table (exit 0)
+notes: also dropped the now-orphaned `depth_bonus: 5  # points` variable in the same `excellence_formula` yaml, since edit 4 removed the term it fed; still stale outside this file: "Framework Quick Select" in section 15 and the RCAF-heavy guidance in section 14.

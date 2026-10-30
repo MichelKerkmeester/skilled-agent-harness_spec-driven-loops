@@ -1,0 +1,12 @@
+Three files created; the documented router block executes unmodified and all fixtures agree with it.
+
+- `.skilled/skills/sk-prompt/benchmark/router/route_contract.py` — extracts the one python fence under `### Smart Router Pseudocode` (exit 2 on zero or multiple), execs it with `__file__` pointing at `ROUTER.md` so `SKILL_ROOT` resolves to the skill folder, and diffs only the `expect` keys, treating a missing `load_level` as `STANDARD`.
+- `.skilled/skills/sk-prompt/benchmark/router/fixtures.json` — the 12 cases.
+- `.skilled/skills/sk-prompt/benchmark/router/run_fixtures.sh` — executable runner.
+
+`py_compile` left a `__pycache__` in the router directory; removed it, so only the three files remain.
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/benchmark/router/route_contract.py
+verify: bash .skilled/skills/sk-prompt/benchmark/router/run_fixtures.sh → "PASSED 12/12 fixtures", exit=0; python3 -m py_compile .skilled/skills/sk-prompt/benchmark/router/route_contract.py → compiled
+notes: none

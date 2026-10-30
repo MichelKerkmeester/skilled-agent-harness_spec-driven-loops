@@ -1,0 +1,9 @@
+Both files edited and verified.
+
+- `.skilled/skills/sk-prompt/ROUTER.md`: quote regex now covers double, single and curly quotes; `drop_quote` reads the first non-empty group; lead-in regex covers `prompt/improve/enhance/refine/rewrite` (optionally `this/the/my/it`, optionally `prompt`, `is`) before the colon; comment block rewritten to match; `EFFORT_COMMANDS` plus `command_conflict()` added after `detect_command_intent()`, whose comment now points at the conflict reporter; `route_prompt_improver_resources()` returns a `COMMAND_CONFLICT` disambiguation result before any loading.
+- `.skilled/skills/sk-prompt/benchmark/router/fixtures.json`: 7 fixtures appended (12 existing + 7 = 19 entries, JSON parses).
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/ROUTER.md, .skilled/skills/sk-prompt/benchmark/router/fixtures.json
+verify: `bash .skilled/skills/sk-prompt/benchmark/router/run_fixtures.sh` → `PASSED 19/19 fixtures` (exit 0)
+notes: the old quote regex held escaped `\u201c` text rather than real curly quotes, so the new literal-quote pattern is the first version that can actually match them; unchanged expectations were left untouched.

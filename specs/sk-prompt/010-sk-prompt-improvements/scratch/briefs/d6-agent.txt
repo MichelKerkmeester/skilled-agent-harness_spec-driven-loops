@@ -1,0 +1,46 @@
+TASK: literal line edits in one file, .skilled/agents/prompt-improver.md. Read only this file.
+Each edit names the current line number, the old text and the new text. If a line number has
+shifted, find the old text. Change nothing else; never touch the "Model Eligibility" section.
+
+L3  old: description: "Prompt-improver specialist: framework selection, CLEAR validation, dispatch-ready packages."
+    new: description: "Prompt-improver specialist: one-pass checklist, CLEAR screening, dispatch-ready packages."
+L24 old: This agent selects the best-fit framework, applies DEPTH at the right energy level, validates the result with CLEAR,
+    new: This agent runs the one-pass improvement checklist at the right effort level, builds from the default skeleton or a named preset, screens the result with CLEAR,
+L86 old: score the seven frameworks against the task,
+    new: run the ten-row checklist against the task, choose the default skeleton or a named preset,
+L87 old: Choose DEPTH energy, build the enhanced prompt,
+    new: Map `complexity_hint` to effort (1-3 quick, 4-7 standard, 8-10 thorough), build the enhanced prompt,
+L88 old: Apply CLEAR scoring, retry exactly once if the prompt misses the quality floor,
+    new: Apply the CLEAR screen, repair up to 3 cycles if the prompt misses the threshold, record the quick test result or NOT RUN,
+L108 old: Canonical source for seven frameworks, DEPTH, and CLEAR; read before composing
+     new: Canonical source for the checklist, skeleton and presets, and CLEAR; read before composing
+L134 old: 7 frameworks, DEPTH, CLEAR scoring
+     new: One-pass checklist, presets, CLEAR screening
+L173 old: Run full framework scoring + Standard DEPTH + CLEAR validation
+     new: Run the thorough checklist + quick test + CLEAR screening
+L207 old: without framework selection and CLEAR validation context.
+     new: without the checklist result and CLEAR screening context.
+L216 old: CLEAR cannot be brought above the minimum floor after one retry.
+     new: CLEAR cannot be brought above the threshold after 3 repair cycles.
+L285 old: Use `complexity_hint` to choose DEPTH energy and escalation severity.
+     new: Use `complexity_hint` to choose the effort level and escalation severity.
+L392 old: the canonical source for the seven frameworks, DEPTH, and CLEAR.
+     new: the canonical source for the checklist, skeleton and presets, and CLEAR.
+L405 old: Select the best-fit prompt framework
+     new: Run the one-pass checklist
+L406 old: Apply DEPTH + CLEAR validation
+     new: Apply CLEAR screening
+L405-406 sit inside an ASCII box: pad each new line with spaces so the closing │ stays in the
+same column as the lines around it.
+
+Then find the structured output block in this file (the lines starting FRAMEWORK:, CLEAR_SCORE:,
+RATIONALE:, ENHANCED_PROMPT:, ESCALATION_NOTES:). Insert directly after the CLEAR_SCORE line:
+TEST: <ran: summary of old vs new on 2-3 inputs | NOT RUN>
+CHANGES: <Added ...; Changed ...; Removed ...; Skipped ...>
+matching that block's indentation. If the block appears more than once, edit each occurrence.
+
+VERIFY
+Run: rg -n "DEPTH|exactly once|one retry|seven frameworks" .skilled/agents/prompt-improver.md
+Expected: rg prints nothing (exit 1).
+Run: rg -c "^ *TEST: <ran" .skilled/agents/prompt-improver.md
+Expected: 1 or more.

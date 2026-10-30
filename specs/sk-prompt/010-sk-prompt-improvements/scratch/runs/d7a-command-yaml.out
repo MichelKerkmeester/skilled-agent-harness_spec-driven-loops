@@ -1,0 +1,13 @@
+Both files now carry the checklist model: `action`, the `# the checklist/CLEAR engine` comment, the `checklist:` conditional reference, the effort-selecting `enhancement_mode`, the Load activity wording, the one-pass checklist INLINE activities, the reworked score/deliver phases, the new `clear_below_threshold`, and in the confirm file the renamed checkpoint list, `after_checklist`/`after_draft`/`after_screen` gates and the checkpoint-chained INLINE activity. Every YAML key not named in the task is untouched.
+
+Verification, from the final state:
+
+- `rg -n "DEPTH|depth-framework|after_discover|after_prototype|after_test|Discover|Harmonize|perspectives" <both files>` → no output, exit 1.
+- `python3 -c "import yaml..."` → `yaml ok`, exit 0.
+- Scoped `git status` shows only the two target files changed by me; `prompt_improve_presentation.txt` was already modified in the worktree before this task and I did not touch it.
+
+PI_HANDBACK
+file: .skilled/commands/prompt/assets/prompt_improve_auto.yaml
+file: .skilled/commands/prompt/assets/prompt_improve_confirm.yaml
+verify: rg -n "DEPTH|depth-framework|after_discover|after_prototype|after_test|Discover|Harmonize|perspectives" .skilled/commands/prompt/assets/prompt_improve_auto.yaml .skilled/commands/prompt/assets/prompt_improve_confirm.yaml → no output, exit 1; python3 yaml.safe_load on both → yaml ok, exit 0
+notes: dropped the now-stale `# C only offered on the framework-choice template` inline comment on after_checklist's accepted_responses, since C is no longer accepted there; prompt_improve_presentation.txt was already dirty before this task and is not mine.

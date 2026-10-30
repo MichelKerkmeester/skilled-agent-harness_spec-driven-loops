@@ -1,0 +1,49 @@
+TASK: literal text replacements in 12 playbook files under
+.skilled/skills/sk-prompt/manual-testing-playbook/ . Read only these files. Change only the matched
+text; keep everything else byte-identical.
+
+Files:
+  smart-routing/unknown-fallback-checklist.md
+  smart-routing/ambiguity-delta-tiebreaker.md
+  smart-routing/on-demand-keyword-loading.md
+  smart-routing/intent-model-keyword-scoring.md
+  escalation-tiers/cli-card-five-question-fast-path.md
+  escalation-tiers/escalation-trigger-thresholds.md
+  escalation-tiers/prompt-improver-input-payload.md
+  clear-scoring/dimension-floors-block.md
+  clear-scoring/clear-five-dimensions.md
+  clear-scoring/dimension-drilldown-rationale.md
+  format-modes/format-mode-delivery.md
+  framework-selection/user-named-framework-override.md
+
+Replacements, applied in every file where they occur:
+1. `../../references/depth-framework.md` -> `../../references/improvement-checklist.md`
+2. `references/depth-framework.md` -> `references/improvement-checklist.md`
+3. `depth-framework.md` (any remaining bare mention) -> `improvement-checklist.md`
+4. `Quick vs Standard DEPTH energy` -> `quick vs standard effort`
+5. `Standard DEPTH energy` -> `standard effort`
+6. `DEPTH/CLEAR` -> `the checklist and CLEAR`
+7. `after DEPTH Test` -> `after the checklist pass`
+8. `standard DEPTH/CLEAR` -> `the standard checklist and CLEAR`
+
+Then fix the role cell of every anchor-table row that now points at improvement-checklist.md so
+it describes the checklist, using these exact cells:
+- unknown-fallback-checklist.md: `DEFAULT_RESOURCE loaded under UNKNOWN_FALLBACK`  (keep as is)
+- ambiguity-delta-tiebreaker.md, intent-model-keyword-scoring.md: `TEXT_ENHANCE default resource`
+- on-demand-keyword-loading.md: `Default resource loaded on ON_DEMAND`
+- cli-card-five-question-fast-path.md: `Quick vs standard effort that separates inline from escalated handling`
+- escalation-trigger-thresholds.md: `Thorough effort applied after escalation`
+- prompt-improver-input-payload.md: `Checklist pass applied after payload acceptance`
+- dimension-floors-block.md: `Repair up to 3 cycles on a floor breach`
+- clear-five-dimensions.md: `CLEAR screen after the checklist pass`
+- dimension-drilldown-rationale.md: `Reason written before each score`
+- user-named-framework-override.md: `One-pass checklist applied to the named preset`
+
+In dimension-floors-block.md also replace the step text `Inspect `depth-framework.md` Test phase
+for improvement triggers.` (after replacement 3 it reads `improvement-checklist.md` Test phase) with
+`Inspect `improvement-checklist.md` section 6 for the repair rule.` and in its rg command keep the
+pattern but point it at `.skilled/skills/sk-prompt/references/improvement-checklist.md`.
+
+VERIFY
+Run: rg -n "DEPTH|depth-framework" .skilled/skills/sk-prompt/manual-testing-playbook/smart-routing .skilled/skills/sk-prompt/manual-testing-playbook/escalation-tiers .skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/dimension-floors-block.md .skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/clear-five-dimensions.md .skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/dimension-drilldown-rationale.md .skilled/skills/sk-prompt/manual-testing-playbook/format-modes .skilled/skills/sk-prompt/manual-testing-playbook/framework-selection/user-named-framework-override.md
+Expected: rg prints nothing (exit 1).

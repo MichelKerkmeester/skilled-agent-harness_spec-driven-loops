@@ -1,0 +1,10 @@
+Wrote the release notes. Structure verified: frontmatter intact, 7 `##` sections, no spec paths or ids, 104 lines.
+
+- Sections: Why This Release, What's New at a Glance, then four topic sections with 13 `####` items, then Upgrade.
+- All mandated facts are stated: DEPTH removal and the ten-row checklist, early exit, the three effort levels plus `$raw`, the local quick test with its NOT RUN fallback, frameworks as presets, CLEAR at `patterns-evaluation.md` section 10 with 3-cycle repair, deliver-first with numbered open items, the routing exclusions and whole-token matching, the twelve router fixtures, the `TEST:`/`CHANGES:` output lines and renamed confirm checkpoints, and model-agnostic status.
+- I dropped the `&nbsp;` spacer lines the v3 file uses between items; the first draft came to 122 lines and the task's ceiling is 110.
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/changelog/v4.0.0.0.md
+verify: `rg -c "^## "` → 7 (exit 0, expected 4 or more); `rg -n "specs/|REQ-|T0[0-9]"` → no output, exit 1 (expected). Also `wc -l` → 104 (within 60-110).
+notes: v3's `&nbsp;` spacers were removed to meet the line ceiling; heading and divider structure otherwise mirrors v3.

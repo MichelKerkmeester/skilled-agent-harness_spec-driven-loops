@@ -1,0 +1,30 @@
+TASK: rewrite one playbook scenario file wholly.
+File: .skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/early-exit-good-prompt.md
+It still holds an old DEPTH-era scenario. Read it once only for its SHAPE: frontmatter (title,
+description, version), H1, the five numbered H2 sections (OVERVIEW with "Why This Matters",
+SCENARIO CONTRACT bullets, TEST EXECUTION with Prompt / Commands / Expected / Evidence /
+Pass / Fail / Failure Triage / Optional Supplemental Checks, SOURCE FILES with two tables,
+SOURCE METADATA bullets) and the --- dividers. Then overwrite all of it with new content in that
+same shape. Also read .skilled/skills/sk-prompt/references/improvement-checklist.md. Read nothing else.
+Do not mention DEPTH, phases, rounds, perspectives or RICCE anywhere.
+
+Scenario ID: SP-010
+Title (frontmatter title and H1): "SP-010 -- Early exit returns a good prompt unchanged"
+Frontmatter version: 3.0.0.0
+Objective: Confirm a prompt that already covers every needed row comes back unchanged or minimally edited, with a statement that no broader improvement was needed.
+Real user request: `Here is my prompt, it already has a task, context, constraints and an output format. Improve it if it needs it.`
+Expected signals and desired outcome: The reply returns the prompt unchanged or with a minimal edit, names the rows already covered, and says no broader improvement was needed.
+Pass/fail: PASS if the prompt is unchanged or minimally changed with the statement present; FAIL if it is rewritten wholesale or padded with a role or examples it did not need.
+Commands: 1) an `sk-prompt:` line with the real user request; 2) an `agent: @prompt-improver ...`
+line in the same style as the old file, with constraints matching the objective; 3) a `bash: rg`
+line that finds the rule in `../../references/improvement-checklist.md` section 3.
+Implementation And Test Anchors table: `../../references/improvement-checklist.md` and `../../SKILL.md`,
+each with a one-line role.
+SOURCE METADATA: Group: Checklist Pass; Playbook ID: SP-010; Canonical root source:
+`manual-testing-playbook.md`; Feature file path: `checklist-pass/early-exit-good-prompt.md`.
+
+VERIFY
+Run: rg -c "DEPTH|RICCE|erspective|Harmonize|depth-framework" .skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/early-exit-good-prompt.md
+Expected: rg prints nothing (exit 1).
+Run: rg -c "^## " .skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/early-exit-good-prompt.md
+Expected: 5

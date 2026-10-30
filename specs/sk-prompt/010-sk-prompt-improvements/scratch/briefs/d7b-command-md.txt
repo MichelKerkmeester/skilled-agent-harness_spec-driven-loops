@@ -1,0 +1,35 @@
+TASK: literal edits in two files:
+  .skilled/commands/prompt/improve.md
+  .skilled/commands/prompt/assets/prompt_improve_presentation.txt
+Read only these two files.
+
+improve.md
+1. Line 2 description: replace `frameworks, DEPTH, CLEAR scoring` with `one-pass checklist, CLEAR screening`.
+2. Line 33: replace `the DEPTH pipeline` with `the one-pass checklist`.
+3. Line 84: replace `It runs the DEPTH pipeline for the resolved enhancement mode` with
+   `It runs the one-pass checklist at the resolved effort level`.
+4. Line 88: the sentence becomes
+   `The confirm workflow pauses after the checklist pass, after the draft and after the CLEAR screen.`
+
+prompt_improve_presentation.txt
+5. Lines 51-54 become:
+    B) $improve — Standard enhancement (all ten checklist rows)
+    C) $short — Quick refinement (four checklist rows)
+    D) $refine — Maximum optimization (all rows plus the quick test)
+    E) $raw — No checklist, format only
+6. Line 64: `B) Interactive — confirm at each DEPTH phase` becomes
+   `B) Interactive — confirm after the checklist, the draft and the screen`
+7. In the Transparency Report block (about lines 136-142):
+   `Mode: $[MODE] | Energy: [LEVEL]` becomes `Mode: $[MODE] | Effort: [quick|standard|thorough]`
+   `DEPTH Rounds: [N]` becomes `Checklist: [N present, N added, N not needed]`
+   `Perspectives: [COUNT] ([LIST])` becomes `Quick test: [ran: summary | NOT RUN]`
+   After the CLEAR dimension line add, at the same indentation as `CLEAR Score:`:
+   `Open items: [numbered list or None]`
+   `Changes: Added [..] | Changed [..] | Removed [..] | Skipped [..]`
+   Also change the `Framework: [SELECTED]` line to `Framework: [default skeleton | preset name]`.
+8. Search the presentation file for any other "DEPTH" and replace it with "checklist"; list each
+   such line in notes.
+
+VERIFY
+Run: rg -n "DEPTH|Perspectives|Energy" .skilled/commands/prompt/improve.md .skilled/commands/prompt/assets/prompt_improve_presentation.txt
+Expected: rg prints nothing (exit 1).

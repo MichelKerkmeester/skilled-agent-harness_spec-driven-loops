@@ -1,0 +1,52 @@
+TASK: create three new files under .skilled/skills/sk-prompt/benchmark/router/ . Read only
+.skilled/skills/sk-prompt/ROUTER.md (its "### Smart Router Pseudocode" python block). Python 3.9,
+standard library only. This is code: keep it small, no classes, no dependencies.
+
+FILE 1: route_contract.py
+- Top comment header in this shape, then a module docstring of 3-5 lines saying it runs the real
+  router block from ROUTER.md against fixtures, so routing is checkable without a model:
+  #!/usr/bin/env python3
+  # ───────────────────────────────────────────────────────────────
+  # COMPONENT: SK-PROMPT ROUTE CONTRACT
+  # ───────────────────────────────────────────────────────────────
+- ROUTER = Path(__file__).resolve().parents[2] / "ROUTER.md"
+- Extract the one ```python fenced block that follows the "### Smart Router Pseudocode" heading.
+  Fail with exit 2 and a message if it is missing or there is more than one.
+- exec the block in a dict namespace holding "__file__": str(ROUTER), "__name__": "sk_prompt_router",
+  and "load": a function that does nothing.
+- Read the fixtures file given as argv[1]. Each fixture: {"id", "request", "expect"}. "expect" may
+  hold "intents" (exact list), "resources" (exact list, order kept), "load_level" (exact string).
+- For each fixture call route_prompt_improver_resources(request) and compare only the keys
+  present in expect. A missing load_level in the result counts as "STANDARD".
+- Print one line per failing fixture: FAIL <id>: <key> expected <x> got <y>.
+- Last line: "PASSED n/n fixtures" with exit 0 when all pass, else "FAILED k/n fixtures" exit 1.
+
+FILE 2: fixtures.json - a JSON list with exactly these 12 fixtures (C = "references/improvement-checklist.md",
+P = "references/patterns-evaluation.md"; write the full paths, not the letters):
+ 1 improve-command: "$improve make this better" -> intents ["TEXT_ENHANCE"], resources [C, P]
+ 2 raw-command: "$raw just pass it through" -> intents ["RAW"], resources [], load_level "RAW"
+ 3 raw-mid-text: "please $raw this one" -> resources [], load_level "RAW"
+ 4 short-command: "$short tighten this" -> intents ["TEXT_ENHANCE"]
+ 5 json-command: "$json turn this into an API prompt" -> intents ["FORMAT_JSON"], resources [C, "assets/format-guide-json.md", P]
+ 6 pasted-fence-json: "improve this prompt:\n```\nReturn $json with the fields name and id\n```" -> intents ["TEXT_ENHANCE"]
+ 7 pasted-quote-yaml: "improve \"write a yaml config file for nginx please\" for me" -> intents ["TEXT_ENHANCE"]
+ 8 not-a-command-token: "$jsonx improve this prompt" -> intents ["TEXT_ENHANCE"]
+ 9 unknown-fallback: "hello there" -> load_level "UNKNOWN_FALLBACK", resources [C]
+10 framework-named: "use the costar framework" -> intents ["FRAMEWORK"], resources [P]
+11 cli-card: "show the cli prompt quality card" -> intents ["CLI_FAST_PATH"], resources [C, "assets/cli-prompt-quality-card.md"]
+12 lead-in-guard: "improve this. prompt: write yaml for my server config\n\nthanks" -> intents ["TEXT_ENHANCE"]
+
+FILE 3: run_fixtures.sh
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")"
+python3 -B route_contract.py fixtures.json
+Make it executable (chmod +x).
+
+Do not edit ROUTER.md. If a fixture fails, do NOT change the fixture or the router to make it
+pass; report the failing lines in notes.
+
+VERIFY
+Run: bash .skilled/skills/sk-prompt/benchmark/router/run_fixtures.sh; echo "exit=$?"
+Expected: PASSED 12/12 fixtures and exit=0, or report the FAIL lines in notes.
+Run: python3 -m py_compile .skilled/skills/sk-prompt/benchmark/router/route_contract.py && echo compiled

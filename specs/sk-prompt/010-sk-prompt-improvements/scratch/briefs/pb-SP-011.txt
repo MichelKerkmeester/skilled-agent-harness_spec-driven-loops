@@ -1,0 +1,30 @@
+TASK: rewrite one playbook scenario file wholly.
+File: .skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/repair-cycle-cap.md
+It still holds an old DEPTH-era scenario. Read it once only for its SHAPE: frontmatter (title,
+description, version), H1, the five numbered H2 sections (OVERVIEW with "Why This Matters",
+SCENARIO CONTRACT bullets, TEST EXECUTION with Prompt / Commands / Expected / Evidence /
+Pass / Fail / Failure Triage / Optional Supplemental Checks, SOURCE FILES with two tables,
+SOURCE METADATA bullets) and the --- dividers. Then overwrite all of it with new content in that
+same shape. Also read .skilled/skills/sk-prompt/references/improvement-checklist.md. Read nothing else.
+Do not mention DEPTH, phases, rounds, perspectives or RICCE anywhere.
+
+Scenario ID: SP-011
+Title (frontmatter title and H1): "SP-011 -- CLEAR repair stops after 3 cycles"
+Frontmatter version: 3.0.0.0
+Objective: Confirm CLEAR-driven repair stops after at most 3 cycles and delivers the best version with a note naming the weakest dimension.
+Real user request: `Improve my prompt for technical writing, and if it cannot reach 40/50 just give me the best version with notes.`
+Expected signals and desired outcome: The report shows at most 3 repair cycles, the best CLEAR score, and a note naming the weakest dimension when the threshold is unmet.
+Pass/fail: PASS if no fourth cycle starts and an unmet threshold is disclosed; FAIL if a fourth cycle starts or a below-threshold result is presented as passing.
+Commands: 1) an `sk-prompt:` line with the real user request; 2) an `agent: @prompt-improver ...`
+line in the same style as the old file, with constraints matching the objective; 3) a `bash: rg`
+line that finds the rule in `../../references/improvement-checklist.md` section 6.
+Implementation And Test Anchors table: `../../references/improvement-checklist.md` and `../../SKILL.md`,
+each with a one-line role.
+SOURCE METADATA: Group: Checklist Pass; Playbook ID: SP-011; Canonical root source:
+`manual-testing-playbook.md`; Feature file path: `checklist-pass/repair-cycle-cap.md`.
+
+VERIFY
+Run: rg -c "DEPTH|RICCE|erspective|Harmonize|depth-framework" .skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/repair-cycle-cap.md
+Expected: rg prints nothing (exit 1).
+Run: rg -c "^## " .skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/repair-cycle-cap.md
+Expected: 5

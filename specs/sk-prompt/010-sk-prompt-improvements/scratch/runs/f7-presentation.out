@@ -1,0 +1,6 @@
+All four edits landed and the verify gate is clean.
+
+PI_HANDBACK
+file: .skilled/commands/prompt/assets/prompt_improve_presentation.txt
+verify: rg -n "92% success|Framework Choice|Maximum question interactions|complexity 7\+" .skilled/commands/prompt/assets/prompt_improve_presentation.txt → no output, exit=1 (as expected)
+notes: The step-4 sweep (rg -n -i "SimplificationChoice|FrameworkChoice|Framework choice|Simplification choice") also returned no matches, exit=1, so no other reference or section index needed repointing; the only surviving "Framework" strings are the Results Display transparency field and the STATUS line, which were out of scope and left byte-identical.

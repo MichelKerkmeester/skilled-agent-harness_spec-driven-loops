@@ -1,0 +1,31 @@
+TASK: rewrite one playbook scenario file wholly.
+File: .skilled/skills/sk-prompt/manual-testing-playbook/mode-detection/raw-mode-passthrough.md
+It holds an outdated scenario. Read it once for its SHAPE only: frontmatter (title, description,
+version), H1, the five numbered H2 sections (OVERVIEW with "Why This Matters", SCENARIO CONTRACT
+bullets, TEST EXECUTION with Prompt / Commands / Expected / Evidence / Pass / Fail / Failure
+Triage / Optional Supplemental Checks, SOURCE FILES with two tables, SOURCE METADATA bullets) and
+the --- dividers. Overwrite all of it with new content in that same shape. Also read
+.skilled/skills/sk-prompt/references/improvement-checklist.md. Read nothing else.
+Do not mention DEPTH, phases, rounds, energy, perspectives or RICCE anywhere.
+
+Scenario ID: SP-002
+Title (frontmatter title and H1): "SP-002 -- $raw passes through with no checklist"
+Frontmatter version: 3.0.0.0
+Objective: Confirm `$raw` skips the checklist and the CLEAR screen and returns the input with only the asked-for cleanup.
+Real user request: `$raw clean up my prompt's whitespace only`
+Expected signals and desired outcome: Output matches the input apart from whitespace; a one-line notice reads Mode: $raw (no checklist); no CLEAR breakdown, no open items and no change report.
+Pass/fail: PASS if the output differs from the input only in whitespace and no screen or report appears; FAIL if any checklist row, CLEAR score or rewrite appears.
+Commands: 1) an `sk-prompt:` line with the real user request; 2) an `agent: @prompt-improver ...`
+line in the same style as the old file, with constraints matching the objective; 3) a `bash: rg`
+line that finds the rule in `../../ROUTER.md` (NO_LOAD_INTENTS).
+Implementation And Test Anchors table: list only files under ../../ that exist among
+`../../references/improvement-checklist.md`, `../../references/patterns-evaluation.md`,
+`../../ROUTER.md` and `../../SKILL.md`, each with a one-line role.
+SOURCE METADATA: Group: Mode Detection; Playbook ID: SP-002; Canonical root source:
+`manual-testing-playbook.md`; Feature file path: `mode-detection/raw-mode-passthrough.md`.
+
+VERIFY
+Run: rg -c "DEPTH|RICCE|erspective|Harmonize|depth-framework|rounds" .skilled/skills/sk-prompt/manual-testing-playbook/mode-detection/raw-mode-passthrough.md
+Expected: rg prints nothing (exit 1).
+Run: rg -c "^## " .skilled/skills/sk-prompt/manual-testing-playbook/mode-detection/raw-mode-passthrough.md
+Expected: 5

@@ -1,0 +1,82 @@
+TASK: replace the whole content of one file.
+File: .skilled/skills/sk-prompt/references/improvement-checklist.md
+It currently holds the old "DEPTH Thinking Framework" text. Overwrite all of it. Do not read any
+other file. Target length: 140 to 220 lines.
+
+Write this frontmatter exactly:
+---
+title: "Improvement Checklist"
+description: "One-pass prompt improvement: a ten-row component checklist, an early exit for good prompts, three effort levels, one self-check, an optional quick test and a change report."
+trigger_phrases:
+  - "improvement checklist"
+  - "one pass prompt check"
+  - "prompt early exit"
+  - "prompt effort level"
+  - "prompt quick test"
+  - "prompt change report"
+importance_tier: important
+contextType: implementation
+version: 1.0.0.0
+---
+
+Then an H1 "# Improvement Checklist", one intro sentence, and these numbered H2 sections,
+each separated by a line holding only `---`:
+
+## 1. OVERVIEW
+Say: sk-prompt improves a prompt in one pass. It checks the prompt once against ten rows,
+writes the prompt from one component skeleton, checks it once against the stated success
+criteria, and delivers. There are no rounds and no phases.
+
+## 2. THE CHECKLIST
+A numbered list of exactly these ten rows, one line each:
+1. Task and requested outcome.
+2. Role or audience, only when it changes the response.
+3. Context and source facts the model needs.
+4. Constraints, priorities and how conflicts between them resolve.
+5. Steps, tools or process, only when the task needs them.
+6. Output format, schema and length limits.
+7. Examples when they help: at least 1, about 3 typical, at most 5, in `<example>` tags with identical formatting.
+8. Success criteria, edge cases or a way to verify the answer.
+9. Contradictions, assumptions and missing information.
+10. Wording: plain instructions with the reason given; soften CRITICAL and MUST rather than banning capitals.
+Then say: mark every row present, absent or not needed, with a one-line reason. A row marked not
+needed is not added. No prompt has to contain every row.
+
+## 3. EARLY EXIT
+When every row is present or not needed, return the prompt unchanged or with the smallest edit
+asked for, and say no broader improvement was needed.
+
+## 4. EFFORT LEVELS
+A short bullet list: quick (`$short`) checks rows 1, 3, 4 and 6 and runs no quick test;
+standard (the default and `$text`, `$improve`, `$json`, `$yaml`) checks all ten rows;
+thorough (`$refine`) checks all ten rows and attempts the quick test. `$raw` runs no pass.
+Say: effort changes checklist breadth and whether the quick test runs, never a hidden count of
+thinking rounds.
+
+## 5. SELF-CHECK AND QUICK TEST
+Self-check the draft once against its success criteria before delivering. The quick test runs
+2 or 3 representative inputs through the old and the new prompt when a target model can run
+them, and compares the outputs. When it cannot run, report `Quick test: NOT RUN`. It runs
+locally and depends on no hosted eval service.
+
+## 6. CLEAR SCREEN
+Say: CLEAR stays as a short structural screen, defined once in
+[patterns-evaluation.md](./patterns-evaluation.md) section 10. Write the reason before each
+score. Pass at 40 of 50. Below that, revise the weakest dimension, up to 3 repair cycles, then
+deliver the best version with a note. A CLEAR score is not proof the prompt works.
+
+## 7. DELIVERY AND CHANGE REPORT
+Deliver first. List every default and assumption as a numbered open item after the prompt,
+never inside it. Ask one question only when there is no prompt and no task, or when two mode
+commands conflict. Preserve the user's guidelines and examples as closely as possible, word
+for word only when asked. Warn when the prompt grows past about 3 times the original. End with
+a change report: Added, Changed, Removed, Skipped.
+
+## 8. QUICK REFERENCE
+A compact bullet recap of sections 2 to 7, at most 8 bullets.
+
+VERIFY
+Run: rg -c "DEPTH|Discover|Harmonize" .skilled/skills/sk-prompt/references/improvement-checklist.md
+Expected: 0 (rg prints nothing and exits 1).
+Run: rg -c "^## " .skilled/skills/sk-prompt/references/improvement-checklist.md
+Expected: 8

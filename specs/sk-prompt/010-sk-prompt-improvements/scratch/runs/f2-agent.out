@@ -1,0 +1,6 @@
+All nine edits landed, each new string present exactly once, each old string gone, ASCII box closing `│` still at column index 74 on the edited line and both neighbours.
+
+PI_HANDBACK
+file: .skilled/agents/prompt-improver.md
+verify: `rg -n -i "retry at most once|primary framework|score frameworks|>= 7|<= 6" .skilled/agents/prompt-improver.md` → no output, exit 1 (expected)
+notes: Step 9 hit list — one remaining match rewritten: line 317 `□ Read the canonical \`sk-prompt\` sources before selecting a framework` → `... before choosing the default skeleton or a preset`. That was the only hit from the step-9 pattern set after the first eight edits.

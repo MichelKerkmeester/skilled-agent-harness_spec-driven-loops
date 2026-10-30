@@ -1,0 +1,31 @@
+TASK: rewrite one playbook scenario file wholly.
+File: .skilled/skills/sk-prompt/manual-testing-playbook/mode-detection/mode-prefix-keyword-collision.md
+It holds an outdated scenario. Read it once for its SHAPE only: frontmatter (title, description,
+version), H1, the five numbered H2 sections (OVERVIEW with "Why This Matters", SCENARIO CONTRACT
+bullets, TEST EXECUTION with Prompt / Commands / Expected / Evidence / Pass / Fail / Failure
+Triage / Optional Supplemental Checks, SOURCE FILES with two tables, SOURCE METADATA bullets) and
+the --- dividers. Overwrite all of it with new content in that same shape. Also read
+.skilled/skills/sk-prompt/references/improvement-checklist.md. Read nothing else.
+Do not mention DEPTH, phases, rounds, energy, perspectives or RICCE anywhere.
+
+Scenario ID: SP-004
+Title (frontmatter title and H1): "SP-004 -- Mode token wins over keyword scoring"
+Frontmatter version: 3.0.0.0
+Objective: Confirm a whole `$short` token fixes the mode even when the request also says improve and refine, and that keyword scores do not change it.
+Real user request: `$short improve and refine my prompt`
+Expected signals and desired outcome: Mode: $short with quick effort; the report notes the token resolved the mode ahead of keyword scoring.
+Pass/fail: PASS if the mode is $short at quick effort; FAIL if keyword scoring moves it to standard or thorough effort.
+Commands: 1) an `sk-prompt:` line with the real user request; 2) an `agent: @prompt-improver ...`
+line in the same style as the old file, with constraints matching the objective; 3) a `bash: rg`
+line that finds the rule in `../../ROUTER.md` (detect_command_intent).
+Implementation And Test Anchors table: list only files under ../../ that exist among
+`../../references/improvement-checklist.md`, `../../references/patterns-evaluation.md`,
+`../../ROUTER.md` and `../../SKILL.md`, each with a one-line role.
+SOURCE METADATA: Group: Mode Detection; Playbook ID: SP-004; Canonical root source:
+`manual-testing-playbook.md`; Feature file path: `mode-detection/mode-prefix-keyword-collision.md`.
+
+VERIFY
+Run: rg -c "DEPTH|RICCE|erspective|Harmonize|depth-framework|rounds" .skilled/skills/sk-prompt/manual-testing-playbook/mode-detection/mode-prefix-keyword-collision.md
+Expected: rg prints nothing (exit 1).
+Run: rg -c "^## " .skilled/skills/sk-prompt/manual-testing-playbook/mode-detection/mode-prefix-keyword-collision.md
+Expected: 5

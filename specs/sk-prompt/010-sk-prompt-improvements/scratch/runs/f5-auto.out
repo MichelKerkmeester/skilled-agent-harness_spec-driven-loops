@@ -1,0 +1,12 @@
+Both verify commands pass: rg finds no stale phrases (exit 1) and the YAML parses.
+
+Changes made as specified:
+- `prompt_improve_auto.yaml`: phase_2 AGENT capture list now includes TEST and CHANGES; `framework` output line reworded to "default skeleton or preset name" with `test` and `changes` outputs added after `enhanced_prompt`; `quality_gates.clear_threshold.blocking` now `soft` with the best-version `on_fail` text; the output block split into an OK-with-NOTE line plus the narrowed FAIL line; frontmatter `framework` placeholder now lists the default skeleton first.
+- `improve.md`: workflow summary line now describes delivering the best version with a note instead of stopping.
+
+Pre-existing uncommitted edits elsewhere in both files (from earlier work in this session) were left untouched.
+
+PI_HANDBACK
+file: .skilled/commands/prompt/assets/prompt_improve_auto.yaml, .skilled/commands/prompt/improve.md
+verify: `rg -n "sub-threshold|stops only if|blocking: hard" …` → no output, exit 1; `python3 -c "import yaml;yaml.safe_load(open('.skilled/commands/prompt/assets/prompt_improve_auto.yaml'));print('yaml ok')"` → `yaml ok`
+notes: neither file is committed; the diffs also carry earlier session edits that were already present before this task

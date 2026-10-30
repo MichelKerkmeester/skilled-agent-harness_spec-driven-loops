@@ -1,0 +1,51 @@
+TASK: literal edits in two files:
+  .skilled/commands/prompt/assets/prompt_improve_auto.yaml
+  .skilled/commands/prompt/assets/prompt_improve_confirm.yaml
+Read only these two files. Keep YAML valid; keep every key name not listed below.
+
+BOTH FILES
+1. `action:` line: replace `run DEPTH with checkpoints` (confirm) or `run DEPTH` (auto) with
+   `run the one-pass checklist with checkpoints` (confirm) or `run the one-pass checklist` (auto).
+2. Comment `# the DEPTH/CLEAR engine` becomes `# the checklist/CLEAR engine`.
+3. `depth: "references/depth-framework.md + references/patterns-evaluation.md"` becomes
+   `checklist: "references/improvement-checklist.md + references/patterns-evaluation.md"`.
+4. In `enhancement_mode:` replace `selects DEPTH depth + output format` with
+   `selects effort (short quick, refine thorough, else standard) + output format`.
+5. In the Load conditional_references activity replace `(depth set for` with `(checklist set for`.
+6. phase_3_score: replace the activity
+   "Pass at 40+/50 with all floors met; revise (return to Prototype, max 3 cycles) at 30-39; restart from Engineer below 30."
+   with
+   "Pass at 40+/50 with all floors met; below that, revise the weakest dimension, up to 3 repair cycles, then deliver the best version with a note."
+   and add one activity after the CLEAR score line:
+   "Write the reason before each dimension score."
+7. phase_4_deliver activity becomes:
+   "Render presentation.Results.Success with framework or preset, mode, dispatch, effort, the checklist result, the quick test result or NOT RUN, the CLEAR breakdown, open items and the change report."
+8. `clear_below_threshold:` value becomes "Revise up to 3 repair cycles, then deliver the best version with the score and a note."
+
+AUTO FILE ONLY - replace the three INLINE activities (standard/deep, quick, raw) with:
+      - "dispatch_mode INLINE, standard or thorough (text/improve/refine/auto): run the ten-row checklist (each row present, absent or not needed with a reason); exit early if the prompt already passes; write from the default skeleton or a named preset; self-check against the success criteria; thorough also runs the quick test."
+      - "dispatch_mode INLINE, quick (short): checklist rows 1, 3, 4 and 6 only; no quick test."
+      - "dispatch_mode INLINE, raw: pass through with no checklist; format only."
+
+CONFIRM FILE ONLY
+a. `purpose:` replace `with confirmation at each DEPTH phase` with `with confirmation at each checkpoint`.
+b. Comment `# pauses at the DEPTH checkpoints below` becomes `# pauses at the checkpoints below`.
+c. `checkpoints: [after_discover, after_prototype, after_test]` becomes
+   `checkpoints: [after_checklist, after_draft, after_screen]`.
+d. Under approval_gates rename the keys: after_discover -> after_checklist, after_prototype ->
+   after_draft, after_test -> after_screen. Triggers become:
+   after_checklist: "After the checklist pass marks each row (INLINE, non-raw)"
+   after_draft: "After the enhanced prompt is drafted"
+   after_screen: "After the CLEAR screen and quick test"
+   Keep each gate's prompt, accepted_responses and on_abort_action, except after_checklist's
+   prompt becomes "Show the checklist result and the chosen skeleton or preset; render presentation.SimplificationChoice for complexity 7+."
+   and its accepted_responses become ["A", "B"].
+e. Replace the INLINE activity and the "short mode uses ..." activity with:
+      - "dispatch_mode INLINE: checklist pass -> pause at approval_gates.after_checklist -> draft from the skeleton or a named preset -> pause at approval_gates.after_draft -> self-check, quick test when thorough, CLEAR screen -> pause at approval_gates.after_screen -> deliver."
+      - "short mode checks rows 1, 3, 4 and 6 only; raw mode passes through with no checklist and no checkpoints."
+
+VERIFY
+Run: rg -n "DEPTH|depth-framework|after_discover|after_prototype|after_test|Discover|Harmonize|perspectives" .skilled/commands/prompt/assets/prompt_improve_auto.yaml .skilled/commands/prompt/assets/prompt_improve_confirm.yaml
+Expected: rg prints nothing (exit 1).
+Run: python3 -c "import yaml,sys;[yaml.safe_load(open(f)) for f in sys.argv[1:]];print('yaml ok')" .skilled/commands/prompt/assets/prompt_improve_auto.yaml .skilled/commands/prompt/assets/prompt_improve_confirm.yaml
+Expected: yaml ok

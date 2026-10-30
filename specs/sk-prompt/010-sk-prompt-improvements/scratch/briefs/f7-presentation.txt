@@ -1,0 +1,31 @@
+TASK: literal edits in one file, .skilled/commands/prompt/assets/prompt_improve_presentation.txt.
+Read only this file. Keep everything else byte-identical.
+
+1. Under "## 2. Dashboard / Checkpoint Layout", delete the "Framework choice (complexity 5-6):"
+   label and its fenced block, and the "Simplification choice (complexity 7+):" label and its
+   fenced block. Put this in their place:
+
+Checklist checkpoint (confirm mode, after the checklist pass):
+
+```
+Checklist — [n] present, [n] absent, [n] not needed
+Shape: [default skeleton | preset name and reason]
+
+Continue to the draft, or revise the checklist? (continue / revise)
+```
+
+2. In the error recovery table:
+   - Row "Ambiguous intent": response becomes
+     `Improve the existing prompt by default and list "treated as an improvement, not a new prompt" as open item 1`
+   - Row "Pasted content, no context": response becomes
+     `Run a standard improvement and list the assumed goal as open item 1`
+   - Row "Conflicting signals": situation becomes `Two mode commands` and response becomes
+     `"You used both [$a] and [$b]. Which mode do you want?"`
+3. Replace the paragraph starting `Maximum question interactions:` with:
+   `Questions: at most one, and only when there is no prompt and no task or two mode commands conflict; raw mode asks none. Every other gap gets a stated default, listed as a numbered open item after the prompt.`
+4. Then run: rg -n -i "SimplificationChoice|FrameworkChoice|Framework choice|Simplification choice" .skilled/commands/prompt/assets/prompt_improve_presentation.txt
+   and fix any remaining reference (for example a section index) to point at the checklist checkpoint; list each in notes.
+
+VERIFY
+Run: rg -n "92% success|Framework Choice|Maximum question interactions|complexity 7\+" .skilled/commands/prompt/assets/prompt_improve_presentation.txt
+Expected: rg prints nothing (exit 1).

@@ -1,0 +1,57 @@
+TASK: edit two files: .skilled/skills/sk-prompt/ROUTER.md (only its ```python block) and
+.skilled/skills/sk-prompt/benchmark/router/fixtures.json. Read only these two files. Change nothing else.
+
+ROUTER.md edits:
+1. Replace the line starting `_QUOTE_RE = re.compile(` with:
+_QUOTE_RE = re.compile(r"\"([^\"]*)\"|“([^”]*)”|(?<!\w)'([^'\n]*)'(?!\w)|‘([^’]*)’")
+2. Inside drop_quote, replace the line `quoted = match.group(1) if match.group(1) is not None else match.group(2)` with:
+        quoted = next(group for group in match.groups() if group is not None)
+3. Replace the line starting `_LEAD_IN_RE = re.compile(` with:
+_LEAD_IN_RE = re.compile(r"(\b(?:prompt|improve|enhance|refine|rewrite)(?:\s+(?:this|the|my|it))?(?:\s+prompt)?(?:\s+is)?\s*:)[^\n]*(?:\n(?![ \t]*\n)[^\n]*)*", re.I)
+4. In the comment block above _FENCE_RE, change `Fenced blocks and quoted spans of three or
+# more words are removed` so it says quoted spans in double, single or curly quotes, and change
+`a "prompt:" lead-in` to `a lead-in such as "prompt:", "improve:" or "improve this prompt:"`.
+Keep it a comment, same width style.
+5. Directly after the detect_command_intent function, add this function:
+
+EFFORT_COMMANDS = ("$short", "$refine")
+
+def command_conflict(task):
+    # Two mode commands that disagree, such as $raw with $json or $short with
+    # $refine, are a question for the user, never a keyword-score decision.
+    tokens = [t for t in re.findall(r"\$[a-z]+", _task_text(task)) if t in COMMAND_INTENTS]
+    intents = {COMMAND_INTENTS[t] for t in tokens}
+    efforts = {t for t in tokens if t in EFFORT_COMMANDS}
+    if len(intents) > 1 or len(efforts) > 1:
+        return sorted(set(tokens))
+    return []
+
+6. In detect_command_intent, change its comment to:
+    # Whole $tokens only. Two distinct mode commands return None here; the
+    # router reports them through command_conflict() instead.
+7. In route_prompt_improver_resources, directly before the comment line
+`# Prefixes are authoritative, and a no-load intent skips the checklist and`, insert:
+
+    conflict = command_conflict(task)
+    if conflict:
+        return {
+            "intents": [],
+            "intent_scores": scores,
+            "resources": [],
+            "load_level": "COMMAND_CONFLICT",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": [f"Which mode do you want: {' or '.join(conflict)}?"],
+        }
+
+fixtures.json: append these 7 fixtures to the array, same shape and indentation as the others:
+- id "conflict-raw-text", request "$text $raw improve this", expect intents [], resources [], load_level "COMMAND_CONFLICT"
+- id "conflict-improve-json", request "$improve $json make this an api prompt", same expect
+- id "conflict-short-refine", request "$short $refine this prompt", same expect
+- id "same-intent-no-conflict", request "$text $improve make this clearer", expect intents ["TEXT_ENHANCE"], resources ["references/improvement-checklist.md", "references/patterns-evaluation.md"]
+- id "pasted-fence-command", request "improve this:\n```\n$json Return the user record\n```", expect intents ["TEXT_ENHANCE"], same two resources
+- id "pasted-single-quote", request "Improve 'write a json schema for users' please", expect intents ["TEXT_ENHANCE"], same two resources
+- id "generic-lead-in", request "please improve: Generate a YAML config for nginx", expect intents ["TEXT_ENHANCE"], same two resources
+
+VERIFY
+Run: bash .skilled/skills/sk-prompt/benchmark/router/run_fixtures.sh
+Expected: PASSED 19/19 fixtures. If any fixture fails, report the FAIL line; do not change an expectation to make it pass.

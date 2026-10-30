@@ -1,0 +1,23 @@
+TASK: three literal one-line edits in three files under .skilled/skills/sk-prompt/assets/.
+Read only these three files. Change nothing else in them.
+
+1. assets/format-guide-markdown.md, about line 115, inside a fenced example:
+   old line: DEPTH rounds completed
+   new line: Checklist pass completed (effort: standard)
+
+2. assets/format-guide-yaml.md, about line 434, a table row:
+   old: | CLEAR with DEPTH   | >45/50 | 47/50   |
+   new: | CLEAR after checklist | >45/50 | 47/50   |
+   Keep the table's column alignment valid markdown.
+
+3. assets/cli-prompt-quality-card.md, about line 206, in the related-resources list:
+   old: - `../references/depth-framework.md`
+   new: - `../references/improvement-checklist.md`
+   Also search this file for any other "DEPTH" word; if one exists, replace it with
+   "the improvement checklist" and report the line in notes.
+
+Accept when exactly these three files changed.
+
+VERIFY
+Run: rg -n "DEPTH|depth-framework" .skilled/skills/sk-prompt/assets
+Expected: rg prints nothing (exit 1).

@@ -1,0 +1,28 @@
+TASK: literal edits in one file, .skilled/commands/prompt/assets/prompt_improve_confirm.yaml. Read
+only this file. Keep everything else byte-identical and keep the YAML valid.
+
+1. approval_gates.after_checklist: prompt becomes
+   "Show the checklist result and the chosen skeleton or preset; wait for continue or revise."
+   and accepted_responses becomes ["continue", "revise"].
+2. `capture FRAMEWORK, CLEAR_SCORE, RATIONALE, ENHANCED_PROMPT, ESCALATION_NOTES.` ->
+   `capture FRAMEWORK, CLEAR_SCORE, TEST, CHANGES, RATIONALE, ENHANCED_PROMPT, ESCALATION_NOTES.`
+3. The phase_2_enhance INLINE activity becomes:
+   "dispatch_mode INLINE: checklist pass -> pause at approval_gates.after_checklist -> draft from the skeleton or a named preset -> pause at approval_gates.after_draft -> self-check and, when thorough, the quick test -> continue to phase_3_score."
+4. In phase_2_enhance outputs, `- framework: "selected framework name"` -> `- framework: "default skeleton or preset name"`,
+   and add after enhanced_prompt, same indentation:
+      - test: "quick test result or NOT RUN"
+      - changes: "Added, Changed, Removed and Skipped report"
+5. In phase_3_score activities, add after the "Pass at 40+/50..." line, same indentation:
+      - "INLINE: after scoring, pause at approval_gates.after_screen; iterate runs one more repair cycle within the 3-cycle cap."
+6. quality_gates.clear_threshold: `blocking: hard` -> `blocking: soft`; on_fail becomes
+   'After 3 repair cycles still below threshold: deliver the best version with STATUS=OK, the score and a note naming the weakest dimension'
+7. Output line `STATUS=FAIL ERROR="..." on skill-missing or sub-threshold CLEAR.` -> two lines:
+   `STATUS=OK SCORE=[N]/50 FRAMEWORK=[NAME] NOTE="below threshold after 3 repair cycles" when CLEAR never reached 40/50.`
+   `STATUS=FAIL ERROR="..." on skill-missing.`
+8. Any `framework: "[RCAF|COSTAR|CRAFT|...]"` -> `framework: "[default skeleton|RCAF|COSTAR|...]"`
+
+VERIFY
+Run: rg -n "SimplificationChoice|sub-threshold|blocking: hard|\"A\", \"B\"" .skilled/commands/prompt/assets/prompt_improve_confirm.yaml
+Expected: rg prints nothing (exit 1).
+Run: python3 -c "import yaml;yaml.safe_load(open('.skilled/commands/prompt/assets/prompt_improve_confirm.yaml'));print('yaml ok')"
+Expected: yaml ok

@@ -1,0 +1,21 @@
+TASK: literal edits in one JSON file, .skilled/skills/sk-prompt/graph-metadata.json. Read only
+this file. Keep it valid JSON with the same key order and 2-space indentation.
+
+1. In the short keyword list, replace the string "depth" with "improvement-checklist".
+2. Replace the phrase "depth thinking pass" with "one-pass prompt checklist".
+3. Replace "depth thinking workflow" with "prompt improvement checklist".
+4. Replace "depth methodology" with "early exit for good prompts".
+5. Replace every path ".skilled/skills/sk-prompt/references/depth-framework.md" with
+   ".skilled/skills/sk-prompt/references/improvement-checklist.md".
+6. Replace "references/depth-framework.md" in source_docs with "references/improvement-checklist.md".
+7. The entry whose "name" is "DEPTH framework" gets "name": "Improvement checklist".
+8. In "causal_summary", replace any wording about seven frameworks and DEPTH with: one-pass
+   checklist, component skeleton with optional framework presets, and CLEAR screening. Keep the
+   rest of the sentence.
+9. If a "version" field exists for the skill, set it to "4.0.0.0".
+
+VERIFY
+Run: rg -n -i "depth" .skilled/skills/sk-prompt/graph-metadata.json
+Expected: rg prints nothing (exit 1).
+Run: python3 -c "import json;json.load(open('.skilled/skills/sk-prompt/graph-metadata.json'));print('json ok')"
+Expected: json ok

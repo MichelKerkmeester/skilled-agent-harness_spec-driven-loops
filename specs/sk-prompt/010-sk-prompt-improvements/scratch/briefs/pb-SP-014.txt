@@ -1,0 +1,30 @@
+TASK: rewrite one playbook scenario file wholly.
+File: .skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/change-report-length-warning.md
+It still holds an old DEPTH-era scenario. Read it once only for its SHAPE: frontmatter (title,
+description, version), H1, the five numbered H2 sections (OVERVIEW with "Why This Matters",
+SCENARIO CONTRACT bullets, TEST EXECUTION with Prompt / Commands / Expected / Evidence /
+Pass / Fail / Failure Triage / Optional Supplemental Checks, SOURCE FILES with two tables,
+SOURCE METADATA bullets) and the --- dividers. Then overwrite all of it with new content in that
+same shape. Also read .skilled/skills/sk-prompt/references/improvement-checklist.md. Read nothing else.
+Do not mention DEPTH, phases, rounds, perspectives or RICCE anywhere.
+
+Scenario ID: SP-014
+Title (frontmatter title and H1): "SP-014 -- Change report and length warning"
+Frontmatter version: 3.0.0.0
+Objective: Confirm every reply ends with an Added, Changed, Removed, Skipped change report and warns when the prompt grows past about 3 times the original.
+Real user request: `Make this two-line prompt as good as possible: Write a haiku about rain. Keep it gentle.`
+Expected signals and desired outcome: The reply ends with the four-heading change report; when the improved prompt exceeds about 3 times the original length a growth warning appears; the user's own wording is preserved as closely as possible.
+Pass/fail: PASS if the change report is present and an oversized prompt carries the warning; FAIL if the report is missing or large growth passes without a warning.
+Commands: 1) an `sk-prompt:` line with the real user request; 2) an `agent: @prompt-improver ...`
+line in the same style as the old file, with constraints matching the objective; 3) a `bash: rg`
+line that finds the rule in `../../references/improvement-checklist.md` section 7.
+Implementation And Test Anchors table: `../../references/improvement-checklist.md` and `../../SKILL.md`,
+each with a one-line role.
+SOURCE METADATA: Group: Checklist Pass; Playbook ID: SP-014; Canonical root source:
+`manual-testing-playbook.md`; Feature file path: `checklist-pass/change-report-length-warning.md`.
+
+VERIFY
+Run: rg -c "DEPTH|RICCE|erspective|Harmonize|depth-framework" .skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/change-report-length-warning.md
+Expected: rg prints nothing (exit 1).
+Run: rg -c "^## " .skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/change-report-length-warning.md
+Expected: 5

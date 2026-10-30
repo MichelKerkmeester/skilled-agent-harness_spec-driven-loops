@@ -1,0 +1,11 @@
+All eight edits are in place, verified against the file bytes. Verification:
+
+- `rg -n "SimplificationChoice|sub-threshold|blocking: hard|\"A\", \"B\"" ...` → no output, `rg_exit=1`
+- `python3 -c "import yaml;yaml.safe_load(...)"` → `yaml ok`
+
+Line count 193 (189 content lines + 4 added), and `git diff` shows no change beyond the specified lines plus the DEPTH→checklist working-tree edits that were already uncommitted before this task.
+
+PI_HANDBACK
+file: .skilled/commands/prompt/assets/prompt_improve_confirm.yaml
+verify: `rg -n "SimplificationChoice|sub-threshold|blocking: hard|\"A\", \"B\"" .skilled/commands/prompt/assets/prompt_improve_confirm.yaml` → no output, rg_exit=1; `python3 -c "import yaml;yaml.safe_load(open('.skilled/commands/prompt/assets/prompt_improve_confirm.yaml'));print('yaml ok')"` → yaml ok
+notes: file already carried uncommitted DEPTH→checklist edits before this task; those were left byte-identical, and the checklist prompt line's trailing period (not visible in a first read) had to be matched exactly.

@@ -1,0 +1,8 @@
+All three edits applied and verified. The YAML table needed its first column widened from 18 to 21 characters so the new 21-character label keeps the pipes aligned; the other six rows changed by whitespace only.
+
+Handback:
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/assets/format-guide-markdown.md, .skilled/skills/sk-prompt/assets/format-guide-yaml.md, .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md
+verify: `rg -n "DEPTH|depth-framework" .skilled/skills/sk-prompt/assets` → no output, exit 1
+notes: cli-prompt-quality-card.md held no second "DEPTH" occurrence (only the depth-framework.md link, line 206); format-guide-yaml.md lines 429-435 were repadded as a block so the 21-char label keeps the table aligned, 6 of those 7 lines whitespace-only.

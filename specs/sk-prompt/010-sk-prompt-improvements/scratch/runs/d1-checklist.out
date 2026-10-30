@@ -1,0 +1,6 @@
+Wrote the full replacement of `.skilled/skills/sk-prompt/references/improvement-checklist.md`: exact frontmatter, H1 plus introductory sentence, and the eight numbered H2 sections separated by `---`. The old framework text is gone.
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/references/improvement-checklist.md
+verify: `rg -c "DEPTH|Discover|Harmonize" .skilled/skills/sk-prompt/references/improvement-checklist.md` → no output, exit 1 (0 matches); `rg -c "^## " .skilled/skills/sk-prompt/references/improvement-checklist.md` → `8`, exit 0; length `wc -l` → 142 lines (target 140-220); separators `rg -c "^---$"` → 10 (2 frontmatter delimiters + 8 section dividers); `rg "specs/|REQ-|T[0-9]"` → no matches
+notes: Skipped Gate 5/6 repo-rule loads because the dispatch bars reading files outside the task's list; deviation recorded here rather than silently absorbed.

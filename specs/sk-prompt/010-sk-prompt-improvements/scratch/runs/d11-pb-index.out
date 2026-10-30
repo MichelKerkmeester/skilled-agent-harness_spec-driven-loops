@@ -1,0 +1,24 @@
+Verified. Banned-term sweep is clean (exit 1, no output), heading count unchanged at 28, and all 28 Feature File links resolve on disk.
+
+Structural checks (all 28, matching the baseline):
+- `#### Description`, `#### Scenario Contract`, `#### Test Execution`, `> **Feature File:**` — 28 each
+- Sections 1–15 intact, `## 9. CHECKLIST PASS` renamed in place
+- Diff touches only this one file: 107 insertions / 107 deletions (line count preserved)
+
+Beyond the 14 rewritten SP blocks, summary rows and the named global edits, these remaining DEPTH/RICCE/round phrasings needed rewriting:
+
+| Location | Before | After |
+|---|---|---|
+| Overview coverage note | "the DEPTH+CLEAR processing loop with phase exit gates" | "the one-pass improvement checklist with its three effort levels and up to 3 repair cycles" |
+| Realistic Test Model step 2 | "for full DEPTH+CLEAR processing" | "for the full checklist pass with CLEAR repair" |
+| Global preconditions 3 | `references/depth-framework.md` | `references/improvement-checklist.md` |
+| §3 Evidence | "DEPTH-round count actually executed" | "Effort level and checklist result" |
+| §5 Acceptance rule 3 | "DEPTH rounds run" | "effort level and checklist result" |
+| §5 FAIL example | "wrong DEPTH-round count for the detected mode" | "wrong effort level for the detected mode" |
+| §6 Per-feature files | "Expected DEPTH-round count and CLEAR score range" | "Effort level and checklist result" |
+| SP-006 desired outcome | `references/depth-framework.md` | `references/improvement-checklist.md` |
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md
+verify: rg -n "DEPTH|depth-framework|depth-clear-loop|RICCE|erspective|rounds|one retry" … → no output, exit 1; rg -c "^### SP-" … → 28 (before: 28); case-insensitive sweep for depth/ricce/perspective/one retry/rounds/phase-exit → exit 1
+notes: Also rewrote stale DEPTH phrasing in the §1 coverage note, §1 test-model step 2, §2 precondition 3, §3 evidence, §5 acceptance rule 3 and FAIL example, §6 per-feature bullet, and SP-006's trace line (all listed in the table above); version bumped to 3.0.0.0.

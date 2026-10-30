@@ -1,0 +1,28 @@
+TASK: literal edits in two files: .skilled/commands/prompt/assets/prompt_improve_auto.yaml and
+.skilled/commands/prompt/improve.md. Read only these two files. Keep everything else byte-identical
+and keep the YAML valid.
+
+prompt_improve_auto.yaml:
+1. `capture FRAMEWORK, CLEAR_SCORE, RATIONALE, ENHANCED_PROMPT, ESCALATION_NOTES.` ->
+   `capture FRAMEWORK, CLEAR_SCORE, TEST, CHANGES, RATIONALE, ENHANCED_PROMPT, ESCALATION_NOTES.`
+2. In phase_2_enhance outputs, `- framework: "selected framework name"` -> `- framework: "default skeleton or preset name"`,
+   and add two output lines after enhanced_prompt, same indentation:
+      - test: "quick test result or NOT RUN"
+      - changes: "Added, Changed, Removed and Skipped report"
+3. In quality_gates.clear_threshold: `blocking: hard` -> `blocking: soft`, and the on_fail value becomes:
+   'After 3 repair cycles still below threshold: deliver the best version with STATUS=OK, the score and a note naming the weakest dimension'
+4. In the output block, replace the line
+   `STATUS=FAIL ERROR="..." on skill-missing, a missing prompt under :auto, or sub-threshold CLEAR.` with two lines:
+   `STATUS=OK SCORE=[N]/50 FRAMEWORK=[NAME] NOTE="below threshold after 3 repair cycles" when CLEAR never reached 40/50.`
+   `STATUS=FAIL ERROR="..." on skill-missing or a missing prompt under :auto.`
+5. `framework: "[RCAF|COSTAR|CRAFT|...]"` -> `framework: "[default skeleton|RCAF|COSTAR|...]"`
+
+improve.md:
+6. `The auto workflow runs end to end and stops only if CLEAR stays below threshold after three iterations.` ->
+   `The auto workflow runs end to end; a prompt still below threshold after three repair cycles is delivered as the best version with a note.`
+
+VERIFY
+Run: rg -n "sub-threshold|stops only if|blocking: hard" .skilled/commands/prompt/assets/prompt_improve_auto.yaml .skilled/commands/prompt/improve.md
+Expected: rg prints nothing (exit 1).
+Run: python3 -c "import yaml;yaml.safe_load(open('.skilled/commands/prompt/assets/prompt_improve_auto.yaml'));print('yaml ok')"
+Expected: yaml ok

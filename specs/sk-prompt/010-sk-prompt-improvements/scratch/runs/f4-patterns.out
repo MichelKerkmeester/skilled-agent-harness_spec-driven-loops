@@ -1,0 +1,15 @@
+Both blocks of edits are on disk. Summary of what landed in `.skilled/skills/sk-prompt/references/patterns-evaluation.md`:
+
+- Enhancement pipeline: `apply_skeleton: {check: has_skeleton_rows, if_missing: add_missing_rows}`.
+- REPAIR `iterate`: `max_iterations: 3`, plus the "deliver the best version with a note" clause on `process`.
+- Dimension-floor sentence: repaired up to 3 cycles, then best version with a note naming the missed dimension.
+- Multi-Pass Scoring subsection removed (heading, table, aggregation line, one blank line) so §11 now reads heading, blank line, `### Comparative Scoring`.
+- §15 now has `### Preset Quick Select` with the default-skeleton sentence and the seven-row Need/Preset table.
+- No table of contents or in-file links existed, so nothing to update there.
+
+One honest discrepancy: the verify pattern `max_iterations: 5` still matches line 360, inside `costar_react_fusion` (`response.cycle_format` / `repeat_until` / `max_iterations: 5`). That is the ReAct loop budget, not the REPAIR loop, and no listed edit names it, so I left it byte-identical. The verify command therefore exits 0 with exactly that one match. If that ReAct budget should also become 3, it is a one-token change and needs your call, since changing it silently would have altered an unrequested line.
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/references/patterns-evaluation.md
+verify: rg -n "max_iterations: 5|apply_best|Multi-Pass Scoring|Framework Quick Select|until the floor is met" .skilled/skills/sk-prompt/references/patterns-evaluation.md -> exit 0, single hit `360:    max_iterations: 5` (COSTAR + ReAct fusion loop, outside the listed edits); the other four patterns return nothing
+notes: No TOC or in-file links named the renamed sections, so nothing to relink; line 360 left untouched pending your decision.

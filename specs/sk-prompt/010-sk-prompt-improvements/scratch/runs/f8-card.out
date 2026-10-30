@@ -1,0 +1,6 @@
+Edit applied and verified. Only lines 98–105 of that file were replaced; frontmatter and all other sections are unchanged.
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md
+verify: `rg -c "^(TEST|CHANGES): " .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md` → `2` (exit 0)
+notes: `git diff` also shows one pre-existing working-tree hunk on the related-resources line (`depth-framework.md` → `improvement-checklist.md`); it was already present before this task and was not touched here.

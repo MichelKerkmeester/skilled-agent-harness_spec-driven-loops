@@ -1,0 +1,8 @@
+Four literal edits applied to `.skilled/skills/sk-prompt/SKILL.md`: the pipeline step-3 clause (line 73), the framework table under "### Framework Presets" replaced with the Preset/Fits-when table and a blank line kept before the `patterns-evaluation.md` pointer, the NEVER #1 rule, and ESCALATE #1 rule. Everything else byte-identical: the `git diff` is large only because the working tree already carried the earlier uncommitted rebuild (DEPTH removal, version 4.0.0.0); this task's change set was those four blocks.
+
+Two observations for the operator, outside my scope so not acted on: the file's frontmatter is `name / description / allowed-tools / version` — it carries no `title`, `trigger_phrases`, `importance_tier` or `contextType` keys, so the persona's frontmatter shape cannot be preserved without adding keys; and the Framework Presets prose above the new table now duplicates its content in prose form.
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/SKILL.md
+verify: `rg -n "confidence < 50%|answer own questions|\| Complexity \| Primary Need" .skilled/skills/sk-prompt/SKILL.md` → no output, EXIT=1 (as expected)
+notes: four literal edits only; remaining diff is pre-existing working-tree rebuild, not from this task

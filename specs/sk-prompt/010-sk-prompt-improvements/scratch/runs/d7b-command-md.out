@@ -1,0 +1,10 @@
+Both files now use the one-pass checklist vocabulary. The verify rg prints nothing and exits 1, and a wider case-insensitive scan for `depth|energy|rounds|perspective` also exits 1, so no residual variants remain in either file.
+
+Changes applied:
+- `.skilled/commands/prompt/improve.md` — description line, router contract sentence, workflow-summary checklist line, and the confirm-workflow pause sentence.
+- `.skilled/commands/prompt/assets/prompt_improve_presentation.txt` — enhancement-mode options, interactive execution-mode option, and the Transparency Report block (framework line, effort line, checklist row, quick-test row, plus `Open items:` and `Changes:` after the CLEAR dimension line at the `CLEAR Score:` indent).
+
+PI_HANDBACK
+file: .skilled/commands/prompt/improve.md, .skilled/commands/prompt/assets/prompt_improve_presentation.txt
+verify: `rg -n "DEPTH|Perspectives|Energy" .skilled/commands/prompt/improve.md .skilled/commands/prompt/assets/prompt_improve_presentation.txt` → no output, EXIT=1 (expected)
+notes: no DEPTH occurrences existed outside the lines already enumerated in items 5-7, so nothing extra was rewritten for item 8.

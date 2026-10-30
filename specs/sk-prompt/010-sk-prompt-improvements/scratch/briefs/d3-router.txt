@@ -1,0 +1,45 @@
+TASK: edit one file, .skilled/skills/sk-prompt/ROUTER.md. Make exactly the edits below.
+Read only that file and lines 264-299 of
+"../../AI Systems/AI Systems/Prompt Improver/sk-prompt-improver/ROUTER.md" (the source of the
+paste guard in edit 4).
+
+EDIT 1 - rename the default resource. Replace every occurrence of the literal text
+  references/depth-framework.md
+with
+  references/improvement-checklist.md
+There are several (prose, the resource list, the loading-levels table, DEFAULT_RESOURCE and
+RESOURCE_MAP). Change every one.
+
+EDIT 2 - remove DEPTH wording. Rewrite each remaining sentence, table cell, list line or code
+comment that says DEPTH so it says the improvement checklist instead, keeping the meaning:
+- "DEPTH methodology" / "DEPTH methodology, RICCE integration" -> "one-pass improvement checklist, effort levels, quick test"
+- "the DEPTH default" / "DEPTH default" -> "the checklist default"
+- "skips DEPTH" -> "skips the checklist"
+- "Phase 2: DEPTH Processing (3-10 rounds based on mode)" -> "Phase 2: One-pass checklist (effort: quick, standard or thorough)"
+- In the Phase Detection block also change "Phase 1: Framework Selection (7 frameworks evaluated)"
+  to "Phase 1: Component skeleton (framework names are optional presets)".
+- In the patterns-evaluation section list, item 1 becomes:
+  "`## 2. FRAMEWORK LIBRARY & SELECTION`, for the default component skeleton and any preset the request names."
+Change nothing else in the prose.
+
+EDIT 3 - frontmatter: bump `version: 1.0.4.0` to `version: 1.1.0.0`.
+
+EDIT 4 - add the paste guard to the Smart Router Pseudocode block.
+a) Add `import re` as the first line of the python block, above `from pathlib import Path`.
+b) Directly above `def _task_text(task) -> str:` insert the guard copied from the sibling file:
+   the comment block, `_FENCE_RE`, `_QUOTE_RE`, `_LEAD_IN_RE`, `SOURCE_QUOTE_MIN_WORDS = 3` and
+   the whole `def strip_source_prompt(text):` function, verbatim. Do not copy `_TOKEN_RE`.
+c) Change `_task_text` so a string task returns `strip_source_prompt(task)[0].lower()` and a
+   dict task strips the joined text the same way before lowercasing.
+d) Change `detect_command_intent` so it matches a whole token, not a prefix: find every
+   `$word` token with `re.findall(r"\$[a-z]+", text)`; collect the distinct intents of tokens
+   found in COMMAND_INTENTS; return the one intent when there is exactly one, else None.
+   Keep the function name and signature.
+
+VERIFY
+Run: rg -c "depth-framework|DEPTH" .skilled/skills/sk-prompt/ROUTER.md
+Expected: rg prints nothing (exit 1).
+Run: rg -c "strip_source_prompt" .skilled/skills/sk-prompt/ROUTER.md
+Expected: 3 or more.
+Run: python3 -c "import re,pathlib;s=pathlib.Path('.skilled/skills/sk-prompt/ROUTER.md').read_text();b=re.search(r'```python\n(.*?)```',s,re.S).group(1);compile(b,'router','exec');print('compiles')"
+Expected: compiles

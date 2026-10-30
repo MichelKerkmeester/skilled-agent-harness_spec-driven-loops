@@ -1,0 +1,6 @@
+All four edits are in and all three verification commands pass from the final state. Only `.skilled/skills/sk-prompt/ROUTER.md` was touched by this task (the other dirty paths in `git status` pre-existed).
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/ROUTER.md
+verify: `rg -c "depth-framework|DEPTH" .skilled/skills/sk-prompt/ROUTER.md` → no output, exit 1; `rg -c "strip_source_prompt" .skilled/skills/sk-prompt/ROUTER.md` → 3, exit 0; python compile of the ```python block → `compiles`, exit 0
+notes: One deviation — the pasted-guard comment states the durable why in sk-prompt's own terms ("a format or design keyword inside it must not bind a resource family") instead of the sibling's "photo"/"clip" → Image/Video clause, which has no meaning here; all guard code (_FENCE_RE, _QUOTE_RE, _LEAD_IN_RE, SOURCE_QUOTE_MIN_WORDS, strip_source_prompt) is verbatim, _TOKEN_RE not copied.

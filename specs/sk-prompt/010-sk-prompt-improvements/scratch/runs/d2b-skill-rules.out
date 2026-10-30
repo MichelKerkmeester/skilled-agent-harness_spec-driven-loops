@@ -1,0 +1,8 @@
+Edits applied to sections 4, 5 and 6 only (frontmatter and sections 1-3 / 7-9 diffs in the file are earlier stage work, untouched by me).
+
+Verification: `sed -n '/^## 4. RULES/,/^## 7. AGENT/p' .skilled/skills/sk-prompt/SKILL.md | rg -c "DEPTH|RICCE|perspectives|depth-framework"` printed nothing, `exit=1` — matches the expected result, so no DEPTH/RICCE/perspectives/depth-framework reference survives in the span.
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/SKILL.md
+verify: sed -n '/^## 4. RULES/,/^## 7. AGENT/p' .skilled/skills/sk-prompt/SKILL.md | rg -c "DEPTH|RICCE|perspectives|depth-framework" → no output, exit=1 (expected)
+notes: The file's section 5 and 9 still name `references/depth-framework.md` in the surrounding prose outside my span (line 126 area of the old pipeline reference and ROUTER.md's mention), which a later task needs to retire.

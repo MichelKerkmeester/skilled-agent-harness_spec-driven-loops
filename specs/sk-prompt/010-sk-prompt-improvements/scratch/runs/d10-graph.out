@@ -1,0 +1,6 @@
+All nine literal edits applied to `.skilled/skills/sk-prompt/graph-metadata.json`; key order, 2-space indentation and the file's JSON shape are unchanged. Item 9 was not applicable: the file carries no `version` field (only `schema_version` and `sanitizer_version`), so nothing was set to `4.0.0.0`.
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/graph-metadata.json
+verify: `rg -n -i "depth" .skilled/skills/sk-prompt/graph-metadata.json` → no output, exit 1; `python3 -c "import json;json.load(open('.skilled/skills/sk-prompt/graph-metadata.json'));print('json ok')"` → `json ok`
+notes: no `version` field exists in this file, so the `4.0.0.0` bump had no target.

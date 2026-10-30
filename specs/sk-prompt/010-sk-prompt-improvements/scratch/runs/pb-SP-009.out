@@ -1,0 +1,6 @@
+Wrote the scenario fresh in the original shape: same frontmatter keys (title, description, version 3.0.0.0), same H1/H2 skeleton with the five numbered sections and `---` dividers. Content now covers the ten-row marking list, the mark-with-reason rule, and the constraint that only absent rows reach the prompt. Every DEPTH-era reference, counted-stage framing, and old source anchor is gone; the Implementation And Test Anchors table points at the checklist reference and `../../SKILL.md`.
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/one-pass-checklist-rows.md
+verify: `rg -c "DEPTH|RICCE|erspective|Harmonize|depth-framework" <file>` → no output, exit 1; `rg -c "^## " <file>` → `5`
+notes: also checked `rg -n "phase|round"` → no matches, exit 1

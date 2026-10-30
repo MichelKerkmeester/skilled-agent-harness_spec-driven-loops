@@ -1,0 +1,6 @@
+Both edits and the output-block insertion are on disk and verified. Changed lines 405/406 now sit at the box's dominant width (75 chars, closing `│` in the same column as every neighboring row), and the `Model Eligibility` section is untouched (no eligibility lines appear in the diff).
+
+PI_HANDBACK
+file: .skilled/agents/prompt-improver.md
+verify: `rg -n "DEPTH|exactly once|one retry|seven frameworks" .skilled/agents/prompt-improver.md` → no output, exit 1; `rg -c "^ *TEST: <ran" .skilled/agents/prompt-improver.md` → 1, exit 0
+notes: 14 edits applied at the stated line numbers plus TEST:/CHANGES: inserted after CLEAR_SCORE in the single structured-package block; the box rows were also normalized from 76 to 75 chars so both closing bars line up with their neighbors.

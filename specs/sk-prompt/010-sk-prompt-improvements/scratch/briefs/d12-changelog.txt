@@ -1,0 +1,42 @@
+TASK: create one new file, .skilled/skills/sk-prompt/changelog/v4.0.0.0.md. Read only
+.skilled/skills/sk-prompt/changelog/v3.0.0.0.md (for shape: frontmatter, opening paragraph,
+"## Why This Release", "## What's New at a Glance" bullets, a --- divider, then topic sections
+with #### items, and an "## Upgrade" section) and
+.skilled/skills/sk-prompt/references/improvement-checklist.md (for facts). Read nothing else.
+Write 60 to 110 lines. Plain English, no emoji, no spec paths or task ids.
+
+Frontmatter: title "sk-prompt v4.0.0.0, one-pass prompt improvement replaces DEPTH";
+description one sentence; trigger_phrases "sk-prompt v4.0.0.0", "sk-prompt 4.0.0.0",
+"depth thinking framework removed", "one-pass prompt checklist"; importance_tier "normal";
+contextType "general"; version 4.0.0.0.
+
+Facts to state (all of them, nothing else):
+- DEPTH is removed. references/depth-framework.md became references/improvement-checklist.md:
+  one pass over ten rows, each marked present, absent or not needed with a reason.
+- Early exit: a prompt that already passes comes back unchanged or minimally edited.
+- Effort levels replace rounds and energy: quick ($short, rows 1, 3, 4, 6), standard (default),
+  thorough ($refine, adds the quick test). $raw runs no pass.
+- Quick test: 2 or 3 representative inputs through old and new prompt when a model can run them,
+  else "Quick test: NOT RUN". Local only, no hosted eval service.
+- The seven frameworks are now optional presets on top of one default skeleton; none is scored to
+  pick one.
+- CLEAR stays as a structural screen, defined once in patterns-evaluation section 10; reason
+  before each score; repair up to 3 cycles everywhere (the skill, the agent and the command used
+  to disagree: one retry versus 3 cycles).
+- Deliver first: defaults become numbered open items after the prompt; one question only when
+  there is no prompt and no task or two mode commands conflict.
+- Routing reads only the user's own words: a pasted prompt (fenced block, quoted span of 3+
+  words, or text after "prompt:") is set aside, and mode tokens match whole tokens only.
+- New router fixtures: benchmark/router/run_fixtures.sh runs 12 fixtures against the real
+  ROUTER.md block.
+- Output block gains TEST: and CHANGES: lines; @prompt-improver and /prompt:improve were updated;
+  the confirm checkpoints are now after_checklist, after_draft and after_screen.
+- The skill stays model-agnostic: no per-model profiles.
+Upgrade section: callers that parsed "DEPTH Rounds" or the old checkpoint names must switch to
+the new fields and names; references to depth-framework.md must point at improvement-checklist.md.
+
+VERIFY
+Run: rg -c "^## " .skilled/skills/sk-prompt/changelog/v4.0.0.0.md
+Expected: 4 or more.
+Run: rg -n "specs/|REQ-|T0[0-9]" .skilled/skills/sk-prompt/changelog/v4.0.0.0.md
+Expected: rg prints nothing (exit 1).

@@ -1,0 +1,35 @@
+TASK: literal edits in one file, .skilled/skills/sk-prompt/SKILL.md. Read only this file. Keep
+everything else byte-identical.
+
+1. `applying a framework preset only when the request names one.` ->
+   `applying a framework preset only when the request names one or its fit is clear from the task.`
+2. Under "### Framework Presets", replace the table whose header is `| Complexity | Primary Need | Framework |`
+   (header, separator and 7 rows) with exactly:
+
+| Preset | Fits when |
+|--------|-----------|
+| RACE | Urgent tasks and quick iterations |
+| RCAF | General tasks that need a clear role and format |
+| COSTAR | Content where style, tone and audience matter |
+| CIDI | Process documentation and tutorials |
+| CRISPE | Strategy and exploration |
+| TIDD-EC | Quality-critical or compliance work that needs do's, don'ts and examples |
+| CRAFT | Complex projects and planning |
+
+   Keep one blank line between the table and the following "See [patterns-evaluation.md]..." line.
+3. Replace these two lines:
+1. **NEVER answer own questions**
+   - In an interactive run, wait for the user's response before proceeding with enhancement
+   with:
+1. **NEVER stall on questions**
+   - Deliver first: write from stated defaults and list each assumption as a numbered open item; ask one question only when there is no prompt and no task, or two mode commands conflict, and then wait for the answer
+4. Replace these two lines:
+1. **ESCALATE IF mode detection confidence < 50%**
+   - Ask: "What type of prompt are you creating? Can you describe the use case?"
+   with:
+1. **ESCALATE IF there is no prompt and no task, or two mode commands conflict**
+   - Ask one question, such as "Which mode do you want: $raw or $text?"; any other uncertainty is delivered with the assumption as open item 1
+
+VERIFY
+Run: rg -n "confidence < 50%|answer own questions|\| Complexity \| Primary Need" .skilled/skills/sk-prompt/SKILL.md
+Expected: rg prints nothing (exit 1).

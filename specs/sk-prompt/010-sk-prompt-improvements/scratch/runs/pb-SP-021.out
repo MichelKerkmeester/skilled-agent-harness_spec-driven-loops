@@ -1,0 +1,16 @@
+Rewrote the scenario file in place, same shape as the original (frontmatter trio, H1, intro line, five numbered H2 sections, `---` dividers), with all content replaced to match SP-021's current intent.
+
+What changed structurally vs. the old file:
+- Frontmatter title/description/version now match the new ID, and `3.0.0.0`.
+- OVERVIEW introduces the default skeleton plus presets, then narrows to the reporting half of the rule.
+- SCENARIO CONTRACT carries the new objective, the real user request, and a pass/fail that requires a *reason* alongside the name.
+- Commands are the three required lines; the `agent:` line keeps the old file's key style and states the constraint in terms of the objective.
+- Failure triage stops at three re-dispatch-safe steps; the supplemental check names the "preset is a shape, not a quality gate" trap.
+- Anchors table lists all four `../../` files (all confirmed present).
+
+One judgment call worth flagging: `../../SKILL.md` appears in both tables — Playbook Sources gives it the "delivered skeleton and change-report headings" role, the anchors table gives it the routing-surface role. The task's anchor list named four files including it, so I listed it rather than dropping one table's row.
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/manual-testing-playbook/framework-selection/preset-named-in-change-report.md
+verify: `rg -c "DEPTH|RICCE|erspective|Harmonize|depth-framework|rounds" <file>` → no output, exit=1. `rg -c "^## " <file>` → `5`, exit=0. Also ran the scenario's own anchor command `rg -n "Choosing a Preset|name it in the change report" .skilled/skills/sk-prompt/references/patterns-evaluation.md` → hit lines 56 and 61, exit=0.
+notes: `git diff --stat` shows 37 insertions / 30 deletions on that one file only; the `RM` rename entries in `git status` were already staged by the rebuild before this task, not by me.

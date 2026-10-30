@@ -1,0 +1,15 @@
+Work is complete. Summary of what actually happened, because the state was not what the task briefing assumed.
+
+**The file already carried the rebuild.** HEAD holds `version: 3.0.2.0` with the DEPTH description; the working-tree file holds `4.0.0.0` with the required description and no DEPTH content. A concurrent writer landed the rebuild into this working tree during my initial read batch — my first read saw `232` lines with line 224 reading "the selection algorithm", and minutes later the stable file was `231` lines with that row already rewritten to "The default skeleton, the seven framework presets and the CLEAR rubric". So no edit was needed from me, and inventing one would have risked clobbering a live writer.
+
+**Evidence on the stable bytes** (md5 `b1df59b39c6f8925da6f6a4333ff33dd`, unchanged across a 6s re-check and unchanged across every command below):
+
+- All eight required end-state items pass as explicit assertions — description exact on line 3, version `4.0.0.0`, the four-step overview, `EFFORT: standard` plus `CHECKLIST: 7 present, 2 added, 1 not needed` plus `QUICK TEST: NOT RUN` plus `CHANGES:`, the ten rows **byte-identical** to improvement-checklist.md §2 (`diff` clean), `Effort` column renamed with values `standard,standard,quick,standard,thorough,standard,standard,none`, the FAQ sentence, the exact improvement-checklist resource row, `the checklist pass` twice with zero `the DEPTH-CLEAR loop`, and the 12-fixture router command.
+- `rg` verify: no output, exit 1.
+- README structure validator: `✅ VALID`, 0 issues, exit 0.
+- No spec paths, `REQ-`/`CHK-`/`ADR-` ids, or task ids in the file (exit 1).
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/README.md
+verify: rg -n "DEPTH|depth-framework|RICCE|erspective|rounds|one retry" .skilled/skills/sk-prompt/README.md -> no output, rg_exit=1 (expected); python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-prompt/README.md --type readme -> "VALID", Total issues: 0, exit 0
+notes: the rebuild was already on disk at my first read (HEAD 3.0.2.0 -> disk 4.0.0.0, a concurrent writer landed it mid-read), so I made no edit; all eight end-state items asserted PASS against md5 b1df59b39c6f8925da6f6a4333ff33dd.

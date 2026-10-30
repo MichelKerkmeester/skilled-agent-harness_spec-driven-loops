@@ -1,0 +1,8 @@
+Both verifications match expectations: the banned-term scan printed nothing (exit 1) and the H2 count is 5.
+
+The file was rewritten wholly in the old shape: three-key frontmatter at version 3.0.0.0, H1, the five numbered H2 sections with the OVERVIEW "Why This Matters" subsection, seven SCENARIO CONTRACT bullets, all seven TEST EXECUTION subsections, the two SOURCE FILES tables and the four SOURCE METADATA bullets. The scenario now covers preset stability rather than switching: the operator names TIDD-EC, repair cycles must keep it, and any change of preset has to be named in the change report. Command 1 carries the real user request, command 2 is the `@prompt-improver` dispatch with matching constraints, and command 3 greps `patterns-evaluation.md` for the Choosing a Preset rule. The Implementation And Test Anchors table lists three of the four anchor candidates — the files that exist in the skill root and hold this behavior — while `../../SKILL.md` stays in Playbook Sources as it was, so no row appears twice.
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/manual-testing-playbook/framework-selection/preset-kept-through-repair.md
+verify: rg -c "DEPTH|RICCE|erspective|Harmonize|depth-framework|rounds" <file> → no output, exit 1; rg -c "^## " <file> → 5, exit 0
+notes: Implementation And Test Anchors lists patterns-evaluation.md, improvement-checklist.md and ROUTER.md; SKILL.md is kept once, in Playbook Sources, to avoid a duplicate row.

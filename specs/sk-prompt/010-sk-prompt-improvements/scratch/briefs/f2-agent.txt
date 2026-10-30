@@ -1,0 +1,22 @@
+TASK: literal edits in one file, .skilled/agents/prompt-improver.md. Read only this file and
+.skilled/skills/sk-prompt/SKILL.md (for wording). Keep everything else byte-identical.
+
+1. `Routine low-complexity ask (`<= 6`)` -> `Routine low-complexity ask (`<= 3`)`
+2. `Compliance, security, multi-stakeholder, or complexity `>= 7`` -> same text with ``>= 8``
+3. `Build the best dispatch-ready prompt package with one primary framework` ->
+   `Build the best dispatch-ready prompt package from the default skeleton, or a preset when one is named or clearly fits`
+4. `within prompt-construction scope before selecting a framework.` -> `within prompt-construction scope before composing the prompt.`
+5. `Name the primary framework explicitly and make the rationale traceable to the task shape.` ->
+   `Name the default skeleton or the preset used in `FRAMEWORK`, and make the reason traceable to the task shape.`
+6. `Retry at most once if the first draft misses the CLEAR floor.` ->
+   `Repair up to 3 cycles if the draft misses the CLEAR floor, then deliver the best version with a note naming the weakest dimension.`
+7. Self-check item 2 becomes:
+   `2. Did I use the default skeleton, or a preset that was named or clearly fits, and say which, or use the blocked shape? (YES/NO)`
+8. In the ASCII box, `2. Score frameworks and compose the enhanced prompt` -> `2. Run the checklist and compose the enhanced prompt`.
+   Pad with spaces so the closing `│` stays in the same column as the lines above and below.
+9. Then run: rg -n -i "primary framework|select(ing)? a framework|score frameworks|framework selection|best framework" .skilled/agents/prompt-improver.md
+   Rewrite each remaining hit to skeleton-or-preset wording and list every one in notes.
+
+VERIFY
+Run: rg -n -i "retry at most once|primary framework|score frameworks|>= 7|<= 6" .skilled/agents/prompt-improver.md
+Expected: rg prints nothing (exit 1).

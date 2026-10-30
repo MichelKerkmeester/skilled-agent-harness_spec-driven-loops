@@ -1,0 +1,36 @@
+TASK: literal edits in one file, .skilled/skills/sk-prompt/references/patterns-evaluation.md. Read
+only this file. Keep everything else byte-identical.
+
+1. `apply_framework: {check: has_framework, if_missing: apply_best}` ->
+   `apply_skeleton: {check: has_skeleton_rows, if_missing: add_missing_rows}`
+2. `config: {max_iterations: 5, target_clear_score: target_score}` -> same with `max_iterations: 3`
+3. The line after it, `process: "while iterations < max AND score < target: calculate, recognize, propose, apply"` ->
+   `process: "while iterations < max AND score < target: calculate, recognize, propose, apply; after the last cycle, deliver the best version with a note"`
+4. `A deliverable scoring 40+ overall but failing a per-dimension floor must still be revised until the floor is met.` ->
+   `A deliverable scoring 40+ overall but failing a per-dimension floor is repaired too, up to 3 cycles; if a floor is still missed, deliver the best version with a note naming that dimension.`
+5. Delete the whole "### Multi-Pass Scoring" subsection: its heading, its table, the
+   `**Aggregation:** Use weighted average of pass scores.` line and one following blank line, so
+   "## 11. ADVANCED SCORING TECHNIQUES" is followed by a blank line and then "### Comparative Scoring".
+6. Under "## 15. QUICK REFERENCE CARD", replace the "### Framework Quick Select" heading and its
+   table with exactly:
+
+### Preset Quick Select
+
+Use the default skeleton unless a preset is named or one of these needs is clear.
+
+| Need          | Preset  |
+| ------------- | ------- |
+| Speed         | RACE    |
+| Role, format  | RCAF    |
+| Audience      | COSTAR  |
+| Instructions  | CIDI    |
+| Creative      | CRISPE  |
+| Precision     | TIDD-EC |
+| Comprehensive | CRAFT   |
+
+7. If the table of contents or any in-file link names "Multi-Pass Scoring" or "Framework Quick
+   Select", update it to match and list it in notes.
+
+VERIFY
+Run: rg -n "max_iterations: 5|apply_best|Multi-Pass Scoring|Framework Quick Select|until the floor is met" .skilled/skills/sk-prompt/references/patterns-evaluation.md
+Expected: rg prints nothing (exit 1).

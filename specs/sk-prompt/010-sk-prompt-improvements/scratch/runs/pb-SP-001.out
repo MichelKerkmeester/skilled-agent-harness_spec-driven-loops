@@ -1,0 +1,10 @@
+Rewrote the scenario file in the existing shape (frontmatter → H1 → five numbered H2 sections → `---` dividers), with the SP-001 objective, the three commands, and an implementation-anchor table limited to the four verified-existence files.
+
+- Frontmatter: `title` = "SP-001 -- Default mode runs the standard checklist", `description`, `version: 3.0.0.0`.
+- Content anchors on standard effort, ten rows with reasons, CLEAR reasons-before-score with pass at 40, and prompt-first delivery; no retired terminology.
+- Verify: forbidden-term grep returned no matches (exit 1); `^## ` count = 5.
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/manual-testing-playbook/mode-detection/default-mode-routing.md
+verify: `rg -c "DEPTH|RICCE|erspective|Harmonize|depth-framework|rounds" <file>` → no output, exit 1; `rg -c "^## " <file>` → 5
+notes: All four candidate anchor files were confirmed present; the notes column on each anchor row is a one-line role.

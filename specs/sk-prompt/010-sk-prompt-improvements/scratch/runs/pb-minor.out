@@ -1,0 +1,10 @@
+All 12 files updated with exact-string replacements only; no other text touched. Final verify ran clean.
+
+- Replacements 1-8 applied to every occurrence: all `depth-framework.md` references now point at `improvement-checklist.md`, and the effort wording now reads `quick vs standard effort`, `standard effort`, `the checklist and CLEAR`, `after the checklist pass`, `the standard checklist and CLEAR`.
+- Anchor-table role cells rewritten to the 11 exact cells specified, including the kept `DEFAULT_RESOURCE loaded under UNKNOWN_FALLBACK` row.
+- `clear-scoring/dimension-floors-block.md` step 2 now reads `Inspect \`improvement-checklist.md\` section 6 for the repair rule.` and its rg command targets `.skilled/skills/sk-prompt/references/improvement-checklist.md` with the original pattern.
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/manual-testing-playbook/{smart-routing/unknown-fallback-checklist.md, smart-routing/ambiguity-delta-tiebreaker.md, smart-routing/on-demand-keyword-loading.md, smart-routing/intent-model-keyword-scoring.md, escalation-tiers/cli-card-five-question-fast-path.md, escalation-tiers/escalation-trigger-thresholds.md, escalation-tiers/prompt-improver-input-payload.md, clear-scoring/dimension-floors-block.md, clear-scoring/clear-five-dimensions.md, clear-scoring/dimension-drilldown-rationale.md, format-modes/format-mode-delivery.md, framework-selection/user-named-framework-override.md}
+verify: `rg -n "DEPTH|depth-framework" <the 12 listed paths>` → no output, EXIT=1
+notes: one edit retry needed where the escalation-trigger line wraps `complexity_hint` in backticks; corrected and reapplied.

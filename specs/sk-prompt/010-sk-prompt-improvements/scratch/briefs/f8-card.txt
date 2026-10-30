@@ -1,0 +1,21 @@
+TASK: literal edit in one file, .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md. Read
+only this file and lines 255-275 of .skilled/skills/sk-prompt/SKILL.md (the output block). Keep
+everything else byte-identical.
+
+Replace the fenced block after "Expected structured return:" (the five-line FRAMEWORK ...
+ESCALATION_NOTES block) with exactly:
+
+```text
+FRAMEWORK: <default skeleton | preset name>
+CLEAR_SCORE: <n>/50 (C:<n> L:<n> E:<n> A:<n> R:<n>)
+TEST: <ran: summary of old vs new on 2-3 inputs | NOT RUN>
+CHANGES: <Added ...; Changed ...; Removed ...; Skipped ...>
+RATIONALE: <short explanation>
+ENHANCED_PROMPT: |
+  <ready-to-dispatch prompt>
+ESCALATION_NOTES: <open ambiguity or risk>
+```
+
+VERIFY
+Run: rg -c "^(TEST|CHANGES): " .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md
+Expected: 2

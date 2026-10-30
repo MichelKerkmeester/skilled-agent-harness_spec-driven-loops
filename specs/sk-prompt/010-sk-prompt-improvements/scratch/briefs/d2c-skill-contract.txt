@@ -1,0 +1,32 @@
+TASK: edit sections 7 to 9 of one file, .skilled/skills/sk-prompt/SKILL.md: from the line
+"## 7. AGENT INVOCATION CONTRACT" to the end of the file. Touch nothing above that line. Read only
+this file. Do not change the "### Model Eligibility" subsection in any way.
+
+EDIT 1 - "### Expected Input Payload" table: the `complexity_hint` row description becomes
+`Integer `1-10` mapped to effort: 1-3 quick, 4-7 standard, 8-10 thorough`.
+
+EDIT 2 - "### Deterministic Agent Rules": replace the bullets with exactly:
+- Use `references/improvement-checklist.md` for the one-pass checklist, effort levels, quick test and change report.
+- Use `references/patterns-evaluation.md` for the default skeleton and presets: read `## 2. FRAMEWORK LIBRARY & SELECTION`, a named preset's subsection of `## 3. FRAMEWORK DEEP DIVES`, and `## 10. CLEAR EVALUATION MASTERY`, the one CLEAR rubric. An on-demand keyword reads the whole file.
+- Map `complexity_hint` onto effort as the payload table says; with no hint, use standard.
+- Require `CLEAR >= 40/50` before returning success.
+- If the screen scores below threshold, repair up to 3 cycles, then return the best version with explicit escalation notes.
+
+EDIT 3 - "### Structured Output Block": inside the text fence, insert two lines directly after the
+`CLEAR_SCORE:` line:
+TEST: <ran: summary of old vs new on 2-3 inputs | NOT RUN>
+CHANGES: <Added ...; Changed ...; Removed ...; Skipped ...>
+Keep the other lines. Change `FRAMEWORK: <name>` to `FRAMEWORK: <default skeleton | preset name>`.
+
+EDIT 4 - "### Contract Guarantees": first bullet becomes
+- The returned prompt is ready for CLI handoff without another pass.
+
+EDIT 5 - section 9: in the sentence starting "The router discovers reference", replace
+`references/depth-framework.md` with `references/improvement-checklist.md`.
+
+VERIFY
+Run: rg -c "DEPTH|depth-framework|retry once|RICCE" .skilled/skills/sk-prompt/SKILL.md
+Expected: rg prints nothing (exit 1) once the earlier sections were also edited; if a match
+remains above section 7, report it in notes and do not edit it.
+Run: rg -n "^TEST:|^CHANGES:" .skilled/skills/sk-prompt/SKILL.md
+Expected: two lines.

@@ -1,0 +1,23 @@
+TASK: literal edits in five files under .skilled/skills/sk-prompt/manual-testing-playbook/. Read
+only these files. Keep everything else byte-identical.
+
+A. escalation-tiers/prompt-improver-output-block.md
+   - `five-field` -> `seven-field` everywhere.
+   - `PASS if all five fields are present and populated` -> `PASS if all seven fields (FRAMEWORK, CLEAR_SCORE, TEST, CHANGES, RATIONALE, ENHANCED_PROMPT, ESCALATION_NOTES) are present and populated`
+   - `Five fields are present and populated` -> `Seven fields are present and populated`
+B. mode-detection/mode-prefix-keyword-collision.md and manual-testing-playbook.md (SP-004 block only):
+   replace `a report line stating that the token resolved the mode ahead of keyword scoring` with
+   `the transparency report shows Mode `$short` and Effort quick, with no thorough-effort step and no quick test`.
+   In mode-prefix-keyword-collision.md also rewrite the two other sentences that require a note
+   saying the token resolved the mode (around the Desired outcome and the Pass line) to the same
+   check: Mode `$short`, Effort quick, no quick test.
+C. checklist-pass/repair-cycle-cap.md and manual-testing-playbook.md (SP-011 block only):
+   replace `a report stating `Repair cycles: <n> of 3 max`, `Best CLEAR: <score>/50`, and a note naming the weakest dimension whenever the score stays below 40`
+   with ``CLEAR_SCORE` showing the best score reached, and a note in `ESCALATION_NOTES` or the open items saying the 3-cycle repair cap was reached and naming the weakest dimension whenever the score stays below 40`.
+   Then rg repair-cycle-cap.md for any other `Repair cycles:` or `Best CLEAR:` and rewrite it to the same check.
+D. escalation-tiers/escalation-trigger-thresholds.md:
+   `standard effort for escalated prompts` -> `thorough effort for complexity 8-10`
+
+VERIFY
+Run: rg -n "five-field|resolved the mode ahead|Repair cycles: <n>|Best CLEAR:|standard effort for escalated" .skilled/skills/sk-prompt/manual-testing-playbook
+Expected: rg prints nothing (exit 1).

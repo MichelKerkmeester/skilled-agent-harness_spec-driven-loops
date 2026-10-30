@@ -1,0 +1,8 @@
+Both checks pass: the forbidden-term scan is empty (exit 1), and the H2 count is 5.
+
+Wrote `.skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/clashing-rules-resolved.md` whole, keeping the old file's shape: three-key frontmatter at version 3.0.0.0, H1 matching the frontmatter title, the five numbered H2 sections with the `---` dividers, the TEST EXECUTION subsections in their original order, both SOURCE FILES tables, and the metadata bullets. Content is new: the scenario now drives the brevity-versus-detail clash through the contradiction row, with the resolution required to state which rule wins and when, and the change report required to list it. The `bash: rg` command targets the contradiction row and its priority-order guidance in `improvement-checklist.md` section 2.
+
+PI_HANDBACK
+file: .skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/clashing-rules-resolved.md
+verify: `rg -c "DEPTH|RICCE|erspective|Harmonize|depth-framework" <file>` printed nothing (exit 1); `rg -c "^## " <file>` printed `5`
+notes: none
