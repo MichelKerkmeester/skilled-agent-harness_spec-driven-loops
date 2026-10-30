@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a57230e98d030dedb82ec30aa8ed4a29c080438bc04835f4c8cf86a234d06382",
+  "manifestHash": "4715208fe8d5a85b8227379b7e08cb3cdb6dd67861cadbd1ece09e20ffbb96f3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -28746,6 +28746,9 @@
     "convergencemode off": [
       "convergenceMode off"
     ],
+    "convert a skill in place": [
+      "convert a skill in place"
+    ],
     "convert advisor hermes changelog integration": [
       "convert advisor hermes changelog integration"
     ],
@@ -39717,11 +39720,17 @@
     "doctor command authoring plan": [
       "doctor command authoring plan"
     ],
+    "doctor command bridge": [
+      "doctor command bridge"
+    ],
     "doctor command bridges": [
       "doctor command bridges"
     ],
     "doctor command consolidation summary": [
       "doctor command consolidation summary"
+    ],
+    "doctor command contract": [
+      "doctor command contract"
     ],
     "doctor command cutover summary": [
       "doctor command cutover summary"
@@ -40543,6 +40552,9 @@
     ],
     "doctor sk code setup versus hub mode": [
       "doctor sk-code-setup versus hub mode"
+    ],
+    "doctor sk skill": [
+      "/doctor:sk-skill"
     ],
     "doctor sk skill check route": [
       "doctor sk-skill check route"
@@ -54813,6 +54825,9 @@
     "how do repo rules work": [
       "how do repo rules work"
     ],
+    "how far is a skill from the skilled format": [
+      "how far is a skill from the skilled format"
+    ],
     "how is the version field derived": [
       "how is the version field derived"
     ],
@@ -59006,6 +59021,9 @@
     ],
     "leaf manifest regeneration": [
       "leaf manifest regeneration"
+    ],
+    "leaf manifest router pointer": [
+      "leaf manifest router pointer"
     ],
     "leaf manifest stale chart": [
       "leaf manifest stale chart"
@@ -73817,6 +73835,9 @@
     "parity audit": [
       "parity audit"
     ],
+    "parity baselines": [
+      "parity baselines"
+    ],
     "parity certificate before cutover": [
       "parity certificate before cutover"
     ],
@@ -80762,6 +80783,9 @@
     ],
     "prompt composition guidance": [
       "prompt-composition guidance"
+    ],
+    "prompt description routing": [
+      "prompt description routing"
     ],
     "prompt early exit": [
       "prompt early exit"
@@ -99363,6 +99387,9 @@
     "sk create command 1 0 1 1": [
       "sk-create-command 1.0.1.1"
     ],
+    "sk create command 1 0 10 0": [
+      "sk-create-command 1.0.10.0"
+    ],
     "sk create command 1 0 2 0": [
       "sk-create-command 1.0.2.0"
     ],
@@ -99404,6 +99431,9 @@
     ],
     "sk create command v1 0 1 1": [
       "sk-create-command v1.0.1.1"
+    ],
+    "sk create command v1 0 10 0": [
+      "sk-create-command v1.0.10.0"
     ],
     "sk create command v1 0 2 0": [
       "sk-create-command v1.0.2.0"
@@ -100203,6 +100233,9 @@
     "sk create skill 1 9 0 0": [
       "sk-create-skill 1.9.0.0"
     ],
+    "sk create skill 1 9 1 0": [
+      "sk-create-skill 1.9.1.0"
+    ],
     "sk create skill authoring errors": [
       "sk-create-skill authoring errors"
     ],
@@ -100301,6 +100334,9 @@
     ],
     "sk create skill v1 9 0 0": [
       "sk-create-skill v1.9.0.0"
+    ],
+    "sk create skill v1 9 1 0": [
+      "sk-create-skill v1.9.1.0"
     ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
@@ -101097,6 +101133,9 @@
     "sk doc 2 3 32 0": [
       "sk-doc 2.3.32.0"
     ],
+    "sk doc 2 3 33 0": [
+      "sk-doc 2.3.33.0"
+    ],
     "sk doc 2 3 4 0": [
       "sk-doc 2.3.4.0"
     ],
@@ -101513,6 +101552,9 @@
     ],
     "sk doc v2 3 32 0": [
       "sk-doc v2.3.32.0"
+    ],
+    "sk doc v2 3 33 0": [
+      "sk-doc v2.3.33.0"
     ],
     "sk doc v2 3 4 0": [
       "sk-doc v2.3.4.0"
@@ -102039,6 +102081,9 @@
     "sk prompt 4 0 0 0": [
       "sk-prompt 4.0.0.0"
     ],
+    "sk prompt 4 0 1 0": [
+      "sk-prompt 4.0.1.0"
+    ],
     "sk prompt 7 against 5 frameworks": [
       "sk-prompt 7 against 5 frameworks"
     ],
@@ -102377,6 +102422,9 @@
     ],
     "sk prompt v4 0 0 0": [
       "sk-prompt v4.0.0.0"
+    ],
+    "sk prompt v4 0 1 0": [
+      "sk-prompt v4.0.1.0"
     ],
     "sk vision": [
       "sk-vision"
@@ -104021,6 +104069,15 @@
     ],
     "skill folder placeholder examples": [
       "skill folder placeholder examples"
+    ],
+    "skill format catalog entry": [
+      "skill format catalog entry"
+    ],
+    "skill format check and convert": [
+      "skill format check and convert"
+    ],
+    "skill format command docs": [
+      "skill format command docs"
     ],
     "skill frontmatter alignment": [
       "skill frontmatter alignment"
@@ -111174,6 +111231,9 @@
     "system skill advisor 0 17 25 0": [
       "system-skill-advisor 0.17.25.0"
     ],
+    "system skill advisor 0 17 26 0": [
+      "system-skill-advisor 0.17.26.0"
+    ],
     "system skill advisor 0 17 3 0": [
       "system-skill-advisor 0.17.3.0"
     ],
@@ -111434,6 +111494,9 @@
     ],
     "system skill advisor v0 17 25 0": [
       "system-skill-advisor v0.17.25.0"
+    ],
+    "system skill advisor v0 17 26 0": [
+      "system-skill-advisor v0.17.26.0"
     ],
     "system skill advisor v0 17 3 0": [
       "system-skill-advisor v0.17.3.0"

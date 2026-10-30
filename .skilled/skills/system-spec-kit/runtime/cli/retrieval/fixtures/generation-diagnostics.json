@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7305,
-    "ok": 16386,
+    "missing-frontmatter": 7309,
+    "ok": 16392,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27239,
+  "documentsScanned": 27249,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a57230e98d030dedb82ec30aa8ed4a29c080438bc04835f4c8cf86a234d06382",
+  "manifestHash": "4715208fe8d5a85b8227379b7e08cb3cdb6dd67861cadbd1ece09e20ffbb96f3",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 39940,
+      "ok": 39961,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -29642,13 +29642,37 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/check-a-skill-against-the-skilled-format.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/classify-standalone-root-metadata.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/convert-a-plain-skill.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/convert-an-older-skilled-skill.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/leave-quality-audits-alone.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/refuse-a-hub-candidate.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {

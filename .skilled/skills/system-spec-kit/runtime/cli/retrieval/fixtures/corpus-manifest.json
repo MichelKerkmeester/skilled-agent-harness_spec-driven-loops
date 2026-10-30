@@ -1,5 +1,5 @@
 {
-  "corpusHash": "55497cb3f7a59ef74dc6ba15198bdb20b74f5d8ac32deba0d99e75ac3485a8a8",
+  "corpusHash": "dad2e73ff71b4c0e7137ab0abef9ba16aabb4a417c48b1e130ab69256817710a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27239,
+  "includedPathCount": 27249,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6277,6 +6277,7 @@
     ".skilled/skills/sk-doc/changelog/v2.3.30.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.31.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.32.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.33.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.4.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.5.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.6.0.md",
@@ -6291,6 +6292,7 @@
     ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md",
     ".skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/packet-authored-registry-routing.md",
+    ".skilled/skills/sk-doc/feature-catalog/skill-format-conversion/skill-format-check-and-convert.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/agent-dispatch/markdown-agent-cli-claude-code.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/agent-dispatch/markdown-agent-cli-opencode.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/cross-cli-dispatch/large-prompt-stress.md",
@@ -6482,6 +6484,7 @@
     ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.1.0.md",
     ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.1.1.md",
+    ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.10.0.md",
     ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.2.0.md",
     ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.3.0.md",
     ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.4.0.md",
@@ -6805,13 +6808,18 @@
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.7.6.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.8.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.9.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.9.1.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/author-a-two-axis-parent-hub.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/keep-one-parent-identity.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/keep-ready-separate-from-compiled-serving.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/replay-stage-two-leaf-routes.md",
+    ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/check-a-skill-against-the-skilled-format.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/classify-standalone-root-metadata.md",
+    ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/convert-a-plain-skill.md",
+    ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/convert-an-older-skilled-skill.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/leave-quality-audits-alone.md",
+    ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/refuse-a-hub-candidate.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/scaffold-a-standalone-skill.md",
     ".skilled/skills/sk-doc/sk-create-skill/references/README.md",
     ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md",
@@ -7058,6 +7066,7 @@
     ".skilled/skills/sk-prompt/changelog/v3.0.8.0.md",
     ".skilled/skills/sk-prompt/changelog/v3.0.9.0.md",
     ".skilled/skills/sk-prompt/changelog/v4.0.0.0.md",
+    ".skilled/skills/sk-prompt/changelog/v4.0.1.0.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/change-report-length-warning.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/clashing-rules-resolved.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/deliver-first-open-items.md",
@@ -7856,6 +7865,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.17.23.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.24.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.25.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.17.26.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.4.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.5.0.md",
@@ -27270,7 +27280,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a57230e98d030dedb82ec30aa8ed4a29c080438bc04835f4c8cf86a234d06382",
+  "manifestHash": "4715208fe8d5a85b8227379b7e08cb3cdb6dd67861cadbd1ece09e20ffbb96f3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
