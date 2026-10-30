@@ -75,10 +75,12 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Baselines read | Done | 2026-10-30 at `66157ee7e6`: replay `total gold=65 scored=57 tied=3 mean_f1=0.9176 exact=50`; scorer 155/195, 49/66, 19/24 |
+| Both conversions end green | Done | Rerun at `665c2ba863` in fresh temp repositories: each strict `Result: PASS`, each changelog link resolves, and all six integration rows report per conversion |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | No verification run has started |
+| Two conversion gaps, found then fixed | The first run left a plain skill's graph row failed on a zero-edge root and gave the older-Skilled path no integration rows; `c6bee18a45` added the approved `enhances` edge and the shared rows |
+| T001 to T007 not rerun | Their numbers are the ones measured at `0a8bd93611`; only the two conversions and the release entry were re-read at `665c2ba863` |
 <!-- /ANCHOR:log -->

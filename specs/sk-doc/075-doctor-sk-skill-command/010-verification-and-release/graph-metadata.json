@@ -3,7 +3,6 @@
   "packet_id": "sk-doc/075-doctor-sk-skill-command/010-verification-and-release",
   "spec_folder": "sk-doc/075-doctor-sk-skill-command/010-verification-and-release",
   "parent_id": "sk-doc/075-doctor-sk-skill-command",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -35,7 +34,7 @@
       "edits"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -110,6 +109,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -129,12 +134,6 @@
       },
       {
         "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,7 +195,7 @@
     ],
     "causal_summary": "The program edits doctor routes, sk-doc docs and manifests, advisor bridges and a skill template",
     "created_at": "2026-10-30T05:21:20Z",
-    "last_save_at": "2026-10-30T12:24:59.944Z",
+    "last_save_at": "2026-10-30T13:56:23.532Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ec27f64f8fe3f7f430d4fe8ae3a5fe5ef5e4ccbae7756b36f887dd50544a6850",
+    "source_fingerprint": "sha256:9ba3da1e21afdf52227a708f2f65d452a37edb9189e2a5c9fa405f5dbf0ffe5e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5ad569cded2c360bcb8c6ca4166d438c25f7e9ab5ec67571670b290a19602176",
+      "spec.md": "a410d2e106ba634837a133d78e8fa72fbe97c5bca5dc9d29a0acd62c544641ed",
       "plan.md": "11e0067834ff40f5d63d6f0e499f8e215631d2cdfdbaa4e4c2a1b8d9939143ee",
-      "tasks.md": "a052a768ae9a04d78b67e41e61edf18ee5ceefc756345514e6bbf969f9223330",
-      "implementation-summary.md": "b358502f2457cd36ffd48aae869121e2533ab0b72864c72616f646742a89b98b"
+      "tasks.md": "076e372a9ca01e701910f70d3048a5ef17399cbb6ee76064fbf1c5186908def0",
+      "implementation-summary.md": "3388215fefa29c3379b580e8b9ff1cb1a80fe43866f30b201122a4f0f9a02fb4"
     },
     "last_active_at": null
   }

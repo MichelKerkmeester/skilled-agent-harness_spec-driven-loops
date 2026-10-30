@@ -10,9 +10,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/075-doctor-sk-skill-command"
-    last_updated_at: "2026-10-30T13:20:00Z"
+    last_updated_at: "2026-10-30T14:50:00Z"
     last_updated_by: "markdown-agent-010"
-    recent_action: "Phases 1 to 9 are closed and phase 10 recorded the final verification and the release entry"
+    recent_action: "Both conversions were rerun after the fix and each ends green; the CI read is still open"
     next_safe_action: "Read CI on main after the operator merges, then close phase 10"
     blockers: []
     key_files:
@@ -128,7 +128,7 @@ Ship `/doctor:sk-skill` with a read-only `check` target that reports rows C1 to 
 | 7 | 007-docs-and-changelogs/ | Docs list from design section 3 and a changelog for every touched skill | Complete |
 | 8 | 008-hub-gap-report/ | Read-only `check --into-hub <hub>` 11-row gap report | Complete |
 | 9 | 009-mirror-and-template-fixes/ | Hermes skills check in `/doctor:runtime-mirrors` (D8) and the template wording fix (D9) | Implemented |
-| 10 | 010-verification-and-release/ | Final verification across the program and release notes | Implemented, CI on main pending |
+| 10 | 010-verification-and-release/ | Final verification across the program and release notes | In progress, CI on main pending |
 
 ### Phase Transition Rules
 
