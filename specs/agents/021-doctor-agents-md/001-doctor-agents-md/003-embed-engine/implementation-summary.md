@@ -70,18 +70,19 @@ repository-unique line was lost, and puts the backup back when one was.
 - **`preservationCheck(old, new, manifest, {removed})`** is a pure export implementing the
   four parts of the invariant, so the proof can be read and driven without a run.
 
-The block carries, in order: what the block already held, the sections that match no
-shipped section (verbatim, in document order), the local lines of each edited or
-unknown-base section under `### Carried from <id>`, and the unique lines of a folded
-`CLAUDE.md` or `.codex/AGENTS.md` under `### Carried from <path>`. A released body is
-replaced with no carry, because every line of it is already shipped.
+The block carries, in order: what the block already held, the text above the first heading,
+the sections that match no shipped section (verbatim, in document order), the local lines of
+each edited or unknown-base section under `### Carried from <id>`, and the unique lines of a
+folded `CLAUDE.md` or `.codex/AGENTS.md` under `### Carried from <path>`. A released body is
+replaced with no carry, because every line of it is already shipped. The block is found
+wherever it sits, because the shared segmenter reads the whole document.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
 | `.skilled/commands/doctor/scripts/agents-md-embed.cjs` | Created | `plan`, `apply`, `restore`, the composer, the write allowlist, the backups and the preservation proof |
-| `.skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs` | Created | 23 cases over temporary copies: composition, carry order, the four invariant parts, the digest gate, the allowlist, the backups, the fallback, the copies, the router and the mirror |
+| `.skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs` | Created | 26 cases over temporary copies: composition, carry order, the three document shapes, the four invariant parts, the digest gate, the allowlist, the backups, the fallback, the copies, the router and the mirror |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -136,9 +137,9 @@ flag is given, and a router that exists gains only the rows it is missing.
 
 | Check | Result |
 |-------|--------|
-| `node --test .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs` | `pass 23`, `fail 0`, exit 0 |
+| `node --test .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs` | `tests 26`, `pass 26`, `fail 0`, exit 0 (`pass 23` before the review repair) |
 | `node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan` | `NOTHING TO DO`, exit 0, on this repository |
-| `bash .skilled/commands/doctor/scripts/tests/run-all.sh` | `38` suites, `805` node cases, `0 failed`, exit 0 |
+| `bash .skilled/commands/doctor/scripts/tests/run-all.sh` | `38` files, `816` node cases, `0 failed`, exit 0 (`805` cases before the review repair) |
 | `node .skilled/commands/doctor/scripts/agents-md-check.cjs` | `A1 install state: pure`, `STATUS=OK rows=12 findings=0 unknown=0`, exit 0 |
 | `node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs` | `RESULT: PASSED (11/11 checks)`, exit 0 |
 | `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` | `OK: all rule invariants present`, `#### Blast-Radius Management` ends at byte `16368` |
@@ -147,6 +148,22 @@ flag is given, and a router that exists gains only the rows it is missing.
 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <child> --strict` | `Summary: Errors: 0  Warnings: 0`, `RESULT: PASSED` |
 | `git diff --quiet AGENTS.md` | exit 0: the template is untouched by this child |
 <!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:review-repair -->
+## Review Repair
+
+A review of the check engine it composes from found that a block written anywhere other than last, a line below its end marker and the text above the first heading all disappeared at a rewrite. The repair landed in the shared segmenter, and this engine followed it in three places:
+
+| Finding | What was wrong | What changed |
+|---------|----------------|--------------|
+| A block between shipped sections | Its content was carried, but every shipped section below it was invisible, so the plan's own state read `foreign` | The whole document is segmented, so the sections below the block are replaced like any other and the plan reads `adopted` |
+| A line below the end marker | It was dropped with no finding and no dropped line in the proof | It is a local line of the section the block interrupts, carried under `### Carried from <id>` |
+| Text above the first heading | It was carried by a preamble chunk the proof did not count, so a composition that lost it read clean | The segmenter returns it as `prelude`, the preservation check requires it under part one, and the chunk is sourced from there |
+
+Three cases were added, one per shape. Each failed first (`fail 3`) and passes now; the third also drives the proof directly by removing the prelude from a composed document and asserting that the check names it.
+<!-- /ANCHOR:review-repair -->
 
 ---
 

@@ -38,6 +38,7 @@ const {
   REPO_ROOT,
   SCRIPTS_DIR,
   composeFixture,
+  moveBlockBefore,
 } = require('./fixtures/agents-md/compose-fixture.cjs');
 
 const ENGINE = path.join(SCRIPTS_DIR, 'agents-md-embed.cjs');
@@ -89,6 +90,10 @@ function readInside(dir, relative) {
 
 function existsInside(dir, relative) {
   return fs.existsSync(path.join(dir, relative));
+}
+
+function writeInside(dir, relative, text) {
+  fs.writeFileSync(path.join(dir, relative), text, 'utf8');
 }
 
 function trimmedLines(text) {
@@ -458,6 +463,85 @@ test('a released body is replaced with no carry', (t) => {
   const current = manifest.derived.sections['operational-mandates'].body;
   assert.ok(composed.includes(current), 'the current body replaced the released one');
   assert.ok(!composed.includes('### Carried from operational-mandates'), 'nothing is carried from a released body');
+});
+
+// A block is the repository's block wherever it sits. Left above the point a rewrite cuts, its
+// content is the first thing a replacement loses, and every shipped section below it is
+// invisible, so the rewrite would duplicate them into the block instead of recognising them.
+test('a block placed between shipped sections is carried into the block at the end', (t) => {
+  const dir = composeTree(t, 'adopted');
+  const original = moveBlockBefore(readInside(dir, manifest.root_file), '#### The Four Laws');
+  writeInside(dir, manifest.root_file, original);
+  const carried = 'Our stack is Node 20 with no web framework.';
+
+  const applied = planAndApply(dir).applied;
+  trackBackup(t, applied.out);
+  assert.equal(applied.code, 0, `${applied.err}${applied.out}`);
+  assert.match(applied.out, /\(state: adopted\)/u, 'the sections below the block are recognised as the template\'s');
+  assert.match(applied.out, /preservation: kept \d+, carried \d+, shipped-replaced 44, dropped 0/u);
+
+  const composed = readInside(dir, manifest.root_file);
+  assert.equal(occurrences(composed, manifest.markers.start), 1, 'exactly one block survives');
+  const block = blockIn(composed);
+  assert.equal(occurrences(block, carried), 1, 'the block content moved into the one block at the end');
+  assert.equal(occurrences(composed, carried), 1, 'it is not also left where it was');
+  for (const id of ['four-laws', 's2-mandatory-gates', 'operational-mandates']) {
+    assert.equal(occurrences(composed, manifest.derived.sections[id].body), 1, `the shipped body ${id} appears once, below the block`);
+  }
+
+  const checked = embed.preservationCheck(original, composed, manifest);
+  assert.deepEqual(checked.dropped, []);
+  assert.deepEqual(checked.foreign, []);
+});
+
+// The end marker is not the end of the file. A line typed below it is the repository's own,
+// and a rewrite that keeps only the block and the shipped sections drops it silently.
+test('a line after the end marker is carried into the block', (t) => {
+  const dir = composeTree(t, 'adopted');
+  const line = 'Ship the release note in the same commit as the tag.';
+  const original = `${readInside(dir, manifest.root_file)}${line}\n`;
+  writeInside(dir, manifest.root_file, original);
+
+  const applied = planAndApply(dir).applied;
+  trackBackup(t, applied.out);
+  assert.equal(applied.code, 0, `${applied.err}${applied.out}`);
+  assert.match(applied.out, /dropped 0/u);
+
+  const composed = readInside(dir, manifest.root_file);
+  assert.equal(occurrences(blockIn(composed), line), 1, 'the line sits in the block');
+  assert.equal(occurrences(composed, line), 1, 'it is not also left below the block');
+
+  const checked = embed.preservationCheck(original, composed, manifest);
+  assert.deepEqual(checked.dropped, []);
+  assert.deepEqual(checked.foreign, []);
+});
+
+// Text above the first heading belongs to no section, so nothing but the block can keep it.
+// Carried nowhere, it is gone at the first rewrite while the document still reads as pure.
+test('text before the first heading is carried into the block', (t) => {
+  const dir = composeTree(t, 'pure');
+  const line = 'Read me first.';
+  const original = `${line}\n${readInside(dir, manifest.root_file)}`;
+  writeInside(dir, manifest.root_file, original);
+
+  const applied = planAndApply(dir).applied;
+  trackBackup(t, applied.out);
+  assert.equal(applied.code, 0, `${applied.err}${applied.out}`);
+  assert.match(applied.out, /\(state: forked\)/u, 'the text above the template is repository content, not a pure template');
+  assert.match(applied.out, /dropped 0/u);
+
+  const composed = readInside(dir, manifest.root_file);
+  assert.equal(occurrences(blockIn(composed), line), 1, 'the line sits in the block');
+  assert.equal(occurrences(composed, line), 1, 'it is not also left above the template');
+
+  const checked = embed.preservationCheck(original, composed, manifest);
+  assert.deepEqual(checked.dropped, []);
+  assert.deepEqual(checked.foreign, []);
+
+  // The proof has to miss it too, or the next composition that drops the prelude ends in
+  // the same silence: the line is gone and nothing was named.
+  const lost = embed.preservationCheck(original, composed.replace(`${line}\n`, ''), manifest);
+  assert.ok(lost.dropped.some((entry) => entry.line === line), `the proof counts the text above the template as repository content: ${JSON.stringify(lost.dropped)}`);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

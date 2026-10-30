@@ -62,6 +62,7 @@ contextType: "general"
 - [x] T013 Prove the read-only promise (`C`). Verify: `git status --porcelain | shasum` prints the same digest before and after a run over every fixture. Evidence: `e257400fe1ee97622e3d5e1fe2274bf7e0edb1f8` on both sides after composing each of the nine recipes into a temporary folder, running the engine twice on each and once on this repository; the suite's own case hashes each composed tree with sha256 before and after.
 - [x] T014 Confirm the canary gap (`C`). Verify: with the canary path moved aside in a temporary copy, A6 reads `UNKNOWN` and the exit code is 1. Evidence: the suite's missing-canary case passes with A6 `UNKNOWN`, `STATUS=UNKNOWN` and exit 1. The failure was produced by handing the harness an absent tool path rather than by moving a tracked file: the engine resolves its three child tools from this installation, and its only seam for that is the `tools` parameter `buildReport` takes. Moving `check-rule-copies.js` aside would have been an out-of-scope mutation of a tracked file.
 - [x] T015 Run the child gate (`specs/agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine/`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine --strict` prints `RESULT: PASSED`. Evidence: `Summary: Errors: 0  Warnings: 0` and `RESULT: PASSED`, exit 0.
+- [x] T019 Repair the ten review findings, tests first, in the shared segmenter and this engine (`lib/agents-md-sections.cjs`, `C`, `T`). Verify: `node --test T` reports `tests 37`, `pass 37`, `fail 0`. Evidence: the eight new cases failed first (`fail 8`, saved under the review's scratch folder) and pass after the repair; the segmenter now reads the whole document, so a block anywhere is the block and the text above the first heading is reported instead of reading as pure; `agents-md-manifest.cjs --check` still passes with no derived change, `run-all.sh` ends `7 suite(s) passed, 0 failed`, and `git diff --quiet AGENTS.md` exits 0.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -126,9 +127,10 @@ contextType: "general"
 ## Testing Checklist
 
 - [x] CHK-020 [P0] Every acceptance criterion is met. Verify: the rows in `acceptance-criteria.md` read `Met`. Evidence: AC-001 through AC-012 read `Met`, each with the run that proves it.
-- [x] CHK-021 [P0] The suite passes. Verify: `node --test .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs` reports `fail 0`. Evidence: `tests 29`, `pass 29`, `fail 0`.
-- [x] CHK-022 [P1] Every fixture's A1 state is asserted. Verify: `rg -c "state" .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs` prints at least `9`. Evidence: prints `32`, and nine per-fixture `A1 install state` cases run.
+- [x] CHK-021 [P0] The suite passes. Verify: `node --test .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs` reports `fail 0`. Evidence: `tests 37`, `pass 37`, `fail 0`; `tests 29` before the review repair added eight cases.
+- [x] CHK-022 [P1] Every fixture's A1 state is asserted. Verify: `rg -c "state" .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs` prints at least `9`. Evidence: prints `42`, and nine per-fixture `A1 install state` cases run.
 - [x] CHK-023 [P1] The error paths are asserted. Verify: the suite names the exit-2 case and it passes. Evidence: `exit codes: 0 on this repository, 1 on a finding, 2 on a failed precondition` passes with both the missing-root and missing-manifest cases, and `a precondition failure exits 2 rather than printing an empty report` passes.
+- [x] CHK-024 [P1] Every review finding is repaired and held by a case. Verify: `node --test T` names the eight new cases and they pass. Evidence: `a block placed between shipped sections is reported by A7 with its position`, `a line after the block end marker is reported as a local edit`, `text before the first shipped heading is reported as unmarked repository content`, `A9 counts a repeated local line once per occurrence`, `a pin kind with no rule is UNKNOWN, never a hold`, `A4 reports INFO when there is no matched section to classify`, `an unmeasured runtime copy makes A10 UNKNOWN and is counted in unknown=` and `the readability precondition reads the manifest's root file, not a fixed name` all pass.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -157,7 +159,7 @@ contextType: "general"
 ## File Organization
 
 - [x] CHK-050 [P1] Fixtures live under the tests tree. Verify: `find .skilled/commands/doctor/scripts/tests/fixtures/agents-md -maxdepth 1 -type d | wc -l` prints `10`. Evidence: prints `10`.
-- [x] CHK-051 [P1] No temporary copy survives. Verify: `git status --porcelain` lists no path under a temporary directory. Evidence: `git status --porcelain` lists the engine, the suite, the nine fixture recipes and this packet's docs only; every composed tree is removed by the case that made it.
+- [x] CHK-051 [P1] No temporary copy survives. Verify: `git status --porcelain` lists no path under a temporary directory. Evidence: `git status --porcelain` lists changed tracked files only — the engine, the suite, the composer, the shared segmenter and this packet's docs — and no path under a temporary directory; every composed tree is removed by the case that made it.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -168,7 +170,7 @@ contextType: "general"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 8 | 8/8 |
-| P1 Items | 10 | 10/10 |
+| P1 Items | 11 | 11/11 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-10-30

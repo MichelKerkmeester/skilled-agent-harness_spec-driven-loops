@@ -111,13 +111,15 @@ $ node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs
 
 ### Composition rules
 
-`AGENTS.md` becomes every current shipped section from `derived`, in manifest order, then the block. The block carries, in this order: the existing block content verbatim; every unmarked section verbatim in original order; for each edited or unknown-base section, a `### Carried from <id>` subheading followed by its local-only lines verbatim; and the unique lines of a divergent `CLAUDE.md` and `.codex/AGENTS.md`, each under `### Carried from <path>`. A `stale-known` section is replaced with no carry, because every line of it is a known shipped line. For an edited section whose base is known, the engine first tries a three-way merge through the update engine's exported classifier; when that merge is clean it still defaults to adopt-and-carry, because a merged section stays edited forever.
+`AGENTS.md` becomes every current shipped section from `derived`, in manifest order, then the block. The block is found wherever it sits: the segmenter reads the whole document, so a block written between shipped sections is still the block, and the sections below it are replaced like any other. Text above the first heading and a line below the end marker are repository content for the same reason.
+
+The block carries, in this order: the existing block content verbatim; the text above the first heading verbatim; every unmarked section verbatim in original order; for each edited or unknown-base section, a `### Carried from <id>` subheading followed by its local-only lines verbatim; and the unique lines of a divergent `CLAUDE.md` and `.codex/AGENTS.md`, each under `### Carried from <path>`. A `stale-known` section is replaced with no carry, because every line of it is a known shipped line. For an edited section whose base is known, the engine first tries a three-way merge through the update engine's exported classifier; when that merge is clean it still defaults to adopt-and-carry, because a merged section stays edited forever.
 
 ### The preservation invariant
 
 A line is a trimmed line, excluding blank lines and lines that are only `---`. A known shipped line is any line of any body in `derived.sections` or `derived.history`. Checked after every apply:
 
-1. Every line of the old `AGENTS.md` that sat in an unmarked section or in the old block appears in the new block at least as many times as before.
+1. Every line of the old `AGENTS.md` that sat in an unmarked section, in the text above the first heading or in the old block appears in the new block at least as many times as before.
 2. Every line of the old `AGENTS.md` that sat in a matched shipped section and is not a known shipped line appears in the new block at least as many times as before.
 3. Every unique line of a removed `CLAUDE.md` or `.codex/AGENTS.md` appears in the new `AGENTS.md` at least as many times as before.
 4. Every line of the new `AGENTS.md` outside the block is a line of a current shipped body.
@@ -151,6 +153,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-005 | `restore --run=<dir>` makes every recorded file byte-identical to its backup, recreates a removed file and deletes a file the run created. |
 | REQ-006 | A second `embed` on the result prints `NOTHING TO DO`. |
 | REQ-007 | The set of written paths is a subset of the allowlist, checked before each write. |
+| REQ-013 | A block written between shipped sections, a line below its end marker and the text above the first heading are all carried into the one block at the end, and the preservation check counts each of them. |
 
 ### P1 - Required (complete OR user-approved deferral)
 

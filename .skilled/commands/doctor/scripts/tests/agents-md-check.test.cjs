@@ -30,7 +30,7 @@ const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
 
-const { buildReport, main } = require('../agents-md-check.cjs');
+const { buildReport, main, renderText } = require('../agents-md-check.cjs');
 const { segment } = require('../lib/agents-md-sections.cjs');
 const {
   FIXTURES,
@@ -40,6 +40,7 @@ const {
   composeFixture,
   fixtureNames,
   loadRecipe,
+  moveBlockBefore,
 } = require('./fixtures/agents-md/compose-fixture.cjs');
 
 const ENGINE = path.join(SCRIPTS_DIR, 'agents-md-check.cjs');
@@ -114,6 +115,22 @@ function listFiles(dir) {
     else files.push(target);
   }
   return files;
+}
+
+// A fixture's document is rewritten by a case that needs a shape no recipe describes,
+// so the tree a case reads is always the template the manifest ships today.
+function rewriteDocument(fixture, text) {
+  fs.writeFileSync(path.join(fixture.dir, manifest.root_file), text, 'utf8');
+}
+
+// A throwaway manifest: pin kinds and root file names are the two places a case needs a
+// declaration the shipped manifest does not carry.
+function writeManifest(t, patch) {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'agents-md-check-manifest-'));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const target = path.join(dir, 'agents-md-manifest.json');
+  fs.writeFileSync(target, `${JSON.stringify({ ...manifest, ...patch }, null, 2)}\n`, 'utf8');
+  return target;
 }
 
 function treeDigest(dir) {
@@ -219,6 +236,81 @@ test('forked: A8 lists the unmarked section with its byte range and A9 lists the
   assert.deepEqual(edited.lines, ['Local rule: name the packet in the first line of every pull request.']);
 });
 
+// The same sentence written twice is two lines a replacement would lose, so the row
+// counts occurrences: a set would report one line and hide the other.
+test('A9 counts a repeated local line once per occurrence', (t) => {
+  const fixture = buildFixture(t, 'forked');
+  const line = 'Local rule: name the packet in the first line of every pull request.';
+  rewriteDocument(fixture, fixture.document.replace(line, `${line}\n${line}`));
+
+  const run = runJson(['--root', fixture.dir]);
+  const edits = rowOf(run.report, 'A9');
+  assert.equal(edits.state, 'FINDING');
+  const edited = edits.entries.find((entry) => entry.id === 's6-spec-folder');
+  assert.deepEqual(edited.lines, [line, line], 'the repeated line is listed twice');
+  assert.match(edits.detail, /1 section\(s\) carry 2 local line\(s\)/);
+});
+
+// A repository that wrote its block between two shipped sections still carries every
+// shipped section, and the block is in the one place the template does not put it. Read
+// only above the block, the document looks like somebody else's file and the position is
+// never named.
+test('a block placed between shipped sections is reported by A7 with its position', (t) => {
+  const fixture = buildFixture(t, 'adopted');
+  const moved = moveBlockBefore(fixture.document, '#### The Four Laws');
+  rewriteDocument(fixture, moved);
+
+  const run = runJson(['--root', fixture.dir]);
+  assert.equal(rowOf(run.report, 'A1').detail, 'adopted', 'every shipped section is still current');
+  assert.equal(rowOf(run.report, 'A2').detail, '44/44 matched', 'the sections below the block are shipped ones');
+  assert.equal(rowOf(run.report, 'A8').state, 'PASS', 'nothing below the block is unmarked content');
+
+  const block = rowOf(run.report, 'A7');
+  assert.equal(block.state, 'FINDING');
+  const position = block.lines.join(' ');
+  // Offsets in the report are bytes, and the template carries multi-byte headings above
+  // the block, so the character index is not the figure to compare against.
+  const blockByte = Buffer.byteLength(moved.slice(0, moved.indexOf(manifest.markers.start)), 'utf8');
+  assert.ok(position.includes(`byte ${blockByte}`), `A7 names where the block sits: ${position}`);
+  assert.match(position, /The Four Laws/, 'A7 names the shipped section the block sits in front of');
+});
+
+// The end marker is not the end of the file: a line typed below it is the repository's
+// own, and a rewrite that keeps only the block would drop it without a word.
+test('a line after the block end marker is reported as a local edit', (t) => {
+  const fixture = buildFixture(t, 'adopted');
+  const line = 'Ship the release note in the same commit as the tag.';
+  rewriteDocument(fixture, `${fixture.document}${line}\n`);
+
+  const run = runJson(['--root', fixture.dir]);
+  assert.equal(rowOf(run.report, 'A1').detail, 'forked');
+
+  const edits = rowOf(run.report, 'A9');
+  assert.equal(edits.state, 'FINDING');
+  const carrier = edits.entries.find((entry) => entry.lines.includes(line));
+  assert.ok(carrier, `A9 lists the line below the end marker: ${JSON.stringify(edits.entries)}`);
+});
+
+// Text above the first heading belongs to no section, so it is the one piece of
+// repository content a heading-shaped comparison cannot see. Left unreported, a document
+// carrying it reads as a pure template and a rewrite drops it.
+test('text before the first shipped heading is reported as unmarked repository content', (t) => {
+  const fixture = buildFixture(t, 'pure');
+  const line = 'Read me first.';
+  rewriteDocument(fixture, `${line}\n${fixture.document}`);
+
+  const run = runJson(['--root', fixture.dir]);
+  assert.equal(rowOf(run.report, 'A1').detail, 'forked');
+
+  const unmarked = rowOf(run.report, 'A8');
+  assert.equal(unmarked.state, 'FINDING');
+  const prelude = unmarked.entries.find((entry) => entry.heading === null);
+  assert.ok(prelude, `A8 names the text above the first heading: ${JSON.stringify(unmarked.entries)}`);
+  assert.equal(prelude.byte_start, 0, 'the region starts at the first byte');
+  assert.equal(prelude.line_start, 1);
+  assert.match(unmarked.lines.join(' '), /before the first heading/);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 7. PINS, BUDGET AND BLOCK SHAPE
 // ─────────────────────────────────────────────────────────────────────────────
@@ -246,6 +338,35 @@ test('over-budget: A6 and A7 both fail', (t) => {
   assert.equal(block.state, 'FINDING');
   assert.match(block.lines.join(' '), /end marker sits before the start marker/i);
   assert.match(block.lines.join(' '), /exceeds the 32768-byte ceiling/);
+});
+
+// A pin the engine has no rule for is a pin nobody measured. Counting it as a hold is
+// how a manifest edit that adds a kind is reported as verified instead of unmeasured.
+test('a pin kind with no rule is UNKNOWN, never a hold', (t) => {
+  const fixture = buildFixture(t, 'pure');
+  const manifestPath = writeManifest(t, {
+    pins: [...manifest.pins, { id: 'invented-pin', kind: 'invented', texts: ['nothing'] }],
+  });
+
+  const run = runJson(['--root', fixture.dir, '--manifest', manifestPath]);
+  const pins = rowOf(run.report, 'A5');
+  assert.equal(pins.state, 'UNKNOWN');
+  const entry = pins.entries.find((candidate) => candidate.id === 'invented-pin');
+  assert.equal(entry.state, 'UNKNOWN', 'the entry is not recorded as a pass');
+  assert.match(pins.detail, /1 unmeasured/);
+  assert.equal(run.report.unknown, 1);
+  assert.match(run.out, /"unknown": 1/);
+});
+
+// An empty classification is not a verified one. The rows around it already say the
+// document is empty or foreign, so a PASS here reads as "currency checked, all current".
+test('A4 reports INFO when there is no matched section to classify', (t) => {
+  const fixture = buildFixture(t, 'foreign');
+  const run = runJson(['--root', fixture.dir]);
+
+  const currency = rowOf(run.report, 'A4');
+  assert.equal(currency.state, 'INFO');
+  assert.match(currency.detail, /no shipped section/i);
 });
 
 test('a missing canary leaves A6 UNKNOWN, never a pass, and fails the run', (t) => {
@@ -304,6 +425,26 @@ test('A10 reports a pointer-only CLAUDE.md and an absent .codex/AGENTS.md withou
   assert.equal(codex.state, 'PASS');
 });
 
+// A copy whose own tool is missing was not checked. Recorded only in the JSON entries, it
+// prints as a pass line with no detail and leaves the run reporting unknown=0.
+test('an unmeasured runtime copy makes A10 UNKNOWN and is counted in unknown=', (t) => {
+  const fixture = buildFixture(t, 'pure');
+  const report = buildReport({
+    root: fixture.dir,
+    tools: { pointerSync: path.join(fixture.dir, 'no-such-pointer-sync.cjs') },
+  });
+
+  const copies = report.rows.find((row) => row.id === 'A10');
+  assert.equal(copies.state, 'UNKNOWN', 'a copy that could not be checked is not a pass');
+  const entry = copies.entries.find((candidate) => candidate.path === '.cursor/rules/skill-routing.md');
+  assert.equal(entry.state, 'UNKNOWN');
+  assert.ok(copies.lines.some((line) => line.includes('.cursor/rules/skill-routing.md')),
+    `the unmeasured copy is printed, not only recorded: ${JSON.stringify(copies.lines)}`);
+  assert.equal(report.unknown, 1);
+  assert.equal(report.exitCode, 1);
+  assert.match(renderText(report), /unknown=1/u);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 9. EXIT CODES AND THE READ-ONLY PROMISE
 // ─────────────────────────────────────────────────────────────────────────────
@@ -329,6 +470,21 @@ test('exit codes: an absent instruction file is a finding, not a precondition fa
   const fixture = buildFixture(t, 'absent');
   const run = runCheck(['--root', fixture.dir]);
   assert.equal(run.code, 1, 'nothing to compare is an answer about the repository, not a broken run');
+});
+
+// The root file's name is the manifest's to declare. Naming it here means a manifest that
+// moves the document leaves this precondition reading a file nobody ships.
+test('the readability precondition reads the manifest\'s root file, not a fixed name', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'agents-md-check-root-file-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  // A directory under the name the script used to hardcode: reading it throws, so a run
+  // that reads it exits 2 instead of classifying the tree.
+  fs.mkdirSync(path.join(root, 'AGENTS.md'));
+  const manifestPath = writeManifest(t, { root_file: 'GUIDE.md' });
+
+  const run = runCheck(['--root', root, '--manifest', manifestPath]);
+  assert.equal(run.code, 1, `the tree is classified rather than refused: ${run.err}`);
+  assert.doesNotMatch(run.err, /cannot read/u);
 });
 
 test('the write-spy records no filesystem write while every row executes', (t) => {

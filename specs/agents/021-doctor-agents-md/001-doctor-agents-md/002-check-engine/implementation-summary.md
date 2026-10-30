@@ -101,14 +101,37 @@ The first shape of this committed the composed tree beside each recipe, six of t
 | Check | Result |
 |-------|--------|
 | `node .skilled/commands/doctor/scripts/agents-md-check.cjs` | `A1 install state: pure   (PASS)`, `STATUS=OK rows=12 findings=0 unknown=0`, exit 0 |
-| Runtime on this repository | 0.27-0.30 seconds over three runs of `time -p`, and 0.27 seconds for the `--json` form, against a five-second target |
-| `node --test .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs` | `tests 29`, `pass 29`, `fail 0`, exit 0 |
+| Runtime on this repository | 0.39-0.44 seconds over three runs of `time -p`, and 0.41 seconds for the `--json` form, against a five-second target (0.27-0.30 before the review repair) |
+| `node --test .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs` | `tests 37`, `pass 37`, `fail 0`, exit 0 (`tests 29` before the review repair) |
 | `node --test .skilled/commands/doctor/scripts/tests/agents-md-manifest.test.cjs` | `tests 28`, `pass 28`, `fail 0`, exit 0 |
 | `bash .skilled/commands/doctor/scripts/tests/run-all.sh` | `node:test (37 files)` PASS, `unittest (1 files)` PASS, three shell suites PASS, `route-validate.sh --self-test` PASS, freshness panel PASS, `7 suite(s) passed, 0 failed`, exit 0 |
 | Read-only promise | `git status --porcelain \| shasum` gave `e257400fe1ee97622e3d5e1fe2274bf7e0edb1f8` before and after composing each of the nine recipes, running the engine twice on each and once on this repository; the suite additionally hashes each composed tree by sha256 before and after, and a write-spy over every row records no call |
 | Every fixture's state | `pure`, `adopted`, `stale`, `forked`, `foreign`, `claude-only`, `absent` classify as named; `shadowed-pin` and `over-budget` classify as `forked` |
 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine --strict` | `Summary: Errors: 0  Warnings: 0`, `RESULT: PASSED`, exit 0 |
 <!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:review-repair -->
+## Review Repair
+
+A review of the engine found ten defects, four of them the kind that read as a pass. All ten were repaired, each held by a case that failed first:
+
+| Finding | What was wrong | What changed |
+|---------|----------------|--------------|
+| The tail of the document did not exist | The segmenter read only up to the block's start marker, so everything below it was invisible to A1, A4, A8 and A9 | The segmenter reads the whole document: the block's lines are a hole, a heading inside the hole belongs to the repository, a section the hole interrupts keeps the text on both sides, and every section below it keeps its own body word for word |
+| Text above the first heading read as a pure template | The segmenter now returns that text as `prelude`, and A8 reports it with its byte range |
+| A block written between shipped sections read as `foreign` | A7 reports a block that sits before sections that follow it, by byte and by the first section that follows |
+| A10 swallowed an unmeasured copy | A copy whose own tool is missing makes the row `UNKNOWN`, prints its own line and counts in `unknown=` |
+| An unknown pin kind counted as a hold | A `pinVerdict` with no rule is `UNKNOWN`, and A5 says `unmeasured` in its detail |
+| A4 passed with nothing to classify | A report with no matched section is `INFO` |
+| AC-012's command showed one of the two sites it claimed | The row now records what the command prints: the tag constant the summary is picked out by |
+| AC-008's write-spy could not see the writes the engine makes | The row names AC-010's tree digests as the proof that covers the child processes, and keeps the spy for the in-process half |
+| `main` hardcoded the root filename | The readability precondition reads `manifest.root_file`, the same declaration every other read uses |
+| A9 collapsed repeated local lines | A line is counted once per occurrence, because a replacement loses both |
+
+The repair is eight new cases in this suite and three in the embed suite. Tests came first: the eight cases failed on `fail 8` against the old engine, and every one passes now.
+<!-- /ANCHOR:review-repair -->
 
 ---
 

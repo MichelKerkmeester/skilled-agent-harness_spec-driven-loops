@@ -466,7 +466,7 @@ function preservationCheck(oldText, newText, manifest, options = {}) {
   }
 
   const before = oldText === null || oldText === undefined
-    ? { sections: [], block: null }
+    ? { sections: [], block: null, prelude: null }
     : segment(oldText, markers, manifest.sections);
   const after = segment(newText, markers, manifest.sections);
   const newBlock = after.block && after.block.complete ? after.block.content : '';
@@ -480,6 +480,9 @@ function preservationCheck(oldText, newText, manifest, options = {}) {
   };
 
   // Part 1. The repository's own sections and whatever its block already held.
+  if (before.prelude) {
+    for (const [line, count] of countLines(before.prelude.text)) require(line, 1, 'text before the first heading', new Map([[line, count]]));
+  }
   for (const section of before.sections) {
     if (section.id !== null) continue;
     for (const [line, count] of countLines(section.body)) require(line, 1, 'unmarked section', new Map([[line, count]]));
@@ -585,7 +588,10 @@ function compose({ root, manifest, keepClaudeMd = false, createRouter = false })
     throw new PreconditionError(`the repository block in ${rootFile} carries one of its two markers and not the other, near byte ${block.start}; the block cannot be placed, so nothing can be carried out of it`);
   }
 
-  const oldSections = oldText === null ? [] : segment(oldText, markers, manifest.sections).sections;
+  const oldSegmentation = oldText === null
+    ? { sections: [], block: null, prelude: null }
+    : segment(oldText, markers, manifest.sections);
+  const oldSections = oldSegmentation.sections;
   const shipped = manifest.sections.map((entry) => manifest.derived.sections[entry.id].body).join('');
   const notes = [];
   const chunks = [];
@@ -597,19 +603,22 @@ function compose({ root, manifest, keepClaudeMd = false, createRouter = false })
   }
 
   // Text above the first heading belongs to no section, and a replacement would drop it.
-  // The segmenter cuts at the block, so this text always sits in the shipped region.
-  if (oldText !== null) {
-    const firstStart = oldSections.length > 0 ? oldSections[0].start : Buffer.byteLength(oldText, 'utf8');
-    const preamble = chunkText(Buffer.from(oldText, 'utf8').subarray(0, firstStart).toString('utf8'));
+  // The segmenter reports it apart from the sections because no heading covers it.
+  if (oldSegmentation.prelude !== null) {
+    const preamble = chunkText(oldSegmentation.prelude.text);
     if (preamble !== '') {
       chunks.push({ kind: 'preamble', text: preamble, lines: lineCount(preamble) });
     }
   }
 
-  // (b) Sections no shipped entry matches, verbatim and in document order.
+  // (b) Sections no shipped entry matches, verbatim and in document order. The text above
+  // the first heading is already carried as the preamble, and its byte range would reach
+  // a block written above the template, so it is the one entry skipped here.
   const unmarkedRow = rowOf(report, 'A8');
   const oldBuffer = oldText === null ? Buffer.alloc(0) : Buffer.from(oldText, 'utf8');
-  const unmarked = [...unmarkedRow.entries].sort((left, right) => left.byte_start - right.byte_start);
+  const unmarked = unmarkedRow.entries
+    .filter((entry) => entry.heading !== null)
+    .sort((left, right) => left.byte_start - right.byte_start);
   for (const entry of unmarked) {
     const text = chunkText(oldBuffer.subarray(entry.byte_start, entry.byte_end).toString('utf8'));
     if (text === '') continue;

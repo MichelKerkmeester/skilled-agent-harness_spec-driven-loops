@@ -13,9 +13,20 @@
 //
 // A section starts at a heading line of level 1 to 4 and runs to the next heading or to
 // the end of the document. Offsets are bytes, not characters, because the delivery budget
-// is a byte count and the emoji headings are multi-byte. The repository-owned block is
-// cut out before segmentation: its heading looks exactly like a shipped one, and a
-// consumer's own content is not part of the shipped surface.
+// is a byte count and the emoji headings are multi-byte.
+//
+// The whole document is segmented, not only the part above the repository block. Reading
+// up to the block was enough while every block sat last, and it turned a block written
+// anywhere else into a document whose tail did not exist: the sections below it read as
+// missing, their replacement would be duplicated into the block, and the text a rewrite
+// would drop was never named. The block is a hole instead. A heading inside it belongs to
+// the repository, the bytes between the markers join no body, the section the hole
+// interrupts carries its text on both sides, and a section below the hole keeps its own
+// body word for word.
+//
+// One piece of content is not heading-shaped: text above the first heading belongs to no
+// section at all. It is returned as `prelude` so the caller can report it and keep it,
+// because a document carrying it is not the clean template it otherwise looks like.
 //
 // The classifier answers the one question the check engine asks per section: is this body
 // the one the manifest ships, an older released body, a local edit of a known body, or
@@ -92,49 +103,114 @@ function findBlock(text, markers) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
+ * The line holding a byte, as an index into the document's lines.
+ *
+ * @param {number[]} byteStarts - The first byte of every line.
+ * @param {number} offset
+ * @returns {number}
+ */
+function lineOf(byteStarts, offset) {
+  let line = 0;
+  while (line + 1 < byteStarts.length && byteStarts[line + 1] <= offset) line += 1;
+  return line;
+}
+
+/**
+ * The lines one section body is made of.
+ *
+ * The block's own lines are cut out of the middle. What follows them is the section's when
+ * somebody wrote it there, and the block's spacing when it is blank: folding blank lines
+ * into the body would make a current section read as an edit nobody made.
+ *
+ * @param {string[]} lines - The document's lines.
+ * @param {number} from - The heading's line index.
+ * @param {number} to - One past the last line the section reaches.
+ * @param {{first: number, last: number}|null} hole - The block's lines, when it is well formed.
+ * @returns {number[]} the line indexes of the body, in reading order.
+ */
+function bodyRows(lines, from, to, hole) {
+  const head = [];
+  const tail = [];
+  const tailFrom = hole !== null && hole.last >= from && hole.last < to ? hole.last : null;
+  for (let index = from; index < to; index += 1) {
+    if (hole !== null && index >= hole.first && index <= hole.last) continue;
+    if (tailFrom !== null && index > tailFrom) tail.push(index);
+    else head.push(index);
+  }
+  if (tail.length > 0 && tail.every((index) => lines[index].trim() === '')) return head;
+  return [...head, ...tail];
+}
+
+/**
+ * The text of one body, the byte offset of every one of its lines, and where it ends.
+ *
+ * @param {string[]} lines - The document's lines.
+ * @param {number[]} byteStarts - The first byte of every line, plus one past the last.
+ * @param {number[]} rows - The line indexes the body is made of.
+ * @param {number} docBytes - The document's length in bytes.
+ * @returns {{text: string, lineStarts: number[], end: number}}
+ */
+function bodyOf(lines, byteStarts, rows, docBytes) {
+  const last = rows[rows.length - 1];
+  // A body that stops before the end of the document carries the newline that ends its
+  // last line, which is what a byte slice would have kept. A final line without a newline
+  // ends the document rather than the line after it.
+  const terminated = last + 1 < lines.length;
+  const text = `${rows.map((index) => lines[index]).join('\n')}${terminated ? '\n' : ''}`;
+  const end = terminated ? byteStarts[last + 1] : docBytes;
+  return { text, lineStarts: rows.map((index) => byteStarts[index]), end };
+}
+
+/**
  * Split a document into its shipped sections.
  *
  * @param {string} text - The whole root document.
  * @param {{start: string, end: string}} markers - The block markers.
  * @param {Array<Object>} [authored] - Manifest section entries; when given, each section
  *   gets the `id` of the entry its heading matches, or null.
- * @returns {{sections: Array<Object>, block: Object|null}}
+ * @returns {{sections: Array<Object>, block: Object|null,
+ *   prelude: {start: number, end: number, text: string}|null}}
  */
 function segment(text, markers, authored = []) {
+  const buffer = Buffer.from(text, 'utf8');
   const block = findBlock(text, markers);
-  const shippedEnd = block && block.complete ? block.start : Buffer.byteLength(text, 'utf8');
-  const shipped = Buffer.from(text, 'utf8').subarray(0, shippedEnd).toString('utf8');
+  const hole = block && block.complete ? block : null;
 
-  const lines = shipped.split('\n');
-  const charStarts = [0];
+  const lines = text.split('\n');
   const byteStarts = [0];
   for (let index = 0; index < lines.length; index += 1) {
-    charStarts.push(charStarts[index] + lines[index].length + 1);
     byteStarts.push(byteStarts[index] + Buffer.byteLength(lines[index], 'utf8') + 1);
   }
-  const docChars = shipped.length;
-  const docBytes = Buffer.byteLength(shipped, 'utf8');
-
+  const docBytes = buffer.length;
   // The trailing empty element a final newline produces is not a line of its own.
   const lastLine = lines.length > 0 && lines[lines.length - 1] === '' ? lines.length - 1 : lines.length;
+
+  // The lines the block owns, markers included. They are the repository's bytes, so they
+  // join no body and the first line after them starts a body of its own.
+  const holeLines = hole === null ? null : {
+    first: lineOf(byteStarts, hole.start),
+    last: lineOf(byteStarts, Math.max(hole.start, hole.end - 1)),
+  };
+
   const headings = [];
   for (let index = 0; index < lastLine; index += 1) {
-    if (HEADING.test(lines[index])) headings.push(index);
+    if (!HEADING.test(lines[index])) continue;
+    if (holeLines !== null && index >= holeLines.first && index <= holeLines.last) continue;
+    headings.push(index);
   }
 
   const sections = headings.map((lineIndex, position) => {
-    const nextHeading = position + 1 < headings.length ? headings[position + 1] : null;
-    const endChar = nextHeading === null ? docChars : charStarts[nextHeading];
-    const endByte = nextHeading === null ? docBytes : byteStarts[nextHeading];
-    const body = shipped.slice(charStarts[lineIndex], endChar);
+    const nextHeading = position + 1 < headings.length ? headings[position + 1] : lines.length;
+    const body = bodyOf(lines, byteStarts, bodyRows(lines, lineIndex, nextHeading, holeLines), docBytes);
     return {
       id: null,
       start: byteStarts[lineIndex],
-      end: endByte,
+      end: body.end,
       level: lines[lineIndex].match(HEADING)[1].length,
       heading: lines[lineIndex],
-      body,
-      sha256: sha256(body),
+      body: body.text,
+      lineStarts: body.lineStarts,
+      sha256: sha256(body.text),
     };
   });
 
@@ -142,7 +218,34 @@ function segment(text, markers, authored = []) {
     for (const row of matchSections(sections, authored).matched) row.section.id = row.entry.id;
   }
 
-  return { sections, block };
+  return { sections, block, prelude: preludeOf(lines, byteStarts, headings, holeLines, docBytes) };
+}
+
+/**
+ * The text above the first heading, which no section covers.
+ *
+ * @param {string[]} lines
+ * @param {number[]} byteStarts
+ * @param {number[]} headings - The heading line indexes, in order.
+ * @param {{first: number, last: number}|null} hole
+ * @param {number} docBytes
+ * @returns {{start: number, end: number, text: string}|null} Null when that text is blank.
+ */
+function preludeOf(lines, byteStarts, headings, hole, docBytes) {
+  const limit = headings.length > 0 ? headings[0] : lines.length;
+  const rows = [];
+  for (let index = 0; index < limit; index += 1) {
+    if (hole !== null && index >= hole.first && index <= hole.last) continue;
+    rows.push(index);
+  }
+  const text = rows.map((index) => lines[index]).join('\n');
+  if (text.trim() === '') return null;
+  // The region is measured from its first line to the end of its last one, so a block that
+  // somebody wrote above the template stays outside the range the report names.
+  const first = rows[0];
+  const last = rows[rows.length - 1];
+  const end = last + 1 < lines.length ? byteStarts[last + 1] : docBytes;
+  return { start: byteStarts[first], end, text };
 }
 
 /**
@@ -150,14 +253,29 @@ function segment(text, markers, authored = []) {
  *
  * @param {Array<Object>} sections - Segmented sections, in document order.
  * @param {Array<{id: string, match: string, level: number}>} authored
+ * @param {{start: number, end: number, text: string}|null} [prelude] - The text above the
+ *   first heading, reported beside the unmatched headings because it is repository content
+ *   no shipped entry covers either.
  * @returns {{matched: Array<{section: Object, entry: Object}>, unregistered: Array<Object>,
  *   unmatched: Array<Object>, conflicts: Array<Object>}}
  */
-function matchSections(sections, authored) {
+function matchSections(sections, authored, prelude = null) {
   const used = new Set();
   const matched = [];
   const unregistered = [];
   const conflicts = [];
+
+  // Text above the first heading has a byte range and no heading, so a heading-shaped
+  // comparison can never reach it. Naming it here is what lets a caller keep it.
+  if (prelude !== null && prelude.text.trim() !== '') {
+    unregistered.push({
+      code: 'unmarked-prelude',
+      heading: null,
+      start: prelude.start,
+      end: prelude.end,
+      message: `the root document carries text before its first heading, at bytes ${prelude.start}-${prelude.end}, which no shipped section covers`,
+    });
+  }
 
   for (const section of sections) {
     const hits = authored.filter((entry) => section.heading.includes(entry.match));
@@ -166,6 +284,7 @@ function matchSections(sections, authored) {
         code: 'unregistered-heading',
         heading: section.heading,
         start: section.start,
+        end: section.end,
         message: `the root document carries a heading no authored entry matches: ${JSON.stringify(section.heading)} at byte ${section.start}`,
       });
       continue;
@@ -206,16 +325,23 @@ function matchSections(sections, authored) {
  * carries the clause. Both are measured in bytes because the delivery budget is a byte
  * count, and a runtime that cuts the document mid-clause still dropped the clause.
  *
- * @param {{start: number, end: number, body: string}} section - The anchor's section.
+ * A line's own offset is used when the section carries it, because a section the block
+ * interrupts holds text on both sides of the hole and adding up line lengths would measure
+ * the hole as content.
+ *
+ * @param {{start: number, end: number, body: string, lineStarts?: number[]}} section
  * @param {{scope: string, texts: string[]}} pin - The anchor pin.
  * @returns {number|null} Null when a line anchor's text is not in the section.
  */
 function deliveryAnchorEnd(section, pin) {
   if (pin.scope !== 'line') return section.end;
+  const offsets = section.lineStarts || null;
+  const lines = section.body.split('\n');
   let byte = section.start;
-  for (const line of section.body.split('\n')) {
-    const next = byte + Buffer.byteLength(line, 'utf8') + 1;
-    if (line.includes(pin.texts[0])) return next;
+  for (let index = 0; index < lines.length; index += 1) {
+    const at = offsets !== null && offsets[index] !== undefined ? offsets[index] : byte;
+    const next = at + Buffer.byteLength(lines[index], 'utf8') + 1;
+    if (lines[index].includes(pin.texts[0])) return next;
     byte = next;
   }
   return null;

@@ -115,15 +115,19 @@ $ wc -c AGENTS.md
 | A1 install state | One of `pure` (shipped sections current, block empty or absent), `adopted` (shipped current, block has content), `stale` (shipped sections behind the manifest), `forked` (local edits or unmarked local sections among shipped ones), `foreign` (fewer than half the manifest sections match: the repository's own file), `claude-only` (no `AGENTS.md`, a `CLAUDE.md` present), `absent` |
 | A2 sections present | Each manifest section matched by its prefix; lists the missing ids |
 | A3 order and numbering | Shipped sections in manifest order, and `## 1.` through `## 10.` unchanged |
-| A4 section currency | Per section, sha256 against `derived`: `current`; `stale-known` (matches a release-history body, so replacement is safe); `edited` (matches none but the closest known body is identifiable, so it lists the local-only lines); `unknown-base` |
-| A5 pins | Each pin per its rule, including first-occurrence placement, so local text never shadows the gate 1 lookup line |
+| A4 section currency | Per section, sha256 against `derived`: `current`; `stale-known` (matches a release-history body, so replacement is safe); `edited` (matches none but the closest known body is identifiable, so it lists the local-only lines); `unknown-base`. `INFO` when no shipped section matched, because an empty classification is not a verified one |
+| A5 pins | Each pin per its rule, including first-occurrence placement, so local text never shadows the gate 1 lookup line. A pin kind with no rule is `UNKNOWN`, never a hold |
 | A6 delivery budget | Runs the rule-copy canary and keeps only its `AGENTS.md` lines; `UNKNOWN` when the canary is not installed. Reports the end byte of the last anchor and the total bytes |
-| A7 repo-local block | Markers well formed (exactly one start and one end, in order, after the last shipped section), byte size and headroom |
-| A8 unmarked repo-unique content | Every section outside the markers that matches no manifest entry, with its line range, its byte range and whether it sits in the 16 KB prefix |
-| A9 unmarked local edits | For `edited` and `unknown-base` sections, the lines not present in the current shipped body |
-| A10 runtime copies | Each expected copy. The cursor block runs the pointer sync `--check`; `CLAUDE.md` and `.codex/AGENTS.md` are classified as pointer, symlink, identical copy or divergent copy, with the divergent lines listed |
+| A7 repo-local block | Markers well formed (exactly one start and one end, in order), the block's position among the sections — one written between shipped sections is reported by byte and by the section that follows it — its byte size and its headroom |
+| A8 unmarked repo-unique content | Every section outside the markers that matches no manifest entry, with its line range, its byte range and whether it sits in the 16 KB prefix, plus the text above the first heading, which no heading-shaped section covers |
+| A9 unmarked local edits | For `edited` and `unknown-base` sections, the lines not present in the current shipped body, once per occurrence, so a line written twice is two lines to keep |
+| A10 runtime copies | Each expected copy. The cursor block runs the pointer sync `--check`; `CLAUDE.md` and `.codex/AGENTS.md` are classified as pointer, symlink, identical copy or divergent copy, with the divergent lines listed. A copy whose own tool is missing is `UNKNOWN` and counted in `unknown=` |
 | A11 REPO RULES.md | Present or absent, missing shipped trigger and index rows, and the summary line of the repo-rules checker, reused rather than reimplemented |
 | A12 template purity | Runs only with `--source`, or when the origin equals the source repository: block empty and `derived` fresh |
+
+### How the document is read
+
+The shared segmenter reads the whole document, not only the part above the block. The block is a hole in it: a heading inside the block is the repository's, the bytes between the markers join no section body, a section the block interrupts carries the text on both sides of the hole, and every section below the block keeps its own body word for word. That is what lets a block written anywhere be read as the block, instead of turning the tail of the document into missing sections and a foreign file. Text above the first heading belongs to no section, so it is reported as unmarked content rather than reading as a pure template.
 
 ### Files to Change
 
@@ -161,6 +165,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-006 | A divergent `CLAUDE.md` fails A10 with its divergent lines listed. |
 | REQ-007 | Exit codes are 0 for no finding, 1 for at least one finding and 2 for a failed precondition. |
 | REQ-008 | A write-spy proves the run makes zero filesystem writes. |
+| REQ-012 | A block written anywhere is read as the block: the whole document is segmented, so A7 reports a block that sits before shipped sections, and the sections below it classify as shipped ones. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -169,6 +174,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-009 | `--json` prints the same report as the text form, with `state` as a named field. |
 | REQ-010 | A11 reuses the repo-rules checker's summary line and never reimplements its checks. |
 | REQ-011 | A12 runs only with `--source` or when the origin equals the manifest's source repository, and reports `INFO` otherwise. |
+| REQ-013 | A row that could not measure says `UNKNOWN`, never `PASS`: a pin kind with no rule, a copy whose own tool is missing, and the run's `unknown=` counts it. A report with nothing to classify reports `INFO`. |
+| REQ-014 | Repository content outside the sections is never silent: a line below the block's end marker is a local edit A9 lists, text above the first heading is unmarked content A8 reports, and a repeated local line is counted once per occurrence. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

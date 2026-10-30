@@ -65,6 +65,7 @@ contextType: "general"
 - [x] T016 Prove the repo-rules rows are minimal (`E`). Verify: `node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs --root <tmp>` prints `RESULT: PASSED (11/11 checks)`. Done: both router cases pass the checker on a temporary root: `RESULT: PASSED (11/11 checks)`, exit 0.
 - [x] T017 Run the child gate (`specs/agents/021-doctor-agents-md/001-doctor-agents-md/003-embed-engine/`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md/001-doctor-agents-md/003-embed-engine --strict` prints `RESULT: PASSED`. Done: `Summary: Errors: 0  Warnings: 0`, `RESULT: PASSED`, exit 0.
 - [x] T018 Confirm no tracked file was touched by the suite (`git status --porcelain`). Verify: the list names only the two files in `spec.md` section 3. Done: `git status --porcelain` lists the two engine files plus this packet's own documents, and `git diff --quiet AGENTS.md` exits 0.
+- [x] T019 Carry the three document shapes the review found, tests first (`E`, `T`). Verify: `node --test T` reports `tests 26`, `pass 26`, `fail 0`. Done: three new cases failed first (`fail 3`, saved under the review's scratch folder) and pass after the repair; a block written between shipped sections, a line below the end marker and the text above the first heading each move into the one block at the end exactly once, and `preservationCheck` reports `dropped 0`, `foreign 0` on each.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -128,10 +129,11 @@ contextType: "general"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [x] CHK-020 [P0] Every acceptance criterion is met. Verify: the rows in `acceptance-criteria.md` read `Met`. Evidence: AC-001 through AC-012 all read `Met`, each naming the case or command that proves it.
-- [x] CHK-021 [P0] The suite passes. Verify: `node --test .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs` reports `fail 0`. Evidence: `pass 23`, `fail 0`, exit 0.
+- [x] CHK-020 [P0] Every acceptance criterion is met. Verify: the rows in `acceptance-criteria.md` read `Met`. Evidence: AC-001 through AC-013 all read `Met`, each naming the case or command that proves it.
+- [x] CHK-021 [P0] The suite passes. Verify: `node --test .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs` reports `fail 0`. Evidence: `tests 26`, `pass 26`, `fail 0`, exit 0; `pass 23` before the review repair added three cases.
 - [x] CHK-022 [P1] The planted-drop case restores automatically. Verify: the case names the restore and the dropped lines. Evidence: the case asserts `STATUS=FAIL`, the dropped line text, `restored: N file(s)`, and the file byte-identical to its pre-run bytes.
 - [x] CHK-023 [P1] The suite uses temporary copies. Verify: `rg -c 'mkdtempSync' .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs` prints at least `1`. Evidence: printed `2`; every tree is composed into a `mkdtempSync` folder and removed with the case.
+- [x] CHK-024 [P1] Every review finding in this engine is repaired and held by a case. Verify: `node --test T` names the three new cases and they pass. Evidence: `a block placed between shipped sections is carried into the block at the end`, `a line after the end marker is carried into the block` and `text before the first heading is carried into the block` all pass, and the preservation check counts the text above the first heading as part of part one.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -171,7 +173,7 @@ contextType: "general"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 8 | 8/8 |
-| P1 Items | 10 | 10/10 |
+| P1 Items | 11 | 11/11 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-10-30

@@ -142,14 +142,14 @@ function trimmedLines(text) {
   return lines;
 }
 
+// The repository's own lines, in order and with repeats. A set would report one line for
+// two occurrences, and a replacement loses both, so a duplicate is a second line to keep.
 function localLinesOf(body, reference) {
   const known = trimmedLines(reference);
-  const seen = new Set();
   const local = [];
   for (const raw of body.split('\n')) {
     const line = raw.trim();
-    if (line === '' || line === '---' || known.has(line) || seen.has(line)) continue;
-    seen.add(line);
+    if (line === '' || line === '---' || known.has(line)) continue;
     local.push(line);
   }
   return local;
@@ -188,8 +188,10 @@ function readTarget({ root, manifest }) {
   const rootPath = path.join(root, manifest.root_file);
   const exists = fs.existsSync(rootPath);
   const text = exists ? fs.readFileSync(rootPath, 'utf8') : null;
-  const segmentation = exists ? segment(text, manifest.markers, manifest.sections) : { sections: [], block: null };
-  const pairing = matchSections(segmentation.sections, manifest.sections);
+  const segmentation = exists
+    ? segment(text, manifest.markers, manifest.sections)
+    : { sections: [], block: null, prelude: null };
+  const pairing = matchSections(segmentation.sections, manifest.sections, segmentation.prelude);
 
   return {
     root,
@@ -198,6 +200,7 @@ function readTarget({ root, manifest }) {
     text,
     totalBytes: exists ? Buffer.byteLength(text, 'utf8') : 0,
     block: segmentation.block,
+    prelude: segmentation.prelude,
     sections: segmentation.sections,
     matched: pairing.matched,
     unregistered: pairing.unregistered,
@@ -249,7 +252,11 @@ function rowInstallState(context, manifest) {
   if (localEdits.length > 0 || context.unregistered.length > 0) {
     const lines = [];
     for (const entry of localEdits) lines.push(`${entry.id}: ${entry.state}`);
-    for (const entry of context.unregistered) lines.push(`unmarked section ${JSON.stringify(entry.heading)}`);
+    for (const entry of context.unregistered) {
+      lines.push(entry.heading === null
+        ? 'unmarked text before the first heading'
+        : `unmarked section ${JSON.stringify(entry.heading)}`);
+    }
     return row('A1', 'install state', FINDING, 'forked', { lines });
   }
   if (behind.length > 0) {
@@ -339,6 +346,11 @@ function rowCurrency(context) {
     counts[entry.state] += 1;
     entries.push({ id: entry.id, state: entry.state, base: entry.base || null });
   }
+  // Nothing to classify is not a clean bill: the rows around this one report the empty or
+  // foreign document, and a pass here would read as currency that was checked.
+  if (entries.length === 0) {
+    return row('A4', 'section currency', INFO, 'no shipped section matched, so there is no body to classify');
+  }
   const detail = `${counts.current} current, ${counts['stale-known']} stale-known, ${counts.edited} edited, ${counts['unknown-base']} unknown-base`;
   const lines = [];
   for (const entry of context.currency) {
@@ -360,9 +372,12 @@ function rowPins(context, manifest) {
   }
 
   const failed = entries.filter((entry) => entry.state === FINDING);
+  const unmeasured = entries.filter((entry) => entry.state === UNKNOWN);
   const lines = failed.map((entry) => `${entry.id} (${entry.kind}): ${entry.detail}`);
-  return row('A5', 'pins', failed.length === 0 ? PASS : FINDING,
-    `${entries.length - failed.length}/${entries.length} pins hold`, { lines, entries });
+  for (const entry of unmeasured) lines.push(`${entry.id} (${entry.kind}): ${entry.detail}`);
+  const state = failed.length > 0 ? FINDING : (unmeasured.length > 0 ? UNKNOWN : PASS);
+  const detail = `${entries.length - failed.length - unmeasured.length}/${entries.length} pins hold${unmeasured.length > 0 ? `, ${unmeasured.length} unmeasured` : ''}`;
+  return row('A5', 'pins', state, detail, { lines, entries });
 }
 
 function pinVerdict(pin, context, manifest, byId) {
@@ -425,7 +440,9 @@ function pinVerdict(pin, context, manifest, byId) {
         : { state: FINDING, detail: `${pin.path} is missing` };
     }
     default:
-      return { state: INFO, detail: `no rule for a pin of kind ${pin.kind}` };
+      // A kind the engine has no rule for is a pin nobody measured. Counting it as a hold
+      // would report a manifest edit as verified.
+      return { state: UNKNOWN, detail: `no rule for a pin of kind ${pin.kind}` };
   }
 }
 
@@ -510,9 +527,11 @@ function rowBlock(context, manifest) {
   if (!block || !block.complete) {
     lines.push('the end marker sits before the start marker, so the block is out of order and unreadable');
   }
-  const lastShippedEnd = context.matched.reduce((max, entry) => Math.max(max, entry.section.end), 0);
-  if (block && block.complete && block.start < lastShippedEnd) {
-    lines.push(`the block starts at byte ${block.start}, inside the shipped sections`);
+  // Whatever the document carries below the block is content a replacement has to place
+  // around the block, so a block above it cannot be the one block a rewrite writes last.
+  const following = block === null ? [] : context.sections.filter((section) => section.start > block.start);
+  if (block && block.complete && following.length > 0) {
+    lines.push(`the block starts at byte ${block.start}, before ${following.length} section(s) that follow it (the first is ${JSON.stringify(following[0].heading)} at byte ${following[0].start})`);
   }
   if (block && block.complete && block.start < budget.prefix_bytes) {
     lines.push(`the block starts at byte ${block.start}, inside the ${budget.prefix_bytes}-byte delivery prefix`);
@@ -531,26 +550,29 @@ function rowBlock(context, manifest) {
 }
 
 // A8. Repository content outside the block that matches no shipped section. This is the
-// content a replacement would drop, so it is reported by line and byte range.
+// content a replacement would drop, so it is reported by line and byte range. The text
+// above the first heading has no heading to match, and arrives here with a null one.
 function rowUnmarked(context, manifest) {
   const prefixBytes = manifest.budget.prefix_bytes;
-  const entries = context.unregistered.map((entry) => {
-    const section = context.sections.find((candidate) => candidate.start === entry.start) || { start: entry.start, end: entry.start };
-    return {
-      heading: entry.heading,
-      line_start: lineNumberAt(context.text, section.start),
-      line_end: lineNumberAt(context.text, Math.max(section.start, section.end - 1)),
-      byte_start: section.start,
-      byte_end: section.end,
-      in_prefix: section.start < prefixBytes,
-    };
-  });
+  const entries = context.unregistered.map((entry) => ({
+    heading: entry.heading,
+    line_start: lineNumberAt(context.text, entry.start),
+    line_end: lineNumberAt(context.text, Math.max(entry.start, entry.end - 1)),
+    byte_start: entry.start,
+    byte_end: entry.end,
+    in_prefix: entry.start < prefixBytes,
+  }));
   if (entries.length === 0) return row('A8', 'unmarked repo-unique content', PASS, 'no section outside the block');
 
+  const headings = entries.filter((entry) => entry.heading !== null).length;
+  const detail = [];
+  if (headings > 0) detail.push(`${headings} section(s) outside the block match no shipped section`);
+  if (entries.length > headings) detail.push('the text above the first heading is repository content no section carries');
+
   return row('A8', 'unmarked repo-unique content', FINDING,
-    `${entries.length} section(s) outside the block match no shipped section`,
+    detail.join('; '),
     {
-      lines: entries.map((entry) => `${JSON.stringify(entry.heading)}: lines ${entry.line_start}-${entry.line_end}, bytes ${entry.byte_start}-${entry.byte_end}${entry.in_prefix ? ', inside the delivery prefix' : ''}`),
+      lines: entries.map((entry) => `${entry.heading === null ? 'text before the first heading' : JSON.stringify(entry.heading)}: lines ${entry.line_start}-${entry.line_end}, bytes ${entry.byte_start}-${entry.byte_end}${entry.in_prefix ? ', inside the delivery prefix' : ''}`),
       entries,
     });
 }
@@ -588,12 +610,18 @@ function rowRuntimeCopies(context, manifest, tools) {
   for (const expected of manifest.runtime_copies || []) {
     const verdict = copyVerdict(expected, context, manifest, tools);
     entries.push({ path: expected.path, kind: verdict.kind, state: verdict.state, lines: verdict.lines || [] });
-    if (verdict.state === FINDING) lines.push(`${expected.path}: ${verdict.kind} - ${verdict.detail}`);
+    // A copy nobody could measure is printed like a finding: a pass line with no detail
+    // reads as a copy that was checked and found right.
+    if (verdict.state === FINDING || verdict.state === UNKNOWN) {
+      lines.push(`${expected.path}: ${verdict.kind} - ${verdict.detail}`);
+    }
   }
 
   const failed = entries.filter((entry) => entry.state === FINDING);
-  return row('A10', 'runtime copies', failed.length === 0 ? PASS : FINDING,
-    `${entries.length - failed.length}/${entries.length} copies as expected`, { lines, entries });
+  const unmeasured = entries.filter((entry) => entry.state === UNKNOWN);
+  const state = failed.length > 0 ? FINDING : (unmeasured.length > 0 ? UNKNOWN : PASS);
+  const detail = `${entries.length - failed.length - unmeasured.length}/${entries.length} copies as expected${unmeasured.length > 0 ? `, ${unmeasured.length} unmeasured` : ''}`;
+  return row('A10', 'runtime copies', state, detail, { lines, entries });
 }
 
 function copyVerdict(expected, context, manifest, tools) {
@@ -937,8 +965,17 @@ function main(argv, hooks = {}) {
     console.error(`${TAG} ERROR: the target root is not a directory: ${options.root}`);
     return 2;
   }
-  const rootPath = path.join(options.root, 'AGENTS.md');
-  if (fs.existsSync(rootPath)) {
+  // The root file's name is the manifest's to declare, so this precondition reads the same
+  // declaration every other read does instead of a name of its own.
+  let rootFile = null;
+  try {
+    rootFile = JSON.parse(fs.readFileSync(options.manifest, 'utf8')).root_file || null;
+  } catch {
+    // An unreadable manifest is refused below, where the run has no report to print.
+    rootFile = null;
+  }
+  const rootPath = rootFile === null ? null : path.join(options.root, rootFile);
+  if (rootPath !== null && fs.existsSync(rootPath)) {
     try {
       fs.readFileSync(rootPath, 'utf8');
     } catch (error) {

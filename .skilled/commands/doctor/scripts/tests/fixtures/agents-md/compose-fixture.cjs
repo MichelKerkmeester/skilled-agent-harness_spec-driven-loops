@@ -130,6 +130,27 @@ function composeDocumentWithBlock(recipe) {
   return `${shipped}${markers.start}\n${blockText(recipe)}\n${markers.end}\n`;
 }
 
+// A repository puts its block wherever it likes, and both engines have to read the same
+// document the same way wherever that is. Moving the one block a composed recipe already
+// carries is how a case plants a block that is not last, without a second template.
+function moveBlockBefore(text, headingPrefix) {
+  const { markers } = manifest;
+  const from = text.indexOf(markers.start);
+  const to = text.indexOf(markers.end);
+  if (from === -1 || to === -1 || to < from) {
+    throw new Error('moveBlockBefore: the document carries no well-formed block');
+  }
+  const block = text.slice(from, to + markers.end.length);
+  // The markers own their own lines, so the newline after the end marker leaves with them
+  // instead of surviving as a blank line at the end of the section above.
+  const after = to + markers.end.length;
+  const cut = text.startsWith('\n', after) ? after + 1 : after;
+  const rest = `${text.slice(0, from)}${text.slice(cut)}`;
+  const at = rest.indexOf(`\n${headingPrefix}`);
+  if (at === -1) throw new Error(`moveBlockBefore: no line starts with ${JSON.stringify(headingPrefix)}`);
+  return `${rest.slice(0, at + 1)}${block}\n${rest.slice(at + 1)}`;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. THE RUNTIME MIRRORS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -235,4 +256,5 @@ module.exports = {
   composeFixture,
   fixtureNames,
   loadRecipe,
+  moveBlockBefore,
 };
