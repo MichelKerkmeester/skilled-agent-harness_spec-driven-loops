@@ -55,17 +55,17 @@ The pair was driven end to end against a copy of every fixture and the result wa
 
 | Fixture | Check before | Plan | Check after | Re-plan after | Restore |
 |---|---|---|---|---|---|
-| `absent` | `absent` (FINDING) | digest `5cf535ecc92e` | `pure` (PASS) | `NOTHING TO DO` | byte-identical |
-| `adopted` | `adopted` (PASS) | digest `339eefaa508a` | `adopted` (PASS) | `NOTHING TO DO` | byte-identical |
-| `claude-only` | `claude-only` (FINDING) | digest `439ffcaaa0c5` | `adopted` (PASS) | `NOTHING TO DO` | files byte-identical, one empty `.cursor/rules` left behind |
-| `foreign` | `foreign` (FINDING) | digest `3cf4c39c5ea8` | `adopted` (PASS) | `NOTHING TO DO` | files byte-identical, one empty `.cursor/rules` left behind |
-| `forked` | `forked` (FINDING) | digest `336d35694b7d` | `adopted` (PASS) | `NOTHING TO DO` | byte-identical |
+| `absent` | `absent` (FINDING) | digest `d32c4490f672` | `pure` (PASS) | `NOTHING TO DO` | byte-identical |
+| `adopted` | `adopted` (PASS) | digest `4eda2cf83949` | `adopted` (PASS) | `NOTHING TO DO` | byte-identical |
+| `claude-only` | `claude-only` (FINDING) | digest `33fb3ac8f70b` | `adopted` (PASS) | `NOTHING TO DO` | byte-identical, the `.cursor` folders the run created removed |
+| `foreign` | `foreign` (FINDING) | digest `6d0c767fd8ee` | `adopted` (PASS) | `NOTHING TO DO` | byte-identical, the `.cursor` folders the run created removed |
+| `forked` | `forked` (FINDING) | digest `daf799bad368` | `adopted` (PASS) | `NOTHING TO DO` | byte-identical |
 | `over-budget` | `forked` (FINDING) | exit 2, refused by name, nothing written | unchanged | no digest to re-plan | unchanged |
 | `pure` | `pure` (PASS) | `NOTHING TO DO` | unchanged | no work to plan | unchanged |
-| `shadowed-pin` | `forked` (FINDING) | digest `5975d71cb452` | `adopted` (PASS) | `NOTHING TO DO` | byte-identical |
-| `stale` | `stale` (FINDING) | digest `e784ace18434` | `pure` (PASS) | `NOTHING TO DO` | byte-identical |
+| `shadowed-pin` | `forked` (FINDING) | digest `4943b3c3cb7a` | `adopted` (PASS) | `NOTHING TO DO` | byte-identical |
+| `stale` | `stale` (FINDING) | digest `694800fd9780` | `pure` (PASS) | `NOTHING TO DO` | byte-identical |
 
-The one reading worth stating plainly: `adopted` is a passing state that still plans. Its repository lines sit in an unmarked block, and moving them into the marked block, folding its `CLAUDE.md` and writing the Cursor mirror is exactly the work the plan shows. The `NOTHING TO DO` pairing holds on the reconfigured tree, which is what "the reconfigured repository state agrees across the two engines" asks for.
+The one reading worth stating plainly: `adopted` is a passing state that still plans. Its repository lines sit in an unmarked block, and moving them into the marked block, folding its `CLAUDE.md` and writing the Cursor mirror is exactly the work the plan shows. The `NOTHING TO DO` pairing holds on the reconfigured tree, which is what "the reconfigured repository state agrees across the two engines" asks for. The digest covers the composed bytes and the root the plan ran against, so a rerun from a different temporary folder prints a different digest, and the values above are the ones the transcripts beside them recorded.
 
 ### The two recorded answers
 
@@ -73,8 +73,8 @@ Neither claim could be observed from this run, so both rows record the honest an
 
 | Row | Question | Recorded |
 |---|---|---|
-| DOC-396 | Can a live Devin session quote the last line of the repository block? | `UNKNOWN`: no live Devin session is reachable from this run. The scenario names the six steps an operator runs to answer it. |
-| DOC-397 | Does a Cursor window load the generated `.cursor/rules/repo-local.md`? | `UNKNOWN`: no Cursor window is reachable from this run. The scenario names the six steps an operator runs to answer it. |
+| DOC-396 | Can a live Devin session quote the last line of the repository block? | `UNKNOWN`: `devin -p` (devin 3000.11.234) refused with `resource_exhausted`, the account's weekly usage quota. Steps 1 to 4 and the restore ran, and the scenario names the six steps an operator runs to answer it with a session that has quota. |
+| DOC-397 | Does a Cursor window load the generated `.cursor/rules/repo-local.md`? | `UNKNOWN`: `cursor-agent -p` (2026.09.28-64d2043) reported `Your stored authentication is invalid`, which only an operator's `agent login` repairs. Steps 1 to 4 and the restore ran, and the scenario names the six steps an operator runs to answer it from an authenticated window. |
 
 Both scenarios state what the engine side already proves, so the open part is one observation each and nothing else.
 
@@ -118,7 +118,7 @@ Then the documentation pass, in the order the sk-doc router resolved it: the scr
 | The throwaway backup root is redirected into the run root | A composed tree is not a git repository, so the engine falls back to the OS temp folder. Pointing `TMPDIR` at the run root keeps that path out of the committed evidence and leaves the engine unchanged. |
 | `adopted` is recorded as planning on the pre-apply tree | Its lines sit in an unmarked block, so the plan has real work to show. Recording it as `NOTHING TO DO` would describe a state the fixture does not have. |
 | Both manual rows record `UNKNOWN` | A follow-up run on 2026-10-30 reached both CLIs. Devin refused with `resource_exhausted`, its weekly quota, and Cursor reported invalid stored authentication. Steps 1 to 4 and the restore ran for both. A default pass would claim a fact nobody observed, which is the one thing the design forbids. |
-| The empty `.cursor` folders were fixed in the embed engine | The first transcripts showed restore leaving the folders a run created. Each backup entry for a new file now records the parent folders that did not exist yet, and restore removes those, deepest first and only while empty. An embed test fails on the old engine and passes on the new one, and a rerun of `claude-only` restores with `diff -r` exit 0. |
+| The empty `.cursor` folders were fixed in the embed engine | The first transcripts showed restore leaving the folders a run created. Each backup entry for a new file now records the parent folders that did not exist yet, and restore removes those, deepest first and only while empty. An embed test fails on the old engine and passes on the new one, and the rerun of every fixture now ends its restore at `diff -r` exit 0. |
 | A skill whose files changed gets a changelog at its next free version | The packet touched sk-doc's command contract, the advisor's generated bridges and system-spec-kit's catalogs, and each of those is a reader-visible change in that skill. |
 <!-- /ANCHOR:decisions -->
 
@@ -129,7 +129,7 @@ Then the documentation pass, in the order the sk-doc router resolved it: the scr
 
 | Item | What changed and why |
 |------|----------------------|
-| The retrieval corpus was regenerated | The four new documents made `generate-trigger-index.mjs --check` report four stale documents. The index is the generated corpus its own README says is published only by that generator, so it was published again rather than left stale for `/doctor:speckit` and the advisory CI job to report. |
+| The retrieval corpus was left to the rebuild workflow | The four new documents would make `generate-trigger-index.mjs --check` report four stale documents, and the index is not committed in this change set. The repository's Trigger Index Rebuild CI workflow rebuilds it on the integration branch after the merge, so the branch ships the documents and the workflow publishes the index that names them. |
 | The sk-doc activation manifest was re-minted | Bumping the hub's version changes its compiled policy hash, so the manifest that selects that policy went stale and sk-doc fell back to legacy routing. `compiled-route-manifest.cjs refresh --hub sk-doc` re-pinned it, the authored copy under the routing spec was updated to match, and `compiled-route-guard.cjs` reports every hub fresh. Without this, the routing drift guard would fail on the branch. |
 | Three Hermes skill copies were regenerated | Bumping three `SKILL.md` versions made `sync-skills-hermes.cjs --check` report three drifted copies. The sync script wrote them, and `--check` now passes on all 65. |
 <!-- /ANCHOR:deviations -->

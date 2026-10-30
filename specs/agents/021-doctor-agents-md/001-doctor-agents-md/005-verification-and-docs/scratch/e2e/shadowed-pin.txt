@@ -89,23 +89,23 @@ Every prompt starts with `node .skilled/skills/system-spec-kit/runtime/cli/retri
 block-end:
 budget: 16510 -> 16368 of 16384 bytes to the last anchor, 27816 -> 28029 of 32768 bytes total, 4739 bytes headroom
 preservation: kept 2, carried 0, shipped-replaced 44, dropped 0
-backup: <tmp>/doctor-agents-md/5975d71cb4521f9d
+backup: <tmp>/doctor-agents-md/4943b3c3cb7ad16f
 backup-fallback: git cannot answer whether .skilled/output/doctor-agents-md is ignored under shadowed-pin (exit 128)
-undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/5975d71cb4521f9d
-plan-digest: 5975d71cb4521f9d448c2e6f77edbb6ca332bb0691fe9dab698b5c3b715583fe
+undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/4943b3c3cb7ad16f --root shadowed-pin
+plan-digest: 4943b3c3cb7ad16f4f2d8025a99e4991c03f3565324cda452b5226576b2ac9cb
 exit=0
 
-$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest 5975d71cb4521f9d448c2e6f77edbb6ca332bb0691fe9dab698b5c3b715583fe --root <run>
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest 4943b3c3cb7ad16f4f2d8025a99e4991c03f3565324cda452b5226576b2ac9cb --root <run>
 [agents-md-embed] apply on shadowed-pin (state: forked)
 wrote AGENTS.md
 wrote .cursor/rules/repo-local.md
 pointer-sync: in sync ([gate1-pointer-sync] Wrote 1 of 1 pointer blocks.)
 preservation: kept 2, carried 0, shipped-replaced 44, dropped 0
 check-after: state=adopted findings=1 unknown=0
-backup: <tmp>/doctor-agents-md/5975d71cb4521f9d
-undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/5975d71cb4521f9d
-cp <tmp>/doctor-agents-md/5975d71cb4521f9d/files/AGENTS.md AGENTS.md
-cp <tmp>/doctor-agents-md/5975d71cb4521f9d/files/.cursor/rules/skill-routing.md .cursor/rules/skill-routing.md
+backup: <tmp>/doctor-agents-md/4943b3c3cb7ad16f
+undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/4943b3c3cb7ad16f --root shadowed-pin
+cp <tmp>/doctor-agents-md/4943b3c3cb7ad16f/files/AGENTS.md AGENTS.md
+cp <tmp>/doctor-agents-md/4943b3c3cb7ad16f/files/.cursor/rules/skill-routing.md .cursor/rules/skill-routing.md
 STATUS=OK
 exit=0
 
@@ -134,12 +134,12 @@ note: router: no REPO RULES.md, so no repository rule can load; pass --create-ro
 NOTHING TO DO
 exit=0
 
-$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --yes
-[agents-md-embed] restore plan for shadowed-pin from <tmp>/doctor-agents-md/5975d71cb4521f9d
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --root <run> --yes
+[agents-md-embed] restore plan for shadowed-pin from <tmp>/doctor-agents-md/4943b3c3cb7ad16f
 restore AGENTS.md: put back
 restore .cursor/rules/repo-local.md: delete
 restore .cursor/rules/skill-routing.md: put back
-restore: 3 path(s) put back, the backup at <tmp>/doctor-agents-md/5975d71cb4521f9d is kept
+restore: 3 path(s) put back, the backup at <tmp>/doctor-agents-md/4943b3c3cb7ad16f is kept
 STATUS=OK
 exit=0
 

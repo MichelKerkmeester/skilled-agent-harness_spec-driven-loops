@@ -61,22 +61,22 @@ block:
 block-end:
 budget: 16368 -> 16368 of 16384 bytes to the last anchor, 27395 -> 27888 of 32768 bytes total, 4880 bytes headroom
 preservation: kept 0, carried 0, shipped-replaced 44, dropped 0
-backup: <tmp>/doctor-agents-md/e784ace184340d2c
+backup: <tmp>/doctor-agents-md/694800fd97809936
 backup-fallback: git cannot answer whether .skilled/output/doctor-agents-md is ignored under stale (exit 128)
-undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/e784ace184340d2c
-plan-digest: e784ace184340d2cb39e3ad9de5ccf1b56ddfa9ce649e3b1e0821d5dcb2f0ed2
+undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/694800fd97809936 --root stale
+plan-digest: 694800fd978099366ba489798a6b2240df37df48f1785ef36cc0042077052beb
 exit=0
 
-$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest e784ace184340d2cb39e3ad9de5ccf1b56ddfa9ce649e3b1e0821d5dcb2f0ed2 --root <run>
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest 694800fd978099366ba489798a6b2240df37df48f1785ef36cc0042077052beb --root <run>
 [agents-md-embed] apply on stale (state: stale)
 wrote AGENTS.md
 pointer-sync: in sync ([gate1-pointer-sync] Wrote 0 of 1 pointer blocks.)
 preservation: kept 0, carried 0, shipped-replaced 44, dropped 0
 check-after: state=pure findings=1 unknown=0
-backup: <tmp>/doctor-agents-md/e784ace184340d2c
-undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/e784ace184340d2c
-cp <tmp>/doctor-agents-md/e784ace184340d2c/files/AGENTS.md AGENTS.md
-cp <tmp>/doctor-agents-md/e784ace184340d2c/files/.cursor/rules/skill-routing.md .cursor/rules/skill-routing.md
+backup: <tmp>/doctor-agents-md/694800fd97809936
+undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/694800fd97809936 --root stale
+cp <tmp>/doctor-agents-md/694800fd97809936/files/AGENTS.md AGENTS.md
+cp <tmp>/doctor-agents-md/694800fd97809936/files/.cursor/rules/skill-routing.md .cursor/rules/skill-routing.md
 STATUS=OK
 exit=0
 
@@ -105,11 +105,11 @@ note: router: no REPO RULES.md, so no repository rule can load; pass --create-ro
 NOTHING TO DO
 exit=0
 
-$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --yes
-[agents-md-embed] restore plan for stale from <tmp>/doctor-agents-md/e784ace184340d2c
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --root <run> --yes
+[agents-md-embed] restore plan for stale from <tmp>/doctor-agents-md/694800fd97809936
 restore AGENTS.md: put back
 restore .cursor/rules/skill-routing.md: put back
-restore: 2 path(s) put back, the backup at <tmp>/doctor-agents-md/e784ace184340d2c is kept
+restore: 2 path(s) put back, the backup at <tmp>/doctor-agents-md/694800fd97809936 is kept
 STATUS=OK
 exit=0
 

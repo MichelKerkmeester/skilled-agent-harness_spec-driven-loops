@@ -86,6 +86,6 @@ and findings belong here.
 |------|------|
 | `adopted` plans on the pre-apply tree | Its lines sit in an unmarked block, so the plan has real work to show. The `NOTHING TO DO` pairing holds on the reconfigured tree. |
 | Restore leaves one empty `.cursor` folder | Every recorded file is byte-identical; the folder cleanup belongs to the engine's own child. |
-| The retrieval corpus and the sk-doc activation manifest were regenerated | The new documents staled the index, and the version bump staled the hub's compiled policy manifest. Both were republished by their own tools. |
+| The sk-doc activation manifest was regenerated and the retrieval corpus was left to CI | The version bump staled the hub's compiled policy manifest, which its own tool republished. The new documents also staled the trigger index, which the Trigger Index Rebuild workflow regenerates after the merge, so the index files are not part of this change. |
 | Both manual rows record `UNKNOWN` | No live session was reachable, and a default pass would claim a fact nobody observed. |
 <!-- /ANCHOR:log -->

@@ -67,7 +67,8 @@ workflow:
   phase_2_plan:
     purpose: "Show the restore plan the engine derives, which writes nothing"
     activities:
-      - "Run node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run={run_dir} --dry-run. It prints the restore plan: the root, each recorded path with put back, delete or absent, and the engine's own note when a created AGENTS.md would be removed. It writes nothing."
+      - "Run node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run={run_dir} --dry-run. It prints the restore plan: the root, each recorded path with put back, delete or absent, the engine's own note when a created AGENTS.md would be removed, and one folder line per folder the recorded run created that an empty restore removes. It writes nothing."
+      - "A record that names a root other than the one this restore runs against is refused before any plan line is printed: exit 2 says which root the record names and which one the restore is against, and nothing was written. That refusal ends the run, and restoring that folder means passing --root <the root the record names>, in the spaced form the engine accepts."
       - "Keep the plan's exact lines. A path the run created shows delete. A path it overwrote shows put back. A path that was already absent shows absent and is not touched."
       - "Exit 0 with a plan is the case this route asks about. Exit 0 with --dry-run never asks anything, so a dry run renders the presentation contract's dry-run result and goes to phase 6 with STATUS=OK."
       - "Exit 2 means the record or one of its copies cannot be trusted: no manifest.json under the directory, a copy missing beside it, or a copy whose hash no longer matches its recorded hash. Quote the engine's message and end with STATUS=FAIL. Nothing was written, and nothing is repaired by hand here."
@@ -82,10 +83,11 @@ workflow:
   phase_4_write:
     purpose: "Put the recorded paths back, only after the restore yes"
     activities:
-      - "Run node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run={run_dir} --yes, only after the restore yes."
-      - "Exit 0 means the paths are back. The engine writes each recorded file from its copy, removes each path the run created, measures every restored file against its recorded hash, prints one restore line per path, then the count and STATUS=OK. Keep those lines as printed."
+      - "Run node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run={run_dir} --yes, only after the restore yes, adding --root <the root the record names> when that root is not this repository."
+      - "Exit 0 means the paths are back. The engine writes each recorded file from its copy, removes each path the run created, removes each folder the run created once it is empty again, measures every restored file against its recorded hash, prints one restore line per path, one line per removed folder, then the count and STATUS=OK. Keep those lines as printed."
       - "Exit 1 means a restored file does not match its recorded hash after the write. Quote the file and the message, then STATUS=FAIL, and tell the operator the backup at {run_dir} is kept."
       - "An allowlist refusal exits 2, which means the record named a path the engine will not touch. Quote the message and end with STATUS=FAIL. Nothing was written for that path."
+      - "A record that names another root exits 2 before anything is written, so the run never writes into a folder the record does not name. Quote the message, name the --root the engine asked for, and end with STATUS=FAIL."
 
   phase_5_reread:
     purpose: "Read the restored tree through the read-only engine"

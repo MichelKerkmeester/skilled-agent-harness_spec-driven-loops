@@ -391,20 +391,20 @@ block:
 block-end:
 budget: 0 -> 16368 of 16384 bytes to the last anchor, 0 -> 27888 of 32768 bytes total, 4880 bytes headroom
 preservation: kept 0, carried 0, shipped-replaced 44, dropped 0
-backup: <tmp>/doctor-agents-md/5cf535ecc92e6aeb
+backup: <tmp>/doctor-agents-md/d32c4490f6724b86
 backup-fallback: git cannot answer whether .skilled/output/doctor-agents-md is ignored under absent (exit 128)
-undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/5cf535ecc92e6aeb
-plan-digest: 5cf535ecc92e6aebfffa9d212bf6cf570f599a7991949d6511eb854e87d7d1a5
+undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/d32c4490f6724b86 --root absent
+plan-digest: d32c4490f6724b86f62bff5e1a4dd481d33b753503c216a54401c8fc60c4cf7f
 exit=0
 
-$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest 5cf535ecc92e6aebfffa9d212bf6cf570f599a7991949d6511eb854e87d7d1a5 --root <run>
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest d32c4490f6724b86f62bff5e1a4dd481d33b753503c216a54401c8fc60c4cf7f --root <run>
 [agents-md-embed] apply on absent (state: absent)
 wrote AGENTS.md
 pointer-sync: exit 1 ([gate1-pointer-sync] Drift detected:; [gate1-pointer-sync] .cursor/rules/skill-routing.md: missing)
 preservation: kept 0, carried 0, shipped-replaced 44, dropped 0
 check-after: state=pure findings=2 unknown=0
-backup: <tmp>/doctor-agents-md/5cf535ecc92e6aeb
-undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/5cf535ecc92e6aeb
+backup: <tmp>/doctor-agents-md/d32c4490f6724b86
+undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/d32c4490f6724b86 --root absent
 STATUS=OK
 exit=0
 
@@ -434,10 +434,10 @@ note: router: no REPO RULES.md, so no repository rule can load; pass --create-ro
 NOTHING TO DO
 exit=0
 
-$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --yes
-[agents-md-embed] restore plan for absent from <tmp>/doctor-agents-md/5cf535ecc92e6aeb
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --root <run> --yes
+[agents-md-embed] restore plan for absent from <tmp>/doctor-agents-md/d32c4490f6724b86
 restore AGENTS.md: delete (this run created it; without it Gate 3 no longer detects this directory as a workspace root)
-restore: 1 path(s) put back, the backup at <tmp>/doctor-agents-md/5cf535ecc92e6aeb is kept
+restore: 1 path(s) put back, the backup at <tmp>/doctor-agents-md/d32c4490f6724b86 is kept
 STATUS=OK
 exit=0
 

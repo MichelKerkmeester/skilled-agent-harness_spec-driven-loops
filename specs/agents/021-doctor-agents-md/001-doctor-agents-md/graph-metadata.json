@@ -44,7 +44,7 @@
       "acceptance"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -215,7 +215,7 @@
     ],
     "causal_summary": "The template at the repository root is the only copy of the shipped instructions anywhere in the framework, and `/doctor:update` never reads it because it enumerates release units from paths under `.skilled/`",
     "created_at": "2026-10-30T11:22:11Z",
-    "last_save_at": "2026-10-30T16:16:45.065Z",
+    "last_save_at": "2026-10-30T17:06:31.129Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -226,12 +226,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c9f021f2127efca855c7b75cfa666c8c489364870a58e7fddd6a2a125f17d03a",
+    "source_fingerprint": "sha256:65cc80487c6f7cbec77a1a3b5e4b28034b68227bb38e4b5b7a69e1b103b1908e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "13028e9edb76374eff59bb0c50404138fd2a87f6560ad06592b4b12eb0b31096",
       "plan.md": "8350146052b2db6bbd1878a977f7e976e278df4d9b5271527e0e075c5b7ac7e3",
-      "tasks.md": "077e4555f012d50d96c36f292c8201c3e880a2cfd96f0d76f1358ac8e7f8e58b",
+      "tasks.md": "d7c45517325559817b32d9e0cf85151d1aafe425408fec70e8d38877b138a879",
       "implementation-summary.md": "6a87c461d04f15f8a4c83e8ef3d5097007535202158e8bb3deee895dfbef38ef"
     },
     "last_active_at": null

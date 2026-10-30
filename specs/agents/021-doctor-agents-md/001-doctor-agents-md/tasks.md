@@ -57,7 +57,7 @@ contextType: "general"
 
 - [x] T009 Rerun every baseline command from the final tree (`scratch/baseline.txt`). Verify: each prints its pre-work pass line. Evidence: the canary prints `OK: all rule invariants present`, the gate 1 pointer sync prints `PASS: 1 instruction files carry the root Gate 1 lookup.`, the repo-rules checker prints `RESULT: PASSED (11/11 checks)`, `route-validate.sh` prints `OK: route-validate — 24 routes validated, 5 warnings`, the runner ends `7 suite(s) passed, 0 failed`, and the root file is 27888 bytes.
 - [x] T010 Run the recursive phase gate (`specs/agents/021-doctor-agents-md/001-doctor-agents-md`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md/001-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`. Evidence: exits 0 and prints `RESULT: PASSED` with `Errors: 0  Warnings: 0`.
-- [x] T011 Confirm the change list (`git status --porcelain`). Verify: the list names only the files the five children name. Evidence: every path is named by a child's own list or by a close-out document, and the three deviations (the regenerated retrieval corpus, the re-minted sk-doc activation manifest, the regenerated Hermes copies) are recorded in the last child's implementation summary.
+- [x] T011 Confirm the change list (`git status --porcelain`). Verify: the list names only the files the five children name. Evidence: every path is named by a child's own list or by a close-out document, and the two deviations (the re-minted sk-doc activation manifest and the regenerated Hermes copies, with the retrieval corpus left to the Trigger Index Rebuild workflow after the merge) are recorded in the last child's implementation summary.
 <!-- /ANCHOR:phase-3 -->
 
 ---

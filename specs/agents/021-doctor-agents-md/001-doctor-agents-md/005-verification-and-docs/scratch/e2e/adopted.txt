@@ -100,13 +100,13 @@ Update the changelog in the same commit as the code.
 block-end:
 budget: 16368 -> 16368 of 16384 bytes to the last anchor, 28022 -> 28166 of 32768 bytes total, 4602 bytes headroom
 preservation: kept 3, carried 3, shipped-replaced 44, dropped 0
-backup: <tmp>/doctor-agents-md/339eefaa508a23a9
+backup: <tmp>/doctor-agents-md/4eda2cf83949c6af
 backup-fallback: git cannot answer whether .skilled/output/doctor-agents-md is ignored under adopted (exit 128)
-undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/339eefaa508a23a9
-plan-digest: 339eefaa508a23a9956e96ca6f90690339c43e82022a5a38b735f617e701327d
+undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/4eda2cf83949c6af --root adopted
+plan-digest: 4eda2cf83949c6afb17d1beed85a71707d55a7f83369e9ea22872a3d85989eb0
 exit=0
 
-$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest 339eefaa508a23a9956e96ca6f90690339c43e82022a5a38b735f617e701327d --root <run>
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest 4eda2cf83949c6afb17d1beed85a71707d55a7f83369e9ea22872a3d85989eb0 --root <run>
 [agents-md-embed] apply on adopted (state: adopted)
 wrote AGENTS.md
 wrote .cursor/rules/repo-local.md
@@ -114,12 +114,12 @@ removed CLAUDE.md (backed up first)
 pointer-sync: in sync ([gate1-pointer-sync] Wrote 0 of 1 pointer blocks.)
 preservation: kept 3, carried 3, shipped-replaced 44, dropped 0
 check-after: state=adopted findings=1 unknown=0
-backup: <tmp>/doctor-agents-md/339eefaa508a23a9
-undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/339eefaa508a23a9
-cp <tmp>/doctor-agents-md/339eefaa508a23a9/files/AGENTS.md AGENTS.md
-cp <tmp>/doctor-agents-md/339eefaa508a23a9/files/.cursor/rules/repo-local.md .cursor/rules/repo-local.md
-cp <tmp>/doctor-agents-md/339eefaa508a23a9/files/CLAUDE.md CLAUDE.md
-cp <tmp>/doctor-agents-md/339eefaa508a23a9/files/.cursor/rules/skill-routing.md .cursor/rules/skill-routing.md
+backup: <tmp>/doctor-agents-md/4eda2cf83949c6af
+undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/4eda2cf83949c6af --root adopted
+cp <tmp>/doctor-agents-md/4eda2cf83949c6af/files/AGENTS.md AGENTS.md
+cp <tmp>/doctor-agents-md/4eda2cf83949c6af/files/.cursor/rules/repo-local.md .cursor/rules/repo-local.md
+cp <tmp>/doctor-agents-md/4eda2cf83949c6af/files/CLAUDE.md CLAUDE.md
+cp <tmp>/doctor-agents-md/4eda2cf83949c6af/files/.cursor/rules/skill-routing.md .cursor/rules/skill-routing.md
 STATUS=OK
 exit=0
 
@@ -148,13 +148,13 @@ note: router: no REPO RULES.md, so no repository rule can load; pass --create-ro
 NOTHING TO DO
 exit=0
 
-$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --yes
-[agents-md-embed] restore plan for adopted from <tmp>/doctor-agents-md/339eefaa508a23a9
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --root <run> --yes
+[agents-md-embed] restore plan for adopted from <tmp>/doctor-agents-md/4eda2cf83949c6af
 restore AGENTS.md: put back
 restore .cursor/rules/repo-local.md: put back
 restore CLAUDE.md: put back
 restore .cursor/rules/skill-routing.md: put back
-restore: 4 path(s) put back, the backup at <tmp>/doctor-agents-md/339eefaa508a23a9 is kept
+restore: 4 path(s) put back, the backup at <tmp>/doctor-agents-md/4eda2cf83949c6af is kept
 STATUS=OK
 exit=0
 

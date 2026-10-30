@@ -149,7 +149,7 @@ With `--dry-run`, follow the plan and the digest with `Dry run: nothing was writ
 
 ## 5. Restore Plan and Approval
 
-The restore plan is the engine's own dry run of one run's record, so it names what will be put back and what will be removed.
+The restore plan is the engine's own dry run of one run's record, so it names what will be put back, what will be removed, and each folder that removal leaves empty.
 
 ```text
 AGENTS INSTRUCTION RESTORE PLAN
@@ -158,11 +158,16 @@ Root: [the root the record names]
 Put back: [one line per recorded file, in the engine's order]
 Remove: [one line per path the recorded run created, or none]
 Already absent: [one line per path the recorded run created and that is already gone, or none]
+Folders: [one line per folder the recorded run created and an empty restore removes, or none]
 
 Restore these paths from that backup now? [yes/no]
 ```
 
 A recorded `AGENTS.md` that did not exist before the embed shows `delete` with the engine's own note: without it, Gate 3 no longer detects that directory as a workspace root. Quote that note.
+
+A folder the recorded run had to create for a new file gets its own folder line, and the restore removes it only once it is empty again. The line names the folder, never its contents.
+
+A record that names another root never reaches this plan: the restore refuses it before printing a line, says which root the record names, and writes nothing.
 
 `Restore these paths from that backup now? [yes/no]` covers the whole restore. Any answer other than yes counts as no: print the cancelled result and write nothing. The `--yes` flag is passed only after that yes, so the operator confirms once and the engine's own confirmation is satisfied by it.
 
@@ -231,6 +236,7 @@ Target: restore
 Run directory: [the --run directory]
 Put back: [each path the restore printed as restored, or none]
 Removed: [each path it printed as removed, or none]
+Folders: [each folder it printed as removed, or none]
 Re-read: [the check engine's result line]
 STATUS=OK
 ```
@@ -265,6 +271,7 @@ A check that exits 2 prints its message and ends `STATUS=ERROR ERROR="[message]"
 | The apply reports a dropped line | The engine restored from the backup by itself. Read the dropped line, keep it in the block or in a reference document, then rerun the plan |
 | The embed is not wanted after all | `/doctor:agents-md restore --run=<the backup folder the apply printed>` puts back the files that run wrote |
 | A restore reports a hash that does not match | The record or one of its copies changed, so nothing was written. Read the message. The backup at that directory is kept |
+| A restore reports that the record names another root | The record belongs to the folder it names, and nothing was written. Rerun the restore with `--root <the root the record names>`, in the spaced form: `--root=` is not accepted |
 | Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
 
 ## 8. Next Step

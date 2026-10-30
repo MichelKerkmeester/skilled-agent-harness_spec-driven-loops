@@ -1,26 +1,31 @@
 #!/usr/bin/env bash
 # End-to-end runner for the shipped instruction fixtures.
 #
-# Each fixture is a recipe, so a copy is composed into the throwaway run root, checked,
+# Each fixture is a recipe, so a copy is composed into a throwaway run root, checked,
 # planned, applied with the digest that plan printed, checked again and then restored and
 # compared against the pristine copy. One transcript per fixture lands beside this script.
 # Every absolute path from this checkout is shortened on the way into a transcript, so a
-# committed transcript carries no consumer path. The backup folder is redirected into the
-# same throwaway root because a composed tree is not a git repository.
+# committed transcript carries no consumer path. The run root is a fresh temporary folder
+# per run, so a rerun never reads the previous one, and the backup folder is redirected
+# into it because a composed tree is not a git repository.
 set -u
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../../../.." && pwd)"
 FIXTURES="$REPO_ROOT/.skilled/commands/doctor/scripts/tests/fixtures/agents-md"
 SCRIPTS="$REPO_ROOT/.skilled/commands/doctor/scripts"
 OUT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/e2e"
-WORK=/Users/michelkerkmeester/worktrees/public/.scratch-dc90/021-15
+WORK="$(mktemp -d)"
 RUNS="$WORK/runs"
 TMP="$WORK/tmp"
+
+# The one folder this run created, and the only one it removes, so the fixtures leave no
+# trace and the transcripts stay the only output.
+trap 'rm -rf "$WORK"' EXIT
 
 mkdir -p "$OUT" "$RUNS" "$TMP"
 
 shorten() {
-  sed -e "s|$RUNS/||g" -e "s|$TMP|<tmp>|g" -e "s|$REPO_ROOT|<repo>|g"
+  sed -e "s|$RUNS/||g" -e "s|$TMP|<tmp>|g" -e "s|$WORK|<work>|g" -e "s|$REPO_ROOT|<repo>|g"
 }
 
 # Runs one command from the repository root and records its own exit status, not the
@@ -39,7 +44,6 @@ for fixture in absent adopted claude-only foreign forked over-budget pure shadow
   pristine="$RUNS/$fixture-pristine"
   transcript="$OUT/$fixture.txt"
   plan_out="$RUNS/$fixture-plan.txt"
-  rm -rf "$run" "$pristine"
   mkdir -p "$run"
 
   {
@@ -82,8 +86,8 @@ for fixture in absent adopted claude-only foreign forked over-budget pure shadow
       emit node "$SCRIPTS/agents-md-embed.cjs" plan --root "$run"
 
       echo
-      echo "\$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --yes"
-      emit node "$SCRIPTS/agents-md-embed.cjs" restore --run="$run_dir" --yes
+      echo "\$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --root <run> --yes"
+      emit node "$SCRIPTS/agents-md-embed.cjs" restore --run="$run_dir" --root "$run" --yes
 
       echo
       echo "\$ diff -r <pristine-run> <run>"
@@ -101,6 +105,5 @@ for fixture in absent adopted claude-only foreign forked over-budget pure shadow
     fi
   } >"$transcript" 2>&1
 
-  rm -rf "$pristine"
   echo "wrote $transcript"
 done

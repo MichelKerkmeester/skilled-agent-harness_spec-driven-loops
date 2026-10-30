@@ -103,23 +103,23 @@ Local rule: name the packet in the first line of every pull request.
 block-end:
 budget: 16368 -> 16368 of 16384 bytes to the last anchor, 27850 -> 28095 of 32768 bytes total, 4673 bytes headroom
 preservation: kept 3, carried 0, shipped-replaced 44, dropped 0
-backup: <tmp>/doctor-agents-md/336d35694b7d1b49
+backup: <tmp>/doctor-agents-md/daf799bad368eaf4
 backup-fallback: git cannot answer whether .skilled/output/doctor-agents-md is ignored under forked (exit 128)
-undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/336d35694b7d1b49
-plan-digest: 336d35694b7d1b494d28fec1e3ed97c36a8935d3fe4e71b1139012eece28162e
+undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/daf799bad368eaf4 --root forked
+plan-digest: daf799bad368eaf46142d16bc6e449c3352628b3a881e3cadb32b9d86006b8f3
 exit=0
 
-$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest 336d35694b7d1b494d28fec1e3ed97c36a8935d3fe4e71b1139012eece28162e --root <run>
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest daf799bad368eaf46142d16bc6e449c3352628b3a881e3cadb32b9d86006b8f3 --root <run>
 [agents-md-embed] apply on forked (state: forked)
 wrote AGENTS.md
 wrote .cursor/rules/repo-local.md
 pointer-sync: in sync ([gate1-pointer-sync] Wrote 0 of 1 pointer blocks.)
 preservation: kept 3, carried 0, shipped-replaced 44, dropped 0
 check-after: state=adopted findings=1 unknown=0
-backup: <tmp>/doctor-agents-md/336d35694b7d1b49
-undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/336d35694b7d1b49
-cp <tmp>/doctor-agents-md/336d35694b7d1b49/files/AGENTS.md AGENTS.md
-cp <tmp>/doctor-agents-md/336d35694b7d1b49/files/.cursor/rules/skill-routing.md .cursor/rules/skill-routing.md
+backup: <tmp>/doctor-agents-md/daf799bad368eaf4
+undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/daf799bad368eaf4 --root forked
+cp <tmp>/doctor-agents-md/daf799bad368eaf4/files/AGENTS.md AGENTS.md
+cp <tmp>/doctor-agents-md/daf799bad368eaf4/files/.cursor/rules/skill-routing.md .cursor/rules/skill-routing.md
 STATUS=OK
 exit=0
 
@@ -148,12 +148,12 @@ note: router: no REPO RULES.md, so no repository rule can load; pass --create-ro
 NOTHING TO DO
 exit=0
 
-$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --yes
-[agents-md-embed] restore plan for forked from <tmp>/doctor-agents-md/336d35694b7d1b49
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --root <run> --yes
+[agents-md-embed] restore plan for forked from <tmp>/doctor-agents-md/daf799bad368eaf4
 restore AGENTS.md: put back
 restore .cursor/rules/repo-local.md: delete
 restore .cursor/rules/skill-routing.md: put back
-restore: 3 path(s) put back, the backup at <tmp>/doctor-agents-md/336d35694b7d1b49 is kept
+restore: 3 path(s) put back, the backup at <tmp>/doctor-agents-md/daf799bad368eaf4 is kept
 STATUS=OK
 exit=0
 

@@ -59,7 +59,7 @@ contextType: "general"
 
 - [x] T011 Rerun every baseline command from the final tree (`scratch/baseline.txt`). Verify: each prints the same pass line it printed before the work started. Evidence: the canary prints `OK: all rule invariants present (8 exact-string file(s) + 2 Iron Law file(s) + 21 delivery-prefix anchor(s) + 6 extension floor(s) + 2 example output(s)).`, the gate 1 pointer sync prints `PASS: 1 instruction files carry the root Gate 1 lookup.`, the repo-rules checker prints `RESULT: PASSED (11/11 checks)`, `route-validate.sh` prints `OK: route-validate — 24 routes validated, 5 warnings`, the family runner ends `7 suite(s) passed, 0 failed`, and `wc -c < AGENTS.md` prints 27888, which is unchanged by this child.
 - [x] T012 Run the recursive phase gate (`specs/agents/021-doctor-agents-md`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`. Evidence: every folder prints `RESULT: PASSED` with `Errors: 0  Warnings: 0`, including this one.
-- [x] T013 Confirm the change list (`git status --porcelain`). Verify: the list names only files named by children 001 to 005. Evidence: `git status --porcelain` names the README doctor section, the script README, the catalog and playbook rows, the four changelogs, the two new scenario files, three skill version carriers with their Hermes copies, the generated retrieval corpus, the re-minted sk-doc activation manifest, and this packet's own documents. Every path is named by a child or by this child's own task list, and the deviations are recorded in `implementation-summary.md`.
+- [x] T013 Confirm the change list (`git status --porcelain`). Verify: the list names only files named by children 001 to 005. Evidence: `git status --porcelain` names the README doctor section, the script README, the catalog and playbook rows, the four changelogs, the two new scenario files, three skill version carriers with their Hermes copies, the retrieval corpus that the Trigger Index Rebuild CI workflow rebuilds after the merge, the re-minted sk-doc activation manifest, and this packet's own documents. Every path is named by a child or by this child's own task list, and the deviations are recorded in `implementation-summary.md`.
 - [x] T014 Confirm no local-only path appears (`git status --porcelain`). Verify: `rg -n 'local-' <(git status --porcelain)` prints nothing. Evidence: prints nothing, exit 1.
 <!-- /ANCHOR:phase-3 -->
 
@@ -155,7 +155,7 @@ contextType: "general"
 ## File Organization
 
 - [x] CHK-050 [P1] Transcripts live under `scratch/e2e/`. Verify: `find scratch/e2e -type f | wc -l` prints `9`. Evidence: prints 9. The runner itself lives one level up at `scratch/run-e2e.sh`, so the transcript count stays exactly one per fixture.
-- [x] CHK-051 [P1] Temporary fixture copies are removed. Verify: `git status --porcelain` lists no temporary path. Evidence: every composed copy lives under the throwaway run root outside the checkout, and the two unstaged directories the restore leaves empty are there, not in the tree.
+- [x] CHK-051 [P1] Temporary fixture copies are removed. Verify: `git status --porcelain` lists no temporary path. Evidence: every composed copy lives under the throwaway run root outside the checkout, and the restore now leaves nothing behind either: the files the run wrote and the empty `.cursor` folders it created are all removed, so no temporary path and no leftover folder reaches the tree.
 <!-- /ANCHOR:file-org -->
 
 ---

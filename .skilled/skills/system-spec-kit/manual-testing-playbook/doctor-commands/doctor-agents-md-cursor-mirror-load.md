@@ -1,7 +1,7 @@
 ---
 title: "DOC-397 -- Doctor agents md mirror loads in Cursor"
 description: "Manual scenario settling whether a Cursor window loads the generated .cursor/rules/repo-local.md, which is the one file the Devin mirror writes for a non-empty repository block."
-version: 1.0.1.0
+version: 1.0.2.0
 id: doctor-commands-doctor-agents-md-cursor-mirror-load
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -47,7 +47,7 @@ I ran /doctor:agents-md embed and it wrote a rule file for Cursor. Is Cursor act
 3. `node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest <digest> --root <throwaway>/cursor-mirror` and confirm it ends `STATUS=OK`.
 4. `head -4 <throwaway>/cursor-mirror/.cursor/rules/repo-local.md` and record the frontmatter block.
 5. Open `<throwaway>/cursor-mirror` in a Cursor window, start the agent panel and ask: `Without opening or searching any file, quote the first line under the repository-specific instructions heading in the rules you were given.`
-6. Record the answer and the Cursor version, then `node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --yes` and `diff -r <throwaway>/cursor-mirror-pristine <throwaway>/cursor-mirror`.
+6. Record the answer and the Cursor version, then `node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --root <throwaway>/cursor-mirror --yes` and `diff -r <throwaway>/cursor-mirror-pristine <throwaway>/cursor-mirror`.
 
 ### Expected
 

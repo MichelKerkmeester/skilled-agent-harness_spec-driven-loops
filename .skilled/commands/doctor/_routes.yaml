@@ -518,7 +518,7 @@ routes:
     setup_vars: [execution_mode, run_dir, yes, dry_run]
     allowed_flags: ["--run <dir>", "--yes", "--dry-run"]
     mutating: mutates
-    gate3_location: "the paths one run's own manifest.json under its backup directory records, each one re-checked against the engine's write allowlist before it is touched: a recorded file is copied back from its copy and a path the recorded run created (an AGENTS.md, CLAUDE.md, .codex/AGENTS.md, .cursor/rules/repo-local.md or REPO RULES.md it created) is removed, and the backup directory itself is read and kept"
+    gate3_location: "the paths one run's own manifest.json under its backup directory records, each one re-checked against the engine's write allowlist before it is touched: a recorded file is copied back from its copy and a path the recorded run created (an AGENTS.md, CLAUDE.md, .codex/AGENTS.md, .cursor/rules/repo-local.md or REPO RULES.md it created) is removed along with each folder the run created for it that is empty again, and the backup directory itself is read and kept"
     mcp_tools: []   # script-only; no MCP calls
     script_invocations:
       - 'node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<dir> --dry-run  # prints the restore plan the record and its copies describe and writes nothing'

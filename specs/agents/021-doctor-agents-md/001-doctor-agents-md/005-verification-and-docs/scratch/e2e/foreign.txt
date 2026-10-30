@@ -458,22 +458,22 @@ This repository predates the harness. Build with `make`, test with `make check`.
 block-end:
 budget: 0 -> 16368 of 16384 bytes to the last anchor, 197 -> 28085 of 32768 bytes total, 4683 bytes headroom
 preservation: kept 5, carried 0, shipped-replaced 44, dropped 0
-backup: <tmp>/doctor-agents-md/3cf4c39c5ea881d7
+backup: <tmp>/doctor-agents-md/6d0c767fd8eecd92
 backup-fallback: git cannot answer whether .skilled/output/doctor-agents-md is ignored under foreign (exit 128)
-undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/3cf4c39c5ea881d7
-plan-digest: 3cf4c39c5ea881d7be86276ce11154f1a39b5c24ff6b6fbe758bd79840bac5dc
+undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/6d0c767fd8eecd92 --root foreign
+plan-digest: 6d0c767fd8eecd9264a4cf909d2267d45a35caa08d67d385f463cdc4c1dbbed6
 exit=0
 
-$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest 3cf4c39c5ea881d7be86276ce11154f1a39b5c24ff6b6fbe758bd79840bac5dc --root <run>
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest 6d0c767fd8eecd9264a4cf909d2267d45a35caa08d67d385f463cdc4c1dbbed6 --root <run>
 [agents-md-embed] apply on foreign (state: foreign)
 wrote AGENTS.md
 wrote .cursor/rules/repo-local.md
 pointer-sync: exit 1 ([gate1-pointer-sync] Drift detected:; [gate1-pointer-sync] .cursor/rules/skill-routing.md: missing)
 preservation: kept 5, carried 0, shipped-replaced 44, dropped 0
 check-after: state=adopted findings=2 unknown=0
-backup: <tmp>/doctor-agents-md/3cf4c39c5ea881d7
-undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/3cf4c39c5ea881d7
-cp <tmp>/doctor-agents-md/3cf4c39c5ea881d7/files/AGENTS.md AGENTS.md
+backup: <tmp>/doctor-agents-md/6d0c767fd8eecd92
+undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/6d0c767fd8eecd92 --root foreign
+cp <tmp>/doctor-agents-md/6d0c767fd8eecd92/files/AGENTS.md AGENTS.md
 STATUS=OK
 exit=0
 
@@ -503,14 +503,18 @@ note: router: no REPO RULES.md, so no repository rule can load; pass --create-ro
 NOTHING TO DO
 exit=0
 
-$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --yes
-[agents-md-embed] restore plan for foreign from <tmp>/doctor-agents-md/3cf4c39c5ea881d7
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --root <run> --yes
+[agents-md-embed] restore plan for foreign from <tmp>/doctor-agents-md/6d0c767fd8eecd92
 restore AGENTS.md: put back
 restore .cursor/rules/repo-local.md: delete
-restore: 2 path(s) put back, the backup at <tmp>/doctor-agents-md/3cf4c39c5ea881d7 is kept
+restore .cursor/rules/: remove if empty (this run created it)
+restore .cursor/: remove if empty (this run created it)
+restore .cursor/rules/: removed the empty folder this run created
+restore .cursor/: removed the empty folder this run created
+restore: 2 path(s) put back, the backup at <tmp>/doctor-agents-md/6d0c767fd8eecd92 is kept
 STATUS=OK
 exit=0
 
 $ diff -r <pristine-run> <run>
-Only in foreign: .cursor
-exit=1
+
+exit=0

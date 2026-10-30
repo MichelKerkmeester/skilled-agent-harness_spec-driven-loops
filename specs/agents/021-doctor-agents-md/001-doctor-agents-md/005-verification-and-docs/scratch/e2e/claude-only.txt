@@ -422,13 +422,13 @@ Run `make check` before you open a pull request.
 block-end:
 budget: 0 -> 16368 of 16384 bytes to the last anchor, 0 -> 27980 of 32768 bytes total, 4788 bytes headroom
 preservation: kept 0, carried 2, shipped-replaced 44, dropped 0
-backup: <tmp>/doctor-agents-md/439ffcaaa0c58f55
+backup: <tmp>/doctor-agents-md/33fb3ac8f70bbfc4
 backup-fallback: git cannot answer whether .skilled/output/doctor-agents-md is ignored under claude-only (exit 128)
-undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/439ffcaaa0c58f55
-plan-digest: 439ffcaaa0c58f559345e6f8cafb69947ebe0a7a514ea85e899492462b833f27
+undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/33fb3ac8f70bbfc4 --root claude-only
+plan-digest: 33fb3ac8f70bbfc4b396e13171e3cb3df185dca613711687c64bf8653683db1f
 exit=0
 
-$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest 439ffcaaa0c58f559345e6f8cafb69947ebe0a7a514ea85e899492462b833f27 --root <run>
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest 33fb3ac8f70bbfc4b396e13171e3cb3df185dca613711687c64bf8653683db1f --root <run>
 [agents-md-embed] apply on claude-only (state: claude-only)
 wrote AGENTS.md
 wrote .cursor/rules/repo-local.md
@@ -436,9 +436,9 @@ removed CLAUDE.md (backed up first)
 pointer-sync: exit 1 ([gate1-pointer-sync] Drift detected:; [gate1-pointer-sync] .cursor/rules/skill-routing.md: missing)
 preservation: kept 0, carried 2, shipped-replaced 44, dropped 0
 check-after: state=adopted findings=2 unknown=0
-backup: <tmp>/doctor-agents-md/439ffcaaa0c58f55
-undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/439ffcaaa0c58f55
-cp <tmp>/doctor-agents-md/439ffcaaa0c58f55/files/CLAUDE.md CLAUDE.md
+backup: <tmp>/doctor-agents-md/33fb3ac8f70bbfc4
+undo: node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<tmp>/doctor-agents-md/33fb3ac8f70bbfc4 --root claude-only
+cp <tmp>/doctor-agents-md/33fb3ac8f70bbfc4/files/CLAUDE.md CLAUDE.md
 STATUS=OK
 exit=0
 
@@ -468,15 +468,19 @@ note: router: no REPO RULES.md, so no repository rule can load; pass --create-ro
 NOTHING TO DO
 exit=0
 
-$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --yes
-[agents-md-embed] restore plan for claude-only from <tmp>/doctor-agents-md/439ffcaaa0c58f55
+$ node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --root <run> --yes
+[agents-md-embed] restore plan for claude-only from <tmp>/doctor-agents-md/33fb3ac8f70bbfc4
 restore AGENTS.md: delete (this run created it; without it Gate 3 no longer detects this directory as a workspace root)
 restore .cursor/rules/repo-local.md: delete
 restore CLAUDE.md: put back
-restore: 3 path(s) put back, the backup at <tmp>/doctor-agents-md/439ffcaaa0c58f55 is kept
+restore .cursor/rules/: remove if empty (this run created it)
+restore .cursor/: remove if empty (this run created it)
+restore .cursor/rules/: removed the empty folder this run created
+restore .cursor/: removed the empty folder this run created
+restore: 3 path(s) put back, the backup at <tmp>/doctor-agents-md/33fb3ac8f70bbfc4 is kept
 STATUS=OK
 exit=0
 
 $ diff -r <pristine-run> <run>
-Only in claude-only: .cursor
-exit=1
+
+exit=0

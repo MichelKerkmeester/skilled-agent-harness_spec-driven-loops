@@ -1,7 +1,7 @@
 ---
 title: "DOC-396 -- Doctor agents md block reaches a live Devin session"
 description: "Manual scenario settling the claim the Cursor mirror is built on: that a live Devin session can read the repository block that embed writes into the root instruction file."
-version: 1.0.1.0
+version: 1.0.2.0
 id: doctor-commands-doctor-agents-md-block-devin-quote
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -47,7 +47,7 @@ My Devin session does not seem to know our repository rules. Does the block /doc
 3. `node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest <digest> --root <throwaway>/devin-block` and confirm it ends `STATUS=OK`.
 4. `awk '/skilled:repo-local:start/,/skilled:repo-local:end/' <throwaway>/devin-block/AGENTS.md | tail -2` and record the last line before the end marker.
 5. Open a Devin session rooted at `<throwaway>/devin-block` and ask: `Without opening any file, quote the last line of the repository-specific instructions block in your AGENTS.md instructions.`
-6. Record the answer, the Devin runtime version and the date, then `node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --yes` and `diff -r <throwaway>/devin-block-pristine <throwaway>/devin-block`.
+6. Record the answer, the Devin runtime version and the date, then `node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<backup> --root <throwaway>/devin-block --yes` and `diff -r <throwaway>/devin-block-pristine <throwaway>/devin-block`.
 
 ### Expected
 

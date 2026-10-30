@@ -701,6 +701,13 @@ const PRINTED_FIELDS = new Map([
   ['cp', { shown: /one copy line per overwritten file/u, kept: /one copy line per overwritten file/u }],
 ]);
 
+// The restore prints its own lines, so its plan and result templates are held to the same
+// rule: a folder a run created is a line an agent can only drop unless a field carries it.
+const RESTORE_FIELDS = new Map([
+  ['restore', { shown: /^Put back: /mu, kept: /one restore line per path/u }],
+  ['dry-run', { shown: /^Dry run: nothing was written and nothing was asked\.$/mu, kept: /dry-run result/u }],
+]);
+
 test('every field the writing engines print has a field in the presentation and a line in the keep-list', (t) => {
   const dir = composedTree(t, 'claude-only');
   const planned = embedRun(['plan', '--create-router', '--root', dir]);
@@ -734,6 +741,42 @@ test('every field the writing engines print has a field in the presentation and 
     assert.ok(where.kept.test(kept), `${label}: the workflow keep-list does not name it`);
     assert.ok(where.shown.test(PRESENTATION), `${label}: the presentation shows no field for it`);
   }
+
+  // The restore templates carry the same obligation. The apply above created a .cursor
+  // folder for the mirror, so its plan prints the folder lines the result has to be able
+  // to show, and the run that removes them prints the other form of the same line.
+  const backup = printField(applied.out, 'backup');
+  const restorePlan = embedRun(['restore', `--run=${backup}`, '--root', dir, '--dry-run']);
+  assert.equal(restorePlan.code, 0, restorePlan.err);
+  assert.match(restorePlan.out, /^restore \.cursor\/rules\/: remove if empty \(this run created it\)$/mu);
+
+  const restored = embedRun(['restore', `--run=${backup}`, '--root', dir, '--yes']);
+  assert.equal(restored.code, 0, restored.err);
+  assert.match(restored.out, /^restore \.cursor\/rules\/: removed the empty folder this run created$/mu);
+
+  const restorePrinted = [...printedLabels(restorePlan.out), ...printedLabels(restored.out)];
+  const restoreUnnamed = [...new Set(restorePrinted)].filter((label) => !RESTORE_FIELDS.has(label)).sort();
+  assert.deepEqual(restoreUnnamed, [], 'a restore line no field carries');
+
+  const restoreKept = `${phaseText(RESTORE_WORKFLOW, 'phase_2_plan')}\n${phaseText(RESTORE_WORKFLOW, 'phase_4_write')}`;
+  for (const [label, where] of RESTORE_FIELDS) {
+    assert.ok(where.kept.test(restoreKept), `${label}: the restore keep-list does not name it`);
+    assert.ok(where.shown.test(PRESENTATION), `${label}: the restore templates show no field for it`);
+  }
+
+  // A record names its own root, and a restore that runs against another one is refused,
+  // so the plan template, the result template and the route all name where that ends.
+  const refused = embedRun(['restore', `--run=${backup}`, '--yes']);
+  assert.equal(refused.code, 2, 'a restore against another root exits 2');
+  assert.match(refused.err, /ERROR: the record names the root .*pass --root/u);
+  const restorePlanTemplate = PRESENTATION.split('## 5. Restore Plan and Approval')[1].split(/\n## 6\./u)[0];
+  const restoredTemplate = PRESENTATION.split('### Restored')[1].split('### Failure Summary')[0];
+  assert.match(restorePlanTemplate, /^Folders: /mu, 'the plan template has no field for the folder lines');
+  assert.match(restoredTemplate, /^Folders: /mu, 'the result template has no field for the folder lines');
+  assert.match(restorePlanTemplate, /names another root/u);
+  assert.match(PRESENTATION, /^\| A restore reports that the record names another root \|/mu);
+  assert.match(phaseText(RESTORE_WORKFLOW, 'phase_2_plan'), /names a root other than the one this restore runs against/u);
+  assert.match(phaseText(RESTORE_WORKFLOW, 'phase_4_write'), /names another root/u);
 });
 
 test('a plan on a repository with no router names the absent target and the backup note', (t) => {
