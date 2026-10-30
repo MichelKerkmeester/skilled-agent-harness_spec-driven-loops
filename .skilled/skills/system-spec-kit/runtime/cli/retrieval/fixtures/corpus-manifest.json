@@ -1,5 +1,5 @@
 {
-  "corpusHash": "12aa7385a769984873715cc9d8f37f31a7fa7b161058548898b62dd6f168519d",
+  "corpusHash": "93ac71ec7702573fc9658fdabfe51624c90c80bb61a2939508a849ba4a7f9905",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27304,
+  "includedPathCount": 27310,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -93,6 +93,7 @@
     ".skilled/changelog/skilled/v4.0.1.1.md",
     ".skilled/changelog/skilled/v4.0.1.2.md",
     ".skilled/changelog/skilled/v4.0.1.3.md",
+    ".skilled/changelog/skilled/v4.0.1.4.md",
     ".skilled/hooks/README.md",
     ".skilled/hooks/classifier-injection-screen/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -6280,6 +6281,7 @@
     ".skilled/skills/sk-doc/changelog/v2.3.31.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.32.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.33.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.34.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.4.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.5.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.6.0.md",
@@ -7870,6 +7872,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.17.25.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.26.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.27.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.17.28.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.4.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.5.0.md",
@@ -8328,6 +8331,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.24.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.25.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.26.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.27.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
@@ -8434,6 +8438,8 @@
     ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/directive-lifecycle-dedup.md",
     ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-agents-md-block-devin-quote.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-agents-md-cursor-mirror-load.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-env-inspect.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-env-save-preference.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-env-secret-and-per-invocation.md",
@@ -27335,7 +27341,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7fbfbdf8cbc251b79d782e95735df806987b3adb0f2fd01c566ed5ac33c72ab1",
+  "manifestHash": "e88229b53e6f257f975956fe3d20d43a31aff7ff49e397c733b6d6f99f7ab7c9",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7311,
-    "ok": 16445,
+    "missing-frontmatter": 7313,
+    "ok": 16449,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27304,
+  "documentsScanned": 27310,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "7fbfbdf8cbc251b79d782e95735df806987b3adb0f2fd01c566ed5ac33c72ab1",
+  "manifestHash": "e88229b53e6f257f975956fe3d20d43a31aff7ff49e397c733b6d6f99f7ab7c9",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40038,
+      "ok": 40050,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -33776,6 +33776,18 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-agents-md-block-devin-quote.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-agents-md-cursor-mirror-load.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
