@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The doctor family now carries twenty routes across twelve commands, and the only way to find the right one is to read the manifest",
     "created_at": "2026-10-30T11:22:12Z",
-    "last_save_at": "2026-10-30T14:07:31.524Z",
+    "last_save_at": "2026-10-30T18:17:24.579Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d4b59e385acbc90a69c917215bb13c4e4ce1378551113981cf639cccb2a44aca",
+    "source_fingerprint": "sha256:1bd64cb5a308446d353b1579be2e4a3a480ead5c9321be68ac35b4d2ee647f8d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2367f6f2937dc3ea5366d1df75771e7ab9e1cd8ba8f7c44a467de0267d87de18",
       "plan.md": "08381b5af0792003ae08ccbc072ef02897cb313ef0fe4b8af668af653e1c2613",
       "tasks.md": "5eab1f4313326d96846a3f168db7594095f67c19da16ad5611ae1bea490ad877",
-      "implementation-summary.md": "0496e8c5d539bceea9942163815dd2a0d7da5ad7e108c24313bf4ac24bf704b0"
+      "implementation-summary.md": "b7a817abae4f2edc801878d0605522ef61e0743cf987261101d785dfd414268a"
     },
     "last_active_at": null
   }

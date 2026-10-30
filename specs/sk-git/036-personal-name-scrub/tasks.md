@@ -54,7 +54,7 @@ contextType: "general"
 - [x] T009 Replace the template's label and absolute paths with placeholders (`LA/com.skilled.orphan-sweep.plist`). Verify: `plutil -lint` prints OK, and the documented `sed` copy lints OK with no `/absolute/path` left.
 - [x] T010 Document the new label, the placeholder install and the upgrade step (`LA/README.md`). Verify: `rg -c "$(id -un)" LA/README.md` prints 1, the upgrade sentence.
 - [x] T011 Rewrite the two absolute `spec_folder` values and vacuum the database (`council-graph.sqlite`). Verify: `grep -c -a "$(id -un)"` prints 0, `pragma integrity_check` prints ok and the row counts stay 17 and 11.
-- [x] T012 Add the framework changelog entry (`.skilled/changelog/skilled/v4.0.1.1.md`). Verify: `validate_document.py` prints `Total issues: 0` and `hvr_scan.py` prints `hard blockers: 0`.
+- [x] T012 Add the framework changelog entry. Verify: `validate_document.py` prints `Total issues: 0` and `hvr_scan.py` prints `hard blockers: 0`. Evidence: the entry was folded into `.skilled/changelog/skilled/v4.0.1.0.md`, which still prints both readings.
 <!-- /ANCHOR:phase-2 -->
 
 ---

@@ -76,9 +76,9 @@ VALID: .skilled/commands/doctor/ci.md
 Total issues: 0
 exit 0
 $ ls .skilled/changelog/skilled | sort -V | tail -1
-v4.0.1.1.md
+v4.0.1.0.md
 ```
-Run in the worktree on 2026-10-30 at `66157ee7e6` (the scorer JSON is abridged to the three metrics; the full output also carries buckets and corpus hashes). These are the baselines the final run must match. The validator prints a leading check-mark glyph before `VALID`, omitted here. Its run on an existing doctor router shows the check this phase applies to the new router.
+Run in the worktree on 2026-10-30 at `66157ee7e6` (the scorer JSON is abridged to the three metrics; the full output also carries buckets and corpus hashes). These are the baselines the final run must match. The validator prints a leading check-mark glyph before `VALID`, omitted here. Its run on an existing doctor router shows the check this phase applies to the new router. The last frame was re-run after the framework entry this phase wrote was folded into `.skilled/changelog/skilled/v4.0.1.0.md`, so the read returns that release and no four-part entry sits after it.
 <!-- /ANCHOR:measured-behavior -->
 
 ---
@@ -104,7 +104,7 @@ Run in the worktree on 2026-10-30 at `66157ee7e6` (the scorer JSON is abridged t
 |-----------|-------------|-------------|
 | `specs/sk-doc/075-doctor-sk-skill-command/010-verification-and-release/scratch/after.md` | Create | Every check's command, output and exit code |
 | `specs/sk-doc/075-doctor-sk-skill-command/010-verification-and-release/scratch/workflow-run.md` | Create | The workflow-level convert run: the cancelled path, the completed path, and the four checks after it |
-| `.skilled/changelog/skilled/v<next>.md` | Create | Framework release entry, version after `v4.0.1.1` computed by create-changelog |
+| `.skilled/changelog/skilled/v4.0.1.0.md` | Extend | Framework release entry, folded into the v4.0.1.0 release by create-changelog |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -205,7 +205,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Which version does the framework entry take? Decision: the next four-part version after `v4.0.1.1`, as create-changelog computes it at release time.
+- Which version does the framework entry take? Decision: none of its own. The entry this phase wrote was folded into `.skilled/changelog/skilled/v4.0.1.0.md` on an operator decision that the framework release stays v4.0.1.0.
 - None else blocks.
 <!-- /ANCHOR:questions -->
 

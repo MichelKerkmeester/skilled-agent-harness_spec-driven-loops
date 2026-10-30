@@ -17,7 +17,7 @@ _memory:
       - ".skilled/scripts/launchagents/com.skilled.orphan-sweep.plist"
       - ".skilled/scripts/launchagents/README.md"
       - ".skilled/skills/system-spec-kit/runtime/cli/continuity/migrate-trigger-phrase-residual.ts"
-      - ".skilled/changelog/skilled/v4.0.1.1.md"
+      - ".skilled/changelog/skilled/v4.0.1.0.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-036-personal-name-scrub"
@@ -67,7 +67,7 @@ The affected files dropped from 512 to 10. Skill docs, playbooks and recorded be
 | `.skilled/skills/system-spec-kit/runtime/cli/continuity/migrate-trigger-phrase-residual.ts` | Modified | Derives the Claude Code project folder name from the repository root |
 | `.skilled/skills/cli-classifier/cli-jev/benchmark/reports/2026-09-20-post-migration-reverification/raw/leak-check.py` | Modified | Expands its home path with `os.path.expanduser` |
 | `.skilled/skills/system-deep-loop/runtime/database/council-graph.sqlite` | Modified | Two `spec_folder` values made repository-relative, then vacuumed |
-| `.skilled/changelog/skilled/v4.0.1.1.md` | Created | Framework changelog entry for the rename |
+| `.skilled/changelog/skilled/v4.0.1.0.md` | Extended | Framework changelog entry for the rename, folded into the v4.0.1.0 release |
 | 498 other docs, playbooks, benchmark reports and fixtures outside `specs/` | Modified | Repository-relative and `~/` paths |
 <!-- /ANCHOR:what-built -->
 

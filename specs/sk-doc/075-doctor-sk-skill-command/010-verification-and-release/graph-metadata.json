@@ -44,7 +44,7 @@
       "implementation-summary.md",
       "scratch/after.md",
       "scratch/workflow-run.md",
-      ".skilled/changelog/skilled/v4.0.1.2.md",
+      ".skilled/changelog/skilled/v4.0.1.0.md",
       "specs/sk-doc/075-doctor-sk-skill-command/010-verification-and-release/scratch/after.md",
       "specs/sk-doc/075-doctor-sk-skill-command/010-verification-and-release/scratch/workflow-run.md",
       ".skilled/commands/doctor/assets/doctor-setup-presentation.txt"
@@ -99,9 +99,9 @@
         "source": "derived"
       },
       {
-        "name": "v4.0.1.2.md",
+        "name": "v4.0.1.0.md",
         "kind": "doc",
-        "path": ".skilled/changelog/skilled/v4.0.1.2.md",
+        "path": ".skilled/changelog/skilled/v4.0.1.0.md",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The program edits doctor routes, sk-doc docs and manifests, advisor bridges and a skill template",
     "created_at": "2026-10-30T05:21:20Z",
-    "last_save_at": "2026-10-30T15:10:58.931Z",
+    "last_save_at": "2026-10-30T18:17:15.690Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:596a299a84641d3365cb5917c3e97b9894210200cab15d802d519b4a3a43dc5e",
+    "source_fingerprint": "sha256:4cb2734ddff9a364e4e9d168e347c8860b7f2632c10ad14cbced5070e8f0f53e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c4675186c79449975e3ce5f31c5b42810133f21a06d463b53cd4e033ed51ce3f",
+      "spec.md": "dcbf6c8c8638b2fd6adcfdcfb29081cb29125e761c7a159358b399d6d16881e2",
       "plan.md": "d004744c3ac935c76dfc9103370e2bddf2bb9fb3fed2ffda4f6479ceb7b3a207",
-      "tasks.md": "e52024cc24b129355867f00273d522b7f26884a6d084572cea347729433475f0",
-      "implementation-summary.md": "54a7f4827447c3f371eb2925efab6acd8d511fc51c116ef8c1f24b92d1a6f3c5"
+      "tasks.md": "d06a090a4ed921d1fdc4debb7bb48591f22035174f6ed3ae089cbfa559f76b42",
+      "implementation-summary.md": "8d2d2d68af6d77511e588096e24b5930ce2fce4b06045055c623c3fce6fa4d79"
     },
     "last_active_at": null
   }

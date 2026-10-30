@@ -75,7 +75,7 @@ The reach contract is the other half. A doctor router with no manifest route, no
 | `.skilled/commands/README.txt`, `README.md`, `.skilled/commands/doctor/scripts/README.markdown` | Modified | Group count, command row, script row, doctor section count and the missing sibling entry |
 | `.skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md` | Modified | One helper row |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/` and the root playbook index | Created and modified | DOC-393 and DOC-394, the scope bullet and the two registry rows |
-| `.skilled/changelog/skilled/v4.0.1.3.md`, `.skilled/skills/system-spec-kit/changelog/v2.12.26.0.md`, `.skilled/skills/system-skill-advisor/changelog/v0.17.27.0.md` | Created | Framework note, router owner and the advisor's regenerated blocks. The framework entry was first written as `v4.0.1.2` and renamed to `v4.0.1.3` when the release numbering was fixed, so no `v4.0.1.2` file carries this work |
+| `.skilled/changelog/skilled/v4.0.1.0.md`, `.skilled/skills/system-spec-kit/changelog/v2.12.26.0.md`, `.skilled/skills/system-skill-advisor/changelog/v0.17.27.0.md` | Created and extended | Framework note, router owner and the advisor's regenerated blocks. The framework entry was folded into the v4.0.1.0 release when the framework numbering was settled, so it carries no four-part version of its own |
 <!-- /ANCHOR:what-built -->
 
 ---

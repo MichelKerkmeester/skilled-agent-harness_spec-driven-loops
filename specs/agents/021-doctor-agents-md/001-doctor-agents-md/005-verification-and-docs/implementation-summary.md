@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files:
       - "specs/agents/021-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs/scratch/e2e"
-      - ".skilled/changelog/skilled/v4.0.1.4.md"
+      - ".skilled/changelog/skilled/v4.0.1.0.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-292-doctor-agents-md"
@@ -90,7 +90,7 @@ Both scenarios state what the engine side already proves, so the open part is on
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-agents-md-cursor-mirror-load.md` | Created | DOC-397, the Cursor question |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md` | Modified | The scenario count, both new rows and where they run |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md` | Modified | The index row-set in section 7.2 |
-| `.skilled/changelog/skilled/v4.0.1.4.md` | Created | The framework entry for the command |
+| `.skilled/changelog/skilled/v4.0.1.0.md` | Extended | The framework entry for the command, folded into the v4.0.1.0 release |
 | `.skilled/skills/system-spec-kit/changelog/v2.12.27.0.md` | Created | The catalog and playbook coverage |
 | `.skilled/skills/system-skill-advisor/changelog/v0.17.28.0.md` | Created | The three derived bridges |
 | `.skilled/skills/sk-doc/changelog/v2.3.34.0.md` | Created | The command contract entry |

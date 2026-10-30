@@ -16,7 +16,7 @@ _memory:
     key_files:
       - "scratch/after.md"
       - "scratch/workflow-run.md"
-      - ".skilled/changelog/skilled/v4.0.1.2.md"
+      - ".skilled/changelog/skilled/v4.0.1.0.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-293-doctor-sk-skill-release"
@@ -64,7 +64,7 @@ The run also measured two things the phase could not have known in advance, and 
 |------|--------|---------|
 | `scratch/after.md` | Create | Every check's command, output and exit code |
 | `scratch/workflow-run.md` | Create | The workflow-level convert run: the cancelled path, the completed path and the four checks after it |
-| `.skilled/changelog/skilled/v4.0.1.2.md` | Create, then update | The framework release entry for the command as shipped, with a bullet for the approved edge and one for the in-place wiring |
+| `.skilled/changelog/skilled/v4.0.1.0.md` | Extended | The framework release entry for the command as shipped, with a bullet for the approved edge and one for the in-place wiring, folded into the v4.0.1.0 release |
 | `spec.md`, `tasks.md`, `plan.md`, `acceptance-criteria.md`, `implementation-summary.md` | Update | The packet's own completion record |
 <!-- /ANCHOR:what-built -->
 
@@ -88,7 +88,7 @@ The command itself was driven the way its workflow drives it: `plan` first, then
 | Run both conversions in temporary repositories | A conversion writes a skill folder and a changelog link, and neither may land in the shipped tree |
 | Record the two conversion gaps rather than repair them here | A failing check is repaired by the phase that owns the file, so the first run recorded the zero-edge graph failure and the unwired in-place path; the owning phase fixed both in `c6bee18a45` |
 | Approve one `enhances` edge for the converted plain skill | A converted root starts with an empty edges map, which the graph refuses, and an `enhances` edge is the one type the skill at the other end never has to mirror |
-| Number the release entry `v4.0.1.2` | The packet names the next version after `v4.0.1.1` explicitly, and the entry records that `v4.0.1.1` carries no tag rather than dropping either rule |
+| Fold the release entry into `v4.0.1.0` instead of numbering a fourth part | The operator decided the framework release stays v4.0.1.0, and that entry was already tagged on origin, so the work went into `.skilled/changelog/skilled/v4.0.1.0.md` rather than opening a release after it |
 | Rename the pre-migration copy's identity fields and its reciprocal edges | A renamed root that still claims the old identity cannot be classified, so the conversion never reaches its plan |
 <!-- /ANCHOR:decisions -->
 

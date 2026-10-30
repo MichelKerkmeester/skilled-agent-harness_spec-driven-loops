@@ -49,7 +49,7 @@ contextType: "general"
 - [x] T007 [P] Add the two manual rows at the resolved playbook location. Verify: `rg -c 'agents-md' <resolved playbook file>` prints at least `2`. Evidence: `rg -c 'agents-md' manual-testing-playbook/doctor-commands/README.md` prints 2, and the two scenario files `doctor-agents-md-block-devin-quote.md` (DOC-396) and `doctor-agents-md-cursor-mirror-load.md` (DOC-397) each carry the five-section contract. The index row-set in `../manual-testing-playbook.md` section 7.2 gains both rows.
 - [x] T008 Answer both manual rows from a live session or record an unknown with its reason. Verify: each row carries either an observation or `UNKNOWN` with a reason. Evidence: both scenarios' `Recorded answer` tables read `UNKNOWN` with the reason that no Devin session and no Cursor window is reachable from this run, and each names the six steps an operator runs to answer it.
 - [x] T009 Add the script README rows (`D/scripts/README.markdown`). Verify: `rg -c 'agents-md' D/scripts/README.markdown` prints at least `1`. Evidence: `rg -c 'agents-md' .skilled/commands/doctor/scripts/README.markdown` prints 16. The directory tree, the key-files table, the diagnostic entrypoints and the mutation-boundary table each name the three engines and their three suites.
-- [x] T010 Add the changelog entry at its resolved location. Verify: `rg -c 'agents-md' <resolved changelog file>` prints at least `1`. Evidence: `rg -c 'agents-md' .skilled/changelog/skilled/v4.0.1.4.md` prints 5, and the entry names the command, its three targets and the inactive bridge. Four skill changelogs sit beside it.
+- [x] T010 Add the changelog entry at its resolved location. Verify: `rg -c 'agents-md' <resolved changelog file>` prints at least `1`. Evidence: `rg -c 'agents-md' .skilled/changelog/skilled/v4.0.1.0.md` prints 5, and the entry names the command, its three targets and the state of its advisor bridges. The entry this packet wrote was folded into that release. Four skill changelogs sit beside it.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -145,7 +145,7 @@ contextType: "general"
 ## Documentation
 
 - [x] CHK-040 [P1] The script README names the three scripts. Verify: `rg -c 'agents-md' .skilled/commands/doctor/scripts/README.markdown` prints at least `1`. Evidence: prints 16.
-- [x] CHK-041 [P1] The changelog entry names the three targets. Verify: the entry names `check`, `embed` and `restore`. Evidence: `.skilled/changelog/skilled/v4.0.1.4.md` names all three in its opening paragraph and one bullet per target, and the entry also records that every derived bridge is inactive.
+- [x] CHK-041 [P1] The changelog entry names the three targets. Verify: the entry names `check`, `embed` and `restore`. Evidence: `.skilled/changelog/skilled/v4.0.1.0.md` names all three in its doctor section, one item per target, and records that the four doctor bridges are active. The entry this packet wrote was folded into that release.
 - [x] CHK-042 [P2] The resolved locations are recorded. Verify: `scratch/doc-locations.txt` names all three. Evidence: three lines, one per location.
 <!-- /ANCHOR:docs -->
 

@@ -54,7 +54,7 @@
       ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-agents-md-cursor-mirror-load.md",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
-      ".skilled/changelog/skilled/v4.0.1.4.md",
+      ".skilled/changelog/skilled/v4.0.1.0.md",
       ".skilled/skills/system-spec-kit/changelog/v2.12.27.0.md",
       ".skilled/skills/system-skill-advisor/changelog/v0.17.28.0.md",
       ".skilled/skills/sk-doc/changelog/v2.3.34.0.md",
@@ -147,9 +147,9 @@
         "source": "derived"
       },
       {
-        "name": "v4.0.1.4.md",
+        "name": "v4.0.1.0.md",
         "kind": "doc",
-        "path": ".skilled/changelog/skilled/v4.0.1.4.md",
+        "path": ".skilled/changelog/skilled/v4.0.1.0.md",
         "source": "derived"
       },
       {
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The engines can each pass their own suite and still fail together: a check that classifies correctly and an embed that composes correctly can still disagree about the same tree",
     "created_at": "2026-10-30T11:22:45Z",
-    "last_save_at": "2026-10-30T17:06:50.817Z",
+    "last_save_at": "2026-10-30T18:17:23.235Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b32b9080e17acb2681d8ea465351733117210c1e654c11d81a5fbb55bf4dc416",
+    "source_fingerprint": "sha256:7a18fee130d0495c83a6d5d8cd1cd017938c9937cf10720bdcd9ab573ed67d5e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2a8c461952300ca21d396449e666d94416507ed6367d9580d59095254fd319c1",
       "plan.md": "21fdf8abc9a63bf5e56b46d848354f34134df5e5f2e05b5459b24c5ec338eec1",
-      "tasks.md": "174d0ff3361f996005c93242d33c0eadc303de43ed028ff86d30849d318a4274",
-      "implementation-summary.md": "b0e3731405c96e53a0c5f94625854831477c7d7d060644d94db12daf573b052f"
+      "tasks.md": "f5518da77e1cd0d752692fc5838ed7ef9b9e6a759642585938bc504bae253bc6",
+      "implementation-summary.md": "7876e704c2f8e144d0c97e43425425a92f3c920abd329efd324da2a7ff100dd6"
     },
     "last_active_at": null
   }

@@ -43,7 +43,7 @@
       ".skilled/skills/system-spec-kit/runtime/cli/continuity/migrate-trigger-phrase-residual.ts",
       ".skilled/skills/cli-classifier/cli-jev/benchmark/reports/2026-09-20-post-migration-reverification/raw/leak-check.py",
       ".skilled/skills/system-deep-loop/runtime/database/council-graph.sqlite",
-      ".skilled/changelog/skilled/v4.0.1.1.md",
+      ".skilled/changelog/skilled/v4.0.1.0.md",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
       ".skilled/bin/compiled-route-guard.cjs"
     ],
@@ -103,9 +103,9 @@
         "source": "derived"
       },
       {
-        "name": "v4.0.1.1.md",
+        "name": "v4.0.1.0.md",
         "kind": "doc",
-        "path": ".skilled/changelog/skilled/v4.0.1.1.md",
+        "path": ".skilled/changelog/skilled/v4.0.1.0.md",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Tracked files outside `specs/` named the operator's personal account name, mostly inside absolute paths into one machine's home folder",
     "created_at": "2026-10-29T23:23:55Z",
-    "last_save_at": "2026-10-29T23:26:52.453Z",
+    "last_save_at": "2026-10-30T18:17:14.323Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24ab973d7f7daea0eb81ea97adb08dc3e3c3c5c93c085f5bd16c3c5faa67c54c",
+    "source_fingerprint": "sha256:6efbe995ed614471cd6d57a6427aa6a36d4ee7e44bb51d69dfa0c9f59d758a5e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fc0192ad631b57fd18438578347df7170cea6e4fae561324302c40ac91a37de1",
+      "spec.md": "ce1af3fc2e490db7537b738e69726b2827e4446aa0b4f683b2f6f30a9811b7a0",
       "plan.md": "865d037307c91d0f8a29f2ad9e2cc1b418d3c051f7dc6c6050a74abcc7060dad",
-      "tasks.md": "b5dd15d02452c292ddfe1aa88aace7a83376e1b7cb50c6be3c967f9eaa4cf760",
-      "implementation-summary.md": "6d6629d35e0e874fe3bd80250965311f7810f8259a813b99f3cc512f16b5b2ad"
+      "tasks.md": "beda56a3bc21fb4286795526eca4159f1c3cea37386b7d24fc539ff4c4fef16f",
+      "implementation-summary.md": "b6f66950d184a807dd57f9b42fadda89f7c70ad1eb64448fa8261ef2f2e7b3d8"
     },
     "last_active_at": null
   }

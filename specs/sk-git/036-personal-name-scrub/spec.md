@@ -59,7 +59,7 @@ $ git grep -il "$(id -un)" HEAD -- ":!specs/" | wc -l
 - Derive the one hard-coded home path in code from the repository root at run time.
 - Rename the orphan-sweep launch agent template to `com.skilled.orphan-sweep.plist`, change its label and replace its absolute paths with placeholders the install step fills in.
 - Rewrite the two absolute spec-folder values in the tracked council graph database.
-- Add the `skilled` v4.0.1.1 changelog entry for the launch agent rename.
+- Add the framework changelog entry for the launch agent rename. The entry was folded into `.skilled/changelog/skilled/v4.0.1.0.md`, so that release carries it.
 
 ### Out of Scope
 - Dated spec records under `specs/` - the operator chose to scrub skills and docs only.
@@ -74,7 +74,7 @@ $ git grep -il "$(id -un)" HEAD -- ":!specs/" | wc -l
 | `.skilled/scripts/launchagents/README.md` | Modify | New label, placeholder install step and upgrade note |
 | `.skilled/skills/system-spec-kit/runtime/cli/continuity/migrate-trigger-phrase-residual.ts` | Modify | Derive the Claude Code project folder name from the repository root |
 | `.skilled/skills/system-deep-loop/runtime/database/council-graph.sqlite` | Modify | Repository-relative `spec_folder` values |
-| `.skilled/changelog/skilled/v4.0.1.1.md` | Create | Framework changelog entry for the rename |
+| `.skilled/changelog/skilled/v4.0.1.0.md` | Extend | Framework changelog entry for the rename, folded into the v4.0.1.0 release |
 | Skill docs, playbooks and benchmark reports outside `specs/` | Modify | Repository-relative and `~/` paths |
 <!-- /ANCHOR:scope -->
 

@@ -113,7 +113,7 @@ contextType: "general"
 
 - [x] CHK-010 [P0] Every child suite passes. Verify: `bash .skilled/commands/doctor/scripts/tests/run-all.sh` ends `0 failed`. Evidence: ends `7 suite(s) passed, 0 failed`, with `PASS: node:test (41 files)`.
 - [x] CHK-011 [P0] No code comment carries a packet, phase or task id. Verify: `rg -n 'AC-[0-9]{3}|REQ-[0-9]{3}|specs/' .skilled/commands/doctor/scripts/agents-md-*.cjs` prints nothing. Evidence: prints nothing, exit 1, and the shared segmenter is clean too.
-- [x] CHK-012 [P1] Every new file name is lowercase kebab. Verify: `git status --porcelain` lists no path with an uppercase letter in a new file's own name. Evidence: the only uppercase names are the existing `SKILL.md` and `README.md` conventions. The new files are `doctor-agents-md-block-devin-quote.md`, `doctor-agents-md-cursor-mirror-load.md`, `v4.0.1.4.md`, `v2.12.27.0.md`, `v0.17.28.0.md`, `v2.3.34.0.md` and `run-e2e.sh`.
+- [x] CHK-012 [P1] Every new file name is lowercase kebab. Verify: `git status --porcelain` lists no path with an uppercase letter in a new file's own name. Evidence: the only uppercase names are the existing `SKILL.md` and `README.md` conventions. The new files are `doctor-agents-md-block-devin-quote.md`, `doctor-agents-md-cursor-mirror-load.md`, `v2.12.27.0.md`, `v0.17.28.0.md`, `v2.3.34.0.md` and `run-e2e.sh`. The framework entry this packet wrote was folded into `.skilled/changelog/skilled/v4.0.1.0.md`, an existing file.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -144,7 +144,7 @@ contextType: "general"
 
 - [x] CHK-040 [P1] The phase spec and this list agree on the five children. Verify: `rg -c 'manifest-and-template-block' spec.md tasks.md` reports a count in each. Evidence: `rg -c` prints 4 in `spec.md` and 3 in `tasks.md`.
 - [x] CHK-041 [P1] The script README names the three scripts. Verify: `rg -c 'agents-md' .skilled/commands/doctor/scripts/README.markdown` prints at least `1`. Evidence: prints 16.
-- [x] CHK-042 [P2] The changelog entry exists. Verify: the file the sk-doc router resolved exists and names the command. Evidence: `.skilled/changelog/skilled/v4.0.1.4.md` exists, names the command, its three targets and the inactive bridge, and validates with 0 issues.
+- [x] CHK-042 [P2] The changelog entry exists. Verify: the file the sk-doc router resolved exists and names the command. Evidence: `.skilled/changelog/skilled/v4.0.1.0.md` names the command, its three targets and the four doctor bridges, and validates with 0 issues. The entry this packet wrote was folded into that release.
 <!-- /ANCHOR:docs -->
 
 ---
