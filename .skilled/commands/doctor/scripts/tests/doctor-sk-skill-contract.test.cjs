@@ -480,15 +480,20 @@ test('the undo phase quotes the engine block instead of composing one', () => {
   const undo = phaseText('phase_7_undo');
   assert.match(undo, /undo block exactly as the apply printed it/);
   assert.match(undo, /Undo:/);
-  // The block the engine prints is a copy from the backup per overwritten file and
-  // a removal per created path, then its check: the route quotes it rather than
-  // restoring anything itself.
-  assert.match(undo, /one cp, or cp -R for a folder, from the backup/);
-  assert.match(undo, /one rm, or rm -r for a folder, for each path this run created/);
+  // The block the engine prints opens with the copy that restores the converted
+  // SKILL.md, then a copy from the backup per integration file the rows overwrote
+  // (a folder is removed before it is copied back, and a row that recorded no
+  // backup gets the engine's own comment), then a removal per created path and
+  // its check: the route quotes the block rather than restoring anything itself.
+  assert.match(undo, /cp that restores the converted SKILL\.md from the backup/);
+  assert.match(undo, /a cp, or cp -R for a folder, from the backup/);
+  assert.match(undo, /preceded by rm -r for a folder it replaces/);
+  assert.match(undo, /No backup was recorded for/);
+  assert.match(undo, /one rm, or rm -r for a folder, for every path this run created/);
   assert.match(undo, /Check:/);
   // A version-control restore is not one of the shapes the engine writes, so the
-  // phase names no restore command at all.
-  assert.doesNotMatch(undo, /restore/);
+  // phase names no git command at all.
+  assert.doesNotMatch(undo, /git/);
   // A composed undo used to delete ROUTER.md whatever the run had created.
   assert.doesNotMatch(undo, /delete the created ROUTER\.md/);
   assert.match(undo, /Never run the undo inside this route/);

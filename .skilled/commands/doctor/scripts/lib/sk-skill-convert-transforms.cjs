@@ -221,19 +221,31 @@ function inspectVersion(lines) {
   };
 }
 
-function normalizeSkillFrontmatter(text) {
+function allowedToolFieldIndexes(lines) {
+  const indexes = [];
+  for (let index = 0; index < lines.length; index += 1) {
+    if (/^\s*allowed-tools\s*:/i.test(lines[index])) indexes.push(index);
+  }
+  return indexes;
+}
+
+// A skill that declares no permitted-tool field has a decision pending rather
+// than a malformed file, so the transform reports the gap and leaves the field
+// alone: only a caller that is about to ask can decide what the field says.
+function normalizeSkillFrontmatter(text, options = {}) {
   const parts = frontmatterParts(text);
   const lines = parts.body.split(parts.newline);
-  const allowedIndexes = [];
-  for (let index = 0; index < lines.length; index += 1) {
-    if (/^\s*allowed-tools\s*:/i.test(lines[index])) allowedIndexes.push(index);
+  const allowedIndexes = allowedToolFieldIndexes(lines);
+  if (allowedIndexes.length > 1) {
+    const declarations = allowedIndexes.length === 2 ? 'twice' : `${allowedIndexes.length} times`;
+    throw transformError('ALLOWED_TOOLS_DUPLICATE', `SKILL.md declares allowed-tools ${declarations}; exactly one field is written.`);
   }
-  if (allowedIndexes.length !== 1) {
-    throw transformError('ALLOWED_TOOLS_MISSING', 'SKILL.md must declare allowed-tools exactly once before conversion.');
+  if (allowedIndexes.length === 0 && !options.allowMissingAllowedTools) {
+    throw transformError('ALLOWED_TOOLS_MISSING', 'SKILL.md declares no allowed-tools field; an approved list is required before conversion.');
   }
 
-  const allowedIndex = allowedIndexes[0];
-  const allowed = parseAllowedTools(lines, allowedIndex);
+  const allowedIndex = allowedIndexes.length === 1 ? allowedIndexes[0] : -1;
+  const allowed = allowedIndex === -1 ? null : parseAllowedTools(lines, allowedIndex);
   const version = inspectVersion(lines);
   const output = [];
   for (let index = 0; index < lines.length;) {
@@ -267,7 +279,8 @@ function normalizeSkillFrontmatter(text) {
     originalVersion: version.originalVersion,
     versionChanged: version.changed,
     versionInserted: version.inserted,
-    allowedToolsChanged: !allowed.flowSequence,
+    allowedToolsMissing: allowedIndex === -1,
+    allowedToolsChanged: allowed === null ? false : !allowed.flowSequence,
   };
 }
 

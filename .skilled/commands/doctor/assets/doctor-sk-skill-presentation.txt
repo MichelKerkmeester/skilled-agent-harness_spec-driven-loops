@@ -13,7 +13,7 @@ Every argument failure happens before any workflow YAML loads and prints the wor
 | A flag the other target owns | `Argument '[argument]' is not valid for target '[target]'. Did you mean /doctor:sk-skill [suggested-target] [argument]?` then `STATUS=FAIL ERROR="cross_target_flag"` |
 | `convert` with no skill name | `Convert needs one skill name or path.` then `Try: /doctor:sk-skill convert <name-or-path>` then `STATUS=FAIL ERROR="missing_skill_target"` |
 | A second skill name or path | `Only one skill name or path may be bound.` then `STATUS=FAIL ERROR="too_many_arguments"` |
-| The engine is invoked with no subcommand, or with an option it does not take | `USAGE: Invalid invocation.` then the engine's usage block, exit 2. The workflow only ever runs the documented calls, so this is the engine's own contract rather than a route the operator reaches |
+| The engine is invoked with no subcommand, or with an option it does not take | `USAGE: [the engine's first message line]` then the engine's usage block, exit 2: a bare invocation prints `USAGE: Invalid invocation.`, and an option the parser does not take prints `USAGE: Unknown option: --bogus`. The workflow only ever runs the documented calls, so this is the engine's own contract rather than a route the operator reaches |
 
 `convert` never infers the name it converts: with no name it asks once, in the wording `Which skill? Give one name under .skilled/skills, or a path to a skill root.`, and refuses to guess from the conversation or an open file. An answer that resolves to no skill root prints `Convert needs one skill name or path.` and ends `STATUS=FAIL ERROR="missing_skill_target"`.
 
@@ -176,7 +176,7 @@ Declare allowed-tools as [the proposed list] for this skill? [yes/no]
 
 - **A plain skill with no approved intent phrases.** `INTENT_SIGNALS_BELOW_FLOOR` names the count the engine needs and prints the phrases it suggests. Show every suggested phrase on its own line, let the operator approve or edit the list, and require at least eight distinct phrases of three or more words each: these become the skill's `PRIMARY` keywords, so a short phrase routes nothing. Whichever list the operator approves is what goes to repeated `--approved-phrase` flags.
 - **A description over the budget.** `DESCRIPTION_TOO_LONG` names the length and the 130-character limit. Ask the trim question and show the text in full: the engine's `Proposed description trim` line when the plan printed one, or, when the refusal printed no proposal, a trim of 130 characters or fewer that keeps the skill's own wording. Whichever text the operator approves is what goes to `--description-trim`.
-- **No `allowed-tools`.** When the plan's `allowed-tools:` line reports that approval is required, the question offers that line's own list — the engine's proposal, which carries `Bash` only when the skill folder holds a `scripts/` folder. Read the list back in full and let the operator edit it before answering. That answer is what goes to `--allowed-tools`. Never default the list and never write a permission grant without that yes.
+- **No `allowed-tools`.** A plain skill has no approved list yet, and an older Skilled skill can declare no field at all; both print the same line, `allowed-tools: approval required; propose [...]`. The question offers that line's own list and no other — the engine's proposal, which carries `Bash` only when the skill folder holds a `scripts/` folder. Read the list back in full and let the operator edit it before answering. That answer is what goes to `--allowed-tools`; the rerun then prints it as its own `Set allowed-tools: [...]` step for an older Skilled skill and as the plan's `allowed-tools:` line for a plain one. Never default the list and never write a permission grant without that yes.
 - **The workflow never edits a field.** No field value is written by hand. Each approved value becomes a flag, the plan is rerun with it so the operator sees the field as its own plan line, and the engine writes it beside the same backup.
 - **The plan is rerun.** After each batch of answers the workflow runs `sk-skill-convert.cjs apply <skill-target> <the approved flags>` with no `--apply`: that form prints the plan, closes on the engine's own `Apply gate: no writes without --apply.` line, and writes nothing. The rerun carries `--approved-phrase` repeated for each phrase, `--description-trim`, `--allowed-tools` and, for a plain skill, `--agent-output`. The workflow then prints that plan and asks the conversion question against it.
 
@@ -235,6 +235,7 @@ A refusal prints `REFUSE: [the engine's reason]`, then `STATUS=FAIL ERROR="[code
 |------|------------------|------|
 | `FRONTMATTER_INVALID` | the frontmatter block is not closed, carries no single-line description, or the agent output has none | Fix that one field, then rerun |
 | `ALLOWED_TOOLS_INVALID` | `allowed-tools` is not a parseable top-level list | Fix the field, then rerun |
+| `ALLOWED_TOOLS_DUPLICATE` | `allowed-tools` is declared more than once, and a conversion writes exactly one field | Collapse the declarations to one list, then rerun |
 | `ALLOWED_TOOLS_AMBIGUOUS` | `allowed-tools` has unbalanced parentheses | Fix that one list item, then rerun |
 | `VERSION_INVALID` | the `version` field is duplicated or carries no numeric component | Fix that line, then rerun |
 | `MACHINE_BLOCK_FENCE_UNCLOSED` | a fenced block before the machine router section is not closed | Close that fence, then rerun |
@@ -290,7 +291,7 @@ The first three are not stopping refusals: each names a write the operator has n
 |------|---------------|----------------------|
 | `INTENT_SIGNALS_BELOW_FLOOR` | a plain skill has fewer than eight approved intent phrases | the intent-phrase question, then the plan is rerun with a repeated `--approved-phrase` per phrase |
 | `DESCRIPTION_TOO_LONG` | the description is over 130 characters and no trim was approved | the trim question, then the plan is rerun with `--description-trim` |
-| `ALLOWED_TOOLS_MISSING` | `SKILL.md` declares no `allowed-tools` field | the allowed-tools question, then the plan is rerun with `--allowed-tools` |
+| `ALLOWED_TOOLS_MISSING` | `SKILL.md` declares no `allowed-tools` field, so there is no list to write | the allowed-tools question: the plan prints `allowed-tools: approval required; propose [...]` and the plan and the apply are rerun with `--allowed-tools` |
 | `ALLOWED_TOOLS_APPROVAL_REQUIRED` | the apply was run without the approved `--allowed-tools` value | rerun the plan and the apply with the list the operator named |
 | `DESCRIPTION_TRIM_REQUIRED` | the apply was run without the approved `--description-trim` value | rerun the plan and the apply with the approved trim |
 | `AGENT_RESHAPE_REQUIRED` | the plain-skill apply was run without `--agent-output` | run the agent step and the preserve check, then the plan and the apply with that flag |
@@ -309,14 +310,16 @@ Next: /create:skill-parent <the parent skill folder>
 DOCTOR MUTATING RESULT
 Target: convert
 Skill: [name]
-Files changed: [each overwritten or created path]
-Router source: [inline -> ROUTER.md | ROUTER.md -> ROUTER.md]
+Files changed: [each path the apply printed as overwritten or created]
+Router source: [the engine's Router source line, an older Skilled skill converted in place only]
 Verification: [the check engine's result line and any row that still reports FINDING]
 Fields approved: [the intent phrases, the trimmed description and the allowed-tools list the operator approved, or none]
-Integration: [one line per integration row the engine printed, and the row that failed when one did]
-Undo: [the engine's undo block, quoted whole: its Undo: line, one cp (cp -R for a folder) from the backup for each overwritten file, one rm (rm -r for a folder) for each path the run created, and its Check: line]
+Integration: [one line per integration row line a plain skill's apply printed, and the row that failed when one did; an older Skilled skill prints none]
+Undo: [the engine's undo block, quoted whole: its Undo: line, the cp of the converted SKILL.md from the backup, one cp (cp -R for a folder) per overwritten integration file, one rm (rm -r for a folder) for each path the run created, the engine's own "No backup was recorded" comment where it printed one, and its Check: line]
 STATUS=OK
 ```
+
+Quote the lines this path printed, and only those. An older Skilled skill converted in place prints its message, `Backup:`, `Router source:` and the undo block. A plain skill prints its message, `Backup:`, `Snapshot:`, `Converted skill:`, `Preservation PASS:`, each command line with its own output and the integration row lines its rows printed, and no `Router source:` line, because its router was written rather than moved. A line the path never prints is not a missing line: reading one as missing turns a clean run into a false failure.
 
 ### Already Converted
 

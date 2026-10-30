@@ -120,6 +120,23 @@ function firstLine(value) {
   return String(value || 'unknown error').split(/\r?\n/, 1)[0];
 }
 
+// The proposal is the same small read-only set on both paths, widened by Bash
+// only when the skill ships commands, so a permission question never offers a
+// grant the skill has no use for.
+function proposeAllowedTools(skillRoot, fileSystem) {
+  const tools = ['Read', 'Grep', 'Glob'];
+  if (fileSystem.existsSync(path.join(skillRoot, 'scripts'))) tools.push('Bash');
+  return tools;
+}
+
+function allowedToolsApprovalRequired(proposedTools) {
+  return new ConvertError(
+    'ALLOWED_TOOLS_APPROVAL_REQUIRED',
+    `The plan proposes ${JSON.stringify(proposedTools)}; pass repeated --allowed-tool values, or one --allowed-tools list, to approve the permission grant.`,
+    1,
+  );
+}
+
 function runCheck(skillRoot, context) {
   let stdout = '';
   let stderr = '';
@@ -376,8 +393,7 @@ function buildPlainPlan(skillRoot, skill, context, decisions) {
     refuse(`Only ${phrases.length} approved intent phrase(s) were supplied; at least 8 are required. Suggested phrases: ${JSON.stringify(suggestedPhrases)}. Pass repeated --approved-phrase values.`, 'INTENT_SIGNALS_BELOW_FLOOR');
   }
   const tools = uniqueValues(decisions.allowedTools);
-  const proposedTools = ['Read', 'Grep', 'Glob'];
-  if (fileSystem.existsSync(path.join(skillRoot, 'scripts'))) proposedTools.push('Bash');
+  const proposedTools = proposeAllowedTools(skillRoot, fileSystem);
   const descriptionTrim = decisions.descriptionTrim === null
     ? null
     : String(decisions.descriptionTrim).trim();
@@ -548,6 +564,10 @@ function buildPlan(target, context, decisions = {}) {
   }
 
   const approvedTools = uniqueValues(decisions.allowedTools);
+  // A source with no permitted-tool field is missing a decision rather than a
+  // value: the plan proposes the list and apply refuses until one is approved,
+  // so the conversion never writes a grant nobody named.
+  const proposedTools = proposeAllowedTools(skillRoot, fileSystem);
   const descriptionTrim = decisions.descriptionTrim === null
     ? null
     : String(decisions.descriptionTrim).trim();
@@ -605,7 +625,9 @@ function buildPlan(target, context, decisions = {}) {
     }
     let transformedFrontmatter;
     try {
-      transformedFrontmatter = transforms.normalizeSkillFrontmatter(approvedText);
+      transformedFrontmatter = transforms.normalizeSkillFrontmatter(approvedText, {
+        allowMissingAllowedTools: approvedTools.length === 0,
+      });
     } catch (error) {
       throw new ConvertError(error.code || 'TRANSFORM_FAILED', error.message, 1);
     }
@@ -617,8 +639,11 @@ function buildPlan(target, context, decisions = {}) {
       routerFile,
       name,
       backupBase: backupBaseFor(context, name),
-      noop: !skillChanged,
+      noop: !skillChanged && !transformedFrontmatter.allowedToolsMissing,
       frontmatterOnly: true,
+      allowedTools: approvedTools,
+      allowedToolsMissing: transformedFrontmatter.allowedToolsMissing,
+      proposedTools,
       originalSkill: skill.text,
       nextSkill: transformedFrontmatter.text,
       steps,
@@ -662,7 +687,9 @@ function buildPlan(target, context, decisions = {}) {
 
   let transformedFrontmatter;
   try {
-    transformedFrontmatter = transforms.normalizeSkillFrontmatter(approvedText);
+    transformedFrontmatter = transforms.normalizeSkillFrontmatter(approvedText, {
+      allowMissingAllowedTools: approvedTools.length === 0,
+    });
   } catch (error) {
     throw new ConvertError(error.code || 'TRANSFORM_FAILED', error.message, 1);
   }
@@ -694,6 +721,9 @@ function buildPlan(target, context, decisions = {}) {
     backupBase: backupBaseFor(context, name),
     noop: false,
     frontmatterOnly: false,
+    allowedTools: approvedTools,
+    allowedToolsMissing: transformedFrontmatter.allowedToolsMissing,
+    proposedTools,
     originalSkill: skill.text,
     nextSkill: moved.skillMd,
     nextRouter: moved.routerMd,
@@ -1025,11 +1055,7 @@ function applyPlainResources(plan, context, nextSkill) {
 
 function applyPlainPlan(plan, context) {
   if (plan.allowedTools.length === 0) {
-    throw new ConvertError(
-      'ALLOWED_TOOLS_APPROVAL_REQUIRED',
-      `The plan proposes ${JSON.stringify(plan.proposedTools)}; pass repeated --allowed-tool values, or one --allowed-tools list, to approve the permission grant.`,
-      1,
-    );
+    throw allowedToolsApprovalRequired(plan.proposedTools);
   }
   if (plan.proposedTrim && !plan.descriptionTrim) {
     throw new ConvertError(
@@ -1198,6 +1224,7 @@ function removeUnwrittenBackup(fileSystem, backupDirectory, backupBase, backupBa
 }
 
 function applyPlan(plan, context) {
+  if (plan.allowedToolsMissing) throw allowedToolsApprovalRequired(plan.proposedTools);
   if (plan.noop) return { changed: false, message: plan.message };
   const fileSystem = context.fs;
   const currentSkill = fileSystem.readFileSync(plan.skillFile, 'utf8');
@@ -1301,6 +1328,11 @@ function renderPlan(plan) {
     }
     if (plan.descriptionTrim) lines.push(`Approved description trim: ${JSON.stringify(plan.descriptionTrim)}`);
     lines.push(`RESOURCE_MAP order: ${JSON.stringify(plan.mapResources)}`);
+  } else if (plan.allowedToolsMissing) {
+    // The older Skilled path asks the same question from the same two lines, so
+    // a workflow reads the proposal instead of inventing one.
+    lines.push(`allowed-tools: approval required; propose ${JSON.stringify(plan.proposedTools)}`);
+    lines.push('No allowed-tools field will be written until approved with repeated --allowed-tool values or one --allowed-tools list.');
   }
   // The integration rows are planned here and run after the format gates, so the
   // plan the operator approves covers the reach writes as well as the file copy.

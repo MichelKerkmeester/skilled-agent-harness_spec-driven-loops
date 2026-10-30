@@ -1841,32 +1841,91 @@ test('an approved description trim is its own plan line and the backup restores 
   t.diagnostic(`approved description trim apply exit ${applied.exitCode}`);
 });
 
-test('the approved allowed-tools list is written only when the flag names it', (t) => {
+// A missing permitted-tool grant is a decision the operator has not made yet,
+// not a malformed file: the plan prints the list it proposes so the question has
+// something to offer, and the apply refuses until a flag supplies one.
+test('a skill that declares no allowed-tools gets a plan that proposes a list and writes nothing', (t) => {
   const tempRoot = makeTempRoot(t);
-  const skillRoot = path.join(fixtureSkillsDir(tempRoot), 'tools-approved');
-  const original = writeRouterMdSkill(skillRoot, 'tools-approved');
+  const skillRoot = path.join(fixtureSkillsDir(tempRoot), 'tools-undeclared');
+  const original = writeOldSkill(skillRoot, 'tools-undeclared');
   const skillFile = path.join(skillRoot, 'SKILL.md');
   fs.writeFileSync(skillFile, original.replace(/^allowed-tools:.*\r?\n/m, ''));
   const withoutField = fs.readFileSync(skillFile, 'utf8');
 
-  const refused = invoke(tempRoot, 'plan', skillRoot);
-  assert.equal(refused.exitCode, 1, refused.stdout);
-  assert.match(refused.stderr, /^ALLOWED_TOOLS_MISSING:/);
+  const plan = invoke(tempRoot, 'plan', skillRoot);
+  assert.equal(plan.exitCode, 0, plan.stderr);
+  assert.match(plan.stdout, /^allowed-tools: approval required; propose \["Read","Grep","Glob"\]$/m);
+  assert.match(plan.stdout, /^No allowed-tools field will be written until approved/m);
+  assert.equal(fs.readFileSync(skillFile, 'utf8'), withoutField);
+  assert.ok(!fs.existsSync(path.join(skillRoot, 'ROUTER.md')));
+
+  const unapproved = invoke(tempRoot, 'apply', skillRoot, ['--apply']);
+  assert.equal(unapproved.exitCode, 1, unapproved.stdout);
+  assert.match(unapproved.stderr, /^ALLOWED_TOOLS_APPROVAL_REQUIRED:/);
+  assert.equal(fs.readFileSync(skillFile, 'utf8'), withoutField);
+  assert.ok(!fs.existsSync(path.join(skillRoot, 'ROUTER.md')), 'the refused apply created ROUTER.md');
+  assert.ok(
+    !fs.existsSync(path.join(fixtureSkillsDir(tempRoot), '.state', 'doctor-sk-skill', 'tools-undeclared')),
+    'the refused apply took a backup',
+  );
+  t.diagnostic(`zero-declaration apply refusal exit ${unapproved.exitCode}`);
+});
+
+test('the proposed allowed-tools list offers Bash only when the skill ships scripts', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const skillRoot = path.join(fixtureSkillsDir(tempRoot), 'tools-with-scripts');
+  const original = writeOldSkill(skillRoot, 'tools-with-scripts');
+  const skillFile = path.join(skillRoot, 'SKILL.md');
+  fs.writeFileSync(skillFile, original.replace(/^allowed-tools:.*\r?\n/m, ''));
+  fs.mkdirSync(path.join(skillRoot, 'scripts'), { recursive: true });
+  fs.writeFileSync(path.join(skillRoot, 'scripts', 'collect.sh'), '#!/bin/sh\n');
+
+  const plan = invoke(tempRoot, 'plan', skillRoot);
+  assert.equal(plan.exitCode, 0, plan.stderr);
+  assert.match(plan.stdout, /^allowed-tools: approval required; propose \["Read","Grep","Glob","Bash"\]$/m);
+});
+
+test('the approved allowed-tools list is written only when the flag names it', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const skillRoot = path.join(fixtureSkillsDir(tempRoot), 'tools-approved');
+  const original = writeOldSkill(skillRoot, 'tools-approved');
+  const skillFile = path.join(skillRoot, 'SKILL.md');
+  fs.writeFileSync(skillFile, original.replace(/^allowed-tools:.*\r?\n/m, ''));
+  const withoutField = fs.readFileSync(skillFile, 'utf8');
 
   const plan = invoke(tempRoot, 'plan', skillRoot, ['--allowed-tools', 'Read, Grep, Glob']);
   assert.equal(plan.exitCode, 0, plan.stderr);
   assert.match(plan.stdout, /Set allowed-tools: \["Read","Grep","Glob"\]/);
+  assert.ok(!plan.stdout.includes('approval required'), plan.stdout);
   assert.equal(fs.readFileSync(skillFile, 'utf8'), withoutField);
 
   const applied = invoke(tempRoot, 'apply', skillRoot, ['--allowed-tools', 'Read, Grep, Glob', '--apply']);
   assert.equal(applied.exitCode, 0, `${applied.stdout}\n${applied.stderr}`);
   const written = fs.readFileSync(skillFile, 'utf8');
   assert.match(written, /^allowed-tools:\n  - "Read"\n  - "Grep"\n  - "Glob"$/m);
+  assert.equal((written.match(/^allowed-tools:/gm) || []).length, 1);
 
   const backupRoot = path.join(fixtureSkillsDir(tempRoot), '.state', 'doctor-sk-skill', 'tools-approved');
   const backupDirectory = path.join(backupRoot, fs.readdirSync(backupRoot)[0]);
   assert.equal(fs.readFileSync(path.join(backupDirectory, 'SKILL.md'), 'utf8'), withoutField);
   t.diagnostic(`approved allowed-tools apply exit ${applied.exitCode}`);
+});
+
+// Two declarations are the file's own contradiction rather than a decision the
+// operator has not made, so the refusal names the duplication it found.
+test('a skill that declares allowed-tools twice is refused with a message that says so', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const skillRoot = path.join(fixtureSkillsDir(tempRoot), 'tools-duplicate');
+  const original = writeOldSkill(skillRoot, 'tools-duplicate');
+  const skillFile = path.join(skillRoot, 'SKILL.md');
+  const duplicated = original.replace(/^(allowed-tools:.*)$/m, '$1\n$1');
+  fs.writeFileSync(skillFile, duplicated);
+
+  const refused = invoke(tempRoot, 'plan', skillRoot);
+  assert.equal(refused.exitCode, 1, refused.stdout);
+  assert.match(refused.stderr, /^ALLOWED_TOOLS_DUPLICATE:/);
+  assert.match(refused.stderr, /declares allowed-tools twice/);
+  assert.equal(fs.readFileSync(skillFile, 'utf8'), duplicated);
 });
 
 test('the plain path accepts the comma form of the allowed-tools approval', (t) => {
