@@ -1,5 +1,5 @@
 {
-  "corpusHash": "345a1869d7e56f4de2dd8f9fdd00c624c8a53ff43fd630780e136cd723ee4130",
+  "corpusHash": "12aa7385a769984873715cc9d8f37f31a7fa7b161058548898b62dd6f168519d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27299,
+  "includedPathCount": 27304,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6905,6 +6905,7 @@
     ".skilled/skills/sk-git/changelog/v1.11.4.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.5.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.6.0.md",
+    ".skilled/skills/sk-git/changelog/v1.11.7.0.md",
     ".skilled/skills/sk-git/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-git/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-git/changelog/v1.3.1.0.md",
@@ -14545,6 +14546,10 @@
     "specs/sk-git/036-personal-name-scrub/plan.md",
     "specs/sk-git/036-personal-name-scrub/spec.md",
     "specs/sk-git/036-personal-name-scrub/tasks.md",
+    "specs/sk-git/037-advisory-cd-prefix-env-steps/implementation-summary.md",
+    "specs/sk-git/037-advisory-cd-prefix-env-steps/plan.md",
+    "specs/sk-git/037-advisory-cd-prefix-env-steps/spec.md",
+    "specs/sk-git/037-advisory-cd-prefix-env-steps/tasks.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/implementation-summary.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/plan.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/spec.md",
@@ -27330,7 +27335,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e6bbc51fab957daec1662c6e10b711e20a70dd368970a19090000e43212fc922",
+  "manifestHash": "7fbfbdf8cbc251b79d782e95735df806987b3adb0f2fd01c566ed5ac33c72ab1",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31418,6 +31423,10 @@
     },
     {
       "path": "specs/sk-git/036-personal-name-scrub/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/037-advisory-cd-prefix-env-steps/scratch",
       "reason": "excluded directory"
     },
     {

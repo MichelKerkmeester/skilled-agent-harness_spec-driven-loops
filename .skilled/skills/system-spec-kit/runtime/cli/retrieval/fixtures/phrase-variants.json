@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e6bbc51fab957daec1662c6e10b711e20a70dd368970a19090000e43212fc922",
+  "manifestHash": "7fbfbdf8cbc251b79d782e95735df806987b3adb0f2fd01c566ed5ac33c72ab1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9629,6 +9629,18 @@
     "advisorhookresult renderer": [
       "AdvisorHookResult renderer"
     ],
+    "advisory cd prefix env steps": [
+      "advisory cd prefix env steps"
+    ],
+    "advisory cd prefix env steps implementation summary": [
+      "advisory cd prefix env steps implementation summary"
+    ],
+    "advisory cd prefix env steps plan": [
+      "advisory cd prefix env steps plan"
+    ],
+    "advisory cd prefix env steps tasks": [
+      "advisory cd prefix env steps tasks"
+    ],
     "advisory deduplication": [
       "advisory deduplication"
     ],
@@ -12590,6 +12602,15 @@
     ],
     "assigned task listing": [
       "assigned task listing"
+    ],
+    "assignment step between cd and git plan": [
+      "assignment step between cd and git plan"
+    ],
+    "assignment step between cd and git summary": [
+      "assignment step between cd and git summary"
+    ],
+    "assignment step between cd and git tasks": [
+      "assignment step between cd and git tasks"
     ],
     "ast aware code chunking": [
       "ast-aware code chunking"
@@ -16458,6 +16479,9 @@
     ],
     "ccc subcommand removal manage md": [
       "ccc subcommand removal manage.md"
+    ],
+    "cd then export then git": [
+      "cd then export then git"
     ],
     "cdn safe initialization": [
       "cdn safe initialization"
@@ -43474,6 +43498,9 @@
     "environment setup naming pattern": [
       "environment setup naming pattern"
     ],
+    "environment step between cd and git": [
+      "environment step between cd and git"
+    ],
     "environment variable census": [
       "environment variable census"
     ],
@@ -44565,6 +44592,9 @@
     "explore subagent haiku": [
       "explore subagent haiku"
     ],
+    "export between cd and git": [
+      "export between cd and git"
+    ],
     "export diagram to png": [
       "export diagram to png"
     ],
@@ -45555,6 +45585,9 @@
     ],
     "fallbackdecision per handler bullets": [
       "fallbackDecision per-handler bullets"
+    ],
+    "false add pathspec matches nothing": [
+      "false add-pathspec-matches-nothing"
     ],
     "false confirm before and after": [
       "false confirm before and after"
@@ -101823,6 +101856,9 @@
     "sk git 1 11 6 0": [
       "sk-git 1.11.6.0"
     ],
+    "sk git 1 11 7 0": [
+      "sk-git 1.11.7.0"
+    ],
     "sk git 1 2 0 0": [
       "sk-git 1.2.0.0"
     ],
@@ -102071,6 +102107,9 @@
     ],
     "sk git v1 11 6 0": [
       "sk-git v1.11.6.0"
+    ],
+    "sk git v1 11 7 0": [
+      "sk-git v1.11.7.0"
     ],
     "sk git v1 2 0 0": [
       "sk-git v1.2.0.0"
