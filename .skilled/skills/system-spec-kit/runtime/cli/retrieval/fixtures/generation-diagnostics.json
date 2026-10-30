@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7303,
-    "ok": 16317,
+    "ok": 16379,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27168,
+  "documentsScanned": 27230,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "8b16cc01b06e4e7afe88aa6d4976f089da0340965dcbb54fd3cb1261e8cfad6f",
+  "manifestHash": "d0129138578c778d1732de40e6ecc57dc34e46a9b003840c52a8b0d06b15e958",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 39852,
+      "ok": 39924,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -72535,6 +72535,50 @@
     },
     {
       "path": "specs/sk-doc/074-reference-template-debt/002-remaining-references/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/001-check-engine/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/002-check-plumbing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/003-convert-legacy-skilled/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/004-convert-plain-skill/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/005-integration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/006-convert-plumbing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/007-docs-and-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/008-hub-gap-report/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/009-mirror-and-template-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/010-verification-and-release/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/scratch",
       "reason": "excluded directory"
     },
     {

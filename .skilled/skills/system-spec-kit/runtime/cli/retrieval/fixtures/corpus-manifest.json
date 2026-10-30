@@ -1,5 +1,5 @@
 {
-  "corpusHash": "75be9d5817158ea147ba7345f65512e454fc19e610391c2b5b3ef68b1b61bb13",
+  "corpusHash": "43fdcc2eda078c49e12490e05c94ceff016f86960c4f23f86c12137c43e27bad",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27168,
+  "includedPathCount": 27230,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -14148,6 +14148,68 @@
     "specs/sk-doc/074-reference-template-debt/002-remaining-references/spec.md",
     "specs/sk-doc/074-reference-template-debt/002-remaining-references/tasks.md",
     "specs/sk-doc/074-reference-template-debt/spec.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/001-check-engine/acceptance-criteria.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/001-check-engine/goal.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/001-check-engine/implementation-summary.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/001-check-engine/plan.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/001-check-engine/spec.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/001-check-engine/tasks.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/002-check-plumbing/acceptance-criteria.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/002-check-plumbing/goal.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/002-check-plumbing/implementation-summary.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/002-check-plumbing/plan.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/002-check-plumbing/spec.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/002-check-plumbing/tasks.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/003-convert-legacy-skilled/acceptance-criteria.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/003-convert-legacy-skilled/goal.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/003-convert-legacy-skilled/implementation-summary.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/003-convert-legacy-skilled/plan.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/003-convert-legacy-skilled/spec.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/003-convert-legacy-skilled/tasks.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/004-convert-plain-skill/acceptance-criteria.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/004-convert-plain-skill/goal.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/004-convert-plain-skill/implementation-summary.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/004-convert-plain-skill/plan.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/004-convert-plain-skill/spec.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/004-convert-plain-skill/tasks.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/005-integration/acceptance-criteria.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/005-integration/goal.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/005-integration/implementation-summary.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/005-integration/plan.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/005-integration/spec.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/005-integration/tasks.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/006-convert-plumbing/acceptance-criteria.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/006-convert-plumbing/goal.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/006-convert-plumbing/implementation-summary.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/006-convert-plumbing/plan.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/006-convert-plumbing/spec.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/006-convert-plumbing/tasks.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/007-docs-and-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/007-docs-and-changelogs/goal.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/007-docs-and-changelogs/implementation-summary.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/007-docs-and-changelogs/plan.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/007-docs-and-changelogs/spec.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/007-docs-and-changelogs/tasks.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/008-hub-gap-report/acceptance-criteria.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/008-hub-gap-report/goal.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/008-hub-gap-report/implementation-summary.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/008-hub-gap-report/plan.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/008-hub-gap-report/spec.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/008-hub-gap-report/tasks.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/009-mirror-and-template-fixes/acceptance-criteria.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/009-mirror-and-template-fixes/goal.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/009-mirror-and-template-fixes/implementation-summary.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/009-mirror-and-template-fixes/plan.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/009-mirror-and-template-fixes/spec.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/009-mirror-and-template-fixes/tasks.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/010-verification-and-release/acceptance-criteria.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/010-verification-and-release/goal.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/010-verification-and-release/implementation-summary.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/010-verification-and-release/plan.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/010-verification-and-release/spec.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/010-verification-and-release/tasks.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/goal.md",
+    "specs/sk-doc/075-doctor-sk-skill-command/spec.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
     "specs/sk-git/020-live-sync-harden-default-on/spec.md",
@@ -27199,7 +27261,7 @@
     "specs/system-speckit/056-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8b16cc01b06e4e7afe88aa6d4976f089da0340965dcbb54fd3cb1261e8cfad6f",
+  "manifestHash": "d0129138578c778d1732de40e6ecc57dc34e46a9b003840c52a8b0d06b15e958",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31035,6 +31097,50 @@
     },
     {
       "path": "specs/sk-doc/074-reference-template-debt/002-remaining-references/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/001-check-engine/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/002-check-plumbing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/003-convert-legacy-skilled/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/004-convert-plain-skill/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/005-integration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/006-convert-plumbing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/007-docs-and-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/008-hub-gap-report/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/009-mirror-and-template-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/010-verification-and-release/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/075-doctor-sk-skill-command/scratch",
       "reason": "excluded directory"
     },
     {

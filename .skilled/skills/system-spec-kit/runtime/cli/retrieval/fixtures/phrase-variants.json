@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8b16cc01b06e4e7afe88aa6d4976f089da0340965dcbb54fd3cb1261e8cfad6f",
+  "manifestHash": "d0129138578c778d1732de40e6ecc57dc34e46a9b003840c52a8b0d06b15e958",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17762,6 +17762,24 @@
     "check doc pointers removed": [
       "check doc pointers removed"
     ],
+    "check engine": [
+      "check engine"
+    ],
+    "check engine acceptance criteria": [
+      "check engine acceptance criteria"
+    ],
+    "check engine goal": [
+      "check engine goal"
+    ],
+    "check engine implementation summary": [
+      "check engine implementation summary"
+    ],
+    "check engine plan": [
+      "check engine plan"
+    ],
+    "check engine tasks": [
+      "check engine tasks"
+    ],
     "check evidence rule": [
       "check-evidence rule"
     ],
@@ -17851,6 +17869,24 @@
     ],
     "check placeholders third class task": [
       "check placeholders third class task"
+    ],
+    "check plumbing": [
+      "check plumbing"
+    ],
+    "check plumbing acceptance criteria": [
+      "check plumbing acceptance criteria"
+    ],
+    "check plumbing goal": [
+      "check plumbing goal"
+    ],
+    "check plumbing implementation summary": [
+      "check plumbing implementation summary"
+    ],
+    "check plumbing plan": [
+      "check plumbing plan"
+    ],
+    "check plumbing tasks": [
+      "check plumbing tasks"
     ],
     "check prerequisites": [
       "check prerequisites",
@@ -28710,11 +28746,71 @@
     "convergencemode off": [
       "convergenceMode off"
     ],
+    "convert advisor hermes changelog integration": [
+      "convert advisor hermes changelog integration"
+    ],
     "convert drawio file": [
       "convert drawio file"
     ],
+    "convert legacy skilled": [
+      "convert legacy skilled"
+    ],
+    "convert legacy skilled acceptance criteria": [
+      "convert legacy skilled acceptance criteria"
+    ],
+    "convert legacy skilled goal": [
+      "convert legacy skilled goal"
+    ],
+    "convert legacy skilled implementation summary": [
+      "convert legacy skilled implementation summary"
+    ],
+    "convert legacy skilled plan": [
+      "convert legacy skilled plan"
+    ],
+    "convert legacy skilled tasks": [
+      "convert legacy skilled tasks"
+    ],
     "convert mermaid source": [
       "convert mermaid source"
+    ],
+    "convert plain skill": [
+      "convert plain skill"
+    ],
+    "convert plain skill acceptance criteria": [
+      "convert plain skill acceptance criteria"
+    ],
+    "convert plain skill goal": [
+      "convert plain skill goal"
+    ],
+    "convert plain skill implementation summary": [
+      "convert plain skill implementation summary"
+    ],
+    "convert plain skill plan": [
+      "convert plain skill plan"
+    ],
+    "convert plain skill tasks": [
+      "convert plain skill tasks"
+    ],
+    "convert plumbing": [
+      "convert plumbing"
+    ],
+    "convert plumbing acceptance criteria": [
+      "convert plumbing acceptance criteria"
+    ],
+    "convert plumbing goal": [
+      "convert plumbing goal"
+    ],
+    "convert plumbing implementation summary": [
+      "convert plumbing implementation summary"
+    ],
+    "convert plumbing plan": [
+      "convert plumbing plan"
+    ],
+    "convert plumbing tasks": [
+      "convert plumbing tasks"
+    ],
+    "convert skill to skilled format": [
+      "convert skill to skilled format"
     ],
     "convert standalone skill to parent hub": [
       "convert standalone skill to parent hub"
@@ -39321,6 +39417,24 @@
     "docs and catalogs rollup": [
       "docs and catalogs rollup"
     ],
+    "docs and changelogs": [
+      "docs and changelogs"
+    ],
+    "docs and changelogs acceptance criteria": [
+      "docs and changelogs acceptance criteria"
+    ],
+    "docs and changelogs goal": [
+      "docs and changelogs goal"
+    ],
+    "docs and changelogs implementation summary": [
+      "docs and changelogs implementation summary"
+    ],
+    "docs and changelogs plan": [
+      "docs and changelogs plan"
+    ],
+    "docs and changelogs tasks": [
+      "docs and changelogs tasks"
+    ],
     "docs and closeout": [
       "docs and closeout"
     ],
@@ -40433,6 +40547,9 @@
     "doctor sk code setup versus hub mode": [
       "doctor sk-code-setup versus hub mode"
     ],
+    "doctor sk skill check route": [
+      "doctor sk-skill check route"
+    ],
     "doctor skill advisor": [
       "/doctor:skill-advisor"
     ],
@@ -40462,6 +40579,15 @@
     ],
     "doctor skill budget yaml": [
       "doctor-skill-budget.yaml"
+    ],
+    "doctor skill check convert": [
+      "doctor skill check convert"
+    ],
+    "doctor skill check rows": [
+      "doctor skill check rows"
+    ],
+    "doctor skill command phase parent spec": [
+      "doctor skill command phase parent spec"
     ],
     "doctor skill graph freshness audit": [
       "doctor skill-graph-freshness audit"
@@ -54810,6 +54936,24 @@
     "hub frontmatter yaml": [
       "hub frontmatter yaml"
     ],
+    "hub gap report": [
+      "hub gap report"
+    ],
+    "hub gap report acceptance criteria": [
+      "hub gap report acceptance criteria"
+    ],
+    "hub gap report goal": [
+      "hub gap report goal"
+    ],
+    "hub gap report implementation summary": [
+      "hub gap report implementation summary"
+    ],
+    "hub gap report plan": [
+      "hub gap report plan"
+    ],
+    "hub gap report tasks": [
+      "hub gap report tasks"
+    ],
     "hub gate baseline capture": [
       "hub gate baseline capture"
     ],
@@ -56478,6 +56622,9 @@
     "integrated graph agent loop design": [
       "integrated graph agent loop design"
     ],
+    "integration acceptance criteria": [
+      "integration acceptance criteria"
+    ],
     "integration and tests workstream": [
       "integration-and-tests workstream"
     ],
@@ -56499,8 +56646,17 @@
     "integration fixes tasks": [
       "integration fixes tasks"
     ],
+    "integration goal": [
+      "integration goal"
+    ],
+    "integration implementation summary": [
+      "integration implementation summary"
+    ],
     "integration lifecycle contract": [
       "integration lifecycle contract"
+    ],
+    "integration plan": [
+      "integration plan"
     ],
     "integration protocol wires": [
       "integration protocol wires"
@@ -56525,6 +56681,9 @@
     ],
     "integration review and docs closure tasks": [
       "integration review and docs closure tasks"
+    ],
+    "integration tasks": [
+      "integration tasks"
     ],
     "integration topology diagram": [
       "integration topology diagram"
@@ -66739,6 +66898,24 @@
     "minstate inversion": [
       "minstate inversion"
     ],
+    "mirror and template fixes": [
+      "mirror and template fixes"
+    ],
+    "mirror and template fixes acceptance criteria": [
+      "mirror and template fixes acceptance criteria"
+    ],
+    "mirror and template fixes goal": [
+      "mirror and template fixes goal"
+    ],
+    "mirror and template fixes implementation summary": [
+      "mirror and template fixes implementation summary"
+    ],
+    "mirror and template fixes plan": [
+      "mirror and template fixes plan"
+    ],
+    "mirror and template fixes tasks": [
+      "mirror and template fixes tasks"
+    ],
     "mirror dedup canonical preference": [
       "mirror dedup canonical preference"
     ],
@@ -68058,6 +68235,9 @@
     ],
     "move is not behavior change": [
       "move is not behavior change"
+    ],
+    "move machine router to router md": [
+      "move machine router to ROUTER.md"
     ],
     "move opencode specs": [
       "move .opencode/specs"
@@ -74952,6 +75132,9 @@
     "phase 1 broken references": [
       "phase 1 broken references"
     ],
+    "phase 1 check engine": [
+      "phase 1 check engine"
+    ],
     "phase 1 clone path and messages": [
       "phase 1 clone path and messages"
     ],
@@ -75095,6 +75278,9 @@
     ],
     "phase 10 verification and closeout": [
       "phase 10 verification and closeout"
+    ],
+    "phase 10 verification and release": [
+      "phase 10 verification and release"
     ],
     "phase 11 align cli external orchestration": [
       "phase 11 align cli external orchestration"
@@ -75426,6 +75612,9 @@
     "phase 2 builtin runner": [
       "phase 2 builtin runner"
     ],
+    "phase 2 check plumbing": [
+      "phase 2 check plumbing"
+    ],
     "phase 2 consume locked withdraw": [
       "phase 2 consume locked withdraw"
     ],
@@ -75732,6 +75921,9 @@
     "phase 3 config and doctor": [
       "phase 3 config and doctor"
     ],
+    "phase 3 convert legacy skilled": [
+      "phase 3 convert legacy skilled"
+    ],
     "phase 3 deep review case rule": [
       "phase 3 deep review case rule"
     ],
@@ -75881,6 +76073,9 @@
     ],
     "phase 4 commit id in every toolchain repo": [
       "phase 4 commit id in every toolchain repo"
+    ],
+    "phase 4 convert plain skill": [
+      "phase 4 convert plain skill"
     ],
     "phase 4 debt report and hermes gate": [
       "phase 4 debt report and hermes gate"
@@ -76038,6 +76233,9 @@
     "phase 5 implementation review": [
       "phase 5 implementation review"
     ],
+    "phase 5 integration": [
+      "phase 5 integration"
+    ],
     "phase 5 leak and routing verification": [
       "phase 5 leak and routing verification"
     ],
@@ -76151,6 +76349,9 @@
     ],
     "phase 6 continuity refactor gates": [
       "phase 6 continuity refactor gates"
+    ],
+    "phase 6 convert plumbing": [
+      "phase 6 convert plumbing"
     ],
     "phase 6 create skill guidance": [
       "phase 6 create skill guidance"
@@ -76290,6 +76491,9 @@
     "phase 7 dispatch wrapper scan": [
       "phase 7 dispatch wrapper scan"
     ],
+    "phase 7 docs and changelogs": [
+      "phase 7 docs and changelogs"
+    ],
     "phase 7 handoff gate exemptions": [
       "phase 7 handoff gate exemptions"
     ],
@@ -76380,6 +76584,9 @@
     "phase 8 doctor and ci": [
       "phase 8 doctor and ci"
     ],
+    "phase 8 hub gap report": [
+      "phase 8 hub gap report"
+    ],
     "phase 8 legacy era report": [
       "phase 8 legacy era report"
     ],
@@ -76442,6 +76649,9 @@
     ],
     "phase 9 gate 3 menu series parent": [
       "phase 9 gate 3 menu series parent"
+    ],
+    "phase 9 mirror and template fixes": [
+      "phase 9 mirror and template fixes"
     ],
     "phase 9 open items ledger": [
       "phase 9 open items ledger"
@@ -78137,6 +78347,9 @@
     ],
     "placeholder warning rule": [
       "placeholder warning rule"
+    ],
+    "plain agent skill preservation check": [
+      "plain agent skill preservation check"
     ],
     "plain cross digest closure boundary": [
       "plain cross-digest closure boundary"
@@ -117961,6 +118174,9 @@
     ],
     "verification and release acceptance criteria": [
       "verification and release acceptance criteria"
+    ],
+    "verification and release goal": [
+      "verification and release goal"
     ],
     "verification and release implementation summary": [
       "verification and release implementation summary"
