@@ -7,7 +7,7 @@ trigger_phrases:
   - "framework"
   - "CLEAR scoring"
   - "/prompt:improve"
-version: 4.0.0.0
+version: 4.0.1.0
 ---
 
 # sk-prompt
@@ -209,7 +209,7 @@ A: No. The self-check reads the draft against the intent you stated before it is
 | Check | How to run it |
 |---|---|
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-prompt/README.md --type readme` reports zero issues |
-| Router fixtures | `bash .skilled/skills/sk-prompt/benchmark/router/run_fixtures.sh` runs 19 routing fixtures |
+| Router fixtures | `bash .skilled/skills/sk-prompt/benchmark/router/run-fixtures.sh` runs 19 routing fixtures |
 | Manual testing playbook | Scenarios under `manual-testing-playbook/` cover mode detection, smart routing, the checklist pass, CLEAR scoring, framework presets, escalation tiers and format modes |
 | Agent contract | The `@prompt-improver` output block contract lives in `SKILL.md` Section 7. Validate with the playbook scenarios under `manual-testing-playbook/escalation-tiers/` |
 
