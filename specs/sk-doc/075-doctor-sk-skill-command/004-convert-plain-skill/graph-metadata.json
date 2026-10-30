@@ -45,6 +45,7 @@
       "implementation-summary.md",
       ".skilled/commands/doctor/scripts/sk-skill-convert.cjs",
       ".skilled/commands/doctor/scripts/lib/sk-skill-convert-transforms.cjs",
+      ".skilled/commands/doctor/scripts/lib/sk-skill-integrate.cjs",
       ".skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs"
     ],
     "entities": [
@@ -94,6 +95,12 @@
         "name": "sk-skill-convert-transforms.cjs",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/lib/sk-skill-convert-transforms.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-integrate.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/lib/sk-skill-integrate.cjs",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Field Notes",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Class S needs only two authored files beyond `SKILL.md`, `graph-metadata.json` and `leaf-manifest.config.json` (`skill-root-metadata-contract.md:167-169`), but a plain skill also lacks the section shape, the resource-doc frontmatter and the router file the strict gate expects",
     "created_at": "2026-10-30T05:21:14Z",
-    "last_save_at": "2026-10-30T09:02:52.544Z",
+    "last_save_at": "2026-10-30T09:38:44.553Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d4be8bc88aad54b08217bef9be08e429acd6b2908b058718c52f2703e1337f42",
+    "source_fingerprint": "sha256:281ebd168741aa6fefcb565136cb67fff6f1e850230662a2b28e04ee6d4b9160",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1797dab7d7bdad5d64337a324f1365aff0a1351d5525d5f3543e0b29c5962f2a",
-      "plan.md": "c864bdd8e9f35479d54becfe13543c523ac2a268f6d92fb1c521267897ac5580",
-      "tasks.md": "8e1baabc52c486863e635fa9da5bfcd3d0d14a3f91aa3a2c803530f665c1b5bd",
-      "implementation-summary.md": "abdcf666ed87e4c3a21c6b470d90807ce44422adcf1f8fb3953f4adc98f6fce4"
+      "spec.md": "b33894464fdaa1967e10db19f2970eb82e29ad93d460a37d11e56773eee91cd0",
+      "plan.md": "bbaf52be9149b971265a19eb8eba5b97184196b0b5e5c9236d3f5f3abdc32049",
+      "tasks.md": "2dd0724d810ffab2e5f26a2808840458084f3ed8a2452d46c0ac70e14d67feb3",
+      "implementation-summary.md": "fff074d9da87d2b10cde1bcb7a1169c0663a0e5d64b930eab96546727b472a0f"
     },
     "last_active_at": null
   }

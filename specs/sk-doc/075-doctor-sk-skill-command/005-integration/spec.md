@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-30 |
 | **Branch** | `worktrees/281-doctor-skill-command` |
 | **Parent Spec** | ../spec.md |
@@ -49,8 +49,9 @@ This is **Phase 5** of the Doctor skill command: check and convert a skill to th
 - Temp-repo integration tests
 
 **Delivered as**: `lib/sk-skill-integrate.cjs`, one exported function per row plus the plan and apply entry
-points, because the plain-skill phase owns the convert script and its test file in parallel. The conductor
-adds the convert call. `implementation-summary.md` records the deviation and its evidence.
+points, because the plain-skill phase owns the convert script and its test file in parallel. `sk-skill-convert.cjs`
+plans the rows beside the conversion and applies them only after both format validators pass.
+`implementation-summary.md` records the deviation and its evidence.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.

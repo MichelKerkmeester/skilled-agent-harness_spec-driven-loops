@@ -87,6 +87,129 @@ function copyPlainSource(destination) {
   fs.cpSync(path.join(FIXTURE_ROOT, 'plain', 'before'), destination, { recursive: true });
 }
 
+// A stand-in advisor that answers the scan and the reach probes, and logs every
+// argv so a case can prove which child processes ran.
+const CONVERT_ADVISOR_STUB = `'use strict';
+const fs = require('node:fs');
+const path = require('node:path');
+const repoRoot = path.resolve(__dirname, '..', '..');
+const argv = process.argv.slice(2);
+fs.appendFileSync(path.join(repoRoot, 'advisor-calls.log'), JSON.stringify(argv) + '\\n');
+if (argv[0] === 'skill_graph_scan') {
+  process.stdout.write('scan complete\\n');
+  process.exit(0);
+}
+if (argv[0] === 'advisor_recommend') {
+  const prompt = JSON.parse(argv[2]).prompt;
+  const scenario = JSON.parse(process.env.CONVERT_TEST_SCENARIO || '{}');
+  process.stdout.write(JSON.stringify({
+    data: {
+      trustState: { state: 'live', generation: 3 },
+      effectiveThresholds: { confidenceThreshold: 0.8 },
+      recommendations: scenario[prompt] || [],
+    },
+  }));
+  process.exit(0);
+}
+process.stderr.write('unexpected advisor command: ' + argv[0] + '\\n');
+process.exit(2);
+`;
+
+// The real compiler writes beside itself and reads the skills root three levels
+// up, so the stand-in derives both from its own path the same way.
+const CONVERT_COMPILER_STUB = `#!/usr/bin/env python3
+import glob
+import json
+import os
+from datetime import datetime, timezone
+
+here = os.path.dirname(os.path.realpath(__file__))
+skills = os.path.abspath(os.path.join(here, '..', '..', '..'))
+signals = {}
+families = {}
+for meta_path in sorted(glob.glob(os.path.join(skills, '*', 'graph-metadata.json'))):
+    with open(meta_path, encoding='utf-8') as handle:
+        data = json.load(handle)
+    families.setdefault(data.get('family', 'system'), []).append(data['skill_id'])
+    signals[data['skill_id']] = list(dict.fromkeys(data.get('intent_signals', [])))
+graph = {
+    'schema_version': 1,
+    'generated_at': datetime.now(timezone.utc).isoformat(),
+    'skill_count': len(signals),
+    'families': families,
+    'adjacency': {},
+    'signals': signals,
+    'conflicts': [],
+    'hub_skills': [],
+    'topology_warnings': {},
+}
+with open(os.path.join(here, 'skill-graph.json'), 'w', encoding='utf-8') as handle:
+    json.dump(graph, handle)
+print('Compiled skill-graph.json: %d skills' % len(signals))
+`;
+
+const CONVERT_HERMES_STUB = `'use strict';
+const argv = process.argv.slice(2);
+process.stdout.write(argv.includes('--check') ? 'PASS: in sync\\n' : 'SYNCED\\n');
+process.exit(0);
+`;
+
+// A conversion writes a skill root, a compiled graph, a Hermes copy and a
+// changelog link, so a case that lets the integration rows run owns a whole
+// temporary repository: the advisor, the compiler and the Hermes sync are
+// stand-ins inside it, and nothing outside it is read as the repo root.
+function makeIntegrationContext(tempRoot) {
+  writeTree(tempRoot, {
+    '.skilled/bin/skill-advisor.cjs': CONVERT_ADVISOR_STUB,
+    '.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py': CONVERT_COMPILER_STUB,
+    '.skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs': CONVERT_HERMES_STUB,
+  });
+  fs.chmodSync(path.join(tempRoot, '.skilled', 'bin', 'skill-advisor.cjs'), 0o755);
+  // The check's preflight resolves the shared package from the Hermes sync path,
+  // so the temporary repository carries the same link its own runtime would.
+  const sharedLink = path.join(
+    tempRoot, '.skilled', 'skills', 'system-spec-kit', 'node_modules', '@spec-kit', 'shared',
+  );
+  fs.mkdirSync(path.dirname(sharedLink), { recursive: true });
+  fs.symlinkSync(path.join(REPO_ROOT, '.skilled', 'skills', 'system-spec-kit', 'shared'), sharedLink, 'dir');
+  const scripts = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts');
+  const scenario = {};
+  for (const phrase of PLAIN_PHRASES) scenario[phrase] = [{ skillId: 'brindle-lantern', confidence: 0.95 }];
+  return surface.createContext({
+    repoRoot: tempRoot,
+    skillsDir: fixtureSkillsDir(tempRoot),
+    cwd: REPO_ROOT,
+    python: process.env.PYTHON || 'python3',
+    env: {
+      ...environment(),
+      CONVERT_TEST_SCENARIO: JSON.stringify(scenario),
+      HERMES_SKILLS_OUTPUT_DIR: path.join(tempRoot, 'hermes-out'),
+    },
+    paths: {
+      packageSkill: path.join(scripts, 'package_skill.py'),
+      rootMetadata: path.join(scripts, 'ci-skill-root-metadata.cjs'),
+      regenerateDerived: makeTemporaryDerivedGenerator(tempRoot),
+      advisor: path.join(tempRoot, '.skilled', 'bin', 'skill-advisor.cjs'),
+      skillGraphCompiler: path.join(
+        tempRoot, '.skilled', 'skills', 'system-skill-advisor', 'runtime', 'scripts', 'skill_graph_compiler.py',
+      ),
+      skillGraphJson: path.join(
+        tempRoot, '.skilled', 'skills', 'system-skill-advisor', 'runtime', 'scripts', 'skill-graph.json',
+      ),
+      hermesSync: path.join(
+        tempRoot, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'hermes', 'sync-skills-hermes.cjs',
+      ),
+      regressionCorpus: path.join(tempRoot, 'no-framework-corpus.jsonl'),
+      resolver: path.join(
+        REPO_ROOT, '.skilled', 'skills', 'sk-code', 'sk-code-skilled', 'assets', 'scripts', 'router-file-resolver.cjs',
+      ),
+      routerReplay: path.join(
+        REPO_ROOT, '.skilled', 'skills', 'sk-code', 'sk-code-skilled', 'assets', 'scripts', 'router-replay-lib.cjs',
+      ),
+    },
+  });
+}
+
 function makeTemporaryDerivedGenerator(tempRoot) {
   const directory = path.join(tempRoot, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts');
   fs.mkdirSync(directory, { recursive: true });
@@ -424,7 +547,7 @@ test('four-part versions add no plan step and shorter versions show the padded v
   assert.match(fullPlan.stdout, /Writes: none/);
 });
 
-test('an existing ROUTER.md still receives V2 frontmatter normalization without V3 creation', (t) => {
+test('an existing ROUTER.md still receives frontmatter normalization without a second router', (t) => {
   const tempRoot = makeTempRoot(t);
   const skillRoot = path.join(fixtureSkillsDir(tempRoot), 'router-already-moved');
   const original = writeRouterMdSkill(skillRoot);
@@ -525,7 +648,7 @@ test('a pre-write router creation failure removes its empty backup', (t) => {
   assert.equal(fs.existsSync(path.join(skillRoot, 'ROUTER.md')), false);
 });
 
-test('each V0 refusal has a distinct code and hub-router.json is sufficient on its own', (t) => {
+test('each preflight refusal has a distinct code and hub-router.json is sufficient on its own', (t) => {
   const tempRoot = makeTempRoot(t);
   const skillsDir = fixtureSkillsDir(tempRoot);
   const cases = [];
@@ -716,8 +839,7 @@ test('plain apply stages a copy, preserves the source, generates metadata, and p
   fs.writeFileSync(path.join(sourceRoot, 'manual-testing-playbook', 'operator-note.txt'), 'keep this source file\n');
   const sourceBefore = hashTree(sourceRoot);
   const afterSkill = path.join(FIXTURE_ROOT, 'plain', 'after');
-  const context = makeContext(tempRoot);
-  context.paths.regenerateDerived = makeTemporaryDerivedGenerator(tempRoot);
+  const context = makeIntegrationContext(tempRoot);
   let scaffoldTempParent = null;
   const originalRunCommand = context.runCommand;
   context.runCommand = (command, args, options) => {
@@ -739,12 +861,24 @@ test('plain apply stages a copy, preserves the source, generates metadata, and p
   assert.match(plan.stdout, /Rename references\/Field Notes\.md to references\/field-notes\.md/);
   assert.match(plan.stdout, /Copy: .*plain-source -> .*brindle-lantern/);
   assert.match(plan.stdout, /allowed-tools: \["Read","Grep","Glob"\]/);
+  assert.match(plan.stdout, /Integration plan: brindle-lantern/);
+  assert.match(plan.stdout, /I6 changelog: Create .*changelog\/v1\.0\.0\.0\.md/);
   assert.ok(!fs.existsSync(path.join(fixtureSkillsDir(tempRoot), 'brindle-lantern')));
 
   const applied = invokeArgs(tempRoot, ['apply', sourceRoot, ...decisions, '--apply'], context);
   assert.equal(applied.exitCode, 0, `${applied.stdout}\n${applied.stderr}`);
-  assert.match(applied.stdout, /preservation and V8 format gates passed/i);
+  assert.match(applied.stdout, /preservation and the format gates passed/i);
   assert.match(applied.stdout, /Result: PASS/);
+  // The command log the result prints is the proof both later steps really ran.
+  assert.match(applied.stdout, /ci-skill-root-metadata\.cjs --fix .*\(exit 0\)/);
+  assert.match(applied.stdout, /validate_skill_package\.py .*\(exit 0\)/);
+  // Each integration row reports its own result beside the writes it recorded.
+  for (const id of ['I1', 'I2', 'I3', 'I4', 'I5', 'I6']) {
+    assert.match(applied.stdout, new RegExp(`^${id} `, 'm'), `the result omits row ${id}`);
+  }
+  assert.match(applied.stdout, /I1 advisor discovery: scanned/);
+  assert.match(applied.stdout, /I2 compiled skill graph: recompiled/);
+  assert.match(applied.stdout, /I5 runtime mirrors: Hermes synced and checked/);
   assert.equal(hashTree(sourceRoot), sourceBefore);
   assert.ok(scaffoldTempParent);
   assert.ok(!fs.existsSync(scaffoldTempParent));
@@ -765,8 +899,39 @@ test('plain apply stages a copy, preserves the source, generates metadata, and p
   assert.ok(router.indexOf('lantern sample review') < router.indexOf('route lantern requests'));
   assert.match(router, /"references\/field-notes\.md"/);
 
+  // A converted root ends reachable: the compiled graph is current, the Hermes
+  // copy is in sync and the changelog index resolves to the skill's own folder.
+  const freshness = spawnSync(process.execPath, [
+    path.join(REPO_ROOT, '.skilled', 'commands', 'doctor', 'scripts', 'skill-graph-freshness.cjs'), '--strict',
+  ], {
+    cwd: tempRoot,
+    encoding: 'utf8',
+    env: {
+      ...environment(),
+      SKILL_GRAPH_FRESHNESS_ROOT: tempRoot,
+      SYSTEM_SKILL_ADVISOR_DB_DIR: path.join(tempRoot, 'no-database'),
+    },
+  });
+  assert.equal(freshness.status, 0, `${freshness.stdout}\n${freshness.stderr}`);
+  assert.match(freshness.stdout, /STALE COMPILED: none/);
+  t.diagnostic(`skill-graph-freshness.cjs --strict exit ${freshness.status}: ${freshness.stdout.trim()}`);
+
+  const hermesCheck = spawnSync(process.execPath, [
+    path.join(tempRoot, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'hermes', 'sync-skills-hermes.cjs'),
+    '--check',
+  ], { cwd: tempRoot, encoding: 'utf8', env: environment() });
+  assert.equal(hermesCheck.status, 0, `${hermesCheck.stdout}\n${hermesCheck.stderr}`);
+  assert.match(hermesCheck.stdout, /PASS: in sync/);
+  t.diagnostic(`sync-skills-hermes.cjs --check exit ${hermesCheck.status}: ${hermesCheck.stdout.trim()}`);
+
+  const changelogIndex = path.join(tempRoot, '.skilled', 'changelog', 'brindle-lantern');
+  assert.equal(fs.readlinkSync(changelogIndex), '../skills/brindle-lantern/changelog');
+  assert.ok(fs.statSync(changelogIndex).isDirectory());
+  assert.ok(fs.existsSync(path.join(changelogIndex, 'v1.0.0.0.md')));
+  t.diagnostic(`readlink .skilled/changelog/brindle-lantern: ${fs.readlinkSync(changelogIndex)}`);
+
   const scriptsRoot = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts');
-  const strict = spawnSync('/usr/bin/python3', [
+  const strict = spawnSync(process.env.PYTHON || 'python3', [
     path.join(scriptsRoot, 'package_skill.py'), skillRoot, '--check', '--strict',
   ], { cwd: REPO_ROOT, encoding: 'utf8', env: environment() });
   assert.equal(strict.status, 0, `${strict.stdout}\n${strict.stderr}`);
@@ -777,9 +942,17 @@ test('plain apply stages a copy, preserves the source, generates metadata, and p
     path.join(scriptsRoot, 'ci-skill-root-metadata.cjs'),
     '--skills-dir', fixtureSkillsDir(tempRoot),
     '--skill', 'brindle-lantern',
-  ], { cwd: REPO_ROOT, encoding: 'utf8', env: environment() });
+  ], { cwd: tempRoot, encoding: 'utf8', env: environment() });
   assert.equal(rootMetadata.status, 0, `${rootMetadata.stdout}\n${rootMetadata.stderr}`);
   t.diagnostic(`ci-skill-root-metadata.cjs --skill brindle-lantern exit ${rootMetadata.status}: ${rootMetadata.stdout.trim()}`);
+
+  // The undo list names every write the integration rows recorded.
+  assert.match(applied.stdout, /^Undo:$/m);
+  assert.ok(applied.stdout.includes(`  rm "${changelogIndex}"`), applied.stdout);
+  assert.match(
+    applied.stdout,
+    /git -c core\.fsmonitor=false restore -- ".*system-skill-advisor\/runtime\/scripts\/skill-graph\.json"/,
+  );
 
   const snapshot = applied.stdout.match(/^Snapshot: (.+)$/m);
   assert.ok(snapshot, applied.stdout);
@@ -807,7 +980,7 @@ test('plain staging refuses an existing target without changing either folder', 
   assert.equal(hashTree(sourceRoot), sourceBefore);
 });
 
-test('plain V8 failure stops before the second package validator', (t) => {
+test('a failing strict package check stops before the second package validator', (t) => {
   const tempRoot = makeTempRoot(t);
   const sourceRoot = path.join(FIXTURE_ROOT, 'plain', 'before');
   const invalidAgentRoot = path.join(tempRoot, 'invalid-agent-output');
@@ -838,6 +1011,12 @@ test('plain V8 failure stops before the second package validator', (t) => {
   assert.match(result.stderr, /^STRICT_PACKAGE_FAILED:/);
   const validateScript = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'validate_skill_package.py');
   assert.ok(!invokedCommands.some((entry) => entry.args.includes(validateScript)));
+  // A format gate that fails never reaches the integration rows: no scan, no
+  // compile and no Hermes sync is spawned by the run.
+  const integrationSpawns = invokedCommands.filter((entry) => (
+    /skill-advisor\.cjs|skill_graph_compiler\.py|sync-skills-hermes\.cjs/.test([entry.command, ...entry.args].join(' '))
+  ));
+  assert.deepEqual(integrationSpawns, []);
 });
 
 test('plain conversion and preserve stop at a dropped source body line', (t) => {
@@ -862,7 +1041,7 @@ test('plain conversion and preserve stop at a dropped source body line', (t) => 
   assert.equal(result.exitCode, 1);
   assert.match(result.stderr, /^PRESERVATION_FAILED:/);
   assert.match(result.stderr, /Read the field notes before choosing a review path/);
-  // The check stops at V4, so nothing after it writes: no scaffolder, no
+  // The check stops at the preservation proof, so nothing after it writes: no scaffolder, no
   // generator and no post-strict validator ever runs. The read-only preflight
   // probes on the source are expected and stay out of this filter.
   const writesDisk = invokedCommands.filter((entry) => (
@@ -899,7 +1078,7 @@ test('plain conversion and preserve stop at a dropped source body line', (t) => 
   t.diagnostic(`dropped-line preserve exit ${preserve.exitCode}: ${preserve.stderr.trim()}`);
 });
 
-test('long descriptions get a separate proposed trim and block apply before V8 without approval', (t) => {
+test('long descriptions get a separate proposed trim and block apply before the format gate without approval', (t) => {
   const tempRoot = makeTempRoot(t);
   const sourceRoot = path.join(tempRoot, 'long-description');
   copyPlainSource(sourceRoot);
@@ -926,8 +1105,7 @@ test('long descriptions get a separate proposed trim and block apply before V8 w
   assert.ok(!fs.existsSync(path.join(fixtureSkillsDir(tempRoot), 'brindle-lantern')));
 
   const approvedTrim = 'Review lantern samples and confirm the evidence.';
-  const context = makeContext(tempRoot);
-  context.paths.regenerateDerived = makeTemporaryDerivedGenerator(tempRoot);
+  const context = makeIntegrationContext(tempRoot);
   const approved = invokeArgs(tempRoot, [
     'apply', sourceRoot,
     ...phraseArgs(),
@@ -1248,4 +1426,391 @@ test('a write prints the undo commands and the check rerun command', (t) => {
   assert.ok(applied.stdout.includes(`  rm "${path.join(resolvedRoot, 'ROUTER.md')}"`), applied.stdout);
   assert.match(applied.stdout, /^Check: node ".*sk-skill-check\.cjs" check ".*undo-print"$/m);
   assert.equal(fs.readFileSync(path.join(backupDir, 'SKILL.md'), 'utf8'), original);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PRESERVATION AND LINK-PROOF CASES
+// ─────────────────────────────────────────────────────────────────────────────
+
+function writeTree(root, files) {
+  for (const [relative, text] of Object.entries(files)) {
+    const target = path.join(root, ...relative.split('/'));
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, text);
+  }
+}
+
+function plainSkillText(name, body) {
+  return ['---', `name: ${name}`, 'description: A short plain skill description.', '---', '', body].join('\n');
+}
+
+// A source tree with one link where the review expects a real file.
+function plainSourceWithSymlink(tempRoot, linkTarget) {
+  const sourceRoot = path.join(tempRoot, 'symlinked-source');
+  copyPlainSource(sourceRoot);
+  const target = path.join(sourceRoot, 'references', 'Field Notes.md');
+  fs.unlinkSync(target);
+  fs.symlinkSync(linkTarget, target);
+  return sourceRoot;
+}
+
+test('a symlink in a plain source tree is refused before staging and the outside file is unchanged', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const outsideRoot = path.join(tempRoot, 'outside');
+  fs.mkdirSync(outsideRoot, { recursive: true });
+  const outsideSkill = path.join(outsideRoot, 'SKILL.md');
+  const outsideText = fs.readFileSync(path.join(FIXTURE_ROOT, 'plain', 'before', 'SKILL.md'), 'utf8');
+  fs.writeFileSync(outsideSkill, outsideText);
+
+  const linkedSkillRoot = path.join(tempRoot, 'linked-skill-source');
+  fs.mkdirSync(path.join(linkedSkillRoot, 'references'), { recursive: true });
+  fs.copyFileSync(
+    path.join(FIXTURE_ROOT, 'plain', 'before', 'references', 'Field Notes.md'),
+    path.join(linkedSkillRoot, 'references', 'Field Notes.md'),
+  );
+  fs.symlinkSync(outsideSkill, path.join(linkedSkillRoot, 'SKILL.md'));
+
+  const decisions = [
+    ...phraseArgs(),
+    '--allowed-tool', 'Read',
+    '--agent-output', path.join(FIXTURE_ROOT, 'plain', 'after'),
+  ];
+  const plan = invokeArgs(tempRoot, ['plan', linkedSkillRoot, ...decisions]);
+  assert.equal(plan.exitCode, 1, plan.stdout);
+  assert.match(plan.stderr, /^SOURCE_SYMLINK:/);
+
+  const applied = invokeArgs(tempRoot, ['apply', linkedSkillRoot, ...decisions, '--apply']);
+  assert.equal(applied.exitCode, 1, applied.stdout);
+  assert.match(applied.stderr, /^SOURCE_SYMLINK:/);
+  assert.equal(fs.readFileSync(outsideSkill, 'utf8'), outsideText, 'the run wrote through the symlink');
+  assert.ok(!fs.existsSync(path.join(fixtureSkillsDir(tempRoot), 'brindle-lantern')));
+
+  const outsideResource = path.join(outsideRoot, 'Field Notes.md');
+  const outsideResourceText = fs.readFileSync(
+    path.join(FIXTURE_ROOT, 'plain', 'before', 'references', 'Field Notes.md'),
+    'utf8',
+  );
+  fs.writeFileSync(outsideResource, outsideResourceText);
+  const linkedResourceRoot = plainSourceWithSymlink(tempRoot, outsideResource);
+  const resourceRun = invokeArgs(tempRoot, ['apply', linkedResourceRoot, ...decisions, '--apply']);
+  assert.equal(resourceRun.exitCode, 1, resourceRun.stdout);
+  assert.match(resourceRun.stderr, /^SOURCE_SYMLINK:/);
+  assert.equal(fs.readFileSync(outsideResource, 'utf8'), outsideResourceText);
+  assert.ok(!fs.existsSync(path.join(fixtureSkillsDir(tempRoot), 'brindle-lantern')));
+});
+
+test('a hash line inside a fence is preserved body text and matches only a fenced line', (t) => {
+  const source = plainSkillText('fenced-heading', [
+    '# Fenced Heading',
+    '',
+    'Run the sample twice before comparing marks.',
+    '',
+    '```sh',
+    '# select the field notes for this review',
+    'echo done',
+    '```',
+    '',
+  ].join('\n'));
+  const preserved = transforms.bodyLinesToPreserve(source);
+  assert.ok(preserved.includes('# select the field notes for this review'), JSON.stringify(preserved));
+  assert.ok(!preserved.includes('# Fenced Heading'), JSON.stringify(preserved));
+
+  const tempRoot = makeTempRoot(t);
+  const snapshot = path.join(tempRoot, 'snapshot');
+  const target = path.join(tempRoot, 'fenced-target');
+  writeTree(snapshot, { 'SKILL.md': source });
+  writeTree(target, {
+    'SKILL.md': source.replace('# select the field notes for this review\n', ''),
+  });
+  const dropped = invokeArgs(tempRoot, ['preserve', '--snapshot', snapshot, target]);
+  assert.equal(dropped.exitCode, 1, dropped.stdout);
+  assert.match(dropped.stderr, /select the field notes for this review/);
+
+  writeTree(target, {
+    'SKILL.md': source.replace(
+      '# select the field notes for this review',
+      '# select the field notes for the other review',
+    ),
+  });
+  const altered = invokeArgs(tempRoot, ['preserve', '--snapshot', snapshot, target]);
+  assert.equal(altered.exitCode, 1, altered.stdout);
+  assert.match(altered.stderr, /select the field notes for this review/);
+});
+
+test('resource links in definitions, HTML attributes and inline code are rewritten to the kebab name', () => {
+  const body = [
+    '---', 'name: link-forms', 'description: short', '---', '',
+    'Read [inline](<references/Field Notes.md>) and [bare](references/Second_Guide.md).',
+    '',
+    '[notes]: <references/Field Notes.md>',
+    '[guide]: references/Second_Guide.md "Second guide"',
+    '',
+    '<a href="references/Field Notes.md">notes</a> and <img src="references/Second_Guide.md">',
+    '',
+    'Load `references/Field Notes.md` before the review.',
+    '',
+    'An unrelated link [site](https://example.com/references/Field%20Notes.md).',
+  ].join('\n');
+  const renames = transforms.resourceRenameMap(['references/Field Notes.md', 'references/Second_Guide.md']);
+  const rewritten = transforms.rewriteResourceLinks(body, renames);
+
+  assert.ok(!rewritten.includes('Field Notes.md'), rewritten);
+  assert.ok(!rewritten.includes('Second_Guide.md'), rewritten);
+  assert.match(rewritten, /\[notes\]: <references\/field-notes\.md>/);
+  assert.match(rewritten, /\[guide\]: references\/second-guide\.md "Second guide"/);
+  assert.match(rewritten, /<a href="references\/field-notes\.md">/);
+  assert.match(rewritten, /<img src="references\/second-guide\.md">/);
+  assert.match(rewritten, /`references\/field-notes\.md`/);
+  assert.match(rewritten, /https:\/\/example\.com\/references\/Field%20Notes\.md/);
+});
+
+test('apply refuses a staged tree that still names an old resource path', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const sourceRoot = path.join(tempRoot, 'plain-source');
+  copyPlainSource(sourceRoot);
+  const agentRoot = path.join(tempRoot, 'stale-agent');
+  fs.cpSync(path.join(FIXTURE_ROOT, 'plain', 'after'), agentRoot, { recursive: true });
+  fs.appendFileSync(
+    path.join(agentRoot, 'SKILL.md'),
+    '\nThe old notes file was references/Field Notes.md.\n',
+  );
+  const context = makeContext(tempRoot);
+  context.paths.regenerateDerived = makeTemporaryDerivedGenerator(tempRoot);
+
+  const result = invokeArgs(tempRoot, [
+    'apply', sourceRoot,
+    ...phraseArgs(),
+    '--allowed-tool', 'Read',
+    '--agent-output', agentRoot,
+    '--apply',
+  ], context);
+  assert.equal(result.exitCode, 1, result.stdout);
+  assert.match(result.stderr, /^RESOURCE_LINK_STALE:/);
+  assert.ok(!fs.existsSync(path.join(fixtureSkillsDir(tempRoot), 'brindle-lantern')));
+});
+
+test('the committed plain after-copy names no old resource path', () => {
+  const after = fs.readFileSync(path.join(FIXTURE_ROOT, 'plain', 'after', 'SKILL.md'), 'utf8');
+  assert.ok(!after.includes('Field Notes.md'), after);
+  assert.match(after, /references\/field-notes\.md/);
+});
+
+test('the plain plan and apply run the interpreter the context configures', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const callLog = path.join(tempRoot, 'interpreter-calls.log');
+  const wrapper = path.join(tempRoot, 'python-wrapper.sh');
+  const realPython = process.env.PYTHON || 'python3';
+  fs.writeFileSync(wrapper, [
+    '#!/bin/sh',
+    `printf '%s\\n' "$*" >> "${callLog}"`,
+    `exec "${realPython}" "$@"`,
+    '',
+  ].join('\n'));
+  fs.chmodSync(wrapper, 0o755);
+
+  const context = surface.createContext({
+    repoRoot: REPO_ROOT,
+    skillsDir: fixtureSkillsDir(tempRoot),
+    cwd: REPO_ROOT,
+    python: wrapper,
+    env: environment(),
+  });
+  const plan = invokeArgs(tempRoot, ['plan', path.join(FIXTURE_ROOT, 'plain', 'before'), ...phraseArgs()], context);
+  assert.equal(plan.exitCode, 0, plan.stderr);
+  assert.ok(fs.existsSync(callLog), 'the plain plan never ran the configured interpreter');
+  assert.ok(fs.readFileSync(callLog, 'utf8').trim().length > 0, 'the configured interpreter logged no call');
+});
+
+test('preservation compares link targets verbatim, allowing only the planned rename map', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const source = plainSkillText('link-targets', [
+    '# Link Targets',
+    '',
+    'See [field notes](<references/Field Notes.md>) before proceeding.',
+    '',
+  ].join('\n'));
+  const snapshot = path.join(tempRoot, 'snapshot');
+  const target = path.join(tempRoot, 'target');
+  writeTree(snapshot, { 'SKILL.md': source });
+
+  writeTree(target, {
+    'SKILL.md': source.replace('references/Field Notes.md', 'references/other-notes.md'),
+  });
+  const repointed = invokeArgs(tempRoot, ['preserve', '--snapshot', snapshot, target]);
+  assert.equal(repointed.exitCode, 1, repointed.stdout);
+  assert.match(repointed.stderr, /field notes/);
+
+  writeTree(target, { 'SKILL.md': source.replace('references/Field Notes.md', 'references/field-notes.md') });
+  const renamed = invokeArgs(tempRoot, ['preserve', '--snapshot', snapshot, target]);
+  assert.equal(renamed.exitCode, 0, renamed.stderr);
+});
+
+test('preservation does not let a copied reference line stand in for a dropped SKILL.md line', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const source = plainSkillText('reference-pool', [
+    '# Reference Pool',
+    '',
+    'The shared observation line.',
+    '',
+    'The skill-only observation line.',
+    '',
+  ].join('\n'));
+  const sharedReference = '# Shared Notes\n\nThe shared observation line.\n';
+  const snapshot = path.join(tempRoot, 'snapshot');
+  const target = path.join(tempRoot, 'target');
+  writeTree(snapshot, { 'SKILL.md': source, 'references/shared.md': sharedReference });
+  writeTree(target, {
+    'SKILL.md': source.replace('The shared observation line.\n\n', ''),
+    'references/shared.md': sharedReference,
+  });
+  const dropped = invokeArgs(tempRoot, ['preserve', '--snapshot', snapshot, target]);
+  assert.equal(dropped.exitCode, 1, dropped.stdout);
+  assert.match(dropped.stderr, /The shared observation line/);
+
+  const movedSnapshot = path.join(tempRoot, 'moved-snapshot');
+  const movedTarget = path.join(tempRoot, 'moved-target');
+  writeTree(movedSnapshot, {
+    'SKILL.md': plainSkillText('moved-line', '# Moved Line\n\nA line that moved into a reference.\n'),
+  });
+  writeTree(movedTarget, {
+    'SKILL.md': plainSkillText('moved-line', '# Moved Line\n'),
+    'references/moved.md': '# Moved Notes\n\nA line that moved into a reference.\n',
+  });
+  const moved = invokeArgs(tempRoot, ['preserve', '--snapshot', movedSnapshot, movedTarget]);
+  assert.equal(moved.exitCode, 0, moved.stderr);
+});
+
+test('preservation matches prose only against prose and fenced lines only against fenced lines', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const header = '---\nname: line-kinds\ndescription: A short plain skill description.\n---\n\n# Line Kinds\n\n';
+  const source = `${header}Keep the sample record beside its observation.\n\n\`\`\`text\nA fenced sample line.\n\`\`\`\n`;
+  const snapshot = path.join(tempRoot, 'snapshot');
+  writeTree(snapshot, { 'SKILL.md': source });
+
+  const fencedTarget = path.join(tempRoot, 'fenced-target');
+  writeTree(fencedTarget, {
+    'SKILL.md': `${header}\`\`\`text\nKeep the sample record beside its observation.\n\`\`\`\n\n\`\`\`text\nA fenced sample line.\n\`\`\`\n`,
+  });
+  const movedIntoFence = invokeArgs(tempRoot, ['preserve', '--snapshot', snapshot, fencedTarget]);
+  assert.equal(movedIntoFence.exitCode, 1, movedIntoFence.stdout);
+  assert.match(movedIntoFence.stderr, /Keep the sample record beside its observation/);
+
+  const commentTarget = path.join(tempRoot, 'comment-target');
+  writeTree(commentTarget, {
+    'SKILL.md': `${header}<!-- Keep the sample record beside its observation. -->\n\n\`\`\`text\nA fenced sample line.\n\`\`\`\n`,
+  });
+  const movedIntoComment = invokeArgs(tempRoot, ['preserve', '--snapshot', snapshot, commentTarget]);
+  assert.equal(movedIntoComment.exitCode, 1, movedIntoComment.stdout);
+  assert.match(movedIntoComment.stderr, /Keep the sample record beside its observation/);
+
+  const proseTarget = path.join(tempRoot, 'prose-target');
+  writeTree(proseTarget, {
+    'SKILL.md': `${header}Keep the sample record beside its observation.\n\nA fenced sample line.\n`,
+  });
+  const fencedIntoProse = invokeArgs(tempRoot, ['preserve', '--snapshot', snapshot, proseTarget]);
+  assert.equal(fencedIntoProse.exitCode, 1, fencedIntoProse.stdout);
+  assert.match(fencedIntoProse.stderr, /A fenced sample line/);
+});
+
+test('a realigned table row still counts as the same preserved line', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const source = plainSkillText('table-rows', [
+    '# Table Rows',
+    '',
+    '| Mark | Verdict |',
+    '|------|---------|',
+    '| one | clear |',
+    '',
+  ].join('\n'));
+  const snapshot = path.join(tempRoot, 'snapshot');
+  const target = path.join(tempRoot, 'target');
+  writeTree(snapshot, { 'SKILL.md': source });
+  writeTree(target, {
+    'SKILL.md': source.replace('| Mark | Verdict |', '| Mark    |   Verdict |')
+      .replace('| one | clear |', '|  one  |  clear  |'),
+  });
+  const result = invokeArgs(tempRoot, ['preserve', '--snapshot', snapshot, target]);
+  assert.equal(result.exitCode, 0, result.stderr);
+  assert.match(result.stdout, /Preservation PASS/);
+});
+
+// An older Skilled skill can carry a description over the budget or no
+// allowed-tools field at all. Both are fields an operator may approve, and an
+// approval is a value, not a directive for the workflow to overwrite SKILL.md
+// before a backup exists.
+test('an approved description trim is its own plan line and the backup restores the original text', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const skillRoot = path.join(fixtureSkillsDir(tempRoot), 'trim-approved');
+  const original = writeRouterMdSkill(skillRoot, 'trim-approved', { description: 'd'.repeat(131) });
+
+  const refused = invoke(tempRoot, 'plan', skillRoot);
+  assert.equal(refused.exitCode, 1, refused.stdout);
+  assert.match(refused.stderr, /^DESCRIPTION_TOO_LONG:/);
+
+  const trim = 'Review lantern samples and confirm the evidence.';
+  const plan = invoke(tempRoot, 'plan', skillRoot, ['--description-trim', trim]);
+  assert.equal(plan.exitCode, 0, plan.stderr);
+  assert.match(plan.stdout, new RegExp(`Set description: ${JSON.stringify(trim).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`));
+  assert.match(plan.stdout, /Overwrite: .*SKILL\.md/);
+  assert.equal(fs.readFileSync(path.join(skillRoot, 'SKILL.md'), 'utf8'), original);
+
+  const overLong = invoke(tempRoot, 'plan', skillRoot, ['--description-trim', 'd'.repeat(131)]);
+  assert.equal(overLong.exitCode, 1, overLong.stdout);
+  assert.match(overLong.stderr, /^DESCRIPTION_TOO_LONG:/);
+
+  const applied = invoke(tempRoot, 'apply', skillRoot, ['--description-trim', trim, '--apply']);
+  assert.equal(applied.exitCode, 0, `${applied.stdout}\n${applied.stderr}`);
+  assert.match(fs.readFileSync(path.join(skillRoot, 'SKILL.md'), 'utf8'), new RegExp(`^description: ${JSON.stringify(trim)}$`, 'm'));
+
+  const backupRoot = path.join(fixtureSkillsDir(tempRoot), '.state', 'doctor-sk-skill', 'trim-approved');
+  const backupDirectory = path.join(backupRoot, fs.readdirSync(backupRoot)[0]);
+  const backupFile = path.join(backupDirectory, 'SKILL.md');
+  assert.equal(fs.readFileSync(backupFile, 'utf8'), original);
+  const resolvedRoot = fs.realpathSync(skillRoot);
+  assert.ok(
+    applied.stdout.includes(`  cp "${backupFile}" "${path.join(resolvedRoot, 'SKILL.md')}"`),
+    applied.stdout,
+  );
+  t.diagnostic(`approved description trim apply exit ${applied.exitCode}`);
+});
+
+test('the approved allowed-tools list is written only when the flag names it', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const skillRoot = path.join(fixtureSkillsDir(tempRoot), 'tools-approved');
+  const original = writeRouterMdSkill(skillRoot, 'tools-approved');
+  const skillFile = path.join(skillRoot, 'SKILL.md');
+  fs.writeFileSync(skillFile, original.replace(/^allowed-tools:.*\r?\n/m, ''));
+  const withoutField = fs.readFileSync(skillFile, 'utf8');
+
+  const refused = invoke(tempRoot, 'plan', skillRoot);
+  assert.equal(refused.exitCode, 1, refused.stdout);
+  assert.match(refused.stderr, /^ALLOWED_TOOLS_MISSING:/);
+
+  const plan = invoke(tempRoot, 'plan', skillRoot, ['--allowed-tools', 'Read, Grep, Glob']);
+  assert.equal(plan.exitCode, 0, plan.stderr);
+  assert.match(plan.stdout, /Set allowed-tools: \["Read","Grep","Glob"\]/);
+  assert.equal(fs.readFileSync(skillFile, 'utf8'), withoutField);
+
+  const applied = invoke(tempRoot, 'apply', skillRoot, ['--allowed-tools', 'Read, Grep, Glob', '--apply']);
+  assert.equal(applied.exitCode, 0, `${applied.stdout}\n${applied.stderr}`);
+  const written = fs.readFileSync(skillFile, 'utf8');
+  assert.match(written, /^allowed-tools:\n  - "Read"\n  - "Grep"\n  - "Glob"$/m);
+
+  const backupRoot = path.join(fixtureSkillsDir(tempRoot), '.state', 'doctor-sk-skill', 'tools-approved');
+  const backupDirectory = path.join(backupRoot, fs.readdirSync(backupRoot)[0]);
+  assert.equal(fs.readFileSync(path.join(backupDirectory, 'SKILL.md'), 'utf8'), withoutField);
+  t.diagnostic(`approved allowed-tools apply exit ${applied.exitCode}`);
+});
+
+test('the plain path accepts the comma form of the allowed-tools approval', (t) => {
+  const tempRoot = makeTempRoot(t);
+  const sourceRoot = path.join(FIXTURE_ROOT, 'plain', 'before');
+  const plan = invokeArgs(tempRoot, [
+    'plan', sourceRoot,
+    ...phraseArgs(),
+    '--allowed-tools', 'Read, Grep, Glob',
+  ]);
+  assert.equal(plan.exitCode, 0, plan.stderr);
+  assert.match(plan.stdout, /allowed-tools: \["Read","Grep","Glob"\]/);
+  assert.ok(!plan.stdout.includes('No allowed-tools field will be written'));
 });

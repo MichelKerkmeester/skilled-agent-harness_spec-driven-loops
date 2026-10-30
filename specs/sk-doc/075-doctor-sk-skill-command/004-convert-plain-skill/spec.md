@@ -86,10 +86,10 @@ ls: .skilled/commands/doctor/scripts/sk-skill-convert.cjs: No such file or direc
 - V5 resource docs: add the five-field frontmatter plus `version` to `references/` and `assets/` markdown (`package_skill.py:242-245`); rename non-kebab paths and rewrite their links, shown file by file.
 - V6 metadata: run `init_skill.py <name> --path <tmp>` and copy only absent files (`graph-metadata.json`, `leaf-manifest.config.json`, `manual-testing-playbook/`, `benchmark/`); replace slug defaults with at least 8 approved phrases (`ci-skill-root-metadata.cjs:605-611`).
 - V7 generated files: `ci-skill-root-metadata.cjs --fix --skills-dir .skilled/skills --skill <name>`, then `regenerate-skill-derived.cjs --root <dir> --write`.
-- V8 format gate: `package_skill.py <dir> --check --strict`, then `validate_skill_package.py <dir>`; stop on fail, no integration.
+- V8 format gate: `package_skill.py <dir> --check --strict`, then `validate_skill_package.py <dir>`; stop on fail, no integration. Both paths also accept `--description-trim <text>` (at most 130 characters) and `--allowed-tools <comma list>`, applied after the backup so the undo restores the original fields.
 
 ### Out of Scope
-- Integration rows I1 to I6 - phase 005.
+- Integration rows I1 to I6 themselves - phase 005 owns the library, its cases and its evidence; this phase plans and applies the rows after the format gate.
 - The convert YAML and its yes gate - phase 006.
 - Mode-into-hub conversion - report only, phase 008.
 
@@ -147,7 +147,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | `init_skill.py` scaffold shape | No metadata to copy | Run it into a temp path and copy only absent files |
-| Risk | The agent step drops or rewrites content | High | Preservation check on every non-blank, non-heading line; a lost line fails the step (parent D6) |
+| Risk | The agent step drops or rewrites content | High | Preservation check on every non-blank, non-heading line, compared line kind for line kind and target for target; a lost line fails the step (parent D6) |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -181,7 +181,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - Failure path: a dropped body line fails `preserve` and the step stops; V8 failure stops before integration.
 - Missing `graph-metadata.json`: V6 creates it from the `init_skill.py` shape (design R4).
 - Outside root: copy, never move; `key_files` paths are relative to `.skilled/skills/<name>` (`init_skill.py:394-400`, design R5).
-- Kebab renames: V5 rewrites the links it can parse, the plan lists every rename, and V8 catches a dangling path (design R7).
+- Kebab renames: V5 rewrites links, reference definitions, HTML attributes and inline-code paths, the plan lists every rename, and a staged tree still naming an old path fails with `RESOURCE_LINK_STALE` before the scaffold step (design R7).
 <!-- /ANCHOR:edge-cases -->
 
 ---

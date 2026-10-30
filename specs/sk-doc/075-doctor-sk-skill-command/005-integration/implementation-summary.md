@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "The six integration rows I1 to I6 are built as a library with a printed plan, an apply gate and a temp-repo test suite; the convert script's call into them is the conductor's step."
+description: "The six integration rows I1 to I6 are built as a library with a printed plan, an apply gate and a temp-repo test suite, and the conversion plans and applies them once both format validators pass."
 trigger_phrases:
   - "integration implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/075-doctor-sk-skill-command/005-integration"
-    last_updated_at: "2026-10-30T09:15:00Z"
+    last_updated_at: "2026-10-30T10:45:00Z"
     last_updated_by: "code-agent-worker"
-    recent_action: "Built and tested the integration library; recorded the deviation and the evidence"
-    next_safe_action: "Conductor adds the applyIntegration call to the convert apply path"
+    recent_action: "Wired the rows into the conversion and met every acceptance row"
+    next_safe_action: "Close the parent packet"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-281-doctor-skill-command"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,8 +36,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-integration |
-| **Status** | In Progress |
-| **Completed** | Library and tests delivered; the convert call site is the conductor's step |
+| **Status** | Complete |
+| **Completed** | 2026-10-30 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -69,11 +69,19 @@ The reach script gains an opt-in `--skill <name-or-path>` that probes one standa
 standalone skill has no hub registry for the fleet scan to list. With no flag the script builds the same
 report it always did.
 
+The conversion calls the library. `buildPlainPlan` appends `planIntegration(...).lines` to the printed plan,
+and `applyPlainPlan` calls `applyIntegration({ ..., apply: true })` only after `package_skill.py --check
+--strict` and `validate_skill_package.py` both pass, so a failed format gate never reaches a row. The result
+prints each row's lines, the undo list carries every recorded write (`rm` for a created file, `git restore`
+for an overwritten one), and a row that reports FAILED leaves the staged tree in place and makes the run exit
+non-zero rather than hiding the undo commands behind a success.
+
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
 | `.skilled/commands/doctor/scripts/lib/sk-skill-integrate.cjs` | Created | The six rows, their plan lines, and the apply gate |
+| `.skilled/commands/doctor/scripts/sk-skill-convert.cjs` | Modified | Plans the rows beside the conversion and applies them after the format gate, printing each result and recording each write for the undo list |
 | `.skilled/commands/doctor/scripts/tests/sk-skill-integrate.test.cjs` | Created | 23 temp-repo cases, including the freshness, package and dataset checks against the real tools |
 | `.skilled/commands/doctor/scripts/tests/fixtures/sk-skill-integrate/router-reach-fleet-report.json` | Created | The fleet report recorded from the script before `--skill` existed, so the fleet path is compared against a golden and not against the file under test |
 | `.skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs` | Modified | Spawn wrappers for the scan, compiler and Hermes sync, plus the paths they need |
@@ -93,8 +101,9 @@ independent and the caller is the one who knows what a partial wiring means.
 
 The rows live in this library rather than inline in `sk-skill-convert.cjs`. **This is the phase's one
 deviation from the spec's file table.** The plain-skill phase owns the convert script and its test file in
-parallel with this one, so an inline V9 would have made both phases edit the same two files. The conductor
-adds the call, and this summary is the record of the move.
+parallel with this one, so an inline step would have made both phases edit the same two files. The call site
+is one plan call and one apply call in `sk-skill-convert.cjs`, which is what kept the two phases apart while
+keeping the rows where their tests can isolate them.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -119,9 +128,9 @@ adds the call, and this summary is the record of the move.
 
 | Check | Result |
 |-------|--------|
-| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-integrate.test.cjs` | 21 tests, 21 pass, 0 fail, exit 0 |
-| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | 31 tests, 31 pass, 0 fail, exit 0 |
-| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` | 14 tests, 14 pass, 0 fail, exit 0 |
+| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-integrate.test.cjs` | 23 tests, 23 pass, 0 fail, exit 0 |
+| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | 54 tests, 54 pass, 0 fail, exit 0 |
+| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs` | 47 tests, 47 pass, 0 fail, exit 0 |
 | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-router-vocabulary-reach.test.cjs` | 1 test, 1 pass, 0 fail, exit 0 |
 | `node --check` on the two created and two modified scripts | exit 0 on each |
 | `skill-graph-freshness.cjs --strict` over the temp repo | exit 0, `STALE COMPILED: none` |
@@ -129,6 +138,8 @@ adds the call, and this summary is the record of the move.
 | `skill_advisor_regression.py --dataset <fixture>/benchmark/advisor-cases.jsonl --min-total-cases 2` | `"overall_pass": true`, exit 0 |
 | `cmp reach-before.txt reach-after.txt` (fleet, stand-in advisor) | exit 0, no output; 65536 bytes, identical sha256, identical verdict |
 | `node REACH --skill sk-git --limit 1` (live advisor) | one row, `RESULT: PASSED`, exit 0, advisor generation 1 |
+| Temp-repo convert, end state | `package_skill.py --check --strict` `Result: PASS`, `ci-skill-root-metadata.cjs --skill` exit 0, `sync-skills-hermes.cjs --check` `PASS: in sync`, `skill-graph-freshness.cjs --strict` exit 0 with `STALE COMPILED: none`, and `readlink .skilled/changelog/brindle-lantern` printing `../skills/brindle-lantern/changelog` |
+| Temp-repo convert, undo list | `rm` for the created changelog link and `git restore` for the overwritten compiled graph |
 | `validate.sh … --strict` | `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
 
@@ -137,9 +148,9 @@ adds the call, and this summary is the record of the move.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The convert call site is not wired.** Convert does not call `applyIntegration` yet, so every acceptance
-   row in `acceptance-criteria.md` stays `Unmet` with the library evidence recorded: each row reads "when
-   convert finishes", and that run does not happen until the conductor adds the call.
+1. **A failing row is a non-zero run, not a rollback.** The conversion keeps the staged tree and the recorded
+   writes when a row reports FAILED, so the operator can re-run one surface; undoing an integration write is
+   the printed undo list's job, not the runner's.
 2. **The reach comparison is a one-hub-per-file mirror of the fleet.** The committed and current scripts are
    compared over the same copied routers with a stand-in advisor. A live advisory run is not reproducible, so
    it cannot be the evidence for a byte comparison.

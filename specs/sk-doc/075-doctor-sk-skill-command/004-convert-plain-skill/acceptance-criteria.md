@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/075-doctor-sk-skill-command/004-convert-plain-skill"
-    last_updated_at: "2026-10-30T09:05:00Z"
-    last_updated_by: "claude-opus-worker"
-    recent_action: "Finished the converter, its fixtures and the recorded evidence"
-    next_safe_action: "Proceed with phase 005 integration"
+    last_updated_at: "2026-10-30T10:45:00Z"
+    last_updated_by: "code-agent-worker"
+    recent_action: "Re-pointed every Met row at evidence that holds after the review fixes"
+    next_safe_action: "Close the packet; the converter wiring and its evidence are current"
     blockers: []
     key_files: []
     session_dedup:
@@ -51,13 +51,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the converted plain fixture, When `package_skill.py --check --strict` runs, Then it prints `Result: PASS` | `.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs:773` asserts `Result: PASS` on the temp-copy integration run; the gate itself is spawned at `.skilled/commands/doctor/scripts/sk-skill-convert.cjs:895` | Met | - |
-| AC-002 | REQ-002 | Given the converted plain fixture, When `ci-skill-root-metadata.cjs --skill <fixture>` runs, Then it exits 0 | `.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs:776` asserts exit 0 and the suite printed `OK [S] brindle-lantern`; the planned line lives at `.skilled/commands/doctor/scripts/sk-skill-convert.cjs:389` | Met | - |
-| AC-003 | REQ-003 | Given the plain fixture snapshot, When `sk-skill-convert.cjs preserve --snapshot <dir>` runs, Then it passes | `.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs:791` asserts `Preservation PASS`; the check is `.skilled/commands/doctor/scripts/sk-skill-convert.cjs:655` | Met | - |
-| AC-004 | REQ-004 | Given the dropped-line fixture, When `preserve` runs, Then it fails and names the lost line | `.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs:898` asserts exit 1 naming `Read the field notes before choosing a review path`; the apply guard sits at `.skilled/commands/doctor/scripts/sk-skill-convert.cjs:863` and the subcommand guard at `.skilled/commands/doctor/scripts/sk-skill-convert.cjs:941` | Met | - |
-| AC-005 | REQ-005 | Given 7 approved phrases, When `plan` runs, Then it stops with `INTENT_SIGNALS_BELOW_FLOOR` | `.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs:676` asserts the refusal and `.skilled/commands/doctor/scripts/sk-skill-convert.cjs:327` raises it before any step is planned | Met | - |
-| AC-006 | REQ-006 | Given a plain skill with no `allowed-tools`, When `plan` runs, Then it proposes `[Read, Grep, Glob]`, plus `Bash` only when `scripts/` exists, and writes none without confirmation | `.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs:687` and `.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs:708` assert both proposals; `.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs:699` asserts apply refuses without `--allowed-tool`; the proposal is `.skilled/commands/doctor/scripts/sk-skill-convert.cjs:330` | Met | - |
-| AC-007 | REQ-007 | Given a source outside `.skilled/skills`, When `apply --apply` runs, Then the source folder hashes are unchanged | `.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs:748` compares SHA-256 tree hashes before and after apply; the copy-not-move stage is `.skilled/commands/doctor/scripts/sk-skill-convert.cjs:841` | Met | - |
+| AC-001 | REQ-001 | Given the converted plain fixture, When `package_skill.py --check --strict` runs, Then it prints `Result: PASS` | `.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs:871` asserts `Result: PASS` in the apply result and `:937` asserts the separate `package_skill.py --check --strict` spawn exits 0; the gate is spawned at `.skilled/commands/doctor/scripts/sk-skill-convert.cjs:1111` and `:1114` refuses anything but `Result: PASS` | Met | - |
+| AC-002 | REQ-002 | Given the converted plain fixture, When `ci-skill-root-metadata.cjs --skill <fixture>` runs, Then it exits 0 | `.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs:946` asserts exit 0 for the `--skill brindle-lantern` run; the step lives at `.skilled/commands/doctor/scripts/sk-skill-convert.cjs:1092` through `:1095` | Met | - |
+| AC-003 | REQ-003 | Given the plain fixture snapshot, When `sk-skill-convert.cjs preserve --snapshot <dir>` runs, Then it passes | `.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs:963` and `:964` assert exit 0 and `Preservation PASS`; the check is called at `.skilled/commands/doctor/scripts/sk-skill-convert.cjs:1077` | Met | - |
+| AC-004 | REQ-004 | Given the dropped-line fixture, When `preserve` runs, Then it fails and names the lost line | `.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs:1043` (apply) and `:1077` (preserve) assert exit 1 naming `Read the field notes before choosing a review path`; the apply guard is `.skilled/commands/doctor/scripts/sk-skill-convert.cjs:1078` and the subcommand guard `:1167` | Met | - |
+| AC-005 | REQ-005 | Given 7 approved phrases, When `plan` runs, Then it stops with `INTENT_SIGNALS_BELOW_FLOOR` | `.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs:804` asserts the refusal; `.skilled/commands/doctor/scripts/sk-skill-convert.cjs:362` raises it before any step is planned | Met | - |
+| AC-006 | REQ-006 | Given a plain skill with no `allowed-tools`, When `plan` runs, Then it proposes `[Read, Grep, Glob]`, plus `Bash` only when `scripts/` exists, and writes none without confirmation | `.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs:810` and `:831` assert both proposals, `:822` asserts apply refuses without an approved list; `.skilled/commands/doctor/scripts/sk-skill-convert.cjs:365` and `:366` build the proposal | Met | - |
+| AC-007 | REQ-007 | Given a source outside `.skilled/skills`, When `apply --apply` runs, Then the source folder hashes are unchanged | `.skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs:882` compares SHA-256 tree hashes before and after apply; the copy-not-move stage is `.skilled/commands/doctor/scripts/sk-skill-convert.cjs:1050`, guarded by the symlink refusal at `:1046` | Met | - |
 
 ### Status values
 
@@ -84,5 +84,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-All seven criteria are met. Every row names the test line and the converter line that carry it, and `tasks.md` records the same command set in its verification checklists.
+All seven criteria are met. Every row names the test line and the converter line that carry it after the review fixes, and `tasks.md` records the same command set in its verification checklists.
 <!-- /ANCHOR:closure -->

@@ -8,17 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/075-doctor-sk-skill-command/005-integration"
-    last_updated_at: "2026-10-30T09:15:00Z"
+    last_updated_at: "2026-10-30T10:45:00Z"
     last_updated_by: "code-agent-worker"
-    recent_action: "Completed every library task and recorded the evidence"
-    next_safe_action: "Conductor wires applyIntegration into the convert apply path"
+    recent_action: "Wired the rows into the conversion and met every acceptance row"
+    next_safe_action: "Close the parent packet"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-281-doctor-skill-command"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,8 +43,8 @@ _memory:
 
 `DOC` is `.skilled/commands/doctor`. `REACH` is `.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs`.
 `LIB` is `DOC/scripts/lib/sk-skill-integrate.cjs`. The rows live in `LIB` rather than inline in
-`DOC/scripts/sk-skill-convert.cjs` so this phase can build beside the plain-skill phase; the conductor adds
-the `applyIntegration` call, and `implementation-summary.md` records the deviation.
+`DOC/scripts/sk-skill-convert.cjs` so this phase could build beside the plain-skill phase; the wiring task
+below records the call site, and `implementation-summary.md` records the deviation.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -77,6 +77,8 @@ the `applyIntegration` call, and `implementation-summary.md` records the deviati
 
 - [x] T009 Run the temp-repo cases (`DOC/scripts/tests/sk-skill-integrate.test.cjs`). Verify: Hermes `--check` PASS and `skill-graph-freshness.cjs --strict` exits 0. Evidence: `node --test` reports 23 pass, 0 fail; inside it the freshness panel exits 0 and the Hermes check is observed passing.
 - [x] T010 Capture the fleet output after the change and compare (`scratch/reach-after.txt`). Verify: `cmp scratch/reach-before.txt scratch/reach-after.txt` prints nothing. Evidence: `cmp exit=0 stdout=""`; both runs exit 1 on the same stubbed verdict, so the verdict is unchanged as well as the bytes.
+- [x] T012 Wire the rows into the conversion (`DOC/scripts/sk-skill-convert.cjs`). Verify: `plan` prints `planIntegration(...).lines` and `apply --apply` calls `applyIntegration({ ..., apply: true })` after the format gate. Evidence: the plan prints `Integration plan: brindle-lantern` and one line per row; the end-to-end case prints each row's result and the undo list carries `rm` for the changelog link and `git restore` for the compiled graph. A failed strict gate never spawns the advisor, the compiler or the Hermes sync.
+- [x] T013 Re-read every acceptance row against a real convert run (`acceptance-criteria.md`). Verify: all eight rows are Met and each cites the end-to-end case. Evidence: a temp-repo convert ends with strict PASS, root-metadata exit 0, `sync-skills-hermes.cjs --check` PASS, `skill-graph-freshness.cjs --strict` exit 0 and `readlink .skilled/changelog/brindle-lantern` printing `../skills/brindle-lantern/changelog`; `validate.sh --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -34,7 +34,7 @@ contextType: "general"
 ## Phase 1: Setup
 
 - [x] T001 Add a plain skill fixture and a dropped-line variant with invented names (`FX/`). Verify: the resolver prints `none` on the plain fixture. Evidence: resolver command printed `none` for `plain/before/SKILL.md`.
-- [x] T002 Confirm phase 003 closed (`DOC/scripts/tests/sk-skill-convert.test.cjs`). Verify: `node --test` on it exits 0. Evidence: the final conversion suite passed 21/21, including phase 003 cases.
+- [x] T002 Confirm phase 003 closed (`DOC/scripts/tests/sk-skill-convert.test.cjs`). Verify: `node --test` on it exits 0. Evidence: the final conversion suite passed 47/47, including phase 003 cases.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -48,7 +48,7 @@ contextType: "general"
 - [x] T006 [P] V5 resource-doc frontmatter and kebab rename with link rewrite (`DOC/scripts/lib/sk-skill-convert-transforms.cjs`). Verify: the plan lists each rename file by file. Evidence: `references/Field Notes.md` is listed, becomes `references/field-notes.md`, and links are rewritten.
 - [x] T007 V6 metadata from a temp `init_skill.py` run, copying only absent files, with at least 8 approved phrases (`DOC/scripts/sk-skill-convert.cjs`). Verify: 7 phrases stop the plan with `INTENT_SIGNALS_BELOW_FLOOR`. Evidence: 7 phrases are refused; 8 complete apply; the temp scaffold is removed and existing files survive.
 - [x] T008 V7 and V8: root-metadata `--fix`, derived `--write`, then the strict and package validators (`DOC/scripts/sk-skill-convert.cjs`). Verify: a forced V8 failure stops before integration. Evidence: valid apply passes both generators and gates; invalid RULES shape stops at `STRICT_PACKAGE_FAILED` before `validate_skill_package.py` runs.
-- [x] T009 `allowed-tools` proposal with no default (`DOC/scripts/sk-skill-convert.cjs`). Verify: the plan proposes `[Read, Grep, Glob]`, plus `Bash` only when `scripts/` exists. Evidence: tests verify both proposals and apply refuses without explicit `--allowed-tool` inputs.
+- [x] T009 `allowed-tools` proposal with no default (`DOC/scripts/sk-skill-convert.cjs`). Verify: the plan proposes `[Read, Grep, Glob]`, plus `Bash` only when `scripts/` exists. Evidence: tests verify both proposals and apply refuses without an explicit `--allowed-tool` value or one `--allowed-tools` list.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -56,7 +56,7 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T010 Run the suite (`DOC/scripts/tests/sk-skill-convert.test.cjs`). Verify: `node --test` on it exits 0. Evidence: 21 tests passed, 0 failed, after the final change to the failure path.
+- [x] T010 Run the suite (`DOC/scripts/tests/sk-skill-convert.test.cjs`). Verify: `node --test` on it exits 0. Evidence: 47 tests passed, 0 failed, after the final change to the failure path. The check suite passes 54 and the integration suite 23.
 - [x] T011 Run the gates on the converted plain fixture (`FX/`). Verify: `package_skill.py --check --strict` prints `Result: PASS` and `ci-skill-root-metadata.cjs --skill <fixture>` exits 0. Evidence: a scratch-area run of the shipped converter produced `Result: PASS` (exit 0), `OK [S] brindle-lantern` (exit 0), `Preservation PASS: 7 original body line(s) found.` (exit 0) and `INTENT_SIGNALS_BELOW_FLOOR` on 7 phrases (exit 1).
 <!-- /ANCHOR:phase-3 -->
 
@@ -134,7 +134,14 @@ A blocked task is marked `[B]` with the blocking cause on the same line.
 <!-- ANCHOR:fix-completeness -->
 ## FIX ADDENDUM: FIX COMPLETENESS
 
-N/A: this phase fixes no reported finding.
+- [x] T012 Refuse a symlinked source tree before staging (`DOC/scripts/sk-skill-convert.cjs`). Verify: `SOURCE_SYMLINK` exits 1 and the outside file is byte-identical. Evidence: the symlink case compares the outside bytes after both the plan and the apply.
+- [x] T013 Keep hash lines inside fences and compare line kinds (`DOC/scripts/lib/sk-skill-convert-transforms.cjs`). Verify: `bodyLinesToPreserve` keeps a fenced `#` comment and the preserve cases fail when prose moves into a fence or a comment. Evidence: the fence case and the line-kind case.
+- [x] T014 Rewrite every link form and refuse a stale old name (`DOC/scripts/lib/sk-skill-convert-transforms.cjs`, `DOC/scripts/sk-skill-convert.cjs`, `FX/plain/after/SKILL.md`). Verify: `RESOURCE_LINK_STALE` exits 1 on a staged tree naming an old path, and the committed after-copy names none. Evidence: the link-form unit case, the stale-tree case and the fixture case.
+- [x] T015 Compare link targets verbatim, subtract source reference lines and match like line kinds (`DOC/scripts/sk-skill-convert.cjs`, `DOC/scripts/lib/sk-skill-convert-transforms.cjs`). Verify: a repointed link, a dropped line that also sits in a reference, and a prose line moved into a fence each fail `preserve`. Evidence: the three preservation cases.
+- [x] T016 Run the plain check through `pythonExecutable(context)` (`DOC/scripts/sk-skill-convert.cjs`, `DOC/scripts/tests/sk-skill-convert.test.cjs`). Verify: a wrapper interpreter logs the check call. Evidence: the interpreter case; the suite no longer spawns `/usr/bin/python3`.
+- [x] T017 Accept `--description-trim` and `--allowed-tools` on both paths (`DOC/scripts/sk-skill-convert.cjs`, `DOC/scripts/lib/sk-skill-convert-transforms.cjs`). Verify: each field change prints as its own plan line, the backup holds the original text, and the undo restores it. Evidence: the approved-trim and approved-tools cases; without the flags the existing `DESCRIPTION_TOO_LONG` and `ALLOWED_TOOLS_MISSING` refusals stay.
+- [x] T018 Plan the integration rows and apply them after the format gate (`DOC/scripts/sk-skill-convert.cjs`). Verify: a temp-repo convert ends with strict PASS, root-metadata exit 0, the Hermes `--check` PASS, `skill-graph-freshness.cjs --strict` exit 0 and a resolving changelog link. Evidence: the end-to-end case asserts all five from one run, and a failed strict gate never reaches the rows.
+- [x] T019 Record the real suite counts and re-point the acceptance rows (`tasks.md`, `plan.md`, `implementation-summary.md`, `acceptance-criteria.md`). Verify: `validate.sh --strict` prints `RESULT: PASSED`. Evidence: 47 conversion, 54 check and 23 integration tests pass; every Met row cites a line that holds it.
 <!-- /ANCHOR:fix-completeness -->
 
 ---

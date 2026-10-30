@@ -321,15 +321,16 @@ function scanFencedBlocks(text, start = 0, end = text.length) {
   };
 }
 
+function fencedLineRanges(text) {
+  const scanned = scanFencedBlocks(text);
+  return [...scanned.blocks, ...(scanned.unclosed ? [scanned.unclosed] : [])];
+}
+
 function scanHeadings(text) {
   const headings = [];
-  const scanned = scanFencedBlocks(text);
-  const fencedRanges = [
-    ...scanned.blocks,
-    ...(scanned.unclosed ? [scanned.unclosed] : []),
-  ];
+  const ranges = fencedLineRanges(text);
   for (const line of lineRecords(text)) {
-    if (fencedRanges.some((range) => line.start >= range.start && line.start < range.end)) continue;
+    if (ranges.some((range) => line.start >= range.start && line.start < range.end)) continue;
     const heading = /^##\s+(.+?)\s*$/.exec(line.text);
     if (heading) headings.push({ start: line.start, end: line.end, title: heading[1].trim() });
   }
@@ -551,7 +552,7 @@ function normalizePlainSkillFrontmatter(text, allowedTools, descriptionTrim = nu
     lines[descriptionIndexes[0]] = `description: ${JSON.stringify(description)}`;
   }
   if (Array.from(description).length > 130) {
-    throw transformError('DESCRIPTION_TRIM_REQUIRED', 'The description exceeds 130 characters; approve a trim with --description-trim before V8.');
+    throw transformError('DESCRIPTION_TRIM_REQUIRED', 'The description exceeds 130 characters; approve a trim with --description-trim before the format gate.');
   }
 
   for (const index of allowedIndexes.reverse()) {
@@ -563,6 +564,44 @@ function normalizePlainSkillFrontmatter(text, allowedTools, descriptionTrim = nu
 
   const withTools = `---${parts.newline}${lines.join(parts.newline)}${parts.close}${parts.after}${parts.rest}`;
   return normalizeSkillFrontmatter(withTools).text;
+}
+
+// The two frontmatter fields an older Skilled skill can be missing or over the
+// budget are exactly the two a conversion must not invent on its own: the
+// description drives native routing and allowed-tools grants permission. An
+// approval flag is the operator saying yes to one named value, so it is applied
+// here and every other field is left as the source wrote it.
+function applyFrontmatterApprovals(text, approvals = {}) {
+  const descriptionTrim = typeof approvals.descriptionTrim === 'string' ? approvals.descriptionTrim : null;
+  const tools = Array.isArray(approvals.allowedTools) ? uniquePhrases(approvals.allowedTools) : [];
+  if (descriptionTrim === null && tools.length === 0) return text;
+  const parts = frontmatterParts(text);
+  const lines = parts.body.split(parts.newline);
+  if (descriptionTrim !== null) {
+    const index = lines.findIndex((line) => /^description\s*:/i.test(line));
+    if (index === -1) {
+      throw transformError('DESCRIPTION_MISSING', 'SKILL.md must declare a description before conversion.');
+    }
+    lines[index] = `description: ${JSON.stringify(descriptionTrim)}`;
+  }
+  if (tools.length) {
+    const declarations = [];
+    for (let index = 0; index < lines.length; index += 1) {
+      if (/^allowed-tools\s*:/i.test(lines[index])) declarations.push(index);
+    }
+    const block = ['allowed-tools:', ...tools.map((tool) => `  - ${JSON.stringify(tool)}`)];
+    if (declarations.length === 0) {
+      lines.push(...block);
+    } else {
+      for (let index = declarations.length - 1; index >= 0; index -= 1) {
+        const at = declarations[index];
+        const parsed = parseAllowedTools(lines, at);
+        lines.splice(at, parsed.end - at);
+      }
+      lines.splice(declarations[0], 0, ...block);
+    }
+  }
+  return `---${parts.newline}${lines.join(parts.newline)}${parts.close}${parts.after}${parts.rest}`;
 }
 
 function harvestReferenceLinks(text) {
@@ -615,28 +654,55 @@ function resourceRenameMap(relativePaths) {
   return renames;
 }
 
+function renamedLinkTarget(raw, baseDirectory, renames) {
+  if (!raw || /^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(raw)) return null;
+  const suffixAt = raw.search(/[?#]/);
+  const linkPath = suffixAt === -1 ? raw : raw.slice(0, suffixAt);
+  const suffix = suffixAt === -1 ? '' : raw.slice(suffixAt);
+  let decoded = linkPath;
+  try {
+    decoded = decodeURIComponent(linkPath);
+  } catch {}
+  const resolved = path.posix.normalize(path.posix.join(baseDirectory, decoded));
+  const renamed = renames.get(resolved);
+  if (!renamed) return null;
+  let relative = path.posix.relative(baseDirectory, renamed);
+  if (linkPath.startsWith('./') && !relative.startsWith('.')) relative = `./${relative}`;
+  const encoded = relative.split('/').map(encodeURIComponent).join('/');
+  return `${encoded}${suffix}`;
+}
+
+// A renamed resource has to be unreachable under its old name from every form a
+// markdown document can spell a path: a link in a paragraph, a reference-style
+// definition, an HTML attribute, and an inline code span a reader would follow.
+// Each form carries its target differently, so each gets its own pass rather
+// than one pattern that only ever sees `](`. URLs are left alone: an external
+// path that happens to end in the same name is not this skill's file.
 function rewriteResourceLinks(text, renames, sourcePath = 'SKILL.md') {
   if (!renames || renames.size === 0) return text;
   const baseDirectory = path.posix.dirname(sourcePath);
-  return text.replace(/(\]\(\s*)(?:<([^>]+)>|([^\s)]+))/g, (match, prefix, anglePath, barePath) => {
-    const raw = anglePath || barePath || '';
-    if (!raw || /^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(raw)) return match;
-    const suffixAt = raw.search(/[?#]/);
-    const linkPath = suffixAt === -1 ? raw : raw.slice(0, suffixAt);
-    const suffix = suffixAt === -1 ? '' : raw.slice(suffixAt);
-    let decoded = linkPath;
-    try {
-      decoded = decodeURIComponent(linkPath);
-    } catch {}
-    const resolved = path.posix.normalize(path.posix.join(baseDirectory, decoded));
-    const renamed = renames.get(resolved);
-    if (!renamed) return match;
-    let relative = path.posix.relative(baseDirectory, renamed);
-    if (linkPath.startsWith('./') && !relative.startsWith('.')) relative = `./${relative}`;
-    const encoded = relative.split('/').map(encodeURIComponent).join('/');
-    const next = `${encoded}${suffix}`;
-    return `${prefix}${anglePath ? `<${next}>` : next}`;
-  });
+  const rewrite = (raw) => renamedLinkTarget(raw, baseDirectory, renames);
+  return text
+    .replace(/^([ \t]*\[[^\]\n]+\]:[ \t]*)(<([^>\n]+)>|(\S+))/gm, (match, prefix, whole, anglePath, barePath) => {
+      const target = rewrite(anglePath || barePath);
+      if (!target) return match;
+      return `${prefix}${anglePath ? `<${target}>` : target}`;
+    })
+    .replace(/(\]\(\s*)(<([^>\n]+)>|([^\s)]+))/g, (match, prefix, whole, anglePath, barePath) => {
+      const target = rewrite(anglePath || barePath);
+      if (!target) return match;
+      return `${prefix}${anglePath ? `<${target}>` : target}`;
+    })
+    .replace(/\b(href|src)\s*=\s*("([^"]*)"|'([^']*)')/g, (match, attribute, whole, doubleQuoted, singleQuoted) => {
+      const raw = doubleQuoted === undefined ? singleQuoted : doubleQuoted;
+      const target = rewrite(raw);
+      if (!target) return match;
+      return doubleQuoted === undefined ? `${attribute}='${target}'` : `${attribute}="${target}"`;
+    })
+    .replace(/`([^`\n]+)`/g, (match, code) => {
+      const target = rewrite(code.trim());
+      return target ? `\`${target}\`` : match;
+    });
 }
 
 function describeResource(relativePath, text) {
@@ -727,19 +793,81 @@ function bodyContent(text) {
   return frontmatterParts(text).rest;
 }
 
-function bodyLinesToPreserve(text) {
-  return bodyContent(text).split(/\r?\n/)
-    .map(normalizePreservationLine)
-    .filter((line) => line && !/^#{1,6}\s/.test(line));
+// A target the plan renamed is the same document under its new name; any other
+// target is compared as written, so a link repointed somewhere else is a change
+// in what the line says rather than a formatting difference.
+function canonicalPreservationTarget(raw, renames) {
+  if (!raw || /^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(raw)) return raw;
+  const suffixAt = raw.search(/[?#]/);
+  const linkPath = suffixAt === -1 ? raw : raw.slice(0, suffixAt);
+  const suffix = suffixAt === -1 ? '' : raw.slice(suffixAt);
+  let decoded = linkPath;
+  try {
+    decoded = decodeURIComponent(linkPath);
+  } catch {}
+  const normalized = path.posix.normalize(decoded.replace(/^\.\//, ''));
+  const renamed = renames.get(normalized) || resourceRenameMap([normalized]).get(normalized);
+  if (!renamed) return raw;
+  const relative = linkPath.startsWith('./') && !renamed.startsWith('.') ? `./${renamed}` : renamed;
+  return `${relative}${suffix}`;
 }
 
-function normalizePreservationLine(line) {
-  return String(line).trim().replace(/\[([^\]]+)\]\((?:<[^>]+>|[^)]+)\)/g, '[$1]');
+function normalizePreservationLine(line, renames = new Map()) {
+  let normalized = String(line).trim()
+    .replace(/\[([^\]\n]*)\]\(\s*(?:<([^>\n]+)>|([^)\s]+))\s*\)/g, (match, label, anglePath, barePath) => {
+      const target = canonicalPreservationTarget(anglePath || barePath || '', renames);
+      return anglePath ? `[${label}](<${target}>)` : `[${label}](${target})`;
+    })
+    .replace(/`([^`\n]+)`/g, (match, code) => `\`${canonicalPreservationTarget(code.trim(), renames)}\``)
+    .replace(/\b(href|src)\s*=\s*("([^"]*)"|'([^']*)')/g, (match, attribute, whole, doubleQuoted, singleQuoted) => {
+      const raw = doubleQuoted === undefined ? singleQuoted : doubleQuoted;
+      const target = canonicalPreservationTarget(raw, renames);
+      return doubleQuoted === undefined ? `${attribute}='${target}'` : `${attribute}="${target}"`;
+    });
+  // A table row says the same thing however its cells are padded, so a formatter
+  // that realigns the columns has not changed the row.
+  if (normalized.startsWith('|')) normalized = normalized.replace(/[ \t]+/g, ' ');
+  return normalized;
+}
+
+// What counts as preserved is decided by the kind of line as well as its text:
+// prose is prose, a fenced sample is a sample and an HTML comment is a comment,
+// so moving a sentence into a code fence or a comment does not keep it.
+function preservationLines(text, renames = new Map()) {
+  const body = optionalFrontmatterParts(text).rest;
+  const ranges = fencedLineRanges(body);
+  const entries = [];
+  let inComment = false;
+  for (const record of lineRecords(body)) {
+    const fenced = ranges.some((range) => record.start >= range.start && record.start < range.end);
+    let kind = 'prose';
+    if (fenced) {
+      kind = 'fenced';
+    } else if (inComment) {
+      kind = 'comment';
+      if (record.text.includes('-->')) inComment = false;
+    } else if (record.text.includes('<!--')) {
+      kind = 'comment';
+      if (!record.text.includes('-->')) inComment = true;
+    }
+    const line = normalizePreservationLine(record.text, renames);
+    if (!line) continue;
+    // A heading is structure, not prose, but a hash line inside a fence is a
+    // comment in a sample and survives with the rest of the sample.
+    if (kind !== 'fenced' && /^#{1,6}\s/.test(line)) continue;
+    entries.push({ line, kind });
+  }
+  return entries;
+}
+
+function bodyLinesToPreserve(text) {
+  return preservationLines(text).map((entry) => entry.line);
 }
 
 module.exports = {
   addRouterLink,
   addResourceFrontmatter,
+  applyFrontmatterApprovals,
   bodyLinesToPreserve,
   bodyContent,
   harvestReferenceLinks,
@@ -748,6 +876,7 @@ module.exports = {
   normalizePreservationLine,
   moveLegacyRouter,
   normalizeSkillFrontmatter,
+  preservationLines,
   proposeIntentPhrases,
   renderPlainRouter,
   resourceRenameMap,

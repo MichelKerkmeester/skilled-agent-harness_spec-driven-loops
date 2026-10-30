@@ -12,11 +12,12 @@ const { isDeepStrictEqual } = require('node:util');
 const surface = require('./lib/sk-skill-surface.cjs');
 const transforms = require('./lib/sk-skill-convert-transforms.cjs');
 const checker = require('./sk-skill-check.cjs');
+const integrate = require('./lib/sk-skill-integrate.cjs');
 
 const SCRIPT_DIR = __dirname;
 const USAGE = [
   'Usage: sk-skill-convert.cjs plan <skill-name-or-path>',
-  '       sk-skill-convert.cjs apply <skill-name-or-path> [--approved-phrase <text>] [--allowed-tool <tool>] [--description-trim <text>] [--agent-output <path>] [--apply]',
+  '       sk-skill-convert.cjs apply <skill-name-or-path> [--approved-phrase <text>] [--allowed-tool <tool>] [--allowed-tools <comma list>] [--description-trim <text>] [--agent-output <path>] [--apply]',
   '       sk-skill-convert.cjs preserve --snapshot <dir> [<skill-dir>]',
   '',
   'plan is read-only. apply prints the plan and writes only when --apply is present.',
@@ -47,7 +48,7 @@ function parseArguments(argv) {
     if (token === '--apply') {
       if (apply) throw new ConvertError('USAGE', 'Option --apply was specified more than once.', 2);
       apply = true;
-    } else if (['--snapshot', '--agent-output', '--description-trim', '--approved-phrase', '--allowed-tool'].includes(token)) {
+    } else if (['--snapshot', '--agent-output', '--description-trim', '--approved-phrase', '--allowed-tool', '--allowed-tools'].includes(token)) {
       const value = args[index + 1];
       if (typeof value !== 'string' || value.startsWith('--')) {
         throw new ConvertError('USAGE', `${token} requires a value.`, 2);
@@ -63,7 +64,9 @@ function parseArguments(argv) {
         if (descriptionTrim !== null) throw new ConvertError('USAGE', 'Option --description-trim was specified more than once.', 2);
         descriptionTrim = value;
       } else if (token === '--approved-phrase') approvedPhrases.push(value);
-      else allowedTools.push(value);
+      // The comma list is the same approval the repeated flag carries, so both
+      // spell one list and a run may use either without reordering its tools.
+      else allowedTools.push(...value.split(','));
     } else if (token.startsWith('-')) {
       throw new ConvertError('USAGE', `Unknown option: ${token}`, 2);
     } else if (target === null) target = token;
@@ -202,7 +205,9 @@ function findNestedSkillFile(skillRoot, fileSystem) {
   return null;
 }
 
-function frontmatterPlanSteps(transformed, skillFile) {
+// Each approved field gets its own printed line: the operator approves a value,
+// not a diff they have to reconstruct from the file the workflow rewrites.
+function frontmatterPlanSteps(transformed, skillFile, approvals = {}) {
   const steps = [];
   if (transformed.versionChanged) {
     const detail = transformed.versionInserted
@@ -210,7 +215,20 @@ function frontmatterPlanSteps(transformed, skillFile) {
       : `Pad version ${transformed.originalVersion} to ${transformed.version}.`;
     steps.push({ kind: 'overwrite', file: skillFile, detail });
   }
-  if (transformed.allowedToolsChanged) {
+  if (approvals.descriptionTrim) {
+    steps.push({
+      kind: 'overwrite',
+      file: skillFile,
+      detail: `Set description: ${JSON.stringify(approvals.descriptionTrim)} (the approved trim, within the 130-character limit).`,
+    });
+  }
+  if (Array.isArray(approvals.allowedTools) && approvals.allowedTools.length) {
+    steps.push({
+      kind: 'overwrite',
+      file: skillFile,
+      detail: `Set allowed-tools: ${JSON.stringify(approvals.allowedTools)} (the approved list).`,
+    });
+  } else if (transformed.allowedToolsChanged) {
     steps.push({ kind: 'overwrite', file: skillFile, detail: 'Normalize allowed-tools as a YAML sequence.' });
   }
   return steps;
@@ -310,6 +328,9 @@ function buildPlainPlan(skillRoot, skill, context, decisions) {
   if (typeof skill.fields.description !== 'string' || skill.fields.description.length === 0) {
     refuse('SKILL.md must declare a description before conversion.');
   }
+  // A copied tree reproduces a symlink as a link, so a later write lands in the
+  // file outside the source. The tree is checked before anything is staged.
+  refuseSymlink(skillRoot, fileSystem);
   if (findNestedSkillFile(skillRoot, fileSystem)) {
     refuse('Nested SKILL.md packets make this a hub candidate.', 'NESTED_PACKETS');
   }
@@ -318,7 +339,7 @@ function buildPlainPlan(skillRoot, skill, context, decisions) {
       refuse(`Hub declaration ${declaration} is present; conversion does not modify hubs.`, 'HUB_DECLARATION');
     }
   }
-  const report = runCheck(skillRoot, { ...context, python: '/usr/bin/python3' });
+  const report = runCheck(skillRoot, { ...context, python: pythonExecutable(context) });
   if (report.inputKind !== 'plain') {
     refuse(`The existing check classified this outside-root input as ${report.inputKind || 'unknown'}; only plain skills are in scope.`, 'NOT_PLAIN_SKILL');
   }
@@ -346,17 +367,22 @@ function buildPlainPlan(skillRoot, skill, context, decisions) {
   const descriptionTrim = decisions.descriptionTrim === null
     ? null
     : String(decisions.descriptionTrim).trim();
-  if (descriptionTrim !== null && (!descriptionTrim || Array.from(descriptionTrim).length > 130)) {
-    refuse('An approved description trim must contain 1 to 130 characters.', 'DESCRIPTION_TRIM_INVALID');
+  if (descriptionTrim !== null) {
+    if (!descriptionTrim) {
+      refuse('An approved description trim must be a non-empty string.', 'DESCRIPTION_TRIM_INVALID');
+    }
+    const trimLength = Array.from(descriptionTrim).length;
+    if (trimLength > 130) {
+      refuse(`The approved description trim is ${trimLength} characters; the limit is 130.`, 'DESCRIPTION_TOO_LONG');
+    }
   }
   const proposedTrim = sourceDescriptionTrim(skill.fields.description);
   const agentSkill = getAgentSkillText(decisions.agentOutput, context);
   const nextBodySource = agentSkill ? reshapeBody(skill.text, agentSkill) : skill.text;
   let template;
   try {
-    template = fileSystem.readFileSync(path.join(
-      context.repoRoot,
-      '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'assets', 'skill', 'skill-router-template.md',
+    template = fileSystem.readFileSync(path.resolve(
+      skillCreatorDirectory(context), '..', 'assets', 'skill', 'skill-router-template.md',
     ), 'utf8');
   } catch (error) {
     throw new ConvertError('ROUTER_TEMPLATE_MISSING', `The router template could not be read: ${firstLine(error.message)}`, 2);
@@ -374,9 +400,13 @@ function buildPlainPlan(skillRoot, skill, context, decisions) {
   const sourceLinks = transforms.harvestReferenceLinks(nextBodySource);
   const mapResources = uniqueValues(sourceLinks.map((relative) => renames.get(relative) || relative));
   for (const relative of sourceLinks) {
-    if (!fileSystem.existsSync(path.join(skillRoot, ...relative.split('/')))) {
-      refuse(`SKILL.md links to a missing reference document: ${relative}`, 'RESOURCE_LINK_MISSING');
-    }
+    if (fileSystem.existsSync(path.join(skillRoot, ...relative.split('/')))) continue;
+    // The workflow agent may already name the planned kebab path. That is the
+    // same document once the rename lands, so it is resolved through the map
+    // before the link is called missing.
+    const sourceName = [...renames].find(([, nextPath]) => nextPath === relative);
+    if (sourceName && fileSystem.existsSync(path.join(skillRoot, ...sourceName[0].split('/')))) continue;
+    refuse(`SKILL.md links to a missing reference document: ${relative}`, 'RESOURCE_LINK_MISSING');
   }
 
   const targetSkillFile = path.join(targetRoot, 'SKILL.md');
@@ -413,6 +443,18 @@ function buildPlainPlan(skillRoot, skill, context, decisions) {
     mapResources,
     defaultResource,
   );
+  const versionMatch = /^version\s*:\s*["']?(\d+(?:\.\d+){0,3})["']?\s*$/m.exec(skill.text);
+  const version = versionMatch ? versionMatch[1] : '1.0.0.0';
+  // The integration rows are what a format-valid skill still needs before it can
+  // be reached, so they are planned beside the conversion and run only after the
+  // format gates pass.
+  const integrationPlan = planIntegrationRows(context, {
+    skillRoot: targetRoot,
+    name,
+    version,
+    description: descriptionTrim || skill.fields.description,
+    phrases,
+  });
   return {
     kind: 'plain',
     skillRoot,
@@ -436,10 +478,13 @@ function buildPlainPlan(skillRoot, skill, context, decisions) {
     renames: [...renames.entries()],
     mapResources,
     nextRouter,
+    version,
+    integrationPlan: integrationPlan.lines,
+    integrationWrites: integrationPlan.writes,
     steps,
     backupBase: path.join(skillsDir, '.state', 'doctor-sk-skill', name),
     followUps: proposedTrim && !descriptionTrim
-      ? [`Description trim needs approval before V8: ${JSON.stringify(proposedTrim)}; approve with --description-trim.`]
+      ? [`Description trim needs approval before the format gate: ${JSON.stringify(proposedTrim)}; approve with --description-trim.`]
       : [],
   };
 }
@@ -488,6 +533,22 @@ function buildPlan(target, context, decisions = {}) {
     refuse('SKILL.md must declare a description before conversion.', 'DESCRIPTION_MISSING');
   }
 
+  const approvedTools = uniqueValues(decisions.allowedTools);
+  const descriptionTrim = decisions.descriptionTrim === null
+    ? null
+    : String(decisions.descriptionTrim).trim();
+  if (descriptionTrim !== null) {
+    if (!descriptionTrim) refuse('An approved description trim must be a non-empty string.', 'DESCRIPTION_TRIM_INVALID');
+    const trimLength = Array.from(descriptionTrim).length;
+    if (trimLength > 130) {
+      refuse(`The approved description trim is ${trimLength} characters; the limit is 130.`, 'DESCRIPTION_TOO_LONG');
+    }
+  }
+  const approvals = { allowedTools: approvedTools, descriptionTrim };
+  // A field the operator approved is a field write this run owns, so it is
+  // applied before the router move and lands in the same backup.
+  const approvedText = transforms.applyFrontmatterApprovals(skill.text, approvals);
+
   if (findNestedSkillFile(skillRoot, fileSystem)) {
     refuse('Nested SKILL.md packets make this a hub candidate.', 'NESTED_PACKETS');
   }
@@ -525,16 +586,16 @@ function buildPlan(target, context, decisions = {}) {
 
   if (resolved.verdict === 'router-md') {
     const descriptionLength = skill.fields.description.length;
-    if (descriptionLength > 130) {
+    if (descriptionLength > 130 && descriptionTrim === null) {
       refuse(`The description is ${descriptionLength} characters; the 130-character limit needs a separately approved trim.`, 'DESCRIPTION_TOO_LONG');
     }
     let transformedFrontmatter;
     try {
-      transformedFrontmatter = transforms.normalizeSkillFrontmatter(skill.text);
+      transformedFrontmatter = transforms.normalizeSkillFrontmatter(approvedText);
     } catch (error) {
       throw new ConvertError(error.code || 'TRANSFORM_FAILED', error.message, 1);
     }
-    const steps = frontmatterPlanSteps(transformedFrontmatter, skillFile);
+    const steps = frontmatterPlanSteps(transformedFrontmatter, skillFile, approvals);
     const skillChanged = transformedFrontmatter.text !== skill.text;
     return {
       skillRoot,
@@ -580,22 +641,21 @@ function buildPlan(target, context, decisions = {}) {
   const descriptionLength = Number.isInteger(descriptionRow && descriptionRow.length)
     ? descriptionRow.length
     : skill.fields.description.length;
-  if (descriptionLength > 130) {
+  if (descriptionLength > 130 && descriptionTrim === null) {
     // Descriptions drive native routing, so trimming requires a separate approved change.
     refuse(`The description is ${descriptionLength} characters; the 130-character limit needs a separately approved trim.`, 'DESCRIPTION_TOO_LONG');
   }
 
   let transformedFrontmatter;
   try {
-    transformedFrontmatter = transforms.normalizeSkillFrontmatter(skill.text);
+    transformedFrontmatter = transforms.normalizeSkillFrontmatter(approvedText);
   } catch (error) {
     throw new ConvertError(error.code || 'TRANSFORM_FAILED', error.message, 1);
   }
   let template;
   try {
-    template = fileSystem.readFileSync(path.join(
-      context.repoRoot,
-      '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'assets', 'skill', 'skill-router-template.md',
+    template = fileSystem.readFileSync(path.resolve(
+      skillCreatorDirectory(context), '..', 'assets', 'skill', 'skill-router-template.md',
     ), 'utf8');
   } catch (error) {
     throw new ConvertError('ROUTER_TEMPLATE_MISSING', `The router template could not be read: ${firstLine(error.message)}`, 2);
@@ -607,7 +667,7 @@ function buildPlan(target, context, decisions = {}) {
     throw new ConvertError(error.code || 'TRANSFORM_FAILED', error.message, 1);
   }
   const skillChanged = moved.skillMd !== skill.text;
-  const steps = frontmatterPlanSteps(transformedFrontmatter, skillFile);
+  const steps = frontmatterPlanSteps(transformedFrontmatter, skillFile, approvals);
   if (skillChanged) {
     steps.push({ kind: 'overwrite', file: skillFile, detail: 'Remove inline machine router and link to ROUTER.md.' });
   }
@@ -679,31 +739,107 @@ function listMarkdownFiles(root, fileSystem, relativeDirectory = '') {
   return files;
 }
 
-function verifyPreservation(snapshotDirectory, skillRoot, fileSystem) {
+function preservationKey(entry) {
+  return `${entry.kind}\u0000${entry.line}`;
+}
+
+function countPreservedLines(pool, text, renames) {
+  for (const entry of transforms.preservationLines(text, renames)) {
+    const key = preservationKey(entry);
+    pool.set(key, (pool.get(key) || 0) + 1);
+  }
+}
+
+function subtractPreservedLines(pool, text, renames) {
+  for (const entry of transforms.preservationLines(text, renames)) {
+    const key = preservationKey(entry);
+    const count = pool.get(key) || 0;
+    if (count <= 1) pool.delete(key);
+    else pool.set(key, count - 1);
+  }
+}
+
+function takePreservedLine(pool, key) {
+  const count = pool.get(key) || 0;
+  if (count === 0) return false;
+  if (count === 1) pool.delete(key);
+  else pool.set(key, count - 1);
+  return true;
+}
+
+// A line survives when a line of the same kind carries it. The source's own
+// reference documents are subtracted first: a reference copied into the staged
+// tree already held its lines, so it is not a second home for a line the agent
+// dropped out of SKILL.md.
+function verifyPreservation(snapshotDirectory, skillRoot, fileSystem, renames = new Map()) {
   const originalFile = path.join(snapshotDirectory, 'SKILL.md');
   if (!fileSystem.existsSync(originalFile)) {
     throw new ConvertError('SNAPSHOT_INVALID', `The snapshot has no SKILL.md: ${snapshotDirectory}`, 1);
   }
-  const originalLines = transforms.bodyLinesToPreserve(fileSystem.readFileSync(originalFile, 'utf8'));
-  const candidates = [path.join(skillRoot, 'SKILL.md'), path.join(skillRoot, 'ROUTER.md')];
-  candidates.push(...listMarkdownFiles(path.join(skillRoot, 'references'), fileSystem)
-    .map((relative) => path.join(skillRoot, 'references', relative)));
-  const preserved = new Map();
-  for (const candidate of candidates) {
+  const originalLines = transforms.preservationLines(fileSystem.readFileSync(originalFile, 'utf8'), renames);
+  const prosePool = new Map();
+  const referencePool = new Map();
+  for (const candidate of [path.join(skillRoot, 'SKILL.md'), path.join(skillRoot, 'ROUTER.md')]) {
     if (!fileSystem.existsSync(candidate)) continue;
-    const text = fileSystem.readFileSync(candidate, 'utf8');
-    for (const line of text.split(/\r?\n/)) {
-      const trimmed = transforms.normalizePreservationLine(line);
-      if (trimmed) preserved.set(trimmed, (preserved.get(trimmed) || 0) + 1);
-    }
+    countPreservedLines(prosePool, fileSystem.readFileSync(candidate, 'utf8'), renames);
+  }
+  const stagedReferences = path.join(skillRoot, 'references');
+  for (const relative of listMarkdownFiles(stagedReferences, fileSystem)) {
+    countPreservedLines(referencePool, fileSystem.readFileSync(path.join(stagedReferences, relative), 'utf8'), renames);
+  }
+  const snapshotReferences = path.join(snapshotDirectory, 'references');
+  for (const relative of listMarkdownFiles(snapshotReferences, fileSystem)) {
+    subtractPreservedLines(referencePool, fileSystem.readFileSync(path.join(snapshotReferences, relative), 'utf8'), renames);
   }
   const missing = [];
-  for (const line of originalLines) {
-    const count = preserved.get(line) || 0;
-    if (count === 0) missing.push(line);
-    else preserved.set(line, count - 1);
+  for (const entry of originalLines) {
+    const key = preservationKey(entry);
+    if (takePreservedLine(prosePool, key)) continue;
+    if (takePreservedLine(referencePool, key)) continue;
+    missing.push(entry.line);
   }
   return { ok: missing.length === 0, missing, originalLineCount: originalLines.length };
+}
+
+// A rename is only finished when the old name is gone from the staged tree. The
+// forms the rewriter knows cover links, definitions, attributes and code spans;
+// a bare path in prose is text the operator still reads, so it still names a
+// dead file and the run stops rather than shipping it.
+function stagedTextFiles(root, fileSystem, relativeDirectory = '') {
+  const directory = path.join(root, ...relativeDirectory.split('/').filter(Boolean));
+  let entries;
+  try {
+    entries = fileSystem.readdirSync(directory, { withFileTypes: true });
+  } catch (error) {
+    if (error.code === 'ENOENT') return [];
+    throw error;
+  }
+  const files = [];
+  for (const entry of entries.sort((left, right) => left.name.localeCompare(right.name))) {
+    const relative = relativeDirectory ? `${relativeDirectory}/${entry.name}` : entry.name;
+    if (entry.isSymbolicLink()) continue;
+    if (entry.isDirectory()) files.push(...stagedTextFiles(root, fileSystem, relative));
+    else if (entry.isFile()) files.push(relative);
+  }
+  return files;
+}
+
+function assertNoStaleRenameKeys(plan, fileSystem) {
+  const keys = plan.renames.map(([oldPath]) => oldPath);
+  if (keys.length === 0) return;
+  for (const relative of stagedTextFiles(plan.targetRoot, fileSystem)) {
+    const text = fileSystem.readFileSync(path.join(plan.targetRoot, ...relative.split('/')), 'utf8');
+    for (const key of keys) {
+      const encoded = key.split('/').map(encodeURIComponent).join('/');
+      if (text.includes(key) || (encoded !== key && text.includes(encoded))) {
+        throw new ConvertError(
+          'RESOURCE_LINK_STALE',
+          `The staged ${relative} still names ${key} after the resource rename.`,
+          1,
+        );
+      }
+    }
+  }
 }
 
 function writeExclusive(fileSystem, filePath, content) {
@@ -747,7 +883,7 @@ function updateGraphMetadata(skillRoot, plan, fileSystem) {
   try {
     metadata = JSON.parse(fileSystem.readFileSync(metadataFile, 'utf8'));
   } catch (error) {
-    throw new ConvertError('GRAPH_METADATA_INVALID', `V6 could not read graph-metadata.json: ${firstLine(error.message)}`, 1);
+    throw new ConvertError('GRAPH_METADATA_INVALID', `The scaffold step could not read graph-metadata.json: ${firstLine(error.message)}`, 1);
   }
   metadata.intent_signals = plan.approvedPhrases;
   const derived = metadata.derived && typeof metadata.derived === 'object' ? metadata.derived : {};
@@ -773,14 +909,57 @@ function pythonExecutable(context) {
   return context.python || 'python3';
 }
 
-function runV6Scaffold(plan, context) {
+// The scaffolder, both validators and the router template ship as one folder, so
+// the package-skill path the context resolved anchors all of them. A test that
+// runs against a temporary repository overrides that one path rather than every
+// file it implies.
+function skillCreatorDirectory(context) {
+  return path.dirname(context.paths.packageSkill);
+}
+
+// A copied tree reproduces a symlink as a link, so writing the staged SKILL.md
+// would write the file outside the source. Every entry is checked, not only the
+// ones this run opens, because the copy is what carries the link along.
+function firstSymlinkInTree(root, fileSystem) {
+  const pending = [path.resolve(root)];
+  while (pending.length) {
+    const directory = pending.pop();
+    for (const entry of fileSystem.readdirSync(directory, { withFileTypes: true })) {
+      const candidate = path.join(directory, entry.name);
+      if (entry.isSymbolicLink()) return candidate;
+      if (entry.isDirectory()) pending.push(candidate);
+    }
+  }
+  return null;
+}
+
+function refuseSymlink(root, fileSystem, code = 'SOURCE_SYMLINK') {
+  const link = firstSymlinkInTree(root, fileSystem);
+  if (!link) return;
+  refuse(
+    `The source tree contains a symlink (${link}); a copy would write through it, so it is not converted.`,
+    code,
+  );
+}
+
+// The integration rows report their own failures row by row, so a failure to
+// even plan them is the only case that reaches this wrapper.
+function planIntegrationRows(context, options) {
+  try {
+    return integrate.planIntegration({ context, ...options });
+  } catch (error) {
+    if (error instanceof integrate.IntegrationError) {
+      throw new ConvertError(error.code, error.message, 1);
+    }
+    throw error;
+  }
+}
+
+function runScaffoldStep(plan, context) {
   const fileSystem = context.fs;
   const tempParent = fs.mkdtempSync(path.join(os.tmpdir(), 'sk-skill-convert-'));
   const scaffoldRoot = path.join(tempParent, plan.name);
-  const initScript = path.join(
-    context.repoRoot,
-    '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'init_skill.py',
-  );
+  const initScript = path.join(skillCreatorDirectory(context), 'init_skill.py');
   try {
     runStep(context, 'INIT_SKILL_FAILED', pythonExecutable(context), [initScript, plan.name, '--path', tempParent], 'init_skill.py');
     const absentFiles = ['graph-metadata.json', 'leaf-manifest.config.json'];
@@ -834,14 +1013,14 @@ function applyPlainPlan(plan, context) {
   if (plan.allowedTools.length === 0) {
     throw new ConvertError(
       'ALLOWED_TOOLS_APPROVAL_REQUIRED',
-      `The plan proposes ${JSON.stringify(plan.proposedTools)}; pass repeated --allowed-tool values to approve the permission grant.`,
+      `The plan proposes ${JSON.stringify(plan.proposedTools)}; pass repeated --allowed-tool values, or one --allowed-tools list, to approve the permission grant.`,
       1,
     );
   }
   if (plan.proposedTrim && !plan.descriptionTrim) {
     throw new ConvertError(
       'DESCRIPTION_TRIM_REQUIRED',
-      `The description exceeds 130 characters; approve the planned trim ${JSON.stringify(plan.proposedTrim)} before V8.`,
+      `The description exceeds 130 characters; approve the planned trim ${JSON.stringify(plan.proposedTrim)} before the format gate.`,
       1,
     );
   }
@@ -862,12 +1041,15 @@ function applyPlainPlan(plan, context) {
   let targetCreated = false;
   const commandResults = [];
   try {
+    // The check runs again here: a link can appear between the plan and the
+    // first write, and a link is copied as a link.
+    refuseSymlink(plan.sourceRoot, fileSystem);
     fileSystem.mkdirSync(plan.targetRoot);
     targetCreated = true;
     try {
       fileSystem.cpSync(plan.sourceRoot, plan.targetRoot, { recursive: true, force: false, errorOnExist: true });
     } catch (error) {
-      throw new ConvertError('SOURCE_COPY_FAILED', `V1 could not copy the source: ${firstLine(error.message)}`, 1);
+      throw new ConvertError('SOURCE_COPY_FAILED', `The source copy could not be created: ${firstLine(error.message)}`, 1);
     }
     fileSystem.mkdirSync(snapshotDirectory, { recursive: true });
     fileSystem.copyFileSync(
@@ -875,6 +1057,14 @@ function applyPlainPlan(plan, context) {
       path.join(snapshotDirectory, 'SKILL.md'),
       fileSystem.constants.COPYFILE_EXCL,
     );
+    // The snapshot carries the source references too, so the check can tell a
+    // line the agent wrote from a line a copied reference already held.
+    const sourceReferences = path.join(plan.sourceRoot, 'references');
+    if (fileSystem.existsSync(sourceReferences)) {
+      fileSystem.cpSync(sourceReferences, path.join(snapshotDirectory, 'references'), {
+        recursive: true, force: false, errorOnExist: true,
+      });
+    }
 
     const normalizedSkill = transforms.normalizePlainSkillFrontmatter(
       plan.reshapedSource,
@@ -884,7 +1074,7 @@ function applyPlainPlan(plan, context) {
     fileSystem.writeFileSync(plan.skillFile, normalizedSkill, 'utf8');
     writeExclusive(fileSystem, plan.routerFile, plan.nextRouter);
 
-    const preservation = verifyPreservation(snapshotDirectory, plan.targetRoot, fileSystem);
+    const preservation = verifyPreservation(snapshotDirectory, plan.targetRoot, fileSystem, new Map(plan.renames));
     if (!preservation.ok) {
       throw new ConvertError(
         'PRESERVATION_FAILED',
@@ -894,7 +1084,8 @@ function applyPlainPlan(plan, context) {
     }
 
     applyPlainResources(plan, context, normalizedSkill);
-    runV6Scaffold(plan, context);
+    assertNoStaleRenameKeys(plan, fileSystem);
+    runScaffoldStep(plan, context);
 
     commandResults.push(runStep(
       context,
@@ -911,14 +1102,8 @@ function applyPlainPlan(plan, context) {
       'regenerate-skill-derived.cjs',
     ));
 
-    const packageScript = path.join(
-      context.repoRoot,
-      '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'package_skill.py',
-    );
-    const validateScript = path.join(
-      context.repoRoot,
-      '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'validate_skill_package.py',
-    );
+    const packageScript = context.paths.packageSkill;
+    const validateScript = path.join(skillCreatorDirectory(context), 'validate_skill_package.py');
     const packageResult = runStep(
       context,
       'STRICT_PACKAGE_FAILED',
@@ -937,6 +1122,18 @@ function applyPlainPlan(plan, context) {
       [validateScript, plan.targetRoot],
       'validate_skill_package.py',
     ));
+
+    // Only a format-valid skill is worth wiring: a skill the gates refuse would
+    // put reach and changelog rows around a root that cannot be packaged.
+    const integration = integrate.applyIntegration({
+      context,
+      skillRoot: plan.targetRoot,
+      name: plan.name,
+      version: plan.version,
+      description: plan.descriptionTrim || plan.description,
+      phrases: plan.approvedPhrases,
+      apply: true,
+    });
     return {
       changed: true,
       targetRoot: plan.targetRoot,
@@ -944,7 +1141,9 @@ function applyPlainPlan(plan, context) {
       snapshotDirectory,
       preservation,
       commandResults,
-      message: `Converted ${plan.name}; preservation and V8 format gates passed.`,
+      integration,
+      integrationWrites: integration.writes,
+      message: `Converted ${plan.name}; preservation and the format gates passed, and ${integration.results.length} integration row(s) ran.`,
     };
   } catch (error) {
     // The staged tree is wholly this run's creation: both the plan and the
@@ -1078,12 +1277,17 @@ function renderPlan(plan) {
     lines.push(`Approved intent phrases (${plan.approvedPhrases.length}): ${JSON.stringify(plan.approvedPhrases)}`);
     if (plan.suggestedPhrases.length) lines.push(`Suggested intent phrases (approve with repeated --approved-phrase values): ${JSON.stringify(plan.suggestedPhrases)}`);
     lines.push(`allowed-tools: ${plan.allowedTools.length ? JSON.stringify(plan.allowedTools) : `approval required; propose ${JSON.stringify(plan.proposedTools)}`}`);
-    if (!plan.allowedTools.length) lines.push('No allowed-tools field will be written until approved with repeated --allowed-tool values.');
+    if (!plan.allowedTools.length) lines.push('No allowed-tools field will be written until approved with repeated --allowed-tool values or one --allowed-tools list.');
     if (plan.proposedTrim) {
       lines.push(`Proposed description trim (approve with --description-trim): ${JSON.stringify(plan.proposedTrim)}`);
     }
     if (plan.descriptionTrim) lines.push(`Approved description trim: ${JSON.stringify(plan.descriptionTrim)}`);
     lines.push(`RESOURCE_MAP order: ${JSON.stringify(plan.mapResources)}`);
+  }
+  // The integration rows are planned here and run after the format gates, so the
+  // plan the operator approves covers the reach writes as well as the file copy.
+  if (plan.integrationPlan && plan.integrationPlan.length) {
+    lines.push(...plan.integrationPlan);
   }
   if (plan.followUps && plan.followUps.length) {
     lines.push('Follow-up items:');
@@ -1106,6 +1310,12 @@ function renderUndo(result, plan) {
   }
   for (const created of result.createdFiles || []) {
     lines.push(`  rm ${quoteArgument(created)}`);
+  }
+  // Integration writes are recorded by the row that made them. A created file is
+  // removed; a tracked file the row overwrote is restored from version control.
+  for (const write of result.integrationWrites || []) {
+    if (write.kind === 'create') lines.push(`  rm ${quoteArgument(write.file)}`);
+    else lines.push(`  git -c core.fsmonitor=false restore -- ${quoteArgument(write.file)}`);
   }
   const checkScript = path.join(SCRIPT_DIR, 'sk-skill-check.cjs');
   lines.push(`Check: node ${quoteArgument(checkScript)} check ${quoteArgument(plan.skillRoot)}`);
@@ -1142,8 +1352,14 @@ function runConvert(argv = process.argv.slice(2), options = {}) {
       stdout.write(`${item.command.join(' ')} (exit ${item.exitCode})\n`);
       if (item.stdout) stdout.write(item.stdout);
     }
+    for (const row of result.integration ? result.integration.results : []) {
+      for (const line of row.lines) stdout.write(`${line}\n`);
+    }
     // The undo block closes the run, so its check command is the last thing the operator reads.
     if (result.backupDirectory) stdout.write(renderUndo(result, plan));
+    // A conversion the gates accept but the integration rows cannot wire is not
+    // a finished conversion, so the run reports it without hiding the undo list.
+    if (result.integration && !result.integration.ok) return 1;
     return 0;
   } catch (error) {
     const code = error instanceof ConvertError ? error.code : 'CONVERT_ERROR';

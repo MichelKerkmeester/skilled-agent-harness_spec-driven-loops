@@ -35,19 +35,21 @@ Append V9 to convert: six rows, each printed as its own plan line and run only a
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 004 closed: the plain fixture ends strict PASS
+- [x] Phase 004 closed: the plain fixture ends strict PASS. Evidence: the 004 suite passes 47/47 and its acceptance rows are Met
 - [x] Fleet reach output captured before the change in `scratch/reach-before.txt`
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
+- [x] All acceptance criteria met. Evidence: AC-001 through AC-008 each cite the end-to-end convert case and the library case
 - [x] `sync-skills-hermes.cjs --check` PASS, `skill-graph-freshness.cjs --strict` exit 0 and `cmp scratch/reach-before.txt scratch/reach-after.txt` prints nothing
 - [x] Docs updated (spec/plan/tasks)
 
-All acceptance criteria stay open until convert calls these rows; `implementation-summary.md` records the
-library evidence for each row and the reason the call site belongs to the conductor. Phase 004 is still open
-because it is being built in parallel: these rows take the converted skill root as an argument and never read
-the convert script, which is what let the two phases proceed side by side.
+The rows are built here and called from the conversion: `buildPlainPlan` prints `planIntegration(...).lines`
+beside the conversion steps, and `applyPlainPlan` calls `applyIntegration({ ..., apply: true })` only after
+both format validators pass. A failed format gate therefore never reaches a row. Each row's result is printed
+and each recorded write joins the undo list; a row that reports FAILED leaves the staged tree in place and
+makes the run exit non-zero, so the operator still has the undo commands. The rows took the converted skill
+root as an argument and never read the convert script, which is what let the two phases proceed side by side.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -59,7 +61,7 @@ the convert script, which is what let the two phases proceed side by side.
 Ordered integration steps
 
 ### Key Components
-- **V9 in `sk-skill-convert.cjs`**: runs I1 to I6 in order and records each result for the V10 undo list.
+- **The call site in `sk-skill-convert.cjs`**: plans I1 to I6 beside the conversion, runs them after the format gate, prints each result and adds each recorded write to the undo list.
 - **`sk-skill-surface.cjs` wrappers**: spawn scan, compiler, Hermes sync and regression runner with exit-code mapping.
 - **Reach `--skill <id>`**: probes one standalone root; with no flag the script runs exactly as before.
 
