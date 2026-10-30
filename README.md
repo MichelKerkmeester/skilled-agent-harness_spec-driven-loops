@@ -1249,10 +1249,10 @@ Twelve commands check and repair the setup, one per area.
 - `setup` runs the provisioning, doctor, root-metadata, route guard, sync, drift-guard, derived-freshness, route-probe and quality checks and names the repair command for each failing leg
 - `quality` shows which quality config the gate reads, checks it, names the comment-hygiene rules it switches off and lists the checklists and override rows the gate would apply, failing on a refused section or an unknown rule id. When there is none it creates `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` once after your yes, and in a repository with no `specs/` folder it suggests the spec-kit hygiene rules without writing them
 
-**`/doctor:sk-skill [check|convert] [<name-or-path>] [--json]`** - how far a skill is from the Skilled format, and the conversion that closes the gap
+**`/doctor:sk-skill [check|convert] [<name-or-path>] [--json] [--into-hub <hub>] [--dry-run]`** - how far a skill is from the Skilled format, and the conversion that closes the gap
 
-- `check` (the default, read-only) reports rows C1 to C13 for one skill, or one row per skill root for the whole fleet, and names the repair for each finding. `--json` prints that report and nothing else
-- `convert` prints a plan for a plain agent skill or an older Skilled one, writes only after your yes, copies each file it overwrites to `.skilled/skills/.state/` first and stops when the parsed router would change. It refuses a hub candidate and points to `/create:skill-parent`
+- `check` (the default, read-only) reports rows C1 to C13 for one skill, or one row per skill root for the whole fleet, and names the repair for each finding. `--json` prints that report and nothing else, and `--into-hub <hub>` reports the eleven surfaces a skill or mode still needs under that hub instead of the rows
+- `convert` prints a plan for a plain agent skill or an older Skilled one, writes only after your yes, backs each file it overwrites up under `.skilled/skills/.state/doctor-sk-skill/<name>/` first and stops when the parsed router would change. `--dry-run` ends after the plan, a description past 130 characters and a missing `allowed-tools` are each asked as their own question, and a hub candidate is refused with `/create:skill-parent` named
 
 **`/doctor:ci [report|scaffold|toggle]`** - GitHub Actions workflows and their on/off switches
 

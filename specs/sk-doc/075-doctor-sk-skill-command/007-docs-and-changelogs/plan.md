@@ -37,10 +37,10 @@ This phase writes the docs for the shipped command and one changelog per touched
 ### Definition of Ready
 - [x] Problem statement clear and scope documented
 - [x] Success criteria measurable
-- [x] Dependencies identified: phases 2 and 6 closed, and the list of skills each phase changed is recorded in `scratch/touched-skills.md` — phase 2 is closed, phase 6 is being built in parallel, so the convert docs describe the behavior its spec and the script state rather than a landed route
+- [x] Dependencies identified: phases 2, 4, 5 and 6 closed, and the list of skills each phase changed is recorded in `scratch/touched-skills.md` — every target the docs describe had landed before the correction pass, so each claim is read from the shipped route, workflow, contract and engines
 
 ### Definition of Done
-- [ ] All acceptance criteria met — open on the two changelog criteria the conductor owns
+- [x] All acceptance criteria met — every row in `acceptance-criteria.md` is `Met`, including the three the changelog entries and the correction pass closed
 - [x] The five gates in spec REQ-005 exit 0 and each changelog link in spec section 3 resolves with `ls`
 - [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->

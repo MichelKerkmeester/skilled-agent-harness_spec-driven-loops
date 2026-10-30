@@ -53,9 +53,9 @@
       ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
       ".skilled/skills/sk-doc/feature-catalog/skill-format-conversion/skill-format-check-and-convert.md",
       ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
-      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
-      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json",
-      ".skilled/skills/sk-doc/leaf-manifest.json"
+      ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.9.1.0.md",
+      ".skilled/skills/sk-doc/changelog/v2.3.33.0.md",
+      ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.10.0.md"
     ],
     "entities": [
       {
@@ -161,15 +161,21 @@
         "source": "derived"
       },
       {
-        "name": "manifest.json",
-        "kind": "config",
-        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json",
+        "name": "v1.9.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.9.1.0.md",
         "source": "derived"
       },
       {
-        "name": "leaf-manifest.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-doc/leaf-manifest.json",
+        "name": "v2.3.33.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/changelog/v2.3.33.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.10.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.10.0.md",
         "source": "derived"
       },
       {
@@ -195,17 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The root README lists the doctor commands at `README.md:213` and describes each in the Doctor section near `README.md:1247-1257`, and `.skilled/commands/README.txt:128` says \"Eleven command files cover the diagnostic surface\"",
     "created_at": "2026-10-30T05:21:17Z",
-    "last_save_at": "2026-10-30T08:57:34.740Z",
+    "last_save_at": "2026-10-30T10:33:06.366Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d4824a9a4a9574eb427936a46482deccfea2174cacffd3404c8d05a836089cfd",
+    "source_fingerprint": "sha256:fcc5d815763fbb189e84d13ed5812e052f57efeb1d449ce669b5fdc12c7ac21e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f065fcc9e1e7c83ef8206f436e589ba95c4fb1ccc7cba9c0309587cb7feec8f9",
-      "plan.md": "54ff529229fee9d7771eed2cac1e0c15ff43129af5e6ec83b3f9e5e6db547a28",
-      "tasks.md": "97d88b722d35572ed03008ae4d4776c73d8360ff21a7552ecbeb7d76bf7d29ce",
-      "implementation-summary.md": "432ef002a4771ef66486e0947594fdda97b79052129d10204d8396d0e919aa39"
+      "spec.md": "0e55dfa1d32df4258cc90e1b1581bb92d612950c50e8dac80b043fa259dad724",
+      "plan.md": "2eabce33409266fb7981bc41e7e65195bd71110275a4bc000dcb9be88aff8052",
+      "tasks.md": "592d35f68e9b72bac8ea363c9441d7925b3308b4bb171063ba406849997ef26d",
+      "implementation-summary.md": "39774ec5a618d657290c024abab659b645925514ee225783ac81a902844eac1b"
     },
     "last_active_at": null
   }

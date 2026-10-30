@@ -142,7 +142,7 @@ Twelve command files cover the diagnostic surface, one per owner. Backed by `_ro
 | MCP Install | `/doctor:mcp install [--runtime <name>]` | Install Code Mode and configure its UTCP file and selected runtime |
 | Update | `/doctor:update [check\|align\|apply\|rollback\|record-base\|compat]` | Release-aware spec-kit updater with read-only check, decision alignment, gated apply, rollback, base-recording and compat workflows, where compat moves a v3 spec layout to v4 behind two approvals |
 | Environment Switches | `/doctor:env [list \| <section> \| <VARIABLE>] [--dry-run]` | Inspect documented environment switches and optionally save a confirmed preference |
-| Skill Format Check | `/doctor:sk-skill [check\|convert] [<name-or-path>] [--json]` | Report how far one skill, or the whole fleet, is from the Skilled format row by row, and convert a plain or older Skilled skill in place after a plan and a yes |
+| Skill Format Check | `/doctor:sk-skill [check\|convert] [<name-or-path>] [--json] [--into-hub <hub>] [--dry-run]` | Report how far one skill, or the whole fleet, is from the Skilled format row by row, or how far a skill or mode is from a hub's eleven surfaces, and convert one skill after a plan and a yes |
 
 ### Deep Commands
 

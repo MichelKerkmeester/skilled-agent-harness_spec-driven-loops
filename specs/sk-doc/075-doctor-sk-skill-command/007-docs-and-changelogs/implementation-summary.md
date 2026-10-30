@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/075-doctor-sk-skill-command/007-docs-and-changelogs"
-    last_updated_at: "2026-10-30T10:05:00Z"
+    last_updated_at: "2026-10-30T12:45:00Z"
     last_updated_by: "markdown-worker"
-    recent_action: "Wrote every doc surface except the changelog entries and proved the five doc gates exit 0"
-    next_safe_action: "The conductor writes one changelog entry per touched skill, then closes AC-002 and AC-003"
+    recent_action: "Corrected every doc against the shipped command and wrote the five changelog entries"
+    next_safe_action: "Close the phase and hand the packet to the release phase"
     blockers: []
     key_files:
       - "README.md"
@@ -23,11 +23,13 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-289-doctor-sk-skill-docs"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "The sk-doc leaf manifest needs no new leaf: its config lists routed mode resources, and playbook scenarios and catalog entries are neither"
       - "The compiled-routing activation manifest needs no refresh: all 55 served copies match their authored files"
+      - "The plain-skill path takes its intent phrases from an approved list, so the first plan refuses and the scenario starts there"
+      - "A hub declaration and a nested packet tree print different refusal codes, so the hub scenario carries one fixture per code"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
 # Implementation Summary
@@ -43,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 007-docs-and-changelogs |
-| **Status** | Implemented, open on the conductor's changelog entries |
+| **Status** | Complete |
 | **Completed** | 2026-10-30 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -65,6 +67,10 @@ The sk-create-skill packet names the command in section 6, and the adopter guide
 
 Four manual-testing scenarios cover the check, the older-Skilled conversion, the plain-skill conversion and the hub refusal. One feature-catalog entry and a new catalog section describe the command, and the four scenarios link it.
 
+Every reader-facing claim was then re-read against the shipped command and corrected where it disagreed. Both interface listings carry the router's own argument hint, so `--into-hub <hub>` and `--dry-run` appear where a reader looks for them. The catalog and its root entry say that `check` reads one skill or the whole fleet while `convert` takes exactly one, describe the eleven-surface hub report and treat a long description and a missing `allowed-tools` as questions rather than refusals. The scenario command sequences now run: a plain skill is raised from a path outside the skills root, its intent phrases and tool list are approved before a plan exists, `preserve --snapshot` proves the reshaped body and `apply` carries the same flags. The hub refusal is documented as the engine prints it, with one fixture per code and no question the converter never asks.
+
+Five changelog entries went in through create-changelog, one per touched skill, each with its skill's version carrier moved to match: `sk-create-skill` v1.9.1.0, `sk-doc` v2.3.33.0, `sk-create-command` v1.0.10.0, `system-skill-advisor` v0.17.26.0 and `sk-prompt` v4.0.1.0. The Hermes skill mirror was regenerated from those five sources and the hub's own changelog carries the catalog entry.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -81,7 +87,12 @@ Four manual-testing scenarios cover the check, the older-Skilled conversion, the
 | `.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md` | Modified | Indexes the four scenarios, counts eleven, and qualifies the test-module cells so the reference gate resolves them |
 | `.skilled/skills/sk-doc/feature-catalog/skill-format-conversion/skill-format-check-and-convert.md` | Added | The catalog entry for both targets, their boundary and their refusals |
 | `.skilled/skills/sk-doc/feature-catalog/feature-catalog.md` | Modified | New SKILL FORMAT CONVERSION section, two trigger phrases, the date and version, and two path repairs the reference gate needed |
-| `specs/sk-doc/075-doctor-sk-skill-command/007-docs-and-changelogs/` | Modified | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md` and this summary, plus the three evidence files under `scratch/` |
+| `.skilled/skills/sk-doc/sk-create-skill/changelog/v1.9.1.0.md` | Added | The packet's changelog entry, with its `SKILL.md` version moved to match |
+| `.skilled/skills/sk-doc/changelog/v2.3.33.0.md` | Added | The hub's entry for the catalog addition, with `SKILL.md`, `description.json`, `mode-registry.json` and `hub-router.json` moved to match |
+| `.skilled/skills/sk-doc/sk-create-command/changelog/v1.0.10.0.md` | Added | The command contract's entry for the doctor family row |
+| `.skilled/skills/system-skill-advisor/changelog/v0.17.26.0.md` | Added | The advisor entry for the two command bridges and the moved parity baselines |
+| `.skilled/skills/sk-prompt/changelog/v4.0.1.0.md` | Added | The entry for the description that stopped claiming one pass |
+| `specs/sk-doc/075-doctor-sk-skill-command/007-docs-and-changelogs/` | Modified | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md` and this summary, plus the four evidence files under `scratch/` |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -93,7 +104,7 @@ Each doc went through the sk-doc mode that owns its type: create-readme for the 
 
 Two files were already failing the reference gate when this phase started, and both are files the phase edits. The playbook's test-module table used bare file names, and the command index carried a `specs/007-feature` example. Both are repaired so the gate exits 0 over every file the phase changes, and neither repair changes what the document says.
 
-The claimed behavior in the docs was read from the scripts, not assumed: the check rows, the plan and apply forms, the refusal strings, the backup location and the no-op message all come from the scripts or the phase 3 to 6 specs. The check report and the plan form were also run against shipped skills, which printed the same row labels, the same `Result:` line and the same `Writes: none` a second run gives.
+The claimed behavior in the docs was read from the shipped files, not assumed: the check rows, the plan and apply forms, the refusal strings, the backup location and the no-op message all come from the router, the workflow assets, the presentation contract or the engines. The correction pass closed the gap the first reading left, where a command sequence and a hub refusal were described from the design rather than from a run. The check report, the fleet table, the hub gap report, the JSON keys and the refusal codes were then run, and the strings quoted in the docs are the strings those runs printed.
 
 <!-- /ANCHOR:how-delivered -->
 
@@ -109,7 +120,10 @@ The claimed behavior in the docs was read from the scripts, not assumed: the che
 | Keep the `specs/<track>/007-feature` example a placeholder | The gate reads a `specs/` token in a fenced line as a path, and a placeholder is what the example always meant |
 | Qualify the test-module cells in the playbook | They were failing the reference gate before this phase, and a bare file name in a table cell is read as an inventory claim |
 | Add no sk-create-command playbook example | `rg -l -i doctor` over that playbook exits 1, so it lists no per-family examples to extend |
-| Leave every version and changelog entry to the conductor | create-changelog computes the next four-part version from the entries already there, so a hand bump here would put the two out of step |
+| Write the changelog entries last, after every phase landed | create-changelog computes the next four-part version from the entries already there, so an entry written mid-flight would number against a folder that was still moving |
+| Bump each version carrier in the same pass as its entry | `parent-skill-check` compares a skill's `SKILL.md` version with its newest entry and, for the hub, with the JSON routing files, so an entry without the matching version line is drift by construction |
+| Describe the plain-skill command sequence as the engine runs it | The first plan refuses on the intent floor, so a scenario that starts with an approved-phrase plan would never have run |
+| Keep the pre-existing repo-root inline paths in the scripts README | They are the file's own convention and predate this phase, so the correction pass adds no new ones and reports the `code_folder` count as unchanged |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -117,9 +131,10 @@ The claimed behavior in the docs was read from the scripts, not assumed: the che
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The changelog entries are not written.** Four skills earn one (`sk-create-skill`, `sk-doc` parent, `sk-create-command`, `system-skill-advisor`), and the conductor writes them once every phase has landed. Until then AC-002 and AC-003 stay unmet and T011 stays open.
-2. **No scenario was run end to end.** The scenario fixtures live under `.skilled/skills/`, which this phase may not write. The check report, the fleet report, the JSON keys and the plan form were observed against shipped skills instead, and each scenario lists the fixture it needs.
+1. **No scenario was run end to end.** The scenario fixtures live under `.skilled/skills/` or need a staged write there, which this phase may not do. The check report, the fleet report, the hub gap report, the JSON keys and the refusal codes were observed against shipped skills and scratch fixtures instead, and each scenario lists the fixture it needs.
+2. **The scripts README still fails its `code_folder` reading.** That reading resolves every inline path from the README's own folder, and the file has always written them from the repository root: 25 rows before the correction pass and 25 after, none of them new. The file's auto-detected type is `readme`, which reports `Total issues: 0`.
 3. **`sk-code` earns no changelog entry.** No phase changed a file under `sk-code-skilled/assets/scripts/`, which is the condition its row sets. The router resolver and parser are used in place.
+4. **The fleet check reports one finding that predates this phase.** `sk-prompt` carries a generated benchmark script whose name is not kebab-case, so `sk-skill-check` reports `Roots: 13; result: FINDINGS (1)`. It is a format finding in another skill's generated files and outside this phase's scope.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -138,5 +153,9 @@ The claimed behavior in the docs was read from the scripts, not assumed: the che
 | `ci-leaf-manifest-freshness.cjs`, `ci-skill-derived-freshness.cjs` | 13 fresh, 0 failed, exit 0 each |
 | `generate-router-intent-signals.cjs --check` | `RESULT: PASSED`, exit 0 |
 | `compiled-route-sync.cjs --check` | `all 7 hubs resolve`, `all 55 served copies match`, exit 0 |
+| `validate_document.py <entry> --type changelog` on the five entries | `Total issues: 0` for each |
+| `hvr_scan.py` on the five entries | 0 hard blockers for each |
+| `parent-skill-check.cjs .skilled/skills/sk-doc` | `13a`, `13b` and `13d` PASS at `2.3.33.0`, `OK: all hard invariants passed, 0 warnings` |
+| `sync-skills-hermes.cjs` then `--check` | `Wrote 5 of 65 Hermes skill copies`, then `PASS: 65 Hermes skill copies in sync` |
 | `validate.sh --strict` on this folder | `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->

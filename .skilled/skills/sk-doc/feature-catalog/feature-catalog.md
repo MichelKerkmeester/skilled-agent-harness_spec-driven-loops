@@ -13,12 +13,12 @@ trigger_phrases:
   - "skill format check and convert"
   - "convert a skill in place"
 last_updated: "2026-10-30"
-version: 2.3.0.0
+version: 2.3.1.0
 ---
 
 # sk-doc: Feature Catalog
 
-This catalog inventories the live `sk-doc` hub surface. The skill advisor routes any documentation- or component-authoring query to the single identity `sk-doc`; the hub resolves one of fifteen workflow modes — spread across fourteen packets, since one packet backs two modes — whose routing vocabulary is authored at the packet and projected into `mode-registry.json`/`hub-router.json` at runtime. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to. The hub's shared validator also holds every changelog entry to its search metadata. An advisory lint in `sk-create-goal` flags goal criteria a reader cannot check from the line alone. The skill format command reads one skill against that same surface, row by row, and converts a plain or older Skilled skill in place.
+This catalog inventories the live `sk-doc` hub surface. The skill advisor routes any documentation- or component-authoring query to the single identity `sk-doc`; the hub resolves one of fifteen workflow modes — spread across fourteen packets, since one packet backs two modes — whose routing vocabulary is authored at the packet and projected into `mode-registry.json`/`hub-router.json` at runtime. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to. The hub's shared validator also holds every changelog entry to its search metadata. An advisory lint in `sk-create-goal` flags goal criteria a reader cannot check from the line alone. The skill format command reads one skill against that same surface, row by row, or reports its gaps against a parent hub, and converts one skill after a plan and a yes.
 
 ---
 
@@ -144,13 +144,13 @@ See [`document-validation/shared-frontmatter-value-warning.md`](document-validat
 
 #### Description
 
-Reports how far one skill, or the whole fleet, sits from the Skilled format row by row, then converts a plain or older Skilled skill in place after a plan and a yes.
+Reports how far one skill, or the whole fleet, sits from the Skilled format row by row, then converts one skill after a plan and a yes.
 
 #### Current Reality
 
-`/doctor:sk-skill check` binds by default and writes nothing. For one skill it prints rows `C1` to `C13`, from the location and the input kind through the format gate, the root metadata contract, the intent signals, the derived blocks, the router equivalence, the advisor home, the runtime mirrors, the changelog, the description budget, the collisions and the regression coverage. For the fleet it prints one row per direct child of `.skilled/skills`. A row reports `PASS`, `FINDING`, `UNKNOWN`, `INFO` or `N/A`, only a `FINDING` fails the run, and `--json` prints the same report alone.
+`/doctor:sk-skill check` binds by default and writes nothing. For one skill it prints rows `C1` to `C13`, from the location and the input kind through the format gate, the root metadata contract, the intent signals, the derived blocks, the router equivalence, the advisor home, the runtime mirrors, the changelog, the description budget, the collisions and the regression coverage. For the fleet it prints one row per direct child of `.skilled/skills`. A row reports `PASS`, `FINDING`, `UNKNOWN`, `INFO` or `N/A`, only a `FINDING` fails the run, `--json` prints the same report alone, and `--into-hub <hub>` reports the eleven surfaces a skill or mode must land on under that hub instead of the rows.
 
-`/doctor:sk-skill convert` plans first and names every write, the gitignored backup directory at the skills root that receives the bytes it replaces, and each integration row. It writes only with `--apply`. An older Skilled skill has its machine router moved verbatim into a sibling `ROUTER.md`, and the parsed router is compared before and after so a changed intent, map or default restores the backup. A plain skill is staged under its frontmatter name, gets a rendered `ROUTER.md`, a reshaped `SKILL.md` bounded by a preservation check, resource frontmatter, scaffolder metadata with the approved intent phrases, regenerated root metadata and derived blocks, then the strict format gate and the completion gate. Integration follows a clean gate: the advisor scan, the compiled graph, a warm reach probe with the budget row, proposed regression rows, the Hermes mirror and the changelog file and link. A hub declaration, a nested packet tree, a reserved or persona name prefix, a name collision and a description past 130 characters each refuse with a named reason and no write.
+`/doctor:sk-skill convert` plans first and names every write, the gitignored backup directory at the skills root that receives the bytes it replaces, and each integration row. `--dry-run` ends after the plan, and `--apply` writes. An older Skilled skill has its machine router moved verbatim into a sibling `ROUTER.md`, and the parsed router is compared before and after so a changed intent, map or default restores the backup. A plain skill is staged under its frontmatter name, gets a rendered `ROUTER.md`, a reshaped `SKILL.md` bounded by a preservation check, resource frontmatter, scaffolder metadata with the approved intent phrases, regenerated root metadata and derived blocks, then the strict format gate and the completion gate. Integration follows a clean gate: the advisor scan, the compiled graph, a warm reach probe with the budget row, proposed regression rows, the Hermes mirror and the changelog file and link. A description past 130 characters and a missing `allowed-tools` are questions instead, and each approved value returns to the plan as `--description-trim` or `--allowed-tools`. A hub declaration, a nested packet tree, a reserved or persona name prefix and a name collision each refuse with a named reason and no write.
 
 #### Source Files
 

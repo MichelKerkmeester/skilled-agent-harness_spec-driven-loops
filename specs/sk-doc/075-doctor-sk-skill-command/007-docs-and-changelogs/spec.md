@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Implemented, open on the conductor's changelog entries |
+| **Status** | Complete |
 | **Created** | 2026-10-30 |
 | **Branch** | `worktrees/281-doctor-skill-command` |
 | **Parent Spec** | ../spec.md |
@@ -101,6 +101,7 @@ Run in the worktree on 2026-10-30. The last command shows the sk-create-command 
 | sk-doc hub | Always: its feature catalog and leaf manifest change | `.skilled/changelog/sk-doc/parent/` |
 | sk-create-command | When `assets/command-contract.json` or its playbook changed (phases 2, 6, this phase) | `.skilled/changelog/sk-doc/create-command/` |
 | system-skill-advisor | When `command-bridges/scoring-compatibility.json` or the generated bridges changed (phases 2, 6) | `.skilled/changelog/system-skill-advisor/` |
+| sk-prompt | When its `SKILL.md` description changed, which moved the routed set (the description commit) | `.skilled/changelog/sk-prompt/` |
 | sk-code (`sk-code-skilled`) | Only when a script under `sk-code-skilled/assets/scripts/` changed; decision D3 uses them in place | `.skilled/changelog/sk-code/code-skilled/` |
 
 ### Files to Change
@@ -141,6 +142,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-004 | The new playbook scenarios and catalog entry pass `validate_document.py` with `--type playbook_feature` and `--type feature_catalog`. |
 | REQ-005 | `check_readme_references.py`, `ci-skill-root-metadata.cjs`, `ci-leaf-manifest-freshness.cjs`, `ci-skill-derived-freshness.cjs` and `generate-router-intent-signals.cjs --check` all exit 0 (design phase 7). |
 | REQ-006 | `upgrading-a-skill-to-v4.md` no longer states that no convert-in-place path exists for a single skill; it names `/doctor:sk-skill convert` and keeps the hub path at `/create:skill-parent`. |
+| REQ-007 | Every flag, target, path and refusal string the docs name appears in `.skilled/commands/doctor/sk-skill.md`, `_routes.yaml`, the two workflow assets, the presentation contract or the engines, and no doc claims a question, handoff or subcommand those files do not carry. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -153,6 +155,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - **SC-001**: The five doc gates in REQ-005 exit 0 after the edits.
 - **SC-002**: Every changelog link named in section 3 resolves to a folder holding the new entry.
+- **SC-003**: No documented flag, target, path or refusal string contradicts the shipped command assets, and every changelog version equals the version carrier of the skill it belongs to.
 <!-- /ANCHOR:success-criteria -->
 
 ---

@@ -1,7 +1,7 @@
 ---
 title: "SKL-012 -- Refuse a hub candidate"
-description: "This scenario validates the hub refusal for `SKL-012`. It focuses on the named reason, the absent write, the two-job question and the handoff to the parent-hub scaffold."
-version: 1.0.0.0
+description: "This scenario validates the hub refusal for `SKL-012`. It focuses on the named reason, the absent write and the handoff to the parent-hub scaffold."
+version: 1.0.1.0
 ---
 
 # SKL-012 -- Refuse a hub candidate
@@ -12,7 +12,7 @@ This document captures the operator contract for `SKL-012`.
 
 ## 1. OVERVIEW
 
-This scenario validates the refusal path of the conversion. A skill that already declares a hub, nests packet `SKILL.md` files or answers the job question with more than one job is a hub candidate. Convert names the reason, writes nothing and points at `/create:skill-parent`.
+This scenario validates the refusal path of the conversion. A skill that declares a hub, or that nests packet `SKILL.md` files, is a hub candidate. Convert names the reason, writes nothing and points at `/create:skill-parent`.
 
 ### Why This Matters
 
@@ -27,10 +27,10 @@ Operators run the exact prompt and command sequence for `SKL-012` and inspect th
 - Objective: refuse a hub candidate with a named reason, write nothing and hand off to the parent-hub scaffold
 - Realistic user request: `Convert the field-notes skill into the Skilled format. Both of its modes share one folder, so convert them as one skill.`
 - Prompt: `Convert the field-notes skill into the Skilled format. Both of its modes share one folder, so convert them as one skill.`
-- Expected execution process: confirm the fixture holds a hub declaration and a nested packet, plan the conversion, compare the tree, then answer the job question with more than one job and read the handoff.
-- Expected signals: the plan exits 1 and prints `HUB_DECLARATION: Hub declaration mode-registry.json is present; conversion does not modify hubs.` A fixture with nested packets and no registry prints `NESTED_PACKETS: Nested SKILL.md packets make this a hub candidate.` A `local-` prefixed name prints `RESERVED_PREFIX` and an `agent-` prefixed one prints `PERSONA_PREFIX`, each with no write. The tree listing is byte-identical after each attempt. Through the command, the workflow ends with `STATUS=FAIL` and the same reason. The one-job question is asked once, and the answer "several" stops with the `/create:skill-parent` command line rather than a write.
+- Expected execution process: confirm the declared-hub fixture, plan the conversion, compare the tree, then plan the nested-packet fixture and compare the tree again.
+- Expected signals: the declared hub prints `HUB_DECLARATION: Hub declaration mode-registry.json is present; conversion does not modify hubs.` and exits 1. The nested-packet fixture, which carries no declaration, prints `NESTED_PACKETS: Nested SKILL.md packets make this a hub candidate.` and exits 1. A `local-` prefixed name prints `RESERVED_PREFIX` and an `agent-` prefixed one prints `PERSONA_PREFIX`, each with no write. The tree listing is byte-identical after each attempt. Through the command, the run ends with `STATUS=FAIL` and the same reason, followed by `Next: /create:skill-parent <the parent skill folder>`.
 - Desired user-visible outcome: a refusal the operator can act on, with the tree untouched and the hub path named.
-- Pass/fail: PASS if each candidate prints a distinct named reason, no file changes and the two-job answer ends at the parent-hub command line. FAIL if any attempt writes, a refusal shares a reason with another case, or a hub candidate is converted.
+- Pass/fail: PASS if each candidate prints a distinct named reason, no file changes and the hub refusal names the parent-hub command. FAIL if any attempt writes, a refusal shares a reason with another case, or a hub candidate is converted.
 
 ---
 
@@ -42,26 +42,28 @@ Operators run the exact prompt and command sequence for `SKL-012` and inspect th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SKL-012 | Refuse a hub candidate | Refuse a declared hub, a nested packet tree and a two-job answer with a named reason and no write | `Convert the field-notes skill into the Skilled format. Both of its modes share one folder, so convert them as one skill.` | 1. `bash: ls .skilled/skills/field-notes/mode-registry.json .skilled/skills/field-notes/modes/fixture-mode/SKILL.md` -> 2. `bash: node .skilled/commands/doctor/scripts/sk-skill-convert.cjs plan field-notes` -> 3. `bash: git -c core.fsmonitor=false status --porcelain .skilled/skills/field-notes` -> 4. `agent: Answer the one-job question with several and stop at the /create:skill-parent line` | Step 1: both the declaration and the nested packet are present. Step 2: `HUB_DECLARATION: Hub declaration mode-registry.json is present; conversion does not modify hubs.`, exit 1. Step 3: no output. Step 4: the question is asked once and the answer stops at the `/create:skill-parent` line with no write | The prompt, both fixtures, the refusal line with its exit status, the unchanged tree listing and the handoff line | PASS if each candidate prints its own named reason, nothing changes and the two-job answer ends at the parent-hub command line. FAIL if any attempt writes, two cases share one reason, or a hub candidate is converted | 1. When the reason is `NESTED_PACKETS`, find the nested `SKILL.md` and confirm the folder is meant to be a hub. 2. When it is `HUB_DECLARATION`, read the named declaration rather than deleting it. 3. When it is `RESERVED_PREFIX` or `PERSONA_PREFIX`, rename the skill instead of converting it under that name. 4. When a refusal wrote anyway, treat the run as failed and read the backup path before anything else |
+| SKL-012 | Refuse a hub candidate | Refuse a declared hub and a nested packet tree with a named reason and no write | `Convert the field-notes skill into the Skilled format. Both of its modes share one folder, so convert them as one skill.` | 1. `bash: ls .skilled/skills/field-notes/mode-registry.json` -> 2. `bash: node .skilled/commands/doctor/scripts/sk-skill-convert.cjs plan field-notes` -> 3. `bash: git -c core.fsmonitor=false status --porcelain .skilled/skills/field-notes` -> 4. `bash: ls .skilled/skills/field-notes-nested/modes/fixture-mode/SKILL.md` -> 5. `bash: node .skilled/commands/doctor/scripts/sk-skill-convert.cjs plan field-notes-nested` -> 6. `bash: git -c core.fsmonitor=false status --porcelain .skilled/skills/field-notes-nested` | Step 1: the declaration is present and there is no nested packet. Step 2: `HUB_DECLARATION: Hub declaration mode-registry.json is present; conversion does not modify hubs.`, exit 1. Step 3: no output. Step 4: the second fixture nests a packet and declares no hub. Step 5: `NESTED_PACKETS: Nested SKILL.md packets make this a hub candidate.`, exit 1. Step 6: no output | The prompt, both fixtures, both refusal lines with their exit statuses, the unchanged tree listings and the handoff line the command prints after the refusal | PASS if each candidate prints its own named reason, nothing changes and the hub refusal names `/create:skill-parent`. FAIL if any attempt writes, two cases share one reason, or a hub candidate is converted | 1. When the reason is `NESTED_PACKETS`, find the nested `SKILL.md` and confirm the folder is meant to be a hub. 2. When it is `HUB_DECLARATION`, read the named declaration rather than deleting it. 3. When it is `RESERVED_PREFIX` or `PERSONA_PREFIX`, rename the skill instead of converting it under that name. 4. When a refusal wrote anyway, treat the run as failed and read the backup path before anything else |
 
 ### Commands
 
-1. `bash: ls .skilled/skills/field-notes/mode-registry.json .skilled/skills/field-notes/modes/fixture-mode/SKILL.md`
+1. `bash: ls .skilled/skills/field-notes/mode-registry.json`
 2. `bash: node .skilled/commands/doctor/scripts/sk-skill-convert.cjs plan field-notes`
 3. `bash: git -c core.fsmonitor=false status --porcelain .skilled/skills/field-notes`
-4. `agent: Answer the one-job question with several and stop at the /create:skill-parent line`
+4. `bash: ls .skilled/skills/field-notes-nested/modes/fixture-mode/SKILL.md`
+5. `bash: node .skilled/commands/doctor/scripts/sk-skill-convert.cjs plan field-notes-nested`
+6. `bash: git -c core.fsmonitor=false status --porcelain .skilled/skills/field-notes-nested`
 
 ### Expected
 
-Step 1 proves the fixture is a hub candidate rather than a single skill. Step 2 proves the declaration is read before any transform and that the reason names it. Step 3 proves the refusal wrote nothing. Step 4 proves the job question is the one place a judgment enters, and that a multi-job answer ends at the scaffold that owns hub structure.
+Step 1 proves the first fixture declares a hub and nests nothing, so the declaration is the only reason left to refuse it. Step 2 proves the declaration is read before any transform and that the reason names it. Step 3 proves the refusal wrote nothing. Steps 4 to 6 prove the same for a nested packet tree, whose refusal reason is a different code, so the two cases stay apart.
 
 ### Evidence
 
-Capture the prompt, the fixture listing, the refusal line with its exit status, the before-and-after tree listing, the workflow status line with its reason, and the handoff line the two-job answer prints.
+Capture the prompt, both fixture listings, each refusal line with its exit status, the before-and-after tree listing, the workflow status line with its reason and the parent-hub line.
 
 ### Pass / Fail
 
-- **Pass**: every candidate prints its own named reason, nothing changes on disk, the workflow status carries the same reason and the two-job answer ends at the `/create:skill-parent` line.
+- **Pass**: every candidate prints its own named reason, nothing changes on disk, the workflow status carries the same reason and the hub refusal names the `/create:skill-parent` line.
 - **Fail**: a refused candidate is written, two refusal cases share one reason, a nested packet is treated as a single skill, or a hub candidate is converted.
 
 ### Failure Triage

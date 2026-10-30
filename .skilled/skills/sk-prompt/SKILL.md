@@ -2,7 +2,7 @@
 name: sk-prompt
 description: "Prompt engineering: turns a request into a structured, checked AI prompt, with a component skeleton and CLEAR screening."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 4.0.0.0
+version: 4.0.1.0
 ---
 
 <!-- Keywords: prompt-engineering, prompt-improvement, improve prompt, improve this prompt, improve the prompt, enhance prompt, prompt improvement, improvement-checklist, early-exit, CLEAR-scoring, framework-selection, RCAF, COSTAR, CRAFT, TIDD-EC, CRISPE -->
