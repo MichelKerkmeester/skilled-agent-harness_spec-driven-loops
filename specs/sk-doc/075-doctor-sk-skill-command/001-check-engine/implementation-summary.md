@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/075-doctor-sk-skill-command/001-check-engine"
-    last_updated_at: "2026-10-30T07:06:56Z"
+    last_updated_at: "2026-10-30T10:43:41Z"
     last_updated_by: "codex"
-    recent_action: "Recorded final interpreter-discovery evidence and phase closure"
-    next_safe_action: "No further work is pending in this phase"
+    recent_action: "Fixed the router row's false positive and aligned the route documents with the engine's labels"
+    next_safe_action: "No phase work pending; act on the sk-prompt gate finding"
     blockers: []
     key_files: []
     session_dedup:
@@ -52,14 +52,22 @@ The read-only checker resolves a skill name or path, runs the existing package, 
 
 `sk-skill-check.cjs` renders deep text or JSON reports and a fleet JSON/table. `lib/sk-skill-surface.cjs` holds path resolution, classification, collision checks, validator exit mapping, and the shared probes.
 
+#### Router row and route documentation
+
+Row C7 grades a router by what the replay reader can read. The skill router template permits a map named `INTENT_MODEL` and a router that routes by pseudocode alone, and the reader matches only uppercase map keys, so an unreadable map is the template working as designed rather than a defect. C7 now stays FINDING for the two shapes that are faults, a dual declaration and a hub root, whose map is the one thing that flexibility never relaxes, and reports INFO naming the reason for a skill or a hub packet. A parseable router still reports PASS with its intent and resource counts.
+
+The check workflow and the presentation now name each row the way the engine prints it, and the presentation's fleet result line carries `PASS` and `FINDINGS (N)`, matching `Roots: [N]; result: ...`.
+
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
 | `.skilled/commands/doctor/scripts/sk-skill-check.cjs` | Created | Runs C1-C13 checks and renders deep and fleet reports |
 | `.skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs` | Created | Locates and classifies inputs, maps child exit codes, discovers a Python interpreter with PyYAML, and shares probes |
-| `.skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | Created | Covers 31 cases for fixture classification, rendering, failure mappings, fleet behavior, target-aware probes, advisor envelopes, and Python discovery |
-| `.skilled/commands/doctor/scripts/tests/fixtures/sk-skill-check/` | Created | Holds plain, pre-migration, canon, dual, outside-root, reserved-prefix, direct-hub, and nested-packet fixtures |
+| `.skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | Updated | Covers 57 cases for fixture classification, rendering, failure mappings, fleet behavior, target-aware probes, advisor envelopes, Python discovery, the router row's four verdict shapes, and route-document parity |
+| `.skilled/commands/doctor/scripts/tests/fixtures/sk-skill-check/` | Updated | Holds plain, pre-migration, canon, dual, mode-template, outside-root, reserved-prefix, direct-hub, and nested-packet fixtures |
+| `.skilled/commands/doctor/assets/doctor-sk-skill-check.yaml` | Updated | Names rows C1 to C13 and H1 to H11 with the labels the engine prints |
+| `.skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt` | Updated | Documents the fleet result line the engine prints |
 | `scratch/baseline/package-skill.json` | Created | Captures strict package results for 13 shipped roots before implementation |
 | `scratch/baseline/ci-skill-root-metadata.json` | Created | Captures metadata results for 13 shipped roots before implementation |
 | `tasks.md`, `acceptance-criteria.md`, `implementation-summary.md` | Updated | Records completed tasks, evidence, and outcome |
@@ -96,7 +104,10 @@ The fixture suite passed all 31 tests. With `PYTHON` unset, the fleet check retu
 | `node --check .skilled/commands/doctor/scripts/sk-skill-check.cjs` | PASS, exit 0 |
 | `node --check .skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs` | PASS, exit 0 |
 | `node --check` on checker, surface library, and test file | PASS, exit 0 |
-| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | 31 passed, 0 failed, exit 0 |
+| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | 31 passed, 0 failed, exit 0; 57 passed, 0 failed, exit 0 after the router-row follow-up |
+| `node --test .skilled/commands/doctor/scripts/tests/doctor-sk-skill-contract.test.cjs` | 32 passed, 0 failed, exit 0 |
+| `check <each of the 14 sk-doc packets>` against `package_skill.py --check --strict --json` | Every packet: gate `valid: true` exit 0, check C3 PASS, `findingCount: 0`, exit 0; no C7 FINDING |
+| Three new tests on the pre-fix engine | Failed with `'FINDING' !== 'INFO'`, `the workflow names C1 Location`, and `the documented result line names PASS` |
 | `env -u PYTHON node .skilled/commands/doctor/scripts/sk-skill-check.cjs check` | 13 roots PASS; exit 0 |
 | `env -u PYTHON node .skilled/commands/doctor/scripts/sk-skill-check.cjs check sk-git` | C8 UNKNOWN while the advisor backend was unavailable; `Result: NO FINDINGS (1 UNKNOWN)`; exit 0 |
 | `env -u PYTHON node .skilled/commands/doctor/scripts/sk-skill-check.cjs check sk-code-skilled` | Resolved as `hub-packet`; exit 0 |
@@ -115,6 +126,8 @@ The fixture suite passed all 31 tests. With `PYTHON` unset, the fleet check retu
 ## Known Limitations
 
 No known blockers remain for the read-only check engine.
+
+The fleet now reports `Roots: 13; result: FINDINGS (1)` where it reported `Roots: 13; result: PASS` when this phase closed. The finding is `sk-prompt`, whose Format cell is `package_skill.py --check --strict`'s own verdict on `benchmark/router/run_fixtures.sh`; the deep report's C3 row prints that same message. The engine therefore reports nothing the gate does not, and the delta sits in a root this phase does not own.
 <!-- /ANCHOR:limitations -->
 
 ---

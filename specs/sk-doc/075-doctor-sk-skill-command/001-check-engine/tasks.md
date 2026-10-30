@@ -60,6 +60,7 @@ contextType: "general"
 - [x] T011 Prove `check` writes nothing (repository tree). Verify: `git status --porcelain` is identical before and after a fleet run. Evidence: `git status --short` printed identical lines before and after `check`; the fleet check exited 0.
 - [x] T012 [P1] Resolve the phase 001 code-review findings and interpreter-discovery follow-up in the checker, shared surface probes and tests. Verify: the explicit suite passes and named checks contain no FINDING rows. Evidence: the suite passed 31/31; `check sk-git` reported C8 UNKNOWN and exited 0 while the live advisor exited 75; `check sk-code-skilled` resolved as `hub-packet` and exited 0.
 - [x] T013 [P1] Record review decisions and final evidence in the phase documents. Verify: strict phase validation prints `RESULT: PASSED`; all acceptance rows are Met with command or test evidence. Evidence: `repair-derived.cjs --apply --folder specs/sk-doc/075-doctor-sk-skill-command/001-check-engine` refreshed graph metadata; strict validation reported `RESULT: PASSED`, 0 errors and 0 warnings.
+- [x] T014 [P1] Remove the router row's false positive, teach the route documents the engine's own row labels and fleet result line, and settle the `sk-prompt` format finding (`DOC/scripts/sk-skill-check.cjs`, `DOC/scripts/tests/sk-skill-check.test.cjs` and its `skills/mode-template/` fixture, `DOC/assets/doctor-sk-skill-check.yaml`, `DOC/assets/doctor-sk-skill-presentation.txt`). Verify: `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` and `node --test .skilled/commands/doctor/scripts/tests/doctor-sk-skill-contract.test.cjs` exit 0; `check <each sk-doc packet>` reports no C7 FINDING and the same verdict as `package_skill.py --check --strict`; the YAML and presentation name the labels the engine prints. Evidence: the suite passed 57/57 (three new tests failed on the pre-fix code: C7 reported `FINDING` for the mode-template fixture, the workflow named `C1 Location` nowhere, and the documented fleet result line did not carry `PASS`), the contract suite passed 32/32, and all 14 sk-doc packets report C3 PASS, `findingCount: 0`, exit 0 where `package_skill.py --check --strict --json` returns `valid: true`, exit 0. C7 is now FINDING only for a dual declaration and for a hub root, INFO with its reason otherwise. The fleet reports `Roots: 13; result: FINDINGS (1)`: `sk-prompt`'s Format cell is `package_skill.py --check --strict`'s own `valid: false` verdict on `benchmark/router/run_fixtures.sh`, so no row there reports a finding the gate does not, and that root is outside this phase.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -67,10 +68,10 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]` — Evidence: T001-T013 are complete with verification recorded above.
-- [x] No `[B]` blocked tasks remaining — Evidence: T013 is complete after generated metadata refresh and strict validation.
+- [x] All tasks marked `[x]` — Evidence: T001-T014 are complete with verification recorded above.
+- [x] No `[B]` blocked tasks remaining — Evidence: T014 is complete after the router-row fix, the route-document labels and the strict validation rerun.
 - [x] Manual verification passed — Evidence: the fleet check, `check sk-git` and `check sk-code-skilled` completed with `PYTHON` unset; the advisor outage was represented as C8 UNKNOWN, and strict validation passed.
-- [x] `sk-skill-check.test.cjs` passes and the fleet run matches `scratch/baseline/` — Evidence: 31 tests passed; the 13-root fleet matches both baseline files with no mismatches.
+- [x] `sk-skill-check.test.cjs` passes and the fleet run matches `scratch/baseline/` — Evidence: 31 tests passed when the phase closed, and the 13-root fleet matched both baseline files. Rerun after T014: 57 tests passed, and the fleet reports `Roots: 13; result: FINDINGS (1)`. The one finding is `sk-prompt`, whose Format cell is `package_skill.py --check --strict`'s own verdict on `benchmark/router/run_fixtures.sh`; that root is outside this phase, so the fleet now tracks the gate rather than the baseline.
 <!-- /ANCHOR:completion -->
 
 ---

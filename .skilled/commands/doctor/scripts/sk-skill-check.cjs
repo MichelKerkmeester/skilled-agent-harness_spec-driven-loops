@@ -32,6 +32,10 @@ const ROW_LABELS = [
   ['C13', 'Regression coverage'],
 ];
 
+// A router document that names any of these is declaring a map, whether or not the replay
+// reader can read it. The name tells the two unreadable shapes apart.
+const ROUTER_MAP_DECLARATION = /(?:INTENT_SIGNALS|INTENT_MODEL|RESOURCE_MAP)\s*=/;
+
 function firstLine(value) {
   return String(value || '').split(/\r?\n/).find((line) => line.trim()) || '';
 }
@@ -200,7 +204,28 @@ function checkDerived(skillRoot, context) {
   throw new surface.CheckError('VALIDATOR_OUTPUT_INVALID', 'Derived freshness JSON has an unrecognized root status.');
 }
 
-function checkRouter(skillRoot, context) {
+// The skill router template permits two shapes the replay reader cannot read: a map named
+// INTENT_MODEL, and a router that routes by pseudocode alone with no map at all. Neither is a
+// defect, so the row names the reason instead of grading it. Two cases still are defects: two
+// documents declaring one router leaves no map to pick, and a hub's map is the one thing that
+// flexibility never relaxes.
+function readDeclaredRouterText(skillRoot, parsed, context) {
+  const source = parsed.routerSource;
+  const relative = typeof source === 'string' && source !== 'inline' && !path.isAbsolute(source)
+    ? source
+    : 'SKILL.md';
+  return surface.readTextFile(path.join(skillRoot, relative), context.fs);
+}
+
+function unreadRouterReason(skillRoot, parsed, context) {
+  const text = readDeclaredRouterText(skillRoot, parsed, context);
+  if (typeof text === 'string' && ROUTER_MAP_DECLARATION.test(text)) {
+    return 'it declares an intent map whose keys the replay reader does not read';
+  }
+  return 'it routes by pseudocode alone with no intent map the replay reader can read';
+}
+
+function checkRouter(skillRoot, context, inputKind) {
   let parser;
   try {
     parser = require(context.paths.routerReplay).parseRouter;
@@ -219,15 +244,30 @@ function checkRouter(skillRoot, context) {
   const resourceCount = parsed.resourceMap && typeof parsed.resourceMap === 'object'
     ? Object.keys(parsed.resourceMap).length
     : 0;
-  return {
-    status: parsed.parseable ? 'PASS' : 'FINDING',
-    detail: parsed.parseable
-      ? `Parsed ${intentCount} intent signal groups and ${resourceCount} resource-map entries.`
-      : 'The declared router is not parseable.',
-    intentCount,
-    resourceCount,
-    routerSource: parsed.routerSource || 'none',
-  };
+  const counts = { intentCount, resourceCount, routerSource: parsed.routerSource || 'none' };
+  if (parsed.parseable) {
+    return {
+      status: 'PASS',
+      detail: `Parsed ${intentCount} intent signal groups and ${resourceCount} resource-map entries.`,
+      ...counts,
+    };
+  }
+  if (parsed.routerSource === 'dual-declaration') {
+    return {
+      status: 'FINDING',
+      detail: 'No route was replayed: SKILL.md and ROUTER.md both declare a machine router.',
+      ...counts,
+    };
+  }
+  const reason = unreadRouterReason(skillRoot, parsed, context);
+  if (inputKind === 'hub') {
+    return {
+      status: 'FINDING',
+      detail: `No route was replayed: ${reason}, and a hub's map is never relaxed.`,
+      ...counts,
+    };
+  }
+  return { status: 'INFO', detail: `No route was replayed: ${reason}.`, ...counts };
 }
 
 function runAdvisorQuery(context, signal) {
@@ -488,8 +528,9 @@ function checkNamedSkill(skillRoot, context) {
     : checkDerived(skillRoot, context);
   addRow(rows, 'C6', derived.status, derived.detail);
 
-  // The shared parser confirms the selected router can still be replayed.
-  const router = checkRouter(skillRoot, context);
+  // The shared parser confirms the selected router can still be replayed, and the input kind
+  // decides whether a map it cannot read is a fault or a fact about how the router is written.
+  const router = checkRouter(skillRoot, context, inputKind);
   addRow(rows, 'C7', router.status, router.detail, {
     intentCount: router.intentCount,
     resourceCount: router.resourceCount,

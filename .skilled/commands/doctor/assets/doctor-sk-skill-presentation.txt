@@ -60,7 +60,7 @@ With no skill name or path the engine prints one row per direct child of `.skill
 Skill fleet check
 Skill  Format  Metadata  Codes  Verdict
 [skill]  [PASS|FINDING]  [PASS|FINDING]  [codes, or empty]  [PASS|FINDING]
-Roots: [N]; result: [pass|findings] ([N])
+Roots: [N]; result: [PASS|FINDINGS ([N])]
 ```
 
 `Codes` carries the machine-readable format and metadata codes the two validators printed for that root, and is empty when both pass.

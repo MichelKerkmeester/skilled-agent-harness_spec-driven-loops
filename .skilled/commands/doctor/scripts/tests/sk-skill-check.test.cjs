@@ -29,6 +29,11 @@ const surface = require('../lib/sk-skill-surface.cjs');
 const REPO_ROOT = path.resolve(__dirname, '../../../../..');
 const FIXTURE_ROOT = path.join(__dirname, 'fixtures', 'sk-skill-check');
 const SKILLS_DIR = path.join(FIXTURE_ROOT, 'skills');
+// The workflow and the presentation are the route's own documentation of this
+// engine's output, so the parity tests read them beside the engine that prints it.
+const ASSETS_DIR = path.resolve(__dirname, '..', '..', 'assets');
+const CHECK_YAML = fs.readFileSync(path.join(ASSETS_DIR, 'doctor-sk-skill-check.yaml'), 'utf8');
+const PRESENTATION = fs.readFileSync(path.join(ASSETS_DIR, 'doctor-sk-skill-presentation.txt'), 'utf8');
 const PREFIX = ['lo', 'cal', String.fromCharCode(45)].join('');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -394,6 +399,34 @@ test('changelog checks resolve standalone, hub-parent, and nested packet links',
     const { report } = reportFor(target, { fileSystem });
     assert.equal(getRow(report, 'C10').status, 'PASS', target);
   }
+});
+
+test('a router the replay reader cannot read is a fault only for a dual declaration and a hub', () => {
+  const canonical = reportFor('skills/canon').report;
+  assert.equal(getRow(canonical, 'C7').status, 'PASS');
+  assert.match(getRow(canonical, 'C7').detail, /Parsed 1 intent signal groups and 1 resource-map entries/);
+  assert.equal(getRow(canonical, 'C7').intentCount, 1);
+
+  const modeTemplate = reportFor('skills/mode-template').report;
+  assert.equal(getRow(modeTemplate, 'C7').status, 'INFO');
+  assert.match(getRow(modeTemplate, 'C7').detail, /intent map whose keys the replay reader does not read/);
+
+  const pseudocode = reportFor('skills/plain').report;
+  assert.equal(getRow(pseudocode, 'C7').status, 'INFO');
+  assert.match(getRow(pseudocode, 'C7').detail, /pseudocode alone/);
+
+  const packet = reportFor('skills/nested-packets/hub/modes/fixture-nested-mode').report;
+  assert.equal(packet.inputKind, 'hub-packet');
+  assert.equal(getRow(packet, 'C7').status, 'INFO');
+
+  const hub = reportFor('skills/hub').report;
+  assert.equal(hub.inputKind, 'hub');
+  assert.equal(getRow(hub, 'C7').status, 'FINDING');
+  assert.match(getRow(hub, 'C7').detail, /hub's map is never relaxed/);
+
+  const dual = reportFor('skills/dual').report;
+  assert.equal(getRow(dual, 'C7').status, 'FINDING');
+  assert.match(getRow(dual, 'C7').detail, /both declare a machine router/i);
 });
 
 test('reserved-prefix fixture is flagged without exposing its private name', () => {
@@ -1451,5 +1484,59 @@ test('the shared skill scan skips state directories so a backup SKILL.md is not 
     assert.deepEqual(collisions.findings, []);
   } finally {
     fs.rmSync(scratchDir, { recursive: true, force: true });
+  }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. WORKFLOW AND PRESENTATION PARITY
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('the check workflow names each deep row with the label the engine prints', () => {
+  const { context } = makeContext();
+  let text = '';
+  runCheck(['check', 'canon'], {
+    context,
+    stdout: { write: (chunk) => { text += chunk; } },
+    stderr: { write: () => {} },
+  });
+  const rows = text.split('\n')
+    .map((line) => /^(C\d+)\s+(?:PASS|FINDING|UNKNOWN|INFO|N\/A)\s+([^:]+):/.exec(line))
+    .filter(Boolean);
+  assert.equal(rows.length, 13);
+  for (const [, id, label] of rows) {
+    assert.ok(CHECK_YAML.includes(`${id} ${label}`), `the workflow names ${id} ${label}`);
+  }
+});
+
+test('the presentation documents the fleet result line the engine prints', () => {
+  const passing = createTempSkills(['pass-root']);
+  const finding = createTempSkills(['pass-root', 'finding-root']);
+  try {
+    const passText = renderFleetText(runFleet(makeContext({
+      skillsDir: passing.skillsDir,
+      metadataFleetResults: [{ skill: 'pass-root', skillClass: 'S', status: 'pass', violations: [] }],
+    }).context));
+    const findingText = renderFleetText(runFleet(makeContext({
+      skillsDir: finding.skillsDir,
+      packageFailures: { 'finding-root': { code: 1, codes: ['RS-008'] } },
+      metadataFleetCode: 1,
+      metadataFleetResults: [
+        { skill: 'pass-root', skillClass: 'S', status: 'pass', violations: [] },
+        { skill: 'finding-root', skillClass: 'S', status: 'fail', violations: [{ code: 'RRC-003' }] },
+      ],
+    }).context));
+    assert.match(passText, /^Roots: 1; result: PASS$/m);
+    assert.match(findingText, /^Roots: 2; result: FINDINGS \(1\)$/m);
+
+    const verdicts = [passText, findingText].map((text) => /result: (\w+)/.exec(text)[1]);
+    const documented = PRESENTATION.split('\n').find((line) => line.startsWith('Roots: [N]; result: '));
+    assert.ok(documented, 'the presentation documents the engine fleet result line');
+    for (const verdict of verdicts) {
+      assert.ok(documented.includes(verdict), `the documented result line names ${verdict}`);
+    }
+    assert.ok(documented.includes('([N])'), 'the documented result line carries the finding count');
+  } finally {
+    removeTempSkills(passing);
+    removeTempSkills(finding);
   }
 });
