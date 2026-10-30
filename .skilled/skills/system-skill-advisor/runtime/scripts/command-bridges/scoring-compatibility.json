@@ -262,6 +262,30 @@
       "order": 28,
       "id": "command-doctor-sk-skill-convert",
       "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-helper",
+      "order": 29,
+      "id": "command-doctor-helper",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-agents-md-check",
+      "order": 30,
+      "id": "command-doctor-agents-md-check",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-agents-md-embed",
+      "order": 31,
+      "id": "command-doctor-agents-md-embed",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-agents-md-restore",
+      "order": 32,
+      "id": "command-doctor-agents-md-restore",
+      "description": ""
     }
   ],
   "python": [
@@ -566,6 +590,30 @@
       "inventoryId": "command-doctor-sk-skill-convert",
       "order": 39,
       "id": "command-doctor-sk-skill-convert",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-helper",
+      "order": 40,
+      "id": "command-doctor-helper",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-agents-md-check",
+      "order": 41,
+      "id": "command-doctor-agents-md-check",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-agents-md-embed",
+      "order": 42,
+      "id": "command-doctor-agents-md-embed",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-agents-md-restore",
+      "order": 43,
+      "id": "command-doctor-agents-md-restore",
       "description": ""
     }
   ],

@@ -56,3 +56,16 @@
 {"id":"doctor-b-mcp-01","prompt":"Code Mode broken","expected_top":"mcp-code-mode","expected_second":"command-doctor-mcp-debug","wave":"B-mcp"}
 {"id":"doctor-b-mcp-02","prompt":"reinstall Code Mode MCP","expected_top":"mcp-code-mode","expected_second":"command-doctor-mcp-install","wave":"B-mcp"}
 {"id":"doctor-b-mcp-03","prompt":"/doctor:mcp install","expected_top":"command-doctor-mcp-install","expected_second":null,"wave":"B-mcp"}
+{"id":"doctor-b-helper-01","prompt":"/doctor:helper","expected_top":"command-doctor-helper","expected_second":null,"wave":"B-helper"}
+{"id":"doctor-b-helper-02","prompt":"which doctor command should I run","expected_top":"sk-doc","expected_second":"command-doctor-helper","wave":"B-helper"}
+{"id":"doctor-b-helper-03","prompt":"find the right doctor command","expected_top":"command-doctor-helper","expected_second":null,"wave":"B-helper"}
+{"id":"doctor-b-helper-04","prompt":"what doctor command fixes this","expected_top":"command-doctor-helper","expected_second":null,"wave":"B-helper"}
+{"id":"doctor-b-agents-md-check-01","prompt":"/doctor:agents-md check","expected_top":"command-doctor-agents-md-check","expected_second":null,"wave":"B-agents-md-check"}
+{"id":"doctor-b-agents-md-check-02","prompt":"check the shipped agents instruction file","expected_top":"sk-doc","expected_second":"command-doctor-agents-md-check","wave":"B-agents-md-check"}
+{"id":"doctor-b-agents-md-check-03","prompt":"which agents md sections are stale","expected_top":"command-doctor-agents-md-check","expected_second":null,"wave":"B-agents-md-check"}
+{"id":"doctor-b-agents-md-embed-01","prompt":"/doctor:agents-md embed","expected_top":"command-doctor-agents-md-embed","expected_second":null,"wave":"B-agents-md-embed"}
+{"id":"doctor-b-agents-md-embed-02","prompt":"fold claude md into agents md","expected_top":"sk-doc","expected_second":"command-doctor-agents-md-embed","wave":"B-agents-md-embed"}
+{"id":"doctor-b-agents-md-embed-03","prompt":"embed the shipped instructions into agents md","expected_top":"command-doctor-agents-md-embed","expected_second":null,"wave":"B-agents-md-embed"}
+{"id":"doctor-b-agents-md-restore-01","prompt":"/doctor:agents-md restore","expected_top":"command-doctor-agents-md-restore","expected_second":null,"wave":"B-agents-md-restore"}
+{"id":"doctor-b-agents-md-restore-02","prompt":"undo an agents md embed run","expected_top":"sk-doc","expected_second":"command-doctor-agents-md-restore","wave":"B-agents-md-restore"}
+{"id":"doctor-b-agents-md-restore-03","prompt":"restore agents md from the backup","expected_top":"command-doctor-agents-md-restore","expected_second":null,"wave":"B-agents-md-restore"}

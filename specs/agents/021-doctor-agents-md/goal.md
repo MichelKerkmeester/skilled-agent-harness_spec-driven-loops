@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "agents/021-doctor-agents-md"
     last_updated_at: "2026-10-30T17:50:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Closed both phases and the packet"
+    recent_action: "Closed all three phases and the packet"
     next_safe_action: "None: the packet is complete"
     blockers: []
     key_files: []
@@ -100,7 +100,8 @@ and findings belong here.
 |------|-------|----------|
 | Packet authored from two approved designs | Done | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md --recursive --strict` printed `RESULT: PASSED` at authoring time |
 | Phase 001 | Done | Five child folders closed; `agents-md-manifest.cjs --check`, `agents-md-check.cjs` and `agents-md-embed.cjs plan` all pass from the final tree |
-| Phase 002 | Done | `/doctor:helper` ships, its held-out suite passes and its bridge is derived and inactive by decision |
+| Phase 002 | Done | `/doctor:helper` ships, its held-out suite passes and its bridge is derived; phase 003 activates that bridge with the three agents-md bridges |
+| Phase 003 | Done | Four bridges activated in both lanes; `doctor-phrase-reach.cjs` reports `STATUS=OK phrases=164 bridges=28` and the routing-accuracy baseline holds every metric |
 
 ### Deviations and findings
 

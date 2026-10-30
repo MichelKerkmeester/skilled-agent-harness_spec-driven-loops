@@ -13,12 +13,13 @@ _memory:
     packet_pointer: "agents/021-doctor-agents-md"
     last_updated_at: "2026-10-30T17:50:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Closed both phases and the packet"
+    recent_action: "Closed all three phases and the packet"
     next_safe_action: "None: the packet is complete"
     blockers: []
     key_files:
       - "specs/agents/021-doctor-agents-md/001-doctor-agents-md/spec.md"
       - "specs/agents/021-doctor-agents-md/002-doctor-helper/spec.md"
+      - "specs/agents/021-doctor-agents-md/003-advisor-bridge-activation/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-292-doctor-agents-md"
@@ -26,7 +27,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Phase 001 carries five Level 2 children and phase 002 is a single Level 2 packet"
+      - "Phase 001 carries five Level 2 children, phase 002 is a single Level 2 packet and phase 003 activates the four advisor bridges both phases derived"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: phase-parent-spec | v2.2 -->
 
@@ -89,7 +90,7 @@ Deliver two doctor surfaces that answer those two questions. `/doctor:agents-md`
 ### Out of Scope
 - Any automatic move of repository content out of the block - moving a line into a file that binds only on a write changes when it binds, which is the operator's call.
 - Authoring repository rules - the create-repo-rule decision tests own that, and the doctor only prints the command.
-- Activating the new advisor bridges in the scoring compatibility list - deferred, as the existing doctor skill command did.
+- Activating the new advisor bridges in the scoring compatibility list during phases 001 and 002 - deferred there, because activating a bridge needs a routing-slice row and a scorer rebaseline beside it; phase 003 owns that activation.
 - Any file the update engine already owns under `.skilled/` - the two surfaces divide at that boundary.
 
 ### Files to Change
@@ -122,6 +123,7 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md,
 |-------|--------|-------|--------|
 | 1 | 001-doctor-agents-md/ | The `/doctor:agents-md` build, a nested phase parent with five Level 2 children: manifest and template block, check engine, embed engine, command plumbing, verification and docs | Complete |
 | 2 | 002-doctor-helper/ | `/doctor:helper`, one Level 2 packet with no children: the deterministic matcher, its contract suite and its command plumbing | Complete |
+| 3 | 003-advisor-bridge-activation/ | Activation of the four advisor bridges both earlier phases derived: the helper and the three root-instruction targets, in both scoring lanes, with the reach probe and the routing slice proving every phrase | Complete |
 
 ### Phase Transition Rules
 
@@ -136,6 +138,7 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md,
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001-doctor-agents-md | 002-doctor-helper | The manifest, check engine and embed engine exist, and the command plumbing phase has landed the three agents-md routes | `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 and its summary names the three routes |
+| 002-doctor-helper | 003-advisor-bridge-activation | Both phases leave the four doctor bridges derived and admitted by no lane, and phase 003 adds the activation entries, the slice rows and the release note | `node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs` exits 0 with `STATUS=OK phrases=164 bridges=28` and the deriver reports `fresh` at 33 TypeScript and 43 Python entries |
 <!-- /ANCHOR:phase-map -->
 
 ---

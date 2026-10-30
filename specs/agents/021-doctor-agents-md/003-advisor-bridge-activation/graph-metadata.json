@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/021-doctor-agents-md/003-advisor-bridge-activation",
+  "spec_folder": "agents/021-doctor-agents-md/003-advisor-bridge-activation",
+  "parent_id": "agents/021-doctor-agents-md",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor bridge activation",
+      "doctor helper advisor bridge",
+      "agents md advisor bridge",
+      "activate the doctor bridges",
+      "advisor bridge activation plan",
+      "bridge activation gates",
+      "advisor bridge activation tasks",
+      "advisor bridge activation implementation summary",
+      "doctor bridges route"
+    ],
+    "key_topics": [
+      "advisor",
+      "bridge",
+      "activation",
+      "doctor",
+      "helper",
+      "agents",
+      "activate",
+      "bridges",
+      "plan",
+      "gates",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      ".skilled/skills/system-skill-advisor/SKILL.md",
+      ".skilled/skills/system-skill-advisor/changelog/v0.17.30.0.md",
+      ".hermes/skills/system-skill-advisor/SKILL.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md",
+      "specs/agents/021-doctor-agents-md/spec.md",
+      "specs/agents/021-doctor-agents-md/graph-metadata.json",
+      "specs/agents/021-doctor-agents-md/003-advisor-bridge-activation/spec.md",
+      ".skilled/commands/doctor/_routes.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/agents/021-doctor-agents-md/003-advisor-bridge-activation/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "scoring-compatibility.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-prompts.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "command-bridges.generated.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        "source": "derived"
+      },
+      {
+        "name": "projection.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.17.30.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/changelog/v0.17.30.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-command-routing.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/agents/021-doctor-agents-md/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Deriving",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Generated",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Deriving a bridge and activating it are two different acts",
+    "created_at": "2026-10-30T17:18:46Z",
+    "last_save_at": "2026-10-30T17:38:52.266Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b2b806343ef0409109da759e84415bbeda97e0bb2a1bf494df1cb0320f483b95",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b8047c93d737fbcdb629a94b282df45b4c697de391b3d185afe894f8636820d0",
+      "plan.md": "8258a6ec54b977f8dbba8b402b404f6ee2dac1bff67d14a2ebc5951d891c47b5",
+      "tasks.md": "4313672adaf02a8e6ecf6fbbd7d7ed09c255cb580f3293564c86fe3afa03df03",
+      "implementation-summary.md": "b5d6a49401b2396f45afd044974b070ab65125a52f77f031a7d891d700eab927"
+    },
+    "last_active_at": null
+  }
+}
