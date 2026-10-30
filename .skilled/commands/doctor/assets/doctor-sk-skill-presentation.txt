@@ -152,42 +152,48 @@ Integration plan: [one line per integration row the engine printed]
 Engine follow-ups: [one bullet per follow-up item, or none]
 
 Field values approved in this run:
+- Intent phrases: [the eight or more phrases the operator approved, or the phrases the skill already declares]
 - Description: [the trim the operator approved, or within budget so no trim was asked]
 - allowed-tools: [the list the operator approved, or the list the skill already declares]
 
 Convert this skill now? [yes/no]
 ```
 
-The plan quoted here is the rerun's, the one that already carries each approved field as its own line: `Set description: "..."` and `Set allowed-tools: [...]`. A plan printed before those questions is never the one the operator approves, because it does not contain the writes to be approved.
+The plan quoted here is the rerun's, the one that already carries each approved field as its own line. An older Skilled rerun prints each approved field as a step: `Set description: "..."` and `Set allowed-tools: [...]`. A plain-skill rerun prints them as its own lines: `Approved intent phrases (N): [...]`, `allowed-tools: [...]` and `Approved description trim: "..."`. A plan printed before those questions is never the one the operator approves, because it does not contain the writes to be approved.
 
 ### Field Follow-Ups
 
-Two engine messages are questions rather than refusals. Each one is asked on its own, in this order, and each answer is its own yes.
+Three messages are questions rather than refusals. Each one is asked on its own, in the order the plan raises it, and each answer is its own yes: the intent phrases first, because a plain skill's plan cannot print until the engine has them, then the description trim, then the allowed-tools list.
 
 ```text
+Approve these [N] intent phrases as this skill's PRIMARY keywords? [yes/no]
+- [phrase]
+- [phrase]
+
 Trim the description to 130 characters or fewer? [yes/no]
-Declare allowed-tools as [Read, Grep, Glob] for this skill? [yes/no]
+Declare allowed-tools as [the proposed list] for this skill? [yes/no]
 ```
 
+- **A plain skill with no approved intent phrases.** `INTENT_SIGNALS_BELOW_FLOOR` names the count the engine needs and prints the phrases it suggests. Show every suggested phrase on its own line, let the operator approve or edit the list, and require at least eight distinct phrases of three or more words each: these become the skill's `PRIMARY` keywords, so a short phrase routes nothing. Whichever list the operator approves is what goes to repeated `--approved-phrase` flags.
 - **A description over the budget.** `DESCRIPTION_TOO_LONG` names the length and the 130-character limit. Ask the trim question and show the text in full: the engine's `Proposed description trim` line when the plan printed one, or, when the refusal printed no proposal, a trim of 130 characters or fewer that keeps the skill's own wording. Whichever text the operator approves is what goes to `--description-trim`.
-- **No `allowed-tools`.** `ALLOWED_TOOLS_MISSING` means the field is not declared. Propose the list the engine printed, `[Read, Grep, Glob]`, plus `Bash` when the skill folder holds a `scripts/` folder, and let the operator edit the list before answering. That answer is what goes to `--allowed-tools`. Never default the list and never write a permission grant without that yes.
-- **The workflow never edits a field.** Neither value is written by hand. Each approved value becomes a flag, the plan is rerun with it so the operator sees the field as one plan line, and the engine writes it beside the same backup.
-- **The plan is rerun.** After the answers, the workflow runs the plan again with `--description-trim`, `--allowed-tools` and, for a plain skill, `--agent-output`, prints that plan, and asks the conversion question against it.
+- **No `allowed-tools`.** When the plan's `allowed-tools:` line reports that approval is required, the question offers that line's own list — the engine's proposal, which carries `Bash` only when the skill folder holds a `scripts/` folder. Read the list back in full and let the operator edit it before answering. That answer is what goes to `--allowed-tools`. Never default the list and never write a permission grant without that yes.
+- **The workflow never edits a field.** No field value is written by hand. Each approved value becomes a flag, the plan is rerun with it so the operator sees the field as its own plan line, and the engine writes it beside the same backup.
+- **The plan is rerun.** After each batch of answers the workflow runs `sk-skill-convert.cjs apply <skill-target> <the approved flags>` with no `--apply`: that form prints the plan, closes on the engine's own `Apply gate: no writes without --apply.` line, and writes nothing. The rerun carries `--approved-phrase` repeated for each phrase, `--description-trim`, `--allowed-tools` and, for a plain skill, `--agent-output`. The workflow then prints that plan and asks the conversion question against it.
 
-A no at either question ends the run, and it says which value was declined. Nothing is written.
+A no at any question ends the run, and it says which value was declined. Nothing is written, and the one scratch root the plain path uses is deleted.
 
 ```text
 DOCTOR TARGET CANCELLED
 Target: convert
 Skill: [name]
-Declined: [the description trim | the allowed-tools list | the conversion]
+Declined: [the intent phrases | the description trim | the allowed-tools list | the conversion]
 Changed: none
 STATUS=CANCELLED ACTION=cancelled
 ```
 
 ### Dry Run
 
-With `--dry-run`, follow the plan and the field values it proposes with `Dry run: nothing was written and nothing was asked.` and end with `STATUS=OK`. No question is asked, the agent step does not run, and nothing is written.
+With `--dry-run`, follow the plan and the field values it proposes with `Dry run: nothing was written and nothing was asked.` and end with `STATUS=OK`. No question is asked, the agent step does not run, and nothing is written. When the first plan refused with a follow-up message such as `INTENT_SIGNALS_BELOW_FLOOR`, that message is the pending follow-up in place of the plan lines: no plan has printed, so there is none to quote.
 
 ### The Conversion Question
 
@@ -219,7 +225,6 @@ A refusal prints `REFUSE: [the engine's reason]`, then `STATUS=FAIL ERROR="[code
 | `INPUT_KIND_UNSUPPORTED` | the input is neither an older Skilled skill nor a plain outside-root skill | Read the check input kind; a hub belongs to `/create:skill-parent` |
 | `ROUTER_EXISTS` | an `ROUTER.md` exists that the resolver does not read as this skill's machine router, so it is never replaced | Read that file; a conversion never overwrites it |
 | `DESCRIPTION_MISSING` | `SKILL.md` must declare a description | Add one, then rerun |
-| `INTENT_SIGNALS_BELOW_FLOOR` | fewer than 8 approved intent phrases were supplied | Approve the phrases the engine suggested, then rerun |
 | `RESOURCE_LINK_MISSING` | `SKILL.md` links to a reference document that is not there | Add the document, or drop the link |
 | `RESOURCE_RENAME_COLLISION` | a planned resource rename would replace an existing file | Rename one of the two, then rerun |
 | `SNAPSHOT_INVALID` | the preserve snapshot holds no `SKILL.md` | Point `--snapshot` at a folder holding the source `SKILL.md` |
@@ -261,7 +266,7 @@ A refusal prints `REFUSE: [the engine's reason]`, then `STATUS=FAIL ERROR="[code
 
 | Code | Reason it prints | Next |
 |------|------------------|------|
-| `STALE_PLAN` | `SKILL.md` changed after planning, and no file was written | Rerun the plan, then answer the questions again |
+| `STALE_PLAN` | `SKILL.md` changed after planning, and no file was written | The engine catches a change made while the apply call ran, not an edit between the plan the operator approved and the apply. Rerun the plan, then answer the questions again |
 | `ROUTER_CONTENT_CHANGED` | the router content proof failed before the write | Report the engine's message; nothing changed |
 | `ROUTER_SEMANTICS_CHANGED` | the converted router no longer resolved to the same signals, so the skill folder was restored | Report the engine's message; nothing changed |
 | `APPLY_FAILED` | the conversion rolled back and the skill folder holds its original files | Read the message, fix the cause, then rerun |
@@ -279,10 +284,11 @@ A refusal prints `REFUSE: [the engine's reason]`, then `STATUS=FAIL ERROR="[code
 
 ### 5.5 Messages that are a follow-up question
 
-The first two are not stopping refusals: each names a write the operator has not approved yet, so the workflow asks that question in section 4 and reruns the plan with the approved flag. The last three mean the apply ran without a flag the plan was approved with; that is the workflow's own fault, and it is repaired by passing the same flags to the plan and to the apply.
+The first three are not stopping refusals: each names a write the operator has not approved yet, so the workflow asks that question in section 4 and reruns the plan with the approved flag. The last three mean the apply ran without a flag the plan was approved with; that is the workflow's own fault, and it is repaired by passing the same flags to the plan and to the apply.
 
 | Code | What it means | Where it is answered |
 |------|---------------|----------------------|
+| `INTENT_SIGNALS_BELOW_FLOOR` | a plain skill has fewer than eight approved intent phrases | the intent-phrase question, then the plan is rerun with a repeated `--approved-phrase` per phrase |
 | `DESCRIPTION_TOO_LONG` | the description is over 130 characters and no trim was approved | the trim question, then the plan is rerun with `--description-trim` |
 | `ALLOWED_TOOLS_MISSING` | `SKILL.md` declares no `allowed-tools` field | the allowed-tools question, then the plan is rerun with `--allowed-tools` |
 | `ALLOWED_TOOLS_APPROVAL_REQUIRED` | the apply was run without the approved `--allowed-tools` value | rerun the plan and the apply with the list the operator named |
@@ -306,9 +312,9 @@ Skill: [name]
 Files changed: [each overwritten or created path]
 Router source: [inline -> ROUTER.md | ROUTER.md -> ROUTER.md]
 Verification: [the check engine's result line and any row that still reports FINDING]
-Fields approved: [the trimmed description and the allowed-tools list the operator approved, or none]
+Fields approved: [the intent phrases, the trimmed description and the allowed-tools list the operator approved, or none]
 Integration: [one line per integration row the engine printed, and the row that failed when one did]
-Undo: [the engine's undo block, quoted whole: its Undo: line, one cp per backup, one rm per file the run created, one git restore per tracked file an integration row overwrote, and its Check: line]
+Undo: [the engine's undo block, quoted whole: its Undo: line, one cp (cp -R for a folder) from the backup for each overwritten file, one rm (rm -r for a folder) for each path the run created, and its Check: line]
 STATUS=OK
 ```
 
@@ -333,7 +339,7 @@ Render this when the operator declines any question, and name what was declined.
 DOCTOR TARGET CANCELLED
 Target: convert
 Skill: [name]
-Declined: [the description trim | the allowed-tools list | the conversion]
+Declined: [the intent phrases | the description trim | the allowed-tools list | the conversion]
 Changed: none
 STATUS=CANCELLED ACTION=cancelled
 ```
@@ -399,12 +405,14 @@ A rolled-back conversion prints `Changed: none`. A `ROLLBACK_FAILED` prints the 
 | `HUB_NOT_FOUND` | The hub name or path resolves to no directory. Check the spelling, or pass the hub root path |
 | `PRIVATE_ROOT_REFUSED` | A private root is skipped by every gate, so a report on it could only pass by being invisible. Point `--into-hub` and the skill at a public root |
 | Convert exits 1 with a code that is not in the refusal table | The code is the engine's own; read its message and treat it as the same class: nothing was written, fix that one condition, then rerun the plan |
-| Convert reports `DESCRIPTION_TOO_LONG` or `ALLOWED_TOOLS_MISSING` | Not a failure: each one is a follow-up question. Ask the trim or the allowed-tools question, then rerun the plan with the flag the answer gives |
+| Convert reports `INTENT_SIGNALS_BELOW_FLOOR`, `DESCRIPTION_TOO_LONG` or `ALLOWED_TOOLS_MISSING` | Not a failure: each one is a follow-up question. Ask the intent-phrase, trim or allowed-tools question, then rerun the plan with the flag the answer gives |
 | Convert reports `PRESERVATION_FAILED` | The reshaped prose dropped an original body line. Put that line back into `SKILL.md` or into a reference document, rerun `preserve --snapshot <dir> <staging dir>` until it prints `Preservation PASS`, then rerun the plan |
 | Convert reports `AGENT_RESHAPE_REQUIRED`, `DESCRIPTION_TRIM_REQUIRED` or `ALLOWED_TOOLS_APPROVAL_REQUIRED` | The apply ran without a flag the plan was approved with. Rerun the plan and then the apply with the same flags |
+| Convert exits 1 from the apply but printed an `Undo:` block | The conversion and its format gates finished and one integration row failed, so the converted skill is kept and the block is the way back. Render the failed result with that row as the error, the block quoted whole and `Changed:` naming the conversion, then repair that one row |
 | Convert reports the skill is already converted | The plan printed `Writes: none` and nothing was asked. Read the unchanged result, not a failure |
-| Convert changed `SKILL.md` and you want it back | Run the engine's own `Undo:` block, exactly as printed. It restores each backed-up file, removes each file the run created and restores each tracked file an integration row overwrote. Never recompose it by hand |
-| Convert reports a plain skill that was copied rather than converted in place | A plain skill is staged under `.skilled/skills/<name>/` and its source folder stays as it was. Read the `Converted skill:` line for the root the check reads |
+| Convert changed `SKILL.md` and you want it back | Run the engine's own `Undo:` block, exactly as printed. It copies each overwritten file back from the backup, removes each path the run created and closes on the `Check:` command. Never recompose it by hand |
+| You ran the undo and the advisor no longer finds the skill you kept | The advisor graph is rebuilt by the run's own scan rather than backed up, so the undo left it describing a skill that is gone. Rescan it with `/doctor:skill-advisor rebuild`, or the `skill_graph_scan` the plan's I1 row names |
+| Convert reports a plain skill that was copied rather than converted where it sits | A plain skill is staged under `.skilled/skills/<name>/` and its source folder stays as it was. Read the `Converted skill:` line for the root the check reads |
 | Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
 
 ## 8. Next Step

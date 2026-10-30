@@ -90,9 +90,9 @@ const deriveCodes = () => {
 
 const CONVERT_REFUSAL_CODES = [...deriveCodes()].sort();
 
-// The two messages that are a question rather than a stop: the workflow asks
+// The three messages that are a question rather than a stop: the workflow asks
 // about them and reruns the plan with the approved flag.
-const FOLLOW_UP_CODES = ['DESCRIPTION_TOO_LONG', 'ALLOWED_TOOLS_MISSING'];
+const FOLLOW_UP_CODES = ['INTENT_SIGNALS_BELOW_FLOOR', 'DESCRIPTION_TOO_LONG', 'ALLOWED_TOOLS_MISSING'];
 
 const CONVERT_WORKFLOW = parseYaml(CONVERT_YAML);
 const PHASES = Object.keys(CONVERT_WORKFLOW.workflow);
@@ -169,19 +169,21 @@ test('both routes name the engines their workflows run and every trigger phrase 
     checkRoute().script_invocations.map((entry) => entry.match(/\.skilled\/\S+\.cjs/)[0]),
     [ENGINE],
   );
-  // The plan, the preserve proof, the apply and the post-write re-read, in the order
-  // the workflow runs them.
+  // The plan, the plan rerun, the preserve proof, the apply and the post-write
+  // re-read, in the order the workflow runs them.
   assert.deepEqual(
     convertRoute().script_invocations.map((entry) => entry.match(/\.skilled\/\S+\.cjs/)[0]),
-    [CONVERT_ENGINE, CONVERT_ENGINE, CONVERT_ENGINE, ENGINE],
+    [CONVERT_ENGINE, CONVERT_ENGINE, CONVERT_ENGINE, CONVERT_ENGINE, ENGINE],
   );
-  const planCall = convertRoute().script_invocations[0];
-  const preserveCall = convertRoute().script_invocations[1];
-  const applyCall = convertRoute().script_invocations[2];
+  const [planCall, rerunCall, preserveCall, applyCall] = convertRoute().script_invocations;
   // The plan call is the one the workflow runs before the questions, so it may not
   // carry the write switch, and only the apply carries it.
   assert.doesNotMatch(planCall, /--apply/);
   assert.match(planCall, /sk-skill-convert\.cjs plan/);
+  // The rerun is the same apply form with no write switch: it prints the plan and
+  // writes nothing, which is the only documented form that carries these flags.
+  assert.match(rerunCall, /sk-skill-convert\.cjs apply/);
+  assert.doesNotMatch(rerunCall, /--apply/);
   assert.match(preserveCall, /sk-skill-convert\.cjs preserve --snapshot/);
   assert.match(applyCall, /--apply/);
   // A plain skill is still reachable: the phrase that names it stays.
@@ -252,7 +254,7 @@ test('the router step list runs the real order: plan, follow-up yeses, rerun, qu
   };
   const plan = at(/sk-skill-convert\.cjs plan/);
   const followUp = at(/own yes/);
-  const rerun = at(/reruns `sk-skill-convert\.cjs plan` with `--description-trim`/);
+  const rerun = at(/reruns the plan as `sk-skill-convert\.cjs apply/);
   const question = at(/asks the conversion question/);
   const apply = at(/sk-skill-convert\.cjs apply --apply/);
   const undo = at(/undo block the engine printed/);
@@ -282,7 +284,7 @@ test('the presentation keeps the check tables, the JSON passthrough and the ques
   assert.match(PRESENTATION, /^Result: \[PASS\|FINDINGS/m);
   assert.ok(PRESENTATION.includes("With `--json` print the engine's JSON and nothing else"));
   assert.match(PRESENTATION, /^Trim the description to 130 characters or fewer\? \[yes\/no\]$/m);
-  assert.match(PRESENTATION, /^Declare allowed-tools as \[Read, Grep, Glob\] for this skill\? \[yes\/no\]$/m);
+  assert.match(PRESENTATION, /^Declare allowed-tools as \[the proposed list\] for this skill\? \[yes\/no\]$/m);
   assert.match(PRESENTATION, /^Convert this skill now\? \[yes\/no\]$/m);
   assert.match(PRESENTATION, /Dry run: nothing was written and nothing was asked\./);
   assert.match(PRESENTATION, /never write a permission grant without that yes/);
@@ -302,7 +304,7 @@ test('the presentation closes on the converted, unchanged, cancelled, dry-run an
   assert.match(PRESENTATION, /^STATUS=FAIL ERROR="\[code\]"$/m);
   assert.match(PRESENTATION, /^End interactive presentations with: `What would you like to do next\?`$/m);
   // A declined question says what was declined, and a dry run ends at OK.
-  assert.match(PRESENTATION, /^Declined: \[the description trim \| the allowed-tools list \| the conversion\]$/m);
+  assert.match(PRESENTATION, /^Declined: \[the intent phrases \| the description trim \| the allowed-tools list \| the conversion\]$/m);
   assert.match(PRESENTATION, /^### Dry Run$/m);
   assert.match(PRESENTATION, /^DOCTOR DRY RUN$/m);
 });
@@ -317,15 +319,15 @@ test('the presentation refusal table carries every code the converter can print'
   assert.ok(CONVERT_REFUSAL_CODES.length >= 40, `only ${CONVERT_REFUSAL_CODES.length} codes derived`);
 });
 
-test('the presentation points the two follow-up messages at their questions instead of the refusal table', () => {
+test('the presentation points the three follow-up messages at their questions instead of the refusal table', () => {
   const followUpSection = PRESENTATION.split('### 5.5 Messages that are a follow-up question')[1];
   assert.ok(followUpSection, 'the follow-up section is missing');
   for (const code of FOLLOW_UP_CODES) {
     assert.ok(followUpSection.includes(`\`${code}\``), `${code} is not named as a follow-up`);
-    assert.ok(/trim question|allowed-tools question/.test(followUpSection), code);
+    assert.ok(/intent-phrase question|trim question|allowed-tools question/.test(followUpSection), code);
   }
-  // The stopping tables above it never carry them. The plan section names both as
-  // questions, so only the refusal table between the two headings is checked here.
+  // The stopping tables above it never carry them. The plan section names all three
+  // as questions, so only the refusal table between the two headings is checked here.
   const refusals = PRESENTATION.split('## 5. Convert Refusals')[1]
     .split('### 5.5 Messages that are a follow-up question')[0];
   for (const code of FOLLOW_UP_CODES) {
@@ -393,28 +395,34 @@ test('the convert workflow runs its phases in the read, plan, follow-up, yes, wr
   assert.equal(CONVERT_WORKFLOW.output.presentation, '.skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt');
 });
 
+// Every flag the plain-skill plan and apply need, named as the engine's own usage
+// block names them: a rerun or an apply that drops one leaves the engine refusing.
+const PLAIN_APPROVAL_FLAGS = ['--approved-phrase', '--description-trim', '--allowed-tools', '--agent-output'];
+
 test('the plan is rendered before the conversion question and the flags reach the apply', () => {
   assert.match(phaseText('phase_2_plan'), new RegExp(`${CONVERT_ENGINE} plan`));
   // The rerun is the plan the operator approves: it carries the approved flags and
   // lands before the question, with the plain-skill proof before the format gate.
   const rerun = phaseText('phase_3_follow_ups');
-  assert.match(rerun, /--description-trim/);
-  assert.match(rerun, /--allowed-tools/);
-  assert.match(rerun, /preserve --snapshot/);
   assert.match(rerun, /Rerun the plan/);
-  // The write phase runs the apply with the same flags the rerun carried.
+  assert.match(rerun, new RegExp(`${CONVERT_ENGINE} apply`));
+  assert.match(rerun, /preserve --snapshot/);
+  // The write phase runs the apply with the same flags the rerun carried, so a flag
+  // in one phase and missing from the other is the bug this catches.
   const write = phaseText('phase_5_write');
   assert.match(write, new RegExp(`${CONVERT_ENGINE} apply`));
   assert.match(write, /--apply/);
-  for (const flag of ['--description-trim', '--allowed-tools', '--agent-output']) {
-    assert.match(write, new RegExp(flag));
+  for (const flag of PLAIN_APPROVAL_FLAGS) {
+    assert.match(rerun, new RegExp(flag), `the rerun drops ${flag}`);
+    assert.match(write, new RegExp(flag), `the apply drops ${flag}`);
   }
   // The write switch may appear before the write phase only where the read phase
-  // quotes the engine's usage block; the plan, follow-up and approval phases never
-  // carry it.
+  // quotes the engine's usage block and where a rerun quotes the engine's own gate
+  // line; the plan, follow-up and approval phases never carry it otherwise.
   assert.match(phaseText('phase_1_read'), /usage block/);
   for (const phase of ['phase_2_plan', 'phase_3_follow_ups', 'phase_4_approval']) {
-    assert.ok(!phaseText(phase).includes('--apply'), phase);
+    const text = phaseText(phase).replace(/Apply gate: no writes without --apply\./g, '');
+    assert.ok(!text.includes('--apply'), phase);
   }
   const order = ['phase_2_plan', 'phase_3_follow_ups', 'phase_4_approval', 'phase_5_write'];
   for (let index = 1; index < order.length; index += 1) {
@@ -425,6 +433,7 @@ test('the plan is rendered before the conversion question and the flags reach th
 test('a no at any question is a cancelled run that names what was declined', () => {
   const followUps = phaseText('phase_3_follow_ups');
   assert.match(followUps, /STATUS=CANCELLED ACTION=cancelled/);
+  assert.match(followUps, /naming the declined intent phrases/);
   assert.match(followUps, /naming the declined description trim/);
   assert.match(followUps, /naming the declined allowed-tools list/);
   assert.match(followUps, /Nothing is written/);
@@ -435,14 +444,33 @@ test('a no at any question is a cancelled run that names what was declined', () 
   assert.match(approval, /Nothing is written/);
 });
 
+test('the conversion question is asked against the printed plan and phase 5 runs only after its yes', () => {
+  const approval = phaseText('phase_4_approval');
+  assert.match(approval, /Ask the conversion question once/);
+  assert.match(approval, /Convert this skill now\? \[yes\/no\]/);
+  assert.match(approval, /the plan the operator has just read/);
+  const write = phaseText('phase_5_write');
+  // The write phase states the gate it sits behind, and the phase order proves the
+  // gate is a separate phase rather than a step inside the write.
+  assert.match(write, /only after the conversion yes/);
+  assert.ok(PHASES.indexOf('phase_4_approval') < PHASES.indexOf('phase_5_write'));
+  // A dry run never reaches either phase.
+  assert.match(phaseText('phase_3_follow_ups'), /A dry run asks nothing and writes nothing/);
+});
+
 test('the plain-skill prose step and its preserve proof are described from the engine interface', () => {
   const followUps = phaseText('phase_3_follow_ups');
   // The agent reshapes prose into --agent-output; the workflow never edits a field.
   assert.match(followUps, /workflow agent reshapes the SKILL\.md prose/);
   assert.match(followUps, /--agent-output/);
   assert.match(followUps, /never edits a SKILL\.md field/);
+  // Every temporary file lives under one declared scratch root, and the two
+  // questions the engine's own plan raises carry the flags the rerun needs.
+  assert.ok(followUps.includes('{scratch_dir}/agent-output.md'));
+  assert.ok(followUps.includes('preserve --snapshot "{scratch_dir}/snapshot" "{scratch_dir}/staging"'));
+  assert.ok('scratch_dir' in CONVERT_WORKFLOW.inputs, 'inputs.scratch_dir is missing');
+  assert.match(CONVERT_WORKFLOW.mutation_boundaries.allowed_targets.join('\n'), /\.state\/doctor-sk-skill\/<name>\/scratch\//);
   // The check runs the engine's own subcommand before the format gate.
-  assert.match(followUps, new RegExp(`preserve --snapshot <a scratch folder`));
   assert.match(followUps, /Preservation PASS/);
   assert.match(followUps, /PRESERVATION_FAILED/);
   assert.match(followUps, /stops the run with STATUS=FAIL and nothing written/);
@@ -452,11 +480,22 @@ test('the undo phase quotes the engine block instead of composing one', () => {
   const undo = phaseText('phase_7_undo');
   assert.match(undo, /undo block exactly as the apply printed it/);
   assert.match(undo, /Undo:/);
-  assert.match(undo, /git -c core\.fsmonitor=false restore/);
+  // The block the engine prints is a copy from the backup per overwritten file and
+  // a removal per created path, then its check: the route quotes it rather than
+  // restoring anything itself.
+  assert.match(undo, /one cp, or cp -R for a folder, from the backup/);
+  assert.match(undo, /one rm, or rm -r for a folder, for each path this run created/);
   assert.match(undo, /Check:/);
+  // A version-control restore is not one of the shapes the engine writes, so the
+  // phase names no restore command at all.
+  assert.doesNotMatch(undo, /restore/);
   // A composed undo used to delete ROUTER.md whatever the run had created.
   assert.doesNotMatch(undo, /delete the created ROUTER\.md/);
   assert.match(undo, /Never run the undo inside this route/);
+  // The advisor graph is rebuilt rather than backed up, so the operator is told to
+  // rescan it after running the undo.
+  assert.match(undo, /the run's own scan rebuilds it/);
+  assert.match(undo, /skill_graph_scan/);
 });
 
 test('a plan reporting no writes renders the unchanged result and asks nothing', () => {
@@ -499,6 +538,8 @@ test('the convert workflow declares every variable its route resolves and what i
     /skill-graph\.json/,
     /advisor cases file/,
     /\.hermes\/skills/,
+    // The one scratch root the plain path uses is a write the run owns and deletes.
+    /\.state\/doctor-sk-skill\/<name>\/scratch\//,
   ]) {
     assert.match(allowed, expected);
   }
@@ -509,19 +550,29 @@ test('the convert workflow declares every variable its route resolves and what i
   assert.doesNotMatch(forbidden, /the skill graph, the advisor index/);
   assert.doesNotMatch(forbidden, /the changelog, which other routes own/);
   assert.match(boundaries.invariant, /until the plan has been printed and the operator has answered yes/);
-  assert.match(boundaries.invariant, /every write is preceded by a backup/);
+  // Every skill file is backed up before it is overwritten; the advisor graph is
+  // the one write that is rebuilt instead, so the invariant cannot claim otherwise.
+  assert.match(boundaries.invariant, /Every skill file the run overwrites is copied to the backup first/);
+  assert.match(boundaries.invariant, /the advisor graph is the exception/);
+  assert.match(boundaries.invariant, /rescans it afterwards/);
   assert.match(boundaries.invariant, /A no at any question ends the run with STATUS=CANCELLED/);
 });
 
 test('the convert workflow states the follow-ups that need their own yes and keeps them out of the refusals', () => {
   const followUps = phaseText('phase_3_follow_ups');
   assert.match(followUps, /130-character budget/);
-  assert.match(followUps, /\[Read, Grep, Glob\]/);
-  assert.match(followUps, /their own yes/);
+  // The allowed-tools question shows the list the plan printed, never one the
+  // workflow keeps: the engine's proposal is the only list on screen.
+  assert.match(followUps, /allowed-tools line reports that approval is required/);
+  assert.match(followUps, /ask the allowed-tools question with the list that line prints/);
+  assert.doesNotMatch(followUps, /\[Read, Grep, Glob\]/);
+  assert.match(followUps, /own yes/);
   assert.match(followUps, /let the operator edit it/);
+  assert.match(followUps, /at least eight distinct phrases of three or more words/);
+  assert.match(followUps, /repeated --approved-phrase value/);
   // The engine's proposal adds Bash only when the skill actually ships scripts.
-  assert.match(followUps, /plus Bash when the skill folder holds a scripts\/ folder/);
-  // Neither message is a stopping refusal in the workflow either.
+  assert.match(followUps, /carries Bash only when the skill folder holds a scripts\/ folder/);
+  // None of the three messages is a stopping refusal in the workflow either.
   const refusalCodes = new Set(CONVERT_WORKFLOW.refusals.map((entry) => entry.code));
   for (const code of FOLLOW_UP_CODES) {
     assert.ok(!refusalCodes.has(code), `${code} is listed as a stopping refusal`);

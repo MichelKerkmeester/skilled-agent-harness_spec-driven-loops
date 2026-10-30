@@ -422,16 +422,17 @@ routes:
   - command: /doctor:sk-skill
     target: convert
     yaml: doctor-sk-skill-convert.yaml
-    setup_vars: [execution_mode, skill_target, dry_run]
+    setup_vars: [execution_mode, skill_target, dry_run, scratch_dir]
     allowed_flags: ["--dry-run"]
     mutating: mutates
-    gate3_location: "the staged or converted skill folder .skilled/skills/<name>/ (its SKILL.md, ROUTER.md, graph-metadata.json, leaf-manifest.config.json, scaffold files and renamed resources, or an in-place SKILL.md rewrite beside a new sibling ROUTER.md), its backups under .skilled/skills/.state/doctor-sk-skill/<name>/<timestamp>/, the skill's changelog folder with its .skilled/changelog/<name> link, and the integration targets the plan records: the advisor graph .skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite, the compiled skill-graph.json, the advisor cases file and the .hermes/skills mirror"
+    gate3_location: "the staged or converted skill folder .skilled/skills/<name>/ (its SKILL.md, ROUTER.md, graph-metadata.json, leaf-manifest.config.json, scaffold files and renamed resources, or an in-place SKILL.md rewrite beside a new sibling ROUTER.md), its backups under .skilled/skills/.state/doctor-sk-skill/<name>/<timestamp>/, the one scratch root the plain-skill path uses beside them at .skilled/skills/.state/doctor-sk-skill/<name>/scratch/ and deletes, the skill's changelog folder with its .skilled/changelog/<name> link, and the integration targets the plan records: the advisor graph .skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite, the compiled skill-graph.json, the advisor cases file and the .hermes/skills mirror"
     mcp_tools: []   # script-only; no MCP calls
     script_invocations:
-      - 'node .skilled/commands/doctor/scripts/sk-skill-convert.cjs plan "{skill_target}"  # read-only: resolves the target, classifies the input and prints the plan, the follow-ups and the backup folder; the workflow reruns it with the approved flags before it asks about the conversion'
-      - 'node .skilled/commands/doctor/scripts/sk-skill-convert.cjs preserve --snapshot "{snapshot_dir}" "{staging_dir}"  # read-only: proves the agent-produced prose kept every original body line before the format gate'
-      - 'node .skilled/commands/doctor/scripts/sk-skill-convert.cjs apply "{skill_target}" --apply  # the same plan, then the backup and the writes; the workflow adds the approved --description-trim, --allowed-tools and --agent-output flags and runs it only after an explicit yes'
-      - 'node .skilled/commands/doctor/scripts/sk-skill-check.cjs "{skill_target}" --json  # the post-write re-read through the read-only check engine; the workflow adds the skill name or path'
+      - 'node .skilled/commands/doctor/scripts/sk-skill-convert.cjs plan "{skill_target}"  # read-only: resolves the target, classifies the input and prints the plan, the follow-ups and the backup folder; a plain skill refuses here until its intent phrases are approved'
+      - 'node .skilled/commands/doctor/scripts/sk-skill-convert.cjs apply "{skill_target}" <the approved flags>  # the plan rerun: the same call without the write switch prints the plan and writes nothing, so the workflow reruns with repeated --approved-phrase, --description-trim, --allowed-tools and --agent-output and shows that plan'
+      - 'node .skilled/commands/doctor/scripts/sk-skill-convert.cjs preserve --snapshot "{scratch_dir}/snapshot" "{scratch_dir}/staging"  # read-only: proves the agent-produced prose kept every original body line before the format gate, from the one scratch root'
+      - 'node .skilled/commands/doctor/scripts/sk-skill-convert.cjs apply "{skill_target}" --apply  # the same plan, then the backup and the writes; the workflow adds the approved --approved-phrase, --description-trim, --allowed-tools and --agent-output flags and runs it only after an explicit yes'
+      - 'node .skilled/commands/doctor/scripts/sk-skill-check.cjs .skilled/skills/<name> --json  # the post-write re-read through the read-only check engine, at the converted root: the staged root for a plain skill, the skill folder for an in-place conversion'
     trigger_phrases:
       - "convert a skill to the skilled format"
       - "convert a plain agent skill"
