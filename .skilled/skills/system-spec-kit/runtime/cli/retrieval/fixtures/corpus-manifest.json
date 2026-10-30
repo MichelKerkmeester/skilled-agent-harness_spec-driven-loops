@@ -31506,6 +31506,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-prompt/010-sk-prompt-improvements/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-prompt/z_archive",
       "reason": "excluded directory"
     },
