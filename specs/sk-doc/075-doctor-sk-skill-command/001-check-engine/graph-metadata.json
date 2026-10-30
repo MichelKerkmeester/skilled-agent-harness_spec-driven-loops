@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Each format gate answers one question on its own: `packageskill.py` gives RS codes, `ci-skill-root-metadata.cjs` gives class and RRC codes, the router resolver gives a verdict, and the advisor, Hermes mirror and changelog index have no check at all",
     "created_at": "2026-10-30T05:21:11Z",
-    "last_save_at": "2026-10-30T07:08:06.631Z",
+    "last_save_at": "2026-10-30T07:28:52.604Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f802a34a224e45eaa786e394d697a5ebe2ee3675ad64507b9414ab4d66f5833f",
+    "source_fingerprint": "sha256:9f53d6ecb2f75af62db4ec4e72bd6fb41cd0e61f5e2462e626346568e685daf6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e9173bd97b24a9fd2d5857ffadf25a2e315906e5ec646d5190c3e833235ca9c1",
       "plan.md": "530ed0ce3fea57af683411f98d6aad5ab995308c28207655a63bbe35054be64a",
-      "tasks.md": "d852f1275beeda628f208f2c5ffbf84cc32810601281704355d2e33f9b9a655a",
-      "implementation-summary.md": "bc180e450c1ab09f164d10cb255cbda255b3ff330ce7dd477d638b6b8dceb6fe"
+      "tasks.md": "0ad0f2f8d5d790b8681f1cc6568e060c3956cd65030f1b68b2c4befe0ae08182",
+      "implementation-summary.md": "65d89f4cafac2cf1413cd46f0d99e3f41cf6d62afdc8fca6949cf04483918337"
     },
     "last_active_at": null
   }

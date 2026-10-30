@@ -11,6 +11,7 @@
 const assert = require('node:assert/strict');
 const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
 const {
@@ -24,7 +25,6 @@ const {
 const surface = require('../lib/sk-skill-surface.cjs');
 
 const REPO_ROOT = path.resolve(__dirname, '../../../../..');
-const TASK_SCRATCH = path.join(path.dirname(REPO_ROOT), '.scratch-dc90', '075-001');
 const FIXTURE_ROOT = path.join(__dirname, 'fixtures', 'sk-skill-check');
 const SKILLS_DIR = path.join(FIXTURE_ROOT, 'skills');
 const PREFIX = ['lo', 'cal', String.fromCharCode(45)].join('');
@@ -48,10 +48,12 @@ function makeContext({
   metadataFleetCode = 0,
   metadataFleetResults = [],
   derivedResults = [{ status: 'unchanged' }],
+  derivedCode = 0,
   advisorCode = 75,
-  advisorPayload = { status: 'unavailable' },
+  advisorPayload = { status: 'unavailable', data: { recommendations: [] } },
   hermesCode = 0,
   hermesOutput = 'PASS: in sync\n',
+  auditCode = 0,
   auditPayload = { items: [] },
   pythonProbeResult = { code: 0, stdout: '', stderr: '', error: null },
 } = {}) {
@@ -73,12 +75,16 @@ function makeContext({
     if (script.endsWith('package_skill.py')) {
       const name = path.basename(args[1] || '');
       const result = packageFailures[name] || { code: packageCode, codes: packageCodes };
+      const message = result.message || (result.code === 0
+        ? 'Strict package validation passed.'
+        : `Strict package validation found issues: ${(result.codes || []).join(', ')}`);
       return {
         code: result.code,
         stdout: JSON.stringify({
           valid: result.code === 0,
-          warnings: [],
-          errors: (result.codes || []).map((code) => ({ code })),
+          message,
+          warnings: result.warnings || [],
+          path: args[1],
         }),
         stderr: '',
         error: null,
@@ -115,9 +121,16 @@ function makeContext({
       };
     }
     if (script.endsWith('regenerate-skill-derived.cjs')) {
+      const rootIndex = args.indexOf('--root');
+      const name = path.basename(args[rootIndex + 1] || '');
       return {
-        code: 0,
-        stdout: JSON.stringify({ total: derivedResults.length, changed: 0, errored: 0, results: derivedResults }),
+        code: derivedCode,
+        stdout: JSON.stringify({
+          total: derivedResults.length,
+          changed: 0,
+          errored: derivedResults.filter((entry) => entry.status === 'error').length,
+          results: derivedResults.map((entry) => ({ name, ...entry })),
+        }),
         stderr: '',
         error: null,
       };
@@ -135,7 +148,7 @@ function makeContext({
       return { code: hermesCode, stdout: hermesOutput, stderr: '', error: null };
     }
     if (script.endsWith('audit_descriptions.py')) {
-      return { code: 0, stdout: JSON.stringify(auditPayload), stderr: '', error: null };
+      return { code: auditCode, stdout: JSON.stringify(auditPayload), stderr: '', error: null };
     }
     throw new Error(`Unexpected child command: ${script}`);
   };
@@ -202,8 +215,7 @@ function withoutRuntimeMirrors() {
 }
 
 function createTempSkills(names) {
-  fs.mkdirSync(TASK_SCRATCH, { recursive: true });
-  const scratchDir = fs.mkdtempSync(path.join(TASK_SCRATCH, 'sk-skill-check-'));
+  const scratchDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sk-skill-check-'));
   const skillsDir = path.join(scratchDir, 'skills');
   fs.mkdirSync(skillsDir);
   for (const name of names) {
@@ -215,18 +227,11 @@ function createTempSkills(names) {
 }
 
 function removeTempSkills(fixture) {
-  for (const name of fixture.names) {
-    const skillDir = path.join(fixture.skillsDir, name);
-    fs.unlinkSync(path.join(skillDir, 'SKILL.md'));
-    fs.rmdirSync(skillDir);
-  }
-  fs.rmdirSync(fixture.skillsDir);
-  fs.rmdirSync(fixture.scratchDir);
+  fs.rmSync(fixture.scratchDir, { recursive: true, force: true });
 }
 
 function createPythonPathFixture({ secondExitCode = 0 } = {}) {
-  fs.mkdirSync(TASK_SCRATCH, { recursive: true });
-  const scratchDir = fs.mkdtempSync(path.join(TASK_SCRATCH, 'python-path-'));
+  const scratchDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sk-skill-check-'));
   const firstDir = path.join(scratchDir, 'first');
   const secondDir = path.join(scratchDir, 'second');
   const firstPath = path.join(firstDir, 'python3');
@@ -276,11 +281,7 @@ function createPythonProbeContext(fixture, { environmentPython } = {}) {
 }
 
 function removePythonPathFixture(fixture) {
-  fs.unlinkSync(fixture.firstPath);
-  fs.unlinkSync(fixture.secondPath);
-  fs.rmdirSync(fixture.firstDir);
-  fs.rmdirSync(fixture.secondDir);
-  fs.rmdirSync(fixture.scratchDir);
+  fs.rmSync(fixture.scratchDir, { recursive: true, force: true });
 }
 
 function getRow(report, id) {
@@ -457,8 +458,13 @@ test('an unavailable advisor stays UNKNOWN without counting as a finding', () =>
 
 test('validator codes appear in both the deep text and JSON reports', () => {
   const options = {
-    packageCode: 1,
-    packageCodes: ['RS-002', 'RS-004'],
+    packageFailures: {
+      plain: {
+        code: 1,
+        message: 'Strict package validation found RS-002 in the skill router.',
+        warnings: ['RS-004: required router file is missing.'],
+      },
+    },
     metadataCode: 1,
     metadataCodes: ['RRC-001'],
   };
@@ -482,6 +488,20 @@ test('validator codes appear in both the deep text and JSON reports', () => {
   assert.equal(textCode, 1);
   assert.match(text, /Format: .*Codes: RS-002, RS-004/);
   assert.match(text, /Root metadata: .*Codes: RRC-001/);
+});
+
+test('package failure without a code uses the first message line as detail', () => {
+  const { report } = reportFor('skills/plain', {
+    packageFailures: {
+      plain: {
+        code: 1,
+        message: 'The skill description is missing.\nThe package cannot be installed.',
+        warnings: [],
+      },
+    },
+  });
+  assert.equal(getRow(report, 'C3').detail, 'The skill description is missing.');
+  assert.deepEqual(getRow(report, 'C3').codes, []);
 });
 
 test('fleet output covers one passing root and one finding root with a codes column', () => {
@@ -523,15 +543,96 @@ test('C6 reports generated content that would change', () => {
   assert.match(getRow(report, 'C6').detail, /would change/);
 });
 
+test('C6 maps a skipped derived check to not applicable', () => {
+  const { report } = reportFor('skills/plain', {
+    derivedResults: [{ status: 'skipped', reason: 'no graph-metadata.json' }],
+  });
+  assert.equal(getRow(report, 'C6').status, 'INFO');
+  assert.match(getRow(report, 'C6').detail, /not applicable: no graph-metadata\.json/i);
+});
+
+test('C6 maps a per-skill derived error row to a finding', () => {
+  const { report } = reportFor('skills/plain', {
+    derivedCode: 2,
+    derivedResults: [{ status: 'error', errors: ['derived.trigger_phrases is missing'] }],
+  });
+  assert.equal(getRow(report, 'C6').status, 'FINDING');
+  assert.match(getRow(report, 'C6').detail, /derived\.trigger_phrases is missing/);
+  assert.equal(report.exitCode, 1);
+});
+
 test('advisor hits require a matching recommendation skill id', () => {
   const { report } = reportFor('skills/canon', {
     advisorCode: 0,
     advisorPayload: {
-      prompt: 'fixture-canon',
-      recommendations: [{ skillId: 'another-skill' }],
+      status: 'ok',
+      data: { recommendations: [{ skillId: 'another-skill' }] },
     },
   });
   assert.equal(getRow(report, 'C8').hits, 0);
+});
+
+test('advisor recommendations fall back to the top-level compatibility field', () => {
+  const { report } = reportFor('skills/canon', {
+    advisorCode: 0,
+    advisorPayload: { recommendations: [{ skillId: 'fixture-canon' }] },
+  });
+  assert.equal(getRow(report, 'C8').hits, 3);
+});
+
+test('advisor recommendations in the live data envelope count matching hits', () => {
+  const { report } = reportFor('skills/canon', {
+    advisorCode: 0,
+    advisorPayload: {
+      status: 'ok',
+      data: { recommendations: [{ skillId: 'fixture-canon' }] },
+    },
+  });
+  assert.equal(getRow(report, 'C8').hits, 3);
+});
+
+test('C11 ignores a hard-failed description belonging to another skill', () => {
+  const { report } = reportFor('skills/plain', {
+    auditCode: 1,
+    auditPayload: {
+      hardFails: ['another-skill'],
+      items: [
+        { surface: 'skill', name: 'fixture-plain', status: 'OK', length: 100 },
+        { surface: 'skill', name: 'another-skill', status: 'HARD-FAIL', length: 2000 },
+      ],
+    },
+  });
+  assert.equal(getRow(report, 'C11').status, 'PASS');
+});
+
+test('bare skill names resolve to one nested hub packet', () => {
+  const fixture = createTempSkills([]);
+  const packet = path.join(fixture.skillsDir, 'sk-code', 'sk-code-skilled');
+  fs.mkdirSync(packet, { recursive: true });
+  fs.writeFileSync(path.join(packet, 'SKILL.md'), '---\nname: sk-code-skilled\ndescription: Nested packet.\n---\n');
+  try {
+    const { context } = makeContext({ skillsDir: fixture.skillsDir });
+    assert.equal(surface.resolveSkillTarget('sk-code-skilled', context), fs.realpathSync(packet));
+  } finally {
+    removeTempSkills(fixture);
+  }
+});
+
+test('bare skill names report every match when direct and nested roots collide', () => {
+  const fixture = createTempSkills(['duplicate-skill']);
+  const packet = path.join(fixture.skillsDir, 'parent', 'duplicate-skill');
+  fs.mkdirSync(packet, { recursive: true });
+  fs.writeFileSync(path.join(packet, 'SKILL.md'), '---\nname: duplicate-skill\ndescription: Nested duplicate.\n---\n');
+  try {
+    const { context } = makeContext({ skillsDir: fixture.skillsDir });
+    assert.throws(() => surface.resolveSkillTarget('duplicate-skill', context), (error) => (
+      error.code === 'SKILL_NOT_FOUND'
+      && error.message.includes('duplicate-skill')
+      && error.message.includes('parent/duplicate-skill')
+    ));
+  } finally {
+    removeTempSkills(fixture);
+  }
 });
 
 test('Hermes drift in another skill does not fail the requested skill', () => {
@@ -715,8 +816,7 @@ test('malformed frontmatter path segments are reported without probing outside t
 });
 
 test('reserved root paths are redacted and filtered validators remain UNKNOWN', () => {
-  fs.mkdirSync(TASK_SCRATCH, { recursive: true });
-  const scratchDir = fs.mkdtempSync(path.join(TASK_SCRATCH, 'sk-skill-check-'));
+  const scratchDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sk-skill-check-'));
   const alias = path.join(scratchDir, `${PREFIX}fixture`);
   const source = path.join(SKILLS_DIR, 'plain');
   try {
@@ -733,11 +833,6 @@ test('reserved root paths are redacted and filtered validators remain UNKNOWN', 
       || args[0].endsWith('regenerate-skill-derived.cjs')
     )));
   } finally {
-    try {
-      if (fs.lstatSync(alias).isSymbolicLink()) fs.unlinkSync(alias);
-    } catch {
-      // An absent scratch link has already been cleaned.
-    }
-    fs.rmdirSync(scratchDir);
+    fs.rmSync(scratchDir, { recursive: true, force: true });
   }
 });

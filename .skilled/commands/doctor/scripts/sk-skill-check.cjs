@@ -107,10 +107,17 @@ function runPackageCheck(skillRoot, context) {
   if (typeof payload.valid !== 'boolean') {
     throw new surface.CheckError('VALIDATOR_OUTPUT_INVALID', 'package_skill.py JSON is missing its valid verdict.');
   }
-  const codes = formatCodes(JSON.stringify(payload), 'RS');
+  const message = typeof payload.message === 'string' ? payload.message : '';
+  const warnings = Array.isArray(payload.warnings) ? payload.warnings.join('\n') : '';
+  const codes = formatCodes(`${message}\n${warnings}`, 'RS');
+  const detail = payload.valid
+    ? 'Strict package validation passed.'
+    : formatCodes(message, 'RS').length > 0
+      ? 'Strict package validation found format issues.'
+      : firstLine(message) || 'Strict package validation found format issues.';
   return {
     status: payload.valid ? 'PASS' : 'FINDING',
-    detail: payload.valid ? 'Strict package validation passed.' : 'Strict package validation found format issues.',
+    detail,
     codes,
   };
 }
@@ -143,24 +150,54 @@ function runMetadataCheck(skillRoot, location, context) {
 }
 
 function checkDerived(skillRoot, context) {
-  const { result, mapped } = runValidator(
+  const label = 'regenerate-skill-derived.cjs';
+  const result = surface.runChild(
     context,
-    'regenerate-skill-derived.cjs',
     process.execPath,
     [context.paths.regenerateDerived, '--root', skillRoot, '--dry-run'],
   );
-  const payload = requireJson('regenerate-skill-derived.cjs', result);
-  if (!Array.isArray(payload.results) || payload.results.length === 0) {
+  const mapped = surface.mapValidatorExit(result);
+  const payload = surface.parseJsonOutput(result);
+  if (!payload || !Array.isArray(payload.results) || payload.results.length === 0) {
+    if (mapped.status === 'ERROR') {
+      const reason = result && result.error ? result.error : firstLine(result && result.stderr);
+      throw new surface.CheckError(
+        'VALIDATOR_CANNOT_RUN',
+        `${label} could not run${reason ? `: ${reason}` : '.'}`,
+      );
+    }
     throw new surface.CheckError('VALIDATOR_OUTPUT_INVALID', 'Derived freshness JSON has no root result.');
   }
-  const errored = payload.results.some((entry) => entry.status === 'error');
-  const changed = payload.results.some((entry) => entry.status === 'would-change');
-  if (errored || mapped.status === 'FINDING') {
-    throw new surface.CheckError('DERIVED_VALIDATION_FAILED', 'Derived freshness validator reported an error.');
+  const targetName = path.basename(skillRoot);
+  const entry = payload.results.find((row) => row && row.name === targetName)
+    || (payload.results.length === 1 ? payload.results[0] : null);
+  if (!entry || typeof entry.status !== 'string') {
+    throw new surface.CheckError('VALIDATOR_OUTPUT_INVALID', 'Derived freshness JSON omitted this skill result.');
   }
-  return changed
-    ? { status: 'FINDING', detail: 'Generated derived content would change.' }
-    : { status: 'PASS', detail: 'Generated derived content is current.' };
+  if (entry.status === 'skipped') {
+    return { status: 'INFO', detail: `Not applicable: ${entry.reason || 'derived validation was skipped'}.` };
+  }
+  if (entry.status === 'error') {
+    const reason = Array.isArray(entry.errors) ? firstLine(entry.errors.join('\n')) : firstLine(entry.error);
+    return {
+      status: 'FINDING',
+      detail: `Derived content validation reported an error${reason ? `: ${reason}` : '.'}`,
+    };
+  }
+  if (mapped.status === 'ERROR') {
+    const reason = result && result.error ? result.error : firstLine(result && result.stderr);
+    throw new surface.CheckError(
+      'VALIDATOR_CANNOT_RUN',
+      `${label} could not run${reason ? `: ${reason}` : '.'}`,
+    );
+  }
+  if (entry.status === 'would-change' || mapped.status === 'FINDING') {
+    return { status: 'FINDING', detail: 'Generated derived content would change.' };
+  }
+  if (entry.status === 'unchanged' || entry.status === 'written') {
+    return { status: 'PASS', detail: 'Generated derived content is current.' };
+  }
+  throw new surface.CheckError('VALIDATOR_OUTPUT_INVALID', 'Derived freshness JSON has an unrecognized root status.');
 }
 
 function checkRouter(skillRoot, context) {
@@ -224,8 +261,11 @@ function checkAdvisorHome(skillName, graphMetadata, context) {
   const allUnavailable = results.every(({ mapped }) => mapped.code === 75);
   const hits = results.filter(({ result }) => {
     const payload = surface.parseJsonOutput(result);
-    return Boolean(payload && Array.isArray(payload.recommendations)
-      && payload.recommendations.some((recommendation) => (
+    const recommendations = payload && Array.isArray(payload.data && payload.data.recommendations)
+      ? payload.data.recommendations
+      : payload && payload.recommendations;
+    return Boolean(Array.isArray(recommendations)
+      && recommendations.some((recommendation) => (
         recommendation && typeof recommendation === 'object' && recommendation.skillId === skillName
       )));
   }).length;
@@ -365,7 +405,7 @@ function checkDescription(skillName, context, location, description) {
     }
     return { status: 'PASS', detail: `Outside-root description is ${length} characters, within the ${softTarget}-character soft target.`, length };
   }
-  const { result, mapped } = runValidator(
+  const { result } = runValidator(
     context,
     'audit_descriptions.py',
     context.python,
@@ -376,7 +416,7 @@ function checkDescription(skillName, context, location, description) {
     ? payload.items.find((entry) => entry.surface === 'skill' && entry.name === skillName)
     : null;
   if (!item) return { status: 'N/A', detail: 'This skill is not part of the repository description audit.' };
-  if (item.status === 'HARD-FAIL' || mapped.status === 'FINDING') {
+  if (item.status === 'HARD-FAIL') {
     return { status: 'FINDING', detail: `Description is ${item.status} at ${item.length} characters.`, length: item.length };
   }
   return { status: item.status === 'OVER-SOFT' ? 'INFO' : 'PASS', detail: `Description is ${item.status} at ${item.length} characters.`, length: item.length };
@@ -531,7 +571,7 @@ function directSkillRoots(skillsDir, fileSystem = fs) {
   }
   return entries
     .filter((entry) => entry.isDirectory() && !entry.isSymbolicLink())
-    .filter((entry) => !entry.name.startsWith(['lo', 'cal', String.fromCharCode(45)].join('')))
+    .filter((entry) => !surface.isReservedSkillName(entry.name))
     .map((entry) => path.join(skillsDir, entry.name))
     .filter((root) => fileSystem.existsSync(path.join(root, 'SKILL.md')))
     .sort((left, right) => path.basename(left).localeCompare(path.basename(right)));

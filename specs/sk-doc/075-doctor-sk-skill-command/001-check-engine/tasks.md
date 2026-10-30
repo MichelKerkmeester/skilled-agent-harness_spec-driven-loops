@@ -55,11 +55,11 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T009 Run the fixture suite (`DOC/scripts/tests/sk-skill-check.test.cjs`). Verify: `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` exits 0. Evidence: 23 tests passed, 0 failed, including fleet rendering, validator code propagation, hub classification, parse errors, Python preconditions and PATH interpreter discovery.
-- [x] T010 Compare the fleet run with the baseline (`scratch/baseline/`). Verify: every shipped root reports the baseline verdict. Evidence: with `PYTHON` unset, the fleet command prints 13 roots with PASS and exits 0 after selecting the first PATH interpreter with PyYAML.
-- [x] T011 Prove `check` writes nothing (repository tree). Verify: `git status --porcelain` is identical before and after a fleet run. Evidence: the initial and final status contain the same pre-existing packet edits and this task's allowed outputs; bytecode generation is disabled for every child process.
-- [x] T012 [P1] Resolve the phase 001 code-review findings and interpreter-discovery follow-up in the checker, shared surface probes and tests. Verify: the explicit suite passes and named checks contain no FINDING rows. Evidence: 23 tests passed; PATH stubs confirm selection of the second interpreter and no fallback for empty `PYTHON`; `check sk-git` reports `Result: NO FINDINGS (1 UNKNOWN)` with exit 0.
-- [x] T013 [P1] Record review decisions and final evidence in the phase documents. Verify: strict phase validation prints `RESULT: PASSED`; all acceptance rows are Met with command or test evidence. Evidence: `repair-derived.cjs --apply` refreshed the generated metadata and strict validation printed `RESULT: PASSED`.
+- [x] T009 Run the fixture suite (`DOC/scripts/tests/sk-skill-check.test.cjs`). Verify: `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` exits 0. Evidence: 31 tests passed, 0 failed, covering the advisor envelope, package failure payload, C6 skip/error rows, per-skill description status, nested-name resolution and existing fixtures.
+- [x] T010 Compare the fleet run with the baseline (`scratch/baseline/`). Verify: every shipped root reports the baseline verdict. Evidence: fleet output was `Roots: 13; result: PASS`; the JSON comparison printed `current_roots=13 baseline_package_roots=13 baseline_metadata_roots=13 mismatches=0 baseline_match=true`, exit 0.
+- [x] T011 Prove `check` writes nothing (repository tree). Verify: `git status --porcelain` is identical before and after a fleet run. Evidence: `git status --short` printed identical lines before and after `check`; the fleet check exited 0.
+- [x] T012 [P1] Resolve the phase 001 code-review findings and interpreter-discovery follow-up in the checker, shared surface probes and tests. Verify: the explicit suite passes and named checks contain no FINDING rows. Evidence: the suite passed 31/31; `check sk-git` reported C8 UNKNOWN and exited 0 while the live advisor exited 75; `check sk-code-skilled` resolved as `hub-packet` and exited 0.
+- [x] T013 [P1] Record review decisions and final evidence in the phase documents. Verify: strict phase validation prints `RESULT: PASSED`; all acceptance rows are Met with command or test evidence. Evidence: `repair-derived.cjs --apply --folder specs/sk-doc/075-doctor-sk-skill-command/001-check-engine` refreshed graph metadata; strict validation reported `RESULT: PASSED`, 0 errors and 0 warnings.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -69,8 +69,8 @@ contextType: "general"
 
 - [x] All tasks marked `[x]` — Evidence: T001-T013 are complete with verification recorded above.
 - [x] No `[B]` blocked tasks remaining — Evidence: T013 is complete after generated metadata refresh and strict validation.
-- [x] Manual verification passed — Evidence: fleet and named `sk-git` checks completed with `PYTHON` unset; no interpreter mismatch or strict validator blocker remains.
-- [x] `sk-skill-check.test.cjs` passes and the fleet run matches `scratch/baseline/` — Evidence: 23 tests passed; fleet reports 13 roots PASS with `PYTHON` unset.
+- [x] Manual verification passed — Evidence: the fleet check, `check sk-git` and `check sk-code-skilled` completed with `PYTHON` unset; the advisor outage was represented as C8 UNKNOWN, and strict validation passed.
+- [x] `sk-skill-check.test.cjs` passes and the fleet run matches `scratch/baseline/` — Evidence: 31 tests passed; the 13-root fleet matches both baseline files with no mismatches.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -114,9 +114,9 @@ A blocked task is marked `[B]` with the blocking cause on the same line.
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] `node --check` exits 0 on both new scripts — Evidence: syntax checks passed for the checker and surface library.
-- [x] CHK-011 [P0] No stderr warnings on a clean fixture run — Evidence: JSON fixture invocation captured empty stderr.
-- [x] CHK-012 [P1] Every spawned validator has an exit-code mapping in `sk-skill-surface.cjs` — Evidence: all child commands use `mapValidatorExit`; advisor exit 75 is explicitly mapped to UNKNOWN.
+- [x] CHK-010 [P0] `node --check` exits 0 on both new scripts — Evidence: syntax checks passed for the checker, surface library and test file.
+- [x] CHK-011 [P0] No stderr warnings on a clean fixture run — Evidence: the JSON report test asserts an empty error stream; the 31-test suite passed.
+- [x] CHK-012 [P1] Every spawned validator has an exit-code mapping in `sk-skill-surface.cjs` — Evidence: the checker maps validator exits through `mapValidatorExit`; C6's per-skill `error` row becomes FINDING and advisor exit 75 stays UNKNOWN.
 - [x] CHK-013 [P1] Script naming follows `ci-report.cjs` per-target naming — Evidence: new command script is named `sk-skill-check.cjs`.
 <!-- /ANCHOR:code-quality -->
 
@@ -125,10 +125,10 @@ A blocked task is marked `[B]` with the blocking cause on the same line.
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [x] CHK-020 [P0] All acceptance criteria met — Evidence: AC-001 through AC-014 are Met with test, command and task evidence.
-- [x] CHK-021 [P0] Fleet run compared with the baseline — Evidence: 13 roots match package and metadata baseline verdicts.
-- [x] CHK-022 [P1] Outside-root, dual-declaration and `local-` prefix fixtures tested — Evidence: fixture assertions pass for all three cases.
-- [x] CHK-023 [P1] Exit 2 and exit 75 paths validated — Evidence: tests assert explicit Python/PyYAML, PATH discovery and other precondition exit 2 paths; advisor UNKNOWN on 75 exits 0 when no FINDING exists.
+- [x] CHK-020 [P0] All acceptance criteria met — Evidence: AC-001 through AC-014 are Met with fresh test or command evidence and file-and-line citations; strict validation passed.
+- [x] CHK-021 [P0] Fleet run compared with the baseline — Evidence: the current run and both 13-root baseline files matched with `mismatches=0`.
+- [x] CHK-022 [P1] Outside-root, dual-declaration and reserved-prefix fixtures tested — Evidence: the 31-test suite passed the outside-root, dual-declaration and reserved-name cases.
+- [x] CHK-023 [P1] Exit 2 and exit 75 paths validated — Evidence: the suite passed the missing-resolver and Python/PyYAML exit 2 cases; the live advisor exit 75 produced C8 UNKNOWN and `check sk-git` exit 0.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -145,7 +145,7 @@ All phase review findings and the interpreter-discovery follow-up in the scoped 
 ## Security
 
 - [x] CHK-030 [P0] No hardcoded secrets — Evidence: source inspection found no secret constants or credentials.
-- [x] CHK-031 [P0] Name-or-path argument resolved without shell interpolation — Evidence: `resolveSkillTarget` resolves paths and child commands use `spawnSync(command, args)`.
+- [x] CHK-031 [P0] Name-or-path argument resolved without shell interpolation — Evidence: nested-name and ambiguity tests pass; `check sk-code-skilled` reports `hub-packet`; child commands use `spawnSync(command, args)`.
 - [x] CHK-032 [P1] No tracked output names a `local-` prefixed path — Evidence: the generated-prefix fixture test confirms serialized report redaction.
 <!-- /ANCHOR:security -->
 
@@ -154,8 +154,8 @@ All phase review findings and the interpreter-discovery follow-up in the scoped 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Spec/plan/tasks synchronized — Evidence: implementation and verification records match the frozen C1-C13 scope and plan.
-- [x] CHK-041 [P1] Each row's comment states why the probe exists, not a ticket id — Evidence: checker comments explain each probe's durable purpose.
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized — Evidence: checker behavior, acceptance evidence and verification records match the frozen C1-C13 scope and plan; strict validation is recorded in T013.
+- [x] CHK-041 [P1] Each row's comment states why the probe exists, not a ticket id — Evidence: the scoped quality gate ran comment hygiene clean; the reserved-prefix constant comment records its durable reason.
 - [x] CHK-042 [P2] `DOC/scripts/README.markdown` entry deferred to phase 007 — Evidence: README update remains assigned to the later documentation phase.
 <!-- /ANCHOR:docs -->
 
@@ -165,7 +165,7 @@ All phase review findings and the interpreter-discovery follow-up in the scoped 
 ## File Organization
 
 - [x] CHK-050 [P1] Baseline output lives under `scratch/baseline/` only — Evidence: the baseline directory contains only the two recorded validator JSON files.
-- [x] CHK-051 [P1] scratch/ cleaned before completion, keeping the baseline — Evidence: phase scratch contains only `baseline/` and its two required files.
+- [x] CHK-051 [P1] scratch/ cleaned before completion, keeping the baseline — Evidence: phase scratch contains only `.gitkeep` and `baseline/` with its two required JSON files; the test-created temporary directories were removed after the suite.
 <!-- /ANCHOR:file-org -->
 
 ---

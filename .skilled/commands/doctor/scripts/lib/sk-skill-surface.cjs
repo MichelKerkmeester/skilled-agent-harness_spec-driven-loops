@@ -20,6 +20,7 @@ const { createRequire } = require('node:module');
 const DEFAULT_TIMEOUT_MS = 30000;
 const ADVISOR_TIMEOUT_MS = 10000;
 const PYTHON_MISSING_PROVISION = 'Install Python 3 and make python3 available on PATH, or set PYTHON to its executable.';
+// Assemble the reserved prefix so tracked source does not spell out a private skill name.
 const RESERVED_PREFIX = ['lo', 'cal', String.fromCharCode(45)].join('');
 const SHARED_PROVISION = 'bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .';
 const HERMES_PROVISION = 'npm install --prefix .skilled/skills/system-spec-kit/runtime';
@@ -316,7 +317,29 @@ function resolveSkillTarget(input, context) {
   const value = input.trim();
   const candidates = [];
   const isBareName = !path.isAbsolute(value) && !value.includes('/') && !value.includes('\\');
-  if (isBareName) candidates.push(path.join(context.skillsDir, value));
+  if (isBareName) {
+    const skillMatches = [];
+    const directMatch = path.join(context.skillsDir, value);
+    if (hasSkillDocument(directMatch, context.fs)) skillMatches.push(directMatch);
+    try {
+      const roots = context.fs.readdirSync(context.skillsDir, { withFileTypes: true });
+      for (const root of roots) {
+        if (!root.isDirectory()) continue;
+        const nestedMatch = path.join(context.skillsDir, root.name, value);
+        if (hasSkillDocument(nestedMatch, context.fs)) skillMatches.push(nestedMatch);
+      }
+    } catch {
+      // Other path forms below can still resolve when the skills root is unavailable.
+    }
+    if (skillMatches.length > 1) {
+      const matches = skillMatches.map((match) => path.relative(context.skillsDir, match));
+      throw new CheckError(
+        'SKILL_NOT_FOUND',
+        `Multiple skills matched "${value}": ${matches.join(', ')}.`,
+      );
+    }
+    if (skillMatches.length === 1) return realPath(skillMatches[0], context.fs);
+  }
   candidates.push(path.resolve(context.cwd, value));
   candidates.push(path.resolve(context.repoRoot, value));
 

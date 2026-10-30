@@ -58,7 +58,7 @@ The read-only checker resolves a skill name or path, runs the existing package, 
 |------|--------|---------|
 | `.skilled/commands/doctor/scripts/sk-skill-check.cjs` | Created | Runs C1-C13 checks and renders deep and fleet reports |
 | `.skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs` | Created | Locates and classifies inputs, maps child exit codes, discovers a Python interpreter with PyYAML, and shares probes |
-| `.skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | Created | Covers 23 cases for fixture classification, rendering, failure mappings, fleet behavior, target-aware probes, and Python discovery |
+| `.skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | Created | Covers 31 cases for fixture classification, rendering, failure mappings, fleet behavior, target-aware probes, advisor envelopes, and Python discovery |
 | `.skilled/commands/doctor/scripts/tests/fixtures/sk-skill-check/` | Created | Holds plain, pre-migration, canon, dual, outside-root, reserved-prefix, direct-hub, and nested-packet fixtures |
 | `scratch/baseline/package-skill.json` | Created | Captures strict package results for 13 shipped roots before implementation |
 | `scratch/baseline/ci-skill-root-metadata.json` | Created | Captures metadata results for 13 shipped roots before implementation |
@@ -70,7 +70,7 @@ The read-only checker resolves a skill name or path, runs the existing package, 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The fixture suite passed all 23 tests. With `PYTHON` unset, the fleet check returned 13 roots with PASS package and metadata verdicts, matching the recorded baseline, and the working tree remained unchanged across a fleet run. The requested `sk-git` report contained no FINDING rows and one UNKNOWN because the advisor backend was unavailable; it printed `Result: NO FINDINGS (1 UNKNOWN)` and exited 0. PATH stubs confirmed that discovery skips an interpreter without PyYAML, selects the next usable one, and does not fall back when `PYTHON` is explicitly empty.
+The fixture suite passed all 31 tests. With `PYTHON` unset, the fleet check returned 13 roots with PASS package and metadata verdicts, matching the recorded baseline, and the working tree remained unchanged across a fleet run. The requested `sk-git` report contained no FINDING rows and one UNKNOWN because the advisor backend was unavailable; it printed `Result: NO FINDINGS (1 UNKNOWN)` and exited 0. A live warm-only advisor response confirmed the `{status, data: {recommendations}}` envelope; a later invocation found the backend unavailable. Tests cover the nested response and compatibility fallback, C6 skipped and per-skill error rows, C11 isolation, package failure detail, and nested hub-packet resolution. PATH stubs confirmed that discovery skips an interpreter without PyYAML, selects the next usable one, and does not fall back when `PYTHON` is explicitly empty.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,15 +96,17 @@ The fixture suite passed all 23 tests. With `PYTHON` unset, the fleet check retu
 | `node --check .skilled/commands/doctor/scripts/sk-skill-check.cjs` | PASS, exit 0 |
 | `node --check .skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs` | PASS, exit 0 |
 | `node --check` on checker, surface library, and test file | PASS, exit 0 |
-| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | 23 passed, 0 failed, exit 0 |
+| `node --test .skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs` | 31 passed, 0 failed, exit 0 |
 | `env -u PYTHON node .skilled/commands/doctor/scripts/sk-skill-check.cjs check` | 13 roots PASS; exit 0 |
-| `env -u PYTHON node .skilled/commands/doctor/scripts/sk-skill-check.cjs check sk-git` | `Result: NO FINDINGS (1 UNKNOWN)`; exit 0 |
+| `env -u PYTHON node .skilled/commands/doctor/scripts/sk-skill-check.cjs check sk-git` | C8 UNKNOWN while the advisor backend was unavailable; `Result: NO FINDINGS (1 UNKNOWN)`; exit 0 |
+| `env -u PYTHON node .skilled/commands/doctor/scripts/sk-skill-check.cjs check sk-code-skilled` | Resolved as `hub-packet`; exit 0 |
+| `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"how to commit with git worktrees"}' --warm-only --format json` | First invocation returned `status: ok` with `data.recommendations`; a later invocation returned backend unavailable (exit 75) |
 | PATH interpreter stubs | Second interpreter selected; all-candidate failure names each interpreter; explicit `PYTHON` remains exclusive; empty `PYTHON` returns `PYTHON_MISSING` without PATH fallback |
 | `check --json` fleet comparison with the recorded package and metadata baselines | 13 roots; all PASS; `baseline_match=true`; exit 0 |
 | `git status` around fleet check | `status_unchanged=true fleet_exit=0` |
 | Scoped `quality-gate.cjs` | `NO_BLOCKER_FOUND`, findings 0, exit 0 |
-| `repair-derived.cjs --apply --folder specs/sk-doc/075-doctor-sk-skill-command/001-check-engine` | Generated metadata refreshed; exit 0 |
-| `validate.sh specs/sk-doc/075-doctor-sk-skill-command/001-check-engine --strict` | `RESULT: PASSED`; exit 0 |
+| `repair-derived.cjs --apply --folder specs/sk-doc/075-doctor-sk-skill-command/001-check-engine` | Graph metadata refreshed after the acceptance evidence update; exit 0 |
+| `validate.sh specs/sk-doc/075-doctor-sk-skill-command/001-check-engine --strict` | `RESULT: PASSED`, 0 errors and 0 warnings; exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---
