@@ -36,8 +36,8 @@
 {"prompt": "add a new github actions workflow from the template", "expected": "/doctor:ci scaffold"}
 {"prompt": "switch a ci variable off", "expected": "/doctor:ci toggle"}
 {"prompt": "disable the ci switch for a workflow group", "expected": "/doctor:ci toggle"}
-{"prompt": "is this skill in the skilled format", "expected": "/doctor:sk-skill"}
-{"prompt": "check the whole skill fleet for format problems", "expected": "/doctor:sk-skill"}
+{"prompt": "is this skill in the skilled format", "expected": "/doctor:sk-skill check"}
+{"prompt": "check the whole skill fleet for format problems", "expected": "/doctor:sk-skill check"}
 {"prompt": "set up code mode for the first time", "expected": "/doctor:mcp install"}
 {"prompt": "code mode is broken after the upgrade", "expected": "/doctor:mcp debug"}
 {"prompt": "mcp connection fails on startup", "expected": "/doctor:mcp debug"}

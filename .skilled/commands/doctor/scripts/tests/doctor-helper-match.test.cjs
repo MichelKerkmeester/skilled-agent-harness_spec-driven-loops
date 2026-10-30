@@ -39,7 +39,9 @@ const TUNE = path.join(FIXTURES, 'tune.jsonl');
 
 // Pinned when the held-out set was authored, before the matcher existed. A
 // changed hash means the bar moved, so the suite fails rather than re-baselines.
-const HELDOUT_SHA256 = 'd95d629cfdd8ffa5f18fd0bd81c887f5289b91352ab3ef383493c18057eb1e02';
+// It was re-pinned once, when /doctor:sk-skill split into check and convert
+// targets: two expected labels gained the target name and no prompt changed.
+const HELDOUT_SHA256 = 'e5a41fbcad7db0bd8f5e67034579b74573c6eedf096b60b378d393c32f143191';
 
 const BAR = { top1: 0.8, top3: 0.9, negatives: 0.9 };
 

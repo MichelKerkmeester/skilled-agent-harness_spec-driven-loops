@@ -41,8 +41,8 @@
 {"prompt": "github actions drift report", "expected": "/doctor:ci report"}
 {"prompt": "scaffold a workflow from the ci template", "expected": "/doctor:ci scaffold"}
 {"prompt": "turn off a protected workflow switch", "expected": "/doctor:ci toggle"}
-{"prompt": "the skill has the wrong frontmatter shape", "expected": "/doctor:sk-skill"}
-{"prompt": "how far is this skill from the format", "expected": "/doctor:sk-skill"}
+{"prompt": "the skill has the wrong frontmatter shape", "expected": "/doctor:sk-skill check"}
+{"prompt": "how far is this skill from the format", "expected": "/doctor:sk-skill check"}
 {"prompt": "code mode install is half done", "expected": "/doctor:mcp install"}
 {"prompt": "code mode will not connect", "expected": "/doctor:mcp debug"}
 {"prompt": "the utcp config looks wrong", "expected": "/doctor:mcp debug"}
