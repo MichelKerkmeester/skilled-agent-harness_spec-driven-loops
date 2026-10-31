@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e9b02612cfca86d7f1ca127ea497aa49049e89ba6a2a2b03992dd9f087bfa3eb",
+  "manifestHash": "891b8c0618c8e2200b2a2b913bec23ba904296cea6d98fde55e742175b45fd9d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7598,6 +7598,9 @@
     "ac 005 restatement": [
       "ac-005 restatement"
     ],
+    "ac 008 superseded": [
+      "ac-008 superseded"
+    ],
     "ac 011 sibling path narrowing": [
       "ac-011 sibling path narrowing"
     ],
@@ -9141,6 +9144,9 @@
     ],
     "advisor ranking coverage": [
       "advisor ranking coverage"
+    ],
+    "advisor readme doctor commands": [
+      "advisor readme doctor commands"
     ],
     "advisor rebuild": [
       "advisor rebuild",
@@ -16677,6 +16683,21 @@
     ],
     "census timing protocol": [
       "census timing protocol"
+    ],
+    "central doctor playbook": [
+      "central doctor playbook"
+    ],
+    "central doctor playbook acceptance criteria": [
+      "central doctor playbook acceptance criteria"
+    ],
+    "central doctor playbook implementation summary": [
+      "central doctor playbook implementation summary"
+    ],
+    "central doctor playbook plan": [
+      "central doctor playbook plan"
+    ],
+    "central doctor playbook tasks": [
+      "central doctor playbook tasks"
     ],
     "certificate semantic binding": [
       "certificate semantic binding"
@@ -26157,6 +26178,21 @@
     ],
     "command contract agents md entry": [
       "command contract agents md entry"
+    ],
+    "command contract and readme": [
+      "command contract and readme"
+    ],
+    "command contract and readme acceptance criteria": [
+      "command contract and readme acceptance criteria"
+    ],
+    "command contract and readme implementation summary": [
+      "command contract and readme implementation summary"
+    ],
+    "command contract and readme plan": [
+      "command contract and readme plan"
+    ],
+    "command contract and readme tasks": [
+      "command contract and readme tasks"
     ],
     "command contract commands filter": [
       "command contract commands filter"
@@ -40041,6 +40077,9 @@
     "doctor command realignment post cocoindex": [
       "doctor command realignment post-cocoindex"
     ],
+    "doctor command registration decision": [
+      "doctor command registration decision"
+    ],
     "doctor command relevance": [
       "doctor command relevance"
     ],
@@ -40981,6 +41020,9 @@
     ],
     "doctor surface authoring handover": [
       "doctor surface authoring handover"
+    ],
+    "doctor symlink install phase parent spec": [
+      "doctor symlink install phase parent spec"
     ],
     "doctor test environment research": [
       "doctor test environment research"
@@ -56886,6 +56928,9 @@
     "install guide cross encoder mmr": [
       "install guide cross-encoder mmr"
     ],
+    "install guide decision record": [
+      "install guide decision record"
+    ],
     "install guide deletion cocoindex": [
       "install guide deletion cocoindex"
     ],
@@ -56898,8 +56943,26 @@
     "install guide drift fix": [
       "install guide drift fix"
     ],
+    "install guide live check": [
+      "install guide live check"
+    ],
     "install guide review": [
       "install guide review"
+    ],
+    "install guide router": [
+      "install guide router"
+    ],
+    "install guide router acceptance criteria": [
+      "install guide router acceptance criteria"
+    ],
+    "install guide router implementation summary": [
+      "install guide router implementation summary"
+    ],
+    "install guide router plan": [
+      "install guide router plan"
+    ],
+    "install guide router tasks": [
+      "install guide router tasks"
     ],
     "install guide section 12 choosing an embedder": [
       "INSTALL_GUIDE section 12 choosing an embedder"
@@ -56990,6 +57053,21 @@
     ],
     "integration acceptance criteria": [
       "integration acceptance criteria"
+    ],
+    "integration and docs": [
+      "integration and docs"
+    ],
+    "integration and docs acceptance criteria": [
+      "integration and docs acceptance criteria"
+    ],
+    "integration and docs implementation summary": [
+      "integration and docs implementation summary"
+    ],
+    "integration and docs plan": [
+      "integration and docs plan"
+    ],
+    "integration and docs tasks": [
+      "integration and docs tasks"
     ],
     "integration and tests workstream": [
       "integration-and-tests workstream"
@@ -60517,6 +60595,9 @@
     "link integrity guard": [
       "link integrity guard"
     ],
+    "link skilled into your project": [
+      "link skilled into your project"
+    ],
     "link tasks": [
       "link tasks"
     ],
@@ -61836,6 +61917,9 @@
     ],
     "manifest driven template system": [
       "manifest-driven template system"
+    ],
+    "manifest entries decision": [
+      "manifest entries decision"
     ],
     "manifest extension": [
       "manifest extension"
@@ -75618,6 +75702,9 @@
     "phase 1 spec template anchor nesting": [
       "phase 1 spec template anchor nesting"
     ],
+    "phase 1 symlink engine and command": [
+      "phase 1 symlink engine and command"
+    ],
     "phase 1 template drift census and baseline": [
       "phase 1 template drift census and baseline"
     ],
@@ -76038,6 +76125,9 @@
     "phase 2 hub surface removal": [
       "phase 2 hub surface removal"
     ],
+    "phase 2 install guide router": [
+      "phase 2 install guide router"
+    ],
     "phase 2 leaf generator ignores": [
       "phase 2 leaf generator ignores"
     ],
@@ -76359,6 +76449,9 @@
     "phase 3 improvement research": [
       "phase 3 improvement research"
     ],
+    "phase 3 integration and docs": [
+      "phase 3 integration and docs"
+    ],
     "phase 3 manual claim live settings": [
       "phase 3 manual claim live settings"
     ],
@@ -76463,6 +76556,9 @@
     ],
     "phase 4 cache optimizer": [
       "phase 4 cache optimizer"
+    ],
+    "phase 4 command contract and readme": [
+      "phase 4 command contract and readme"
     ],
     "phase 4 commands and runtime mirrors": [
       "phase 4 commands and runtime mirrors"
@@ -76592,6 +76688,9 @@
     ],
     "phase 49 review rows reconciliation": [
       "phase 49 review rows reconciliation"
+    ],
+    "phase 5 central doctor playbook": [
+      "phase 5 central doctor playbook"
     ],
     "phase 5 changelog single bump": [
       "phase 5 changelog single bump"
@@ -78479,6 +78578,9 @@
     ],
     "pi subagents hook cleanup tasks": [
       "pi-subagents hook cleanup tasks"
+    ],
+    "pi subagents link": [
+      "pi-subagents link"
     ],
     "pi subagents mandate removal plan": [
       "pi-subagents mandate removal plan"
@@ -111065,6 +111167,21 @@
     ],
     "symlink contained paths tasks": [
       "symlink contained paths tasks"
+    ],
+    "symlink engine and command": [
+      "symlink engine and command"
+    ],
+    "symlink engine and command acceptance criteria": [
+      "symlink engine and command acceptance criteria"
+    ],
+    "symlink engine and command implementation summary": [
+      "symlink engine and command implementation summary"
+    ],
+    "symlink engine and command plan": [
+      "symlink engine and command plan"
+    ],
+    "symlink engine and command tasks": [
+      "symlink engine and command tasks"
     ],
     "symlink not followed": [
       "symlink not followed"

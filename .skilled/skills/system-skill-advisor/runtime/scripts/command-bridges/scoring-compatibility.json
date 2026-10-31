@@ -286,6 +286,30 @@
       "order": 32,
       "id": "command-doctor-agents-md-restore",
       "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-symlink-check",
+      "order": 33,
+      "id": "command-doctor-symlink-check",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-symlink-link",
+      "order": 34,
+      "id": "command-doctor-symlink-link",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-symlink-unlink",
+      "order": 35,
+      "id": "command-doctor-symlink-unlink",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-install",
+      "order": 36,
+      "id": "command-doctor-install",
+      "description": ""
     }
   ],
   "python": [
@@ -614,6 +638,30 @@
       "inventoryId": "command-doctor-agents-md-restore",
       "order": 43,
       "id": "command-doctor-agents-md-restore",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-symlink-check",
+      "order": 44,
+      "id": "command-doctor-symlink-check",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-symlink-link",
+      "order": 45,
+      "id": "command-doctor-symlink-link",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-symlink-unlink",
+      "order": 46,
+      "id": "command-doctor-symlink-unlink",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-install",
+      "order": 47,
+      "id": "command-doctor-install",
       "description": ""
     }
   ],

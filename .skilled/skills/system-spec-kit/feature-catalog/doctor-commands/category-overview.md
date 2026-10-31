@@ -7,7 +7,7 @@ trigger_phrases:
   - "run doctor subsystem diagnostic"
   - "skill advisor rebuild doctor"
   - "how do I diagnose and repair a spec-kit subsystem"
-version: 1.7.7.0
+version: 1.7.8.0
 ---
 
 # Doctor commands
@@ -28,7 +28,7 @@ The route manifest declares every target's location and mutation class so Gate 3
 
 `/doctor:agents-md <check|embed|restore>` answers the same question for the root instruction file. `check` is the default and read-only: it reports twelve rows from the shipped manifest, covering the install state, the sections lost or reordered, how current each shipped body is, every pin, the delivery budget, the shape of the repository block, the lines only the repository carries, each runtime copy, the `REPO RULES.md` router and the template's own purity, and it reads `UNKNOWN` rather than `PASS` for a row it cannot prove. `embed` composes every target in memory, prints the targets, the diffs, the new block, the budget, the preservation ledger and a plan digest, and writes only when that digest comes back: it backs up every path it will touch, writes inside its own allowlist and proves against the bytes on disk that no repository line was dropped, restoring from the backup itself when one was. `restore` puts back exactly the paths one recorded run's `manifest.json` names. A repository already in its target state gets `NOTHING TO DO`, and no route stages or commits anything.
 
-The playbook peer at `manual-testing-playbook/doctor-commands/` holds the scenarios for the five commands this skill owns: `/doctor:speckit`, `/doctor:runtime-mirrors`, `/doctor:env`, `/doctor:update` and `/doctor:helper` (DOC-349 to DOC-361, DOC-381, DOC-393 and DOC-394), plus the two live-session rows for `/doctor:agents-md` (DOC-396 and DOC-397), which record what a Devin session and a Cursor window actually see rather than what the engines write. The other commands are tested where they belong: `/doctor:skill-advisor` and `/doctor:setup` in the system-skill-advisor playbook, `/doctor:deep-loop` in the system-deep-loop playbook, `/doctor:git` in the sk-git playbook and `/doctor:mcp` in the mcp-code-mode playbook, each under its own `doctor-commands/` category. `/doctor:ci report` is tested in the sk-code playbook (DOC-392). `scaffold` and `toggle` have no manual scenario yet. The `/doctor:ci` script tests are `ci-report.test.cjs` and `doctor-ci-contract.test.cjs` in `.skilled/commands/doctor/scripts/tests/`.
+The playbook peer at `.skilled/manual-testing-playbook/doctor-commands/` holds the scenarios for the five commands this skill owns: `/doctor:speckit`, `/doctor:runtime-mirrors`, `/doctor:env`, `/doctor:update` and `/doctor:helper` (DOC-349 to DOC-361, DOC-381, DOC-393 and DOC-394), plus the two live-session rows for `/doctor:agents-md` (DOC-396 and DOC-397), which record what a Devin session and a Cursor window actually see rather than what the engines write. The other commands are tested where they belong: `/doctor:skill-advisor` and `/doctor:setup` in the system-skill-advisor playbook, `/doctor:deep-loop` in the system-deep-loop playbook, `/doctor:git` in the sk-git playbook and `/doctor:mcp` in the mcp-code-mode playbook, each under its own `doctor-commands/` category. `/doctor:ci report` is tested in the sk-code playbook (DOC-392). `scaffold` and `toggle` have no manual scenario yet. The `/doctor:ci` script tests are `ci-report.test.cjs` and `doctor-ci-contract.test.cjs` in `.skilled/commands/doctor/scripts/tests/`.
 
 ---
 
@@ -46,6 +46,8 @@ The playbook peer at `manual-testing-playbook/doctor-commands/` holds the scenar
 | `.skilled/commands/doctor/setup.md` | Router | `/doctor:setup` read-only onboarding check that lists every doctor target and runs five setup checks |
 | `.skilled/commands/doctor/helper.md` | Router | `/doctor:helper` free-text routing over the route manifest, with a read-only pick run in place and a writing pick handed back as one line |
 | `.skilled/commands/doctor/agents-md.md` | Router | `/doctor:agents-md <check\|embed\|restore>` three targets over one shipped manifest, with `check` as the bare-command target |
+| `.skilled/commands/doctor/symlink.md` | Router | `/doctor:symlink <check\|link\|unlink>` framework links into another project repo, with the read-only `check` as the bare-command target |
+| `.skilled/commands/doctor/install.md` | Router | `/doctor:install` read-only guide that checks the two builds, runs the symlink check and prints the ordered setup commands |
 | `.skilled/commands/doctor/assets/agents-md-manifest.json` | Manifest | The shipped sections, pins, runtime copies, delivery budget and router rows, plus the generated `derived` key that carries each body's hash |
 | `.skilled/commands/doctor/scripts/agents-md-check.cjs` | Engine | The read-only check: twelve rows A1 to A12, `--root` and `--json`, and exit 0, 1 or 2 |
 | `.skilled/commands/doctor/scripts/agents-md-embed.cjs` | Engine | `plan`, `apply --plan-digest` and `restore --run`, with the backup, the write allowlist and the post-write preservation proof |
@@ -56,8 +58,8 @@ The playbook peer at `manual-testing-playbook/doctor-commands/` holds the scenar
 | `.skilled/commands/doctor/env.md` | Command | `/doctor:env` guided environment switches |
 | `.skilled/commands/doctor/git.md` | Command | `/doctor:git <hooks\|standards\|setup>` hook gate settings, `.sk-git/` rule changes and a read-only setup check |
 | `.skilled/commands/doctor/ci.md` | Router | `/doctor:ci report\|scaffold\|toggle` GitHub Actions workflow report, scaffold and switch toggle |
-| `manual-testing-playbook/doctor-commands/README.md` | Playbook | Scope of the doctor scenarios and the DOC- ID series across playbooks |
-| `manual-testing-playbook/doctor-commands/*.md` | Playbook | Per-scenario Markdown specs (DOC-349 to DOC-361, DOC-381, DOC-393, DOC-394, DOC-396 and DOC-397) |
+| `.skilled/manual-testing-playbook/doctor-commands/README.md` | Playbook | Scope of the doctor scenarios and the DOC- ID series across playbooks |
+| `.skilled/manual-testing-playbook/doctor-commands/*.md` | Playbook | Per-scenario Markdown specs (DOC-349 to DOC-361, DOC-381, DOC-393, DOC-394, DOC-396 and DOC-397) |
 
 ### Validation
 

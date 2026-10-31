@@ -660,31 +660,39 @@ function isRoutingGoldScenario(filePath, routingGoldRoots) {
   return hasRoutingGoldSignature(extractFrontmatter(readText(filePath)));
 }
 
-function resolvePackageFilter(filter, skillsRoot) {
+function resolvePackageFilter(filter, skillsRoot, repoRoot) {
   if (!filter) return null;
   const direct = path.resolve(skillsRoot, filter, 'manual-testing-playbook');
   if (fs.existsSync(direct) && fs.statSync(direct).isDirectory()) return direct;
-  const explicit = path.resolve(filter);
-  if (fs.existsSync(explicit) && fs.statSync(explicit).isDirectory()) {
-    if (path.basename(explicit) === 'manual-testing-playbook') return explicit;
-    const nested = path.join(explicit, ROOT_FILENAME);
-    if (fs.existsSync(nested)) return explicit;
+  const explicitCandidates = [...new Set([path.resolve(repoRoot, filter), path.resolve(filter)])];
+  for (const explicit of explicitCandidates) {
+    if (fs.existsSync(explicit) && fs.statSync(explicit).isDirectory()) {
+      if (path.basename(explicit) === 'manual-testing-playbook') return explicit;
+      const nested = path.join(explicit, ROOT_FILENAME);
+      if (fs.existsSync(nested)) return explicit;
+    }
   }
   throw new Error(`package does not resolve to a manual-testing-playbook root: ${filter}`);
 }
 
 /**
- * Find every playbook root, including those owned by a sub-skill packet.
+ * Find every skill-owned and centralized playbook root.
  *
  * A hub keeps its own `<skill>/manual-testing-playbook` while each packet keeps
  * `<skill>/<packet>/manual-testing-playbook` beside it — a sibling directory, not a
- * child. Enumerating only the first level therefore skipped every packet-owned root,
- * so a fleet run reported success while most of the corpus was never opened. Descend
- * one level further so a fleet run means what it claims.
+ * child. The centralized playbook also sits beside the skills tree, so check that
+ * repository-level location before scanning both skill-owned levels.
  */
-function discoverPackages(skillsRoot) {
+function discoverPackages(skillsRoot, repoRoot) {
   const roots = [];
   const hasPlaybook = (dir) => fs.existsSync(path.join(dir, 'manual-testing-playbook', ROOT_FILENAME));
+  const centralRoot = path.join(repoRoot, '.skilled', 'manual-testing-playbook');
+  if (fs.existsSync(path.join(centralRoot, ROOT_FILENAME))) {
+    roots.push({
+      id: path.relative(repoRoot, centralRoot).split(path.sep).join('/'),
+      playbookRoot: centralRoot,
+    });
+  }
   for (const skill of fs.readdirSync(skillsRoot, { withFileTypes: true })) {
     if (!skill.isDirectory()) continue;
     const skillDir = path.join(skillsRoot, skill.name);
@@ -708,8 +716,11 @@ function discoverPackages(skillsRoot) {
     .sort((a, b) => a.id.localeCompare(b.id));
 }
 
-function packageId(playbookRoot, skillsRoot) {
+function packageId(playbookRoot, skillsRoot, repoRoot) {
   const relative = path.relative(skillsRoot, playbookRoot);
+  if (!isWithin(playbookRoot, skillsRoot) && isWithin(playbookRoot, repoRoot)) {
+    return path.relative(repoRoot, playbookRoot).split(path.sep).join('/');
+  }
   if (relative.endsWith(`${path.sep}manual-testing-playbook`)) return relative.slice(0, -`${path.sep}manual-testing-playbook`.length).split(path.sep).join('/');
   return path.basename(playbookRoot);
 }
@@ -790,7 +801,7 @@ function validatePackage({ playbookRoot, repoRoot, skillsRoot, manifest }) {
     const id = extractFeatureId(readText(file), extractFrontmatter(readText(file)));
     if (id) idMap.set(id, file);
   }
-  const packageName = packageId(playbookRoot, skillsRoot);
+  const packageName = packageId(playbookRoot, skillsRoot, repoRoot);
   const hasOperatorFiles = operatorFiles.length > 0;
   const violationCount = errors.length;
   const warnTier = manifest.warnPackages.includes(packageName);
@@ -816,10 +827,10 @@ function runValidation(options = {}) {
   const manifestPath = path.resolve(options.manifest || defaults.manifest);
   if (!fs.existsSync(repoRoot) || !fs.existsSync(skillsRoot)) throw new Error('repository or skills root does not exist');
   const manifest = loadManifest(manifestPath, repoRoot);
-  const selected = resolvePackageFilter(options.packageFilter || null, skillsRoot);
+  const selected = resolvePackageFilter(options.packageFilter || null, skillsRoot, repoRoot);
   const packages = selected
-    ? [{ id: packageId(selected, skillsRoot), playbookRoot: selected }]
-    : discoverPackages(skillsRoot);
+    ? [{ id: packageId(selected, skillsRoot, repoRoot), playbookRoot: selected }]
+    : discoverPackages(skillsRoot, repoRoot);
   if (packages.length === 0) throw new Error('no direct skill packages with manual-testing-playbook roots were found');
   const reports = packages.map((pkg) => validatePackage({ playbookRoot: pkg.playbookRoot, repoRoot, skillsRoot, manifest }));
   const strict = options.strict !== false;

@@ -1,0 +1,328 @@
+# /doctor:symlink Presentation Contract
+
+This file is the single source of truth for user-facing presentation in `/doctor:symlink <target>`: the argument failure, the startup menu, the safety rules, the check report, the link and unlink plans and their questions, result templates and next-step text. The command router owns target resolution and asset loading. The workflow YAML owns execution behavior.
+
+## 1. Argument Failure
+
+Every argument failure happens before any workflow YAML loads, prints the wording below with the bracketed parts filled in, and ends with the status line. Nothing is read and nothing is changed.
+
+| Situation | Wording |
+|-----------|---------|
+| The first token is not a target | `Unknown target: [target]` then `/doctor:symlink runs check. Try: /doctor:symlink menu` then `STATUS=FAIL ERROR="unknown_target"` |
+| A flag none of the three targets accepts | `Unknown argument: [argument]` then `check accepts --json, --root <dir>, --runtimes <csv>, --include <csv> and --link-instructions; link accepts --root <dir>, --runtimes <csv>, --mode, --include <csv>, --link-instructions, --ignore, --dry-run and --plan-digest <digest>; unlink accepts --run <dir>, --yes and --dry-run.` then `STATUS=FAIL ERROR="unknown_argument"` |
+| A flag another target owns | `Argument '[argument]' is not valid for target '[target]'. Did you mean /doctor:symlink [suggested-target] [argument]?` then `STATUS=FAIL ERROR="cross_target_flag"` |
+| A value flag given without its value, such as `--root`, `--mode` or `--run` at the end of the line | `Missing value: [argument] needs [a repository path for --root, a runtime list for --runtimes, a link shape for --mode, an extras list for --include, an ignore destination for --ignore, the digest the plan printed for --plan-digest, the run directory one apply printed for --run]` then `Try: [the accepted invocation for the bound target]` then `STATUS=FAIL ERROR="missing_argument"` |
+| A target bound with a second positional (`check foo`, `link foo`, `unlink foo`) | `Only one target may be bound.` then `Try: /doctor:symlink check [--json] [--root <dir>] for check, /doctor:symlink link [--dry-run] for link, /doctor:symlink unlink --run <dir> for unlink` then `STATUS=FAIL ERROR="too_many_arguments"` |
+| `unlink` with no run directory | `Unlink needs --run <dir>, the run directory one apply printed.` then `STATUS=FAIL ERROR="missing_run_dir"` |
+| A root the engine refuses: absent, not a directory, the checkout itself, inside it, or holding it | `Root refused: [the engine's one-line reason]` then `Try: --root <the repository to link into>` then `STATUS=FAIL ERROR="root_refused"` |
+| An engine invoked with a subcommand or option it does not take | `USAGE: [the engine's first message line]` then the engine's usage block, exit 2. The workflow only ever runs the documented calls, so this is the engine's own contract rather than a route the operator reaches |
+
+## 2. Startup Presentation
+
+This command is always interactive and has no `:auto` mode. With no target, `check` runs because it only reads, so a bare invocation needs no answer. `check` and `link` still need a repository, so the first thing they show is the root prompt in section 2.1 unless the operator passed `--root`. The menu below appears for `menu`, `list` and `?`. Ask it once, then wait.
+
+```text
+What do you want to do?
+
+1) check
+2) link
+3) unlink
+X) Cancel
+```
+
+Accepted answers:
+
+| Answer | Result | Meaning |
+|--------|--------|---------|
+| `1` | target = `check` | Report every selected manifest entry for one repository root and change nothing |
+| `2` | target = `link` | Plan the links, show the digest, and write only on yes |
+| `3` | target = `unlink` | Remove the links one recorded run created, after its plan and one yes |
+| `X`, empty, `cancel` | `STATUS=CANCELLED ACTION=cancelled` | Stop. Nothing changes |
+
+On any other response, re-emit the menu once. On a second invalid response, return `STATUS=FAIL ERROR="unknown_selection"`.
+
+Valid targets: check, link, unlink
+
+### 2.1 Root Prompt
+
+Ask this once, only when the bound target is `check` or `link` and no `--root` was given. Never infer the root from the working directory, the conversation or a nearby file.
+
+```text
+Which repository should this run work on?
+Give the path to the project repo that should hold the links. This command never links the Skilled checkout into itself.
+
+Root: [the path the operator gave]
+```
+
+Take the path as given and pass it as `--root`. A path that does not exist, or one the engine refuses, ends the run through the root refusal wording in section 1.
+
+### Route Manifest Display
+
+Render this table for `menu`, `list` or `?`. Values mirror `_routes.yaml`.
+
+| Target | Workflow | Mutation Class | One-Line Purpose |
+|--------|----------|----------------|------------------|
+| `check` | `doctor-symlink-check.yaml` | read-only | Report how each manifest entry stands in one repository, entry by entry |
+| `link` | `doctor-symlink-link.yaml` | mutates | Link the checkout into a repository, after a plan, a digest and one yes |
+| `unlink` | `doctor-symlink-unlink.yaml` | mutates | Remove exactly the links one recorded run created |
+
+## 3. Safety Rules
+
+State these plainly before the question, and never soften one to get a yes. They are the whole reason the question exists.
+
+1. Nothing is written before the yes. The plan only reads. The apply runs only against the digest that plan printed, and a tree that no longer matches it is refused with nothing written.
+2. No real file and no real folder is ever overwritten. A name that holds a real file is refused. A real folder gets links built inside it, and the local paths inside it are kept. A real folder is never replaced by a link.
+3. Only a broken link whose text points into the Skilled checkout is replaced or removed. A link that points somewhere else is reported `foreign-link` and left exactly as it is.
+4. Ignore lines go to `<git-dir>/info/exclude` by default, because a committed absolute link carries this machine's path into everyone else's clone. `--ignore gitignore` writes them to `.gitignore` instead when the team wants them shared, and `--ignore none` writes none.
+5. The undo is the unlink command the apply printed. It reads the run record, removes only the links that record created, restores the link text it replaced, and keeps the record in place.
+
+## 4. Check Report
+
+The engine prints one human line per entry, `<status> <group> <name>`, with indented detail lines for missing children, broken links and local conflicts, then the repository-level warnings. Quote the lines rather than paraphrasing them, and lead the reply with the entries that are not linked as asked.
+
+A row is a pass only when it reads `linked-whole` or `linked-merge`. Every other status is a row to show in full:
+
+| Status | What it means |
+|--------|---------------|
+| `linked-whole` | The name is a link to the checkout, as asked |
+| `linked-merge` | A real folder whose entries link into the checkout, with no broken link into it |
+| `partial-merge` | A real folder missing some entries, or holding broken links into the checkout |
+| `missing` | Nothing sits at that name |
+| `broken` | A link whose target does not exist |
+| `foreign-link` | A link that resolves somewhere other than the checkout |
+| `local` | A real file or folder with no links into the checkout |
+| `source-missing` | The checkout has no such path, so nothing can be linked |
+
+```text
+Skilled link check: [the root the engine read]
+
+[one line per entry, as the engine printed it]
+[indented detail lines, as printed]
+[repository-level warnings, as printed, including each tracked absolute link]
+STATUS=[OK|FAIL]
+```
+
+With `--json` print the engine's JSON and nothing else: no table, no summary, no next-step line. The JSON carries the entries with their own status and detail, the detected runtimes, the tracked absolute links and whether the root is a git work tree.
+
+### Check Summary
+
+```text
+DOCTOR DIAGNOSTIC RESULT
+Target: check
+Status: [OK|FINDINGS|FAIL]
+Mutation class: read-only
+Scope: [the root the engine read]
+Evidence: [n] entries, [n] linked-whole, [n] linked-merge, [n] partial-merge, [n] missing, [n] broken, [n] foreign-link, [n] local, [n] source-missing, [n] tracked absolute links
+Recommendation: [the repair each non-pass entry needs, or none]
+STATUS=[OK|FAIL]
+```
+
+`STATUS=OK` covers a check that ran, and the rows and the summary carry the findings. `Status: FINDINGS` holds when at least one selected entry is not a pass or a tracked absolute link printed, and `Status: OK` holds when every selected entry is a pass. An engine exit 2 ends `STATUS=FAIL ERROR="[the engine's code]"`, and the reply names the accepted invocation.
+
+Statuses this route prints, each on its own line so a workflow never has to compose one:
+
+```text
+STATUS=OK
+STATUS=FAIL ERROR="[code]"
+```
+
+## 5. Link Plan, Digest and Approval
+
+### Setup
+
+Render this compact panel after target resolution and before the plan, when the target or flags were non-trivial.
+
+```text
+DOCTOR ROUTE SETUP
+Target: link
+Workflow: .skilled/commands/doctor/assets/doctor-symlink-link.yaml
+Mutation class: mutates
+Execution mode: INTERACTIVE
+Root: [the repository the run links into]
+Source: [the Skilled checkout the links point at]
+Runtimes: [the runtimes the run will link]
+Shape: [the link shape the run resolved]
+Presentation: .skilled/commands/doctor/assets/doctor-symlink-presentation.txt
+Next: run the plan, which writes nothing
+```
+
+### The Plan The Operator Approves
+
+The plan quotes the engine's own lines: one line per action it resolved, the ignore file with the lines it would gain, one line per refusal, and the digest. The action ops are `mkdir`, `link`, `replace-link`, `remove-broken` and `ignore-add`, and a refusal is reported in `refusals` and never applied.
+
+```text
+SKILLED LINK PLAN
+Root: [the repository]
+Source: [the Skilled checkout]
+Runtimes: [the runtimes the run will link]
+Actions: [one line per action the engine planned, in its order]
+Ignore: [the file the ignore lines go to and each line it would gain, or none]
+Refusals: [one line per refusal in the engine's words, or none]
+Plan digest: [the engine's plan-digest line]
+```
+
+The digest is not decoration: the digest on screen is the digest the apply repeats, and an apply whose digest no longer matches writes nothing. Show it in full. When `--dry-run` was not passed, render the canonical link question at the end of this contract immediately after the digest, and never compose a plan digest of your own.
+
+A plan with no actions prints `NOTHING TO DO` and still prints the digest. Render the unchanged result and ask nothing.
+
+When `env` is one of the extras, print the manifest's warning for it immediately above the question: it links the checkout's `.env`, so every tool started in that repository reads the Skilled secrets.
+
+### Dry Run
+
+With `--dry-run`, follow the plan and the digest with `Dry run: nothing was written and nothing was asked.` and end with `STATUS=OK`. No question is asked and nothing is written.
+
+### The Link Question
+
+The final line of this contract is the canonical link question. It covers the whole write: every action the plan names, the folders it would create, the broken links it would replace or remove, the ignore lines and the digest. Render it only after a normal plan, never for `--dry-run`. Any answer other than yes counts as no: print the cancelled result and write nothing.
+
+## 6. Unlink Plan and Approval
+
+The unlink plan is the engine's own dry run of one run's record, so it names what will be removed, what will be put back, and each folder the run created that an empty unlink removes.
+
+```text
+SKILLED UNLINK PLAN
+Run directory: [the --run directory]
+Root: [the root the record names]
+Remove: [one line per link it would remove, in the engine's order]
+Restore: [one line per link it would put back to its earlier text, or none]
+Recreate: [one line per broken link it would create again, or none]
+Folders: [one line per folder the run created and an empty unlink removes, or none]
+Ignore: [the file and the lines it would drop, or none]
+Skipped: [one line per path reported changed since apply, or none]
+
+Remove these links from that run now? [yes/no]
+```
+
+A recorded path that no longer holds the recorded target text is skipped and reported as `changed since apply`. Quote that line: nothing was removed there, and the path is the operator's to look at.
+
+Unlink keeps the run directory, so the record outlives the removal and a second read is always possible. Say so.
+
+`Remove these links from that run now? [yes/no]` covers the whole unlink. Any answer other than yes counts as no: print the cancelled result and write nothing. The `--yes` flag is passed only after that yes, so the operator confirms once and the engine's own confirmation is satisfied by it.
+
+## 7. Result Templates
+
+### Linked
+
+```text
+DOCTOR MUTATING RESULT
+Target: link
+Root: [the repository]
+Source: [the Skilled checkout]
+Links changed: [each path the apply printed as linked, replaced or removed, or none]
+Folders created: [each folder the apply created, or none]
+Ignore lines: [the file and each line it gained, or none]
+Run record: [the run directory the engine wrote, which unlink reads]
+Re-read: [the engine's post-apply check summary, with any entry that is still not a pass]
+Refusals: [each refusal the plan named and the apply left alone, or none]
+Undo: [the engine's undo line, quoted whole: the unlink command with its run directory and --dry-run]
+Next: [the repair the lines above name, or none]
+STATUS=OK
+```
+
+The run's `STATUS=OK` covers the links it created and nothing else. An entry the plan refused is still refused after the run, so it is never one of the paths this run wrote and never appears in `Links changed`.
+
+### Unlinked
+
+```text
+DOCTOR MUTATING RESULT
+Target: unlink
+Run directory: [the --run directory]
+Removed: [each path the unlink printed as removed, or none]
+Restored: [each link it printed as put back to its earlier text, or none]
+Recreated: [each broken link it printed as created again, or none]
+Folders: [each folder it printed as removed, or none]
+Ignore lines: [each line it dropped, or none]
+Skipped: [each path it reported as changed since apply, or none]
+Run record: [the run directory, kept]
+STATUS=OK
+```
+
+### Unchanged
+
+Render this when the engine reports `NOTHING TO DO`.
+
+```text
+DOCTOR TARGET UNCHANGED
+Target: link
+Root: [the repository]
+State: [the engine's NOTHING TO DO line, quoted as printed]
+Changed: none
+STATUS=OK
+```
+
+### Cancelled
+
+Render this when the operator declines either question, and name what was declined.
+
+```text
+DOCTOR TARGET CANCELLED
+Target: [link|unlink]
+Declined: [the link | the unlink]
+Changed: none
+STATUS=CANCELLED ACTION=cancelled
+```
+
+### Dry Run
+
+```text
+DOCTOR DRY RUN
+Target: [link|unlink]
+Plan: [the engine's plan lines, quoted as printed, including the digest line]
+Dry run: nothing was written and nothing was asked.
+Changed: none
+STATUS=OK
+```
+
+### Failure Summary
+
+```text
+DOCTOR TARGET FAILED
+Target: [check|link|unlink]
+Step: [the phase or action that stopped the run]
+Error: [the engine's code and message]
+Changed: [what was written before the failure, or none]
+Next: [the repair, or the accepted invocation]
+STATUS=FAIL ERROR="[code]"
+```
+
+A check that exits 2 prints its message and ends `STATUS=FAIL ERROR="[code]"`. An apply that exits 3 on a digest mismatch reports `Changed: none` and names the plan to rerun. An apply or unlink that exits 1 part-way reports what it had already done and keeps the run record, so the undo covers it.
+
+## 8. Troubleshooting Display
+
+| Situation | Suggested Action |
+|-----------|------------------|
+| An entry reports `broken` and its link text points into the checkout | `/doctor:symlink link` replaces it when the checkout still has that path, and removes it when the checkout does not. Read the action in the plan before saying yes |
+| An entry reports `broken` and its link text points somewhere else | It is not a link into the checkout, so no run touches it. Read the path, then remove the link yourself if it is stale |
+| An entry reports `foreign-link` | The name points at another checkout or another file, so every run refuses it. Decide which checkout belongs at that name before anything changes |
+| An entry reports `partial-merge` | The real folder is missing entries or holds broken links into the checkout. `/doctor:symlink link` adds the missing entries and replaces the broken ones |
+| An entry reports `local` | The name is the repository's own file or folder. Nothing is overwritten. Where the name is a real folder, `--mode merge` puts links inside it and keeps every local path |
+| An entry reports `source-missing` | The checkout has no such path, so nothing can be linked there. The entry stays as it is until the checkout ships that path |
+| A refusal names a real folder under `--mode whole` | The name is occupied, so this shape cannot write there. Run `/doctor:symlink link` with `--mode merge`, or leave the shape on `auto` and let it merge |
+| A refusal names a real file | The name is the repository's own file. A link would replace it, so nothing is written. Rename the local file, or leave the name alone |
+| The check prints a tracked absolute link | An absolute link is committed, so every clone sees this machine's path. `/doctor:symlink link` adds the ignore line, and the committed link is the operator's to remove from the index |
+| Ignore lines went somewhere the team does not see | `--ignore exclude` writes to `<git-dir>/info/exclude`, which is local to this clone. Use `--ignore gitignore` to write `.gitignore` when the team wants them shared |
+| The operator wants the ignore lines gone | `/doctor:symlink unlink --run <the run directory>` drops exactly the lines that run recorded |
+| The apply reports a digest that does not match | The tree changed after the plan. Rerun `/doctor:symlink link` so the plan and the digest describe the repository in front of you |
+| The unlink reports `changed since apply` | The path no longer matches the record, so nothing was removed there. Read the path, keep what is there or remove it yourself |
+| The run's undo line is needed | Run the printed `unlink` command with `--dry-run` first. It shows what would be removed and writes nothing until `--yes` |
+| The run touched a folder the operator did not expect | The folder was created for a link and is removed only once it is empty. The unlink leaves a folder alone while anything else is in it |
+| `--include env` warns about secrets | The run links the checkout's `.env`, so every tool started in that repository reads the Skilled secrets. Drop `env` from `--include` to keep them local to the checkout |
+| A root is refused | The root is the checkout, inside it, or holds it. Point `--root` at the repository that should hold the links |
+| Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
+
+## 9. Next Step
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| The links are in place and the root instruction file still needs its shipped sections | `/doctor:agents-md embed` | The links make the checkout reachable, and the instruction file is composed by its own command |
+| The links are in place and `.claude/mcp.json` needs wiring | `/doctor:mcp install` | This command links the checkout, and the MCP servers are installed by theirs |
+| The links are in place and the git hooks are missing | `/doctor:git setup` | Hooks are installed from the checkout, and no link puts them in the repository |
+| A runtime mirror drifts after a link run | `/doctor:runtime-mirrors` | It lists each generated mirror that drifts with the write form of its checker |
+| The operator wants the whole setup walked through in order | `/doctor:install` | It prints the ordered writing checklist for a new project repository |
+| An entry is still not linked as asked after a link run | `/doctor:symlink check` | The write is complete, and the remaining entry is a different requirement |
+| The change should be reviewed before it is committed | `/doctor:symlink check` | The links are on disk, and this command stages nothing and commits nothing |
+
+End interactive presentations with: `What would you like to do next?`
+
+Canonical link question, rendered only after the plan digest when `--dry-run` is false:
+Link the Skilled checkout into this repository now? [yes/no]

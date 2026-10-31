@@ -1,0 +1,105 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: SYMLINK UNLINK (INTERACTIVE, ONE RECORDED RUN)
+# ─────────────────────────────────────────────────────────────────
+role: Careful operator undoing one recorded symlink run in its target repository
+purpose: Show the unlink plan from the run record, ask once and remove or restore only the recorded paths after that yes
+action: Read the run record -> run the unlink dry-run plan -> show the plan -> explicit yes -> run unlink with --yes -> report
+skill_owner: ".skilled/skills/system-spec-kit/"
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: sequential_read_dry_run_confirmed_unlink
+  compliance: MANDATORY
+  execution: interactive
+  approvals: explicit_yes
+  planning: always_show_dry_run_plan_before_question
+  dry_run: print_the_unlink_plan_then_status_ok_without_asking
+  tracking: one_recorded_run
+  validation: engine_reports_each_unlink_result
+  never_commit: true
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: false
+  allowed_targets:
+    - "Only paths listed in the run manifest. A link action is removed only when its current link text still matches the recorded target."
+    - "Only the recorded original link text is restored for a replace-link action, and only when the current link still matches the recorded target."
+    - "A recorded remove-broken action recreates its original link only when the path is absent."
+    - "Only directories listed in created_dirs are removed, deepest first and only when empty."
+    - "Only the exact lines listed in ignore_added are removed from the recorded ignore file."
+  forbidden_targets:
+    - "Any path not listed in the run manifest."
+    - "The run directory, its manifest and its copies. The engine reads them and keeps them."
+    - "Any recorded path whose current state no longer matches the action's recorded condition. The engine reports it as changed since apply and skips it."
+    - "The git index, history and remotes."
+  invariant: "The run manifest is the only source for unlink actions. The engine checks each path against its recorded state before changing it. It never guesses a path from the plan text, removes a changed path or deletes the run record. A no at the question ends the route with STATUS=CANCELLED and nothing written."
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  engine: ".skilled/commands/doctor/scripts/symlink-engine.cjs"
+  manifest: ".skilled/commands/doctor/assets/symlink-manifest.json"
+  presentation: ".skilled/commands/doctor/assets/doctor-symlink-presentation.txt"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+inputs:
+  execution_mode: "INTERACTIVE"
+  run_dir: "Required run directory printed by apply, passed as --run <dir>. Its manifest.json records the root, source, digest, applied actions, created directories and ignore lines."
+  yes: "--yes takes the engine's own confirmation as given. This workflow passes it only after the operator has answered its own question, because a route that answers a confirmation on the operator's behalf has removed the confirmation."
+  dry_run: "--dry-run prints the engine's unlink plan and ends with STATUS=OK without asking (default false). The workflow uses the engine's unlink --dry-run call to build its plan, and no unlink writes until the operator's yes."
+
+# ─────────────────────────────────────────────────────────────────
+# EXECUTION
+# ─────────────────────────────────────────────────────────────────
+execution:
+  phase_1_read:
+    purpose: "Identify the one recorded run before showing what unlink will change"
+    activities:
+      - "Check that .skilled/commands/doctor/scripts/symlink-engine.cjs, .skilled/commands/doctor/assets/symlink-manifest.json and .skilled/commands/doctor/assets/doctor-symlink-presentation.txt exist. If one is missing, report its path and stop with STATUS=FAIL. Do not create the presentation file here."
+      - "Use only the run directory the operator supplied. Its manifest.json is the record of the root, source, digest, applied actions, created directories and ignore lines. Do not infer another run or edit the record."
+      - "Read the presentation contract for the plan, question and result wording."
+
+  phase_2_plan:
+    purpose: "Show the engine's unlink plan without writing"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/symlink-engine.cjs unlink --run \"{run_dir}\" --dry-run."
+      - "Keep the engine's exact plan lines. They show which recorded links will be removed or restored, which created directories will be removed and which ignore lines will be deleted."
+      - "The dry-run writes nothing. Exit 2 means the invocation or run record was refused. Quote the engine message and end with STATUS=FAIL."
+      - "If {dry_run} is true, render the presentation contract's dry-run result from the engine's plan, print the dry-run line and end the run without asking, then render the report with STATUS=OK."
+
+  phase_3_approval:
+    purpose: "Ask once about the paths in the dry-run plan"
+    activities:
+      - "Ask the one unlink question using the presentation contract's wording. Name the run directory and the paths the plan will remove, restore or clean up."
+      - "Any answer other than yes is a no. Render the cancelled result, state Changed: none and end with STATUS=CANCELLED ACTION=cancelled. Do not run unlink with --yes."
+      - "Set yes only after the operator answers yes to this run's unlink question. Never treat an incoming --yes as that answer."
+      - "Never default an answer or carry approval from an earlier run. Phase 4 runs only after this run's yes."
+
+  phase_4_unlink:
+    purpose: "Undo only the actions the run record still authorizes"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/symlink-engine.cjs unlink --run \"{run_dir}\" --yes, only after the unlink yes."
+      - "Exit 0 means the engine finished. Keep its result lines, including paths it skipped as changed since apply. The engine keeps the run directory."
+      - "Exit 1 means unlink failed part-way. Quote the engine message and list the changes it reports. Do not retry automatically."
+      - "Exit 2 means the invocation or run record was refused. Quote the engine message and end with STATUS=FAIL."
+
+  phase_5_report:
+    purpose: "Report what the engine changed and what it skipped"
+    activities:
+      - "Render the result through .skilled/commands/doctor/assets/doctor-symlink-presentation.txt with the run directory and the engine's unlink output."
+      - "A dry run: render the dry-run result with the plan and end with STATUS=OK."
+      - "End by saying the route stages and commits nothing."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output:
+  presentation: ".skilled/commands/doctor/assets/doctor-symlink-presentation.txt"
+  statuses: [OK, CANCELLED, FAIL]

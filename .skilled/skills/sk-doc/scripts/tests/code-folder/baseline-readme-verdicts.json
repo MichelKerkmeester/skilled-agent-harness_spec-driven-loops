@@ -1,5 +1,5 @@
 {
-  "count": 968,
+  "count": 966,
   "mode": "readme",
   "results": [
     {
@@ -267,6 +267,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/commands/doctor/scripts/README.markdown",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/commands/doctor/scripts/lib/README.markdown",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -577,6 +587,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/logs/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/manual-testing-playbook/doctor-commands/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -3016,16 +3036,6 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".skilled/skills/mcp-code-mode/manual-testing-playbook/doctor-commands/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
       "file": ".skilled/skills/mcp-code-mode/mcp-server/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -3686,16 +3696,6 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
       "file": ".skilled/skills/sk-code/shared/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -3787,6 +3787,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/sk-code/sk-code-quality/scripts/lib/comment_hygiene/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -5408,16 +5418,6 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
       "file": ".skilled/skills/sk-git/scripts/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -5729,16 +5729,6 @@
       "blocking_errors": [],
       "document_type": "unknown",
       "file": ".skilled/skills/system-deep-loop/deep-review/scripts/tests/fixtures/blocked-stop-session/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-deep-loop/manual-testing-playbook/doctor-commands/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -7369,16 +7359,6 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/system-spec-kit/config/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,

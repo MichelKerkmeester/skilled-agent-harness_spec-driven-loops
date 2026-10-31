@@ -39,6 +39,8 @@ Render this table first, before any leg runs.
 | `/doctor:skill-advisor router-reach` | Whether each declared routing phrase reaches its hub |
 | `/doctor:deep-loop` | Deep-loop coverage graphs and convergence for research, review and council runs |
 | `/doctor:mcp` | Code Mode install and debug, its UTCP configuration and runtime registration |
+| `/doctor:install [--root <dir>] [--runtimes <list>] [--json]` | Putting Skilled into your own project repo: the build check, what is already linked, and the ordered setup commands to run |
+| `/doctor:symlink [check|link|unlink] [--json] [--root <dir>]` | The framework links in a project repo: which runtime folders are linked, broken or missing, linking them over a printed plan and its digest, and undoing one recorded run |
 
 ## 3. Per-Leg Result Table
 

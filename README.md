@@ -182,6 +182,10 @@ Open the repository in any of the seven runtimes: OpenCode, Claude Code, Codex, 
 
 It checks the install without changing anything and names one repair command for each failure. Code Mode builds separately, and `/doctor:mcp install` builds and registers it for you.
 
+### Use It In Your Own Project
+
+You can also keep Skilled in this one checkout and link it into your own project repos, so every project shares one copy and one `git pull` updates them all. Run `/doctor:install` here and follow the steps it prints. [Use It In Your Own Project](#5--use-it-in-your-own-project) walks through it.
+
 ### First Task
 
 ```
@@ -210,11 +214,79 @@ Every setting has a working default. To change one, see [Environment Settings](#
 
 ### Keep It Healthy
 
-The doctor commands check and repair one area each. `/doctor:helper` names the one that fits a problem you describe, and `/doctor:setup` lists them all. `/doctor:update` brings in a new release, `/doctor:runtime-mirrors` finds runtime copies that drifted from `.skilled/`, `/doctor:skill-advisor` rebuilds or tunes skill routing, `/doctor:sk-skill` reports how far a skill is from the Skilled format and converts one after a plan, `/doctor:agents-md` checks your root instruction file against the shipped template and embeds the shipped sections plus your own block after a plan, and `/doctor:ci` reports and toggles the CI workflow switches. The [Doctor](#doctor) commands section lists every command and target in one table, with which ones only read and which write after your yes, then describes each one.
+The doctor commands check and repair one area each. `/doctor:helper` names the one that fits a problem you describe, and `/doctor:setup` lists them all. `/doctor:update` brings in a new release, `/doctor:runtime-mirrors` finds runtime copies that drifted from `.skilled/`, `/doctor:skill-advisor` rebuilds or tunes skill routing, `/doctor:sk-skill` reports how far a skill is from the Skilled format and converts one after a plan, `/doctor:agents-md` checks your root instruction file against the shipped template and embeds the shipped sections plus your own block after a plan, `/doctor:install` prints the ordered steps that put Skilled into your own project repo and `/doctor:symlink` checks and repairs the framework links there, and `/doctor:ci` reports and toggles the CI workflow switches. The [Doctor](#doctor) commands section lists every command and target in one table, with which ones only read and which write after your yes, then describes each one.
 
 &nbsp;
 
-## 5. 📋 SPEC KIT
+## 5. 🔗 USE IT IN YOUR OWN PROJECT
+
+Skilled does not have to live inside each project. Keep one checkout, this repository, and link it into the repositories you work in. Every linked project then uses the same skills, commands, agents and hooks, and a `git pull` here updates all of them at once.
+
+Two doctor commands do the work. `/doctor:install` is the guide: it checks this checkout, asks what you want, looks at the target repo and prints the setup commands in order. `/doctor:symlink` does the linking, and only after it has shown you a plan and you said yes.
+
+### Run The Guide
+
+Open this checkout in your runtime and run:
+
+```
+/doctor:install
+```
+
+It checks that the Spec Kit and Skill Advisor builds exist, and asks four things in one prompt:
+
+1. **Target repo:** the absolute path of your project, for example `/Users/me/code/my-app`
+2. **Runtimes:** any of `claude`, `opencode`, `codex`, `cursor`, `devin`, `pi` and `hermes`, or the ones already in the repo
+3. **Link shape:** `auto`, `whole` or `merge` (see below). `auto` is the one to pick
+4. **Instruction file:** `embed` keeps your repo's own `AGENTS.md` and adds the shipped sections to it, and `link` points `AGENTS.md`, `CLAUDE.md` and `REPO RULES.md` at this checkout's copies
+
+You can pass the first two up front with `/doctor:install --root <dir> --runtimes <list>`. The guide then runs a read-only check of the target repo, shows what is already linked, and prints the steps. It changes nothing itself.
+
+### The Steps It Prints
+
+| Step | Command | Run it from | What it does |
+| --- | --- | --- | --- |
+| 1 | `/doctor:symlink link --root <dir> --runtimes <list> --mode <shape>` | this checkout | Links `.skilled` and your runtime folders into the repo, after a plan and your yes |
+| 2 | `/doctor:agents-md embed --root <dir>` | this checkout | Adds the shipped instruction sections to the repo's `AGENTS.md`. Skipped when you chose `link` |
+| 3 | `/doctor:mcp install` | this checkout | Builds and registers Code Mode |
+| 4 | `/doctor:git setup` | the target repo | Checks the git hooks and sk-git settings there |
+| 5 | `/doctor:setup` | the target repo | Confirms the whole setup works from inside the project |
+
+A missing build adds a step 0 with the four `npm` commands from [Install](#install).
+
+### What Gets Linked
+
+`.skilled` is always linked. Each runtime you pick adds its own folder: `.claude` (plus `.mcp.json`), `.opencode`, `.codex`, `.cursor`, `.devin`, `.pi` or `.hermes`. You can add `repo-rules`, `.github`, `.utcp_config.json` and `.env` with `--include`. Linking `.env` shares this checkout's secrets with every tool started in the project, and the plan says so before you approve it.
+
+Each folder gets one of two shapes:
+
+- **Whole:** the folder itself is one link into this checkout. This is what `auto` does when the project has no such folder yet.
+- **Merge:** the folder stays a real folder in your project, and every entry inside it is its own link. Files your project already keeps there, such as its own commands, stay where they are and are never overwritten. This is what `auto` does when the folder already exists.
+
+Your own files are never replaced. The only links `link` changes are broken ones that point into this checkout, which it repoints or removes. A link that points anywhere else is reported and left alone.
+
+### Plan, Yes, Undo
+
+`/doctor:symlink link` prints every action and a plan digest, then asks once. Nothing is written before your yes, and the write runs only against the plan you read. Add `--dry-run` to see the plan without the question.
+
+The links are absolute paths on your machine, so they must never be committed. `link` adds an ignore line for each one to the repo's `.git/info/exclude`, which git reads but never commits. Use `--ignore gitignore` to write `.gitignore` instead, or `--ignore none` to write neither.
+
+Every run records what it did, and its last line is the undo command:
+
+```
+/doctor:symlink unlink --run <run dir> --dry-run
+```
+
+Unlink removes only what that run created and restores only what it replaced. A path you changed afterwards is skipped and reported.
+
+### Keep Linked Projects Healthy
+
+Run `/doctor:symlink check --root <dir>` at any time. It reports each framework folder as linked whole, merged, partly merged, missing or broken, names missing entries and broken links, and warns about absolute links that git already tracks. When the checkout gains new commands or prompts, a merged folder shows them as missing, and `/doctor:symlink link` adds them.
+
+> **Context saves.** A save run from a linked project currently resolves the project root through the link. Until that fix ships, run `/doctor:setup` from inside the project and check that a save lands in the project's own `specs/` folder.
+
+&nbsp;
+
+## 6. 📋 SPEC KIT
 
 The Spec Kit enforces structured spec folders for every file-modifying conversation.
 
@@ -505,7 +577,7 @@ Spec memory and retrieval are packet-local and file-based, integrated into the s
 
 &nbsp;
 
-## 6. 🔄 DEEP LOOP
+## 7. 🔄 DEEP LOOP
 
 The Deep Loop system runs autonomous, iterative agent workflows.
 
@@ -608,7 +680,7 @@ For details, see the [Deep Loop Runtime README](.skilled/skills/system-deep-loop
 
 &nbsp;
 
-## 7. 🎯 SKILL ADVISOR
+## 8. 🎯 SKILL ADVISOR
 
 The Skill Advisor matches what you type to the right skill before any tool runs.
 
@@ -724,7 +796,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 
 &nbsp;
 
-## 8. 🧰 SKILL LIBRARY
+## 9. 🧰 SKILL LIBRARY
 
 13 skills in `.skilled/skills/`. Gate 2 loads them on demand when the advisor matches a task (confidence >= 0.8 means the skill must be loaded). By default, no skills are excluded from advisor routing.
 
@@ -767,7 +839,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 
 #### DEEP LOOP
 
-One skill powers the autonomous loops described in [Deep Loop](#6--deep-loop), in two layers:
+One skill powers the autonomous loops described in [Deep Loop](#7--deep-loop), in two layers:
 
 - **`runtime/`** - the shared MCP-free execution layer every active loop consumes
 - **`system-deep-loop`** - the parent skill routing to active nested modes (`deep-research`, `deep-review`, `ai-council`)
@@ -863,7 +935,7 @@ One advisor identity routing to eight modes through `mode-registry.json`: five w
 
 &nbsp;
 
-## 9. 🤖 AGENT LIBRARY
+## 10. 🤖 AGENT LIBRARY
 
 11 custom specialist agents. Defined in `.skilled/agents/` (source of truth) and mirrored for Claude Code, Codex, Cursor, Devin and Pi (`.<runtime>/agents/`). OpenCode and Hermes read `.opencode/agents/` and `.hermes/agents/`, which link to the same `.skilled/agents/` source.
 
@@ -920,19 +992,19 @@ One advisor identity routing to eight modes through `mode-registry.json`: five w
 
 **AI Council** - several AI strategies, one vetted plan
 
-- Dispatches distinct reasoning lenses across cli-opencode, cli-claude-code and native for multi-round deliberation. Planning-only. See [Deep Loop](#6--deep-loop)
+- Dispatches distinct reasoning lenses across cli-opencode, cli-claude-code and native for multi-round deliberation. Planning-only. See [Deep Loop](#7--deep-loop)
 
 **Deep Research** - one research iteration at a time, state on disk
 
-- Executes a single LEAF pass. The `/deep:research` command owns the loop. See [Deep Loop](#6--deep-loop)
+- Executes a single LEAF pass. The `/deep:research` command owns the loop. See [Deep Loop](#7--deep-loop)
 
 **Deep Review** - audits one review pass, read-only on code
 
-- Produces `file:line` findings. The `/deep:review` command owns the loop. See [Deep Loop](#6--deep-loop)
+- Produces `file:line` findings. The `/deep:review` command owns the loop. See [Deep Loop](#7--deep-loop)
 
 &nbsp;
 
-## 10. 🧩 PLUGIN & EXTENSION LIBRARY
+## 11. 🧩 PLUGIN & EXTENSION LIBRARY
 
 The framework extends each runtime through plugins and hooks rather than asking you to wire anything by hand.
 
@@ -1034,7 +1106,7 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
 
 &nbsp;
 
-## 11. ⌨️ COMMAND LIBRARY
+## 12. ⌨️ COMMAND LIBRARY
 
 42 commands: 41 in six groups plus one utility. The grouped ones are Markdown files under `.skilled/commands/`, and most hand their steps to a YAML workflow beside them. The OpenCode-only `/goal-opencode` is authored in `.opencode/commands/`.
 
@@ -1182,7 +1254,7 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
 &nbsp;
 #### DEEP
 
-The active autonomous loop families. See [Deep Loop](#6--deep-loop) for how they run. Use `@context` for one-shot retrieval before planning.
+The active autonomous loop families. See [Deep Loop](#7--deep-loop) for how they run. Use `@context` for one-shot retrieval before planning.
 
 **`/deep:ai-council`** - plan hard decisions with several models
 
@@ -1217,12 +1289,14 @@ The active autonomous loop families. See [Deep Loop](#6--deep-loop) for how they
 &nbsp;
 #### DOCTOR
 
-Fourteen commands check and repair the setup, one per area. Every target that writes asks for your yes first. When a prompt describes a problem one of them owns, the skill advisor suggests that command, and `/doctor:helper` ranks them for you when you are not sure.
+Sixteen commands check and repair the setup, one per area. Every target that writes asks for your yes first. When a prompt describes a problem one of them owns, the skill advisor suggests that command, and `/doctor:helper` ranks them for you when you are not sure.
 
 | Command | Targets (default first) | Reads only | Writes after your yes |
 | --- | --- | --- | --- |
 | `/doctor:helper` | one problem in plain words | the ranked pick | none, a writing command is printed for you to run |
 | `/doctor:setup` | none | every leg | none |
+| `/doctor:install` | none | the guide | none, the printed commands are for you to run |
+| `/doctor:symlink` | `check`, `link`, `unlink` | `check` | `link`, `unlink` |
 | `/doctor:speckit` | retrieval | the index, lookup and recipe checks | a report and state file in the packet's `scratch/` |
 | `/doctor:skill-advisor` | `tune`, `rebuild`, `skill-graph-freshness`, `router-reach`, `skill-budget`, `parent-skill` | the four audits | `tune`, `rebuild` |
 | `/doctor:deep-loop` | `--scope=research\|review\|council\|both\|all` | the graph and convergence read | a state file in the active spec folder's `scratch/` |
@@ -1248,6 +1322,19 @@ Fourteen commands check and repair the setup, one per area. Every target that wr
 - Shows the last session hop from the hop history, and any handoff note nobody claimed
 - Counts orphaned helper processes, including a model server whose launcher died, and prints the command that lists them
 - Lists every other doctor command, and writes nothing
+
+**`/doctor:install [--root <dir>] [--runtimes <list>] [--json]`** - the ordered steps that put Skilled into your own project repo. [Use It In Your Own Project](#5--use-it-in-your-own-project) walks through every step
+
+- Checks both builds, asks for the target repo, the runtimes, the link shape and the instruction choice in one prompt, runs the symlink check, then prints the ordered setup commands with each command's class and one line of why
+- The steps are `/doctor:symlink link`, `/doctor:agents-md embed` unless the instruction files are linked, `/doctor:mcp install`, `/doctor:git setup` and `/doctor:setup`
+- It never runs a writing command. Every step that writes is printed for you to run
+
+**`/doctor:symlink [check|link|unlink] [--root <dir>] [--runtimes <list>] [--mode <shape>] [--plan-digest <digest>] [--run <dir>] [--yes] [flags]`** - the Skilled framework links in another project repo. [Use It In Your Own Project](#5--use-it-in-your-own-project) explains the link shapes
+
+- `check` (the default, read-only) reports one line per entry, then the repository warnings, and writes nothing. `link` prints the plan and its digest, asks once, then links `.skilled` and the runtime folders you chose into that repo. A link is either the whole folder or a real folder holding one link per entry, so the repo keeps its own files beside them, and `--mode auto` picks the shape per folder. Ignore lines go to `.git/info/exclude` by default, and the undo is the unlink command the run prints
+- `unlink` shows the plan the recorded run describes, asks once, then removes what that run created
+- Only a broken link that points into the Skilled checkout is replaced. A real file is never overwritten
+- `--root <dir>` names the target repo. The checkout itself, or a folder inside it, is refused
 
 **`/doctor:speckit`** - spec-kit retrieval
 
@@ -1331,7 +1418,7 @@ Fourteen commands check and repair the setup, one per area. Every target that wr
 
 &nbsp;
 
-## 12. 🔌 CODE MODE MCP
+## 13. 🔌 CODE MODE MCP
 
 Code Mode MCP gives the AI access to external tools (Figma, GitHub, Chrome DevTools, ClickUp, Webflow) through a single TypeScript execution interface.
 
@@ -1381,7 +1468,7 @@ For more on the `mcp-code-mode` skill and TypeScript execution patterns, see the
 
 &nbsp;
 
-## 13. 🌿 GIT WORKTREE / LIVE SYNC
+## 14. 🌿 GIT WORKTREE / LIVE SYNC
 
 The repo runs a live-sync loop around the worktree-per-session model.
 
@@ -1398,7 +1485,7 @@ The repo runs a live-sync loop around the worktree-per-session model.
 
 &nbsp;
 
-## 14. ⚙️ CONFIGURATION
+## 15. ⚙️ CONFIGURATION
 
 <a id="customizing-for-your-stack"></a>
 ### 🎯 Customizing for Your Stack: Start with `sk-code`
@@ -1567,7 +1654,7 @@ Nothing to configure.
 
 &nbsp;
 
-## 15. ❓ FAQ
+## 16. ❓ FAQ
 
 &nbsp;
 
@@ -1641,7 +1728,7 @@ Everything is a file in your own repository.
 
 **Q: How many MCP tools are there and where are they defined?**
 
-- The `code_mode` server registers seven tools, listed under [Code Mode MCP](#12--code-mode-mcp)
+- The `code_mode` server registers seven tools, listed under [Code Mode MCP](#13--code-mode-mcp)
 - External providers are declared as templates in `.utcp_config.json` at the repo root, which currently holds 14 entries
 
 &nbsp;
@@ -1653,7 +1740,7 @@ Everything is a file in your own repository.
 
 &nbsp;
 
-## 16. 📚 RELATED DOCUMENTS
+## 17. 📚 RELATED DOCUMENTS
 
 **Internal documentation**
 

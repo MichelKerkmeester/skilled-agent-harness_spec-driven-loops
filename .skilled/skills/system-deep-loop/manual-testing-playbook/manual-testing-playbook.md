@@ -1,7 +1,7 @@
 ---
 title: "system-deep-loop: Manual Testing Playbook"
 description: "Operator-facing reference for manually validating system-deep-loop hub routing, advisor integration, backend discrimination, state discipline, and per-mode artifact ownership against the live skill registry."
-version: "1.2.0.0"
+version: "1.2.1.0"
 ---
 
 # system-deep-loop: Manual Testing Playbook
@@ -182,14 +182,9 @@ Keep global verdict logic and routing-architecture explanations in this root pla
 | `SC-003` | Convergence Stop | Convergence detection ends the loop rather than continuing indefinitely | [state-and-convergence-discipline/convergence-stop.md](state-and-convergence-discipline/convergence-stop.md) | No |
 | `SC-004` | Hub Logic Boundary | Hub holds no per-mode convergence, state, or synthesis logic | [state-and-convergence-discipline/hub-logic-boundary.md](state-and-convergence-discipline/hub-logic-boundary.md) | Yes |
 
-### Doctor Commands (`DOC-331..DOC-333`, `DOC-368`)
+### Doctor Command Scenarios
 
-| Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
-|---|---|---|---|---|
-| `DOC-331` | Doctor Deep-Loop Lazy Init | An empty graph with iteration folders on disk reports lazy-init availability and the repair path | [doctor-commands/doctor-deep-loop-lazy-init.md](doctor-commands/doctor-deep-loop-lazy-init.md) | No |
-| `DOC-332` | Doctor Deep-Loop Empty, No Source | An empty graph with no iteration source is reported and remediation is refused | [doctor-commands/doctor-deep-loop-empty-no-source.md](doctor-commands/doctor-deep-loop-empty-no-source.md) | No |
-| `DOC-333` | Doctor Deep-Loop Convergence | A packet with three or more iterations reports its convergence signal | [doctor-commands/doctor-deep-loop-convergence.md](doctor-commands/doctor-deep-loop-convergence.md) | No |
-| `DOC-368` | Doctor Deep-Loop Scope | `--scope` selects the research, review or council graphs and refuses an unknown value | [doctor-commands/doctor-deep-loop-scope.md](doctor-commands/doctor-deep-loop-scope.md) | No |
+The `/doctor:deep-loop` scenarios now live in the [central manual testing playbook](../../../manual-testing-playbook/manual-testing-playbook.md).
 
 ---
 
@@ -221,7 +216,6 @@ that supplies the observed leaf addresses lives at
 - **Advisor Integration** (`advisor-integration/`): `AI-001` single advisor identity, `AI-002` lexical mode scoring, `AI-004` no false fire on code edit.
 - **Runtime and Backend** (`runtime-and-backend/`): `RB-001` runtime-loop research, `RB-002` runtime-loop council, `RB-004` retired backend.
 - **State and Convergence Discipline** (`state-and-convergence-discipline/`): `SC-001` externalized state, `SC-002` artifact-root writes, `SC-003` convergence stop, `SC-004` hub logic boundary.
-- **Doctor Commands** (`doctor-commands/`): `DOC-331` lazy init, `DOC-332` empty graph with no source, `DOC-333` convergence, `DOC-368` scope selection. These are operator scenarios for `/doctor:deep-loop` with no typed leaf gold, and their DOC- numbers are shared with the doctor scenarios in other playbooks.
 
 **Total scenarios**: 14
 **Typed leaf-resource gold**: `MO-001`, `MO-002`, `MO-003` (the three distinct-packet modes).

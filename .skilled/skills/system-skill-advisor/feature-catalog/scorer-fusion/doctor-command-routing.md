@@ -7,7 +7,7 @@ trigger_phrases:
   - "runnable doctor command line"
   - "doctor setup hint"
   - "/doctor:setup"
-version: 1.0.9.0
+version: 1.0.10.0
 ---
 
 # Doctor Command Routing
@@ -24,7 +24,7 @@ A passing skill keeps first place on a contested prompt and the doctor command s
 
 ### Bridge Generation
 
-`derive-command-bridges.cjs` reads `.skilled/commands/doctor/_routes.yaml` as a third inventory source. Each route becomes one bridge `command-doctor-<command>-<target>`, or `command-doctor-<command>` when the command owns one route. Each standalone command becomes one bridge. Each `mcp_subroutes` entry becomes one bridge `command-doctor-mcp-<sub_action>`. The owning skill comes from the router's `skill_agent` tag. Each route needs a hand-written entry in both the `typescript` and `python` lists in `scoring-compatibility.json`. The deriver fills the TypeScript keywords from the manifest's trigger phrases and the Python slash markers from the runnable string, plus the bare command for a route that declares `default_target`. Every derived doctor bridge is active, `command-doctor-helper` and the three `command-doctor-agents-md-*` bridges included, so the activation list names a bridge once and the reach probe proves every phrase it carries; a route added without its entry stays derived and unrouted until that entry lands. A route whose manifest class is `read-only` also gets `readOnly: true` in its generated bridge.
+`derive-command-bridges.cjs` reads `.skilled/commands/doctor/_routes.yaml` as a third inventory source. Each route becomes one bridge `command-doctor-<command>-<target>`, or `command-doctor-<command>` when the command owns one route. Each standalone command becomes one bridge. Each `mcp_subroutes` entry becomes one bridge `command-doctor-mcp-<sub_action>`. The owning skill comes from the router's `skill_agent` tag. Each route needs a hand-written entry in both the `typescript` and `python` lists in `scoring-compatibility.json`. The deriver fills the TypeScript keywords from the manifest's trigger phrases and the Python slash markers from the runnable string, plus the bare command for a route that declares `default_target`. Every derived doctor bridge is active, `command-doctor-helper`, the three `command-doctor-agents-md-*` bridges, the three `command-doctor-symlink-*` bridges and `command-doctor-install` included, so the activation list names a bridge once and the reach probe proves every phrase it carries; a route added without its entry stays derived and unrouted until that entry lands. A route whose manifest class is `read-only` also gets `readOnly: true` in its generated bridge.
 
 ### Ranking
 
@@ -66,7 +66,7 @@ The renderer reads a generated lookup of runnable strings, so a doctor bridge sh
 | `.skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-ordering.vitest.ts` | Vitest | Phrase anchor and skill-first ordering |
 | `.skilled/skills/system-skill-advisor/runtime/tests/doctor-brief-render.vitest.ts` | Vitest | Runnable line, second line and sanitizer |
 | `.skilled/skills/system-skill-advisor/runtime/tests/hooks/doctor-setup-hint.vitest.ts` | Vitest | Setup hint on and off |
-| `Playbook scenarios [DOC-385](../../manual-testing-playbook/doctor-commands/doctor-routing-setup-onboarding.md) to [DOC-391](../../manual-testing-playbook/doctor-commands/doctor-setup-run.md).` | Manual playbook | Agent-runnable end-to-end checks |
+| `Playbook scenarios [DOC-385](../../../../manual-testing-playbook/doctor-commands/doctor-routing-setup-onboarding.md) to [DOC-391](../../../../manual-testing-playbook/doctor-commands/doctor-setup-run.md).` | Manual playbook | Agent-runnable end-to-end checks |
 
 ---
 

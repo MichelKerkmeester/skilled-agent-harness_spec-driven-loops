@@ -1,0 +1,67 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: SYMLINK CHECK (READ-ONLY DIAGNOSTIC)
+# ─────────────────────────────────────────────────────────────────
+role: Diagnostic Operator reporting the link state of one target repository against the Skilled manifest
+purpose: Report the status of the core link, selected runtimes and extras by running the check engine once, then render its report through the presentation contract
+action: Run the check engine once -> render its report through the presentation contract
+skill_owner: ".skilled/skills/system-spec-kit/"
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: single_step_check
+  compliance: MANDATORY
+  execution: read_only
+  approvals: none
+  tracking: single_run
+  validation: read_only_assertion
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES (READ-ONLY)
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: true
+  allowed_targets: []
+  forbidden_targets:
+    - "**/*"
+  invariant: "This route runs the check subcommand only. It never runs plan, apply or unlink, and it never writes a link, directory, ignore line or run record. Findings describe the target repository and do not change its state."
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  engine: ".skilled/commands/doctor/scripts/symlink-engine.cjs"
+  manifest: ".skilled/commands/doctor/assets/symlink-manifest.json"
+  presentation: ".skilled/commands/doctor/assets/doctor-symlink-presentation.txt"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+inputs:
+  execution_mode: "INTERACTIVE"
+  root: "Required target project repository, passed as --root <dir>. The engine requires it to exist and be a directory."
+  source: "Optional Skilled checkout path, passed as --source <dir>. When omitted, the engine resolves its checkout root from its own script path."
+  runtimes: "Optional comma-separated runtime names, passed as --runtimes <list> when supplied: claude,opencode,codex,cursor,devin,pi,hermes. When omitted, the engine selects runtimes whose primary entry already exists in the target root. The core entry is always included."
+  include: "Optional comma-separated extras, passed as --include <list> when supplied: repo-rules,github,utcp,env."
+  link_instructions: "When true, pass --link-instructions to include AGENTS.md, CLAUDE.md and REPO RULES.md."
+  json_output: "When true, pass --json and show only the engine's JSON object. The default is false."
+  target: "The route accepts the check action. A missing --root value or any unsupported flag is refused by the engine."
+
+# ─────────────────────────────────────────────────────────────────
+# EXECUTION
+# ─────────────────────────────────────────────────────────────────
+execution:
+  steps:
+    - "Check that .skilled/commands/doctor/scripts/symlink-engine.cjs, .skilled/commands/doctor/assets/symlink-manifest.json and .skilled/commands/doctor/assets/doctor-symlink-presentation.txt exist. If one is missing, report its path and stop with STATUS=FAIL. Do not create the presentation file here."
+    - 'Run node .skilled/commands/doctor/scripts/symlink-engine.cjs check --root "{root}", adding --source "{source}" when supplied, --runtimes "{runtimes}" when supplied, --include "{include}" when supplied, --link-instructions when requested and --json when requested.'
+    - "The engine reports one status for each selected manifest entry, with detail lines for missing children, broken links and local conflicts. It also reports detected runtimes, tracked absolute links, Git state and applicable warnings."
+    - "Exit 0 means the check ran. Findings are part of its report, not a failure code. Exit 2 means the invocation or target root was refused. Quote the engine message and end with STATUS=FAIL."
+    - "Render the engine output through .skilled/commands/doctor/assets/doctor-symlink-presentation.txt. When --json was requested, print the engine's JSON object alone."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output: |
+  STATUS=OK when the engine exits 0. Show the check report through the presentation contract.
+  STATUS=FAIL when the engine exits 2 or cannot run. Name the accepted invocation (/doctor:symlink check --root <dir> [flags]) and quote the engine message.

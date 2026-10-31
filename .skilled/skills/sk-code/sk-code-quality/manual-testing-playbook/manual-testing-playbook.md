@@ -1,7 +1,7 @@
 ---
 title: "sk-code-quality: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review protocol, execution expectations and per-feature validation files for the sk-code-quality skill."
-version: 1.1.9.0
+version: 1.1.10.0
 ---
 
 # sk-code-quality: Manual Testing Playbook
@@ -576,6 +576,7 @@ Desired user-visible outcome: the operator sees exactly what the gate would appl
 
 > **Feature File:** [CQ-023](quality-gate/quality-doctor.md)
 > **Catalog:** [`sk-code-setup-and-quality-doctor.md`](../../feature-catalog/doctor-commands/sk-code-setup-and-quality-doctor.md)
+> **Doctor scenarios:** [Central manual testing playbook](../../../../manual-testing-playbook/manual-testing-playbook.md)
 
 ---
 
@@ -636,4 +637,4 @@ Every row names the feature-catalog entry that carries the same capability, or `
 | CQ-020 | A check that produced no evidence never reads as clean | QUALITY GATE | [CQ-020](quality-gate/no-evidence-states.md) | codebase-agnostic-quality-gate |
 | CQ-021 | Two checklists at one level that disagree leave the rule unverified | QUALITY GATE | [CQ-021](quality-gate/rule-override-conflict.md) | rule-overrides-and-hygiene-policy |
 | CQ-022 | A manifest implies a check the runner suggests and never runs | QUALITY GATE | [CQ-022](quality-gate/manifest-suggestions.md) | repository-quality-config |
-| CQ-023 | The quality doctor shows the seats, the override rows and the disabled rules | QUALITY GATE | [CQ-023](quality-gate/quality-doctor.md) | doctor-commands/sk-code-setup-and-quality-doctor |
+| CQ-023 | The quality doctor shows the seats, the override rows and the disabled rules | QUALITY GATE | [CQ-023](quality-gate/quality-doctor.md) | doctor-commands/sk-code-setup-and-quality-doctor; [central manual testing playbook](../../../../manual-testing-playbook/manual-testing-playbook.md) |

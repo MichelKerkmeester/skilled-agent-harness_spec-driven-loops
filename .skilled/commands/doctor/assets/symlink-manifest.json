@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "core": [{ "name": ".skilled", "kind": "dir" }],
+  "runtimes": {
+    "claude":   [{ "name": ".claude", "kind": "dir" }, { "name": ".mcp.json", "kind": "relative-link", "target": ".claude/mcp.json" }],
+    "opencode": [{ "name": ".opencode", "kind": "dir" }],
+    "codex":    [{ "name": ".codex", "kind": "dir" }],
+    "cursor":   [{ "name": ".cursor", "kind": "dir" }],
+    "devin":    [{ "name": ".devin", "kind": "dir" }],
+    "pi":       [{ "name": ".pi", "kind": "dir" }],
+    "hermes":   [{ "name": ".hermes", "kind": "dir" }]
+  },
+  "extras": {
+    "repo-rules": [{ "name": "repo-rules", "kind": "dir" }],
+    "github":     [{ "name": ".github", "kind": "dir", "merge_only": true }],
+    "utcp":       [{ "name": ".utcp_config.json", "kind": "file" }],
+    "env":        [{ "name": ".env", "kind": "file", "warning": "links the Skilled checkout's .env, so every tool started in this repository reads its secrets" }]
+  },
+  "instructions": [
+    { "name": "AGENTS.md", "kind": "file", "source": "AGENTS.md" },
+    { "name": "CLAUDE.md", "kind": "file", "source": "AGENTS.md" },
+    { "name": "REPO RULES.md", "kind": "file", "source": "REPO RULES.md" }
+  ]
+}

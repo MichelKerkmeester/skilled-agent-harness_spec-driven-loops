@@ -1,7 +1,7 @@
 ---
 title: "sk-git: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the sk-git skill."
-version: 1.5.5.0
+version: 1.5.6.0
 ---
 
 # sk-git: Manual Testing Playbook
@@ -25,13 +25,12 @@ Canonical package artifacts:
 - `cross-cli-orchestration/`
 - `owner-first-worktree-tooling/`
 - `git-preflight-advisory/`
-- `doctor-commands/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook validates the `sk-git` skill surface through the scenarios indexed in sections 7-15 and cross-referenced in section 17. Each scenario keeps a stable `GIT-NNN` ID and links to a dedicated feature file that carries the full execution contract. The category folders listed above and the per-feature links below are the authoritative inventory. No separate count is maintained here.
+This playbook validates the `sk-git` skill surface through the scenarios indexed in sections 7-14 and cross-referenced in section 17. Each scenario keeps a stable `GIT-NNN` ID and links to a dedicated feature file that carries the full execution contract. The category folders listed above and the per-feature links below are the authoritative inventory. No separate count is maintained here.
 
 Coverage note (2026-10-27): the playbook covers worktree choice enforcement, current-branch mode, stay-on-main recovery, Conventional Commit derivation, the template-driven commit contract and its missing bypass, deterministic scope inference, mixed-concern split warnings, commit lookup by packet and identifier, the refused attribution footer, four explicit safety refusals, finish merge and PR flows, failing-test gates, cleanup, conflict recovery, wrong-branch recovery, no-op commits, rebase-vs-merge choices, cross-CLI advisory handbacks, and the numbered worktree tooling safety contract: locked per-namespace number allocation, slug/number/branch/pair grammar validation, worktree creation and the wrapper/backup-lane exemptions, launch-wrapper session isolation (child exec-in-place, runtime validation, session markers, contained shared-artifact symlinks), reap-only-proven-inactive wrapper cleanup (dry-run and report-only handling of non-qualifying worktrees), fsmonitor daemon reaping (a dry run that ends nothing, refusal for an occupied worktree, another repository's daemon left alone), and the migration-tolerant pre-push naming gate (new-branch-only gating, legacy tolerance, fail-open, release-branch exemption, explicit bypass, wrapper-ref rejection).
 
@@ -161,7 +160,6 @@ This section records wave planning and capacity guidance for running the full sc
 | 4 | Cross-CLI | GIT-020..GIT-022 | Advisory handback validation after policy baseline is trusted |
 | 5 | Numbered Worktree Tooling | GIT-023..GIT-034, GIT-043, GIT-047 | Hermetic fixture repos per script. Run after the core lifecycle baseline is trusted, since the allocator/session/reaper/pre-push scripts sit underneath every other worktree scenario |
 | 6 | Git Preflight Advisory | GIT-042 | Disposable repository with tracked and untracked files. Verify advisory, ordinary-commit silence and suppression |
-| 7 | Doctor Commands | DOC-369..DOC-374, DOC-384 | Disposable repository, because the hooks target writes git config and the standards target writes `.sk-git/` |
 
 ---
 
@@ -851,121 +849,9 @@ Prompt: `As a git safety reviewer, run the sk-git preflight advisory against a d
 
 ---
 
-## 15. DOCTOR COMMANDS (`DOC-369..DOC-374, DOC-384`)
+## 15. DOCTOR COMMAND SCENARIOS
 
-This category covers 7 scenarios for `/doctor:git`. Run every one in a disposable repository, because `hooks` writes git config and `standards` writes `.sk-git/`. Category notes: [doctor-commands/README.md](doctor-commands/README.md). The linked per-feature files remain the canonical execution contract.
-
-### DOC-369 | Doctor git hooks list
-
-#### Description
-
-Prove every gate in `gates.tsv` appears with its hook, saved local and global values, effective state and description, and prove the install status reports the hooks path and each hook's state.
-
-#### Scenario Contract
-
-Prompt: `List the git hook gates with their saved settings and show the hook install state.`
-
-Expected signals: The gate table has one row per gate line in `gates.tsv`, twelve rows in the shipped registry, each naming its key, hook, saved local value, saved global value, effective state and description. The non-persistable rows `remotePush` and `massDeletion` read `per push only` in the effective column.
-
-#### Test Execution
-
-> **Feature File:** [DOC-369](doctor-commands/doctor-git-hooks-list.md)
-
-### DOC-370 | Doctor git hooks switch gate
-
-#### Description
-
-Prove one gate can be switched off only after its exact git config command was shown and approved, prove the effective state changes for that gate, and prove every other gate keeps its recorded setting.
-
-#### Scenario Contract
-
-Prompt: `Switch the cardSync hook gate off for this repository after showing me the git config command.`
-
-Expected signals: The first `cardSync off` request renders the `GATE CHANGE PLAN` block with `Gate: cardSync (pre-commit)`, the current state, `Change: off in local config`, `Will run: git config --local --replace-all speckit.hooks.cardSync off` and the `SPECKIT_SKIP_CARD_SYNC` bypass line, then asks `Apply this change? Reply approve to write it, or no to cancel.` Replying `no` records the change as cancelled, returns to the change prompt and leaves the config unchanged. Replying `approve` on the second request runs `set cardSync off --scope local --apply --json`, which exits 0 with a JSON payload carrying `applied` true, a `commands` list naming `git config --local --replace-all speckit.hooks.cardSync off`, and the before and after states, followed by `STATUS=OK MODE=APPLIED KEY=cardSync`.
-
-#### Test Execution
-
-> **Feature File:** [DOC-370](doctor-commands/doctor-git-hooks-switch-gate.md)
-
-### DOC-371 | Doctor git standards copy once
-
-#### Description
-
-Prove the shipped templates are copied into `.sk-git/` exactly once, that a repeat run keeps the repository's own copies, and that a dry run writes nothing.
-
-#### Scenario Contract
-
-Prompt: `Copy the shipped sk-git templates into .sk-git so this repository can own its rules.`
-
-Expected signals: The status phase renders `WHERE THE RULES COME FROM` with the three lookup steps and reports the shipped sk-git templates as the active source, which this command does not edit. The init plan renders `Would copy: .sk-git/commit-message-template.md`, `Would copy: .sk-git/pr-template.md` and `Would copy: .sk-git/worktree-checklist.md`, each with its shipped source path, and with `--dry-run` the presentation's `Dry run: nothing was written.` line follows while `.sk-git/` stays absent.
-
-#### Test Execution
-
-> **Feature File:** [DOC-371](doctor-commands/doctor-git-standards-copy-once.md)
-
-### DOC-372 | Doctor git standards change rule
-
-#### Description
-
-Prove one rule setting change and one rule setting removal each name their prose drift before the write, that only the named prose lines change on approval, and that the check ends clean.
-
-#### Scenario Contract
-
-Prompt: `Raise the commit subject limit to 120 characters and point out any template prose that still states the old limit.`
-
-Expected signals: The first plan renders `RULE CHANGE PLAN` with `Template: .sk-git/commit-message-template.md`, `Setting: commit subject.maxLength: 100 -> 120`, the `Rules switched on` and `Rules switched off` lines and `Prose to update:` lines naming each passage that still states 100 characters for `subject.max-length`, including the contract paragraph and the self-check bullet. The second plan renders `Setting: commit subject.warnLength: 80 -> null`, `Rules switched off: subject.length-target` and a `Prose to update:` line naming the prose that still names `subject.length-target`.
-
-#### Test Execution
-
-> **Feature File:** [DOC-372](doctor-commands/doctor-git-standards-change-rule.md)
-
-### DOC-373 | Doctor git standards refuse invalid
-
-#### Description
-
-Prove an invalid rule change exits with a refusal, leaves the rules block unchanged and returns to the change menu instead of applying anything.
-
-#### Scenario Contract
-
-Prompt: `Let the subject length warning fire at 100 characters, the same as the hard limit.`
-
-Expected signals: The plan call `set commit subject.warnLength 100 --json` exits 2 with stderr beginning `git-standards:` and a reason that reads `the change would break the commit rules block, so nothing was written` and names `subject.warnLength` and `subject.maxLength`. The stdout carries a `STATUS=FAIL ERROR=` line with the same reason.
-
-#### Test Execution
-
-> **Feature File:** [DOC-373](doctor-commands/doctor-git-standards-refuse-invalid.md)
-
-### DOC-374 | Doctor git target menu
-
-#### Description
-
-Prove a missing target shows the menu and waits, and prove `--dry-run` renders a plan without writing or asking for approval.
-
-#### Scenario Contract
-
-Prompt: `Run the doctor git command with no target so I can see the menu, then dry-run a hook gate change and show that nothing was written.`
-
-Expected signals: The first visible response is the startup menu with `What do you want to change?`, the options `1) Git hook gates`, `2) Commit, PR and branch rules`, `H) Help me decide` and `X) Cancel`, and no gate table, setup dashboard or workflow output appears before an answer. Replying `X` renders `STATUS=CANCELLED ACTION=cancelled`.
-
-#### Test Execution
-
-> **Feature File:** [DOC-374](doctor-commands/doctor-git-target-menu.md)
-
-### DOC-384 | Doctor git setup check
-
-#### Description
-
-Prove the read-only setup battery reports all eleven checks with a result and source each, in the documented order, and writes nothing.
-
-#### Scenario Contract
-
-Prompt: `Check my sk-git setup and tell me which hooks, rules and settings are live.`
-
-Expected signals: The rendered table has one row per check in the order install, hooks, trust, gates, standards, allowlist, worktrees, commit-id, advisory-rules, suppression and ai-tool-hooks, each with a result of PASS, FAIL, SKIP, UNKNOWN or DEGRADED and the source it read. On this repository's own checkout, with the hooks installed and the Claude adapter registered, every row reads PASS under `--tool claude` and the case ends `STATUS=OK checks=11` with exit 0, a run with an UNKNOWN row or a gate saved off ends `STATUS=DEGRADED` with exit 3, a failing check ends `STATUS=FAIL` with exit 1, and an unknown `--tool` exits 2 with a usage line. The result block reads `Target: setup` and `Changed: none`.
-
-#### Test Execution
-
-> **Feature File:** [DOC-384](doctor-commands/doctor-git-setup-check.md)
+The `/doctor:git` scenarios now live in the [central manual testing playbook](../../../manual-testing-playbook/manual-testing-playbook.md).
 
 ---
 
@@ -1035,10 +921,3 @@ The `sk-doc` package validator (`validate-playbook-package.cjs`) is the structur
 | Numbered Worktree Tooling | GIT-043 | `owner-first-worktree-tooling/prepush-remote-permission-gate.md` | Yes |
 | Numbered Worktree Tooling | GIT-047 | `owner-first-worktree-tooling/fsmonitor-daemon-reaper-scope-and-refusal.md` | Yes |
 | Git Preflight Advisory | GIT-042 | `git-preflight-advisory/advisory-fires-on-silent-scope-drop.md` | Yes |
-| Doctor Commands | DOC-369 | `doctor-commands/doctor-git-hooks-list.md` | No |
-| Doctor Commands | DOC-370 | `doctor-commands/doctor-git-hooks-switch-gate.md` | No |
-| Doctor Commands | DOC-371 | `doctor-commands/doctor-git-standards-copy-once.md` | No |
-| Doctor Commands | DOC-372 | `doctor-commands/doctor-git-standards-change-rule.md` | No |
-| Doctor Commands | DOC-373 | `doctor-commands/doctor-git-standards-refuse-invalid.md` | No |
-| Doctor Commands | DOC-374 | `doctor-commands/doctor-git-target-menu.md` | No |
-| Doctor Commands | DOC-384 | `doctor-commands/doctor-git-setup-check.md` | Yes |

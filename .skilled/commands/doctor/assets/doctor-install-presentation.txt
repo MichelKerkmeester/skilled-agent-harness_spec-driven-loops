@@ -1,0 +1,200 @@
+# /doctor:install Presentation Contract
+
+This file is the single source of truth for user-facing presentation in `/doctor:install`: the argument failure, the build check, the install prompt, the symlink check, the ordered steps, the caveat line, result templates and next-step text. The command router owns flag binding and asset loading. The workflow YAML owns execution behavior.
+
+This command only reads. Every step that writes is printed with its exact command, and the operator runs it.
+
+Write for someone who has just cloned Skilled and wants it in their own project: plain words, short sentences, one thing at a time.
+
+## 1. Argument Failure
+
+An unknown argument fails before any workflow YAML loads and prints the wording below with the bracketed parts filled in, then ends with the status line. Nothing is read and nothing is changed.
+
+| Situation | Wording |
+|-----------|---------|
+| A flag other than `--root <dir>`, `--runtimes <list>` and `--json` | `Unknown argument: [argument]` then `/doctor:install takes --root <dir>, --runtimes <list> and --json, or list and ?.` then `STATUS=FAIL ERROR="unknown_argument"` |
+| `--root` or `--runtimes` with no value after it | The same two lines, then `STATUS=FAIL ERROR="unknown_argument"` |
+| A second positional token | The same two lines, then `STATUS=FAIL ERROR="unknown_argument"` |
+
+`list`, `?` and `menu` as the whole argument print the steps in section 6, with `<dir>`, `<list>` and `<shape>` left as they stand, then stop. They load no workflow and inspect nothing.
+
+## 2. The Build Check
+
+The Skilled checkout is the repository this command runs in. The runtimes load two builds from it, so check both before anything is planned.
+
+| Build | Check, run from the checkout root | Built when |
+|-------|-----------------------------------|------------|
+| Spec Kit | `test -d .skilled/skills/system-spec-kit/runtime/dist` | exit 0 |
+| Skill Advisor | `node .skilled/bin/skill-advisor.cjs list-tools --format json` | exit 0 |
+
+Render both lines, then carry on either way: a missing build never stops the guide.
+
+```text
+DOCTOR INSTALL — BUILDS
+Source: [the Skilled checkout]
+Spec Kit build: [found at .skilled/skills/system-spec-kit/runtime/dist | missing]
+Advisor CLI: [answers list-tools | missing or not built]
+```
+
+A missing build becomes step 0 of the checklist. Step 0 carries the README's build commands word for word:
+
+```bash
+npm --prefix .skilled/skills/system-spec-kit install
+npm --prefix .skilled/skills/system-spec-kit run build
+npm --prefix .skilled/skills/system-skill-advisor/runtime install
+npm --prefix .skilled/skills/system-skill-advisor/runtime run build
+```
+
+Step 0 runs from the Skilled checkout. Its why line is: `Why: the session hooks and the advisor read these builds, so nothing else works until they are there.` It has no mutation class because no doctor route owns it.
+
+## 3. The Install Prompt
+
+Ask every answer that is still missing in one prompt, then wait. This follows the consolidated question protocol. Questions 1 and 2 are dropped when `--root` and `--runtimes` were passed. The link shape and the instruction choice have no flag, so they are always in the prompt.
+
+```text
+Where should Skilled go? Answer any or all in one reply, for example "/Users/me/code/my-app, claude and codex, auto, embed".
+
+1) Target repo: the absolute path, for example /Users/me/code/my-app
+2) Runtimes: claude, opencode, codex, cursor, devin, pi, hermes, or "the ones already there"
+3) Link shape: auto / whole / merge   (auto unless a real folder already sits where a link would go)
+4) Instruction file: embed / link   (embed keeps the repo's own AGENTS.md; link points AGENTS.md, CLAUDE.md and REPO RULES.md at the checkout's copies)
+```
+
+The example carries all four answers so the shape of a full reply is visible. Never print a question the flags already answered.
+
+## 4. Accepted Answers
+
+| Answer | Binds | Meaning |
+|--------|-------|---------|
+| An absolute path | `--root <dir>` | The project repo that receives the links. The path must exist and be a directory; the engine exits 2 and names it otherwise |
+| `claude`, `claude and codex`, `claude,opencode` | `--runtimes <list>` | The runtime folders to link, as a comma list |
+| `the ones already there`, empty, `any` | no `--runtimes` | The engine keeps the runtimes its own detection finds in the root, and always links `.skilled` |
+| `auto` | `--mode auto` | Whole link where the path is free, merge where a real folder is in the way. The one to pick |
+| `whole` | `--mode whole` | One link per entry, refused where a real folder exists |
+| `merge` | `--mode merge` | A real folder whose children are links. A local file already in the folder is kept and reported, never overwritten |
+| `embed` | step 2 stays | The repo keeps its own `AGENTS.md` and the shipped sections are refreshed into it |
+| `link` | step 1 gains `--link-instructions`, step 2 is dropped | `AGENTS.md`, `CLAUDE.md` and `REPO RULES.md` become links into the checkout |
+
+A runtime name outside the seven, a shape outside the three, or an instruction word outside the two is not guessed. Ask that one question again with the accepted values. When the engine refuses a root, show its `ERROR:` line as it printed and ask question 1 again.
+
+## 5. The Symlink Check
+
+Run `node .skilled/commands/doctor/scripts/symlink-engine.cjs check --root <dir> [--runtimes <list>] [--link-instructions]` once, in place and read-only, then render its entry lines as they print:
+
+```text
+DOCTOR INSTALL — WHAT IS ALREADY THERE
+Root: [the target repo]
+[the engine's entry lines, verbatim, with its indented detail lines and its repo-level warnings]
+```
+
+Do not re-sort the lines, re-word a status or sum them into a verdict. The check exits 0 whether or not anything is missing: a `missing` line is work for step 1, not a failure. Add `--link-instructions` when the instruction choice is `link`.
+
+| Status | What it means for this install |
+|--------|-------------------------------|
+| `linked-whole` | Already a link into the checkout. Step 1 has nothing to do for it |
+| `linked-merge` | A real folder whose children are links. Nothing to do |
+| `partial-merge` | A real folder missing some links. Step 1 fills the gaps and never deletes a local file |
+| `missing` | Not there yet. Step 1 creates it |
+| `broken` | A link whose target is gone. Step 1 replaces it |
+| `foreign-link` | A link that points somewhere else. Left alone, and the engine refuses to touch it |
+| `local` | A real file or folder of the repo's own. Left alone |
+| `source-missing` | The checkout has no such path. Nothing is planned |
+
+## 6. The Ordered Steps
+
+This is the checklist, and it is also what `list`, `?` and `menu` print. Each step carries its exact command, its class and one line of why.
+
+The class column is the manifest's `mutating` value for the route that owns the printed command, verbatim, so it is read from the route table and never guessed. A command with no route of its own prints `n/a`.
+
+```text
+1) /doctor:symlink link --root <dir> --runtimes <list> --mode <shape>   [class]
+   Why: creates the links. It shows a plan first and asks before it writes.
+
+2) /doctor:agents-md embed --root <dir>   [class]
+   Why: keeps the repo's own AGENTS.md and refreshes the shipped sections into it. Dropped when the instruction choice is link.
+
+3) /doctor:mcp install   [class]
+   Why: builds and registers Code Mode. Run it from the Skilled checkout.
+
+4) /doctor:git setup   [class]
+   Why: checks the git hooks and sk-git settings, and names the repair for each one that is off. Run it from the target repo.
+
+5) /doctor:setup   [class]
+   Why: confirms the result. Run it from the target repo.
+```
+
+Run them in this order. Step 1 takes `--link-instructions` when the instruction choice is `link`.
+
+When the workflow renders the checklist after the check, print this header above the steps:
+
+```text
+DOCTOR INSTALL — [the target repo]
+Source: [the Skilled checkout]
+Runtimes: [the runtime list]   Link shape: [auto|whole|merge]   Instruction file: [embed|link]
+```
+
+A printed step is handed back, never run: each writing command shows its own plan, asks its own yes and writes under its own gate. This command adds no argument to a printed command beyond the values the operator gave.
+
+## 7. The Caveat Line
+
+Print this one line word for word after the steps, on every run, before the result. It is fixed: do not shorten it and do not rewrite it in the operator's words.
+
+```text
+context saves from a linked repository resolve the project root through the link until the symlinked-runtime-root fix ships, so run /doctor:setup from inside the target repo and check that a save lands in that repo's own specs/.
+```
+
+## 8. Result Templates
+
+### Summary
+
+```text
+DOCTOR INSTALL RESULT
+Source: [the Skilled checkout]
+Root: [the target repo]
+Runtimes: [the runtime list]
+Link shape: [auto|whole|merge]
+Instruction file: [embed|link]
+Builds: [both found | missing: <which>, printed as step 0]
+Already there: [n] linked, [n] missing, [n] to repair
+Steps: [n] printed, [n] of them write
+Next: run step 1 from the Skilled checkout, then the rest in order
+STATUS=OK STEPS=[n]
+```
+
+### JSON
+
+`--json` prints one JSON object and nothing else: no build lines, no steps, no caveat, no header.
+
+| Key | Value |
+|-----|-------|
+| `source` | The Skilled checkout's absolute path |
+| `root` | The target repo's absolute path |
+| `runtimes` | The runtime names, as strings |
+| `builds` | One entry per probe in section 2, true or false |
+| `symlink_check` | The engine's `check --json` object, unchanged |
+| `steps` | One object per printed step: `order`, `command`, `mutating`, `why` |
+
+### Failure Summary
+
+```text
+DOCTOR TARGET FAILED
+Target: guide
+Step: [the step that failed]
+Error: [message]
+Next: [the accepted invocation, or the command to rerun]
+STATUS=FAIL ERROR="[message]"
+```
+
+## 9. Troubleshooting Display
+
+| Situation | Suggested Action |
+|-----------|------------------|
+| The engine exits 2 | Bad invocation or a refused root. Its first line names the flag or the path. Fix that one thing and rerun the same command |
+| The root is the checkout, sits inside it, or holds it | The engine refuses it, because linking a checkout into itself would loop. Name the project repo that should receive the links |
+| A build is missing | Run the four `npm` commands in section 2 from the checkout, then rerun this guide. They also print as step 0 |
+| A step prints `n/a` as its class | That printed command has no route in the manifest yet. The command still works; only its class is unknown |
+| A line reads `local` or `foreign-link` | Left alone on purpose. Move that file or link yourself, or bring it under step 1's shape, and rerun the guide |
+| Only the steps are wanted | `list` prints them with no build check and no inspection |
+| A saved session lands in the checkout's `specs/` | The caveat in section 7. Run `/doctor:setup` from inside the target repo and check where the save went |
+
+End interactive presentations with: `What would you like to do next?`

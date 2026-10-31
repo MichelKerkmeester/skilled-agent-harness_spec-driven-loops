@@ -1,0 +1,70 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: INSTALL (READ-ONLY GUIDE)
+# ─────────────────────────────────────────────────────────────────
+role: Diagnostic guide that checks install prerequisites, inspects a target repository and prints the writing commands for the operator
+purpose: Check both required builds -> gather the target and install choices -> inspect the target repo once -> print the ordered install checklist and caveat
+action: Check the builds -> ask for missing target details -> run the symlink engine check once -> render the result through the presentation contract
+skill_owner: ".skilled/skills/system-spec-kit/"
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: single-step
+  compliance: MANDATORY
+  execution: read_only
+  approvals: none
+  tracking: single_run
+  validation: read_only_assertion
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES (READ-ONLY)
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: true
+  allowed_targets: []
+  forbidden_targets:
+    - "**/*"
+  invariant: "This route checks the Skilled checkout and target repo, then prints the ordered install commands. It MUST NOT run a target that writes, build either runtime, or add an argument to a writing command beyond the values the operator gave."
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  spec_kit_build_check: "test -d .skilled/skills/system-spec-kit/runtime/dist (the compiled spec-kit runtime the session hooks load)"
+  advisor_build_check: "node .skilled/bin/skill-advisor.cjs list-tools --format json"
+  symlink_engine: ".skilled/commands/doctor/scripts/symlink-engine.cjs (check subcommand only)"
+  route_manifest: ".skilled/commands/doctor/_routes.yaml (the source for each printed route's mutation class)"
+  presentation: ".skilled/commands/doctor/assets/doctor-install-presentation.txt"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+inputs:
+  target: "The command takes no positional target. A whole argument of list, ? or menu prints the ordered install steps and stops."
+  root: "The target repository's absolute path, supplied with --root or in the consolidated prompt."
+  runtimes: "The runtime list, supplied with --runtimes or in the consolidated prompt; the operator can choose the runtimes already there."
+  link_shape: "The operator's choice of auto, whole or merge; auto is recommended."
+  instruction_choice: "The operator's choice of embed or link; embed is recommended and keeps the repo's own AGENTS.md."
+  json_output: "True when --json is passed; print one JSON object and nothing else."
+  execution_mode: "INTERACTIVE"
+
+# ─────────────────────────────────────────────────────────────────
+# EXECUTION
+# ─────────────────────────────────────────────────────────────────
+execution:
+  steps:
+    - "Locate: For a whole argument of list, ? or menu, print the ordered install steps from the presentation contract and stop. Otherwise check the spec-kit build with test -d .skilled/skills/system-spec-kit/runtime/dist; exit 0 means built. Check the advisor build with node .skilled/bin/skill-advisor.cjs list-tools --format json; exit 0 means built. If either build is missing, add a nonexecuted step 0 and print its build commands from the Skilled checkout's README.md."
+    - "Ask: When --root or --runtimes is missing, ask once for the target repo's absolute path, runtimes (claude, opencode, codex, cursor, devin, pi, hermes, or the ones already there), link shape (auto, whole or merge) and instruction file (embed or link). Stop for the answers."
+    - "Inspect: Run node .skilled/commands/doctor/scripts/symlink-engine.cjs check --root <dir> [--runtimes <list>] [--link-instructions] once in place. Use only the check subcommand; include --link-instructions only when the operator chose link. Render the engine's entry lines through the presentation contract."
+    - "Checklist: Print these ordered writing steps through the presentation contract and stop; never run them. For each command, copy its mutation class verbatim from _routes.yaml and print one line explaining why: 1) /doctor:symlink link --root <dir> --runtimes <list> --mode <shape>, with --link-instructions only when link was chosen; it shows a plan and asks before writing. 2) /doctor:agents-md embed --root <dir>, only when embed was chosen. 3) /doctor:mcp install, from the Skilled checkout, to build and register Code Mode. 4) /doctor:git setup, from inside the target repo. 5) /doctor:setup, from inside the target repo, to confirm the result. Pass only values the operator gave."
+    - "Warn: Print this fixed caveat: Context saves from a linked repository resolve the project root through the link until the symlinked-runtime-root fix ships. Run /doctor:setup from inside the target repo and check that a save lands in that repo's own specs/."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output: |
+  A whole argument of list, ? or menu prints the ordered install steps from the presentation and stops.
+  --json prints one JSON object with source, root, runtimes, builds, symlink_check and steps: [{ order, command, mutating, why }], and nothing else.
+  Otherwise render the engine entry lines, ordered writing steps and caveat through the presentation contract.
+  Missing builds add step 0 with the build commands from the README. Build and install commands are printed for the operator and never run by this workflow.

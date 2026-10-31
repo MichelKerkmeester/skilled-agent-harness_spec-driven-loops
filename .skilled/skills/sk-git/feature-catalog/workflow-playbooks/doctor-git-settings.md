@@ -7,7 +7,7 @@ trigger_phrases:
   - "hook gate settings"
   - "change commit rules"
 importance_tier: "important"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Repository settings and setup check (/doctor:git)
@@ -62,7 +62,7 @@ The check never writes and never runs code from the repository it inspects. It l
 | `.skilled/commands/doctor/scripts/tests/git-hook-gates.test.cjs` | Automated test | Gate listing and switching against throwaway repositories |
 | `.skilled/commands/doctor/scripts/tests/git-standards.test.cjs` | Automated test | Rule copies and edits, each checked by the validator |
 | `.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs` | Automated test | Every check, the no-write proof and the untrusted-repository cases |
-| `.skilled/skills/sk-git/manual-testing-playbook/doctor-commands/` | Manual playbook | DOC-369 to DOC-374 and DOC-384 |
+| `.skilled/manual-testing-playbook/doctor-commands/` | Manual playbook | DOC-369 to DOC-374 and DOC-384 |
 
 ---
 

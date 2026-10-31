@@ -1,0 +1,114 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: SYMLINK LINK (INTERACTIVE, ONE TARGET REPOSITORY)
+# ─────────────────────────────────────────────────────────────────
+role: Careful operator linking the Skilled checkout into one target repository
+purpose: Show the engine's plan and digest, ask once, then apply only that plan with the same flags
+action: Run the plan -> show its actions and digest -> explicit yes -> apply with that digest -> report the run record and undo command
+skill_owner: ".skilled/skills/system-spec-kit/"
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: sequential_plan_confirmed_link
+  compliance: MANDATORY
+  execution: interactive
+  approvals: explicit_yes
+  planning: show_plan_and_digest_before_question
+  dry_run: print_the_plan_then_status_ok_without_asking
+  tracking: one_plan_digest
+  validation: apply_runs_check_after_writing
+  never_commit: true
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: false
+  allowed_targets:
+    - "Only link paths and directories listed by the plan inside --root. This includes creating links, replacing or removing source-pointing broken links and creating directories needed for merge links."
+    - "Only the ignore lines listed by the plan, in the selected file inside --root: .git/info/exclude or .gitignore. No ignore lines are written when --ignore none is selected."
+    - "The run record under <source>/.skilled/output/doctor-symlink/<first 16 hex characters of the plan digest>/manifest.json. The engine writes it before the first action and after each action."
+  forbidden_targets:
+    - "Any path that the plan does not list, including real files and directories with local conflicts."
+    - "Any path under <source> except the run record named above."
+    - "The git index, history and remotes."
+  invariant: "The plan writes nothing. The digest covers the real source path, the real root path and the planned actions. Apply recomposes the plan with the same flags and exits 3 without writing if its digest differs. Ask once about the digest on screen. Apply runs only after that yes, and the engine records each applied action for unlink."
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  engine: ".skilled/commands/doctor/scripts/symlink-engine.cjs"
+  manifest: ".skilled/commands/doctor/assets/symlink-manifest.json"
+  presentation: ".skilled/commands/doctor/assets/doctor-symlink-presentation.txt"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+inputs:
+  execution_mode: "INTERACTIVE"
+  root: "Required target project repository, passed as --root <dir>. The engine requires it to exist and be a directory."
+  source: "Optional Skilled checkout path, passed as --source <dir>. When omitted, the engine resolves its checkout root from its own script path."
+  runtimes: "Optional comma-separated runtime names: claude,opencode,codex,cursor,devin,pi,hermes. When omitted, the engine selects runtimes whose primary entry already exists in the target root. The core entry is always included."
+  mode: "Optional layout mode: auto, whole or merge. The default is auto."
+  include: "Optional comma-separated extras: repo-rules,github,utcp,env."
+  link_instructions: "When true, pass --link-instructions to include AGENTS.md, CLAUDE.md and REPO RULES.md."
+  ignore: "Optional ignore destination: exclude, gitignore or none. The default is exclude."
+  dry_run: "--dry-run prints the engine's plan and digest, then STATUS=OK without asking (default false). The engine's plan writes nothing either way; the workflow stops before approval and apply."
+  plan_digest: "The lowercase SHA-256 digest printed by plan. Apply requires it."
+  digest_confirmation: "True only after the operator answers yes to the plan and digest shown in this run. Never reuse approval from an earlier run."
+
+# ─────────────────────────────────────────────────────────────────
+# EXECUTION
+# ─────────────────────────────────────────────────────────────────
+execution:
+  phase_1_read:
+    purpose: "Check the engine inputs and presentation before planning"
+    activities:
+      - "Check that .skilled/commands/doctor/scripts/symlink-engine.cjs, .skilled/commands/doctor/assets/symlink-manifest.json and .skilled/commands/doctor/assets/doctor-symlink-presentation.txt exist. If one is missing, report its path and stop with STATUS=FAIL. Do not create the presentation file here."
+      - "Read the presentation contract for the plan, confirmation question and result wording. Use the engine output as the only description of the target repository and planned changes."
+
+  phase_2_plan:
+    purpose: "Resolve the exact actions without writing"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/symlink-engine.cjs plan --root \"{root}\", adding --source \"{source}\" when supplied, --runtimes \"{runtimes}\" when supplied, --mode \"{mode}\" when supplied, --include \"{include}\" when supplied, --link-instructions when requested and --ignore \"{ignore}\" when supplied."
+      - "Keep the engine's exact entry lines, details, warnings, action lines, refusals and PLAN DIGEST line. The plan is the only description the question and apply may use."
+      - "Exit 0 with NOTHING TO DO means the plan has no actions. Render the unchanged result with the engine's digest, ask nothing and do not run apply."
+      - "A refusal in the plan stays visible and is never applied. Show every refusal beside the actions that can run."
+      - "If {dry_run} is true, render the presentation contract's dry-run result from the engine's plan and digest, print the dry-run line and go to phase_5_report with STATUS=OK. End the run without asking or running apply. The engine's plan writes nothing."
+      - "Exit 2 means the invocation or root was refused. Quote the engine message and end with STATUS=FAIL. Nothing was written."
+
+  phase_3_approval:
+    purpose: "Ask once about the exact actions and digest on screen"
+    activities:
+      - "Ask the one link question using the presentation contract's wording. Name the target root, the actions and ignore lines in the plan, the run record location and the plan digest."
+      - "Any answer other than yes is a no. Render the cancelled result, state Changed: none and end with STATUS=CANCELLED ACTION=cancelled. Do not run apply."
+      - "Set digest_confirmation to true only after the operator answers yes to this run's plan and digest."
+      - "Never default an answer, accept an unseen digest or carry approval from another run. Phase 4 runs only after this run's yes."
+
+  phase_4_apply:
+    purpose: "Apply only after the operator approves this run's plan and digest"
+    activities:
+      - "Continue only when digest_confirmation is true, after the operator approved this run's plan and digest."
+      - "Run node .skilled/commands/doctor/scripts/symlink-engine.cjs apply --root \"{root}\" --plan-digest \"{plan_digest}\", with exactly the same optional flags that plan used: --source \"{source}\", --runtimes \"{runtimes}\", --mode \"{mode}\", --include \"{include}\", --link-instructions and --ignore \"{ignore}\"."
+      - "Exit 0 means apply completed. Keep the engine's action lines, run record path, check summary and undo command as printed. The undo command uses node .skilled/commands/doctor/scripts/symlink-engine.cjs unlink --run <dir> --dry-run."
+      - "Exit 1 means apply failed part-way. The run record lists the actions already applied. Quote the engine message and report that record. Do not retry apply automatically."
+      - "Exit 2 means the invocation or root was refused. Quote the engine message and end with STATUS=FAIL."
+      - "Exit 3 means the recomposed plan digest differs. Nothing was written. Quote the engine message, offer a new plan against the current tree and end with STATUS=FAIL. Never invent or substitute a digest."
+
+  phase_5_report:
+    purpose: "Report what changed and where the engine recorded it"
+    activities:
+      - "Render the result through .skilled/commands/doctor/assets/doctor-symlink-presentation.txt with the plan, digest, apply output, run record and undo command."
+      - "A no answered the question: render the cancelled result and state Changed: none."
+      - "NOTHING TO DO: render the unchanged result and the engine's digest."
+      - "A dry run: render the dry-run result with the engine's plan and digest, then end with STATUS=OK."
+      - "End by saying the route stages and commits nothing."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output:
+  presentation: ".skilled/commands/doctor/assets/doctor-symlink-presentation.txt"
+  statuses: [OK, CANCELLED, FAIL]

@@ -59,3 +59,6 @@
 {"prompt": "a teammate's runtime prompts are out of date after a pull", "expected": "/doctor:runtime-mirrors"}
 {"prompt": "my skill's description is longer than the limit allows", "expected": "/doctor:skill-advisor skill-budget"}
 {"prompt": "the model server process is still running after I closed the session", "expected": "/doctor:setup"}
+{"prompt": "my claude folder link points at a path that is gone", "expected": "/doctor:symlink link"}
+{"prompt": "are the runtime folders in this repo still linked to skilled", "expected": "/doctor:symlink check"}
+{"prompt": "how do i get skilled working in my own app repo", "expected": "/doctor:install"}

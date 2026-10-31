@@ -3,7 +3,7 @@
 # ─────────────────────────────────────────────────────────────────
 # Source of truth for the routed doctor commands. Each route names the command
 # that owns it, so one manifest serves every router. The list below is every one of
-# the 14 router files in this folder, in no particular order:
+# the 16 router files in this folder, in no particular order:
 #   /doctor:speckit         .skilled/commands/doctor/speckit.md
 #   /doctor:skill-advisor   .skilled/commands/doctor/skill-advisor.md
 #   /doctor:deep-loop       .skilled/commands/doctor/deep-loop.md
@@ -18,6 +18,8 @@
 #   /doctor:env             .skilled/commands/doctor/env.md
 #   /doctor:update          .skilled/commands/doctor/update.md
 #   /doctor:mcp             .skilled/commands/doctor/mcp.md
+#   /doctor:symlink         .skilled/commands/doctor/symlink.md
+#   /doctor:install         .skilled/commands/doctor/install.md
 # A command that owns one route needs no positional target.
 # Validated by: .skilled/commands/doctor/scripts/route-validate.sh
 # Consumed by: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs
@@ -529,6 +531,75 @@ routes:
       - "restore agents md from the backup"
       - "roll back the agents md instruction file write"
       - "revert agents md to the file before the embed"
+
+  - command: /doctor:symlink
+    target: check
+    default_target: true
+    yaml: doctor-symlink-check.yaml
+    setup_vars: [execution_mode, root, runtimes, include, link_instructions, json_output]
+    allowed_flags: ["--json", "--root <dir>", "--runtimes <list>", "--include <list>", "--link-instructions"]
+    mutating: read-only
+    gate3_location: "n/a (read-only diagnostic; the engine classifies every framework entry in the target repository and writes nothing)"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/symlink-engine.cjs check --root <dir>  # the workflow adds --runtimes, --include, --link-instructions and --json only when the operator passed them'
+    trigger_phrases:
+      - "check skilled symlinks in a repo"
+      - "find broken skilled symlinks"
+      - "which runtime folders are linked"
+      - "is skilled linked into my project"
+
+  - command: /doctor:symlink
+    target: link
+    yaml: doctor-symlink-link.yaml
+    setup_vars: [execution_mode, root, runtimes, mode, include, link_instructions, ignore, dry_run, plan_digest, digest_confirmation]
+    allowed_flags: ["--root <dir>", "--runtimes <list>", "--mode <shape>", "--include <list>", "--link-instructions", "--ignore <where>", "--dry-run", "--plan-digest <digest>"]
+    mutating: mutates
+    gate3_location: "the target repository's framework links (whole-folder links, or real folders holding one link per entry), the broken links into the Skilled checkout that the plan replaces or removes, and the ignore lines in <git-dir>/info/exclude (or .gitignore behind --ignore gitignore), with the run record written to the checkout's .skilled/output/doctor-symlink/<digest>/manifest.json before the first action; no real file or folder is ever overwritten, and the write runs only against the plan digest the operator approved"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/symlink-engine.cjs plan --root <dir>  # read-only: prints every action, every refusal and the plan digest; the workflow adds --runtimes, --mode, --include, --link-instructions and --ignore only when the operator passed them'
+      - 'node .skilled/commands/doctor/scripts/symlink-engine.cjs apply --root <dir> --plan-digest <digest>  # recomposes with the same flags, refuses a digest that no longer matches, records the run, applies the actions and reruns check; the workflow runs it only after the operator approves the plan that printed that digest'
+    trigger_phrases:
+      - "symlink skilled into my project"
+      - "link the claude folder into my repo"
+      - "repair broken skilled symlinks"
+      - "create the skilled links in a repo"
+
+  - command: /doctor:symlink
+    target: unlink
+    yaml: doctor-symlink-unlink.yaml
+    setup_vars: [execution_mode, run_dir, yes, dry_run]
+    allowed_flags: ["--run <dir>", "--yes", "--dry-run"]
+    mutating: mutates
+    gate3_location: "only the links, the folders and the ignore lines one run's manifest.json records, each re-checked against the recorded state before it is touched; a path that changed since the apply is skipped and reported, and the run directory itself is read and kept"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/symlink-engine.cjs unlink --run <dir> --dry-run  # prints what the unlink would remove or restore and writes nothing'
+      - 'node .skilled/commands/doctor/scripts/symlink-engine.cjs unlink --run <dir> --yes  # removes the recorded links and empty folders and the recorded ignore lines; the workflow passes --yes only after its own yes'
+    trigger_phrases:
+      - "undo a skilled symlink run"
+      - "remove the skilled symlinks again"
+      - "unlink skilled from my project"
+
+  - command: /doctor:install
+    target: guide
+    yaml: doctor-install.yaml
+    setup_vars: [execution_mode, root, runtimes, json_output]
+    allowed_flags: ["--json", "--root <dir>", "--runtimes <list>"]
+    mutating: read-only
+    gate3_location: "n/a (read-only guide; it checks the two builds, runs the symlink engine's check once and prints the ordered writing commands for the operator to run)"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'test -d .skilled/skills/system-spec-kit/runtime/dist  # the spec-kit build the session hooks load'
+      - 'node .skilled/bin/skill-advisor.cjs list-tools --format json  # the advisor build; exit 0 means built'
+      - 'node .skilled/commands/doctor/scripts/symlink-engine.cjs check --root <dir>  # the workflow adds --runtimes and --link-instructions only when the operator chose them'
+    trigger_phrases:
+      - "install skilled into my project"
+      - "set up skilled in another repo"
+      - "use skilled in my own project"
+      - "onboard a project repo to skilled"
+      - "guide me through installing skilled"
 
 # ─────────────────────────────────────────────────────────────────
 # COMPANION COMMAND ROUTES (/doctor:mcp sub-actions)

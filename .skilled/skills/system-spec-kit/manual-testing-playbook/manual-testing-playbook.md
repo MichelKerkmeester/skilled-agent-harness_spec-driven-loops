@@ -2,7 +2,7 @@
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
 last_updated: "2026-10-30"
-version: 2.1.11.0
+version: 2.1.12.0
 ---
 
 # Spec Kit: Manual Testing Playbook
@@ -24,7 +24,6 @@ This playbook package adopts the Feature Catalog split-document pattern. The roo
 Canonical package artifacts:
 - `manual-testing-playbook.md`
 - `context-preservation/`
-- `doctor-commands/`
 - `feature-flag-reference/`
 - `governance/`
 - `lifecycle/`
@@ -39,7 +38,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook is the operator-facing manual validation directory for the `system-spec-kit` engine: validation and its rules, templates and level contracts, scaffolding and `create.sh`, the continuity writer and `generate-context`, generated graph metadata and `description.json`, derived-packet repair, phase decomposition, spec-folder discovery, the surviving hooks and plugins, and the surviving `/doctor:deep-loop` diagnostic. It preserves each scenario's original ID and links every entry to a dedicated file carrying the full execution contract.
+This playbook is the operator-facing manual validation directory for the `system-spec-kit` engine: validation and its rules, templates and level contracts, scaffolding and `create.sh`, the continuity writer and `generate-context`, generated graph metadata and `description.json`, derived-packet repair, phase decomposition, spec-folder discovery, the surviving hooks and plugins. It preserves each scenario's original ID and links every entry to a dedicated file carrying the full execution contract.
 
 ### What This Playbook No Longer Covers
 
@@ -255,31 +254,9 @@ Every row links a scenario file that exists on disk. The **Catalog Entry** colum
 | 468 | Upgrade-legacy refusal without git | [468](tooling-and-scripts/upgrade-legacy-refusal-without-git.md) | [upgrade-legacy-reversibility-manifest](../feature-catalog/tooling-and-scripts/upgrade-legacy-reversibility-manifest.md) |
 | 455 | validate.sh dist-freshness backstop | [455](tooling-and-scripts/validate-sh-dist-freshness-backstop.md) | [dist-freshness-enforcement](../feature-catalog/tooling-and-scripts/dist-freshness-enforcement.md) |
 
-### 7.2 Doctor Commands
+### 7.2 Doctor Command Scenarios
 
-Category notes and the retired ID ranges: [`doctor-commands/README.md`](doctor-commands/README.md). The `/doctor:skill-advisor` scenarios live in the system-skill-advisor playbook, the `/doctor:deep-loop` scenarios in the system-deep-loop playbook, the `/doctor:git` scenarios in the sk-git playbook and the `/doctor:mcp` scenarios in the mcp-code-mode playbook.
-
-| Playbook ID | Scenario | Scenario File | Catalog Entry |
-|---|---|---|---|
-| DOC-349 | Doctor speckit retrieval healthy | [DOC-349](doctor-commands/doctor-speckit-retrieval-healthy.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-350 | Doctor speckit stale index | [DOC-350](doctor-commands/doctor-speckit-stale-index.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-351 | Doctor speckit moved target | [DOC-351](doctor-commands/doctor-speckit-legacy-target.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-352 | Doctor runtime mirrors in sync | [DOC-352](doctor-commands/doctor-runtime-mirrors-in-sync.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-353 | Doctor runtime mirrors drift | [DOC-353](doctor-commands/doctor-runtime-mirrors-drift.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-354 | Doctor env inspect | [DOC-354](doctor-commands/doctor-env-inspect.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-355 | Doctor env save preference | [DOC-355](doctor-commands/doctor-env-save-preference.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-356 | Doctor env secret and per-invocation switches | [DOC-356](doctor-commands/doctor-env-secret-and-per-invocation.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-357 | Doctor update check | [DOC-357](doctor-commands/doctor-update-check.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-358 | Doctor update align | [DOC-358](doctor-commands/doctor-update-align.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-359 | Doctor update apply | [DOC-359](doctor-commands/doctor-update-apply.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-360 | Doctor update rollback | [DOC-360](doctor-commands/doctor-update-rollback.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-361 | Doctor update record-base | [DOC-361](doctor-commands/doctor-update-record-base.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-379 | Doctor update test environment | [DOC-379](doctor-commands/doctor-update-test-environment.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-381 | Doctor update compat | [DOC-381](doctor-commands/doctor-update-compat.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-393 | Doctor helper ranks a problem and runs a read-only pick | [DOC-393](doctor-commands/doctor-helper-read-only-pick.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-394 | Doctor helper hands a writing pick back and offers the fallback | [DOC-394](doctor-commands/doctor-helper-writing-handoff.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-396 | Doctor agents md block reaches a live Devin session | [DOC-396](doctor-commands/doctor-agents-md-block-devin-quote.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-397 | Doctor agents md mirror loads in Cursor | [DOC-397](doctor-commands/doctor-agents-md-cursor-mirror-load.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+Doctor command scenarios for system-spec-kit now live in the [central manual testing playbook](../../../manual-testing-playbook/manual-testing-playbook.md).
 
 ### 7.3 Spec-Doc Quality and Metadata
 

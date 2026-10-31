@@ -242,6 +242,50 @@ expected_leaf_resources:
   console.log('strict default: rc=1 on seeded violation; --no-strict: rc=0; boundary: rc=2');
 }
 
+function runCentralPackageDiscoveryRegression() {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'playbook-central-'));
+  try {
+    const skillsRoot = path.join(tempRoot, '.skilled', 'skills');
+    const centralRoot = path.join(tempRoot, '.skilled', 'manual-testing-playbook');
+    const goldRoot = path.join(skillsRoot, 'gold', 'manual-testing-playbook');
+    fs.cpSync(fixtureSource, centralRoot, { recursive: true });
+    fs.cpSync(fixtureSource, goldRoot, { recursive: true });
+    const centralManifest = path.join(tempRoot, 'manifest.json');
+    fs.writeFileSync(centralManifest, JSON.stringify({
+      version: 1,
+      defaultContract: 'operator-scenario',
+      routingGoldRoots: ['.skilled/skills/gold/manual-testing-playbook'],
+      warnPackages: [],
+    }));
+    const args = [
+      '--repo-root', tempRoot,
+      '--skills-root', skillsRoot,
+      '--manifest', centralManifest,
+      '--no-strict',
+      '--format', 'json',
+    ];
+    const discovered = spawnSync(process.execPath, [validatorPath, ...args], { encoding: 'utf8' });
+    assert.strictEqual(discovered.status, 0, `central discovery should exit 0\n${discovered.stdout}\n${discovered.stderr}`);
+    const roots = JSON.parse(discovered.stdout).packages.map((entry) => entry.playbookRoot);
+    assert(roots.includes('.skilled/manual-testing-playbook'), `central root must be discovered; found ${roots.join(', ')}`);
+
+    const selected = spawnSync(process.execPath, [
+      validatorPath,
+      '--package', '.skilled/manual-testing-playbook',
+      ...args,
+    ], { encoding: 'utf8' });
+    assert.strictEqual(selected.status, 0, `central package filter should exit 0\n${selected.stdout}\n${selected.stderr}`);
+    assert.deepStrictEqual(
+      JSON.parse(selected.stdout).packages.map((entry) => entry.playbookRoot),
+      ['.skilled/manual-testing-playbook'],
+      'repo-root-relative central package filter should select only the central root',
+    );
+  } finally {
+    fs.rmSync(tempRoot, { recursive: true, force: true });
+  }
+  console.log('central package discovery regression: PASS (2 assertions)');
+}
+
 function unsyncedWarnings(outcome) {
   return outcome.report.packages[0].warnings.filter((warning) => warning.code === 'PROMPT_UNSYNCED');
 }
@@ -300,5 +344,6 @@ function runPipedReportRegression() {
 
 run();
 runContractRegressions();
+runCentralPackageDiscoveryRegression();
 runPromptSyncRegressions();
 runPipedReportRegression();

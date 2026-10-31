@@ -4,10 +4,10 @@
   "counts": {
     "commandMetadata": 19,
     "allowList": 8,
-    "doctorRoutes": 28,
-    "generated": 55,
-    "typescriptActive": 33,
-    "pythonActive": 43
+    "doctorRoutes": 32,
+    "generated": 59,
+    "typescriptActive": 37,
+    "pythonActive": 47
   },
   "entries": [
     {
@@ -928,6 +928,48 @@
       }
     },
     {
+      "id": "command-doctor-install",
+      "command": "/doctor:install",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-install",
+          "order": 36,
+          "id": "command-doctor-install",
+          "description": "",
+          "name": "/doctor:install",
+          "keywords": [
+            "install skilled into my project",
+            "set up skilled in another repo",
+            "use skilled in my own project",
+            "onboard a project repo to skilled",
+            "guide me through installing skilled"
+          ],
+          "intentSignals": [
+            "/doctor:install"
+          ],
+          "readOnly": true,
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-install",
+          "order": 47,
+          "id": "command-doctor-install",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:install"
+          ]
+        }
+      }
+    },
+    {
       "id": "command-doctor-mcp-debug",
       "command": "/doctor:mcp",
       "skillId": "system-spec-kit",
@@ -1551,6 +1593,128 @@
           "description": "",
           "slashMarkers": [
             "/doctor:speckit"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-symlink-check",
+      "command": "/doctor:symlink",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-symlink-check",
+          "order": 33,
+          "id": "command-doctor-symlink-check",
+          "description": "",
+          "name": "/doctor:symlink check",
+          "keywords": [
+            "check skilled symlinks in a repo",
+            "find broken skilled symlinks",
+            "which runtime folders are linked",
+            "is skilled linked into my project",
+            "/doctor:symlink"
+          ],
+          "intentSignals": [
+            "/doctor:symlink check"
+          ],
+          "readOnly": true,
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-symlink-check",
+          "order": 44,
+          "id": "command-doctor-symlink-check",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:symlink check",
+            "/doctor:symlink"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-symlink-link",
+      "command": "/doctor:symlink",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-symlink-link",
+          "order": 34,
+          "id": "command-doctor-symlink-link",
+          "description": "",
+          "name": "/doctor:symlink link",
+          "keywords": [
+            "symlink skilled into my project",
+            "link the claude folder into my repo",
+            "repair broken skilled symlinks",
+            "create the skilled links in a repo"
+          ],
+          "intentSignals": [
+            "/doctor:symlink link"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-symlink-link",
+          "order": 45,
+          "id": "command-doctor-symlink-link",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:symlink link"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-symlink-unlink",
+      "command": "/doctor:symlink",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-symlink-unlink",
+          "order": 35,
+          "id": "command-doctor-symlink-unlink",
+          "description": "",
+          "name": "/doctor:symlink unlink",
+          "keywords": [
+            "undo a skilled symlink run",
+            "remove the skilled symlinks again",
+            "unlink skilled from my project"
+          ],
+          "intentSignals": [
+            "/doctor:symlink unlink"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-symlink-unlink",
+          "order": 46,
+          "id": "command-doctor-symlink-unlink",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:symlink unlink"
           ]
         }
       }

@@ -1,0 +1,1 @@
+../../.skilled/commands/doctor/install.md

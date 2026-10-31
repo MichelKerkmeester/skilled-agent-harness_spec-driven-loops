@@ -123,6 +123,7 @@ const DOCTOR_COMMAND_STRINGS: Readonly<Record<string, string>> = Object.freeze({
   'command-doctor-git-setup': '/doctor:git setup',
   'command-doctor-git-standards': '/doctor:git standards',
   'command-doctor-helper': '/doctor:helper',
+  'command-doctor-install': '/doctor:install',
   'command-doctor-mcp-debug': '/doctor:mcp debug',
   'command-doctor-mcp-install': '/doctor:mcp install',
   'command-doctor-runtime-mirrors': '/doctor:runtime-mirrors',
@@ -138,6 +139,9 @@ const DOCTOR_COMMAND_STRINGS: Readonly<Record<string, string>> = Object.freeze({
   'command-doctor-skill-advisor-skill-graph-freshness': '/doctor:skill-advisor skill-graph-freshness',
   'command-doctor-skill-advisor-tune': '/doctor:skill-advisor tune',
   'command-doctor-speckit': '/doctor:speckit',
+  'command-doctor-symlink-check': '/doctor:symlink check',
+  'command-doctor-symlink-link': '/doctor:symlink link',
+  'command-doctor-symlink-unlink': '/doctor:symlink unlink',
   'command-doctor-update': '/doctor:update',
 });
 // END GENERATED DOCTOR COMMANDS

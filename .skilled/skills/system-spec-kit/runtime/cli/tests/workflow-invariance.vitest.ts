@@ -119,7 +119,7 @@ function isAllowedHit(hit: SurfaceHit, filePath: string, isExtra: boolean): bool
   // manifest + manifest-driven dispatch) — a real command surface, not private taxonomy.
   if (rel.endsWith('.skilled/skills/system-spec-kit/feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md')) return true;
   if (rel.endsWith('.skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md')) return true;
-  if (rel.startsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/')) return true;
+  if (rel.startsWith('.skilled/manual-testing-playbook/doctor-commands/')) return true;
   // Causal-graph edge records document a "kind" schema field (edge kind, e.g. "semantic") in their
   // JSON shape — a data-schema field name, not workflow taxonomy.
   if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/causal-graph-link-quality.md')) return true;
