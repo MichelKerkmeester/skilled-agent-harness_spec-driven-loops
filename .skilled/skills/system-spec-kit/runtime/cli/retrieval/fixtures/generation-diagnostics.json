@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7253,
-    "ok": 16505,
+    "ok": 16378,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27306,
+  "documentsScanned": 27179,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "340137c6a2b2bcf9d1ecff3f54147aeb5a61c41c62563cdee517e95749dfc5d1",
+  "manifestHash": "309adaf67e44cfb3fbeb85d5dd46e7ca688b505c1037c9809ff00d58049b6d3b",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40182,
+      "ok": 40003,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -71618,6 +71618,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/scratch",
       "reason": "excluded directory"
     },
@@ -72795,118 +72803,6 @@
     },
     {
       "path": "specs/sk-prompt/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/001-research/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold/001-skill-md/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold/002-metadata-and-manifests/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/001-copy-shipped-files/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/002-rebrand-identifiers/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/003-build-and-tests/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/004-gpu-smoke/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/001-plugin-reexport/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/002-readme-and-proof/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/001-extension-factory/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/002-symlink-and-dry-factory/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment/001-skill-md-and-readme/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment/002-package-hygiene/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/007-pi-input-images/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/008-feature-catalog/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/009-manual-testing-playbook/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/010-quality-gate/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/021-mcp-server-process-lifecycle/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/022-opencode-plugin-runtime-resolution/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/024-mcp-retirement-and-hook-adapters/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/z_archive",
       "reason": "excluded directory"
     },
     {

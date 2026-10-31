@@ -1,5 +1,5 @@
 {
-  "manifestHash": "340137c6a2b2bcf9d1ecff3f54147aeb5a61c41c62563cdee517e95749dfc5d1",
+  "manifestHash": "309adaf67e44cfb3fbeb85d5dd46e7ca688b505c1037c9809ff00d58049b6d3b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -38364,9 +38364,6 @@
     "devin max tier models": [
       "devin max-tier models"
     ],
-    "devin mcp config ownership": [
-      "devin mcp config ownership"
-    ],
     "devin mcp integration": [
       "devin mcp integration"
     ],
@@ -54720,9 +54717,6 @@
     "hook adapter thin transports": [
       "hook adapter thin transports"
     ],
-    "hook adapter versus cli": [
-      "hook adapter versus CLI"
-    ],
     "hook and ci delegation plan": [
       "hook and ci delegation plan"
     ],
@@ -61310,9 +61304,6 @@
     ],
     "local skill link discovery": [
       "local skill link discovery"
-    ],
-    "local vision skill": [
-      "local vision skill"
     ],
     "local webflow local obsidian": [
       "local-webflow local-obsidian"
@@ -72019,12 +72010,6 @@
     "opencode self invocation guard": [
       "opencode self-invocation guard"
     ],
-    "opencode senses architecture": [
-      "opencode senses architecture"
-    ],
-    "opencode senses fork": [
-      "opencode senses fork"
-    ],
     "opencode session relaunch": [
       "OpenCode session relaunch"
     ],
@@ -78461,9 +78446,6 @@
     "pi recommendation dedup receipt": [
       "pi recommendation dedup receipt"
     ],
-    "pi registertool vision": [
-      "pi registerTool vision"
-    ],
     "pi remote detection and sk code mobile cli references": [
       "PI_REMOTE Detection and sk-code-mobile-cli References"
     ],
@@ -78707,12 +78689,6 @@
     ],
     "pi visible directive repetition": [
       "pi visible directive repetition"
-    ],
-    "pi vision adapter": [
-      "pi vision adapter"
-    ],
-    "pi vision registertool": [
-      "pi vision registerTool"
     ],
     "pi worker": [
       "pi worker"
@@ -86633,9 +86609,6 @@
     "remove sibling refs from spec kit": [
       "remove sibling refs from spec-kit"
     ],
-    "remove sk vision from claude mcp": [
-      "remove sk-vision from claude mcp"
-    ],
     "remove skill benchmark lane": [
       "remove skill-benchmark lane"
     ],
@@ -89121,9 +89094,6 @@
     ],
     "retire sidecar tasks": [
       "retire sidecar tasks"
-    ],
-    "retire sk vision mcp server": [
-      "retire sk-vision-mcp server"
     ],
     "retire standalone checklist": [
       "retire standalone checklist"
@@ -95252,15 +95222,6 @@
     ],
     "sendsessionaffinityheaders opencode": [
       "sendSessionAffinityHeaders opencode"
-    ],
-    "senses fork decisions": [
-      "senses fork decisions"
-    ],
-    "senses fork feasibility": [
-      "senses fork feasibility"
-    ],
-    "senses fork plan": [
-      "senses fork plan"
     ],
     "sent goal carries only its directive": [
       "sent goal carries only its directive"
@@ -102999,75 +102960,6 @@
     "sk prompt v4 0 1 0": [
       "sk-prompt v4.0.1.0"
     ],
-    "sk vision": [
-      "sk-vision"
-    ],
-    "sk vision 006 001 summary": [
-      "sk-vision 006-001 summary"
-    ],
-    "sk vision 006 001 tasks": [
-      "sk-vision 006-001 tasks"
-    ],
-    "sk vision 006 002 summary": [
-      "sk-vision 006-002 summary"
-    ],
-    "sk vision 006 002 tasks": [
-      "sk-vision 006-002 tasks"
-    ],
-    "sk vision 007 summary": [
-      "sk-vision 007 summary"
-    ],
-    "sk vision 007 tasks": [
-      "sk-vision 007 tasks"
-    ],
-    "sk vision 008 summary": [
-      "sk-vision 008 summary"
-    ],
-    "sk vision 008 tasks": [
-      "sk-vision 008 tasks"
-    ],
-    "sk vision 009 summary": [
-      "sk-vision 009 summary"
-    ],
-    "sk vision 009 tasks": [
-      "sk-vision 009 tasks"
-    ],
-    "sk vision 010 summary": [
-      "sk-vision 010 summary"
-    ],
-    "sk vision 010 tasks": [
-      "sk-vision 010 tasks"
-    ],
-    "sk vision adapter jsdoc": [
-      "sk-vision adapter jsdoc"
-    ],
-    "sk vision adr": [
-      "sk-vision ADR"
-    ],
-    "sk vision attachment injector": [
-      "sk-vision attachment injector"
-    ],
-    "sk vision auto inject disable": [
-      "sk-vision auto-inject disable"
-    ],
-    "sk vision base64 padding fix": [
-      "sk-vision base64 padding fix"
-    ],
-    "sk vision benchmark scaffold": [
-      "sk-vision benchmark scaffold"
-    ],
-    "sk vision bun build": [
-      "sk-vision bun build"
-    ],
-    "sk vision bun test": [
-      "sk-vision bun test"
-    ],
-    "sk vision capability inventory": [
-      "sk-vision capability inventory"
-    ],
-    "sk vision catalog package": [
-      "sk-vision catalog package"
-    ],
     "sk vision changelog retrofit": [
       "sk-vision changelog retrofit"
     ],
@@ -103083,371 +102975,17 @@
     "sk vision changelog rewrite tasks": [
       "sk-vision changelog rewrite tasks"
     ],
-    "sk vision class s": [
-      "sk-vision class S"
-    ],
-    "sk vision code alignment": [
-      "sk-vision code alignment"
-    ],
-    "sk vision code alignment plan": [
-      "sk-vision code alignment plan"
-    ],
-    "sk vision code alignment summary": [
-      "sk-vision code alignment summary"
-    ],
-    "sk vision code alignment tasks": [
-      "sk-vision code alignment tasks"
-    ],
-    "sk vision command gated activation": [
-      "sk-vision command-gated activation"
-    ],
-    "sk vision command gated plan": [
-      "sk-vision command-gated plan"
-    ],
-    "sk vision command gated summary": [
-      "sk-vision command-gated summary"
-    ],
-    "sk vision command gated tasks": [
-      "sk-vision command-gated tasks"
-    ],
-    "sk vision conformance proof": [
-      "sk-vision conformance proof"
-    ],
-    "sk vision contract realignment": [
-      "sk-vision contract realignment"
-    ],
-    "sk vision copy dump": [
-      "sk-vision copy dump"
-    ],
-    "sk vision cursor devin hook entries plan": [
-      "sk-vision cursor devin hook entries plan"
-    ],
-    "sk vision cursor devin hook entries summary": [
-      "sk-vision cursor devin hook entries summary"
-    ],
-    "sk vision cursor devin hook entries tasks": [
-      "sk-vision cursor devin hook entries tasks"
-    ],
-    "sk vision cursor devin plan": [
-      "sk-vision cursor devin plan"
-    ],
-    "sk vision cursor devin summary": [
-      "sk-vision cursor devin summary"
-    ],
-    "sk vision cursor devin tasks": [
-      "sk-vision cursor devin tasks"
-    ],
-    "sk vision cursor devin testing playbook": [
-      "sk-vision cursor devin testing playbook"
-    ],
-    "sk vision cursor devin testing playbook plan": [
-      "sk-vision cursor devin testing playbook plan"
-    ],
-    "sk vision cursor devin testing playbook summary": [
-      "sk-vision cursor devin testing playbook summary"
-    ],
-    "sk vision cursor devin testing playbook tasks": [
-      "sk-vision cursor devin testing playbook tasks"
-    ],
-    "sk vision cursor hook adapter": [
-      "sk-vision cursor hook adapter"
-    ],
-    "sk vision cursor hook entry": [
-      "sk-vision cursor hook entry"
-    ],
-    "sk vision cursor mcp decoupling": [
-      "sk-vision cursor mcp decoupling"
-    ],
-    "sk vision cursor mcp decoupling plan": [
-      "sk-vision cursor mcp decoupling plan"
-    ],
-    "sk vision cursor mcp decoupling summary": [
-      "sk-vision cursor mcp decoupling summary"
-    ],
-    "sk vision cursor mcp decoupling tasks": [
-      "sk-vision cursor mcp decoupling tasks"
-    ],
-    "sk vision cursor support": [
-      "sk-vision cursor support"
-    ],
-    "sk vision devin hook adapter": [
-      "sk-vision devin hook adapter"
-    ],
-    "sk vision devin hook entry": [
-      "sk-vision devin hook entry"
-    ],
-    "sk vision devin support": [
-      "sk-vision devin support"
-    ],
-    "sk vision dist plugin": [
-      "sk-vision dist plugin"
-    ],
-    "sk vision extensionfactory": [
-      "sk-vision ExtensionFactory"
-    ],
-    "sk vision feature catalog": [
-      "sk-vision feature catalog"
-    ],
     "sk vision fix list rows": [
       "sk vision fix list rows"
-    ],
-    "sk vision force auto inspect": [
-      "sk-vision force auto-inspect"
-    ],
-    "sk vision gpu smoke": [
-      "sk-vision gpu smoke"
     ],
     "sk vision grace downgrade": [
       "sk-vision grace downgrade"
     ],
-    "sk vision graph metadata": [
-      "sk-vision graph-metadata"
-    ],
-    "sk vision guaranteed vision plan": [
-      "sk-vision guaranteed vision plan"
-    ],
-    "sk vision guaranteed vision summary": [
-      "sk-vision guaranteed vision summary"
-    ],
-    "sk vision guaranteed vision tasks": [
-      "sk-vision guaranteed vision tasks"
-    ],
-    "sk vision guaranteed vision text only": [
-      "sk-vision guaranteed vision text-only"
-    ],
-    "sk vision handover": [
-      "sk-vision handover"
-    ],
-    "sk vision hook adapter closure gate": [
-      "sk-vision hook adapter closure gate"
-    ],
-    "sk vision hook adapter plan": [
-      "sk-vision hook adapter plan"
-    ],
-    "sk vision hook adapter summary": [
-      "sk-vision hook adapter summary"
-    ],
-    "sk vision hook adapter tasks": [
-      "sk-vision hook adapter tasks"
-    ],
-    "sk vision hooks four hosts": [
-      "sk-vision hooks four hosts"
-    ],
-    "sk vision hooks plan": [
-      "sk-vision hooks plan"
-    ],
-    "sk vision hooks restructure": [
-      "sk-vision hooks restructure"
-    ],
-    "sk vision host adapter findings fixes": [
-      "sk-vision host-adapter findings fixes"
-    ],
-    "sk vision host adapter findings fixes plan": [
-      "sk-vision host-adapter findings fixes plan"
-    ],
-    "sk vision host adapter findings fixes summary": [
-      "sk-vision host-adapter findings fixes summary"
-    ],
-    "sk vision host adapter findings fixes tasks": [
-      "sk-vision host-adapter findings fixes tasks"
-    ],
-    "sk vision host registration scope": [
-      "sk-vision host registration scope"
-    ],
-    "sk vision inline comments": [
-      "sk-vision inline comments"
-    ],
-    "sk vision input images": [
-      "sk-vision input images"
-    ],
-    "sk vision js": [
-      "sk-vision.js"
-    ],
-    "sk vision js re export": [
-      "sk-vision.js re-export"
-    ],
     "sk vision kill switch": [
       "sk-vision kill switch"
     ],
-    "sk vision leaf manifest": [
-      "sk-vision leaf manifest"
-    ],
-    "sk vision load status": [
-      "sk-vision load status"
-    ],
-    "sk vision manual scenarios": [
-      "sk-vision manual scenarios"
-    ],
-    "sk vision mcp orphan watchdog": [
-      "sk-vision mcp orphan watchdog"
-    ],
-    "sk vision mcp plan": [
-      "sk-vision mcp plan"
-    ],
-    "sk vision mcp process lifecycle guards": [
-      "sk-vision mcp process lifecycle guards"
-    ],
-    "sk vision mcp process lifecycle guards plan": [
-      "sk-vision mcp process lifecycle guards plan"
-    ],
-    "sk vision mcp process lifecycle guards summary": [
-      "sk-vision mcp process lifecycle guards summary"
-    ],
-    "sk vision mcp process lifecycle guards tasks": [
-      "sk-vision mcp process lifecycle guards tasks"
-    ],
-    "sk vision mcp retirement": [
-      "sk-vision MCP retirement"
-    ],
-    "sk vision mcp retirement acceptance criteria": [
-      "sk-vision MCP retirement acceptance criteria"
-    ],
-    "sk vision mcp retirement decision": [
-      "sk-vision MCP retirement decision"
-    ],
-    "sk vision mcp retirement plan": [
-      "sk-vision MCP retirement plan"
-    ],
-    "sk vision mcp retirement summary": [
-      "sk-vision MCP retirement summary"
-    ],
-    "sk vision mcp retirement tasks": [
-      "sk-vision MCP retirement tasks"
-    ],
-    "sk vision mcp server": [
-      "sk-vision mcp server"
-    ],
-    "sk vision mcp server zombie processes": [
-      "sk-vision mcp server zombie processes"
-    ],
-    "sk vision metadata reconciliation": [
-      "sk-vision metadata reconciliation"
-    ],
-    "sk vision moondream2": [
-      "sk-vision moondream2"
-    ],
-    "sk vision non vision model allowlist": [
-      "sk-vision non-vision model allowlist"
-    ],
-    "sk vision ocr task guard": [
-      "sk-vision ocr task guard"
-    ],
     "sk vision opencode 2 runtime bugs": [
       "sk-vision opencode 2 runtime bugs"
-    ],
-    "sk vision opencode adapter": [
-      "sk-vision opencode adapter"
-    ],
-    "sk vision opencode json proof": [
-      "sk-vision opencode.json proof"
-    ],
-    "sk vision opencode plugin": [
-      "sk-vision opencode plugin"
-    ],
-    "sk vision opencode plugin hooks": [
-      "sk-vision opencode plugin hooks"
-    ],
-    "sk vision opencode plugin not loading": [
-      "sk-vision opencode plugin not loading"
-    ],
-    "sk vision opencode plugin runtime resolution plan": [
-      "sk-vision opencode plugin runtime resolution plan"
-    ],
-    "sk vision opencode plugin runtime resolution summary": [
-      "sk-vision opencode plugin runtime resolution summary"
-    ],
-    "sk vision opencode plugin runtime resolution tasks": [
-      "sk-vision opencode plugin runtime resolution tasks"
-    ],
-    "sk vision opencode plugin runtime unavailable": [
-      "sk-vision opencode plugin runtime unavailable"
-    ],
-    "sk vision package hygiene": [
-      "sk-vision package hygiene"
-    ],
-    "sk vision package name": [
-      "sk-vision package name"
-    ],
-    "sk vision pi adapter": [
-      "sk-vision pi adapter"
-    ],
-    "sk vision pi auto inspect": [
-      "sk-vision pi auto-inspect"
-    ],
-    "sk vision pi dry factory": [
-      "sk-vision pi dry factory"
-    ],
-    "sk vision pi extension": [
-      "sk-vision pi extension"
-    ],
-    "sk vision pi factory": [
-      "sk-vision pi factory"
-    ],
-    "sk vision pi offline": [
-      "sk-vision pi --offline"
-    ],
-    "sk vision pi symlink": [
-      "sk-vision pi symlink"
-    ],
-    "sk vision playbook four hosts": [
-      "sk-vision playbook four hosts"
-    ],
-    "sk vision plugin": [
-      "sk-vision plugin"
-    ],
-    "sk vision plugin file": [
-      "sk-vision plugin file"
-    ],
-    "sk vision plugin inventory": [
-      "sk-vision plugin inventory"
-    ],
-    "sk vision plugins readme": [
-      "sk-vision plugins readme"
-    ],
-    "sk vision publishconfig": [
-      "sk-vision publishConfig"
-    ],
-    "sk vision quality gate": [
-      "sk-vision quality gate"
-    ],
-    "sk vision readme rewrite": [
-      "sk-vision readme rewrite"
-    ],
-    "sk vision rebrand": [
-      "sk-vision rebrand"
-    ],
-    "sk vision registertool": [
-      "sk-vision registerTool"
-    ],
-    "sk vision reporoot runtime py resolution": [
-      "sk-vision repoRoot runtime.py resolution"
-    ],
-    "sk vision research": [
-      "sk-vision research"
-    ],
-    "sk vision research plan": [
-      "sk-vision research plan"
-    ],
-    "sk vision research summary": [
-      "sk-vision research summary"
-    ],
-    "sk vision research tasks": [
-      "sk-vision research tasks"
-    ],
-    "sk vision reserved paths": [
-      "sk-vision reserved paths"
-    ],
-    "sk vision restructure plan": [
-      "sk-vision restructure plan"
-    ],
-    "sk vision restructure summary": [
-      "sk-vision restructure summary"
-    ],
-    "sk vision restructure tasks": [
-      "sk-vision restructure tasks"
-    ],
-    "sk vision resume": [
-      "sk-vision resume"
     ],
     "sk vision runtime fixes": [
       "sk vision runtime fixes"
@@ -103464,53 +103002,11 @@
     "sk vision runtime fixes tasks": [
       "sk vision runtime fixes tasks"
     ],
-    "sk vision runtime fork": [
-      "sk-vision runtime fork"
-    ],
-    "sk vision runtime reference": [
-      "sk-vision runtime reference"
-    ],
-    "sk vision runtime teardown memory creep": [
-      "sk-vision runtime teardown memory creep"
-    ],
-    "sk vision session handover": [
-      "sk-vision session handover"
-    ],
-    "sk vision settings passthrough": [
-      "sk-vision settings passthrough"
-    ],
-    "sk vision shipped files": [
-      "sk-vision shipped files"
-    ],
-    "sk vision sk vision": [
-      "sk-vision SK_VISION_"
-    ],
-    "sk vision skill md": [
-      "sk-vision skill md"
-    ],
-    "sk vision skill md contract": [
-      "sk-vision SKILL.md contract"
-    ],
-    "sk vision skill md rewrite": [
-      "sk-vision SKILL.md rewrite"
-    ],
-    "sk vision skill scaffold": [
-      "sk-vision skill scaffold"
-    ],
-    "sk vision skill standards": [
-      "sk-vision skill standards"
-    ],
-    "sk vision standalone skill": [
-      "sk-vision standalone skill"
-    ],
     "sk vision symlink purity": [
       "sk-vision symlink purity"
     ],
     "sk vision teardown leak": [
       "sk-vision teardown leak"
-    ],
-    "sk vision testing playbook": [
-      "sk-vision testing playbook"
     ],
     "sk vision v2 prompt hook": [
       "sk vision v2 prompt hook"
@@ -103544,33 +103040,6 @@
     ],
     "sk vision v2 tools and loose ends tasks": [
       "sk vision v2 tools and loose ends tasks"
-    ],
-    "sk vision venv cleanup": [
-      "sk-vision venv cleanup"
-    ],
-    "sk vision vision blind model scenario": [
-      "sk-vision vision-blind model scenario"
-    ],
-    "sk vision vision command": [
-      "sk-vision /vision command"
-    ],
-    "sk vision vision runtime": [
-      "sk-vision vision-runtime"
-    ],
-    "sk vision vision runtime copy": [
-      "sk-vision vision-runtime copy"
-    ],
-    "sk vision vision teardown plan": [
-      "sk-vision /vision teardown plan"
-    ],
-    "sk vision vision teardown summary": [
-      "sk-vision /vision teardown summary"
-    ],
-    "sk vision vision teardown tasks": [
-      "sk-vision /vision teardown tasks"
-    ],
-    "sk vision when to use": [
-      "sk-vision when to use"
     ],
     "skcode qualityconfig": [
       "skcode.qualityConfig"
@@ -119368,12 +118837,6 @@
     ],
     "viewport emulation": [
       "viewport emulation"
-    ],
-    "vision without mcp": [
-      "vision without MCP"
-    ],
-    "vision without mcp plan": [
-      "vision without MCP plan"
     ],
     "visual design preview": [
       "visual design preview"

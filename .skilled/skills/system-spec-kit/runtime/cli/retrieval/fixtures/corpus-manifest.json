@@ -1,5 +1,5 @@
 {
-  "corpusHash": "58c62941ff1dc29f863b5c196cc87b2842035c62335c576871a06d22f5394cff",
+  "corpusHash": "efb9860a84baeb490e9956b2a123370b9d8c2819809ad74c98b3eab18da8ffbf",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27306,
+  "includedPathCount": 27179,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -14930,133 +14930,6 @@
     "specs/sk-prompt/010-sk-prompt-improvements/research/resource-map.md",
     "specs/sk-prompt/010-sk-prompt-improvements/spec.md",
     "specs/sk-prompt/010-sk-prompt-improvements/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/001-research/decision-record.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/001-research/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/001-research/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/001-research/research/research.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/001-research/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/001-research/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold/001-skill-md/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold/001-skill-md/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold/001-skill-md/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold/001-skill-md/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold/002-metadata-and-manifests/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold/002-metadata-and-manifests/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold/002-metadata-and-manifests/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold/002-metadata-and-manifests/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/001-copy-shipped-files/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/001-copy-shipped-files/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/001-copy-shipped-files/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/001-copy-shipped-files/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/002-rebrand-identifiers/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/002-rebrand-identifiers/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/002-rebrand-identifiers/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/002-rebrand-identifiers/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/003-build-and-tests/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/003-build-and-tests/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/003-build-and-tests/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/003-build-and-tests/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/004-gpu-smoke/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/004-gpu-smoke/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/004-gpu-smoke/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/004-gpu-smoke/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/001-plugin-reexport/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/001-plugin-reexport/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/001-plugin-reexport/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/001-plugin-reexport/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/002-readme-and-proof/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/002-readme-and-proof/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/002-readme-and-proof/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/002-readme-and-proof/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/001-extension-factory/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/001-extension-factory/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/001-extension-factory/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/001-extension-factory/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/002-symlink-and-dry-factory/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/002-symlink-and-dry-factory/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/002-symlink-and-dry-factory/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/002-symlink-and-dry-factory/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment/001-skill-md-and-readme/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment/001-skill-md-and-readme/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment/001-skill-md-and-readme/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment/001-skill-md-and-readme/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment/002-package-hygiene/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment/002-package-hygiene/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment/002-package-hygiene/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment/002-package-hygiene/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/007-pi-input-images/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/007-pi-input-images/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/007-pi-input-images/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/007-pi-input-images/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/008-feature-catalog/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/008-feature-catalog/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/008-feature-catalog/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/008-feature-catalog/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/009-manual-testing-playbook/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/009-manual-testing-playbook/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/009-manual-testing-playbook/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/009-manual-testing-playbook/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/010-quality-gate/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/010-quality-gate/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/010-quality-gate/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/010-quality-gate/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/013-skill-standards-and-hook-restructure/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/013-skill-standards-and-hook-restructure/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/013-skill-standards-and-hook-restructure/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/013-skill-standards-and-hook-restructure/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/014-cursor-devin-mcp-adapters/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/014-cursor-devin-mcp-adapters/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/014-cursor-devin-mcp-adapters/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/014-cursor-devin-mcp-adapters/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-skilled-alignment/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-skilled-alignment/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-skilled-alignment/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-skilled-alignment/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/016-cursor-devin-hook-entries/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/016-cursor-devin-hook-entries/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/016-cursor-devin-hook-entries/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/016-cursor-devin-hook-entries/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/018-host-adapter-findings-fixes/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/018-host-adapter-findings-fixes/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/018-host-adapter-findings-fixes/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/018-host-adapter-findings-fixes/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/020-cursor-mcp-decoupling/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/020-cursor-mcp-decoupling/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/020-cursor-mcp-decoupling/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/020-cursor-mcp-decoupling/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/021-mcp-server-process-lifecycle/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/021-mcp-server-process-lifecycle/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/021-mcp-server-process-lifecycle/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/021-mcp-server-process-lifecycle/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/022-opencode-plugin-runtime-resolution/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/022-opencode-plugin-runtime-resolution/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/022-opencode-plugin-runtime-resolution/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/022-opencode-plugin-runtime-resolution/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/023-command-gated-vision-and-runtime-teardown/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/023-command-gated-vision-and-runtime-teardown/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/023-command-gated-vision-and-runtime-teardown/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/023-command-gated-vision-and-runtime-teardown/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/024-mcp-retirement-and-hook-adapters/acceptance-criteria.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/024-mcp-retirement-and-hook-adapters/decision-record.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/024-mcp-retirement-and-hook-adapters/implementation-summary.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/024-mcp-retirement-and-hook-adapters/plan.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/024-mcp-retirement-and-hook-adapters/spec.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/024-mcp-retirement-and-hook-adapters/tasks.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/handover.md",
-    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/spec.md",
     "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research/decision-record.md",
     "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research/implementation-summary.md",
     "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research/plan.md",
@@ -27337,7 +27210,7 @@
     "specs/system-speckit/041-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "340137c6a2b2bcf9d1ecff3f54147aeb5a61c41c62563cdee517e95749dfc5d1",
+  "manifestHash": "309adaf67e44cfb3fbeb85d5dd46e7ca688b505c1037c9809ff00d58049b6d3b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30556,6 +30429,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/scratch",
       "reason": "excluded directory"
     },
@@ -31733,118 +31614,6 @@
     },
     {
       "path": "specs/sk-prompt/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/001-research/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold/001-skill-md/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold/002-metadata-and-manifests/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/001-copy-shipped-files/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/002-rebrand-identifiers/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/003-build-and-tests/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/004-gpu-smoke/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/001-plugin-reexport/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/002-readme-and-proof/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/001-extension-factory/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/002-symlink-and-dry-factory/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment/001-skill-md-and-readme/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment/002-package-hygiene/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/007-pi-input-images/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/008-feature-catalog/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/009-manual-testing-playbook/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/010-quality-gate/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/021-mcp-server-process-lifecycle/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/022-opencode-plugin-runtime-resolution/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/024-mcp-retirement-and-hook-adapters/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-vision/z_archive",
       "reason": "excluded directory"
     },
     {
