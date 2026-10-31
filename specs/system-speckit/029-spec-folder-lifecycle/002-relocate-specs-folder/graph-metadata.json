@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder",
+  "spec_folder": "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder",
+  "parent_id": "system-speckit/029-spec-folder-lifecycle",
+  "children_ids": [
+    "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/001-relocation-implications-research",
+    "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/002-migration-plan",
+    "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/003-migration-execution",
+    "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/004-code-graph-index-flag-deprecation",
+    "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/005-readme-migration-audit",
+    "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/006-memory-scan-dedup-gap"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "relocate specs folder",
+      "specs folder outside opencode",
+      "root specs directory",
+      "move .opencode/specs"
+    ],
+    "key_topics": [
+      "relocate",
+      "specs",
+      "folder",
+      "outside",
+      "opencode",
+      "root",
+      "directory",
+      "move",
+      "phase",
+      "executed",
+      "canonical",
+      "spec-kit"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "001-relocation-implications-research/research/research.md",
+      "changelog/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "changelog/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Relocate Specs Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Before",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Before phase 3 executed, the canonical spec-kit tree lived at `.opencode/specs/`",
+    "created_at": "2026-08-06T07:50:00.000Z",
+    "last_save_at": "2026-10-31T13:26:20.891Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:16f1063278a85dd93b695fc1ee78b1be08ab8c2e5d6dbfd175732031d9e9ed22",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c3c0ae588b4413fe708229110c359e44bba28b67983b9dc5a140a28086a4aae8"
+    },
+    "last_active_child_id": "system-speckit/032-relocate-specs-folder/003-migration-execution",
+    "last_active_at": null
+  }
+}

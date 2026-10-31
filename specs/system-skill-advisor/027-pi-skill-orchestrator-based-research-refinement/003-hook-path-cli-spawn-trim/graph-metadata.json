@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim",
+  "spec_folder": "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim",
+  "parent_id": "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hook path compiled route spawn",
+      "skip compiled route enrichment hook",
+      "casual prompt gate advisor",
+      "shouldFireAdvisor reconnect",
+      "advisor hook cli spawn trim",
+      "hook path cli spawn plan",
+      "include compiled route option plan",
+      "casual prompt gate plan",
+      "hook path cli spawn tasks",
+      "casual prompt gate tasks",
+      "packet goal",
+      "durable directive"
+    ],
+    "key_topics": [
+      "hook",
+      "path",
+      "compiled",
+      "route",
+      "spawn",
+      "skip",
+      "enrichment",
+      "casual",
+      "prompt",
+      "gate",
+      "advisor",
+      "shouldfireadvisor"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tools/advisor-recommend.ts",
+      ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+      ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+      ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts",
+      ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+      ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+      ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-compiled-route-option.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/prompt-policy-gold-replay.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-no-match.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-tool-schemas.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-recommend.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tools/advisor-recommend.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-manifest.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-fallback.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-brief.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-hook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-recommend-compiled-route-option.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-compiled-route-option.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-stale-daemon-retry.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-policy-gold-replay.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/prompt-policy-gold-replay.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-fallback-no-match.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-no-match.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "claude-user-prompt-submit-hook.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spawn Trim",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisorrecommend handler runs `enrichCompiledRoutes` on every result, cached or fresh (`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:504`, `:571`)",
+    "created_at": "2026-09-26T10:05:44Z",
+    "last_save_at": "2026-10-31T13:26:17.222Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:04fd262549fec9bd37a92a0f4a4811f3d67807a3163054a85fc5e7c851db36dd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6ad5c23106628916a1822c265f4c2839aea0651d4b60ecb6f488496bc00ee1ef",
+      "plan.md": "856089f6f47adb9ce017a3752217eecc4c5a805e52a16b4b4bd1454d9077d58b",
+      "tasks.md": "0e25db95a00385c0fe639d7c35c626bcd8da258c41cf300655c93c6b6fa881e9",
+      "implementation-summary.md": "19aa0dc7bc8e134250f3027a39346b2c6c3b95b7b67dfe1c04bb6fcfb89411ee"
+    },
+    "last_active_at": null
+  }
+}

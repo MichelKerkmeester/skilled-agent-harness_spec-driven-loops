@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/013-retirement-read-path-closure",
+  "spec_folder": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/013-retirement-read-path-closure",
+  "parent_id": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "retirement read path closure",
+      "chk-fix evidence exempt",
+      "level two inference dead",
+      "verification region missing from scaffold",
+      "read path closure plan",
+      "scaffold verification region",
+      "level inference replacement document",
+      "flag parser unrecognized value",
+      "level two tasks verification region",
+      "reference sweep historical mentions",
+      "read path closure tasks",
+      "scaffold honors requested level"
+    ],
+    "key_topics": [
+      "retirement",
+      "read",
+      "path",
+      "closure",
+      "chk-fix",
+      "evidence",
+      "exempt",
+      "level",
+      "two",
+      "inference",
+      "dead",
+      "verification"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts",
+      "shared/parsing/spec-doc-health.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-health.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retirement Read",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Path Closure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "it",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Every",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Verification",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Each of these was reproduced against the live tree",
+    "created_at": "2026-08-30T13:58:21Z",
+    "last_save_at": "2026-10-31T13:26:34.261Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5713b0eddbc520b5cd5ec164f1f623a79478729bacd4b8b9aa69875f46cf00f9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8c614c338d6b1cba7c987d83fdd58343d7045d86d05a161745c3a058a6149e65",
+      "plan.md": "fdda80015c9e97b4d3b597071895cce310a8e073a11209f7aee385fa7847b1f8",
+      "tasks.md": "1ff7dd5dbb3c284833065056f4f93c606e904f682e877bae94fc6e0d1fcc7d97",
+      "decision-record.md": "2b9e09777261f8a15bdc536ec897f98f12936046ab50c23d85ab434526c0f9cf",
+      "implementation-summary.md": "55c8dc15f64e4ecac0b6615fc98f994f1e5673f5ade132de5f68fedca8434383"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

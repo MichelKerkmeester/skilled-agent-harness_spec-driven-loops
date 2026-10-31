@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/021-model-server-lifecycle/002-advisor-daemon-memory/002-lighter-advisor-launcher",
+  "spec_folder": "system-skill-advisor/021-model-server-lifecycle/002-advisor-daemon-memory/002-lighter-advisor-launcher",
+  "parent_id": "system-skill-advisor/021-model-server-lifecycle/002-advisor-daemon-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "lighter advisor launcher",
+      "advisor launcher memory",
+      "fold launcher into advisor server",
+      "lighter advisor launcher plan",
+      "lighter advisor launcher tasks",
+      "lighter advisor launcher acceptance criteria",
+      "lighter advisor launcher decision",
+      "advisor launcher no-go",
+      "lighter advisor launcher implementation summary"
+    ],
+    "key_topics": [
+      "lighter",
+      "advisor",
+      "launcher",
+      "memory",
+      "fold",
+      "server",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decision",
+      "no-go"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/bin/system-skill-advisor-launcher.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Decide",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Today",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "file",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 2026-10-21 audit measured the launcher at about 53 MB and the advisor server at 62 to 100 MB (66 and 103 MB when measured again that afternoon) for each checkout, with one pair per checkout and worktree that ran an advisor query",
+    "created_at": "2026-10-21T09:51:15Z",
+    "last_save_at": "2026-10-31T13:26:10.167Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ac36b7fadcd2a83166b472d9459f7004b11036e18731c624cd164f5938e475eb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0659cf6e4cc345f8aa4d5671b6da8402e8e331eddbad0f389415ada0a0783a37",
+      "plan.md": "963750b9bd8d297c891b7fc1ac714be6d3a775c1944dc8a75ae27d1b0352d13c",
+      "tasks.md": "8db757bc2bf234720b59b5f85bc971cd30d866fd6d4b8f5aecdafb7866254625",
+      "decision-record.md": "51cac2770b90ff3710b903645f0540458f4a7fcedb86479017a8b23caf9d4cfa",
+      "implementation-summary.md": "5d9db52fefeb140bf915408faefbf83536c1e24e0d2d9f6ca1fc933f8ba4dbf0"
+    },
+    "last_active_at": null
+  }
+}

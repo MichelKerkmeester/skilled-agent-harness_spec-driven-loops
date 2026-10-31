@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/006-memory-scan-dedup-gap",
+  "spec_folder": "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/006-memory-scan-dedup-gap",
+  "parent_id": "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "memory scan dedup gap",
+      "same-path duplicate row",
+      "scan-path indexing investigation",
+      "deprecated tier duplicate row",
+      "memory scan dedup gap plan",
+      "confirm-first investigation closed",
+      "memory scan dedup gap tasks",
+      "memory scan dedup gap summary"
+    ],
+    "key_topics": [
+      "memory",
+      "scan",
+      "dedup",
+      "gap",
+      "same-path",
+      "duplicate",
+      "row",
+      "scan-path",
+      "indexing",
+      "investigation",
+      "deprecated",
+      "tier"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Index Scan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Path Same",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Path Dedup Gap",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Confirm",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Revised twice after real evidence",
+    "created_at": "2026-08-07T16:31:56Z",
+    "last_save_at": "2026-10-31T13:26:22.041Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:06140033d2dc650dbe8ec3952b6bffa193f3204847f16824e64eba61efb257c1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0c28c7a0f1997fb6ec9eeb34fa1f7de9d04c62a2ff8842c914dcd9ccc56e3ecf",
+      "plan.md": "629cd4501a6c2d90481813af0b7f7cf58d286e8dfd0c884c5dd051dcdb07d8e9",
+      "tasks.md": "0f0655304f74e2430403cb62823cc6e74d77a01980274a5b37e328c966c5fd76",
+      "implementation-summary.md": "02177b239a9456ded44c53d3945fc8e890b8a0f3009b75a1d84c1e9d7893b327"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

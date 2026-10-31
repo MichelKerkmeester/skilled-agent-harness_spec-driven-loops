@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/031-system-speckit-v4/022-shared-containment-helper",
+  "spec_folder": "system-speckit/031-system-speckit-v4/022-shared-containment-helper",
+  "parent_id": "system-speckit/031-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shared containment helper",
+      "path containment seam",
+      "write boundary helper",
+      "symlinked parent escape",
+      "path containment seam plan",
+      "assertPathInsideRoot helper",
+      "canonicalizeExistingPrefix lexical tail",
+      "nested-changelog generate-description adopters",
+      "single owner write check",
+      "path-containment boundary unit test",
+      "path containment seam tasks",
+      "inventory containment sites"
+    ],
+    "key_topics": [
+      "shared",
+      "containment",
+      "helper",
+      "path",
+      "seam",
+      "write",
+      "boundary",
+      "symlinked",
+      "parent",
+      "escape",
+      "plan",
+      "assertpathinsideroot"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "runtime/cli/utils/path-utils.ts",
+      "runtime/cli/spec-folder/nested-changelog.ts",
+      "runtime/cli/spec-folder/generate-description.ts",
+      "runtime/cli/tests/path-containment.vitest.ts",
+      "runtime/cli/tests/nested-changelog.vitest.ts",
+      "tests/path-containment.vitest.ts",
+      "tests/nested-changelog.vitest.ts",
+      "tests/generate-description-identity-safety.vitest.ts",
+      "utils/path-utils.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "path-utils.ts",
+        "kind": "code",
+        "path": "runtime/cli/utils/path-utils.ts",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.ts",
+        "kind": "code",
+        "path": "runtime/cli/spec-folder/nested-changelog.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-description.ts",
+        "kind": "code",
+        "path": "runtime/cli/spec-folder/generate-description.ts",
+        "source": "derived"
+      },
+      {
+        "name": "path-containment.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/path-containment.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/nested-changelog.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-description-identity-safety.vitest.ts",
+        "kind": "test",
+        "path": "tests/generate-description-identity-safety.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "three",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Caller",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The CLI checked write boundaries three different ways: lexically in the changelog generator, realpath-only in the description generator, and canonically in the shared utilities. One helper now owns the check so every boundary rejects the same escapes.",
+    "created_at": "2026-09-05T19:16:53Z",
+    "last_save_at": "2026-10-31T13:26:45.328Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cf6527aba1f5c5bb24f35c04365c21d53c81be56f3966a1d12d7231a7a2ecbc0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b36a107c8446ac792053e9e3692651c9e6919478eaf21dfabd3c6d9cf7a603b5",
+      "plan.md": "e966ca2d838007199b0287e4f62cfc680c1243bca719fcf9240e6f2fcb7dac9f",
+      "tasks.md": "62e58b2092c3fa58f39f798b7747ca801764f8241c17fb3e5d6ed7a68e703d9b",
+      "implementation-summary.md": "b4cbe8a2875bb4736715ab3acf68b7f0e8980493502e1b57b5bcdab9c2495ce0"
+    },
+    "last_active_at": null
+  }
+}

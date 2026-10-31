@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/067-doctor-sk-skill-command/003-convert-legacy-skilled",
+  "spec_folder": "sk-doc/067-doctor-sk-skill-command/003-convert-legacy-skilled",
+  "parent_id": "sk-doc/067-doctor-sk-skill-command",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "convert legacy skilled",
+      "phase 3 convert legacy skilled",
+      "move machine router to ROUTER.md",
+      "convert legacy skilled plan",
+      "convert legacy skilled tasks",
+      "convert legacy skilled acceptance criteria",
+      "convert legacy skilled goal",
+      "convert legacy skilled implementation summary"
+    ],
+    "key_topics": [
+      "convert",
+      "legacy",
+      "skilled",
+      "phase",
+      "move",
+      "machine",
+      "router",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/sk-skill-convert.cjs",
+      ".skilled/commands/doctor/scripts/lib/sk-skill-convert-transforms.cjs",
+      ".skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs",
+      ".skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-convert.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/sk-skill-convert.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-convert-transforms.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/lib/sk-skill-convert-transforms.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-convert.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-surface.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The fleet move to `ROUTER.md` took each trailing `MACHINE ROUTER` section verbatim into `ROUTER.md` under `## 3",
+    "created_at": "2026-10-30T05:21:13Z",
+    "last_save_at": "2026-10-31T13:26:08.780Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e915eb8cf8ea4572e161357e00bc4494d44c6311507f249e6fb46a8a3420d6a9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "be0f1bacfa0babaf97d96477dac084cdc6c5b9ccdf4df8c8e2f309b3fc2d89f5",
+      "plan.md": "4d8f2986a9d95be5e5e594f4ef7018ce64b1705360b21152d9839499f578ced9",
+      "tasks.md": "a37295be61d68bbfba845720ad50d1839192ff7cb0c527b2bd9b083f2d3a7acf",
+      "implementation-summary.md": "92ad6da598da76580d532568c4c429514316697f233d4b6e8e3f7d2f92691ff1"
+    },
+    "last_active_at": null
+  }
+}

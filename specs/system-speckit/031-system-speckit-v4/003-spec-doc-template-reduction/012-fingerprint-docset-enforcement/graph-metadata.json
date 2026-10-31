@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/012-fingerprint-docset-enforcement",
+  "spec_folder": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/012-fingerprint-docset-enforcement",
+  "parent_id": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "source fingerprint docset",
+      "fingerprint docset enforcement",
+      "drift gate inert",
+      "generation marker required",
+      "fingerprint docset plan",
+      "stamp only migration",
+      "fingerprint without marker count",
+      "backfill-graph-metadata reuse",
+      "integrity rule absent marker skip",
+      "stamp-only migration first",
+      "fingerprint docset tasks",
+      "stamp migration tasks"
+    ],
+    "key_topics": [
+      "source",
+      "fingerprint",
+      "docset",
+      "enforcement",
+      "drift",
+      "gate",
+      "inert",
+      "generation",
+      "marker",
+      "required",
+      "plan",
+      "stamp"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fingerprint Docset Enforcement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "neither",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "drift",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Every",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Verification",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The marker skips comparison on an absent value, and the field is optional, so almost nothing is",
+    "created_at": "2026-08-30T13:58:20Z",
+    "last_save_at": "2026-10-31T13:26:33.800Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:112b2a4cbf02cc7f7fea40382b75bff9616e0ed0ffd1d083189ffff7cdbcf171",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "add0ff4b4dff5766c7c6d8f664975b5e093ccec7c88bcca2fd31ea85b2fb074a",
+      "plan.md": "f92acf626c3f60ff0526901651219cf8e6cd700d9c029124b8af2dd7264ca997",
+      "tasks.md": "8ba719376688477d3e965a8c91bba8cc7434256a4c3939830aa81dfe18030f24",
+      "decision-record.md": "74080db4ac0d7778e58cd735ee38efbeee1761178204d83ca5c00b6633562895",
+      "implementation-summary.md": "0f9e8013243b35d3a096378471d763a92e5c0569c7c2164a6579b2bd9b2bd54b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

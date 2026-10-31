@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/031-system-speckit-v4/024-metadata-regeneration-and-shared-parser",
+  "spec_folder": "system-speckit/031-system-speckit-v4/024-metadata-regeneration-and-shared-parser",
+  "parent_id": "system-speckit/031-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "metadata regeneration shared parser",
+      "metadata regeneration parser edges",
+      "metadata regeneration pass",
+      "drift census",
+      "shared package dependency edge",
+      "sk-doc scripts manifest",
+      "metadata regeneration plan",
+      "census declared children disk",
+      "regenerate clean packets",
+      "shared dependency file edge",
+      "parser adopt deep-loop sk-doc",
+      "generators description graph metadata"
+    ],
+    "key_topics": [
+      "metadata",
+      "regeneration",
+      "shared",
+      "parser",
+      "edges",
+      "pass",
+      "drift",
+      "census",
+      "package",
+      "dependency",
+      "edge",
+      "sk-doc"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "runtime/lib/parsing/content-normalizer.ts",
+      "runtime/lib/validation/orchestrator.ts",
+      "runtime/hooks/cursor/README.md",
+      "runtime/data/trigger-index.json",
+      "tests/path-containment.vitest.ts",
+      "tests/nested-changelog.vitest.ts",
+      "tests/generate-description-identity-safety.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "content-normalizer.ts",
+        "kind": "code",
+        "path": "runtime/lib/parsing/content-normalizer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": "runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/hooks/cursor/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "path-containment.vitest.ts",
+        "kind": "test",
+        "path": "tests/path-containment.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.vitest.ts",
+        "kind": "test",
+        "path": "tests/nested-changelog.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-description-identity-safety.vitest.ts",
+        "kind": "test",
+        "path": "tests/generate-description-identity-safety.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "disk",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "any",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Report",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Census",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Run the identity-aware metadata writer over every drifted packet that is clean in git, give system-deep-loop and sk-doc a dependency edge to the spec-kit shared package, and adopt the shared frontmatter parser in their JavaScript callers.",
+    "created_at": "2026-09-06T04:26:02Z",
+    "last_save_at": "2026-10-31T13:26:46.398Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:440fabcfe06ca1e9035328eadc9656734a50f6c80217ce762d2c69d4e932a368",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b23c6a10464bcccdf0391b9a91c4edc53bdc12686d2915244dbdaa075f7339f0",
+      "plan.md": "c5d7cf495dd420df654bd5bd2374dc78c645eaa732f156b62f26adbaad9c3c51",
+      "tasks.md": "aca103319fb3dd38b26153b51ac16110fa345f5c4c3d345dcacddda5f0b9162b",
+      "implementation-summary.md": "46f6e816077452697b6dae635731adc20a4e69b17b69113e0294f7e906ef5ffa"
+    },
+    "last_active_at": null
+  }
+}

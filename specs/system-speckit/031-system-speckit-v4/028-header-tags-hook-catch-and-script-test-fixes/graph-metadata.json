@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/031-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes",
+  "spec_folder": "system-speckit/031-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes",
+  "parent_id": "system-speckit/031-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shell header tag normalization",
+      "rule script component header",
+      "silent hook catch stderr",
+      "dead memory frontmatter barrel",
+      "quality audit script test",
+      "calculate completeness script test",
+      "remediation execution plan",
+      "exact string replacement gate",
+      "remediation tasks",
+      "confirmed row application",
+      "header tag fixes shipped",
+      "completeness clamp errexit bug"
+    ],
+    "key_topics": [
+      "shell",
+      "header",
+      "tag",
+      "normalization",
+      "rule",
+      "script",
+      "component",
+      "silent",
+      "hook",
+      "catch",
+      "stderr",
+      "dead"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "runtime/hooks/lib/workspace/repo-root.mjs",
+      "shared/workspace/repo-root.mjs",
+      "runtime/hooks/cursor/completion-evidence-response.mjs",
+      "runtime/cli/lib/frontmatter-migration.ts",
+      "runtime/cli/tests/quality-audit-script.vitest.ts",
+      "runtime/cli/tests/calculate-completeness-script.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "repo-root.mjs",
+        "kind": "file",
+        "path": "runtime/hooks/lib/workspace/repo-root.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "completion-evidence-response.mjs",
+        "kind": "file",
+        "path": "runtime/hooks/cursor/completion-evidence-response.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-migration.ts",
+        "kind": "code",
+        "path": "runtime/cli/lib/frontmatter-migration.ts",
+        "source": "derived"
+      },
+      {
+        "name": "quality-audit-script.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/quality-audit-script.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "calculate-completeness-script.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/calculate-completeness-script.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Mechanical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Asserted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Confirmed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The runtime research confirmed 31 shell scripts and 7 module scripts with header tags the sk-code standards do not document, one hook that swallows every failure, one barrel nobody imports, one comment kept alive by a hygiene marker, and two public CLI scripts with no test at all",
+    "created_at": "2026-09-06T08:18:05Z",
+    "last_save_at": "2026-10-31T13:26:46.317Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:24b7af4918ef5c4334b834551738aae834641fee2e04a284e98e9233275bc2e9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "15b7976ba3f4dc8b578c93fc0ef01208c2612b1e332ab4c06fe30dd78a67d848",
+      "plan.md": "1d8d14b37bf28e4551bc84030c14adeaa5123acacfb66cde472e70cc699d3885",
+      "tasks.md": "f6c2f8aad5d94a8d96616c53e2ec2931c1a87428c57d1edd07272a8965e2deaf",
+      "implementation-summary.md": "12e609d1e674602f9c14837aa50bdc5b71a07d9838ebbd6bb17a555b0520c408"
+    },
+    "last_active_at": null
+  }
+}

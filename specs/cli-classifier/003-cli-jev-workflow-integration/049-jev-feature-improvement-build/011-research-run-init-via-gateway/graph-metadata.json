@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-classifier/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/011-research-run-init-via-gateway",
+  "spec_folder": "cli-classifier/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/011-research-run-init-via-gateway",
+  "parent_id": "cli-classifier/003-cli-jev-workflow-integration/049-jev-feature-improvement-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "research run init via gateway",
+      "a deep research run including each fan out",
+      "research run init via gateway plan",
+      "research run init via gateway tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "research run init via gateway implementation summary"
+    ],
+    "key_topics": [
+      "research",
+      "run",
+      "init",
+      "via",
+      "gateway",
+      "deep",
+      "including",
+      "fan",
+      "plan",
+      "tasks",
+      "packet",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      ".skilled/commands/deep/assets/deep-research-confirm.yaml",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-run-open.vitest.ts",
+      "scratch/run-open-proof-state.jsonl.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-ledger-types.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-run-open.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-run-open.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-open-proof-state.jsonl.txt",
+        "kind": "file",
+        "path": "scratch/run-open-proof-state.jsonl.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Both",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Mirror",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Both deep-research workflows open a run by writing a 15-key config row straight into `deep-research-state.jsonl`",
+    "created_at": "2026-10-03T05:30:11Z",
+    "last_save_at": "2026-10-31T13:25:39.467Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a111edbd7170557a87a36628852bf79168446e11afb2d82bf7de0478a02e1987",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "92df25fc26783c5e43a37da2f28578329bcdad51712c1401ec397e8badda76c0",
+      "plan.md": "7147ce2d3d3d3c81bfa4025f3bfbacf278cc39610ec30e7ada7382316cc7b56e",
+      "tasks.md": "09338ab4dcd6949435de94d9ecf0d13e3db8fc4d5326abdda2d397a394bfb46c",
+      "implementation-summary.md": "c662074dbb16572560e142309c463dfefe2692bf6f8c3c8ee3a270839202acb9"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/021-model-server-lifecycle/001-model-server-default-spawn",
+  "description": "The memory server's launcher used to start the shared HF model server on first embed demand",
+  "keywords": [
+    "memory",
+    "server",
+    "launcher",
+    "start",
+    "shared",
+    "model",
+    "first",
+    "embed",
+    "demand"
+  ],
+  "lastUpdated": "2026-09-04T17:50:18.641Z",
+  "specId": "023",
+  "folderSlug": "model-server-default-spawn",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

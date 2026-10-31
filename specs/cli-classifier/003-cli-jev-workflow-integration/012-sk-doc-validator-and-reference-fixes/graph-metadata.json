@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-classifier/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes",
+  "spec_folder": "cli-classifier/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes",
+  "parent_id": "cli-classifier/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "validate_document readme fallback notice",
+      "quick_validate mcp token severity",
+      "dead file:line playbook citation",
+      "sk-doc validator owner fix",
+      "validator fallback warning plan",
+      "mcp token severity plan",
+      "dead citation repoint plan",
+      "sk doc validator and reference fixes tasks",
+      "sk doc validator and reference fixes acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria"
+    ],
+    "key_topics": [
+      "readme",
+      "fallback",
+      "notice",
+      "mcp",
+      "token",
+      "severity",
+      "dead",
+      "file",
+      "line",
+      "playbook",
+      "citation",
+      "sk-doc"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/repo-rules/communication.md",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_structure_validation.py",
+      ".skilled/skills/sk-doc/shared/scripts/quick_validate.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_quick_validate_086.py",
+      ".skilled/skills/sk-doc/README.md",
+      ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/exhausted-approach-respect.md",
+      ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/pause-sentinel-halt.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality-coverage.md",
+      "shared/scripts/README.md",
+      ".skilled/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/commands/deep/research.md",
+      "runtime/cli/tests/memory-pipeline-regressions.vitest.ts",
+      ".skilled/commands/deep/assets/deep-research-presentation.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/communication.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_structure_validation.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_structure_validation.py",
+        "source": "derived"
+      },
+      {
+        "name": "quick_validate.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/quick_validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_quick_validate_086.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_quick_validate_086.py",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "exhausted-approach-respect.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/exhausted-approach-respect.md",
+        "source": "derived"
+      },
+      {
+        "name": "pause-sentinel-halt.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/pause-sentinel-halt.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-capturing-pipeline-quality-coverage.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality-coverage.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-pipeline-regressions.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/memory-pipeline-regressions.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validator Notices",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dead Playbook Citations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`detectdocumenttype` in `.skilled/skills/sk-doc/shared/scripts/validatedocument.py` ended with `# Default to readme for general markdown` and `return 'readme'` (`:266-267` at the build-start HEAD `6f47c32dce`)",
+    "created_at": "2026-09-27T11:50:18Z",
+    "last_save_at": "2026-10-31T13:25:30.781Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:014e8dd081904bfd9018d2e67afa0040f3f492cc096a1be01b69072551951705",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bf70210f1215ce4b777e268e33160b839dd53993973d994b899873643b61be37",
+      "plan.md": "f469fb449880a5b44970005dc6ce1d84a001279e7a762856682d132069be3651",
+      "tasks.md": "53c05fba8ffadf0e4bf4314e0f55c3b541f0f9802635f27bf083937a27bed3bb",
+      "implementation-summary.md": "8b4628ca2d6ad3e6cfdfc4610b952b1bf446ff2f96b31eab230111c1982f0824"
+    },
+    "last_active_at": null
+  }
+}

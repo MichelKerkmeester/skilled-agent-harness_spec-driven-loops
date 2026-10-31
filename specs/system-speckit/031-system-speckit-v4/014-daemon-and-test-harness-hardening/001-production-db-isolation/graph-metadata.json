@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/031-system-speckit-v4/014-daemon-and-test-harness-hardening/001-production-db-isolation",
+  "spec_folder": "system-speckit/031-system-speckit-v4/014-daemon-and-test-harness-hardening/001-production-db-isolation",
+  "parent_id": "system-speckit/031-system-speckit-v4/014-daemon-and-test-harness-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "production db isolation",
+      "vitest setupFiles bypass",
+      "context-index.sqlite guard",
+      "isolateProductionDatabase",
+      "production db isolation plan",
+      "vitest config reconcile",
+      "fail closed resolver",
+      "production db isolation tasks",
+      "ProductionDatabaseResolutionError refusal",
+      "fail closed isTestContext refusal",
+      "config setupFiles reconciled",
+      "production-db-isolation.vitest.ts suite"
+    ],
+    "key_topics": [
+      "production",
+      "isolation",
+      "vitest",
+      "setupfiles",
+      "bypass",
+      "context-index",
+      "sqlite",
+      "guard",
+      "isolateproductiondatabase",
+      "plan",
+      "config",
+      "reconcile"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/vitest.config.ts",
+      "tests/_support/vitest-setup.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest-setup.ts",
+        "kind": "code",
+        "path": "tests/_support/vitest-setup.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Production Database Isolation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Daemon Lifecycle",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Defence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`mcp-server/vitest.config.ts` loads `tests/support/vitest-setup.ts`, whose `isolateProductionDatabase()` exists to stop a test opening the live memory database",
+    "created_at": "2026-08-30T09:55:25Z",
+    "last_save_at": "2026-10-31T13:26:40.376Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f0bb9a081a9e0269d7011a87fd0428a331a0e8fee1212547432ae0fc7c04766e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "07ac9d2d1fe4f5466592f347a802a01c3b23e234fb1034639571d9f8241476d5",
+      "plan.md": "d45763a90e98d0340cc2100d2c2dcf0fabf150fd8c7ea149d3f6ae157c5c394e",
+      "tasks.md": "66d3258c844f7334accfd0d9825d754704e76974cb0304b599fcfb7a32c86539",
+      "implementation-summary.md": "039d13742e9419d9993d1490247d45f42625aea8202efd4be051f7e98451cc72"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

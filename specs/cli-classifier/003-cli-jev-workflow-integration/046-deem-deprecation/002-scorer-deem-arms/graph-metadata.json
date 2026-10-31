@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/002-scorer-deem-arms",
+  "spec_folder": "cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/002-scorer-deem-arms",
+  "parent_id": "cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "remove scorer deem arm",
+      "scorer deem flag removal",
+      "jev only scorer",
+      "deem arm tests",
+      "remove scorer deem arm plan",
+      "scorer deem flag removal plan",
+      "jev only scorer plan",
+      "deem arm tests plan",
+      "remove scorer deem arm tasks",
+      "scorer deem flag removal tasks",
+      "jev only scorer tasks",
+      "deem arm tests tasks"
+    ],
+    "key_topics": [
+      "remove",
+      "scorer",
+      "deem",
+      "arm",
+      "flag",
+      "removal",
+      "jev",
+      "only",
+      "tests",
+      "plan",
+      "tasks",
+      "twenty"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs",
+      ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts",
+      "scratch/default-diff.txt",
+      "scratch/deem-flag.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-injection-screen.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "test-cite-drift-scan.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-route-replay.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-fanout-pairs.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "default-diff.txt",
+        "kind": "file",
+        "path": "scratch/default-diff.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deem-flag.txt",
+        "kind": "file",
+        "path": "scratch/deem-flag.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Its Deem",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Twenty scorers accept `--deem`, and each arm has tests, docs and in two cases a side-by-side comparison with Jev",
+    "created_at": "2026-10-02T07:54:41Z",
+    "last_save_at": "2026-10-31T13:25:35.604Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2f70d623061f3a9be1e3821ad6dbb6dfe8c262c16542befb1592ceb6a269b44b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f9f218c86ca51a89f54e51918a8a5b4ae3390c15b6095c6c0d7b6f6de353e3b1",
+      "plan.md": "4777b371c4ef4d3bf0f9e5d0e62860b319ac36f75788ce8f4fbed3f6e2126f73",
+      "tasks.md": "65e73e9456c4d7207669481c835160f6426b62d4818f3b571c785111047c0938",
+      "implementation-summary.md": "c0a19e193ec62e279bfb56b2f351c44879f3bc747515964a4ae687e2185a6558"
+    },
+    "last_active_at": null
+  }
+}

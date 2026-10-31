@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/031-system-speckit-v4/009-validation-rule-reduction",
+  "spec_folder": "system-speckit/031-system-speckit-v4/009-validation-rule-reduction",
+  "parent_id": "system-speckit/031-system-speckit-v4",
+  "children_ids": [
+    "system-speckit/031-system-speckit-v4/009-validation-rule-reduction/001-warnings-stop-blocking",
+    "system-speckit/031-system-speckit-v4/009-validation-rule-reduction/002-tracks-are-not-packets",
+    "system-speckit/031-system-speckit-v4/009-validation-rule-reduction/003-scaffold-parity",
+    "system-speckit/031-system-speckit-v4/009-validation-rule-reduction/004-stop-grading-prose-shape",
+    "system-speckit/031-system-speckit-v4/009-validation-rule-reduction/005-framework-doc-matches-behaviour",
+    "system-speckit/031-system-speckit-v4/009-validation-rule-reduction/006-delete-taste-rules",
+    "system-speckit/031-system-speckit-v4/009-validation-rule-reduction/007-retire-the-sweep",
+    "system-speckit/031-system-speckit-v4/009-validation-rule-reduction/008-a-level-for-research"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "validation rule reduction",
+      "validation reduction",
+      "delete validation rules",
+      "strict gate too strict"
+    ],
+    "key_topics": [
+      "validation",
+      "rule",
+      "reduction",
+      "delete",
+      "rules",
+      "strict",
+      "gate",
+      "too",
+      "completion",
+      "fails",
+      "roughly",
+      "two"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gate Small Enough To Trust",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Closed With",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The completion gate fails roughly two thirds of the live corpus, and the",
+    "created_at": "2026-08-29T17:24:49.641Z",
+    "last_save_at": "2026-10-31T13:26:36.733Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:530e83596bf94bac828dc3984060f8710d3f7096c724b327fcefd654daf37e2f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7764cfa61a2490617032928baa3a9f020e30a052fcc21b3609ba56863b6d64ab"
+    },
+    "last_active_child_id": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/002-tracks-are-not-packets",
+    "last_active_at": null
+  }
+}

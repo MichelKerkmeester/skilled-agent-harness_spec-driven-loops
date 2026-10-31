@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-classifier/003-cli-jev-workflow-integration/056-codex-dispatch-and-checklist",
+  "spec_folder": "cli-classifier/003-cli-jev-workflow-integration/056-codex-dispatch-and-checklist",
+  "parent_id": "cli-classifier/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "codex task dispatch payload",
+      "codex bash tool rename",
+      "codex exec matcher",
+      "javascript checklist module header",
+      "codex payload probe plan",
+      "codex bash matcher plan",
+      "codex dispatch and checklist tasks",
+      "codex dispatch and checklist acceptance criteria",
+      "codex dispatch and checklist implementation summary"
+    ],
+    "key_topics": [
+      "codex",
+      "task",
+      "dispatch",
+      "payload",
+      "bash",
+      "tool",
+      "rename",
+      "exec",
+      "matcher",
+      "javascript",
+      "checklist",
+      "module"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".codex/hooks.json",
+      ".skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs",
+      "runtime/hooks/codex/spec-gate-enforce.mjs",
+      ".codex/SYNC.md",
+      "runtime-mirrors/hook-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "codex-shell-tool.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-enforce.mjs",
+        "kind": "file",
+        "path": "runtime/hooks/codex/spec-gate-enforce.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".codex/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registry.json",
+        "kind": "config",
+        "path": "runtime-mirrors/hook-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Probing Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Codex",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Codex task dispatch was marked `unverified` because its `spawnagent` hook payload had never been read",
+    "created_at": "2026-10-05T15:41:54Z",
+    "last_save_at": "2026-10-31T13:25:43.564Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a442846df47c74e55e4c71cb343111439a46d5949265b6808e955f12e2a06006",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fa2554a882a4c8714166392403af68cbb4035cf5239cb4b7a96ed1f3cebb7740",
+      "plan.md": "95a849fcf755774f0e4325a2667d258b71ec8479845cca8d8be44a8eba22a3ca",
+      "tasks.md": "d150b90f0aa0e902aa398aeceb1e023ed54f919dc33d77a551ee1f08115ae1c7",
+      "implementation-summary.md": "0826b9131748b7c1e7ae7235d6f426e2741ab6335768d1bf13590b313c123556"
+    },
+    "last_active_at": null
+  }
+}

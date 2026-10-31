@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/064-readme-validation-debt/001-repo-doc-debt",
+  "spec_folder": "sk-doc/064-readme-validation-debt/001-repo-doc-debt",
+  "parent_id": "sk-doc/064-readme-validation-debt",
+  "children_ids": [
+    "sk-doc/064-readme-validation-debt/001-repo-doc-debt/001-broken-references",
+    "sk-doc/064-readme-validation-debt/001-repo-doc-debt/002-readme-template-conformance",
+    "sk-doc/064-readme-validation-debt/001-repo-doc-debt/003-changelog-omissions",
+    "sk-doc/064-readme-validation-debt/001-repo-doc-debt/004-benchmark-report-readmes",
+    "sk-doc/064-readme-validation-debt/001-repo-doc-debt/005-reference-and-coverage-fixes",
+    "sk-doc/064-readme-validation-debt/001-repo-doc-debt/006-audit-and-validator-accuracy",
+    "sk-doc/064-readme-validation-debt/001-repo-doc-debt/007-alignment-fixes"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "repo doc debt phase parent spec",
+      "readme audit debt",
+      "changelog internal id cleanup"
+    ],
+    "key_topics": [
+      "repo",
+      "doc",
+      "debt",
+      "phase",
+      "parent",
+      "spec",
+      "readme",
+      "audit",
+      "changelog",
+      "internal",
+      "cleanup",
+      "auditreadmes"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      ".skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit_readmes.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The README audit (`auditreadmes.py`) over this worktree reports 753 READMEs, 244 template-invalid, 119 broken references, 19 missing key artifacts and 1 warning",
+    "created_at": "2026-10-27T06:53:10Z",
+    "last_save_at": "2026-10-31T13:26:03.936Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:dd45929fa0a89bfe69617d8825727106b56ba40de20a21a905475b3b10462ba9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4ca7988fe4d101d2f33c56832a6feb8d7f91e79c4d417b4884732c22e34997b5"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/031-system-speckit-v4/038-goal-unification/009-close-open-decisions",
+  "description": "The four decisions the hardening phase left to the operator, the last review advisories, and the Devin host merge unknown, all closed and pinned by",
+  "keywords": [
+    "four",
+    "decisions",
+    "hardening",
+    "phase",
+    "left",
+    "operator",
+    "last",
+    "review",
+    "advisories",
+    "devin",
+    "host",
+    "merge",
+    "unknown",
+    "closed",
+    "pinned"
+  ],
+  "lastUpdated": "2026-09-12T16:14:53.751Z",
+  "specId": "009",
+  "folderSlug": "close-open-decisions",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "038-goal-unification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

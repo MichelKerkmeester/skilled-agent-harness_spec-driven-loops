@@ -1,0 +1,35 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode",
+  "description": "Phase 13's one-off script `fix-dup-anchors.mjs` handled duplicate anchor pairs (two anchor copies in one document, paired by literal position)",
+  "keywords": [
+    "phase",
+    "one-off",
+    "script",
+    "fix-dup-anchors",
+    "mjs",
+    "handled",
+    "duplicate",
+    "anchor",
+    "pairs",
+    "two",
+    "copies",
+    "one",
+    "document",
+    "paired",
+    "literal",
+    "position"
+  ],
+  "lastUpdated": "2026-10-11T19:55:41.497Z",
+  "specId": "011",
+  "folderSlug": "anchor-repair-mode",
+  "parentChain": [
+    "system-speckit",
+    "034-spec-folder-tooling",
+    "016-research-recommendations"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "11-10-26_20-55__the-ten-documents-the-repair-refuses-by-design.md"
+  ]
+}

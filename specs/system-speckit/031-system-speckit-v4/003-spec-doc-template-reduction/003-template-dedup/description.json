@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/003-template-dedup",
+  "description": "`decision-record.md.tmpl` already shares its ADR skeleton across the L3 and L3+ blocks",
+  "keywords": [
+    "decision-record",
+    "tmpl",
+    "already",
+    "shares",
+    "adr",
+    "skeleton",
+    "across",
+    "blocks"
+  ],
+  "lastUpdated": "2026-09-06T06:44:45.976Z",
+  "specId": "003",
+  "folderSlug": "template-dedup",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "003-spec-doc-template-reduction"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-08-26_21-20__scaffold-smoke-proves-the-generator-fix.md"
+  ]
+}

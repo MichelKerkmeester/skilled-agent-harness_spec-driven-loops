@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-classifier/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/009-pi-transport-improvements",
+  "spec_folder": "cli-classifier/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/009-pi-transport-improvements",
+  "parent_id": "cli-classifier/003-cli-jev-workflow-integration/049-jev-feature-improvement-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi transport improvements",
+      "the transport honors the caller s provider can",
+      "pi transport improvements plan",
+      "pi transport improvements tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "pi transport improvements implementation summary"
+    ],
+    "key_topics": [
+      "transport",
+      "improvements",
+      "honors",
+      "caller",
+      "provider",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
+      ".skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs",
+      ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
+      ".skilled/skills/cli-classifier/benchmark/pi-transport/tests/score-pi-transport.test.mjs",
+      ".skilled/skills/cli-classifier/benchmark/pi-transport/README.md",
+      ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
+      ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
+      ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-comparison.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "jev-transport.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "jev-transport.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-pi-transport.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-pi-transport.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/tests/score-pi-transport.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "pi-transport-integration.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "pi-transport-comparison.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-comparison.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Jev Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Feature 037 adopted the Pi transport by one row, on a comparison whose CLI arm was a day older and used another provider",
+    "created_at": "2026-10-03T05:30:09Z",
+    "last_save_at": "2026-10-31T13:25:39.421Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:22fc4ba543bccfacda299c8f18d42a894fce4d9b5dfc9922fe48ce20fa23b16e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bce5736f3cef5af07bd391ca8abf7e85ec9c1ddd64b78c6c3e0647e379ea4182",
+      "plan.md": "c6cadc591c27b9eb8e92e11c441b210d5d004b047b0824c0fe10418c912a9355",
+      "tasks.md": "4744ef188b5b104f47c177bb8993d65ca4e428a537ec9a3f06ca51fcde664a39",
+      "implementation-summary.md": "8fff69c7b3fd01c04bf2dd3ea7b61acddce3ceb7845c4ffc3862a379b50869c9"
+    },
+    "last_active_at": null
+  }
+}

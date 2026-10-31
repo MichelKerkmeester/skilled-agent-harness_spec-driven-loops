@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode",
+  "spec_folder": "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode",
+  "parent_id": "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "anchor repair mode",
+      "phase 11 anchor repair mode",
+      "fix duplicate anchors",
+      "un-nest questions anchor",
+      "anchor repair mode plan",
+      "anchor repair mode tasks",
+      "anchor repair mode acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "anchor repair mode implementation summary"
+    ],
+    "key_topics": [
+      "anchor",
+      "repair",
+      "mode",
+      "phase",
+      "duplicate",
+      "anchors",
+      "un-nest",
+      "questions",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/anchor-repair-sample.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/workflow-invariance.vitest.ts",
+      "cli/lib/anchor-generator.ts",
+      "extractors/file-extractor.ts",
+      "extractors/decision-extractor.ts",
+      "runtime/lib/validation/orchestrator.ts",
+      "runtime/cli/utils/template-structure.js",
+      "runtime/cli/lib/validator-registry.json",
+      "references/validation/validation-rules.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "heal-spec-docs.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "heal-anchor-repair.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-anchor-repair.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "anchor-repair-sample.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/anchor-repair-sample.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-invariance.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/workflow-invariance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "anchor-generator.ts",
+        "kind": "code",
+        "path": "cli/lib/anchor-generator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "file-extractor.ts",
+        "kind": "code",
+        "path": "extractors/file-extractor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-extractor.ts",
+        "kind": "code",
+        "path": "extractors/decision-extractor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": "runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "template-structure.js",
+        "kind": "code",
+        "path": "runtime/cli/utils/template-structure.js",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": "runtime/cli/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "validation-rules.md",
+        "kind": "doc",
+        "path": "references/validation/validation-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 13's one-off script `fix-dup-anchors.mjs` handled duplicate anchor pairs (two anchor copies in one document, paired by literal position)",
+    "created_at": "2026-10-08T04:22:46Z",
+    "last_save_at": "2026-10-31T13:26:27.165Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e1e462eec16476399f02ea7e89bbff65cf905bd33378b6a8fd1e35870bde24f8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8db9fd9b45b8f2256a15a20e1376c353404573c59eb7a1712c4d0a64cea4839c",
+      "plan.md": "5bab24dffa2c6cc6ec0700b210692a7a484e6d47a37e040601cfb3f137985d67",
+      "tasks.md": "370e8f0dbf6143d3f0b096af4f556038a20c7306616fe22cb725ea5aecf401fc",
+      "implementation-summary.md": "d55f1ff39de4ebb41b6cc9cf88a3a2e5374fc12e4f93a6d6040088ec32c40794"
+    },
+    "last_active_at": null
+  }
+}

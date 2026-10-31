@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder",
+  "description": "Before phase 3 executed, the canonical spec-kit tree lived at `.opencode/specs/`",
+  "keywords": [
+    "phase",
+    "executed",
+    "canonical",
+    "spec-kit",
+    "tree",
+    "lived",
+    "opencode",
+    "specs"
+  ],
+  "lastUpdated": "2026-08-15T14:41:14.686Z",
+  "specId": "032",
+  "folderSlug": "relocate-specs-folder",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

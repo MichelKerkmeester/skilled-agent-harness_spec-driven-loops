@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure",
+  "spec_folder": "system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure",
+  "parent_id": "system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "checklist deprecation closure",
+      "ac coverage evidence source",
+      "traceability precedence",
+      "canonical criteria read",
+      "checklist deprecation",
+      "ac coverage acceptance criteria",
+      "checklist deprecation closure criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "traceability precedence fixed"
+    ],
+    "key_topics": [
+      "checklist",
+      "deprecation",
+      "closure",
+      "coverage",
+      "evidence",
+      "source",
+      "traceability",
+      "precedence",
+      "canonical",
+      "criteria",
+      "read",
+      "acceptance"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "manual-testing-playbook/tooling-and-scripts/ac-coverage-single-source-ratio.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ac-coverage-single-source-ratio.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/tooling-and-scripts/ac-coverage-single-source-ratio.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Checklist Deprecation Closure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Registry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 2 moved acceptance criteria into `acceptance-criteria.md` and repointed the advisory's total at that document",
+    "created_at": "2026-08-29T20:32:46Z",
+    "last_save_at": "2026-10-31T13:26:37.286Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0a40afa4988601d870b9d31465eefa3454f2c465255a0c3db4b78bf331aa3664",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c00a124523b8605cb62e463c18495250b070ad17ca9f55c752d7d62c2e788f08",
+      "plan.md": "5d73c215604c0fc9d7c32a764ae3f56045b7f93d4555e0a1cfd06dcf6707e06f",
+      "tasks.md": "75066ecfbd3574f0fdc90a2d13f257435efa22a22ace49a9a7ecc058877a26ca",
+      "implementation-summary.md": "05f9c058d6b4ec124fa5f65020d52d70bb4e4d6fbaa8886b6e2fb058db3027ef"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

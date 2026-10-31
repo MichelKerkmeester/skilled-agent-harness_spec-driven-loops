@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-spec-folder-lifecycle/001-spec-root-resolution-hardening",
+  "spec_folder": "system-speckit/029-spec-folder-lifecycle/001-spec-root-resolution-hardening",
+  "parent_id": "system-speckit/029-spec-folder-lifecycle",
+  "children_ids": [
+    "system-speckit/029-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight",
+    "system-speckit/029-spec-folder-lifecycle/001-spec-root-resolution-hardening/002-data-canonicalization",
+    "system-speckit/029-spec-folder-lifecycle/001-spec-root-resolution-hardening/003-writer-canonicalization",
+    "system-speckit/029-spec-folder-lifecycle/001-spec-root-resolution-hardening/004-reader-normalization",
+    "system-speckit/029-spec-folder-lifecycle/001-spec-root-resolution-hardening/005-symlink-retirement-and-validation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec root resolution hardening",
+      "canonical-first resolver",
+      "resolver registry",
+      "specs symlink retirement"
+    ],
+    "key_topics": [
+      "spec",
+      "root",
+      "resolution",
+      "hardening",
+      "canonical-first",
+      "resolver",
+      "registry",
+      "specs",
+      "symlink",
+      "retirement",
+      "spec-root",
+      "implemented"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "spec/create.sh",
+      "research/iterations/iteration-001.md",
+      "research/deep-research-state.jsonl",
+      "research/deep-research-strategy.md",
+      "research/findings-registry.json",
+      "research/deep-research-dashboard.md",
+      "research/resource-map.md",
+      ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
+      ".claude/settings.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-dashboard.md",
+        "kind": "doc",
+        "path": "research/deep-research-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-classifier.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Root Resolution Hardening",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary Spec Kit",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Scope And Verdict The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Stop",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verified Resolver And Writer Inventory This",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Spec-root resolution is implemented at ~20 independent call sites with four different precedences (canonical-first, legacy-first, canonical-only, direct-path-first) and no single contract",
+    "created_at": "2026-07-17T09:30:14.185Z",
+    "last_save_at": "2026-10-31T13:26:20.713Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:711a0e5db408a1d908f9b21e540b2d7355970f6807b8cd5e5519edc0bbc20023",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "aba1c5e39051a4056aff74391348c2654ea86245a39711878a86c4ad52e9b92f",
+      "research/research.md": "d3e69e445cf7d7119eed309de76f21fb83ed8a4d162c6cd7024be9fd461f6ef2"
+    },
+    "last_active_child_id": "system-speckit/029-spec-root-resolution-hardening/005-symlink-retirement-and-validation",
+    "last_active_at": null
+  }
+}

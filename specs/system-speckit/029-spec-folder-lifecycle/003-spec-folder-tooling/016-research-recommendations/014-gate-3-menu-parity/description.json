@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity",
+  "description": "`GATE3CHOICERELATED` in `spec-gate-core.mjs:151` reads \"Use a related folder, phase child, or a series parent for a different change to the same",
+  "keywords": [
+    "gate3choicerelated",
+    "spec-gate-core",
+    "mjs",
+    "reads",
+    "related",
+    "folder",
+    "phase",
+    "child",
+    "series",
+    "parent",
+    "different",
+    "change",
+    "same"
+  ],
+  "lastUpdated": "2026-10-11T19:55:54.923Z",
+  "specId": "014",
+  "folderSlug": "gate-3-menu-parity",
+  "parentChain": [
+    "system-speckit",
+    "034-spec-folder-tooling",
+    "016-research-recommendations"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "11-10-26_20-55__a-recheck-shows-the-three-files-that-kept-the.md"
+  ]
+}

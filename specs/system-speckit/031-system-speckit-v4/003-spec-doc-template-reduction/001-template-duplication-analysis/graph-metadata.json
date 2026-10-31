@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis",
+  "spec_folder": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis",
+  "parent_id": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "template duplication analysis",
+      "analysis",
+      "spec-kit template reduction",
+      "template optimization",
+      "tasks checklist merge",
+      "continuity single source",
+      "small-model legibility",
+      "spec core",
+      "template reduction analysis",
+      "spec-kit recommendations",
+      "template contract map",
+      "byte budget"
+    ],
+    "key_topics": [
+      "template",
+      "duplication",
+      "analysis",
+      "spec-kit",
+      "reduction",
+      "optimization",
+      "tasks",
+      "checklist",
+      "merge",
+      "continuity",
+      "single",
+      "source"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Review",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 13 spec-kit manifest templates contain measured duplication and context waste",
+    "created_at": "2026-08-26T05:33:55Z",
+    "last_save_at": "2026-10-31T13:26:31.035Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:72f074300dfd5f7cb576d1a0c4025bc97678b1a433d64b330165d428afb7a276",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ffaf79867c1b78be3f4a23f36212182d30f45db041dcc0c00b2a89f4078db74c",
+      "plan.md": "81517f48343e1a627da9a893895ab8548789bcf5dfc5dde6ef83c3bc3b729123",
+      "tasks.md": "0b225855d7687c5e66d6e57a8fd42b2bf15bcf57ca9ec568b24a7984f3760f0e",
+      "implementation-summary.md": "a92b1a6d0c8b95d5d3ebe042d86bfc59ea4cf18506238c3ecbaf33f3ab41ecca",
+      "research/research.md": "accc1833c0febf0dc53ee88bbfecfd73457afdb65873566de72298c06760d59e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

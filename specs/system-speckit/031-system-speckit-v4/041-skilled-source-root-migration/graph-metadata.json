@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration",
+  "spec_folder": "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration",
+  "parent_id": "system-speckit/031-system-speckit-v4",
+  "children_ids": [
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/001-deep-research",
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map",
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes",
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/004-migration-design",
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness",
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/006-dual-root-code-and-contracts",
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/007-source-root-move",
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/008-links-and-generated-state",
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite",
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/010-machine-and-consumer-cutover",
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout",
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/012-fix-deep-review-p1-p2-findings-for-source-root-migration",
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/013-clear-pre-existing-ci-and-doc-debt",
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration",
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research",
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow",
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker",
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze",
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/019-refresh-rollback-snapshots-on-re-mint",
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/020-fix-admission-baseline-and-block-ci",
+    "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skilled source root",
+      "move opencode to skilled",
+      "source parent migration",
+      "runtime symlink inversion",
+      "dot-skilled migration",
+      "skilled migration goal",
+      "source root migration directive",
+      "skilled migration completion criteria",
+      "skilled migration binding"
+    ],
+    "key_topics": [
+      "skilled",
+      "source",
+      "root",
+      "move",
+      "opencode",
+      "parent",
+      "migration",
+      "runtime",
+      "symlink",
+      "inversion",
+      "dot-skilled",
+      "goal"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "001-deep-research/spec.md",
+      "002-per-runtime-reference-map/spec.md",
+      ".opencode/bin/mcp-code-mode-launcher.cjs",
+      "review/review-report.md",
+      "001-deep-research/research/research.md",
+      "001-deep-research/goal.md",
+      "002-per-runtime-reference-map/goal.md",
+      "003-layout-probes/goal.md",
+      "004-migration-design/goal.md",
+      "005-gate-and-ci-readiness/goal.md",
+      "006-dual-root-code-and-contracts/goal.md",
+      "007-source-root-move/goal.md",
+      "008-links-and-generated-state/goal.md",
+      "009-reference-rewrite/goal.md",
+      "010-machine-and-consumer-cutover/goal.md",
+      "011-verification-and-rollout/goal.md",
+      ".pi/models.json",
+      "010-machine-and-consumer-cutover/plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-code-mode-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mcp-code-mode-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skilled Source",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Gateway",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Cline",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Nine Opus",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Operator Contract",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Check",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.opencode/` is the authoring home for every skill, command, agent, hook, plugin and runtime script in this repository, and the six other CLI runtimes reach it through 174 symlinks",
+    "created_at": "2026-09-16T08:35:04Z",
+    "last_save_at": "2026-10-31T13:26:59.970Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:3563562e2e43e6a79578578ff2c8d9513cca3b4f14a7666d86fac7f95a6d4db0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a68f490f691872e3a93c38899b72c47a39b3e766d576c7fc422ee007d52cc0da"
+    },
+    "last_active_child_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze",
+    "last_active_at": "2026-09-18T22:35:59.779Z"
+  }
+}

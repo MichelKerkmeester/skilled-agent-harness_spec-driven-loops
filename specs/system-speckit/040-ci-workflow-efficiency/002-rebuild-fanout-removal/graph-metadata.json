@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal",
+  "spec_folder": "system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal",
+  "parent_id": "system-speckit/040-ci-workflow-efficiency",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rebuild fanout removal",
+      "phase 2 rebuild fanout removal",
+      "trigger index rebuild skip ci",
+      "rebuild commit ci fan-out",
+      "rebuild fanout removal plan",
+      "phase 2 rebuild fanout removal plan",
+      "rebuild fanout removal tasks",
+      "phase 2 rebuild fanout removal tasks",
+      "rebuild fanout removal acceptance criteria",
+      "phase 2 rebuild fanout removal acceptance criteria",
+      "packet goal",
+      "durable directive"
+    ],
+    "key_topics": [
+      "rebuild",
+      "fanout",
+      "removal",
+      "phase",
+      "trigger",
+      "index",
+      "skip",
+      "commit",
+      "fan-out",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".github/workflows/trigger-index-rebuild.yml",
+      ".github/workflows/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts",
+      ".github/workflows/spec-kit-check.yml",
+      "scratch/d1-answer.md",
+      "scratch/baseline-24h/summary.md",
+      "scratch/baseline-24h/pr-runs-by-branch.json",
+      ".github/scripts/check-gate-inputs.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index-rebuild.yml",
+        "kind": "config",
+        "path": ".github/workflows/trigger-index-rebuild.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index-rebuild-workflow.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "d1-answer.md",
+        "kind": "doc",
+        "path": "scratch/d1-answer.md",
+        "source": "derived"
+      },
+      {
+        "name": "summary.md",
+        "kind": "doc",
+        "path": "scratch/baseline-24h/summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "pr-runs-by-branch.json",
+        "kind": "config",
+        "path": "scratch/baseline-24h/pr-runs-by-branch.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-gate-inputs.sh",
+        "kind": "script",
+        "path": ".github/scripts/check-gate-inputs.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every push to `main` that changes the spec-kit corpus is followed by a bot commit that rebuilds the trigger index, and that commit starts the whole push gate again",
+    "created_at": "2026-10-23T08:47:50Z",
+    "last_save_at": "2026-10-31T13:27:23.096Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:20df5c2fa75efdc643caee2d2afe02de16145da48e2943f548d0229ad40b69d2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8b5c1eddcf508aebf5cae99cf11d6ca33941554871fe6da5fd7eb8c7483139d6",
+      "plan.md": "dc55aad7a8db78b07ded6a8283ba6249621ac9667ffcdbb638778bc9d5a6fc26",
+      "tasks.md": "80b4689b97fe0ff9f2a5b11c9c82ac937a887d31f3d2284af401e2bb16072ce1",
+      "decision-record.md": "162522c604cf79b8c6a7a1e0121a2c9351cfbe4462f659310869c887e6331731",
+      "implementation-summary.md": "c0eb0af746caaa1a33565538cbc14eee905ae67ab4407196f9007094b1d4d2d7"
+    },
+    "last_active_at": null
+  }
+}

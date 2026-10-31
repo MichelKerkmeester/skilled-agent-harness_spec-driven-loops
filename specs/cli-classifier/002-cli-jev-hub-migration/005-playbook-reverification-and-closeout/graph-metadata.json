@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-classifier/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout",
+  "spec_folder": "cli-classifier/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout",
+  "parent_id": "cli-classifier/002-cli-jev-hub-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "playbook reverification and closeout",
+      "the migration promised to re run the mode",
+      "playbook re-verification",
+      "cli-jev closeout",
+      "execution phases",
+      "quality gates",
+      "phase tasks",
+      "task ledger",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "what was built"
+    ],
+    "key_topics": [
+      "playbook",
+      "reverification",
+      "closeout",
+      "migration",
+      "promised",
+      "run",
+      "mode",
+      "re-verification",
+      "cli-jev",
+      "execution",
+      "phases",
+      "quality"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Observe",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "quarantine",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The migration moved the transport, decoupled the old hub, and onboarded the new one to compiled serving, but it never executed the thing those changes exist to protect: the mode's own playbook",
+    "created_at": "2026-09-20T11:00:14Z",
+    "last_save_at": "2026-10-31T13:25:26.875Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:12651761de07e9c7088b60ce41ceb13e5e4af251931c70d0c970cb603fe2ab35",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "12aacb1334844516ff4d09fc2ebcf2ef578f1b984e88b45feb0f3d481eadb988",
+      "plan.md": "bf8168afc37c034d69cdb84b772610e701d114855e650920564b7d01823462cf",
+      "tasks.md": "bf232588f30c3efd99b66c90b1441490a71ce6854c5f8fee2dfff06e0ab47d3d",
+      "implementation-summary.md": "9a3f1cc9d36f196a0a7357892774bebc07d01f33aec53283966a5b02ce143388"
+    },
+    "last_active_at": null
+  }
+}

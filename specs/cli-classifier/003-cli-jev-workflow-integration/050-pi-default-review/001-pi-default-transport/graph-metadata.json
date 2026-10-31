@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-classifier/003-cli-jev-workflow-integration/050-pi-default-review/001-pi-default-transport",
+  "spec_folder": "cli-classifier/003-cli-jev-workflow-integration/050-pi-default-review/001-pi-default-transport",
+  "parent_id": "cli-classifier/003-cli-jev-workflow-integration/050-pi-default-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi default transport",
+      "jev transport auto",
+      "pi default transport plan",
+      "pi default transport tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "pi default transport implementation summary"
+    ],
+    "key_topics": [
+      "default",
+      "transport",
+      "jev",
+      "auto",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
+      ".skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs",
+      ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+      ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs",
+      ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs",
+      ".skilled/skills/cli-classifier/shared/scripts/README.md",
+      ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
+      ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
+      ".skilled/skills/cli-classifier/feature-catalog/feature-catalog.md",
+      ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-integration.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "jev-transport.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "jev-transport.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cite-drift-scan.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-injection-screen.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-pi-transport.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-route-replay.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "pi-transport-integration.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Make Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Pi transport answered with 95.1% agreement with the jev CLI in about half the p95 time, yet it runs only when a caller sets `JEVTRANSPORT=pi`",
+    "created_at": "2026-10-03T17:39:27Z",
+    "last_save_at": "2026-10-31T13:25:39.506Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ac779af1f87494e6dcf639fc90646c66d5d126f24a4480b7f093ee644894ba44",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9fbf54cecb2670e75128098fd66e800600b8087f9cdf544f053fada4977a442b",
+      "plan.md": "4c37f144a862c2ff5d458f18ff33937fa597f86a50c589551f42069e05170877",
+      "tasks.md": "063363e38e33226b3cd212576b1f5a8a84e227db1b8bdb6aa49b406e9548481e",
+      "implementation-summary.md": "93d7c25935d12c3f3791622e317a96280aa18c9e2fef1079a95178ecd3f53027"
+    },
+    "last_active_at": null
+  }
+}

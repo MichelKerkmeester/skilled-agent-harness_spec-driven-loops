@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility",
+  "spec_folder": "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility",
+  "parent_id": "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor update compatibility",
+      "phase 9 doctor update compatibility",
+      "external repo upgrade path",
+      "pre-v4 repo upgrade",
+      "doctor update compatibility plan",
+      "doctor update compatibility tasks",
+      "doctor update compatibility acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "doctor update compatibility implementation summary"
+    ],
+    "key_topics": [
+      "doctor",
+      "compatibility",
+      "phase",
+      "external",
+      "repo",
+      "upgrade",
+      "path",
+      "pre-v4",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/evidence/lane-real-repo-run.txt",
+      "scratch/evidence/lane-d1-d2-fix.txt",
+      "scratch/evidence/lane-real-repo-rerun.txt",
+      "scratch/evidence/lane-review-fixes-upgrade.txt",
+      "runtime/scripts/run-tests.mjs",
+      ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/update.md",
+      ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/doctor-update-compat-integration.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "lane-real-repo-run.txt",
+        "kind": "file",
+        "path": "scratch/evidence/lane-real-repo-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "lane-d1-d2-fix.txt",
+        "kind": "file",
+        "path": "scratch/evidence/lane-d1-d2-fix.txt",
+        "source": "derived"
+      },
+      {
+        "name": "lane-real-repo-rerun.txt",
+        "kind": "file",
+        "path": "scratch/evidence/lane-real-repo-rerun.txt",
+        "source": "derived"
+      },
+      {
+        "name": "lane-review-fixes-upgrade.txt",
+        "kind": "file",
+        "path": "scratch/evidence/lane-review-fixes-upgrade.txt",
+        "source": "derived"
+      },
+      {
+        "name": "run-tests.mjs",
+        "kind": "file",
+        "path": "runtime/scripts/run-tests.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-check.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-compat-action.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-compat.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-compat-integration.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-update-compat-integration.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`upgrade-legacy.mjs` exists and ships tests but no workflow, hook, or command calls it",
+    "created_at": "2026-10-08T04:22:45Z",
+    "last_save_at": "2026-10-31T13:26:26.809Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2b0a30dfb998ebbd2ff4ef5230f3c6c0cd38f500f339f6715b6310412ef45d0a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e9aaf2568602e28fdd0c54719a08f0ab272863a5f2d717c7a493fa635f8a9936",
+      "plan.md": "c97bcb418e130f6702c9745293094a6e30d8d31eef3b93ce5c00dd6f2ccf84a0",
+      "tasks.md": "0387101fe0d205be130ef99e4718f2cb02a6710c5c5df3e71ea0b872e0aad77c",
+      "implementation-summary.md": "50680ebd36bce71d30cfa8e4eb8443405218a0dc8cb4b6cb6018f258728c6211"
+    },
+    "last_active_at": null
+  }
+}

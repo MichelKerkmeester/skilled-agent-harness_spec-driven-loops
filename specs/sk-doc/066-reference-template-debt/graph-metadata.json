@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/066-reference-template-debt",
+  "spec_folder": "sk-doc/066-reference-template-debt",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/066-reference-template-debt/001-diagram-references",
+    "sk-doc/066-reference-template-debt/002-remaining-references"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "reference template debt phase parent spec",
+      "reference format debt",
+      "reference doc overview section"
+    ],
+    "key_topics": [
+      "reference",
+      "template",
+      "debt",
+      "phase",
+      "parent",
+      "spec",
+      "format",
+      "doc",
+      "overview",
+      "section",
+      "asks",
+      "every"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+      ".skilled/skills/sk-doc/scripts/tests/test_format_spec_exclusion.py",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+      ".hermes/skills/sk-create-repo-rule/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "template-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "test_format_spec_exclusion.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_format_spec_exclusion.py",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The reference format asks every tracked `references//.md` doc (READMEs aside) for an overview section, numbered ALL-CAPS sections in sequence and a `---` rule between sections",
+    "created_at": "2026-10-29T21:27:27Z",
+    "last_save_at": "2026-10-31T13:26:06.193Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:3369917bfe4bae982df3eaab08903dc89409a06bbe3c186374036fe0cf7e34de",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e79cc42a7335b241fccdabb01965af8c84066c01b4b994de458d6c7560cc36b9"
+    },
+    "last_active_at": null
+  }
+}

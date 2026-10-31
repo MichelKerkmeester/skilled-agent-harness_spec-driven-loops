@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-classifier/003-cli-jev-workflow-integration/055-alignment-and-hook-parity",
+  "spec_folder": "cli-classifier/003-cli-jev-workflow-integration/055-alignment-and-hook-parity",
+  "parent_id": "cli-classifier/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "jev alignment and hook parity",
+      "injection screen runtime parity",
+      "cross runtime hook parity",
+      "live sync hook parity",
+      "hook parity plan",
+      "injection screen adapters plan",
+      "alignment and hook parity tasks",
+      "alignment and hook parity acceptance criteria",
+      "alignment and hook parity implementation summary"
+    ],
+    "key_topics": [
+      "jev",
+      "alignment",
+      "hook",
+      "parity",
+      "injection",
+      "screen",
+      "runtime",
+      "cross",
+      "live",
+      "sync",
+      "plan",
+      "adapters"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".opencode/plugins/classifier-injection-screen.js",
+      ".hermes/SYNC.md",
+      ".cursor/hooks.json",
+      ".devin/hooks.v1.json",
+      "runtime-mirrors/hook-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "classifier-injection-screen.js",
+        "kind": "code",
+        "path": ".opencode/plugins/classifier-injection-screen.js",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".hermes/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registry.json",
+        "kind": "config",
+        "path": "runtime-mirrors/hook-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`ENV-REFERENCE.md` named the files that read each Jev switch before phase 54 moved them, and several READMEs described retired or moved code",
+    "created_at": "2026-10-05T09:05:04Z",
+    "last_save_at": "2026-10-31T13:25:39.810Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1ace2ce1d8effb91a65325a92c64ad2a2cca39fd0a9a87bd8341409010dddc32",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "651a30ee812898bef331792b9261d47d187bbc1317ab9efce1fc1ed35a749b73",
+      "plan.md": "932ca3f589b264e99c88b5a4a974a2890c92316641e1e90f605ffdbc75a3d481",
+      "tasks.md": "524f750cdc4261e7278178531d5bdce64cb222ca0205cb8b6a7ff9a4e369641b",
+      "implementation-summary.md": "2a604e712112e292adad444aed8d133e5401a8c1cb7519f0a3eeb7e531ec03fd"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research",
+  "spec_folder": "cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research",
+  "parent_id": "cli-classifier/003-cli-jev-workflow-integration",
+  "children_ids": [
+    "cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/001-fanout-merge-research",
+    "cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research",
+    "cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/003-citation-drift-research",
+    "cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/004-injection-screen-research",
+    "cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/005-hallucination-grader-research",
+    "cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/006-verdict-fallback-research",
+    "cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/007-clarify-default-research",
+    "cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/008-folder-suggestion-research",
+    "cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research",
+    "cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/010-completion-claims-research"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "jev feature improvement research",
+      "jev feature refinement",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "jev",
+      "feature",
+      "improvement",
+      "research",
+      "refinement",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "001-fanout-merge-research/goal.md",
+      "002-track-narrowing-research/goal.md",
+      "003-citation-drift-research/goal.md",
+      "004-injection-screen-research/goal.md",
+      "005-hallucination-grader-research/goal.md",
+      "006-verdict-fallback-research/goal.md",
+      "007-clarify-default-research/goal.md",
+      "008-folder-suggestion-research/goal.md",
+      "009-pi-transport-research/goal.md",
+      "010-completion-claims-research/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-pi",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-codex",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 047 measured every Jev feature",
+    "created_at": "2026-10-02T21:59:42Z",
+    "last_save_at": "2026-10-31T13:25:35.575Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:783030efde6f02ab3b22e9d31943f60916dd1cacbf9e1a0d7e34427e84a40a46",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8a3842c03b67d25fee320589a295fa5b1076b65cddfe1a786b35bad5d23f9157"
+    },
+    "last_active_at": null
+  }
+}

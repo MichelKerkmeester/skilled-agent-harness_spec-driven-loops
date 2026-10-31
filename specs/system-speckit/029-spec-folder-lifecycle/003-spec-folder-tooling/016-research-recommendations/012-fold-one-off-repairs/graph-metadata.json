@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs",
+  "spec_folder": "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs",
+  "parent_id": "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fold one off repairs",
+      "fold remaining one-offs",
+      "fold one off repairs plan",
+      "fold one off repairs tasks",
+      "fold one off repairs acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "fold one off repairs implementation summary"
+    ],
+    "key_topics": [
+      "fold",
+      "one",
+      "repairs",
+      "remaining",
+      "one-offs",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal",
+      "durable"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/frontmatter-template-literals.vitest.ts",
+      "lib/frontmatter-migration.ts",
+      "scratch/evidence/frontmatter-template-cache-red-green.txt",
+      "scratch/evidence/frontmatter-template-cache-same-instance-red-green.txt",
+      "dist/lib/frontmatter-migration.js",
+      "tests/test-frontmatter-backfill.js",
+      "scratch/evidence/upgrade-legacy-dry-run-real-corpus.txt",
+      "scratch/evidence/lane-clone-apply.txt",
+      "tests/frontmatter-template-literals.vitest.ts",
+      "spec/README.md",
+      "spec/upgrade-legacy.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-migration.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-template-literals.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/frontmatter-template-literals.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-template-cache-red-green.txt",
+        "kind": "file",
+        "path": "scratch/evidence/frontmatter-template-cache-red-green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-template-cache-same-instance-red-green.txt",
+        "kind": "file",
+        "path": "scratch/evidence/frontmatter-template-cache-same-instance-red-green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-migration.js",
+        "kind": "code",
+        "path": "dist/lib/frontmatter-migration.js",
+        "source": "derived"
+      },
+      {
+        "name": "test-frontmatter-backfill.js",
+        "kind": "code",
+        "path": "tests/test-frontmatter-backfill.js",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy-dry-run-real-corpus.txt",
+        "kind": "file",
+        "path": "scratch/evidence/upgrade-legacy-dry-run-real-corpus.txt",
+        "source": "derived"
+      },
+      {
+        "name": "lane-clone-apply.txt",
+        "kind": "file",
+        "path": "scratch/evidence/lane-clone-apply.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 13 used one-off scripts for repairs",
+    "created_at": "2026-10-08T04:22:47Z",
+    "last_save_at": "2026-10-31T13:26:28.395Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1e96e3a911b517f74399de70a9abca86e0f2be69f4c4dfc7999fed3004f785ca",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f7ba6e86e25727ae5ff7eb9285d8cbde788561f24b9b059a8074649a62cb3f43",
+      "plan.md": "5810895beb19bfb405235312f1a37bdb8df66086c3b0ec68145d5e9fc95ee051",
+      "tasks.md": "44a5d52ae76c39393081ae4746827c0c3dc3281683ee1ac08613349b590dd272",
+      "implementation-summary.md": "ff3a80a9b35c86956fd0d1ca59d971a0347504f30547169ca4dcc2bcfb79723e"
+    },
+    "last_active_at": null
+  }
+}

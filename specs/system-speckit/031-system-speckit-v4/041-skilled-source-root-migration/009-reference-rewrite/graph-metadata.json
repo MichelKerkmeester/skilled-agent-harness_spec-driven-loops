@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite",
+  "spec_folder": "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite",
+  "parent_id": "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skilled reference rewrite",
+      "opencode path reference rewrite",
+      "reference rewrite batch plan",
+      "freeze exclusion globs",
+      "reference rewrite rescan",
+      "reference rewrite rule",
+      "reference rewrite batches",
+      "rewrite batch verification",
+      "reference rewrite delegation",
+      "reference rewrite tasks",
+      "rewrite batch task order",
+      "reference rewrite verification checklist"
+    ],
+    "key_topics": [
+      "skilled",
+      "reference",
+      "rewrite",
+      "opencode",
+      "path",
+      "batch",
+      "plan",
+      "freeze",
+      "exclusion",
+      "globs",
+      "rescan",
+      "rule"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".github/dependabot.yml",
+      ".github/workflows/README.md",
+      "scratch/build-batch-manifests.py",
+      "scratch/rewrite-batch.py",
+      "scratch/rescan-references.py",
+      ".opencode/commands/scripts/validate-command-references.cjs",
+      ".opencode/plugins/tests/opencode-goal-capabilities.test.cjs",
+      ".opencode/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md",
+      "templates/changelog/README.md",
+      "scratch/census-baseline.json",
+      ".opencode/skills/sk-doc/shared/scripts/reference_checker.py",
+      "scratch/freeze-baseline.tsv",
+      "scratch/batch-manifests/base-sha.txt",
+      "scratch/generators-wave-a-before.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dependabot.yml",
+        "kind": "config",
+        "path": ".github/dependabot.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "build-batch-manifests.py",
+        "kind": "file",
+        "path": "scratch/build-batch-manifests.py",
+        "source": "derived"
+      },
+      {
+        "name": "rewrite-batch.py",
+        "kind": "file",
+        "path": "scratch/rewrite-batch.py",
+        "source": "derived"
+      },
+      {
+        "name": "rescan-references.py",
+        "kind": "file",
+        "path": "scratch/rescan-references.py",
+        "source": "derived"
+      },
+      {
+        "name": "validate-command-references.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/scripts/validate-command-references.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal-capabilities.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/opencode-goal-capabilities.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-hook-validation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md",
+        "source": "derived"
+      },
+      {
+        "name": "census-baseline.json",
+        "kind": "config",
+        "path": "scratch/census-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "reference_checker.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/reference_checker.py",
+        "source": "derived"
+      },
+      {
+        "name": "freeze-baseline.tsv",
+        "kind": "file",
+        "path": "scratch/freeze-baseline.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "base-sha.txt",
+        "kind": "file",
+        "path": "scratch/batch-manifests/base-sha.txt",
+        "source": "derived"
+      },
+      {
+        "name": "generators-wave-a-before.txt",
+        "kind": "file",
+        "path": "scratch/generators-wave-a-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phase 007 moves the authored tree, 2,963 tracked files still name it by its old path: 2,938 mechanical rows in map C carrying 15,648 matching lines plus 27 authored runtime files in map B",
+    "created_at": "2026-09-16T17:54:09Z",
+    "last_save_at": "2026-10-31T13:27:01.922Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0fc572b152ae1c9d1546ed94dd48ccecb32f0a8851e8b32a7f1d3ca79e5539d8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1a8243464e7a4d279662243a35565fd948e1402ba9b63cff082db52ec802ea30",
+      "plan.md": "196a52b3ee05443ac13e3e5ca3e90eb7bcf57dc320b40f7329c41b45a13f4933",
+      "tasks.md": "50d60081a0509389558455878a82b9ac9df1c804ba7f47b15ffc88a9f703fdf7",
+      "implementation-summary.md": "fb058f2b8292aa3f9c33390c94a17f1d74b0e269ab1d6578123898555f430d14"
+    },
+    "last_active_at": null
+  }
+}

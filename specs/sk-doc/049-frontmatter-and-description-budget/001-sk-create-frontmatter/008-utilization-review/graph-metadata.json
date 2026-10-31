@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/008-utilization-review",
+  "spec_folder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/008-utilization-review",
+  "parent_id": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "frontmatter utilization review",
+      "create-frontmatter playbook execution",
+      "frontmatter mode reachability",
+      "numstat inflation measurement",
+      "plan core",
+      "tasks core",
+      "utilization review acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "canary re-pin decision"
+    ],
+    "key_topics": [
+      "frontmatter",
+      "utilization",
+      "review",
+      "create-frontmatter",
+      "playbook",
+      "execution",
+      "mode",
+      "reachability",
+      "numstat",
+      "inflation",
+      "measurement",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/bin/skill-advisor.cjs",
+      ".opencode/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
+      ".opencode/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+      ".opencode/skills/sk-doc/sk-create-frontmatter/README.md",
+      ".opencode/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/version-derivation/numstat-gate.md",
+      ".opencode/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/version-derivation/idempotent-rerun.md",
+      ".opencode/skills/sk-doc/graph-metadata.json",
+      ".opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+      ".opencode/skills/sk-doc/sk-create-frontmatter/SKILL.md",
+      ".opencode/skills/sk-doc/leaf-manifest.json",
+      ".opencode/skills/sk-doc/ROUTER.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-versioning.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-frontmatter/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "numstat-gate.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/version-derivation/numstat-gate.md",
+        "source": "derived"
+      },
+      {
+        "name": "idempotent-rerun.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/version-derivation/idempotent-rerun.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-version.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-frontmatter/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The packet ships eleven manual-testing scenarios that had never been run, so no claim about the",
+    "created_at": "2026-09-02T18:55:23Z",
+    "last_save_at": "2026-10-31T13:25:43.782Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bbf84a69a1ddb40bcf3a1f0466e22ca3646a1696771c196169900768882ee307",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3f0e225a2448037a4241b4096bbb5cf28948650ba412b56b3b59ddbbe3b7c067",
+      "plan.md": "e37af0130e5a5f4e241c86bdb6b2da37cdd7e03da43890e967ec9e9c70b2b3e4",
+      "tasks.md": "2f19afcef0f96a3137c8fe90a50118e9cea0182db11f92b8e295b10ca72acf9b",
+      "decision-record.md": "3d5626306ce3b0f32912867d179e463600463436f3c7b51d1211a9b79fec5963",
+      "implementation-summary.md": "d72f171bde7e0828b4b1356507d6b61d2a6c5ba27cc00a7415fa064e7c85610d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

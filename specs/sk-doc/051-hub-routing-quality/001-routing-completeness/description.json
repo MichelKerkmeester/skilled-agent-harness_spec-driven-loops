@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/051-hub-routing-quality/001-routing-completeness",
+  "description": "A hub can be complete in every registry and still not be reachable",
+  "keywords": [
+    "hub",
+    "complete",
+    "every",
+    "registry",
+    "still",
+    "reachable"
+  ],
+  "lastUpdated": "2026-09-05T14:38:09.119Z",
+  "specId": "052",
+  "folderSlug": "routing-completeness",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "02-09-26_18-17__the-hook-was-right-and-i-d-overclaimed-two-things.md",
+    "02-09-26_22-41__five-opus-agents-running-on-disjoint-paths-agent.md"
+  ]
+}

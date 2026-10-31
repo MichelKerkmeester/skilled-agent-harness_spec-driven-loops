@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/040-ci-workflow-efficiency/008-consolidation-decision",
+  "spec_folder": "system-speckit/040-ci-workflow-efficiency/008-consolidation-decision",
+  "parent_id": "system-speckit/040-ci-workflow-efficiency",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "consolidation decision",
+      "phase 8 consolidation decision",
+      "always-run workflow consolidation",
+      "job consolidation decision gate",
+      "ci merge upper bound re-measure",
+      "consolidation decision plan",
+      "phase 8 consolidation decision plan",
+      "always-run workflow merge measurement",
+      "job consolidation cost arithmetic",
+      "consolidation decision tasks",
+      "phase 8 consolidation decision tasks",
+      "always-run workflow measurement tasks"
+    ],
+    "key_topics": [
+      "consolidation",
+      "decision",
+      "phase",
+      "always-run",
+      "workflow",
+      "job",
+      "gate",
+      "merge",
+      "upper",
+      "bound",
+      "re-measure",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/consolidation-baseline.md",
+      "scratch/runs-after.json",
+      "scratch/window.json",
+      "scratch/consolidation-cost.mjs",
+      "scratch/d8-answer.md",
+      "scratch/consolidation-decision.md",
+      "scratch/phase-start-sha.txt",
+      "scratch/pre-merge-inventory.md",
+      "scratch/snapshot-window.md",
+      "scratch/no-merge.md",
+      "scratch/phase-result.md",
+      "scratch/consolidation-cost.md",
+      ".github/workflows/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "consolidation-baseline.md",
+        "kind": "doc",
+        "path": "scratch/consolidation-baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "runs-after.json",
+        "kind": "config",
+        "path": "scratch/runs-after.json",
+        "source": "derived"
+      },
+      {
+        "name": "window.json",
+        "kind": "config",
+        "path": "scratch/window.json",
+        "source": "derived"
+      },
+      {
+        "name": "consolidation-cost.mjs",
+        "kind": "file",
+        "path": "scratch/consolidation-cost.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "d8-answer.md",
+        "kind": "doc",
+        "path": "scratch/d8-answer.md",
+        "source": "derived"
+      },
+      {
+        "name": "consolidation-decision.md",
+        "kind": "doc",
+        "path": "scratch/consolidation-decision.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-start-sha.txt",
+        "kind": "file",
+        "path": "scratch/phase-start-sha.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pre-merge-inventory.md",
+        "kind": "doc",
+        "path": "scratch/pre-merge-inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "snapshot-window.md",
+        "kind": "doc",
+        "path": "scratch/snapshot-window.md",
+        "source": "derived"
+      },
+      {
+        "name": "no-merge.md",
+        "kind": "doc",
+        "path": "scratch/no-merge.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-result.md",
+        "kind": "doc",
+        "path": "scratch/phase-result.md",
+        "source": "derived"
+      },
+      {
+        "name": "consolidation-cost.md",
+        "kind": "doc",
+        "path": "scratch/consolidation-cost.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nine workflows run on every push with no path filter: eight on `main` or `skilled/`, and `message-contract.yml` on every branch",
+    "created_at": "2026-10-23T08:48:00Z",
+    "last_save_at": "2026-10-31T13:27:23.519Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3c2d864cee61d28a246221544b4cddce15c34337a9a824911cc0f39ad37f027e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8017291bc2b55d08382f976a6de0025465eeab56a026bcafd2dc2e4dca4f08f1",
+      "plan.md": "fb07cab5524f9025e954f822aa34a5eac7707a495cb66dceb017a6bbe6e1794a",
+      "tasks.md": "35b733b4d320f020158548e0df713c0c60ddcbd46bc51cddcc5906e966928bd4",
+      "decision-record.md": "8cc9cd7e09a987dedae70138ce05c5b52a50700c1600e73fba2a177dd807ba2d",
+      "implementation-summary.md": "15b80434adfe92766adf168a6ce9d23f9a97717ee618c40273c6d062eb0eebfb"
+    },
+    "last_active_at": null
+  }
+}

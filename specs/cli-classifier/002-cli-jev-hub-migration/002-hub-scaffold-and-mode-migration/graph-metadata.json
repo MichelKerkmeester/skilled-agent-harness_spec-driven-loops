@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-classifier/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration",
+  "spec_folder": "cli-classifier/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration",
+  "parent_id": "cli-classifier/002-cli-jev-hub-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hub scaffold and mode migration",
+      "the jev transport lived as a mode id",
+      "parent hub scaffold",
+      "cli-usage mode",
+      "hub scaffold and mode migration plan",
+      "hub scaffold",
+      "hub scaffold and mode migration tasks",
+      "hub scaffold tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "cli-jev hub"
+    ],
+    "key_topics": [
+      "hub",
+      "scaffold",
+      "mode",
+      "migration",
+      "jev",
+      "transport",
+      "lived",
+      "parent",
+      "cli-usage",
+      "plan",
+      "tasks",
+      "packet"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "shared/README.md",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".skilled/skills/cli-external-orchestration/mode-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-external-orchestration/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Jev",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Hub",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Jev transport was the eighth mode of `cli-external-orchestration`, which made its identity a row inside another hub's registry, its folder a child of another hub's directory, and its routing vocabulary a class in another hub's router",
+    "created_at": "2026-09-20T11:00:11Z",
+    "last_save_at": "2026-10-31T13:25:26.848Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c820d75d552274d16226991bffb53382a97599c124f426e23dfd70e18c2617d4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "583c56e831a769ed2ca4370ae8acc429ee01a7f9969a85e73bc1b1d204d933d6",
+      "plan.md": "be0a788948b7bb9add86e3db62d0323cd4691379fb30e4ef7265938ea6f8c25e",
+      "tasks.md": "61c41e61ff97d0c100616f7027fbcdf68013886d041a1f6690f4d82714982d74",
+      "implementation-summary.md": "65e9b9351d81d4af60f791106e3e69f954822f06c585ae07b65a588c2c677acb"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/003-content-migration",
+  "spec_folder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/003-content-migration",
+  "parent_id": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "move frontmatter templates into mode",
+      "repoint frontmatter consumers",
+      "frontmatter migration",
+      "frontmatter validator path",
+      "frontmatter content migration",
+      "git mv frontmatter templates",
+      "sibling relative path rewrite",
+      "frontmatter link integrity delta",
+      "frontmatter migration tasks",
+      "repoint consumer files",
+      "outbound link repair tasks",
+      "link integrity delta check"
+    ],
+    "key_topics": [
+      "move",
+      "frontmatter",
+      "templates",
+      "mode",
+      "repoint",
+      "consumers",
+      "migration",
+      "validator",
+      "path",
+      "content",
+      "git",
+      "sibling"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
+      ".opencode/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+      ".opencode/skills/sk-doc/shared/assets/llmstxt-templates.md",
+      ".opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
+      ".opencode/skills/sk-doc/shared/scripts/quick_validate.py",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+      ".opencode/skills/sk-doc/leaf-aliases.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-versioning.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+        "source": "derived"
+      },
+      {
+        "name": "llmstxt-templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/assets/llmstxt-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick_validate.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/quick_validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-aliases.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/leaf-aliases.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two files move and roughly forty references follow them",
+    "created_at": "2026-09-01T08:42:58Z",
+    "last_save_at": "2026-10-31T13:25:43.590Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dd62758c76c96d7113ba1555fa3a5e5ade1eadde39fe3518aaf80b40d493f121",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "74868abc5bba368e950289984fee8e26e1d4b08cf49ef3796484739d9717a43a",
+      "plan.md": "969c95c1b045e790c3155b0dfb39e860d7366a78b07c98f3db8b3e6b6e0af94e",
+      "tasks.md": "49b2133ccc2d7a2e6b7cb5436ed3f7b9229f92aaa78666e3df88a3a11d6049e3",
+      "implementation-summary.md": "1032fdb15346da060f390020fe5e07d8b87528ec1170c951a90a57ca478681d3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

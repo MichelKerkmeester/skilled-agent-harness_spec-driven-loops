@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/012-template-phrase-cleanup-round-two",
+  "spec_folder": "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/012-template-phrase-cleanup-round-two",
+  "parent_id": "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "template phrase cleanup round two",
+      "phase 12 template phrase cleanup round two",
+      "partial template phrase blocks",
+      "template phrase cleanup round two plan",
+      "template phrase cleanup round two tasks",
+      "template phrase cleanup round two acceptance criteria",
+      "template phrase cleanup round two implementation summary"
+    ],
+    "key_topics": [
+      "template",
+      "phrase",
+      "cleanup",
+      "round",
+      "two",
+      "phase",
+      "partial",
+      "blocks",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index.vitest.ts",
+      ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "phrase-judge.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "template-phrase-cleanup.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "template-phrase-census.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "template-phrase-cleanup.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "create-root-numbering.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Every",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Standalone Node",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "45 live files keep two or three template defaults beside an author phrase, because Phase 11 replaced only the exact four-line block",
+    "created_at": "2026-10-07T14:47:32Z",
+    "last_save_at": "2026-10-31T13:26:25.337Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:99a4e56af16f5a3972b4299e50210e26d479d5aac93da34e80b8e267ef932916",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "59535326b219a9cea1f214a7d94a865c01953993bbec6aa3061a5160b61c4e90",
+      "plan.md": "bed73587c7e54ff687a3cd5a19ec217c4a7c11b0abba838632e8d1c173f2efa3",
+      "tasks.md": "bd7b6fc811c59832fac6f5518690cb9fc24a0736913c89fe1e85412ec7c12a9e",
+      "implementation-summary.md": "26e1ed857caee35dc6afb6d27797ce84df125310a67effae2c75ced74770e204"
+    },
+    "last_active_at": null
+  }
+}

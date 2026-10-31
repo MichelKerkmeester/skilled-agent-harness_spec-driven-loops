@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/031-system-speckit-v4/017-memory-database-decommission/003-spec-memory-server-removal",
+  "spec_folder": "system-speckit/031-system-speckit-v4/017-memory-database-decommission/003-spec-memory-server-removal",
+  "parent_id": "system-speckit/031-system-speckit-v4/017-memory-database-decommission",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec memory server removal",
+      "spec memory removal",
+      "mcp server deletion",
+      "daemon removal",
+      "subsystem decommission",
+      "preserve set",
+      "spec memory server removal acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "spec",
+      "memory",
+      "server",
+      "removal",
+      "mcp",
+      "deletion",
+      "daemon",
+      "subsystem",
+      "decommission",
+      "preserve",
+      "set",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "core/config.ts",
+      "data/README.md",
+      "shared/embeddings/adapter.ts",
+      "shared/ipc/socket-server.ts",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      ".cursor/mcp.json",
+      ".pi/mcp.json",
+      ".opencode/scripts/orphan-mcp-sweeper.sh",
+      ".opencode/scripts/session-cleanup.sh",
+      ".opencode/commands/deep/assets/deep-research-auto.yaml",
+      "data/trigger-index.json",
+      ".opencode/bin/lib/launcher-session-proxy.cjs",
+      ".opencode/commands/create/assets/create-skill-auto.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "data/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "adapter.ts",
+        "kind": "code",
+        "path": "shared/embeddings/adapter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "socket-server.ts",
+        "kind": "code",
+        "path": "shared/ipc/socket-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "orphan-mcp-sweeper.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/orphan-mcp-sweeper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/session-cleanup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-session-proxy.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "create-skill-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create-skill-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The subsystem's cost is structural, not incidental: a background service that flaps, 41 tools loaded",
+    "created_at": "2026-09-02T11:04:52Z",
+    "last_save_at": "2026-10-31T13:26:42.151Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:75e2ce7076c2e6cbe9ec58cfc376e4e2bb6ee208af38b74f10534972ed72b263",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "11118c1884917b768632e82b7e36681549e421b809df06d36016036163b5a374",
+      "plan.md": "0af8211b52b6aee54ff90e6588208b38a17bfa5b77981ed7b9b34fc7c119a49e",
+      "tasks.md": "81b3918aff9abf762e470a97aa16ee475cc4559176df615cdd4160a181857a02",
+      "implementation-summary.md": "c734cf5c8ea6c56a121801b103e9157c57ec83a461ab28d42e2e5d637f7e95cc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

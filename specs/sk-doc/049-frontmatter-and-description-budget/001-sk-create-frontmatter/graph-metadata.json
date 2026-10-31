@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter",
+  "spec_folder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter",
+  "parent_id": "sk-doc/049-frontmatter-and-description-budget",
+  "children_ids": [
+    "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/001-inventory-and-contract",
+    "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/002-mode-scaffold",
+    "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/003-content-migration",
+    "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/004-routing-integration",
+    "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/005-command-and-playbook",
+    "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/006-verification-and-closeout",
+    "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/007-human-voice-playbook",
+    "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/008-utilization-review",
+    "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract",
+    "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-create-frontmatter mode",
+      "frontmatter contract ownership",
+      "frontmatter templates owning mode",
+      "frontmatter versioning mode",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "sk-create-frontmatter",
+      "mode",
+      "frontmatter",
+      "contract",
+      "ownership",
+      "templates",
+      "owning",
+      "versioning",
+      "packet",
+      "goal",
+      "durable",
+      "directive"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "008-utilization-review/goal.md",
+      "009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract/goal.md",
+      "010-fix-newcomer-reachability-for-sk-create-frontmatter-routing/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Six",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Frontmatter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sk Create Frontmatter",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Six modes emit frontmatter",
+    "created_at": "2026-09-01T08:42:55Z",
+    "last_save_at": "2026-10-31T13:25:43.029Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:43a861108a8df88ad09c2126c8b3b7884d97e6d5920326392573578122fc697f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d3b5af4a851355330d18a878bc308da3c89ffdf1f2718469e5faba07a8f990f3"
+    },
+    "last_active_child_id": "sk-doc/049-sk-create-frontmatter/006-verification-and-closeout",
+    "last_active_at": null
+  }
+}

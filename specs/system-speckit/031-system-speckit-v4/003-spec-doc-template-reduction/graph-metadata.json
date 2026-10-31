@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction",
+  "spec_folder": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction",
+  "parent_id": "system-speckit/031-system-speckit-v4",
+  "children_ids": [
+    "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis",
+    "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/002-tasks-checklist-merge",
+    "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/003-template-dedup",
+    "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/004-continuity-single-source",
+    "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/005-comment-extraction",
+    "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/006-template-reduction-verification",
+    "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/007-lazy-addon-docs",
+    "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/008-plan-and-contract-optimization",
+    "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/009-template-folder-restructure",
+    "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement",
+    "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/011-checklist-reference-cleanup",
+    "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/012-fingerprint-docset-enforcement",
+    "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/013-retirement-read-path-closure"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec doc template reduction",
+      "merge tasks and checklist",
+      "small-model legibility",
+      "reduce spec-kit doc templates",
+      "less doc-template bloat",
+      "historic context preservation"
+    ],
+    "key_topics": [
+      "spec",
+      "doc",
+      "template",
+      "reduction",
+      "merge",
+      "tasks",
+      "checklist",
+      "small-model",
+      "legibility",
+      "reduce",
+      "spec-kit",
+      "templates"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Keep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This phased decomposition tracks Reduce and optimize spec-kit doc templates; merge tasks and checklist; less bloat, better historic context and small-model legibility across independently executable child phase folders",
+    "created_at": "2026-08-26T05:33:55Z",
+    "last_save_at": "2026-10-31T13:26:30.471Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:9872d00b2197927d717aec5e4944a805de52db2a862491b50191952b467f2ec2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "77a9762fce9f97672176201fbf793fa60a51e23a765db4bc60c0609eb8bfb88a"
+    },
+    "last_active_child_id": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/009-template-folder-restructure",
+    "last_active_at": "2026-08-27T20:21:06.358Z"
+  }
+}

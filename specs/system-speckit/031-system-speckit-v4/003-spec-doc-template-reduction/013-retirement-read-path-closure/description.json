@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/013-retirement-read-path-closure",
+  "description": "Each of these was reproduced against the live tree",
+  "keywords": [
+    "reproduced",
+    "against",
+    "live",
+    "tree"
+  ],
+  "lastUpdated": "2026-09-06T06:56:48.847Z",
+  "specId": "013",
+  "folderSlug": "retirement-read-path-closure",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "003-spec-doc-template-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

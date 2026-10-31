@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/051-hub-routing-quality/001-routing-completeness",
+  "spec_folder": "sk-doc/051-hub-routing-quality/001-routing-completeness",
+  "parent_id": "sk-doc/051-hub-routing-quality",
+  "children_ids": [
+    "sk-doc/051-hub-routing-quality/001-routing-completeness/001-transport-and-baseline",
+    "sk-doc/051-hub-routing-quality/001-routing-completeness/002-gate-a-signal-closure",
+    "sk-doc/051-hub-routing-quality/001-routing-completeness/003-gate-b-realistic-corpus",
+    "sk-doc/051-hub-routing-quality/001-routing-completeness/004-cross-hub-vocabulary",
+    "sk-doc/051-hub-routing-quality/001-routing-completeness/005-hub-surface-truth",
+    "sk-doc/051-hub-routing-quality/001-routing-completeness/006-validator-and-template-debt",
+    "sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue",
+    "sk-doc/051-hub-routing-quality/001-routing-completeness/008-drift-after-closure"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "routing completeness",
+      "gate a signal closure",
+      "gate b realistic corpus",
+      "advisor transport disagreement",
+      "close the routing findings",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "routing",
+      "completeness",
+      "gate",
+      "signal",
+      "closure",
+      "realistic",
+      "corpus",
+      "advisor",
+      "transport",
+      "disagreement",
+      "close",
+      "findings"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py",
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+      "research/findings-register.md",
+      "001-transport-and-baseline/goal.md",
+      "002-gate-a-signal-closure/goal.md",
+      "003-gate-b-realistic-corpus/goal.md",
+      "004-cross-hub-vocabulary/goal.md",
+      "005-hub-surface-truth/goal.md",
+      "006-validator-and-template-debt/goal.md",
+      "007-spec-kit-residue/goal.md",
+      "008-drift-after-closure/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hvr_scan.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "findings-register.md",
+        "kind": "doc",
+        "path": "research/findings-register.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Completeness",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Level",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "numbers",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "both",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A hub can be complete in every registry and still not be reachable",
+    "created_at": "2026-09-02T16:33:39Z",
+    "last_save_at": "2026-10-31T13:25:43.682Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:1659c6f9ba921049a7d9d67e11b6530d5e399f93c4847615112058e364402dee",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d46bad51d3bd86b8d471cbaefbfd667b0075169105a5d8050791d4f31ffe17f1"
+    },
+    "last_active_child_id": "sk-doc/052-routing-completeness/003-gate-b-realistic-corpus",
+    "last_active_at": "2026-09-02T21:41:53.247Z"
+  }
+}

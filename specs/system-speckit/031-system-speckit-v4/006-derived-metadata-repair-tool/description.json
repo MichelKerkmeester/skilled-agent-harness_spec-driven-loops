@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/031-system-speckit-v4/006-derived-metadata-repair-tool",
+  "description": "Repair the spec-packet validation failures that are recomputable from repository state, and refuse the ones that record work a person did.",
+  "keywords": [
+    "repair",
+    "spec-packet",
+    "validation",
+    "failures",
+    "recomputable",
+    "repository",
+    "state",
+    "refuse",
+    "ones",
+    "record",
+    "work",
+    "person"
+  ],
+  "lastUpdated": "2026-09-08T18:23:18.775Z",
+  "specId": "006",
+  "folderSlug": "derived-metadata-repair-tool",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/021-model-server-lifecycle/002-advisor-daemon-memory",
+  "spec_folder": "system-skill-advisor/021-model-server-lifecycle/002-advisor-daemon-memory",
+  "parent_id": "system-skill-advisor/021-model-server-lifecycle",
+  "children_ids": [
+    "system-skill-advisor/021-model-server-lifecycle/002-advisor-daemon-memory/001-hf-model-server-idle-default",
+    "system-skill-advisor/021-model-server-lifecycle/002-advisor-daemon-memory/002-lighter-advisor-launcher",
+    "system-skill-advisor/021-model-server-lifecycle/002-advisor-daemon-memory/003-reap-orphaned-model-server"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor daemon memory phase parent spec",
+      "advisor daemon memory",
+      "model server idle default",
+      "advisor launcher memory"
+    ],
+    "key_topics": [
+      "advisor",
+      "daemon",
+      "memory",
+      "phase",
+      "parent",
+      "spec",
+      "model",
+      "server",
+      "idle",
+      "default",
+      "launcher",
+      "three"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      ".skilled/bin/lib/model-server-supervision.cjs",
+      ".skilled/bin/system-skill-advisor-launcher.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "model-server-supervision.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/model-server-supervision.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hugging Face",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "On 2026-10-21 three advisor daemons ran at once, one each for main and worktrees 182 and 185",
+    "created_at": "2026-10-21T09:51:14Z",
+    "last_save_at": "2026-10-31T13:26:08.663Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:66712e781963d8b4e19c53ea3411ef99cd5e5d6cf91411dbdbcbe516f172f855",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c10deaef139df8b16ffece90d99aead3904a3fa432ee6d3c8b96438c6d180bfc"
+    },
+    "last_active_at": null
+  }
+}

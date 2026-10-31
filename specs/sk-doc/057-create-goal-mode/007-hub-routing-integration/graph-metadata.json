@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/057-create-goal-mode/007-hub-routing-integration",
+  "spec_folder": "sk-doc/057-create-goal-mode/007-hub-routing-integration",
+  "parent_id": "sk-doc/057-create-goal-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-create-goal hub routing",
+      "create goal mode aliases",
+      "goal authoring route replay",
+      "goal mode newcomer baseline",
+      "hub routing integration plan",
+      "hub routing integration tasks",
+      "hub routing integration acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "sk-create-goal hub routing summary"
+    ],
+    "key_topics": [
+      "sk-create-goal",
+      "hub",
+      "routing",
+      "goal",
+      "mode",
+      "aliases",
+      "authoring",
+      "route",
+      "replay",
+      "newcomer",
+      "baseline",
+      "integration"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/mode-registry.json",
+      ".skilled/skills/sk-doc/hub-router.json",
+      ".skilled/skills/sk-doc/ROUTER.md",
+      ".skilled/skills/sk-doc/graph-metadata.json",
+      ".skilled/skills/sk-doc/description.json",
+      ".skilled/skills/sk-doc/SKILL.md",
+      ".skilled/skills/sk-doc/leaf-manifest.json",
+      "scratch/routing-before.md",
+      "scratch/routing-after.md",
+      "scratch/routing-replay-final.txt",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/fixtures/canary-cases.v1.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "routing-before.md",
+        "kind": "doc",
+        "path": "scratch/routing-before.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-after.md",
+        "kind": "doc",
+        "path": "scratch/routing-after.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-replay-final.txt",
+        "kind": "file",
+        "path": "scratch/routing-replay-final.txt",
+        "source": "derived"
+      },
+      {
+        "name": "canary-cases.v1.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/fixtures/canary-cases.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-doc hub advertises fourteen modes across thirteen packets, but has no sk-create-goal route; its advisor identity, registry, hub router, surface router and human-facing mode table are distinct surfaces that must agree (.skilled/skills/sk-doc/SKILL.md:15,25-39,50-64; .skilled/skills/sk-doc/mode-registry.json:17-18; .skilled/skills/sk-doc/hub-router.json:4-21,49-50; .skilled/skills/sk-doc/ROUTER.md:20-35,136-164)",
+    "created_at": "2026-09-25T18:48:51Z",
+    "last_save_at": "2026-10-31T13:26:00.237Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:20296d1d35280f83aabcf1d7ccd71b281e9a61adae4483ce9ac2e1506a7462fc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "047910f4b4ced2c0b3600c27b75842abe6ac3e4400129a4a290c6066227f495f",
+      "plan.md": "8ed62787b4de6e6db675797a90e1ca2f04439336774b9d8c4cafa2d2db2c5b98",
+      "tasks.md": "4a332e2c671694232c58adb0674e81ef6392a914d7fac284058c7a0a792dad8a",
+      "implementation-summary.md": "a6cda97dc4cb48cb7e7f6bd1869b4edbf75fe56281434da79b20b6d1384a58ee"
+    },
+    "last_active_at": null
+  }
+}

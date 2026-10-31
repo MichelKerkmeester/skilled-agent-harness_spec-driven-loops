@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-classifier/002-cli-jev-hub-migration/004-compiled-fleet-onboarding",
+  "spec_folder": "cli-classifier/002-cli-jev-hub-migration/004-compiled-fleet-onboarding",
+  "parent_id": "cli-classifier/002-cli-jev-hub-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "the hub answers from its new home",
+      "compiled fleet onboarding",
+      "activation manifest",
+      "serving closure",
+      "compiled fleet onboarding plan",
+      "phase tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "phase closeout"
+    ],
+    "key_topics": [
+      "hub",
+      "answers",
+      "new",
+      "home",
+      "compiled",
+      "fleet",
+      "onboarding",
+      "activation",
+      "manifest",
+      "serving",
+      "closure",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts",
+      ".skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/compiled-routing-flag.js",
+      ".skilled/bin/compiled-route-guard.cjs",
+      ".skilled/bin/compiled-route-sync.cjs",
+      ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
+      ".skilled/bin/compiled-routing-foundation.vitest.ts",
+      ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs",
+      ".skilled/bin/lib/compiled-route-manifest.cjs",
+      ".skilled/bin/compiled-route-admission.cjs",
+      ".skilled/bin/compiled-route-status.cjs",
+      ".skilled/bin/compiled-route.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "resolve.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-flag.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-flag.js",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/compiled-routing-flag.js",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "serving-closure.manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-foundation.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/compiled-routing-foundation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "generate-description.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts",
+        "source": "derived"
+      },
+      {
+        "name": "registry-compiler.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-route-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-admission.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-admission.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-status.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-status.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Before this phase the hub resolved through the legacy path: it was absent from the engine's dispatch map, so `compiled-route.cjs --hub cli-jev` returned the sentinel, `loadHubEngine` threw `unknown hub`, and every compiled-routing view (status, guard, admission, the foundation lockstep suite) treated the hub as unregistered",
+    "created_at": "2026-09-20T11:00:13Z",
+    "last_save_at": "2026-10-31T13:25:26.865Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1637e6159b41c09132fef35bbe8038da0a0b99d5a4eea0371a4df870c62bb696",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6c52420f5508fb5761c876891e7ced6fe14631cc81328eaaed939b9c84496cc5",
+      "plan.md": "56459f2af64aaa49ce99ac5366fdfdfe9e2805964ec065c69c212beb47ebd37a",
+      "tasks.md": "73d4ab4dfced220dccf316743b6b1ccd4d6709ca98cab1a91dc35bf64bd897de",
+      "implementation-summary.md": "d8537b1c6e249caceedafdd03a59066e0b087d4194689e24ed26fbfafbbaf457"
+    },
+    "last_active_at": null
+  }
+}

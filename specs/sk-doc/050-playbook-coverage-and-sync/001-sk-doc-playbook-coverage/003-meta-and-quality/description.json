@@ -1,0 +1,21 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/050-playbook-coverage-and-sync/001-sk-doc-playbook-coverage/003-meta-and-quality",
+  "description": "Each of these takes another mode's output as its input",
+  "keywords": [
+    "takes",
+    "another",
+    "mode",
+    "output",
+    "input"
+  ],
+  "lastUpdated": "2026-09-07T16:14:57.143Z",
+  "specId": "003",
+  "folderSlug": "meta-and-quality",
+  "parentChain": [
+    "sk-doc",
+    "050-sk-doc-playbook-coverage"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

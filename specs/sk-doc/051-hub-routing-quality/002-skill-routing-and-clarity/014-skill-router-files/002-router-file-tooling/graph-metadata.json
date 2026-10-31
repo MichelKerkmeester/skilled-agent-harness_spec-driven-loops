@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/002-router-file-tooling",
+  "spec_folder": "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/002-router-file-tooling",
+  "parent_id": "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "router file tooling",
+      "phase 2 router file tooling",
+      "router file resolver",
+      "router file tooling plan",
+      "router file tooling tasks",
+      "router file tooling acceptance criteria",
+      "router resolver closure",
+      "dual declaration rejection",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "router",
+      "file",
+      "tooling",
+      "phase",
+      "resolver",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "closure",
+      "dual",
+      "declaration"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/plugins/system-skill-advisor.js",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-file-resolver.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/router-file-resolver.test.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync-git-timeout.test.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-hermes.test.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/lib/freshness.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "router-file-resolver.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-file-resolver.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "router-file-resolver.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/router-file-resolver.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "router-replay-lib.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-router-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-router-sync.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-router-sync-git-timeout.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync-git-timeout.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify_alignment_drift.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_verify_alignment_drift.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-skills-hermes.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-skills-hermes.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-hermes.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "freshness.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/freshness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "watcher.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A skill's machine router sits at the end of its `SKILL.md`, and every reader that needs it reads that file",
+    "created_at": "2026-10-29T07:52:42Z",
+    "last_save_at": "2026-10-31T13:25:50.204Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a73f27cfa03bb33350edc5cbd97e0dfe51da0deea591cd63a6bf5dfd52ef4dc7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7d55db6dbf739431b48fb211048b3aff534c3c08cd9bd0b1bc976a7090971991",
+      "plan.md": "c7320efaffd414260c1e648ac004787e38c4577ebef8d327852ecaa776764bd4",
+      "tasks.md": "5dca0c1bcaa1daa3e2fb266c79c765e0eaf4f24b04554859a3aabc175f0c25cf",
+      "implementation-summary.md": "d5801dd1ce5f6ba55bf8bcc7981562103929843408af17e74e8dcc1563e58154"
+    },
+    "last_active_at": null
+  }
+}

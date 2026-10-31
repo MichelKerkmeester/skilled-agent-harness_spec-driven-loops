@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/031-system-speckit-v4/037-derived-artifact-registry/001-registry-walker-and-proof",
+  "spec_folder": "system-speckit/031-system-speckit-v4/037-derived-artifact-registry/001-registry-walker-and-proof",
+  "parent_id": "system-speckit/031-system-speckit-v4/037-derived-artifact-registry",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "derived artifact registry",
+      "artifact walker",
+      "source to target map",
+      "registry driven freshness",
+      "registry walker and proof plan",
+      "registry walker and proof tasks",
+      "registry walker and proof acceptance criteria",
+      "registry walker and proof implementation summary"
+    ],
+    "key_topics": [
+      "derived",
+      "artifact",
+      "registry",
+      "walker",
+      "source",
+      "target",
+      "map",
+      "driven",
+      "freshness",
+      "proof",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "runtime/cli/lib/validator-registry.json",
+      "runtime/cli/graph/backfill-graph-metadata.ts",
+      ".opencode/bin/compiled-route-guard.cjs",
+      "runtime/tests/generator-hardening.vitest.ts",
+      "runtime/cli/tests/workflow-trigger-index-freshness.vitest.ts",
+      "runtime/cli/retrieval/generate-trigger-index.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": "runtime/cli/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": "runtime/cli/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-guard.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/compiled-route-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "generator-hardening.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/generator-hardening.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-trigger-index-freshness.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/workflow-trigger-index-freshness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-trigger-index.mjs",
+        "kind": "file",
+        "path": "runtime/cli/retrieval/generate-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Load",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Freshness is defended per artifact, and the artifacts are not unproved",
+    "created_at": "2026-09-11T06:37:35Z",
+    "last_save_at": "2026-10-31T13:26:55.817Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a02d4cd7a3ccd9750c775e6c664a22a37c79798e6a552df489220a9fd10eb901",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0ce50276f1bd2e8dbd5320f191efcd0564f78b391d4b3196bfc0225961f6b42a",
+      "plan.md": "2e63bcded7bf88b32ac1c35b0bd748e7cc3adb0474e0a8d879d18b94249b471a",
+      "tasks.md": "312b8e0df9890f03f209df6e26f377ef120bb1b4c865711d29b8d9e62d5b514c",
+      "implementation-summary.md": "314b154a305f09b6000a937af6c23516c6c75daa35aee37171169d8cba9d26e8"
+    },
+    "last_active_at": null
+  }
+}

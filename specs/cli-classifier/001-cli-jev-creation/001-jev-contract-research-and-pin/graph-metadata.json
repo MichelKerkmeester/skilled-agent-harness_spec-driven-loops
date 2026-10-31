@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin",
+  "spec_folder": "cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin",
+  "parent_id": "cli-classifier/001-cli-jev-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "jev contract research and pin",
+      "every claim the cli jev packet makes about",
+      "approach and phases",
+      "jev contract research and pin tasks",
+      "jev contract research and pin acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "jev contract research and pin implementation summary"
+    ],
+    "key_topics": [
+      "jev",
+      "contract",
+      "research",
+      "pin",
+      "every",
+      "claim",
+      "cli",
+      "packet",
+      "about",
+      "approach",
+      "phases",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/probe-surface.sh",
+      "scratch/probe-surface.txt",
+      "scratch/probe-matrix.sh",
+      "scratch/probe-matrix.txt",
+      "scratch/mcp-probe.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "probe-surface.sh",
+        "kind": "script",
+        "path": "scratch/probe-surface.sh",
+        "source": "derived"
+      },
+      {
+        "name": "probe-surface.txt",
+        "kind": "file",
+        "path": "scratch/probe-surface.txt",
+        "source": "derived"
+      },
+      {
+        "name": "probe-matrix.sh",
+        "kind": "script",
+        "path": "scratch/probe-matrix.sh",
+        "source": "derived"
+      },
+      {
+        "name": "probe-matrix.txt",
+        "kind": "file",
+        "path": "scratch/probe-matrix.txt",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-probe.py",
+        "kind": "file",
+        "path": "scratch/mcp-probe.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Hypothesis",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Vendored",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The hub is about to route work to a binary it does not control, and the only available accounts of that binary are a vendor README, a vendored source tree, and the binary itself",
+    "created_at": "2026-09-20T07:39:05Z",
+    "last_save_at": "2026-10-31T13:25:26.967Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:735a51d191fd69ada7505f33bbe0be23fe655b6d414ef0e946a69a82a724e8ae",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "57c2d8e5d8b84e19cc887e911488f457de5f4e24195f99eb4546be958a398f96",
+      "plan.md": "2253f92f84600a15145783128b3dad60988e1afdec0e1cfd97b0530468876681",
+      "tasks.md": "69edccdba2676d6fd9bccb5a4d8358a857abbadcbf123f7efe3669b63f4e03d3",
+      "implementation-summary.md": "b8baac60e4186ceef0e12638051d13bb7985714e354e3650457c7970f858a1e5"
+    },
+    "last_active_at": null
+  }
+}

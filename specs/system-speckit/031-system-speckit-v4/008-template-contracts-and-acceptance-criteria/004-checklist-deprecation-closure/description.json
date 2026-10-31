@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure",
+  "description": "Phase 2 moved acceptance criteria into `acceptance-criteria.md` and repointed the advisory's total at that document",
+  "keywords": [
+    "phase",
+    "moved",
+    "acceptance",
+    "criteria",
+    "acceptance-criteria",
+    "repointed",
+    "advisory",
+    "total",
+    "document"
+  ],
+  "lastUpdated": "2026-09-06T07:09:10.125Z",
+  "specId": "004",
+  "folderSlug": "checklist-deprecation-closure",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "008-template-contracts-and-acceptance-criteria"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/067-doctor-sk-skill-command/005-integration",
+  "spec_folder": "sk-doc/067-doctor-sk-skill-command/005-integration",
+  "parent_id": "sk-doc/067-doctor-sk-skill-command",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 5 integration",
+      "convert advisor hermes changelog integration",
+      "integration plan",
+      "integration tasks",
+      "integration acceptance criteria",
+      "integration goal",
+      "integration implementation summary"
+    ],
+    "key_topics": [
+      "phase",
+      "integration",
+      "convert",
+      "advisor",
+      "hermes",
+      "changelog",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/lib/sk-skill-integrate.cjs",
+      ".skilled/commands/doctor/scripts/sk-skill-convert.cjs",
+      ".skilled/commands/doctor/scripts/tests/sk-skill-integrate.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/fixtures/sk-skill-integrate/router-reach-fleet-report.json",
+      ".skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+      ".skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs",
+      ".skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml",
+      ".skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt",
+      ".skilled/commands/doctor/sk-skill.md",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/scripts/tests/doctor-sk-skill-contract.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-integrate.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/lib/sk-skill-integrate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-convert.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/sk-skill-convert.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-integrate.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/sk-skill-integrate.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "router-reach-fleet-report.json",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/scripts/tests/fixtures/sk-skill-integrate/router-reach-fleet-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-surface.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci-router-vocabulary-reach.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-convert.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/sk-skill-convert.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-skill-convert.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-sk-skill-convert.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-skill-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/sk-skill.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-skill-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-sk-skill-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor reads only direct children of `.skilled/skills` holding `graph-metadata.json` (`projection.ts:1536-1556`), the compiled `skill-graph.json` is CI-gated for freshness (`routing-registry-drift.yml:241-246`), Hermes holds generated skill copies by frontmatter name (`sync-skills-hermes.cjs:150-152`), and the changelog index is a set of relative links that no script writes",
+    "created_at": "2026-10-30T05:21:15Z",
+    "last_save_at": "2026-10-31T13:26:09.061Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:09ffc0c2cd84c49ce3f3dadd07f13e5f3e19c1c8c36a770ae8601dec232e7018",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3ba3032a5e7d7ee6c799518ce15491aca043cbc9b41da791f0a156cce3a8d8ff",
+      "plan.md": "6724ef32e19be4d82510be8480a6af05cf2f7c582f50ba41dfc27cd2d21cca9d",
+      "tasks.md": "f8954701096c1f74d243ddd0481b306783dae5f44f08523c70ff5655f8ae9051",
+      "implementation-summary.md": "3eb73a15088254b7590355546853ecfeb9391cc975cd50820e397789c26c2875"
+    },
+    "last_active_at": null
+  }
+}

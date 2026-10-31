@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-classifier/003-cli-jev-workflow-integration/001-deep-research",
+  "spec_folder": "cli-classifier/003-cli-jev-workflow-integration/001-deep-research",
+  "parent_id": "cli-classifier/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "jev workflow integration research",
+      "jev typed judgment seams",
+      "three lineage jev research",
+      "grok 4.7 cursor lane",
+      "jev opt-in measured integration",
+      "jev research plan",
+      "three lineage fan-out plan",
+      "jev research angles",
+      "grok 4.7 allowlist plan",
+      "jev research tasks",
+      "three lineage fan-out tasks",
+      "grok 4.7 allowlist tasks"
+    ],
+    "key_topics": [
+      "jev",
+      "workflow",
+      "integration",
+      "research",
+      "typed",
+      "judgment",
+      "seams",
+      "three",
+      "lineage",
+      "grok",
+      "cursor",
+      "lane"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "scratch/research-topic.txt",
+      "scratch/synthesis-brief.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".claude/settings.json",
+      ".pi/models.json",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+      ".skilled/bin/compiled-route.cjs",
+      "research/observability-events.jsonl",
+      "research/orchestration-summary.json",
+      "research/deep-research-config.json",
+      "ai-council/council-report.md",
+      "ai-council/proposed-resynthesis.md",
+      "ai-council/deliberations/round-001.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-topic.txt",
+        "kind": "file",
+        "path": "scratch/research-topic.txt",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-brief.md",
+        "kind": "doc",
+        "path": "scratch/synthesis-brief.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "observability-events.jsonl",
+        "kind": "file",
+        "path": "research/observability-events.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "research/orchestration-summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "council-report.md",
+        "kind": "doc",
+        "path": "ai-council/council-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "proposed-resynthesis.md",
+        "kind": "doc",
+        "path": "ai-council/proposed-resynthesis.md",
+        "source": "derived"
+      },
+      {
+        "name": "round-001.md",
+        "kind": "doc",
+        "path": "ai-council/deliberations/round-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Jev Typed Judgments Across",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`cli-jev` returns typed judgments, and no other part of `.skilled` asks for one",
+    "created_at": "2026-09-26T15:37:28Z",
+    "last_save_at": "2026-10-31T13:25:26.959Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:31e8faf5fee9b360ab2db225a58be6bd4c770d879861b6ce50b84096cea3444d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "37856fd680a9732e9b4859f413af9a6f05c8a4c626486ca36b9c8854d573ddb8",
+      "plan.md": "6c2d748a22ed609923dafbef0a036457f1719fc43f6a137d467145b9be349ec4",
+      "tasks.md": "277b9f01a68827f5aaf46900e7ce773ec37ee5ac9503be43591860338f47017a",
+      "implementation-summary.md": "e20f9520e0013f2477a5129bcc39d0193714370cd634a3292cb440301c7dbe59",
+      "research/research.md": "d6c347ff6dc7fd7972c48cc204e6b1ed25f696543a2ea3ce48d66b3e86dcdfb3"
+    },
+    "last_active_at": null
+  }
+}

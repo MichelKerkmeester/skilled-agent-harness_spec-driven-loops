@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/067-doctor-sk-skill-command/002-check-plumbing",
+  "spec_folder": "sk-doc/067-doctor-sk-skill-command/002-check-plumbing",
+  "parent_id": "sk-doc/067-doctor-sk-skill-command",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "check plumbing",
+      "phase 2 check plumbing",
+      "doctor sk-skill check route",
+      "check plumbing plan",
+      "check plumbing tasks",
+      "check plumbing acceptance criteria",
+      "check plumbing goal",
+      "check plumbing implementation summary"
+    ],
+    "key_topics": [
+      "check",
+      "plumbing",
+      "phase",
+      "doctor",
+      "sk-skill",
+      "route",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/sk-skill.md",
+      ".skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt",
+      ".skilled/commands/doctor/assets/doctor-sk-skill-check.yaml",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
+      ".skilled/commands/README.txt",
+      ".skilled/commands/doctor/scripts/tests/doctor-sk-skill-contract.test.cjs",
+      ".claude/commands/doctor/sk-skill.md",
+      ".cursor/commands/doctor-sk-skill.md",
+      ".codex/prompts/doctor-sk-skill.md",
+      ".pi/prompts/doctor-sk-skill.md",
+      ".hermes/prompts/doctor-sk-skill.md",
+      ".skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/sk-skill.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-skill-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-sk-skill-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-skill-check.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-sk-skill-check.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-skill-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-sk-skill-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-skill.md",
+        "kind": "doc",
+        "path": ".cursor/commands/doctor-sk-skill.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/sk-skill-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-skill-check.cjs` runs only when someone types its path",
+    "created_at": "2026-10-30T05:21:12Z",
+    "last_save_at": "2026-10-31T13:26:08.539Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:df3927277e327afc68897721bcb401ea2e47eff1f4a83a47acb4e318c720ce2e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "57ed91a846b4f1075246d7f04d1afbaae2305102e85e066855020edf2f4cefc1",
+      "plan.md": "c22a9c41dc39961d9fc603463fd0921c4501b3881ffa34a4f9b51bd8cb46180a",
+      "tasks.md": "a3824941d0a2099efa147ed53ea6f00ff771b724a3169b5063ebec981b7efde8",
+      "implementation-summary.md": "0b659162db875c263925ac79ecd2df3155b1be9cdd6f254d90b26d7011fb892f"
+    },
+    "last_active_at": null
+  }
+}

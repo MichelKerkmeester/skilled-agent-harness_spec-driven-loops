@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility",
+  "description": "Phase 9: doctor-update-compatibility",
+  "keywords": [
+    "phase",
+    "doctor-update-compatibility"
+  ],
+  "lastUpdated": "2026-10-11T19:55:37.021Z",
+  "specId": "009",
+  "folderSlug": "doctor-update-compatibility",
+  "parentChain": [
+    "system-speckit",
+    "034-spec-folder-tooling",
+    "016-research-recommendations"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "11-10-26_20-55__the-doctor-update-path-ran-on-a-fresh-v3-clone-of.md"
+  ]
+}

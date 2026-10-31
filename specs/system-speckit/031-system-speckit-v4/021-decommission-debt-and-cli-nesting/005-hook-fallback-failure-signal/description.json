@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/031-system-speckit-v4/021-decommission-debt-and-cli-nesting/005-hook-fallback-failure-signal",
+  "description": "`.codex/hooks.json` wraps every registered adapter as `node <adapter> || printf %s '{\"hookSpecificOutput\":{...,\"additionalContext\":\"mk codex hook",
+  "keywords": [
+    "codex",
+    "hooks",
+    "json",
+    "wraps",
+    "every",
+    "registered",
+    "adapter",
+    "node",
+    "printf",
+    "hookspecificoutput",
+    "additionalcontext",
+    "hook"
+  ],
+  "lastUpdated": "2026-09-06T07:09:10.117Z",
+  "specId": "005",
+  "folderSlug": "hook-fallback-failure-signal",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "021-decommission-debt-and-cli-nesting"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

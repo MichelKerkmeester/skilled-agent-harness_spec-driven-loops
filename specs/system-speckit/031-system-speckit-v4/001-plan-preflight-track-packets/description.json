@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/031-system-speckit-v4/001-plan-preflight-track-packets",
+  "description": "The `/speckit:plan` Step-5 prerequisite helper (`check-prerequisites.sh`) derives the feature directory from the current git branch via `common.sh`,",
+  "keywords": [
+    "speckit",
+    "plan",
+    "step-5",
+    "prerequisite",
+    "helper",
+    "check-prerequisites",
+    "derives",
+    "feature",
+    "directory",
+    "current",
+    "git",
+    "branch",
+    "via",
+    "common"
+  ],
+  "lastUpdated": "2026-09-08T18:23:18.774Z",
+  "specId": "001",
+  "folderSlug": "plan-preflight-track-packets",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

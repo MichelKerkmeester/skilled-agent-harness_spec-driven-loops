@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization",
+  "spec_folder": "system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization",
+  "parent_id": "system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec template context optimization",
+      "spec template context optimizations",
+      "implement 033 research recommendations",
+      "research template gating",
+      "ac coverage default on",
+      "scope adherence validator",
+      "memory search token budget",
+      "spec template optimizations plan",
+      "template consolidation read guard",
+      "plan adherence validation gates",
+      "memory_search token budget",
+      "inline-gate-renderer level gating"
+    ],
+    "key_topics": [
+      "spec",
+      "template",
+      "context",
+      "optimization",
+      "optimizations",
+      "implement",
+      "research",
+      "recommendations",
+      "gating",
+      "coverage",
+      "default",
+      "scope"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "references/templates/template-guide.md",
+      "references/validation/validation-rules.md",
+      ".opencode/skills/system-spec-kit/references/templates/template-guide.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-guide.md",
+        "kind": "doc",
+        "path": "references/templates/template-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "validation-rules.md",
+        "kind": "doc",
+        "path": "references/validation/validation-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Template",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Optimizations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Question",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "focused",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Impl Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resolve Open Question",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Template Context Optimization",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 033 deep-research packet (10 iterations, 4 lineages, 3 model families) tested two external agent-engineering concepts against system-speckit and found that most patterns already ship — but six genuine gaps survived adversarial, multi-model prior-art filtering",
+    "created_at": "2026-08-12T12:51:40.227Z",
+    "last_save_at": "2026-10-31T13:26:36.060Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:35560831d60a06ff00fc1842ace0d22a648d6f6e662b4b1bdf3e810bcb3ba536",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d82460ad603a21ba9d17f35d212a7af659186c3666f5bb1d4178a953b08c208e",
+      "plan.md": "19523f78f77956fbfacd8f923067041624cb12339e333fd4f907d5938f88b249",
+      "tasks.md": "51e9799941662f33e069fa02db32e79a26f37af12464bb1042b2802c77600aff",
+      "decision-record.md": "fe9008f4e07b5453aeccc36a60d4df4d13691e1d2612d43042dbf3892dc94730",
+      "implementation-summary.md": "82e4810dc0f977768b8677a2281bd0c53604931bbd579919b31d6e52a87e2daa",
+      "research/research.md": "a39b7e0672f5dd7befdc14fc15567315cd7d878a769b419fff00dfb2ac371241"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
