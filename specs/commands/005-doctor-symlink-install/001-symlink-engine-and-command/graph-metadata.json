@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Two link shapes grew up in the projects that use Skilled, and no script made either one",
     "created_at": "2026-10-31T13:38:32Z",
-    "last_save_at": "2026-10-31T16:29:14.206Z",
+    "last_save_at": "2026-10-31T22:30:09.382Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:89d3fd260fccce624bfc8aaf18be084ed8de73b2e103d28dd799ea94272ccc7f",
+    "source_fingerprint": "sha256:0326ba5547eedd6c6bb5f31a9185a4ed5f4920c069e79a6582fc669343b02923",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7eed251dc8dea1a861394ff66647644dc9f95d6929cd2daa8be1a7fa15e3f7d7",
+      "spec.md": "ad9da115cf49d6a3d17b661d10b4cdb0d834b95befd17ac709de5ffcc8aa1dbe",
       "plan.md": "210162f06d4d8fe9a2bd01cbe74584b505c9b39114d07684ee04e4b3c6cdbf4b",
       "tasks.md": "044b4eb625ea7713322ce41492b13c4245386520a0727d9bc4e78d8f097ef6b0",
       "implementation-summary.md": "a3b7684b1b238f1ff6024cb3ac0deee15dbe81c3f944dbcbfa1c500528b4654c"

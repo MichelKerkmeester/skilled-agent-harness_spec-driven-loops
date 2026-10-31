@@ -24,9 +24,9 @@ contextType: "general"
 | **Created** | 2026-10-31 |
 | **Branch** | `worktrees/304-doctor-symlink-install` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 5 |
+| **Phase** | 5 of 6 |
 | **Predecessor** | 004-command-contract-and-readme |
-| **Successor** | None |
+| **Successor** | 006-doctor-helper-handoff |
 | **Handoff Criteria** | Every doctor-command scenario lives in the central package, the package validates, and this packet's own `validate.sh --strict` run prints `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
 

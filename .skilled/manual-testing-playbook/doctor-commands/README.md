@@ -45,12 +45,12 @@ A scenario is run as written. Its verdict is `PASS`, `FAIL` or `SKIP`, and a `SK
 | `/doctor:setup` | 1 | DOC-391 | The target table, the five read-only legs, and the repair command per failing leg |
 | `/doctor:sk-code` | 3 | DOC-382, DOC-383, DOC-395 | The setup battery, the battery on a pre-v4 checkout, and the quality config |
 | `/doctor:sk-skill` | 2 | DOC-402, DOC-403 | The fleet and single-skill check rows, and the convert plan before any write |
-| `/doctor:skill-advisor` | 13 | DOC-348, DOC-362 to DOC-367, DOC-385 to DOC-390 | Rebuild, tune, graph freshness, router reach, budgets, parent hubs, the menu, and the six routing probes |
+| `/doctor:skill-advisor` | 14 | DOC-348, DOC-362 to DOC-367, DOC-385 to DOC-390, DOC-406 | Rebuild, tune, graph freshness, router reach, budgets, parent hubs, the menu, and the seven routing probes |
 | `/doctor:speckit` | 3 | DOC-349, DOC-350, DOC-351 | A healthy trigger index, a stale one, and a target another command owns now |
 | `/doctor:symlink` | 1 | DOC-398 | Check, link and unlink against a scratch repo, with the plan, its digest and the printed undo |
 | `/doctor:update` | 7 | DOC-357 to DOC-361, DOC-379, DOC-381 | `check`, `align`, `apply`, `rollback`, `record-base`, `compat`, and the fixture build |
 
-The six routing probes, DOC-385 to DOC-390, are listed under `/doctor:skill-advisor`: each one runs the advisor hook and reads the doctor line it prints, whichever command that line names.
+The seven routing probes, DOC-385 to DOC-390 and DOC-406, are listed under `/doctor:skill-advisor`: each one runs the advisor hook and reads the doctor line it prints, whichever command that line names.
 
 `DOC` numbers run in one shared series across every doctor scenario in the repository, so a new scenario takes the next free number in the whole series rather than the next number in this folder. The retired ranges are listed in the root playbook's source metadata, and a retired number is never reused.
 
@@ -74,7 +74,7 @@ Rules that hold for both:
 
 Runs that do not fit either environment go in a disposable copy, and each file names its own:
 
-- **Any working copy with the runtime built.** Rows that write nothing run where you are: the menus (DOC-367, DOC-369, DOC-374, DOC-378), the flag refusals (DOC-380), the routing probes (DOC-385 to DOC-390), and the read-only checks.
+- **Any working copy with the runtime built.** Rows that write nothing run where you are: the menus (DOC-367, DOC-369, DOC-374, DOC-378), the flag refusals (DOC-380), the routing probes (DOC-385 to DOC-390 and DOC-406), and the read-only checks.
 - **A disposable clone.** DOC-370, because a linked worktree shares the main checkout's `.git/config` and `git config --local` would change the real repository.
 - **A throwaway folder, copy or clone.** DOC-331 to DOC-333 for their own graph state, DOC-381 for its v3 fixture, DOC-383 for a `v3.6.0.0` shallow clone, DOC-395 for the scratch repository it creates and deletes, and DOC-396 to DOC-397 for the `adopted` fixture they compose outside the checkout.
 - **A live session beside the folder.** DOC-396 needs a Devin session, DOC-397 a Cursor window. Without one, the row records `UNKNOWN` with its reason rather than a default pass.

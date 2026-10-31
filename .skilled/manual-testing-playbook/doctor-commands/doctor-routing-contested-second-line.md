@@ -74,7 +74,7 @@ The step 1 hook command prints the advisor brief, which starts with two lines. I
 
 The step 3 recommend command prints JSON. `data.recommendations` is an ordered list. The index of `sk-git` is lower than the index of `command-doctor-git-setup`, even though the doctor bridge has the higher confidence.
 
-The step 5 hook command prints the advisor brief for the worktree prompt. No line starts with `Also: /doctor:`, because a doctor bridge surfaces only on its own wording.
+The step 5 hook command prints the advisor brief for the worktree prompt. No line starts with `Also: /doctor:`, because the prompt matches no doctor phrase and names no doctor problem.
 
 ### Evidence
 

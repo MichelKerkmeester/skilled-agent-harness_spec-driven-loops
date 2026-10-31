@@ -110,6 +110,7 @@ Files touched across all phases, for the audit trail. Per-phase detail lives in 
 | 3 | 003-integration-and-docs/ | Routes, advisor bridges, setup list, README, catalog, playbook, mirrors | Complete |
 | 4 | 004-command-contract-and-readme/ | Command contract alignment, the root README setup section and the DOCTOR section | Complete |
 | 5 | 005-central-doctor-playbook/ | One top-level doctor playbook, the moved scenarios and the re-pointed skill indexes | Complete |
+| 6 | 006-doctor-helper-handoff/ | The advisor hands a reworded doctor problem to `/doctor:helper` | Complete |
 
 ### Phase Transition Rules
 
@@ -126,6 +127,7 @@ Files touched across all phases, for the audit trail. Per-phase detail lives in 
 | 002-install-guide-router | 003-integration-and-docs | Both routers and workflows exist | `bash .skilled/commands/doctor/scripts/route-validate.sh` |
 | 003-integration-and-docs | 004-command-contract-and-readme | Both commands are routed, bridged and mirrored | `node .skilled/skills/system-spec-kit/runtime/cli/codex/generate-command-routers.cjs --check` |
 | 004-command-contract-and-readme | 005-central-doctor-playbook | The command contract and README name both commands | `python3 .skilled/skills/sk-doc/scripts/validate_document.py --type readme README.md` |
+| 005-central-doctor-playbook | 006-doctor-helper-handoff | The central playbook indexes every doctor routing probe | `node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs` |
 <!-- /ANCHOR:phase-map -->
 
 ---

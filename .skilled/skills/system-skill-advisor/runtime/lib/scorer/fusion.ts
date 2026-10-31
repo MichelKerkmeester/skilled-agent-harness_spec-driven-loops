@@ -23,6 +23,12 @@ import { scoreGraphCausalLaneSplit } from './lanes/graph-causal.js';
 import { scoreLexicalLane } from './lanes/lexical.js';
 import { scoreSemanticShadowExactSubset, scoreSemanticShadowLane } from './lanes/semantic-shadow.js';
 import { applyExecutorDelegationOverride } from './executor-delegation.js';
+import {
+  DOCTOR_HELPER_BRIDGE_ID,
+  DOCTOR_HELPER_UNCUED_MIN_SCORE,
+  doctorProblemCue,
+  matchDoctorProblem,
+} from './doctor-helper-handoff.js';
 import { loadAdvisorProjection } from './projection.js';
 import { SCORING_CALIBRATION } from './scoring-constants.js';
 import { isReadOnlyExplainer, matchesPhraseBoundary } from './text.js';
@@ -816,9 +822,11 @@ function primaryIntentBonus(
 // 5. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
 
-// A doctor bridge surfaces only on its own wording: one of its manifest phrases
-// or its runnable slash string, which the explicit-author lane reports. A doctor
+// A doctor bridge passes only on its own wording: one of its manifest phrases or
+// its runnable slash string, which the explicit-author lane reports. A doctor
 // bridge that passed on shared single tokens alone stays scored but stops passing.
+// A doctor problem in other words reaches /doctor:helper through
+// applyDoctorHelperHandoff instead.
 export function requireDoctorPhraseAnchor(
   ranked: readonly AdvisorScoredRecommendation[],
 ): AdvisorScoredRecommendation[] {
@@ -955,6 +963,61 @@ export function keepPassingSkillsAboveDoctorBridges(
     ...passingDoctorBridges,
     ...remaining.slice(insertionIndex),
   ];
+}
+
+// A doctor problem described in other words than a bridge's own phrases reaches
+// no doctor bridge. When none passes and none was typed, /doctor:helper's ranker
+// decides whether the prompt is a doctor problem, and if it is the helper bridge
+// passes so the operator is offered the command that names the right one.
+export function applyDoctorHelperHandoff(
+  ranked: readonly AdvisorScoredRecommendation[],
+  context: {
+    readonly prompt: string;
+    readonly promptLower: string;
+    readonly projection: AdvisorProjection;
+    readonly workspaceRoot: string;
+    readonly confidenceThreshold: number;
+    readonly uncertaintyThreshold: number;
+    readonly leadPhrasesById: ReadonlyMap<string, readonly string[]>;
+  },
+): AdvisorScoredRecommendation[] {
+  const isDoctorBridge = (recommendation: AdvisorScoredRecommendation): boolean => (
+    recommendation.kind === 'command' && recommendation.skill.startsWith(DOCTOR_BRIDGE_PREFIX)
+  );
+  if (ranked.some((recommendation) => isDoctorBridge(recommendation) && recommendation.passes_threshold)) {
+    return [...ranked];
+  }
+  if (isDoctorCommandTyped(context.promptLower)) return [...ranked];
+  const skillPasses = ranked.some((recommendation) => (
+    !isDoctorBridge(recommendation) && recommendation.passes_threshold
+  ));
+  const cue = doctorProblemCue(context.prompt);
+  if (skillPasses && cue !== 'strong') return [...ranked];
+
+  const helperSkill = context.projection.skills.find((skill) => skill.id === DOCTOR_HELPER_BRIDGE_ID);
+  if (!helperSkill) return [...ranked];
+  const match = matchDoctorProblem(context.prompt, context.workspaceRoot);
+  if (!match) return [...ranked];
+  if (cue === null && match.score < DOCTOR_HELPER_UNCUED_MIN_SCORE) return [...ranked];
+
+  const existing = ranked.find((recommendation) => recommendation.skill === DOCTOR_HELPER_BRIDGE_ID);
+  const handoff: AdvisorScoredRecommendation = {
+    skill: DOCTOR_HELPER_BRIDGE_ID,
+    kind: 'command',
+    confidence: Math.max(existing?.confidence ?? 0, context.confidenceThreshold),
+    uncertainty: Math.min(existing?.uncertainty ?? context.uncertaintyThreshold, context.uncertaintyThreshold),
+    passes_threshold: true,
+    reason: `doctor helper hand-off: /doctor:helper ranks ${match.command} first for this problem`,
+    score: existing?.score ?? 0,
+    laneContributions: existing?.laneContributions ?? [],
+    dominantLane: existing?.dominantLane ?? null,
+    lifecycleStatus: helperSkill.lifecycleStatus,
+  };
+  const withHandoff = [
+    ...ranked.filter((recommendation) => recommendation.skill !== DOCTOR_HELPER_BRIDGE_ID),
+    handoff,
+  ];
+  return keepPassingSkillsAboveDoctorBridges(withHandoff, context.promptLower, context.leadPhrasesById);
 }
 
 export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOptions): AdvisorScoringResult {
@@ -1294,6 +1357,15 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
     leadPhrasesById.set(skill.id, skill.leadPhrases);
   }
   ranked = keepPassingSkillsAboveDoctorBridges(ranked, promptLower, leadPhrasesById);
+  ranked = applyDoctorHelperHandoff(ranked, {
+    prompt,
+    promptLower,
+    projection,
+    workspaceRoot: options.workspaceRoot,
+    confidenceThreshold: options.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD,
+    uncertaintyThreshold: options.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD,
+    leadPhrasesById,
+  });
 
   const passing = ranked.filter((recommendation) => recommendation.passes_threshold);
   const visible = options.includeAllCandidates ? ranked : passing;

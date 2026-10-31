@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "commands/005-doctor-symlink-install/006-doctor-helper-handoff",
+  "spec_folder": "commands/005-doctor-symlink-install/006-doctor-helper-handoff",
+  "parent_id": "commands/005-doctor-symlink-install",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor helper handoff",
+      "phase 6 doctor helper handoff",
+      "advisor hands off to doctor helper",
+      "reworded doctor prompt routing",
+      "doctor helper handoff plan",
+      "doctor helper handoff tasks",
+      "doctor helper handoff acceptance criteria",
+      "doctor helper handoff implementation summary"
+    ],
+    "key_topics": [
+      "doctor",
+      "helper",
+      "handoff",
+      "phase",
+      "advisor",
+      "hands",
+      "reworded",
+      "prompt",
+      "routing",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/doctor-helper-handoff.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/doctor-helper-handoff.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-routing-helper-handoff.md",
+      ".skilled/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-routing-contested-second-line.md",
+      ".skilled/commands/doctor/scripts/doctor-helper-match.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-helper-handoff.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/doctor-helper-handoff.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-helper-handoff.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/doctor-helper-handoff.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-prompts.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-command-routing.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-routing-helper-handoff.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-routing-helper-handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-routing-contested-second-line.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-routing-contested-second-line.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-helper-match.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/doctor-helper-match.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`requireDoctorPhraseAnchor` in `lib/scorer/fusion.ts` lets a doctor bridge pass only when the prompt carries one of its manifest phrases or its slash command",
+    "created_at": "2026-10-31T22:05:32Z",
+    "last_save_at": "2026-10-31T22:29:18.041Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8b65af716909ff6de5bbc9b534418ffe7851a86bfa3b77686c5b469e51e65937",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bd47d6712ef86eaf629f766b731f2ff2a0684783782da1a2b0b563e0691494e3",
+      "plan.md": "30731438110e7decfde7a3b89ecc4574e36fc9a9221f186861b2e10e326c5a44",
+      "tasks.md": "bb7d56766feb235b6398a0b0b9ec863b0a618ae607f4b4896830b1b0b4372014",
+      "implementation-summary.md": "c9aed52147d310ee48b379985078a57a25d12c5a8b9c39569cb228f48609fdc4"
+    },
+    "last_active_at": null
+  }
+}

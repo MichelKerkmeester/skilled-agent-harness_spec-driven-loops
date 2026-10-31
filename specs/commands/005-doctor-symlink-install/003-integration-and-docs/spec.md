@@ -24,9 +24,9 @@ contextType: "general"
 | **Created** | 2026-10-31 |
 | **Branch** | `worktrees/304-doctor-symlink-install` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 3 of 3 |
+| **Phase** | 3 of 6 |
 | **Predecessor** | 002-install-guide-router |
-| **Successor** | None |
+| **Successor** | 004-command-contract-and-readme |
 | **Handoff Criteria** | Both commands are listed on every surface the plan names, and `validate.sh --strict` prints `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
 

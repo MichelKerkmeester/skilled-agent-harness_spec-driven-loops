@@ -41,7 +41,7 @@ _memory:
 | **Created** | 2026-10-31 |
 | **Branch** | `worktrees/304-doctor-symlink-install` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 1 of 3 |
+| **Phase** | 1 of 6 |
 | **Predecessor** | None |
 | **Successor** | 002-install-guide-router |
 | **Handoff Criteria** | `route-validate.sh` still reports 24 routes, and `symlink-engine.cjs check` runs read-only against both user repos, so phase 002 can call it in place |

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`command-contract.json` is the shape `sk-create-command` publishes for a command family, and its doctor entry named neither new command: no `/doctor:symlink` target workflow, no install workflow, no loader requirement and no destructive operation for either",
     "created_at": "2026-10-31T14:41:33Z",
-    "last_save_at": "2026-10-31T16:29:18.590Z",
+    "last_save_at": "2026-10-31T22:30:13.651Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6d42ff225294f460d8714795d943741d76f4f2f46cac2505186a630a35813d7e",
+    "source_fingerprint": "sha256:bd57962b753af506eb7cce9920f1d04532512ad1489d5bc51583a44a55216229",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "19c69071b6da164d1d88111716ef3428a24f57c9e10b133fb22556eeb2b45ada",
+      "spec.md": "3687403ae21eaf41387b6e74cc0debfdb82f1ddc96e9280fad520dc38f7fa983",
       "plan.md": "66f669b0353f3f2a0994da3cb969dad508088312cea9cba7b32bdfa4c3a3b870",
       "tasks.md": "42f4d22832ff16413852d3453652801fff06b543a3a4ffe7456154996c6af452",
       "implementation-summary.md": "c5cf64190a46b49d9547a3c5e24ce937434a44e6c3f931694e297f9b8190383e"

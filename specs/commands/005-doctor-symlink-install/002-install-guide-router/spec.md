@@ -45,7 +45,7 @@ _memory:
 | **Created** | 2026-10-31 |
 | **Branch** | `worktrees/304-doctor-symlink-install` |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 2 of 3 |
+| **Phase** | 2 of 6 |
 | **Predecessor** | 001-symlink-engine-and-command |
 | **Successor** | 003-integration-and-docs |
 | **Handoff Criteria** | The router, workflow and presentation exist, and `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 once the route is registered |

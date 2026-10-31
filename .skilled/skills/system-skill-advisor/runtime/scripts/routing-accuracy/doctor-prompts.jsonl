@@ -72,3 +72,7 @@
 {"id":"doctor-b-install-01","prompt":"set up skilled in my other repository","expected_top":"command-doctor-install","expected_second":null,"wave":"B-install"}
 {"id":"doctor-b-install-02","prompt":"set up skilled","expected_top":"command-doctor-setup","expected_second":null,"wave":"B-install"}
 {"id":"doctor-b-symlink-check-01","prompt":"the skilled links in my project are broken","expected_top":"command-doctor-symlink-check","expected_second":null,"wave":"B-symlink-check"}
+{"id":"doctor-b-helper-handoff-01","prompt":"my AGENTS.md is out of date with the template","expected_top":"command-doctor-helper","expected_second":null,"wave":"B-helper-handoff"}
+{"id":"doctor-b-helper-handoff-02","prompt":"my deep research run never converges","expected_top":"system-deep-loop","expected_second":"command-doctor-helper","wave":"B-helper-handoff"}
+{"id":"doctor-b-helper-handoff-03","prompt":"Use the deep-research workflow, not a manual loop, to investigate routing drift.","expected_top":"system-deep-loop","expected_second":null,"wave":"B-helper-handoff"}
+{"id":"doctor-b-helper-handoff-04","prompt":"which doctor checks are failing in my setup","expected_top":"command-doctor-helper","expected_second":null,"wave":"B-helper-handoff"}

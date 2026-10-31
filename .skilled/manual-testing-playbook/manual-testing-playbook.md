@@ -28,7 +28,7 @@ A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome, its
 
 This playbook covers every `/doctor` command. Sixteen routers under `.skilled/commands/doctor/` each own a command: the router binds a target from `.skilled/commands/doctor/_routes.yaml`, loads that target's workflow YAML and renders through the command's presentation contract. A scenario tests what an operator sees when a target runs against a real repository: the plan a plan-first route prints, the table a report route renders, the refusal an unknown flag gets, and the state a writing route leaves behind.
 
-The corpus holds 61 scenario files in the one category folder. Section 8 lists every file once, under the command it exercises. Four commands hold the widest sets: `/doctor:update` because each verb is its own risky operation, `/doctor:git` because it switches gates and edits rules, `/doctor:skill-advisor` because each audit reads a different graph fact, and `/doctor:agents-md` because two of its rows need a live session on another runtime.
+The corpus holds 62 scenario files in the one category folder. Section 8 lists every file once, under the command it exercises. Four commands hold the widest sets: `/doctor:update` because each verb is its own risky operation, `/doctor:git` because it switches gates and edits rules, `/doctor:skill-advisor` because each audit reads a different graph fact, and `/doctor:agents-md` because two of its rows need a live session on another runtime.
 
 Coverage note: every router has at least one scenario. The `/doctor:sk-skill` rows and the `/doctor:agents-md` check and embed rows are the newest additions, and each names its own precondition in its file. Scenario counts are derived from the folder at validation time, so this document is not the census.
 
@@ -220,7 +220,7 @@ Every disposable run is deleted afterwards, and the tree is checked with `git st
 
 ## 8. DOCTOR COMMAND INDEX
 
-Every scenario file in `doctor-commands/` appears exactly once below, under the command it exercises. The ID, the folder and the file name are the identity of a scenario; the section is the grouping an operator starts from. The six routing probes sit under `/doctor:skill-advisor`, because each one runs the advisor hook and reads the doctor line it prints, whatever command that line names.
+Every scenario file in `doctor-commands/` appears exactly once below, under the command it exercises. The ID, the folder and the file name are the identity of a scenario; the section is the grouping an operator starts from. The seven routing probes sit under `/doctor:skill-advisor`, because each one runs the advisor hook and reads the doctor line it prints, whatever command that line names.
 
 ### 8.1 `/doctor:agents-md`
 
@@ -345,7 +345,7 @@ Checks a skill against the Skilled format, or converts one to it, plan first. Th
 
 ### 8.13 `/doctor:skill-advisor`
 
-Tunes and rebuilds the skill advisor, and audits graph freshness, router reach, budgets and parent hubs. The six routing probes also live here, because each runs the advisor hook and reads the doctor line it prints.
+Tunes and rebuilds the skill advisor, and audits graph freshness, router reach, budgets and parent hubs. The seven routing probes also live here, because each runs the advisor hook and reads the doctor line it prints.
 
 | ID | Scenario | Scenario File |
 |---|---|---|
@@ -362,6 +362,7 @@ Tunes and rebuilds the skill advisor, and audits graph freshness, router reach, 
 | DOC-388 | Doctor routing typed command in the Python fallback | [DOC-388](doctor-commands/doctor-routing-python-typed-command.md) |
 | DOC-389 | Doctor routing setup hint on a no-match | [DOC-389](doctor-commands/doctor-routing-setup-hint.md) |
 | DOC-390 | Doctor routing no hint on an unrelated prompt | [DOC-390](doctor-commands/doctor-routing-no-hint-unrelated.md) |
+| DOC-406 | Doctor routing hands a reworded problem to /doctor:helper | [DOC-406](doctor-commands/doctor-routing-helper-handoff.md) |
 
 ### 8.14 `/doctor:speckit`
 

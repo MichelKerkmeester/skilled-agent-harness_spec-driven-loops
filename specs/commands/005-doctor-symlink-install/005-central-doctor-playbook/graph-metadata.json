@@ -204,7 +204,7 @@
     ],
     "causal_summary": "A doctor command was documented in whichever skill happened to own a neighbouring feature",
     "created_at": "2026-10-31T14:41:33Z",
-    "last_save_at": "2026-10-31T16:29:19.946Z",
+    "last_save_at": "2026-10-31T22:30:15.149Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd3a17284eacd2b3cf851c26dbae2f1c5c4c680fc5970365a7453f5e0b8a536f",
+    "source_fingerprint": "sha256:45796321d7452808ce5906076a7af30256f91379db89b31abd4ff4f092353f45",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1f6a2349a7e4dd7ef831d0576a6ad3ebb45a7bdd842fed2068898dbfd80d478b",
+      "spec.md": "c66ebcf376506872198614d7e3ffd393bb8cd608d5aacfe82bf6bdb5038ba444",
       "plan.md": "d959bfe6bb03570a781dd596a11498c689c33c69587bc71ce6dea553d8d5fa21",
       "tasks.md": "7b16754e7483900e4e94935135aacf132a23f26e2bfc87c4ff5bd3eadb5d927c",
       "implementation-summary.md": "a07628ccd3af77c4562c1cccf5410d272da92dda22cf7a0dd092099f47003030"

@@ -24,7 +24,7 @@ contextType: "general"
 | **Created** | 2026-10-31 |
 | **Branch** | `worktrees/304-doctor-symlink-install` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 5 |
+| **Phase** | 4 of 6 |
 | **Predecessor** | 003-integration-and-docs |
 | **Successor** | 005-central-doctor-playbook |
 | **Handoff Criteria** | Both commands are described by the sk-create-command contract and the root README, and `validate.sh --strict` prints `RESULT: PASSED` |

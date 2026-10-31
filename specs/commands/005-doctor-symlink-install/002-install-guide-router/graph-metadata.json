@@ -198,7 +198,7 @@
     ],
     "causal_summary": "A user who wants Skilled in their own project repository has to read the README, work out which runtime folders to link, and run each setup command in the right order from the right directory",
     "created_at": "2026-10-31T13:38:33Z",
-    "last_save_at": "2026-10-31T21:31:17.122Z",
+    "last_save_at": "2026-10-31T22:30:10.774Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:85ee142bc4fee1f7a84b86dd7323ccdef50d88eb1adddfcc161ac8e4f3cc27a5",
+    "source_fingerprint": "sha256:09141dd23b6992c08fba4923ce2244e2cb299183de15ad78193233fb92326128",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "edff88442b9eff6af947ec2cb87cb24f9fca03386fb1b8803b1384f4917f7945",
+      "spec.md": "6a21b040ae906c70e5235e1fabdf04e58b29c9b8c0bd1717bab00072c1a9257f",
       "plan.md": "186ccbfddbcd84efec20fac10fb7ffd336cab199c7398ef667e1540bdd48c5b5",
       "tasks.md": "3ab02c1ca3d3cdf8b773ccb1d07cc2b01f9112c09b351cc7a58bdbafcbb056f2",
       "decision-record.md": "9acb0cd3bf15101ad3d88bb801e976036d935ac61f7db72b5e4c7cb7278da045",
