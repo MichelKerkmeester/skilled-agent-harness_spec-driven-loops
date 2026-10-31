@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration"
+    packet_pointer: "cli-classifier/002-cli-jev-hub-migration/001-track-and-packet-migration"
     last_updated_at: "2026-09-20T13:20:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Phase closed with the recursive gate green on both packets"
@@ -45,7 +45,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The cli-jev creation packet moved out of the cli-external-orchestration family and into a track of its own, `specs/cli-jev/001-cli-jev-creation`, with a program packet beside it. Nothing inside the moved documents changed except the citations of their own home: the recorded evidence, the JEV ids and the run verdicts are the same bytes they were before the move.
+The cli-jev creation packet moved out of the cli-external-orchestration family and into a track of its own, `specs/cli-classifier/001-cli-jev-creation`, with a program packet beside it. Nothing inside the moved documents changed except the citations of their own home: the recorded evidence, the JEV ids and the run verdicts are the same bytes they were before the move.
 
 ### Phase 1: track-and-packet-migration
 
@@ -55,11 +55,11 @@ The move had to happen first because every later phase cites this packet's home,
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `specs/cli-jev/001-cli-jev-creation/**` | Moved | The packet, renumbered to 001, history preserved by `git mv` |
+| `specs/cli-classifier/001-cli-jev-creation/**` | Moved | The packet, renumbered to 001, history preserved by `git mv` |
 | `specs/cli-external-orchestration/074-cli-jev-creation/**` | Moved | The retired home, now absent from disk |
-| `specs/cli-jev/description.json` | Created | Track-root description: `specId`, `folderSlug`, `level: track`, keywords |
-| `specs/cli-jev/graph-metadata.json` | Created | Track-root graph metadata declaring both children |
-| `specs/cli-jev/002-cli-jev-hub-migration/**` | Modified | Program packet whose docs cite the moved history |
+| `specs/cli-classifier/description.json` | Created | Track-root description: `specId`, `folderSlug`, `level: track`, keywords |
+| `specs/cli-classifier/graph-metadata.json` | Created | Track-root graph metadata declaring both children |
+| `specs/cli-classifier/002-cli-jev-hub-migration/**` | Modified | Program packet whose docs cite the moved history |
 | `.skilled/skills/cli-external-orchestration/cli-jev/**` | Modified | Skill-side docs citing the old spec path |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/**` | Modified | Trigger index and retrieval fixtures regenerated |
 <!-- /ANCHOR:what-built -->
@@ -69,7 +69,7 @@ The move had to happen first because every later phase cites this packet's home,
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Six steps, in order. The `git mv` recorded the rename. The track root was hand-authored because no scaffolder writes track-level metadata. The packet metadata the repair tool refuses to touch (description `specFolder` and `parentChain`, the goal and acceptance-criteria pointers) was fixed by hand. Then `repair-derived.cjs --roots specs/cli-jev --apply` rewrote the derived facts, and the report-only re-run now returns `inspected=12 repairable=0 failed=0`. A single ordered substitution pass over live trees repointed the old path in its four string forms across 36 files. Finally the trigger index and the retrieval fixtures were regenerated from the final tree, and both packets cleared the recursive strict gate.
+Six steps, in order. The `git mv` recorded the rename. The track root was hand-authored because no scaffolder writes track-level metadata. The packet metadata the repair tool refuses to touch (description `specFolder` and `parentChain`, the goal and acceptance-criteria pointers) was fixed by hand. Then `repair-derived.cjs --roots specs/cli-classifier --apply` rewrote the derived facts, and the report-only re-run now returns `inspected=12 repairable=0 failed=0`. A single ordered substitution pass over live trees repointed the old path in its four string forms across 36 files. Finally the trigger index and the retrieval fixtures were regenerated from the final tree, and both packets cleared the recursive strict gate.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -95,10 +95,10 @@ Six steps, in order. The `git mv` recorded the rename. The track root was hand-a
 
 | Check | Result |
 |-------|--------|
-| `validate.sh specs/cli-jev/001-cli-jev-creation --strict --recursive` | PASS, exit 0, six printed `RESULT: PASSED` lines (parent plus five children) |
-| `validate.sh specs/cli-jev/002-cli-jev-hub-migration --strict --recursive` | PASS, exit 0, parent 0 errors/0 warnings, each child 0 errors/1 warning |
-| `repair-derived.cjs --roots specs/cli-jev` (report-only re-run) | `inspected=12 repairable=0 failed=0`; the only notices are five pre-existing `SPEC_DOC_SUFFICIENCY` items in unauthored phase children |
-| Census: `rg "cli-external-orchestration/074-cli-jev-creation"` over live trees | 0 hits; the bare `074-cli-jev-creation` form is also 0 across `specs/cli-jev`, the skill docs, the hooks and the bin trees |
+| `validate.sh specs/cli-classifier/001-cli-jev-creation --strict --recursive` | PASS, exit 0, six printed `RESULT: PASSED` lines (parent plus five children) |
+| `validate.sh specs/cli-classifier/002-cli-jev-hub-migration --strict --recursive` | PASS, exit 0, parent 0 errors/0 warnings, each child 0 errors/1 warning |
+| `repair-derived.cjs --roots specs/cli-classifier` (report-only re-run) | `inspected=12 repairable=0 failed=0`; the only notices are five pre-existing `SPEC_DOC_SUFFICIENCY` items in unauthored phase children |
+| Census: `rg "cli-external-orchestration/074-cli-jev-creation"` over live trees | 0 hits; the bare `074-cli-jev-creation` form is also 0 across `specs/cli-classifier`, the skill docs, the hooks and the bin trees |
 | `sweep-track-roots.mjs` | `cli-jev: declared=2 actual=2` with no drift lines; exit 1 is driven by 14 pre-existing drifted tracks elsewhere |
 | `repair-derived.cjs --folder` on the track root | `inspected=1 repairable=0 failed=0`, confirming nothing is left to repair at track level |
 | Two dispatched verifiers (glm-5.3-flash, deepseek-v4.1-flash) over the moved packet | Found `description.json` identity staleness and two scaffold `goal.md` pointers; both were fixed, `repair-derived` re-ran, and the packet re-validated at 6 x `RESULT: PASSED` with 0 warnings |

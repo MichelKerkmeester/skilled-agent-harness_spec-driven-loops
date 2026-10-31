@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration"
+    packet_pointer: "cli-classifier/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration"
     last_updated_at: "2026-09-20T14:40:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Hub authored and validated; mode moved to cli-usage and retagged; reviewers triaged"

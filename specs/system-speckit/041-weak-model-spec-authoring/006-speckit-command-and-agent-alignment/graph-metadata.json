@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A speckit command tells a writer where to find authoring guidance, how a placeholder is treated and which files a packet holds",
     "created_at": "2026-10-23T12:53:05Z",
-    "last_save_at": "2026-10-31T13:27:28.116Z",
+    "last_save_at": "2026-10-31T13:59:42.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:01c8dfad4f62d52b2a31a749a1986e6e31c922696d7d3d9739c1764747212ac9",
+    "source_fingerprint": "sha256:418b5aa15dc1b21b288285cae336c70530788bcc91d920770c75736c401216da",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a486e0da1e1e8f118fb5de2e98851914e9d9b106267a741c6ba84d7e47178909",
-      "plan.md": "77d4a9b8abc0355559706849dd53915bbb9a36b9ce2e71c93146694e28766650",
-      "tasks.md": "5fd4a1c73993fbde86e059fd60ab08fa10e62fc94f418dcdb2130bee67b2021f",
-      "implementation-summary.md": "7fad1082e3fbd3b0b9afad6bedc58c013b0d0b37cf0cbdeb06337af1673299bb"
+      "plan.md": "83d457a68bcf5275931b3a0466e337ddb4de57dcda64eb8281b22bdb8b60d3ac",
+      "tasks.md": "5bf48b7f9b074d83d9c4ddb5e66d89f6881cec88663c494d2a1a06a71e265dc7",
+      "implementation-summary.md": "86ce9e5d3ea7c958b67e388b0b04c41de709e0739ca923dde0f5ee3e449b7aea"
     },
     "last_active_at": null
   }

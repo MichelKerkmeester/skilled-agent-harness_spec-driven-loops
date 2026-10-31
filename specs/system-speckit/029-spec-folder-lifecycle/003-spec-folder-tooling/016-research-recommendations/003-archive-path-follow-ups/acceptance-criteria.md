@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups"
+    packet_pointer: "specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups"
     last_updated_at: "2026-10-08T22:59:56Z"
     last_updated_by: "orchestrator"
     recent_action: "All six rows Met. AC-006 closed 2026-10-09 on the whole-tree gate"
@@ -34,7 +34,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups
+**Packet:** system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups
 **Level:** 2
 **Status:** Complete. All six rows are Met, and AC-006 closed on the whole-tree gate run of 2026-10-09. Closeout 2 (2026-10-09) re-checked every row after the test round and re-cited AC-006 to the tree4 gate. Closeout 3 (2026-10-09) re-read every citation after the Opus alignment fixes and re-cited AC-006 to the tree5 gate (see the AC-006 row)
 **Date:** 2026-10-08

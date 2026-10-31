@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-doctor-audit-followups/008-doctor-ownership-split"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/008-doctor-ownership-split"
     last_updated_at: "2026-10-04T06:09:44Z"
     last_updated_by: "doctor-ownership-split"
     recent_action: "Split the doctor surface by owner and deleted the retired commands"

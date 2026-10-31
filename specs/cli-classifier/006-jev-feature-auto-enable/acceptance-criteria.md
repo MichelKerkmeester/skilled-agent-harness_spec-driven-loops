@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/006-jev-feature-auto-enable"
+    packet_pointer: "cli-classifier/006-jev-feature-auto-enable"
     last_updated_at: "2026-10-04T20:12:18Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** cli-jev/006-jev-feature-auto-enable
+**Packet:** cli-classifier/006-jev-feature-auto-enable
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-04

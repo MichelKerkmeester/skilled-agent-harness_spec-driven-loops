@@ -10,15 +10,15 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs"
     last_updated_at: "2026-09-27T18:30:00Z"
     last_updated_by: "closure-leaf"
     recent_action: "Recorded the build evidence; every completion criterion is met"
     next_safe_action: "None. The phase is closed; the orchestrator commits"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs/acceptance-criteria.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs/acceptance-criteria.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-workflow-integration"
@@ -122,7 +122,7 @@ and findings belong here.
 | Sweep test baseline | Not run while planning, to avoid writing a vitest cache outside this folder. T003 records it before the first edit |
 | Hermes mirror (build) | `.hermes/skills/sk-prompt/SKILL.md` is a generated copy of `SKILL.md` and sits outside the spec's Files to Change and D3. The orchestrator regenerated it with the owner's sync tool, as the owner's earlier `SKILL.md` commits `239bc805db` and `86e99e7fc1` did, and `--check` printed `PASS: 71 Hermes skill copies in sync`. Source: `scratch/briefs/00-index.md` row 6 |
 | Version bump (build) | The spec does not name `SKILL.md`'s `version`. It moved from 3.0.1.0 to 3.0.2.0 to match the new changelog, following the owner's precedent `239bc805db` and sk-create-changelog's patch rule for a docs change. Source: `scratch/briefs/00-index.md` row 4 and brief 03 |
-| Parent changelog (build) | `spec.md` Phase Context asks for a refresh of `../changelog/`. `specs/cli-jev/003-cli-jev-workflow-integration/changelog/` does not exist, so there was nothing to refresh. Source: the orchestrator's build evidence, rechecked with `ls` on the parent folder |
+| Parent changelog (build) | `spec.md` Phase Context asks for a refresh of `../changelog/`. `specs/cli-classifier/003-cli-jev-workflow-integration/changelog/` does not exist, so there was nothing to refresh. Source: the orchestrator's build evidence, rechecked with `ls` on the parent folder |
 | Brief 04 expectation (build) | Brief 04 expected `grep -c 'sk-prompt v3.0.2.0'` to print 1. The file prints 2, the title and a trigger phrase, as the sibling `v3.0.1.0.md` does. The brief was wrong, not the file. Source: the orchestrator's build evidence |
 | Diff base moved (2026-09-27) | The main merge (`d6e512e6b5`) brought `094cdb9f8a`, which touched 15 sk-prompt changelog files, so the diff from `00480a8d5c` listed them before any build edit. The operator approved the merge; the fifth criterion and AC-007 now diff from the build-start HEAD `6f47c32dce`, taken after the concurrent-access recheck printed a clean status |
 <!-- /ANCHOR:log -->

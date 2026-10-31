@@ -11,15 +11,15 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment"
     last_updated_at: "2026-10-01T07:16:01Z"
     last_updated_by: "markdown-leaf"
     recent_action: "Ticked all five criteria from the build's evidence and recorded the closure"
     next_safe_action: "None. The orchestrator commits the build and the phase docs path-scoped"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/plan.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/plan.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-041-code-readmes-and-routing-alignment"
@@ -104,7 +104,7 @@ and findings belong here.
 | Review round 2 (2026-10-01) | SWE 2 max, read-only, 155 s: all ten round-1 items `FIXED` at their current lines and `VERDICT: PASS`. One new P2: the hub `README.md` changelog table stopped at v0.5.0.0 and miscounted its rows; fixed by brief f6 with a v0.6.0.0 row and a corrected pre-merge-release sentence (`scratch/evidence/build-evidence.md:68-70`) |
 | Criterion amendments (2026-10-01) | Criterion 4 said "No `cli-usage-aliases` remains under the hub"; the dated `changelog/v0.6.0.0.md:20` records the rename as history and stays by REQ-005, so the criterion now names current-state files and the qualification sits in its own sentence. Criterion 5 said `validate.sh --strict` passes "for this phase and the parent"; the parent folder's own generated metadata currently fails two strict rules and misses `041` in `children_ids`, all in a folder this phase may not write, so the criterion names this phase and leaves the parent to the orchestrator's sweep. The matching acceptance rows carry the same two qualifications, AC-004 names current-state files and AC-005 leaves the parent to the sweep. All four are word changes with the reason recorded here, not ticked sentences |
 | Luna audit attempts (2026-10-01) | A read-only Luna 6 max audit was tried twice. Try 1 hit a codex host timeout before reading any file and try 2 hit the 2,400 s alarm with no output, so cross-family review went to SWE 2 max on cli-devin (`scratch/evidence/build-evidence.md:65`) |
-| Parent validation (2026-10-01) | `validate.sh --strict --no-recursive` on `specs/cli-jev/003-cli-jev-workflow-integration` reported two strict generated-metadata errors (a source-fingerprint mismatch and a description drift) and the missing `041` child id in `children_ids` at this pass, while other workers were editing the parent folder; all three sit in the parent's own derived files outside this phase's write scope, and the orchestrator's sweep re-derives them after the workers return |
+| Parent validation (2026-10-01) | `validate.sh --strict --no-recursive` on `specs/cli-classifier/003-cli-jev-workflow-integration` reported two strict generated-metadata errors (a source-fingerprint mismatch and a description drift) and the missing `041` child id in `children_ids` at this pass, while other workers were editing the parent folder; all three sit in the parent's own derived files outside this phase's write scope, and the orchestrator's sweep re-derives them after the workers return |
 | Fleet-wide strict scenario gap (2026-10-01) | `validate-compiled-routing-scenarios.cjs --strict` on hub-routing fails 5 of 5 on evidence fields, the same at HEAD and on the canon-clean `cli-external-orchestration` hub, so the failure is pre-existing and fleet-wide. The phase's leaf evidence stands on the replay (`scratch/evidence/build-evidence.md:42`; `scratch/evidence/leaf-route-replay.txt:7`) |
 | Landing prep (2026-10-01) | Main had moved 13 commits ahead with another session's runtime-alignment work, so `git merge --no-ff main` into the worktree branch landed as `eeefe0c074` with seven conflicts, the four generated index files and the three READMEs both sides had added under `runtime/scripts/`; all seven take main's version, so three of the eleven folders carry the runtime owner's README and this phase's own READMEs land in eight. Main's move of `completion-evidence-sentinel.cjs` left `score-completion-claims.mjs:41` and its catalog row on the old path, and `f89ebcb2c3` repoints both, with the suite at 23 of 23. `sync-skills-hermes.cjs --check` reports 8 drifted copies, the same 8 at main's `d7c90f663c`, so they are left to their owner (`scratch/evidence/build-evidence.md:76-84`) |
 | T001 and T002 closed (2026-10-01) | The operator chose "Mark done, record the deviation". Both tasks are `[x]`. The design note `D` was never written as its own file, and its content is in `scratch/evidence/probe-before.txt` and `scratch/evidence/build-evidence.md`, which each row names. No other file changed |

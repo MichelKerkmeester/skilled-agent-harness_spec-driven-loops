@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow"
     last_updated_at: "2026-09-28T21:30:00Z"
     last_updated_by: "closure-leaf"
     recent_action: "Closed the phase at the label gate: 7 of 7 criteria ticked, 4 amended at close"

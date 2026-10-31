@@ -14,7 +14,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes"
+    packet_pointer: "system-speckit/031-system-speckit-v4/023-trigger-index-root-and-drift-fixes"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialize phase-parent continuity block"
@@ -56,7 +56,7 @@ _memory:
 | **Created** | 2026-09-05 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | None; findings originate in `specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/research/lineages/sonnet5-high-research/research.md` |
+| **Parent Packet** | None; findings originate in `specs/system-speckit/031-system-speckit-v4/021-decommission-debt-and-cli-nesting/research/lineages/sonnet5-high-research/research.md` |
 | **Predecessor** | None |
 | **Successor** | None |
 | **Handoff Criteria** | Every child validates strict, each finding names its fix commit or its recorded decision, and the parent's gate set is green |

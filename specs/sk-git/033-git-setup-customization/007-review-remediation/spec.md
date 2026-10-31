@@ -43,7 +43,7 @@ This is **Phase 7** of the Fix the P1 and P2 findings of the v4.0.0.11 conforman
 
 **Dependencies**:
 - The phase 6 review report and its findings registry, read as the finding source.
-- A parallel build on `specs/system-skill-advisor/035-doctor-command-routing` that owns the advisor code, `doctor-setup.yaml`, `setup.md`, `_routes.yaml` and the root README command counts. Shared files get a `git diff` check and a minimal edit.
+- A parallel build on `specs/system-skill-advisor/030-doctor-command-surfacing/002-doctor-command-routing` that owns the advisor code, `doctor-setup.yaml`, `setup.md`, `_routes.yaml` and the root README command counts. Shared files get a `git diff` check and a minimal edit.
 
 **Deliverables**:
 - A packaged sk-git skill under the 5,000-word limit, with an accurate playbook census and a runnable validation command.

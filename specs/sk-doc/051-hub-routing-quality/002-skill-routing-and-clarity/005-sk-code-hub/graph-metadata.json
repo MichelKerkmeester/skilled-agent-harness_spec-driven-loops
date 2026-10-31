@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Routing prose fills 37 to 54 percent of the sk-code mode `SKILL.md` files, and three of its documents each claim a different routing authority",
     "created_at": "2026-10-28T06:38:46Z",
-    "last_save_at": "2026-10-31T13:25:47.986Z",
+    "last_save_at": "2026-10-31T14:01:36.621Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:15ab2304b3bb89dd651ff4be646ca807ea433f8c32b751b9c8df82235bb83318",
+    "source_fingerprint": "sha256:29c16f221c27f45e32560a45060b81d3a8e5ff0baae9e82a417fc45b60b347d0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fc7ded6ed18bcb02fd55f31140e2b170f01fa99e13438012b015516f5b314dca",
       "plan.md": "c35f4b1f81c8bd89c94d62f875948844d622c7c3eeffa5f37970900cb0eeb788",
-      "tasks.md": "be339ecefb7f8b41a4a23d470bd278c5c2e6454a7138d0a1d7aca2a3886bd696",
+      "tasks.md": "0e7a79c6e28451d613e8a20939ae07531e1fa2163bc72d9ea9323cbca2e4ae71",
       "implementation-summary.md": "3e6bc631ddf8146d8cdfa1f11237f35a72a7668a3a836bb7971d1b23d704cb27"
     },
     "last_active_at": null

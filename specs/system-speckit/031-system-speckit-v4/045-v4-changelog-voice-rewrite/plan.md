@@ -21,7 +21,7 @@ contextType: "implementation"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | Markdown release notes, `specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md` |
+| **Language/Stack** | Markdown release notes, `specs/system-speckit/031-system-speckit-v4/CHANGELOG-v4.0.0.0.md` |
 | **Framework** | system-spec-kit packet lifecycle and derived metadata |
 | **Storage** | None |
 | **Testing** | The wall census, `hvr_scan.py`, an extracted-token diff against `HEAD`, `validate.sh --strict` |

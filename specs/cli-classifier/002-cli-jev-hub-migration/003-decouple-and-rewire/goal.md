@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire"
+    packet_pointer: "cli-classifier/002-cli-jev-hub-migration/003-decouple-and-rewire"
     last_updated_at: "2026-09-20T15:25:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Decoupling verified; dispatch chain, rosters and surfaces rewired"

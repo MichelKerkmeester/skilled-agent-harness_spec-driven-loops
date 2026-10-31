@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`evaluateCompletionFreshness` (`.opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:292-349`) scans `spec.md`, `plan.md`, `tasks.md`, `decision-record.md`, `implementation-summary.md` and `handover.md` for a completion claim (`completionpct === 100` or a status matching `complete|completed|done|shipped|implemented`, read from either frontmatter `status` or the metadata-table `Status` row)",
     "created_at": "2026-09-05T06:13:03Z",
-    "last_save_at": "2026-10-31T13:26:43.894Z",
+    "last_save_at": "2026-10-31T13:58:47.880Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f136e24a0ca473d997534b7960a0cc6c0f08e4887449762aa316347c64580bfd",
+    "source_fingerprint": "sha256:adc1e0aa02f11e5b01909e333764c4208e3376de7520a69fa6674e3c2eeb1ef2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "da387a4f5f45d98a8895456f7e37f82a73af383669b2ca1bb716bb0d4312db56",
+      "spec.md": "f8a490428a5ad04dbc43fd0a68f6aa246b0928beaf8fcaf4bbb9951f8f4f92bd",
       "plan.md": "348f576fa3f4e7800963ffb37ad7e7e81402edc5119e9e7e1296bd7a3e3dc26a",
-      "tasks.md": "194980fae29bd61ef1c715f65fb5754a672d148d08d9928d5bed1217ca64d27f",
-      "implementation-summary.md": "2a809c2bc92203d3fe0dc1e3cb165c139301f1558370f8f974b99dc028a07c3a"
+      "tasks.md": "dac92e33118e3ad2c90fc4fab249f9de75f3482cf41da27668e752c14f4baec5",
+      "implementation-summary.md": "fcdd65292672a40f29f4b98bf371d817b5739ed4d7b4579102627381a72f3317"
     },
     "last_active_child_id": null,
     "last_active_at": null

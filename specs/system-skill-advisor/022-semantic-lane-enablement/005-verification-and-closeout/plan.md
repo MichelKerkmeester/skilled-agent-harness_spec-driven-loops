@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout"
+    packet_pointer: "system-skill-advisor/022-semantic-lane-enablement/005-verification-and-closeout"
     last_updated_at: "2026-09-03T00:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the implementation plan"
@@ -102,11 +102,11 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 | `research/final-state.md` | The record of the final pass | create | Every gate appears with its command and its number |
 | `../spec.md` | The parent phase map | update | Every phase status matches its folder |
 | `../goal.md` | The parent progress table | update | Every row carries evidence rather than a state word alone |
-| `specs/sk-doc/052-routing-completeness/roadmap.md` | Points at this packet | update | The Later entry names this packet and its result |
-| `specs/sk-doc/052-routing-completeness/research/findings-register.md` | Carries finding 10 | update | Finding 10 reads resolved and names the evidence |
+| `specs/sk-doc/051-hub-routing-quality/001-routing-completeness/roadmap.md` | Points at this packet | update | The Later entry names this packet and its result |
+| `specs/sk-doc/051-hub-routing-quality/001-routing-completeness/research/findings-register.md` | Carries finding 10 | update | Finding 10 reads resolved and names the evidence |
 
 Required inventories:
-- Same-class producers: `rg -n 'semantic lane|semantic_shadow' specs/sk-doc/052-routing-completeness`.
+- Same-class producers: `rg -n 'semantic lane|semantic_shadow' specs/sk-doc/051-hub-routing-quality/001-routing-completeness`.
 - Consumers of changed symbols: none. This phase changes documents.
 - Matrix axes: gate by state. Every gate runs against exactly one final state, which is the point of the pass.
 - Algorithm invariant: a gate result is only valid when the corpus hashes and the coverage count are identical before and after the pass.

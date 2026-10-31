@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 007 moves the files, and nothing that points at them moves along",
     "created_at": "2026-09-16T17:54:08Z",
-    "last_save_at": "2026-10-31T13:27:01.638Z",
+    "last_save_at": "2026-10-31T13:59:11.196Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ebcd8cd4a7dfe831cfa11497342e7e1da882714cdf157b816f68d629ec4599a7",
+    "source_fingerprint": "sha256:93d6abb94a410212a89fb8333f4b496ae535dd08239c63670cf66a49be03f48c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8003b8ebb800d4c731e457ce2fad8d4571fff63d59409efe954c626ebdbed068",
-      "plan.md": "b73f848526689073a228f3e259d07030aa45fd7a7401c65084825a1444d60fd5",
-      "tasks.md": "fa01bc7259286d30c0639123d584c234eef8294ebac452417da80fee98395b25",
+      "plan.md": "9226015b051dcaa5a0856ce6587efa26f1ec7e6320e32938dcb1a5e5772d50e2",
+      "tasks.md": "6404006f70bc395d7f256f75fddbbb2ee93b1e7cc4cbb4662ba56ea7c9e95198",
       "implementation-summary.md": "8d47d82ed0a84c29855661822426bd712e57fec995983132c93e75e99b318bca"
     },
     "last_active_at": null

@@ -9,10 +9,11 @@
     "frontmatter"
   ],
   "lastUpdated": "2026-09-06T06:34:09.836Z",
-  "specId": "049",
+  "specId": "001",
   "folderSlug": "sk-create-frontmatter",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "049-frontmatter-and-description-budget"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

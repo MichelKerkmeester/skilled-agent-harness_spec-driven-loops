@@ -11,15 +11,15 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/040-hard-rules-sidecar"
     last_updated_at: "2026-09-30T18:29:21Z"
     last_updated_by: "markdown-leaf"
     recent_action: "Rewrote this file with the build, review and gate results"
     next_safe_action: "None. The orchestrator commits the build and the phase docs path-scoped"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar/scratch/context/context.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/040-hard-rules-sidecar/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/040-hard-rules-sidecar/scratch/context/context.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-040-hard-rules-sidecar"
@@ -136,11 +136,11 @@ These gates ran on the phase docs only. They prove the record is well formed, no
 
 | Check | Result |
 |-------|--------|
-| `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar --apply` | Exit 0, `inspected=1 repaired=1 failed=0`, and `graph-metadata.json` re-derived |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar --strict` | `RESULT: PASSED`, `Errors: 0  Warnings: 0`, exit 0 |
-| `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar` | `RESULT: PASSED (5/5 checks)`, exit 0 |
-| `node .skilled/hooks/goal/bin/goal.cjs packet specs/cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar --workspace "$PWD"` | `STATUS=OK ACTION=packet`, `packet_durable_chars=1877`, exit 0 |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar` | `PASS` with zero placeholder patterns, exit 0 |
+| `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/cli-classifier/003-cli-jev-workflow-integration/040-hard-rules-sidecar --apply` | Exit 0, `inspected=1 repaired=1 failed=0`, and `graph-metadata.json` re-derived |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-classifier/003-cli-jev-workflow-integration/040-hard-rules-sidecar --strict` | `RESULT: PASSED`, `Errors: 0  Warnings: 0`, exit 0 |
+| `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/cli-classifier/003-cli-jev-workflow-integration/040-hard-rules-sidecar` | `RESULT: PASSED (5/5 checks)`, exit 0 |
+| `node .skilled/hooks/goal/bin/goal.cjs packet specs/cli-classifier/003-cli-jev-workflow-integration/040-hard-rules-sidecar --workspace "$PWD"` | `STATUS=OK ACTION=packet`, `packet_durable_chars=1877`, exit 0 |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/cli-classifier/003-cli-jev-workflow-integration/040-hard-rules-sidecar` | `PASS` with zero placeholder patterns, exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---

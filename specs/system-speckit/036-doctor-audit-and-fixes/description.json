@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/036-doctor-audit-and-fixes",
+  "description": "Doctor command audit and the fixes it recorded",
+  "keywords": [
+    "doctor",
+    "audit",
+    "and",
+    "fixes"
+  ],
+  "lastUpdated": "2026-10-31T13:31:06.000Z",
+  "specId": "036",
+  "folderSlug": "doctor-audit-and-fixes",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

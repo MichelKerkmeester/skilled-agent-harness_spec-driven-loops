@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-create-goal-mode"
+    packet_pointer: "sk-doc/057-create-goal-mode"
     last_updated_at: "2026-09-26T12:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Closed phase 010 and amended D2"

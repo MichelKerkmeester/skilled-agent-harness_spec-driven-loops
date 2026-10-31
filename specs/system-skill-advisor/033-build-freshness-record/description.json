@@ -13,7 +13,7 @@
     "attestation"
   ],
   "lastUpdated": "2026-10-30T17:20:26.745Z",
-  "specId": "040",
+  "specId": "033",
   "folderSlug": "build-freshness-record",
   "parentChain": [
     "system-skill-advisor"

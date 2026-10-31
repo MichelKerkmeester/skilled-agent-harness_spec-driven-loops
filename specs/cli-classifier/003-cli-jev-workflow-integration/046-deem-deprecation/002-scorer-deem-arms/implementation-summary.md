@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/002-scorer-deem-arms"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/002-scorer-deem-arms"
     last_updated_at: "2026-10-02T17:30:00Z"
     last_updated_by: "orchestrating-session"
     recent_action: "Closed the phase"

@@ -36,7 +36,7 @@ contextType: "planning"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 [P0] Read the frozen parent handoff and use the phase 004 entry condition and phase 006 exit check as setup and verification gates (specs/sk-doc/060-create-goal-mode/spec.md:145-146). Evidence: phase 004 closed with strict `RESULT: PASSED` and its fixture bound 3 of 3 phases.
+- [x] T001 [P0] Read the frozen parent handoff and use the phase 004 entry condition and phase 006 exit check as setup and verification gates (specs/sk-doc/057-create-goal-mode/spec.md:145-146). Evidence: phase 004 closed with strict `RESULT: PASSED` and its fixture bound 3 of 3 phases.
 - [x] T002 [P0] Confirm the 4,000-character setting, packet command fields and slice projections from the manifest, CLI and shared module (.skilled/skills/system-spec-kit/templates/spec-kit-docs.json:24-28, .skilled/hooks/goal/bin/goal.cjs:203-216, .skilled/hooks/goal/lib/goal-slice.cjs:59-79,96-118). Evidence: the reference cites the manifest limit, the packet output fields and both slice builders (`.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md:21`).
 <!-- /ANCHOR:phase-1 -->
 
@@ -46,9 +46,9 @@ contextType: "planning"
 ## Phase 2: Implementation
 
 - [x] T003 [P0] Create .skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md with the read-only command, output fields and set-string cut order (.skilled/hooks/goal/bin/goal.cjs:203-216, .skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md:61-71). Evidence: `.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md` created with the command, both output fields and the playbook cut order (`.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md:37`).
-- [x] T004 [P0] Document chat_slice versus objective_slice, the six-runtime matrix and the rule that the mode prints chat_slice and stops without bind or set (.skilled/hooks/goal/lib/goal-slice.cjs:66-79,96-118, .skilled/hooks/goal/goal-plugin.md:151-170, specs/sk-doc/060-create-goal-mode/goal.md:51-54). Evidence: `.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md:51` and `.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md:61`; the file contains no `goal.cjs bind` or `goal.cjs set` (grep exit 1).
-- [x] T005 [P1] Record that the fixed-text cost is not a system-spec-kit amendment on current evidence, cite the parent goal's 4,820-to-3,735 log and preserve the D4 escalation if a contract gap remains (specs/sk-doc/060-create-goal-mode/goal.md:52-54,136). Evidence: `.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md:76` records the 4,820 to 3,735 parent cut and keeps the fixed-text cost out of system-spec-kit.
-- [x] T006 [P0] Create a temporary top-level packet with an over-budget parent goal, trim it in order without dropping a completion criterion and retain before/after criterion counts for comparison (.skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md:61-71, specs/sk-doc/060-create-goal-mode/spec.md:146). Evidence: a temporary level 2 fixture measured 5,897 (`over`), was cut to 3,256 (`ok`) with 5 criteria before and after, then removed.
+- [x] T004 [P0] Document chat_slice versus objective_slice, the six-runtime matrix and the rule that the mode prints chat_slice and stops without bind or set (.skilled/hooks/goal/lib/goal-slice.cjs:66-79,96-118, .skilled/hooks/goal/goal-plugin.md:151-170, specs/sk-doc/057-create-goal-mode/goal.md:51-54). Evidence: `.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md:51` and `.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md:61`; the file contains no `goal.cjs bind` or `goal.cjs set` (grep exit 1).
+- [x] T005 [P1] Record that the fixed-text cost is not a system-spec-kit amendment on current evidence, cite the parent goal's 4,820-to-3,735 log and preserve the D4 escalation if a contract gap remains (specs/sk-doc/057-create-goal-mode/goal.md:52-54,136). Evidence: `.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md:76` records the 4,820 to 3,735 parent cut and keeps the fixed-text cost out of system-spec-kit.
+- [x] T006 [P0] Create a temporary top-level packet with an over-budget parent goal, trim it in order without dropping a completion criterion and retain before/after criterion counts for comparison (.skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md:61-71, specs/sk-doc/057-create-goal-mode/spec.md:146). Evidence: a temporary level 2 fixture measured 5,897 (`over`), was cut to 3,256 (`ok`) with 5 criteria before and after, then removed.
 - [x] T010 [P1] Load `references/budget-and-handoff.md` from the `SKILL.md` budget and handoff steps and list it in `references/README.md` (operator-approved amendment). Evidence: `SKILL.md:109` loads the reference at the chat-slice step and `references/README.md:25` lists it.
 <!-- /ANCHOR:phase-2 -->
 
@@ -57,9 +57,9 @@ contextType: "planning"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T007 [P0] Run the packet command before and after trimming, require the final output to show packet_durable_chars, packet_budget=ok, objective_slice and chat_slice, and compare criterion counts (.skilled/hooks/goal/bin/goal.cjs:203-216, .skilled/hooks/goal/lib/goal-slice.cjs:399-428). Evidence: before `packet_durable_chars=5897` `packet_budget=over`; after `3256` `ok`; the final output has both `chat_slice` and `objective_slice` (`specs/sk-doc/060-create-goal-mode/005-budget-and-chat-slice-handoff/scratch/budget-fixture-evidence.md`).
-- [x] T008 [P1] Check every repository fact in the new reference against a path:line citation and confirm the Cursor packet-read path is described separately from packet-log (.cursor/commands/goal-cursor.md:14-19, specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-mode-anatomy-audit.md:72). Evidence: every fact in the reference links its source file; the orchestrator removed a drifting log line-number cite.
-- [x] T009 [P0] Run bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/060-create-goal-mode/005-budget-and-chat-slice-handoff --strict and require an explicit RESULT: PASSED or report the generated metadata findings reserved for orchestration. Evidence: `RESULT: PASSED`, 0 errors and 0 warnings, on 2026-09-26.
+- [x] T007 [P0] Run the packet command before and after trimming, require the final output to show packet_durable_chars, packet_budget=ok, objective_slice and chat_slice, and compare criterion counts (.skilled/hooks/goal/bin/goal.cjs:203-216, .skilled/hooks/goal/lib/goal-slice.cjs:399-428). Evidence: before `packet_durable_chars=5897` `packet_budget=over`; after `3256` `ok`; the final output has both `chat_slice` and `objective_slice` (`specs/sk-doc/057-create-goal-mode/005-budget-and-chat-slice-handoff/scratch/budget-fixture-evidence.md`).
+- [x] T008 [P1] Check every repository fact in the new reference against a path:line citation and confirm the Cursor packet-read path is described separately from packet-log (.cursor/commands/goal-cursor.md:14-19, specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-mode-anatomy-audit.md:72). Evidence: every fact in the reference links its source file; the orchestrator removed a drifting log line-number cite.
+- [x] T009 [P0] Run bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode/005-budget-and-chat-slice-handoff --strict and require an explicit RESULT: PASSED or report the generated metadata findings reserved for orchestration. Evidence: `RESULT: PASSED`, 0 errors and 0 warnings, on 2026-09-26.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -104,7 +104,7 @@ contextType: "planning"
 
 - [x] CHK-001 [P0] Requirements in spec.md state measurable budget, projection, runtime and fixture outcomes.
 - [x] CHK-002 [P0] Plan names the exact packet command, workspace scope, retained file and observable fixture check.
-- [x] CHK-003 [P1] Phase 004 incoming handoff is confirmed before implementation (specs/sk-doc/060-create-goal-mode/spec.md:145).
+- [x] CHK-003 [P1] Phase 004 incoming handoff is confirmed before implementation (specs/sk-doc/057-create-goal-mode/spec.md:145).
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -113,7 +113,7 @@ contextType: "planning"
 ## Code Quality
 
 - [x] CHK-010 [P0] The reference uses the shared CLI's packet measurement rather than a second character counter (.skilled/hooks/goal/bin/goal.cjs:203-216, .skilled/hooks/goal/lib/goal-slice.cjs:268-285).
-- [x] CHK-011 [P1] No code or runtime command is added by this phase, only the planned reference is retained (specs/sk-doc/060-create-goal-mode/spec.md:86,94-99).
+- [x] CHK-011 [P1] No code or runtime command is added by this phase, only the planned reference is retained (specs/sk-doc/057-create-goal-mode/spec.md:86,94-99).
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -131,7 +131,7 @@ contextType: "planning"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [x] CHK-FIX-001 [P1] If ordered cuts cannot fit a goal without dropping a criterion, leave the criterion intact and report the system-spec-kit gap under D4 (.skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md:68-71, specs/sk-doc/060-create-goal-mode/goal.md:52-54).
+- [x] CHK-FIX-001 [P1] If ordered cuts cannot fit a goal without dropping a criterion, leave the criterion intact and report the system-spec-kit gap under D4 (.skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md:68-71, specs/sk-doc/057-create-goal-mode/goal.md:52-54).
 - [x] CHK-FIX-002 [P1] Confirm every observed command or projection claim in the reference cites its source path and line.
 <!-- /ANCHOR:fix-completeness -->
 
@@ -140,7 +140,7 @@ contextType: "planning"
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-030 [P0] The handoff uses only the packet read action and never invokes bind or set (.skilled/hooks/goal/bin/goal.cjs:203-216,233-246, specs/sk-doc/060-create-goal-mode/goal.md:51-54).
+- [x] CHK-030 [P0] The handoff uses only the packet read action and never invokes bind or set (.skilled/hooks/goal/bin/goal.cjs:203-216,233-246, specs/sk-doc/057-create-goal-mode/goal.md:51-54).
 - [x] CHK-031 [P1] Keep the temporary packet beneath the explicit workspace root passed to --workspace (.skilled/hooks/goal/bin/goal.cjs:33-75).
 <!-- /ANCHOR:security -->
 
@@ -159,7 +159,7 @@ contextType: "planning"
 ## File Organization
 
 - [x] CHK-050 [P1] The fixture is created under a temporary directory within the workspace root.
-- [x] CHK-051 [P1] The temporary fixture is removed after verification, only the planned reference remains as an implementation output (specs/sk-doc/060-create-goal-mode/spec.md:86,89,104).
+- [x] CHK-051 [P1] The temporary fixture is removed after verification, only the planned reference remains as an implementation output (specs/sk-doc/057-create-goal-mode/spec.md:86,89,104).
 <!-- /ANCHOR:file-org -->
 
 ---

@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-skill-advisor/033-advisor-status-truthfulness/001-freshness-and-scan-truth
+**Packet:** system-skill-advisor/029-advisor-status-truthfulness/001-freshness-and-scan-truth
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-10-03

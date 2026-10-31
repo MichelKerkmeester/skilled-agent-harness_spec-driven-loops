@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/009-pi-transport-improvements"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/009-pi-transport-improvements"
     last_updated_at: "2026-10-03T12:00:00Z"
     last_updated_by: "claude-opus-5-5-049"
     recent_action: "Built, reviewed and verified the phase"

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration"
+    packet_pointer: "cli-classifier/002-cli-jev-hub-migration/001-track-and-packet-migration"
     last_updated_at: "2026-09-20T13:20:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Phase specification authored at closeout from the landed move"
@@ -45,7 +45,7 @@ _memory:
 | **Phase** | 1 of 5 |
 | **Predecessor** | None |
 | **Successor** | 002-hub-scaffold-and-mode-migration |
-| **Handoff Criteria** | The packet lives at `specs/cli-jev/001-cli-jev-creation`, the track root declares both children, the recursive strict gate is green on both packets, and no live surface still cites the old path |
+| **Handoff Criteria** | The packet lives at `specs/cli-classifier/001-cli-jev-creation`, the track root declares both children, the recursive strict gate is green on both packets, and no live surface still cites the old path |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,7 +53,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 1** of the cli-jev hub migration program (packet `cli-jev/002-cli-jev-hub-migration`).
+This is **Phase 1** of the cli-jev hub migration program (packet `cli-classifier/002-cli-jev-hub-migration`).
 
 **Scope Boundary**: The spec-side home of the already-landed cli-jev creation history. The skill-side relocation is phase 002, the decoupling of the old hub is phase 003, fleet onboarding is phase 004, and the playbook re-run is phase 005. This phase moves documents and repairs the derived facts a move invalidates. It changes no product behavior.
 
@@ -63,8 +63,8 @@ This is **Phase 1** of the cli-jev hub migration program (packet `cli-jev/002-cl
 - The blessed regenerators for the trigger index, the retrieval fixtures and the graph metadata
 
 **Deliverables**:
-- `specs/cli-jev/001-cli-jev-creation/` holding the moved packet, byte-identical apart from repointed citations
-- Authored track metadata (`specs/cli-jev/description.json`, `specs/cli-jev/graph-metadata.json`) declaring both children
+- `specs/cli-classifier/001-cli-jev-creation/` holding the moved packet, byte-identical apart from repointed citations
+- Authored track metadata (`specs/cli-classifier/description.json`, `specs/cli-classifier/graph-metadata.json`) declaring both children
 - A zero-hit census for the old spec path across every live tree, with the regenerated surfaces carrying the new one
 
 **Changelog**:
@@ -80,7 +80,7 @@ This is **Phase 1** of the cli-jev hub migration program (packet `cli-jev/002-cl
 The cli-jev creation packet (former `specs/cli-external-orchestration/074-cli-jev-creation`) records the history of a mode that is being promoted out of the cli-external-orchestration family into its own hub. A packet that keeps its old home keeps every derived surface wrong at once: the folder description cache, the graph metadata, the continuity pointers stamped into five documents per phase, the trigger index, the retrieval corpus manifest and the frontmatter version manifest all name a folder that no longer exists.
 
 ### Purpose
-Make `specs/cli-jev/` a real track with its history and its program packet inside it, so every later phase can cite one stable home and no generated surface points at the retired path.
+Make `specs/cli-classifier/` a real track with its history and its program packet inside it, so every later phase can cite one stable home and no generated surface points at the retired path.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -106,10 +106,10 @@ Make `specs/cli-jev/` a real track with its history and its program packet insid
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `specs/cli-external-orchestration/074-cli-jev-creation/**` | Move | Source of the packet, now empty of it |
-| `specs/cli-jev/001-cli-jev-creation/**` | Move | The packet at its new numbered home |
-| `specs/cli-jev/description.json` | Create | Track-root description (specId, level, keywords) |
-| `specs/cli-jev/graph-metadata.json` | Create | Track-root graph metadata declaring both children |
-| `specs/cli-jev/002-cli-jev-hub-migration/**` | Modify | Program packet whose docs cite the moved history |
+| `specs/cli-classifier/001-cli-jev-creation/**` | Move | The packet at its new numbered home |
+| `specs/cli-classifier/description.json` | Create | Track-root description (specId, level, keywords) |
+| `specs/cli-classifier/graph-metadata.json` | Create | Track-root graph metadata declaring both children |
+| `specs/cli-classifier/002-cli-jev-hub-migration/**` | Modify | Program packet whose docs cite the moved history |
 | `.skilled/skills/cli-external-orchestration/cli-jev/**` | Modify | Skill-side docs citing the old spec path |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/**` | Modify | Regenerated trigger index and fixtures |
 <!-- /ANCHOR:scope -->
@@ -123,14 +123,14 @@ Make `specs/cli-jev/` a real track with its history and its program packet insid
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The packet lives at `specs/cli-jev/001-cli-jev-creation` with the old path absent from disk and from git's index as a live file | `git status --porcelain` shows staged `R` entries for the move and `ls specs/cli-external-orchestration` no longer lists `074-cli-jev-creation` |
-| REQ-002 | The track root describes itself and both children | `specs/cli-jev/description.json` carries `specId: cli-jev`, `level: track`; `specs/cli-jev/graph-metadata.json` declares `cli-jev/001-cli-jev-creation` and `cli-jev/002-cli-jev-hub-migration` |
+| REQ-001 | The packet lives at `specs/cli-classifier/001-cli-jev-creation` with the old path absent from disk and from git's index as a live file | `git status --porcelain` shows staged `R` entries for the move and `ls specs/cli-external-orchestration` no longer lists `074-cli-jev-creation` |
+| REQ-002 | The track root describes itself and both children | `specs/cli-classifier/description.json` carries `specId: cli-jev`, `level: track`; `specs/cli-classifier/graph-metadata.json` declares `cli-classifier/001-cli-jev-creation` and `cli-classifier/002-cli-jev-hub-migration` |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-003 | Every derived fact the move invalidated is repaired through the sanctioned tool, not by hand | `repair-derived.cjs --roots specs/cli-jev --apply` reports inspected, repaired and failed counts, and a follow-up report-only run reports zero repairable |
+| REQ-003 | Every derived fact the move invalidated is repaired through the sanctioned tool, not by hand | `repair-derived.cjs --roots specs/cli-classifier --apply` reports inspected, repaired and failed counts, and a follow-up report-only run reports zero repairable |
 | REQ-004 | No live surface cites the old spec path | A repo-wide census for `cli-external-orchestration/074-cli-jev-creation` over live trees returns zero hits after regenerating the trigger index and retrieval fixtures |
 <!-- /ANCHOR:requirements -->
 
@@ -139,8 +139,8 @@ Make `specs/cli-jev/` a real track with its history and its program packet insid
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `validate.sh specs/cli-jev/001-cli-jev-creation --strict --recursive` prints `RESULT: PASSED` for the packet and each of its five children, exit 0.
-- **SC-002**: `validate.sh specs/cli-jev/002-cli-jev-hub-migration --strict --recursive` prints `RESULT: PASSED` for the program parent and each phase child, exit 0.
+- **SC-001**: `validate.sh specs/cli-classifier/001-cli-jev-creation --strict --recursive` prints `RESULT: PASSED` for the packet and each of its five children, exit 0.
+- **SC-002**: `validate.sh specs/cli-classifier/002-cli-jev-hub-migration --strict --recursive` prints `RESULT: PASSED` for the program parent and each phase child, exit 0.
 - **SC-003**: `sweep-track-roots.mjs` reports `cli-jev: declared=2 actual=2`, and the only drifted tracks are the pre-existing ones captured in the baseline.
 <!-- /ANCHOR:success-criteria -->
 

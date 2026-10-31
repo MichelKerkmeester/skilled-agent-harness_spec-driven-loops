@@ -1,10 +1,10 @@
 STEP 1 - fill P/acceptance-criteria.md (closure gate)
-Shape model (read-only): specs/system-speckit/033-system-speckit-v4/049-gate-3-delivery-residue/acceptance-criteria.md
+Shape model (read-only): specs/system-speckit/031-system-speckit-v4/049-gate-3-delivery-residue/acceptance-criteria.md
 - Title in frontmatter and H1: "Acceptance Criteria: CI Cleanup and Pi Gate-3 Live Proof".
-- Frontmatter _memory.continuity: packet_pointer "system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof",
+- Frontmatter _memory.continuity: packet_pointer "system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof",
   last_updated_at "2026-09-23T06:00:00Z", last_updated_by "cli-pi mimo-v2.6-pro (orchestrated)",
   recent_action and next_safe_action from evidence.md, completion_pct 70. Keep session_dedup unchanged.
-- Metadata: Packet system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof. Level 2. Status In Progress.
+- Metadata: Packet system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof. Level 2. Status In Progress.
   Date 2026-09-23.
 - Criteria table: exactly AC-001 to AC-010 mapped to REQ ids as evidence.md lists. Given / When / Then per row.
   Verification cell names the command and result or the scratch file. Status as evidence.md says

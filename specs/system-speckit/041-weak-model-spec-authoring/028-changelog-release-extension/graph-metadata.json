@@ -202,7 +202,7 @@
     ],
     "causal_summary": "`/create:changelog` increments the version while a file exists, so a run for the `skilled` line after untagged notes were written opens a second untagged release, and adding the work to the open entry was a hand edit outside the workflow",
     "created_at": "2026-10-28T05:06:20Z",
-    "last_save_at": "2026-10-31T13:27:30.362Z",
+    "last_save_at": "2026-10-31T13:59:50.167Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +212,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:02ca7dab6fde7e3483600594fa58c95c89da8e7b4805396195a1132545439bc3",
+    "source_fingerprint": "sha256:afccc0cefbebad0b17732558c59bf94e8ae190cb51e956c67447b0d995456714",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ffe85ee14f88362c0caf40f9100e9da8ba5ab52598684ef8f7917d991c91216b",

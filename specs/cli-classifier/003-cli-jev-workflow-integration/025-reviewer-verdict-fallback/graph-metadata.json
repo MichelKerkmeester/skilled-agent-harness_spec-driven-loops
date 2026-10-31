@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The reviewer scorer reads a verdict from a reviewer's output with one regex (`.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:117-123`)",
     "created_at": "2026-09-29T12:42:37Z",
-    "last_save_at": "2026-10-31T13:25:30.811Z",
+    "last_save_at": "2026-10-31T14:03:51.365Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4233f168f3f68f4df1d96f2bdbc4c8bf12380597055d91dff2999967f470f3a7",
+    "source_fingerprint": "sha256:a36e00210e2d75061c773bc1eed955cc47865b31ebfab7a924e7c3158fc43b15",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8eedcfcf40b160cec2f0c4c9ec1449e349dae41ec0b942aab9e19ea53e895f8d",
       "plan.md": "b868477e57b02cf17524e921d803c156e9fe11fb98a3de766709f569aee88dd2",
       "tasks.md": "27246ea9b53b78403e86f41ba429c4ec68978a05f755ee65ec21df68c780c1f5",
-      "implementation-summary.md": "32e5e72c8701ec1349e9b72b7e55985ab456508b63373fee9759e7ded2b9d457"
+      "implementation-summary.md": "22a944fbd69a1584c516fe8f7610f8197c4add50a7bcf306458a08dec69bbeb8"
     },
     "last_active_at": null
   }

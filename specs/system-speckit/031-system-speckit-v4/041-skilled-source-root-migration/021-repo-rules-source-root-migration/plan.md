@@ -112,7 +112,7 @@ checkboxes and task state. The procedures those tasks run are below.
 ```bash
 W=/Users/michelkerkmeester/worktrees/public/056-repo-rules-source-root-migration
 P=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-PKT=specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration
+PKT=specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration
 ARCH="$PKT/scratch/baseline"
 ```
 

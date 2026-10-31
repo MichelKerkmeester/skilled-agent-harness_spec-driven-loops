@@ -59,8 +59,8 @@
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
-      "scratch/baseline-check.json",
-      "scratch/manifest-hash-compare.txt"
+      "specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md",
+      "scratch/baseline-check.json"
     ],
     "entities": [
       {
@@ -178,12 +178,6 @@
         "source": "derived"
       },
       {
-        "name": "manifest-hash-compare.txt",
-        "kind": "file",
-        "path": "scratch/manifest-hash-compare.txt",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`generate-trigger-index.mjs --check --json` exits 1 on this checkout: the committed index is stale (176 documents differ, 175 indexed paths are missing, 23,052 documents scanned in the planning run) and the corpus manifest hash has moved past the index's",
     "created_at": "2026-10-03T05:27:39Z",
-    "last_save_at": "2026-10-31T13:27:14.278Z",
+    "last_save_at": "2026-10-31T13:59:26.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:10ecd9ab02c10327ceb2723a8ff4c9107450d8e7aaa26174724453201f296d07",
+    "source_fingerprint": "sha256:f3c9afc238744a790a401b3f47b8f1230f6b4a20117b71a279a8225dabc8cae6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "105e2e0292f798bb7e2c64f566d5366b09ae1aef43d0bebbaf3f0d719968457c",
-      "plan.md": "c8f475c91ce6e363dd5215ca741d1db319500a22a16514d9a7c3c15259409d5e",
-      "tasks.md": "4b44fa8be48466afa804c005580382498c05846c477c5576ad0c11f86e881a8e",
-      "decision-record.md": "e430c1af861544c9682ee770427d8ceebacbf38a119f8a81759c2906c0799190",
+      "spec.md": "090635e344642d7df61f0038e7fc89f4aed0e836928e0072d133f397bc9143da",
+      "plan.md": "854211602555bf46318bee50ca578d7c96ad6b53f96f9eda8773a519660c4f26",
+      "tasks.md": "9ec188271b13d19f4dd548230cee71d894d031189cab540f5733ecb293ab6691",
+      "decision-record.md": "cad6cfb4f865fc5f2e1292cd705b6ff4d3c28ec1969627e4d61577867f8e0981",
       "implementation-summary.md": "61bd16ae1620cab1a2d70cf0354f3c78d6c443417152eb119d36ea03482d5ef2"
     },
     "last_active_at": null

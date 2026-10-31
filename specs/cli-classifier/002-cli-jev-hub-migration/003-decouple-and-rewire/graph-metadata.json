@@ -210,7 +210,7 @@
     ],
     "causal_summary": "After phase 002 two registries named one packet and the enforcement chain still read the retired path: `dispatch-audit.mjs` resolved the packet `SKILL.md` under `cli-external-orchestration/cli-jev/`, a directory that no longer exists, so `readHardRules` failed open and zero of the eight jev hard rules were enforced at preflight while the packet-bijection test stayed red",
     "created_at": "2026-09-20T11:00:12Z",
-    "last_save_at": "2026-10-31T13:25:26.914Z",
+    "last_save_at": "2026-10-31T14:03:47.293Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:74100bd2e367b993ea6ae50cb23100d795ff45ade50e214c31aa82d7aeb86810",
+    "source_fingerprint": "sha256:f3bd0373a17e83a2ebd21c349caaac7d5998739c61a35c30617327059e87ce79",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0f9b60418d2a63d7389384d3109bb1d385c1c7fe705dfb70a26bba4b923927ab",
+      "spec.md": "77ef9e98d41bccfb07b0a6667a26d2c33a0a94dfebf2f62bb2c69fd8eab9e5ba",
       "plan.md": "7a27f24066e54f4c78e3ab18d0c07f8c7b1aa1f93aa7359c4666576fa3e3b4e9",
-      "tasks.md": "3f616c916d8e23d040bf4e3534e699f6d02088b306bc217bd6c6be7fa466684e",
-      "implementation-summary.md": "2c217147787a2bcb48b2aef491743a9c5527843fbde8aa64297e48dfb15067dd"
+      "tasks.md": "b71e98f93e1659e1eb2607e79d4f895ae3b75f7499689cc09c869be3066ef7f0",
+      "implementation-summary.md": "80f0a31d758665ba07a0fada4fcdc668965b3cbdfee62c35e709d7cde0050b7c"
     },
     "last_active_at": null
   }

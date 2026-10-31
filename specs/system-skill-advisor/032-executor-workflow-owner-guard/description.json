@@ -18,7 +18,7 @@
     "test"
   ],
   "lastUpdated": "2026-10-27T19:44:35.455Z",
-  "specId": "039",
+  "specId": "032",
   "folderSlug": "executor-workflow-owner-guard",
   "parentChain": [
     "system-skill-advisor"

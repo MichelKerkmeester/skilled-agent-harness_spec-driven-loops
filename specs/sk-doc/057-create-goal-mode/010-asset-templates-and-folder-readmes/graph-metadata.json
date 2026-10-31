@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The mode's `assets/` held only exemplars, so an author had no blank for a top-level, phase-parent or phase-child goal and had to render one through system-spec-kit tooling",
     "created_at": "2026-09-26T10:02:15Z",
-    "last_save_at": "2026-10-31T13:26:00.248Z",
+    "last_save_at": "2026-10-31T14:01:51.128Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4881a10b29cc3fce74784cf4f9feb817394f2f67216eb76102689a2a93145d5e",
+    "source_fingerprint": "sha256:c3481ab1c74260308ea88874458a2adfd7debdb4d14d20c1167261598a8bb037",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e7a07850691cd61777e6e05caee68c45c1d212f6bfe259fa8ed929401eb28aeb",
+      "spec.md": "6a28d8fe4024b4e3af507385a68deb6f20a42a33d6dd6837c690eed6c95e2678",
       "plan.md": "031d9ac1482762dc26ee1a9c1220af1e60732ac0e2c771932a6d041651eb26b0",
-      "tasks.md": "05a9f9d3c26c78f7ce2086936e39b12008b391cabb34813c88f6e4a136db7c46",
-      "implementation-summary.md": "4ce4f1b6d2f2e7a72ebcf70eb752362f809ed28e5ac07b04bcc5b00ce256a4a0"
+      "tasks.md": "88b74945074b7e9639634097c34fdf24e28e579b31dbae2da710305142525afe",
+      "implementation-summary.md": "a500c95f048ed3d011497aa8fba67371823f46b01d1ba0703e834f2e89653acf"
     },
     "last_active_at": null
   }

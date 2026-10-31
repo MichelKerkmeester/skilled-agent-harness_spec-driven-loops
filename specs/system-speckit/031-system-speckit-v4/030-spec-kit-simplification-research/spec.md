@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research"
+    packet_pointer: "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research"
     last_updated_at: "2026-09-07T04:05:00Z"
     last_updated_by: "template-author"
     recent_action: "Closed round three with children 018 to 022"
@@ -50,7 +50,7 @@ _memory:
 | **Created** | 2026-09-06 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | system-speckit/033-system-speckit-v4 |
+| **Parent Packet** | system-speckit/031-system-speckit-v4 |
 | **Phase** | 30 of 35 |
 | **Predecessor** | None |
 | **Successor** | None |

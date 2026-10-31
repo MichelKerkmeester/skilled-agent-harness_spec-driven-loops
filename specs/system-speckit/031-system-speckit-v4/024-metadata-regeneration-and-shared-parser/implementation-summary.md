@@ -12,7 +12,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser"
+    packet_pointer: "system-speckit/031-system-speckit-v4/024-metadata-regeneration-and-shared-parser"
     last_updated_at: "2026-09-05T21:16:57Z"
     last_updated_by: "template-author"
     recent_action: "Edges, adoptions, index regenerated"

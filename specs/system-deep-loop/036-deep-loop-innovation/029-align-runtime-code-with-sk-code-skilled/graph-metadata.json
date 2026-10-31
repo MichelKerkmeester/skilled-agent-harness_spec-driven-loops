@@ -50,17 +50,17 @@
       "scratch/align_loop_checks.py",
       "scratch/repoint_imports.py",
       ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py",
-      ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md",
       ".skilled/skills/system-deep-loop/ARCHITECTURE.md",
       "scratch/investigation/devin-swe2max-merge-factcheck.md",
       ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py",
       ".skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md",
-      ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
       ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
       "scratch/loop-state/system-deep-loop-sections.done",
       ".skilled/scripts/run-node-tests.mjs",
       "data/README.md",
-      ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs"
+      ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs",
+      ".claude/settings.json",
+      "lib/context/README.md"
     ],
     "entities": [
       {
@@ -118,12 +118,6 @@
         "source": "derived"
       },
       {
-        "name": "code-style-guide.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md",
-        "source": "derived"
-      },
-      {
         "name": "ARCHITECTURE.md",
         "kind": "doc",
         "path": ".skilled/skills/system-deep-loop/ARCHITECTURE.md",
@@ -150,7 +144,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
         "source": "derived"
       },
       {
@@ -175,6 +169,12 @@
         "name": "dispatch-guard.cjs",
         "kind": "file",
         "path": ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Code under `.skilled/skills/system-deep-loop/runtime/` does not follow the sk-code-skilled comment and structure rules in `sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md` §2 and §4",
     "created_at": "2026-09-30T05:43:46Z",
-    "last_save_at": "2026-10-18T19:17:03.758Z",
+    "last_save_at": "2026-10-31T14:04:36.507Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +220,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:72d86c1f864b5dc41e193d485b23ac55ad47e9e136e9d76cd557f268e5c7e093",
+    "source_fingerprint": "sha256:92d34d5366bbcd435937ec178f9935a2d5bd7581b29446144c4cf353bbebf495",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "31e037ec899cd7e01a707e525545ec18a5c16a25e40bca4ee0eff96386cc77c3",
+      "spec.md": "e02ea23e4c94b53742b7f3738faf5d6174da7c0340de0a5448d80a0035b4b1bd",
       "plan.md": "da04b99425582baab1c4e2ea16916d6d06d77fdb94da444d23064a2318afa8dd",
-      "tasks.md": "09d760e6029502ac3883beb383736925f6ab68bd2045af180417a2a3ebcf23b2",
+      "tasks.md": "53f2a1e6e82df58ecdf71df9239ab2e4ce8b5f5a2d12b01d54773769a15f3dfb",
       "implementation-summary.md": "65c0579a7f6d79031ad0fdd42513594768ac707813b01211b9d8119efd7b8a76"
     },
     "last_active_at": null

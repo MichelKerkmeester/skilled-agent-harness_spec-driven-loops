@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The advisor suite had 13 failures and nothing in CI runs it",
     "created_at": "2026-09-19T06:08:13Z",
-    "last_save_at": "2026-10-31T13:27:03.155Z",
+    "last_save_at": "2026-10-31T13:59:12.823Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:57f354845d4bd4b3c4765f7f035e6cfeda4838185b49ffb9e03210922bef0c3d",
+    "source_fingerprint": "sha256:15a0f62c8bc8298ace9fd68b13b99d6a78f9258016cdbfcec7ce0736c96c05a4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7eaa68cc95d3a1838c4a83347df5238db410232f8e9a04364d9398129a3b7459",

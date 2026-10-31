@@ -37,10 +37,10 @@ contextType: "general"
 
 This is **Phase 10** of the Build the recommendations from 048's research for each kept Jev feature, and fix the deep-research workflow faults found while running it specification.
 
-**Scope Boundary**: The recommendations listed in scope below, from `specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/010-completion-claims-research/research/research.md`. Corpus, label and default-on work stays out.
+**Scope Boundary**: The recommendations listed in scope below, from `specs/cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/010-completion-claims-research/research/research.md`. Corpus, label and default-on work stays out.
 
 **Dependencies**:
-- `specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/010-completion-claims-research/research/research.md` ranks the recommendations
+- `specs/cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/010-completion-claims-research/research/research.md` ranks the recommendations
 
 **Deliverables**:
 - Anchor the regex to a closing window and filter checklists, tables, code and assignments, choosing the window length from the recorded arms

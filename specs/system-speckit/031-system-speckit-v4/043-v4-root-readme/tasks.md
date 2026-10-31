@@ -58,7 +58,7 @@ contextType: "general"
 - [x] T011 Remove Oxford commas and replace blocked terms like "harness" in prose (`README.md`, hvr_scan.py exit 0)
 - [x] T012 Validate `README.md` with `validate_document.py` (0 issues, exit 0)
 - [x] T013 Verify with `hvr_scan.py` and document delta (`README.md`, 90/100 ceiling, 0 hard blockers)
-- [x] T014 Update parent `specs/system-speckit/033-system-speckit-v4/spec.md` Phase 43 map row (`specs/system-speckit/033-system-speckit-v4/spec.md`)
+- [x] T014 Update parent `specs/system-speckit/031-system-speckit-v4/spec.md` Phase 43 map row (`specs/system-speckit/031-system-speckit-v4/spec.md`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -141,8 +141,8 @@ User-requested exploratory variant of the root README, recorded after packet clo
 
 - [x] CHK-020 [P0] `validate_document.py README.md` exits 0 with 0 issues (`python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py README.md` -> `VALID`, `Total issues: 0`)
 - [x] CHK-021 [P0] `hvr_scan.py README.md` reports 0 hard semicolons in prose (`python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py README.md` -> 0 hard blockers, 90/100 ceiling, exit 0)
-- [x] CHK-022 [P0] `validate.sh specs/system-speckit/033-system-speckit-v4/043-v4-root-readme --strict` passes (`validate.sh --strict`)
-- [x] CHK-023 [P1] Parent phase map updated in `specs/system-speckit/033-system-speckit-v4/spec.md` (`specs/system-speckit/033-system-speckit-v4/spec.md`)
+- [x] CHK-022 [P0] `validate.sh specs/system-speckit/031-system-speckit-v4/043-v4-root-readme --strict` passes (`validate.sh --strict`)
+- [x] CHK-023 [P1] Parent phase map updated in `specs/system-speckit/031-system-speckit-v4/spec.md` (`specs/system-speckit/031-system-speckit-v4/spec.md`)
 <!-- /ANCHOR:testing -->
 
 ---

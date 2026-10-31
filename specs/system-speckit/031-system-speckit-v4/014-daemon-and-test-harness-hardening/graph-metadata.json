@@ -161,17 +161,17 @@
     ],
     "causal_summary": "A live process sweep on 2026-08-30 found 13 leaked processes attributable to this repository's system skills: three wedged vitest trees holding roughly 290% CPU for 2h35m–4h12m, and one orphaned spec-memory launcher alive at `ppid 1` for 2 days 14 hours",
     "created_at": "2026-08-30T09:55:25Z",
-    "last_save_at": "2026-10-31T13:26:40.141Z",
+    "last_save_at": "2026-10-31T13:58:43.210Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:9756d7fab51d5ae9f26e038518c2cc2bf55ff9a5229bbb5cea04769c59d56857",
+    "source_fingerprint": "sha256:c32b56ee29d5905d2f60c22481f82c5e0d7740bbe1fde156ef69a437835a7bbc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d6896e6351b9f580625aa289769d1ae1f4d1e011516cb284012b5011fb6a32d2"
+      "spec.md": "695415090f20120affc98c7235001bdb740532eb5d9665b918c00937bea410bf"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-08-31T04:30:50.843Z"

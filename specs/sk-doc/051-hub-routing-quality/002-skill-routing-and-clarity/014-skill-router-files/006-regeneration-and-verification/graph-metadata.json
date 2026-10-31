@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The moves in phases 004 and 005 change authored bytes, and every derived artifact records those bytes",
     "created_at": "2026-10-29T07:52:44Z",
-    "last_save_at": "2026-10-31T13:25:52.126Z",
+    "last_save_at": "2026-10-31T14:01:41.137Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,12 +211,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:00bd3b0fe7d245a4c24c9991cf677ef84933cb8ba7c00915fa8a8a1ba622858a",
+    "source_fingerprint": "sha256:2f628eb69f8253d55a0fdbbf53e1734359e2a7f2f1ba42b0ae4f6dba5ba1ada3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7eb29c463803890459424554a3290268120f91faf67bc9d462a48667e20e959a",
+      "spec.md": "00ea35bc0d54efe31c0ba8ccaf0d0a8924eb4ca399ed55803c096a0cf905a887",
       "plan.md": "13abdfd776bccd47418d48fde7e733cb43c6100e41a0f49c974e749d228a2b36",
-      "tasks.md": "c97b4eb44759f53bf56a3b973f8652823394683c7fedfee7d38b797d9d4679e4",
+      "tasks.md": "1266fb1e42e5f4c707cf532902f099fc59d67cc5653af7e0d95201c960a1f9c4",
       "implementation-summary.md": "2a2be8f210cbb18e0555f8d8e43a12a817e38c64d2e904008eff517ece1e717a"
     },
     "last_active_at": null

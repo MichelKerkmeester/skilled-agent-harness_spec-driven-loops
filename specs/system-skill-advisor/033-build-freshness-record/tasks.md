@@ -60,8 +60,8 @@ contextType: "general"
 - [x] T010 Run the doctor suite as the first command after that build (`.skilled/commands/doctor/scripts/tests/sk-code-quality-config.test.cjs`). Verify: `node --test .skilled/commands/doctor/scripts/tests/sk-code-quality-config.test.cjs` prints `pass 20` and exits 0.
 - [x] T011 Run every doctor suite (`.skilled/commands/doctor/scripts/tests/run-all.sh`). Verify: the run prints `7 suite(s) passed, 0 failed` and exits 0, and both records are byte-identical afterwards.
 - [x] T012 Prove the contract test discriminates (`T`). Verify: with one entry removed from `prebuild`, the test fails on `prebuild`; restored, it prints `Tests 2 passed`.
-- [x] T013 Validate the packet (`specs/system-skill-advisor/040-build-freshness-record`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/040-build-freshness-record --strict` prints `RESULT: PASSED`.
-- [x] T014 Scan the packet for unfilled placeholders (`specs/system-skill-advisor/040-build-freshness-record`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-skill-advisor/040-build-freshness-record` prints `PASS`.
+- [x] T013 Validate the packet (`specs/system-skill-advisor/033-build-freshness-record`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/033-build-freshness-record --strict` prints `RESULT: PASSED`.
+- [x] T014 Scan the packet for unfilled placeholders (`specs/system-skill-advisor/033-build-freshness-record`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-skill-advisor/033-build-freshness-record` prints `PASS`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

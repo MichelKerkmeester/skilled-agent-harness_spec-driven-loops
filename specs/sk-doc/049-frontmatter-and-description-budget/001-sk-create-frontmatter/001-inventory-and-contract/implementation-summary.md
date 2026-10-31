@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/049-sk-create-frontmatter/001-inventory-and-contract"
+    packet_pointer: "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/001-inventory-and-contract"
     last_updated_at: "2026-09-01T10:43:26Z"
     last_updated_by: "implementation"
     recent_action: "Authored the frontmatter consumer inventory and ownership boundary"

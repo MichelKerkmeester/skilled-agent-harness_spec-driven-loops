@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "specs/system-skill-advisor/024-routing-perfection-research"
+    packet_pointer: "specs/system-skill-advisor/023-routing-perfection-research"
     last_updated_at: "2026-09-07T09:40:00Z"
     last_updated_by: "implementation"
     recent_action: "Closed every criterion against observed command output"
@@ -34,7 +34,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** `specs/system-skill-advisor/024-routing-perfection-research`
+**Packet:** `specs/system-skill-advisor/023-routing-perfection-research`
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-09-07

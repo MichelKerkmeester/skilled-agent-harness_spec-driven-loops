@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/054-cli-hub-doc-version-reconciliation"
+    packet_pointer: "sk-doc/053-cli-hub-doc-version-reconciliation"
     last_updated_at: "2026-09-09T06:42:07Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"

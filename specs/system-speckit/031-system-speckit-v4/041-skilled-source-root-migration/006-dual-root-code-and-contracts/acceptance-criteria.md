@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/006-dual-root-code-and-contracts"
+    packet_pointer: "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/006-dual-root-code-and-contracts"
     last_updated_at: "2026-09-17T13:15:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Marked all 15 criteria Met with evidence observed at dadf2d19dd"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/006-dual-root-code-and-contracts
+**Packet:** system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/006-dual-root-code-and-contracts
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-16

@@ -55,7 +55,7 @@ contextType: "planning"
 ## Phase 3: Verification
 
 - [x] T008 Rerun every gate in scope (`scratch/after.md`). Verify: no gate is worse than in `scratch/before.md`. Evidence: `scratch/after.md` §1, 39 gates at exit 0. The two runs print identical summaries on 36 gates and differ only in elapsed time on `router-tests`, `advisor-routing-suites` and `cite-drift-gate`. Accuracy 155/195, 49/66 and 19/24, identical to the baseline. After the sweep, `scratch/sweep.md` §6: the 38-gate run on the final tree, 35 at exit 0 on the first read and the other three passing on a reread after a word trim, a live advisor and a metadata repair. Accuracy unchanged.
-- [x] T009 Validate this folder. Verify: `validate.sh --strict` prints `RESULT: PASSED`. Evidence: `validate.sh specs/sk-doc/072-skill-routing-and-clarity/010-prose-clarity-pass --strict` prints `RESULT: PASSED` at exit 0, and the same command with `--recursive --strict` on the parent packet prints `RESULT: PASSED` at exit 0.
+- [x] T009 Validate this folder. Verify: `validate.sh --strict` prints `RESULT: PASSED`. Evidence: `validate.sh specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/010-prose-clarity-pass --strict` prints `RESULT: PASSED` at exit 0, and the same command with `--recursive --strict` on the parent packet prints `RESULT: PASSED` at exit 0.
 <!-- /ANCHOR:phase-3 -->
 
 ---

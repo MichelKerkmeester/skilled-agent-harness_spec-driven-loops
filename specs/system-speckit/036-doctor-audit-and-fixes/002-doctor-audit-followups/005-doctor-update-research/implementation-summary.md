@@ -9,14 +9,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-doctor-audit-followups/005-doctor-update-research"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research"
     last_updated_at: "2026-10-03T20:45:00Z"
     last_updated_by: "doctor-update-research"
     recent_action: "Synthesized six research iterations into research/research.md"
     next_safe_action: "Plan a fix phase from research/research.md Section 11, starting with DU-01 and DU-02"
     blockers: []
     key_files:
-      - "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/research.md"
+      - "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/research.md"
       - ".skilled/commands/doctor/scripts/release-update.cjs"
     session_dedup:
       fingerprint: "sha256:87df9319ca8151ffc1b6a191d3c740835961bb6d8a6ba161c90515030ba36604"

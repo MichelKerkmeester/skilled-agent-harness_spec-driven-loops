@@ -20,7 +20,7 @@
   "specId": "005",
   "folderSlug": "playbook-reverification-and-closeout",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "002-cli-jev-hub-migration"
   ],
   "memorySequence": 0,

@@ -115,8 +115,8 @@ Paths are relative to the repository root. Each lane re-reads its file before ed
 | `.hermes/plugins/repo-guards/__init__.py` | Modify | Lane 10: `ORCHESTRATED_LEAF_ENVS` and `_orchestrated_leaf` (lines 80 and 571 to 573) follow decision 4 |
 | `.hermes/plugins/repo-guards/tests/test_repo_guards.py` | Modify | Lane 10: `test_the_leaf_gets_the_brief_but_never_the_gate` (line 273) |
 | `.skilled/skills/system-spec-kit/runtime/lib/graph/generated-metadata-drift.ts` | Modify | Lane 8 follow-up: skip linked source documents before hashing them |
-| `specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups/tasks.md`, `009-doctor-update-compatibility/tasks.md`, `011-anchor-repair-mode/tasks.md` and `015-lane-rules-as-heal-modes/tasks.md` | Modify | Lanes 11 and 12: reconcile the open boxes and child status with their evidence |
-| `specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes/` | Modify | Lanes 13 to 19 and fixA to fixE: update this packet's documents and record the closeout evidence |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups/tasks.md`, `009-doctor-update-compatibility/tasks.md`, `011-anchor-repair-mode/tasks.md` and `015-lane-rules-as-heal-modes/tasks.md` | Modify | Lanes 11 and 12: reconcile the open boxes and child status with their evidence |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/021-follow-up-defect-fixes/` | Modify | Lanes 13 to 19 and fixA to fixE: update this packet's documents and record the closeout evidence |
 <!-- /ANCHOR:scope -->
 
 ---

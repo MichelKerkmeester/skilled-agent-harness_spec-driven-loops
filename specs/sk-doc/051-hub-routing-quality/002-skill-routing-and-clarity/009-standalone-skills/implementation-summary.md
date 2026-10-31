@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/009-standalone-skills"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/009-standalone-skills"
     last_updated_at: "2026-10-28T15:45:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Moved six standalone skills to the canon and fixed every review finding"

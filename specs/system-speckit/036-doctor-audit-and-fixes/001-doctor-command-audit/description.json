@@ -17,10 +17,11 @@
     "speckit"
   ],
   "lastUpdated": "2026-10-02T16:14:07.604Z",
-  "specId": "048",
+  "specId": "001",
   "folderSlug": "doctor-command-audit",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "036-doctor-audit-and-fixes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

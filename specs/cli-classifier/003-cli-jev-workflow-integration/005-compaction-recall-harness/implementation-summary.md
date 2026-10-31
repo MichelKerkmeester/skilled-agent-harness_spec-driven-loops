@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/005-compaction-recall-harness"
     last_updated_at: "2026-09-28T23:22:00Z"
     last_updated_by: "closure-leaf"
     recent_action: "Closed the phase: 6 of 6 goal criteria ticked, stop: arm not built, build commit fbe4e978e1"
@@ -19,8 +19,8 @@ _memory:
     key_files:
       - ".skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs"
       - ".skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/build-evidence.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/fix/fix-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/build-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/fix/fix-evidence.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-workflow-integration"

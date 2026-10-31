@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/003-routing-canon-and-tooling"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/003-routing-canon-and-tooling"
     last_updated_at: "2026-10-28T15:30:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Fixed the 3 P1 and 9 P2 review findings and reran every gate"

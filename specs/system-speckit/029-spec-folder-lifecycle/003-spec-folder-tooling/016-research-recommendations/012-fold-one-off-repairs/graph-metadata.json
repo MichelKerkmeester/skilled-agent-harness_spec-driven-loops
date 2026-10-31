@@ -58,7 +58,7 @@
       "scratch/evidence/lane-clone-apply.txt",
       "tests/frontmatter-template-literals.vitest.ts",
       "spec/README.md",
-      "spec/upgrade-legacy.mjs"
+      "specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/014-spec-auto-healing-research/research/research.md"
     ],
     "entities": [
       {
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Phase 13 used one-off scripts for repairs",
     "created_at": "2026-10-08T04:22:47Z",
-    "last_save_at": "2026-10-31T13:26:28.395Z",
+    "last_save_at": "2026-10-31T13:58:23.718Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e96e3a911b517f74399de70a9abca86e0f2be69f4c4dfc7999fed3004f785ca",
+    "source_fingerprint": "sha256:7c3f3bbeb81f866c7b98e4c20b16625ec30ccffdbd622e48807dbb2a51dcda87",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f7ba6e86e25727ae5ff7eb9285d8cbde788561f24b9b059a8074649a62cb3f43",
       "plan.md": "5810895beb19bfb405235312f1a37bdb8df66086c3b0ec68145d5e9fc95ee051",
-      "tasks.md": "44a5d52ae76c39393081ae4746827c0c3dc3281683ee1ac08613349b590dd272",
-      "implementation-summary.md": "ff3a80a9b35c86956fd0d1ca59d971a0347504f30547169ca4dcc2bcfb79723e"
+      "tasks.md": "7f8d530c69dab9f4d4223edc546fd8384e2003d1c8634bb195d75ec3d522d462",
+      "implementation-summary.md": "05e524776ba227dad280d77fca8cd8bfcf0607a99a013d5917328dc65a9efccf"
     },
     "last_active_at": null
   }

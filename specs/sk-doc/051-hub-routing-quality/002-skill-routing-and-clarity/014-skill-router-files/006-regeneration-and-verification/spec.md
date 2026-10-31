@@ -133,7 +133,7 @@ The scan covers roughly 26,900 documents and the stale set moves while the sibli
 | `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` | Modify | Committed index, rebuilt over the post-move corpus |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json`, `generation-diagnostics.json`, `phrase-variants.json` | Modify | The three sidecars the index build writes |
 | `.skilled/skills/*/graph-metadata.json` | Modify | Only where `generate-router-intent-signals.cjs --check` reports a missing hub vocabulary carry |
-| `specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification/scratch/` | Create | Before and after baseline captures, two replay reports, the regenerated token table |
+| `specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification/scratch/` | Create | Before and after baseline captures, two replay reports, the regenerated token table |
 <!-- /ANCHOR:scope -->
 
 ---

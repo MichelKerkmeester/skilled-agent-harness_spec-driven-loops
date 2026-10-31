@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/032-relocate-specs-folder/001-relocation-implications-research"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/001-relocation-implications-research"
     last_updated_at: "2026-08-06T13:28:45Z"
     last_updated_by: "claude-code"
     recent_action: "4-lineage synthesis complete; found reusable existing migration infrastructure"
@@ -57,7 +57,7 @@ Round 2 (operator-requested, "10 more iterations", clarified to 5 each): two mor
 
 ### Phase-parent scaffold
 
-`system-speckit/032-relocate-specs-folder/` is a phase-parent packet (lean trio at the parent) with this phase as its first child, scaffolded via `create.sh --phase --parent` and hand-filled from the Level-1 templates for the research-first framing.
+`system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/` is a phase-parent packet (lean trio at the parent) with this phase as its first child, scaffolded via `create.sh --phase --parent` and hand-filled from the Level-1 templates for the research-first framing.
 
 ### Files Changed
 

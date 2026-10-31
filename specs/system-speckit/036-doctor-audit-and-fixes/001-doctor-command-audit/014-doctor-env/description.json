@@ -24,7 +24,8 @@
   "folderSlug": "doctor-env",
   "parentChain": [
     "system-speckit",
-    "048-doctor-command-audit"
+    "036-doctor-audit-and-fixes",
+    "001-doctor-command-audit"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

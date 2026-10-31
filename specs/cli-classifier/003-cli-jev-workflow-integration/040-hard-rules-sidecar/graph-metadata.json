@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Nine SKILL.md files declare `hardrules:` in frontmatter: `sk-git`, `cli-classifier/cli-usage` (renamed to `cli-classifier/cli-jev` by phase 039, which runs first) and `cli-external-orchestration/` `cli-opencode`, `cli-cursor`, `cli-codex`, `cli-hermes`, `cli-devin`, `cli-claude-code` and `cli-pi`",
     "created_at": "2026-09-30T16:29:44Z",
-    "last_save_at": "2026-10-31T13:25:35.532Z",
+    "last_save_at": "2026-10-31T14:03:55.829Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:738c7351e798467b0a2d4b7f9a121a62cbcd7cf37e1c5e481ccc0a43a45933c0",
+    "source_fingerprint": "sha256:7b9b1a90ce7f4bcb7c8d80ae3c279f178cd52bb998c0037115cfa2f2d18bfa87",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4547ef090725512a957bf47339c6dd1f989a3aff83437059f7b702be235b118f",
+      "spec.md": "de3c8d730cb85a9ec4d58a782df25dc4ae98b08bc57537ac656573cf4c1c4d96",
       "plan.md": "abed97b5e8bdba6581bcedc9e3178753cbfb5b1056d56b6a97ba90a5154b0688",
       "tasks.md": "b0a0e364c7ba0e2eb7d3737d8159a953c36b98535dfd1c9e07de63070a172dc8",
-      "implementation-summary.md": "503053fcaa89bcaff95832af0123241dec8e2b07ce0ff991cb10a32cfd55c0b9"
+      "implementation-summary.md": "89c45cf71950a2ea2c9af5d46c20f08108ea5c30b897ab79a5c70277c1008ffa"
     },
     "last_active_at": null
   }

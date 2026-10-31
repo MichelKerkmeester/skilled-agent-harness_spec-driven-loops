@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-write-recipe-fixes/005-fix-write-recipe-verification-gate"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/005-fix-write-recipe-verification-gate"
     last_updated_at: "2026-09-29T07:20:03Z"
     last_updated_by: "claude"
     recent_action: "Reworded the Step 7 gate and set the recipe version"

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`cli-jev` returns typed judgments, and no other part of `.skilled` asks for one",
     "created_at": "2026-09-26T15:37:28Z",
-    "last_save_at": "2026-10-31T13:25:26.959Z",
+    "last_save_at": "2026-10-31T14:03:47.127Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:31e8faf5fee9b360ab2db225a58be6bd4c770d879861b6ce50b84096cea3444d",
+    "source_fingerprint": "sha256:4d0e45b12314500f44dc4aec46536034bc5090564442ee075bcd00e67dd123c7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "37856fd680a9732e9b4859f413af9a6f05c8a4c626486ca36b9c8854d573ddb8",
-      "plan.md": "6c2d748a22ed609923dafbef0a036457f1719fc43f6a137d467145b9be349ec4",
+      "plan.md": "a6a3c270421bae9e81faea062851b9922994775a01983cfd38e07ba525bb8d7d",
       "tasks.md": "277b9f01a68827f5aaf46900e7ce773ec37ee5ac9503be43591860338f47017a",
-      "implementation-summary.md": "e20f9520e0013f2477a5129bcc39d0193714370cd634a3292cb440301c7dbe59",
+      "implementation-summary.md": "f056b76340748e3fbfb0a3393a82401f0f06ed10ada6e4daa476a7f9aed9faff",
       "research/research.md": "d6c347ff6dc7fd7972c48cc204e6b1ed25f696543a2ea3ce48d66b3e86dcdfb3"
     },
     "last_active_at": null

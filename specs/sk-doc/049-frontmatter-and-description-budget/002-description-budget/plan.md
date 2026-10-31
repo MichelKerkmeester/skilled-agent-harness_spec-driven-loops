@@ -127,7 +127,7 @@ There are no unit tests to add: the deliverables are description strings, and th
 - The six mirror `--check` runs plus `sync-runtime-mirrors.cjs --check` and `command-catalog-mirror-check.cjs`.
 - `node .skilled/bin/compiled-route-guard.cjs` for hub routing freshness.
 - `bash .skilled/commands/doctor/scripts/route-validate.sh` after the doctor workflow purpose edit.
-- `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/064-description-budget --strict` for the packet.
+- `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/049-frontmatter-and-description-budget/002-description-budget --strict` for the packet.
 
 The negative checks are the ones that must come back empty: no OVER-SOFT item, no HARD-FAIL item, no match for `doctor skill-budget :auto` under `.skilled`, and no `goal-opencode.md` or `vision.md` under `.claude/commands`.
 <!-- /ANCHOR:testing -->

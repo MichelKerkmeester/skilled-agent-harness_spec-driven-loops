@@ -9,7 +9,7 @@
   "specId": "002",
   "folderSlug": "feature-review-and-remeasure",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration",
     "050-pi-default-review"
   ],

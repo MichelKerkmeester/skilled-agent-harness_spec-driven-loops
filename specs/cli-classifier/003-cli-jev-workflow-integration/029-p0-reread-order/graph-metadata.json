@@ -207,7 +207,7 @@
     ],
     "causal_summary": "A deep-review P0 blocks release",
     "created_at": "2026-09-29T12:42:41Z",
-    "last_save_at": "2026-10-31T13:25:31.083Z",
+    "last_save_at": "2026-10-31T14:03:51.700Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:43326f7cd82e0a229b045d66cfc83a5a09bca70e75c254b97b01b9c3b3f22b00",
+    "source_fingerprint": "sha256:c6bee81e17e1c4b3a45a17e7a4dfd9ccb680568c9c1388292ff7f570320c3ce3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "39f8e3009ebb1ac7a80d3ffabcac1af82107cd4dcfaa1546b359e70b196dc279",
       "plan.md": "d9cc898ca2cb5f22b84311683cd401b55622dada691c234f18173076392bc396",
       "tasks.md": "5812bf7eb56ab86161e810cb3fb11897ca911e1cb3f48ed5b233e7d346ef4623",
-      "implementation-summary.md": "6eefec9239889ceccf27a99a54aa3bcd2e0bc82fbf429e0a70c5332613f7f34d"
+      "implementation-summary.md": "d792f081874fdf729eb9b6488dc3b290b8733dc27ff318c09555c8983a425796"
     },
     "last_active_at": null
   }

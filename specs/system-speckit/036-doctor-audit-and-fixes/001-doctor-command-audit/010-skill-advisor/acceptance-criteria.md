@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/048-doctor-command-audit/010-skill-advisor"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/010-skill-advisor"
     last_updated_at: "2026-10-02T20:59:43Z"
     last_updated_by: "markdown-agent"
     recent_action: "Closed the phase: every criterion Met with the observed evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/048-doctor-command-audit/010-skill-advisor
+**Packet:** system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/010-skill-advisor
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-02

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Other sessions filled the v4.0.0.4 release entry with the spec tooling, deep-loop and security work",
     "created_at": "2026-10-11T13:36:05Z",
-    "last_save_at": "2026-10-18T20:45:18.696Z",
+    "last_save_at": "2026-10-31T14:04:35.751Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e28a1a7d25be6af144de454eb11b804977d0fe33e509f90f01e8e840edce1b37",
+    "source_fingerprint": "sha256:f08d2647148d6c32e6bdee79baf54035084e8a5efde0c6c0dd9909b4bcd9a267",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ceeea3a41efdc33f3c52ccc669af3eaffdd32b61812f01fd0c23420a1d3230da",
+      "spec.md": "bd49e0dd8f8a09ace048400365be626df7d58ba92730eb92940cdd34b69f6b35",
       "plan.md": "822d35952c70335322b49340ddf5796d357db54d9bfa2077ba0814e923369bf4",
       "tasks.md": "3a7b4816993874b7b33c7f8a5c394a195538f649c2ac17a199ad91899f37b799",
       "implementation-summary.md": "e68fd7572ff754fd2ecb5029a8dc4140a0668b0705c4efda5de2c2366d21bece"

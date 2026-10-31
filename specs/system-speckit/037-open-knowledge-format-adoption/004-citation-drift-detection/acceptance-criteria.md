@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection"
+    packet_pointer: "system-speckit/037-open-knowledge-format-adoption/004-citation-drift-detection"
     last_updated_at: "2026-10-04T08:04:52Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection
+**Packet:** system-speckit/037-open-knowledge-format-adoption/004-citation-drift-detection
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-04

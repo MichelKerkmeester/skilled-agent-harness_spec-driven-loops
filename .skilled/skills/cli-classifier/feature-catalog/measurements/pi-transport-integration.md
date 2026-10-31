@@ -6,7 +6,7 @@ trigger_phrases:
   - "jev transport module"
   - "JEV_TRANSPORT switch"
   - "jev-transport.mjs"
-version: 0.3.0.0
+version: 0.3.1.0
 ---
 
 # Pi classifier transport integration (jev-transport.mjs)
@@ -92,7 +92,7 @@ Two callers route their calls through the transport. The scorer records the answ
 - `.skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs` (cli-classifier)
 
 The predecessor phase's recorded run at
-`specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run.stdout.txt`
+`specs/cli-classifier/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run.stdout.txt`
 printed `verdict pi-transport: adopt K=111 M=111 coverage=100.0 agreement=95.5 median_abs_dp=0.0100
 p95_ms=340/387 cost_per_100=0.0022`, and only `choice` was measured in that run.
 

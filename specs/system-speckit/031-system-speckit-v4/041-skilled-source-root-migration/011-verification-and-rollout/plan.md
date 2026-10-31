@@ -110,7 +110,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ```bash
 W=/Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration
 P=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-PKT=specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration
+PKT=specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration
 EV="$W/$PKT/011-verification-and-rollout/scratch/evidence"
 mkdir -p "$EV"
 ```

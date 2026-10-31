@@ -160,7 +160,7 @@
     ],
     "causal_summary": "Revised twice after real evidence",
     "created_at": "2026-08-07T16:31:56Z",
-    "last_save_at": "2026-10-31T13:26:22.041Z",
+    "last_save_at": "2026-10-31T13:58:15.377Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -169,10 +169,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:06140033d2dc650dbe8ec3952b6bffa193f3204847f16824e64eba61efb257c1",
+    "source_fingerprint": "sha256:237a5c0142323bb873cd4cf3d3b783829724ff653c8d7b7260940f6c7dcccf1e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0c28c7a0f1997fb6ec9eeb34fa1f7de9d04c62a2ff8842c914dcd9ccc56e3ecf",
+      "spec.md": "050cd89259caf4f0c86e85561047c8269f53e831376385d1248eaf4c3f87c150",
       "plan.md": "629cd4501a6c2d90481813af0b7f7cf58d286e8dfd0c884c5dd051dcdb07d8e9",
       "tasks.md": "0f0655304f74e2430403cb62823cc6e74d77a01980274a5b37e328c966c5fd76",
       "implementation-summary.md": "02177b239a9456ded44c53d3945fc8e890b8a0f3009b75a1d84c1e9d7893b327"

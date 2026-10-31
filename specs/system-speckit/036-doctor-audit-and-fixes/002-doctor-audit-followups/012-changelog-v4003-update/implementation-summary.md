@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-doctor-audit-followups/012-changelog-v4003-update"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/012-changelog-v4003-update"
     last_updated_at: "2026-10-04T09:20:00Z"
     last_updated_by: "changelog-v4003-update"
     recent_action: "Applied the checked research findings to the v4.0.0.3 entry"

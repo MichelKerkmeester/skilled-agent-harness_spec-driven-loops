@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Callers reach the advisor three different ways today",
     "created_at": "2026-09-11T06:48:59Z",
-    "last_save_at": "2026-10-31T13:26:13.247Z",
+    "last_save_at": "2026-10-31T13:47:34.572Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,7 +215,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f71dfc21d96e4da84b744af0f93d7aa5753586a13e62e1d51a20950ed9070fc3",
+    "source_fingerprint": "sha256:83f7d9780f217e3a22a9116edf3a7c7f7449cfe8d3c7af59a355c1d850084d6e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e4b0eeaac6dcc62c98bfcebb5e2a5faac259f0bcc9b7166fa6fafc8371b187e0",

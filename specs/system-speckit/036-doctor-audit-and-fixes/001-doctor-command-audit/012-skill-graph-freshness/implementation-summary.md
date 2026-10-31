@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/048-doctor-command-audit/012-skill-graph-freshness"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/012-skill-graph-freshness"
     last_updated_at: "2026-10-02T21:10:32Z"
     last_updated_by: "doc-closure"
     recent_action: "Closed the phase documentation for the keep verdict"
@@ -106,7 +106,7 @@ The audit ran read-only first: line-numbered reads of the route, the router, the
 | `bash .skilled/commands/doctor/scripts/route-validate.sh` | Exit 0 — `OK: route-validate — 10 routes validated, 2 warnings` at audit time (`scratch/doctor-run.log:378`); after the batch, exit 0 — `OK: route-validate — 9 routes validated, 2 warnings` |
 | Batch gates | `python3 yaml.safe_load` → `YAML_OK` for every doctor asset and `_routes.yaml`; catalog mirror check `STATUS=OK`, exit 0; MCP mutation-class guard `GUARD PASS`; `skill-advisor-route-contract.test.cjs` passes and the three `parent-skill-check-*.test.cjs` files fail exactly as the pre-batch baseline |
 | Retired-name scan | `rg` for `system_skill_advisor.`, `deep_loop_graph_status|query|convergence(` and `doctor_*` in the edited doctor files returns no matches |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/048-doctor-command-audit/012-skill-graph-freshness --strict` | `Summary: Errors: 0  Warnings: 0`; `RESULT: PASSED` |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/012-skill-graph-freshness --strict` | `Summary: Errors: 0  Warnings: 0`; `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -121,7 +121,7 @@ The audit ran read-only first: line-numbered reads of the route, the router, the
 5. **Two code paths were read, not run.** The family-mismatch and null-stamp sets never fired, because no pair of available sources disagrees on a family and every disk file carries `derived.last_updated_at`; the corrupt-database `unreadable` catch was also read rather than run. Building fixtures to force them was rejected because this audit could write only the three scratch files, so those paths are inference from the code rather than observation.
 6. **The record is pinned to the audit commit `83616db9ba` and the pre-batch 10-route manifest.** The batch then retired the embeddings route and changed shared presentation rows; route validation was rerun after it and still exits 0. Three `parent-skill-check-*.test.cjs` suites fail in this worktree exactly as they did before the batch, because their temporary fixtures cannot load `@spec-kit/shared/frontmatter/parse-frontmatter.js` here; that is a baseline condition, not a regression from this phase.
 
-**Follow-up status.** Items 1 to 4 are resolved by `specs/system-skill-advisor/033-advisor-status-truthfulness` phase 001: the panel prints `STALE COMPILED`, a `DEGRADED` line for an absent SQLite or compiled source, its depth-1 scan rule, and family mismatches per skill id. Items 5 and 6 stand as recorded.
+**Follow-up status.** Items 1 to 4 are resolved by `specs/system-skill-advisor/029-advisor-status-truthfulness` phase 001: the panel prints `STALE COMPILED`, a `DEGRADED` line for an absent SQLite or compiled source, its depth-1 scan rule, and family mismatches per skill id. Items 5 and 6 stand as recorded.
 <!-- /ANCHOR:limitations -->
 
 ---

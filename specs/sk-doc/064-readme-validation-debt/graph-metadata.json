@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/064-readme-validation-debt",
+  "spec_folder": "sk-doc/064-readme-validation-debt",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/064-readme-validation-debt/001-repo-doc-debt",
+    "sk-doc/064-readme-validation-debt/002-readme-reference-debt"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "readme audit debt",
+      "readme broken reference fixes",
+      "derived readme count checker",
+      "changelog prose validation",
+      "readme checker false positives"
+    ],
+    "key_topics": [
+      "readme",
+      "audit",
+      "debt",
+      "broken",
+      "reference",
+      "derived",
+      "count",
+      "checker",
+      "changelog",
+      "prose",
+      "validation",
+      "false"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The README and changelog audits reported broken references, template failures, count mismatches and prose findings about internal ids or test counts",
+    "created_at": "2026-10-31T13:41:25.669Z",
+    "last_save_at": "2026-10-31T13:41:25.669Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:cd5464a07436d0240bdc5f3536976689bdaa5b67654e249f098dad5adb5364e4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cfba18eb94969726ec1d7c89e601b8dca5ce7498a5ddeb983efd10c2ff040411"
+    },
+    "last_active_child_id": "sk-doc/064-readme-validation-debt/001-repo-doc-debt",
+    "last_active_at": null
+  }
+}

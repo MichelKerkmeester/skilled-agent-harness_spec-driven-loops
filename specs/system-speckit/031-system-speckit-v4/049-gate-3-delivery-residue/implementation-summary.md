@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/049-gate-3-delivery-residue"
+    packet_pointer: "system-speckit/031-system-speckit-v4/049-gate-3-delivery-residue"
     last_updated_at: "2026-09-22T10:45:00Z"
     last_updated_by: "implementer"
     recent_action: "Closed the Hermes delivery fix, the stale surfaces and the Pi type gate"

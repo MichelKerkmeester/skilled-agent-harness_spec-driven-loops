@@ -9,7 +9,7 @@
   "specId": "012",
   "folderSlug": "sk-doc-validator-and-reference-fixes",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,

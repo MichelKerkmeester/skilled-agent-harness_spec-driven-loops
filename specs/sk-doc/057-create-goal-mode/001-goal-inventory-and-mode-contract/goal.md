@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract"
+    packet_pointer: "sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract"
     last_updated_at: "2026-09-25T19:30:00Z"
     last_updated_by: "gpt-6-luna"
     recent_action: "Planned phase goal"

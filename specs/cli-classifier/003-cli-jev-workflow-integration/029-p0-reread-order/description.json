@@ -14,7 +14,7 @@
   "specId": "029",
   "folderSlug": "p0-reread-order",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,

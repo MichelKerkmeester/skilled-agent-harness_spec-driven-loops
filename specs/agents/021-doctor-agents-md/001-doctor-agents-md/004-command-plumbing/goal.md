@@ -16,7 +16,7 @@ _memory:
     recent_action: "Authored the durable directive"
     next_safe_action: "Execute against the completion criteria"
     blockers:
-      - "Waits on /doctor:sk-skill (packet sk-doc/075-doctor-sk-skill-command) landing on main"
+      - "Waits on /doctor:sk-skill (packet sk-doc/067-doctor-sk-skill-command) landing on main"
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

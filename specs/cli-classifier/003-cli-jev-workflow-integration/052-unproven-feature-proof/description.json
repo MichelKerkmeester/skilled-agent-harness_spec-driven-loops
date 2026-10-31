@@ -9,7 +9,7 @@
   "specId": "052",
   "folderSlug": "unproven-feature-proof",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,

@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The 028 dedup fix half-landed",
     "created_at": "2026-09-22T12:49:47Z",
-    "last_save_at": "2026-10-31T13:26:15.094Z",
+    "last_save_at": "2026-10-31T14:00:53.851Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a78feecfa4bd018315331c4fe034c4df2d24f9efe450f32f66deb59c9c8b7344",
+    "source_fingerprint": "sha256:191b758440d1d328f542f648c26b71e9e5cf33fc229dbb039ff5503624a9a454",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a25fbdbb0eeb6ad28ba7de1cb2767df9a98cf41619c950341ccd2947909b8fd3",
+      "spec.md": "37635d0e1b48d2385cfb2003df1284c54ba5669296822e449f9bbc4fe45ccc6f",
       "plan.md": "7b6a7a48036d1fc7166251a4783599a48e35029bb68b39ff7349146877457485",
-      "tasks.md": "a59ff4099193fd2ebe809f6f390474b3a2649ac4554f07e6b32d41c08f8a6867",
-      "implementation-summary.md": "27bb240bd37d8c3ec2ae446bfa5e005145fbc32b145bb5dc818e195a07df3802"
+      "tasks.md": "5601228044a2634f66a4bba4675dbd4558195af271d8c8006be8c968cb12a33a",
+      "implementation-summary.md": "7177be281b51ab8630be3fce713a8274d1dfbc464ff6cdda36b2c7635c89cfda"
     },
     "last_active_at": null
   }

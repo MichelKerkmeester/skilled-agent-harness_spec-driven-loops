@@ -41,7 +41,7 @@ Line numbers are the values on disk when that task runs, after the tasks before 
 
 ### T001 [x] DECISION D5 (operator yes required) - approve or reject the hook-and-plugin merge (AC-015)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
+File: `specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
 
 Done: `scratch/decisions.md` holds `D5=approve` (grep `^D5=` count 1).
 
@@ -54,8 +54,8 @@ Change: the operator answered `D5=approve` on 2026-10-23 and the file already ho
 Check:
 
 ```bash
-mkdir -p specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch
-grep -c '^D5=' specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/decisions.md
+mkdir -p specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch
+grep -c '^D5=' specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/decisions.md
 ```
 
 Expected: `1`.
@@ -68,23 +68,23 @@ Stop and escalate if: no answer arrives, or the answer is neither `approve` nor 
 
 ### T002 [x] Copy the baseline rows this phase measures against (AC-014)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md` (new file). Anchor: none.
+File: `specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md` (new file). Anchor: none.
 
 Change: copy the first 40 lines of the 002 summary, then append one row per workflow this phase touches: `hooks-node-tests`, `opencode-plugin-tests`, `opencode-dual-version`, `spec-kit-check`, `routing-registry-drift`, `skill-advisor-stress`, `sk-doc-script-tests`, `sk-doc-rename-harness`, `deep-loop-runtime`, `skill-doc-frontmatter`, `playbook-operator-contract`, `gate-inputs`, `command-tree-parity`, `naming-standard-guard`, `rule-canary-sync`. Keep those appended rows under `## Workflows this phase touches`; the copied 001 summary already carries rows for the same workflows.
 
 Check:
 
 ```bash
-test -f specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md && echo BASELINE_PRESENT || echo BASELINE_MISSING
+test -f specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md && echo BASELINE_PRESENT || echo BASELINE_MISSING
 ```
 
-Expected: `BASELINE_PRESENT`. When it prints `BASELINE_MISSING`, copy `specs/system-speckit/053-ci-workflow-efficiency/001-research/scratch/ci-run-data/summary.md` instead and write `source: 001 dataset (provisional)` as the file's first line. As of 2026-10-24 it prints `BASELINE_MISSING`, so the 001-dataset fallback is the expected path until the 002 baseline exists.
+Expected: `BASELINE_PRESENT`. When it prints `BASELINE_MISSING`, copy `specs/system-speckit/040-ci-workflow-efficiency/001-research/scratch/ci-run-data/summary.md` instead and write `source: 001 dataset (provisional)` as the file's first line. As of 2026-10-24 it prints `BASELINE_MISSING`, so the 001-dataset fallback is the expected path until the 002 baseline exists.
 
 Then:
 
 ```bash
-sed -n '1,40p' specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md \
-  > specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md
+sed -n '1,40p' specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md \
+  > specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md
 ```
 
 Expected: exit 0 and a non-empty file.
@@ -94,12 +94,12 @@ Then append the fifteen rows, each naming the workflow and its baseline runner-m
 Check:
 
 ```bash
-awk '/^## Workflows this phase touches/{f=1;next} /^## /{f=0} f' specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md | grep -cE '^\| `?(hooks-node-tests|opencode-plugin-tests|opencode-dual-version|spec-kit-check|routing-registry-drift|skill-advisor-stress|sk-doc-script-tests|sk-doc-rename-harness|deep-loop-runtime|skill-doc-frontmatter|playbook-operator-contract|gate-inputs|command-tree-parity|naming-standard-guard|rule-canary-sync)'
+awk '/^## Workflows this phase touches/{f=1;next} /^## /{f=0} f' specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md | grep -cE '^\| `?(hooks-node-tests|opencode-plugin-tests|opencode-dual-version|spec-kit-check|routing-registry-drift|skill-advisor-stress|sk-doc-script-tests|sk-doc-rename-harness|deep-loop-runtime|skill-doc-frontmatter|playbook-operator-contract|gate-inputs|command-tree-parity|naming-standard-guard|rule-canary-sync)'
 ```
 
 Expected: `15` in the phase section. The whole file contains `30` matching rows because the copied 001 summary already carries the same fifteen workflows.
 
-Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md`.
+Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md`.
 
 Stop and escalate if: neither summary file exists, or the row count is not 15.
 
@@ -109,7 +109,7 @@ Done: `BASELINE_MISSING`; the 001 fallback prefix matched, the whole-file count 
 
 ### T003 [x] Record the pre-change inventory (AC-001, AC-002, AC-014)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md`, anchor: the last row T002 wrote.
+File: `specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md`, anchor: the last row T002 wrote.
 
 Change: append five sections, each with its command and observed output: `## Gate baseline`, `## Fixture baseline`, `## Bun sites`, `## Lockfiles`, `## Install counts`. Record every count as the command prints it, and record whether `dispatch-enforcement-guard.yml` still carries two installs.
 
@@ -128,7 +128,7 @@ Expected: the gate output matches this phase's measured baseline on the post-003
 Then:
 
 ```bash
-grep -c '^## ' specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md
+grep -c '^## ' specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md
 ```
 
 Expected: at least `5` (the five section headings; the copied 002 summary may add its own).
@@ -438,7 +438,7 @@ Done: `grep -c 'composite action' .github/scripts/check-gate-inputs.sh` printed 
 
 ### T011 [x] Prove the gate after the scan change (AC-001, AC-002, AC-013)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md` (new file), anchor: none.
+File: `specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md` (new file), anchor: none.
 
 Change: create the file and record the three command outputs under `## Gate after R12`.
 
@@ -455,12 +455,12 @@ Expected: the gate output matches this phase's measured baseline — `files=45 i
 Then:
 
 ```bash
-grep -c '^## Gate after R12' specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md
+grep -c '^## Gate after R12' specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md
 ```
 
 Expected: `1`.
 
-Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`.
+Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`.
 
 Stop and escalate if: any of the three checks fails, or `files` is not 45.
 
@@ -484,7 +484,7 @@ The gate read only workflow files, so an action under .github/actions could
 carry a path no check resolved. The scan and its four fixture cases cover that
 surface before the first action exists.
 
-Spec: system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning
+Spec: system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-gate-scan.txt
 git add .github/scripts/check-gate-inputs.sh .github/scripts/tests/check-gate-inputs.test.sh
@@ -628,7 +628,7 @@ Drift: the throwaway branch name `branches/031-probe-provision-cache` replaces `
 
 ### T013 [x] Run the probe twice and record the go/no-go (AC-003)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/cache-probe/summary.md` (new file). Anchor: none.
+File: `specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/cache-probe/summary.md` (new file). Anchor: none.
 
 Change: commit the probe workflow for the cold miss and push it, then push an empty commit for the warm hit with a message the contract accepts, read the cache entry, and write five lines: `size_gb=`, `restore_seconds=`, `provision_seconds_cold=`, `provision_seconds_warm=`, `verdict=`.
 
@@ -641,7 +641,7 @@ ci(cache-probe): measure the cold provision
 The first push runs the probe with an empty cache, so its provision step is the
 cold number the action has to beat and its saved entry sets the warm key.
 
-Spec: system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning
+Spec: system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-msg-cache-cold.txt
 git add .github/workflows/cache-probe.yml
@@ -654,7 +654,7 @@ ci(cache-probe): measure the warm cache hit
 The second push reuses the cache the cold run saved, so its provision step is
 the warm number the action has to beat.
 
-Spec: system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning
+Spec: system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-msg-cache-warm.txt
 git commit --allow-empty -F /tmp/probe-msg-cache-warm.txt
@@ -668,12 +668,12 @@ Expected: `validate-message.mjs` exits `0` for both messages; `git log -2 --form
 Then:
 
 ```bash
-grep -cE '^(size_gb|restore_seconds|provision_seconds_cold|provision_seconds_warm|verdict)=' specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/cache-probe/summary.md
+grep -cE '^(size_gb|restore_seconds|provision_seconds_cold|provision_seconds_warm|verdict)=' specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/cache-probe/summary.md
 ```
 
 Expected: `5`.
 
-Rollback: `rm -r specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/cache-probe`, `git switch -`, `git branch -D probe/provision-cache`, and delete both `/tmp/probe-msg-cache-*.txt` files. The two probe commits disappear with the branch.
+Rollback: `rm -r specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/cache-probe`, `git switch -`, `git branch -D probe/provision-cache`, and delete both `/tmp/probe-msg-cache-*.txt` files. The two probe commits disappear with the branch.
 
 Stop and escalate if: either run is not green, or the remote branch holds no `cache-probe.yml`. Write `verdict=no-go` and stop T014 to T066 when the largest `provision-` entry is 2 GB or more, or their total is 5 GB or more.
 
@@ -821,7 +821,7 @@ The provisioning walk repeats in five jobs and none of them caches its trees.
 The action restores a keyed cache, runs the same provisioning walk and saves
 only on a miss, so a hit shortens the work without replacing it.
 
-Spec: system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning
+Spec: system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-setup-action.txt
 git add .github/actions/setup/action.yml
@@ -1279,7 +1279,7 @@ The hook, plugin, dual-version and spec-kit jobs now call the action instead of
 repeating the bun bootstrap and the provisioning walk, and each filter watches
 the action so a change to it reruns the job.
 
-Spec: system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning
+Spec: system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-adoptions.txt
 git add .github/workflows/hooks-node-tests.yml .github/workflows/opencode-plugin-tests.yml .github/workflows/opencode-dual-version.yml .github/workflows/spec-kit-check.yml
@@ -1301,7 +1301,7 @@ Drift: the commit holds four call sites in three workflows and not the five in f
 
 ### T028 [x] Run the cold path and record it (AC-006)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`, anchor: the `## Gate after R12` section T011 wrote.
+File: `specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`, anchor: the `## Gate after R12` section T011 wrote.
 
 Change: append a `## R14 cold run` section with the run id, the head SHA and the provision step's output.
 
@@ -1332,7 +1332,7 @@ Drift: `hooks-node-tests.yml` has no `workflow_dispatch` trigger, so it has no c
 
 ### T029 [x] Prove the warm run and the gate (AC-005, AC-006)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`, anchor: the `## R14 cold run` section T028 wrote.
+File: `specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`, anchor: the `## R14 cold run` section T028 wrote.
 
 Change: append a `## R14 warm run` section with the job step seconds for the three workflows.
 
@@ -1355,7 +1355,7 @@ Expected: every job green; the provision step prints `skipped already present`; 
 Then:
 
 ```bash
-grep -c '^## R14 warm run' specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md
+grep -c '^## R14 warm run' specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md
 ```
 
 Expected: `1`.
@@ -1742,7 +1742,7 @@ Both workflows provisioned the same trees and split one check between two
 files. The merged job runs every hook and plugin suite, keeps the union trigger
 and gains a weekly cold run.
 
-Spec: system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning
+Spec: system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-merge.txt
 git add -A .github/workflows/opencode-plugin-tests.yml .github/workflows/hooks-node-tests.yml .github/workflows/README.md
@@ -1762,7 +1762,7 @@ Done 2026-10-24: committed as `2759de1119` and pushed with the install commit; `
 
 ### T041 [x] Probe the merged job on a `.hermes`-only change (AC-008)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`, anchor: the `## R14 warm run` section T029 wrote.
+File: `specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`, anchor: the `## R14 warm run` section T029 wrote.
 
 Change: create a probe branch from the T040A commit, add one file under `.hermes`, commit and push it so the merged workflow's push trigger fires, then append a `## R15 merge` section with the run id and the sorted suite list and remove the probe branch.
 
@@ -1777,7 +1777,7 @@ ci(workflows): prove the hermes-only trigger
 A change under .hermes must run the merged plugin and hook job on its own, so
 this probe commit carries one file under that root and nothing else.
 
-Spec: system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning
+Spec: system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-msg-hermes.txt
 git add .hermes/probe-trigger.txt
@@ -2575,7 +2575,7 @@ The remaining multi-install workflows repeated the same npm installs inside
 their jobs. Each block now calls the shared action, and a block is kept only
 when its warm install step is at least ten seconds shorter than its baseline.
 
-Spec: system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning
+Spec: system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-installs.txt
 git add .github/workflows/routing-registry-drift.yml .github/workflows/skill-advisor-stress.yml .github/workflows/sk-doc-script-tests.yml .github/workflows/sk-doc-rename-harness.yml .github/workflows/deep-loop-runtime.yml .github/workflows/skill-doc-frontmatter.yml .github/workflows/playbook-operator-contract.yml .github/workflows/gate-inputs.yml .github/workflows/command-tree-parity.yml
@@ -2597,7 +2597,7 @@ Done 2026-10-24: one combined commit `1c0c3534cf` carries the install substituti
 
 ### T062 [x] Record the npm dedupe and revert any block that did not drop (AC-010)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/npm-dedupe.md` (new file). Anchor: none.
+File: `specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/npm-dedupe.md` (new file). Anchor: none.
 
 Change: write one row per file — `routing-registry-drift`, `spec-kit-check`, `skill-advisor-stress`, `sk-doc-script-tests`, `sk-doc-rename-harness`, `deep-loop-runtime`, `skill-doc-frontmatter`, `playbook-operator-contract`, `gate-inputs`, `command-tree-parity` — with the baseline install-step seconds, the warm seconds and `keep` or `revert`. Revert the block in every file whose warm install step is not at least 10 s shorter than its baseline.
 
@@ -2608,8 +2608,8 @@ Check:
 ```bash
 TRIAL_SHA=$(git rev-parse HEAD)
 gh run list --commit "$TRIAL_SHA" --limit 100 --json databaseId,workflowName,conclusion
-grep -cE '^\| `?(routing-registry-drift|spec-kit-check|skill-advisor-stress|sk-doc-script-tests|sk-doc-rename-harness|deep-loop-runtime|skill-doc-frontmatter|playbook-operator-contract|gate-inputs|command-tree-parity)' specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/npm-dedupe.md
-grep -c 'revert' specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/npm-dedupe.md
+grep -cE '^\| `?(routing-registry-drift|spec-kit-check|skill-advisor-stress|sk-doc-script-tests|sk-doc-rename-harness|deep-loop-runtime|skill-doc-frontmatter|playbook-operator-contract|gate-inputs|command-tree-parity)' specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/npm-dedupe.md
+grep -c 'revert' specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/npm-dedupe.md
 ```
 
 Expected: one green run for each of the nine substituted workflows at `TRIAL_SHA`; `10`, and a `revert` count equal to the number of rows marked `revert` in the same file.
@@ -2624,7 +2624,7 @@ Done 2026-10-24: `scratch/npm-dedupe.md` has `10` rows: `routing-registry-drift`
 
 ### T062A [x] Commit the dedupe record and any reverted block (AC-010, AC-017)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/npm-dedupe.md`, and every workflow T062 marked `revert`. Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
+File: `specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/npm-dedupe.md`, and every workflow T062 marked `revert`. Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
 
 Change: stage the dedupe record and the reverted workflows, write the message, validate it, scan the staged diff for ephemeral ids, and commit. When every row is `keep`, the record alone is committed.
 
@@ -2635,16 +2635,16 @@ ci(workflows): keep only the install substitutions that save time
 The dedupe record names each warm install step against its baseline, and the
 blocks that did not drop ten seconds are restored to their pre-phase form.
 
-Spec: system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning
+Spec: system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-dedupe.txt
-git add specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/npm-dedupe.md
+git add specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/npm-dedupe.md
 git diff --name-only -- .github/workflows | while IFS= read -r f; do git add -- "$f"; done
 git diff --cached | grep -nE '\bR[0-9]+\b|\bD[0-9]+\b|[Pp]hase 0[0-9]' || true
 git commit -F /tmp/commit-msg-dedupe.txt
 ```
 
-Expected: `validate-message.mjs` exits `0`; the id search prints nothing; `git log -1 --format=%s` prints `ci(workflows): keep only the install substitutions that save time`; `git status --porcelain -- .github/workflows specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/npm-dedupe.md` prints nothing.
+Expected: `validate-message.mjs` exits `0`; the id search prints nothing; `git log -1 --format=%s` prints `ci(workflows): keep only the install substitutions that save time`; `git status --porcelain -- .github/workflows specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/npm-dedupe.md` prints nothing.
 
 Rollback: `git reset --soft HEAD~1` and delete `/tmp/commit-msg-dedupe.txt`.
 
@@ -2796,7 +2796,7 @@ Four setup-python steps installed PyYAML with no cache, so every run downloaded
 it again. Each step now keys the pip cache to its own workflow file, whose pins
 are what change.
 
-Spec: system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning
+Spec: system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-pip.txt
 git add .github/workflows/naming-standard-guard.yml .github/workflows/sk-doc-rename-harness.yml .github/workflows/sk-doc-script-tests.yml .github/workflows/spec-kit-check.yml
@@ -2855,7 +2855,7 @@ Change: add a `with:` block immediately after that line, then create a throwaway
 Check:
 
 ```bash
-git branch --show-current > specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-branch.txt
+git branch --show-current > specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-branch.txt
 git switch -c probe/checkout-trial
 cat > /tmp/probe-msg-checkout-blob.txt <<'EOF'
 ci(rule-canary-sync): trial a blobless checkout
@@ -2863,7 +2863,7 @@ ci(rule-canary-sync): trial a blobless checkout
 The canary reads a small part of the tree, so this probe commits a blobless
 checkout and measures the canary against the full checkout.
 
-Spec: system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning
+Spec: system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-msg-checkout-blob.txt
 git add .github/workflows/rule-canary-sync.yml
@@ -2916,7 +2916,7 @@ ci(rule-canary-sync): trial a sparse checkout
 The blobless checkout saved less than ten seconds, so this probe narrows the
 checkout to the rule files and measures the canary again.
 
-Spec: system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning
+Spec: system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-msg-checkout-sparse.txt
 git add .github/workflows/rule-canary-sync.yml
@@ -2931,7 +2931,7 @@ grep -c 'sparse-checkout-cone-mode: false' .github/workflows/rule-canary-sync.ym
 
 Expected: `validate-message.mjs` exits `0`; `1` for the sparse variant, one green run at `TRIAL_SHA`, and `1` for the canary line. The cone names the `.skilled` targets because `.opencode/skills` is a symlink into `.skilled/skills`.
 
-Rollback: delete `/tmp/probe-msg-checkout-sparse.txt`, `git switch "$(cat specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-branch.txt)"`, `git branch -D probe/checkout-sparse`, and `git push origin --delete probe/checkout-sparse`.
+Rollback: delete `/tmp/probe-msg-checkout-sparse.txt`, `git switch "$(cat specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-branch.txt)"`, `git branch -D probe/checkout-sparse`, and `git push origin --delete probe/checkout-sparse`.
 
 Stop and escalate if: the canary run is not green, which means the cone omitted a file the checker reads.
 
@@ -2941,15 +2941,15 @@ Done 2026-10-24: run 40126121698 on test PR #88 (`branches/033-probe-checkout-sp
 
 ### T070 [x] Record the checkout verdict (AC-012)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/checkout-probe.md` (new file). Anchor: none.
+File: `specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/checkout-probe.md` (new file). Anchor: none.
 
 Change: write three rows — `baseline`, `blob:none`, `sparse` — each with the checkout step seconds and the job conclusion, then one `verdict:` line naming the fastest green variant that is at least 10 s shorter than the baseline. When no variant qualifies, write `verdict: no saving`. Then switch back to the phase branch, apply the kept variant to `rule-canary-sync.yml` from its probe branch, and delete both probe branches.
 
 Check:
 
 ```bash
-git switch "$(cat specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-branch.txt)"
-VERDICT=$(grep '^verdict:' specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/checkout-probe.md | cut -d' ' -f2)
+git switch "$(cat specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-branch.txt)"
+VERDICT=$(grep '^verdict:' specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/checkout-probe.md | cut -d' ' -f2)
 case "$VERDICT" in
   blob:none) git checkout probe/checkout-trial -- .github/workflows/rule-canary-sync.yml ;;
   sparse) git checkout probe/checkout-sparse -- .github/workflows/rule-canary-sync.yml ;;
@@ -2960,8 +2960,8 @@ git branch -D probe/checkout-trial 2>/dev/null || true
 git branch -D probe/checkout-sparse 2>/dev/null || true
 git push origin --delete probe/checkout-trial 2>/dev/null || true
 git push origin --delete probe/checkout-sparse 2>/dev/null || true
-grep -cE '^\| (baseline|blob:none|sparse) ' specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/checkout-probe.md
-grep -c '^verdict:' specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/checkout-probe.md
+grep -cE '^\| (baseline|blob:none|sparse) ' specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/checkout-probe.md
+grep -c '^verdict:' specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/checkout-probe.md
 git diff -- .github/workflows/rule-canary-sync.yml
 ```
 
@@ -2989,7 +2989,7 @@ The probe measured a blobless and a sparse checkout against the full checkout.
 This commit carries only the variant that stayed green and saved at least ten
 seconds, or no change when neither did.
 
-Spec: system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning
+Spec: system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-checkout.txt
 git add .github/workflows/rule-canary-sync.yml
@@ -3016,7 +3016,7 @@ Done 2026-10-24: committed as `ea39cd7b2c`.
 
 ### T071 [x] Run the whole-tree gates from the final state (AC-013, AC-017)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`, anchor: the `## R15 merge` section T041 wrote.
+File: `specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`, anchor: the `## R15 merge` section T041 wrote.
 
 Change: append a `## Final gates` section with the three outputs, then re-run the ephemeral-id search across the eight commits T011A to T070G made.
 
@@ -3041,15 +3041,15 @@ Done 2026-10-24: `57 passed, 0 failed`, `files=45 ... failures=0`, `RESULT: PASS
 
 ### T072 [x] Measure the phase delta (AC-014)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`, anchor: the `## Final gates` section T071 wrote.
+File: `specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`, anchor: the `## Final gates` section T071 wrote.
 
 Change: at least 24 h after T070G merges, append a `## Phase delta` section with 14 rows: the 15 pre-merge rows from `scratch/phase-baseline.md`, with the merged row carrying both pre-merge numbers, then the after numbers and the delta.
 
 Check:
 
 ```bash
-gh run list --limit 1000 --json databaseId,name,headSha,event,conclusion,createdAt,startedAt,updatedAt > specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/runs-after.json
-grep -cE '^\| `?(hooks-node-tests|opencode-plugin-tests|opencode-dual-version|spec-kit-check|routing-registry-drift|skill-advisor-stress|sk-doc-script-tests|sk-doc-rename-harness|deep-loop-runtime|skill-doc-frontmatter|playbook-operator-contract|gate-inputs|command-tree-parity|naming-standard-guard|rule-canary-sync)' specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md
+gh run list --limit 1000 --json databaseId,name,headSha,event,conclusion,createdAt,startedAt,updatedAt > specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/runs-after.json
+grep -cE '^\| `?(hooks-node-tests|opencode-plugin-tests|opencode-dual-version|spec-kit-check|routing-registry-drift|skill-advisor-stress|sk-doc-script-tests|sk-doc-rename-harness|deep-loop-runtime|skill-doc-frontmatter|playbook-operator-contract|gate-inputs|command-tree-parity|naming-standard-guard|rule-canary-sync)' specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md
 ```
 
 Expected: `14` rows, with the merged workflow counted once.
@@ -3064,15 +3064,15 @@ Done 2026-10-25: T070G reached main in the push created at 2026-10-24T19:41:04Z 
 
 ### T073 [x] Close the criteria (AC-013, AC-014, AC-015)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/acceptance-criteria.md:101`, anchor: the `## 3. CLOSURE STATEMENT` heading.
+File: `specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/acceptance-criteria.md:101`, anchor: the `## 3. CLOSURE STATEMENT` heading.
 
 Change: copy the T011A to T072 outputs into the Verification cells, set each row's Status, and update the closure statement to name the observed state.
 
 Check:
 
 ```bash
-grep -c '| Unmet |' specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/acceptance-criteria.md
-bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh "$PWD/specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning" --strict --no-recursive | tail -1
+grep -c '| Unmet |' specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/acceptance-criteria.md
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh "$PWD/specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning" --strict --no-recursive | tail -1
 ```
 
 Expected: `0` rows still `Unmet`, and `RESULT: PASSED`.
@@ -3087,7 +3087,7 @@ Done 2026-10-25: AC-014 now names the T072 evidence and is `Met`, so all 17 rows
 
 ### T074 [x] Commit the closure (AC-013, AC-014, AC-015, AC-017)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning` (the packet folder). Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
+File: `specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning` (the packet folder). Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
 
 Change: stage the packet folder, including the acceptance criteria, the task statuses and the scratch evidence, write its message, validate it, and commit. The spec documents carry the AC, R and D ids by design, so this commit does not run the workflow-comment id search.
 
@@ -3099,12 +3099,12 @@ Every acceptance row now carries the observed run id, step seconds or gate
 output that proves it, so the packet records the measured state rather than a
 plan.
 
-Spec: system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning
+Spec: system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-closure.txt
-git add specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning
+git add specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning
 git commit -F /tmp/commit-msg-closure.txt
-git status --porcelain -- specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning
+git status --porcelain -- specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning
 ```
 
 Expected: `validate-message.mjs` exits `0`; `git log -1 --format=%s` prints `docs(spec): close the setup caching and provisioning criteria`; `git status --porcelain` prints nothing.

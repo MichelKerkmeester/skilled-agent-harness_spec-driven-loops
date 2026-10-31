@@ -124,7 +124,7 @@ Commands run from the repository root. `S=.skilled/skills/sk-doc/sk-create-skill
 | Tests | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` | Exit 0, at least 18 passing |
 | Read-only | `git status --porcelain` before and after each run | Identical, apart from operator-named outputs |
 | Skill docs | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <doc>` | Exit 0 on each changed doc |
-| Phase docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay --strict` | `RESULT: PASSED` |
+| Phase docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-classifier/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay --strict` | `RESULT: PASSED` |
 <!-- /ANCHOR:testing -->
 
 ---

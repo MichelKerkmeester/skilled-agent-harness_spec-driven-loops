@@ -13,7 +13,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system"
+    packet_pointer: "system-speckit/031-system-speckit-v4/004-decisions-and-notes-system"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialize phase-parent continuity block"

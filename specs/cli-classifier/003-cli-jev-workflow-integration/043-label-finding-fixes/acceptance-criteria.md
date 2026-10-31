@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/043-label-finding-fixes"
     last_updated_at: "2026-10-01T18:41:50Z"
     last_updated_by: "orchestrating-session"
     recent_action: "Met every acceptance criterion at closure"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes
+**Packet:** cli-classifier/003-cli-jev-workflow-integration/043-label-finding-fixes
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-01
@@ -56,7 +56,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-003 | REQ-003, REQ-005 | Given 006's labeled rows and a stub `jev` first on `PATH`, When `score-goal-lint.cjs` runs with and without `--jev`, Then the run without it is byte-identical to before and the stub logs no call, each gate failure prints its skip line, and a scripted run prints both rule columns, the flips line and a verdict per rule | `node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs` with the new stub cases: 25 pass (8 before), 0 failing. lint-goal-criteria 12, check-goal 16 and template-parity 4 unchanged. The run without a switch is byte-identical to the pre-arm output. Commits `ce372a4404`, `2022ba3e91` | Met | - |
 | AC-004 | REQ-006 | Given a stub `cli-deem` whose health check fails four ways, When `score-goal-lint.cjs` runs with `--deem`, Then it prints each `deem arm skipped:` line, keeps the lexical output unchanged and never starts the server | The same suite's Deem cases: the health-gate case prints `not reachable`, `stub backend`, `bad health response` and `model`, keeps the lexical output, and the stub logs only `health`. Commit `09a051589c` | Met | - |
 | AC-005 | REQ-007 | Given the 027, 003 and 006 changes, When DeepSeek V4.1 Flash reviews them, Then no P0 or P1 stays open and every P2 is recorded | Three read-only DeepSeek V4.1 Flash rounds. Each P0 and P1 was reproduced and fixed (`82bf342dae`, `2022ba3e91`, `72d28bb9c2`, `81b3315624`, `419607ba19`, `c6d09396dd`), and every P2 is in `goal.md`'s log. No fourth round ran after the last one-word fix, which the session reproduced and covered with tests | Met | - |
-| AC-006 | REQ-001 to REQ-007 | Given the final state, When the phase closes, Then `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` for this phase and the parent | `repair-derived.cjs --apply`, then both commands on `specs/cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes` and on the parent. `repair-derived.cjs --apply` repaired the phase and the parent. `validate.sh --strict` on this phase printed `Errors: 0  Warnings: 0` and `RESULT: PASSED`, and `--recursive` on the parent printed `RESULT: PASSED` for all 44 folders. `check-goal.cjs` printed `RESULT: PASSED (5/5 checks)` on this phase, the parent and every child | Met | - |
+| AC-006 | REQ-001 to REQ-007 | Given the final state, When the phase closes, Then `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` for this phase and the parent | `repair-derived.cjs --apply`, then both commands on `specs/cli-classifier/003-cli-jev-workflow-integration/043-label-finding-fixes` and on the parent. `repair-derived.cjs --apply` repaired the phase and the parent. `validate.sh --strict` on this phase printed `Errors: 0  Warnings: 0` and `RESULT: PASSED`, and `--recursive` on the parent printed `RESULT: PASSED` for all 44 folders. `check-goal.cjs` printed `RESULT: PASSED (5/5 checks)` on this phase, the parent and every child | Met | - |
 
 ### Status values
 

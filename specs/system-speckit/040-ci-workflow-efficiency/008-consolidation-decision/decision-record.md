@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/053-ci-workflow-efficiency/008-consolidation-decision"
+    packet_pointer: "system-speckit/040-ci-workflow-efficiency/008-consolidation-decision"
     last_updated_at: "2026-10-25T20:45:00Z"
     last_updated_by: "markdown"
     recent_action: "Recorded the D8 answer no in ADR-001 and set the six ADR statuses"

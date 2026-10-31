@@ -21,7 +21,7 @@
   "folderSlug": "memory-decommission-branch-landing",
   "parentChain": [
     "system-speckit",
-    "033-system-speckit-v4"
+    "031-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

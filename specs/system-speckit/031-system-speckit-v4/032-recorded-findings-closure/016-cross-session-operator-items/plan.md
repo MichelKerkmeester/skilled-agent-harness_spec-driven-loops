@@ -78,7 +78,7 @@ Each item's data flow is a single existing pipeline (source to mirror, source RE
 | `.opencode/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json` | README parity baseline, currently 113 mismatches against live validator output | Update: regenerate, gated on clean status and on each of the 26 verdict-shape mismatches being individually read first | `python3 .opencode/skills/sk-doc/scripts/tests/test_readme_verdict_parity.py` reports `diff_entries=0` |
 | `specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/goal-file-manifest.txt` | Already reconciled 2026-09-07, another packet's live surface | Verify only, no write | `bash check-goal-file-manifest.sh` and the `recursive-child-manifest.vitest.ts` suite both pass |
 | `/Users/michelkerkmeester/worktrees/public/046-v4-gemini-research` | A separate git worktree, currently dirty (2 modified, 7 untracked) | Remove, conditional on clean status. Escalate if dirty | `git worktree list` no longer names it, or an escalation note exists in implementation-summary.md |
-| `specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/spec.md` (or wherever the program states the 36-mismatch and six-invariant figures) | States now-stale figures | Update, conditional on write authority | The figures match this phase's re-verified counts |
+| `specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/spec.md` (or wherever the program states the 36-mismatch and six-invariant figures) | States now-stale figures | Update, conditional on write authority | The figures match this phase's re-verified counts |
 <!-- /ANCHOR:affected-surfaces -->
 
 

@@ -11,7 +11,7 @@ trigger_phrases:
   - "retrofit diagnostics schema"
 importance_tier: important
 contextType: implementation
-version: 2.7.0.7
+version: 2.7.1.0
 ---
 
 # Grep Convention for Spec Documents
@@ -405,7 +405,7 @@ The value sets for `importance_tier` and `contextType` were open here until they
 
 ### Research
 
-- [research.md](../../../../../specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research/research/lineages/luna-max/research.md) - Section 8 carries the source citations behind the frontmatter, trigger, anchor and naming rules
+- [research.md](../../../../../specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research/research/lineages/luna-max/research.md) - Section 8 carries the source citations behind the frontmatter, trigger, anchor and naming rules
 
 ### Scripts
 

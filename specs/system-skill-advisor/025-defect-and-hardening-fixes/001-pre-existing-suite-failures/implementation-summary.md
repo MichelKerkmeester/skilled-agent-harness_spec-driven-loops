@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/026-defect-and-hardening-fixes/001-pre-existing-suite-failures"
+    packet_pointer: "system-skill-advisor/025-defect-and-hardening-fixes/001-pre-existing-suite-failures"
     last_updated_at: "2026-09-12T10:40:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Three suites fixed at cause; two accuracy pins diagnosed and left for an operator decision"

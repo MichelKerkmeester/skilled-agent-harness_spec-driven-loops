@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Phase 001 established what kinds of thing the move breaks and which of them cannot be fixed by a rewrite",
     "created_at": "2026-09-16T12:30:38.836Z",
-    "last_save_at": "2026-10-31T13:26:59.478Z",
+    "last_save_at": "2026-10-31T13:59:09.077Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:8fc2afcc222626bbd4e0d51ce85738d0e761878f25bfcf163aef1000bd9b738e",
+    "source_fingerprint": "sha256:5ef0a6d04eb6087f32ecc141a9d49f34cd66476fb885b11501a408e1c55e4f61",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "230c39c4d6c7aa1e6fc3d212c734a7c4329c8a53221d0972231a553789df14e0",

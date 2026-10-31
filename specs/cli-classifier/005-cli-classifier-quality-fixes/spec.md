@@ -32,7 +32,7 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The research in `specs/cli-jev/004-cli-classifier-quality-research/research/research.md` confirmed eleven findings in the shipped cli-classifier work. Five cli-jev docs fail the blocking doc validator, the hub `SKILL.md` describes the transport default backwards, `score-clarify-default.cjs` records Pi answers as Jev, two transport edge cases have no guard or test, and three docs carry stale lines.
+The research in `specs/cli-classifier/004-cli-classifier-quality-research/research/research.md` confirmed eleven findings in the shipped cli-classifier work. Five cli-jev docs fail the blocking doc validator, the hub `SKILL.md` describes the transport default backwards, `score-clarify-default.cjs` records Pi answers as Jev, two transport edge cases have no guard or test, and three docs carry stale lines.
 
 ### Purpose
 Every required finding is fixed and proven by the validator or a failing-first test, with no suite count going down.

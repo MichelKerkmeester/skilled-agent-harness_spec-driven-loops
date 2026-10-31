@@ -15,7 +15,7 @@
   "specId": "023",
   "folderSlug": "reply-harness-blinded-judge",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,

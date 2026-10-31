@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/010-goal-file-addon/003-runtime-neutral-goal-dispatch"
+    packet_pointer: "system-speckit/031-system-speckit-v4/010-goal-file-addon/003-runtime-neutral-goal-dispatch"
     last_updated_at: "2026-08-30T04:17:55Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the phase specification from the verified research"
@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-08-29 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | system-speckit/033-system-speckit-v4/010-goal-file-addon |
+| **Parent Packet** | system-speckit/031-system-speckit-v4/010-goal-file-addon |
 | **Predecessor** | 002-durable-slice-validator |
 | **Successor** | 004-parent-set-string-playbook |
 <!-- /ANCHOR:metadata -->

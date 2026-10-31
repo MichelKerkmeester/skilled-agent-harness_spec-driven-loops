@@ -10,7 +10,8 @@
   "folderSlug": "align-sk-prompt",
   "parentChain": [
     "sk-doc",
-    "072-skill-routing-and-clarity",
+    "051-hub-routing-quality",
+    "002-skill-routing-and-clarity",
     "014-skill-router-files"
   ],
   "memorySequence": 0,

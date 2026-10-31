@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata"
     last_updated_at: "2026-10-26T18:45:00Z"
     last_updated_by: "closeout-doc-writer"
     recent_action: "Recorded both full suites; every row Met"

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/024-routing-perfection-research"
+    packet_pointer: "system-skill-advisor/023-routing-perfection-research"
     last_updated_at: "2026-09-07T09:40:00Z"
     last_updated_by: "implementation"
     recent_action: "Landed the reach-gate repair, the sk-design invariants and the stage-one generator"

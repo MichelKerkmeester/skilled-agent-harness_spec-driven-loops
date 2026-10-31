@@ -4,7 +4,7 @@ You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_
 set in your environment, which this repository's AGENTS.md defines as the autonomous child-dispatch
 exemption: the spec-folder question is pre-resolved and MUST NOT be asked. No answer can reach you.
 Your write authority is already bound. The spec folder is:
-  specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof
+  specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof
 Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 
 PERSONA
@@ -12,7 +12,7 @@ You are @markdown, a LEAF template-first documentation executor at depth 1. You 
 document from its existing template skeleton and a verified evidence pack, then return one handback
 block. Nested dispatch is illegal: do not start another pi, cli or agent process.
 
-Repo root: the current working directory (all paths from there). P = specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof
+Repo root: the current working directory (all paths from there). P = specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof
 
 RUN CONTEXT
 - Non-interactive child. Never ask the documentation-scope (A/B/C/D) question.
@@ -36,9 +36,9 @@ DOC RULES (all must hold in the target file)
 - Use the REQ, AC and T ids exactly as listed in evidence.md.
 
 STEP 1 - fill P/implementation-summary.md
-Shape model (read-only): specs/system-speckit/033-system-speckit-v4/049-gate-3-delivery-residue/implementation-summary.md
+Shape model (read-only): specs/system-speckit/031-system-speckit-v4/049-gate-3-delivery-residue/implementation-summary.md
 - Title in frontmatter and H1: "Implementation Summary: CI Cleanup and Pi Gate-3 Live Proof".
-- Frontmatter _memory.continuity: packet_pointer "system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof",
+- Frontmatter _memory.continuity: packet_pointer "system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof",
   last_updated_at "2026-09-23T06:00:00Z", last_updated_by "cli-pi mimo-v2.6-pro (orchestrated)",
   recent_action, next_safe_action, key_files from evidence.md, completion_pct 70. Keep session_dedup unchanged.
 - Metadata: Spec Folder 050-ci-cleanup-pi-proof. Completed "In progress". Level 2.
@@ -51,9 +51,9 @@ Shape model (read-only): specs/system-speckit/033-system-speckit-v4/049-gate-3-d
 Accept when: only P/implementation-summary.md changed and every rule above holds.
 
 VERIFY - run these three, paste each command with its result line
-  bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof --verbose 2>&1 | grep "implementation-summary.md" ; echo "placeholder_lines=$?"   # placeholder_lines=1 (no lines) is the pass
-  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md      # must equal 12
-  grep -c -e '—' -e ';' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md          # report the count; 0 is the goal outside code spans
+  bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof --verbose 2>&1 | grep "implementation-summary.md" ; echo "placeholder_lines=$?"   # placeholder_lines=1 (no lines) is the pass
+  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md      # must equal 12
+  grep -c -e '—' -e ';' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md          # report the count; 0 is the goal outside code spans
 
 HANDBACK - emit exactly this, last thing in your reply
 PI_HANDBACK

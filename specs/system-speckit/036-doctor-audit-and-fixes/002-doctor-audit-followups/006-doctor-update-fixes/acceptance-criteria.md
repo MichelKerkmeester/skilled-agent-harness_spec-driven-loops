@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-doctor-audit-followups/006-doctor-update-fixes"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/006-doctor-update-fixes"
     last_updated_at: "2026-10-03T21:06:41Z"
     last_updated_by: "plan-author"
     recent_action: "Wrote one acceptance criterion per finding plus the no-regression criterion"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/049-doctor-audit-followups/006-doctor-update-fixes
+**Packet:** system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/006-doctor-update-fixes
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-03

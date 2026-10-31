@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The three `/speckit:` lifecycle commands each ship as an auto/confirm pair, six YAML assets between 780 and 1,388 lines (verified 2026-09-07: `speckit-plan-auto.yaml` 780 lines, `speckit-plan-confirm.yaml` 849 lines)",
     "created_at": "2026-09-07T15:05:46Z",
-    "last_save_at": "2026-10-31T13:26:52.970Z",
+    "last_save_at": "2026-10-31T13:59:00.634Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de0a27a374abafb8f4fe54a380f6afbec6e80135439c8391f7007b763ee30b81",
+    "source_fingerprint": "sha256:357a59bec3d4263c22e54732dfe253e7f85cf009ec50b1c41323ce39e292b3f2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e3b801f7b86416fd4fda55cb80cbd2e1981754696c5b37d1174e3b1384a874dc",

@@ -4,7 +4,7 @@
 - Date: 2026-09-11
 - Repository: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 - Assigned scenarios: 16
-- Results file: specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/playbook-runs/cli-codex-luna.md
+- Results file: specs/system-skill-advisor/024-mcp-decommission-cli-front-door/008-verification-and-closeout/playbook-runs/cli-codex-luna.md
 
 ## Verdict
 

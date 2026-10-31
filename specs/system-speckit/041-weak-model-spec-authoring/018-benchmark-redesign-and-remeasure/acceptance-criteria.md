@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure"
     last_updated_at: "2026-10-26T18:30:00Z"
     last_updated_by: "conductor"
     recent_action: "Verified every criterion at closeout, all Met"

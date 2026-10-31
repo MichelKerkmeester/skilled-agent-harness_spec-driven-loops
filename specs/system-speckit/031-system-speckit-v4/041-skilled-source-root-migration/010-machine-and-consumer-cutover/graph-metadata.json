@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Git cannot move what lives outside it",
     "created_at": "2026-09-16T17:54:10Z",
-    "last_save_at": "2026-10-31T13:27:01.937Z",
+    "last_save_at": "2026-10-31T13:59:12.046Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6a73741cb7217ec65135cd160dd0e65b0721583c297bb555b256e149a73d8530",
+    "source_fingerprint": "sha256:fa61d611c9ffd41a5d30c1307311078f26137518683508f5b85cb4413fd54447",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2dcd932863e88eb54c6f478000505efc72e1a3d3cd5850080fdca3353df4d70a",

@@ -14,5 +14,5 @@ OLD: | Newer commits on main (three) | External | Yellow | T015 waits on the mer
 NEW: | Newer commits on main | External | Green | Merged in T015. The other session pushed main to 80dc0a118d before the second merge.
 
 VERIFY - run these, paste each command with its result line
-  grep -c '^- \[ \]' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/plan.md          # report the count
-  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/plan.md    # expect 22
+  grep -c '^- \[ \]' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/plan.md          # report the count
+  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/plan.md    # expect 22

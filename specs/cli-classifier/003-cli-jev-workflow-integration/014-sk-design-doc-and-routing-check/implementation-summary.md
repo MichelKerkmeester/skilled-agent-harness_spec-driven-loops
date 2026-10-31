@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check"
     last_updated_at: "2026-09-27T19:45:00Z"
     last_updated_by: "closure-leaf"
     recent_action: "Amended AC-006 at close; 8 of 8 AC rows Met"

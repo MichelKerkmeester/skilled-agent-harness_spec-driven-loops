@@ -17,7 +17,7 @@
   "folderSlug": "plan-and-contract-optimization",
   "parentChain": [
     "system-speckit",
-    "033-system-speckit-v4",
+    "031-system-speckit-v4",
     "003-spec-doc-template-reduction"
   ],
   "memorySequence": 2,

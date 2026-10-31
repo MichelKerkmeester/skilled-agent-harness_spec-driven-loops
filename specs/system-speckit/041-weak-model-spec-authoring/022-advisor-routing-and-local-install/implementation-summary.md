@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/022-advisor-routing-and-local-install"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/022-advisor-routing-and-local-install"
     last_updated_at: "2026-10-27T08:00:00Z"
     last_updated_by: "closeout-doc-writer"
     recent_action: "Fixed all four items, applied the review's one P2, reran every gate"

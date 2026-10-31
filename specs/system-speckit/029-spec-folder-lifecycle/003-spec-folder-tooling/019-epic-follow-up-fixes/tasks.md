@@ -58,7 +58,7 @@ contextType: "general"
 - [x] T013 U10 leaf manifest: the generator skips dot-named directories, and a new scope test pins that a `.pytest_cache` does not change a manifest while `.gitkeep` stays a leaf. The sk-code manifest was already clean in git and was not regenerated (`generate-leaf-manifest.cjs`, `generate-leaf-manifest-scopes.test.cjs`, `u10-leaf-manifest-scope-test.txt`, `gate-08-leaf-manifests.txt`)
 
 ### Housekeeping (U11) and added items
-- [x] T014 U11 commit the 018 push receipt `specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/scratch/evidence/push.txt`. Committed in `9bd0eecc44`, and `git ls-files` lists the file. Owner: orchestrator
+- [x] T014 U11 commit the 018 push receipt `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/018-epic-docs-alignment/scratch/evidence/push.txt`. Committed in `9bd0eecc44`, and `git ls-files` lists the file. Owner: orchestrator
 - [x] T015 Added: the doctor scripts READMEs and the three sibling doctor-commands playbook READMEs (mcp-code-mode, sk-git, system-deep-loop) validate with 0 issues (`u04-validate-*.txt`, `u04-validate-document-readmes-rerun.txt`)
 - [x] T016 Added: the three playbook prompt files `create-agent-presentation.txt`, `create-command-presentation.txt` and `doctor-update-presentation.txt` aligned with their YAML and test rules (`git diff`, `u08-gate3-parity-final.txt`)
 <!-- /ANCHOR:phase-2 -->

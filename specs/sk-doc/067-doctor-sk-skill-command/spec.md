@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/075-doctor-sk-skill-command"
+    packet_pointer: "sk-doc/067-doctor-sk-skill-command"
     last_updated_at: "2026-10-30T14:53:02Z"
     last_updated_by: "markdown-agent-close"
     recent_action: "Closed the last unticked rows in 005, 007 and 009 and re-derived the packet"
@@ -54,7 +54,7 @@ _memory:
 | **Created** | 2026-10-30 |
 | **Branch** | `worktrees/281-doctor-skill-command` |
 | **Parent Spec** | None (top-level packet) |
-| **Parent Packet** | sk-doc/075-doctor-sk-skill-command |
+| **Parent Packet** | sk-doc/067-doctor-sk-skill-command |
 | **Predecessor** | None |
 | **Successor** | None |
 | **Handoff Criteria** | Every child passes `validate.sh --strict` and phase 010 records the final verification and release notes |

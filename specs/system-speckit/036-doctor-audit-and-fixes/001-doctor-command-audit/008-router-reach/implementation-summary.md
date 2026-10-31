@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/048-doctor-command-audit/008-router-reach"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/008-router-reach"
     last_updated_at: "2026-10-02T16:10:21Z"
     last_updated_by: "doc-closure"
     recent_action: "Closed the phase documentation for the applied router-reach fix"
@@ -109,7 +109,7 @@ Audit first: the phase inventoried every named path, flag and script, then ran t
 3. **Only one hub was rerun live after the fix.** The post-fix live check used `--hub sk-doc --limit 5`; the full fleet has not been rerun against the live advisor.
 4. **Three doctor test fixtures fail in this worktree, as before the batch.** `parent-skill-check-*.test.cjs` cannot load `@spec-kit/shared/frontmatter/parse-frontmatter.js` inside a temporary fixture; this matches the pre-batch baseline and is not a regression.
 
-**Follow-up status.** Items 1 to 3 are resolved by `specs/system-skill-advisor/033-advisor-status-truthfulness` phase 002: the full fleet, rerun against the live advisor, reports 0 wrong-hub and 0 outranked, and a rerun after merging main agrees. Item 4 is resolved by `specs/system-speckit/049-doctor-audit-followups` phase 003.
+**Follow-up status.** Items 1 to 3 are resolved by `specs/system-skill-advisor/029-advisor-status-truthfulness` phase 002: the full fleet, rerun against the live advisor, reports 0 wrong-hub and 0 outranked, and a rerun after merging main agrees. Item 4 is resolved by `specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups` phase 003.
 <!-- /ANCHOR:limitations -->
 
 ---

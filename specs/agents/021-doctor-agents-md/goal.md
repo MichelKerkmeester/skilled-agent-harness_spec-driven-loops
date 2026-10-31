@@ -45,7 +45,7 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | Phase 001 owns the root instruction files and phase 002 owns the route manifest read; neither phase writes a file the other phase's acceptance criteria name. |
-| D2 | No phase starts implementation before `/doctor:sk-skill` (packet `sk-doc/075-doctor-sk-skill-command`) is on `main`, and every route, bridge, phrase and mirror count is re-measured on the branch the phase starts from. |
+| D2 | No phase starts implementation before `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) is on `main`, and every route, bridge, phrase and mirror count is re-measured on the branch the phase starts from. |
 | D3 | Reuse what already ships with tests: the rule-copy canary for the delivery budget, the gate 1 pointer sync, the repo-rules checker and the exported three-way classifier. No second implementation of any of them. |
 | D4 | Nothing is ever deleted or moved out of a repository's own text automatically; every write is a printed plan, one explicit yes and a recorded rollback. |
 | D5 | Fixtures are synthetic. No consumer checkout, no operator-local skill or command name, and no real repository path reaches a tracked file. |

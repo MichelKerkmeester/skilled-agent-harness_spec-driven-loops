@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups"
+    packet_pointer: "system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups"
     last_updated_at: "2026-09-23T20:30:00Z"
     last_updated_by: "cli-pi-mimo-v2.6-pro"
     recent_action: "Closed the packet with every acceptance criterion met"
@@ -129,7 +129,7 @@ The work landed as two commits on branch worktrees/066-ci-cleanup-follow-ups, re
 
 1. **A fresh worktree does not build the gitignored dists the suites import.** The shared package, the skill-advisor runtime, the spec-kit runtime and the communication-projection package all need a build before their tests can load. This is an observation to record and not a fix in this phase.
 
-2. **Two items stayed out of scope.** The containment capture fix with the capture untrack is recorded in packet specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot, and the phase 030 goal trim is recorded in the log of specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/goal.md.
+2. **Two items stayed out of scope.** The containment capture fix with the capture untrack is recorded in packet specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot, and the phase 030 goal trim is recorded in the log of specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/goal.md.
 <!-- /ANCHOR:limitations -->
 
 ---

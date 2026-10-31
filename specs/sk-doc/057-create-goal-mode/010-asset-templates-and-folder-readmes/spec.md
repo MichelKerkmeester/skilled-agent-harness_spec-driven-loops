@@ -100,7 +100,7 @@ Give every goal kind a checked blank that cannot drift from system-spec-kit, doc
 | `.skilled/skills/sk-doc/{ROUTER.md,leaf-manifest.json}` | Modify | Goal-authoring resources |
 | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json` and its authored copy | Modify | Republished route |
 | `.hermes/skills/sk-create-goal/SKILL.md` | Regenerate | Generated copy |
-| `specs/sk-doc/060-create-goal-mode/{spec.md,goal.md}` and this folder | Modify and create | Phase records and parent binding |
+| `specs/sk-doc/057-create-goal-mode/{spec.md,goal.md}` and this folder | Modify and create | Phase records and parent binding |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -136,7 +136,7 @@ Give every goal kind a checked blank that cannot drift from system-spec-kit, doc
 
 - **SC-001**: `node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/` passes 15 of 15.
 - **SC-002**: `compiled-route-guard.cjs` reports every hub fresh, and the sk-doc canary passes 22 of 22.
-- **SC-003**: `validate.sh specs/sk-doc/060-create-goal-mode --recursive --strict` prints `RESULT: PASSED` for all 11 folders.
+- **SC-003**: `validate.sh specs/sk-doc/057-create-goal-mode --recursive --strict` prints `RESULT: PASSED` for all 11 folders.
 <!-- /ANCHOR:success-criteria -->
 
 ---

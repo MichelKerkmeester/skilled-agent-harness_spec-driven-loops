@@ -33,9 +33,9 @@ The planned checker covers binding-row completeness, template placeholders, the 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 ### Definition of Ready
-- [ ] Phase 001 records the owner choice for the missing checks (specs/sk-doc/060-create-goal-mode/spec.md:157).
-- [ ] Phase 005's cut-fixture and chat-slice evidence meets the incoming handoff (specs/sk-doc/060-create-goal-mode/spec.md:146).
-- [ ] Phase 002 has created the sk-create-goal packet before its script path is used (specs/sk-doc/060-create-goal-mode/spec.md:122).
+- [ ] Phase 001 records the owner choice for the missing checks (specs/sk-doc/057-create-goal-mode/spec.md:157).
+- [ ] Phase 005's cut-fixture and chat-slice evidence meets the incoming handoff (specs/sk-doc/057-create-goal-mode/spec.md:146).
+- [ ] Phase 002 has created the sk-create-goal packet before its script path is used (specs/sk-doc/057-create-goal-mode/spec.md:122).
 
 ### Definition of Done
 - [ ] One positive fixture passes and six negative controls fail for their named reasons.
@@ -71,7 +71,7 @@ This phase adds a read-only goal check. The existing validator and goal-slice he
 |---------|--------------|--------|--------------|
 | spec-doc-structure.ts | Measures the goal budget and resolves listed binding targets (.skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts:1050-1080) | Read as baseline; do not modify | Four fixture cases cover the missing checks |
 | goal-slice.cjs | Exports durable-slice and budget helpers (.skilled/hooks/goal/lib/goal-slice.cjs:59-63,277-285,431-446) | Reuse for parent budget measurement | Over-budget fixture fails at the declared limit |
-| Active goal corpus | Contains the known gap patterns (specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md:39-45) | Read only | Report scanned and finding counts |
+| Active goal corpus | Contains the known gap patterns (specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md:39-45) | Read only | Report scanned and finding counts |
 
 Required inventories:
 - Same-class source: rg -n 'validateGoalDocument|bindingRowTarget' .skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts.
@@ -89,7 +89,7 @@ Required inventories:
 2. **Build fixtures and tests.** Add one valid case and six isolated cases: a missing binding row, separate objective, decision and criterion placeholders, an out-of-range criterion count and an over-budget parent. Keep the child identifier in a non-row location in the binding negative control. On the local-checker route, run node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/check-goal.test.cjs. On the amendment route, retain the fixtures and use the validator owner's documented test entry point if supplied; if none is available, record the fixture run as blocked instead of claiming a pass. Observable result: seven controls have observed outcomes, including six expected failures with named reasons.
 3. **Implement the selected route.** For the local-checker route, create .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs with one result per check, modelled on .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs:435-465. Import extractDurableSlice and resolveGoalBudget from goal-slice.cjs (.skilled/hooks/goal/lib/goal-slice.cjs:431-446). If phase 001 selects the validator-amendment route, record an amendment request for .skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts:1050-1080 in this phase's existing implementation-summary.md and retain the fixtures; do not edit the validator here. Observable result: the selected route and owner are explicit, and the fixture suite remains available.
 4. **Scan the live corpus.** On the local-checker route, run node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs with no arguments. Scan active specs goal.md files, exclude specs paths containing z_archive, and report goals_scanned, phase_parents_scanned and the finding count for each check. On the amendment route, use its documented read-only scan entry point only if the amended validator is available; otherwise record the corpus report as blocked. Observable result: the selected route reports counts and leaves existing findings unchanged.
-5. **Close the phase.** Run bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/060-create-goal-mode/006-goal-conformance-check --strict. Inspect the output and exit status. Update this phase's spec.md status, tasks.md checkboxes, acceptance-criteria.md evidence rows, goal.md progress log and implementation-summary.md with observed results; leave the objective and criteria unchanged. Provide phase 007 with the fixture verdicts. Observable result: strict validation output is recorded and the outgoing handoff names each negative reason plus the positive fixture.
+5. **Close the phase.** Run bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode/006-goal-conformance-check --strict. Inspect the output and exit status. Update this phase's spec.md status, tasks.md checkboxes, acceptance-criteria.md evidence rows, goal.md progress log and implementation-summary.md with observed results; leave the objective and criteria unchanged. Provide phase 007 with the fixture verdicts. Observable result: strict validation output is recorded and the outgoing handoff names each negative reason plus the positive fixture.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -101,7 +101,7 @@ Required inventories:
 | Unit | One valid fixture and six isolated defect fixtures | node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/check-goal.test.cjs |
 | Integration | Active specs goal corpus, with z_archive excluded | node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs |
 | Manual | Confirm stdout includes scan totals and four finding counts, and reports findings without repairs | Read the command output and inspect the fixture report |
-| Packet | This phase's six spec documents | bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/060-create-goal-mode/006-goal-conformance-check --strict |
+| Packet | This phase's six spec documents | bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode/006-goal-conformance-check --strict |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -110,9 +110,9 @@ Required inventories:
 ## 6. DEPENDENCIES
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 001 checker ownership decision (specs/sk-doc/060-create-goal-mode/spec.md:157) | Internal | Unresolved | Select local checker or record the system-spec-kit amendment route |
-| Phase 005 budget and chat-slice handoff (specs/sk-doc/060-create-goal-mode/spec.md:146) | Internal | Pending handoff | Phase 006 must not start without the cut-fixture evidence |
-| Phase 002 sk-create-goal packet (specs/sk-doc/060-create-goal-mode/spec.md:122) | Internal | Planned | Script and fixture paths do not exist until the mode packet is scaffolded |
+| Phase 001 checker ownership decision (specs/sk-doc/057-create-goal-mode/spec.md:157) | Internal | Unresolved | Select local checker or record the system-spec-kit amendment route |
+| Phase 005 budget and chat-slice handoff (specs/sk-doc/057-create-goal-mode/spec.md:146) | Internal | Pending handoff | Phase 006 must not start without the cut-fixture evidence |
+| Phase 002 sk-create-goal packet (specs/sk-doc/057-create-goal-mode/spec.md:122) | Internal | Planned | Script and fixture paths do not exist until the mode packet is scaffolded |
 <!-- /ANCHOR:dependencies -->
 
 ---

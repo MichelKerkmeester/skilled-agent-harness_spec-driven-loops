@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/026-defect-and-hardening-fixes/003-fix-remaining-advisor-defects"
+    packet_pointer: "system-skill-advisor/025-defect-and-hardening-fixes/003-fix-remaining-advisor-defects"
     last_updated_at: "2026-09-23T16:44:00Z"
     last_updated_by: "implementing-agent"
     recent_action: "Pushed the follow-up as 40b23a70a6, where CI ran green on both branches"
@@ -81,8 +81,8 @@ With one line restored, a changed contribution delivers its full brief again. Wh
 | .skilled/skills/system-skill-advisor/hooks/pi/README.md | Modified | Current dedup behavior described |
 | .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md | Modified | Current fallback behavior described, and the kill-switch rows name what each surface reads |
 | .skilled/skills/system-skill-advisor/hooks/lib/README.md | Modified | Current fallback behavior described |
-| specs/system-skill-advisor/028-restore-pi-advisor-brief/implementation-summary.md | Modified | Correction note added, original numbers kept |
-| specs/system-skill-advisor/028-restore-pi-advisor-brief/plan.md | Modified | Correction note added, original numbers kept |
+| specs/system-skill-advisor/026-pi-advisor-bridge/001-restore-pi-advisor-brief/implementation-summary.md | Modified | Correction note added, original numbers kept |
+| specs/system-skill-advisor/026-pi-advisor-bridge/001-restore-pi-advisor-brief/plan.md | Modified | Correction note added, original numbers kept |
 | .skilled/bin/system-skill-advisor-launcher.cjs | Modified | List `SYSTEM_SKILL_ADVISOR_DB_DIR` once in the child env allowlist |
 | .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py | Modified | List `SYSTEM_SKILL_ADVISOR_DB_DIR` once in the native bridge allowlist |
 | .skilled/commands/doctor/scripts/skill-graph-freshness.cjs | Modified | Read `SYSTEM_SKILL_ADVISOR_DB_DIR` once |
@@ -121,7 +121,7 @@ A second pass, on the operator's instruction to leave nothing deferred, took the
 
 Another session merged the first round into local main as bd269228cb while origin main moved on to 997cd8ee2e, so the two were merged on a detached HEAD inside the worktree (2dbaa8fd66). Main's side won on the four conflicting `graph-metadata.json` files because it carried every edge this packet added plus a cli-jev keyword fix. The skill graph was then regenerated. That keyword fix moved one scorer result and four local-native divergences, so both baselines were re-captured with reviewed reasons (2f5fc94ef2) and the result was pushed to main and skilled/v4.0.0.0. A follow-up on `worktrees/063-remove-tri-daemon-drill` then took the two items the operator decided: the drill deletion and the corpus-gate path. The drill file was removed with `git rm`. MiMo made every other edit through the same one-change briefs. Each was checked byte for byte against a generated expected file.
 
-Before the push, origin main had moved fifteen commits past the follow-up's base. They included the CI cleanup in `system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof`, which had made the same corpus-gate path fix (b566f9fc28) and fixed the Spec-Kit Check failure (5b522489a2). The follow-up merged main (bce9d6b06c) without a conflict and this record was corrected to match. It then reached main and skilled/v4.0.0.0 as 40b23a70a6, where CI ran green on every workflow it triggered.
+Before the push, origin main had moved fifteen commits past the follow-up's base. They included the CI cleanup in `system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof`, which had made the same corpus-gate path fix (b566f9fc28) and fixed the Spec-Kit Check failure (5b522489a2). The follow-up merged main (bce9d6b06c) without a conflict and this record was corrected to match. It then reached main and skilled/v4.0.0.0 as 40b23a70a6, where CI ran green on every workflow it triggered.
 <!-- /ANCHOR:how-delivered -->
 
 ---

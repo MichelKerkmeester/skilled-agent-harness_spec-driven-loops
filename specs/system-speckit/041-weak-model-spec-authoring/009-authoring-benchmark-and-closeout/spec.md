@@ -57,7 +57,7 @@ This is **Phase 9** of the Make system-spec-kit templates and authoring docs fol
 **Dependencies**:
 - The launch preconditions in `../spec.md` section 3 are met and recorded in `../goal.md` section 4.
 - Phases 1 to 8 are closed. Phase 1 leaves `../001-template-drift-census-and-baseline/scratch/baseline/baseline.json` and `hints-v2.2.txt`. Phase 3 leaves the frozen folder list in `../003-versioned-placeholder-gate/scratch/census/`. Phase 4 leaves `check-example-drift.sh`. Phase 5 leaves `check-card-sync.sh`. Phase 8 leaves one playbook run report.
-- The write-recipe child `specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/` is closed and passes strict validation.
+- The write-recipe child `specs/system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination/` is closed and passes strict validation.
 
 **Deliverables**:
 - `scratch/baseline/hints-v2.3.txt` and `scratch/baseline/anchors-v2.3.txt`: the final token vocabulary and anchor counts from a fresh Level 3 scaffold.
@@ -131,7 +131,7 @@ The closing report states the before and after per metric as a range, and the pa
 | `specs/system-speckit/graph-metadata.json` | Modify | Track children refreshed by the tool |
 | `../spec.md` | Modify | Nine phase map rows become Complete, Status becomes Complete |
 | `../goal.md` | Modify | Launch preconditions, log rows, seven criteria ticked with evidence |
-| `specs/system-speckit/041-write-recipe-fixes/spec.md` | Modify | One phase map row becomes Complete |
+| `specs/system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/spec.md` | Modify | One phase map row becomes Complete |
 | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md`, `implementation-summary.md` | Modify | Plan, progress and evidence |
 <!-- /ANCHOR:scope -->
 
@@ -149,7 +149,7 @@ The closing report states the before and after per metric as a range, and the pa
 | REQ-003 | M2 counts bare v2.2 hint occurrences plus v2.3 value token occurrences, the comparability rule is recorded as an ADR, and the final side uses the exact command in `tasks.md` T006. |
 | REQ-004 | `scratch/baseline/delta.md` holds the minimum, the maximum and the mean of each of the five metrics for both sides, the delta per metric, and one sentence stating that three runs cannot support a significance claim. |
 | REQ-005 | The report folder name follows `<YYYY-MM-DD>--<subject>--<variant>`, `README.md` holds the ten numbered ALL CAPS sections, `results.csv` holds six rows and `source.md` names this packet. The reports index gains one row. |
-| REQ-006 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/054-weak-model-spec-authoring --recursive --strict` prints `RESULT: PASSED`. |
+| REQ-006 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/041-weak-model-spec-authoring --recursive --strict` prints `RESULT: PASSED`. |
 | REQ-007 | The global changelog entry and both packet-local changelog files exist, follow their templates and pass `validate_document.py`. |
 | REQ-008 | The trigger index is regenerated, `--check` exits 0, and no path outside the four index artifacts changed in that step. |
 | REQ-009 | The track root refresh ran with `--apply`, a second dry run prints `system-speckit: up to date` and exits 0, and `children_ids` equals the numbered folders on disk. |

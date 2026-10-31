@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The advisorrecommend handler runs `enrichCompiledRoutes` on every result, cached or fresh (`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:504`, `:571`)",
     "created_at": "2026-09-26T10:05:44Z",
-    "last_save_at": "2026-10-31T13:26:17.222Z",
+    "last_save_at": "2026-10-31T14:00:57.007Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04fd262549fec9bd37a92a0f4a4811f3d67807a3163054a85fc5e7c851db36dd",
+    "source_fingerprint": "sha256:df99be6390798954f30b6582c4265a46fa23b2e2f5bb6da5c8d04051e24e3a01",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6ad5c23106628916a1822c265f4c2839aea0651d4b60ecb6f488496bc00ee1ef",
       "plan.md": "856089f6f47adb9ce017a3752217eecc4c5a805e52a16b4b4bd1454d9077d58b",
       "tasks.md": "0e25db95a00385c0fe639d7c35c626bcd8da258c41cf300655c93c6b6fa881e9",
-      "implementation-summary.md": "19aa0dc7bc8e134250f3027a39346b2c6c3b95b7b67dfe1c04bb6fcfb89411ee"
+      "implementation-summary.md": "f3e963f1246a69e145968ec03e330c232668a9cc344fdc7901300ef82946b878"
     },
     "last_active_at": null
   }

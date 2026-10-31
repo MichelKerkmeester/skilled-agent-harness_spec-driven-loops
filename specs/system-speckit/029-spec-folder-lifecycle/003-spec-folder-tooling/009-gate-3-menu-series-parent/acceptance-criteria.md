@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/009-gate-3-menu-series-parent"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/009-gate-3-menu-series-parent"
     last_updated_at: "2026-10-07T11:03:17Z"
     last_updated_by: "deepseek-v4.1-flash"
     recent_action: "Closed the acceptance criteria after the menu change and its suites passed"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/034-spec-folder-tooling/009-gate-3-menu-series-parent
+**Packet:** system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/009-gate-3-menu-series-parent
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-07

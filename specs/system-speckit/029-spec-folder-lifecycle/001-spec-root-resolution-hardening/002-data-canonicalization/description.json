@@ -15,7 +15,8 @@
   "folderSlug": "data-canonicalization",
   "parentChain": [
     "system-speckit",
-    "029-spec-root-resolution-hardening"
+    "029-spec-folder-lifecycle",
+    "001-spec-root-resolution-hardening"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/075-doctor-sk-skill-command/007-docs-and-changelogs
+**Packet:** sk-doc/067-doctor-sk-skill-command/007-docs-and-changelogs
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-30

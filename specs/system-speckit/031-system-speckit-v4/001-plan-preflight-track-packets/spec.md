@@ -13,7 +13,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/001-plan-preflight-track-packets"
+    packet_pointer: "system-speckit/031-system-speckit-v4/001-plan-preflight-track-packets"
     last_updated_at: "2026-08-15T13:28:53Z"
     last_updated_by: "claude-code"
     recent_action: "Guarded check_feature_branch behind the SPECIFY_FEATURE override; verified nested resolution"

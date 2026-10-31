@@ -110,7 +110,7 @@ Leave the committed index fresh, its diagnostics honest about which phrase class
 | `.skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml` | Modify | Add the `--check` activity; demote mtime; update the policy comment |
 | `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` | Modify | §9 root row; §2.5 and §4 version pins |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md` | Modify | Remove the `CLAUDE.md` symlink claim; keep the bucket promise accurate |
-| `specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md` | Modify | Continuity `key_files` name the live tree |
+| `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md` | Modify | Continuity `key_files` name the live tree |
 <!-- /ANCHOR:scope -->
 
 ---

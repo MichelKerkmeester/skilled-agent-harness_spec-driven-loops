@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Measure, then optimize the mk-spec-memory reindex/embed pipeline. Embedding runs on Ollama (nomic-embed-text, GPU/Metal) and is not the bottleneck; the slow tail is per-memory ingest + request serialization. Measurement-plane-first, gated + reversible, no Rust. Scaffolded with a handover for a fresh implementing session.",
     "created_at": "2026-07-22T14:55:36.697Z",
-    "last_save_at": "2026-10-31T13:26:31.625Z",
+    "last_save_at": "2026-10-31T13:41:30.556Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:aa498b631b12cdd6ea5cedceb2a05184e1bdb8532b6a190b44062c346ab76dfc",
+    "source_fingerprint": "sha256:b82bb4afe1def78c1123399eef4c2ef290b6179fc99167819dc1212123bbe299",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b57e6afacf19757c349a123c6c9e9169f7b3ea46f4d3ac6bccc66f56eb6541ef",
+      "spec.md": "e610b49651242a3de3423204b235a525c42cc42777135773c7f8a7ae49b03b96",
       "plan.md": "f88c2b65b0baa0401be12935452612c11ea9b1d72d1b4808c5ce377b5409bf4c",
       "tasks.md": "fd683f05bbe5197d7097a7608b0fc6750a19f0d23452258c38cfd9eb8562d88c",
-      "implementation-summary.md": "79b1bb5c3c472a456726309cb8fbe51e7882694e2193771100767332a9424e7d",
+      "implementation-summary.md": "fe895defef61f0815d7adbd6976913e046f3ef309650adb01e98f2abbb6779cf",
       "research/research.md": "ffc469cae6ab7d0039a567437ee44bf9258ebf2c7a9b2dbfdac423c6465d2951",
       "handover.md": "2c269a4e458940cbcc456bb4cad9e45b01c8d61fb186b21cee37bd42c3f3b1b2"
     },

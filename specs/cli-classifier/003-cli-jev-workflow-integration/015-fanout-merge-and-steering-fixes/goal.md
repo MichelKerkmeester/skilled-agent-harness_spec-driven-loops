@@ -10,15 +10,15 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes"
     last_updated_at: "2026-09-27T21:00:00Z"
     last_updated_by: "closure-leaf"
     recent_action: "Ticked all six criteria from the build evidence; amended D2's wording for a stale premise"
     next_safe_action: "None. The phase is closed; the orchestrator commits"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/acceptance-criteria.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/acceptance-criteria.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-workflow-integration"
@@ -91,7 +91,7 @@ here are invisible to whatever judges completion.
 - [x] `npx vitest run --no-coverage tests/unit/fanout-merge.vitest.ts`, run from `.skilled/skills/system-deep-loop/runtime`, exits 0 with 0 failed and includes a "short registry" test and a "no iteration matches" test
 - [x] After the fix, the replay prints round 1 `sourceFindings` at least 112 with `reconstructionGaps` 0, and rounds 2 and 3 `sourceFindings` above 74 and 65 with `reconstructionGaps` above 0
 - [x] `npx vitest run --no-coverage tests/unit/fanout-run.vitest.ts -t "steer.md"` exits 0 and asserts a CLI lineage prompt names its `steer.md` by absolute path with the words "when it exists"
-- [x] `git status --short -- 'specs/cli-jev/003-cli-jev-workflow-integration/*/research'` prints nothing after the replay
+- [x] `git status --short -- 'specs/cli-classifier/003-cli-jev-workflow-integration/*/research'` prints nothing after the replay
 - [x] `validate.sh --strict` on this phase prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 

@@ -197,7 +197,7 @@ Counts are from `git ls-files` and `git grep -l` on 2026-09-27, rechecked on 202
 | Stale paths | the REQ-008 `git grep` | No output |
 | Manifest | `node .skilled/bin/compiled-route-manifest.cjs refresh --hub cli-classifier --skill-root .skilled/skills/cli-classifier` | Exit 0 and the manifest's SHA-256 equal before and after |
 | Fleet | `node .skilled/bin/compiled-route-status.cjs --all`, `node .skilled/bin/compiled-route-guard.cjs`, `node .skilled/bin/compiled-route-admission.cjs --hub cli-classifier`, `node .skilled/bin/compiled-route-sync.cjs --check` and `--verify` | 7 hubs with `cli-classifier` compiled-serving and no `cli-jev`, guard exit 0, admission pass with 0 drift, sync `--check` and `--verify` pass |
-| Phase docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move --strict` | `RESULT: PASSED` |
+| Phase docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-classifier/003-cli-jev-workflow-integration/009-cli-jev-hub-move --strict` | `RESULT: PASSED` |
 <!-- /ANCHOR:success-criteria -->
 
 ---

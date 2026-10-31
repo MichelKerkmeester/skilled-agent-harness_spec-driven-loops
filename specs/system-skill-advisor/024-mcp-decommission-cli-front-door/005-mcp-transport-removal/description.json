@@ -23,7 +23,7 @@
   "folderSlug": "mcp-transport-removal",
   "parentChain": [
     "system-skill-advisor",
-    "025-mcp-decommission-cli-front-door"
+    "024-mcp-decommission-cli-front-door"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

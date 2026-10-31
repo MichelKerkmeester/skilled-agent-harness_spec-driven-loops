@@ -9,7 +9,7 @@
   "specId": "011",
   "folderSlug": "spec-validator-fixes",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,

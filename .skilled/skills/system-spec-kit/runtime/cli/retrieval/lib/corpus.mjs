@@ -87,11 +87,11 @@ export const IGNORED_PATHS = Object.freeze([
     reason: 'captured model transcript whose leading rule pair is not frontmatter',
   }),
   Object.freeze({
-    path: 'specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/docs/MODEL_CARD_08B.md',
+    path: 'specs/cli-classifier/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/docs/MODEL_CARD_08B.md',
     reason: 'verbatim upstream model card whose valid YAML frontmatter writes list items at column 0, which the reader rejects as non-YAML',
   }),
   Object.freeze({
-    path: 'specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/docs/MODEL_CARD_9B.md',
+    path: 'specs/cli-classifier/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/docs/MODEL_CARD_9B.md',
     reason: 'verbatim upstream model card whose valid YAML frontmatter writes list items at column 0, which the reader rejects as non-YAML',
   }),
 ]);

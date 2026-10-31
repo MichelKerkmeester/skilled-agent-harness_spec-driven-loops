@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding"
+    packet_pointer: "cli-classifier/002-cli-jev-hub-migration/004-compiled-fleet-onboarding"
     last_updated_at: "2026-09-20T15:55:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Task list authored at closeout from the executed phase"
@@ -85,7 +85,7 @@ _memory:
 - [x] T021 Run the hub's own gates after its doc pass: the doctor exits 0 with 42 `PASS` and 0 warnings including the version rules, and the package validator passes all three sub-checks with `compiled-ready` where it previously reported `legacy (no manifest)` (`.skilled/commands/doctor/scripts/parent-skill-check.cjs`, `.skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py`)
 - [x] T022 Write the hub's `v0.2.0.0` changelog entry and re-check the version rules against it (`.skilled/skills/cli-jev/changelog/v0.2.0.0.md`)
 - [x] T023 Record the limitations with their evidence: the archived authored resolver, sk-doc's stale manifest, the four fleet-count prose sites owned by other hubs, the `.hermes` mirror, and the two deliberate deviations from the cloned child (repo root)
-- [x] T024 Author the phase documents, update the parent packet's phase map and continuity, then run `repair-derived.cjs --apply` and the recursive strict validator (`.skilled/skills/system-spec-kit/runtime/cli/spec/`, `specs/cli-jev/002-cli-jev-hub-migration/`)
+- [x] T024 Author the phase documents, update the parent packet's phase map and continuity, then run `repair-derived.cjs --apply` and the recursive strict validator (`.skilled/skills/system-spec-kit/runtime/cli/spec/`, `specs/cli-classifier/002-cli-jev-hub-migration/`)
 <!-- /ANCHOR:phase-3 -->
 
 ---

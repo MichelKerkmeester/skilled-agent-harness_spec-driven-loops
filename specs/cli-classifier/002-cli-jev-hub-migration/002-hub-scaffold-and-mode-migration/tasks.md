@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration"
+    packet_pointer: "cli-classifier/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration"
     last_updated_at: "2026-09-20T14:35:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Task list authored at closeout from the executed hub stand-up"

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/038-goal-unification/001-goal-unification-research"
+    packet_pointer: "system-speckit/031-system-speckit-v4/038-goal-unification/001-goal-unification-research"
     last_updated_at: "2026-09-11T07:11:47Z"
     last_updated_by: "claude-code"
     recent_action: "Closed the research phase with two lineages and a fresh-model synthesis"

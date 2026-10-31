@@ -13,10 +13,11 @@
     "playbook"
   ],
   "lastUpdated": "2026-09-01T11:49:39.664Z",
-  "specId": "050",
+  "specId": "001",
   "folderSlug": "sk-doc-playbook-coverage",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "050-playbook-coverage-and-sync"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Nobody has mapped what actually breaks if `.opencode/specs/` becomes a top-level `specs/` directory",
     "created_at": "2026-08-06T09:09:30Z",
-    "last_save_at": "2026-10-31T13:26:21.362Z",
+    "last_save_at": "2026-10-31T13:58:13.837Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:9744ffd53105fe9c10c5fd0ec2e6f65b82dc299ef7f107f45efd12d453fbff39",
+    "source_fingerprint": "sha256:8720a1219a86d4fa8e44866ed326d83af9f444f5653b4a2c3db79cf87de936c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "16216c13e951f09bf452e5025692269cf5bfdf8a0e7c441cdfe6b598f18ca845",
       "plan.md": "3996e9c7d85e6c6aede53aaf9b88bb9e0171e8a47073507a9ded680edaeebe98",
       "tasks.md": "c40496a83406a806848091eddb1cebc2aaa4def7009d7a4e28aa95f4e0e59957",
-      "implementation-summary.md": "7f3417b06873a5fa55ab73a4eec2f023e1787f32bc959fd9f4d11c2fc9c09737",
+      "implementation-summary.md": "b2ede1e4ce5ab8e44ce3932eec846ac216958eee765fdb99741fa916ac98a57d",
       "research/research.md": "21971a073d6863a1bfb96fd4255d899eeab35b9818989fdbf9daaef8a769821d"
     },
     "last_active_child_id": null,

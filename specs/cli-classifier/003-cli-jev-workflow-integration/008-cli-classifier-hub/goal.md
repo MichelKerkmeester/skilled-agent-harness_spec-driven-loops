@@ -10,17 +10,17 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/008-cli-classifier-hub"
     last_updated_at: "2026-09-28T11:40:00Z"
     last_updated_by: "closure-leaf"
     recent_action: "Closed from build and session evidence, 7 of 7 criteria ticked, criterion 6 amended"
     next_safe_action: "Orchestrator commits these docs, then the operator decides on admission"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/scratch/build/build-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/008-cli-classifier-hub/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/008-cli-classifier-hub/scratch/build/build-evidence.md"
       - ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/research.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/007-classifier-deep-research/research/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-workflow-integration"

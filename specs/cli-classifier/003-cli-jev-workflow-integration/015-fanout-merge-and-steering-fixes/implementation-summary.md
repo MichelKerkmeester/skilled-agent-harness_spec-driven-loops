@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes"
     last_updated_at: "2026-09-27T21:00:00Z"
     last_updated_by: "closure-leaf"
     recent_action: "Closed the phase from the build evidence; 7 of 7 AC Met"
@@ -152,7 +152,7 @@ The orchestrator ran every build check on 2026-09-27. `S` is `.skilled/skills/sy
 | Orchestrator, T012 final: the three test files | `Test Files 3 passed (3)`, `Tests 219 passed (219)`, exit 0. Baseline 214 + 5 |
 | Orchestrator, AC-005 at `7de30fb16f`: `cd S && npx vitest run --no-coverage tests/unit/fanout-merge.vitest.ts` | `Test Files 1 passed (1)`, `Tests 61 passed (61)`, exit 0. Baseline 57 (`grep -cE '^\s*it\('` on the `6f47c32dce` file, no skip or todo) plus the 4 new tests |
 | Orchestrator, T012 final: `cd S && npx vitest run --no-coverage` | `Test Files 155 passed (155)`, `Tests 2713 passed \| 8 skipped (2721)`, exit 0, 1264 s. Baseline 2708 + 5, the same 8 skipped |
-| Orchestrator, T013 and T014: the final replay, then `git status --short -- 'specs/cli-jev/003-cli-jev-workflow-integration/*/research'` | `134 0`, `105 13`, `168 38`, each merge exit 0 with 0 `lineage_reconstruction_failed` warnings. Git status printed nothing, and no temp directory remains |
+| Orchestrator, T013 and T014: the final replay, then `git status --short -- 'specs/cli-classifier/003-cli-jev-workflow-integration/*/research'` | `134 0`, `105 13`, `168 38`, each merge exit 0 with 0 `lineage_reconstruction_failed` warnings. Git status printed nothing, and no temp directory remains |
 | Orchestrator, T015: the step 10 comment-hygiene grep over the four files against `6f47c32dce` | No output, grep exit 1 |
 | Orchestrator, CHK-010: `node --check` on `fanout-merge.cjs` and `fanout-run.cjs` | Exit 0, no output |
 | Reviewer, the `review` agent on Claude Opus 5.5 over the uncommitted diff | No P0 or P1; nothing in the steer line. `fanout-merge.vitest.ts` 59/59 and `-t steer.md` 1 passed at that state |

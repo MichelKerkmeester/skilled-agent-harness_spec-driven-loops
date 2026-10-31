@@ -11,16 +11,16 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-create-goal-mode"
+    packet_pointer: "sk-doc/057-create-goal-mode"
     last_updated_at: "2026-09-25T19:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Planned all nine phases; recursive strict validation passes"
     next_safe_action: "Plan phase 001: inventory the goal corpus, settle the mode contract"
     blockers: []
     key_files:
-      - "specs/sk-doc/060-create-goal-mode/goal.md"
-      - "specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md"
-      - "specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-mode-anatomy-audit.md"
+      - "specs/sk-doc/057-create-goal-mode/goal.md"
+      - "specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md"
+      - "specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-mode-anatomy-audit.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "75aab0e6-dcc7-401b-9d10-f48248374023"
@@ -57,7 +57,7 @@ _memory:
 | **Created** | 2026-09-25 |
 | **Branch** | `worktrees/068-create-goal-mode` |
 | **Parent Spec** | None - this is a top-level phase parent |
-| **Parent Packet** | sk-doc/060-create-goal-mode |
+| **Parent Packet** | sk-doc/057-create-goal-mode |
 | **Predecessor** | None |
 | **Successor** | None |
 | **Handoff Criteria** | `sk-create-goal` ships as a routable sk-doc mode with a `/create:goal` command, a conformance check, a playbook and a changelog, and has authored one real packet goal end to end |
@@ -69,7 +69,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Packet goals already exist in this repository. A packet can carry a `goal.md` whose durable slice an operator sets as the session objective. A phase parent carries one parent goal, capped at 4,000 durable characters, plus a binding table that points at each phase child's own nested `goal.md`. The goal hooks print the chat slice to paste with `goal.cjs packet`. What nothing owns is the content. `create.sh --with-goal` and the inline renderer copy a template with placeholders, and the validator checks only two things: the parent budget, and that each binding row it finds resolves (`spec-doc-structure.ts:1050-1080`). A read-only audit of the live corpus, 286 goal documents, found the gaps this leaves. The parent goal of `specs/sk-git/028-crawlable-commit-history` measures 5,758 durable characters (`goal.cjs packet` reports `packet_budget=over`). A phase child in `specs/sk-design/018-sk-design-parent-v2` still carries the template's placeholder objective. The binding table in `specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission` stops at phase 006 while phase 007 exists with no goal of its own. And one criterion can only be judged by opening other files. On top of that, `create.sh --phase --with-goal` scaffolds a goal into every child and none into the parent, so the one goal an operator actually sets has to be rendered by hand.
+Packet goals already exist in this repository. A packet can carry a `goal.md` whose durable slice an operator sets as the session objective. A phase parent carries one parent goal, capped at 4,000 durable characters, plus a binding table that points at each phase child's own nested `goal.md`. The goal hooks print the chat slice to paste with `goal.cjs packet`. What nothing owns is the content. `create.sh --with-goal` and the inline renderer copy a template with placeholders, and the validator checks only two things: the parent budget, and that each binding row it finds resolves (`spec-doc-structure.ts:1050-1080`). A read-only audit of the live corpus, 286 goal documents, found the gaps this leaves. The parent goal of `specs/sk-git/028-crawlable-commit-history` measures 5,758 durable characters (`goal.cjs packet` reports `packet_budget=over`). A phase child in `specs/sk-design/018-sk-design-parent-v2` still carries the template's placeholder objective. The binding table in `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission` stops at phase 006 while phase 007 exists with no goal of its own. And one criterion can only be judged by opening other files. On top of that, `create.sh --phase --with-goal` scaffolds a goal into every child and none into the parent, so the one goal an operator actually sets has to be rendered by hand.
 
 ### Purpose
 Give goal content an owner: an sk-doc creation mode, `sk-create-goal`, invoked through `/create:goal`, that authors a packet's `goal.md` to the spec-kit goal contract. It covers a top-level packet, a phase parent with its binding table, and each nested phase child. It keeps the parent inside its budget, keeps the binding complete, and hands the operator the chat slice to set. Rendering stays with system-spec-kit's template, and runtime binding stays with the goal hooks and the host's own goal command.

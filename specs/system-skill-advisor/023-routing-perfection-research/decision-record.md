@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/024-routing-perfection-research"
+    packet_pointer: "system-skill-advisor/023-routing-perfection-research"
     last_updated_at: "2026-09-07T16:54:12+02:00"
     last_updated_by: "spec-validation-backfill"
     recent_action: "Recorded the four routing-repair decisions"

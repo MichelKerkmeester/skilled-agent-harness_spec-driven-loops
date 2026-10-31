@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/037-derived-artifact-registry"
+    packet_pointer: "system-speckit/031-system-speckit-v4/037-derived-artifact-registry"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialize phase-parent continuity block"
@@ -52,7 +52,7 @@ _memory:
 | **Created** | 2026-09-11 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | system-speckit/033-system-speckit-v4 |
+| **Parent Packet** | system-speckit/031-system-speckit-v4 |
 | **Predecessor** | hooks/020-spec-metadata-auto-remint |
 | **Successor** | None |
 | **Handoff Criteria** | Validator + template + generator changes ship so parent validates under tolerant policy |

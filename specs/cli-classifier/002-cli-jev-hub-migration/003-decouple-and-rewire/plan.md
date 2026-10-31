@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire"
+    packet_pointer: "cli-classifier/002-cli-jev-hub-migration/003-decouple-and-rewire"
     last_updated_at: "2026-09-20T15:20:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Plan authored at closeout, mirroring the executed decoupling and rewiring"

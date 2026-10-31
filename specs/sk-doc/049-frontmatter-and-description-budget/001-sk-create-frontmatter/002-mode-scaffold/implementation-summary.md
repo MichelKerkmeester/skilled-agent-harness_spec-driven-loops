@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/049-sk-create-frontmatter/002-mode-scaffold"
+    packet_pointer: "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/002-mode-scaffold"
     last_updated_at: "2026-09-01T08:42:57Z"
     last_updated_by: "implementation"
     recent_action: "Built the empty sk-create-frontmatter packet; packaging gate reports PASS"

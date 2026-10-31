@@ -97,9 +97,9 @@ Each lane lists its files. The review's line numbers are a starting point only, 
 | `.hermes/skills/system-spec-kit/SKILL.md` | Modify or regenerate | Lane G: the same branch, produced by the sync route the lane confirms |
 | `.skilled/commands/speckit/assets/speckit-implement.yaml` | Modify | Lane G: the child-dispatch branch in the Gate 3 ask-and-wait step |
 | `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/repo-era-report.md` | Modify | Lane G: the no-roots case returns unknown |
-| `specs/system-speckit/034-spec-folder-tooling/spec.md` | Modify | Lane H: handoff rows, phase rows and status |
-| `specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/` | Modify | Lane H: SC-002 recorded as met, with its evidence file |
-| `specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation/` | Create | This packet's documents and `scratch/evidence/` |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/spec.md` | Modify | Lane H: handoff rows, phase rows and status |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/019-epic-follow-up-fixes/` | Modify | Lane H: SC-002 recorded as met, with its evidence file |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/020-deep-review-remediation/` | Create | This packet's documents and `scratch/evidence/` |
 <!-- /ANCHOR:scope -->
 
 ---

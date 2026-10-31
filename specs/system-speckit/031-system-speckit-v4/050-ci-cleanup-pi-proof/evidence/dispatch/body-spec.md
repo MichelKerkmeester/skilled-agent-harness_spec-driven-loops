@@ -1,5 +1,5 @@
 STEP 1 - fill P/spec.md (Level 2 feature specification)
-Shape model (read-only): specs/system-speckit/033-system-speckit-v4/049-gate-3-delivery-residue/spec.md
+Shape model (read-only): specs/system-speckit/031-system-speckit-v4/049-gate-3-delivery-residue/spec.md
 - Title in frontmatter and H1: "Feature Specification: CI Cleanup and Pi Gate-3 Live Proof" (drop "Phase 1").
 - Metadata table: Priority P0. Status In Progress. Created 2026-09-22. Branch worktrees/061-ci-cleanup-pi-proof.
   Parent Spec ../spec.md. Phase 50 of 50. Predecessor 049-gate-3-delivery-residue. Successor None.

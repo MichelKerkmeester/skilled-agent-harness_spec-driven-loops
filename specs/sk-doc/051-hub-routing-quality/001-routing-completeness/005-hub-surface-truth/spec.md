@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/052-routing-completeness/005-hub-surface-truth"
+    packet_pointer: "sk-doc/051-hub-routing-quality/001-routing-completeness/005-hub-surface-truth"
     last_updated_at: "2026-09-02T18:54:23Z"
     last_updated_by: "claude-code"
     recent_action: "Filled the phase spec against shipped commits"

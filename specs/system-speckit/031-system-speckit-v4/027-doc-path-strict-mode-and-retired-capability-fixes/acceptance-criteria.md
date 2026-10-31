@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/027-doc-path-strict-mode-and-retired-capability-fixes"
+    packet_pointer: "system-speckit/031-system-speckit-v4/027-doc-path-strict-mode-and-retired-capability-fixes"
     last_updated_at: "2026-09-06T10:25:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Verified every criterion from the final state"

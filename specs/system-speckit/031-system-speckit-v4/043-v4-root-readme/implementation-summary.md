@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/043-v4-root-readme"
+    packet_pointer: "system-speckit/031-system-speckit-v4/043-v4-root-readme"
     last_updated_at: "2026-09-20T10:30:00Z"
     last_updated_by: "devin"
     recent_action: "Promoted README-alt.md to root README.md"
@@ -100,7 +100,7 @@ Each structural claim was verified against the filesystem before writing: agent 
 | `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py README.md` | PASS - `VALID`, `Total issues: 0`, exit 0 |
 | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py README.md` | PASS - 0 hard blockers, 90/100 ceiling, exit 0 |
 | `grep -P "\x{3000}" README.md` | PASS - no Unicode wide spaces |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/033-system-speckit-v4/043-v4-root-readme --strict` | PASS - `RESULT: PASSED` |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/031-system-speckit-v4/043-v4-root-readme --strict` | PASS - `RESULT: PASSED` |
 | Inventory counts | PASS - 12 agents and 13 skills verified against `ls .skilled/agents/` and `ls .skilled/skills/` |
 | `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py scratch/README-alt.md` | PASS - `VALID`, `Total issues: 0`, exit 0 |
 | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py scratch/README-alt.md` | PASS on prose - zero real semicolons; all 138 `;` findings are `&nbsp;` entities (scanner false positive, see Known Limitations) |

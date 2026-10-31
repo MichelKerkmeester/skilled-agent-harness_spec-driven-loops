@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Before this phase the hub resolved through the legacy path: it was absent from the engine's dispatch map, so `compiled-route.cjs --hub cli-jev` returned the sentinel, `loadHubEngine` threw `unknown hub`, and every compiled-routing view (status, guard, admission, the foundation lockstep suite) treated the hub as unregistered",
     "created_at": "2026-09-20T11:00:13Z",
-    "last_save_at": "2026-10-31T13:25:26.865Z",
+    "last_save_at": "2026-10-31T14:03:47.055Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,12 +218,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1637e6159b41c09132fef35bbe8038da0a0b99d5a4eea0371a4df870c62bb696",
+    "source_fingerprint": "sha256:67437d508f14d5a3a8953216da9af06e188d9eb4ca67bbe21c665f1ce7f242eb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6c52420f5508fb5761c876891e7ced6fe14631cc81328eaaed939b9c84496cc5",
+      "spec.md": "2027adfba254f4a017e8157cf3a84f2a0b51a4a2d2e98f5c9a3a1ee388ca1ff4",
       "plan.md": "56459f2af64aaa49ce99ac5366fdfdfe9e2805964ec065c69c212beb47ebd37a",
-      "tasks.md": "73d4ab4dfced220dccf316743b6b1ccd4d6709ca98cab1a91dc35bf64bd897de",
+      "tasks.md": "f317949b11b950642f87630083b35b572a7a6717d80628f6257d997b5ec00ad1",
       "implementation-summary.md": "d8537b1c6e249caceedafdd03a59066e0b087d4194689e24ed26fbfafbbaf457"
     },
     "last_active_at": null

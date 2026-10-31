@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/049-sk-create-frontmatter/008-utilization-review"
+    packet_pointer: "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/008-utilization-review"
     last_updated_at: "2026-09-02T18:55:24Z"
     last_updated_by: "implementation"
     recent_action: "Recorded the measured outcome of every criterion"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/049-sk-create-frontmatter/008-utilization-review
+**Packet:** sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/008-utilization-review
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-09-02
@@ -62,7 +62,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-009 | REQ-006 | Given the `By Document Type` table, When the blockquote interrupting it is moved below the last row, Then all eight class rows sit inside one table | `assets/frontmatter-templates.md` lines 118-128, blockquote now at line 130 | Met | - |
 | AC-010 | REQ-007 | Given every file this phase wrote, When the human-voice scanner runs, Then no file gains a hard blocker against its committed baseline | 6 files scanned, deltas 0, 0, 0, 0, 0 and -1, with the asset scanned using `--include-code` | Met | - |
 | AC-011 | REQ-007 | Given every file this phase wrote, When `validate_document.py` runs on it, Then it exits 0 | 6 files, all exit 0 | Met | - |
-| AC-012 | REQ-007 | Given this phase folder, When the spec validator runs strict, Then it prints `RESULT: PASSED` with rule lines visible | `NODE_PRESERVE_SYMLINKS=1 bash "$(realpath .opencode)/skills/system-spec-kit/scripts/spec/validate.sh" specs/sk-doc/049-sk-create-frontmatter/008-utilization-review --strict` | Met | - |
+| AC-012 | REQ-007 | Given this phase folder, When the spec validator runs strict, Then it prints `RESULT: PASSED` with rule lines visible | `NODE_PRESERVE_SYMLINKS=1 bash "$(realpath .opencode)/skills/system-spec-kit/scripts/spec/validate.sh" specs/sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/008-utilization-review --strict` | Met | - |
 | AC-013 | REQ-002 | Given the eight declared triggers that reached nothing, When they are added to the hub's stage-one vocabulary, Then each one routes to `sk-doc` | All eight are in `graph-metadata.json` `intent_signals` and `derived.trigger_phrases`. Advisor before: eight of eight returned no recommendation. After: eight of eight return `sk-doc`, four at 0.8777 to 0.8828 and four at the 0.82 floor. Two of three realistic newcomer prompts also moved from nothing to `sk-doc` | Met | - |
 | AC-014 | REQ-004 | Given the versioning engine, When it is invoked with a lone `--help`, Then it prints usage and exits 0 without walking git history | `parseArgs` scans argv for the flag before deriving the mode. `--help`, `-h`, `--help --skill sk-vision` and no arguments each print the usage block and exit 0, immediately. `bogus` still reaches `Unknown mode: bogus` at exit 64. Engine tests 23 passed, 0 failed | Met | - |
 | AC-015 | REQ-005 | Given `SKILL.md`'s three-to-five-times inflation claim, When it is replaced, Then the text carries the measured figure and the corpus it was measured on | `SKILL.md` now reads 1.06 to 1.09 times in aggregate and 2.25 times at the worst file, across the 1,214 in-scope documents of `sk-doc` and `system-spec-kit` on 2026-09-02 | Met | - |

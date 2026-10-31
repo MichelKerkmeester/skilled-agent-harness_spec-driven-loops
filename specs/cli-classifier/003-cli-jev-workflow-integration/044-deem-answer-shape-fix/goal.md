@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/044-deem-answer-shape-fix"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/044-deem-answer-shape-fix"
     last_updated_at: "2026-10-02T06:02:32Z"
     last_updated_by: "orchestrating-session"
     recent_action: "Authored the durable directive"
@@ -61,7 +61,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `node cli-deem.mjs noul`, `choice` and `score` against the local server at `127.0.0.1:8300` each exit 0 and print a number or a known key
 - [x] `npx vitest run tests/unit/score-stop-rater.vitest.ts`, run from `.skilled/skills/system-deep-loop/runtime`, and `npx vitest run tests/completion-claim-audit.vitest.ts`, run from `.skilled/skills/system-spec-kit/runtime`, pass more than 59 and 23 tests with 0 failing, and their stubs print the `answers.answer` envelope
 - [x] The DeepSeek V4.1 Flash review of these changes leaves no open P0 or P1
-- [x] `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` on this phase and on `specs/cli-jev/003-cli-jev-workflow-integration`
+- [x] `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` on this phase and on `specs/cli-classifier/003-cli-jev-workflow-integration`
 <!-- /ANCHOR:completion -->
 
 ---

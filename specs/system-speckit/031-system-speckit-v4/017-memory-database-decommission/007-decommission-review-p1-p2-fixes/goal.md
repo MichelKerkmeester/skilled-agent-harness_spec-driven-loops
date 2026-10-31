@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes"
+    packet_pointer: "system-speckit/031-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes"
     last_updated_at: "2026-09-26T08:20:00Z"
     last_updated_by: "mimo-v2.6-pro"
     recent_action: "Authored the phase goal from the phase documents"

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/017-memory-database-decommission/002-memory-consumer-rewire"
+    packet_pointer: "system-speckit/031-system-speckit-v4/017-memory-database-decommission/002-memory-consumer-rewire"
     last_updated_at: "2026-09-03T09:50:00Z"
     last_updated_by: "claude-code"
     recent_action: "Closed all twelve acceptance rows"

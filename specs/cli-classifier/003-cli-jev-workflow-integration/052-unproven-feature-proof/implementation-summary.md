@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/052-unproven-feature-proof"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/052-unproven-feature-proof"
     last_updated_at: "2026-10-05T07:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Aligned three keep rules, ran the masked-state ablation and the clarify census"

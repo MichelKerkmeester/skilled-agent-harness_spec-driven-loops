@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/013-corpus-wide-validation-repair"
     last_updated_at: "2026-10-08T00:00:00Z"
     last_updated_by: "claude-opus-5.5"
     recent_action: "Re-validated all 4,371 packets against the baseline and closed the criteria"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair
+**Packet:** system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/013-corpus-wide-validation-repair
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-08

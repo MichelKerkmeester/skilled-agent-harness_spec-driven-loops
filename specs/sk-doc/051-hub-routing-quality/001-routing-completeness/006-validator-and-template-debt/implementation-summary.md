@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/052-routing-completeness/006-validator-and-template-debt"
+    packet_pointer: "sk-doc/051-hub-routing-quality/001-routing-completeness/006-validator-and-template-debt"
     last_updated_at: "2026-09-04T00:00:00Z"
     last_updated_by: "phase-6-validator-and-template-debt"
     recent_action: "Swept the template backlog and recorded the exemptions that stay"
@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Packet** | sk-doc/052-routing-completeness/006-validator-and-template-debt |
+| **Packet** | sk-doc/051-hub-routing-quality/001-routing-completeness/006-validator-and-template-debt |
 | **Level** | 3 |
 | **Status** | Complete |
 | **Delivery** | Shipped. The parent goal LOG records this phase Done |
@@ -173,7 +173,7 @@ Every command below was run and its output read.
 | Blocker delta across the 56 rewritten plans | Every file dropped by exactly one and none rose |
 | Rule anatomy contract re-derivation | Five of nine rows had drifted, and the conclusion survived re-derivation |
 | `scaffold-golden-snapshots.vitest.ts` after the plan template change | Snapshots re-captured and passing |
-| `validate.sh specs/sk-doc/052-routing-completeness --strict --recursive` | PASS for this folder, Errors 0 |
+| `validate.sh specs/sk-doc/051-hub-routing-quality/001-routing-completeness --strict --recursive` | PASS for this folder, Errors 0 |
 | Full fleet re-scan before and after the sweep | 509 blockers across 41 of 54 detected templates fall to 22 across 8. Under `.opencode/`, 501 to 14 |
 | Fence-position comparison against a pre-sweep copy of all 37 swept templates | Every changed line sits in the same position class before and after. No fence boundary moved and no `json` payload changed |
 | `validate_document.py` issue count, file by file across all 37 | Identical before and after |

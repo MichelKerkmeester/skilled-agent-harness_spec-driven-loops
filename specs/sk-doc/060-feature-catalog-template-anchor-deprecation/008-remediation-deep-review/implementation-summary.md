@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review"
+    packet_pointer: "sk-doc/060-feature-catalog-template-anchor-deprecation/008-remediation-deep-review"
     last_updated_at: "2026-10-10T22:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Ran the five-iteration deep review and wrote the report"
     next_safe_action: "Optional: fix the five P2 advisories in a follow-up"
     blockers: []
     key_files:
-      - "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/review-report.md"
+      - "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/review-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "r4-t4-review"

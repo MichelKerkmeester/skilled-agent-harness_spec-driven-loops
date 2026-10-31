@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet `cli-jev/003-cli-jev-workflow-integration` shipped the cli-classifier parent hub, its cli-jev packet, a shared Jev transport and six scorer callers across sk-doc, system-deep-loop and system-spec-kit, then deleted the features that did not earn their place",
+    "causal_summary": "Packet `cli-classifier/003-cli-jev-workflow-integration` shipped the cli-classifier parent hub, its cli-jev packet, a shared Jev transport and six scorer callers across sk-doc, system-deep-loop and system-spec-kit, then deleted the features that did not earn their place",
     "created_at": "2026-10-04T12:56:31Z",
-    "last_save_at": "2026-10-31T13:25:43.279Z",
+    "last_save_at": "2026-10-31T14:04:01.656Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:21c1e4d865d238a36bfa8d7b8225c93f6edb6a72af7efef7f3234888d4e9ab3c",
+    "source_fingerprint": "sha256:3e0f8b11b7cf2a715e5704e0f4b341dd3075b77a0ed2bb8b99e6735d5a669a95",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "24207bd22451398ffd9332ae5c0382611321b8e917b2beea311f239f1dac719b",
+      "spec.md": "7b5dfb160f30debe9debd7419fce03208e032d54805ef58bed6eaf161e6b57d4",
       "plan.md": "cef8f311b185b1aae62f96957a484e4e8ae9ff5c31384dcc4691161697411259",
       "tasks.md": "d0099f04ac1a14ced0765ba215de2de94c58cfb3eecd41b91a238df42f973338",
       "implementation-summary.md": "67c86aa0969fb8def47a458ab4e6a3e4bfe963055cf722834ff2157b45c065a5",

@@ -6,7 +6,7 @@ defines as the autonomous child-dispatch exemption: the spec-folder question is 
 and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
 
 Your write authority is already bound. The spec folder is:
-  specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups
+  specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups
 
 Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 Your task is complete only when every check below has a verdict and the REPORT is printed.
@@ -33,7 +33,7 @@ CONTEXT
 - The change: 433 dropped a teardown that signalled lease pids and took the signal-free wait B and C already had, with
   a 12-second idle timeout exported. All three now check their variables first, check that `lsof -t -p $$` lists the
   shell's own files, remove with `rm -r` and print "still running after the wait" instead of "after 60s".
-- Local runs: specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/guard-checks/
+- Local runs: specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/guard-checks/
   (summary.txt, logs/, as-written/logs/) and .../013-review-follow-ups/evidence/crash-test/ (result.txt, summary.txt).
 - `gtimeout` is not installed on this machine. 433 still names it, and that is out of scope here.
 

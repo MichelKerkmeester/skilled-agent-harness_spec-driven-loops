@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/005-phase-aware-archive"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/005-phase-aware-archive"
     last_updated_at: "2026-09-24T15:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Made archive.sh archive phases beside their parent, with 16 cases and 20 mutation runs"
@@ -69,7 +69,7 @@ The parent's `children_ids` and its phase table are left as they are. Its writer
 | `skills/system-spec-kit/runtime/cli/spec/README.md` | Modified | The `archive.sh` row |
 | `skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md` | Modified | The archival paragraph |
 | `skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-lifecycle-automation.md` | Modified | The recorded `--help` output |
-| `specs/system-speckit/034-spec-folder-tooling/004-track-aware-archive/implementation-summary.md` | Modified | Its phase limitation now points here |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/004-track-aware-archive/implementation-summary.md` | Modified | Its phase limitation now points here |
 
 Paths are under `.skilled/` unless stated otherwise.
 <!-- /ANCHOR:what-built -->

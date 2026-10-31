@@ -7,15 +7,15 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode"
     last_updated_at: "2026-10-11T19:55:41Z"
     last_updated_by: "generate-context"
     recent_action: "Proved the ten refused documents validate and ticked the goal"
     next_safe_action: "Monitor anchor-repair refusals on new packets"
     blockers: []
     key_files:
-      - "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/scratch/evidence/lane-refused-docs-validation.txt"
-      - "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/goal.md"
+      - "specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/scratch/evidence/lane-refused-docs-validation.txt"
+      - "specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode/goal.md"
     session_dedup:
       fingerprint: "sha256:214c7bbca5f6c695d4f823c94ecf29d11876dcd4ed1d069f22de8ed62822e998"
       session_id: "bd2aa56c-623b-43f8-a2ef-69a13c32d626"

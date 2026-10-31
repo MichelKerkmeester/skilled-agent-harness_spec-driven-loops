@@ -215,7 +215,7 @@
     ],
     "causal_summary": "An operator sets one session objective, and whatever they set is frozen at that moment",
     "created_at": "2026-08-29T17:39:40Z",
-    "last_save_at": "2026-10-31T13:26:38.335Z",
+    "last_save_at": "2026-10-31T13:58:40.354Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -224,14 +224,14 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:a878f32fe8720a0cc2b1540c4492660bf5458db228f232d1872619d9790629aa",
+    "source_fingerprint": "sha256:dae317ba5aa1d9ce4a3fd001c3949837eade5acd985dea3d83b900dd44f6b7d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0a543547253278ad2f4fe9c65269dd6dc60e0c01aae0786c35f90f7e2a13b88d",
+      "spec.md": "1dca4449b22ebce997d6ce48efa90a4cfa0b030d7b51fbbb62dd6b9b3936a7f6",
       "research/research.md": "6537e685b82de8bf8ac5ad818b8b3bb7bcd718f7cee6a715347123dfb9bbdb71",
-      "resource-map.md": "5fd26b37f2241110db1c9f053fec1cf9c7e50b2079aa7d47e9df01f0c236e8cc"
+      "resource-map.md": "b9e4212cc3d384b9140e749926ce9300b8751bbb269f1c4114de3b4cccc658ac"
     },
-    "last_active_child_id": "system-speckit/033-system-speckit-v4/010-goal-file-addon/004-parent-set-string-playbook",
+    "last_active_child_id": "system-speckit/031-system-speckit-v4/010-goal-file-addon/004-parent-set-string-playbook",
     "last_active_at": null
   }
 }

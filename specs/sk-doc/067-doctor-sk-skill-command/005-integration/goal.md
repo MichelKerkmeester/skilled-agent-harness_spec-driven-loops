@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/075-doctor-sk-skill-command/005-integration"
+    packet_pointer: "sk-doc/067-doctor-sk-skill-command/005-integration"
     last_updated_at: "2026-10-30T14:53:02Z"
     last_updated_by: "markdown-agent-close"
     recent_action: "Closed the last checklist rows; the convert apply paths run the six rows"

@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Two alignment runs on the phase 25 commit found 2 P1s and about 15 P2s",
     "created_at": "2026-10-27T17:50:23Z",
-    "last_save_at": "2026-10-31T13:27:29.880Z",
+    "last_save_at": "2026-10-31T13:59:47.795Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:786d7106f0f0033d8b3d8fad62ac55fdc99ce5864fb92c30c4283950c7ef0eb7",
+    "source_fingerprint": "sha256:98881c3dd30ddaa13c4f7bf0d2e3cb3902cf2f53d51385050123dbe3dc370ea5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c7fc887f439ce1ea4eeb4d4ff41b75e059d71107fe9c21371a24034f8764a596",

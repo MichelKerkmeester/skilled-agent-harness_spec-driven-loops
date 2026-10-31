@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire"
+    packet_pointer: "cli-classifier/002-cli-jev-hub-migration/003-decouple-and-rewire"
     last_updated_at: "2026-09-20T15:20:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Phase authored at closeout from the executed decoupling and rewiring"
@@ -74,7 +74,7 @@ The decoupling landed while this phase was being planned: a parallel writer comm
 | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json` | Modified | Re-minted after the prose fix, then copied to its authored twin |
 | `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json` | Modified | Authored copy of the re-minted manifest |
 | `.skilled/skills/cli-jev/cli-usage/changelog/v1.0.2.0.md` | Modified | The rewire sentence leaves the "until it lands" tense and states where the guards now read |
-| `specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/spec.md`, `implementation-summary.md`, `specs/cli-jev/001-cli-jev-creation/spec.md` | Modified | Changelog path and continuity `key_files` follow the rename and the move |
+| `specs/cli-classifier/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/spec.md`, `implementation-summary.md`, `specs/cli-classifier/001-cli-jev-creation/spec.md` | Modified | Changelog path and continuity `key_files` follow the rename and the move |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -124,7 +124,7 @@ Five passes, each gated before the next. First the landed decoupling was read ba
 | `node .skilled/bin/compiled-route.cjs` probes | `--hub cli-external-orchestration` resolves a codex prompt to `cli-codex`; `--hub cli-jev` still answers `{"servingAuthority":"legacy","hubId":"cli-jev"}` |
 | `node .skilled/bin/compiled-route-guard.cjs` | `cli-external-orchestration  fresh`, `mcp-tooling  fresh`, `sk-code  fresh`, `system-deep-loop  fresh`; `sk-doc  stale-manifest`, caused by the parallel writer's uncommitted `sk-create-readme/SKILL.md` bump and left to them |
 | Census for the retired packet path over the live trees | Remaining hits are the hub's own changelog, the mode's two recorded changelog entries, the migrated packet's creation records, the kept display name, the sibling packet `075`'s recorded path table, and the parallel writer's quarantined snapshots — no live surface resolves the retired path |
-| `repair-derived.cjs --roots specs/cli-jev --apply` then `validate.sh --strict --recursive` on both packets | `inspected=12 repaired=3 failed=0`; both packets exit 0, all twelve folders `RESULT: PASSED`, with this phase and the parent at 0 errors / 0 warnings and only the two future-phase scaffolds carrying their `what-built` citation note |
+| `repair-derived.cjs --roots specs/cli-classifier --apply` then `validate.sh --strict --recursive` on both packets | `inspected=12 repaired=3 failed=0`; both packets exit 0, all twelve folders `RESULT: PASSED`, with this phase and the parent at 0 errors / 0 warnings and only the two future-phase scaffolds carrying their `what-built` citation note |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -137,7 +137,7 @@ Five passes, each gated before the next. First the landed decoupling was read ba
 3. **The Pi preflight suite carries a pre-existing failure.** Its `cli-devin` advisory case expects a non-blocking result, while the packet's `stdin-redirect-required` rule has been `severity: error` since commit `687de40016a` (2026-09-15). Both the rule and the expectation were verified unchanged at `HEAD`, so the mismatch is unrelated to this migration and was left for its owner.
 4. **A sibling packet still records the retired path.** `specs/cli-external-orchestration/075-cli-runtime-readme-refresh/` names `.skilled/skills/cli-external-orchestration/cli-jev/README.md` in its scope and summary tables, which is the record of what that in-progress packet touched in its own era. Rewriting another packet's frozen scope was out of bounds here.
 5. **The parallel writer's review workspace contains pre-move snapshots.** `specs/cli-orca/002-consolidate-official-orca-skills/review/containment/` holds quarantined copies of this repository, including the old packet path and the pre-regeneration fixtures. They are their artifacts, excluded from the census, and were not edited.
-6. **The description cache holds packet rows, not a track row.** `specs/descriptions.json` now carries the new track's twelve packet and child rows; there is no row for `specs/cli-jev` itself because the cache's shape has none for any track.
+6. **The description cache holds packet rows, not a track row.** `specs/descriptions.json` now carries the new track's twelve packet and child rows; there is no row for `specs/cli-classifier` itself because the cache's shape has none for any track.
 7. **This phase's edits are uncommitted.** The decoupling half arrived as commit `e66dccd6a2`; everything this phase changed sits in the working tree, because the program does not commit or push without an operator request.
 <!-- /ANCHOR:limitations -->
 

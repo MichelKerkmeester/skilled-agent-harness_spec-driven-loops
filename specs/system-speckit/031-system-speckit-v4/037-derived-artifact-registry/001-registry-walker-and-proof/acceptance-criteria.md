@@ -7,14 +7,14 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/037-derived-artifact-registry/001-registry-walker-and-proof"
+    packet_pointer: "system-speckit/031-system-speckit-v4/037-derived-artifact-registry/001-registry-walker-and-proof"
     last_updated_at: "2026-09-11T06:37:37Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Meet, waive or supersede the open criteria"
     blockers: []
     key_files:
-      - "specs/system-speckit/033-system-speckit-v4/037-derived-artifact-registry/001-registry-walker-and-proof/spec.md"
+      - "specs/system-speckit/031-system-speckit-v4/037-derived-artifact-registry/001-registry-walker-and-proof/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-001-registry-walker-and-proof"
@@ -37,7 +37,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/037-derived-artifact-registry/001-registry-walker-and-proof
+**Packet:** system-speckit/031-system-speckit-v4/037-derived-artifact-registry/001-registry-walker-and-proof
 **Level:** 3
 **Status:** Draft
 **Date:** 2026-09-11

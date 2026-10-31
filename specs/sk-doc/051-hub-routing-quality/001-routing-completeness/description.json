@@ -11,10 +11,11 @@
     "reachable"
   ],
   "lastUpdated": "2026-09-05T14:38:09.119Z",
-  "specId": "052",
+  "specId": "001",
   "folderSlug": "routing-completeness",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "051-hub-routing-quality"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

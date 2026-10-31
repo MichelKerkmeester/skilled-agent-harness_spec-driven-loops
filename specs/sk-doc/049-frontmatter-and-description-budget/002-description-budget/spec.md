@@ -130,7 +130,7 @@ Every authored description is at or under its 5,600-character project budget wit
 |----|-------------|---------------------|
 | REQ-007 | The generated runtime mirrors stay in sync after the trims: Pi agents and prompts, Codex agents and prompts, the Hermes skill and prompt copies, the hand-kept hub command metadata, and the symlink trees | Every `sync-*.cjs --check` exits 0, `node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs` reports `STATUS=OK`, and `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` reports every mirror in sync |
 | REQ-008 | The hub skills whose `SKILL.md` changes leave compiled routing fresh | `node .skilled/bin/compiled-route-guard.cjs` exits 0 with every hub fresh or excused |
-| REQ-009 | The packet validates once the docs are filled and the change lands | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/064-description-budget --strict` prints `RESULT: PASSED` |
+| REQ-009 | The packet validates once the docs are filled and the change lands | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/049-frontmatter-and-description-budget/002-description-budget --strict` prints `RESULT: PASSED` |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -142,7 +142,7 @@ Every authored description is at or under its 5,600-character project budget wit
 - **SC-002**: The project total is at or under 5,600 characters with the headroom recorded, or the measured total, the items at their floor and the per-item-targets arithmetic behind the residual are recorded in `implementation-summary.md` and raised as an open question.
 - **SC-003**: Every trimmed skill and agent returns the same top advisor recommendation for its representative prompt, or the difference is recorded with both runs and the description restored.
 - **SC-004**: No current document under `.skilled` recommends `/doctor skill-budget :auto`, and the audit's stated purpose names the surface it counts.
-- **SC-005**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/064-description-budget --strict` prints `RESULT: PASSED`, and `node .skilled/bin/compiled-route-guard.cjs` exits 0.
+- **SC-005**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/049-frontmatter-and-description-budget/002-description-budget --strict` prints `RESULT: PASSED`, and `node .skilled/bin/compiled-route-guard.cjs` exits 0.
 <!-- /ANCHOR:success-criteria -->
 
 ---

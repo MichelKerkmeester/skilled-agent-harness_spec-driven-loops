@@ -18,7 +18,7 @@ contextType: "implementation"
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance
+**Packet:** system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-08
@@ -36,7 +36,7 @@ contextType: "implementation"
 | AC-003 | REQ-003 | Given an old-marker document, or a markerless document whose anchors do not equal its level's render, When heal-spec-docs runs, Then no marker is added or bumped | Vitest fixture compares the document before and after. Observed: the refusal fixtures at `.skilled/skills/system-spec-kit/runtime/cli/tests/heal-provenance.vitest.ts:182` to `.skilled/skills/system-spec-kit/runtime/cli/tests/heal-provenance.vitest.ts:184` (superset, subset, level-less) are byte-identical after the run, and the old-marker plan in the staleness fixture stays unchanged. For the healer itself, `.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:255` skips any document that already carries a marker, and a scratch trace of an old-marker Level 2 plan with exact anchors left it byte-identical. No Vitest case runs the healer on an old-marker document, so that half rests on the guard and the trace | Met | - |
 | AC-004 | REQ-004 | Given MIGRATION.md, When it is read, Then it states the never-invent-history rule and matches the code | grep for the rule in MIGRATION.md. Observed: `rg -n -i invent MIGRATION.md` prints `51:## 4. NEVER INVENT PROVENANCE`; the section at `.skilled/skills/system-spec-kit/templates/MIGRATION.md:51` says a marker is written only on an exact anchor match, an unmatched document keeps no marker and no marker or comment records unknown provenance, which is what `.skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:158` does | Met | - |
 | AC-005 | REQ-005 | Given the repo outside specs/, When it is searched, Then no script calls `--auto-upgrade` | `rg -n -- '--auto-upgrade' . --glob '!specs/**' --glob '!**/node_modules/**'` finds only the retired branch, its usage text, its test and the MIGRATION.md sentence. Observed: 6 hits, `check-template-staleness.sh` lines 15, 39 and 58, `heal-provenance.vitest.ts` lines 118 and 123, and `.skilled/skills/system-spec-kit/templates/MIGRATION.md:55`, with ignore files off as well; none is a call. `rg -n "auto-upgrade" quality-audit.sh` finds nothing (rc 1) and `.skilled/skills/system-spec-kit/runtime/cli/spec/quality-audit.sh:32` is the retired `--fix` arm. The retired branch is `.skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh:39` | Met | - |
-| AC-006 | General | Given this spec packet, When validate.sh --strict runs, Then all pass | bash validate.sh /path --strict shows RESULT: PASSED. Observed: `validate.sh --strict` on this folder prints `RESULT: PASSED`, recorded at `specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/implementation-summary.md:130` | Met | - |
+| AC-006 | General | Given this spec packet, When validate.sh --strict runs, Then all pass | bash validate.sh /path --strict shows RESULT: PASSED. Observed: `validate.sh --strict` on this folder prints `RESULT: PASSED`, recorded at `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/006-evidence-gated-provenance/implementation-summary.md:130` | Met | - |
 
 ### Status values
 

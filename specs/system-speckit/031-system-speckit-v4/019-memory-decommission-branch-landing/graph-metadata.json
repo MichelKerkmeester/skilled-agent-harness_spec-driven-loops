@@ -52,6 +52,7 @@
       "shared/embeddings/providers/hf-local.ts",
       ".opencode/skills/system-spec-kit/graph-metadata.json",
       "data/trigger-index.json",
+      "specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/goal.md",
       ".claude/mcp.json",
       ".codex/config.toml",
       ".pi/mcp.json",
@@ -206,7 +207,7 @@
     ],
     "causal_summary": "Packets 049, 050 and 051 removed the memory database, replaced it with the trigger index and ripgrep, added a semantic lane and vendored its engine, all on a side branch",
     "created_at": "2026-09-04T17:48:43Z",
-    "last_save_at": "2026-10-31T13:26:43.696Z",
+    "last_save_at": "2026-10-31T13:58:47.143Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:286df68008fa245618ba76d525cba9f4ffd2079b3c22ec5e706dfba392ee3a8a",
+    "source_fingerprint": "sha256:b38c73bc5a90b6356bdc9d57493958c7cebfff6ad072cb970c4d21e7fcf52b14",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7fd2954936de3a71088ca0b037d5fbcbb8210c1226f7f8b296872a428ef0e540",
+      "spec.md": "5108b078de320ae65ec1e450fc289ef0ce08117f25e5256386d52b3f6f238889",
       "plan.md": "1dedc2b4cb8949f434079cc63524b515bf825614992b6bc7e6bdb324c423e957",
       "tasks.md": "f861c8c7e1c75705ae1cd470cc253b1d1b8a7b33b36b7f085661c26db7f058db",
-      "implementation-summary.md": "0a6a4e2eab4774e5f55a691cfe22dbd08b91c4220e8f76688e79d056409cc085"
+      "implementation-summary.md": "cd35f2dbd679ea71e1b1413160c8b89d8a4ee54605d161ce09e0a2edca4dcd0f"
     },
     "last_active_child_id": null,
     "last_active_at": null

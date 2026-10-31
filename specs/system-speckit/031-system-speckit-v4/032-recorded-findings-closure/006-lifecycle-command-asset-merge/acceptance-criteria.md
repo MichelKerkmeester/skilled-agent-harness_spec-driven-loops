@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/006-lifecycle-command-asset-merge"
+    packet_pointer: "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/006-lifecycle-command-asset-merge"
     last_updated_at: "2026-09-07T15:05:47Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/032-recorded-findings-closure/006-lifecycle-command-asset-merge
+**Packet:** system-speckit/031-system-speckit-v4/032-recorded-findings-closure/006-lifecycle-command-asset-merge
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-07

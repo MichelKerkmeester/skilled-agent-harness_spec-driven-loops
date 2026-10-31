@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/075-doctor-sk-skill-command/001-check-engine"
+    packet_pointer: "sk-doc/067-doctor-sk-skill-command/001-check-engine"
     last_updated_at: "2026-10-30T12:00:00Z"
     last_updated_by: "codex"
     recent_action: "Read a target from another Skilled repository against its own repository"
@@ -124,8 +124,8 @@ The fixture suite passed all 31 tests. With `PYTHON` unset, the fleet check retu
 | `check --json` fleet comparison with the recorded package and metadata baselines | 13 roots; all PASS; `baseline_match=true`; exit 0 |
 | `git status` around fleet check | `status_unchanged=true fleet_exit=0` |
 | Scoped `quality-gate.cjs` | `NO_BLOCKER_FOUND`, findings 0, exit 0 |
-| `repair-derived.cjs --apply --folder specs/sk-doc/075-doctor-sk-skill-command/001-check-engine` | Graph metadata refreshed after the acceptance evidence update; exit 0 |
-| `validate.sh specs/sk-doc/075-doctor-sk-skill-command/001-check-engine --strict` | `RESULT: PASSED`, 0 errors and 0 warnings; exit 0 |
+| `repair-derived.cjs --apply --folder specs/sk-doc/067-doctor-sk-skill-command/001-check-engine` | Graph metadata refreshed after the acceptance evidence update; exit 0 |
+| `validate.sh specs/sk-doc/067-doctor-sk-skill-command/001-check-engine --strict` | `RESULT: PASSED`, 0 errors and 0 warnings; exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---

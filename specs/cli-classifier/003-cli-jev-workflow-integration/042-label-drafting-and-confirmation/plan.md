@@ -121,7 +121,7 @@ Each phase's observable check:
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-Commands run from the repository root. `F` is one of the eleven fillable feature folders under `specs/cli-jev/003-cli-jev-workflow-integration/`, `S` the scorer its card names, `L` the label file its card names, and `C` its card.
+Commands run from the repository root. `F` is one of the eleven fillable feature folders under `specs/cli-classifier/003-cli-jev-workflow-integration/`, `S` the scorer its card names, `L` the label file its card names, and `C` its card.
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|

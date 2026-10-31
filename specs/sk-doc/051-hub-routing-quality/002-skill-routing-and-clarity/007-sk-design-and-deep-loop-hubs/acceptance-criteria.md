@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/007-sk-design-and-deep-loop-hubs"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/007-sk-design-and-deep-loop-hubs"
     last_updated_at: "2026-10-28T14:30:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Verified every criterion against the final gate run"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** `sk-doc/072-skill-routing-and-clarity/007-sk-design-and-deep-loop-hubs`
+**Packet:** `sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/007-sk-design-and-deep-loop-hubs`
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-28

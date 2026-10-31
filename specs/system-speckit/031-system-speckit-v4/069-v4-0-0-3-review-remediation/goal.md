@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation"
+    packet_pointer: "system-speckit/031-system-speckit-v4/069-v4-0-0-3-review-remediation"
     last_updated_at: "2026-10-06T10:15:28Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Authored the durable directive"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Close every finding in the v4.0.0.3 release deep review (`specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/review-report.md`, R-01 to R-21, plus R-22 found during planning) and every fix in its Luna halt analysis (`review/luna-halt-analysis.md`, F1 to F8), each with a commit and a test or with a recorded waiver, working in worktree 090 on its current branch.
+**Objective:** Close every finding in the v4.0.0.3 release deep review (`specs/system-speckit/031-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/review-report.md`, R-01 to R-21, plus R-22 found during planning) and every fix in its Luna halt analysis (`review/luna-halt-analysis.md`, F1 to F8), each with a commit and a test or with a recorded waiver, working in worktree 090 on its current branch.
 
 ### Decisions
 
@@ -62,12 +62,12 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] Four regression tests, one each for R-01, R-02, R-03 and R-22, are recorded in `specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/implementation-summary.md` with a `FAIL` run before a fix commit and a `PASS` run after it.
+- [ ] Four regression tests, one each for R-01, R-02, R-03 and R-22, are recorded in `specs/system-speckit/031-system-speckit-v4/069-v4-0-0-3-review-remediation/implementation-summary.md` with a `FAIL` run before a fix commit and a `PASS` run after it.
 - [ ] `implementation-summary.md` in that packet maps all 22 findings and all 8 fixes to a commit SHA or to an ADR in `decision-record.md`, with no row left blank.
 - [ ] Each test suite listed in that packet's `research/research.md` section 3 has no failing test that is absent from a pre-edit baseline of pass and fail counts recorded in `implementation-summary.md`.
 - [ ] `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js`, `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check` and `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check` each exit 0 at the packet's closing commit.
 - [ ] A two-iteration Luna lineage run through `fanout-run.cjs` writes both iteration files, and no lineage transcript ends on a question.
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` for `specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation` and for `specs/system-speckit/033-system-speckit-v4`.
+- [ ] `validate.sh --strict` prints `RESULT: PASSED` for `specs/system-speckit/031-system-speckit-v4/069-v4-0-0-3-review-remediation` and for `specs/system-speckit/031-system-speckit-v4`.
 <!-- /ANCHOR:completion -->
 
 ---

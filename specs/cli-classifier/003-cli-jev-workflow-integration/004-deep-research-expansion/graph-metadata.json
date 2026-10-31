@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The AI Council found that round 1 dropped the right ideas but measured too loosely and built in the wrong places",
     "created_at": "2026-09-26T20:24:40Z",
-    "last_save_at": "2026-10-31T13:25:26.917Z",
+    "last_save_at": "2026-10-31T14:03:47.267Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:0b65a7fa0f5f553c8f853c8dfc1879e58000c3e931be8bded6668005952c62ce",
+    "source_fingerprint": "sha256:c2d14e7a14f13db9b59926a2e60ffd0262178bb684800348de109ac9cac71814",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "25c3a78ca82aa305e15feb24741a861f6df7917b1e8c39d14c8e9945bae080df",
-      "plan.md": "c1a5787204db3167751c429153c55b06fa3133dc230f0696046ec81cf08c142b",
+      "plan.md": "fc95ed5749a7971ffc6226d4e29df40153cf4156ff9338b4dc35c54468bccd9b",
       "tasks.md": "d74f184382f125bfd9ea6f767a4650e0d82afd30ba436cc5977149cd1aefd626",
-      "implementation-summary.md": "bc2e25ce19a4c9f12a7e8e3a5c56fb0cc3e209806822b3b043f43751c855ec61",
+      "implementation-summary.md": "ef88714e935c0345745e63052e0af7620ac1d809d6dfc30125a44c42b34eab8c",
       "research/research.md": "f2e2360c570db560e993b4fdaf91a62ff09ae21607f6d019013a4492bba97129"
     },
     "last_active_at": null

@@ -21,7 +21,7 @@
   "specId": "001",
   "folderSlug": "jev-contract-research-and-pin",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "001-cli-jev-creation"
   ],
   "memorySequence": 0,

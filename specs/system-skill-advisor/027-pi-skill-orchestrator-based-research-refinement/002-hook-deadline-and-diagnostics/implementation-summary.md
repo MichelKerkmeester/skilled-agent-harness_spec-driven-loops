@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics"
+    packet_pointer: "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics"
     last_updated_at: "2026-09-26T12:10:00Z"
     last_updated_by: "orchestrate"
     recent_action: "Shipped R1, R3, R7, R11, R12 and the diagnostic flush"
@@ -114,7 +114,7 @@ GPT-6 Luna at max effort wrote each change from a one-change brief, through cli-
 | Shim and adapter tests | 10 of 10 |
 | Plugin suite | 29 of 29 |
 | Negative controls | Each new test failed on the unchanged code, as reported by each return; the R7 test failed with a deliberately broken path |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement --strict --recursive` | Run at phase close, see the parent packet |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement --strict --recursive` | Run at phase close, see the parent packet |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Five gaps were recorded by the doctor command audit and re-verified at planning time",
     "created_at": "2026-10-03T05:27:37Z",
-    "last_save_at": "2026-10-31T13:26:20.032Z",
+    "last_save_at": "2026-10-31T14:00:57.572Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98e24280a8496c372e49cc1b77bcc98e68361b0358259ec07b869cc7dab153ee",
+    "source_fingerprint": "sha256:f672a6c5bc66105cd65dadf560de5ed483c89bcf5b4c78d1a4a773e913ea09c5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0a253899f3808ab3db53be4b47eb50463a00c3602babbb9c661fa757949bc91b",

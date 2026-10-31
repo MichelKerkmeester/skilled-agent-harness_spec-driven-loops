@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness"
+    packet_pointer: "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness"
     last_updated_at: "2026-09-17T09:30:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Marked all thirteen criteria Met, AC-006 on CI for the pushed tip"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness
+**Packet:** system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-16

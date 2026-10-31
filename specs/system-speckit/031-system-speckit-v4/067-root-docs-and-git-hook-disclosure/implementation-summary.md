@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure"
+    packet_pointer: "system-speckit/031-system-speckit-v4/067-root-docs-and-git-hook-disclosure"
     last_updated_at: "2026-09-28T20:03:11Z"
     last_updated_by: "generate-context"
     recent_action: "Reviewed this phase's release section and published the release with packet 062"
@@ -90,7 +90,7 @@ The test cases came first. Run against the hooks as committed at HEAD, they fail
 |----------|-----|
 | The agent mirror gate's blocks name `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` | That gate has no switch of its own, and adding one changes a gate's contract. The message says the switch turns off every pre-commit gate, so the cost is stated where the choice is made |
 | The README's `CLAUDE.md` line was left alone | Commit `003dabe08d` fixed it before this phase started |
-| The Section 5 validation switch lines in `.env.example` belong to `specs/sk-doc/062-doc-validation-off-switches` | They close that packet's review finding F002, so they are committed with it |
+| The Section 5 validation switch lines in `.env.example` belong to `specs/sk-doc/058-doc-validation-off-switches` | They close that packet's review finding F002, so they are committed with it |
 <!-- /ANCHOR:decisions -->
 
 ---

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/007-cli-package-residue-removal"
+    packet_pointer: "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/007-cli-package-residue-removal"
     last_updated_at: "2026-09-06T18:50:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Closed the packet with every gate observed green"

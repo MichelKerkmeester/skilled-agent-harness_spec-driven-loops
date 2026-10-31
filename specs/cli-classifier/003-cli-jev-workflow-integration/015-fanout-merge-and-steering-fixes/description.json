@@ -9,7 +9,7 @@
   "specId": "015",
   "folderSlug": "fanout-merge-and-steering-fixes",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,

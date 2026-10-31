@@ -52,7 +52,7 @@ A fresh checkout of this repository must be able to install, build and start the
 
 ### Purpose Note
 
-Every requirement below traces to a finding in `specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/implementation-summary.md` or `specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/implementation-summary.md` "Known Limitations" sections, or to the observed adjacent defect above.
+Every requirement below traces to a finding in `specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/001-mcp-install-code-mode/implementation-summary.md` or `specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/002-mcp-debug-code-mode/implementation-summary.md` "Known Limitations" sections, or to the observed adjacent defect above.
 <!-- /ANCHOR:problem -->
 
 ---

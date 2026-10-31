@@ -207,7 +207,7 @@
     ],
     "causal_summary": "`grep -rIl '\\[template:level' specs` currently returns 1,178 files, of which 947 `.md` documents carry the token on their own `title:` frontmatter line rather than in prose quoting it elsewhere (verified 2026-09-07 by filtering the raw match list against `^title:.\\[template:level`)",
     "created_at": "2026-09-07T15:05:45Z",
-    "last_save_at": "2026-10-31T13:26:52.949Z",
+    "last_save_at": "2026-10-31T13:59:00.932Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,11 +218,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cdbd2ef0c7cfeaaa30edf55a40123a7df3229e129aa148f41230502a601008d7",
+    "source_fingerprint": "sha256:f3aaf486e7a42e1ccc1842615c0763bb97042c5ddf5f41578a31172dd8d99127",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c9ea5789e5fe42de680ee1439a833c698f9325af1267ac6d435249d276b2e9bc",
-      "plan.md": "cac212fb0e182b00dd5b034f084236cdeeeaa9a680b45dde0f2bb84957830033",
+      "spec.md": "b8f681c11c0b7f5f67ebfb133be7a602fc500e7481a6bdac7381a407906cd340",
+      "plan.md": "f18206e6d896ca2fb8de985f690739eb0107e645b203f7a2581cba818b5b90c5",
       "tasks.md": "bbc22bfd44a8df4299c624f63347f05df2b69af0e526321c07776499d29afe33",
       "implementation-summary.md": "aa341cde2a154ec1613b6e962f37688e109b2566962131f53977513a5396dd2a"
     },

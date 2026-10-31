@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/032-relocate-specs-folder"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder"
     last_updated_at: "2026-08-08T11:02:42Z"
     last_updated_by: "claude-code"
     recent_action: "Packet closed: 006 re-nested from top-level 033, changelog/ added, T015 confirmed by operator"
@@ -108,7 +108,7 @@ None in phase 001 (research-only). Per-phase detail for any later implementation
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
 - Parent spec tracks aggregate progress via this map
-- Use `/speckit:resume system-speckit/032-relocate-specs-folder/[NNN-phase]/` to resume a specific phase
+- Use `/speckit:resume system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on the parent to validate all phases as an integrated unit
 
 ### Phase Handoff Criteria

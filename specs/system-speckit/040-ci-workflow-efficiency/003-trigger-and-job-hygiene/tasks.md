@@ -39,7 +39,7 @@ Line numbers are the values on disk when this plan was written. Tasks T007 to T0
 
 ### T001 [x] DECISION D2 (operator yes required) - cancel on main or on pull requests only (AC-001, AC-002)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
+File: `specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
 
 Done: `scratch/decisions.md` holds `D2=pr-only`, and all 30 delivered groups carry the pull-request expression.
 
@@ -52,8 +52,8 @@ Change: the operator answered on 2026-10-23, and the file already holds the answ
 Check:
 
 ```bash
-mkdir -p specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch
-grep -c '^D2=' specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md
+mkdir -p specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch
+grep -c '^D2=' specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md
 ```
 
 Expected: `1`.
@@ -66,7 +66,7 @@ Stop and escalate if: no answer arrives, or the answer is neither `pr-only` nor 
 
 ### T002 [x] DECISION D3 (operator yes required) - approve or reject the command-tree-parity filter (AC-003)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
+File: `specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
 
 Done: `scratch/decisions.md` holds `D3=approve`, and T007 to T009 and the row move in T021 ran under it.
 
@@ -79,7 +79,7 @@ Change: the operator answered on 2026-10-23, and the file already holds the answ
 Check:
 
 ```bash
-grep -c '^D3=' specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md
+grep -c '^D3=' specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md
 ```
 
 Expected: `1`.
@@ -92,7 +92,7 @@ Stop and escalate if: no answer arrives, or the answer is neither `approve` nor 
 
 ### T003 [x] DECISION D4 (operator yes required) - choose the dispatch-enforcement-guard shape (AC-005, AC-006)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
+File: `specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
 
 Done: `scratch/decisions.md` holds `D4=drop-step`, and T012 ran under it.
 
@@ -105,7 +105,7 @@ Change: the operator answered on 2026-10-23, and the file already holds the answ
 Check:
 
 ```bash
-grep -c '^D4=' specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md
+grep -c '^D4=' specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md
 ```
 
 Expected: `1`.
@@ -118,7 +118,7 @@ Stop and escalate if: the answer is `merge`. T012, T030 and the README row for t
 
 ### T004 [x] DECISION D7 (operator yes required) - approve fetch-depth 2 on deep-loop-runtime (AC-008, AC-009)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
+File: `specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
 
 Done: `scratch/decisions.md` holds `D7=depth-2`, and T017 ran under it.
 
@@ -131,7 +131,7 @@ Change: the operator answered on 2026-10-23, and the file already holds the answ
 Check:
 
 ```bash
-grep -c '^D7=' specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md
+grep -c '^D7=' specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md
 ```
 
 Expected: `1`.
@@ -144,7 +144,7 @@ Stop and escalate if: no answer arrives, or the answer is neither `depth-2` nor 
 
 ### T005 [x] DECISION D10 (operator yes required) - skip or build the changed-packet-validation filter (AC-004)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
+File: `specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
 
 Done: `scratch/decisions.md` holds `D10=skip`, and `changed-packet-validation.yml` carries no `paths:` block (count 0).
 
@@ -157,7 +157,7 @@ Change: the operator answered on 2026-10-23, and the file already holds the answ
 Check:
 
 ```bash
-grep -c '^D10=' specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md
+grep -c '^D10=' specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md
 ```
 
 Expected: `1`.
@@ -170,7 +170,7 @@ Stop and escalate if: no answer arrives, or the answer is neither `skip` nor `fi
 
 ### T006 [x] Copy the baseline rows this phase measures against (AC-016)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-baseline.md` (new file). Anchor: none.
+File: `specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-baseline.md` (new file). Anchor: none.
 
 Done 2026-10-25 under the operator's ruling: "Use the 001 research data as the baseline for this phase." The 002 `summary.md` this task names covers 2026-10-23T21:59:34Z to 2026-10-24T21:59:34Z, which starts after this phase reached `main` (run `40026353792`, head `3ab67b70cb`, created 2026-10-23T21:23:01Z), so it is the after-state and not a before number. The source used is `../001-research/scratch/ci-run-data/summary.md` (runs from 2026-10-22T07:07:25Z to 2026-10-23T06:35:03Z), copied the way phase 004 copies it in its `scratch/phase-baseline.md`. The file carries `source: 001 dataset` on its first line, the reason, the method and the ten workflow rows. The `BASELINE_PRESENT` check below names the 002 file and does not apply to the ruled source; the check that applies is that `scratch/phase-baseline.md` exists and carries the ten rows.
 
@@ -179,7 +179,7 @@ Change: copy the 002 summary's first 40 lines, then append one row per workflow 
 Check:
 
 ```bash
-test -f specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md && echo BASELINE_PRESENT
+test -f specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md && echo BASELINE_PRESENT
 ```
 
 Expected: `BASELINE_PRESENT`.
@@ -187,8 +187,8 @@ Expected: `BASELINE_PRESENT`.
 Then:
 
 ```bash
-sed -n '1,40p' specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md \
-  > specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-baseline.md
+sed -n '1,40p' specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md \
+  > specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-baseline.md
 ```
 
 Expected: exit 0 and a non-empty file.
@@ -198,12 +198,12 @@ Then, for each of the ten workflows, append one row naming the workflow and its 
 Check:
 
 ```bash
-grep -cE '^\| `?(advisory-checks|agent-mirror-sync|changed-packet-validation|command-tree-parity|dispatch-enforcement-guard|deep-loop-runtime|repo-rules-corpus|rule-canary-sync|skill-doc-frontmatter|strict-pass-freshness-report)' specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-baseline.md
+grep -cE '^\| `?(advisory-checks|agent-mirror-sync|changed-packet-validation|command-tree-parity|dispatch-enforcement-guard|deep-loop-runtime|repo-rules-corpus|rule-canary-sync|skill-doc-frontmatter|strict-pass-freshness-report)' specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-baseline.md
 ```
 
 Expected: `10`.
 
-Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-baseline.md`.
+Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-baseline.md`.
 
 Stop and escalate if: `BASELINE_PRESENT` is not printed. Phase 002 has not recorded its 24 h snapshot, so no after number has a before number; do not substitute a figure from `001-research/research/research.md`.
 <!-- /ANCHOR:phase-1 -->
@@ -383,7 +383,7 @@ Change, under `D10=skip`: no YAML edit. Under `D10=filter`: insert these five li
 Check, under `D10=skip`:
 
 ```bash
-grep -c '^D10=skip' specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md
+grep -c '^D10=skip' specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md
 git diff --stat -- .github/workflows/changed-packet-validation.yml
 ```
 
@@ -704,7 +704,7 @@ Stop and escalate if: either anchor is absent, or any count differs.
 
 ### T020 [x] Write the pre-commit duplication inventory (AC-012)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md` (new file). Anchor: none.
+File: `specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md` (new file). Anchor: none.
 
 Done: `scratch/pre-commit-inventory.md` exists with 13 rows and a sixth `Reason` column; the row regex returns 13 and the verdict-cell regex returns 13 (both observed 2026-10-24). The thirteenth key, `private-skill`, was added to the installed hook by `7648ae8b56` after this plan was written — the 2026-10-24 amendment corrects the expected twelve to thirteen and the expected five columns to six.
 
@@ -731,12 +731,12 @@ The thirteen keys and their counterparts:
 Check:
 
 ```bash
-grep -cE '^\| (agent-mirror-sync|comment-hygiene|doc-version-bump|hook-flags|hook-trust|mcp-mutation-class|mirror-parity|private-skill|prompt-card-sync|route-remint|skill-authoring|spec-remint|template-phrase-lint)' specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md
+grep -cE '^\| (agent-mirror-sync|comment-hygiene|doc-version-bump|hook-flags|hook-trust|mcp-mutation-class|mirror-parity|private-skill|prompt-card-sync|route-remint|skill-authoring|spec-remint|template-phrase-lint)' specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md
 ```
 
 Expected: `13`.
 
-Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md`.
+Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md`.
 
 Stop and escalate if: the hook names a gate key outside the thirteen, or the count is not 13.
 
@@ -940,7 +940,7 @@ Stop and escalate if: `RESULT: PASSED` is absent, or the gate fails twice on the
 
 ### T026 [x] Commit the change as one commit per concern (AC-017)
 
-File: `.github/workflows/`, `.github/workflows/README.md`, `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md`. Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
+File: `.github/workflows/`, `.github/workflows/README.md`, `specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md`. Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
 
 Done: the six concern commits landed on `main` — the concurrency block, the parity and companion filters, the deleted duplicate step, the removed suppression, the three checkout depths, and the README table plus inventory.
 
@@ -956,7 +956,7 @@ The 21 workflows that carry no other change now carry a concurrency group keyed 
 their workflow and pull request, so a newer push cancels the older run instead of
 leaving two full runs racing.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-1.txt
 for f in chart-corpus comment-hygiene diagram-corpus gate-inputs hooks-node-tests markdown-link-integrity message-contract naming-standard-guard opencode-dual-version opencode-plugin-tests pi-extension-tests playbook-operator-contract prompt-card-sync routing-registry-drift runtime-no-spec-import sk-code-script-tests sk-doc-rename-harness sk-doc-script-tests sk-git-script-tests skill-advisor-stress spec-kit-check; do git add ".github/workflows/$f.yml"; done
@@ -974,7 +974,7 @@ skill-doc-frontmatter name every source each checker reads, and
 changed-packet-validation joins them when its filter is enabled, so a
 documentation-only push no longer starts a whole-tree comparison.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-2.txt
 git add .github/workflows/command-tree-parity.yml .github/workflows/changed-packet-validation.yml .github/workflows/agent-mirror-sync.yml .github/workflows/skill-doc-frontmatter.yml
@@ -990,7 +990,7 @@ ci(dispatch-enforcement-guard): drop the duplicate dispatch audit run
 The explicit dispatch-audit step repeated the whole-tree vitest run in the same
 job, so the step is deleted and the vitest include remains the one execution.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-3.txt
 git add .github/workflows/dispatch-enforcement-guard.yml
@@ -1007,7 +1007,7 @@ Each report-only workflow keeps continue-on-error, but the command's second
 suppression is gone, so a failing check reports failure on the step while the job
 stays green.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-4.txt
 git add .github/workflows/advisory-checks.yml .github/workflows/strict-pass-freshness-report.yml
@@ -1023,7 +1023,7 @@ ci(workflows): check out the history each job reads
 The two checkers that read no history now use the default depth, and
 deep-loop-runtime fetches the commit and its parent instead of the whole tree.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-5.txt
 git add .github/workflows/rule-canary-sync.yml .github/workflows/repo-rules-corpus.yml .github/workflows/deep-loop-runtime.yml
@@ -1039,10 +1039,10 @@ docs(workflows): record trigger filters and pre-commit overlap
 The README table matches the new filters, and the inventory records every
 pre-commit gate against the workflow that repeats it.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-6.txt
-git add .github/workflows/README.md specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md
+git add .github/workflows/README.md specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md
 git commit -F /tmp/commit-msg-6.txt
 ```
 
@@ -1073,7 +1073,7 @@ test(ci): probe <what>
 
 One commit that exists only to observe CI behaviour.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-commit-msg.txt
 git commit -F /tmp/probe-commit-msg.txt
@@ -1099,7 +1099,7 @@ test(ci): probe the concurrency group
 
 One commit that exists only to observe CI behaviour.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-msg-concurrency.txt
 git commit --allow-empty -F /tmp/probe-msg-concurrency.txt
@@ -1112,7 +1112,7 @@ test(ci): probe the concurrency group again
 
 One commit that exists only to observe CI behaviour.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-msg-concurrency-again.txt
 git commit --allow-empty -F /tmp/probe-msg-concurrency-again.txt
@@ -1151,7 +1151,7 @@ test(ci): probe the parity filter on a nested SKILL.md
 
 The probe regenerates the Hermes copy so the mirror job reads a fresh input.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-msg-parity-positive.txt
 git commit -F /tmp/probe-msg-parity-positive.txt
@@ -1166,14 +1166,14 @@ Check, negative case:
 ```bash
 git switch main
 git switch -c probe/parity-negative
-printf '\n' >> specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/spec.md
-git add specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/spec.md
+printf '\n' >> specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/spec.md
+git add specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/spec.md
 cat > /tmp/probe-msg-parity-negative.txt <<'EOF'
 test(ci): probe the parity filter on a specs-only change
 
 One commit that exists only to observe CI behaviour.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-msg-parity-negative.txt
 git commit -F /tmp/probe-msg-parity-negative.txt
@@ -1209,7 +1209,7 @@ test(ci): probe the changed-packet filter
 
 One commit that exists only to observe CI behaviour.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-msg-d10.txt
 git commit -F /tmp/probe-msg-d10.txt
@@ -1253,7 +1253,7 @@ test(ci): probe the deleted dispatch rule suite
 
 One commit that exists only to observe CI behaviour.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-msg-guard-deleted.txt
 git commit -F /tmp/probe-msg-guard-deleted.txt
@@ -1291,7 +1291,7 @@ test(ci): probe a failing report step
 
 One commit that exists only to observe CI behaviour.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-msg-report.txt
 git commit -F /tmp/probe-msg-report.txt
@@ -1344,7 +1344,7 @@ test(ci): probe the checkout depth
 
 One commit that exists only to observe CI behaviour.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-msg-depth-rules.txt
 git commit -F /tmp/probe-msg-depth-rules.txt
@@ -1368,7 +1368,7 @@ test(ci): probe the deep-loop checkout depth
 
 One commit that exists only to observe CI behaviour.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-msg-depth-deep-loop.txt
 git commit -F /tmp/probe-msg-depth-deep-loop.txt
@@ -1415,7 +1415,7 @@ test(ci): probe the agent mirror filter
 
 One commit that exists only to observe CI behaviour.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-msg-agent-file.txt
 git commit -F /tmp/probe-msg-agent-file.txt
@@ -1440,7 +1440,7 @@ test(ci): probe the agent verifier filter
 
 One commit that exists only to observe CI behaviour.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-msg-agent-lib.txt
 git commit -F /tmp/probe-msg-agent-lib.txt
@@ -1458,14 +1458,14 @@ Check, negative case:
 ```bash
 git switch main
 git switch -c probe/agent-negative
-printf '\n' >> specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/plan.md
-git add specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/plan.md
+printf '\n' >> specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/plan.md
+git add specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/plan.md
 cat > /tmp/probe-msg-agent-negative.txt <<'EOF'
 test(ci): probe the agent filter on a specs-only change
 
 One commit that exists only to observe CI behaviour.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-msg-agent-negative.txt
 git commit -F /tmp/probe-msg-agent-negative.txt
@@ -1513,7 +1513,7 @@ test(ci): probe the frontmatter guard filter
 
 One commit that exists only to observe CI behaviour.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-msg-frontmatter.txt
 git commit -F /tmp/probe-msg-frontmatter.txt
@@ -1542,7 +1542,7 @@ Stop and escalate if: no run starts.
 
 Done 2026-10-24: the three greps return `13`, `13`, `13`, and the verdict cells split 8 keep CI, 0 drop CI, 5 local only, with no row missing a verdict. The hook is unchanged since `7648ae8b56`.
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md` (read-only). Anchor: none.
+File: `specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md` (read-only). Anchor: none.
 
 The formal re-check ran on 2026-10-24 (see the Done line). The counts below are corrected for the thirteenth gate key (`private-skill`, added to the hook by `7648ae8b56`) and the inventory's sixth `Reason` column per the 2026-10-24 amendment; run under the corrected regexes on 2026-10-24 they return `13`, `13`, `13`.
 
@@ -1552,8 +1552,8 @@ Check:
 
 ```bash
 grep -oE 'gate:[a-z-]+' .skilled/scripts/git-hooks/pre-commit | sort -u | wc -l
-grep -cE '^\| (agent-mirror-sync|comment-hygiene|doc-version-bump|hook-flags|hook-trust|mcp-mutation-class|mirror-parity|private-skill|prompt-card-sync|route-remint|skill-authoring|spec-remint|template-phrase-lint)' specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md
-grep -cE '\| (keep CI|drop CI|local only) \|' specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md
+grep -cE '^\| (agent-mirror-sync|comment-hygiene|doc-version-bump|hook-flags|hook-trust|mcp-mutation-class|mirror-parity|private-skill|prompt-card-sync|route-remint|skill-authoring|spec-remint|template-phrase-lint)' specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md
+grep -cE '\| (keep CI|drop CI|local only) \|' specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md
 ```
 
 Expected: `13`, then `13`, then `13`. The third regex matches the verdict cell inside the six-column row; the old end-anchored form predates the `Reason` column and returns `0` on the delivered table.
@@ -1566,7 +1566,7 @@ Stop and escalate if: the first count differs from the second, or a row carries 
 
 ### T036 [x] Measure the phase delta (AC-016)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-result.md` (new file). Anchor: none.
+File: `specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-result.md` (new file). Anchor: none.
 
 Done 2026-10-25. The window condition holds: the 002 24 h window was collected 24 h 35 min after the changes merged (2026-10-23T21:23Z). Under the operator's ruling the baseline is the 001 dataset (see T006) and the after-state is the 002 window `../002-rebuild-fanout-removal/scratch/baseline-24h/` (read only). `scratch/runs-after.json` is a byte copy of that window's `window.json` (795 runs) rather than a fresh `gh run list`, because a list run today would cover a different window. `scratch/phase-result.md` carries the ten rows (the first grep prints `10`) and `unmeasured` (the second grep prints `6`). Raw ten-workflow delta 1039 to 610 runner-min/day (-429); net of phase 002: `command-tree-parity` -136, `rule-canary-sync` -49, `dispatch-enforcement-guard` 0.
 
@@ -1576,16 +1576,16 @@ Check:
 
 ```bash
 gh run list --limit 1000 --json databaseId,name,headSha,event,conclusion,createdAt,startedAt,updatedAt \
-  > specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/runs-after.json
-grep -cE '^\| `?(advisory-checks|agent-mirror-sync|changed-packet-validation|command-tree-parity|dispatch-enforcement-guard|deep-loop-runtime|repo-rules-corpus|rule-canary-sync|skill-doc-frontmatter|strict-pass-freshness-report)' specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-result.md
-grep -c 'unmeasured' specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-result.md
+  > specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/runs-after.json
+grep -cE '^\| `?(advisory-checks|agent-mirror-sync|changed-packet-validation|command-tree-parity|dispatch-enforcement-guard|deep-loop-runtime|repo-rules-corpus|rule-canary-sync|skill-doc-frontmatter|strict-pass-freshness-report)' specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-result.md
+grep -c 'unmeasured' specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-result.md
 ```
 
 Expected: `10`, then at least `1`.
 
 The delta column carries `command-tree-parity` at about -123 runner-min/day after R1, `rule-canary-sync` at about -39, and `dispatch-enforcement-guard` at its re-measured figure. The PR-side cancellation is recorded as `unmeasured`, never as zero.
 
-Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/runs-after.json specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-result.md`.
+Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/runs-after.json specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-result.md`.
 
 Stop and escalate if: fewer than 24 h have passed, or fewer than ten rows are recorded.
 
@@ -1595,15 +1595,15 @@ Stop and escalate if: fewer than 24 h have passed, or fewer than ten rows are re
 
 Done 2026-10-25: 17 of 17 rows are `Met`. AC-016 closed with the T036 delta (net of phase 002, `command-tree-parity` -136 against about -123 and `rule-canary-sync` -49 against about -39). AC-009 closed on the operator's ruling of 2026-10-25 that the row reads as a floor, "at least about 20 s shorter" (`decision-record.md` ADR-012). The checkouts are 21 s, 23 s and 52 s shorter against the 001 medians and the canary job took 24 s. On the final state the check below printed `0`, and the strict validator printed `RESULT: PASSED` with AC_CLOSURE reading 17/17.
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/acceptance-criteria.md`. Anchor: the `| Unmet | - |` status cell of each row.
+File: `specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/acceptance-criteria.md`. Anchor: the `| Unmet | - |` status cell of each row.
 
 Change: replace each row's `Unmet` with `Met` and its Verification cell with the evidence T007 to T036 produced: the command, its output and the SHA or run id.
 
 Check:
 
 ```bash
-grep -c '| Unmet |' specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/acceptance-criteria.md
-bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene --strict --no-recursive
+grep -c '| Unmet |' specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/acceptance-criteria.md
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene --strict --no-recursive
 ```
 
 Expected: `0`, then `RESULT: PASSED`.
@@ -1618,7 +1618,7 @@ Stop and escalate if: any row has no observed evidence, or the validator does no
 
 Evidence: the closure edits landed as `055ba93b35`, `docs(spec): close the trigger and job hygiene criteria`, and `git merge-base --is-ancestor 055ba93b35 origin/main` exits 0 after the push (observed 2026-10-25).
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/acceptance-criteria.md`. Anchor: `| AC-017 | R3-R11 | REQ-013 |` at `:80`, the row whose Verification cell names the id-hygiene check.
+File: `specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/acceptance-criteria.md`. Anchor: `| AC-017 | R3-R11 | REQ-013 |` at `:80`, the row whose Verification cell names the id-hygiene check.
 
 Pending 2026-10-25: the orchestrator makes this commit after the closure edit lands, and the closure statement now reads `Closeable: Yes`. The closure commit stages every phase document the AC-009 ruling touched (`acceptance-criteria.md`, `decision-record.md`, `goal.md`, `implementation-summary.md`, `spec.md`, `tasks.md` and the regenerated `graph-metadata.json`), not `acceptance-criteria.md` alone, and its message is `scratch/commit-message-closure.txt` (subject `docs(spec): close the trigger and job hygiene criteria`). The block below keeps the message and path list as first planned.
 
@@ -1633,10 +1633,10 @@ docs(spec): record the phase 3 acceptance evidence
 Every acceptance row now carries the command, output and SHA or run id that
 proves it, and the closure state is committed separately from the change set.
 
-Spec: system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene
+Spec: system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-7.txt
-git add specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/acceptance-criteria.md
+git add specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/acceptance-criteria.md
 git commit -F /tmp/commit-msg-7.txt
 git status --porcelain
 git log -1 --format=%s

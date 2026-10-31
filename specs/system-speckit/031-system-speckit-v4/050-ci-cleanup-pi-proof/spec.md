@@ -102,9 +102,9 @@ The Pi Gate-3 contract is proven in a live headless run and a live TUI run, and 
 | `.skilled/skills/cli-jev/graph-metadata.json` | Modify | The bare word run is removed from derived.key_topics |
 | `.hermes/skills/cli-jev/SKILL.md` | Regenerate | Regenerated from the skill source after the keyword removal |
 | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/manifest.json` | Regenerate | Re-minted after the merge with the compiled-route-manifest refresh command for hub cli-jev |
-| `specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/` packet documents | Modify | The packet documents record the phase outcome and the operator decisions, and handover.md is rebuilt from the template |
-| `specs/system-speckit/033-system-speckit-v4/spec.md` | Modify | Phase map row 50 and the 049 to 050 handoff row register this phase |
-| `specs/system-speckit/033-system-speckit-v4/048-gate-3-mutation-time-delivery/implementation-summary.md` | Modify | One Verification row records this phase's live Pi proof |
+| `specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/` packet documents | Modify | The packet documents record the phase outcome and the operator decisions, and handover.md is rebuilt from the template |
+| `specs/system-speckit/031-system-speckit-v4/spec.md` | Modify | Phase map row 50 and the 049 to 050 handoff row register this phase |
+| `specs/system-speckit/031-system-speckit-v4/048-gate-3-mutation-time-delivery/implementation-summary.md` | Modify | One Verification row records this phase's live Pi proof |
 <!-- /ANCHOR:scope -->
 
 ---

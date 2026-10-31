@@ -206,7 +206,7 @@
     ],
     "causal_summary": "`/doctor:speckit skill-graph-freshness` checks whether the skill graph is current",
     "created_at": "2026-10-02T16:10:25Z",
-    "last_save_at": "2026-10-31T13:27:12.774Z",
+    "last_save_at": "2026-10-31T13:59:23.867Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:386070ebb6f22c9e941a28fb96da04d593e50418cf1f8be258d43f437ebdb162",
+    "source_fingerprint": "sha256:149c772d375d0fc8a1bf6aa1ce51ea3e465569c9308e6e02dd7742411be902fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f4bb01f6d62387278c90cd027fd14d6f7f2e17ef5642fa48c6b031152275b5b3",
       "plan.md": "139f85e4b3d66736972e525773453934dd555501b33da20fcdb63c15d7ecbc69",
-      "tasks.md": "bc6f7c0beb32498778c7c81e204950f024f4b2c21d3715c442db31a657553b2c",
-      "implementation-summary.md": "c229112c5e6d6b4dfe7c85cb91522c7d50ee90d0f226547f94010183b7f1e68b"
+      "tasks.md": "ca574f1459a18da71d48c1fe05dd19a4aa0829c319f993be5cebd0e3e5440690",
+      "implementation-summary.md": "308b61b2b8693db322f5824f4c3f0b7e7e6a7ab407ee47160281ab89cdb136af"
     },
     "last_active_at": null
   }

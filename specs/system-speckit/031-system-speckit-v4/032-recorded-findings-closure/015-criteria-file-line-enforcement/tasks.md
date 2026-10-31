@@ -49,7 +49,7 @@ contextType: "general"
 - [x] T006 Extend `_ac_lifecycle_active()` (`check-ac-coverage.sh:69-99`) with the `acceptance-criteria.md` `**Status:**` fallback per T002's decision
 - [x] T007 Ported (T002 chose to port): if T002 chose to port the Manual-infeasible exemption, add it to `_ac_analyze_canonical()` with the same class-marker convention `_ac_analyze_traceability()` uses (unblocked by T002)
 - [x] T008 Add the `SPECKIT_AC_COVERAGE_CUTOFF` row to `runtime/ENV-REFERENCE.md`, next to the existing `SPECKIT_AC_COVERAGE*` rows (lines 166-170)
-- [x] T009 Retrofit `specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/006-retrieval-drift-remediation/acceptance-criteria.md` (7 rows, currently 0 covered)
+- [x] T009 Retrofit `specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/006-retrieval-drift-remediation/acceptance-criteria.md` (7 rows, currently 0 covered)
 - [x] T010 [P] Retrofit `.../007-cli-package-residue-removal/acceptance-criteria.md` (7 rows, currently 0 covered)
 - [x] T011 [P] Retrofit `.../009-shared-package-dead-half-removal/acceptance-criteria.md` (6 rows, currently 0 covered)
 - [x] T012 [P] Retrofit `.../011-command-surface-contract-realignment/acceptance-criteria.md` (6 rows, currently 0 covered)

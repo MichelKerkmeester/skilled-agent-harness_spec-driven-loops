@@ -26,7 +26,7 @@ contextType: "general"
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
-`S` is `.skilled/skills/system-spec-kit`. `P` is this phase folder, `specs/system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure`. `L` is the loop, `specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop`. `R1` is `L/results/20261026T050500Z-67716` and `R2` is `L/results/20261026T140632Z-79914`.
+`S` is `.skilled/skills/system-spec-kit`. `P` is this phase folder, `specs/system-speckit/041-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure`. `L` is the loop, `specs/system-speckit/041-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop`. `R1` is `L/results/20261026T050500Z-67716` and `R2` is `L/results/20261026T140632Z-79914`.
 <!-- /ANCHOR:notation -->
 
 ---

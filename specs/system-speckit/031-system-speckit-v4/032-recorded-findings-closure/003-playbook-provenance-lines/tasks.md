@@ -36,7 +36,7 @@ contextType: "general"
 
 - [x] T001 Confirm the exact file count and per-directory breakdown (`find manual-testing-playbook -name "*.md" | wc -l` = 85. 1 root + 10 category directories) (`.opencode/skills/system-spec-kit/manual-testing-playbook/`)
 - [x] T002 Fix the provenance-line template: `Provenance: <suite path>` or `Provenance: manual only - <exact command>`, and confirm it fits inside the existing `## 4. SOURCE FILES` heading `sk-create-manual-testing-playbook`'s validator already checks (`.opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs`, read-only)
-- [x] T003 [P] List the 17 files that already cite a suite (per confirmed-findings.md F2-13) as the starting classification baseline (`specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/005-overengineering-simplification/research/confirmed-findings.md`)
+- [x] T003 [P] List the 17 files that already cite a suite (per confirmed-findings.md F2-13) as the starting classification baseline (`specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/005-overengineering-simplification/research/confirmed-findings.md`)
 <!-- /ANCHOR:phase-1 -->
 
 ---

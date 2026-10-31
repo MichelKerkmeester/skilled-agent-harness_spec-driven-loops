@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Pi 0.99.1 can call Jev itself",
     "created_at": "2026-09-30T13:18:46Z",
-    "last_save_at": "2026-10-31T13:25:35.004Z",
+    "last_save_at": "2026-10-31T14:03:55.802Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:641e5c30dacff29bf0f336f198e9917548d30910767968fa9ef7552410505964",
+    "source_fingerprint": "sha256:243512f6d9e5d0564cb6002c84a60dba25d6cc4a1fb3c4e61b567336b385b1bd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f718173b1dfca77f9e0a23e72476d062b66e6544d19999219932193a0cb0e14f",
+      "spec.md": "5b3d9f2db277cda8f016a38153b1463cecab51e555eb39de20665d2bbf34029c",
       "plan.md": "e52fd443ea43ad69b944ed7f7a8f8df7a186431dfc6e7c67729f8dcdba66980c",
       "tasks.md": "6f9edce8eefb71ad65818724766cf736cfdf477fe9a9ca633c8cbbd5cec6deb8",
-      "implementation-summary.md": "55d458cffe93b3db1bdfe72b8aee2c79aecba74dfc319a0aca0229cdfcb88fbc"
+      "implementation-summary.md": "ed975501155fe448955c7efbdd537704657eb27d3cb7c81bee50cf049359d41a"
     },
     "last_active_at": null
   }

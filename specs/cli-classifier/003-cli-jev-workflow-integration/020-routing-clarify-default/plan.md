@@ -119,7 +119,7 @@ Commands run from the repository root. `S=.skilled/skills/sk-doc/sk-create-skill
 | Tests | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs` | Exit 0, at least 16 passing |
 | Read-only | `git status --porcelain` before and after each run | Identical, apart from operator-named outputs |
 | Skill docs | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <doc>` | Exit 0 on each changed doc |
-| Phase docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default --strict` | `RESULT: PASSED` |
+| Phase docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-classifier/003-cli-jev-workflow-integration/020-routing-clarify-default --strict` | `RESULT: PASSED` |
 <!-- /ANCHOR:testing -->
 
 ---

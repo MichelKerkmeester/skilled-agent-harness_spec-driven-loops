@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/058-upgrade-level-section-fragments"
+    packet_pointer: "system-speckit/031-system-speckit-v4/058-upgrade-level-section-fragments"
     last_updated_at: "2026-09-24T05:26:00Z"
     last_updated_by: "generate-context"
     recent_action: "Made level upgrades add whole sections and validate"

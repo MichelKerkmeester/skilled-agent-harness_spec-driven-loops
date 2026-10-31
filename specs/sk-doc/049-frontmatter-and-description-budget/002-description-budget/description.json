@@ -11,10 +11,11 @@
     "budget"
   ],
   "lastUpdated": "2026-10-03T05:27:42.958Z",
-  "specId": "064",
+  "specId": "002",
   "folderSlug": "description-budget",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "049-frontmatter-and-description-budget"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

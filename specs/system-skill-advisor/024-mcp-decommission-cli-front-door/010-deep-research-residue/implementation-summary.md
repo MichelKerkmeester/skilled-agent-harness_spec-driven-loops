@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue"
+    packet_pointer: "system-skill-advisor/024-mcp-decommission-cli-front-door/010-deep-research-residue"
     last_updated_at: "2026-09-11T18:01:53Z"
     last_updated_by: "claude-code"
     recent_action: "Recorded the research loop's run and its synthesis"

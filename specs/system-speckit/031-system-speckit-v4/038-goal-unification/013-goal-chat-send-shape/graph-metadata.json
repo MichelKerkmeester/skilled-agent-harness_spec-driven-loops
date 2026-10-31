@@ -204,7 +204,7 @@
     ],
     "causal_summary": "A session bound to a phase parent edited a criterion and resent the parent `goal.md` in chat",
     "created_at": "2026-09-16T18:28:40Z",
-    "last_save_at": "2026-10-31T13:26:59.397Z",
+    "last_save_at": "2026-10-31T13:59:07.913Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,7 +215,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7203df304bb319666e0e2ad784e55abce2e044351f751dab104d11ab3fd922d0",
+    "source_fingerprint": "sha256:7ba912b11ebfd4c3ab110c15d7e6ab2c981a201084d8a4bee4bedc8bd33087e0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2a978c0ed23b42dd0c757b0351b469620d5eea88cd044408fd09ff71ef43643c",

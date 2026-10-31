@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-doctor-audit-followups/028-advisor-stress-fixtures"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/028-advisor-stress-fixtures"
     last_updated_at: "2026-10-05T12:30:00Z"
     last_updated_by: "advisor-stress-fixtures"
     recent_action: "Updated two stale stress fixtures; stress suite 64 of 64"

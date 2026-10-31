@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/053-ci-workflow-efficiency"
+    packet_pointer: "system-speckit/040-ci-workflow-efficiency"
     last_updated_at: "2026-10-27T08:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "All eleven phases Complete; phase map synced"
@@ -82,7 +82,7 @@ Cut the CI load and the time to a signal, give base repos and clones an on/off c
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `specs/system-speckit/053-ci-workflow-efficiency/001-research/` | Create | 001 | Research run and synthesis |
+| `specs/system-speckit/040-ci-workflow-efficiency/001-research/` | Create | 001 | Research run and synthesis |
 | `.github/workflows/*.yml`, `.github/workflows/README.md` | Modify | 002, 003, 004, 007, 008 | Rebuild skip, triggers, concurrency, checkout depth, cache adoption, timeouts, permissions, switches, consolidation |
 | `.github/scripts/check-gate-inputs.sh` and its fixture test | Modify | 004 | Scan `.github/actions/**` (R12) |
 | `.github/actions/setup/action.yml` (composite setup action) | Create | 004 | Shared cached setup |
@@ -116,6 +116,7 @@ Cut the CI load and the time to a signal, give base repos and clones an on/off c
 | 13 | 013-killer-test-spawn-race/ | Follow-up: the session-relaunch killer test waited for the target's spawn event instead of its SIGTERM handler, so it failed once in 40 CI runs; targets now report readiness and the tests wait for it | Complete |
 | 14 | 014-unused-dependency-removal/ | Follow-up: remove `playwright-extra` and `puppeteer-extra-plugin-stealth` from the sk-design-md-generator backend because nothing imports them, which drops the `deepmerge` copy behind Dependabot alert 1410; the output rule accepts the documented `specs/` folder, the help text names real paths, 13 docs and the playbook stop printing a skill path that does not exist, and the install guide and troubleshooting page stop naming wrong packages | Complete |
 | 15 | 015-advisor-lease-reclaim-flake/ | Follow-up: the advisor stale-reclaimer test read the daemon child's pid before the child ran; behind it, a torn owner-lease read made a launcher stop itself, a reclaim could delete a peer's fresh lease, and a second client reaped an owner still starting. The lease is now published complete and reclaimed only as read, a starting owner gets a bounded grace, and the test waits for the child | Complete |
+| 16 | 016-ci-efficiency-release-docs/ | Follow-up: release records and doc fixes for this program, so the changelogs, READMEs and the root README describe what main ships | Complete |
 
 ### Phase Transition Rules
 
@@ -140,6 +141,7 @@ Cut the CI load and the time to a signal, give base repos and clones an on/off c
 | 011 | 013 | The killer test's one-in-40 CI failure is traced to the spawn event it waited on | With a 600 ms delay forced ahead of the handler the old file fails and the fixed file passes 64 of 64; ten unforced runs pass 64 of 64; `013-killer-test-spawn-race` passes `validate.sh --strict` |
 | 011 | 014 | The backend's two unused packages and the `deepmerge` chain they pull are named, with the usage scan that shows no file imports them | `npm ls deepmerge` in the backend prints `(empty)`; typecheck and build exit 0; `npm test` passes 178 of 178 (the 176 baseline plus two output-rule tests, one failing on the old rule); `014-unused-dependency-removal` passes `validate.sh --strict` |
 | 013 | 015 | The advisor stale-reclaimer test's CI failure is traced to its pid-file read and to three races in the launcher's owner-lease claim and bridge decision | Each forced race fails the code before its fix and passes after; 20 sequential and 20 four-at-a-time runs pass 9 of 9; the advisor default suite passes 153 files and the stress suite 21; `015-advisor-lease-reclaim-flake` passes `validate.sh --strict` |
+| 015 | 016 | The program's shipped behavior is settled, so its release records can describe it | `016-ci-efficiency-release-docs` passes `validate.sh --strict` |
 
 ### Recommendation Traceability
 

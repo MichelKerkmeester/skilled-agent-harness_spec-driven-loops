@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification"
     last_updated_at: "2026-10-29T19:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Recorded the status of each criterion after the read-only verification run"

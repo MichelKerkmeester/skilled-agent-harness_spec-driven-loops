@@ -98,6 +98,9 @@
     "key_files": [
       "spec.md",
       "goal.md",
+      "specs/cli-classifier/003-cli-jev-workflow-integration/spec.md",
+      "specs/cli-classifier/003-cli-jev-workflow-integration/goal.md",
+      "specs/cli-classifier/003-cli-jev-workflow-integration/001-deep-research/spec.md",
       "007-classifier-deep-research/research/research.md",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
@@ -112,22 +115,19 @@
       "scratch/w4-session/orchestration-log.md",
       "041-code-readmes-and-routing-alignment/scratch/evidence/build-evidence.md",
       ".opencode/plugins/opencode-goal.js",
-      "018-worktree-provision-shared-link/goal.md",
-      "010-trigger-index-search-fixes/goal.md",
-      "003-goal-verifier-jev-shadow/goal.md",
-      "005-compaction-recall-harness/goal.md"
+      "018-worktree-provision-shared-link/goal.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "specs/cli-classifier/003-cli-jev-workflow-integration/spec.md",
         "source": "derived"
       },
       {
         "name": "goal.md",
         "kind": "doc",
-        "path": "goal.md",
+        "path": "specs/cli-classifier/003-cli-jev-workflow-integration/goal.md",
         "source": "derived"
       },
       {
@@ -247,19 +247,19 @@
     ],
     "causal_summary": "The `cli-jev` hub can ask the Jev model for a typed judgment (a probability, a score, a choice or a ranking) through its `cli-usage` transport",
     "created_at": "2026-09-26T15:37:28Z",
-    "last_save_at": "2026-10-31T13:25:26.791Z",
+    "last_save_at": "2026-10-31T14:03:47.173Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:9d412c6782b09bffaff7b27cdacbb412ca66231686e5558e7acf7b9d9f04d0f3",
+    "source_fingerprint": "sha256:90c1cd50c51441f600a118f14673a19e8b5e569b6411ac5bde44693232b058bd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a96c53645496a13b9bf57b75e23fde08f5221eceef70486dd4f474a426eec63b"
+      "spec.md": "1c1c796f4e76d62e3b316f5b3b255f168516da84c2b717e280f1aaecb2f9898a"
     },
-    "last_active_child_id": "cli-jev/003-cli-jev-workflow-integration/051-followups",
+    "last_active_child_id": "cli-classifier/003-cli-jev-workflow-integration/051-followups",
     "last_active_at": "2026-10-04T12:11:28.025Z"
   }
 }

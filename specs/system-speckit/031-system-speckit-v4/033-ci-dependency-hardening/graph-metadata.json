@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The operator received a \"runs failed\" email on every push for days",
     "created_at": "2026-09-07T19:44:27Z",
-    "last_save_at": "2026-10-31T13:26:55.918Z",
+    "last_save_at": "2026-10-31T13:59:03.153Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:198570ec9491533aafcb4e2ca12c828fb84a507d95c2c58ac0cef7d3ab8b7a69",
+    "source_fingerprint": "sha256:08eb48ea5aaa133c3f7c0ccd2ed554bacbb8616e0657ed08f5f3ef5bb580f065",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0846a732537ed19c2d2696d29b61a50000530ee49448a6184ea9a22372e67265",
+      "spec.md": "6edc1084c4823663081998d431353d4510209d1aa49be45a8cf1ac6e04e779b5",
       "plan.md": "1db388e82382e52b1381ed0c82e233d88aa4caa6e0a41548c29e8f25bbca5553",
       "tasks.md": "44893f86a3aa44c9416116dcf759cae1ce879687dbd2c3d9c66d42d519c23a1f",
       "implementation-summary.md": "83c4a498a91a79ea82dd22e0e54f4238bb77bb1aebbe9e94a903970b933f2fd8"

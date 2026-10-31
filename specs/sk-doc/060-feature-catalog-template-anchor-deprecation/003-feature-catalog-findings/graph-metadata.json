@@ -191,7 +191,7 @@
     ],
     "causal_summary": "`validatecatalogpackage.py` reported 761 findings: 303 off-taxonomy validation types, 110 packet-history lines, 166 root and leaf title or description mismatches, 91 plain-text root rows, 23 orphan leaves, 44 missing prose paths, 20 missing source paths and 4 unshipped labels on shipped features",
     "created_at": "2026-10-10T19:23:28Z",
-    "last_save_at": "2026-10-31T13:26:04.160Z",
+    "last_save_at": "2026-10-31T14:01:54.928Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,7 +202,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:928ba078af601cdfeec508170f047a3cfc04e5a1c1ae2109da79c18b0c5cf059",
+    "source_fingerprint": "sha256:4cc7f52f7035ae40ac24daaddec15b5f1d6f76233b8f2bdf1a4b0c17c503aba0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a0772157a2614a4b19bcf4d9be0b3a830bd04bbcc69975c38f96c552c815c591",

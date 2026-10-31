@@ -9,7 +9,7 @@
   "specId": "045",
   "folderSlug": "deem-live-runs",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,

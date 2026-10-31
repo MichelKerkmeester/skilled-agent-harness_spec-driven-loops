@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/001-cli-jev-creation/003-hub-mode-registration"
+    packet_pointer: "cli-classifier/001-cli-jev-creation/003-hub-mode-registration"
     last_updated_at: "2026-09-20T10:20:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Closed the registration criteria against the re-run gates"
@@ -37,7 +37,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** cli-jev/001-cli-jev-creation/003-hub-mode-registration
+**Packet:** cli-classifier/001-cli-jev-creation/003-hub-mode-registration
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-09-20

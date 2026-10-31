@@ -11,15 +11,15 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/040-hard-rules-sidecar"
     last_updated_at: "2026-09-30T18:29:21Z"
     last_updated_by: "markdown-leaf"
     recent_action: "Ticked all five criteria from the build's evidence and recorded the closure"
     next_safe_action: "None. The orchestrator commits the build and the phase docs path-scoped"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar/plan.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/040-hard-rules-sidecar/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/040-hard-rules-sidecar/plan.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-040-hard-rules-sidecar"

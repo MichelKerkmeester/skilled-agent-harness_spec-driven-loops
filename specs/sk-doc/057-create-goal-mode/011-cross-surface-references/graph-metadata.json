@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The mode was reachable, yet a reader of the root README, the sk-doc hub README, the `@markdown` agent or the sk-doc feature catalog would not learn it exists, and the root README still counted fourteen modes",
     "created_at": "2026-09-26T11:32:28Z",
-    "last_save_at": "2026-10-31T13:26:00.386Z",
+    "last_save_at": "2026-10-31T14:01:51.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4af89fa3ff32c63534e9eb4a2bafbdcfadd8c403f7f0fb01a0c773b5cab84678",
+    "source_fingerprint": "sha256:aa1b30f0e998fdf76ec32b18e9aa62cd647809daf91242198dc22c4e0a397c8f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6f5be4c7358b6672c688c52164c759e8069d774dfe1ea50a8bec31089d604ae7",
+      "spec.md": "ec0a46b41213fc651528e2693c9954b6bae6a4038641edd1c3472578c46ce6d5",
       "plan.md": "a930b01109ec7445438f8607286be3d05db8995c9fab561c1782dc58cf777baa",
-      "tasks.md": "989b0735196c2e58e4c8d85c6f668bc11e066b4a2eafc86d733fcd2f5f6add9d",
-      "implementation-summary.md": "ca4d9608f64eec93153e73c8591cc34f346114bab63a0c6371b6604af58e02b2"
+      "tasks.md": "fb6c675778bc6f5b92e7943131df200387e904966db13e5da1b36c9926dc5222",
+      "implementation-summary.md": "052f9843374be306856ab81e987644dae32e2b5f3067774f65c9691a5c6d6c37"
     },
     "last_active_at": null
   }

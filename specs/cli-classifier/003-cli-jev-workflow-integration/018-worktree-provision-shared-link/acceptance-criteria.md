@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/018-worktree-provision-shared-link"
     last_updated_at: "2026-09-27T13:30:00Z"
     last_updated_by: "build-018"
     recent_action: "Recorded the approved sk-doc repair and closed every criterion"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link
+**Packet:** cli-classifier/003-cli-jev-workflow-integration/018-worktree-provision-shared-link
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-27

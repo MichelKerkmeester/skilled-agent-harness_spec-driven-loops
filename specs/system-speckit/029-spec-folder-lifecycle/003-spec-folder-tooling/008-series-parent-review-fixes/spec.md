@@ -96,7 +96,7 @@ The rule reads the same everywhere, its recipe runs as written, and the listing 
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts` | Modify | ESC and sub-folder tests |
 | `.skilled/commands/deep/assets/deep-review-auto.yaml` | Modify | Pass `reasoningEffort` to cli-pi |
 | `.skilled/commands/deep/assets/deep-research-auto.yaml` | Modify | Pass `reasoningEffort` to cli-pi |
-| `specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/` | Modify | Tasks summary, AC continuity, scope table |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/` | Modify | Tasks summary, AC continuity, scope table |
 | `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` | Regenerate | Rebuilt from committed content |
 
 Any other doc the repo-wide sweep finds with the same defect is in scope for the same one-line fix.

@@ -59,7 +59,7 @@ This is **Phase 2** of `agents/021-doctor-agents-md`.
 **Scope Boundary**: One read-only routing command, its matcher, its two suites and its plumbing. It adds no children and no writing workflow.
 
 **Dependencies**:
-- `/doctor:sk-skill` (packet `sk-doc/075-doctor-sk-skill-command`) must be on `main` before implementation starts, and every phrase, route, bridge and mirror count is re-measured then. Its own route and bridge shift the counts this packet quotes.
+- `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) must be on `main` before implementation starts, and every phrase, route, bridge and mirror count is re-measured then. Its own route and bridge shift the counts this packet quotes.
 - The route manifest `_routes.yaml` is the only phrase table; the packet adds no second one.
 
 **Deliverables**:
@@ -80,7 +80,7 @@ The doctor family now carries twenty routes across twelve commands, and the only
 Give the family one read-only command that takes a problem in plain words and ranks the doctor commands that fit, with the class and the reason on every line. A read-only pick runs in place; a writing pick is printed as a line for the operator to run, so each writer's own plan and yes still govern its change.
 
 ### Precondition
-Implementation starts only after `/doctor:sk-skill` (packet `sk-doc/075-doctor-sk-skill-command`) lands on `main`. That command adds a router, a route and an advisor bridge, so the route, bridge, phrase and mirror counts this packet quotes are re-measured from the branch the packet starts on, and recorded in `scratch/baseline.txt` before the first edit. This packet shares those counts with the sibling phase, so whichever lands second rebases them.
+Implementation starts only after `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) lands on `main`. That command adds a router, a route and an advisor bridge, so the route, bridge, phrase and mirror counts this packet quotes are re-measured from the branch the packet starts on, and recorded in `scratch/baseline.txt` before the first edit. This packet shares those counts with the sibling phase, so whichever lands second rebases them.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

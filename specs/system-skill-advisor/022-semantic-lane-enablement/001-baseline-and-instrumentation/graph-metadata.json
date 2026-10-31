@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Three numbers this packet is built on are either unmeasured or wrong",
     "created_at": "2026-09-02T22:17:10Z",
-    "last_save_at": "2026-10-31T13:26:10.993Z",
+    "last_save_at": "2026-10-31T13:46:58.588Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "acceptance-criteria.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:52ac1d5c066d0a02760753f378b97d0208d656cd4cf513f47e65148d5b4d4af6",
+    "source_fingerprint": "sha256:91210dac2776d36590186600f7596dd1737b5180045cd7c2736391685f179f5a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9a806287151b22785642e507b225cc471dec29c6141dcecf360f5080706f50d4",

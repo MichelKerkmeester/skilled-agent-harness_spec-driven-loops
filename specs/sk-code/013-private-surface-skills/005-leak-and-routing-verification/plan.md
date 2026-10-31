@@ -213,7 +213,7 @@ git -C "$CLONE" ls-files -- ':!specs/**' | grep -c -E "local-(webflow|obsidian)|
 git -C "$CLONE" ls-files | grep -E "local-(webflow|obsidian)|sk-code-(webflow|obsidian)" | grep -c -E '^specs/' || echo 0   # expect 108 retained
 ```
 
-The `specs/` exclusion is deliberate: 108 tracked paths under `specs/` carry one of the four names - 98 under `specs/sk-code/007-sk-code-obsidian-surface/`, 6 under `specs/sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/` and 4 under `specs/system-speckit/033-system-speckit-v4/` - and D6 keeps those dated audit records. They are counted separately so they never stand in for a live leak.
+The `specs/` exclusion is deliberate: 108 tracked paths under `specs/` carry one of the four names - 98 under `specs/sk-code/007-sk-code-obsidian-surface/`, 6 under `specs/sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/` and 4 under `specs/system-speckit/031-system-speckit-v4/` - and D6 keeps those dated audit records. They are counted separately so they never stand in for a live leak.
 
 Section B, tracked content:
 

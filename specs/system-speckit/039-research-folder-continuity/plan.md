@@ -76,7 +76,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-`save-continuity-write.vitest.ts` covers the writer end to end. The red proof ran the two new cases against the unfixed `workflow.ts` and got 1 failed, 16 passed, exit 1, with the research case failing (`specs/system-speckit/052-research-folder-continuity/scratch/before/vitest-new-test-on-old-code.txt`). The green run against the fixed writer got 17 of 17 with exit 0 (`specs/system-speckit/052-research-folder-continuity/scratch/after/vitest.txt`).
+`save-continuity-write.vitest.ts` covers the writer end to end. The red proof ran the two new cases against the unfixed `workflow.ts` and got 1 failed, 16 passed, exit 1, with the research case failing (`specs/system-speckit/039-research-folder-continuity/scratch/before/vitest-new-test-on-old-code.txt`). The green run against the fixed writer got 17 of 17 with exit 0 (`specs/system-speckit/039-research-folder-continuity/scratch/after/vitest.txt`).
 <!-- /ANCHOR:testing -->
 
 ---

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/048-doctor-command-audit/003-update"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update"
     last_updated_at: "2026-10-02T23:12:59Z"
     last_updated_by: "implementation"
     recent_action: "Split rebuild to /doctor:rebuild; shipped release updater"
@@ -125,7 +125,7 @@ The engine's write path was not exercised against the live checkout; its apply, 
 | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/commands/doctor/update.md --type command` and the same for `rebuild.md` | `VALID`, 0 issues each (re-run at close-out) |
 | `python3 yaml.safe_load` on `doctor-rebuild.yaml`, `doctor-update-check.yaml`, `doctor-update-align.yaml` and `doctor-update-apply.yaml` | `YAML_OK` for each (re-run at close-out) |
 | codex, pi and hermes `sync-prompts --check`; `sync-runtime-mirrors.cjs --check` | `PASS: 34 prompts are in sync` each; `PASS: 174 mirrors across 8 trees are in sync` (re-run at close-out) |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/048-doctor-command-audit/003-update --strict` | `RESULT: PASSED` — Summary: Errors: 0, Warnings: 0 (re-run at close-out) |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update --strict` | `RESULT: PASSED` — Summary: Errors: 0, Warnings: 0 (re-run at close-out) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -140,7 +140,7 @@ The engine's write path was not exercised against the live checkout; its apply, 
 5. **The mutation-class gate's manifest lives inside `doctor-mcp-install.yaml`.** Recorded in phase 001; the gate's coverage stays coupled to that workflow.
 6. **The phase context keeps the audit's original framing.** The close-out revised the problem, purpose, scope and requirements; the Phase Context scope boundary still describes `/doctor:update` as it stood when the phase opened.
 
-**Follow-up status.** Item 1 is resolved by `specs/system-speckit/049-doctor-audit-followups` phase 002: an update-only apply no longer needs an alignment run. Item 3 is narrowed by the same phase: generator output is its own `generated` class and `record-base` records a base, with the remaining limits recorded there. Item 4 is resolved by `specs/system-deep-loop/038-review-and-cli-lineage/004-read-only-and-research-bookkeeping`. Items 5 and 6 are resolved by `specs/system-speckit/049-doctor-audit-followups` phase 003: a guard-owned manifest, and a rewritten Phase Context. Item 2 stands by design: a live apply would rewrite this checkout to a release, so the engine is exercised against disposable fixtures.
+**Follow-up status.** Item 1 is resolved by `specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups` phase 002: an update-only apply no longer needs an alignment run. Item 3 is narrowed by the same phase: generator output is its own `generated` class and `record-base` records a base, with the remaining limits recorded there. Item 4 is resolved by `specs/system-deep-loop/038-review-and-cli-lineage/004-read-only-and-research-bookkeeping`. Items 5 and 6 are resolved by `specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups` phase 003: a guard-owned manifest, and a rewritten Phase Context. Item 2 stands by design: a live apply would rewrite this checkout to a release, so the engine is exercised against disposable fixtures.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -38,6 +38,8 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "specs/sk-doc/056-changelog-system/003-skilled-release-changelog/001-release-line-split/implementation-summary.md",
+      "specs/sk-doc/056-changelog-system/003-skilled-release-changelog/002-changelog-findability/spec.md",
       "runtime/cli/spec-folder/nested-changelog.ts",
       "references/workflows/nested-changelog.md",
       ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
@@ -135,18 +137,18 @@
     ],
     "causal_summary": "The system-spec-kit changelog was serving as the repository's global release notes",
     "created_at": "2026-09-27T12:01:28Z",
-    "last_save_at": "2026-10-31T13:25:57.349Z",
+    "last_save_at": "2026-10-31T13:41:22.476Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b75dcd59312126caaf840b6a80c706e9d52f02e524e7554ea016389bbc377c02",
+    "source_fingerprint": "sha256:6c4b9d9f2117215cc0793dd6c8fa5ccd82e482912afdc35c840438636f6b8911",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fdefd68981b06524517bc0be996b359a24defe102045ed5c70047cd815ceb351"
+      "spec.md": "743898aa0a0c1c279eb17a819f43216917e1c62493a2415e4ceabfbad28d0e4d"
     },
-    "last_active_child_id": "sk-doc/061-skilled-release-changelog/003-adjacent-alignment",
+    "last_active_child_id": "sk-doc/056-changelog-system/003-skilled-release-changelog/003-adjacent-alignment",
     "last_active_at": "2026-09-27T18:56:10.146Z"
   }
 }

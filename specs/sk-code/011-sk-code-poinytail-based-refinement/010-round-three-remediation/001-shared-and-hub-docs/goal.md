@@ -92,6 +92,6 @@ and findings belong here.
 | Doc-claims checker | `verify_doc_claims.cjs` ends at 3/4. The only hits left are the four `ROUTER.md:605` tier hits are a checker misreading, proved by a temp copy whose bullet no longer names `shared/` passing the `tiers` check. Child 005 owns the checker |
 | Superseded plan checks | REQ-004 now holds in `sk-code-skilled/references/shared/workflow-guardrails.md` (the orchestrator amends spec REQ-004). T039 and T103 print MISSING under `check-unit.cjs` because T164 and T167 rewrote the same text, and the T125 count of `validation-rules.md` in `workflow-verify.md` is 0 because the pointer moved to `workflow-guardrails.md` |
 | Criterion 1 amended 2026-10-11 | A later phase added one routed link to the shared docs, so the checker reads 128 links, all resolving |
-| Criterion 4 amended 2026-10-11 | The sk-code-skilled scripts were renamed to kebab-case by `sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file |
+| Criterion 4 amended 2026-10-11 | The sk-code-skilled scripts were renamed to kebab-case by `sk-doc/060-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file |
 | Criterion 5 amended 2026-10-11 | The hub moved past 2.2.5.0 in later phases, so the six carriers no longer read it. The release entry still exists and is valid, and the doctor check 13a proves the six carriers agree on the current version |
 <!-- /ANCHOR:log -->

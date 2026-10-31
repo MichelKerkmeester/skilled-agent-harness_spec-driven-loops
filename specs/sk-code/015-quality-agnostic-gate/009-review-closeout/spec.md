@@ -45,7 +45,7 @@ This is **Phase 9** of the Make sk-code-quality a codebase-agnostic, executable 
 **Dependencies**:
 - Phases 001 to 008 are Complete. This phase edits files they created: `quality-gate.cjs`, its tests and `runner-contract.md` from 002, `quality-config.md`, `configured-checks.test.cjs` and the doctor script from 003, the @code agent from 005, and the 006 records.
 - `quality-gate.cjs` is edited by three requirements. REQ-001, REQ-002 and REQ-003 run in that order, one after the other, so no two lanes edit the file at once.
-- `specs/system-speckit/053-ci-workflow-efficiency/goal.md` belongs to another packet. REQ-008 edits one criterion and its amendment row there and nothing else.
+- `specs/system-speckit/040-ci-workflow-efficiency/goal.md` belongs to another packet. REQ-008 edits one criterion and its amendment row there and nothing else.
 
 **Deliverables**:
 - The scoped outside-skill fault rule and the `config.warnings` array.
@@ -111,7 +111,7 @@ The gate errors only on faults that affect the files it checks, runs a repositor
 | `specs/sk-code/015-quality-agnostic-gate/00[1-8]-*/decision-record.md`, `implementation-summary.md`, `spec.md`, `acceptance-criteria.md` | Edit | REQ-006 | The operator confirmation of 2026-10-26 on every decision that waited for it, and the 005 outside-skill fault rule marked amended by this phase |
 | `specs/sk-code/015-quality-agnostic-gate/006-measurement/acceptance-criteria.md`, `006-measurement/spec.md` | Edit | REQ-007 | AC-021 restored to a scope check, and NFR-P01 labelled a reference-machine figure with five runs |
 | `.skilled/skills/sk-code/benchmark/README.md` | Edit | REQ-007 | Folders dated before the renderer are legacy, and `--check` does not apply to them |
-| `specs/system-speckit/053-ci-workflow-efficiency/goal.md` | Edit | REQ-008 | Criterion 3 excludes only the CodeQL workflow's `dynamic` runs, by workflow name |
+| `specs/system-speckit/040-ci-workflow-efficiency/goal.md` | Edit | REQ-008 | Criterion 3 excludes only the CodeQL workflow's `dynamic` runs, by workflow name |
 | `specs/sk-code/015-quality-agnostic-gate/spec.md` | Edit | REQ-009 | The four UNKNOWN rule sources, the phase count in the purpose line, and the confirmed ADR statuses |
 | `.skilled/skills/sk-code/SKILL.md`, `description.json`, `mode-registry.json`, `hub-router.json`, `README.md`, `.skilled/skills/sk-code/sk-code-quality/SKILL.md`, `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` | Edit | REQ-010 | Version bumps at the numbers the conductor picks |
 | `.skilled/skills/sk-code/changelog/`, `.skilled/skills/sk-code/sk-code-quality/changelog/`, `.skilled/skills/sk-code/sk-code-skilled/changelog/` | Create | REQ-010 | One entry per changed skill packet |
@@ -142,7 +142,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-005 | The @code agent's QUALITY step names the runner by the loaded sk-code skill's location, not by a `.skilled/...` path relative to the repository root, so the step works in a repository with no `.skilled/` tree. The source agent and each runtime mirror carry the same wording, and the mirror check passes. |
 | REQ-006 | Every decision in phases 001 to 008 that waited for operator confirmation records the confirmation of 2026-10-26, in that phase's `decision-record.md`, `implementation-summary.md`, `spec.md` and `acceptance-criteria.md` wherever the pending wording appears. The 005 decision on outside-skill faults is marked amended by this phase, with REQ-001 as the new rule. |
 | REQ-007 | 006 AC-021 is a scope check again: the files 006's commits changed, from `git diff --name-only` over 006's commit range, are compared with the files-to-change list in 006 `plan.md`. 006 `spec.md` NFR-P01 is labelled a reference-machine figure measured over five runs. `.skilled/skills/sk-code/benchmark/README.md` says that report folders dated before the renderer are legacy and that `--check` does not apply to them. |
-| REQ-008 | Completion criterion 3 in `specs/system-speckit/053-ci-workflow-efficiency/goal.md` leaves out only the `dynamic` runs of the CodeQL workflow, matched by workflow name, rather than every `dynamic` run. Its amendment note says so. |
+| REQ-008 | Completion criterion 3 in `specs/system-speckit/040-ci-workflow-efficiency/goal.md` leaves out only the `dynamic` runs of the CodeQL workflow, matched by workflow name, rather than every `dynamic` run. Its amendment note says so. |
 | REQ-009 | The parent `spec.md` ADR-001 decision names all four rule sources an UNKNOWN surface gets, as `phase-detection.md` Iron Law 3 lists them: the universal floor, the runner's built-in checks, the quality mode's surface-neutral checklists the runner lists, and the checks the repository's quality config names. The purpose line names the phases that exist rather than seven. Every ADR status in parent section 5 reads `Accepted, confirmed by the operator 2026-10-26`, and the section says none was reversed. |
 | REQ-010 | Each skill packet this phase touches, the sk-code hub, sk-code-quality and sk-code-skilled, carries a version bump and a changelog entry, and the packet changelog exists at landing. The conductor picks the numbers. |
 

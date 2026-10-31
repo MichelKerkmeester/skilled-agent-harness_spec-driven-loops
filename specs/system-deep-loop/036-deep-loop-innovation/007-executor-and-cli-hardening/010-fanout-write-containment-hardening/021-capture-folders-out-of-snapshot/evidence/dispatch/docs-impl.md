@@ -36,7 +36,7 @@ DOC RULES (all must hold in the target file)
 - Use the REQ, AC and T ids exactly as listed in evidence.md.
 
 STEP 1 - fill specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/implementation-summary.md
-Shape model (read-only): specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md
+Shape model (read-only): specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md
 - Title in frontmatter and H1: "Implementation Summary: Capture Folders out of the Containment Snapshot".
 - Frontmatter _memory.continuity: packet_pointer "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot",
   last_updated_at "2026-09-23T20:30:00Z", last_updated_by "cli-pi mimo-v2.6-pro (orchestrated)",

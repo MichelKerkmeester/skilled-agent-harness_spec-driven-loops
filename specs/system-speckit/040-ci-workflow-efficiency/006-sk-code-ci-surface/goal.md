@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface"
+    packet_pointer: "system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface"
     last_updated_at: "2026-10-24T22:10:00Z"
     last_updated_by: "markdown"
     recent_action: "Closed the goal: all criteria ticked"

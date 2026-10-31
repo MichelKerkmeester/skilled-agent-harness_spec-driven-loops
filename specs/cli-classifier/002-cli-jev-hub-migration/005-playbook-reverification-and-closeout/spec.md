@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout"
+    packet_pointer: "cli-classifier/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout"
     last_updated_at: "2026-09-20T16:30:00Z"
     last_updated_by: "orchestrator-session"
     recent_action: "Phase specification authored at closeout from the landed re-run"

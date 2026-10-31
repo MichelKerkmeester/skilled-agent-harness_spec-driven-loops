@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/050-sk-doc-playbook-coverage/003-meta-and-quality"
+    packet_pointer: "sk-doc/050-playbook-coverage-and-sync/001-sk-doc-playbook-coverage/003-meta-and-quality"
     last_updated_at: "2026-10-03T12:00:00Z"
     last_updated_by: "spec-validation-backfill"
     recent_action: "Closed the phase from commit ad9d93df3be, which added the three playbook packages"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/050-sk-doc-playbook-coverage/003-meta-and-quality
+**Packet:** sk-doc/050-playbook-coverage-and-sync/001-sk-doc-playbook-coverage/003-meta-and-quality
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-10-03

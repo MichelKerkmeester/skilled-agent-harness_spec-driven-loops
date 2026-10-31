@@ -17,7 +17,7 @@
   "folderSlug": "open-items-research",
   "parentChain": [
     "system-speckit",
-    "033-system-speckit-v4",
+    "031-system-speckit-v4",
     "038-goal-unification"
   ],
   "memorySequence": 0,

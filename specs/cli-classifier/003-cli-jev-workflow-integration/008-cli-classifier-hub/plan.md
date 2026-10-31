@@ -116,7 +116,7 @@ Commands run from the repository root, with `H=.skilled/skills/cli-classifier` a
 | Live smoke (orchestrator only) | `node $C health` | Exit 0 with `torch`, `deem-0.8-v1` and the pair `8cbabbb` and `6755b30`, or the pair `deem-ctl status` prints after a later release |
 | Hermes copies | `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` | `PASS`, exit 0, with `.hermes/skills/cli-classifier/SKILL.md` and `.hermes/skills/cli-deem/SKILL.md` present |
 | Scope | `git status --porcelain` and `git diff --stat -- .skilled/skills/cli-jev` | Only the hub, this phase folder and the generated files `spec.md` REQ-008 names. The `cli-jev` diff is empty |
-| Phase docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub --strict` | `RESULT: PASSED` |
+| Phase docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-classifier/003-cli-jev-workflow-integration/008-cli-classifier-hub --strict` | `RESULT: PASSED` |
 <!-- /ANCHOR:testing -->
 
 ---

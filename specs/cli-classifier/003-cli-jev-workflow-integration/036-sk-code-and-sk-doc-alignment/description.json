@@ -59,7 +59,7 @@
   "specId": "036",
   "folderSlug": "sk-code-and-sk-doc-alignment",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,

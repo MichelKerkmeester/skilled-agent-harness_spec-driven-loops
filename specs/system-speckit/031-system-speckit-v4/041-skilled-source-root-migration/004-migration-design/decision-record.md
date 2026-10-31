@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/004-migration-design"
+    packet_pointer: "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/004-migration-design"
     last_updated_at: "2026-09-16T22:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Accepted ADR-001 to ADR-003 after the GPT-5.6 review"

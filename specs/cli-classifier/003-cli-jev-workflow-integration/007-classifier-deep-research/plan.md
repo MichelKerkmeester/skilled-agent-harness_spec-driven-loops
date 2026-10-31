@@ -84,7 +84,7 @@ From the worktree root, backgrounded, after `export PI_BLACKHOLE_PASSIVE=true`:
 
 ```
 /deep:research:auto "<topic from scratch/research-topic.txt>"
-  --spec-folder=specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research
+  --spec-folder=specs/cli-classifier/003-cli-jev-workflow-integration/007-classifier-deep-research
   --max-iterations=10 --stop-policy=max-iterations --convergence-mode=off --concurrency=5
   --executor=cli-cursor --model=grok-4.7-xhigh-fast --iters=10 --label=grok
   --executor=cli-pi --model=deepseek-v4.1-flash --reasoning-effort=max --iters=10 --label=deepseek

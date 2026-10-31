@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/062-doc-validation-off-switches"
+    packet_pointer: "sk-doc/058-doc-validation-off-switches"
     last_updated_at: "2026-09-28T11:08:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Made every reader of hook-flags.env drop a comment after a value"

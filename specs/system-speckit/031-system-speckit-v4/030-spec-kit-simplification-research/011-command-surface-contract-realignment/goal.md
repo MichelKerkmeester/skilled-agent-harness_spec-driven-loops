@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/011-command-surface-contract-realignment"
+    packet_pointer: "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/011-command-surface-contract-realignment"
     last_updated_at: "2026-09-07T03:45:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Closed every criterion"

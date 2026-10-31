@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/001-hook-adapter-thin-transports"
+    packet_pointer: "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/001-hook-adapter-thin-transports"
     last_updated_at: "2026-09-07T18:20:00Z"
     last_updated_by: "scaffold"
     recent_action: "Marked every criterion met with the evidence observed"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/032-recorded-findings-closure/001-hook-adapter-thin-transports
+**Packet:** system-speckit/031-system-speckit-v4/032-recorded-findings-closure/001-hook-adapter-thin-transports
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-07

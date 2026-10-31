@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/059-phase-map-sync-normalization"
+    packet_pointer: "system-speckit/031-system-speckit-v4/059-phase-map-sync-normalization"
     last_updated_at: "2026-09-24T05:55:05Z"
     last_updated_by: "generate-context"
     recent_action: "Made the phase-map sync tool report instead of rewrite"

@@ -45,7 +45,7 @@ Execute a structured, multi-pass refinement of the root `README.md`. First, corr
 - [ ] `README.md` updated with all 10 requirements fulfilled
 - [ ] `validate_document.py README.md` passes with exit 0 and zero issues
 - [ ] `hvr_scan.py README.md` reports 0 hard semicolons and 0 hard word blockers
-- [ ] `validate.sh specs/system-speckit/033-system-speckit-v4/043-v4-root-readme --strict` passes with `RESULT: PASSED`
+- [ ] `validate.sh specs/system-speckit/031-system-speckit-v4/043-v4-root-readme --strict` passes with `RESULT: PASSED`
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -76,8 +76,8 @@ Readers navigate progressively from high-level tagline and overview to quick sta
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `README.md` | Root orientation and entry point | Structural, factual, and linguistic cleanup | `validate_document.py`, `hvr_scan.py` |
-| `specs/system-speckit/033-system-speckit-v4/spec.md` | Parent phase coordination | Update Phase 43 map row and handoff criteria | `validate.sh ../ --strict` |
-| `specs/system-speckit/033-system-speckit-v4/043-v4-root-readme/*` | Phase 43 specification packet | Author and complete Level 2 artifacts | `validate.sh . --strict` |
+| `specs/system-speckit/031-system-speckit-v4/spec.md` | Parent phase coordination | Update Phase 43 map row and handoff criteria | `validate.sh ../ --strict` |
+| `specs/system-speckit/031-system-speckit-v4/043-v4-root-readme/*` | Phase 43 specification packet | Author and complete Level 2 artifacts | `validate.sh . --strict` |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---

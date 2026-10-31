@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/052-routing-completeness/001-transport-and-baseline"
+    packet_pointer: "sk-doc/051-hub-routing-quality/001-routing-completeness/001-transport-and-baseline"
     last_updated_at: "2026-09-02T18:00:00Z"
     last_updated_by: "phase-1-transport-and-baseline"
     recent_action: "Authored the phase impl-summary from packet docs and git"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Packet** | sk-doc/052-routing-completeness/001-transport-and-baseline |
+| **Packet** | sk-doc/051-hub-routing-quality/001-routing-completeness/001-transport-and-baseline |
 | **Level** | 3 |
 | **Status** | Complete |
 | **Delivery** | Shipped. The parent goal LOG records this phase Done |
@@ -145,7 +145,7 @@ AC-003 in `acceptance-criteria.md`, all of which read Met.
 | `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"refactor the auth module"}' --format json` | Returns confidence `0.8200` with score near `0.51`, which is the floor demonstrated on an unrelated prompt |
 | Read of `fusion.ts` line 749 | Command, intent and conflict adjustments are applied before rank fusion, so `score` alone is not the sort key |
 | Daemon cold-start check for the Gate 2 fallback | Stopping the daemon and issuing one `skill-advisor.cjs` call self-started it and answered from the same scorer the hook uses |
-| `validate.sh specs/sk-doc/052-routing-completeness --strict --recursive` | PASS for this folder, Errors 0 |
+| `validate.sh specs/sk-doc/051-hub-routing-quality/001-routing-completeness --strict --recursive` | PASS for this folder, Errors 0 |
 | `hvr_scan.py` on this document | 0 hard blockers |
 <!-- /ANCHOR:verification -->
 

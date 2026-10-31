@@ -52,6 +52,10 @@
       ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
       ".skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
       ".skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md",
+      "specs/cli-classifier/001-cli-jev-creation/spec.md",
+      "specs/cli-classifier/001-cli-jev-creation/goal.md",
+      "specs/cli-classifier/001-cli-jev-creation/004-catalog-and-playbook/spec.md",
+      "specs/cli-classifier/001-cli-jev-creation/004-catalog-and-playbook/plan.md",
       "feature-catalog/feature-catalog.md",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh"
@@ -204,7 +208,7 @@
     ],
     "causal_summary": "The mode is registered, routed and guarded, but the documents a reader consults first were written before it existed",
     "created_at": "2026-09-20T07:39:08Z",
-    "last_save_at": "2026-10-31T13:25:26.821Z",
+    "last_save_at": "2026-10-31T14:03:47.243Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fe33481f708aceb670fb375e7619db87a79986d9ab50f18de31c74c24861a2ca",
+    "source_fingerprint": "sha256:90d27af7f9f033f7083734611fcdd847447423693c93204984f4dcc793265659",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c6572ebd721997e129d86759df89d993a56309cf0c21fa558a74ee9e64cb13d2",
+      "spec.md": "0e37e3579ee8b21108df0f4de916266aa677052623850e6a639a99f3b156476e",
       "plan.md": "8416999d74c813990dc91b1a03d33fa73547154fd242278356d2ed0c9cdc92d1",
       "tasks.md": "3b09485ae7dfcc431ba330c59ca40bae88040a8af58f5a93bbe47be4c54baa1b",
-      "implementation-summary.md": "6e95f8eb36c3091c9d81da5e0fbfb210102e9134369bed100fd07dc930dced97"
+      "implementation-summary.md": "4fd5b2047e16da66e4a5ab998c64ae38e22377e77fc7d47ec0b664e5de3b28f6"
     },
     "last_active_at": null
   }

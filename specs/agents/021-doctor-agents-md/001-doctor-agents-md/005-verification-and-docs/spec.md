@@ -57,7 +57,7 @@ This is **Phase 5** of the `/doctor:agents-md` build inside `agents/021-doctor-a
 **Scope Boundary**: The end-to-end pass, the two manual rows and the documentation rows. It changes no engine and no route.
 
 **Dependencies**:
-- `/doctor:sk-skill` (packet `sk-doc/075-doctor-sk-skill-command`) must be on `main` before implementation starts, and every phrase, route, bridge and mirror count is re-measured then.
+- `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) must be on `main` before implementation starts, and every phrase, route, bridge and mirror count is re-measured then.
 - Children 001 to 004 must be complete, because this child proves their work from the final tree.
 
 **Deliverables**:
@@ -77,7 +77,7 @@ The engines can each pass their own suite and still fail together: a check that 
 Prove the pair together on every fixture, record the two manual answers, and leave the family's docs naming the new engines, the new command and the two manual rows.
 
 ### Precondition
-Implementation starts only after `/doctor:sk-skill` (packet `sk-doc/075-doctor-sk-skill-command`) lands on `main`. That command adds a router, a route and an advisor bridge, so the route, bridge, phrase and mirror counts this packet quotes are re-measured from the branch the child starts on, and recorded in `scratch/baseline.txt` before the first edit.
+Implementation starts only after `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) lands on `main`. That command adds a router, a route and an advisor bridge, so the route, bridge, phrase and mirror counts this packet quotes are re-measured from the branch the child starts on, and recorded in `scratch/baseline.txt` before the first edit.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/010-trigger-index-ci-rebuild"
     last_updated_at: "2026-10-10T05:59:39Z"
     last_updated_by: "claude-haiku-5-5"
     recent_action: "Closed phase 010 with CI and actionlint evidence"

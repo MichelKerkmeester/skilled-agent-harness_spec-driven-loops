@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/021-advisor-suite-drift-reconciliation"
+    packet_pointer: "system-skill-advisor/019-advisor-test-drift/002-advisor-suite-drift-reconciliation"
     last_updated_at: "2026-08-15T17:14:48Z"
     last_updated_by: "claude-code"
     recent_action: "LUNA-MAX reconciled 6 clusters; default suite 40->4 failures; diff reviewed clean"

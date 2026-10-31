@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/031-memory-reindex-embed-performance"
+    packet_pointer: "system-speckit/030-memory-reindex-embed-performance"
     last_updated_at: "2026-07-23T17:10:53Z"
     last_updated_by: "orchestrator"
     recent_action: "Extended REQ-010 limitation framing to cover refresh/clear per deep-review P1"
@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts"
       - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-ingest.ts"
-      - ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/research.md"
+      - ".opencode/specs/system-speckit/030-memory-reindex-embed-performance/research/research.md"
       - ".opencode/skills/system-spec-kit/mcp-server/tests/handler-memory-index.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -44,7 +44,7 @@ throughput (REQ-001–REQ-005) — has NOT started. The packet as a whole is NOT
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 031-memory-reindex-embed-performance |
+| **Spec Folder** | 030-memory-reindex-embed-performance |
 | **Sub-scopes Completed** | 2026-07-22 (scan write-back fix, REQ-006); 2026-07-23 (daemon/startup/MCP hardening, REQ-007..011) |
 | **Level** | 2 |
 | **Packet Status** | In progress — see spec.md METADATA |
@@ -72,9 +72,9 @@ in the same pass.
 | `.opencode/skills/system-spec-kit/mcp-server/context-server.ts` | Modified | `startupScan()` and the file-watcher `reindexFn` now pass `{ fromScan: true }` to `indexSingleFile`, closing the P0 gap an independent review found |
 | `.opencode/skills/system-spec-kit/mcp-server/tests/handler-memory-index.vitest.ts` | Modified | Added `createSchemaBackedDb()` helper (now leak-free — returns `{ database, dbDir }` for cleanup), `loadRealMemorySaveWriteBackHarness()`, and a 2-test regression suite (`persistQualityLoopContent scan-origin write-back gating`) |
 | `.opencode/skills/system-spec-kit/mcp-server/tests/context-server.vitest.ts` | Modified | Relaxed the `T47d` source-pattern regex, which hardcoded the old 2-argument `indexSingleFile` call shape and broke when the P0 fix added a third argument |
-| `.opencode/specs/system-speckit/031-memory-reindex-embed-performance/spec.md` | Modified | Added REQ-006 (covering all scan-like call sites, not just the explicit force-reindex path), scope addendum, answered/still-open questions, Level 1→2 |
-| `.opencode/specs/system-speckit/031-memory-reindex-embed-performance/handover.md` | Modified | Marked the critical-bug section fixed with evidence, including the review-found gap; preserved the unresolved folder-renumbering caveat |
-| `.opencode/specs/system-speckit/031-memory-reindex-embed-performance/{plan,tasks,checklist}.md` | Created/Modified | Level 2 documentation set, updated with the review findings and corrected overclaims |
+| `.opencode/specs/system-speckit/030-memory-reindex-embed-performance/spec.md` | Modified | Added REQ-006 (covering all scan-like call sites, not just the explicit force-reindex path), scope addendum, answered/still-open questions, Level 1→2 |
+| `.opencode/specs/system-speckit/030-memory-reindex-embed-performance/handover.md` | Modified | Marked the critical-bug section fixed with evidence, including the review-found gap; preserved the unresolved folder-renumbering caveat |
+| `.opencode/specs/system-speckit/030-memory-reindex-embed-performance/{plan,tasks,checklist}.md` | Created/Modified | Level 2 documentation set, updated with the review findings and corrected overclaims |
 <!-- /ANCHOR:what-built -->
 
 ---

@@ -1,5 +1,5 @@
 STEP 1 - fill P/plan.md (Level 2 implementation plan)
-Shape model (read-only): specs/system-speckit/033-system-speckit-v4/049-gate-3-delivery-residue/plan.md
+Shape model (read-only): specs/system-speckit/031-system-speckit-v4/049-gate-3-delivery-residue/plan.md
 - Title in frontmatter and H1: "Implementation Plan: CI Cleanup and Pi Gate-3 Live Proof".
 - Technical context: Markdown, JSON and TypeScript tests with Node CLI scripts. Framework: spec-kit, the skill
   advisor and the Pi CLI. Storage: None. Testing: vitest and the node check scripts in evidence.md.

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/037-advisor-daemon-memory"
+    packet_pointer: "system-skill-advisor/021-model-server-lifecycle/002-advisor-daemon-memory"
     last_updated_at: "2026-10-21T10:30:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialize phase-parent continuity block"
@@ -52,7 +52,7 @@ _memory:
 | **Created** | 2026-10-21 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | system-skill-advisor/037-advisor-daemon-memory |
+| **Parent Packet** | system-skill-advisor/021-model-server-lifecycle/002-advisor-daemon-memory |
 | **Predecessor** | 036-routing-and-launcher-hardening |
 | **Successor** | None |
 | **Handoff Criteria** | Both children are Complete or closed by a recorded no-go, and recursive strict validation prints `RESULT: PASSED`. |

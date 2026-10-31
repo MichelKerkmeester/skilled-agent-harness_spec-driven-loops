@@ -47,7 +47,8 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
-      "templates/spec-kit-docs.json"
+      "templates/spec-kit-docs.json",
+      "specs/system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/002-tasks-checklist-merge/spec.md"
     ],
     "entities": [
       {
@@ -197,7 +198,7 @@
     ],
     "causal_summary": "The merge that unified tasks and checklist recorded `Delete/retire` against `templates/addons/checklist.md.tmpl` and then kept it, along with its three worked examples",
     "created_at": "2026-08-30T04:40:40Z",
-    "last_save_at": "2026-10-31T13:26:33.795Z",
+    "last_save_at": "2026-10-31T13:58:33.756Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +208,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e786b1949e8c65ce61f5c2a36dc0c898d8a725958a71729b789ffa1393cf445",
+    "source_fingerprint": "sha256:c3d11749274171dbcd39a406157885d3b0ac758e9aa8a42a6fd4dd9900ecce2a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0b3e157d3667b5d11250a6d137de322b55021cd5f4a2fdbe5ac48dac19d2fb39",
+      "spec.md": "50611f0ad6845a65122139a3ef017c565b2bcbccb12cbdbe719c1a6c714e2643",
       "plan.md": "7067d56022220508b36dca84ab6d151ddba5c3cc92cd539ac85e9ccb2580f026",
-      "tasks.md": "8716212022d3d6f53bcbb784af6d4d3776ba23025a0afa4905eb19cb7812f1de",
+      "tasks.md": "6129b6e9c217902e84622a6d3244b62e53b3317817f4b7292d00f56ad9ba8ec7",
       "implementation-summary.md": "67844259663797e2502ef4f2e1a1f8715837583780fed402cdb9d91978ece3ff"
     },
     "last_active_child_id": null,

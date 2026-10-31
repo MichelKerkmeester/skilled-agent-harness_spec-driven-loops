@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire"
+    packet_pointer: "cli-classifier/002-cli-jev-hub-migration/003-decouple-and-rewire"
     last_updated_at: "2026-09-20T15:20:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Task list authored at closeout from the executed phase"
@@ -71,7 +71,7 @@ _memory:
 - [x] T014 Confirm the rewrite note needs no change: its supported-engine list is a deliberate seven-engine surface and never carried the transport (`commands/rewrite/response-by-external-agent.md`)
 - [x] T015 Reset the hub's release line to `0.1.0.0` by operator direction, rename the changelog by `git mv` and repoint its two links (`.skilled/skills/cli-jev/SKILL.md`, `ROUTER.md`, `description.json`, `hub-router.json`, `mode-registry.json`, `changelog/v0.1.0.0.md`, `README.md`)
 - [x] T016 Fix the old hub's remaining prose claims and re-mint its compiled manifest, copying the runtime manifest over the authored twin (`.skilled/skills/cli-external-orchestration/SKILL.md`, `README.md`, `.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json`)
-- [x] T017 Reconcile the documents that cite the renamed changelog or the moved packet: two phase-002 rows and the migrated packet's continuity `key_files` (`.skilled/skills/cli-jev/changelog/v0.1.0.0.md`, `specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/`, `specs/cli-jev/001-cli-jev-creation/spec.md`)
+- [x] T017 Reconcile the documents that cite the renamed changelog or the moved packet: two phase-002 rows and the migrated packet's continuity `key_files` (`.skilled/skills/cli-jev/changelog/v0.1.0.0.md`, `specs/cli-classifier/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/`, `specs/cli-classifier/001-cli-jev-creation/spec.md`)
 <!-- /ANCHOR:phase-2 -->
 
 ---

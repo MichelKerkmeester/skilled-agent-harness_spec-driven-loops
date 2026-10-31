@@ -129,7 +129,7 @@ Name `sk-create-goal` everywhere its siblings are named and bring every projecti
 
 - **SC-001**: `python3 -m unittest discover .skilled/commands/create/assets/tests` passes 13 of 13.
 - **SC-002**: `derive-command-bridges.cjs --check` reports `"status": "fresh"`.
-- **SC-003**: `validate.sh specs/sk-doc/060-create-goal-mode --recursive --strict` prints `RESULT: PASSED` for all 12 folders.
+- **SC-003**: `validate.sh specs/sk-doc/057-create-goal-mode --recursive --strict` prints `RESULT: PASSED` for all 12 folders.
 <!-- /ANCHOR:success-criteria -->
 
 ---

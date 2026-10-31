@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A skill's machine router sits at the end of its `SKILL.md`, and every reader that needs it reads that file",
     "created_at": "2026-10-29T07:52:42Z",
-    "last_save_at": "2026-10-31T13:25:50.204Z",
+    "last_save_at": "2026-10-31T14:01:37.129Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a73f27cfa03bb33350edc5cbd97e0dfe51da0deea591cd63a6bf5dfd52ef4dc7",
+    "source_fingerprint": "sha256:d66b03e952efb698603659c1e03c1f404f08c3314a1bb5d535866f77504121c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7d55db6dbf739431b48fb211048b3aff534c3c08cd9bd0b1bc976a7090971991",
       "plan.md": "c7320efaffd414260c1e648ac004787e38c4577ebef8d327852ecaa776764bd4",
-      "tasks.md": "5dca0c1bcaa1daa3e2fb266c79c765e0eaf4f24b04554859a3aabc175f0c25cf",
+      "tasks.md": "202e10dfe37ab5ece0fbb786b48d0d39d6a3bfac671cf6794d5501c1cc026225",
       "implementation-summary.md": "d5801dd1ce5f6ba55bf8bcc7981562103929843408af17e74e8dcc1563e58154"
     },
     "last_active_at": null

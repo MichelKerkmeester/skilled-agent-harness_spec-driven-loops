@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-doctor-audit-followups/031-changelog-v4003-reality-check"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/031-changelog-v4003-reality-check"
     last_updated_at: "2026-10-05T19:30:00Z"
     last_updated_by: "changelog-v4003-reality-check"
     recent_action: "Corrected v4.0.0.3 claims and added coverage for shipped specs"

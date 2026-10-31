@@ -17,7 +17,7 @@
   "specId": "008",
   "folderSlug": "cli-classifier-hub",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,

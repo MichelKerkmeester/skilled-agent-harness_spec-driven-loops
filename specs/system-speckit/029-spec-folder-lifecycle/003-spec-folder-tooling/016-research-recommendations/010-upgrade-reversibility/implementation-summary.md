@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility"
     last_updated_at: "2026-10-08T13:00:36Z"
     last_updated_by: "orchestrator"
     recent_action: "Built, reviewed in two rounds and verified the phase"

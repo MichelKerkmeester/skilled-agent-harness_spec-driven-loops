@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/055-advisory-false-alarms"
+    packet_pointer: "system-speckit/031-system-speckit-v4/055-advisory-false-alarms"
     last_updated_at: "2026-09-23T20:00:00Z"
     last_updated_by: "implementing-agent"
     recent_action: "Pushed as 68dda9633a to main and skilled/v4.0.0.0, where CI ran green"
@@ -61,8 +61,8 @@ When you stage files through a variable such as `git add -- $A/file`, the hook n
 | .skilled/skills/sk-git/scripts/lib/git-rule-checks.test.mjs | Modified | A `$`, backtick or `~` pathspec never reads as matching nothing |
 | .skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs | Modified | `resolveSpecFolderFromText` trims a line suffix and a trailing file name |
 | .skilled/skills/system-spec-kit/runtime/tests/completion-evidence-sentinel.vitest.ts | Modified | A cited `path:line` document resolves to its folder |
-| specs/system-speckit/033-system-speckit-v4/spec.md | Modified | Phase-map and transition rows for this phase |
-| specs/system-speckit/033-system-speckit-v4/graph-metadata.json | Modified | Re-derived so the parent lists this phase as a child |
+| specs/system-speckit/031-system-speckit-v4/spec.md | Modified | Phase-map and transition rows for this phase |
+| specs/system-speckit/031-system-speckit-v4/graph-metadata.json | Modified | Re-derived so the parent lists this phase as a child |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -100,7 +100,7 @@ Both alarms were first reproduced with a scratch script against the unmodified m
 | Sentinel suite | PASS: 24 of 24 |
 | Completion-evidence stop-hook suite | PASS: 7 of 7 |
 | Full spec-kit root project | PASS: 1294 of 1307 tests in 109 files passed on the merged tree with 13 skipped and none failed. An earlier run on the original base under the runtime config reported 7 failed tests in 4 files. Three of those files failed only because a fresh worktree lacks their build outputs. The fourth, the Pi spec-gate suite, fails only under that config because the path alias it needs is defined in the root config alone. It passes 9 of 9 under the root config |
-| Scratch replay after the fix | PASS on the original base and again on the merged tree: every expansion form is silent, `git reset --hard $REF` still raises `reset-hard-discards-changes` on a tree with changes and the cited document resolves to `specs/system-skill-advisor/026-defect-and-hardening-fixes/003-fix-remaining-advisor-defects` |
+| Scratch replay after the fix | PASS on the original base and again on the merged tree: every expansion form is silent, `git reset --hard $REF` still raises `reset-hard-discards-changes` on a tree with changes and the cited document resolves to `specs/system-skill-advisor/025-defect-and-hardening-fixes/003-fix-remaining-advisor-defects` |
 | Comment hygiene on the four edited files | PASS: exit 0 |
 | Packet strict validation (`validate.sh --strict`) | PASS: RESULT: PASSED, Errors 0, Warnings 0 |
 | CI on 68dda9633a (the pushed merge) | PASS: 21 runs across 11 workflows on both branches, all green, including Spec-Kit Check |

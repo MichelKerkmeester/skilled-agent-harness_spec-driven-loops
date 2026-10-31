@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/061-skilled-release-changelog/001-release-line-split"
+    packet_pointer: "sk-doc/056-changelog-system/003-skilled-release-changelog/001-release-line-split"
     last_updated_at: "2026-09-27T12:31:06Z"
     last_updated_by: "generate-context"
     recent_action: "Verified phase 1: split, entries, workflow rules, corpus root and gates"

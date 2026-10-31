@@ -76,7 +76,7 @@ Each lineage prompt carries its artifact directory, `research/lineages/<label>/`
 
 ```text
 /deep:research:auto "<topic from scratch/research-topic.txt>"
-  --spec-folder=specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research
+  --spec-folder=specs/cli-classifier/003-cli-jev-workflow-integration/001-deep-research
   --max-iterations=10 --stop-policy=max-iterations --convergence-mode=off --concurrency=3
   --executor=cli-pi --model=deepseek-v4.1-flash --reasoning-effort=max --iters=10 --label=deepseek
   --executor=cli-pi --model=mimo-v2.6-pro --reasoning-effort=high --iters=10 --label=mimo

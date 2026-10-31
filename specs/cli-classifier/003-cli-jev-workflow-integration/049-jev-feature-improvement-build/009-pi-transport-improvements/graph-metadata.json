@@ -50,7 +50,8 @@
       ".skilled/skills/cli-classifier/benchmark/pi-transport/README.md",
       ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
       ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
-      ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-comparison.md"
+      ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-comparison.md",
+      "specs/cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/research.md"
     ],
     "entities": [
       {
@@ -200,7 +201,7 @@
     ],
     "causal_summary": "Feature 037 adopted the Pi transport by one row, on a comparison whose CLI arm was a day older and used another provider",
     "created_at": "2026-10-03T05:30:09Z",
-    "last_save_at": "2026-10-31T13:25:39.421Z",
+    "last_save_at": "2026-10-31T14:03:59.992Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,11 +211,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:22fc4ba543bccfacda299c8f18d42a894fce4d9b5dfc9922fe48ce20fa23b16e",
+    "source_fingerprint": "sha256:005e48489b6b5716aee69c4a58c27d37fb07982035ad606c95a6660da343a842",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bce5736f3cef5af07bd391ca8abf7e85ec9c1ddd64b78c6c3e0647e379ea4182",
-      "plan.md": "c6cadc591c27b9eb8e92e11c441b210d5d004b047b0824c0fe10418c912a9355",
+      "spec.md": "56da92307fb6cbce300c1cb12ac488697f884da21612377a5d5c4ee51e9d7413",
+      "plan.md": "1bbce45a093a95cc86f3564f5585d3ab1bbd212abd8b522f03b9a27233510eb2",
       "tasks.md": "4744ef188b5b104f47c177bb8993d65ca4e428a537ec9a3f06ca51fcde664a39",
       "implementation-summary.md": "8fff69c7b3fd01c04bf2dd3ea7b61acddce3ceb7845c4ffc3862a379b50869c9"
     },

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/005-provenance-title-sweep"
+    packet_pointer: "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/005-provenance-title-sweep"
     last_updated_at: "2026-09-07T21:30:00Z"
     last_updated_by: "scaffold"
     recent_action: "Marked every criterion met with the evidence observed"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/032-recorded-findings-closure/005-provenance-title-sweep
+**Packet:** system-speckit/031-system-speckit-v4/032-recorded-findings-closure/005-provenance-title-sweep
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-07

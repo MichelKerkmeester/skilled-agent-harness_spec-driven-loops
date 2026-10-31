@@ -8,10 +8,11 @@
     "footprint"
   ],
   "lastUpdated": "2026-10-21T09:51:14.551Z",
-  "specId": "037",
+  "specId": "002",
   "folderSlug": "advisor-daemon-memory",
   "parentChain": [
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "021-model-server-lifecycle"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

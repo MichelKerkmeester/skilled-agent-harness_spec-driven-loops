@@ -10,9 +10,9 @@ OLD: | cli-jev compiled-routing manifest | Regenerate |
 NEW: | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/manifest.json` | Regenerate |
 
 EDIT 3 (replace the parent-records row with two named rows)
-OLD: | `specs/system-speckit/033-system-speckit-v4/` parent records | Modify | The parent records are reconciled and register phase 50 |
-NEW: | `specs/system-speckit/033-system-speckit-v4/spec.md` | Modify | Phase map row 50 and the 049 to 050 handoff row register this phase |
-| `specs/system-speckit/033-system-speckit-v4/048-gate-3-mutation-time-delivery/implementation-summary.md` | Modify | One Verification row records this phase's live Pi proof |
+OLD: | `specs/system-speckit/031-system-speckit-v4/` parent records | Modify | The parent records are reconciled and register phase 50 |
+NEW: | `specs/system-speckit/031-system-speckit-v4/spec.md` | Modify | Phase map row 50 and the 049 to 050 handoff row register this phase |
+| `specs/system-speckit/031-system-speckit-v4/048-gate-3-mutation-time-delivery/implementation-summary.md` | Modify | One Verification row records this phase's live Pi proof |
 
 EDIT 4
 OLD: | Dependency | Merged main before the cli-jev compiled-routing re-mint | N/A - insufficient source context |

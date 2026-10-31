@@ -10,18 +10,18 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/042-v4-doc-freshness"
+    packet_pointer: "system-speckit/031-system-speckit-v4/042-v4-doc-freshness"
     last_updated_at: "2026-09-19T22:40:00Z"
     last_updated_by: "v4-doc-freshness-run"
     recent_action: "Applied 22 verdict-confirmed corrections and wrote both verdict documents"
     next_safe_action: "Commit the packet and the two release documents in an sk-git pass"
     blockers: []
     key_files:
-      - "specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/verdict-changelog.md"
-      - "specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/verdict-readme.md"
-      - "specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/research/research.md"
-      - "specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/research/review-of-synthesis.md"
-      - "specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/research/readme-verdict-rows.md"
+      - "specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/verdict-changelog.md"
+      - "specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/verdict-readme.md"
+      - "specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/research/research.md"
+      - "specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/research/review-of-synthesis.md"
+      - "specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/research/readme-verdict-rows.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "rsr-2026-09-19T18-45-00Z"
@@ -94,15 +94,15 @@ a research run and the reason the verdict tables can be trusted row by row.
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md` | Modified | Eight count and retirement corrections plus the closing **After This Draft** section |
+| `specs/system-speckit/031-system-speckit-v4/CHANGELOG-v4.0.0.0.md` | Modified | Eight count and retirement corrections plus the closing **After This Draft** section |
 | `README.md` | Modified | Thirteen corrections: gates, prerequisites, counts, dead references, the missing design agent, the repository's own name |
-| `specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/verdict-changelog.md` | Created | Per-claim changelog verdict with evidence, correction and confidence |
-| `specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/verdict-readme.md` | Created | Per-claim README verdict, including the rejected row |
-| `specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/research/iterations/iteration-001..010.md` | Created | The ten iteration narratives that carry the evidence |
-| `specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/research/deltas/iter-001..010.jsonl` | Created | Per-iteration delta streams, gateway-receipted |
-| `specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/research/research.md` | Created | Synthesis with cited sources, plus the post-review corrections section |
-| `specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/research/review-of-synthesis.md` | Created | Independent review of the synthesis on a second model family |
-| `specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/research/readme-verdict-rows.md` | Created | The README rows recovered after the review |
+| `specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/verdict-changelog.md` | Created | Per-claim changelog verdict with evidence, correction and confidence |
+| `specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/verdict-readme.md` | Created | Per-claim README verdict, including the rejected row |
+| `specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/research/iterations/iteration-001..010.md` | Created | The ten iteration narratives that carry the evidence |
+| `specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/research/deltas/iter-001..010.jsonl` | Created | Per-iteration delta streams, gateway-receipted |
+| `specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/research/research.md` | Created | Synthesis with cited sources, plus the post-review corrections section |
+| `specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/research/review-of-synthesis.md` | Created | Independent review of the synthesis on a second model family |
+| `specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/research/readme-verdict-rows.md` | Created | The README rows recovered after the review |
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Modified | `gemini-3-8-flash-high` re-admitted to the devin scope, on the operator's decision |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modified | The enforced devin allowlist kept in step with the config above |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Modified | Allowlist fixture updated; 153 tests pass |

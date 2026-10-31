@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/032-relocate-specs-folder/004-code-graph-index-flag-deprecation"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/004-code-graph-index-flag-deprecation"
     last_updated_at: "2026-08-08T10:52:13Z"
     last_updated_by: "claude-code"
     recent_action: "All 5 plan.md steps executed and verified"

@@ -52,7 +52,7 @@ contextType: "general"
 - [x] T009 Run the probe live on one hub and confirm a passing result (live advisor; `--hub sk-doc --limit 5`)
 - [x] T010 Run route validation, the YAML parse, the mirror check and the MCP mutation-class guard (.skilled/commands/doctor/scripts/route-validate.sh)
 - [x] T011 Re-scan the edited doctor files for retired identifiers (`system_skill_advisor.`, `deep_loop_graph_status|query|convergence(`, `doctor_*`)
-- [x] T012 Close the phase documentation and validate the packet (specs/system-speckit/048-doctor-command-audit/008-router-reach)
+- [x] T012 Close the phase documentation and validate the packet (specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/008-router-reach)
 <!-- /ANCHOR:phase-3 -->
 
 ---

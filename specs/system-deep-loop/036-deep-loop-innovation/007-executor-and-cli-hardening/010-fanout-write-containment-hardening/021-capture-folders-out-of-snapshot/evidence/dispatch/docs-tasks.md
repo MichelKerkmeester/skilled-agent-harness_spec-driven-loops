@@ -36,7 +36,7 @@ DOC RULES (all must hold in the target file)
 - Use the REQ, AC and T ids exactly as listed in evidence.md.
 
 STEP 1 - fill specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/tasks.md (task list plus verification checklist)
-Shape model (read-only): specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md
+Shape model (read-only): specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md
 - Title in frontmatter and H1: "Tasks: Capture Folders out of the Containment Snapshot".
 - Phase 1 Setup: T001. Phase 2 Implementation: T002 to T008. Phase 3 Verification: T009 to T011. Use the task names in evidence.md. Every task is "- [x]" and ends with " - **Evidence**: " plus the
   command and result from evidence.md.

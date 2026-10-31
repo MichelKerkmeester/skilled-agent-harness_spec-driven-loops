@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The 2026-10-21 audit measured the launcher at about 53 MB and the advisor server at 62 to 100 MB (66 and 103 MB when measured again that afternoon) for each checkout, with one pair per checkout and worktree that ran an advisor query",
     "created_at": "2026-10-21T09:51:15Z",
-    "last_save_at": "2026-10-31T13:26:10.167Z",
+    "last_save_at": "2026-10-31T14:00:49.097Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac36b7fadcd2a83166b472d9459f7004b11036e18731c624cd164f5938e475eb",
+    "source_fingerprint": "sha256:e86f2e390da9e1a67361def74d7bae64df6d6330de1468760823261df783421d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0659cf6e4cc345f8aa4d5671b6da8402e8e331eddbad0f389415ada0a0783a37",

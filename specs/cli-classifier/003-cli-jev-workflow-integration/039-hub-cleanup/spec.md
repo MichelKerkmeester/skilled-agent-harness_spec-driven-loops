@@ -132,7 +132,7 @@ One row per file or file family with an edit. Every path below was read from `re
 | `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs`, `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | Modify | The old path repointed where each test reads it |
 | `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/harness/build-artifacts.cjs` | Modify | The source map at lines 66-70 repointed to `cli-classifier/cli-jev/SKILL.md` |
 | The 17 remaining live references outside cli-classifier and hooks/dispatch | Modify | 4 cli-external-orchestration, 4 system-spec-kit, 2 sk-doc, sk-code, sk-prompt, system-deep-loop, `.skilled/agents/orchestrate.md`, `.skilled/agents/prompt-improver.md`, `.skilled/skills/README.txt` and the root `README.md`, each read and classified before its edit (goal D3) |
-| `specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/` | Modify | The Planned docs that cite `cli-usage/SKILL.md` repointed, so 038's build reads `cli-jev` |
+| `specs/cli-classifier/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/` | Modify | The Planned docs that cite `cli-usage/SKILL.md` repointed, so 038's build reads `cli-jev` |
 | `.skilled/skills/cli-classifier/leaf-manifest.json` | Regenerate | The manifest names `cli-usage` once and is regenerated, never hand-edited (goal D5) |
 | `.skilled/skills/cli-classifier/graph-metadata.json` | Regenerate | Derived metadata refreshed after the hub docs change |
 | The compiled-routing artifacts | Regenerate | Built by `build-artifacts.cjs`, never hand-edited (goal D5) |

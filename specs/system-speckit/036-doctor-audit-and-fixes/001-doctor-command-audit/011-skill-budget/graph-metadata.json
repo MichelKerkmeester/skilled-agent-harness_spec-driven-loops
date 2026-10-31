@@ -204,7 +204,7 @@
     ],
     "causal_summary": "`/doctor:speckit skill-budget` reports skill description budgets",
     "created_at": "2026-10-02T16:10:24Z",
-    "last_save_at": "2026-10-31T13:27:12.837Z",
+    "last_save_at": "2026-10-31T13:59:23.591Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:43afe4c53654b07b04efa1a875f49eba4091d3fd55bb54a3a3f0bb1137659338",
+    "source_fingerprint": "sha256:d4623a43330d3f66d46fe48081493e3785d529c523fde3977d6d8d766d9d6b6a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2de0d80a9488cbfda7fbbb0afef353d99c38e20995eefda5be1fcb9d002f9588",
       "plan.md": "42aec0fabb025d0d3619cca310e83a1b670b23d43bf556b835e70159590e9918",
       "tasks.md": "47ab4ecf6081a03d0368eaf4f900b55cbef8162c1bf50d0a619e5fa72173ae0e",
-      "implementation-summary.md": "ed218eb05ec2f4a86bdaf808db68de2b43428ae44a5328117077bbee8ae28617"
+      "implementation-summary.md": "0e33df08302cf57826e5c8558c1793476cf1648e16c6b3a2b9f58570b8a41b84"
     },
     "last_active_at": null
   }

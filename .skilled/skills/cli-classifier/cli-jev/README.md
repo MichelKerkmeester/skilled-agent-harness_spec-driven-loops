@@ -12,7 +12,7 @@ trigger_phrases:
   - "typed judgment transport"
 importance_tier: "important"
 contextType: "general"
-version: 0.1.1.0
+version: 0.1.2.0
 ---
 
 # cli-jev
@@ -129,8 +129,8 @@ cli-jev/
 The contract is pinned against `jev-cli` 0.6.2, installed with `uv tool install jev-cli` (rollback:
 `uv tool uninstall jev-cli`). Every claim in the references is tagged **LIVE** (observed command,
 output and exit status) or **SOURCE** (read from the vendored tree at
-`specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/`). No authenticated
+`specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/`). No authenticated
 call was made: the workspace holds no Jev provider key, so the live response body of each provider
 remains unconfirmed and is tagged as such rather than asserted.
 
-Source packet: `specs/cli-jev/001-cli-jev-creation/`.
+Source packet: `specs/cli-classifier/001-cli-jev-creation/`.

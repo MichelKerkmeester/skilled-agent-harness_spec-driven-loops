@@ -20,7 +20,7 @@
   "specId": "003",
   "folderSlug": "decouple-and-rewire",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "002-cli-jev-hub-migration"
   ],
   "memorySequence": 0,

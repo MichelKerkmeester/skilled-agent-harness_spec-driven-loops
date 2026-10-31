@@ -32,7 +32,7 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Packet `cli-jev/003-cli-jev-workflow-integration` shipped the cli-classifier parent hub, its cli-jev packet, a shared Jev transport and six scorer callers across sk-doc, system-deep-loop and system-spec-kit, then deleted the features that did not earn their place. Each phase was reviewed on its own, but nobody has audited the finished whole for standards compliance, advisor integration, user experience, documentation accuracy, latent bugs, drift between docs and code, and whether its measured results are visible to a reader.
+Packet `cli-classifier/003-cli-jev-workflow-integration` shipped the cli-classifier parent hub, its cli-jev packet, a shared Jev transport and six scorer callers across sk-doc, system-deep-loop and system-spec-kit, then deleted the features that did not earn their place. Each phase was reviewed on its own, but nobody has audited the finished whole for standards compliance, advisor integration, user experience, documentation accuracy, latent bugs, drift between docs and code, and whether its measured results are visible to a reader.
 
 ### Purpose
 Produce a ranked, evidence-cited findings report that says where the shipped cli-classifier work falls short on each of those seven axes, so a follow-up packet can fix what matters.
@@ -69,8 +69,8 @@ Source of truth: `research/research.md`. Ten iterations across two lineages prod
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `specs/cli-jev/004-cli-classifier-quality-research/research/**` | Create | Fan-out lineage state, iterations and the merged synthesis |
-| `specs/cli-jev/004-cli-classifier-quality-research/*.md` | Modify | Packet docs and the closing summary |
+| `specs/cli-classifier/004-cli-classifier-quality-research/research/**` | Create | Fan-out lineage state, iterations and the merged synthesis |
+| `specs/cli-classifier/004-cli-classifier-quality-research/*.md` | Modify | Packet docs and the closing summary |
 <!-- /ANCHOR:scope -->
 
 ---

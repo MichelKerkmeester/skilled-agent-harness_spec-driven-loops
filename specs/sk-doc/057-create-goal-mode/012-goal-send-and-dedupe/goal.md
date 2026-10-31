@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-create-goal-mode/012-goal-send-and-dedupe"
+    packet_pointer: "sk-doc/057-create-goal-mode/012-goal-send-and-dedupe"
     last_updated_at: "2026-09-26T16:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Executed the phase and met every criterion"

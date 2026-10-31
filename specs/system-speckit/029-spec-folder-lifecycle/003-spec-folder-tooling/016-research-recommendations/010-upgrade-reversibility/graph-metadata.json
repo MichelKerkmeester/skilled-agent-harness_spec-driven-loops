@@ -201,7 +201,7 @@
     ],
     "causal_summary": "`upgrade-legacy --apply` transforms a legacy spec tree into v4 format with no reversibility record",
     "created_at": "2026-10-08T04:22:46Z",
-    "last_save_at": "2026-10-31T13:26:26.572Z",
+    "last_save_at": "2026-10-31T13:58:23.720Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +212,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:640cb7e15489d2b149331ba2222c413cdbc84bc4cfef574a428d8c1795d3edae",
+    "source_fingerprint": "sha256:a1bfc2de7efa6df27b95562e2e7bd678971ae27ab2884bde5d8335e60a439298",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5945148938931b3b8acbf159d1ffb1fb3cd6e4502510ce12d256722461272403",

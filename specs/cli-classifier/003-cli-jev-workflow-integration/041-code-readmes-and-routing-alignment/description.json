@@ -9,7 +9,7 @@
   "specId": "041",
   "folderSlug": "code-readmes-and-routing-alignment",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,

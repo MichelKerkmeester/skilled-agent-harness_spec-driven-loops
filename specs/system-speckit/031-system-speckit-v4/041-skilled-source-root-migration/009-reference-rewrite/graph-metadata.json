@@ -210,7 +210,7 @@
     ],
     "causal_summary": "After phase 007 moves the authored tree, 2,963 tracked files still name it by its old path: 2,938 mechanical rows in map C carrying 15,648 matching lines plus 27 authored runtime files in map B",
     "created_at": "2026-09-16T17:54:09Z",
-    "last_save_at": "2026-10-31T13:27:01.922Z",
+    "last_save_at": "2026-10-31T13:59:11.443Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0fc572b152ae1c9d1546ed94dd48ccecb32f0a8851e8b32a7f1d3ca79e5539d8",
+    "source_fingerprint": "sha256:805ef1ab05e6afc43d714f6cb97c6976906d7a6b726362c75faecadedb683801",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1a8243464e7a4d279662243a35565fd948e1402ba9b63cff082db52ec802ea30",

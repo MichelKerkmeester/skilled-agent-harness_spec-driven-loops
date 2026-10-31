@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract"
+    packet_pointer: "sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract"
     last_updated_at: "2026-09-25T20:15:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Executed phase 001 and verified its five artifacts"
@@ -102,7 +102,7 @@ The orchestrator wrote and ran the corpus scan. Two GPT-6 Luna workers at xhigh 
 | `node scratch/goal-corpus-scan.cjs <repo-root>` | Exit 0; `exitZero: 296` of 296 |
 | Audit reproductions in `goal-corpus-audit.md` §11 | 4 of 4 reproduced |
 | `git status --short --untracked-files=all` outside this packet | Only the pre-existing `specs/sk-doc/graph-metadata.json` track update |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract --strict` | `RESULT: PASSED`, 0 errors and 0 warnings, on 2026-09-25 |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract --strict` | `RESULT: PASSED`, 0 errors and 0 warnings, on 2026-09-25 |
 <!-- /ANCHOR:verification -->
 
 ---

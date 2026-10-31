@@ -99,16 +99,16 @@
     ],
     "causal_summary": "On 2026-10-21 three advisor daemons ran at once, one each for main and worktrees 182 and 185",
     "created_at": "2026-10-21T09:51:14Z",
-    "last_save_at": "2026-10-31T13:26:08.663Z",
+    "last_save_at": "2026-10-31T13:41:25.981Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:66712e781963d8b4e19c53ea3411ef99cd5e5d6cf91411dbdbcbe516f172f855",
+    "source_fingerprint": "sha256:4c391c96ced86c5cdcd8237d9d63a990b14c714ac38fb4b2979c9b6fcdee07a3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c10deaef139df8b16ffece90d99aead3904a3fa432ee6d3c8b96438c6d180bfc"
+      "spec.md": "582a40a18abf7dd415b0db689d0fd354cef3aef8e2575a6a803fb6aa16201258"
     },
     "last_active_at": null
   }

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-write-recipe-fixes/004-fix-write-recipe-post-checks"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/004-fix-write-recipe-post-checks"
     last_updated_at: "2026-09-29T07:01:44Z"
     last_updated_by: "claude"
     recent_action: "Reworded the status and push post-check rows and checked them"

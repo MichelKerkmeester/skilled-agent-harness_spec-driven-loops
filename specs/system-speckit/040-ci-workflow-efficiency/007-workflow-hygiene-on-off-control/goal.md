@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control"
+    packet_pointer: "system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control"
     last_updated_at: "2026-10-25T21:40:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Phase closed: 0 timeout kills in 690 runs, 13 of 13 criteria met"
@@ -68,8 +68,8 @@ Frozen choices. Changing one is an amendment.
 - [ ] `python3 -c "import yaml,glob; d=[(f,j) for f in glob.glob('.github/workflows/*.yml') for j,v in yaml.safe_load(open(f))['jobs'].items() if 'timeout-minutes' not in v]; print('no-timeout', d)"` prints `no-timeout []`
 - [ ] `grep -c "vars.SKILLED_CI != 'off'" .github/workflows/*.yml | awk -F: '{s+=$2} END {print s}'` returns `42` when `.github/workflows/hooks-node-tests.yml` is absent and `43` when it is present
 - [ ] `grep -c '^### On/off switches$' .github/workflows/README.md` returns `1`, and `for v in SKILLED_CI SKILLED_CI_TESTS SKILLED_CI_REPORTS SKILLED_CI_REVIEW SKILLED_CI_FRESHNESS SKILLED_CI_MESSAGES; do grep -q "$v" .github/workflows/README.md || echo "missing: $v"; done` prints nothing
-- [ ] `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r26-probe.md` holds two `run id: <n>` lines, one `off: skipped` line and one `unset: ran` line
-- [ ] `bash .github/scripts/check-gate-inputs.sh` prints `RESULT: PASSED`, and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control --strict` prints `RESULT: PASSED`
+- [ ] `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r26-probe.md` holds two `run id: <n>` lines, one `off: skipped` line and one `unset: ran` line
+- [ ] `bash .github/scripts/check-gate-inputs.sh` prints `RESULT: PASSED`, and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---

@@ -2,7 +2,7 @@
 TARGET: P/tasks.md
 
 STEP 0 (the cited captures moved from scratch/ to evidence/; rewrite their paths)
-  sed -i '' -e 's#scratch/dispatch/#evidence/dispatch/#g' -e 's#scratch/pi-#evidence/pi-#g' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md
+  sed -i '' -e 's#scratch/dispatch/#evidence/dispatch/#g' -e 's#scratch/pi-#evidence/pi-#g' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md
 
 EDIT 1
 OLD: - [ ] T013 Packet docs and parent records
@@ -33,6 +33,6 @@ OLD: | P1 Items | 13 | 9/13 |
 NEW: | P1 Items | 13 | 11/13 |
 
 VERIFY - run these, paste each command with its result line
-  grep -c 'scratch/pi-\|scratch/dispatch' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md   # expect 0
-  grep -c '^- \[ \]' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md                         # expect 8
-  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md                  # expect 30
+  grep -c 'scratch/pi-\|scratch/dispatch' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md   # expect 0
+  grep -c '^- \[ \]' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md                         # expect 8
+  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md                  # expect 30

@@ -190,19 +190,19 @@
     ],
     "causal_summary": "`cli-external-orchestration` routes to seven external CLI executor modes, and every one of them conducts a session that writes into this repository",
     "created_at": "2026-09-20T07:39:05Z",
-    "last_save_at": "2026-10-31T13:25:26.820Z",
+    "last_save_at": "2026-10-31T14:03:47.134Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:66360d1188a8329bb31575c2ea137c137519b6989a2fa38da9d98d7ed8bcf322",
+    "source_fingerprint": "sha256:bf2aec915cc823e9fecb5ab889688e32841eed15bd9ae9854f30e00d44be93ae",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ab2ca29235ad139f11997b863ccff37087b65538c76fb719f53da74ff7ce3255"
+      "spec.md": "b87bd4141f145812270027fd3a20eb3c2ac113007e5b17d589896938e3fa6bfd"
     },
-    "last_active_child_id": "cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout",
+    "last_active_child_id": "cli-classifier/001-cli-jev-creation/005-docs-governance-and-closeout",
     "last_active_at": "2026-09-20T09:03:46.732Z"
   }
 }

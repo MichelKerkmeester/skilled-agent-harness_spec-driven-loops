@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim"
+    packet_pointer: "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim"
     last_updated_at: "2026-09-26T13:05:00Z"
     last_updated_by: "orchestrate"
     recent_action: "Shipped R2 with the stale-daemon retry, R5, and the hook-flow docs"
@@ -125,7 +125,7 @@ The live checks surfaced the risk this phase planned for. The resident daemon ha
 | REQ-005 live | A daemon on the pre-change build served 15 of 15 hook turns through the one retry |
 | REQ-006, paired hook A/B | 45 pairs on one build and one daemon: enrichment off saves a median 65 ms per turn and is faster in 35 pairs. Pooled medians 910 ms on, 844.5 ms off |
 | CLI A/B, isolated daemon | 20 calls each: 1,097 ms with the compiled-route step, 1,021 ms without; all 20 "with" calls carried a compiled route, no "without" call did |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement --strict --recursive` | Run at phase close, see the parent packet |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement --strict --recursive` | Run at phase close, see the parent packet |
 <!-- /ANCHOR:verification -->
 
 ---

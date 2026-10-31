@@ -44,7 +44,8 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
-      ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs"
+      ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
+      "specs/cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/003-citation-drift-research/research/research.md"
     ],
     "entities": [
       {
@@ -194,7 +195,7 @@
     ],
     "causal_summary": "Feature 032 kept on its 40-row benchmark, but the modal flag misses a catch that flagging on the lowest rerun makes for free",
     "created_at": "2026-10-03T05:30:04Z",
-    "last_save_at": "2026-10-31T13:25:39.353Z",
+    "last_save_at": "2026-10-31T14:03:59.786Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,11 +205,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2b48baf11764b919feba386cb9e5708e658f707fad495fdc935e40c56b3924b2",
+    "source_fingerprint": "sha256:249ce9290af9b134253a931524a14ad4e5afb988c8ba787b57ba9479f22fe234",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "50eefe5ba85d97faa5f586734dc5e3f0801f968404f8745223b01f75aca63aac",
-      "plan.md": "483e6a474a9f44c6ae75d27289f4332497f63f07dcb8b7b926ace41181cc5dba",
+      "spec.md": "2202eb3350ecd3ab379acb70b45af6cf10a2db684a1f399d4c6946ed8df1ca85",
+      "plan.md": "f62ca642ff1f3bc95fb65bc50db20b0d95ec490fed71864f246fd3c2eb78dcc0",
       "tasks.md": "96838d75219c16fb0c5641c2c6b002fd72c674c43a4a764c1d2f3c23e9881321",
       "implementation-summary.md": "ff2711d662d7ca50e72c061d51b7e5e902db7f9170d2677fa4befd748fc93e8f"
     },

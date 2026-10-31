@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Phase 001 studied spec-packet docs only",
     "created_at": "2026-10-04T08:04:50Z",
-    "last_save_at": "2026-10-31T13:27:19.747Z",
+    "last_save_at": "2026-10-31T13:59:34.228Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:991e65d9d4a3f37f904b060560f181491625c61dc97df14d7d9f8730b1ab6c83",
+    "source_fingerprint": "sha256:41fd7618e2454363838b7db7646b5ea64ba4b539ae591e11c04037d12171f53c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "44258f04e0c0e9049edc75a70c64b455ba547949049b2a1225e16a52f65db25e",
       "plan.md": "9ceb59bfabd79407d9792e3bde6fc6ca2ba31df248059ecc564c0e012e1933cf",
       "tasks.md": "321e25c8d28f94abe05077162af2423197a2cd0a45a69d5719a137e352de6980",
-      "decision-record.md": "040ab1ec02694ef5c96ed23e75ad503a87ac265777f481933396169e81a97b9e",
+      "decision-record.md": "3cdacb151954d609175d0e706b8ae9e0493a1362ed3ecc5c1d36cc804dc7de56",
       "implementation-summary.md": "be92dd39c3e5f2f86c24d6eefd163015eac09e54afd7aa8800e1629b9997d289"
     },
     "last_active_at": null

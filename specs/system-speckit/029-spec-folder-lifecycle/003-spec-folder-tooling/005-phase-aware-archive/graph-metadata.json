@@ -37,6 +37,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/004-track-aware-archive/implementation-summary.md",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts",
       "runtime/cli/spec/README.md",
@@ -191,7 +192,7 @@
     ],
     "causal_summary": "After packet 038, `archive.sh` kept a track packet inside its track, but a phase still went to the root `specs/zarchive/`",
     "created_at": "2026-09-24T15:09:38Z",
-    "last_save_at": "2026-10-31T13:26:24.155Z",
+    "last_save_at": "2026-10-31T13:58:17.064Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:75da4122f49a4e04dd86f6154de60b4411b916aa71d59829f9566ab6880bbc77",
+    "source_fingerprint": "sha256:17de0b9d83a0f24595be04596334e13b1e4ea6f0aad54ea5f6597c2ab1f17ada",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fa4ceb30320f31ced9c838f0c67ca3dd7aca17a12aad3c145ed01918b79f4d73",
       "plan.md": "15fee94a71d89301242452a23568c2d970803908589e773111a97ca24bd637f4",
       "tasks.md": "59d4fa767f2e248225c3523791d63e91a6d7cb72531aa76d5755cb8a34545d65",
-      "implementation-summary.md": "6cbfa357a7296f870e7cef84bcc7ebe8124fe49bc6c465deabed99a4efd5c5bb"
+      "implementation-summary.md": "f6f6da0cb3352fc89295826a446431d3c0aaec5de77398840bb6a7f8f44f476a"
     },
     "last_active_at": null
   }

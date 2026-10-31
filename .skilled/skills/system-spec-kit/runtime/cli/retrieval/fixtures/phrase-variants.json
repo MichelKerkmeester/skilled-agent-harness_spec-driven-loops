@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3601f9b7a4c6af9f837abf810d928e2fdbf660288b0218dc1cfae299d141e98d",
+  "manifestHash": "b97b32a9a0bbc5b701ae3c00ab6eac24edfbc397c1761c0b02ed6a316e237e0b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8626,8 +8626,14 @@
     "advisor daemon memory": [
       "advisor daemon memory"
     ],
+    "advisor daemon memory footprint": [
+      "advisor daemon memory footprint"
+    ],
     "advisor daemon memory phase parent spec": [
       "advisor daemon memory phase parent spec"
+    ],
+    "advisor daemon memory timeline": [
+      "advisor daemon memory timeline"
     ],
     "advisor daemon predates build": [
       "advisor daemon predates build"
@@ -8721,6 +8727,9 @@
     ],
     "advisor docs update summary": [
       "advisor docs update summary"
+    ],
+    "advisor doctor bridge chronology": [
+      "advisor doctor bridge chronology"
     ],
     "advisor doctor bridges": [
       "advisor doctor bridges"
@@ -9311,6 +9320,9 @@
     "advisor scorer dead branch deletion": [
       "advisor scorer dead branch deletion"
     ],
+    "advisor scorer drift timeline": [
+      "advisor scorer drift timeline"
+    ],
     "advisor scorer lanes": [
       "advisor scorer lanes"
     ],
@@ -9373,6 +9385,9 @@
     ],
     "advisor skill graph tests": [
       "advisor skill graph tests"
+    ],
+    "advisor skill list parity": [
+      "advisor skill list parity"
     ],
     "advisor skipped status meaning": [
       "advisor skipped status meaning"
@@ -9473,6 +9488,9 @@
     "advisor suite drift tasks": [
       "advisor suite drift tasks"
     ],
+    "advisor suite expectation drift": [
+      "advisor suite expectation drift"
+    ],
     "advisor suite failures": [
       "advisor suite failures"
     ],
@@ -9484,6 +9502,9 @@
     ],
     "advisor suite green": [
       "advisor suite green"
+    ],
+    "advisor suite reconciliation chronology": [
+      "advisor suite reconciliation chronology"
     ],
     "advisor suite restore": [
       "advisor suite restore"
@@ -9526,6 +9547,9 @@
     ],
     "advisor test 37 failures": [
       "advisor test 37 failures"
+    ],
+    "advisor test gate chronology": [
+      "advisor test gate chronology"
     ],
     "advisor test path rename 37 failures": [
       "advisor test path rename 37 failures"
@@ -9811,6 +9835,9 @@
     ],
     "agent description length": [
       "agent description length"
+    ],
+    "agent description limits": [
+      "agent description limits"
     ],
     "agent disclosure": [
       "agent disclosure"
@@ -14979,6 +15006,9 @@
     "broken move dry run": [
       "broken move dry run"
     ],
+    "broken reference debt chronology": [
+      "broken reference debt chronology"
+    ],
     "broken reference paths": [
       "broken reference paths"
     ],
@@ -15889,6 +15919,12 @@
     "canonical spec folder resolver": [
       "canonical spec folder resolver"
     ],
+    "canonical spec root resolution": [
+      "canonical spec root resolution"
+    ],
+    "canonical spec root timeline": [
+      "canonical spec root timeline"
+    ],
     "canonical specs root": [
       "canonical specs root"
     ],
@@ -16762,6 +16798,9 @@
     "changelog audit 026": [
       "changelog audit 026"
     ],
+    "changelog audit findings timeline": [
+      "changelog audit findings timeline"
+    ],
     "changelog back dating": [
       "changelog back dating"
     ],
@@ -16868,6 +16907,9 @@
     "changelog format templates": [
       "changelog format templates"
     ],
+    "changelog format timeline": [
+      "changelog format timeline"
+    ],
     "changelog from packet bonus": [
       "changelog from packet bonus"
     ],
@@ -16951,6 +16993,9 @@
     ],
     "changelog pilot tasks": [
       "changelog pilot tasks"
+    ],
+    "changelog prose validation": [
+      "changelog prose validation"
     ],
     "changelog readability": [
       "changelog readability"
@@ -17045,6 +17090,9 @@
     "changelog single bump tasks": [
       "changelog single bump tasks"
     ],
+    "changelog spacing chronology": [
+      "changelog spacing chronology"
+    ],
     "changelog spacing plan": [
       "changelog spacing plan"
     ],
@@ -17092,6 +17140,9 @@
     ],
     "changelog v4 0 0 3 reality check": [
       "changelog v4.0.0.3 reality check"
+    ],
+    "changelog v4 narrative format": [
+      "changelog v4 narrative format"
     ],
     "changelog v4 style": [
       "changelog v4 style"
@@ -37533,6 +37584,9 @@
     "derived provenance": [
       "derived provenance"
     ],
+    "derived readme count checker": [
+      "derived readme count checker"
+    ],
     "derived repair": [
       "derived repair"
     ],
@@ -37616,6 +37670,9 @@
     ],
     "describe cdp domain": [
       "describe cdp domain"
+    ],
+    "description budget chronology": [
+      "description budget chronology"
     ],
     "description budget implementation summary": [
       "description budget implementation summary"
@@ -39807,6 +39864,9 @@
     "doctor asset health checks": [
       "doctor asset health checks"
     ],
+    "doctor audit findings chronology": [
+      "doctor audit findings chronology"
+    ],
     "doctor audit followups": [
       "doctor audit followups"
     ],
@@ -39915,6 +39975,12 @@
     "doctor command audit": [
       "doctor command audit"
     ],
+    "doctor command audit findings": [
+      "doctor command audit findings"
+    ],
+    "doctor command audit timeline": [
+      "doctor command audit timeline"
+    ],
     "doctor command authoring plan": [
       "doctor command authoring plan"
     ],
@@ -39947,6 +40013,9 @@
     ],
     "doctor command guidance tasks": [
       "doctor command guidance tasks"
+    ],
+    "doctor command guidance timeline": [
+      "doctor command guidance timeline"
     ],
     "doctor command plumbing": [
       "doctor command plumbing"
@@ -40198,6 +40267,9 @@
     "doctor env tasks": [
       "doctor env tasks"
     ],
+    "doctor environment switch setup": [
+      "doctor environment switch setup"
+    ],
     "doctor fable mode audit": [
       "doctor fable-mode audit"
     ],
@@ -40209,6 +40281,12 @@
     ],
     "doctor false pass fixes": [
       "doctor false pass fixes"
+    ],
+    "doctor gate coverage repairs": [
+      "doctor gate coverage repairs"
+    ],
+    "doctor gate fixes chronology": [
+      "doctor gate fixes chronology"
     ],
     "doctor gates and drift acceptance criteria": [
       "doctor gates and drift acceptance criteria"
@@ -40556,11 +40634,17 @@
     "doctor release notes shipped": [
       "doctor release notes shipped"
     ],
+    "doctor release updater fixes": [
+      "doctor release updater fixes"
+    ],
     "doctor removal tasks": [
       "doctor removal tasks"
     ],
     "doctor restart loop plan": [
       "doctor restart loop plan"
+    ],
+    "doctor retrieval index repairs": [
+      "doctor retrieval index repairs"
     ],
     "doctor retrieval signals": [
       "doctor retrieval signals"
@@ -40642,6 +40726,9 @@
     ],
     "doctor router task graph": [
       "doctor router task graph"
+    ],
+    "doctor routing chronology": [
+      "doctor routing chronology"
     ],
     "doctor rows new adapters": [
       "doctor rows new adapters"
@@ -40729,6 +40816,9 @@
     ],
     "doctor setup command": [
       "doctor setup command"
+    ],
+    "doctor setup command timeline": [
+      "doctor setup command timeline"
     ],
     "doctor setup every runtime": [
       "doctor setup every runtime"
@@ -49192,6 +49282,9 @@
     "frontmatter ownership boundary tasks": [
       "frontmatter ownership boundary tasks"
     ],
+    "frontmatter ownership timeline": [
+      "frontmatter ownership timeline"
+    ],
     "frontmatter packet closeout": [
       "frontmatter packet closeout"
     ],
@@ -54405,6 +54498,9 @@
     "hf model server idle default tasks": [
       "hf model server idle default tasks"
     ],
+    "hf model server idle timeout": [
+      "hf model server idle timeout"
+    ],
     "hf model server implementation plan": [
       "hf model server implementation plan"
     ],
@@ -55338,6 +55434,9 @@
     "hub routing canon": [
       "hub routing canon"
     ],
+    "hub routing completeness": [
+      "hub routing completeness"
+    ],
     "hub routing integration acceptance criteria": [
       "hub routing integration acceptance criteria"
     ],
@@ -55349,6 +55448,9 @@
     ],
     "hub routing operator contract": [
       "hub-routing operator contract"
+    ],
+    "hub routing reachability timeline": [
+      "hub routing reachability timeline"
     ],
     "hub routing surface removed": [
       "hub routing surface removed"
@@ -61978,6 +62080,9 @@
     "manual testing playbook full run": [
       "manual testing playbook full run"
     ],
+    "manual testing playbook inventory": [
+      "manual testing playbook inventory"
+    ],
     "manual testing playbook mistakes": [
       "manual testing playbook mistakes"
     ],
@@ -66799,6 +66904,9 @@
     "meta bind task timer reference": [
       "meta bind task timer reference"
     ],
+    "metadata contract timeline": [
+      "metadata contract timeline"
+    ],
     "metadata disk consistency enforce flip": [
       "metadata disk consistency enforce flip"
     ],
@@ -68365,8 +68473,14 @@
     "model server idle timeout": [
       "model server idle timeout"
     ],
+    "model server lifecycle timeline": [
+      "model server lifecycle timeline"
+    ],
     "model server parent pid 1": [
       "model server parent pid 1"
+    ],
+    "model server spawn chronology": [
+      "model server spawn chronology"
     ],
     "model server spawn plan": [
       "model server spawn plan"
@@ -72166,11 +72280,17 @@
     "operator scenario count": [
       "operator scenario count"
     ],
+    "operator scenario verification": [
+      "operator scenario verification"
+    ],
     "operator schema": [
       "operator schema"
     ],
     "operator surface realignment": [
       "operator surface realignment"
+    ],
+    "operator test coverage timeline": [
+      "operator test coverage timeline"
     ],
     "operator tooling advisor adjacent 116 realignment changelog": [
       "operator tooling advisor adjacent 116 realignment changelog"
@@ -72954,6 +73074,9 @@
     ],
     "orphaned mcp accumulation fix": [
       "orphaned mcp accumulation fix"
+    ],
+    "orphaned model server reap": [
+      "orphaned model server reap"
     ],
     "orphaned project daemon": [
       "orphaned project daemon"
@@ -73753,6 +73876,9 @@
     ],
     "packet resolution rule tested": [
       "packet-resolution rule tested"
+    ],
+    "packet root resolution chronology": [
+      "packet root resolution chronology"
     ],
     "packet scaffold acceptance criteria": [
       "packet scaffold acceptance criteria"
@@ -77495,6 +77621,12 @@
     "pi 017 allowlist scenario": [
       "pi-017 allowlist scenario"
     ],
+    "pi advisor bridge timeline": [
+      "pi advisor bridge timeline"
+    ],
+    "pi advisor brief restoration": [
+      "pi advisor brief restoration"
+    ],
     "pi advisor diagnostic on stderr": [
       "pi advisor diagnostic on stderr"
     ],
@@ -77584,6 +77716,9 @@
     ],
     "pi blackhole passive pass through": [
       "pi blackhole passive pass-through"
+    ],
+    "pi brief restoration chronology": [
+      "pi brief restoration chronology"
     ],
     "pi built in tools": [
       "pi built-in tools"
@@ -77784,6 +77919,9 @@
     ],
     "pi devin cursor support": [
       "pi devin cursor support"
+    ],
+    "pi diagnostic stderr timeline": [
+      "pi diagnostic stderr timeline"
     ],
     "pi directive capsule plan": [
       "pi directive capsule plan"
@@ -78194,6 +78332,9 @@
     "pi prompt framework selection": [
       "pi prompt framework selection"
     ],
+    "pi prompt input json diagnostic": [
+      "pi prompt input json diagnostic"
+    ],
     "pi prompt quality card": [
       "pi prompt quality card"
     ],
@@ -78217,6 +78358,9 @@
     ],
     "pi providers and models": [
       "pi providers and models"
+    ],
+    "pi recommendation dedup receipt": [
+      "pi recommendation dedup receipt"
     ],
     "pi registertool vision": [
       "pi registerTool vision"
@@ -78846,6 +78990,9 @@
     "playbook coverage audit": [
       "playbook coverage audit"
     ],
+    "playbook coverage timeline": [
+      "playbook coverage timeline"
+    ],
     "playbook creation reference map": [
       "playbook creation reference map"
     ],
@@ -78908,6 +79055,9 @@
     ],
     "playbook inventory tasks": [
       "playbook inventory tasks"
+    ],
+    "playbook inventory timeline": [
+      "playbook inventory timeline"
     ],
     "playbook negative control": [
       "playbook negative control"
@@ -79097,6 +79247,9 @@
     ],
     "playbook scenario names": [
       "playbook scenario names"
+    ],
+    "playbook scenario prompt sync": [
+      "playbook scenario prompt sync"
     ],
     "playbook scenario reclassification": [
       "playbook scenario reclassification"
@@ -81042,6 +81195,9 @@
     "prompt composition guidance": [
       "prompt-composition guidance"
     ],
+    "prompt copy mismatch warning": [
+      "prompt copy mismatch warning"
+    ],
     "prompt description routing": [
       "prompt description routing"
     ],
@@ -82913,6 +83069,9 @@
     "readme broken reference fix": [
       "readme broken reference fix"
     ],
+    "readme broken reference fixes": [
+      "readme broken reference fixes"
+    ],
     "readme capability sync": [
       "readme capability sync"
     ],
@@ -82951,6 +83110,9 @@
     ],
     "readme check sk code paths": [
       "readme check sk-code paths"
+    ],
+    "readme checker false positives": [
+      "readme checker false positives"
     ],
     "readme claim check approach": [
       "readme claim check approach"
@@ -83357,6 +83519,9 @@
     "readme types nine section structure": [
       "readme types nine-section structure"
     ],
+    "readme validation timeline": [
+      "readme validation timeline"
+    ],
     "readme verdict baseline": [
       "readme verdict baseline"
     ],
@@ -83407,6 +83572,9 @@
     ],
     "realistic corpus result": [
       "realistic corpus result"
+    ],
+    "realistic prompt routing replay": [
+      "realistic prompt routing replay"
     ],
     "realpath lease canonicalization": [
       "realpath lease canonicalization"
@@ -85921,6 +86089,9 @@
     ],
     "release updater over rebuild": [
       "release updater over rebuild"
+    ],
+    "release updater repair timeline": [
+      "release updater repair timeline"
     ],
     "relevance aware detector redesign": [
       "relevance-aware detector redesign"
@@ -91527,6 +91698,9 @@
     "routing registry drift guard": [
       "routing registry drift guard"
     ],
+    "routing replay findings timeline": [
+      "routing replay findings timeline"
+    ],
     "routing resilience at the command surface": [
       "routing resilience at the command surface"
     ],
@@ -91562,6 +91736,9 @@
     ],
     "routing telemetry stress test": [
       "routing-telemetry stress test"
+    ],
+    "routing token safe trims": [
+      "routing token safe trims"
     ],
     "routing vocabulary": [
       "routing vocabulary"
@@ -92021,6 +92198,9 @@
     ],
     "runnable doctor command line": [
       "runnable doctor command line"
+    ],
+    "runnable doctor target line": [
+      "runnable doctor target line"
     ],
     "runnable series parent recipe": [
       "runnable series parent recipe"
@@ -93408,6 +93588,9 @@
     "scenario loader visibility": [
       "scenario loader visibility"
     ],
+    "scenario prompt sync chronology": [
+      "scenario prompt sync chronology"
+    ],
     "scenario prompt voice guidelines": [
       "scenario prompt voice guidelines"
     ],
@@ -94493,6 +94676,9 @@
     ],
     "searchable commit messages": [
       "searchable commit messages"
+    ],
+    "searchable component changelogs": [
+      "searchable component changelogs"
     ],
     "searchbudget plan": [
       "SearchBudget plan"
@@ -97145,6 +97331,9 @@
     ],
     "single source continuity": [
       "single-source continuity"
+    ],
+    "single source routing decisions": [
+      "single source routing decisions"
     ],
     "single tenant identity hardening refused": [
       "single-tenant identity hardening refused"
@@ -101586,6 +101775,9 @@
     "sk doc machine router": [
       "sk-doc machine router"
     ],
+    "sk doc manual testing coverage": [
+      "sk-doc manual testing coverage"
+    ],
     "sk doc mode count": [
       "sk-doc mode count"
     ],
@@ -104220,11 +104412,17 @@
     "skill customization detection": [
       "skill customization detection"
     ],
+    "skill description budget": [
+      "skill description budget"
+    ],
     "skill description trim": [
       "skill description trim"
     ],
     "skill description trim rules": [
       "skill description trim rules"
+    ],
+    "skill description trims timeline": [
+      "skill description trims timeline"
     ],
     "skill description within character limit": [
       "skill description within character limit"
@@ -104306,6 +104504,9 @@
     ],
     "skill docs table": [
       "skill_docs table"
+    ],
+    "skill documentation routing": [
+      "skill documentation routing"
     ],
     "skill documents vanished published index": [
       "skill documents vanished published index"
@@ -104812,6 +105013,9 @@
     "skill references assets and skillmd cleanup tasks": [
       "skill-references-assets-and-skillmd cleanup tasks"
     ],
+    "skill release retrofit chronology": [
+      "skill release retrofit chronology"
+    ],
     "skill resource layout": [
       "skill resource layout"
     ],
@@ -104827,6 +105031,12 @@
     ],
     "skill root package manifest": [
       "skill root package manifest"
+    ],
+    "skill route clarity chronology": [
+      "skill route clarity chronology"
+    ],
+    "skill router clarity": [
+      "skill router clarity"
     ],
     "skill router files": [
       "skill router files"
@@ -105026,6 +105236,9 @@
     "skilled design tasks": [
       "skilled design tasks"
     ],
+    "skilled framework release notes": [
+      "skilled framework release notes"
+    ],
     "skilled frontmatter yaml": [
       "skilled frontmatter yaml"
     ],
@@ -105211,6 +105424,9 @@
     ],
     "skilled release notes": [
       "skilled release notes"
+    ],
+    "skilled release notes timeline": [
+      "skilled release notes timeline"
     ],
     "skilled rename rehearsal": [
       "skilled rename rehearsal"
@@ -106131,6 +106347,9 @@
     "spec authoring card text": [
       "spec authoring card text"
     ],
+    "spec authoring recipe chronology": [
+      "spec authoring recipe chronology"
+    ],
     "spec authoring speed research": [
       "spec authoring speed research"
     ],
@@ -106518,6 +106737,9 @@
     ],
     "spec folder literal naming create sh fallback": [
       "spec folder literal naming create.sh fallback"
+    ],
+    "spec folder location policy": [
+      "spec folder location policy"
     ],
     "spec folder mis location": [
       "spec folder mis-location"
@@ -107649,6 +107871,9 @@
     "spec packet merge gate": [
       "spec packet merge gate"
     ],
+    "spec packet numbering and archive tooling": [
+      "spec packet numbering and archive tooling"
+    ],
     "spec packet path leak fix": [
       "spec packet path leak fix"
     ],
@@ -107777,6 +108002,9 @@
     ],
     "spec validator verification checklist": [
       "spec validator verification checklist"
+    ],
+    "spec write recipe checks": [
+      "spec write recipe checks"
     ],
     "specdoc frontmatter 004": [
       "SPECDOC_FRONTMATTER_004"
@@ -115097,6 +115325,9 @@
     ],
     "track root drift": [
       "track root drift"
+    ],
+    "track root packet listings": [
+      "track root packet listings"
     ],
     "track root pointer store only": [
       "track root pointer store only"

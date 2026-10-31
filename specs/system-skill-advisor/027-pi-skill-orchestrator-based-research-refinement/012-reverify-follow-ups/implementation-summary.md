@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups"
+    packet_pointer: "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups"
     last_updated_at: "2026-09-28T05:36:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Proved the parent goal's six criteria again from the final state"

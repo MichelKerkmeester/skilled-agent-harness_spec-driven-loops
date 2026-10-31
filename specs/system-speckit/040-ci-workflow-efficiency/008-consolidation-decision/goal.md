@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/053-ci-workflow-efficiency/008-consolidation-decision"
+    packet_pointer: "system-speckit/040-ci-workflow-efficiency/008-consolidation-decision"
     last_updated_at: "2026-10-25T20:45:00Z"
     last_updated_by: "markdown"
     recent_action: "Closed the phase under D8 = no with every completion criterion observed"
@@ -61,12 +61,12 @@ The operator decision these choices defer to is D8 in `plan.md`; the G-numbers a
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `node specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-cost.mjs --check` exits `0` and prints `check: ok`
-- [x] `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-baseline.md` holds `26` lines that start with `| ` and its 13 job-second cells sum to `1065`
-- [x] `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-decision.md` holds `6` lines matching `^## (Context|Candidates|Measurements|Signal cost|Recommendation|D8 answer)$` and one line matching `^D8: (no|yes)$`
-- [x] `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/d8-answer.md` holds exactly `1` line matching `^D8=(no|yes)$`
+- [x] `node specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-cost.mjs --check` exits `0` and prints `check: ok`
+- [x] `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-baseline.md` holds `26` lines that start with `| ` and its 13 job-second cells sum to `1065`
+- [x] `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-decision.md` holds `6` lines matching `^## (Context|Candidates|Measurements|Signal cost|Recommendation|D8 answer)$` and one line matching `^D8: (no|yes)$`
+- [x] `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/d8-answer.md` holds exactly `1` line matching `^D8=(no|yes)$`
 - [x] `bash .github/scripts/check-gate-inputs.sh` prints `RESULT: PASSED`
-- [x] `git diff --stat "$(cat specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/phase-start-sha.txt)"..HEAD -- .github/workflows` prints nothing under `D8: no`, or `.github/workflows/always-run-guards.yml` parses with exactly `1` job under `D8: yes`
+- [x] `git diff --stat "$(cat specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/phase-start-sha.txt)"..HEAD -- .github/workflows` prints nothing under `D8: no`, or `.github/workflows/always-run-guards.yml` parses with exactly `1` job under `D8: yes`
 <!-- /ANCHOR:completion -->
 
 ---

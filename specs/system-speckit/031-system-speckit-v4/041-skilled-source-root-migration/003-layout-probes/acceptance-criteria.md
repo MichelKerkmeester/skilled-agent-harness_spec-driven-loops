@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes"
+    packet_pointer: "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes"
     last_updated_at: "2026-09-16T18:17:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Authored one criterion per requirement, all Unmet"
@@ -38,7 +38,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes
+**Packet:** system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes
 **Level:** 2
 **Status:** Draft
 **Date:** 2026-09-16

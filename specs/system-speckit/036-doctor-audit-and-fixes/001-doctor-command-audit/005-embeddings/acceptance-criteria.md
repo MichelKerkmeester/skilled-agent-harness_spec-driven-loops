@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/048-doctor-command-audit/005-embeddings"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/005-embeddings"
     last_updated_at: "2026-10-02T20:54:43Z"
     last_updated_by: "implementation"
     recent_action: "All four acceptance criteria verified Met after the embeddings route was retired"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/048-doctor-command-audit/005-embeddings
+**Packet:** system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/005-embeddings
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-02

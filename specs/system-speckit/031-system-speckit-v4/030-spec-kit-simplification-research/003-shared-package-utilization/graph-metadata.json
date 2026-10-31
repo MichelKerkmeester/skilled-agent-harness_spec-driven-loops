@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The shared package grew as the neutral layer under a memory server that no longer exists",
     "created_at": "2026-09-06T14:29:32Z",
-    "last_save_at": "2026-10-31T13:26:48.036Z",
+    "last_save_at": "2026-10-31T13:58:53.862Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:830388ae504bc34681e0826b4396492b9159c16d34d34d79a2162eac090cd3bd",
+    "source_fingerprint": "sha256:f6bcf5f9abf1db5af8308a8ed8aef06ce368f5416d69d55ff09e99495a31178c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "881fe78b141278a675a5222118efc9ab3b928b246cbd35ccf825aa51a16bc36c",

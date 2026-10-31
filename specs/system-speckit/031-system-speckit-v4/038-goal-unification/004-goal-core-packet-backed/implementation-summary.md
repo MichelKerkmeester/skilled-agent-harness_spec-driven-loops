@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/038-goal-unification/004-goal-core-packet-backed"
+    packet_pointer: "system-speckit/031-system-speckit-v4/038-goal-unification/004-goal-core-packet-backed"
     last_updated_at: "2026-09-11T07:11:49Z"
     last_updated_by: "claude-code"
     recent_action: "Shipped packet-backed goal-core with tests"

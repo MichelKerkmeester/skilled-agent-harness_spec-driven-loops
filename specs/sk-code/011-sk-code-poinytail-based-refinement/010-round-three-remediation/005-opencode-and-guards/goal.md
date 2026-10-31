@@ -91,6 +91,6 @@ and findings belong here.
 | Phase 1 skipped by the builder | No `before-*` files exist; before state was taken from HEAD, plan.md section 6 and `scratch/plan-doc-claims.txt` |
 | Checker false positive | The four `ROUTER.md:605` hits were correct prose. Fixed by FX1 and FX2 (applied; `scratch/fix-units-applied.json`); the test stays at 6 by extending the existing clean-hub and tiers tests, so criterion 1 keeps `pass 6` |
 | Compiled routing and Hermes | `compiled-route-guard` reads `sk-code stale-manifest` and Hermes `--check` reports drift: PENDING-ORCHESTRATOR |
-| Criterion 1 amended 2026-10-11 | The sk-code-skilled scripts were renamed to kebab-case by `sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file. Phase 011 added six cases, so it counts 12 |
-| Criterion 2 amended 2026-10-11 | The sk-code-skilled scripts were renamed to kebab-case by `sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file |
+| Criterion 1 amended 2026-10-11 | The sk-code-skilled scripts were renamed to kebab-case by `sk-doc/060-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file. Phase 011 added six cases, so it counts 12 |
+| Criterion 2 amended 2026-10-11 | The sk-code-skilled scripts were renamed to kebab-case by `sk-doc/060-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file |
 <!-- /ANCHOR:log -->

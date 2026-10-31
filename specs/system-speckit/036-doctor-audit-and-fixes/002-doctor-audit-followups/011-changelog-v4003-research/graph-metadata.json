@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The v4.0.0.3 entry was last edited on 2026-10-02",
     "created_at": "2026-10-04T08:12:36Z",
-    "last_save_at": "2026-10-31T13:27:14.960Z",
+    "last_save_at": "2026-10-31T13:59:27.811Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +216,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:5e1c0a6bf8ee948b54ceb36173324be6fe7e1deb7da95265b29fe5331ec19bb7",
+    "source_fingerprint": "sha256:a4a82fc3fdcd420ddbdf8ae4dcf070b5a11e2bd53cbf6c090ad05e97d0fd8c88",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6acd45b3a0785e097c161743228e8edea16db13f26dfa83af8248e28a62cf357",
+      "spec.md": "db74ca1a7ff2d6001cb457fbb0557b6ae7ddbd2b86bd870ef4163fb11be75ad7",
       "plan.md": "883ae7817f715e7c52594bc7d165e1536bcb51ac1a98266da44513ed96bf29ee",
       "tasks.md": "d3523bd596e16a4400986a75ad19955a91f9bccf43165ff085a6931823a50d1a",
       "implementation-summary.md": "8ee34e356c0ba8645b2d46def444074e6d44e6e32d6ec0cb46d56c47f1ad014b",

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot"
+    packet_pointer: "sk-doc/056-changelog-system/002-skill-changelog-retrofit/001-tooling-and-pilot"
     last_updated_at: "2026-09-24T18:10:00Z"
     last_updated_by: "claude-code"
     recent_action: "Recorded pilot run 2 evidence against the criteria"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot
+**Packet:** sk-doc/056-changelog-system/002-skill-changelog-retrofit/001-tooling-and-pilot
 **Level:** 2
 **Status:** In Progress
 **Date:** 2026-09-24

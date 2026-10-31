@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/004-migration-design"
+    packet_pointer: "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/004-migration-design"
     last_updated_at: "2026-09-16T20:45:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Resolved the layout and accepted the cutover design"

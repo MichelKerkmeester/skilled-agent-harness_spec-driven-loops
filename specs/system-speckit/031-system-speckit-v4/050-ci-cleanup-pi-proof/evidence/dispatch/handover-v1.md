@@ -1,7 +1,7 @@
 # Handover: Phase 050 CI Cleanup and Pi Gate-3 Proof
 
 **Prepared:** 2026-09-22
-**Packet:** `specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof`
+**Packet:** `specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof`
 **Worktree:** `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/061-ci-cleanup-pi-proof`
 **Branch:** `worktrees/061-ci-cleanup-pi-proof`
 **HEAD:** `1cc5dfa692dd3537754d6e614791671509d5d18e`
@@ -47,15 +47,15 @@ The exact probe shape was:
 ```bash
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/061-ci-cleanup-pi-proof || exit 9
 set +e
-env -u SYSTEM_SPEC_FOLDER -u SYSTEM_SPEC_GATE_DISABLED AI_SESSION_CHILD=0 SYSTEM_SPEC_GATE_ENFORCE=0 PI_BLACKHOLE_PASSIVE=true pi -p --offline --no-session --no-context-files --no-skills --no-prompt-templates --thinking low --model llmgateway/glm-5.3-flash 'GATE 3 IS PRE-RESOLVED FOR THIS PARENT-MODE EXTENSION PROBE. Do not ask the documentation-scope question. This is a non-interactive parent-mode probe. AI_SESSION_CHILD=0 is intentional so this run can observe classify-deferral. The file work happens in a later turn; later I will ask you to create docs/hermes-notes.md and edit README.md. Return exactly HEADLESS PROBE ACK.' </dev/null > specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/scratch/pi-headless-stdout.txt 2> specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/scratch/pi-headless-stderr.txt
+env -u SYSTEM_SPEC_FOLDER -u SYSTEM_SPEC_GATE_DISABLED AI_SESSION_CHILD=0 SYSTEM_SPEC_GATE_ENFORCE=0 PI_BLACKHOLE_PASSIVE=true pi -p --offline --no-session --no-context-files --no-skills --no-prompt-templates --thinking low --model llmgateway/glm-5.3-flash 'GATE 3 IS PRE-RESOLVED FOR THIS PARENT-MODE EXTENSION PROBE. Do not ask the documentation-scope question. This is a non-interactive parent-mode probe. AI_SESSION_CHILD=0 is intentional so this run can observe classify-deferral. The file work happens in a later turn; later I will ask you to create docs/hermes-notes.md and edit README.md. Return exactly HEADLESS PROBE ACK.' </dev/null > specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/scratch/pi-headless-stdout.txt 2> specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/scratch/pi-headless-stderr.txt
 ```
 
 The focused verification was:
 
 ```bash
-test -f specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/scratch/pi-headless-delivery-marker.json
-test "$(node -e 'const x=require("./specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/scratch/pi-headless-delivery-marker.json"); process.exit(x.questionDeliveredChannel === "classify-deferral" && x.questionDeliveredCount === 1 && x.status === "open" ? 0 : 1)')" = ''
-test "$(grep -c '^HEADLESS PROBE ACK$' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/scratch/pi-headless-stdout.txt)" = 1
+test -f specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/scratch/pi-headless-delivery-marker.json
+test "$(node -e 'const x=require("./specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/scratch/pi-headless-delivery-marker.json"); process.exit(x.questionDeliveredChannel === "classify-deferral" && x.questionDeliveredCount === 1 && x.status === "open" ? 0 : 1)')" = ''
+test "$(grep -c '^HEADLESS PROBE ACK$' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/scratch/pi-headless-stdout.txt)" = 1
 test ! -e docs/hermes-notes.md
 test "$(ls .skilled/skills/.state/spec-gate/*.json 2>/dev/null | wc -l | tr -d ' ')" = 0
 ```
@@ -75,7 +75,7 @@ The retained TUI captures establish the interactive path:
 - `scratch/pi-tui-select.txt` captures the Gate-3 select surface.
 - `scratch/pi-tui-input.txt` captures the spec-folder path input surface.
 - `scratch/pi-tui-final.txt` captures the first-write refusal, the retry reason naming the bound path and the later successful edit.
-- `scratch/pi-tui-state.json` records `status: satisfied` and the bound folder `specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof`.
+- `scratch/pi-tui-state.json` records `status: satisfied` and the bound folder `specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof`.
 - `scratch/pi-tui-warning.log` retains the runtime warning evidence from the session.
 
 The first write was blocked once. The selected path was bound to the session. The retry passed. No second question was recorded for the later write. The reversible probe files and the temporary session state were removed after capture.
@@ -175,7 +175,7 @@ The following work is still open and blocks packet completion:
 1. Replace the Phase 050 scaffold placeholders in `spec.md`, `tasks.md`, `acceptance-criteria.md` and `implementation-summary.md` with the observed scope, evidence and honest status.
 2. Record the Pi proof in the packet evidence, the Phase 048 implementation summary and the Phase 033 timeline.
 3. Run repair-derived metadata after the packet documents are authored.
-4. Run `validate.sh specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof --strict` and require an explicit `RESULT: PASSED`.
+4. Run `validate.sh specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof --strict` and require an explicit `RESULT: PASSED`.
 5. Run the packet completion checker and reconcile every acceptance row and verification checklist row.
 6. Produce the approved commit and prove the merge against the unrelated dirty set.
 7. Align the required branches, push only through the approved guarded flow, watch the resulting CI and remove the temporary worktree only after the final state is verified.

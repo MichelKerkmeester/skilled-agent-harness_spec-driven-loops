@@ -206,7 +206,7 @@ Written before the build. `M` is the proposed `.skilled/skills/cli-classifier/sh
 2. `node --test $T` exits 0 with one happy path and one edge case per public surface, both backends stubbed. Boundary: a Pi answer with no probability for a submitted key prints one skip line and falls back to the CLI.
 3. With the switch on and the Pi backend stubbed, `M` returns the CLI-shaped result for a `choice` question. Boundary: a `bool` or `score` request never reaches the Pi stub, and each of the three gate failures prints one skip line then the CLI's result.
 4. With the switch on and no CLI available, the caller stops with the CLI's own error and exit status, and no Pi call happens.
-5. `python3 .skilled/skills/sk-doc/scripts/validate_document.py` exits 0 on every changed doc, and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration --strict` prints `RESULT: PASSED`.
+5. `python3 .skilled/skills/sk-doc/scripts/validate_document.py` exits 0 on every changed doc, and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-classifier/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration --strict` prints `RESULT: PASSED`.
 6. `git diff --stat` on the three runtime trees is empty and the follow-up list names all 13 callers.
 
 **Kill criterion.** A transport that changes default-path output, switches transports without its one skip line, or adopts `bool` or `score` without their own measured run closes nothing. A stub or vitest result never substitutes for the operator's yes on a live call.

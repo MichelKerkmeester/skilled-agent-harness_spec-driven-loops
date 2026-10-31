@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Raising a lane weight changes every routing decision the advisor makes",
     "created_at": "2026-09-02T22:17:24Z",
-    "last_save_at": "2026-10-31T13:26:12.398Z",
+    "last_save_at": "2026-10-31T13:47:10.581Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:d980eb62d08a96dcf425834a2bf41cb0fcc28f6b43c747e30f8bb7a310540ce0",
+    "source_fingerprint": "sha256:dfb764d184a8ea0247283b17e8f9f28345b416306e1cc6416f87f2786cca3f12",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "72f397fda1e575b23c35cf48ba8f2edeb6caeb18589e23ce8c9399c6a4e8e0f1",
       "plan.md": "2677df93d601cea6990a640fb25d8bccb5ab840082bed476bfd09f6f95f23148",
       "tasks.md": "f1f531c08f8b991078422d307b6ab8ef5fd9a1769431b38b5c4f3aed5e818bf0",
-      "decision-record.md": "eeb442caf79f67ef1f4b9896820b1c2867186d4e14884cf3e60e442bae9fcf07"
+      "decision-record.md": "8de2592beded22eedcd27e9520b40712ae9653cc24ddca0657d8113e34423ca6"
     },
     "last_active_child_id": null,
     "last_active_at": null

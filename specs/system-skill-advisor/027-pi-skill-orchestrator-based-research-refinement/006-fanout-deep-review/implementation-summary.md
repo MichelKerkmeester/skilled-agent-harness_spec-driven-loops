@@ -8,15 +8,15 @@ importance_tier: "normal"
 contextType: "review"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review"
+    packet_pointer: "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review"
     last_updated_at: "2026-09-26T16:55:00Z"
     last_updated_by: "orchestrate"
     recent_action: "Closed the two-lineage review: PASS with twelve P2 advisories"
     next_safe_action: "Operator picks which P2 workstreams to fix"
     blockers: []
     key_files:
-      - "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/review-report.md"
-      - "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/deep-review-findings-registry.json"
+      - "specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/review-report.md"
+      - "specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/deep-review-findings-registry.json"
     session_dedup:
       fingerprint: "sha256:0c2bd38378185eb8c8824f686ae36c0e21a5b0dc3097ff01b76162eef76a2e47"
       session_id: "2026-09-26-030-orchestrate"
@@ -98,7 +98,7 @@ Two steps could not run as written at a fan-out root. The resource-map emit exit
 | P0 and P1 lines opened | R1-P1-001 confirmed, then downgraded; F002, R2-P2-002, F003, R2-P2-001 and R1-P2-003 confirmed |
 | Close | Root `deep-review-state.jsonl` holds `synthesis_complete`, verdict PASS, with no root dashboard |
 | Containment | 54 out-of-scope dirty paths flagged on the mimo lineage, preserved and not reverted; the file set is another session's work plus this session's parent `spec.md` edit |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement --strict --recursive` | Exit 0. All eight folders `RESULT: PASSED`, 0 errors and 0 warnings |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement --strict --recursive` | Exit 0. All eight folders `RESULT: PASSED`, 0 errors and 0 warnings |
 <!-- /ANCHOR:verification -->
 
 ---

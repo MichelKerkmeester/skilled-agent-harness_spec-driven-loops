@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-create-goal-mode/005-budget-and-chat-slice-handoff"
+    packet_pointer: "sk-doc/057-create-goal-mode/005-budget-and-chat-slice-handoff"
     last_updated_at: "2026-09-26T06:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Built the budget and handoff reference and proved the cut"
@@ -105,7 +105,7 @@ The orchestrator then:
 | `grep -nE 'goal\.cjs (bind\|set)'` on the reference | No match, exit 1 |
 | `package_skill.py --check --strict` on the mode | `Result: PASS` |
 | `hvr_scan.py` on the reference and `SKILL.md` | 0 hard blockers; mechanical ceilings 98/100 and 89/100 |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/060-create-goal-mode/005-budget-and-chat-slice-handoff --strict` | `RESULT: PASSED`, 0 errors and 0 warnings, on 2026-09-26 |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode/005-budget-and-chat-slice-handoff --strict` | `RESULT: PASSED`, 0 errors and 0 warnings, on 2026-09-26 |
 <!-- /ANCHOR:verification -->
 
 ---

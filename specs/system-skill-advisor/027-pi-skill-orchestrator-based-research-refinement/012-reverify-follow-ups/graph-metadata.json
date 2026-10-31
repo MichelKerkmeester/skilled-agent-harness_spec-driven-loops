@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The goal re-verification after phase 11 proved all six criteria but left four things for the operator",
     "created_at": "2026-09-27T15:20:08Z",
-    "last_save_at": "2026-10-31T13:26:17.378Z",
+    "last_save_at": "2026-10-31T14:00:57.496Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:45b02147337ef2d1988230cb3d391fb0f48d31581bcbe274a1a59d64bd85abf3",
+    "source_fingerprint": "sha256:3ec0df1bba102e71f19541cf44e882ba5256a50633337f227b6db0491c59ea53",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b5716c9b6114a7a21f9ccd3422652fa8151f50248b6ce7fa58008c7b533dbb8d",

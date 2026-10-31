@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/020-routing-clarify-default"
     last_updated_at: "2026-09-29T15:39:02Z"
     last_updated_by: "closure-leaf"
     recent_action: "Closed the phase at the label gate: 6 of 6 goal criteria ticked, build commit 65c71719ac"
@@ -19,8 +19,8 @@ _memory:
     key_files:
       - ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs"
       - ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/scratch/w4-build/build-evidence.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/scratch/w4-session/session-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/020-routing-clarify-default/scratch/w4-build/build-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/020-routing-clarify-default/scratch/w4-session/session-evidence.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-020-routing-clarify-default"

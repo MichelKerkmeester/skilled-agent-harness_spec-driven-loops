@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-write-recipe-fixes/003-fix-write-recipe-workspace-bullet"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/003-fix-write-recipe-workspace-bullet"
     last_updated_at: "2026-09-29T06:55:00Z"
     last_updated_by: "claude"
     recent_action: "Reworded the recipe workspace bullet and checked its claims"

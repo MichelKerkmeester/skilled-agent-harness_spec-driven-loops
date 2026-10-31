@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The spec.md template opens the questions anchor at line 184, before the level 2, 3 and 3+ block that renders NFR, edge-cases and complexity sections",
     "created_at": "2026-10-08T04:22:39Z",
-    "last_save_at": "2026-10-31T13:26:25.809Z",
+    "last_save_at": "2026-10-31T13:58:21.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f0de85b94a37a247c6bfbd30b6d7c7f1e1e426034521f2c433834b30b04396bc",
+    "source_fingerprint": "sha256:5832bb1d007641e4dca459787c7e59ea14bdccaf2bcb53350547fc17cbe973a1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ad88a18a3f3e628954364a80e95b081c7e5c65031eeaeb993f4d50b726427bf7",

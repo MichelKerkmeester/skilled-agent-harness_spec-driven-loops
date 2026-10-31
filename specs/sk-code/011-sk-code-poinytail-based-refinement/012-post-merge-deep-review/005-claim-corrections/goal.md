@@ -84,6 +84,6 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Header wording | With three copies, the builder's "without the other" became "without the others" |
-| Criterion 2 amended 2026-10-11 | The sk-code-skilled scripts were renamed to kebab-case by `sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file |
+| Criterion 2 amended 2026-10-11 | The sk-code-skilled scripts were renamed to kebab-case by `sk-doc/060-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file |
 | Criterion 4 amended 2026-10-11 | deep-improvement moved to 1.19.5.0 in later phases, so the SKILL.md half went stale. The release entry still exists, and the strict package check proves the SKILL.md version matches the newest entry |
 <!-- /ANCHOR:log -->

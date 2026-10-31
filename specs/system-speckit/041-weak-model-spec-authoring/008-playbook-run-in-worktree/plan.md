@@ -78,7 +78,7 @@ Two roots are named once by the conductor:
 - `RUNROOT`: the checkout that holds this phase folder and receives every durable write. It is the build worktree from `../goal.md` section 4 when the operator chose A, otherwise the primary checkout.
 - `MAIN`: the primary checkout, read with `git -C "$RUNROOT" worktree list --porcelain | awk 'NR==1{print $2}'`.
 
-`PHASE` is `$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree`.
+`PHASE` is `$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree`.
 `WT` is the absolute directory printed by the allocator.
 `WT_BRANCH` is the branch name printed beside it.
 `BASE_REF` is the ref the operator recorded in `../goal.md` section 4.
@@ -197,7 +197,7 @@ One data row per scenario, with `runtime` set to `conductor`, `run` set to `1`, 
       "operatorInputs": "None.",
       "evidence": [
         {
-          "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/<playbook id>.txt",
+          "path": "specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/<playbook id>.txt",
           "bytes": 0,
           "sha256": "<sha256>"
         }
@@ -206,7 +206,7 @@ One data row per scenario, with `runtime` set to `conductor`, `run` set to `1`, 
   ],
   "evidence": [
     {
-      "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/<playbook id>.txt",
+      "path": "specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/<playbook id>.txt",
       "bytes": 0,
       "sha256": "<sha256>"
     }
@@ -518,7 +518,7 @@ You are a dispatched Task subagent. This repository's AGENTS.md treats a dispatc
 as pre-resolved for the spec-folder question, and this prompt is that pre-resolution.
 
 Your write authority is already bound. The spec folder is:
-  specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree
+  specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree
 
 Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 A failed edit match means a stale anchor: re-read the file and retry; halt only after three

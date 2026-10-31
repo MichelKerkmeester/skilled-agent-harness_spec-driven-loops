@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Since the source-root migration, the pi prompt-advisor hook fails on every prompt in ~2 ms without contacting anything: its warm-CLI fallback probe looks only under `<root>/.opencode/bin/`, but the advisor shim and the launcher-IPC bridge now live under `<root>/.skilled/bin/`",
     "created_at": "2026-09-22T07:01:40Z",
-    "last_save_at": "2026-10-31T13:26:16.331Z",
+    "last_save_at": "2026-10-31T13:41:27.024Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a9052c1541d3eae460e99fe3731b339460dc398f0d8f8495db4bc4e131a3d1ea",
+    "source_fingerprint": "sha256:e730f5e86c22091500327bf72fd5aeb46343fd894b9aa03cc384bbcb68889e69",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "84d1f4d5b9006b8b3d9ffa7102989128c5187d21226df3724edfa58926e2a021",
       "plan.md": "e58d4cd5d8ab152a51c50053ef6a9a4bdb3cc361515cfc77c85722864eb96577",
-      "tasks.md": "c1ea190b16926e2d113ebb72e084de9f96952de53748dca7d052db5762a96df7",
-      "implementation-summary.md": "d9f595e93b82aac2b906ccda90f44c561117acc6586a47bb9b42d80098c2d802"
+      "tasks.md": "eb5e2bc99fb1cfc9090df36cc3adc220e470cfd2ee8cf878efdd2e06e584ed91",
+      "implementation-summary.md": "0dd54242ed7c99aba00cb55241f59ba981f1a22534e49e2dad65a060bb59f191"
     },
     "last_active_at": null
   }

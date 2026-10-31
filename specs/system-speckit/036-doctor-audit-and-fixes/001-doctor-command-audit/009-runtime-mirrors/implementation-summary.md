@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/048-doctor-command-audit/009-runtime-mirrors"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/009-runtime-mirrors"
     last_updated_at: "2026-10-02T16:10:22Z"
     last_updated_by: "doc-closure"
     recent_action: "Closed the phase documentation for the applied runtime-mirrors fix"
@@ -114,7 +114,7 @@ Audit first: the phase inventoried every path, script, command, flag and variabl
 3. **Repair commands were not run.** The write-producing repair commands and the package build were recorded as skipped by the read-only audit (`scratch/doctor-run.log:457-487`).
 4. **Three doctor test fixtures fail in this worktree, as before the batch.** `parent-skill-check-*.test.cjs` cannot load `@spec-kit/shared/frontmatter/parse-frontmatter.js` inside a temporary fixture; this matches the pre-batch baseline and is not a regression.
 
-**Follow-up status.** Item 4 is resolved by `specs/system-speckit/049-doctor-audit-followups` phase 003. Item 2 stands: user-global Codex hooks live outside the repository and need the operator's own check. Items 1 and 3 are observations.
+**Follow-up status.** Item 4 is resolved by `specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups` phase 003. Item 2 stands: user-global Codex hooks live outside the repository and need the operator's own check. Items 1 and 3 are observations.
 <!-- /ANCHOR:limitations -->
 
 ---

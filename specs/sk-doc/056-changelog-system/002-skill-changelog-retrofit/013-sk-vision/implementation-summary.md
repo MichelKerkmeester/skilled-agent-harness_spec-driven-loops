@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/059-skill-changelog-retrofit/013-sk-vision"
+    packet_pointer: "sk-doc/056-changelog-system/002-skill-changelog-retrofit/013-sk-vision"
     last_updated_at: "2026-09-26T08:26:50Z"
     last_updated_by: "generate-context"
     recent_action: "Committed and pushed the sk-vision rewrites in e621fbd295"
     next_safe_action: "Close the parent packet"
     blockers: []
     key_files:
-      - "specs/sk-doc/059-skill-changelog-retrofit/scratch/lists/sk-vision.txt"
+      - "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/scratch/lists/sk-vision.txt"
     session_dedup:
       fingerprint: "sha256:9c90f78bb43e4e72ce4f86e20615a9eb410bee04edff41cd0bb7d5bd5bee5879"
       session_id: "fb879d4c-5543-4760-8339-b0f3499f278d"

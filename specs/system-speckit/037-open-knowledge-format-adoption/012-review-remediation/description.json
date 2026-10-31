@@ -11,7 +11,7 @@
   "folderSlug": "review-remediation",
   "parentChain": [
     "system-speckit",
-    "050-open-knowledge-format-adoption"
+    "037-open-knowledge-format-adoption"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

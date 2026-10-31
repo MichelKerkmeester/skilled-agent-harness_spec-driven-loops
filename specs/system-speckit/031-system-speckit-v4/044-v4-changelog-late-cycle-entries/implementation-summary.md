@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/044-v4-changelog-late-cycle-entries"
+    packet_pointer: "system-speckit/031-system-speckit-v4/044-v4-changelog-late-cycle-entries"
     last_updated_at: "2026-09-20T20:35:00Z"
     last_updated_by: "pi"
     recent_action: "Changelog entries landed in commit 799bb5e679"

@@ -7,17 +7,17 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification"
     last_updated_at: "2026-10-29T19:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Verified the moved routers read-only and recorded the evidence"
     next_safe_action: "Operator approves the AI Systems pushes; CI runs after"
     blockers: []
     key_files:
-      - "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/scratch/resolver-and-links.txt"
-      - "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/scratch/pre-move-verdicts.txt"
-      - "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/scratch/battery.txt"
-      - "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/scratch/moneybird-resolve.txt"
+      - "specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/scratch/resolver-and-links.txt"
+      - "specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/scratch/pre-move-verdicts.txt"
+      - "specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/scratch/battery.txt"
+      - "specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification/scratch/moneybird-resolve.txt"
     session_dedup:
       fingerprint: "sha256:7407f357895fe71b4742c0131367dd98a9df1649bcaed66c3c9593f6b976a54f"
       session_id: "0269-skill-router-files"

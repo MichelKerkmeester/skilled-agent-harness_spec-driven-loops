@@ -17,7 +17,7 @@
   "folderSlug": "v4-parent-data-repairs",
   "parentChain": [
     "system-speckit",
-    "033-system-speckit-v4"
+    "031-system-speckit-v4"
   ],
   "memorySequence": 3,
   "memoryNameHistory": [

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite"
+    packet_pointer: "system-speckit/031-system-speckit-v4/045-v4-changelog-voice-rewrite"
     last_updated_at: "2026-09-21T00:00:00Z"
     last_updated_by: "pi"
     recent_action: "Rewrote the changelog into the root README's voice and recorded the evidence"
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-`specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md` now reads the way the root README's §8 reads. Every long paragraph became benefit-led bullets or a short paragraph, four counts the tree contradicts were corrected, and the two late-cycle skill moves reached the glance list where a reader skims first.
+`specs/system-speckit/031-system-speckit-v4/CHANGELOG-v4.0.0.0.md` now reads the way the root README's §8 reads. Every long paragraph became benefit-led bullets or a short paragraph, four counts the tree contradicts were corrected, and the two late-cycle skill moves reached the glance list where a reader skims first.
 
 ### What the reader gains
 

@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The memory decommission deleted the MCP server, its tools and its database, but kept the package that held them because the validation orchestrator, the metadata refresh, the continuity writer and the per-runtime hook adapters live inside it",
     "created_at": "2026-09-04T19:16:06Z",
-    "last_save_at": "2026-10-31T13:26:43.682Z",
+    "last_save_at": "2026-10-31T13:58:47.748Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da3b6b1333b45256166bae85c186388cd1fbf3a67f0bdc7fc1c1913339b55799",
+    "source_fingerprint": "sha256:b259316147d512d41193872be4cd9bca788b92495afe775b68f4a2324a36f598",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f42f57bee871a2a0b8ebc78abe34ef5f2b9a990e1c986695ef5651f0699508f9",
+      "spec.md": "f688956c8600975ad93d03a982715507a06dbd8feb27ee9fb59cb1a73456de8e",
       "plan.md": "f868bab283f11f2b61c6aa63c2103c03afd22603db73b9c55878cca2d289d869",
       "tasks.md": "03d7c59405b47a1a73bdb5f9f194da6347448f87dfe642b88929e7f8178c18fd",
       "implementation-summary.md": "534456e053bcc35f8679fd8cacac438fb71ba0ec13539d39933f6cdfa668889c"

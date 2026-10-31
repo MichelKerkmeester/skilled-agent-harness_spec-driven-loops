@@ -10,14 +10,14 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge"
     last_updated_at: "2026-09-29T16:06:52Z"
     last_updated_by: "closure-leaf"
     recent_action: "Closed the phase at the label gate: 6 of 6 goal criteria ticked, build commit b5e71ae777"
     next_safe_action: "Operator: grade 20 replies, then a live Deem run and a Jev run on their yes"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-023-reply-harness-blinded-judge"

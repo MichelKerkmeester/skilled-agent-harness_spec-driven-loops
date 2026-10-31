@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Each of these takes another mode's output as its input",
     "created_at": "2026-09-01T11:48:00Z",
-    "last_save_at": "2026-10-31T13:25:44.740Z",
+    "last_save_at": "2026-10-31T14:01:31.664Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8602bfc11a0005d3de4a31844843fbabb068c9329c326350950a5883cff5e6cd",
+    "source_fingerprint": "sha256:f3bd6261042b3adafa3a32452ac8eb86a031df8ce33e849da541560bb0eab19a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3f4a511d924ca96ea0f8512b93e49acffc51bb1ea59d378ae474efc6a40d80a2",

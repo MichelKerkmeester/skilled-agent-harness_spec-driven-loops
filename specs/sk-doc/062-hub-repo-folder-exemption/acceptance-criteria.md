@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/068-hub-repo-folder-exemption"
+    packet_pointer: "sk-doc/062-hub-repo-folder-exemption"
     last_updated_at: "2026-10-20T18:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Marked every criterion Met with observed evidence"
@@ -38,7 +38,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/068-hub-repo-folder-exemption
+**Packet:** sk-doc/062-hub-repo-folder-exemption
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-20

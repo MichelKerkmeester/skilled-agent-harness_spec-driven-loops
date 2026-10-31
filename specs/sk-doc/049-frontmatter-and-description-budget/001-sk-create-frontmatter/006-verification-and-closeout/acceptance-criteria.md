@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/049-sk-create-frontmatter/006-verification-and-closeout"
+    packet_pointer: "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/006-verification-and-closeout"
     last_updated_at: "2026-09-01T08:43:02Z"
     last_updated_by: "implementation"
     recent_action: "Closed all six criteria from one sweep over the settled tree; every gate green"
@@ -41,7 +41,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/049-sk-create-frontmatter/006-verification-and-closeout
+**Packet:** sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/006-verification-and-closeout
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-09-01

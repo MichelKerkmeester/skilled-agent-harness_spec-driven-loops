@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The root README lists the doctor commands at `README.md:213` and describes each in the Doctor section near `README.md:1247-1257`, and `.skilled/commands/README.txt:128` says \"Eleven command files cover the diagnostic surface\"",
     "created_at": "2026-10-30T05:21:17Z",
-    "last_save_at": "2026-10-31T13:26:08.810Z",
+    "last_save_at": "2026-10-31T14:02:01.251Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5260e5e15a8ee9bd1a098f536d700620ca223c67216eaebbdeeae3a44e208686",
+    "source_fingerprint": "sha256:52ceff4c39e5d7dcd70389fecbe352bb4007c89a9d927ec0bbd50d8b6cefa80b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0e55dfa1d32df4258cc90e1b1581bb92d612950c50e8dac80b043fa259dad724",
       "plan.md": "2eabce33409266fb7981bc41e7e65195bd71110275a4bc000dcb9be88aff8052",
       "tasks.md": "752a6ccec33010085ec05d18e79a3603508e41bfac59c5fb4979c3995a95afc9",
-      "implementation-summary.md": "fc7973ddc66bcb16ed96a130e55bbedc8f1ff62b67a0ebbcfda8e9f4dd0fe9b8"
+      "implementation-summary.md": "31517737346ccdfaa3e8b78a5a970d6a98aac2a9220f114b62869e99d3887cd8"
     },
     "last_active_at": null
   }

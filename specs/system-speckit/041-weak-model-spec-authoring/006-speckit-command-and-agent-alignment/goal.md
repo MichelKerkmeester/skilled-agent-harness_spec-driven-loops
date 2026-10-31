@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/006-speckit-command-and-agent-alignment"
     last_updated_at: "2026-10-24T22:00:00Z"
     last_updated_by: "conductor"
     recent_action: "Closed phase 006"

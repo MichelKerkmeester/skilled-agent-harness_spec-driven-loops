@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Human Voice Rules scanner settles only what a machine can settle without reading for meaning",
     "created_at": "2026-09-29T12:42:45Z",
-    "last_save_at": "2026-10-31T13:25:31.132Z",
+    "last_save_at": "2026-10-31T14:03:51.846Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b30ac5351f8a176f7ef5e3024a91a91cef3b06bef1fdb045258fcbdc085f566",
+    "source_fingerprint": "sha256:c68d7a4b826180e8effecf69dd368d9a59742775b61b873f38fd772dc9306981",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "762f80b6f479f83af6a6a11b0990aacc01c37cb97ceedd36c5c0b38e1db4303e",
       "plan.md": "8f44a690fbaf60c28c80ded0b617aec38ee5a32ec8992871f1fa6f3b71ac6307",
       "tasks.md": "60169c6c556caaf65d44d29c4c628c1c4a928c92d0a58560662bbbc20c527619",
-      "implementation-summary.md": "3a94aafeb0cf8471ada56ef348627dafa7097890f27a7b3e4dccb10a48dbb063"
+      "implementation-summary.md": "bdc76d807946b9f41c56b5330311b076272299c4c29cf86b3ee87d024bcde727"
     },
     "last_active_at": null
   }

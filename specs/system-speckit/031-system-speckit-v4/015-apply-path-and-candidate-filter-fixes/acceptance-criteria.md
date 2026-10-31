@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/015-apply-path-and-candidate-filter-fixes
+**Packet:** system-speckit/031-system-speckit-v4/015-apply-path-and-candidate-filter-fixes
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-08-31

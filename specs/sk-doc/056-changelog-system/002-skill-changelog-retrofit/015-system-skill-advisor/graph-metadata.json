@@ -191,7 +191,7 @@
     ],
     "causal_summary": "12 system-skill-advisor changelogs predate the compact and expanded format that sk-create-changelog now defines",
     "created_at": "2026-09-24T16:54:15Z",
-    "last_save_at": "2026-10-31T13:25:57.162Z",
+    "last_save_at": "2026-10-31T14:01:47.982Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a17e9afc377a9b45c37bebeb10b374a3aae4fbfcaebd47871c262eba0b99786c",
+    "source_fingerprint": "sha256:e727d70347b6b07720563678da6d6a6d4b5952f64e476222d9841fa68f4e5e71",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8ae2190bd946e7ea515e78b9f18d0b5d17f088b8d4d85d6c79bfef8570f39c1e",
       "plan.md": "21b89fdca500068e3ca491fdf008e041648f81a07bf67680f778ffdf40d9cf59",
       "tasks.md": "756a4375b34bd0bab888d74d2bdd90e2459cc914ba093e08db078c0d048a1839",
-      "implementation-summary.md": "31ff322e8fe8d1e0bcd0065fc1a5ecb36a2285b3d6889086e5aef102c67d8348"
+      "implementation-summary.md": "63c7d7ded05e8e00f745014286c2ee1e41e43810d6e85832376d27f7d23f973b"
     },
     "last_active_at": null
   }

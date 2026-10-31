@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness"
+    packet_pointer: "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness"
     last_updated_at: "2026-09-17T09:30:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Published phase 005 at c22d1b63c9 and read CI on the pushed tip"

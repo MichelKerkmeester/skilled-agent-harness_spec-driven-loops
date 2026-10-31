@@ -191,7 +191,7 @@
     ],
     "causal_summary": "4 sk-communication changelogs predate the compact and expanded format that sk-create-changelog now defines",
     "created_at": "2026-09-24T16:54:11Z",
-    "last_save_at": "2026-10-31T13:25:56.055Z",
+    "last_save_at": "2026-10-31T14:01:46.299Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a63fb88a5c1e2d33182abb45b7b28ef3d84f2485fe3259647c34b4cd085bc372",
+    "source_fingerprint": "sha256:1b08f9a2777176cc8d17d0fa4deab65e716248ae24dc4f6c2f4f197aa580d05c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "71bd994f9eb919bc85f8890e21389505442b759e86f044df19c5f741dd340a7a",
       "plan.md": "62403cae2b6560ab551b6a7da99007b8c4baea05a66b272fca7af916fa5d4c7d",
       "tasks.md": "04aa81bdd6c80ed0645bc3a6ad5bdc5c7d4d5d57e4eed479138d4de7913b7388",
-      "implementation-summary.md": "41ba8d5b1f9f1c2d8ac612fe90459ea2078996e17f2acecd479b3ba7226cbf94"
+      "implementation-summary.md": "a9e46ecef9157f4353b26b023586e04a68116dad6d1ce7fcc4706c7bcccf2364"
     },
     "last_active_at": null
   }

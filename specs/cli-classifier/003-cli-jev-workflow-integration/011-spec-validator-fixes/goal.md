@@ -11,14 +11,14 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/011-spec-validator-fixes"
     last_updated_at: "2026-09-27T17:51:28Z"
     last_updated_by: "closure-leaf"
     recent_action: "Closed the phase with criterion 6 amended"
     next_safe_action: "None. The orchestrator commits"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/011-spec-validator-fixes/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-workflow-integration"
@@ -89,7 +89,7 @@ here are invisible to whatever judges completion.
 
 - [x] `bash .skilled/skills/system-spec-kit/runtime/cli/tests/check-ac-coverage.sh` ends `0 failed` with more than 25 passed, including cases where a missing file and a line past the end each put their AC id in an `Unresolved evidence citation(s):` detail
 - [x] The 25 `expect`, `expect_source` and `expect_status` calls that existed on 2026-09-27 in `tests/check-ac-coverage.sh` pass with no edit, and `git diff` on `check-ac-coverage.sh` changes no line that increments `covered`
-- [x] `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/goal.md` exits 0 and prints `RESULT: PASSED (5/5 checks)`, and the same command on that folder's `spec.md` exits 2 with `packet path is not a directory`
+- [x] `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/cli-classifier/003-cli-jev-workflow-integration/006-goal-criteria-lint/goal.md` exits 0 and prints `RESULT: PASSED (5/5 checks)`, and the same command on that folder's `spec.md` exits 2 with `packet path is not a directory`
 - [x] `node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/` reports `fail 0` with more than 15 passing
 - [x] `rg -n 'nresolved' .skilled/skills/system-spec-kit/references/validation/validation-rules.md` and `rg -n 'goal.md' .skilled/skills/sk-doc/sk-create-goal/scripts/README.md` each return the new line
 - [x] `bash .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh` ends `0 failed` with more than 10 passed, including a case where children appended after `001-foundation` carry "Phase 2" and "Phase 3" in the `--description` passed to the `description.json` generator, as the stub logs it, and in `graph-metadata.json` and the `spec.md` title
@@ -125,7 +125,7 @@ and findings belong here.
 | Verification | Done | 2026-09-27 at `03e567cfe7`, orchestrator: `check-ac-coverage.sh` `44 passed, 0 failed`, exit 0. `node --test` `tests 20`, `pass 20`, `fail 0`, exit 0. `test-phase-system.sh` `Results: 12 passed, 0 failed (of 12)`, exit 0. `create-root-numbering.vitest.ts` `Tests  6 passed (6)`, exit 0. The `goal.md` and folder `check-goal.cjs` runs on 006 diff to nothing, and `spec.md` exits 2. The `covered++` diff count is `0`, and `rules/` plus `create.sh` show only `check-ac-coverage.sh` changed |
 | Label revert test | Done | 2026-09-27: `test-phase-system.sh` against the `create.sh` from `8036425eaa^` prints `11 passed, 1 failed`, with the appended-label case failing. Against the current `create.sh`: `12 passed, 0 failed` |
 | Timing after | Done | Same packet, three runs each, all exit 0. After the build: 2.32, 1.77 and 1.78 s. After the review fixes: 1.76, 1.73 and 1.73 s. The change stays within run-to-run noise, about 0.1 to 0.2 s at most. Every run printed `AC_COVERAGE advisory: 37/37 ACs have evidence; floor 34/37` |
-| Real packet | Done | `validate.sh --strict` on `specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/010-template-contract-alignment`: exit 0, `RESULT: PASSED`, `6/6 ACs have evidence; floor 6/6`, and a detail line starting `Unresolved evidence citation(s): AC-001 (runtime/cli/spec/create.sh:157)`. The skill-relative citations do not resolve, the ratio is unchanged |
+| Real packet | Done | `validate.sh --strict` on `specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/010-template-contract-alignment`: exit 0, `RESULT: PASSED`, `6/6 ACs have evidence; floor 6/6`, and a detail line starting `Unresolved evidence citation(s): AC-001 (runtime/cli/spec/create.sh:157)`. The skill-relative citations do not resolve, the ratio is unchanged |
 | Phase docs | Done | 2026-09-27: tasks, acceptance criteria, this log and `implementation-summary.md` record the evidence, and the stale premises are corrected in `spec.md`, `plan.md` and `tasks.md`. AC-001 to AC-011 are `Met` |
 | Outside-root case | Done | 2026-09-27: brief 13 (cursor Grok 4.7, 128 s) adds "a citation that climbs out of the folder resolves only to a real file" to `tests/check-ac-coverage.sh`, +3/-0, commit `baf2876802`. A `..` citation to a file outside the packet folder resolves, and one to a missing file stays unresolved. Suite `45 passed, 0 failed`, exit 0. Source: the orchestrator's follow-up evidence |
 | Stderr check | Done | 2026-09-27, orchestrator at HEAD `baf2876802`, stderr captured per command: `check-goal.cjs` on the folder and on its `goal.md` for the parent and all 18 children of `003-cli-jev-workflow-integration`, `node --test`, the `check-ac-coverage.sh` suite and `validate.sh --strict` on four packets. Every command wrote 0 bytes of stderr, and every exit code was 0. Source: the orchestrator's follow-up evidence |

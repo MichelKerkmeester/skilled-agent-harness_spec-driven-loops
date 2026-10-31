@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/033-validator-residue-flagger"
     last_updated_at: "2026-09-29T21:57:25Z"
     last_updated_by: "markdown-leaf"
     recent_action: "Build c13e968a58 committed; phase closed at its label gate"
@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/scratch/w4-session/session-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/033-validator-residue-flagger/scratch/w4-session/session-evidence.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-033-validator-residue-flagger"

@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Two runtimes judge \"is this goal done\" with a heuristic",
     "created_at": "2026-09-26T18:26:44Z",
-    "last_save_at": "2026-10-31T13:25:26.882Z",
+    "last_save_at": "2026-10-31T14:03:47.626Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8b597d915a19a967f6b7d823cf18b20bf5085b1b789c080cd6afaaf517048fd",
+    "source_fingerprint": "sha256:24fcc814e30141d605138511ccf3950b51685ee6bfec6dbcb25dd502d8930e97",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8f715c200ded745cb2bd44372b748c9be3ab6bb0622c9cc8a6c304230cf80342",
       "plan.md": "85910bd8bf84d897710ff57e6735a434ff76fdacb6d4ed9d9ea68b1678f1f622",
       "tasks.md": "7fc166b4064bda0ebf8677759aaa89c8d2c28147f07f20cc21f7bc1ef88f22d9",
-      "implementation-summary.md": "5e117b45a57136e471453fc21c21239b45a0073d52648f5ac47f3f382a271032"
+      "implementation-summary.md": "db5dc5322b76dccb2da87c2f14e39c2b122ef9727d2d498d342c06ebcb55e399"
     },
     "last_active_at": null
   }

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/038-pi-advisor-diagnostic-stderr"
+    packet_pointer: "system-skill-advisor/026-pi-advisor-bridge/002-pi-advisor-diagnostic-stderr"
     last_updated_at: "2026-10-21T16:37:24Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Fixed the Pi bridge diagnostic on stderr and verified it"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 038-pi-advisor-diagnostic-stderr |
+| **Spec Folder** | 002-pi-advisor-diagnostic-stderr |
 | **Completed** | 2026-10-21 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

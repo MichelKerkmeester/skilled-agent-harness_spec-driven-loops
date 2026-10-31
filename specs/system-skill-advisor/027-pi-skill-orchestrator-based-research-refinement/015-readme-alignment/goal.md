@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/015-readme-alignment"
+    packet_pointer: "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/015-readme-alignment"
     last_updated_at: "2026-09-28T16:56:58Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Proved the parent goal's six criteria again from the final state"

@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling"
     last_updated_at: "2026-10-11T12:13:52Z"
     last_updated_by: "claude"
     recent_action: "Completion 100 by the status classifier, 21 of 21 children complete, 021 closed on 01db8367c3"

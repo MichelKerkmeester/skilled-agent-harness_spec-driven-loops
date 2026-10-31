@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-doctor-audit-followups/020-doctor-contract-fixes"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/020-doctor-contract-fixes"
     last_updated_at: "2026-10-04T18:30:00Z"
     last_updated_by: "doctor-contract-fixes"
     recent_action: "Applied both doctor contract fixes with contract tests and scenarios"

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/032-relocate-specs-folder/005-readme-migration-audit"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/005-readme-migration-audit"
     last_updated_at: "2026-08-08T11:04:58Z"
     last_updated_by: "claude-code"
     recent_action: "Added before-after.md, literal diff evidence for all 20 findings"

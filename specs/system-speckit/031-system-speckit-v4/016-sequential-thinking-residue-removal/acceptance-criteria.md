@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal"
+    packet_pointer: "system-speckit/031-system-speckit-v4/016-sequential-thinking-residue-removal"
     last_updated_at: "2026-08-31T13:40:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Closed all eight criteria against observed command output"
@@ -42,7 +42,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal
+**Packet:** system-speckit/031-system-speckit-v4/016-sequential-thinking-residue-removal
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-08-31

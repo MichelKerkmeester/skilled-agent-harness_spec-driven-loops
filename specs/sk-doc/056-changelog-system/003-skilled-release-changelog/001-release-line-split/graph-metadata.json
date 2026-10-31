@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The system-spec-kit changelog folder had become the repository's release notes",
     "created_at": "2026-09-27T12:01:29Z",
-    "last_save_at": "2026-10-31T13:25:58.034Z",
+    "last_save_at": "2026-10-31T14:01:48.895Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,12 +215,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c0f7307960eae6c99fef5ba228646f4f7f2d66207080fdaa7fad2e753ecdb686",
+    "source_fingerprint": "sha256:854398366180ca0858b53efb47f3d0e916183009c941d8e367ce2ed9210955fe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9fc88cc232368b28019ee88e460ce2465159a31986b856a199dd07c1cacf4746",
       "plan.md": "f86eecc4383fceb379d4d2652f21a6739ee34873bd22f53a7e8787bcc15e8aa1",
-      "tasks.md": "dc6fdb16fcb5445aa6b38b53fd876e468f743bda58d8d494540c1f439bb93287",
+      "tasks.md": "c7c203c2d1be402381c8177922c80824c13c34af2482970ab3137c03c93d2175",
       "implementation-summary.md": "a2856a8f9fffe978cd7d4c4b04d670d9699baa4d92dee3a5ab0d3700627239ea"
     },
     "last_active_at": null

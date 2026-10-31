@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding"
+    packet_pointer: "cli-classifier/002-cli-jev-hub-migration/004-compiled-fleet-onboarding"
     last_updated_at: "2026-09-20T15:55:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Phase specification authored at closeout from the landed onboarding"
@@ -54,7 +54,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 4** of the cli-jev hub migration program (packet `cli-jev/002-cli-jev-hub-migration`).
+This is **Phase 4** of the cli-jev hub migration program (packet `cli-classifier/002-cli-jev-hub-migration`).
 
 **Scope Boundary**: Fleet membership and serving authority. Phase 003 left the hub `{"servingAuthority":"legacy","hubId":"cli-jev"}` with a `legacy (no manifest)` readiness verdict; phase 005 re-runs the playbook corpora from the new home. This phase builds the hub's compiled rollout, wires it into the six lockstep fleet surfaces, mints and records its activation, and records the serving closure. It does not change the transport's judgment contract, its hard rules, or any recorded verdict.
 

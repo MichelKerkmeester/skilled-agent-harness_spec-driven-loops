@@ -206,7 +206,7 @@
     ],
     "causal_summary": "`sk-skill-check.cjs` runs only when someone types its path",
     "created_at": "2026-10-30T05:21:12Z",
-    "last_save_at": "2026-10-31T13:26:08.539Z",
+    "last_save_at": "2026-10-31T14:02:00.775Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:df3927277e327afc68897721bcb401ea2e47eff1f4a83a47acb4e318c720ce2e",
+    "source_fingerprint": "sha256:3d904161e6c0e4af01c38ab5422222d39b125db1e171b5528732937c66a797fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "57ed91a846b4f1075246d7f04d1afbaae2305102e85e066855020edf2f4cefc1",

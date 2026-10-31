@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/018-worktree-provision-shared-link"
     last_updated_at: "2026-09-27T13:30:00Z"
     last_updated_by: "build-018"
     recent_action: "Recorded the approved sk-doc repair; every completion criterion is met"
@@ -87,7 +87,7 @@ here are invisible to whatever judges completion.
 - [x] `rg -n -e 'specs/' -e 'REQ-[0-9]' -e 'AC-[0-9]' -e 'cli-jev' .skilled/skills/sk-git/scripts/worktree-naming.sh` returns no match
 - [x] `git diff --name-only -- .skilled` lists only `.skilled/skills/sk-git/scripts/worktree-naming.sh` and `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh`
 - [x] After the operator's yes and the repair, `readlink .skilled/skills/sk-doc/node_modules/@spec-kit/shared` prints `../../../system-spec-kit/shared` and `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-doc` prints `OK: parent-skill-check` and exits 0
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link --strict` prints `RESULT: PASSED`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-classifier/003-cli-jev-workflow-integration/018-worktree-provision-shared-link --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---

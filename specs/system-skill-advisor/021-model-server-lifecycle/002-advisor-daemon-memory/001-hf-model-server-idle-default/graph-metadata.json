@@ -195,7 +195,7 @@
     ],
     "causal_summary": "With Ollama off, `EMBEDDINGSPROVIDER=auto` resolves to hf-local, and the launcher keeps an hf-model-server process with its model loaded for every checkout",
     "created_at": "2026-10-21T09:51:14Z",
-    "last_save_at": "2026-10-31T13:26:09.378Z",
+    "last_save_at": "2026-10-31T14:00:49.716Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5f8ec79b4f10ff4129b9427a0a7f60ead0c3d54a70a854171f8ff8868a1c7f0",
+    "source_fingerprint": "sha256:24c4e815c37eabf70da17b757d7c52a13da134c87e06c7db337ec5ed8a71547d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "82a8b66626fc9abbcebb1410d5ba9a72a585dd284579ecb977fa4f7cc8a94d94",

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control"
+    packet_pointer: "system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control"
     last_updated_at: "2026-10-25T21:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Accepted all ten ADRs with the commits that shipped them"

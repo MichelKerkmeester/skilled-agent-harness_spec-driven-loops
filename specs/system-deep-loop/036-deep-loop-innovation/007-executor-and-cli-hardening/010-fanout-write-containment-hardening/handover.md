@@ -49,7 +49,7 @@ Measured facts:
 <!-- ANCHOR:packet-b -->
 ## Packet B: Entry-point Link Resolution
 
-**`system-speckit/033-system-speckit-v4/039-entry-point-symlink-resolution`**
+**`system-speckit/031-system-speckit-v4/039-entry-point-symlink-resolution`**
 
 Scripts decided whether to run by comparing the path they were launched with against the location they derive from their own file. A symlink makes those differ, so they exited 0 doing nothing. Fixed by canonicalizing both sides.
 

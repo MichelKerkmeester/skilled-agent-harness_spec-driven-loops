@@ -11,15 +11,15 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration"
     last_updated_at: "2026-09-30T19:47:37Z"
     last_updated_by: "markdown-leaf"
     recent_action: "Marked all five criteria Met from the build's records and the final-state gates"
     next_safe_action: "None. The orchestrator commits the build and the phase docs path-scoped"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/scratch/context/context.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/scratch/context/context.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-038-pi-classifier-transport-integration"
@@ -42,7 +42,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration
+**Packet:** cli-classifier/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-30
@@ -63,7 +63,7 @@ The five rows mirror the five completion criteria in `goal.md`. The Verification
 | AC-002 | REQ-002, REQ-003, REQ-004 | Given the built module and its tests, When the switch asks for Pi and both backends are stubbed, Then a `choice` question answers through the Pi stub and the returned value matches the shape callers read from the jev CLI's JSON today | `node --test $T`. Expected: 0 failed, with a shape test for the CLI result and a test proving a `bool` or `score` request reaches no Pi code. Observed: `scratch/verify/transport-tests.txt` reports `tests 22`, `pass 22`, `fail 0`, including `spawn_call_switch_on_answers_through_pi`, which asserts one `classify()`, zero spawns and the CLI shape `answers.answer.{choice,probabilities,confidence}` plus the `model` line, and `spawn_call_never_reaches_pi_for_another_type`; the review records this criterion met (`scratch/verify/review-swe2-r1.txt`) | Met | - |
 | AC-003 | REQ-005 | Given each gate of `spec.md` section 4, When the switch asks for Pi and that gate fails, Then the transport prints exactly one skip line naming the gate and falls back to the `jev` CLI, or stops with the CLI's own error and exit status when the CLI is also unavailable | `node --test $T` over the gate matrix, one test per gate plus the CLI-absent case. Expected: 0 failed, one skip line per gate, and no Pi call on any failure path. Observed: one row per gate in `scratch/verify/transport-tests.txt` (`spawn_call_package_gate_falls_back`, `spawn_call_model_gate_falls_back`, `spawn_call_credential_gate_falls_back` and `spawn_call_backend_refusal_falls_back`), each asserting one line and one CLI spawn, plus `spawn_call_spawn_error_is_127` for the CLI-absent stop; the review records this criterion met (`scratch/verify/review-swe2-r1.txt`) | Met | - |
 | AC-004 | REQ-009 | Given `cli-jev`, the `cli-pi/SKILL.md` classifier section, the catalog entry and the playbook scenario with their index rows, When `validate_document.py` runs on each changed doc, Then each is VALID and no doc claims a measurement no run printed | `python3 .skilled/skills/sk-doc/scripts/validate_document.py` on each changed doc. Expected: VALID on each, with no verdict, number or run claimed beyond what `037-pi-native-classifier-transport/scratch/live-run.stdout.txt` records. Observed: 9 changed docs VALID, the hub playbook PASS with 8 scenarios and `warnings=0`, the catalog `cli-classifier` PASS, and no cli-classifier version at or above 1.0.0.0 (`scratch/verify/session-evidence.md`, criterion 4); the review confirms the sections match the module, the 037 numbers match the recorded run, and the playbook is stub-only (`scratch/verify/review-swe2-r1.txt`) | Met | - |
-| AC-005 | REQ-008, REQ-010 | Given the 13 runtime-tree callers of `spec.md` section 3, When the phase closes, Then the follow-up list names each path and question type, no runtime-tree file changed, and `validate.sh --strict` prints `RESULT: PASSED` for this phase | `git diff --stat` on the three runtime trees, then `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration --strict`. Expected: empty runtime-tree diffs and `RESULT: PASSED`. Observed: `git diff --stat` on the three runtime trees prints nothing; the 13 callers stay listed in `spec.md` section 3 with their paths and question types, untouched (`scratch/verify/session-evidence.md`, criterion 5); `validate.sh --strict --recursive` prints `RESULT: PASSED` for every folder in this closure pass | Met | - |
+| AC-005 | REQ-008, REQ-010 | Given the 13 runtime-tree callers of `spec.md` section 3, When the phase closes, Then the follow-up list names each path and question type, no runtime-tree file changed, and `validate.sh --strict` prints `RESULT: PASSED` for this phase | `git diff --stat` on the three runtime trees, then `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-classifier/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration --strict`. Expected: empty runtime-tree diffs and `RESULT: PASSED`. Observed: `git diff --stat` on the three runtime trees prints nothing; the 13 callers stay listed in `spec.md` section 3 with their paths and question types, untouched (`scratch/verify/session-evidence.md`, criterion 5); `validate.sh --strict --recursive` prints `RESULT: PASSED` for every folder in this closure pass | Met | - |
 
 ### Status values
 

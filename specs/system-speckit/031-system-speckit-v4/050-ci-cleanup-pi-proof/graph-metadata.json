@@ -49,6 +49,8 @@
       ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
       ".github/workflows/routing-registry-drift.yml",
       ".github/workflows/spec-kit-check.yml",
+      "specs/system-speckit/031-system-speckit-v4/spec.md",
+      "specs/system-speckit/031-system-speckit-v4/048-gate-3-mutation-time-delivery/implementation-summary.md",
       "evidence/pi-headless-delivery-marker.json",
       "evidence/pi-tui-select.txt",
       "evidence/pi-tui-input.txt",
@@ -206,7 +208,7 @@
     ],
     "causal_summary": "Phase 049 closed the Gate-3 residue but left two loose ends",
     "created_at": "2026-09-22T13:07:30Z",
-    "last_save_at": "2026-10-31T13:27:05.243Z",
+    "last_save_at": "2026-10-31T13:59:16.561Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +219,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:9b1ac96ae90443462ec029e961c5ca1dbf5fa5187517d19ee579b78ddc5e8380",
+    "source_fingerprint": "sha256:ddfb04a6d3b8ff39c917fc05d992c3520bb51283364366231656fb09d2fd50f2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2197c493b15fe13a0921ff295d0cf8e45e8d5aea7c109d5cf377153f76484761",
+      "spec.md": "8dee2ecca56a3ddb19976db79e248499f98f37c63e233662f451cb095ab2a625",
       "plan.md": "3b28bdb22dbfd4b8a7ed69dc8362183942eb5838679efd07662d7592ad00c9dc",
       "tasks.md": "b70727451cbf0f015057a90950e14569ea746ccdf244d8ace0c18bd88d2ac447",
-      "implementation-summary.md": "a0d8b86f7b8ffd79c449b6b188b4e6338f62caf9f832919221e4f9e692e6d16e",
-      "handover.md": "2d6662c5e06dcd89c1cb84f5d76ea8f5984c9468ff9d4e80678943edd8032ffb"
+      "implementation-summary.md": "744a30eaa69c456e6c96a916a43f229acd9293e9f6708dc0e501f471c042b90d",
+      "handover.md": "818d0f14161b8e37ba29c8c84e7c60c5fab572b50a281c6710ecd31e23392389"
     },
     "last_active_at": null
   }

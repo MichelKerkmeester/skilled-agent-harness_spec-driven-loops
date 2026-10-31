@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof"
+    packet_pointer: "system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof"
     last_updated_at: "2026-09-23T12:30:00Z"
     last_updated_by: "cli-pi-mimo-v2.6-pro"
     recent_action: "T001-T018 done: pushed 5b522489a2, CI green on both branches"
@@ -61,7 +61,7 @@ The Pi Gate-3 dialog now has live proof in both a headless run and a TUI run, an
 
 ### The live proof and the six surfaces
 
-The headless parent-mode probe ran pi -p --offline with AI_SESSION_CHILD=0 and SYSTEM_SPEC_GATE_ENFORCE=0 and a closed stdin. It returned pi_rc=0 with stdout exactly HEADLESS PROBE ACK. The delivery marker recorded one question on the classify-deferral channel and no spec-gate state residue appeared. The probe ran the real parent classifier in advisory mode, since the core reads a child session only when AI_SESSION_CHILD is exactly 1 and enforces only when SYSTEM_SPEC_GATE_ENFORCE is exactly 1. The TUI run then walked the select dialog and the path input. The first write was refused with the message that the session is bound to specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof, the retry passed, and later edits passed with no second question. The state file ended satisfied with that bound path and the probe files were removed afterwards.
+The headless parent-mode probe ran pi -p --offline with AI_SESSION_CHILD=0 and SYSTEM_SPEC_GATE_ENFORCE=0 and a closed stdin. It returned pi_rc=0 with stdout exactly HEADLESS PROBE ACK. The delivery marker recorded one question on the classify-deferral channel and no spec-gate state residue appeared. The probe ran the real parent classifier in advisory mode, since the core reads a child session only when AI_SESSION_CHILD is exactly 1 and enforces only when SYSTEM_SPEC_GATE_ENFORCE is exactly 1. The TUI run then walked the select dialog and the path input. The first write was refused with the message that the session is bound to specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof, the retry passed, and later edits passed with no second question. The state file ended satisfied with that bound path and the probe files were removed afterwards.
 
 In the same phase the six CI surfaces were greened without weakening a gate. The Hermes mirror drift was cleared by regenerating four Hermes skill copies and the compiled deep-ai-council command contract with its two sha256 pins. Fourteen cli-orca docs moved from contextType reference to contextType general. The cli-orca graph metadata moved from category cli-tool to cli-orchestrator, three derived entries moved from kind doc to kind reference, and the sibling weights to cli-external-orchestration and mcp-tooling moved from 0.3 to 0.4 with reciprocal edges added in four skills. Six broken markdown links were repointed to their z_archive/ locations. Two hardcoded .opencode/specs paths in recursive-child-manifest.vitest.ts were corrected to the tracked specs/ tree.
 
@@ -80,8 +80,8 @@ The scorer ratchet had dropped to 151 of 195 full corpus and 26 of 32 memory_sav
 | `recursive-child-manifest.vitest.ts` | Modified | Two hardcoded .opencode/specs paths corrected to the tracked specs/ tree |
 | `.github/workflows/routing-registry-drift.yml` | Modified | The corpus gate and two push path filters read the json-optimization baseline from its z_archive/ location |
 | `.github/workflows/spec-kit-check.yml` | Modified | The runtime vitest step runs with TMPDIR set to the runner's temp dir, outside the spec gate's /tmp exemption |
-| `specs/system-speckit/033-system-speckit-v4/spec.md` | Modified | Phase map row 50 and the 049 to 050 handoff row added |
-| `specs/system-speckit/033-system-speckit-v4/048-gate-3-mutation-time-delivery/implementation-summary.md` | Modified | One Verification row records this phase's live Pi proof |
+| `specs/system-speckit/031-system-speckit-v4/spec.md` | Modified | Phase map row 50 and the 049 to 050 handoff row added |
+| `specs/system-speckit/031-system-speckit-v4/048-gate-3-mutation-time-delivery/implementation-summary.md` | Modified | One Verification row records this phase's live Pi proof |
 | `evidence/pi-headless-*.txt`, `evidence/pi-headless-delivery-marker.json`, `evidence/pi-tui-select.txt`, `evidence/pi-tui-input.txt`, `evidence/pi-tui-final.txt`, `evidence/pi-tui-state.json`, `evidence/pi-tui-warning.log`, `evidence/dispatch/` | Created | Live proof captures and the dispatch briefs wu1 to wu14 with their handbacks, moved from scratch/ to evidence/ |
 <!-- /ANCHOR:what-built -->
 
@@ -144,7 +144,7 @@ T001-T018 are done. The worktree is removed after the closing commit is pushed, 
 | `npx vitest run --config ../../vitest.config.ts --project cli` | PASS. The clean full re-run reported 143 files passed and 3 skipped, 1441 tests passed and 19 skipped of 1460, exit 0, in 485 s. An earlier run under heavy concurrent load failed 3 tests in tests/runtime-memory-inputs.vitest.ts, which passes 24/24 alone. Load as the cause is inferred because those failure messages were not captured |
 | `npx vitest run --config ../../vitest.config.ts --project cli tests/recursive-child-manifest.vitest.ts` | PASS. 1 file, 2 tests passed, exit 0 |
 | Re-score after the cli-jev fix | PASS. 152/195 full corpus and 27/32 memory_save, with row 26 routing to system-deep-loop |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof --strict` | PASS. RESULT: PASSED, 0 errors, 0 warnings |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof --strict` | PASS. RESULT: PASSED, 0 errors, 0 warnings |
 | `validate.sh --strict` on `048-gate-3-mutation-time-delivery` after its derived metadata was regenerated | PASS. RESULT: PASSED, 0 errors, 0 warnings |
 | `validate.sh --strict` on the parent `033-system-speckit-v4`, which recurses into its 50 phases | FAIL on one phase only. The parent folder and 49 of its 50 phases pass. 030-spec-kit-simplification-research fails SPECDOC_SUFFICIENCY_005 because its goal.md durable slice is 6498 characters against a 4000 limit. This phase did not touch 030 |
 | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-jev` | PASS. OK, all hard invariants passed, exit 0 |

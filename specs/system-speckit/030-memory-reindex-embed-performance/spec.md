@@ -9,16 +9,16 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/031-memory-reindex-embed-performance"
+    packet_pointer: "system-speckit/030-memory-reindex-embed-performance"
     last_updated_at: "2026-07-23T13:10:17Z"
     last_updated_by: "orchestrator"
     recent_action: "Implemented + tested Phase 7 hardening (REQ-007..011)"
     next_safe_action: "Restart daemon, verify health, then measure per-stage timings"
     blockers: []
     key_files:
-      - ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/handover.md"
-      - ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/checklist.md"
-      - ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/research.md"
+      - ".opencode/specs/system-speckit/030-memory-reindex-embed-performance/handover.md"
+      - ".opencode/specs/system-speckit/030-memory-reindex-embed-performance/checklist.md"
+      - ".opencode/specs/system-speckit/030-memory-reindex-embed-performance/research/research.md"
       - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts"
       - ".opencode/skills/system-spec-kit/mcp-server/context-server.ts"
       - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-ingest.ts"

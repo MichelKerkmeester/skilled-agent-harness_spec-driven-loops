@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`GATE3CHOICERELATED` in `spec-gate-core.mjs:151` reads \"Use a related folder, phase child, or a series parent for a different change to the same artifact as an existing packet in the same track\"",
     "created_at": "2026-10-08T04:22:48Z",
-    "last_save_at": "2026-10-31T13:26:28.365Z",
+    "last_save_at": "2026-10-31T13:58:23.213Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4b7c6bb154021fc14511c78bb2bbdb86938da754388af5a4df58880c36af6091",
+    "source_fingerprint": "sha256:665291625301b17be8bac09cf957f3e155e77af06475c7502f506d9f38747238",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9c5399913d3dc1ac9f32df1feb0a1be49be1024c48b8dd9774e8e6f2f2e69e54",
       "plan.md": "613ef0945f5581ae2dc2ea034e3a89cf680fad64407961eeb089a4650dd7c097",
       "tasks.md": "40630a90930a4953d13ad6dbbe3872d21e68efb11fbc4cbda58d6fddbbba15a0",
-      "implementation-summary.md": "f770d1f4ebb918a2927431f73831dabb235bcb73ad1fef53b6707878c4a7a9bf"
+      "implementation-summary.md": "57edd8744a98120fd736c928d56a9c75f0c31da6b28e6cfb4f2b7cbc5c4a876e"
     },
     "last_active_at": null
   }

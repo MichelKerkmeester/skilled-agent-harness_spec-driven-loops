@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/004-fingerprint-stamp-regeneration"
+    packet_pointer: "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/004-fingerprint-stamp-regeneration"
     last_updated_at: "2026-09-07T20:30:00Z"
     last_updated_by: "scaffold"
     recent_action: "Marked every criterion met with the evidence observed"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/032-recorded-findings-closure/004-fingerprint-stamp-regeneration
+**Packet:** system-speckit/031-system-speckit-v4/032-recorded-findings-closure/004-fingerprint-stamp-regeneration
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-07

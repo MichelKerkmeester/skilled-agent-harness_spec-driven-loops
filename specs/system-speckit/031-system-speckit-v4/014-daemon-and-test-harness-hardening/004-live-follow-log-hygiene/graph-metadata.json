@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`git-live-follow.sh` emits its divergence warning as two unconditional `echo` statements inside the poll loop, which runs every 5 seconds by default",
     "created_at": "2026-08-30T09:55:29Z",
-    "last_save_at": "2026-10-31T13:26:40.614Z",
+    "last_save_at": "2026-10-31T13:58:43.277Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cfa80a009af78f3d4de2e95599d9e2b7b95b454ff089ceec3a23fe3f0abe4a99",
+    "source_fingerprint": "sha256:f0c052aab3458def23b9acc4e6407d1d0b67f4fbb3efd158608072d9b373bffb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "672c0974bd12c38ea9658d05ae9223870a35f22d0f1ae9e00cd4497df0271b5f",

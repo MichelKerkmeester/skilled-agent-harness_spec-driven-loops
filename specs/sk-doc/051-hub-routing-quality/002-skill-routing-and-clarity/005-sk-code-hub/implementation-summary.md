@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/005-sk-code-hub"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/005-sk-code-hub"
     last_updated_at: "2026-10-28T11:08:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Moved the sk-code hub and its packets to the routing canon"

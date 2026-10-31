@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring"
     last_updated_at: "2026-10-26T05:35:00Z"
     last_updated_by: "conductor"
     recent_action: "Timed the refined tree with the speed loop: no measurable difference against 054 now"
@@ -51,7 +51,7 @@ _memory:
 | **Created** | 2026-10-23 |
 | **Branch** | `worktrees/217-weak-model-spec-authoring`, where every phase ran. The branch reached `main` on 2026-10-25 |
 | **Parent Spec** | None. The track folder `specs/system-speckit/` holds no `spec.md` |
-| **Parent Packet** | system-speckit/054-weak-model-spec-authoring |
+| **Parent Packet** | system-speckit/041-weak-model-spec-authoring |
 | **Predecessor** | None |
 | **Successor** | None |
 | **Handoff Criteria** | Every phase in the phase map is Complete, `validate.sh --recursive --strict` on this packet prints `RESULT: PASSED`, and phase 009 reports a measured before and after for the five authoring metrics |
@@ -108,7 +108,7 @@ Make the templates, the examples, the validator and the authoring docs good enou
 | `.skilled/skills/system-spec-kit/runtime/cli/spec/` guard scripts | Create | 004, 005 | Example drift guard and card sync guard |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/`, `feature-catalog/`, READMEs | Modify | 007 | Scenarios and docs for the new behavior |
 | `.skilled/skills/system-spec-kit/benchmark/reports/` | Create | 008, 009 | Playbook run report and benchmark report |
-| `specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/` | Create | 041-006 | Write-recipe move destination fix |
+| `specs/system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination/` | Create | 041-006 | Write-recipe move destination fix |
 
 ### Launch preconditions
 

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/052-routing-completeness/002-gate-a-signal-closure"
+    packet_pointer: "sk-doc/051-hub-routing-quality/001-routing-completeness/002-gate-a-signal-closure"
     last_updated_at: "2026-09-04T12:15:00Z"
     last_updated_by: "phase-2-gate-a-signal-closure"
     recent_action: "Applied the seven named fixes and measured the sweep on both sides"
@@ -46,7 +46,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Packet** | sk-doc/052-routing-completeness/002-gate-a-signal-closure |
+| **Packet** | sk-doc/051-hub-routing-quality/001-routing-completeness/002-gate-a-signal-closure |
 | **Level** | 3 |
 | **Status** | Complete |
 | **Delivery** | Shipped. The parent goal LOG records this phase Done |
@@ -260,7 +260,7 @@ Every command below was run and its output read.
 | Post-fix re-measurement recorded in `aa11c2b622` | 328 of 444, executor hub 7 to 66, no signal surfacing nothing |
 | Regression control across three suites in `aa11c2b622` | 444 signals, 180 realistic prompts and 224 controls on the five hubs outside scope. No hub lost a prompt it owned |
 | Canary fixtures during the fix | Caught two real regressions mid-flight, both reverted |
-| `validate.sh specs/sk-doc/052-routing-completeness --strict --recursive` | PASS for this folder, Errors 0 |
+| `validate.sh specs/sk-doc/051-hub-routing-quality/001-routing-completeness --strict --recursive` | PASS for this folder, Errors 0 |
 | `hvr_scan.py` on this document | 0 hard blockers |
 | Closure re-sweep, 389 signals at HEAD `8cab525c27` | 243 RESOLVED as served, 339 with the sk-doc pin held aside, all 389 calls exit 0 after 51 back-pressure failures were re-run at 4 concurrent |
 | Exact-set check over the decision groups | 50 unresolved signals, 50 claimed, twelve groups summing to 50, no duplicate member and no ungrouped signal |

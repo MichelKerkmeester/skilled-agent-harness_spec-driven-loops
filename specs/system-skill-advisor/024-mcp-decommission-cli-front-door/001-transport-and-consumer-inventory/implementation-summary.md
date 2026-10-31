@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory"
+    packet_pointer: "system-skill-advisor/024-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory"
     last_updated_at: "2026-09-11T06:48:56Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 template"

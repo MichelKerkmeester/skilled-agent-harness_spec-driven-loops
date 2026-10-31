@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/023-model-server-default-spawn"
+    packet_pointer: "system-skill-advisor/021-model-server-lifecycle/001-model-server-default-spawn"
     last_updated_at: "2026-09-04T05:06:33Z"
     last_updated_by: "claude-code"
     recent_action: "Flipped the spawn default and unified the socket directory"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 023-model-server-default-spawn |
+| **Spec Folder** | 001-model-server-default-spawn |
 | **Completed** | 2026-09-04 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

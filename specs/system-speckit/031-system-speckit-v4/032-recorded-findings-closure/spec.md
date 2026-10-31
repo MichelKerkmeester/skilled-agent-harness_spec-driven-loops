@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/032-recorded-findings-closure"
+    packet_pointer: "system-speckit/031-system-speckit-v4/032-recorded-findings-closure"
     last_updated_at: "2026-09-07T17:00:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Scaffolded sixteen planned children"
@@ -52,7 +52,7 @@ _memory:
 | **Created** | 2026-09-07 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | system-speckit/033-system-speckit-v4 |
+| **Parent Packet** | system-speckit/031-system-speckit-v4 |
 | **Phase** | 32 of 35 |
 | **Predecessor** | 030-spec-kit-simplification-research |
 | **Successor** | 033-ci-dependency-hardening |

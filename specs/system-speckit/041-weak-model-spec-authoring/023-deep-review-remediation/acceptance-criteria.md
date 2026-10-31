@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/023-deep-review-remediation"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/023-deep-review-remediation"
     last_updated_at: "2026-10-27T07:26:54Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/044-v4-changelog-late-cycle-entries"
+    packet_pointer: "system-speckit/031-system-speckit-v4/044-v4-changelog-late-cycle-entries"
     last_updated_at: "2026-09-20T20:30:00Z"
     last_updated_by: "pi"
     recent_action: "Recorded the changelog evidence packet and closed it"
@@ -43,7 +43,7 @@ _memory:
 | **Created** | 2026-09-20 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | system-speckit/033-system-speckit-v4 |
+| **Parent Packet** | system-speckit/031-system-speckit-v4 |
 | **Phase** | 44 of 44 |
 | **Predecessor** | 043-v4-root-readme |
 | **Successor** | None |

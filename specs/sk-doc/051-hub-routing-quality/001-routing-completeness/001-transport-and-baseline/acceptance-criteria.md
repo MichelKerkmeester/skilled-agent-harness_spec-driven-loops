@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/052-routing-completeness/001-transport-and-baseline"
+    packet_pointer: "sk-doc/051-hub-routing-quality/001-routing-completeness/001-transport-and-baseline"
     last_updated_at: "2026-09-02T19:56:10Z"
     last_updated_by: "claude-code"
     recent_action: "Re-ran each criterion and recorded the observed output"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/052-routing-completeness/001-transport-and-baseline
+**Packet:** sk-doc/051-hub-routing-quality/001-routing-completeness/001-transport-and-baseline
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-09-02

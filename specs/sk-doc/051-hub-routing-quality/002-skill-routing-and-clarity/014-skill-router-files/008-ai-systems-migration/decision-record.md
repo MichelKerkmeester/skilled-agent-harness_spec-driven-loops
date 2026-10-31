@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration"
     last_updated_at: "2026-10-29T17:45:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Recorded the AC-008 waiver"

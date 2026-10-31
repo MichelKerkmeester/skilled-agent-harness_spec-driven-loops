@@ -19,7 +19,8 @@
   "folderSlug": "hub-surface-truth",
   "parentChain": [
     "sk-doc",
-    "052-routing-completeness"
+    "051-hub-routing-quality",
+    "001-routing-completeness"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

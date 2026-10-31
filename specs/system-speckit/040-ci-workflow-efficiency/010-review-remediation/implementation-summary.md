@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/053-ci-workflow-efficiency/010-review-remediation"
+    packet_pointer: "system-speckit/040-ci-workflow-efficiency/010-review-remediation"
     last_updated_at: "2026-10-25T17:19:18Z"
     last_updated_by: "claude-code"
     recent_action: "Applied the confirmed review findings"

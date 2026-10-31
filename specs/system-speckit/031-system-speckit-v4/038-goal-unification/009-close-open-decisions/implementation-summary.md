@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions"
+    packet_pointer: "system-speckit/031-system-speckit-v4/038-goal-unification/009-close-open-decisions"
     last_updated_at: "2026-09-11T20:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Closed the four operator decisions, the remaining advisories and the Devin host unknown"

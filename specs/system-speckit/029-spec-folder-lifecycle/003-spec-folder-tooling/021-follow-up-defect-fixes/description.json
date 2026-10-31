@@ -11,7 +11,8 @@
   "folderSlug": "follow-up-defect-fixes",
   "parentChain": [
     "system-speckit",
-    "034-spec-folder-tooling"
+    "029-spec-folder-lifecycle",
+    "003-spec-folder-tooling"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

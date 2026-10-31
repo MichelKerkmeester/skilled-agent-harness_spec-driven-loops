@@ -25,7 +25,7 @@ contextType: "planning"
 | **Created** | 2026-10-08 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | `system-speckit/034-spec-folder-tooling` |
+| **Parent Packet** | `system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling` |
 | **Predecessor** | 015-archive-current-location-and-ignored-files |
 | **Successor** | None |
 | **Handoff Criteria** | Each child plans one recommendation from `../014-spec-auto-healing-research/research/research.md` section 11 and validates strict at its slot |

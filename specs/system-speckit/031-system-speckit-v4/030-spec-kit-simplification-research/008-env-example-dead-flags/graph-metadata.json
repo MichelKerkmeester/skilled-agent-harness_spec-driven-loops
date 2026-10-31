@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The root env template documented 216 variables",
     "created_at": "2026-09-06T20:44:28Z",
-    "last_save_at": "2026-10-31T13:26:48.423Z",
+    "last_save_at": "2026-10-31T13:58:54.350Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c6473b2f7dec21ff5155b398cf7f388da6770c72f24c93b0fef531494b7ded4c",
+    "source_fingerprint": "sha256:0cf1591c9dd0d3fdad894791a615a9f08efd45e8e26ccf9a3f5750a331713c31",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "da539a43116d76ac7b88c01b2cc082c03dcdde6c187613b8a21fe5ec00a243be",
       "plan.md": "8060baf63b6cdb73fbb8cee83ec2973182eb6b4acedb3e328bd0a08caf995bda",
-      "tasks.md": "b6ec6db5805c1a302be8b10064244e1698d30fbbef3bd55da6cb10ee4e63f9ce",
+      "tasks.md": "f74caab822053178420ee17607b297661d4ba44bc50d5f1311ff959e93335c56",
       "implementation-summary.md": "edfc67b01ea6016bc21a2163d0f16e83a35ca84c1e39c40fd069643b65dc22a0"
     },
     "last_active_at": null

@@ -210,17 +210,17 @@
     ],
     "causal_summary": "A consumer repository takes the framework through `.skilled/` but owns its root `AGENTS.md`, and `/doctor:update` never touches that file because it is not a release unit",
     "created_at": "2026-10-30T11:22:10Z",
-    "last_save_at": "2026-10-30T17:30:10.950Z",
+    "last_save_at": "2026-10-31T14:04:32.130Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:d9686aa0cd8d6cd7ee38c637270ab8e73a5d0fb6bdda0749ed5e637d48dc36dc",
+    "source_fingerprint": "sha256:3c41a7bdcd15bc3167be9f609a0ce4518cca6a7d6c7cbbd6c028d67f71adeb7c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "db02b6e4c7ed92c65d5cafb68db7ebb2ebe1ed011177624062a0719edabb4064"
+      "spec.md": "6b34768ab18ea1412da28287f8eeb1aadc4cbfd167154d6d1fdd28b22fe077a9"
     },
     "last_active_at": null
   }

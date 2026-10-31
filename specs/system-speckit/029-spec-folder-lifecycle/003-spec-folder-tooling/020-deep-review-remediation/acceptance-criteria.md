@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/020-deep-review-remediation"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/020-deep-review-remediation"
     last_updated_at: "2026-10-10T10:30:00Z"
     last_updated_by: "lane-h"
     recent_action: "All 16 rows Met. AC-005 and AC-006 met on live run 38062364636 after the push"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/034-spec-folder-tooling/020-deep-review-remediation
+**Packet:** system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/020-deep-review-remediation
 **Level:** 2
 **Status:** In Progress
 **Date:** 2026-10-10

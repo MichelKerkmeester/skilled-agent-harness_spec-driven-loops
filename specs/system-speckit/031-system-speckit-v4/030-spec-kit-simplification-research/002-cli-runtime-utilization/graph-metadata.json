@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The CLI package holds roughly thirty directories, a registry that lists fourteen entry points, and a README that describes it as context generation",
     "created_at": "2026-09-06T14:29:31Z",
-    "last_save_at": "2026-10-31T13:26:47.796Z",
+    "last_save_at": "2026-10-31T13:58:53.423Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e17f4f90293d410b0cf98d85a147873254ae399b4fafa02cac1ed898117386e5",
+    "source_fingerprint": "sha256:e205e5d50a8537b041d81db7ae3de193e57916716bfb0ac0be6674d159ce3f47",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "991e0953c45288bc37b243d12d96d0f429c699c282c64207f13fbed54f9d41af",

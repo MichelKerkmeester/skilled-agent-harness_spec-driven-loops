@@ -44,7 +44,8 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts"
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts",
+      "specs/cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/001-fanout-merge-research/research/research.md"
     ],
     "entities": [
       {
@@ -194,7 +195,7 @@
     ],
     "causal_summary": "Feature 030 measured keep at A=53 of 60, but only against a baseline that answers \"different\" on every cross-body pair, and a lexical rule ties Jev at 53",
     "created_at": "2026-10-03T05:30:02Z",
-    "last_save_at": "2026-10-31T13:25:39.425Z",
+    "last_save_at": "2026-10-31T14:03:59.916Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,11 +205,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:08130d757a1f79931e77401451a34a01b8cf560166763f9dc61ca22bb05b0b55",
+    "source_fingerprint": "sha256:d1e6f1d0e12a089403fa9638a232d4f4ac411e4cd39921dc257f6210ecf2655e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "398548e3614f798deb7e89ba7872232d6dfe50d3e1142163868b033e276a585d",
-      "plan.md": "09a61217169032addb62e8cbabdef0d9e685a03e82fda2bef057b724dece5e5c",
+      "spec.md": "413e916f497be36dc93e7d61c06bed60490e634f9f803482f7a52c8fc7a2a1b6",
+      "plan.md": "c484dd726ee0f86389ebac3de5720ac60f89cd7a87d40d031e718091642e02bc",
       "tasks.md": "0773cdd2d42e9b0e3200613581043852b4a270ed7adbf2e61ac3bb6212dcae8e",
       "implementation-summary.md": "0b10996c24d36628c0aa852aa2a55657d56d8f0ca2952752035b0b2a78bfabf9"
     },

@@ -20,7 +20,7 @@ contextType: "implementation"
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/034-spec-folder-tooling/016-research-recommendations/008-legacy-era-report
+**Packet:** system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/008-legacy-era-report
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-08

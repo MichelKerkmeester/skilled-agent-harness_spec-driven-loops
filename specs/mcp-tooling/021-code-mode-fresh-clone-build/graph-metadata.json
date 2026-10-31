@@ -47,8 +47,8 @@
       ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md",
       ".skilled/commands/doctor/scripts/mcp-doctor-lib.sh",
       ".skilled/commands/doctor/scripts/mcp-doctor.sh",
-      "specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/implementation-summary.md",
-      "specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/implementation-summary.md",
+      "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/001-mcp-install-code-mode/implementation-summary.md",
+      "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/002-mcp-debug-code-mode/implementation-summary.md",
       ".skilled/bin/mcp-code-mode-launcher.cjs",
       ".skilled/bin/lib/node-engine-resolver.cjs",
       ".skilled/skills/mcp-code-mode/mcp-server/package-lock.json"
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "A fresh clone or worktree cannot build Code Mode, and the config preflight reports the shipped UTCP configuration wrongly",
     "created_at": "2026-10-03T05:27:35Z",
-    "last_save_at": "2026-10-07T15:56:13.811Z",
+    "last_save_at": "2026-10-31T14:04:32.124Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8f17ea4d3cb04d2d6b4c111eb07f278d450f3c20b833ab45bd743788c54cb06a",
+    "source_fingerprint": "sha256:83cf23779f4b9b49633d6f65d87bb8e249285b174170265fb9891a2263480e1f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0903abec093561c6bdcfb51edcd6664e2214acf90c356e88ed1de404449b1087",
+      "spec.md": "d93d651f12033250398726bd3cdb7b31fe1c728dc10fa3067b9a5209873eed5d",
       "plan.md": "1c3fba16bf9e9edad4f0011eec1d324722166cd65fda4277bc619034facb2c43",
       "tasks.md": "b3fce5f0b352fb0c18554faf9391b09d5a29f3e86adc084fe33c7805df0729f5",
       "implementation-summary.md": "63f8fd1981689ffeefb65837de04db2e325924fdd3e66624136173db34e31066"

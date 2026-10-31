@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/033-ci-dependency-hardening"
+    packet_pointer: "system-speckit/031-system-speckit-v4/033-ci-dependency-hardening"
     last_updated_at: "2026-09-07T20:00:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Shipped the mirror-parity gate, widened CI triggers, closed every Dependabot alert"

@@ -9,7 +9,7 @@
   "specId": "002",
   "folderSlug": "scorer-deem-arms",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration",
     "046-deem-deprecation"
   ],

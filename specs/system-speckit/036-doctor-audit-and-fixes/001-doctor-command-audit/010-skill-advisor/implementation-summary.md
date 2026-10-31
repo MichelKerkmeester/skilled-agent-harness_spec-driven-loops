@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/048-doctor-command-audit/010-skill-advisor"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/010-skill-advisor"
     last_updated_at: "2026-10-02T20:59:43Z"
     last_updated_by: "markdown-agent"
     recent_action: "Closed the phase docs from the observed evidence"
@@ -100,7 +100,7 @@ The phase ran as an audit first and an apply second. The audit followed the work
 | Removed-namespace sweep: `rg` for the removed MCP namespace and stale graph-script names over the edited doctor files | No matches |
 | Doctor script tests: `skill-advisor-route-contract.test.cjs` passes; the three `parent-skill-check-*.test.cjs` fail exactly as at baseline (their temporary fixtures cannot load `@spec-kit/shared/frontmatter/parse-frontmatter.js` in this worktree) | Pass; no regression |
 | Startup menu | Shows `12) runtime mirrors` and `13) router reach`, which were accepted answers but were not displayed before |
-| Packet validation: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/048-doctor-command-audit/010-skill-advisor --strict` | `Summary: Errors: 1, Warnings: 0` — the one error is the enforced `SOURCE_FINGERPRINT_MISMATCH` on the derived graph metadata, which a doc edit invalidates by design and `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/system-speckit/048-doctor-command-audit/010-skill-advisor --apply` refreshes; every authored check passes |
+| Packet validation: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/010-skill-advisor --strict` | `Summary: Errors: 1, Warnings: 0` — the one error is the enforced `SOURCE_FINGERPRINT_MISMATCH` on the derived graph metadata, which a doc edit invalidates by design and `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/010-skill-advisor --apply` refreshes; every authored check passes |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -118,7 +118,7 @@ The phase ran as an audit first and an apply second. The audit followed the work
 8. **The recorded run was read-only.** The mutating path — source edits, rebuild and the advisor test suite — was verified by command-line probes and the route validator, not by executing a mutation.
 9. **The phrase-boost envelope is an operator judgment call.** The observed amounts run -0.6 to 1.8 and the declared `[-1.0, 2.0]` is a deliberate bound around them, not a measured contract.
 
-**Follow-up status.** Items 1 to 3 are resolved by `specs/system-skill-advisor/033-advisor-status-truthfulness` phase 001: one shared hash recipe, `skillCount` 14 and an `indexStaleness` comparison. Items 4 to 6 are resolved by the same packet: `PHRASE_BOOST_BOUND`, re-measured citations and documented `--trusted`. Item 7 is settled by decision in phase 003: `graph-metadata.json` is the routing-phrase source and frontmatter stays unpopulated. Items 8 and 9 stand as recorded.
+**Follow-up status.** Items 1 to 3 are resolved by `specs/system-skill-advisor/029-advisor-status-truthfulness` phase 001: one shared hash recipe, `skillCount` 14 and an `indexStaleness` comparison. Items 4 to 6 are resolved by the same packet: `PHRASE_BOOST_BOUND`, re-measured citations and documented `--trusted`. Item 7 is settled by decision in phase 003: `graph-metadata.json` is the routing-phrase source and frontmatter stays unpopulated. Items 8 and 9 stand as recorded.
 <!-- /ANCHOR:limitations -->
 
 ---

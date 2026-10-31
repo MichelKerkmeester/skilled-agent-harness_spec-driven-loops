@@ -45,7 +45,8 @@
       "implementation-summary.md",
       ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs",
       ".skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs",
-      ".skilled/skills/cli-classifier/benchmark/injection-screen/README.md"
+      ".skilled/skills/cli-classifier/benchmark/injection-screen/README.md",
+      "specs/cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/004-injection-screen-research/research/research.md"
     ],
     "entities": [
       {
@@ -195,7 +196,7 @@
     ],
     "causal_summary": "Feature 035 kept strongly, but commit `b0f89ee5f07` untracked its corpus, so the run cannot be reproduced",
     "created_at": "2026-10-03T05:30:05Z",
-    "last_save_at": "2026-10-31T13:25:39.658Z",
+    "last_save_at": "2026-10-31T14:04:00.022Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,11 +206,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5f5c7629f35d2178d046fa8b5f29278c0012498348fa06d5967901396329447e",
+    "source_fingerprint": "sha256:5f1dbe990374db51f6f039b1298664a83dd470c1e58026bac836fe78ae07ea0d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a8c920fd0969851925307ccc0fddb1eaf2e895d194523887af97bb9a83f15198",
-      "plan.md": "f19d63cf079cf792083acb809ed9ac901a14010c5e2ecdf36e4677aa4a850712",
+      "spec.md": "41ee80190871d486455a6e529341d4db829d8b094391465963e82194c45a0e15",
+      "plan.md": "9e80e161f6f7832aa12c3aa8169e0428281fd9ff525cc5af5f22666442ad61f3",
       "tasks.md": "711c8d8767fa06b0b9ff34076199178c67b191f2f8efdef53665c07809500598",
       "implementation-summary.md": "7cc3e02dcdfc92af78047ddc92bffe19b508a7229acf2231d53fdd8532261db6"
     },

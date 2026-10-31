@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/026-defect-and-hardening-fixes/005-stale-build-daemon-recycle"
+    packet_pointer: "system-skill-advisor/025-defect-and-hardening-fixes/005-stale-build-daemon-recycle"
     last_updated_at: "2026-10-05T16:00:00Z"
     last_updated_by: "stale-build-daemon-recycle"
     recent_action: "Added stale-build recycling to the launcher and CLI; proven live"

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/037-advisor-daemon-memory/001-hf-model-server-idle-default"
+    packet_pointer: "system-skill-advisor/021-model-server-lifecycle/002-advisor-daemon-memory/001-hf-model-server-idle-default"
     last_updated_at: "2026-10-21T11:45:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Shipped the 10-minute default, ran the supervision suites, superseded the live check by ADR-002"

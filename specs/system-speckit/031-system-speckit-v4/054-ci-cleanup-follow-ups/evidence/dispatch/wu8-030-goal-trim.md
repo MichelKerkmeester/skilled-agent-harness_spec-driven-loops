@@ -4,7 +4,7 @@ You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_
 set in your environment, which this repository's AGENTS.md defines as the autonomous child-dispatch
 exemption: the spec-folder question is pre-resolved and MUST NOT be asked. No answer can reach you.
 Your write authority is already bound. The spec folder is:
-  specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research
+  specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research
 Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 
 PERSONA
@@ -21,7 +21,7 @@ DON'T
 - If an OLD text is not found exactly once, skip that EDIT, do the rest, and report it under
   failures. Never guess a nearby match.
 
-TARGET: specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/goal.md (1 file, 3 edits)
+TARGET: specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/goal.md (1 file, 3 edits)
 
 WHY: the durable slice of this goal (everything between the frontmatter and the log anchor) is
 6,498 characters and the validator fails a phase parent past 4,000. The 22-row binding table becomes
@@ -173,10 +173,10 @@ NEW:     recent_action: "Trimmed the durable slice under the budget"
 END EDIT 3
 
 VERIFY - run these, paste each command with its result line
-  grep -c '^| 0[0-2][0-9]-' specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/goal.md   # expect 0 (the binding table rows are gone)
-  grep -c 'Durable slice trimmed under the budget' specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/goal.md   # expect 1
-  grep -c '^- \[x\]' specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/goal.md   # expect 5 (criteria unchanged)
-  grep -c 'recent_action: "Trimmed the durable slice under the budget"' specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/goal.md   # expect 1
+  grep -c '^| 0[0-2][0-9]-' specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/goal.md   # expect 0 (the binding table rows are gone)
+  grep -c 'Durable slice trimmed under the budget' specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/goal.md   # expect 1
+  grep -c '^- \[x\]' specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/goal.md   # expect 5 (criteria unchanged)
+  grep -c 'recent_action: "Trimmed the durable slice under the budget"' specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/goal.md   # expect 1
 
 HANDBACK - emit exactly this, last thing in your reply
 PI_HANDBACK

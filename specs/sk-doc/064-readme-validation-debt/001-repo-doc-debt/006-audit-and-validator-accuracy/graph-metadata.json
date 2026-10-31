@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`auditreadmes.py` reports a link to a log, a state file or a build output as broken, although git ignores those paths and a clean checkout never holds them",
     "created_at": "2026-10-27T08:28:22Z",
-    "last_save_at": "2026-10-31T13:26:05.179Z",
+    "last_save_at": "2026-10-31T14:01:56.863Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cef5d61dce4c919ebf08f9d4f1a5fbe62a2c06efbbb18739bb1d62d9e9fcd91c",
+    "source_fingerprint": "sha256:50908abf1fb5afcec0233059dffa3bb67ed4f3c04823eb6f50154771e3a2c042",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4cbe82908b8b86f394a5e5c075076d739b46edcc0bad0c13b24991943bd0a826",

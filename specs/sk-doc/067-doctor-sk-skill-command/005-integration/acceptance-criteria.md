@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/075-doctor-sk-skill-command/005-integration"
+    packet_pointer: "sk-doc/067-doctor-sk-skill-command/005-integration"
     last_updated_at: "2026-10-30T10:45:00Z"
     last_updated_by: "code-agent-worker"
     recent_action: "Met every row against a real convert run and closed the packet"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/075-doctor-sk-skill-command/005-integration
+**Packet:** sk-doc/067-doctor-sk-skill-command/005-integration
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-30

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker"
+    packet_pointer: "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker"
     last_updated_at: "2026-09-19T05:53:38Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Built the checker; the flip stays blocked"

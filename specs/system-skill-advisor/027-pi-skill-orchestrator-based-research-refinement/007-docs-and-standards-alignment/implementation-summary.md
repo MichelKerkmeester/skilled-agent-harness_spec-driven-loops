@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment"
+    packet_pointer: "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment"
     last_updated_at: "2026-09-26T18:00:00Z"
     last_updated_by: "orchestrate"
     recent_action: "Aligned the advisor docs with the code and fixed the Pi budget parse"
@@ -112,7 +112,7 @@ The orchestrator made one edit itself: it wrapped a 122-character comment that t
 | Pi hook test, `npx vitest run tests/hooks/prompt-advisor.vitest.ts` | 11 of 11 pass. With the fix reverted the new test fails and the other 10 pass, so the test catches the defect |
 | Advisor runtime suite, `npx vitest run` in `runtime/` | 949 passed, 1 failed, 6 skipped. The baseline was 947 passed and 2 failed. The failure is the routing-divergence ratchet, `rr-iter3-093`, which failed before this phase and involves no file it changed. The timing-sensitive freshness bench passed this run |
 | sk-doc validators, baseline against final | `validate_document.py` 0 issues on all 26 edited documents. Catalog packages: system-skill-advisor 9 to 8 warnings, system-spec-kit 84 to 84, 0 failures. Playbook packages 0 violations |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement --strict --recursive` | Exit 0. All eight folders `RESULT: PASSED`, 0 errors and 0 warnings |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement --strict --recursive` | Exit 0. All eight folders `RESULT: PASSED`, 0 errors and 0 warnings |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/048-doctor-command-audit/001-mcp-install-code-mode"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/001-mcp-install-code-mode"
     last_updated_at: "2026-10-02T16:10:11Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"

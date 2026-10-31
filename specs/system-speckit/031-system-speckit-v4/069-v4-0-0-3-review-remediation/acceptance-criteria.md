@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation"
+    packet_pointer: "system-speckit/031-system-speckit-v4/069-v4-0-0-3-review-remediation"
     last_updated_at: "2026-10-06T10:15:28Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation
+**Packet:** system-speckit/031-system-speckit-v4/069-v4-0-0-3-review-remediation
 **Level:** 3+
 **Status:** In Progress
 **Date:** 2026-10-06

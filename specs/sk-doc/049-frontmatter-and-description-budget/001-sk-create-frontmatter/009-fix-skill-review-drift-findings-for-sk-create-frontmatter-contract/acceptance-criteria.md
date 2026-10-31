@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/049-sk-create-frontmatter/009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract"
+    packet_pointer: "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract"
     last_updated_at: "2026-09-05T00:00:00Z"
     last_updated_by: "implementation"
     recent_action: "Recorded the observed outcome of every criterion"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/049-sk-create-frontmatter/009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract
+**Packet:** sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-09-05
@@ -65,7 +65,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-012 | REQ-004 | Given eight hub-shaped baseline prompts, When they are replayed after the trim, Then every one routes as before | `diff` of the baseline and after files shows no change on any of the eight. Only the three intended trigger rows moved | Met | - |
 | AC-013 | REQ-004 | Given the hub `SKILL.md` is a pinned compiled-routing source, When it is edited, Then the guard goes stale, both manifests are re-minted, and the guard, the sync verify and the canary are green | Guard `sk-doc stale-manifest` after the edit. `compiled-route-manifest.cjs refresh` moved the runtime manifest to `fbd5b481...`, the authored copy matched by hand, guard `fresh`, `compiled-route-sync.cjs --verify` prints `move-simulation OK`. Canary outcome recorded in the summary's verification table | Met | - |
 | AC-014 | REQ-006 | Given the parent `goal.md` listing phase 008 in progress at 88 percent while the spec map says complete, When both are reconciled, Then they agree and phase 009 appears in both | Parent `goal.md` progress table names 008 and 009 done, criteria ticked, binding table lists the 009 goal. Parent `spec.md` phase map row 9 Complete, handoff row 008 to 009 filled | Met | - |
-| AC-015 | REQ-006 | Given the parent spec's Level 2, `main` branch and scaffold placeholder, and phase 008's `Phase 1` titles and `[SESSION-ID]`, When each is corrected, Then no template residue remains | Level 3, branch `skilled/v4.0.0.0`, parent packet `sk-doc/049-sk-create-frontmatter`. Phase 008 spec, plan, tasks and acceptance-criteria titles read `Phase 8`, session id `2026-09-02-049-008-implementation` | Met | - |
+| AC-015 | REQ-006 | Given the parent spec's Level 2, `main` branch and scaffold placeholder, and phase 008's `Phase 1` titles and `[SESSION-ID]`, When each is corrected, Then no template residue remains | Level 3, branch `skilled/v4.0.0.0`, parent packet `sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter`. Phase 008 spec, plan, tasks and acceptance-criteria titles read `Phase 8`, session id `2026-09-02-049-008-implementation` | Met | - |
 | AC-016 | REQ-006 | Given phase 008's 44 unchecked checklist lines and `[X]` summary placeholders, When each is marked with the evidence its acceptance criteria already carry, Then none remain unchecked | `grep -c '^- \[ \]'` on `008-utilization-review/tasks.md` returns 0. Summary table 15, 23 and 9 | Met | - |
 | AC-017 | REQ-007 | Given every markdown file this phase wrote, When the human-voice scanner runs against each file's committed baseline, Then no file gains a hard blocker | Recorded in the summary's verification table per file, with the one semicolon this phase introduced and removed before the count | Met | - |
 | AC-018 | REQ-007 | Given this phase folder, the parent and phase 008, When the spec validator runs strict, Then each prints `RESULT: PASSED` | Recorded in the summary's verification table as the closing run | Met | - |

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape"
+    packet_pointer: "system-speckit/031-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape"
     last_updated_at: "2026-09-16T19:03:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Closed every criterion with observed evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape
+**Packet:** system-speckit/031-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-16
@@ -57,7 +57,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-004 | REQ-002 | Given the three lifecycle workflows, When the goal offer contract test runs, Then their goal blocks are still byte-identical | `.opencode/plugins/tests/speckit-goal-offer-contract.test.cjs:117` passes, file 5 of 5 | Met | - |
 | AC-005 | REQ-002 | Given a pending resend, When the reminder renders, Then it names the chat slice and carries the 4000-character cap | `.opencode/hooks/goal/lib/goal-slice.test.cjs:203`, goal hook suites 136 of 136, goal plugin suites 147 of 147 | Met | - |
 | AC-006 | REQ-003 | Given the edited goal template, When the golden snapshot file runs without `-u`, Then the whole file passes | `.opencode/skills/system-spec-kit/runtime/cli/tests/scaffold-golden-snapshots.vitest.ts:76` passes, file 12 of 12 after one snapshot update | Met | - |
-| AC-007 | REQ-004 | Given binding row 013 in the parent, When the parent's durable slice is measured, Then it stays at or under 4,000 characters | Row at `specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md:90`, and `extractDurableSlice` measures the parent slice at 3,990 characters, below the error tier | Met | - |
+| AC-007 | REQ-004 | Given binding row 013 in the parent, When the parent's durable slice is measured, Then it stays at or under 4,000 characters | Row at `specs/system-speckit/031-system-speckit-v4/038-goal-unification/goal.md:90`, and `extractDurableSlice` measures the parent slice at 3,990 characters, below the error tier | Met | - |
 
 ### Status values
 

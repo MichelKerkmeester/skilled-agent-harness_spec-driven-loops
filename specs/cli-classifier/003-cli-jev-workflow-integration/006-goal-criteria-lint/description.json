@@ -13,7 +13,7 @@
   "specId": "006",
   "folderSlug": "goal-criteria-lint",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,

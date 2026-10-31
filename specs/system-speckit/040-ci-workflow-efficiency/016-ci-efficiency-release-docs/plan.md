@@ -35,12 +35,12 @@ The work writes release records and corrects doc text, with no runtime change. E
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Problem and scope are in spec.md: `rg -n '^### (In|Out of) Scope' specs/system-speckit/055-ci-efficiency-release-docs/spec.md` prints two lines.
-- [x] Success criteria are measurable: `rg -c '^- \*\*SC-' specs/system-speckit/055-ci-efficiency-release-docs/spec.md` prints 4.
+- [x] Problem and scope are in spec.md: `rg -n '^### (In|Out of) Scope' specs/system-speckit/040-ci-workflow-efficiency/016-ci-efficiency-release-docs/spec.md` prints two lines.
+- [x] Success criteria are measurable: `rg -c '^- \*\*SC-' specs/system-speckit/040-ci-workflow-efficiency/016-ci-efficiency-release-docs/spec.md` prints 4.
 - [x] Dependencies are identified: plan.md section 6 lists them, and the one Red item is open question 1 in spec.md.
 
 ### Definition of Done
-- [x] Every row in acceptance-criteria.md is Met, Waived or Superseded: `rg -c '^\| AC-[0-9]{3} ' specs/system-speckit/055-ci-efficiency-release-docs/acceptance-criteria.md` prints 12, and the status cells hold no Unmet. Evidence 2026-10-26: 12 rows, all Met.
+- [x] Every row in acceptance-criteria.md is Met, Waived or Superseded: `rg -c '^\| AC-[0-9]{3} ' specs/system-speckit/040-ci-workflow-efficiency/016-ci-efficiency-release-docs/acceptance-criteria.md` prints 12, and the status cells hold no Unmet. Evidence 2026-10-26: 12 rows, all Met.
 - [x] The gates pass: the mirror sync, route validation and router-sync commands in tasks.md Phase 3 print their PASS or OK lines. Evidence 2026-10-25: T042 printed PASS, OK and 5/5 with exit 0.
 - [x] The docs agree: spec.md, plan.md, tasks.md and acceptance-criteria.md name the same eleven entries and the same open items. Evidence 2026-10-25: all four state 2.3.13.0 for the sk-doc hub.
 <!-- /ANCHOR:quality-gates -->

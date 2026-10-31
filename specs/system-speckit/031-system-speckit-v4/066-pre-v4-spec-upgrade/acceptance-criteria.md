@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade"
+    packet_pointer: "system-speckit/031-system-speckit-v4/066-pre-v4-spec-upgrade"
     last_updated_at: "2026-09-25T06:15:00Z"
     last_updated_by: "claude-code"
     recent_action: "Marked AC-001 to AC-007 Met with the final-state evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade
+**Packet:** system-speckit/031-system-speckit-v4/066-pre-v4-spec-upgrade
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-24

@@ -46,6 +46,7 @@
       ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs",
       ".opencode/plugins/tests/opencode-goal-capabilities.test.cjs",
       ".skilled/hooks/goal/goal-plugin.md",
+      "specs/sk-doc/057-create-goal-mode/014-goal-no-budget-stop/implementation-summary.md",
       "scratch/live-run-skip.txt",
       "scratch/plugin-harness-run.mjs",
       "scratch/plugin-harness-output.txt",
@@ -201,7 +202,7 @@
     ],
     "causal_summary": "Phase 14 left three loose ends",
     "created_at": "2026-10-24T19:03:21Z",
-    "last_save_at": "2026-10-31T13:26:00.819Z",
+    "last_save_at": "2026-10-31T14:01:51.874Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a4d6a8070ab338ad865d7021a79eab80e7d6ee4dbc6f47bcb87238ade2380cd2",
+    "source_fingerprint": "sha256:e25ce057fd0c8601589de5b3f3f57ea3244391ed4f4e577a6228a09941d39de5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "95be02417297992518de12c508c6a4fef43bba40355cf7a7f6c9fd8e37b72e7c",
+      "spec.md": "29a29ff5def1a158eb33621d1bec51972ccdea77e20b113771aaffb92f444afb",
       "plan.md": "dcb100f1ae9438e78a8387204d8739cf8cdf5723245a884e07aa1f2b7998cdaa",
       "tasks.md": "0f74d7fb173c3978aec39a57e22a3e9dd2becdfb20f4304957b93a918abe83ee",
-      "implementation-summary.md": "5837ae94c73d50c9e0e5a9f940107477e95ff87c9b4780ab68083423ba1ba075"
+      "implementation-summary.md": "d0b309044f8d99f4b5c64b010409a77997baaa3b8e63c6d40d299bd40e651b10"
     },
     "last_active_at": null
   }

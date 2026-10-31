@@ -4,7 +4,7 @@ You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_
 set in your environment, which this repository's AGENTS.md defines as the autonomous child-dispatch
 exemption: the spec-folder question is pre-resolved and MUST NOT be asked. No answer can reach you.
 Your write authority is already bound. The spec folder is:
-  specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof
+  specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof
 Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 
 PERSONA
@@ -13,7 +13,7 @@ spec document and return one handback block. Nested dispatch is illegal: do not 
 agent process.
 
 Repo root: the current working directory (all paths from there).
-P = specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof
+P = specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof
 
 ROLE
 First run the STEP 0 command exactly as written, if the body has one. Then apply the numbered EDITS below to the one TARGET file, exactly as written. Each EDIT gives the OLD text,
@@ -29,7 +29,7 @@ DON'T
 TARGET: P/tasks.md
 
 STEP 0 (the cited captures moved from scratch/ to evidence/; rewrite their paths)
-  sed -i '' -e 's#scratch/dispatch/#evidence/dispatch/#g' -e 's#scratch/pi-#evidence/pi-#g' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md
+  sed -i '' -e 's#scratch/dispatch/#evidence/dispatch/#g' -e 's#scratch/pi-#evidence/pi-#g' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md
 
 EDIT 1
 OLD: - [ ] T013 Packet docs and parent records
@@ -60,9 +60,9 @@ OLD: | P1 Items | 13 | 9/13 |
 NEW: | P1 Items | 13 | 11/13 |
 
 VERIFY - run these, paste each command with its result line
-  grep -c 'scratch/pi-\|scratch/dispatch' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md   # expect 0
-  grep -c '^- \[ \]' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md                         # expect 8
-  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md                  # expect 30
+  grep -c 'scratch/pi-\|scratch/dispatch' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md   # expect 0
+  grep -c '^- \[ \]' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md                         # expect 8
+  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md                  # expect 30
 
 HANDBACK - emit exactly this, last thing in your reply
 PI_HANDBACK

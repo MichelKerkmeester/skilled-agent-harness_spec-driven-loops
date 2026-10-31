@@ -87,7 +87,7 @@ A repository under /tmp is gated like any other, the CI workaround that existed 
 
 ### Out of Scope
 - The containment capture fix and the capture untrack. They live in packet specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot.
-- The phase 030 goal trim. It is recorded in the log of specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/goal.md and its brief is wu8 in this packet's evidence/dispatch/.
+- The phase 030 goal trim. It is recorded in the log of specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/goal.md and its brief is wu8 in this packet's evidence/dispatch/.
 - Building the gitignored dists in a fresh worktree. Their tests fail to load until built, and this is a known limitation recorded here and not repaired.
 
 ### Files to Change
@@ -100,7 +100,7 @@ A repository under /tmp is gated like any other, the CI workaround that existed 
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md` | Modify | Step 3 says any fixture location works with /tmp included, and step 2 expects 108 tests |
 | `.skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md` | Modify | Step 1 no longer says the core exempts /tmp |
 | Six cli-jev probe scripts under `benchmark/reports/2026-09-20-hub-routing-baseline/raw/` and `cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/` | Modify | hub-routing-run.sh, auth-probe.sh, preflight-probe.sh, preflight-probe2.sh, probe-matrix.sh and probe-surface.sh move from set -u to set -uo pipefail |
-| `specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/` packet documents | Modify | The packet documents record the phase outcome and the parent records register the phase |
+| `specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups/` packet documents | Modify | The packet documents record the phase outcome and the parent records register the phase |
 <!-- /ANCHOR:scope -->
 
 ---

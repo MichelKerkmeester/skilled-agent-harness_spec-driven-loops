@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`detectdocumenttype` in `.skilled/skills/sk-doc/shared/scripts/validatedocument.py` ended with `# Default to readme for general markdown` and `return 'readme'` (`:266-267` at the build-start HEAD `6f47c32dce`)",
     "created_at": "2026-09-27T11:50:18Z",
-    "last_save_at": "2026-10-31T13:25:30.781Z",
+    "last_save_at": "2026-10-31T14:03:51.651Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:014e8dd081904bfd9018d2e67afa0040f3f492cc096a1be01b69072551951705",
+    "source_fingerprint": "sha256:08312aefd97b8d2b9483ad665f681309a52b024c88068067145bd709390c60d2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bf70210f1215ce4b777e268e33160b839dd53993973d994b899873643b61be37",
+      "spec.md": "89e09c0cd2dc87d28d93b0dafb054f04188098736257ad31b7739fd93da06577",
       "plan.md": "f469fb449880a5b44970005dc6ce1d84a001279e7a762856682d132069be3651",
       "tasks.md": "53c05fba8ffadf0e4bf4314e0f55c3b541f0f9802635f27bf083937a27bed3bb",
-      "implementation-summary.md": "8b4628ca2d6ad3e6cfdfc4610b952b1bf446ff2f96b31eab230111c1982f0824"
+      "implementation-summary.md": "8a0845e74365a353687e9a99d1f093c6ecf36ddd4202af1c968ffee61b5a7b29"
     },
     "last_active_at": null
   }

@@ -128,7 +128,7 @@ Commands run from the repository root, with `G=.skilled/skills/sk-doc/sk-create-
 | Deem arm gate, after the gate and conditional | `--deem` against the stub `cli-deem`, whose `health` answers as not reachable, as a stub backend, with a wrong model id and with a bad response | The four `deem arm skipped:` lines, the `model` case with a details line naming the id found. Each time the lexical output matches the run without `--deem`, the exit is 0 and no server start is attempted |
 | Scope | `git status --porcelain` | The five new files and the sk-create-goal and hub catalog docs parent D6 names. `create-goal-auto.yaml` stays untouched inside this phase |
 | Skill docs | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <doc>` on each changed doc, and `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook` | Exit 0 on every doc, and the playbook package passes with one more scenario than before |
-| Phase docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint --strict` and `node $G/check-goal.cjs specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint` | `RESULT: PASSED` from both |
+| Phase docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-classifier/003-cli-jev-workflow-integration/006-goal-criteria-lint --strict` and `node $G/check-goal.cjs specs/cli-classifier/003-cli-jev-workflow-integration/006-goal-criteria-lint` | `RESULT: PASSED` from both |
 <!-- /ANCHOR:testing -->
 
 ---

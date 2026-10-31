@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/001-cli-jev-creation/004-catalog-and-playbook"
+    packet_pointer: "cli-classifier/001-cli-jev-creation/004-catalog-and-playbook"
     last_updated_at: "2026-09-20T10:30:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Closed the catalog and playbook criteria against the authored files"
@@ -37,7 +37,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** cli-jev/001-cli-jev-creation/004-catalog-and-playbook
+**Packet:** cli-classifier/001-cli-jev-creation/004-catalog-and-playbook
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-20

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm"
     last_updated_at: "2026-09-28T22:30:00Z"
     last_updated_by: "closure-leaf"
     recent_action: "Closed the phase: 14 of 14 AC Met, stop (margin)"
@@ -16,7 +16,7 @@ _memory:
     key_files:
       - ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs"
       - ".skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/build-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/build-evidence.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-017-deem-search-narrowing-arm"

@@ -7,15 +7,15 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/035-doctor-command-routing"
+    packet_pointer: "system-skill-advisor/030-doctor-command-surfacing/002-doctor-command-routing"
     last_updated_at: "2026-10-16T21:02:01Z"
     last_updated_by: "generate-context"
     recent_action: "Recorded the environment variables decision and stopped the lexical amendment"
     next_safe_action: "Decide whether to change partial-credit token overlap, then commit"
     blockers: []
     key_files:
-      - "specs/system-skill-advisor/035-doctor-command-routing/tasks.md"
-      - "specs/system-skill-advisor/035-doctor-command-routing/implementation-summary.md"
+      - "specs/system-skill-advisor/030-doctor-command-surfacing/002-doctor-command-routing/tasks.md"
+      - "specs/system-skill-advisor/030-doctor-command-surfacing/002-doctor-command-routing/implementation-summary.md"
       - ".skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-bridge-isolation.vitest.ts"
       - ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts"
     session_dedup:
@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 035-doctor-command-routing |
+| **Spec Folder** | 002-doctor-command-routing |
 | **Status** | Complete. The first build and the first review remediation are committed from `1996cf02a6` onward. The second review remediation is in the working tree, not committed |
 | **Completed** | 2026-10-15. Second review remediation 2026-10-16 on `main` at HEAD `2d17450c44` plus the working tree |
 | **Level** | 2 |

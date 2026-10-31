@@ -19,7 +19,7 @@
   "specId": "011",
   "folderSlug": "research-run-init-via-gateway",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration",
     "049-jev-feature-improvement-build"
   ],

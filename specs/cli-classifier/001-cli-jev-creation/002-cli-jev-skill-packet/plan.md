@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/001-cli-jev-creation/002-cli-jev-skill-packet"
+    packet_pointer: "cli-classifier/001-cli-jev-creation/002-cli-jev-skill-packet"
     last_updated_at: "2026-09-20T10:10:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Plan executed as written"

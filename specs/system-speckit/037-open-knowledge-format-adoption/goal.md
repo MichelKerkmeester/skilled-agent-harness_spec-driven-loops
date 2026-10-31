@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/050-open-knowledge-format-adoption"
+    packet_pointer: "system-speckit/037-open-knowledge-format-adoption"
     last_updated_at: "2026-10-04T08:13:09Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Removed phase 006 and added the three hardening phases"

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/049-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing"
+    packet_pointer: "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing"
     last_updated_at: "2026-09-06T00:00:00Z"
     last_updated_by: "implementation"
     recent_action: "Recorded the observed outcome of every criterion"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/049-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing
+**Packet:** sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-09-06

@@ -10,10 +10,11 @@
     "disagree"
   ],
   "lastUpdated": "2026-09-23T17:29:43.339Z",
-  "specId": "058",
+  "specId": "002",
   "folderSlug": "playbook-prompt-sync",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "050-playbook-coverage-and-sync"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

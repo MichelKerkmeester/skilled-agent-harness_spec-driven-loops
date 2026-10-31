@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/008-cli-and-mcp-hubs"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/008-cli-and-mcp-hubs"
     last_updated_at: "2026-10-28T14:45:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Moved two hubs and sixteen packets to the routing canon and fixed every review finding"

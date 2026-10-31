@@ -9,7 +9,7 @@
   "specId": "009",
   "folderSlug": "cli-jev-hub-move",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,

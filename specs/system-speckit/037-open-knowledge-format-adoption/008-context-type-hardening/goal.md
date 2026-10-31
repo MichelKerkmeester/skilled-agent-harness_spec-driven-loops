@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening"
+    packet_pointer: "system-speckit/037-open-knowledge-format-adoption/008-context-type-hardening"
     last_updated_at: "2026-10-04T12:00:33Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "All six criteria met; no defect measured"

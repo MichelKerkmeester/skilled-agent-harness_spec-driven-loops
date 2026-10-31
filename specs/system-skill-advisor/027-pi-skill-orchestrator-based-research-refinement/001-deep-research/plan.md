@@ -67,7 +67,7 @@ The command writes `research/deep-research-config.json` with a `fanout` block. T
 ### Invocation
 
 ```text
-/deep:research:auto "<topic>" --spec-folder=specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research
+/deep:research:auto "<topic>" --spec-folder=specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/001-deep-research
   --executor=cli-pi --model=mimo-v2.6-pro --reasoning-effort=high --iters=10 --label=mimo
   --executor=cli-devin --model=swe-2-max --iters=5 --label=swe2max
   --stop-policy=max-iterations --concurrency=2

@@ -11,7 +11,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/006-derived-metadata-repair-tool"
+    packet_pointer: "system-speckit/031-system-speckit-v4/006-derived-metadata-repair-tool"
     last_updated_at: "2026-08-29T05:52:27Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored the implementation plan for the derived-repair tool"

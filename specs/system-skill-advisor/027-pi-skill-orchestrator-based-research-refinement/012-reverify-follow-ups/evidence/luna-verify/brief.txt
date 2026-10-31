@@ -6,7 +6,7 @@ defines as the autonomous child-dispatch exemption: the spec-folder question is 
 and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
 
 Your write authority is already bound. The spec folder is:
-  specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups
+  specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups
 
 Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 Your task is complete only when every check below has a verdict and the REPORT is printed.
@@ -30,7 +30,7 @@ CONTEXT
 - The same teardown already ships as step 5 of
   .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md
 - Negative control log, run by the orchestrator:
-  specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/cp003-negative-control.txt
+  specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/cp003-negative-control.txt
   It ran the committed step 1 (from git show HEAD) and the new step 1, each with the daemon idle timeout cut to one
   minute, and watched /tmp for the deleted sandbox to come back.
 

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire"
+    packet_pointer: "system-skill-advisor/024-mcp-decommission-cli-front-door/004-caller-rewire"
     last_updated_at: "2026-09-11T06:49:01Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 template"

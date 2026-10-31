@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/057-changelog-and-readme-refresh"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/057-changelog-and-readme-refresh"
     last_updated_at: "2026-10-05T18:36:02Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Brought the v4.0.0.3 changelog and root README to the current classifier and hook state"

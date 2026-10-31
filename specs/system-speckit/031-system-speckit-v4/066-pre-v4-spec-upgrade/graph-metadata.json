@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Spec folders written under v3.x fail the v4 `validate.sh --strict` almost without exception",
     "created_at": "2026-09-24T09:28:01Z",
-    "last_save_at": "2026-10-31T13:27:08.990Z",
+    "last_save_at": "2026-10-31T13:59:19.824Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,12 +222,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:36c763c8074660e4a33a605596e2b930c8f0728c2dbbb41a2749df76aab7d7d1",
+    "source_fingerprint": "sha256:d0ae811a8622b7af7e7dffb996c53e02913a056c9acbd064ed199bab252ac10a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f5c10145c8e14c77df3fa0c86f192d46e8af2148b3bc773ea175223006d7feda",
       "plan.md": "cfe8956617263b4cb3813305fc2930db81de3c624b29eb3adb150d3e89b27a0f",
-      "tasks.md": "16f812c3e3e89e22d4a64f934b12854a9e19f1e7e098190dcd48875371ba2b1e",
+      "tasks.md": "77cabd2db779e7ce6e6b9a5b5e75a184f4a438296c6370c37549e2fac807077a",
       "implementation-summary.md": "f4edd210eee24c7318735227e08bf02aa27e08ac699d5f7e56ca391e4bb1e335",
       "research/research.md": "201c971c3bd12f8137c02446c15435e84f8bbea9951d9fb9063e41db45e99deb"
     },

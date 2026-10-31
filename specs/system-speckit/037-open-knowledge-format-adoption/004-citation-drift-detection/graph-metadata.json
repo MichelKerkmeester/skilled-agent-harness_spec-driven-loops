@@ -207,7 +207,7 @@
     ],
     "causal_summary": "`cite-drift-scan.mjs` reads tracked skill docs only",
     "created_at": "2026-10-04T08:04:51Z",
-    "last_save_at": "2026-10-31T13:27:21.160Z",
+    "last_save_at": "2026-10-31T13:59:35.002Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9fe8b641230a28117f96ad640d937700fe0870a6526bf5dd7036c621c81ea0aa",
+    "source_fingerprint": "sha256:63be9d5ca16ac18400dad0a9c5fb876320d813f2ea18f17237431a1fc2a79b41",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b82b3f451c2e0fed38b4acb1adf7fbce9d1509b17697af0ad6fa8d1950f1b2d6",
       "plan.md": "568f518d860c17d9e4c65a8599fa975320fe5be5d272528d290accd17d677659",
       "tasks.md": "8e5bf8808d2ac76a1fa0dd879d2455ad488ddf1bd5bafcaef7d21de310f05290",
-      "decision-record.md": "ac9a3ef15e56d1ff0385ac7e6c174eaf1b71a0b4a324eba1551cb35c3b4e4777",
+      "decision-record.md": "09dee1aae3aa0c7f268665c06a81b91ce3b7eaa79ec27e0b61da7a5d08efc210",
       "implementation-summary.md": "3efe86a4f185e791cfdba1384aa8c045710e26ee3172be05fe8c2ddcafdb5ecb"
     },
     "last_active_at": null

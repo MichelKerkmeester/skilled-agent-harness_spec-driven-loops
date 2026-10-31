@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/001-cli-jev-creation"
+    packet_pointer: "cli-classifier/001-cli-jev-creation"
     last_updated_at: "2026-09-20T11:30:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Phases 001 to 005 complete; the credential step closed by the authenticated verification"

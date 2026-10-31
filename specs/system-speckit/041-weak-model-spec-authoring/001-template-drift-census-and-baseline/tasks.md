@@ -29,7 +29,7 @@ contextType: "general"
 
 Shell variables used below, set once by the conductor:
 - `WORKTREE`: the build worktree path recorded in `../goal.md` section 4.
-- `PHASE`: `$WORKTREE/specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline`
+- `PHASE`: `$WORKTREE/specs/system-speckit/041-weak-model-spec-authoring/001-template-drift-census-and-baseline`
 - `S`: `.skilled/skills/system-spec-kit`
 - `START`: the commit hash recorded by T003.
 <!-- /ANCHOR:notation -->
@@ -40,7 +40,7 @@ Shell variables used below, set once by the conductor:
 ## Phase 1: Setup
 
 - [x] T001 Check tools and provider (no file). Verify: `rg -c 'deepseek-v4.1-flash-1017' opencode.json && which jq rg` prints a number above 0 and two paths.
-- [x] T002 Prove the worktree can validate (no file). Verify: `cd "$WORKTREE" && bash $S/runtime/cli/spec/validate.sh specs/system-speckit/041-write-recipe-fixes/001-fix-write-recipe-backfill-flag --strict | grep 'RESULT:'` prints `RESULT: PASSED`. When it fails because `node_modules` or `dist` is missing, follow the worktree provisioning in `.skilled/skills/sk-git/SKILL.md` and retry once. When it still fails, STOP the phase.
+- [x] T002 Prove the worktree can validate (no file). Verify: `cd "$WORKTREE" && bash $S/runtime/cli/spec/validate.sh specs/system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/001-fix-write-recipe-backfill-flag --strict | grep 'RESULT:'` prints `RESULT: PASSED`. When it fails because `node_modules` or `dist` is missing, follow the worktree provisioning in `.skilled/skills/sk-git/SKILL.md` and retry once. When it still fails, STOP the phase.
 - [x] T003 Record the start state (`goal.md`, `scratch/baseline/status-start.txt`). Run `git -C "$WORKTREE" rev-parse HEAD`, write the hash into `goal.md` section 4 as `Start commit`, then run `git -C "$WORKTREE" status --porcelain > "$PHASE/scratch/baseline/status-start.txt"`, then run the spec-kit suite once with `npm --prefix "$WORKTREE/$S" test > "$PHASE/scratch/baseline/suite-start.txt" 2>&1; echo "exit=$?" >> "$PHASE/scratch/baseline/suite-start.txt"`. Phases 2 to 5 compare their suite runs with this file. Verify: `grep -c 'Start commit' "$PHASE/goal.md"` prints `1`, and `tail -1 "$PHASE/scratch/baseline/suite-start.txt"` prints an `exit=` line.
 <!-- /ANCHOR:phase-1 -->
 
@@ -244,7 +244,7 @@ Shell variables used below, set once by the conductor:
 
   ```text
   You are a read-only reviewer. Do not edit, create or delete any file.
-  Read specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/ledger.jsonl
+  Read specs/system-speckit/041-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/ledger.jsonl
   and dropped.jsonl in the same folder. For each ledger row, open the named file and check:
   (1) the defect is real, (2) expected_text is correct finished text, (3) owner_phase is right.
   For each dropped row, check whether it is a real defect that was described badly.

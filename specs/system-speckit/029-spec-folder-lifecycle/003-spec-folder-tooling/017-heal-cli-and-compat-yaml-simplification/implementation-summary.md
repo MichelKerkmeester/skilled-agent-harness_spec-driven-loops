@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification"
     last_updated_at: "2026-10-09T14:34:00Z"
     last_updated_by: "closeout"
     recent_action: "Built all four phases in three commits and recorded the evidence"
@@ -69,7 +69,7 @@ The plan had four phases and the build shipped them in three commits.
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts` | Modified | Drops the `--json` and unknown-mode assertions and the helper's extra-arguments parameter, and renames the case to `lane-modes-cli-dry-run` |
 | `.skilled/commands/doctor/assets/doctor-update-compat-action.yaml` | Modified | One `on_step_failure` key in `phase_4_move` |
 | `.skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs` | Modified | Reads the failed-step phrases from `on_step_failure` |
-| `specs/system-speckit/034-spec-folder-tooling/spec.md` and `graph-metadata.json` | Modified | Row 17 of the phase map reads Complete, and the metadata lists this child |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/spec.md` and `graph-metadata.json` | Modified | Row 17 of the phase map reads Complete, and the metadata lists this child |
 | This packet's documents and `scratch/` | Modified | Status, evidence and the eight small evidence files |
 <!-- /ANCHOR:what-built -->
 

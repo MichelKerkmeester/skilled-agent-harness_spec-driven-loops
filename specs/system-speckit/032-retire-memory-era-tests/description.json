@@ -9,7 +9,7 @@
     "phase"
   ],
   "lastUpdated": "2026-09-23T20:09:53.474Z",
-  "specId": "035",
+  "specId": "032",
   "folderSlug": "retire-memory-era-tests",
   "parentChain": [
     "system-speckit"

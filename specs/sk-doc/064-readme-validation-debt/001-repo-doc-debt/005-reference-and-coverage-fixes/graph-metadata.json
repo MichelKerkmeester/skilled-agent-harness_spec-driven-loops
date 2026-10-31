@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The README audit flags 96 broken references and 13 coverage gaps across 59 READMEs outside the generated benchmark reports",
     "created_at": "2026-10-27T08:30:40Z",
-    "last_save_at": "2026-10-31T13:26:04.614Z",
+    "last_save_at": "2026-10-31T14:01:56.867Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +214,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:090dc56fb56a0545757ec57d059779bd82bb9a4fa84774782797674239c1ebdb",
+    "source_fingerprint": "sha256:cf28b2d94e8afc35e8ab10d293c8feead135b82e49dd31c6b5c56b0aab16efe6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fb37cc8935cb74e9837eed0f87adcaade24254c8d15a8d3a9ee5bd3b2ba6db3f",
       "plan.md": "cbebb12496414cb568889af68348f9392ed1e8507cae6e9872cfb91702f019bb",
-      "tasks.md": "3c27d8dd3e0c74b2bcb4fe10a2c1a703968ee63785c4a3535f773e4afca3230f",
+      "tasks.md": "248460d8f73beb7afebf213d4d354d22548e1b16076bd4bdbdedf5c756b6a69b",
       "implementation-summary.md": "9adeaeff73d2458f67821855fe5a5751a170bf9c3f3768bbb6b214fa533a0306"
     },
     "last_active_at": null

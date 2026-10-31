@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The parent packet proposes rooting the shared asset library at `.skilled/` instead of `.opencode/`",
     "created_at": "2026-09-16T08:35:23Z",
-    "last_save_at": "2026-10-31T13:26:59.601Z",
+    "last_save_at": "2026-10-31T13:59:08.633Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,7 +204,7 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:96ac05763ad668f57b154aa56c1bd0d38a6e29918daab437927dfb62ed9bb476",
+    "source_fingerprint": "sha256:be55f7ae7d51322c7b823f5914f2bd369f35b1ca186c7fd919023a9aeb898d25",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6af697a447784bf5a5e379ecb6fa09f3a4f3e23710d8686c151b385ccb4b397c",

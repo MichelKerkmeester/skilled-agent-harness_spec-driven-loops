@@ -11,15 +11,15 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration"
     last_updated_at: "2026-09-30T19:47:37Z"
     last_updated_by: "markdown-leaf"
     recent_action: "Rewrote this file with the build, review and gate results"
     next_safe_action: "None. The orchestrator commits the build and the phase docs path-scoped"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/scratch/context/context.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/scratch/context/context.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-038-pi-classifier-transport-integration"
@@ -128,11 +128,11 @@ These gates ran on the phase docs only. They prove the record is well formed, no
 
 | Check | Result |
 |-------|--------|
-| `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration --apply` | Exit 0, `inspected=1 repaired=1 failed=0` |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration --strict` | `RESULT: PASSED`, `Errors: 0  Warnings: 0`, exit 0 |
-| `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration` | `RESULT: PASSED (5/5 checks)`, exit 0 |
-| `node .skilled/hooks/goal/bin/goal.cjs packet specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration --workspace "$PWD"` | `STATUS=OK ACTION=packet`, `packet_durable_chars=2121`, exit 0 |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration` | `PASS` with zero placeholder patterns, exit 0 |
+| `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/cli-classifier/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration --apply` | Exit 0, `inspected=1 repaired=1 failed=0` |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-classifier/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration --strict` | `RESULT: PASSED`, `Errors: 0  Warnings: 0`, exit 0 |
+| `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/cli-classifier/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration` | `RESULT: PASSED (5/5 checks)`, exit 0 |
+| `node .skilled/hooks/goal/bin/goal.cjs packet specs/cli-classifier/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration --workspace "$PWD"` | `STATUS=OK ACTION=packet`, `packet_durable_chars=2121`, exit 0 |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/cli-classifier/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration` | `PASS` with zero placeholder patterns, exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---

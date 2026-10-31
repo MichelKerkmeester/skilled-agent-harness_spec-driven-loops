@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`/doctor:speckit` was one router for nine targets, and eight of them belonged to other owners: four to the skill advisor's routing quality, one each to the deep loop and the runtime mirrors, one to the parent-hub canon and one to a Fable 5 metrics check nobody used",
     "created_at": "2026-10-04T06:09:43Z",
-    "last_save_at": "2026-10-31T13:27:14.751Z",
+    "last_save_at": "2026-10-31T13:59:27.959Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fec3e08da6b19fadb8c1ee3537ab27c08474b90586de6c0bf0b28bc6457add1e",
+    "source_fingerprint": "sha256:5fc0561255d6b1c117197c41a68d764848ff84907ae96636f8d083725da89af5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dda5674ab1c1a4d77f6f716ad2ddb97e1e5b14c10060de636515469d9a714263",

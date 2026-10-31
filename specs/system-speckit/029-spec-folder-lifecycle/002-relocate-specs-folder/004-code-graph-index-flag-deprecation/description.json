@@ -21,7 +21,8 @@
   "folderSlug": "code-graph-index-flag-deprecation",
   "parentChain": [
     "system-speckit",
-    "032-relocate-specs-folder"
+    "029-spec-folder-lifecycle",
+    "002-relocate-specs-folder"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

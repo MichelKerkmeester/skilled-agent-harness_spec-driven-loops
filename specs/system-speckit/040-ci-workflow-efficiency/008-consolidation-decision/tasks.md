@@ -31,7 +31,7 @@ A task closed by D8's answer is `[x] Superseded by D8 = no:` with a `Superseded:
 
 Every task below names one file, quotes the anchor text it edits or reads, gives that anchor's line number, puts every command in a fenced block, states the expected result, names the acceptance criterion it satisfies, gives a rollback, and gives one concrete stop condition.
 
-**Path convention.** Run every command from the repository root. `PHASE` means `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision`. Write the full path in a command unless the task sets `PHASE` in the same block.
+**Path convention.** Run every command from the repository root. `PHASE` means `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision`. Write the full path in a command unless the task sets `PHASE` in the same block.
 
 **Anchor convention.** Every line number was read on this packet's scaffold commit. Phases 002 to 007 add a `concurrency:` block above `jobs:`, add a `timeout-minutes` and an `if:` to every job, delete `hooks-node-tests.yml` and rewrite `.github/workflows/README.md`, so a line below `jobs:` will have moved by the time these tasks run. Locate the quoted text and edit there. An absent anchor is a stop, never a nearby edit.
 
@@ -56,21 +56,21 @@ Every task below names one file, quotes the anchor text it edits or reads, gives
 
 Done 2026-10-25: `scratch/phase-start-sha.txt` holds `1c317e13c5f54fae965125925b5fb1eea534449e`. The check printed `1`, `1`, `switch-in-sha` (switch commit `9480d99e6d`), `baseline-ok`, `1`, `1` and `hooks-merged`.
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/phase-start-sha.txt` (new file). Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/spec.md:149`, the line `| REQ-006 | **R26.** The group assignment follows the tiers of the push-versus-pull-request table at `.github/workflows/README.md:60-75`: FRESHNESS for the guards row at `:66`, `naming-standard-guard.yml` at `:67`, `gate-inputs.yml` at `:68` and `changed-packet-validation.yml` at `:70`; TESTS for the path-filtered row at `:69`; REVIEW for the review-time row at `:71`; REPORTS for `strict-pass-freshness-report.yml` and `trigger-index-rebuild.yml`; MESSAGES for `message-contract.yml`. The assignment is recorded in `scratch/switch-groups.md` with a workflow count and a job count per group |`.
+File: `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/phase-start-sha.txt` (new file). Anchor (read): `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/spec.md:149`, the line `| REQ-006 | **R26.** The group assignment follows the tiers of the push-versus-pull-request table at `.github/workflows/README.md:60-75`: FRESHNESS for the guards row at `:66`, `naming-standard-guard.yml` at `:67`, `gate-inputs.yml` at `:68` and `changed-packet-validation.yml` at `:70`; TESTS for the path-filtered row at `:69`; REVIEW for the review-time row at `:71`; REPORTS for `strict-pass-freshness-report.yml` and `trigger-index-rebuild.yml`; MESSAGES for `message-contract.yml`. The assignment is recorded in `scratch/switch-groups.md` with a workflow count and a job count per group |`.
 
 Change: create `scratch/`, then write the output of `git rev-parse HEAD` to the new file as one line. The SHA must be taken after phase 007 has landed, which the check proves.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+PHASE=specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 mkdir -p "$PHASE/scratch"
 git rev-parse HEAD > "$PHASE/scratch/phase-start-sha.txt"
 wc -l < "$PHASE/scratch/phase-start-sha.txt"
 grep -cE '^[0-9a-f]{40}$' "$PHASE/scratch/phase-start-sha.txt"
 switch_commit=$(git log -1 --format=%H -S'SKILLED_CI_FRESHNESS' -- .github/workflows/gate-inputs.yml)
 git merge-base --is-ancestor "$switch_commit" "$(cat "$PHASE/scratch/phase-start-sha.txt")" && echo switch-in-sha
-test -f specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md && echo baseline-ok
+test -f specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md && echo baseline-ok
 grep -c 'SKILLED_CI_FRESHNESS' .github/workflows/gate-inputs.yml
 grep -c 'concurrency:' .github/workflows/command-tree-parity.yml
 test ! -f .github/workflows/hooks-node-tests.yml && echo hooks-merged
@@ -88,14 +88,14 @@ Stop and escalate if: `switch-in-sha` is missing, or any of `baseline-ok`, `hook
 
 Done 2026-10-25: the parse printed `jobs 13`, then `13` and `1`. Finding: `command-tree-parity.yml`'s two jobs read `SKILLED_CI_TESTS` and its push trigger is path-filtered; the other eight jobs of the plan's set read `SKILLED_CI_FRESHNESS`.
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/pre-merge-inventory.md` (new file). Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/phase-start-sha.txt`, its single line, written by T001.
+File: `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/pre-merge-inventory.md` (new file). Anchor (read): `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/phase-start-sha.txt`, its single line, written by T001.
 
 Change: run the parse below and write one row per `(workflow, job)` pair with the columns `workflow | job | name | trigger | job-if | timeout`, then a final line `tree: 9 workflows, 13 jobs`.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+PHASE=specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 python3 - "$PHASE/scratch/pre-merge-inventory.md" <<'PY'
 import sys, yaml
 files = ['advisory-checks','changed-packet-validation','command-tree-parity','dispatch-enforcement-guard',
@@ -129,7 +129,7 @@ Stop and escalate if: the parse prints anything other than `jobs 13`, or a membe
 
 Done 2026-10-25: `26`; `1`; `2`; `1`; `data rows 22`; `job seconds 1065`. A bullet section quotes the 002 rows for the nine (1,145) and the eight (993) without adding a table.
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-baseline.md` (new file). Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/001-research/scratch/ci-run-data/summary.md:56`, the line `- **advisory-checks.yml**: Advisory — test suites and doc-model references 60s`.
+File: `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-baseline.md` (new file). Anchor (read): `specs/system-speckit/040-ci-workflow-efficiency/001-research/scratch/ci-run-data/summary.md:56`, the line `- **advisory-checks.yml**: Advisory — test suites and doc-model references 60s`.
 
 Change: write the two tables below verbatim, then a `## Arithmetic` section with four bullet lines carrying the bound. Do not add a third table.
 
@@ -173,13 +173,13 @@ The four arithmetic bullets, one per line:
 - `1,065 s - 12 x 50..76 s = 153..465 s = 3..8 billed` per push against 25, so `17..22` minutes saved per push.
 - `73 x 17..22 = 1,241..1,606` runner-min/day, the bound at today's volume.
 - The FRESHNESS eight are 12 jobs and `987` job-seconds and 23 billed minutes, so `987 s - 11 x 50..76 s = 151..437 s = 3..8 billed` and `15..20` minutes saved per push.
-- The post-R1 before number is `specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md`, quoted here with its total line.
+- The post-R1 before number is `specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md`, quoted here with its total line.
 ```
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+PHASE=specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 grep -c '^| ' "$PHASE/scratch/consolidation-baseline.md"
 grep -c '1,241..1,606' "$PHASE/scratch/consolidation-baseline.md"
 grep -c '1,065' "$PHASE/scratch/consolidation-baseline.md"
@@ -206,14 +206,14 @@ Stop and escalate if: the table-line count is not `26`, or `job seconds` is not 
 
 Done 2026-10-25: `gh` exited 0; `json-ok`; `1000`; `2026-10-24T14:27:40Z` and `2026-10-25T20:19:19Z`, 29.86 h apart. Deviation: taken about 19 h after `9480d99e6d`, the last edit to the nine, not 24 h (`scratch/snapshot-window.md`).
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/runs-after.json` (new file). Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/001-research/scratch/ci-run-data/summary.md:4`, the line `Recent window: 1000 runs over 23.5 h (2026-10-22T07:07:25Z to 2026-10-23T06:35:03Z).`
+File: `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/runs-after.json` (new file). Anchor (read): `specs/system-speckit/040-ci-workflow-efficiency/001-research/scratch/ci-run-data/summary.md:4`, the line `Recent window: 1000 runs over 23.5 h (2026-10-22T07:07:25Z to 2026-10-23T06:35:03Z).`
 
 Change: run the command below and write its output to the new file. Take it at least 24 h after phase 007's last workflow run.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+PHASE=specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 gh run list --limit 1000 --json databaseId,name,headSha,event,conclusion,createdAt,startedAt,updatedAt > "$PHASE/scratch/runs-after.json"
 jq -e . "$PHASE/scratch/runs-after.json" > /dev/null && echo json-ok
 jq 'length' "$PHASE/scratch/runs-after.json"
@@ -232,14 +232,14 @@ Stop and escalate if: `gh` exits non-zero, the count is below `900`, or the two 
 
 Done 2026-10-25: `9` directories, each index with `40` runs.
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/jobs/<workflow>/index.json` (nine new files). Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/pre-merge-inventory.md`, its `tree: 9 workflows, 13 jobs` line written by T002.
+File: `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/jobs/<workflow>/index.json` (nine new files). Anchor (read): `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/pre-merge-inventory.md`, its `tree: 9 workflows, 13 jobs` line written by T002.
 
 Change: run the loop below, which writes one `index.json` per member workflow holding its newest 40 runs.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+PHASE=specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 for wf in advisory-checks.yml changed-packet-validation.yml command-tree-parity.yml dispatch-enforcement-guard.yml gate-inputs.yml message-contract.yml playbook-operator-contract.yml rule-canary-sync.yml sk-doc-script-tests.yml; do
   mkdir -p "$PHASE/scratch/jobs/$wf"
   gh run list --workflow "$wf" --limit 40 --json databaseId,createdAt > "$PHASE/scratch/jobs/$wf/index.json"
@@ -260,14 +260,14 @@ Stop and escalate if: any directory holds fewer than `20` runs. Record that work
 
 Done 2026-10-25: `360` files and `jobs-key-ok`. The loop ran eight `gh run view` calls at a time with `xargs -P 8`. Run 40221346293 (cancelled) has an empty `jobs` array and is excluded and counted.
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/jobs/<workflow>/<run-id>.json` (new files). Anchor (read): the `index.json` each file is fetched from, written by T005.
+File: `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/jobs/<workflow>/<run-id>.json` (new files). Anchor (read): the `index.json` each file is fetched from, written by T005.
 
 Change: run the loop below, which fetches `gh run view <id> --json jobs` for every id in every index and writes one file per run.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+PHASE=specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 for wf in advisory-checks.yml changed-packet-validation.yml command-tree-parity.yml dispatch-enforcement-guard.yml gate-inputs.yml message-contract.yml playbook-operator-contract.yml rule-canary-sync.yml sk-doc-script-tests.yml; do
   jq -r '.[].databaseId' "$PHASE/scratch/jobs/$wf/index.json" | while read -r id; do
     gh run view "$id" --json jobs > "$PHASE/scratch/jobs/$wf/$id.json"
@@ -289,7 +289,7 @@ Stop and escalate if: `jq -e '.jobs'` fails on any file, or the count differs fr
 
 Done 2026-10-25: `json-ok`; `9`; `29.86`; nine lines at `40` runs with hours from `19.1` to `51.18`; `9`.
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/window.json` and `scratch/snapshot-window.md` (two new files). Anchor (read): `scratch/runs-after.json`, the `createdAt` values of its first and last entries.
+File: `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/window.json` and `scratch/snapshot-window.md` (two new files). Anchor (read): `scratch/runs-after.json`, the `createdAt` values of its first and last entries.
 
 Change: write `window.json` with the shape below. `start`, `end` and the top-level `hours` come from the oldest and newest `createdAt` in `runs-after.json`, in hours rounded to two decimals. Each `perWorkflow` entry takes `runs` from that workflow's `index.json` length and `hours` from the span of that workflow's own `createdAt` values, floored at `1`. Write `snapshot-window.md` as one row per workflow with its run count and its hours.
 
@@ -309,7 +309,7 @@ Change: write `window.json` with the shape below. `start`, `end` and the top-lev
 Check:
 
 ```bash
-PHASE=specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+PHASE=specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 jq -e . "$PHASE/scratch/window.json" > /dev/null && echo json-ok
 jq '.perWorkflow | length' "$PHASE/scratch/window.json"
 jq '.hours' "$PHASE/scratch/window.json"
@@ -329,7 +329,7 @@ Stop and escalate if: `perWorkflow` does not hold exactly the nine file names, o
 
 Done 2026-10-25: `syntax-ok`; `3`; `1`. Beyond the listed steps the script skips the `Post ` checkout step when it locates checkout, adds `bounds.freshnessSwitched` (the seven that read `SKILLED_CI_FRESHNESS`) and a rate-aware saving, and prints sample counts and a run id per job.
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-cost.mjs` (new file). Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/001-research/scratch/ci-run-data/summary.md:5`, the line `Per-workflow medians come from the 40 latest runs (wall) and the 5 latest completed runs (jobs). Billed minutes = sum over non-skipped jobs of ceil(job seconds / 60), the GitHub rounding rule. Estimated total: 3812 billed min/day.`
+File: `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-cost.mjs` (new file). Anchor (read): `specs/system-speckit/040-ci-workflow-efficiency/001-research/scratch/ci-run-data/summary.md:5`, the line `Per-workflow medians come from the 40 latest runs (wall) and the 5 latest completed runs (jobs). Billed minutes = sum over non-skipped jobs of ceil(job seconds / 60), the GitHub rounding rule. Estimated total: 3812 billed min/day.`
 
 Change: write one Node script with no dependencies that does exactly this, in this order:
 
@@ -346,7 +346,7 @@ Change: write one Node script with no dependencies that does exactly this, in th
 Check:
 
 ```bash
-PHASE=specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+PHASE=specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 node --check "$PHASE/scratch/consolidation-cost.mjs" && echo syntax-ok
 grep -c 'consolidation-cost.json' "$PHASE/scratch/consolidation-cost.mjs"
 grep -c 'check: ok' "$PHASE/scratch/consolidation-cost.mjs"
@@ -371,7 +371,7 @@ Change: run the script once and keep both outputs.
 Check:
 
 ```bash
-PHASE=specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+PHASE=specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 node "$PHASE/scratch/consolidation-cost.mjs"; echo "exit=$?"
 jq '.workflows | length' "$PHASE/scratch/consolidation-cost.json"
 jq '.jobs | length' "$PHASE/scratch/consolidation-cost.json"
@@ -398,7 +398,7 @@ Change: run `--check` and record its output in `scratch/phase-result.md` under a
 Check:
 
 ```bash
-PHASE=specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+PHASE=specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 node "$PHASE/scratch/consolidation-cost.mjs" --check; echo "exit=$?"
 grep -c '^## Cost check$' "$PHASE/scratch/phase-result.md"
 ```
@@ -419,7 +419,7 @@ Stop and escalate if: `--check` exits `1` twice with the same difference, becaus
 
 Done 2026-10-25, written with `D8: pending`: `6`; `1` for the pending line; `5`; `3`; `2`; `1`; `1`; `2`.
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-decision.md` (new file). Anchor (read): `scratch/consolidation-cost.json`, the `bounds` object written by T009.
+File: `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-decision.md` (new file). Anchor (read): `scratch/consolidation-cost.json`, the `bounds` object written by T009.
 
 Change: write one document with exactly these six `##` headings in this order, each body filled from `scratch/consolidation-cost.json` and `scratch/consolidation-baseline.md`:
 
@@ -442,7 +442,7 @@ Change: write one document with exactly these six `##` headings in this order, e
 Check:
 
 ```bash
-PHASE=specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+PHASE=specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 grep -cE '^## (Context|Candidates|Measurements|Signal cost|Recommendation|D8 answer)$' "$PHASE/scratch/consolidation-decision.md"
 grep -c '^D8: pending$' "$PHASE/scratch/consolidation-decision.md"
 grep -c 'message-contract' "$PHASE/scratch/consolidation-decision.md"
@@ -465,7 +465,7 @@ Stop and escalate if: the heading count is not `6`, or a number in `Measurements
 
 Done 2026-10-25: `scratch/d8-answer.md` holds `D8=no`. The check printed `1`, then `11` for `wc -l`, not `1`, because the file also carries the date, the operator's verbatim delegation, the note that this is the session's judgment, and the numbers behind it. The operator confirmed the answer on 2026-10-26. Every check that reads the answer matches `^D8=`.
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/d8-answer.md` (new file). Anchor: none; the file does not exist yet.
+File: `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/d8-answer.md` (new file). Anchor: none; the file does not exist yet.
 
 Default: `D8=no`. Nothing in `.github/workflows/` changes, the decision record closes the phase, and the measured bound is recorded for a later packet. It is the default because R27 calls the risk high if merged and says the per-check signal is lost (`final-review.md:500-501`), and because most of the bound is checkout and rounding that R1 already removes on 35 of 73 pushes.
 
@@ -476,7 +476,7 @@ Change: put the question to the operator with the `Measurements` and `Signal cos
 Check:
 
 ```bash
-PHASE=specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+PHASE=specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 grep -cE '^D8=(no|yes)$' "$PHASE/scratch/d8-answer.md"
 wc -l < "$PHASE/scratch/d8-answer.md"
 ```
@@ -493,14 +493,14 @@ Stop and escalate if: no answer arrives, or the answer is neither `no` nor `yes`
 
 Done 2026-10-25: `0`; `1`; `answer-matches`. One sentence naming the answer file was added below the line.
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-decision.md`. Anchor: `scratch/consolidation-decision.md`, the line `D8: pending`, written by T011.
+File: `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-decision.md`. Anchor: `scratch/consolidation-decision.md`, the line `D8: pending`, written by T011.
 
 Change: replace that one line with `D8: <answer>`, taking `<answer>` from `scratch/d8-answer.md`. Change no other line.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+PHASE=specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 grep -c '^D8: pending$' "$PHASE/scratch/consolidation-decision.md"
 grep -cE '^D8: (no|yes)$' "$PHASE/scratch/consolidation-decision.md"
 diff <(grep -E '^D8=' "$PHASE/scratch/d8-answer.md" | sed 's/^D8=/D8: /') <(grep -E '^D8: ' "$PHASE/scratch/consolidation-decision.md") && echo answer-matches
@@ -518,14 +518,14 @@ Stop and escalate if: `D8: pending` is not on the file, or the two answers diffe
 
 Done 2026-10-25: both commands printed nothing and exited 0; `1`; `1`. Rerun at `HEAD` `7041b05478`, four commits past the start SHA, the diff still printed nothing.
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/no-merge.md` (new file). Runs only on `D8=no`; on `D8=yes` this task is cancelled and T015 to T020 run instead. Anchor (read): `scratch/phase-start-sha.txt`, the SHA written by T001.
+File: `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/no-merge.md` (new file). Runs only on `D8=no`; on `D8=yes` this task is cancelled and T015 to T020 run instead. Anchor (read): `scratch/phase-start-sha.txt`, the SHA written by T001.
 
 Change: run both commands below and write their output, including the empty output, into the new file under a `## Workflow diff` and a `## Worktree status` heading.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+PHASE=specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 git diff --stat "$(cat "$PHASE/scratch/phase-start-sha.txt")"..HEAD -- .github/workflows
 git status --porcelain -- .github/workflows
 grep -c '^## Workflow diff$' "$PHASE/scratch/no-merge.md"
@@ -702,7 +702,7 @@ Stop and escalate if: the line-66 anchor is not on the file, or `message-contrac
 
 Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, confirmed by the operator on 2026-10-26). Nothing in this task was built and its check was not run.
 
-File: `.github/workflows/README.md`. Runs only on `D8=yes`. Anchor (read): `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/spec.md:150`, the line `| REQ-007 | **R26.** `.github/workflows/README.md` gains an `### On/off switches` section that names `SKILLED_CI`, `SKILLED_CI_TESTS`, `SKILLED_CI_REPORTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_FRESHNESS` and `SKILLED_CI_MESSAGES`, states that `off` is the only disable token, that an unset variable runs the job, that `dependabot-auto-merge.yml` has no switch, and that `SKILLED_CI_MESSAGES` must stay unset while the ruleset requires that context |`. The row this task edits is the FRESHNESS row inside the `### On/off switches` section that line requires; its exact text is phase 007's, so read it and keep every other cell.
+File: `.github/workflows/README.md`. Runs only on `D8=yes`. Anchor (read): `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/spec.md:150`, the line `| REQ-007 | **R26.** `.github/workflows/README.md` gains an `### On/off switches` section that names `SKILLED_CI`, `SKILLED_CI_TESTS`, `SKILLED_CI_REPORTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_FRESHNESS` and `SKILLED_CI_MESSAGES`, states that `off` is the only disable token, that an unset variable runs the job, that `dependabot-auto-merge.yml` has no switch, and that `SKILLED_CI_MESSAGES` must stay unset while the ruleset requires that context |`. The row this task edits is the FRESHNESS row inside the `### On/off switches` section that line requires; its exact text is phase 007's, so read it and keep every other cell.
 
 Change: replace the eight member names in that one row's workflow list with `always-run-guards.yml`, leaving `naming-standard-guard.yml` in the list because that file stays separate. Change no other row.
 
@@ -726,7 +726,7 @@ Stop and escalate if: `### On/off switches` is absent, or the `always-run-guards
 
 Superseded: ADR-001, D8 = no (`scratch/d8-answer.md`, the session's judgment under the operator's delegation of 2026-10-25, confirmed by the operator on 2026-10-26). Nothing in this task was built and its check was not run.
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/merge-probe.md` (new file). Runs only on `D8=yes`. Anchor (read): `.github/workflows/gate-inputs.yml:19`, the line `      - name: Check the inputs of every hook, workflow and dependabot entry`, which T015 copies into `.github/workflows/always-run-guards.yml`.
+File: `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/merge-probe.md` (new file). Runs only on `D8=yes`. Anchor (read): `.github/workflows/gate-inputs.yml:19`, the line `      - name: Check the inputs of every hook, workflow and dependabot entry`, which T015 copies into `.github/workflows/always-run-guards.yml`.
 
 Change: on a throwaway branch, add the probe workflow below, stage it together with the merged workflow, the eight deletions and the README edits with `git add -A .github/workflows`, write the commit message below to a file, validate it, commit with `git commit -F` so one commit carries the merge and the probe, push it, open a draft pull request, and read the `always-run-guards.yml` run. Then close the pull request, switch back to the phase branch, reapply the merge with the diff command below, and delete the branch; never merge it.
 
@@ -765,7 +765,7 @@ test(workflows): probe the merged freshness job
 The probe commit carries the merged workflow and the eight deletions so the
 always-run job runs on the branch. A failed guard step must not stop the later steps.
 
-Spec: system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+Spec: system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-commit-msg.txt; echo "msg=$?"
 git commit -F /tmp/probe-commit-msg.txt
@@ -808,14 +808,14 @@ Stop and escalate if: the commit stat does not name the merged file, the probe, 
 
 Done 2026-10-25: `check: ok` and `cost=0`; `RESULT: PASSED` and `gate=0`; `parse=0`; `1` for the `## Gates` heading. The strict validation result is in AC-008 and `implementation-summary.md`.
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch/phase-result.md`. Anchor: the `## Cost check` heading written by T010.
+File: `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/phase-result.md`. Anchor: the `## Cost check` heading written by T010.
 
 Change: append a `## Gates` section holding each command's output and exit status.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+PHASE=specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 node "$PHASE/scratch/consolidation-cost.mjs" --check; echo "cost=$?"
 bash .github/scripts/check-gate-inputs.sh; echo "gate=$?"
 python3 -c "import yaml,glob; [yaml.safe_load(open(f)) for f in glob.glob('.github/workflows/*.yml')]"; echo "parse=$?"
@@ -837,18 +837,18 @@ Done 2026-10-25 in the commit that carries this line, together with T025. The de
 
 File: the phase's `scratch/` artifacts and this packet's documents (committed). Anchor (read): `scratch/consolidation-decision.md`, its `D8: <answer>` line written by T013.
 
-Change: stage `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/` and commit it with the message below. The staged-packet id scan covers the packet's code and metadata files; its Markdown documents may cite R-ids and D-ids.
+Change: stage `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/` and commit it with the message below. The staged-packet id scan covers the packet's code and metadata files; its Markdown documents may cite R-ids and D-ids.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+PHASE=specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 cat > /tmp/commit-msg.txt <<'EOF'
 docs(ci): record the consolidation decision
 
 The decision record carries the measured before and after numbers and D8's answer.
 
-Spec: system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+Spec: system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg.txt; echo "msg=$?"
 git add "$PHASE"
@@ -881,7 +881,7 @@ ci(workflows): merge the always-run freshness guards
 
 The merged job keeps every step name and the fail-closed guards in one workflow.
 
-Spec: system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+Spec: system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-merge.txt; echo "msg=$?"
 git add .github/workflows
@@ -903,14 +903,14 @@ Stop and escalate if: the stat names a path other than the merged file, the eigh
 
 Done 2026-10-25: `9`; `8`; `0`; AC-007 is `Superseded` with `ADR-001` in its Waiver cell.
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/acceptance-criteria.md`. Anchor: each row's Status cell, currently `Unmet`.
+File: `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/acceptance-criteria.md`. Anchor: each row's Status cell, currently `Unmet`.
 
 Change: for each of AC-001 to AC-009, put the observed evidence in the Verification cell and set the Status cell to `Met`, or leave it `Unmet` and record the blocker in `scratch/phase-result.md`.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+PHASE=specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 grep -c '^| AC-00[1-9] |' "$PHASE/acceptance-criteria.md"
 grep -c '| Met |' "$PHASE/acceptance-criteria.md"
 grep -c '| Unmet |' "$PHASE/acceptance-criteria.md"
@@ -929,20 +929,20 @@ Stop and escalate if: a row would be `Met` without a command output in its Verif
 
 Done 2026-10-25 in the commit that carries this line. The message validator printed `msg=0` and the id scan over the phase's non-Markdown files found no match.
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/acceptance-criteria.md` (committed), with this packet's other closure files. Anchor (read): `acceptance-criteria.md:71`, the Status cell `Unmet` on the AC-009 row, set to `Met` or left `Unmet` by T024.
+File: `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/acceptance-criteria.md` (committed), with this packet's other closure files. Anchor (read): `acceptance-criteria.md:71`, the Status cell `Unmet` on the AC-009 row, set to `Met` or left `Unmet` by T024.
 
 Change: stage the packet and commit it with the message below, after T024 has written every row's evidence.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+PHASE=specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 cat > /tmp/commit-msg-closure.txt <<'EOF'
 docs(ci): close the consolidation acceptance criteria
 
 The closure commit records each acceptance row's evidence and the phase result.
 
-Spec: system-speckit/053-ci-workflow-efficiency/008-consolidation-decision
+Spec: system-speckit/040-ci-workflow-efficiency/008-consolidation-decision
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-closure.txt; echo "msg=$?"
 git add "$PHASE"

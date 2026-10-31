@@ -21,7 +21,7 @@
   "specId": "006",
   "folderSlug": "jev-feature-auto-enable",
   "parentChain": [
-    "cli-jev"
+    "cli-classifier"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -57,7 +57,7 @@ This is **Phase 1** of the `/doctor:agents-md` build inside `agents/021-doctor-a
 **Scope Boundary**: The manifest, the shared segmenter, the two root-file edits and the CI path filters. It builds no engine and no route.
 
 **Dependencies**:
-- `/doctor:sk-skill` (packet `sk-doc/075-doctor-sk-skill-command`) must be on `main` before implementation starts, and every phrase, route, bridge and mirror count is re-measured then.
+- `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) must be on `main` before implementation starts, and every phrase, route, bridge and mirror count is re-measured then.
 - The rule-copy canary's string list is the authority for the pin set, so this child reads it before authoring pins.
 
 **Deliverables**:
@@ -79,7 +79,7 @@ Nothing in the framework states in machine-readable form what the template ships
 Put the shipped surface in one manifest of authored keys plus a generated copy of the shipped bodies, and give both engines one shared segmenter so a section means the same thing on both sides.
 
 ### Precondition
-Implementation starts only after `/doctor:sk-skill` (packet `sk-doc/075-doctor-sk-skill-command`) lands on `main`. That command adds a router, a route and an advisor bridge, so the route, bridge, phrase and mirror counts this packet quotes are re-measured from the branch the child starts on, and recorded in `scratch/baseline.txt` before the first edit.
+Implementation starts only after `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) lands on `main`. That command adds a router, a route and an advisor bridge, so the route, bridge, phrase and mirror counts this packet quotes are re-measured from the branch the child starts on, and recorded in `scratch/baseline.txt` before the first edit.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

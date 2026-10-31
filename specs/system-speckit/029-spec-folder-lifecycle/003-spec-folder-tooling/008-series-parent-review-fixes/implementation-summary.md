@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/008-series-parent-review-fixes"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/008-series-parent-review-fixes"
     last_updated_at: "2026-10-07T11:08:36Z"
     last_updated_by: "deepseek-v4.1-flash"
     recent_action: "Closed the packet after the trigger index rebuild"
@@ -66,7 +66,7 @@ The doc sweep found that the README Gate 3 diagram still offered Option E and th
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs` | Modified | Reads the shared phrase source |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/` | Modified | ESC description, sub-folder silence and phrase drift tests |
 | `.skilled/commands/deep/assets/deep-research-auto.yaml`, `.skilled/commands/deep/assets/deep-review-auto.yaml`, `.skilled/commands/deep/assets/compiled/` | Modified | `reasoningEffort` passed to cli-pi, compiled contracts regenerated |
-| `specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/tasks.md`, `acceptance-criteria.md`, `spec.md` | Modified | Phase 6 records reconciled |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/tasks.md`, `acceptance-criteria.md`, `spec.md` | Modified | Phase 6 records reconciled |
 <!-- /ANCHOR:what-built -->
 
 ---

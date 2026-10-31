@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests"
+    packet_pointer: "system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
     last_updated_at: "2026-10-25T07:20:00Z"
     last_updated_by: "markdown"
     recent_action: "Recorded the AC-003 waiver as ADR-011 and accepted ADR-005 to ADR-009"

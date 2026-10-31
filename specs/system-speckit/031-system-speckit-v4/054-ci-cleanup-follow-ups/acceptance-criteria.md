@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups"
+    packet_pointer: "system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups"
     last_updated_at: "2026-09-23T20:30:00Z"
     last_updated_by: "cli-pi-mimo-v2.6-pro"
     recent_action: "Closed the packet with every acceptance criterion met"
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups
+**Packet:** system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-23

@@ -44,6 +44,6 @@ OLD: T001-T012 are done and T013-T017 are open. Nothing is committed, merged or 
 NEW: T001-T016 are done and T017 is open. The work is committed and merged on the worktree branch, and nothing is pushed yet.
 
 VERIFY - run these, paste each command with its result line
-  grep -c 'STALE\|pending' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md   # expect 0
-  grep -c '0b39a1f6c3' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md      # expect 2
-  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md   # expect 12
+  grep -c 'STALE\|pending' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md   # expect 0
+  grep -c '0b39a1f6c3' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md      # expect 2
+  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md   # expect 12

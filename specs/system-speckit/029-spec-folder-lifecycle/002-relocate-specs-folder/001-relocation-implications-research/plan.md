@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/032-relocate-specs-folder/001-relocation-implications-research"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/001-relocation-implications-research"
     last_updated_at: "2026-08-06T13:28:45Z"
     last_updated_by: "claude-code"
     recent_action: "Both lineages ran; grok converged clean, glm needed a sandboxMode retry"

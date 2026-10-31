@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment"
     last_updated_at: "2026-10-09T11:20:00Z"
     last_updated_by: "closeout-worker"
     recent_action: "Third pass: citations and gate evidence re-cited to tree5"

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan"
     last_updated_at: "2026-10-02T11:30:00Z"
     last_updated_by: "orchestrating-session"
     recent_action: "Recorded ADR-001 to ADR-004"

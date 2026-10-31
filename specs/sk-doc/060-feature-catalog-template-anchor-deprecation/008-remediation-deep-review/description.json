@@ -10,7 +10,7 @@
   "folderSlug": "remediation-deep-review",
   "parentChain": [
     "sk-doc",
-    "066-feature-catalog-template-anchor-deprecation"
+    "060-feature-catalog-template-anchor-deprecation"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

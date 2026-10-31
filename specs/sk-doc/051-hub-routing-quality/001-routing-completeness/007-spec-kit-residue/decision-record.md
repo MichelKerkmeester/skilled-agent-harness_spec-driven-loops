@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/052-routing-completeness/007-spec-kit-residue"
+    packet_pointer: "sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue"
     last_updated_at: "2026-09-03T23:30:00Z"
     last_updated_by: "spec-kit-residue-implementer"
     recent_action: "Ran the suite to completion, split its residue, and recorded the ruling as ADR-009"

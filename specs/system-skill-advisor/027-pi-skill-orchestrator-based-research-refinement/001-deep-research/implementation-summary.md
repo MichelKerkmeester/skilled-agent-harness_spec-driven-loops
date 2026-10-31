@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research"
+    packet_pointer: "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/001-deep-research"
     last_updated_at: "2026-09-26T14:05:00Z"
     last_updated_by: "orchestrate"
     recent_action: "Fixed the fan-out dashboard check and ran the workflow close"
@@ -116,7 +116,7 @@ GPT-6 Luna at max effort wrote the dashboard fix through cli-codex, tests first:
 | Findings write-back | One fence under the `questions` anchor; `spec_mutation` at ledger sequence 2; targeted validation `RESULT: PASSED` |
 | Dashboard fix tests, `npx vitest run` on the nine files that read the research workflows | 146 of 146. Reverting the auto workflow fails the fan-out case and nothing else, 1 failed and 8 passed in that file |
 | `node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs` | `[CONTRACT DRIFT] OK commands=3`, exit 0 |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement --strict --recursive` | RESULT: PASSED in all five folders |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement --strict --recursive` | RESULT: PASSED in all five folders |
 <!-- /ANCHOR:verification -->
 
 ---

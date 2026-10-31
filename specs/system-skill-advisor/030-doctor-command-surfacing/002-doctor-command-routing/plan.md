@@ -192,7 +192,7 @@ Run from the repository root unless a step says otherwise. Rebuild before any ga
 | G9 | Doctor reach probe | `node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs` (created at T019) |
 | G10 | Runtime mirrors and catalog | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check`, `node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs --check`, `node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check`, `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs --check`, `node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs` |
 | G11 | Per-prompt comparison | The packet's per-prompt script against the T001 snapshot. Zero rows may move from pass to fail |
-| G12 | Packet validation | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/035-doctor-command-routing --strict`, requiring `RESULT: PASSED` |
+| G12 | Packet validation | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/030-doctor-command-surfacing/002-doctor-command-routing --strict`, requiring `RESULT: PASSED` |
 
 ### Baseline Rule
 

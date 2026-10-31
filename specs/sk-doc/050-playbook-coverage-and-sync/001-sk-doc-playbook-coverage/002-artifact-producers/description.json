@@ -21,7 +21,8 @@
   "folderSlug": "artifact-producers",
   "parentChain": [
     "sk-doc",
-    "050-sk-doc-playbook-coverage"
+    "050-playbook-coverage-and-sync",
+    "001-sk-doc-playbook-coverage"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

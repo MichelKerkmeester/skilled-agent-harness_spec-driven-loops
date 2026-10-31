@@ -21,7 +21,7 @@ contextType: "general"
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Subject:** `system-speckit/041-write-recipe-fixes`, children 001 to 005
+**Subject:** `system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes`, children 001 to 005
 **Status:** Complete
 **Started:** 2026-09-29
 **Last updated:** 2026-09-29

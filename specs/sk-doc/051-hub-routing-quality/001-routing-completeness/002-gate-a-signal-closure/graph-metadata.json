@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Across all five hubs, 234 of 444 declared signals resolve end to end to exactly one mode",
     "created_at": "2026-09-02T16:34:05Z",
-    "last_save_at": "2026-10-31T13:25:47.492Z",
+    "last_save_at": "2026-10-31T14:01:31.848Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:829c8e21222c7055e933e55db19d226803f6972023a5edcf0dd58b47da6c43df",
+    "source_fingerprint": "sha256:1ab7bb4bd19b893de771bf252b403ee5f525c71b0809fd3b4ca06c3111149a7c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "610226c7fb6b356ec37c6fe69ad9d4baecb1f96d870347a4114a5089310e2ea1",
       "plan.md": "14fbf93f02fe2f4f9e008bca75b4ed4a48d00279759b86ed956f9184536b173c",
       "tasks.md": "c1e8ee4d8a0a4f487e5a86d106ae7bfd0daf031702dfaf8879c9564a113fccbc",
-      "implementation-summary.md": "2d69093bb1acac81e87e2437181baf06bed5edd991bdc888fb54337062181ddf"
+      "implementation-summary.md": "490b0b3a86053b8a70a276c4290045e23905e4339695d8973a7752981b9d28f1"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/075-doctor-sk-skill-command/003-convert-legacy-skilled"
+    packet_pointer: "sk-doc/067-doctor-sk-skill-command/003-convert-legacy-skilled"
     last_updated_at: "2026-10-30T08:21:36Z"
     last_updated_by: "codex"
     recent_action: "Implemented the review fixes and expanded verification"
@@ -102,7 +102,7 @@ The golden test first runs `plan` and checks that no fixture bytes change. `appl
 | `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` | Exit 0; 65 Hermes copies in sync |
 | Advisor fixture-discovery inspection | Exit 0; advisor scans direct `.skilled/skills` children for `graph-metadata.json`, and the converter fixture has none |
 | Golden `package_skill.py --check --strict` assertion | Exit 0; `Result: PASS`; no RS-002, RS-004 or RS-005 |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/075-doctor-sk-skill-command/003-convert-legacy-skilled --strict` | `RESULT: PASSED`; 0 errors, 0 warnings |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/067-doctor-sk-skill-command/003-convert-legacy-skilled --strict` | `RESULT: PASSED`; 0 errors, 0 warnings |
 <!-- /ANCHOR:verification -->
 
 ---

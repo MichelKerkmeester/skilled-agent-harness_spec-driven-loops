@@ -221,7 +221,7 @@ Baseline ──► Phase A (P1s + R-22) ──► Phase B (WS-4, WS-5) ──►
 - [ ] Guards rerun after each commit
 
 ### Rollback Procedure
-1. Identify the workstream commit from `git log --grep='^Spec: system-speckit/033-system-speckit-v4/069'`.
+1. Identify the workstream commit from `git log --grep='^Spec: system-speckit/031-system-speckit-v4/069'`.
 2. `git revert` that commit.
 3. Rerun the baseline suites and the guards.
 4. Record the revert in `implementation-summary.md`.
@@ -477,7 +477,7 @@ Commits land in the phase order frozen by goal decision D2. Work inside a wave r
 ```
 NON-INTERACTIVE WORKER. Nobody can answer you; never end a turn with a question.
 Gate 3 is pre-resolved: the spec folder is
-specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation.
+specs/system-speckit/031-system-speckit-v4/069-v4-0-0-3-review-remediation.
 Work in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/090-deep-review-okf-adoption.
 
 Implement work package <WP-ID> exactly as written below. Write authority: ONLY the files under
@@ -1083,8 +1083,8 @@ Both transports import the gate's `evaluateCommand` and copy no parsing (`pi/git
      - the NUL counts, 1 and 1.
 2. **Dispatch each wave** with the dispatch contract below. Each work package goes to one agent; WP-G rows can go to separate agents.
 3. **Accept a return** only after re-running its work package's verify commands and reading both output and exit code. Also check `git status --short` for files outside the package's ownership. A return's "done" is a claim until then.
-4. **Commit** each accepted package with `type(scope): summary` and a `Spec: system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation` trailer, and no attribution lines.
-5. **R-14.** Run `repair-derived.cjs --folder specs/system-speckit/033-system-speckit-v4 --apply`, then `validate.sh --strict` on 033, and require `RESULT: PASSED` on every folder.
+4. **Commit** each accepted package with `type(scope): summary` and a `Spec: system-speckit/031-system-speckit-v4/069-v4-0-0-3-review-remediation` trailer, and no attribution lines.
+5. **R-14.** Run `repair-derived.cjs --folder specs/system-speckit/031-system-speckit-v4 --apply`, then `validate.sh --strict` on 033, and require `RESULT: PASSED` on every folder.
 6. **R-09.** After the last doc edit of the packet, run `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`, then `--check` must exit 0.
 7. **F1 (T047), only after the operator accepts ADR-001.**
    - Rewrite the `AGENTS.md:61` bullet to include the record-and-continue scope, keeping the change byte-neutral before the Blast-Radius anchor at 16,359: for every byte added, trim the same number elsewhere before that anchor.
@@ -1092,7 +1092,7 @@ Both transports import the gate's `evaluateCommand` and copy no parsing (`pi/git
    - Run `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js`; it must exit 0 with every anchor at or under 16,384.
    - Tell the operator to update `~/.claude/CLAUDE.md`.
 8. **Smoke (T048).** Run one two-iteration Luna lineage:
-   - command: `node .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs --spec-folder specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation --loop-type review --fanout-config-json '[{"kind":"cli-codex","model":"gpt-6-luna","reasoningEffort":"max","serviceTier":"fast","label":"luna-smoke","iterations":2}]' --base-artifact-dir specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/scratch/luna-smoke --convergence-threshold 0.10 --stop-policy max-iterations --convergence-mode default`;
+   - command: `node .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs --spec-folder specs/system-speckit/031-system-speckit-v4/069-v4-0-0-3-review-remediation --loop-type review --fanout-config-json '[{"kind":"cli-codex","model":"gpt-6-luna","reasoningEffort":"max","serviceTier":"fast","label":"luna-smoke","iterations":2}]' --base-artifact-dir specs/system-speckit/031-system-speckit-v4/069-v4-0-0-3-review-remediation/scratch/luna-smoke --convergence-threshold 0.10 --stop-policy max-iterations --convergence-mode default`;
    - check that both iteration files exist and that `detectPendingQuestion` finds nothing in the lineage stdout;
    - record the result, then remove `scratch/luna-smoke/`;
    - if the Luna route is down, record the smoke as operator-verifiable.

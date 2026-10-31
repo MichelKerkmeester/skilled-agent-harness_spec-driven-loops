@@ -89,7 +89,7 @@ Nothing left describes or depends on the JSON goal store beyond what ADR-2 keeps
 | `.opencode/hooks/goal/README.md` | Modify | New model |
 | `.opencode/hooks/goal/goal-plugin.md` | Modify | New model |
 | `.opencode/skills/system-spec-kit/SKILL.md` | Modify | Goal section |
-| `specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md` | Modify | Entry |
+| `specs/system-speckit/031-system-speckit-v4/CHANGELOG-v4.0.0.0.md` | Modify | Entry |
 <!-- /ANCHOR:scope -->
 
 ---

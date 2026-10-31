@@ -99,16 +99,16 @@
     ],
     "causal_summary": "A packet stores derived data beside a fingerprint of the documents it came from, and the same shape repeats for routing manifests and the retrieval index",
     "created_at": "2026-09-11T06:37:34Z",
-    "last_save_at": "2026-10-31T13:26:55.505Z",
+    "last_save_at": "2026-10-31T13:44:05.895Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c81c5885a4b09032b5b3ac056eb83572f605cfe31e0a8c6237b6f54f409a266d",
+    "source_fingerprint": "sha256:bced666fe644034293161da546228f01ef14f215b009369f8a0dc83ec2a2766a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8f7bd9d043599dd397574c54e32d7255348ca0554df1ad1d2551e4dbfd0b1c70"
+      "spec.md": "2ac201cd05c71ca01cbbf235d6306110d1b2332a50edee9c1eda67cad59bc56d"
     },
     "last_active_at": null
   }

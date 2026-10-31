@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names"
+    packet_pointer: "sk-doc/060-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names"
     last_updated_at: "2026-10-10T22:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Marked every criterion with observed evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names
+**Packet:** sk-doc/060-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-10

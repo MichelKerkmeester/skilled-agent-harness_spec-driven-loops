@@ -9,14 +9,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/048-doctor-command-audit/003-update"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update"
     last_updated_at: "2026-10-02T23:12:59Z"
     last_updated_by: "implementation"
     recent_action: "ADR-001 recorded: AC-001 superseded by the command split"
     next_safe_action: "None — packet closed"
     blockers: []
     key_files:
-      - "specs/system-speckit/048-doctor-command-audit/003-update/acceptance-criteria.md"
+      - "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/acceptance-criteria.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "orchestrator-003-update"

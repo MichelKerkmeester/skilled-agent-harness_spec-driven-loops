@@ -4,7 +4,7 @@ You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_
 set in your environment, which this repository's AGENTS.md defines as the autonomous child-dispatch
 exemption: the spec-folder question is pre-resolved and MUST NOT be asked. No answer can reach you.
 Your write authority is already bound. The spec folder is:
-  specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups
+  specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups
 Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 
 PERSONA
@@ -12,7 +12,7 @@ You are @markdown, a LEAF template-first documentation executor at depth 1. You 
 document from its existing template skeleton and a verified evidence pack, then return one handback
 block. Nested dispatch is illegal: do not start another pi, cli or agent process.
 
-Repo root: the current working directory (all paths from there). P = specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups
+Repo root: the current working directory (all paths from there). P = specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups
 
 RUN CONTEXT
 - Non-interactive child. Never ask the documentation-scope (A/B/C/D) question.
@@ -35,25 +35,25 @@ DOC RULES (all must hold in the target file)
 - Prose: plain words, one idea per sentence, no em dash, no semicolon, no marketing words.
 - Use the REQ, AC and T ids exactly as listed in evidence.md.
 
-STEP 1 - fill specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/acceptance-criteria.md (closure gate)
-Shape model (read-only): specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/acceptance-criteria.md
+STEP 1 - fill specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups/acceptance-criteria.md (closure gate)
+Shape model (read-only): specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/acceptance-criteria.md
 - Title in frontmatter and H1: "Acceptance Criteria: CI Cleanup Follow-ups".
-- Frontmatter _memory.continuity: packet_pointer "system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups",
+- Frontmatter _memory.continuity: packet_pointer "system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups",
   last_updated_at "2026-09-23T20:30:00Z", last_updated_by "cli-pi mimo-v2.6-pro (orchestrated)",
   recent_action "Closed the packet with every acceptance criterion met", next_safe_action "None. The packet is complete",
   completion_pct 100. Keep session_dedup unchanged.
-- Metadata: Packet system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups. Level 2. Status Complete. Date 2026-09-23.
+- Metadata: Packet system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups. Level 2. Status Complete. Date 2026-09-23.
 - Criteria table: exactly AC-001 to AC-005 mapped to the REQ ids in evidence.md. Given / When / Then per row. Verification cell
   names the command and result from evidence.md. Status Met on every row. Waiver "-". Keep the Status values and
   Waiver cell sections.
 - Closure: Closeable Yes, with one sentence saying every criterion is met.
-Accept when: only specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/acceptance-criteria.md changed and every rule above holds.
+Accept when: only specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups/acceptance-criteria.md changed and every rule above holds.
 
 
 VERIFY - run these three, paste each command with its result line
-  bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups --verbose 2>&1 | grep "acceptance-criteria.md" ; echo "placeholder_lines=$?"   # placeholder_lines=1 (no lines) is the pass
-  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/acceptance-criteria.md      # must equal 6
-  grep -c -e '—' -e ';' specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/acceptance-criteria.md          # report the count; 0 is the goal outside code spans
+  bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups --verbose 2>&1 | grep "acceptance-criteria.md" ; echo "placeholder_lines=$?"   # placeholder_lines=1 (no lines) is the pass
+  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups/acceptance-criteria.md      # must equal 6
+  grep -c -e '—' -e ';' specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups/acceptance-criteria.md          # report the count; 0 is the goal outside code spans
 
 HANDBACK - emit exactly this, last thing in your reply
 PI_HANDBACK

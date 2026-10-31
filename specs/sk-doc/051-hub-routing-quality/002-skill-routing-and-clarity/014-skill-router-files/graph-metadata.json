@@ -168,19 +168,19 @@
     ],
     "causal_summary": "Every SKILL.md ends with a `## MACHINE ROUTER` section, and that section loads whenever the skill does",
     "created_at": "2026-10-29T07:52:39Z",
-    "last_save_at": "2026-10-31T13:25:48.077Z",
+    "last_save_at": "2026-10-31T14:01:36.742Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:ab0cc9c670e9f703564237e8fdf61c30c1638dea7ea878e831dc99e09029ddf1",
+    "source_fingerprint": "sha256:ec6ac07397969944f6f13f86c38ca9eabf46bd9d054fac3c6902aaafcd4ce53b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "085e39a93ec79a30e435ccf88cc2989ef72cb8f51ce3cd25b124b7ecdac79d23"
+      "spec.md": "da0b5d1ae69ffed24cd3f4989f161b399d7ba469f09884b9af464cae0688c795"
     },
-    "last_active_child_id": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification",
+    "last_active_child_id": "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification",
     "last_active_at": "2026-10-30T04:49:52.232Z"
   }
 }

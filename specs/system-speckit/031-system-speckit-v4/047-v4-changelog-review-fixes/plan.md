@@ -91,7 +91,7 @@ The verification battery in tasks.md T006/T008 is the test suite: the eight find
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Before the commit: `git restore specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md` removes the whole pass (the file is committed at 6cc4bafc61) and the untracked packet directory deletes cleanly. After the commit: `git reset --soft HEAD~1` returns the branch to 6cc4bafc61 with the changes back in the working tree.
+Before the commit: `git restore specs/system-speckit/031-system-speckit-v4/CHANGELOG-v4.0.0.0.md` removes the whole pass (the file is committed at 6cc4bafc61) and the untracked packet directory deletes cleanly. After the commit: `git reset --soft HEAD~1` returns the branch to 6cc4bafc61 with the changes back in the working tree.
 <!-- /ANCHOR:rollback -->
 
 ---

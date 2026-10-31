@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/033-advisor-status-truthfulness/001-freshness-and-scan-truth"
+    packet_pointer: "system-skill-advisor/029-advisor-status-truthfulness/001-freshness-and-scan-truth"
     last_updated_at: "2026-10-03T07:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Shipped and verified phase 1"

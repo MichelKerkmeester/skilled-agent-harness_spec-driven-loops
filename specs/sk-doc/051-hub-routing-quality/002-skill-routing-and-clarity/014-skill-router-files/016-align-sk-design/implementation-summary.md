@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/016-align-sk-design"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/016-align-sk-design"
     last_updated_at: "2026-10-29T21:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Recorded the sk-design alignment check and its dispositions"
@@ -96,7 +96,7 @@ The check resolved the file set, ran the battery (`{"pass":87,"fail":1,"not_appl
 | Decision | Why |
 |----------|-----|
 | Hold E-03 and D-01 | The packet decision is that no skill routes differently, so new intents, resources and weights go to the routing follow-up recorded in the parent spec |
-| Leave the reference-format debt open | The 30 sk-design-diagram references fail at the base too, and the parent spec sends them to `specs/sk-doc/074-reference-template-debt/`, which fixes them after this packet |
+| Leave the reference-format debt open | The 30 sk-design-diagram references fail at the base too, and the parent spec sends them to `specs/sk-doc/066-reference-template-debt/`, which fixes them after this packet |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -126,7 +126,7 @@ The check resolved the file set, ran the battery (`{"pass":87,"fail":1,"not_appl
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The reference-format debt is open, not fixed.** Every sk-design-diagram type and import-export reference, 30 files, fails the reference format at the base too. The fix lane touched only four of them. The parent spec sends the debt to `specs/sk-doc/074-reference-template-debt/`, which fixes it after this packet closes.
+1. **The reference-format debt is open, not fixed.** Every sk-design-diagram type and import-export reference, 30 files, fails the reference format at the base too. The fix lane touched only four of them. The parent spec sends the debt to `specs/sk-doc/066-reference-template-debt/`, which fixes it after this packet closes.
 2. **The routing probes gave no signal.** All 11 report `cannot_run`, so the router-file resolver is the only proof that routing held.
 3. **Two routing items stay open.** E-03 and D-01 wait in the routing follow-up recorded in the parent spec.
 <!-- /ANCHOR:limitations -->

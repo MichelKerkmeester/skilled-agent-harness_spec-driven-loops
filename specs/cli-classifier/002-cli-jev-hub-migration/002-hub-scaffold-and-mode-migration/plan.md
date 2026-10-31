@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration"
+    packet_pointer: "cli-classifier/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration"
     last_updated_at: "2026-09-20T14:35:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Plan authored at closeout, mirroring the executed hub stand-up"
@@ -103,7 +103,7 @@ No unit tests apply to the hub artifacts themselves: the doctor is the test. `pa
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-- Phase 001, because the mode's provenance citations now point at `specs/cli-jev/001-cli-jev-creation`.
+- Phase 001, because the mode's provenance citations now point at `specs/cli-classifier/001-cli-jev-creation`.
 - The sk-doc parent-skill templates, because they define the hub, registry, router, description and graph-metadata shapes the doctor checks.
 - Phase 003, which consumes this phase's output: the old hub's row, the dispatch `packetPath` and the two hook suites all assume the packet now lives at `cli-jev/cli-usage`.
 - Phase 004, which mints the activation manifest this phase deliberately leaves absent.

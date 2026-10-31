@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-jev",
-  "spec_folder": "cli-jev",
+  "packet_id": "cli-classifier",
+  "spec_folder": "cli-classifier",
   "parent_id": null,
   "children_ids": [
-    "cli-jev/001-cli-jev-creation",
-    "cli-jev/002-cli-jev-hub-migration",
-    "cli-jev/003-cli-jev-workflow-integration",
-    "cli-jev/004-cli-classifier-quality-research",
-    "cli-jev/005-cli-classifier-quality-fixes",
-    "cli-jev/006-jev-feature-auto-enable"
+    "cli-classifier/001-cli-jev-creation",
+    "cli-classifier/002-cli-jev-hub-migration",
+    "cli-classifier/003-cli-jev-workflow-integration",
+    "cli-classifier/004-cli-classifier-quality-research",
+    "cli-classifier/005-cli-classifier-quality-fixes",
+    "cli-classifier/006-jev-feature-auto-enable"
   ],
   "manual": {
     "depends_on": [],
@@ -21,6 +21,7 @@
   "derived": {
     "trigger_phrases": [],
     "key_topics": [
+      "cli-classifier",
       "cli-jev",
       "jev",
       "typed-judgment",

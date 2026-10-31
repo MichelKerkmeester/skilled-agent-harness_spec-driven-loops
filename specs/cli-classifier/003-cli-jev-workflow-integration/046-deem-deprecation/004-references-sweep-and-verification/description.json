@@ -9,7 +9,7 @@
   "specId": "004",
   "folderSlug": "references-sweep-and-verification",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration",
     "046-deem-deprecation"
   ],

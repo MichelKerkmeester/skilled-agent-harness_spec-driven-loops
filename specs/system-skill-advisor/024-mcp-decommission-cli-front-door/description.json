@@ -17,7 +17,7 @@
     "behavior"
   ],
   "lastUpdated": "2026-09-12T08:08:55.399Z",
-  "specId": "025",
+  "specId": "024",
   "folderSlug": "mcp-decommission-cli-front-door",
   "parentChain": [
     "system-skill-advisor"

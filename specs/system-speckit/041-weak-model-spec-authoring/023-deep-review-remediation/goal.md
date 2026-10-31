@@ -56,7 +56,7 @@ Frozen choices. Changing one is an amendment.
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
 - [ ] The nested-fence and `--path` symlink tests fail on the old code and pass on the new
-- [ ] `validate.sh specs/system-speckit/054-weak-model-spec-authoring --strict --recursive` prints `RESULT: PASSED` for every folder
+- [ ] `validate.sh specs/system-speckit/041-weak-model-spec-authoring --strict --recursive` prints `RESULT: PASSED` for every folder
 - [ ] Every row of this phase's `acceptance-criteria.md` reads Met
 <!-- /ANCHOR:completion -->
 

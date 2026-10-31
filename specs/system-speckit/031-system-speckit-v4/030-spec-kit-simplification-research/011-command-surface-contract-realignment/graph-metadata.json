@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The level contract retired `checklist.md` and made `acceptance-criteria.md` the closure document, and child 010 brought the skill's own documents to that contract",
     "created_at": "2026-09-07T03:35:37.269Z",
-    "last_save_at": "2026-10-31T13:26:49.642Z",
+    "last_save_at": "2026-10-31T13:58:55.405Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c8f02805c888755e1ea3c03ab245e9a2741a1617e1521461e4511f30ad9a8e32",
+    "source_fingerprint": "sha256:055afef655f2ff66fa8de4a8d38b3ceab88a6231b9ba523f9df70de13b22bc5e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f8c2db2a8886f1a00b886e787b797d2a855b1bf844fdced4b1269dfbdd7513ca",

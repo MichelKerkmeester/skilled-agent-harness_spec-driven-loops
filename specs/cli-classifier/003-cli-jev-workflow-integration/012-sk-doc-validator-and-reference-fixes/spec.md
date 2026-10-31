@@ -53,7 +53,7 @@ This is **Phase 12** of the cli-jev workflow integration specification. It plans
 - Two spec-kit playbook rows removed from a recorded capture, with the capture's note saying why
 
 **Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name. At close, `specs/cli-jev/003-cli-jev-workflow-integration/changelog/` did not exist, so there was nothing to refresh (see `implementation-summary.md` Deviations).
+- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name. At close, `specs/cli-classifier/003-cli-jev-workflow-integration/changelog/` did not exist, so there was nothing to refresh (see `implementation-summary.md` Deviations).
 <!-- /ANCHOR:phase-context -->
 
 ---

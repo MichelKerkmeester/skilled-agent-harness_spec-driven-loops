@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/049-sk-create-frontmatter/003-content-migration"
+    packet_pointer: "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/003-content-migration"
     last_updated_at: "2026-09-01T08:42:58Z"
     last_updated_by: "implementation"
     recent_action: "Closed the migration criteria; all six rows met against named command output"
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/049-sk-create-frontmatter/003-content-migration
+**Packet:** sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/003-content-migration
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-09-01

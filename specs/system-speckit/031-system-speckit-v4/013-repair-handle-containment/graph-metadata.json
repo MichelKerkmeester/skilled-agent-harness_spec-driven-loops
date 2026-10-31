@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Two packets closed on the same idea — prove membership rather than match a shape — and each left a",
     "created_at": "2026-08-30T14:17:45Z",
-    "last_save_at": "2026-10-31T13:26:41.034Z",
+    "last_save_at": "2026-10-31T13:58:42.545Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:90c5d2780ac21490a4f5ae9e768cd600fc5616f81ef4f78d817b7db4fb8200ee",
+    "source_fingerprint": "sha256:6c8bc737e557924858de19d2fac7b483c97cc25873290b4ebeedb8981543728f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7570d9e48c4ce72411735c0895d29a14cfbc331730eff86964640a821fc73f3e",
       "plan.md": "04bacd77ee82eb8a9e537665457838c22155dc594943df6edf6147405e52110b",
       "tasks.md": "6f5ea0f71eddbb03edc7ff8b8d7589d3f6fd0625349961cac735144f63b15616",
-      "decision-record.md": "577b952e14586e4629eae11224a4a92e5045b2330afde5392c2be720af9482c7",
+      "decision-record.md": "412fdc56c23692d2b3b821ab99d599661cd1781b4a9735c038011e87ffc240b2",
       "implementation-summary.md": "9ac2f05c24f7ba71298f8084f7cca6ce5ae1ccf0ce300960714329470bf85301"
     },
     "last_active_child_id": null,

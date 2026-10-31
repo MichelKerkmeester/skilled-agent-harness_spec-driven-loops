@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/032-relocate-specs-folder/003-migration-execution"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/003-migration-execution"
     last_updated_at: "2026-08-08T10:50:39Z"
     last_updated_by: "claude-code"
     recent_action: "Runbook drafted from phase 002's accepted design"
@@ -108,7 +108,7 @@ This is the historical AS-AUTHORED runbook; it was executed -- see `implementati
 ```bash
 git status --porcelain   # must be clean before starting
 devin auth status; cursor-agent about   # not needed for this phase, listed for completeness of prior patterns
-grep -A3 "Status.*Accepted" .opencode/specs/system-speckit/032-relocate-specs-folder/002-migration-plan/decision-record.md
+grep -A3 "Status.*Accepted" .opencode/specs/system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/002-migration-plan/decision-record.md
 ```
 **Check**: both ADRs still show `Accepted`; `git status --porcelain` is empty outside expected work-in-progress.
 **Rollback**: none needed — nothing mutated yet.

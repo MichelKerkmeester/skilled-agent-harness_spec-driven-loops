@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/047-measure-every-jev-feature"
     last_updated_at: "2026-10-02T18:40:31Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Recorded all 15 results"

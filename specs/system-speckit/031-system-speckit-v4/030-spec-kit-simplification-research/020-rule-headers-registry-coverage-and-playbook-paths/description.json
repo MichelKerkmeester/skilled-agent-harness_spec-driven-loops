@@ -22,7 +22,7 @@
   "folderSlug": "rule-headers-registry-coverage-and-playbook-paths",
   "parentChain": [
     "system-speckit",
-    "033-system-speckit-v4",
+    "031-system-speckit-v4",
     "030-spec-kit-simplification-research"
   ],
   "memorySequence": 0,

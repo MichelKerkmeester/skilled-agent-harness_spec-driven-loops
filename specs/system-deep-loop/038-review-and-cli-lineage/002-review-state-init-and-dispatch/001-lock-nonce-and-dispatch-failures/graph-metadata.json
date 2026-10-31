@@ -55,7 +55,7 @@
       ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-event-dir-binding.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/executor-audit-receipts.test.ts",
-      "specs/system-speckit/050-open-knowledge-format-adoption/review/review-report.md"
+      "specs/system-speckit/037-open-knowledge-format-adoption/review/review-report.md"
     ],
     "entities": [
       {
@@ -145,7 +145,7 @@
       {
         "name": "review-report.md",
         "kind": "doc",
-        "path": "specs/system-speckit/050-open-knowledge-format-adoption/review/review-report.md",
+        "path": "specs/system-speckit/037-open-knowledge-format-adoption/review/review-report.md",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "`stepreleaselock` in the review and ai-council workflows passes only `--owner-pid`, but `acquire` stamps a nonce and `release` refuses without it, so the run ends with `released:false` and the lock left on disk",
     "created_at": "2026-10-05T17:03:23Z",
-    "last_save_at": "2026-10-06T18:48:34.604Z",
+    "last_save_at": "2026-10-31T14:04:36.769Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +214,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd0083c56c544aff4a9bf694e6a916ec5d998f091f10e6fe940d76bcbd5602ce",
+    "source_fingerprint": "sha256:d7f0274a27c45ebae65100e5dd88b70acb000afaea9d822a2341a6bbaef49470",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "247b9c8fbc5c54bbb181cce9bf3267ce2609d65804620819121024ce11a121c6",
+      "spec.md": "66863ae2f9fb910152687d89387ec7e262f27547f3854b00c9b7b1afb1ca5b60",
       "plan.md": "2d53d26d2539a887b8edb946cbd844c51796acb97eaa11c1b9ee543305351f3b",
-      "tasks.md": "7ee53017a91b815e6f39a77f1d5083d9088a4e81d86b575aa9a07029ebf73092",
+      "tasks.md": "d72ecc66f72b202beb44fe3bfb005d1a8c109e1792891ebf9e8b6577c170a3fc",
       "implementation-summary.md": "7d8a36a508c7c9fe9b771bfc56d03da95eea16d7c688ade5f8217dcf1b00092c"
     },
     "last_active_at": null

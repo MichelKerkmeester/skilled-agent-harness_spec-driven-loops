@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Phase 048 hit four more fan-out faults",
     "created_at": "2026-10-03T05:30:11Z",
-    "last_save_at": "2026-10-31T13:25:39.689Z",
+    "last_save_at": "2026-10-31T14:04:00.028Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0b3cfa61b8414a341c24f3639933fda3dcd2299fb88d423e5496a4af558556ae",
+    "source_fingerprint": "sha256:bf99b02c1fc4b7313ce1534b6d95b87ff6bda87b94f37ab53b35decf4bde8806",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "76414ed85a7cc04c9c26fad3ec0abd3e07a95a7b8b442f49b3014bdef5de948c",

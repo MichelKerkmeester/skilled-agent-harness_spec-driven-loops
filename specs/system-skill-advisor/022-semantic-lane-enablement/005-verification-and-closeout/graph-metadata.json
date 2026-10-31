@@ -45,7 +45,9 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md"
+      "goal.md",
+      "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/roadmap.md",
+      "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/research/findings-register.md"
     ],
     "entities": [
       {
@@ -76,6 +78,18 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "roadmap.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/roadmap.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-register.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/research/findings-register.md",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A packet that measured well during its work can still leave a repository that disagrees with",
     "created_at": "2026-09-02T22:17:29Z",
-    "last_save_at": "2026-10-31T13:26:12.051Z",
+    "last_save_at": "2026-10-31T13:47:14.615Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,11 +207,11 @@
       "acceptance-criteria.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:f4041da7d63f0a77e17555bcffe9406deedc7d244a31d307efa5922a0f00492a",
+    "source_fingerprint": "sha256:54b0aa99db3aa23d61384e1697a27d82628267e748c4b53aad125b97d4a2a71b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d85f73d590b9a3b46e47c7c0c2d5db891f867efb02386d9c69f93f18f0d00cf8",
-      "plan.md": "24134fe439abf36cd050097885078dc5757c8bde22b5eacd7e74a3169141d82e",
+      "spec.md": "def2709b3f881734694f15628e225779ff50ff93bc62023460659cd03b8f5a1f",
+      "plan.md": "82b9279e1554621f686c321a78acfb6e783fbbc304be8a1ecc0eed72d0eee44d",
       "tasks.md": "355217a45aa1ec0838269c699ed3c9a93a04964956a7a5d016b5b54ebbb48d6f"
     },
     "last_active_child_id": null,

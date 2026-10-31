@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files"
     last_updated_at: "2026-10-29T21:45:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Closed phases 006 and 009 and the 13 per-skill alignment phases"
@@ -44,7 +44,7 @@ _memory:
 | **Created** | 2026-10-29 |
 | **Branch** | `worktrees/269-skill-router-files` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | sk-doc/072-skill-routing-and-clarity |
+| **Parent Packet** | sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity |
 | **Predecessor** | 013-mcp-tooling-routing-canon |
 | **Successor** | 015-routing-data-alignment |
 | **Handoff Criteria** | Every skill and mode keeps its machine router in a sibling `ROUTER.md`, the checks enforce it, and routing accuracy holds at its baseline |
@@ -162,7 +162,7 @@ Set per phase from the research findings; each child's `spec.md` lists its files
 The alignment phases found items this packet may not fix, because the packet decision is that no skill routes differently after the move and the completion criteria hold the routing numbers fixed. Each item has a home that is built once this packet closes:
 
 - **Routing data.** Vocabulary in `graph-metadata.json` intent signals, aliases and weights in `hub-router.json`, the sk-prompt `NO_LOAD_INTENTS` wiring, the sk-design-diagram theming route and the mcp-notion routing gold go to `../015-routing-data-alignment/`. That phase changes routing on purpose, records a new scorer and replay baseline, and refutes the items a review found to be correct behavior: cli-classifier D-05, mcp-tooling D-09, the sk-git router-reach allowlist entry and the YAML-frontmatter half of sk-prompt D-03.
-- **Reference format debt.** 56 tracked references fail the reference format at the base commit, 34 of them in sk-design-diagram (no `## 1. OVERVIEW`, lowercase numbered H2s). They go to `specs/sk-doc/074-reference-template-debt/`, which renumbers each file's sections and its section references with one script and changes no routing.
+- **Reference format debt.** 56 tracked references fail the reference format at the base commit, 34 of them in sk-design-diagram (no `## 1. OVERVIEW`, lowercase numbered H2s). They go to `specs/sk-doc/066-reference-template-debt/`, which renumbers each file's sections and its section references with one script and changes no routing.
 
 <!-- /ANCHOR:phase-map -->
 

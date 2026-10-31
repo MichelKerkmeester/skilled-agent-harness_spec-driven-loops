@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/010-machine-and-consumer-cutover"
+    packet_pointer: "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/010-machine-and-consumer-cutover"
     last_updated_at: "2026-09-17T20:30:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Every criterion met: the machine and its consumers resolve the new root"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/010-machine-and-consumer-cutover
+**Packet:** system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/010-machine-and-consumer-cutover
 **Level:** 2
 **Status:** Draft
 **Date:** 2026-09-16

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/025-mcp-decommission-cli-front-door/007-docs-and-residue-sweep"
+    packet_pointer: "system-skill-advisor/024-mcp-decommission-cli-front-door/007-docs-and-residue-sweep"
     last_updated_at: "2026-09-11T15:37:07Z"
     last_updated_by: "executor"
     recent_action: "Swept advisor docs to the CLI front door and re-ran the verification battery"

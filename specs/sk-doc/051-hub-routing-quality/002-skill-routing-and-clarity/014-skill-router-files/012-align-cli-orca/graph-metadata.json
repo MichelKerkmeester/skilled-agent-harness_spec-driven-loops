@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The machine router of cli-orca moved from SKILL.md to ROUTER.md",
     "created_at": "2026-10-29T17:20:35Z",
-    "last_save_at": "2026-10-31T13:25:52.093Z",
+    "last_save_at": "2026-10-31T14:01:41.611Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9593464e4fb6b7946a4c1d98c207d4636ac6b5c7c38f21b2fb5fefcaec3cd5bd",
+    "source_fingerprint": "sha256:c35266116025db46fd28a427a4fcc015a6ed13f2e893a78381f6e1a9c92a7c27",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a67ed540fce1d5bfd69a6a0a41c61299acbfe30f2e3aeff9f4875c5805c20c9c",
       "plan.md": "cf2881c4fec05cc88cd471f292a379accbc999e9dbb9a9ad877248d59e9c5ceb",
       "tasks.md": "7f8e328e45c0d18db856c97dde4628b557f1a835abd9eab81990a53ace6dac16",
-      "implementation-summary.md": "29dced670b4119ad25fffb036947cbb81f38ba93143a67902230e6d8f8bf2dc9"
+      "implementation-summary.md": "13ce8dae1a4f82655ee30b956b635e502e3e5b5f4dfd1969170affdc9314f949"
     },
     "last_active_at": null
   }

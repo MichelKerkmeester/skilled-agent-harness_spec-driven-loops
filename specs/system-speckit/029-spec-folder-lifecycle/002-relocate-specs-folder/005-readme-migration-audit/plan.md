@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/032-relocate-specs-folder/005-readme-migration-audit"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/005-readme-migration-audit"
     last_updated_at: "2026-08-08T11:06:31Z"
     last_updated_by: "claude-code"
     recent_action: "Dispatch executed, findings fixed, verification gate passed"

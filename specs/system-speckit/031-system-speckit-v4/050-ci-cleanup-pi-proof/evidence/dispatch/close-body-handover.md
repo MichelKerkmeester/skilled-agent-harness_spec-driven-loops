@@ -2,7 +2,7 @@
 TARGET: P/handover.md
 
 STEP 0 (the cited captures moved from scratch/ to evidence/; rewrite their paths)
-  sed -i '' -e 's#scratch/dispatch/#evidence/dispatch/#g' -e 's#scratch/pi-#evidence/pi-#g' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/handover.md
+  sed -i '' -e 's#scratch/dispatch/#evidence/dispatch/#g' -e 's#scratch/pi-#evidence/pi-#g' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/handover.md
 
 EDIT 1
 OLD: - **Next safe action**: Finish strict validation. Then commit the phase on the worktree branch after the operator's yes, the first part of T017.
@@ -41,6 +41,6 @@ NEW:
 - `validate.sh --strict` on this packet -> RESULT: PASSED, 0 errors, 0 warnings. On 048 -> RESULT: PASSED. The parent's recursive run passes the parent folder and 49 of its 50 phases, and fails only on phase 030, whose goal.md durable slice is 6498 characters against a 4000 limit. This phase did not touch 030
 
 VERIFY - run these, paste each command with its result line
-  grep -c 'scratch/pi-\|scratch/dispatch' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/handover.md   # expect 0
-  grep -c 'T013 to T017' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/handover.md                   # expect 0
-  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/handover.md                # expect 14
+  grep -c 'scratch/pi-\|scratch/dispatch' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/handover.md   # expect 0
+  grep -c 'T013 to T017' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/handover.md                   # expect 0
+  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/handover.md                # expect 14

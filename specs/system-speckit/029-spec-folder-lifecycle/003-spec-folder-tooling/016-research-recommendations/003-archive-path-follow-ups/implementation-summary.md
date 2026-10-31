@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups"
     last_updated_at: "2026-10-08T22:59:56Z"
     last_updated_by: "orchestrator"
     recent_action: "Closed AC-006 on the tree3 whole-tree gate (2026-10-09); all six rows Met"

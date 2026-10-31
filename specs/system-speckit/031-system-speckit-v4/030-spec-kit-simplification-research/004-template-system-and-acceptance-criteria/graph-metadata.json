@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The root README mentions a resource map as if it were part of every packet, the timeline and roadmap addons are barely mentioned, and three surfaces (tasks checklist, checklist.md, acceptance-criteria.md) claim to gate completion",
     "created_at": "2026-09-06T14:29:32Z",
-    "last_save_at": "2026-10-31T13:26:47.821Z",
+    "last_save_at": "2026-10-31T13:58:54.812Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d6cdc3cd1eb3469d63d64af9b8d58e7817fbfebf5168df879af2281df6f94d64",
+    "source_fingerprint": "sha256:9ee997f24803cebd018ca773ff788f1dfcfe2bf94a6d3012d7c26aabf587c999",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8445ba1bf08c4d463a5ecb6c9f1c3f318cfc13bf4f225c159e27a30a7281167d",

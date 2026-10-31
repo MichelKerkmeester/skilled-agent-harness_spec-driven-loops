@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/050-open-knowledge-format-adoption/012-review-remediation"
+    packet_pointer: "system-speckit/037-open-knowledge-format-adoption/012-review-remediation"
     last_updated_at: "2026-10-05T15:53:18Z"
     last_updated_by: "generate-context"
     recent_action: "Fixed four review findings, each pinned by a fail-before test"

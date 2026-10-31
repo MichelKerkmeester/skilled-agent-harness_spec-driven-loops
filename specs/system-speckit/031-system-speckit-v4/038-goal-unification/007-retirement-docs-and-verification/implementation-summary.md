@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification"
+    packet_pointer: "system-speckit/031-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification"
     last_updated_at: "2026-09-11T07:11:52Z"
     last_updated_by: "claude-code"
     recent_action: "Closed the packet: docs, demotion note, verification sweep and review fixes"
@@ -61,7 +61,7 @@ The review lineage caught what the unit tests had not: a fence with trailing whi
 | `.opencode/skills/.state/goal/README.md` | Modified | Demotion and migration note |
 | `.opencode/hooks/goal/README.md`, `goal-plugin.md` | Modified | Packet-bound model, runtime matrix, actions, boundaries |
 | `.opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md` | Modified | Goal plugin entry |
-| `specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md` | Modified | Goals paragraph and glance bullet |
+| `specs/system-speckit/031-system-speckit-v4/CHANGELOG-v4.0.0.0.md` | Modified | Goals paragraph and glance bullet |
 | `specs/hooks/009-goal-isolation/decision-record.md`, `spec.md` | Modified | Amendment pointer; REQ-010 superseded note |
 | `~/.claude/projects/.../memory/MEMORY.md` | Modified | Goal content policy note |
 | `.opencode/hooks/goal/lib/goal-slice.cjs` | Modified | Review fixes: tolerant fail-closed fence, realpath containment, budget read, shared reminder text |

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/008-series-parent-review-fixes"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/008-series-parent-review-fixes"
     last_updated_at: "2026-10-07T11:08:36Z"
     last_updated_by: "deepseek-v4.1-flash"
     recent_action: "Rebuilt the trigger index and met the last criterion"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/034-spec-folder-tooling/008-series-parent-review-fixes
+**Packet:** system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/008-series-parent-review-fixes
 **Level:** 2
 **Status:** In Progress
 **Date:** 2026-10-07

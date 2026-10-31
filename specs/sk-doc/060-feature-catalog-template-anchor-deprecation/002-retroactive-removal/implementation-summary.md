@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal"
+    packet_pointer: "sk-doc/060-feature-catalog-template-anchor-deprecation/002-retroactive-removal"
     last_updated_at: "2026-10-10T20:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Swept 548 catalog files and versioned 27 units"
     next_safe_action: "None, the packet is closed"
     blockers: []
     key_files:
-      - "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/002-retroactive-removal/scratch/remove_template_anchor.py"
+      - "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/002-retroactive-removal/scratch/remove_template_anchor.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "t4-feature-catalog-anchor"

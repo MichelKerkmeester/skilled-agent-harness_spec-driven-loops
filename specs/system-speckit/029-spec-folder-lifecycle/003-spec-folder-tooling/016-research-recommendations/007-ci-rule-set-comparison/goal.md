@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/007-ci-rule-set-comparison"
     last_updated_at: "2026-10-08T12:24:18Z"
     last_updated_by: "orchestrator"
     recent_action: "Phase built and verified on local evidence"

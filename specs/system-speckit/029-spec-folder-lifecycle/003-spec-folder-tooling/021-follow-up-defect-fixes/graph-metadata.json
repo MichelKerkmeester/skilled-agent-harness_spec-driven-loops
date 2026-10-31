@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Four spec-folder tools still follow a link at a step that writes, reads or moves a file",
     "created_at": "2026-10-10T15:32:36Z",
-    "last_save_at": "2026-10-31T13:26:30.457Z",
+    "last_save_at": "2026-10-31T13:58:28.882Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:be4ad85992cb9ea3e6c693cc9a6a093598d8be3f9c92e08d1ce4aad16f46447e",
+    "source_fingerprint": "sha256:bbd1d53abb2a9b2d74700666174b824183ac489382a12912ef72f3639d815ddb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "510396630c981ae020d6778e4325c4f51413be69713e27acd0c9313f4702e782",
+      "spec.md": "28fd0bd5173339095179a503cb218bad6553b261e87240d7ee2ddbff637b5b12",
       "plan.md": "4af192120b995bfd69a542eb6413e6a6c364696e7325731387db7ae775b86402",
       "tasks.md": "7922a828d6a036b28113ec7f9a65cd0dbd282d1a2abea56af73014419f8eb3ed",
-      "implementation-summary.md": "a720b05b22773cf5071bcec353b007c3cfd188c9ffd51defa639939a7cb81fd9"
+      "implementation-summary.md": "ac67f41016d228c3769597ddcbd149b37c95f03132fc6f9385acc01d96e4d100"
     },
     "last_active_at": null
   }

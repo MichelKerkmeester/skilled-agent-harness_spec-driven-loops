@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Two files move and roughly forty references follow them",
     "created_at": "2026-09-01T08:42:58Z",
-    "last_save_at": "2026-10-31T13:25:43.590Z",
+    "last_save_at": "2026-10-31T14:01:30.740Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +212,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd62758c76c96d7113ba1555fa3a5e5ade1eadde39fe3518aaf80b40d493f121",
+    "source_fingerprint": "sha256:5f2deaeaebde6c537438f45161cf2b6ddb9e2f42b4932ea9fda2aac02851e420",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "74868abc5bba368e950289984fee8e26e1d4b08cf49ef3796484739d9717a43a",

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/022-advisor-routing-and-local-install"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/022-advisor-routing-and-local-install"
     last_updated_at: "2026-10-27T04:57:36Z"
     last_updated_by: "closeout-doc-writer"
     recent_action: "Recorded the final gate runs; every row Met"

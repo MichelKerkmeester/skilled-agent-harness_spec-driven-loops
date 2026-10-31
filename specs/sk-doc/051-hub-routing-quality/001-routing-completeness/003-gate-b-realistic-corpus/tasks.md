@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/052-routing-completeness/003-gate-b-realistic-corpus"
+    packet_pointer: "sk-doc/051-hub-routing-quality/001-routing-completeness/003-gate-b-realistic-corpus"
     last_updated_at: "2026-09-02T17:36:09Z"
     last_updated_by: "claude-code"
     recent_action: "Marked every task done with its observed evidence"

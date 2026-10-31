@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The 16 AI Systems skills carry their routing inside the SMART ROUTING section of SKILL.md as pseudocode, resource lists and a few assignment blocks, and none has a `## MACHINE ROUTER` section",
     "created_at": "2026-10-29T11:37:24Z",
-    "last_save_at": "2026-10-31T13:25:56.328Z",
+    "last_save_at": "2026-10-31T14:01:55.640Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:950325caf765ac7bff9e4d9c5817a4d54bdf6fa97c6f74d11767fea2c16b5318",
+    "source_fingerprint": "sha256:216a123d425a89798d7bb78448248a63c90911cf294e6f47c9425cc56e32bd9c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5e8be7457cdeae25113f76132bb23688b1055382780569dd31de395ca2ba6463",
+      "spec.md": "4a7a040a34592a3ec41994bf9d0b28dcaf01e69218dc09096d5511966fc6f0a3",
       "plan.md": "cdbeb7deabc6004451cb7bce628f507fa2ac22a514d06b4748d972b760ba5186",
       "tasks.md": "3187b1628788f8ec1b969255ef4004bab47cf725b75ac5f600a7700958190dad",
-      "implementation-summary.md": "2ab00497482293440234abd1ef3a453666172d4f9dbcbcedeb2b468d0c30722d",
+      "implementation-summary.md": "eab0ec613b41f1a35ea8b4257ceed552b20acdf8774a59c8972e126651b77999",
       "research/research.md": "d52b95ec6a1203a4a783f924dbd5c7d69345142cde2bf37a6cd9ab5fbd038eb2"
     },
     "last_active_at": null

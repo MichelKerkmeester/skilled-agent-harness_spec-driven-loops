@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/015-routing-data-alignment"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/015-routing-data-alignment"
     last_updated_at: "2026-10-29T23:10:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Recorded the refutations, the theming route and the signal narrowing"

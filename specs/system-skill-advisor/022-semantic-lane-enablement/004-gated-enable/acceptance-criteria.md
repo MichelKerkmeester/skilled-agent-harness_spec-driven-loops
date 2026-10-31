@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/023-semantic-lane-enablement/004-gated-enable"
+    packet_pointer: "system-skill-advisor/022-semantic-lane-enablement/004-gated-enable"
     last_updated_at: "2026-09-03T00:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the acceptance criteria for this phase"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-skill-advisor/023-semantic-lane-enablement/004-gated-enable
+**Packet:** system-skill-advisor/022-semantic-lane-enablement/004-gated-enable
 **Level:** 3
 **Status:** Draft
 **Date:** 2026-09-03

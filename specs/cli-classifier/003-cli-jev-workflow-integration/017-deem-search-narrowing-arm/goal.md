@@ -10,16 +10,16 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm"
     last_updated_at: "2026-09-28T22:30:00Z"
     last_updated_by: "closure-leaf"
     recent_action: "Ticked 7 of 7 criteria and logged the build, stop (margin)"
     next_safe_action: "None. The orchestrator commits the phase docs"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/acceptance-criteria.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/build-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/acceptance-criteria.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/build-evidence.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-017-deem-search-narrowing-arm"

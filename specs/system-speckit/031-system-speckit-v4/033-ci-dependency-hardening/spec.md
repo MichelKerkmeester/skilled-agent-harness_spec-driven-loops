@@ -27,7 +27,7 @@ contextType: "general"
 | **Created** | 2026-09-07 |
 | **Branch** | `skilled/v4.0.0.0` (also on `main`) |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | system-speckit/033-system-speckit-v4 |
+| **Parent Packet** | system-speckit/031-system-speckit-v4 |
 | **Phase** | 33 of 35 |
 <!-- /ANCHOR:metadata -->
 

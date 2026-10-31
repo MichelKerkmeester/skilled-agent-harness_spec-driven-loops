@@ -44,5 +44,5 @@ contextType: "implementation"
 <!-- ANCHOR:verification -->
 ## Verification
 
-Gate: `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/033-system-speckit-v4 --strict` first verdict `RESULT: PASSED`; residue check: `rg -n 'memory_search|/interface|alignment|prompt-models|sk-create-diagram|MK_HOOKS|NNNN|1,314|/doc:quality|pi-subagents|eight modes' specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md` returns only removal or correction sentences.
+Gate: `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/031-system-speckit-v4 --strict` first verdict `RESULT: PASSED`; residue check: `rg -n 'memory_search|/interface|alignment|prompt-models|sk-create-diagram|MK_HOOKS|NNNN|1,314|/doc:quality|pi-subagents|eight modes' specs/system-speckit/031-system-speckit-v4/CHANGELOG-v4.0.0.0.md` returns only removal or correction sentences.
 <!-- /ANCHOR:verification -->

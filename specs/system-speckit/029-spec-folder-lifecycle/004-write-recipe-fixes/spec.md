@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-write-recipe-fixes"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes"
     last_updated_at: "2026-10-06T19:00:00Z"
     last_updated_by: "claude"
     recent_action: "Group the 5 packets under one phase parent"

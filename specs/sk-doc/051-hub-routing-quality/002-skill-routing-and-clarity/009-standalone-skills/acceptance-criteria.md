@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/009-standalone-skills"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/009-standalone-skills"
     last_updated_at: "2026-10-28T15:45:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Verified every criterion against the final gate run"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** `sk-doc/072-skill-routing-and-clarity/009-standalone-skills`
+**Packet:** `sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/009-standalone-skills`
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-28

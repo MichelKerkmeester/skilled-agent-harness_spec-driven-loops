@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/026-defect-and-hardening-fixes/006-stress-suite-ci"
+    packet_pointer: "system-skill-advisor/025-defect-and-hardening-fixes/006-stress-suite-ci"
     last_updated_at: "2026-10-05T16:30:00Z"
     last_updated_by: "stress-suite-ci"
     recent_action: "Added the skill advisor stress workflow"

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Every optional gate in the shipped hooks had a `SPECKITSKIP` variable, and a variable lasts one command",
     "created_at": "2026-10-04T07:07:48Z",
-    "last_save_at": "2026-10-31T13:27:14.790Z",
+    "last_save_at": "2026-10-31T13:59:28.173Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1a5970befb2bb8407be8077e848875da309709d8b096545b1dff9d1154fa451",
+    "source_fingerprint": "sha256:958ece45a2e3b8adf53c32a6a8513123097aebad8d91fe4ce4fa28efbc86eb7d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8b2d7c3431209facb8d02e0576e60cad21f1fcd194561ccbd32ef3abe4920f88",

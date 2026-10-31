@@ -206,7 +206,7 @@
     ],
     "causal_summary": "427 files reference the memory MCP surface",
     "created_at": "2026-09-02T11:04:50Z",
-    "last_save_at": "2026-10-31T13:26:42.146Z",
+    "last_save_at": "2026-10-31T13:58:44.149Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,12 +217,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:953b96bb1e5e8c7fd7d15c03ee1649ea3b8dd002d08e4f6076f6a574b43645c9",
+    "source_fingerprint": "sha256:6d98e7aa6d2c4dfbd74532463c65af870aff2f10573101e694456e837b144f69",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "335e4ba9d3c51f437e06d76fe02b1b6bfe098996b37cc1a83792b8a8d00da9c9",
-      "plan.md": "55987b4a1f355cf53d1ead6ad2e432f8c6e003960e963bdb7886c6a0fd15c5cc",
-      "tasks.md": "998e262f4155f4e271fc397af64ca40150513f07241916311c6c2d8266caa1ec",
+      "spec.md": "433cbf1b67a220550ae35a5a60b572e113bb8161861b4b81f36097fc98b7cd81",
+      "plan.md": "96f3c74a37375f192383f8ff573d39c15a3fa1d90fd09bbeb9545ffb5f1d22aa",
+      "tasks.md": "9dd9abf6c3c27ae6a91069aa21b482b01ef2c55b1fde0d1759f4dfc00aa92f13",
       "implementation-summary.md": "b422b3071a20838e7d2a901f6c17728fddc72bfd95c16ccd1809dce5d4f20935"
     },
     "last_active_child_id": null,

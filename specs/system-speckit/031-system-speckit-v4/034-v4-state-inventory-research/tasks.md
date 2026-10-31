@@ -88,7 +88,7 @@ contextType: "implementation"
 
 ## Verification Protocol
 
-Every row below is ticked only with the command or listing that proved it, recorded in implementation-summary.md. Gate: `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/033-system-speckit-v4/034-v4-state-inventory-research --strict` must print `RESULT: PASSED`; iteration proof: `ls research/lineages/*/iterations | wc -l` equals 20.
+Every row below is ticked only with the command or listing that proved it, recorded in implementation-summary.md. Gate: `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/031-system-speckit-v4/034-v4-state-inventory-research --strict` must print `RESULT: PASSED`; iteration proof: `ls research/lineages/*/iterations | wc -l` equals 20.
 
 ## Pre-Implementation
 

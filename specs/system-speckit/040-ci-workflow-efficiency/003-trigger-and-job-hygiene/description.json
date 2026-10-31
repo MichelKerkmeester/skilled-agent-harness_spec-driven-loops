@@ -65,7 +65,7 @@
   "folderSlug": "trigger-and-job-hygiene",
   "parentChain": [
     "system-speckit",
-    "053-ci-workflow-efficiency"
+    "040-ci-workflow-efficiency"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

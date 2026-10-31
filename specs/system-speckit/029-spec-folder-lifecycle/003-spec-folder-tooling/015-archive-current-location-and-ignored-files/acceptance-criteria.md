@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/015-archive-current-location-and-ignored-files"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/015-archive-current-location-and-ignored-files"
     last_updated_at: "2026-10-08T01:00:00Z"
     last_updated_by: "claude-opus-5.5"
     recent_action: "Archived and restored a real packet and closed the criteria"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/034-spec-folder-tooling/015-archive-current-location-and-ignored-files
+**Packet:** system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/015-archive-current-location-and-ignored-files
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-08

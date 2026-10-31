@@ -11,14 +11,14 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing"
+    packet_pointer: "system-speckit/031-system-speckit-v4/019-memory-decommission-branch-landing"
     last_updated_at: "2026-09-04T20:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Landed the branch on skilled/v4.0.0.0 and main; review loop pending"
     next_safe_action: "Run the deep review loop on the landed tree and fix what it finds"
     blockers: []
     key_files:
-      - "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/goal.md"
+      - "specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/goal.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-04-052-memory-decommission-landing"
@@ -70,7 +70,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:binding -->
 ## 2. BINDING
 
-**Read before working:** `specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/goal.md` and its phase goals; the sk-create-skill template contract under `.opencode/skills/sk-doc/sk-create-skill`; the 049 review report under `049-memory-decommission/review/lineages/luna-max`.
+**Read before working:** `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/goal.md` and its phase goals; the sk-create-skill template contract under `.opencode/skills/sk-doc/sk-create-skill`; the 049 review report under `049-memory-decommission/review/lineages/luna-max`.
 
 **Precedence.** Decisions above outrank child detail; child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -141,7 +141,7 @@ and findings belong here.
 | Metadata regeneration and parser edges, packet 057 | Done | drift census 114 packets (1 dirty) and 13 track roots; 113 clean packets regenerated (`c38aa31117`), 4 remain (1 dirty, 3 declaring children gone from disk), track roots stay with the sweep since no generator writes them. Dependency edges: deep-loop runtime manifest force-tracked and depends on `@spec-kit/shared` (`b95162c166`); sk-doc gains a skill-root manifest; one GLM lane adopted the shared parser in the deep-loop drift checker and six sk-doc scripts, tests rerun green; 38 hand-rolled sites remain with reasons in the packet |
 | Parser adoption, second lane, and the specs deletion incident | Done | a deep-loop skill-root manifest (`85a5c28289`) gave the mode scripts the shared edge; one GLM lane adopted the parser at 14 deep-loop and 13 spec-kit sites with index parity proven and mirrors unchanged (`bedf5691b7`); the Cursor hooks README's fallback note had been inserted inside its frontmatter and made the index generator refuse to publish, fixed and the index regenerated in the same commit. During the lane the operator accidentally deleted 25 packet folders under `specs/system-speckit` in Finder; the undo restored only empty directories and the Trash emptied, so every tracked file (2,365) was restored from HEAD with the one staged edit re-applied from the index; 16 files git never tracked and the pre-deletion working-tree edits to those folders could not be recovered locally (MEGA's cloud rubbish bin may still hold them). A stale unmerged index entry for the council database, left by another session, blocked commits and was cleared from the index without touching the file |
 | Consolidation into `033-system-speckit-v4` | Done | operator directive 2026-09-06: the twenty-four packets 033 to 050 and 052 to 057 moved under one phase parent as children 001 to 024 ordered by first commit, with literal names and 041's numbering gap closed; every live reference repointed by map (495 files), pointers repaired, metadata regenerated for 82 packet folders, the track root and the global descriptions cache rebuilt, `timeline.md` generated from git history, and every document given five to eight specific trigger phrases by two DeepSeek V4 Flash lanes through pi (169 files, audited: only phrase lines changed) plus a deterministic pass adding each folder's current and former name; the trigger index regenerates identically twice with 0 malformed documents and ten sampled folder-name lookups all resolve into the tree. This packet is now child 019 of that parent; its former id `052-memory-decommission-landing` stays searchable |
-| Follow-up packets after closeout | Done | `system-speckit/033-system-speckit-v4/022-shared-containment-helper` centralizes the CLI write-boundary check (`6e20a1b467`); `system-deep-loop/043-review-leaf-protocol` states the verbatim-path and stop-reason duties in the lineage prompt and agent contract (`266debc441`) and repoints three determinism tests whose nested vitest path the hoist removed (`5210fe3566`); the nine 'environment-dependent' deep-loop files were partly this path defect. Both packets validate strict PASSED |
+| Follow-up packets after closeout | Done | `system-speckit/031-system-speckit-v4/022-shared-containment-helper` centralizes the CLI write-boundary check (`6e20a1b467`); `system-deep-loop/043-review-leaf-protocol` states the verbatim-path and stop-reason duties in the lineage prompt and agent contract (`266debc441`) and repoints three determinism tests whose nested vitest path the hoist removed (`5210fe3566`); the nine 'environment-dependent' deep-loop files were partly this path defect. Both packets validate strict PASSED |
 | Reading of the review criterion | Decision | the deep-review leaf runs from a read-only seat and reports every gate it cannot execute as a P1; a lineage can therefore never reach zero P1 by itself. The criterion is read as: no reproducible P0 or P1 remains after remediation, and every unreplayed gate is replayed on the landed tree with recorded evidence. Recorded 2026-09-05 |
 | Working-tree resets in the shared checkout | Finding | uncommitted edits by this session and its agents were silently reverted at least five times on 2026-09-05 while another session pushed; the live-follow hook is the likely actor. Every fix is now committed in the same command that writes it |
 

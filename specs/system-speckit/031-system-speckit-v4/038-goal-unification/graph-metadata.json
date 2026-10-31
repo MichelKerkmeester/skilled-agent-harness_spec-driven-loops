@@ -191,17 +191,17 @@
     ],
     "causal_summary": "Three goal surfaces exist and nothing bridges them by code",
     "created_at": "2026-09-11T07:11:46Z",
-    "last_save_at": "2026-10-31T13:26:57.019Z",
+    "last_save_at": "2026-10-31T13:59:04.111Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:410c21f1ffd46452f4278c60b3cf87cee879c0479b11fb492c6f806ba9c5ba28",
+    "source_fingerprint": "sha256:4be06bb28586c14a8dd17329d212562f39af6c0a4a91cc866efe5467116b2de3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7f82f4b5b8dd231c60865066cd4ac06f732e56618f77bd0ea20718d08ce8a68e"
+      "spec.md": "636ad410f59c9d7bf598f8667ad2194057a260dc4c81f07677403e98db508782"
     },
     "last_active_at": null
   }

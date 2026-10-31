@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "specs/sk-doc/053-command-contract-reconciliation"
+    packet_pointer: "specs/sk-doc/052-command-contract-reconciliation"
     last_updated_at: "2026-09-04T11:20:00Z"
     last_updated_by: "claude"
     recent_action: "Recorded the observed result for every acceptance criterion"
@@ -43,7 +43,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/053-command-contract-reconciliation
+**Packet:** sk-doc/052-command-contract-reconciliation
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-04

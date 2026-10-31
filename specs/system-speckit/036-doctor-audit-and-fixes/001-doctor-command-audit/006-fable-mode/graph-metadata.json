@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`/doctor:speckit fable-mode` checks the fable-mode configuration",
     "created_at": "2026-10-02T16:10:17Z",
-    "last_save_at": "2026-10-31T13:27:11.385Z",
+    "last_save_at": "2026-10-31T13:59:22.195Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:06571a4f46510ab74ece7612b4618280ad017e5f1d8daabda3a65dc49191d95e",
+    "source_fingerprint": "sha256:ba98fb604c5e2c875122a45c0978ddf4fcea79de9fac3006f8f384d277683dd6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f0f053d7615d2bb474d4e4387b1734ba3e8a9c523a5ee1af09d14ca992aed8bb",
       "plan.md": "c232d419c27daa81335fd22a59b68a5e9abfd7bbdd21fd13e0f7ddffbddaed10",
       "tasks.md": "ca0d20a9934cfa26c4bae60f158e5e028f8ee4d4029a08dc6052cc7dabbd3f48",
-      "implementation-summary.md": "4317629fff83336219f5240ba129b4fa9039553f4dc59a7753fe56080488740c"
+      "implementation-summary.md": "7e2b4147c0673beea2d47166a33205d99cdf11af320049b711e835e61f1ba3f2"
     },
     "last_active_at": null
   }

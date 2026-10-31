@@ -14,7 +14,7 @@
   "specId": "020",
   "folderSlug": "routing-clarify-default",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/025-deprecate-nested-changelogs"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/025-deprecate-nested-changelogs"
     last_updated_at: "2026-10-27T12:15:05Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"

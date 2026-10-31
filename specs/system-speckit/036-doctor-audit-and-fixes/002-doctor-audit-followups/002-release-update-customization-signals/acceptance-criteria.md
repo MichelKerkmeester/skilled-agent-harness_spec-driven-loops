@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-doctor-audit-followups/002-release-update-customization-signals"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/002-release-update-customization-signals"
     last_updated_at: "2026-10-03T05:27:41Z"
     last_updated_by: "build-orchestrator"
     recent_action: "Closed every criterion with evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/049-doctor-audit-followups/002-release-update-customization-signals
+**Packet:** system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/002-release-update-customization-signals
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-10-03

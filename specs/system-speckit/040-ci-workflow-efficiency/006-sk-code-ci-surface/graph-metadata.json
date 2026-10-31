@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The repository's 33 workflows encode a large body of convention that no single artifact states",
     "created_at": "2026-10-23T08:47:59Z",
-    "last_save_at": "2026-10-31T13:27:23.519Z",
+    "last_save_at": "2026-10-31T13:59:40.137Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +222,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:27245c0daf494d0d216a8116b04e74b8be88190b40b74cd677c5c83608786f9c",
+    "source_fingerprint": "sha256:19bdf1e8ef3fd0e5c6238c45fc4d60ed061f638b4ad758696fce1bbec348e4ac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "df3ca27fd371caaed550f5683c1df6a777f9b74c3bf7031252cce574cc50c1b3",
-      "plan.md": "e20f6f43bb6ac83c3356db7eec88010516cfb1896b2a6c7dc199c296c6c91102",
-      "tasks.md": "11968ec79d4283204810e399662c81e9fd0dac51014b05ebcfe284275b309689",
-      "decision-record.md": "ce4830acf38db00f8ce7de842e258412b11b784b51c551047f85b1b996e73eda",
+      "spec.md": "cc7c56ed79eb5969b2dc664f17958904b83fcb08c80fe34ea0bfaf8b07bc99ba",
+      "plan.md": "3fff53c40d70bcebfeebb3ad8b680c8ccb32779023149c4fc33806f4c00d1571",
+      "tasks.md": "7c3a57beb0245c49900a16dde6ade46d20aa5ce61a6ef0c0441c19ede215414e",
+      "decision-record.md": "18c2730fc656ab5cafa4e1657f18df0a8f7a69117774f33249e9308a5857b27d",
       "implementation-summary.md": "ec117691210e4ea52d37d4e2feb6a3511748f55f2adda25009409be6446e0548"
     },
     "last_active_at": null

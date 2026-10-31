@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/053-ci-workflow-efficiency/013-killer-test-spawn-race"
+    packet_pointer: "system-speckit/040-ci-workflow-efficiency/013-killer-test-spawn-race"
     last_updated_at: "2026-10-27T21:50:00Z"
     last_updated_by: "claude-sonnet-5-5"
     recent_action: "Fixed the killer test spawn race; 10 of 10 runs pass"

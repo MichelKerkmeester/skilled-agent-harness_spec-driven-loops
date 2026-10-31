@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/066-feature-catalog-template-anchor-deprecation/009-review-remediation"
+    packet_pointer: "sk-doc/060-feature-catalog-template-anchor-deprecation/009-review-remediation"
     last_updated_at: "2026-10-10T22:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored the durable directive"

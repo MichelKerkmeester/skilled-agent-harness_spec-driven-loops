@@ -1,7 +1,7 @@
 ---
 title: "464 -- Shared frontmatter value list"
 description: "This scenario validates the shared frontmatter value list for `464`. It focuses on the FRONTMATTER_VALUES helper printing one warning that names the canonical values for a contextType outside the list, staying silent on an alias, and exiting 0 both times."
-version: 2.7.1.0
+version: 2.7.2.0
 ---
 
 # 464 -- Shared frontmatter value list
@@ -42,7 +42,7 @@ Operators run the exact prompt and command sequence for `464` and confirm the ex
 
 ### Commands
 
-1. `mkdir -p /tmp/fv-464 && cp specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/spec.md /tmp/fv-464/spec.md`
+1. `mkdir -p /tmp/fv-464 && cp specs/system-speckit/037-open-knowledge-format-adoption/001-okf-deep-research/spec.md /tmp/fv-464/spec.md`
 2. `sed -i.bak -E 's/^contextType:.*/contextType: "architecture"/' /tmp/fv-464/spec.md`
 3. `grep -n '^contextType' /tmp/fv-464/spec.md`
 4. `node .skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs /tmp/fv-464/spec.md; echo "exit=$?"`

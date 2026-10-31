@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/004-fingerprint-stamp-regeneration"
+    packet_pointer: "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/004-fingerprint-stamp-regeneration"
     last_updated_at: "2026-09-07T20:30:00Z"
     last_updated_by: "scaffold"
     recent_action: "Closed every criterion"

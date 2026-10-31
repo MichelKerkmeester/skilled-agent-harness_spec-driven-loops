@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/057-continuity-reader-vocabulary-and-flow-lists"
+    packet_pointer: "system-speckit/031-system-speckit-v4/057-continuity-reader-vocabulary-and-flow-lists"
     last_updated_at: "2026-09-24T05:01:27Z"
     last_updated_by: "generate-context"
     recent_action: "Made the continuity reader accept flow lists and real opening words"

@@ -46,7 +46,6 @@
     "key_files": [
       "spec.md",
       "goal.md",
-      ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
       ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
       ".skilled/agents/deep-review.md",
       "001-router-orphan-docs/goal.md",
@@ -71,7 +70,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
+        "path": ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
         "source": "derived"
       },
       {
@@ -155,14 +154,14 @@
     ],
     "causal_summary": "The round-two build recorded five follow-ups it did not close",
     "created_at": "2026-10-10T08:16:16Z",
-    "last_save_at": "2026-10-18T20:45:13.493Z",
+    "last_save_at": "2026-10-31T14:04:32.154Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:d677220e97adc1924501bec81eb3c68aa3ac70b51f95ecd8406b6a24340c3d79",
+    "source_fingerprint": "sha256:0cde3c18343d0b13362b7feac4cd85ca8f92ae934fc69bd365dd53687267918f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5111765fc065419bf65ac90a749b34ca34e95f2addd3364f32c14faa5931aeac"

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite"
+    packet_pointer: "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite"
     last_updated_at: "2026-09-16T22:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Authored the phase directive"

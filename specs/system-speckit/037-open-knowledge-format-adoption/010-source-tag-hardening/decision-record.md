@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening"
+    packet_pointer: "system-speckit/037-open-knowledge-format-adoption/010-source-tag-hardening"
     last_updated_at: "2026-10-04T19:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Recorded the accepted run-time overage"

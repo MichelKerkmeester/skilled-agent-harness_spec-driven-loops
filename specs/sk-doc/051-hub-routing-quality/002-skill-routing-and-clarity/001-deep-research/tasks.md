@@ -25,7 +25,7 @@ contextType: "research"
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
-`R` is `specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/research`.
+`R` is `specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/001-deep-research/research`.
 <!-- /ANCHOR:notation -->
 
 ---

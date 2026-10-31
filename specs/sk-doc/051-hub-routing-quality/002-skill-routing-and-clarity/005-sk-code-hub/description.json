@@ -10,7 +10,8 @@
   "folderSlug": "sk-code-hub",
   "parentChain": [
     "sk-doc",
-    "072-skill-routing-and-clarity"
+    "051-hub-routing-quality",
+    "002-skill-routing-and-clarity"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/005-follow-up-fixes"
+    packet_pointer: "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/005-follow-up-fixes"
     last_updated_at: "2026-09-26T16:00:00Z"
     last_updated_by: "orchestrate"
     recent_action: "Fixed the four recorded follow-ups at their sources"
@@ -116,7 +116,7 @@ The plugin fix was the first Pi dispatch with `edit_lines` left on. Its first `e
 | Advisor runtime suite | 947 passed, 2 failed, 6 skipped of 955. One failure is the routing-divergence ratchet that failed at baseline; the other, a freshness benchmark's p50/p95/p99 timing, passed 12 of 12 twice when rerun alone |
 | Negative controls | Reverting each source change failed exactly its new tests: the fan-out review case, the trailing-newline case, and the plugin's repeat case plus one `.cjs` test |
 | Live `edit_lines` | Luna's Pi session: one trailing-newline refusal, then four successful `edit_lines` edits |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement --strict --recursive` | Run at phase close, see the parent packet |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement --strict --recursive` | Run at phase close, see the parent packet |
 <!-- /ANCHOR:verification -->
 
 ---

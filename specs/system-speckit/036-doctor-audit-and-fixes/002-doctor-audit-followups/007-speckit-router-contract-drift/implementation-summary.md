@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-doctor-audit-followups/007-speckit-router-contract-drift"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/007-speckit-router-contract-drift"
     last_updated_at: "2026-10-04T05:02:38Z"
     last_updated_by: "speckit-router-contract-drift"
     recent_action: "Aligned the command contract with the merged speckit workflows"

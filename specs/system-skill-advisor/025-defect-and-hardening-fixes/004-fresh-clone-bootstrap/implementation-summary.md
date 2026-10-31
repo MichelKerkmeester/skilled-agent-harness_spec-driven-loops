@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/026-defect-and-hardening-fixes/004-fresh-clone-bootstrap"
+    packet_pointer: "system-skill-advisor/025-defect-and-hardening-fixes/004-fresh-clone-bootstrap"
     last_updated_at: "2026-10-01T16:10:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Fixed launcher bootstrap and verified on a clean clone"

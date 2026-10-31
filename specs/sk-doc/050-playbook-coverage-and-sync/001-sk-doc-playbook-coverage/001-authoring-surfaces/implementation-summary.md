@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/050-sk-doc-playbook-coverage/001-authoring-surfaces"
+    packet_pointer: "sk-doc/050-playbook-coverage-and-sync/001-sk-doc-playbook-coverage/001-authoring-surfaces"
     last_updated_at: "2026-10-03T12:00:00Z"
     last_updated_by: "spec-validation-backfill"
     recent_action: "Closed the phase from commit ad9d93df3be, which added the three playbook packages"

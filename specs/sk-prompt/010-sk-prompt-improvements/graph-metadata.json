@@ -55,7 +55,7 @@
       "scratch/prompt-improver-survey.md",
       "research/lineages/codex-luna/research.md",
       "PI/README.md",
-      "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/description.json"
+      "specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/description.json"
     ],
     "entities": [
       {
@@ -157,7 +157,7 @@
       {
         "name": "description.json",
         "kind": "config",
-        "path": "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/description.json",
+        "path": "specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/description.json",
         "source": "derived"
       },
       {

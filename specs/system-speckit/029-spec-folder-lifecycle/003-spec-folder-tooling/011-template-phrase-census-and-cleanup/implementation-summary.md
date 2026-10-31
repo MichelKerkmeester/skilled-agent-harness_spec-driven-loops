@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/011-template-phrase-census-and-cleanup"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/011-template-phrase-census-and-cleanup"
     last_updated_at: "2026-10-07T13:12:41Z"
     last_updated_by: "deepseek-v4.1-flash"
     recent_action: "Wrote the implementation summary for the template phrase census and cleanup and refreshed the continuity block"

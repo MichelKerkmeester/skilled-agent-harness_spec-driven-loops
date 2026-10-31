@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/036-spec-doc-healer"
+    packet_pointer: "system-speckit/031-system-speckit-v4/036-spec-doc-healer"
     last_updated_at: "2026-09-11T07:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Built the healer, applied it repository-wide, measured the result"

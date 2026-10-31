@@ -13,7 +13,7 @@
   "specId": "003",
   "folderSlug": "cli-jev-workflow-integration",
   "parentChain": [
-    "cli-jev"
+    "cli-classifier"
   ],
   "memorySequence": 31,
   "memoryNameHistory": [

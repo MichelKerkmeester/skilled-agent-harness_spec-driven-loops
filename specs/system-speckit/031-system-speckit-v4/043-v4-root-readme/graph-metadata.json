@@ -44,7 +44,8 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      "scratch/README-alt.md"
+      "scratch/README-alt.md",
+      "specs/system-speckit/031-system-speckit-v4/spec.md"
     ],
     "entities": [
       {
@@ -194,7 +195,7 @@
     ],
     "causal_summary": "The root `README.md` has accumulated structural inconsistencies, stale migration residue, formatting defects, and AI writing patterns across successive v4 refactors:",
     "created_at": "2026-09-20T06:53:25Z",
-    "last_save_at": "2026-10-31T13:27:03.809Z",
+    "last_save_at": "2026-10-31T13:59:14.977Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +205,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aa4034671afe5fcf56e056bdb1c8d9928a5014091ae1fd4455c1c9ce211fab15",
+    "source_fingerprint": "sha256:03da4e18e6a02544cde3f8291b4668a8f0a63588ad6e2dbbed9407dddc0da1b0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dfa48baa0ab6f550f10c66735112164268ebd8ffbbc202df2c21cfc5a0a3f23b",
-      "plan.md": "de6db46c677585072115e3c59480950097e41e7f2176f3df69af4c9adf97c1ed",
-      "tasks.md": "02fcae80b7d4de61eb53c2ceb258dc70b1464ef673e018a6ca12b9b43b3ba1e7",
-      "implementation-summary.md": "bc8d68f9d60366b64980a6ce123b9b456a998d023c165f171ff78019196be9f1"
+      "spec.md": "7ea2e32d5edfbce470c6d87268a669cd08e464336fe88b3976d34e49808b5bef",
+      "plan.md": "4a1e8e0b88c42e65d96d12768f674c7cd4027e28d71b3251a41dda5b22d86d83",
+      "tasks.md": "081f6e897457e012e79292cc567aa7f446b93fbdfdf344df1792efbfaf2d9912",
+      "implementation-summary.md": "904e4353ef57a78ef766ca7e246b71df9677cbf4226ec00e617f5f664ad3a1b4"
     },
     "last_active_at": null
   }

@@ -72,7 +72,7 @@ Cut the same release story to its user-facing payoff, in plain words, with the h
 ## 3. SCOPE
 
 ### In Scope
-- Removing the Resident Memory and MCP Tooling topics everywhere they appeared, including the four spec-folder line entries for `system-skill-advisor/037-advisor-daemon-memory`, `system-speckit/049` phases 032 and 033, and `mcp-tooling/023` and `024`.
+- Removing the Resident Memory and MCP Tooling topics everywhere they appeared, including the four spec-folder line entries for `system-skill-advisor/021-model-server-lifecycle/002-advisor-daemon-memory`, `system-speckit/049` phases 032 and 033, and `mcp-tooling/023` and `024`.
 - Replacing jargon with plain words, among them hop, reap, fingerprint, provision, bridge and dual export.
 - Reordering sections, H4 items and bullets by user impact, with the handover leading and OpenCode 2 named first wherever both versions appear in prose.
 - Applying the operator's mid-task framing rule: OpenCode 2 is the version the framework expects and recommends, and OpenCode 1 support is temporary backwards compatibility while users move over, with no removal date. The DeepSeek fix pass carried it into the title, the trigger phrase, the H2 heading, a new `Move to OpenCode 2` upgrade note, and reworded `Pin OpenCode 1` as a fallback step.
@@ -105,7 +105,7 @@ Cut the same release story to its user-facing payoff, in plain words, with the h
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The two unwanted topics are gone. | The Resident Memory topic (idle unload, orphan reaping, leftover-process counts, separate launcher) and the MCP Tooling topic (ClickUp and Figma's 24 findings, fresh Code Mode install) appear nowhere in the file, and the four spec-folder line entries for `system-skill-advisor/037-advisor-daemon-memory`, `system-speckit/049` phases 032 and 033, and `mcp-tooling/023` and `024` are removed. |
+| REQ-001 | The two unwanted topics are gone. | The Resident Memory topic (idle unload, orphan reaping, leftover-process counts, separate launcher) and the MCP Tooling topic (ClickUp and Figma's 24 findings, fresh Code Mode install) appear nowhere in the file, and the four spec-folder line entries for `system-skill-advisor/021-model-server-lifecycle/002-advisor-daemon-memory`, `system-speckit/049` phases 032 and 033, and `mcp-tooling/023` and `024` are removed. |
 | REQ-002 | The wording is plain. | No hop, reap, fingerprint, provision, bridge or dual export remains as jargon, and each is replaced by the everyday word that says the same thing. |
 | REQ-003 | The file leads with user impact. | Sections, H4 items and bullets are ordered by what a reader gains, with the handover leading and OpenCode 2 named before OpenCode 1 wherever both appear in prose. |
 | REQ-004 | The file is shorter and the glance list is rewritten. | The file runs to 2961 words from 3359, and `What's New at a Glance` holds 11 payoff bullets. |

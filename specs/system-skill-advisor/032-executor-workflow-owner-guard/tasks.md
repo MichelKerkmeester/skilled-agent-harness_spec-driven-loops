@@ -60,7 +60,7 @@ contextType: "general"
 - [x] T016 Rebuild after the probe bumped the source mtime. Verify: `npm run build` exits 0 and `tests/cli-exit-taxonomy.vitest.ts` plus `tests/skill-advisor-cli-job-semantics.vitest.ts` print `Tests  9 passed (9)`.
 - [x] T011 Run the drift guard and deep parity suites. Verify: `vitest run tests/routing-registry-drift-guard.vitest.ts tests/routing-parity-deep-skills.vitest.ts tests/routing-parity-deep-council.vitest.ts` prints `Tests  21 passed (21)`, exit 0.
 - [x] T012 Read the live CLI output for the two prompts. Verify: `system-deep-loop` 0.9248 then `cli-external-orchestration` 0.9238, and 0.9324 then 0.9314.
-- [x] T013 Validate the packet. Verify: `validate.sh specs/system-skill-advisor/039-executor-workflow-owner-guard --strict` prints `RESULT: PASSED`.
+- [x] T013 Validate the packet. Verify: `validate.sh specs/system-skill-advisor/032-executor-workflow-owner-guard --strict` prints `RESULT: PASSED`.
 
 - [x] T017 Follow-up: baseline the split-handoff gap. Verify: before the change `resolveExecutorDelegation` returned null for `delegate this refactor to codex using gpt-6.1 terra` and the new tests printed `Tests  4 failed, 24 passed (28)`.
 - [x] T018 Check whether `codex` alone should be an alias. Verify: `cli-codex` aliases in `cli-external-orchestration/mode-registry.json` are `codex cli`, `codex exec`, `delegate to codex`, `cli-codex`, `codex sandbox`; the bare noun `codex` already enters `orchestratorNouns` from the packet name, so no metadata or hardcoded alias is needed and none was added.

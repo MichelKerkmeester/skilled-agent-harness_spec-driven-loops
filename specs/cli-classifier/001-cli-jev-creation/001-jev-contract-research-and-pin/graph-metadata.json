@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The hub is about to route work to a binary it does not control, and the only available accounts of that binary are a vendor README, a vendored source tree, and the binary itself",
     "created_at": "2026-09-20T07:39:05Z",
-    "last_save_at": "2026-10-31T13:25:26.967Z",
+    "last_save_at": "2026-10-31T14:03:47.227Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:735a51d191fd69ada7505f33bbe0be23fe655b6d414ef0e946a69a82a724e8ae",
+    "source_fingerprint": "sha256:2b8e1c5eb00e05bc0b7991d4ae03cc066fd765a58d1f51c6ff9fcd09596ad786",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "57c2d8e5d8b84e19cc887e911488f457de5f4e24195f99eb4546be958a398f96",

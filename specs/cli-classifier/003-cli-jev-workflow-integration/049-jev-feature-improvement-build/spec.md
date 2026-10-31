@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/049-jev-feature-improvement-build"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "All 12 child phases Complete"

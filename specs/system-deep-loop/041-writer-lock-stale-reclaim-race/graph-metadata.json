@@ -49,7 +49,7 @@
       ".skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/cli-guards-writer-lock.vitest.ts",
       "scratch/lock-stress.cjs",
-      "specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md",
+      "specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md",
       ".github/workflows/deep-loop-runtime.yml",
       "assets/level-decision-matrix.md",
       "scratch/repro-before.txt",
@@ -114,7 +114,7 @@
       {
         "name": "r21-recheck.md",
         "kind": "doc",
-        "path": "specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md",
+        "path": "specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Deep-Loop Runtime Tests workflow failed once on main",
     "created_at": "2026-10-25T07:12:28Z",
-    "last_save_at": "2026-10-25T15:18:16.637Z",
+    "last_save_at": "2026-10-31T14:04:37.685Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +220,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:78e8e78f29f5a23f3b536c55b3e7397e60bfadbe6d72187d8393a8dc0a0fdbe9",
+    "source_fingerprint": "sha256:6cf67c437751f13661962a4be88af1fe6a053531d748f11a91226742bfbc80be",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "48470689c0a8fd88cbfa5189351fde4f8db18e825640d6409230b36ebf262cb1",
+      "spec.md": "21b5e1432110b1001b82bb0ea60b76c22267e72dd8574ccdd460dccae57d9bf5",
       "plan.md": "95f6a4a301eaa5e0c4b719145e43471c59e1bbdccf5c0333bf4d900bdd68a508",
       "tasks.md": "41c3ae8548abb8d2800213fa7cd06842f94be633e3b944f922aa7dac327d0300",
       "implementation-summary.md": "a6f035a63a5c8c2ac5433a8bcfed1b78ecaf53f0bdc3bb2f1d7cb0050fc9b269"

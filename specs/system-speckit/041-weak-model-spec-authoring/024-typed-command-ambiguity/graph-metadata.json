@@ -199,7 +199,7 @@
     ],
     "causal_summary": "A typed `/deep:research :auto` prompt ranks system-deep-loop first only because the seed bound caps system-spec-kit one millionth below it",
     "created_at": "2026-10-27T08:30:48Z",
-    "last_save_at": "2026-10-31T13:27:29.938Z",
+    "last_save_at": "2026-10-31T13:59:47.929Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8443c51332a0b9f93d1a9dfd8e612dfdbb6cff8571c769ae53153952d74aacb",
+    "source_fingerprint": "sha256:cb186a4da9e3b5c3dcafc4e1c1d29fd3a2448510e0b72c06cdd38dc08c0fbfdf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d8a0f1dcdc08024717c55086a0ad273b30c7cb3f1717caf7ce5c16bea60b88f6",

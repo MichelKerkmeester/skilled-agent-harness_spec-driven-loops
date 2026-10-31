@@ -19,10 +19,11 @@
     "packets"
   ],
   "lastUpdated": "2026-10-09T14:57:37.408Z",
-  "specId": "034",
+  "specId": "003",
   "folderSlug": "spec-folder-tooling",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "029-spec-folder-lifecycle"
   ],
   "memorySequence": 28,
   "memoryNameHistory": [

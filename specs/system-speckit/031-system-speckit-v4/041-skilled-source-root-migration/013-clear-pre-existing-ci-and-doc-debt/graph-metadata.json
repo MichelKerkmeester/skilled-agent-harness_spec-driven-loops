@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Two CI workflows have failed on every push for days, so a new failure in either one looks like the old one and nobody reads it",
     "created_at": "2026-09-18T11:43:38Z",
-    "last_save_at": "2026-10-31T13:27:02.205Z",
+    "last_save_at": "2026-10-31T13:59:11.350Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,7 +215,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:921110e66566d48b1d9b5c3e80772e2482b35110b9f65053a95791bebf632607",
+    "source_fingerprint": "sha256:7e41b014cdfadfbd9d96d25dbb0d9f7197ecf3167e9ed118be522c22753489c7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "901e0b9eb61b4b713dbfba5c796fc22ba7002b1bccd726317495aa68b38576f4",

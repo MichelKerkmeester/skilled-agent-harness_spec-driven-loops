@@ -208,7 +208,7 @@
     ],
     "causal_summary": "A renamed packet kept the children of its old identity in graph metadata because the writer only unioned, and track roots were never validated. A refresh now prunes foreign-identity children, a registry rule reports any that remain, and a sweep reports declared-versus-actual child counts for every track root.",
     "created_at": "2026-09-05T21:16:57Z",
-    "last_save_at": "2026-10-31T13:26:46.061Z",
+    "last_save_at": "2026-10-31T13:58:50.191Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,7 +218,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f784153476f5b9c6c177e1578671e2e87537227f432166095b5ed24dccf4cca5",
+    "source_fingerprint": "sha256:cf0d4f0b44667fc23a7be979449d2806c4264d47c209a5600dd5038d1b35c107",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b0739602df4e508166a1f8edadf837aa86664a9db1ac00e82415814e7aa26c87",

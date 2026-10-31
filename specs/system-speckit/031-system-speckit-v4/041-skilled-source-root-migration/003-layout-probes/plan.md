@@ -119,7 +119,7 @@ Run once, by the orchestrator, before any probe (T001, T002):
 P=/tmp/skilled-probes-003
 MAIN=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 WT=/Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration
-REC="$WT/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes"
+REC="$WT/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes"
 BR=worktrees/055-skilled-source-root-migration
 H=(-c core.hooksPath=/tmp/skilled-probes-003/empty-hooks)
 mkdir -p "$P"/{empty-hooks,markers,logs,iso,briefs,returns,strings} "$REC/captures"
@@ -382,7 +382,7 @@ PY
 **Command.** The orchestrator puts the fixture list into the brief:
 
 ```bash
-awk -F'\t' 'NR > 1 && $12 ~ /recorded-fixture/ {print $3}' "$WT/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/research/maps/map-c-references.tsv"
+awk -F'\t' 'NR > 1 && $12 ~ /recorded-fixture/ {print $3}' "$WT/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/research/maps/map-c-references.tsv"
 ```
 
 The list has 35 paths: 26 under `system-spec-kit`, 4 under `system-deep-loop`, 2 under `.opencode/commands` and one each under `.opencode/bin`, `sk-design` and `system-skill-advisor` (`map-c-references.tsv` rows 62 to 3960). U9 finds the tests that read each fixture and classifies the assertion beside it.

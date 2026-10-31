@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/065-cli-hermes-pi-dispatch-rules"
+    packet_pointer: "system-speckit/031-system-speckit-v4/065-cli-hermes-pi-dispatch-rules"
     last_updated_at: "2026-09-24T09:20:28Z"
     last_updated_by: "generate-context"
     recent_action: "Scoped the cli-hermes and cli-pi runtime delegation rule"
@@ -70,8 +70,8 @@ cli-pi points one-shot dispatches at the child dispatch envelope in its `referen
 | `.hermes/skills/cli-pi/SKILL.md` | Regenerated | Hermes copy of the skill |
 | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json` | Regenerated | Runtime routing manifest for the cli hub |
 | `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json` | Regenerated | Authored source of that manifest |
-| `specs/system-speckit/033-system-speckit-v4/spec.md` | Modified | Row 65 in the phase map |
-| `specs/system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules/spec.md` | Modified | Phase count and successor |
+| `specs/system-speckit/031-system-speckit-v4/spec.md` | Modified | Row 65 in the phase map |
+| `specs/system-speckit/031-system-speckit-v4/064-cli-devin-cursor-dispatch-rules/spec.md` | Modified | Phase count and successor |
 <!-- /ANCHOR:what-built -->
 
 ---

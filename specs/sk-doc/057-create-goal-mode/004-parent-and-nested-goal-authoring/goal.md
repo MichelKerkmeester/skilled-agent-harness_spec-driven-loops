@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring"
+    packet_pointer: "sk-doc/057-create-goal-mode/004-parent-and-nested-goal-authoring"
     last_updated_at: "2026-09-25T19:30:00Z"
     last_updated_by: "gpt-6-luna"
     recent_action: "Planned parent and nested goal workflow"
@@ -53,8 +53,8 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Retrofitting an existing packet without goal.md is a separately invocable authoring operation (specs/sk-doc/060-create-goal-mode/spec.md:159). |
-| D2 | Before writing phase binding rows, compare the parent map with the direct child directories and stop if the sets differ (specs/sk-doc/060-create-goal-mode/spec.md:119-129). |
+| D1 | Retrofitting an existing packet without goal.md is a separately invocable authoring operation (specs/sk-doc/057-create-goal-mode/spec.md:159). |
+| D2 | Before writing phase binding rows, compare the parent map with the direct child directories and stop if the sets differ (specs/sk-doc/057-create-goal-mode/spec.md:119-129). |
 <!-- /ANCHOR:directive -->
 
 ---

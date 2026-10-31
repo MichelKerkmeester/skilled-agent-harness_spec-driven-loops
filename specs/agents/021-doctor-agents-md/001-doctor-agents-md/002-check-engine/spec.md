@@ -57,7 +57,7 @@ This is **Phase 2** of the `/doctor:agents-md` build inside `agents/021-doctor-a
 **Scope Boundary**: The read-only engine, its suite and its fixtures. It composes nothing and writes nothing.
 
 **Dependencies**:
-- `/doctor:sk-skill` (packet `sk-doc/075-doctor-sk-skill-command`) must be on `main` before implementation starts, and every phrase, route, bridge and mirror count is re-measured then.
+- `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) must be on `main` before implementation starts, and every phrase, route, bridge and mirror count is re-measured then.
 - The manifest and the shared segmenter from child 001 are the engine's only inputs.
 
 **Deliverables**:
@@ -77,7 +77,7 @@ A repository that took the framework can be in any of seven states, and nothing 
 Report, per row and without writing a byte, what the repository holds against the manifest: which sections are present and current, which pins hold, how much delivery budget is left, what sits outside the markers, and how every runtime copy stands.
 
 ### Precondition
-Implementation starts only after `/doctor:sk-skill` (packet `sk-doc/075-doctor-sk-skill-command`) lands on `main`. That command adds a router, a route and an advisor bridge, so the route, bridge, phrase and mirror counts this packet quotes are re-measured from the branch the child starts on, and recorded in `scratch/baseline.txt` before the first edit.
+Implementation starts only after `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) lands on `main`. That command adds a router, a route and an advisor bridge, so the route, bridge, phrase and mirror counts this packet quotes are re-measured from the branch the child starts on, and recorded in `scratch/baseline.txt` before the first edit.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

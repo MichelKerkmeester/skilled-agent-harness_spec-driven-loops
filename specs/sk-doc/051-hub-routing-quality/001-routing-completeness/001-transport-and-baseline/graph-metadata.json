@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Two scorers answer the same question",
     "created_at": "2026-09-02T16:34:04Z",
-    "last_save_at": "2026-10-31T13:25:45.432Z",
+    "last_save_at": "2026-10-31T14:01:31.854Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dc7004920ee6335e82e53c24cf87c7903054445bad8e9d75281a6ae825f174c2",
+    "source_fingerprint": "sha256:e5d83e60b74056dc833c31f27544603d3360beb1dcc8fb168e61411988632c97",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "09ac4858f89977e5e88ac44c918c384cf99e361f9346590ea65550e613a593fe",
       "plan.md": "4c91ce4c09d2711407e1e20664887f84f8ec2a21665c290ddf7c41619df99ee0",
       "tasks.md": "439e1107e2baf91c797d1259b636e9fd8f6fca2ba50bcc5f22c3a8742affc924",
-      "implementation-summary.md": "857908d8cfe37dc9df80044583b4565de5b80cd23c7e8384875a44d3185b8c49"
+      "implementation-summary.md": "cd09fbe3991fac7ca2d09b257fbd520c6f740683452362d572c6ea651e99587c"
     },
     "last_active_child_id": null,
     "last_active_at": null

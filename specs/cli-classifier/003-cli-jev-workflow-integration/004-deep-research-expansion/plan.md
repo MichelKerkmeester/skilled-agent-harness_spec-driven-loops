@@ -75,7 +75,7 @@ The run, from the worktree root, backgrounded, after `export PI_BLACKHOLE_PASSIV
 
 ```
 /deep:research:auto "<topic from scratch/research-topic.txt>"
-  --spec-folder=specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion
+  --spec-folder=specs/cli-classifier/003-cli-jev-workflow-integration/004-deep-research-expansion
   --max-iterations=5 --stop-policy=max-iterations --convergence-mode=off --concurrency=4
   --executor=cli-cursor --model=grok-4.7-xhigh-fast --iters=5 --label=grok
   --executor=cli-pi --model=mimo-v2.6-pro --reasoning-effort=high --iters=5 --label=mimo

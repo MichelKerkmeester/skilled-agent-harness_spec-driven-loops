@@ -9,7 +9,7 @@
   "specId": "004",
   "folderSlug": "catalog-and-playbook",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "001-cli-jev-creation"
   ],
   "memorySequence": 0,

@@ -10,15 +10,15 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/037-pi-native-classifier-transport"
     last_updated_at: "2026-09-30T15:48:14Z"
     last_updated_by: "markdown-leaf"
     recent_action: "Ticked all five criteria from the live run and the build's verify outputs"
     next_safe_action: "None. Wiring Pi as a transport is a later phase on the operator's call"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/plan.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/plan.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-037-pi-native-classifier-transport"
@@ -92,7 +92,7 @@ and findings belong here.
 |------|------|
 | Planned state (2026-09-30) | At authoring, nothing was built and the five completion criteria were open. The three open questions in `spec.md` section 10 each carried a proposed answer, and the keep rule in `spec.md` section 4 was fixed at spec approval, before any live call |
 | Review P1 fix (2026-09-30) | MiMo round 1 `VERDICT: FAIL` on two P1s: `K` was `plan.size`, so rebuild-excluded rows left the coverage denominator and `stop (coverage)` could never fire; and `columnLine` and `meanMap` were untested with no test driving `main` past the census. DeepSeek V4.1 Flash set `K = plan.size + excluded.length` and added four tests (37 to 41), and MiMo round 2 `VERDICT: PASS` with no findings |
-| Prior evidence | The operator's live 019 Jev run holds 333 `choice` calls over 111 rows on `jev-1.13.0` through provider `official`, every call `measured` on attempt 1 (`specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-session/jev-run/calls.jsonl`). Pi's zero-call probe found 12 classifier models known and 7 with credentials present, all through `openrouter` |
+| Prior evidence | The operator's live 019 Jev run holds 333 `choice` calls over 111 rows on `jev-1.13.0` through provider `official`, every call `measured` on attempt 1 (`specs/cli-classifier/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-session/jev-run/calls.jsonl`). Pi's zero-call probe found 12 classifier models known and 7 with credentials present, all through `openrouter` |
 | Today's transport | `.skilled/skills/cli-classifier/cli-usage/SKILL.md:97` pins `jev --version` at `jev 0.6.2`, and the shipped arms shell out to `jev noul\|choice\|score` after `jev auth status --provider <p>` |
 | Out of scope | Wiring Pi into `cli-classifier` or `cli-pi` waits on the verdict and the operator's call. The skill-advisor runtime tree is read-only to this phase, and no install runs (parent D7) |
 <!-- /ANCHOR:log -->

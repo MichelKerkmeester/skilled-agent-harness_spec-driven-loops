@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes"
     last_updated_at: "2026-09-27T19:45:00Z"
     last_updated_by: "closure-leaf"
     recent_action: "Marked all six criteria Met from the build evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** cli-jev/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes
+**Packet:** cli-classifier/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-27

@@ -91,7 +91,7 @@ Measured on `main` at `6a9946a800` over the 54 SKILL.md files under `.skilled/sk
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research/research/` | Create | The research state, iterations and `research.md` |
+| `specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/001-deep-research/research/` | Create | The research state, iterations and `research.md` |
 <!-- /ANCHOR:scope -->
 
 ---

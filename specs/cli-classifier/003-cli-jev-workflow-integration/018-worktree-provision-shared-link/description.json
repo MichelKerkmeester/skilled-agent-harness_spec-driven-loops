@@ -9,7 +9,7 @@
   "specId": "018",
   "folderSlug": "worktree-provision-shared-link",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,

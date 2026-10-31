@@ -90,18 +90,18 @@
     ],
     "causal_summary": "The completion gate fails roughly two thirds of the live corpus, and the",
     "created_at": "2026-08-29T17:24:49.641Z",
-    "last_save_at": "2026-10-31T13:26:36.733Z",
+    "last_save_at": "2026-10-31T13:58:38.137Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:530e83596bf94bac828dc3984060f8710d3f7096c724b327fcefd654daf37e2f",
+    "source_fingerprint": "sha256:d8972ecda015bfc440206667726daff301c723cfac3a9f08cc0f2846d76f3bee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7764cfa61a2490617032928baa3a9f020e30a052fcc21b3609ba56863b6d64ab"
+      "spec.md": "addc51164549d104bcdaefe430937e3923ffdfd18af71844b74dd67a80d4f443"
     },
-    "last_active_child_id": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/002-tracks-are-not-packets",
+    "last_active_child_id": "system-speckit/031-system-speckit-v4/009-validation-rule-reduction/002-tracks-are-not-packets",
     "last_active_at": null
   }
 }

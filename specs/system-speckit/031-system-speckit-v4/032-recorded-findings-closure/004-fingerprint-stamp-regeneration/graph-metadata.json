@@ -210,7 +210,7 @@
     ],
     "causal_summary": "27 closed packets' `implementation-summary.md` carry a human-mnemonic value in the slot `memory.continuity.sessiondedup.fingerprint` reserves for a real sha256 digest, for example `sha256:phase-017-remediation-complete-25-commits` (`specs/system-speckit/026-graph-and-context-optimization/.../022-local-llm-legacy-remediation/implementation-summary.md`, one of 27 confirmed by direct grep against the exact `^[a-f0-9]{64}$` shape)",
     "created_at": "2026-09-07T15:05:44Z",
-    "last_save_at": "2026-10-31T13:26:52.715Z",
+    "last_save_at": "2026-10-31T13:59:00.076Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:64d3e9496e44c84229d99835d059648678452a913e40f67a652a3661cee2151e",
+    "source_fingerprint": "sha256:340f366885083e34d098eec2619a068fab699cc6283a96a14523c4ad046a5a96",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "da7b407a69495d718cee59a308ccf23c2cf6494158e25be392c64e777a435fef",

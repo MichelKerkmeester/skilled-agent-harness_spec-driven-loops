@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens"
     last_updated_at: "2026-09-30T06:38:00Z"
     last_updated_by: "markdown-leaf"
     recent_action: "Build 2588231589 committed; phase closed at its label gate"
@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/scratch/w4-session/session-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/scratch/w4-session/session-evidence.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-034-hvr-reader-needed-lens"

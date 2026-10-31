@@ -194,7 +194,7 @@
       "spec.md": "aba1c5e39051a4056aff74391348c2654ea86245a39711878a86c4ad52e9b92f",
       "research/research.md": "d3e69e445cf7d7119eed309de76f21fb83ed8a4d162c6cd7024be9fd461f6ef2"
     },
-    "last_active_child_id": "system-speckit/029-spec-root-resolution-hardening/005-symlink-retirement-and-validation",
+    "last_active_child_id": "system-speckit/029-spec-folder-lifecycle/001-spec-root-resolution-hardening/005-symlink-retirement-and-validation",
     "last_active_at": null
   }
 }

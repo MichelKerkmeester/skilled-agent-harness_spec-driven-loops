@@ -50,8 +50,12 @@
       ".skilled/skills/sk-doc/sk-create-goal/README.md",
       ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.0.0.0.md",
       ".skilled/skills/sk-doc/benchmark/reports/README.md",
+      "specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/goal.md",
       "scratch/routing-final.txt",
       "scratch/accept-path/goal-packet.txt",
+      "specs/sk-doc/057-create-goal-mode/changelog/changelog-060-009-verification-and-closeout.md",
+      "specs/sk-doc/057-create-goal-mode/spec.md",
+      "specs/sk-doc/057-create-goal-mode/goal.md",
       "scratch/accept-path/check-before.txt",
       "scratch/accept-path/parent-goal.before.md",
       "scratch/accept-path/phase-map-vs-disk.txt",
@@ -117,6 +121,12 @@
         "name": "goal-packet.txt",
         "kind": "file",
         "path": "scratch/accept-path/goal-packet.txt",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-060-009-verification-and-closeout.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/057-create-goal-mode/changelog/changelog-060-009-verification-and-closeout.md",
         "source": "derived"
       },
       {
@@ -196,17 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Phase",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Phase 008's outgoing check verifies command mirrors and playbook package conformance, but it does not execute the scenarios against the mode or prove an accept path against a real packet (specs/sk-doc/060-create-goal-mode/008-command-and-playbook/spec.md:24-33, 82-89, 105-113)",
+    "causal_summary": "Phase 008's outgoing check verifies command mirrors and playbook package conformance, but it does not execute the scenarios against the mode or prove an accept path against a real packet (specs/sk-doc/057-create-goal-mode/008-command-and-playbook/spec.md:24-33, 82-89, 105-113)",
     "created_at": "2026-09-25T18:48:52Z",
-    "last_save_at": "2026-10-31T13:26:00.495Z",
+    "last_save_at": "2026-10-31T14:01:51.401Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:07750194dc8cfb05ad2cc6257df3fe4f4f3f71dfdbadc19c92d136c059189de3",
+    "source_fingerprint": "sha256:84a83288cde5892ef23009519124f8a6629b2bc5ccd43c1d7d2cc5331f62d7ed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a2994c267dd44c5ba4093bb93e373a5bc5c62e73932e167924173d9706a2b125",
-      "plan.md": "f178b5d39b3bc00c442e9e366ac548382fb0639ebcf1496a4fd97c6f333f7e86",
-      "tasks.md": "ad07377d9cedfa75cf1883d0d947d5978198a98a218d351ae7a2a37f8005cfc0",
-      "implementation-summary.md": "6797089ec0120282d443355531d1d014e1ef1e6b20c71a8153d5eb40be29eafe"
+      "spec.md": "383f389fb074af17d9415e28a1908979c4586eef9e0ee0c1738b055a732195cc",
+      "plan.md": "1330fe3919987eab5ef12b88ec416701d71d567817956eac81ddee2ecc405e11",
+      "tasks.md": "86e769bb4be35f5468980b0493bad48bfd8d1a1a50dd76f5bb0185ac548c8e63",
+      "implementation-summary.md": "cd9363a6d72a7fb254650966d0fbfe6b788fd58aaa5274b0abf4d0b8cedf5e22"
     },
     "last_active_at": null
   }

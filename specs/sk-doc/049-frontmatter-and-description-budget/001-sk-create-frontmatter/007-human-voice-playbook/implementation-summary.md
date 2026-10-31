@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/049-sk-create-frontmatter/007-human-voice-playbook"
+    packet_pointer: "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/007-human-voice-playbook"
     last_updated_at: "2026-09-01T10:24:27Z"
     last_updated_by: "implementation"
     recent_action: "Authored the nine-scenario voice playbook and enrolled it in the fail-closed list"

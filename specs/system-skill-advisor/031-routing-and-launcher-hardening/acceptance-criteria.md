@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/036-routing-and-launcher-hardening"
+    packet_pointer: "system-skill-advisor/031-routing-and-launcher-hardening"
     last_updated_at: "2026-10-17T12:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Marked every criterion Met with evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-skill-advisor/036-routing-and-launcher-hardening
+**Packet:** system-skill-advisor/031-routing-and-launcher-hardening
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-17

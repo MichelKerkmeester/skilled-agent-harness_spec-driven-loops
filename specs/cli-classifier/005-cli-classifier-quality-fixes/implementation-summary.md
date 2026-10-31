@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/005-cli-classifier-quality-fixes"
+    packet_pointer: "cli-classifier/005-cli-classifier-quality-fixes"
     last_updated_at: "2026-10-04T14:13:19Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Fixed the required findings, verified each test both ways and passed a Luna review"

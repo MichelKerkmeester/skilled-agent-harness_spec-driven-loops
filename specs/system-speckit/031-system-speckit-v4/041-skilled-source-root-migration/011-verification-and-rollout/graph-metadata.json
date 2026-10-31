@@ -211,7 +211,7 @@
     ],
     "causal_summary": "Nothing yet proves that the `.skilled` source root works on the seven runtimes, in the local gates and in CI",
     "created_at": "2026-09-16T17:54:10Z",
-    "last_save_at": "2026-10-31T13:27:01.963Z",
+    "last_save_at": "2026-10-31T13:59:11.700Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,11 +222,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bae8e46c5782a7e96b8edf6e6b4925156f78308187731be64cebd4c2c4f5fcbc",
+    "source_fingerprint": "sha256:8e8502267cfdeb82e8e05b75fb2bb31784f0a6f19995cbd144b5f50d62a5d97d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7de770708935d564bcab83be164fd63644c042e248adb431dfe7a0a324d668fb",
-      "plan.md": "af7ed2afd1f36ef64037d9e7cb3a76bc40f0ddca32103cd84aa573130b7590ef",
+      "plan.md": "49e4e227af46c4e1c7280b867689a96d8ea031436072ac6448b52ed6d1b66769",
       "tasks.md": "bb6b7378d961feca4338674f64a00e96d485c885a7a1c952a63ebe47e94b960b",
       "implementation-summary.md": "20771c03baca153900efc1e7f5d53a447da14cf3dcd7f86c6a4e9297e3bdb218"
     },

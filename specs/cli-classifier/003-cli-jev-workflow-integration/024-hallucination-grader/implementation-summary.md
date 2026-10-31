@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/024-hallucination-grader"
     last_updated_at: "2026-09-29T16:30:55Z"
     last_updated_by: "closure-leaf"
     recent_action: "Closed the phase at the label gate: build commit fb3f9c0599, 6 of 6 goal criteria ticked"
@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/scratch/w4-session/session-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/024-hallucination-grader/scratch/w4-session/session-evidence.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-024-hallucination-grader"

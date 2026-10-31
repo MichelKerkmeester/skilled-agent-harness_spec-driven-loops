@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Routing has two stages",
     "created_at": "2026-09-29T12:42:34Z",
-    "last_save_at": "2026-10-31T13:25:30.890Z",
+    "last_save_at": "2026-10-31T14:03:51.285Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51ef0f914bf97c8d670daab23033f923e4eea38e0c32c8e819f017f246ad398a",
+    "source_fingerprint": "sha256:ea4b55d67a38fb372288788139d120bcd7b846c0150173d06f5d749d677bb034",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a2f187534578fd7f1d18cad2420dbac6f3acb5c6c7bb24a9e826e268395fe0c1",
-      "plan.md": "20f2fa46ce787eadfab67b54051b129cd84f4b19d82adc7cc673ad392690e645",
+      "plan.md": "11907e5fe7656803ad9e69226d2ed332502ccadafd8c40aba5cf8f80dea96bb9",
       "tasks.md": "f3478b427c9a4c2246891fa08989ca5906f21053d9cf9129bcd14a88529a68d0",
-      "implementation-summary.md": "a43b9a911b12600ca759feac61c70f6e367f5de292fb9811a1ae26c64ff91287"
+      "implementation-summary.md": "a02924d7cf87efdeb54c96d102dcc7218b8effd5bfb755fd27d05e9313a85818"
     },
     "last_active_at": null
   }

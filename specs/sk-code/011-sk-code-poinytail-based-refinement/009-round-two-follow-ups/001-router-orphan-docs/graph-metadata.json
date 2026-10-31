@@ -49,15 +49,15 @@
       ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md",
       ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.1.1.0.md",
       ".skilled/skills/sk-code/benchmark/README.md",
-      ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
-      ".skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.2.0.md",
-      ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md",
-      ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/holdout/accessibility-independent.md",
-      ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md",
       ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
       "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json",
       ".skilled/skills/sk-code/leaf-manifest.json",
-      ".hermes/skills/sk-code-obsidian/SKILL.md"
+      ".hermes/skills/sk-code-skilled/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/001-router-orphan-docs/implementation-summary.md",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/001-router-orphan-docs/scratch/replay-scenarios.cjs",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/001-router-orphan-docs/scratch/probe-reach.cjs",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/001-router-orphan-docs/scratch/status-before.txt"
     ],
     "entities": [
       {
@@ -87,7 +87,7 @@
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/001-router-orphan-docs/implementation-summary.md",
         "source": "derived"
       },
       {
@@ -121,30 +121,6 @@
         "source": "derived"
       },
       {
-        "name": "v0.1.2.0.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.2.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "accessibility-independent.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/holdout/accessibility-independent.md",
-        "source": "derived"
-      },
-      {
-        "name": "ceiling-load-all.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md",
-        "source": "derived"
-      },
-      {
         "name": "manifest.json",
         "kind": "config",
         "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
@@ -154,6 +130,30 @@
         "name": "leaf-manifest.json",
         "kind": "config",
         "path": ".skilled/skills/sk-code/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "verification-alignment.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
+        "source": "derived"
+      },
+      {
+        "name": "replay-scenarios.cjs",
+        "kind": "file",
+        "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/001-router-orphan-docs/scratch/replay-scenarios.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "probe-reach.cjs",
+        "kind": "file",
+        "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/001-router-orphan-docs/scratch/probe-reach.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "status-before.txt",
+        "kind": "file",
+        "path": "specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/001-router-orphan-docs/scratch/status-before.txt",
         "source": "derived"
       },
       {
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "`node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verifyroutersync.cjs --checks 1b` lists nine docs that no router names, so leg 1b is held back by an `OPTINLEGS` set and the drift-guard umbrella runs `--checks 1a,2,3,4` without it",
     "created_at": "2026-10-10T08:16:18Z",
-    "last_save_at": "2026-10-18T20:45:13.858Z",
+    "last_save_at": "2026-10-31T14:04:32.161Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04252ac3bfe06a0884927d874781c9f6a33982e509a14cf81dc7221cd19c37e4",
+    "source_fingerprint": "sha256:c2b5df39b8ace1fb483fbd250ee392c7ce512ace587fe175e8e608ac467c5397",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fb90c58df19613cdd32a071c28fae8ebfd496bb16998be043b8748ddf2082bb4",

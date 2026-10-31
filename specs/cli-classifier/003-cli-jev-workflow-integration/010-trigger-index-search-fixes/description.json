@@ -9,7 +9,7 @@
   "specId": "010",
   "folderSlug": "trigger-index-search-fixes",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,

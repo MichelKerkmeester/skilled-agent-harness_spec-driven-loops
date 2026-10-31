@@ -23,7 +23,7 @@
   "folderSlug": "header-tags-hook-catch-and-script-test-fixes",
   "parentChain": [
     "system-speckit",
-    "033-system-speckit-v4"
+    "031-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification"
     last_updated_at: "2026-10-29T16:57:00Z"
     last_updated_by: "luna"
     recent_action: "Recorded the regeneration evidence"
@@ -65,7 +65,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-007 | REQ-004 | Given the post-move tree, When the per-skill token table is regenerated, Then it holds one row per skill and its totals sit beside the research totals | The CSV holds 54 data rows, and the word, token and initial-load totals are printed beside 39159, 89931 and 88689 in `scratch/token-delta.txt` Observed: the token table has 54 rows. token-delta.txt prints 41019 words, 92418 section tokens and 90823 initial-load tokens against 39159, 89931 and 88689. | Met | - |
 | AC-008 | REQ-005 | Given the final tree, When the route permission gates run, Then every one passes | `verify-router-sync.cjs` prints `router-sync: 5/5 checks passed`, `ci-skill-root-metadata.cjs` prints `checked=13 passed=13 failed=0`, `ci-hub-vocabulary-source.cjs` prints `RESULT: PASSED` Observed: the gates print "router-sync: 5/5 checks passed", "all 7 hubs resolve", "checked=13 passed=13 failed=0" and "RESULT: PASSED". | Met | - |
 | AC-009 | REQ-005 | Given the seven hub routers, When the vocabulary carry is checked, Then no declared phrase is missing from the stage the advisor scores | `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check` prints `checked=7 hub(s), missing=0` Observed: generate-router-intent-signals --check prints "checked=7 hub(s), missing=0". | Met | - |
-| AC-010 | REQ-006 | Given the finished packet, When strict validation runs on it and on its parent program folder, Then both pass | `validate.sh specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification --strict` and `validate.sh specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files --strict --recursive` each end with `RESULT: PASSED` Observed: the strict run on this folder prints "Summary: Errors: 0  Warnings: 0" and "RESULT: PASSED", and the recursive strict run on the parent ends with "RESULT: PASSED" for the parent and all 22 phases. | Met | - |
+| AC-010 | REQ-006 | Given the finished packet, When strict validation runs on it and on its parent program folder, Then both pass | `validate.sh specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification --strict` and `validate.sh specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files --strict --recursive` each end with `RESULT: PASSED` Observed: the strict run on this folder prints "Summary: Errors: 0  Warnings: 0" and "RESULT: PASSED", and the recursive strict run on the parent ends with "RESULT: PASSED" for the parent and all 22 phases. | Met | - |
 
 ### Status values
 

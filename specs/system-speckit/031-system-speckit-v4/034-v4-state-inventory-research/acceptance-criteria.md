@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/034-v4-state-inventory-research"
+    packet_pointer: "system-speckit/031-system-speckit-v4/034-v4-state-inventory-research"
     last_updated_at: "2026-09-08T18:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Every criterion verified from the final state"
@@ -34,7 +34,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Packet** | system-speckit/033-system-speckit-v4/034-v4-state-inventory-research |
+| **Packet** | system-speckit/031-system-speckit-v4/034-v4-state-inventory-research |
 | **Status** | Closed |
 | **Owner** | this session |
 <!-- /ANCHOR:metadata -->

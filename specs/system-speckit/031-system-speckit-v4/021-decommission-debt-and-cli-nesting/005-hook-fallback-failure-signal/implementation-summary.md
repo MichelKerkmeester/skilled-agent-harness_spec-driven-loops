@@ -12,7 +12,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/005-hook-fallback-failure-signal"
+    packet_pointer: "system-speckit/031-system-speckit-v4/021-decommission-debt-and-cli-nesting/005-hook-fallback-failure-signal"
     last_updated_at: "2026-09-05T09:20:00Z"
     last_updated_by: "implementer"
     recent_action: "Added hook drift markers, fixed Stop-cleanup reachability, removed Copilot wrappers"

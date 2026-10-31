@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/012-template-phrase-cleanup-round-two"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/012-template-phrase-cleanup-round-two"
     last_updated_at: "2026-10-07T16:50:00Z"
     last_updated_by: "claude-opus-5.5"
     recent_action: "Fixed the 21 failing folders and closed AC-006"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/034-spec-folder-tooling/012-template-phrase-cleanup-round-two
+**Packet:** system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/012-template-phrase-cleanup-round-two
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-07

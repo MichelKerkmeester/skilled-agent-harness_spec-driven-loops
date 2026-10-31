@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/005-provenance-title-sweep"
+    packet_pointer: "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/005-provenance-title-sweep"
     last_updated_at: "2026-09-07T21:30:00Z"
     last_updated_by: "template-author"
     recent_action: "Closed the packet with every gate observed green"

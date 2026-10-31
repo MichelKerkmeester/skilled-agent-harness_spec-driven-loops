@@ -7,15 +7,15 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes"
     last_updated_at: "2026-09-27T19:45:00Z"
     last_updated_by: "closure-leaf"
     recent_action: "Closed the phase from the build evidence of a9dbac98ef"
     next_safe_action: "None. The phase is Complete; the orchestrator commits"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes/plan.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes/plan.md"
       - ".skilled/skills/sk-doc/shared/scripts/validate_document.py"
       - ".skilled/skills/sk-doc/shared/scripts/quick_validate.py"
     session_dedup:
@@ -133,7 +133,7 @@ Every check ran from the worktree root on 2026-09-27. The orchestrator ran them 
 3. **Dispatch briefs kept.** `scratch/briefs/` stays as the record of what each executor was sent, so `scratch/` is not emptied to `.gitkeep`.
 4. **Baselines not saved to scratch.** T003 and T004 named `scratch/suite-baseline.txt` and `scratch/fallback-baseline.txt`. The baselines are recorded in the orchestrator's build evidence and the `goal.md` log instead.
 5. **Stale planning pins.** `validate_document.py` changed after planning (`666abc1a22e`, `e33f1a6ff3e`), moving its pins by 11 lines. `research.md` has 159 lines and `memory-pipeline-regressions.vitest.ts` 62, and three test files import `detect_document_type`, not five. The spec, plan and tasks now say so, citing by function name where the build shifts a line.
-6. **Parent changelog.** `spec.md` Phase Context asks for a refresh of `../changelog/`, but `specs/cli-jev/003-cli-jev-workflow-integration/changelog/` does not exist, so there was nothing to refresh.
+6. **Parent changelog.** `spec.md` Phase Context asks for a refresh of `../changelog/`, but `specs/cli-classifier/003-cli-jev-workflow-integration/changelog/` does not exist, so there was nothing to refresh.
 7. **`total_issues` on a fallback.** The notice joins the issue list, so `total_issues` rises by 1 on a fallback document. Every JSON key stays, and no caller that omits `--type` reads `total_issues`.
 <!-- /ANCHOR:deviations -->
 

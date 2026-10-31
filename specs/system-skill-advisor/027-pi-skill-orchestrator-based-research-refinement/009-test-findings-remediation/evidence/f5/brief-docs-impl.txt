@@ -4,7 +4,7 @@ ROLE
 You are the documentation implementer for one sweep: eleven docs still describe the Codex hook installer as copying the repository's hooks into `~/.codex/hooks.json`, or tell a tester to look for the repo hooks there. After the installer change it only removes such copies. Rewrite the sentences that state the old contract, and nothing else.
 
 GATE AND GIT
-- Gate 3 is answered for this session: spec folder `specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation`. Do not ask the documentation question.
+- Gate 3 is answered for this session: spec folder `specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation`. Do not ask the documentation question.
 - Do not run git add, commit, stash, checkout or restore. Do not edit spec docs. The orchestrator commits.
 - Never run `.skilled/bin/install-codex-hooks.mjs` without `--target` pointing into a temp directory. You do not need to run it at all.
 

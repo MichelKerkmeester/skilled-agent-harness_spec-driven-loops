@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research"
+    packet_pointer: "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/001-deep-research"
     last_updated_at: "2026-09-26T20:04:10Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Authored the durable directive"

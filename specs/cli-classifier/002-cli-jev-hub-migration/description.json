@@ -20,7 +20,7 @@
   "specId": "002",
   "folderSlug": "cli-jev-hub-migration",
   "parentChain": [
-    "cli-jev"
+    "cli-classifier"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation"
+    packet_pointer: "system-speckit/031-system-speckit-v4/069-v4-0-0-3-review-remediation"
     last_updated_at: "2026-10-06T10:40:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Recorded ADR-001 to ADR-003 during planning"

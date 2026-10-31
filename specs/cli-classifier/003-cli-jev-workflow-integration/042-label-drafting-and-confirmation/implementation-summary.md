@@ -10,15 +10,15 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation"
     last_updated_at: "2026-10-01T19:30:00Z"
     last_updated_by: "orchestrating-session"
     recent_action: "Closed the phase after the cross-family review fixes"
     next_safe_action: "Offer each open gate a live Jev or Deem run, one yes at a time"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/scratch/evidence/labels/gates.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/decision-record.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/scratch/evidence/labels/gates.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/decision-record.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-042-label-drafting-and-confirmation"

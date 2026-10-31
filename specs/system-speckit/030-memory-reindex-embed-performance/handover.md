@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/031-memory-reindex-embed-performance"
+    packet_pointer: "system-speckit/030-memory-reindex-embed-performance"
     last_updated_at: "2026-07-22T14:45:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Wrote handover from the daemon-fix + reindex session"

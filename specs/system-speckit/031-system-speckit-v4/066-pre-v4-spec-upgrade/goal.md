@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade"
+    packet_pointer: "system-speckit/031-system-speckit-v4/066-pre-v4-spec-upgrade"
     last_updated_at: "2026-09-25T06:20:00Z"
     last_updated_by: "claude-code"
     recent_action: "Every completion criterion met; packet validates with 0 errors"

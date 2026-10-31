@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/054-classifier-module-names"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/054-classifier-module-names"
     last_updated_at: "2026-10-05T08:50:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Moved the kept features' Jev code into classifier- files"

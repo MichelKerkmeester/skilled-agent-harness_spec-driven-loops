@@ -14,7 +14,7 @@
   "specId": "019",
   "folderSlug": "advisor-suggested-order",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,

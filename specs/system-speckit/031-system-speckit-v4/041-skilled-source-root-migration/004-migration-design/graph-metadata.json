@@ -55,12 +55,12 @@
       ".opencode/bin/lib/compiled-routing/serving-closure.manifest.json",
       ".opencode/bin/install-codex-hooks.mjs",
       ".opencode/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs",
+      ".opencode/skills/.state/advisor/skill-graph-daemon-lease.sqlite",
       "evidence/ci-workflow-root-surface.md",
       "evidence/gitignore-root-rules.md",
+      "specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/research/maps/map-a-symlinks.tsv",
       "evidence/hand-made-link-targets.md",
-      "scratch/briefs/e1-hook-opencode-lines.md",
-      "scratch/briefs/e2-ci-workflow-root-surface.md",
-      "scratch/briefs/e3-gitignore-root-rules.md"
+      "scratch/briefs/e1-hook-opencode-lines.md"
     ],
     "entities": [
       {
@@ -148,6 +148,12 @@
         "source": "derived"
       },
       {
+        "name": "skill-graph-daemon-lease.sqlite",
+        "kind": "file",
+        "path": ".opencode/skills/.state/advisor/skill-graph-daemon-lease.sqlite",
+        "source": "derived"
+      },
+      {
         "name": "ci-workflow-root-surface.md",
         "kind": "doc",
         "path": "evidence/ci-workflow-root-surface.md",
@@ -160,6 +166,12 @@
         "source": "derived"
       },
       {
+        "name": "map-a-symlinks.tsv",
+        "kind": "file",
+        "path": "specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/research/maps/map-a-symlinks.tsv",
+        "source": "derived"
+      },
+      {
         "name": "hand-made-link-targets.md",
         "kind": "doc",
         "path": "evidence/hand-made-link-targets.md",
@@ -169,18 +181,6 @@
         "name": "e1-hook-opencode-lines.md",
         "kind": "doc",
         "path": "scratch/briefs/e1-hook-opencode-lines.md",
-        "source": "derived"
-      },
-      {
-        "name": "e2-ci-workflow-root-surface.md",
-        "kind": "doc",
-        "path": "scratch/briefs/e2-ci-workflow-root-surface.md",
-        "source": "derived"
-      },
-      {
-        "name": "e3-gitignore-root-rules.md",
-        "kind": "doc",
-        "path": "scratch/briefs/e3-gitignore-root-rules.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A move of this size fails in the ordering, not the rename",
     "created_at": "2026-09-16T08:35:23Z",
-    "last_save_at": "2026-10-31T13:27:00.038Z",
+    "last_save_at": "2026-10-31T13:59:10.364Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +222,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a8f7192ee56324f71911966bc7ab50d2137076b3e92fc7a43ca13cf3b9f54348",
+    "source_fingerprint": "sha256:c20cd25dc59e9053929574a819938616a46bda84b58f0a05b75e79c832ee34e3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c77a09da68ddf117cc51bbc314b3a7154c3be10d71aa2477a586777f8998e056",
-      "plan.md": "4a56c458e68a979a5027577cc28ce9afa04e4f337f7b2c38d40fff197b30ebd3",
+      "plan.md": "365a4aa005ebdedd7c1d9dfa1454440ebec8d3ddb62aa6fbebd1e59e65998c4c",
       "tasks.md": "45b60a85f13915eecdf640ce330eee7be5a16e6abc7ccdfb2900db93df1f15a3",
-      "decision-record.md": "a74d027094e2c30340d5fbd9268d4882311c7f80a61e466931fb91de2df7d22f",
+      "decision-record.md": "de9ef0eb380dba0d5ed55bd375242d2c2008b3a97a2c8952c064282fd33d8604",
       "implementation-summary.md": "31c9a42c713b9525c38f8ebd657b5225b8cc471cee42df016e9a68322f5573c9"
     },
     "last_active_at": null

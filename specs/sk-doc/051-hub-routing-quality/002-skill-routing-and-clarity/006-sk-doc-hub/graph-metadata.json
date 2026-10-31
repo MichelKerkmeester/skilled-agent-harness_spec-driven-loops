@@ -193,7 +193,7 @@
     ],
     "causal_summary": "sk-doc has 14 packets",
     "created_at": "2026-10-28T06:38:47Z",
-    "last_save_at": "2026-10-31T13:25:48.142Z",
+    "last_save_at": "2026-10-31T14:01:36.610Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:71cf76ccdf7c553c1080b6a65d67c8c5f992d67ffff8ee85b68a173814fae057",
+    "source_fingerprint": "sha256:c091c68ddd0007cddbd4b8e5501eeba4da49089c5da421766d7d1d2773ced0f7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2751783f1fc9a0090c6b59781d1bc073fbc8a37a529cd6f032c9c400db40ab67",
       "plan.md": "d57aaba9d61d8338cebb32ea5ab11bf83c729996c19a36f2cda07e5026a22a2e",
-      "tasks.md": "aaa2b39c797d2819cdcb096dd8e932359fdfe32bc4b4cb2919412bef10363e28",
+      "tasks.md": "170429239db81e279ef92167bcadc3fc49be73971d41d61946f0343de7195719",
       "implementation-summary.md": "7de3a5fcebebc4fbd0e9c06278587a51cf6e58b430765554b0485d7316b5fe92"
     },
     "last_active_at": null

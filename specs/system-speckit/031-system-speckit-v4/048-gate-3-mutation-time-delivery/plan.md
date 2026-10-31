@@ -46,7 +46,7 @@ Prior art this phase builds on, and deliberately does not repeat: `specs/hooks/0
 - [ ] `node --test .skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-claude.test.mjs .skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-codex.test.mjs .skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-devin.test.mjs .skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.test.mjs` passes
 - [ ] `cd .skilled/skills/system-spec-kit/runtime && npx vitest run --config ../vitest.config.ts --project root` passes, including the new pi extension suite
 - [ ] Both adapter-boundary checks in `tasks.md` (classify emits nothing; enforce carries the reframed notice) show the expected output
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/033-system-speckit-v4/048-gate-3-mutation-time-delivery --strict` prints `RESULT: PASSED`
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/031-system-speckit-v4/048-gate-3-mutation-time-delivery --strict` prints `RESULT: PASSED`
 - [ ] The parent tree validates with `--recursive --strict` and its phase map lists 048
 - [ ] `git status --porcelain` after cleanup shows only intended files
 <!-- /ANCHOR:quality-gates -->

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-create-goal-mode/003-authoring-standards-and-exemplars"
+    packet_pointer: "sk-doc/057-create-goal-mode/003-authoring-standards-and-exemplars"
     last_updated_at: "2026-09-25T21:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Built and verified the goal authoring standards and exemplars"
@@ -107,7 +107,7 @@ A GPT-6 Luna worker at xhigh on the pi gateway lane wrote the four files, with w
 | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py` on both new files | 0 hard blockers, mechanical ceiling 100/100, exit 0 for each |
 | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/sk-doc/sk-create-goal --check --strict` | `Result: PASS`; one advisory warning for `scripts/.gitkeep` |
 | Relative links in the mode | All resolve |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/060-create-goal-mode/003-authoring-standards-and-exemplars --strict` | `RESULT: PASSED`, 0 errors and 0 warnings, on 2026-09-25 |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode/003-authoring-standards-and-exemplars --strict` | `RESULT: PASSED`, 0 errors and 0 warnings, on 2026-09-25 |
 <!-- /ANCHOR:verification -->
 
 ---

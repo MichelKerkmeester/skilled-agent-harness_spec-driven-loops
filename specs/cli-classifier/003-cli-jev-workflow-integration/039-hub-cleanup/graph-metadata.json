@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The hub says `cli-usage` where the mode is `cli-jev`",
     "created_at": "2026-09-30T16:29:42Z",
-    "last_save_at": "2026-10-31T13:25:35.603Z",
+    "last_save_at": "2026-10-31T14:03:55.803Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b6902df6fc026637963236d85a229f031145b0edc54745dceacd732efc599c61",
+    "source_fingerprint": "sha256:ff3f1b40653a18804be229ef8dd24ab7409b92d006253c9abc70f281e70afc5a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8b1ea71a9dde466ed1e9878a5d0a9671dbb329dfd3a4f5f434b44ceb2caeb9f3",
+      "spec.md": "f420901b25daf5d3f87bd36cb32e8a36b25bd98c434c394781b43de31fa567c8",
       "plan.md": "1f14c57f7d2eba8402ddb22e7b2807987da39d975061e57f893b4f82f25820c3",
       "tasks.md": "f0a39708e44ef774cfeaa473226594c14dc14d244d1e446e86832a2c75beb978",
-      "implementation-summary.md": "fbc4002b501610f9df78e426f2df1afc078f4ba2a817263cf3bb686f055deee6"
+      "implementation-summary.md": "912530effae5481cb8fc1bacfabc4d97fcf6d720a08671455eb5edece96e9a25"
     },
     "last_active_at": null
   }

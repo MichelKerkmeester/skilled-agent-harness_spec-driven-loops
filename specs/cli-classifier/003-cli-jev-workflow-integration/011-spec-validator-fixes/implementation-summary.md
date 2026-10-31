@@ -10,15 +10,15 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/011-spec-validator-fixes"
     last_updated_at: "2026-09-27T17:51:28Z"
     last_updated_by: "closure-leaf"
     recent_action: "Closed the phase from the build evidence"
     next_safe_action: "None. The orchestrator commits"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes/plan.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/011-spec-validator-fixes/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/011-spec-validator-fixes/plan.md"
       - ".skilled/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh"
       - ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs"
     session_dedup:
@@ -118,7 +118,7 @@ Every check ran from the worktree root on 2026-09-27. The orchestrator ran them 
 | Baseline, `bash .skilled/skills/system-spec-kit/runtime/cli/tests/check-ac-coverage.sh` | `25 passed, 0 failed`, exit 0 |
 | Baseline, `node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/` | `tests 18`, `pass 18`, `fail 0`, exit 0 |
 | Baseline, `bash .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh` | `Results: 10 passed, 0 failed (of 10)`, exit 0 |
-| Baseline, `check-goal.cjs specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/goal.md` | `RESULT: FAILED (0/5 checks; errors=1)`, exit 2 |
+| Baseline, `check-goal.cjs specs/cli-classifier/003-cli-jev-workflow-integration/006-goal-criteria-lint/goal.md` | `RESULT: FAILED (0/5 checks; errors=1)`, exit 2 |
 | `check-ac-coverage.sh` suite | `44 passed, 0 failed` at `03e567cfe7`, exit 0. It was 41/0 at the build commit, the review fixes added three cases, and the final count at `baf2876802` is `45 passed, 0 failed`, exit 0 |
 | `node --test` at `03e567cfe7` | `tests 20`, `pass 20`, `fail 0`, exit 0 |
 | `test-phase-system.sh` at `03e567cfe7` | `Results: 12 passed, 0 failed (of 12)`, exit 0 |
@@ -128,7 +128,7 @@ Every check ran from the worktree root on 2026-09-27. The orchestrator ran them 
 | `git diff -U0 e9059c8073~1 -- <the rule> \| grep -cE '^[-+].*covered\+\+'` | `0` |
 | `git diff --name-only e9059c8073~1` over `runtime/cli/rules/` and `create.sh` | Only `check-ac-coverage.sh`. No `repair-derived.cjs` change |
 | Timing, `validate.sh --strict` on `specs/sk-design/019-sk-design-diagram-upgrade/007-manual-review-remediation` (37 ACs), three runs each | Before 2.26, 1.60 and 1.57 s. After the build 2.32, 1.77 and 1.78 s. After the fixes 1.76, 1.73 and 1.73 s. All exit 0, each printing `37/37 ACs have evidence; floor 34/37` |
-| Real packet, `validate.sh --strict` on `specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/010-template-contract-alignment` | Exit 0, `RESULT: PASSED`, `6/6 ACs have evidence; floor 6/6`, and a detail line starting `Unresolved evidence citation(s): AC-001 (runtime/cli/spec/create.sh:157)` |
+| Real packet, `validate.sh --strict` on `specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/010-template-contract-alignment` | Exit 0, `RESULT: PASSED`, `6/6 ACs have evidence; floor 6/6`, and a detail line starting `Unresolved evidence citation(s): AC-001 (runtime/cli/spec/create.sh:157)` |
 | Cross-family review (Claude Opus 5.5) | No P0 or P1. 41/0 under `/bin/bash` 3.2 and 20/0 node tests. 7 new cases fail on the pre-build code. Under `set -euo pipefail` a directory, an unreadable file and a huge line number are reported unresolved and the rule exits 0. CRLF and no-trailing-newline files resolve. 404 citations take 0.01 s under macOS awk |
 | Stderr, orchestrator at HEAD `baf2876802` | 0 bytes from `check-goal.cjs` on the folder and on its `goal.md` for the parent and all 18 children of `003-cli-jev-workflow-integration`, from `node --test` (`tests 20`, `fail 0`), from the `check-ac-coverage.sh` suite (`45 passed, 0 failed`) and from `validate.sh --strict` on four packets. Every exit code was 0 |
 | Owner-contract read, post-build | No contradiction with the build. `system-spec-kit/SKILL.md:456`, `validation-rules.md:95` and `:101`, `sk-create-goal/SKILL.md:109`, `scripts/README.md:54` and `:70`, and the `sk-code` shell and Node guides. Detail in `tasks.md` T002 |

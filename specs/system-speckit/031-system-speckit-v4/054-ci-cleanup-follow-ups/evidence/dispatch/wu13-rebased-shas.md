@@ -4,7 +4,7 @@ You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_
 set in your environment, which this repository's AGENTS.md defines as the autonomous child-dispatch
 exemption: the spec-folder question is pre-resolved and MUST NOT be asked. No answer can reach you.
 Your write authority is already bound. The spec folder is:
-  specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups
+  specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups
 Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 
 PERSONA
@@ -39,17 +39,17 @@ EDIT: in each file below, replace EVERY occurrence of each old id with its new i
   specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/plan.md
   specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/tasks.md
   specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/evidence.md
-  specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/implementation-summary.md
-  specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/spec.md
-  specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/plan.md
-  specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md
-  specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/evidence.md
+  specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups/implementation-summary.md
+  specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups/spec.md
+  specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups/plan.md
+  specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md
+  specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/evidence.md
 Do NOT touch any *-stdout.txt, *-stderr.txt or brief file. They are records of what ran.
 
 VERIFY - run these, paste each command with its result line
-  grep -l -e 162a3bd816 -e b7648ec0b0 -e 9b95bd06b1 -e 9ace27983c specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/*.md specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/evidence.md specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/*.md specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/evidence.md | wc -l   # expect 0
+  grep -l -e 162a3bd816 -e b7648ec0b0 -e 9b95bd06b1 -e 9ace27983c specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/*.md specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/evidence.md specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups/*.md specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/evidence.md | wc -l   # expect 0
   grep -c -e 1c6f97a004 -e 8a932df0ab specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/tasks.md   # report the count, expect at least 1
-  grep -c -e 7bde922cba -e a06dba0800 specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md   # report the count, expect at least 1
+  grep -c -e 7bde922cba -e a06dba0800 specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md   # report the count, expect at least 1
 
 HANDBACK - emit exactly this, last thing in your reply
 PI_HANDBACK

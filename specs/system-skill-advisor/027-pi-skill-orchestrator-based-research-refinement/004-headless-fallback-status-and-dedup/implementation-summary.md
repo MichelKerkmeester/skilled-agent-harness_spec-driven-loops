@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup"
+    packet_pointer: "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup"
     last_updated_at: "2026-09-26T13:40:00Z"
     last_updated_by: "orchestrate"
     recent_action: "Shipped R4 status heads and R6 head-only repeats on Claude and OpenCode"
@@ -116,7 +116,7 @@ The first brief carried a wrong rule: it treated every `skipped` result as a gat
 | REQ-001 live | A 50 ms budget through the real shim emits `Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend ...`, 143 characters |
 | REQ-002 live | A real CLI no-match reads `Advisor: no skill matched.`; "thanks" reads `Advisor: prompt skipped.`, 24 characters |
 | REQ-004 and SC-002 live | Five no-route turns in one session: `emittedBytes` 244, then 26 four times with `directivesSuppressed` true. Without a session id: 244 five times |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement --strict --recursive` | Run at phase close, see the parent packet |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement --strict --recursive` | Run at phase close, see the parent packet |
 <!-- /ANCHOR:verification -->
 
 ---

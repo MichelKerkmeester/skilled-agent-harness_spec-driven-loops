@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Eleven code folders this packet created or filled carry no `README.md`: `cli-classifier` `shared/scripts`, `shared/scripts/tests`, `cli-deem/scripts`, `cli-deem/scripts/tests`, `benchmark/pi-transport/tests` and `benchmark/injection-screen/tests`; system-spec-kit `runtime/scripts/compaction-recall`, `runtime/scripts/completion-claim-audit` and `runtime/scripts/debug-next-check`; and sk-doc `sk-create-goal/scripts/tests` and `sk-create-with-human-voice/scripts/tests`",
     "created_at": "2026-09-30T21:17:20Z",
-    "last_save_at": "2026-10-31T13:25:35.535Z",
+    "last_save_at": "2026-10-31T14:03:55.726Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:212652e5c8ff87f27b6ec5b616c110409cc58a8941bdf9bd33844039d7fd744b",
+    "source_fingerprint": "sha256:3c5bc94838c016d35dab16e2964d8598e597a8e9552cb879e48805e2f1a7ad9c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "47c18e0189c5fc44d5487552eaec34ec4bea3d5911b661342c1305fc40f0c76c",
       "plan.md": "5d17bfb02a52ddd5b236d4d62cfae591c3132a13a3b4bddeee48271f31947335",
-      "tasks.md": "d1b43f4fd23ff68e86b09188924e17e98967e6fb5e71c27a55469dcf3196f01e",
-      "implementation-summary.md": "c4178f921cd28f228afc1d2c04804b4659c7876087f7381e8917e6ac7f83c8ee"
+      "tasks.md": "4a753a0109e3f269f3a3f0b5a91401144ed21bf6e0d5584ead49db8725a1dabd",
+      "implementation-summary.md": "441544b2d7ac4cd6f0329dfb3858d85fdba9788445d899af43b67e1e2a42c475"
     },
     "last_active_at": null
   }

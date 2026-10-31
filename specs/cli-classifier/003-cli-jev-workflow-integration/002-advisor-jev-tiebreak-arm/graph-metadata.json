@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Nobody has measured whether a Jev `choice` would order the skill advisor's near-tie cluster better than its own fused scores",
     "created_at": "2026-09-26T18:26:43Z",
-    "last_save_at": "2026-10-31T13:25:26.876Z",
+    "last_save_at": "2026-10-31T14:03:47.129Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:54758a44aa51aeae0c13a7ac88a50b2b5cac414e96064365049fce3fff964a7f",
+    "source_fingerprint": "sha256:93e76a8edfa213d5e32c2d70f943ec879d6d3bc931f7103703d7cf95c15ae5e8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "54b9b80944647fadcaad8586c3b9d806749bb20e9254bf260970d42db8f4c7ae",
-      "plan.md": "1a1b7ca7230a71d459900c32310806697caeb92a147f76525626d0bb4519648c",
+      "plan.md": "7bc2028c4d5083285c7ce354c58e074390ff693bd83bc0e6dd18019a7df7d2d2",
       "tasks.md": "a2c1c7c099538797bce38ae8984c5597ea7c74c68531beb724606d172b5cec82",
-      "implementation-summary.md": "d7d9ccdc6e4b24145eb4ca1a6e0f84ad318a4da79343fd3462b9e841adb91bfe"
+      "implementation-summary.md": "14f0ae825109551a23247fae3e9f4af98561c1bb09ded94f5c0f70a81f4fb7a8"
     },
     "last_active_at": null
   }

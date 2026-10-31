@@ -7,15 +7,15 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment"
     last_updated_at: "2026-10-11T19:55:50Z"
     last_updated_by: "generate-context"
     recent_action: "Added the severity pin test and ticked both criteria"
     next_safe_action: "Monitor the anchor severity pin in CI"
     blockers: []
     key_files:
-      - "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/scratch/evidence/lane-severity-pin.txt"
-      - "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/goal.md"
+      - "specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/scratch/evidence/lane-severity-pin.txt"
+      - "specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment/goal.md"
     session_dedup:
       fingerprint: "sha256:3dba22e2634bbdbf5b980778e50f98b324f004898aae8a679903722cc1538eb4"
       session_id: "bd2aa56c-623b-43f8-a2ef-69a13c32d626"

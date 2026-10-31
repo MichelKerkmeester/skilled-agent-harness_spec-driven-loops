@@ -21,7 +21,7 @@
   "specId": "002",
   "folderSlug": "hub-scaffold-and-mode-migration",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "002-cli-jev-hub-migration"
   ],
   "memorySequence": 0,

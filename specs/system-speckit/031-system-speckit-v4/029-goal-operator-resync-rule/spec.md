@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/029-goal-operator-resync-rule"
+    packet_pointer: "system-speckit/031-system-speckit-v4/029-goal-operator-resync-rule"
     last_updated_at: "2026-09-06T16:20:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Added the operator-copy resync rule to the goal addon and closed the packet"
@@ -42,7 +42,7 @@ _memory:
 | **Created** | 2026-09-06 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | system-speckit/033-system-speckit-v4 |
+| **Parent Packet** | system-speckit/031-system-speckit-v4 |
 | **Phase** | 29 of 35 |
 <!-- /ANCHOR:metadata -->
 

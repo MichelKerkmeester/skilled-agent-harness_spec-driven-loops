@@ -29,9 +29,9 @@ contextType: "general"
 
 Shell variables used below, set once by the conductor in the build worktree:
 - `WORKTREE`: the build worktree path recorded in `../goal.md` section 4.
-- `PHASE_REL`: `specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment`
+- `PHASE_REL`: `specs/system-speckit/041-weak-model-spec-authoring/006-speckit-command-and-agent-alignment`
 - `PHASE`: `$WORKTREE/$PHASE_REL`
-- `P1`: `$WORKTREE/specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline`
+- `P1`: `$WORKTREE/specs/system-speckit/041-weak-model-spec-authoring/001-template-drift-census-and-baseline`
 - `LED`: `$P1/scratch/ledger/ledger.jsonl`, the verified and reviewed phase 1 ledger.
 - `ROWS`: `$PHASE/scratch/audit/rows.jsonl`, the 27 frozen rows written by T004.
 - `S`: `.skilled/skills/system-spec-kit`

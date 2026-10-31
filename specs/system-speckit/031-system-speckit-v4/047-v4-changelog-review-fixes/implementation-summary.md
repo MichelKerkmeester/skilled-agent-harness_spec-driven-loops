@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/047-v4-changelog-review-fixes"
+    packet_pointer: "system-speckit/031-system-speckit-v4/047-v4-changelog-review-fixes"
     last_updated_at: "2026-09-21T16:21:22Z"
     last_updated_by: "2026-09-21-v4-changelog-review-fixes"
     recent_action: "Applied the 046 review; all gates green"

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/035-doctor-command-routing"
+    packet_pointer: "system-skill-advisor/030-doctor-command-surfacing/002-doctor-command-routing"
     last_updated_at: "2026-10-15T16:30:00Z"
     last_updated_by: "speckit-plan"
     recent_action: "Authored one acceptance criterion per requirement"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-skill-advisor/035-doctor-command-routing
+**Packet:** system-skill-advisor/030-doctor-command-surfacing/002-doctor-command-routing
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-15

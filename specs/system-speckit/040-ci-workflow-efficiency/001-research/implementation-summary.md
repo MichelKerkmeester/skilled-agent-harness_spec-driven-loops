@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/053-ci-workflow-efficiency/001-research"
+    packet_pointer: "system-speckit/040-ci-workflow-efficiency/001-research"
     last_updated_at: "2026-10-23T08:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Completed the 20-iteration research and synthesized research.md"

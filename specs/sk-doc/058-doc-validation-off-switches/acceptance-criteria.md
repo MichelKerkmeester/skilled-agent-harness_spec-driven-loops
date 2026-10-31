@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/062-doc-validation-off-switches"
+    packet_pointer: "sk-doc/058-doc-validation-off-switches"
     last_updated_at: "2026-09-28T11:08:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Met AC-008, the comment rule in all four readers of hook-flags.env"
@@ -42,7 +42,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/062-doc-validation-off-switches
+**Packet:** sk-doc/058-doc-validation-off-switches
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-28

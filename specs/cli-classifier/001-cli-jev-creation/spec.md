@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/001-cli-jev-creation"
+    packet_pointer: "cli-classifier/001-cli-jev-creation"
     last_updated_at: "2026-09-20T11:30:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Phases 001 to 004 complete; phase 005 authored the parent closeout metadata"
@@ -57,7 +57,7 @@ _memory:
 | **Created** | 2026-09-20 |
 | **Branch** | `main` |
 | **Parent Spec** | None (top-level packet) |
-| **Parent Packet** | cli-jev/001-cli-jev-creation |
+| **Parent Packet** | cli-classifier/001-cli-jev-creation |
 | **Predecessor** | `071-cli-hermes-creation` (structural precedent: the most recent hub-mode creation packet, phased the same way) |
 | **Successor** | None |
 | **Handoff Criteria** | Phase 001 pins the jev contract live and tags every claim source-read or live-verified; phase 002 ships a packet whose declared hard rules phase 003 implements as a bijection; phase 003 registers the mode on every routing surface and refreshes the compiled-serving manifest; phase 004's catalog and playbook pass both package validators; phase 005 reconciles the parent metadata and the recursive strict gate prints PASSED. A mode without a working `jev` binary is never routable, and the seven existing modes are untouched. |
@@ -102,7 +102,7 @@ Add `cli-jev` as the hub's eighth mode and its first `packetKind: "transport"`, 
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/**` | Create | 001 | Source map, live pin and probe matrix |
+| `specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/**` | Create | 001 | Source map, live pin and probe matrix |
 | `.skilled/skills/cli-external-orchestration/cli-jev/**` | Create | 002 | Skill packet: SKILL.md, README, references, assets, changelog, benchmark |
 | `.skilled/skills/cli-external-orchestration/{mode-registry.json,hub-router.json,ROUTER.md,SKILL.md,README.md,description.json,graph-metadata.json,leaf-manifest.json,changelog/v1.6.0.0.md}` | Modify | 003 | Register the eighth mode and its transport axis |
 | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` and its suite; `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` and its fixtures | Modify | 003 | Dispatch shape plus the eight implemented checks |

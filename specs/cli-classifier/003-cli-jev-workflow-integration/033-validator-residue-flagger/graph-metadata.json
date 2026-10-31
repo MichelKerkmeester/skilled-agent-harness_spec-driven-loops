@@ -208,7 +208,7 @@
     ],
     "causal_summary": "A document can pass every validator and still hold a correctness or traceability defect, because no validator checks either (`research.md:475`)",
     "created_at": "2026-09-29T12:42:44Z",
-    "last_save_at": "2026-10-31T13:25:31.111Z",
+    "last_save_at": "2026-10-31T14:03:51.840Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:429c35e16f35b330b984a992503eec589355b6cb352ac78f8f3d679121cad132",
+    "source_fingerprint": "sha256:152026cb4b5e256d988dfa52de00c6114291fe411e459d61711f131c671c11be",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6eaf0386f716c22c2f126540378c5aded65f6e1f14fc1af52a4d3f48abae9b2a",
       "plan.md": "c2daae88f85ceda1a3517fd493b864bd6bac2bf9311a93407dce2db8f7221b95",
       "tasks.md": "416f6ffffff186ce2dc13bc38400fca804d8fd029528d8eb8eaaaf44575b1b49",
-      "implementation-summary.md": "63777816ca9885ee3a0317b8385cfcb5ec234856dacca296b1e0116aa6c45a0c"
+      "implementation-summary.md": "11edd8abc271a6b001d9653af52ab092a190bbc9a7b8e5fd6ba4430e3be9cb38"
     },
     "last_active_at": null
   }

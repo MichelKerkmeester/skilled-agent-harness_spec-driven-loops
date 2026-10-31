@@ -134,7 +134,7 @@ Every run below happened in this worktree on 2026-10-30, from the worktree root.
 | T025 | the same run, `scratch/t018-alignment-run.md:69` and `:207` | 0 | Each rerun is `apply <target> <flags>` with no write switch: it prints the plan and closes on `Apply gate: no writes without --apply.` at exit 0, and the test asserts the four flags in both the rerun and the apply phases |
 | T026 | `bash DOC/scripts/route-validate.sh` | 0 | `OK: route-validate — 20 routes validated, 3 warnings`, with `L1: all 52 route script invocations are invoked by their workflow YAML`; the route declares `scratch_dir` and the preserve call names `{scratch_dir}/snapshot` and `{scratch_dir}/staging` |
 | T027 | the contract test's undo, invariant and STALE_PLAN assertions | 0 | The undo phase names one `cp`/`cp -R` per overwritten file, one `rm`/`rm -r` per created path and the `Check:` line; the invariant names the advisor graph as rebuilt rather than backed up; no surface names `git restore` |
-| T028 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/075-doctor-sk-skill-command/006-convert-plumbing --strict` | 0 | `RESULT: PASSED`, with `AC_COVERAGE advisory: 9/9 ACs have evidence` |
+| T028 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/067-doctor-sk-skill-command/006-convert-plumbing --strict` | 0 | `RESULT: PASSED`, with `AC_COVERAGE advisory: 9/9 ACs have evidence` |
 
 Two more checks were run because the bridge activation reaches the scorer beyond the doctor routes:
 

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/037-advisor-daemon-memory/003-reap-orphaned-model-server"
+    packet_pointer: "system-skill-advisor/021-model-server-lifecycle/002-advisor-daemon-memory/003-reap-orphaned-model-server"
     last_updated_at: "2026-10-21T14:17:16Z"
     last_updated_by: "orchestrator"
     recent_action: "Shipped the orphan reap, fixed the review findings, proved it live"

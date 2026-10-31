@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The menu text in `spec-gate-core.mjs` offers \"C) Use a related spec folder, including a phase child\" with no series parent, and the Pi dialog says only \"Use a related folder or phase child\"",
     "created_at": "2026-10-07T09:58:44Z",
-    "last_save_at": "2026-10-31T13:26:24.658Z",
+    "last_save_at": "2026-10-31T13:58:17.231Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9bf1a53a8a5a7df91f7e078989c441c3cfaaa68f6e7ee10178b05a9dff68690c",
+    "source_fingerprint": "sha256:d0e152f383f9c25b5d0b82ecf8f8e8c66f42d362bf1b272c3ff61933330226ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ccdf00816d5bc8fc24d743a482d8c2e549decb1562be03a9602bc72fa397ef2d",

@@ -7,14 +7,14 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/037-derived-artifact-registry/002-transactional-remint"
+    packet_pointer: "system-speckit/031-system-speckit-v4/037-derived-artifact-registry/002-transactional-remint"
     last_updated_at: "2026-09-11T06:37:40Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Meet, waive or supersede the open criteria"
     blockers: []
     key_files:
-      - "specs/system-speckit/033-system-speckit-v4/037-derived-artifact-registry/002-transactional-remint/spec.md"
+      - "specs/system-speckit/031-system-speckit-v4/037-derived-artifact-registry/002-transactional-remint/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-002-transactional-remint"
@@ -37,7 +37,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/037-derived-artifact-registry/002-transactional-remint
+**Packet:** system-speckit/031-system-speckit-v4/037-derived-artifact-registry/002-transactional-remint
 **Level:** 3
 **Status:** Draft
 **Date:** 2026-09-11

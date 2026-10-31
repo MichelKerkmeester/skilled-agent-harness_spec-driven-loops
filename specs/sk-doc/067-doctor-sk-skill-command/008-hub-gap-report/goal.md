@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/075-doctor-sk-skill-command/008-hub-gap-report"
+    packet_pointer: "sk-doc/067-doctor-sk-skill-command/008-hub-gap-report"
     last_updated_at: "2026-10-30T10:14:00Z"
     last_updated_by: "claude-opus-worker"
     recent_action: "Executed every completion criterion again after the review fixes"

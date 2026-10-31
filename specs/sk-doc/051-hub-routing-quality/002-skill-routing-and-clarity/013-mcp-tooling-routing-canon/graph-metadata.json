@@ -204,7 +204,7 @@
     ],
     "causal_summary": "53 of the 54 SKILL.md files end with a `## MACHINE ROUTER` section",
     "created_at": "2026-10-29T06:35:59Z",
-    "last_save_at": "2026-10-31T13:25:48.552Z",
+    "last_save_at": "2026-10-31T14:01:37.787Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a145eea1456b2d087a259990073428310f6a149d05de9e35bf82bb5e308e6fea",
+    "source_fingerprint": "sha256:fe362d5d3a1d2cdecca32e3b6d71352b45fc1029b97f0762e4d8af334bfad7b9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ffb8629694844d8ab44698c28625c9c1cea246f1ea2c3d4a0e36c40673b9f5f6",

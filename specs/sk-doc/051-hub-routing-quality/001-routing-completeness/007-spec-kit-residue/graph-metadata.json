@@ -54,13 +54,19 @@
       ".opencode/skills/system-spec-kit/runtime/cli/tests/generate-context-cli-authority.vitest.ts",
       ".opencode/skills/system-spec-kit/runtime/cli/tests/tree-thinning.vitest.ts",
       ".opencode/skills/system-spec-kit/runtime/cli/tests/progressive-validation.vitest.ts",
+      "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/decision-record.md",
+      "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/tasks.md",
+      "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/acceptance-criteria.md",
+      "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/spec.md",
+      "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/implementation-summary.md",
+      "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/goal.md",
       "specs/descriptions.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/spec.md",
         "source": "derived"
       },
       {
@@ -72,31 +78,31 @@
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/tasks.md",
         "source": "derived"
       },
       {
         "name": "acceptance-criteria.md",
         "kind": "doc",
-        "path": "acceptance-criteria.md",
+        "path": "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/acceptance-criteria.md",
         "source": "derived"
       },
       {
         "name": "goal.md",
         "kind": "doc",
-        "path": "goal.md",
+        "path": "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/goal.md",
         "source": "derived"
       },
       {
         "name": "decision-record.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/implementation-summary.md",
         "source": "derived"
       },
       {
@@ -204,7 +210,7 @@
     ],
     "causal_summary": "The suite does not complete",
     "created_at": "2026-09-02T16:34:09Z",
-    "last_save_at": "2026-10-31T13:25:47.941Z",
+    "last_save_at": "2026-10-31T14:01:36.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d6b4e7062ef9676f3e2dd43c00e31a294ebc99c0d773e82eac8e18718c31f89c",
+    "source_fingerprint": "sha256:f4ef545f3da658fd5a6236a48d01d71bddc4fab31add544170e46160d2a6240b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "da4a3b0f8de27a1d187b39da8b537056dbfad62dcd366a30f9097eaae7b65f60",
       "plan.md": "804d00fdf338df814002cef82732aada51554a342a7a363f13d5ea9c10f3c05f",
       "tasks.md": "bfa7fba6240591d50f7cdd376a89a673d21a830b096613a46da15ecd2662b78a",
-      "decision-record.md": "dc348705fa36f7b1a91997784b2f9ed4e51881e75d9da78777afde405d38e1ba",
-      "implementation-summary.md": "85a40d7f44c1b318480b533047c706bc22f2dd18631dc2f6194d75786564f81f"
+      "decision-record.md": "b93208637c7d5b6ed95bea69d93e7f517a5a1cb3b01ce6e9a3a828e75b03d056",
+      "implementation-summary.md": "14414d3ce672b63db0d3be13948bd6b336a1f9f6cb5a37bd7d54dabac37c8f57"
     },
     "last_active_child_id": null,
     "last_active_at": null

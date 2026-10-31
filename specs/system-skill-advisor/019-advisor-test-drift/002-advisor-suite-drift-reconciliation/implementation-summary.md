@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/021-advisor-suite-drift-reconciliation"
+    packet_pointer: "system-skill-advisor/019-advisor-test-drift/002-advisor-suite-drift-reconciliation"
     last_updated_at: "2026-09-07T20:05:00Z"
     last_updated_by: "claude-code"
     recent_action: "Resumed and landed the parity re-baseline"
@@ -32,7 +32,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 021-advisor-suite-drift-reconciliation |
+| **Spec Folder** | 002-advisor-suite-drift-reconciliation |
 | **Completed** | 2026-08-15 |
 | **Level** | 2 |
 | **Executor** | cli-codex `gpt-5.6-luna` max/fast (guardrailed) |

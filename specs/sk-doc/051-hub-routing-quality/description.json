@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/051-hub-routing-quality",
+  "description": "Hub routing completeness and clarity",
+  "keywords": [
+    "hub",
+    "routing",
+    "quality"
+  ],
+  "lastUpdated": "2026-10-31T13:31:06.000Z",
+  "specId": "051",
+  "folderSlug": "hub-routing-quality",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -51,7 +51,9 @@
       "review/luna-halt-analysis.md",
       "review/deep-review-findings-registry.json",
       "review/luna-wave/deep-review-findings-registry.json",
-      ".opencode/package.json"
+      ".opencode/package.json",
+      "specs/system-speckit/031-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/luna-halt-analysis.md",
+      "specs/system-speckit/031-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/review-report.md"
     ],
     "entities": [
       {
@@ -201,7 +203,7 @@
     ],
     "causal_summary": "v4.0.0.3 was released after 633 commits across about 45 spec packets",
     "created_at": "2026-10-05T21:03:37Z",
-    "last_save_at": "2026-10-31T13:27:09.566Z",
+    "last_save_at": "2026-10-31T13:59:28.943Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +214,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1f467beef3a7eedbec440cf107d1ae99e81c07c1b608f86796ba5c7dee273a4d",
+    "source_fingerprint": "sha256:0dfa62f79e9e8da59175ca737e020f22878c7893eef4955a64aa76af4efa4b3b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "321c64134ddf0e959380c5d186a069b956c7f61d252033323a3e81d6cf15425f",

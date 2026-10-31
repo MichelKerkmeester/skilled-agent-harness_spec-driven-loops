@@ -19,7 +19,7 @@
   "folderSlug": "reverify-follow-ups",
   "parentChain": [
     "system-skill-advisor",
-    "030-pi-skill-orchestrator-based-research-refinement"
+    "027-pi-skill-orchestrator-based-research-refinement"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

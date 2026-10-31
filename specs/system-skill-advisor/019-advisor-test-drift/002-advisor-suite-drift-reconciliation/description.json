@@ -19,10 +19,11 @@
     "hooks"
   ],
   "lastUpdated": "2026-09-07T19:42:24.812Z",
-  "specId": "021",
+  "specId": "002",
   "folderSlug": "advisor-suite-drift-reconciliation",
   "parentChain": [
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "019-advisor-test-drift"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

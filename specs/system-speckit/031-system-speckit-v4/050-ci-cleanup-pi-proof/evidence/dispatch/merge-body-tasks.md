@@ -22,5 +22,5 @@ OLD: | P1 Items | 13 | 11/13 |
 NEW: | P1 Items | 13 | 13/13 |
 
 VERIFY - run these, paste each command with its result line
-  grep -c '^- \[ \]' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md          # expect 4
-  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md    # expect 30
+  grep -c '^- \[ \]' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md          # expect 4
+  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md    # expect 30

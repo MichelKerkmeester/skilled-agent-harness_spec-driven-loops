@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/015-shared-package-post-remediation-cleanup"
+    packet_pointer: "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/015-shared-package-post-remediation-cleanup"
     last_updated_at: "2026-09-07T07:05:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Closed the packet with every gate observed green"

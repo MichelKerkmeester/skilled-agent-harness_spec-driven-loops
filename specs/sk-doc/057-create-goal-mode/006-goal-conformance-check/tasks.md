@@ -14,7 +14,7 @@ contextType: "general"
 
 <!-- SPECKIT_LEVEL: 2 -->
 
-These tasks turn phase 006's planned checks into a verifiable handoff. Setup resolves the owner choice, incoming fixture evidence and mode packet before implementation because those inputs determine the route and paths (specs/sk-doc/060-create-goal-mode/spec.md:122,146,157). Implementation keeps one positive fixture and six isolated negative controls. Verification runs the selected route's fixtures, reports read-only counts for active specs goals and records strict phase validation. Each task below records its evidence.
+These tasks turn phase 006's planned checks into a verifiable handoff. Setup resolves the owner choice, incoming fixture evidence and mode packet before implementation because those inputs determine the route and paths (specs/sk-doc/057-create-goal-mode/spec.md:122,146,157). Implementation keeps one positive fixture and six isolated negative controls. Verification runs the selected route's fixtures, reports read-only counts for active specs goals and records strict phase validation. Each task below records its evidence.
 
 ---
 
@@ -35,17 +35,17 @@ These tasks turn phase 006's planned checks into a verifiable handoff. Setup res
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-- [x] T001 [P0] Confirm phase 001's checker-owner decision and record whether the local-checker or validator-amendment route applies (specs/sk-doc/060-create-goal-mode/spec.md:157). Evidence: phase 001 chose both, a local checker plus a recorded validator amendment request (`specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/mode-boundary.md:57`); both routes ran.
-- [x] T002 [P1] Confirm phase 005's budget-cut fixture and chat-slice evidence meets the incoming handoff (specs/sk-doc/060-create-goal-mode/spec.md:146). Evidence: phase 005 recorded the cut fixture before and after, `packet_budget=over` then `ok` with five criteria kept (`specs/sk-doc/060-create-goal-mode/005-budget-and-chat-slice-handoff/scratch/budget-fixture-evidence.md:25`).
+- [x] T001 [P0] Confirm phase 001's checker-owner decision and record whether the local-checker or validator-amendment route applies (specs/sk-doc/057-create-goal-mode/spec.md:157). Evidence: phase 001 chose both, a local checker plus a recorded validator amendment request (`specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/mode-boundary.md:57`); both routes ran.
+- [x] T002 [P1] Confirm phase 005's budget-cut fixture and chat-slice evidence meets the incoming handoff (specs/sk-doc/057-create-goal-mode/spec.md:146). Evidence: phase 005 recorded the cut fixture before and after, `packet_budget=over` then `ok` with five criteria kept (`specs/sk-doc/057-create-goal-mode/005-budget-and-chat-slice-handoff/scratch/budget-fixture-evidence.md:25`).
 <!-- /ANCHOR:phase-1 -->
 
 ---
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-- [x] T003 [P0] On the local route, create .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs and reuse goal-slice.cjs for parent budget measurement; on the amendment route, record the exact requested validator change in implementation-summary.md without editing the validator (.skilled/hooks/goal/lib/goal-slice.cjs:431-446; specs/sk-doc/060-create-goal-mode/spec.md:94-99,157). Evidence: `.skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:18` imports `goal-slice.cjs`; the four checks start at `.skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:230`, `:258`, `:296` and `:308`. The amendment request is recorded in `implementation-summary.md`.
+- [x] T003 [P0] On the local route, create .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs and reuse goal-slice.cjs for parent budget measurement; on the amendment route, record the exact requested validator change in implementation-summary.md without editing the validator (.skilled/hooks/goal/lib/goal-slice.cjs:431-446; specs/sk-doc/057-create-goal-mode/spec.md:94-99,157). Evidence: `.skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:18` imports `goal-slice.cjs`; the four checks start at `.skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:230`, `:258`, `:296` and `:308`. The amendment request is recorded in `implementation-summary.md`.
 - [x] T004 [P0] Add one positive and six isolated negative controls under .skilled/skills/sk-doc/sk-create-goal/scripts/tests/fixtures/; include a row-removal case whose phase name remains elsewhere (specs/sk-doc/z_archive/040-create-repo-rules/009-hub-routing-guardrails/implementation-summary.md:85-88,104). Evidence: the fixture builder writes one positive packet, a regression positive and six negatives into a temp directory; the row-removal case keeps `001-contract` in a criterion (`.skilled/skills/sk-doc/sk-create-goal/scripts/tests/check-goal.test.cjs:38`).
-- [x] T005 [P1] On the local route, add the read-only active-corpus report with scanned-goal and per-check counts; on the amendment route, run the owner-provided read-only report if the amended validator is available or record the blocker in implementation-summary.md and leave the report Unmet. Evidence: the no-argument run prints `goals_scanned=300`, `phase_parents_scanned=30` and four counts (`specs/sk-doc/060-create-goal-mode/006-goal-conformance-check/scratch/corpus-report.txt:1`); `git status` showed no corpus goal changed.
+- [x] T005 [P1] On the local route, add the read-only active-corpus report with scanned-goal and per-check counts; on the amendment route, run the owner-provided read-only report if the amended validator is available or record the blocker in implementation-summary.md and leave the report Unmet. Evidence: the no-argument run prints `goals_scanned=300`, `phase_parents_scanned=30` and four counts (`specs/sk-doc/057-create-goal-mode/006-goal-conformance-check/scratch/corpus-report.txt:1`); `git status` showed no corpus goal changed.
 - [x] T010 [P1] Add the `scripts/check-goal.cjs <packet>` run to the `SKILL.md` verification step and list the checker in `references/README.md` (operator-approved amendment). Evidence: `.skilled/skills/sk-doc/sk-create-goal/SKILL.md:110` runs the checker before handoff and `.skilled/skills/sk-doc/sk-create-goal/references/README.md:34` lists it.
 <!-- /ANCHOR:phase-2 -->
 
@@ -54,9 +54,9 @@ These tasks turn phase 006's planned checks into a verifiable handoff. Setup res
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 - [x] T006 [P0] Run node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/check-goal.test.cjs on the local route; on the amendment route use the validator owner's documented fixture entry point if supplied and record any missing command as UNKNOWN. Evidence: `node --test` exit 0, 8 tests, 8 pass, 0 fail, on 2026-09-26 (`.skilled/skills/sk-doc/sk-create-goal/scripts/tests/check-goal.test.cjs:66`).
-- [x] T007 [P0] Run node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs with no arguments on the local route; on the amendment route use the owner's documented read-only scan if supplied. Record scan and finding counts or the unresolved blocker without fixing files. Evidence: counts are missing-binding-row 203, placeholder 83, criteria-count 35 and parent-budget 4; one unreadable test fixture is reported as ERROR and the run exits 2 (`specs/sk-doc/060-create-goal-mode/006-goal-conformance-check/scratch/corpus-report.txt:332`). No file was repaired.
-- [x] T008 [P0] Run bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/060-create-goal-mode/006-goal-conformance-check --strict and record its summary and rule IDs. Evidence: strict validation `RESULT: PASSED` on 2026-09-26, recorded in `implementation-summary.md`.
-- [x] T009 [P1] Give phase 007 the fixture outcomes and selected owner route; satisfy the parent handoff (specs/sk-doc/060-create-goal-mode/spec.md:147). Evidence: the handoff to phase 007 names each negative, its failing check and the positive results in `implementation-summary.md`.
+- [x] T007 [P0] Run node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs with no arguments on the local route; on the amendment route use the owner's documented read-only scan if supplied. Record scan and finding counts or the unresolved blocker without fixing files. Evidence: counts are missing-binding-row 203, placeholder 83, criteria-count 35 and parent-budget 4; one unreadable test fixture is reported as ERROR and the run exits 2 (`specs/sk-doc/057-create-goal-mode/006-goal-conformance-check/scratch/corpus-report.txt:332`). No file was repaired.
+- [x] T008 [P0] Run bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode/006-goal-conformance-check --strict and record its summary and rule IDs. Evidence: strict validation `RESULT: PASSED` on 2026-09-26, recorded in `implementation-summary.md`.
+- [x] T009 [P1] Give phase 007 the fixture outcomes and selected owner route; satisfy the parent handoff (specs/sk-doc/057-create-goal-mode/spec.md:147). Evidence: the handoff to phase 007 names each negative, its failing check and the positive results in `implementation-summary.md`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -117,7 +117,7 @@ These tasks turn phase 006's planned checks into a verifiable handoff. Setup res
 - [x] CHK-020 [P0] Every required conformance check has one isolated negative control. (`.skilled/skills/sk-doc/sk-create-goal/scripts/tests/check-goal.test.cjs:38`)
 - [x] CHK-021 [P0] The positive fixture passes the same selected check. (`.skilled/skills/sk-doc/sk-create-goal/scripts/tests/check-goal.test.cjs:66`)
 - [x] CHK-022 [P0] The row-removal test keeps the phase name elsewhere and still fails. (`.skilled/skills/sk-doc/sk-create-goal/scripts/tests/check-goal.test.cjs:38`)
-- [x] CHK-023 [P1] The live-corpus output reports scanned and finding counts. (`specs/sk-doc/060-create-goal-mode/006-goal-conformance-check/scratch/corpus-report.txt:1`)
+- [x] CHK-023 [P1] The live-corpus output reports scanned and finding counts. (`specs/sk-doc/057-create-goal-mode/006-goal-conformance-check/scratch/corpus-report.txt:1`)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -126,7 +126,7 @@ These tasks turn phase 006's planned checks into a verifiable handoff. Setup res
 ## Fix Completeness
 - [x] CHK-FIX-001 [P0] The four check classes map to binding row, placeholder, criterion-count and parent-budget defects. (`.skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:38`)
 - [x] CHK-FIX-002 [P0] The phase 009 row-level matching failure is covered by a removal control (specs/sk-doc/z_archive/040-create-repo-rules/009-hub-routing-guardrails/implementation-summary.md:85-88,104). (`.skilled/skills/sk-doc/sk-create-goal/scripts/tests/check-goal.test.cjs:38`)
-- [x] CHK-FIX-003 [P1] Existing corpus defects are reported without edits. (`specs/sk-doc/060-create-goal-mode/006-goal-conformance-check/scratch/corpus-report.txt:1`)
+- [x] CHK-FIX-003 [P1] Existing corpus defects are reported without edits. (`specs/sk-doc/057-create-goal-mode/006-goal-conformance-check/scratch/corpus-report.txt:1`)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -135,7 +135,7 @@ These tasks turn phase 006's planned checks into a verifiable handoff. Setup res
 ## Security
 - [x] CHK-030 [P0] The live scan stays under active specs paths in the workspace. (scan root is `specs/`, `z_archive` excluded, `.skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:28`)
 - [x] CHK-031 [P0] The checker does not write goal documents or use network services. (no write or network call in the checker)
-- [x] CHK-032 [P1] A file read or parse failure appears in the report and fails the run. (`specs/sk-doc/060-create-goal-mode/006-goal-conformance-check/scratch/corpus-report.txt:332`, exit 2)
+- [x] CHK-032 [P1] A file read or parse failure appears in the report and fails the run. (`specs/sk-doc/057-create-goal-mode/006-goal-conformance-check/scratch/corpus-report.txt:332`, exit 2)
 <!-- /ANCHOR:security -->
 
 ---

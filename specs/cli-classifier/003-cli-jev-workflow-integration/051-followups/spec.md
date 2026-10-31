@@ -74,7 +74,7 @@ Phase 050 kept Pi as the default and left open items. 032 is the only feature wi
 - Each transport outcome carries the answering model and, on the Pi route, token usage. 032, 035, 024, 025 and 017 record them
 - At least one other way of wrapping Pi's noul input is measured against the CLI on recorded rows, and adopted only if agreement improves, as an amendment
 - A capture script collects real reviewer outputs for 025 into `~/.skilled/.labels`, unlabeled, with a census line
-- 017 R8: 017's report pins, probability-aware arm and bootstrap (R2, R3 and R6 in `specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/research.md`) move into the classifier-family scorer pattern its siblings share
+- 017 R8: 017's report pins, probability-aware arm and bootstrap (R2, R3 and R6 in `specs/cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/research.md`) move into the classifier-family scorer pattern its siblings share
 - 026, 029 and 031 are retired: final verdicts recorded, and their catalog and playbook entries marked retired
 - Delete the code of every killed or retired Jev feature (002, 006, 019, 027, 028, 033, 026, 029 and 031) with its tests, catalog and playbook entries and doc mentions, and the Jev arm of the four without headroom (003, 005, 021 and 034). Helpers a live feature imports move first, and code with a live non-Jev use stays. Spec folders and run data stay as the record
 

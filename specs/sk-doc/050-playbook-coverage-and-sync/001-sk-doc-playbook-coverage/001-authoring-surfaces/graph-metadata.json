@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Each of these takes a request and emits a new component that something else will load",
     "created_at": "2026-09-01T11:47:59Z",
-    "last_save_at": "2026-10-31T13:25:43.651Z",
+    "last_save_at": "2026-10-31T14:01:30.964Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:02cc070eb34b7c2c7d4765fab95e06bf8528e2d2b13282e7aecff7e747877a1c",
+    "source_fingerprint": "sha256:300630dcde1bf2627ced3e2a061663de65f767765dd83a05be34d5279cde34fc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bdd076b009c7f189765d6956a927db6bc9e95bda49bdfea8d6ab51e13cf26531",

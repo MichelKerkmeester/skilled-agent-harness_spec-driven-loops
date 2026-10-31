@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/048-doctor-command-audit/007-parent-skill"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/007-parent-skill"
     last_updated_at: "2026-10-02T21:03:04Z"
     last_updated_by: "implementation"
     recent_action: "Applied the parent-skill fix: workflow contract, phase order, labels"
@@ -101,7 +101,7 @@ Audited first: read the router, the route entry, the workflow, the checker and t
 | `bash .skilled/commands/doctor/scripts/route-validate.sh` | Exit 0 — "OK: route-validate — 9 routes validated, 2 warnings"; J1 parity PASS. The two warnings are the informational duplicate `--scope` and `--dir` flags |
 | `node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs` (batch gate) | `STATUS=OK`, exit 0 |
 | `bash .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh` (batch gate) | `GUARD PASS` |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/048-doctor-command-audit/007-parent-skill --strict` | `RESULT: PASSED`; Summary: Errors: 0, Warnings: 0 |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/007-parent-skill --strict` | `RESULT: PASSED`; Summary: Errors: 0, Warnings: 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -114,7 +114,7 @@ Audited first: read the router, the route entry, the workflow, the checker and t
 3. **The route validator does not verify workflow activities.** Its script-existence assertion checks `script_invocations` paths, so `route-validate.sh` passing does not by itself prove that phase 0 invokes every route script. The route's ordering comment and the workflow activity list are the evidence for that order.
 4. **The recorded run predates the label edit.** `scratch/doctor-run.log:24` shows the earlier `Mode 5-9: canon (FAIL)` label. The edit is descriptive only, so the audit results recorded in that log are unaffected.
 
-**Follow-up status.** Items 2 and 3 are resolved by `specs/system-speckit/049-doctor-audit-followups` phase 003: the fixtures pass, and `route-validate` assertion L1 checks that each route script is invoked by its workflow. Items 1 and 4 are observations.
+**Follow-up status.** Items 2 and 3 are resolved by `specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups` phase 003: the fixtures pass, and `route-validate` assertion L1 checks that each route script is invoked by its workflow. Items 1 and 4 are observations.
 <!-- /ANCHOR:limitations -->
 
 ---

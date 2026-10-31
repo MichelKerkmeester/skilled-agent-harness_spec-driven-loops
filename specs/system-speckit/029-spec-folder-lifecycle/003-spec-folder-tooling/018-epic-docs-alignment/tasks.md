@@ -87,8 +87,8 @@ Changelog lane
 - [x] T036 F26 (supporting): the SKILL.md version moves from 2.7.0.0 to 2.7.1.0 (`.skilled/skills/system-spec-kit/SKILL.md`)
 
 Status lane
-- [x] T037 F27 (instance-only): the 034 parent spec sets row 16 to Complete, and sets row 18 to Complete with its placeholder focus replaced (`specs/system-speckit/034-spec-folder-tooling/spec.md`)
-- [x] T038 F27 (instance-only): the 16 phase-map rows of the 016 parent move from Planned to Complete, after each child spec.md was read as Complete (`specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/spec.md`)
+- [x] T037 F27 (instance-only): the 034 parent spec sets row 16 to Complete, and sets row 18 to Complete with its placeholder focus replaced (`specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/spec.md`)
+- [x] T038 F27 (instance-only): the 16 phase-map rows of the 016 parent move from Planned to Complete, after each child spec.md was read as Complete (`specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/spec.md`)
 <!-- /ANCHOR:phase-2 -->
 
 ---

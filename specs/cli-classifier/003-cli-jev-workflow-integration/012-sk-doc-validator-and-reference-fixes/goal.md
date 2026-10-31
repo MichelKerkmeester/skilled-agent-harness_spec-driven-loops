@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes"
     last_updated_at: "2026-09-27T19:45:00Z"
     last_updated_by: "closure-leaf"
     recent_action: "Ticked all five criteria from the build evidence of a9dbac98ef"
@@ -124,7 +124,7 @@ and findings belong here.
 | Dispatch briefs kept (build) | `scratch/briefs/` stays as the record of what each executor was sent, so `scratch/` is not emptied to `.gitkeep` as T019 asked. Source: the orchestrator's build evidence |
 | Baselines not in scratch (build) | T003 and T004 named `scratch/suite-baseline.txt` and `scratch/fallback-baseline.txt`. The baselines are recorded by name in the orchestrator's build evidence and in this log instead. Source: `ls -la scratch/` shows only `.gitkeep` and `briefs/` |
 | Stale planning pins (build) | `validate_document.py` changed after planning (`666abc1a22e`, `e33f1a6ff3e`), moving its pins by 11 lines: README default `:266-267`, `detect_document_type` `:221-267`, `validate_document()` `:1574-1678`. `research.md` has 159 lines, not 160, and `memory-pipeline-regressions.vitest.ts` 62, not 63. Three test files import `detect_document_type`, not five. `spec.md`, `plan.md` and `tasks.md` now say so, citing by function name where the build shifts a line. Source: `scratch/briefs/00-index.md` premises section |
-| Parent changelog (build) | `spec.md` Phase Context asks for a refresh of `../changelog/`. `specs/cli-jev/003-cli-jev-workflow-integration/changelog/` does not exist, so there was nothing to refresh. Source: the orchestrator's build evidence |
+| Parent changelog (build) | `spec.md` Phase Context asks for a refresh of `../changelog/`. `specs/cli-classifier/003-cli-jev-workflow-integration/changelog/` does not exist, so there was nothing to refresh. Source: the orchestrator's build evidence |
 | `total_issues` on a fallback (build) | The notice joins the result's issue list, so `total_issues` rises by 1 on a fallback document (0 to 1 for the playbook root index). Every JSON key stays, as NFR-R02 requires, and no caller that omits `--type` reads `total_issues`. Source: `scratch/briefs/00-index.md` design note |
 | Quoted MCP token (review finding, P2) | `quick_validate.py` strips only whitespace from `allowed-tools` tokens, so a quoted token such as `"mcp__code_mode"` still passes. It predates this phase and sits outside REQ-002, so it is recorded for the `sk-doc` owner, not fixed. Source: the cross-family review |
 <!-- /ANCHOR:log -->

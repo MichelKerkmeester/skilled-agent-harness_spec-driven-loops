@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/011-advisor-import-and-ollama-consolidation"
+    packet_pointer: "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/011-advisor-import-and-ollama-consolidation"
     last_updated_at: "2026-09-07T21:40:00Z"
     last_updated_by: "implementation-session"
     recent_action: "Recorded the waiver for the advisor suite criterion"

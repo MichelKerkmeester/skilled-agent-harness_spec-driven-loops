@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring"
+    packet_pointer: "system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring"
     last_updated_at: "2026-10-25T10:20:00Z"
     last_updated_by: "markdown"
     recent_action: "Closed the verification checklist and the decision statuses"
@@ -62,13 +62,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/r28-probe.md` holds `4` lines matching `^(set|get|delete|get-after-delete) exit=`, and `specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/plan.md` holds exactly `1` line matching `^D9: (write|print)$`
+- [x] `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/r28-probe.md` holds `4` lines matching `^(set|get|delete|get-after-delete) exit=`, and `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/plan.md` holds exactly `1` line matching `^D9: (write|print)$`
 - [x] `node .skilled/commands/doctor/scripts/ci-report.cjs --json --no-gh` lists as many workflows as `ls .github/workflows/*.yml | wc -l`, and every `switch` value is one of `on`, `off`, `partial`, `missing` or `unknown`
 - [x] `bash .skilled/commands/doctor/scripts/route-validate.sh` exits `0` and prints `17 routes validated`
 - [x] `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check` prints `"status": "fresh"`, and `node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs` prints `STATUS=OK` with `bridges=21`
 - [x] Superseded by ADR-013: `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/surface-detection.test.cjs` exits `0` with at least `9` passing assertions
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring --strict` prints `RESULT: PASSED`
-- [x] `specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/phase-result.md` holds `17 routes validated`, `STATUS=OK`, one 40-hex `newest non-rebuild SHA` and `ephemeral-id hits: 0`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring --strict` prints `RESULT: PASSED`
+- [x] `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/phase-result.md` holds `17 routes validated`, `STATUS=OK`, one 40-hex `newest non-rebuild SHA` and `ephemeral-id hits: 0`
 <!-- /ANCHOR:completion -->
 
 ---

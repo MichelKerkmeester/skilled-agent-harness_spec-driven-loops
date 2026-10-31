@@ -3,7 +3,7 @@ GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
 You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and `SYSTEM_SPEC_GATE_ENFORCE=0` are set in your
 environment, which this repository's AGENTS.md defines as the autonomous child-dispatch exemption: the spec-folder
 question is pre-resolved and MUST NOT be asked. Nobody is at a prompt. The spec folder is:
-  specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation
+  specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation
 Work on the current branch. Proceed directly. Do not print A/B/C/D options or stop to confirm anything.
 
 === BEGIN AGENT PERSONA (resolved runtime path: .claude/agents/review.md, focused summary) ===

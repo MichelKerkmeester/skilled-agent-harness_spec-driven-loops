@@ -175,19 +175,19 @@
     ],
     "causal_summary": "The skill advisor routes by push",
     "created_at": "2026-09-26T06:29:58Z",
-    "last_save_at": "2026-10-31T13:26:16.508Z",
+    "last_save_at": "2026-10-31T13:41:27.210Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:2a910cb0c231bbb8e31a99a044a01adf63ac726c4d4284287ad77d78f8d65a4f",
+    "source_fingerprint": "sha256:fcaf095e5c68a57a59b4277177699c5ab2458f8fe72729fd1adec1ff309147bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1c42c5522b24e4d1decda742c5b2f97e4f19ce6673e76926f25de4fd1e3244a9"
     },
-    "last_active_child_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review",
+    "last_active_child_id": "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review",
     "last_active_at": "2026-09-26T16:54:28.360Z"
   }
 }

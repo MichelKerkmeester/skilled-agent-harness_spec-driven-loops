@@ -40,6 +40,7 @@
       "goal.md",
       "implementation-summary.md",
       ".codex/prompts/design-chart.md",
+      "specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/spec.md",
       ".github/workflows/spec-kit-check.yml",
       ".github/workflows/routing-registry-drift.yml",
       ".codex/prompts/design-diagram.md",
@@ -195,7 +196,7 @@
     ],
     "causal_summary": "The simplification-research program's own report named five items that live on surfaces this program's children never had write authority over, because another session or another packet owns them",
     "created_at": "2026-09-07T15:05:57Z",
-    "last_save_at": "2026-10-31T13:26:55.611Z",
+    "last_save_at": "2026-10-31T13:59:02.987Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +207,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:802a750b6b3d079b58e3e1f8bcb7aeec89473bb1d77217af035d551354cb97c2",
+    "source_fingerprint": "sha256:75c5cd985e7dff5629112e80e8ec70b63d1589cb2c6c5830ba81dd0cc7e40529",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "958a7281cda4e044159433fb465f2193514b9498f002e9516194a752cab4746a",
-      "plan.md": "f31180739588f40345e953fd0d7bcaddc9846825236e5a601205ebeba2b2ae21",
-      "tasks.md": "ee0f8d9185c2190508df596cf51a6a0c01f9a0ac96aa1e438a54e0542dcf650b",
+      "spec.md": "4fe540140c9fb4dae4e5cde37e799677918e89f3f16e84722baa468569b5c44c",
+      "plan.md": "58ba4f5b738716938b36547e60cf17190277bf9efaf2ab3ca955e8387c429ec8",
+      "tasks.md": "1adb959aba969b842b5294c2abf09d8f07a4858e4a16a11d9786e2886c5f6fd0",
       "implementation-summary.md": "4f238db99bcb83afc60ed072bfc6eda6a0b4201fa74fd259c0fa7368ef0bb855"
     },
     "last_active_at": null

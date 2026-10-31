@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/007-source-root-move"
+    packet_pointer: "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/007-source-root-move"
     last_updated_at: "2026-09-17T13:55:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Met every criterion with evidence observed at a06f17bf52 and ec33385ae5"
@@ -44,7 +44,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/007-source-root-move
+**Packet:** system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/007-source-root-move
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-17

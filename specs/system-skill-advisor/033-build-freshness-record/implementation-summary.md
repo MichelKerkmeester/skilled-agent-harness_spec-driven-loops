@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/040-build-freshness-record"
+    packet_pointer: "system-skill-advisor/033-build-freshness-record"
     last_updated_at: "2026-10-30T17:35:00Z"
     last_updated_by: "code-agent"
     recent_action: "Added build prepare and record steps, a contract test, and the 0.17.29.0 release"
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 040-build-freshness-record |
+| **Spec Folder** | 033-build-freshness-record |
 | **Completed** | 2026-10-30 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -108,8 +108,8 @@ The records were deleted by absolute path, the package was built, and the two fi
 | `bash .skilled/commands/doctor/scripts/tests/run-all.sh` | PASS, 7 suites passed, 0 failed, exit 0 |
 | `vitest run tests/dist-build-record-contract.vitest.ts` in the advisor runtime | PASS, 2 tests |
 | The same test with one entry removed from `prebuild` | FAIL as expected on the prepare assertion, restored afterwards |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/040-build-freshness-record --strict` | PASS, `RESULT: PASSED` |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-skill-advisor/040-build-freshness-record` | PASS, no placeholders |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/033-build-freshness-record --strict` | PASS, `RESULT: PASSED` |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-skill-advisor/033-build-freshness-record` | PASS, no placeholders |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -44,6 +44,8 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      "specs/cli-classifier/description.json",
+      "specs/cli-classifier/graph-metadata.json",
       "specs/descriptions.json"
     ],
     "entities": [
@@ -75,6 +77,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": "specs/cli-classifier/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/cli-classifier/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -178,23 +192,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The cli-jev creation packet (former `specs/cli-external-orchestration/074-cli-jev-creation`) records the history of a mode that is being promoted out of the cli-external-orchestration family into its own hub",
     "created_at": "2026-09-20T11:00:11Z",
-    "last_save_at": "2026-10-31T13:25:26.827Z",
+    "last_save_at": "2026-10-31T14:03:47.455Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:05aed4d7d927362c8b741dcccb9bad8d370907b8e433987ce1766dee7bde028a",
+    "source_fingerprint": "sha256:cce9e63c21c473aa9222e17430a22853f508088af3baf5c7b042a7aaa7d2f6bc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea0170904e2d231c70592c10af8c68443e06164534cb143342942dd07a9efbc8",
-      "plan.md": "63a704974c82e46f7ea08a778856da2878baf366c9f8c17b041966d82d9f8937",
-      "tasks.md": "6b7872c9891720ea5c5755e94c4d91be3cb6b18151bdd1d5d003311d4ec41467",
-      "implementation-summary.md": "dbf83f5cd52b64ddd01f5928c1166eaa6b781e1241e324105a26b28305a9fd9d"
+      "spec.md": "28fdbf0712469a29757925010e413b79c738c6e75e7ded099a5c0687881cb77e",
+      "plan.md": "0c453e45c2fb5beef93ccd7f72a6948d3440d3f7c742aefe7312508bdb85c023",
+      "tasks.md": "6a28896681e908353e1ac6458f315f1eabc0ad00bb73b0a63da5c63f87d8d7bf",
+      "implementation-summary.md": "8e676cd40b8759bdfdb913dcf1bae27784d579a8a39d82b8d46096cc468192e6"
     },
     "last_active_at": null
   }

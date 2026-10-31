@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The routing program landed 18 first-parent commits across 507 files",
     "created_at": "2026-10-28T20:35:55Z",
-    "last_save_at": "2026-10-31T13:25:49.185Z",
+    "last_save_at": "2026-10-31T14:01:37.863Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:acaf80329d9972cdf0927fdadbee186e6455ea72a77d051fe9b0f5182cf5b8df",
+    "source_fingerprint": "sha256:7e6d93cba595b945a80324af678b5fc2b69578519412e2a18353457131564ec7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1c3ae2bfaddf6451db1f46cccb7edf444a4d8f484adbf6f34c8cf730ac4222f9",
       "plan.md": "a648e867fe6ab724dc8dca0d9245a62349f58169dcd37d2c78b870a19f6f43dd",
-      "tasks.md": "fba86eb3bedf6f1e0497553d921455798ac62cc50f9df5e72978c44d1c317929",
-      "decision-record.md": "c294e32564707c25adc78072891dc9d272762326947716b160b782f02b162e4b",
+      "tasks.md": "71da117f1e7c040fdd7ff76558c72f7943b8a5b6604cc671c556f59c03b9a7fa",
+      "decision-record.md": "3ac692a88a1be3b226a184ffd7e91cbffd2ebdf7915940aefd87629c9857f873",
       "implementation-summary.md": "29274b751b3bb1985b6405455403d272fcf84c04ed23d5c16edf163570de57fc"
     },
     "last_active_at": null

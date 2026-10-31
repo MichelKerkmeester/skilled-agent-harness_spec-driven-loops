@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/070-repo-doc-debt/006-audit-and-validator-accuracy"
+    packet_pointer: "sk-doc/064-readme-validation-debt/001-repo-doc-debt/006-audit-and-validator-accuracy"
     last_updated_at: "2026-10-27T10:30:00Z"
     last_updated_by: "lane-z2-conductor"
     recent_action: "Recorded what changed and how it was verified"

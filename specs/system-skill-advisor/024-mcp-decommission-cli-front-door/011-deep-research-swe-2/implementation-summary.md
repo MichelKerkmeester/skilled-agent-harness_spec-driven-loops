@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2"
+    packet_pointer: "system-skill-advisor/024-mcp-decommission-cli-front-door/011-deep-research-swe-2"
     last_updated_at: "2026-09-12T07:05:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Five-iteration SWE-2 lineage completed and verified against the repository"

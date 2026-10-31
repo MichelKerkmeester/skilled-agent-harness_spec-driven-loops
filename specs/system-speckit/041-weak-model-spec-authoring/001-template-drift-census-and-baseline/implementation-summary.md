@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/001-template-drift-census-and-baseline"
     last_updated_at: "2026-10-24T00:00:00Z"
     last_updated_by: "conductor"
     recent_action: "Closed phase 001 with a 72-row ledger, a 3-run baseline and a 47-finding review disposition"
     next_safe_action: "Start phase 002 from the verified ledger"
     blockers: []
     key_files:
-      - "specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/tasks.md"
+      - "specs/system-speckit/041-weak-model-spec-authoring/001-template-drift-census-and-baseline/tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "054-weak-model-spec-authoring-planning"

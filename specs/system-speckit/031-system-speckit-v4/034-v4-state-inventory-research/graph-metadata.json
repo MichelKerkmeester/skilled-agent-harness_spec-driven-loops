@@ -207,7 +207,7 @@
     ],
     "causal_summary": "`CHANGELOG-v4.0.0.0.md` in the parent folder was drafted before the memory-database decommission, the runtime rename, the simplification program, the recorded-findings closure and the CI hardening landed",
     "created_at": "2026-09-08T16:16:33.826Z",
-    "last_save_at": "2026-10-31T13:26:55.913Z",
+    "last_save_at": "2026-10-31T13:59:04.601Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,12 +218,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:0465105d42ce2f505302e7aeeca0aed3adc5f60a38b9a093afa72329790a446c",
+    "source_fingerprint": "sha256:8b907196538607b20ef2c52ab5a8d1b9503ef3b51831761a1d04a1cfb400e12d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d21c60fcc739fd1576cbb8f3bd3d4c7255cb11a2c2ed0927a744136eefac878a",
+      "spec.md": "03520cd0c180323ee428a806d1764ba5de52aa04efbf288e24a7edd6f56670c0",
       "plan.md": "eb7172c74466adff66e6ef191ce03d41609d0ff15da4d2dacc6c01ecea91a42a",
-      "tasks.md": "b4b3cfffcf281cfa2b2dc95ec7e3e17324f7addca1ea909487f954105214a1ff",
+      "tasks.md": "b73a3ed637d804f2ff2953309e924388546372eb63b15a1e610276b4d19966b2",
       "implementation-summary.md": "8fb0db7897ca040c84f889ed8e66f703f0a9d656a8898ba6aaef84debdfe74f5",
       "research/research.md": "c70be136fefe0d37d457579cd0bfaf69ec6550c04271fe2e3bf0cc9cc7b8f1f3"
     },

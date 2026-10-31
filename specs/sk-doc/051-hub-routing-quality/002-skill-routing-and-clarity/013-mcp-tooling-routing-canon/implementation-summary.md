@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/013-mcp-tooling-routing-canon"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/013-mcp-tooling-routing-canon"
     last_updated_at: "2026-10-29T06:49:04Z"
     last_updated_by: "claude-opus"
     recent_action: "Moved the mcp-tooling hub to the canon and added RS-005"

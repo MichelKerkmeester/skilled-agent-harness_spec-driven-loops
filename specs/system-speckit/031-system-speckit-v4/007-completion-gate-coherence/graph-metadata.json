@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Make the completion gate return the same verdict whatever the environment, stop counting one fault several times, and remove the checks a packet cannot satisfy from inside itself.",
     "created_at": "2026-08-29T07:44:49.812Z",
-    "last_save_at": "2026-10-31T13:26:36.152Z",
+    "last_save_at": "2026-10-31T13:58:37.726Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1111d99632ff773390e051fd870ffbed1b014e89a4cc07540dd5ccd1fd48e74a",
+    "source_fingerprint": "sha256:f8c81db8c59f785e47c3af70c5f921fc47e0c7e9d8870de0ef8c41651e3c2153",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "05f627ef7faabd58d517a3ce6a7300f7a7cd54a4335b049b665d41e129c36190",
       "plan.md": "19d785f24b1b09ad5c05424d6a7c6d7684df35eae04ce059128595397207d1be",
       "tasks.md": "7573b6e4e137975fa4b516806fb7bcda8c56b7737f066b704dc14cee807f5ca7",
-      "decision-record.md": "f7f88f06dacb25ea93a9df61a2fc47b5ca6293321b6b89d8f84c77679da08952",
+      "decision-record.md": "f5848dce9fdb3c7c6e108285b0351c054a6fd01811bee0f916296c7e0064cabb",
       "implementation-summary.md": "065208254d10e8396559ad917c3a471f4a6e9736a66c6621009f37e6617bb93a"
     },
     "last_active_child_id": null,

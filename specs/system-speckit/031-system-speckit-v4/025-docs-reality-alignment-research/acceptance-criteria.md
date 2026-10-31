@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/025-docs-reality-alignment-research"
+    packet_pointer: "system-speckit/031-system-speckit-v4/025-docs-reality-alignment-research"
     last_updated_at: "2026-09-06T08:10:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Verified every criterion from the final state"

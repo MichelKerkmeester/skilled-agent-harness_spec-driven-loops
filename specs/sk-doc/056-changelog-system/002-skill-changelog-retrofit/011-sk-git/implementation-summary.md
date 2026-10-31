@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/059-skill-changelog-retrofit/011-sk-git"
+    packet_pointer: "sk-doc/056-changelog-system/002-skill-changelog-retrofit/011-sk-git"
     last_updated_at: "2026-09-26T08:26:38Z"
     last_updated_by: "generate-context"
     recent_action: "Committed and pushed the sk-git rewrites in 1b6cb5dc0e"
     next_safe_action: "Close the parent packet"
     blockers: []
     key_files:
-      - "specs/sk-doc/059-skill-changelog-retrofit/scratch/lists/sk-git.txt"
+      - "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/scratch/lists/sk-git.txt"
     session_dedup:
       fingerprint: "sha256:a52ddbca063e6f5aea92b7e785a0df835e4b243c4d8b13babcd61363d919b314"
       session_id: "fb879d4c-5543-4760-8339-b0f3499f278d"

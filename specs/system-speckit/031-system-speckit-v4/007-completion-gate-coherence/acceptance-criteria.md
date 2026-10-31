@@ -13,7 +13,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/007-completion-gate-coherence"
+    packet_pointer: "system-speckit/031-system-speckit-v4/007-completion-gate-coherence"
     last_updated_at: "2026-08-29T16:50:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -44,7 +44,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/007-completion-gate-coherence
+**Packet:** system-speckit/031-system-speckit-v4/007-completion-gate-coherence
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-08-29

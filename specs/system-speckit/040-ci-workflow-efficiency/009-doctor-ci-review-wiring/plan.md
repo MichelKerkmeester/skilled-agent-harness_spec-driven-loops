@@ -178,7 +178,7 @@ D9: write
 | Integration | Every changed skill doc raises its version and its changelog matches | `node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs bump --check --base origin/main` |
 | Manual | The R28 probe: set, get, delete, get | `gh variable set/get/delete SKILLED_CI_PROBE` |
 | Manual | The live report and the compiled route for a workflow prompt | `node .skilled/commands/doctor/scripts/ci-report.cjs --json` and `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "review the GitHub Actions workflow diff in .github/workflows/spec-kit-check.yml"` |
-| Validation | The packet | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring --strict` |
+| Validation | The packet | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring --strict` |
 <!-- /ANCHOR:testing -->
 
 ---

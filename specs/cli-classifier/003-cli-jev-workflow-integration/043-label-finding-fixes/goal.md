@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/043-label-finding-fixes"
     last_updated_at: "2026-10-01T18:41:50Z"
     last_updated_by: "orchestrating-session"
     recent_action: "Authored the durable directive"
@@ -61,7 +61,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `node --test .skilled/hooks/goal/lib/goal-core.test.cjs` passes at least 78 tests with 0 failing, and every other `*.test.cjs` and `*.test.mjs` file under `.skilled/hooks/goal/` passes with 0 failing
 - [x] `node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs` passes with stub-`jev` cases for each `jev arm skipped:` line, a keep verdict and a flips kill verdict, and a stub `jev` first on `PATH` logs no call on a run without `--jev`
 - [x] The DeepSeek V4.1 Flash review of the 027, 003 and 006 changes leaves no open P0 or P1
-- [x] `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` on this phase and on `specs/cli-jev/003-cli-jev-workflow-integration`
+- [x] `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` on this phase and on `specs/cli-classifier/003-cli-jev-workflow-integration`
 <!-- /ANCHOR:completion -->
 
 ---

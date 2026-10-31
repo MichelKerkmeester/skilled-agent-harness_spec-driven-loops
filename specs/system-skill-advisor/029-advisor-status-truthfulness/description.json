@@ -11,7 +11,7 @@
     "disk"
   ],
   "lastUpdated": "2026-10-03T05:27:36.132Z",
-  "specId": "033",
+  "specId": "029",
   "folderSlug": "advisor-status-truthfulness",
   "parentChain": [
     "system-skill-advisor"

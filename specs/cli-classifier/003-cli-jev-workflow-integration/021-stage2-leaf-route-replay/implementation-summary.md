@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay"
     last_updated_at: "2026-09-29T18:05:00Z"
     last_updated_by: "closure-leaf"
     recent_action: "Closed the phase at its replay verdict stop: build fcacc26bf3, 6 of 6 goal criteria ticked"
@@ -19,8 +19,8 @@ _memory:
     key_files:
       - ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs"
       - ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-session/session-evidence.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/design.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-session/session-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/design.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-021-stage2-leaf-route-replay"

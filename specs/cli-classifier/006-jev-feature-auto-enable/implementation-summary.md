@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/006-jev-feature-auto-enable"
+    packet_pointer: "cli-classifier/006-jev-feature-auto-enable"
     last_updated_at: "2026-10-04T21:45:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Wired four Jev features and closed the research"

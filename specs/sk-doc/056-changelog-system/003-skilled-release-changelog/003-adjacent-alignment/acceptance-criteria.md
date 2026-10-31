@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/061-skilled-release-changelog/003-adjacent-alignment"
+    packet_pointer: "sk-doc/056-changelog-system/003-skilled-release-changelog/003-adjacent-alignment"
     last_updated_at: "2026-09-27T18:40:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Marked all 12 criteria Met with observed evidence"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/061-skilled-release-changelog/003-adjacent-alignment
+**Packet:** sk-doc/056-changelog-system/003-skilled-release-changelog/003-adjacent-alignment
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-27

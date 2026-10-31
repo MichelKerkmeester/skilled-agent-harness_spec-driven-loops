@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/050-open-knowledge-format-adoption/009-census-hardening"
+    packet_pointer: "system-speckit/037-open-knowledge-format-adoption/009-census-hardening"
     last_updated_at: "2026-10-05T07:20:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Recorded the panel run and its departures"

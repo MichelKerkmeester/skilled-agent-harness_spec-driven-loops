@@ -10,7 +10,7 @@
   "specId": "005",
   "folderSlug": "docs-governance-and-closeout",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "001-cli-jev-creation"
   ],
   "memorySequence": 1,

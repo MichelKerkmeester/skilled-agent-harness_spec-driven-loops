@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The operator wants the repository root README.md to separate H2 sections with `&nbsp;` forced blank lines instead of `---` horizontal rules",
     "created_at": "2026-10-17T16:43:56Z",
-    "last_save_at": "2026-10-31T13:26:04.487Z",
+    "last_save_at": "2026-10-31T13:41:23.694Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,7 +204,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b256578d354f19cc395653a3a7112aebb153ddfa7c30b313aaf4218419f22ed6",
+    "source_fingerprint": "sha256:114d1205db2fc5055238ce49511a72d4a088e084231071c704adbf9ca2675e4d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1c845d0c4e5954fc98d37a0c813b0905e2489a25c0fc2aeffafd487c4e1140c4",

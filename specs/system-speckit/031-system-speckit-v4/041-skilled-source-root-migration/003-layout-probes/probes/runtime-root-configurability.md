@@ -34,7 +34,7 @@ Seven read-only DeepSeek V4.1 Flash lanes, one runtime each, dispatched from wor
 
 ### Lane return
 
-Both files were read in full. `HELP` = `/Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt`; `STR` = `/tmp/skilled-probes-003/strings/claude-code.txt`. In `STR`, the number after the sha (e.g. `153261:`) is the raw extract's own `rg` line; `STR:n` below means file line `n`.
+Both files were read in full. `HELP` = `/Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt`; `STR` = `/tmp/skilled-probes-003/strings/claude-code.txt`. In `STR`, the number after the sha (e.g. `153261:`) is the raw extract's own `rg` line; `STR:n` below means file line `n`.
 
 **Answer in one line:** plugins relocate directly (`--plugin-dir`, `--plugin-url`); skill, agent and hook content relocates only by riding inside such a plugin; `CLAUDE_CONFIG_DIR` is the one environment variable that moves the user-level config home; no flag, environment variable or config key in either file repoints the bare `.claude/commands` scan.
 
@@ -70,10 +70,10 @@ Both files were read in full. `HELP` = `/Users/michelkerkmeester/worktrees/publi
 Codex CLI 0.154.0 exposes one home-relocation environment variable and one hooks-directory config key pair; no flag renames `.codex/` itself.
 
 Cited files (short names used in the table):
-- `help` = /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-help.txt
-- `dbg` = /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-debug-help.txt
+- `help` = /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-help.txt
+- `dbg` = /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-debug-help.txt
 - `str` = /tmp/skilled-probes-003/strings/codex.txt
-- Supporting (outside the three required): `/Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/.opencode/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs`, `.../codex/sync-agents.cjs`, `.../codex/README.md`, `/Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/.opencode/bin/install-codex-hooks.mjs`, `/Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/.codex/SYNC.md`, `/Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/.opencode/skills/cli-external-orchestration/cli-codex/references/cli-reference.md`, `/Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/home-state-enumeration.md`, `/tmp/skilled-probes-003/logs/home-scan.tsv`
+- Supporting (outside the three required): `/Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/.opencode/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs`, `.../codex/sync-agents.cjs`, `.../codex/README.md`, `/Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/.opencode/bin/install-codex-hooks.mjs`, `/Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/.codex/SYNC.md`, `/Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/.opencode/skills/cli-external-orchestration/cli-codex/references/cli-reference.md`, `/Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/home-state-enumeration.md`, `/tmp/skilled-probes-003/logs/home-scan.tsv`
 
 | Surface | Default location | Override (flag, environment variable or config key, or none) | Verdict (configurable or fixed name) | Evidence (path:line) |
 |---|---|---|---|---|
@@ -106,7 +106,7 @@ Cited files (short names used in the table):
 
 Read-only retrieval complete. One method note first, because it bounds the evidence: the installed Cursor Agent is a webpack bundle of single-line minified chunks, several of which exceed my read limits (50 KB per call; e.g. `index.js:414` is a 7.0 MB line). Where I cite those chunks, the citation confirms the *literal exists at that file:line* (grep output is truncated at 500 chars, so its surrounding semantics are unread); the chunks I could read in full are called out below.
 
-Paths are shortened after first use: `CAPTURE` = `specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/cursor-agent-help.txt`; `BUNDLE` = `/Users/michelkerkmeester/.local/share/cursor-agent/versions/2026.09.10-fd3934a/`; `CURSORSKILLS` = `/Users/michelkerkmeester/.cursor/skills-cursor/`.
+Paths are shortened after first use: `CAPTURE` = `specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/cursor-agent-help.txt`; `BUNDLE` = `/Users/michelkerkmeester/.local/share/cursor-agent/versions/2026.09.10-fd3934a/`; `CURSORSKILLS` = `/Users/michelkerkmeester/.cursor/skills-cursor/`.
 
 | Surface | Default location | Override (flag, environment variable or config key, or none) | Verdict (configurable or fixed name) | Evidence (path:line) |
 |---|---|---|---|---|
@@ -202,7 +202,7 @@ Gaps (UNKNOWN):
 
 Answer: yes for **0.21.1** (source version at `hermes_cli/__init__.py:6` = `"0.21.1"`) — the home root (and with it `skills/` + `plugins/`) is relocatable via `HERMES_HOME`/`-p`, bundled trees via dedicated env vars, and extra skill roots via config keys; project-scope directories are **fixed names**. No CLI flag takes a skills/plugins directory path.
 
-Path bases: Hermes source paths are relative to `/Users/michelkerkmeester/.hermes/hermes-agent/`; capture paths are relative to `specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/`.
+Path bases: Hermes source paths are relative to `/Users/michelkerkmeester/.hermes/hermes-agent/`; capture paths are relative to `specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/`.
 
 | Surface | Default location | Override (flag, env var or config key, or none) | Verdict | Evidence (path:line) |
 |---|---|---|---|---|
@@ -236,7 +236,7 @@ Path bases: Hermes source paths are relative to `/Users/michelkerkmeester/.herme
 
 Yes — opencode 1.18.11 can load all four surfaces from a directory other than `.opencode/`, but the door differs per surface: an **environment variable** (`OPENCODE_CONFIG_DIR`) for plugins/commands/agents, a **config key** (`skills.paths`) for skills, and **no CLI flag** for any of them. Version provenance for the captures: `plan.md:27` and `plan.md:174` (U7 = opencode 1.18.11, binary at `~/.local/lib/node_modules/opencode-ai/bin/opencode.exe`); none of the four captures prints its own version.
 
-Reading key: `cap/` = `specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/`; `dump` = `/tmp/skilled-probes-003/strings/opencode.txt`; `log` = `/tmp/skilled-probes-003/logs/opencode-baseline-skills.txt`; `plan.md` = `specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md`. Verdict vocabulary (`configurable` / `fixed name`) is `plan.md:176`.
+Reading key: `cap/` = `specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/`; `dump` = `/tmp/skilled-probes-003/strings/opencode.txt`; `log` = `/tmp/skilled-probes-003/logs/opencode-baseline-skills.txt`; `plan.md` = `specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md`. Verdict vocabulary (`configurable` / `fixed name`) is `plan.md:176`.
 
 | Surface | Default location | Override (flag, environment variable or config key, or none) | Verdict (configurable or fixed name) | Evidence (path:line) |
 |---|---|---|---|---|
@@ -295,7 +295,7 @@ Your write authority is empty. This is a read-only task: your final message is t
 PERSONA (this repository's read-only `context` agent, condensed): you retrieve and verify, nothing else. You never write, edit, create, delete, stage or commit a file, and you never hand work to another agent. Every claim you make comes from a file you opened with your read, grep, find or ls tools, cites `path:line`, and anything you could not settle goes under a final "Gaps" heading as UNKNOWN.
 
 Question: can Claude Code 2.1.273 load its skills, commands, agents, hooks and plugins from a directory other than `.claude/`, and through which documented flag, environment variable or config key?
-Read these files: /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt; /tmp/skilled-probes-003/strings/claude-code.txt.
+Read these files: /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt; /tmp/skilled-probes-003/strings/claude-code.txt.
 Answer with one markdown table whose columns are: Surface | Default location | Override (flag, environment variable or config key, or none) | Verdict (configurable or fixed name) | Evidence (path:line).
 Cite path:line for every cell and write UNKNOWN when no line settles it.
 ```
@@ -309,8 +309,8 @@ Cite path:line for every cell and write UNKNOWN when no line settles it.
 | `STR:17` | matched | /tmp/skilled-probes-003/strings/claude-code.txt (60 lines) |
 | `STR:53` | matched | /tmp/skilled-probes-003/strings/claude-code.txt (60 lines) |
 | `STR:54` | matched | /tmp/skilled-probes-003/strings/claude-code.txt (60 lines) |
-| `HELP:156-160` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
-| `HELP:50-54` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
+| `HELP:156-160` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
+| `HELP:50-54` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
 | `STR:6` | matched | /tmp/skilled-probes-003/strings/claude-code.txt (60 lines) |
 | `STR:56` | matched | /tmp/skilled-probes-003/strings/claude-code.txt (60 lines) |
 | `STR:43` | matched | /tmp/skilled-probes-003/strings/claude-code.txt (60 lines) |
@@ -318,28 +318,28 @@ Cite path:line for every cell and write UNKNOWN when no line settles it.
 | `STR:58` | matched | /tmp/skilled-probes-003/strings/claude-code.txt (60 lines) |
 | `STR:19` | matched | /tmp/skilled-probes-003/strings/claude-code.txt (60 lines) |
 | `STR:20` | matched | /tmp/skilled-probes-003/strings/claude-code.txt (60 lines) |
-| `HELP:10-11` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
-| `HELP:73` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
+| `HELP:10-11` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
+| `HELP:73` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
 | `STR:25` | matched | /tmp/skilled-probes-003/strings/claude-code.txt (60 lines) |
 | `STR:27` | matched | /tmp/skilled-probes-003/strings/claude-code.txt (60 lines) |
 | `STR:35` | matched | /tmp/skilled-probes-003/strings/claude-code.txt (60 lines) |
 | `STR:4` | matched | /tmp/skilled-probes-003/strings/claude-code.txt (60 lines) |
-| `HELP:14-17` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
+| `HELP:14-17` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
 | `STR:36` | matched | /tmp/skilled-probes-003/strings/claude-code.txt (60 lines) |
 | `STR:41` | matched | /tmp/skilled-probes-003/strings/claude-code.txt (60 lines) |
 | `STR:23` | matched | /tmp/skilled-probes-003/strings/claude-code.txt (60 lines) |
-| `HELP:221-222` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
-| `HELP:40-44` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
-| `HELP:206-216` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
+| `HELP:221-222` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
+| `HELP:40-44` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
+| `HELP:206-216` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
 | `STR:42` | matched | /tmp/skilled-probes-003/strings/claude-code.txt (60 lines) |
-| `HELP:283` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
-| `HELP:156-163` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
+| `HELP:283` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
+| `HELP:156-163` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
 | `STR:57` | matched | /tmp/skilled-probes-003/strings/claude-code.txt (60 lines) |
 | `STR:51` | matched | /tmp/skilled-probes-003/strings/claude-code.txt (60 lines) |
 | `STR:2` | matched | /tmp/skilled-probes-003/strings/claude-code.txt (60 lines) |
-| `plan.md:164` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md (580 lines) |
-| `HELP:221` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
-| `HELP:219` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
+| `plan.md:164` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md (580 lines) |
+| `HELP:221` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
+| `HELP:219` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/claude-code-help.txt (302 lines) |
 
 ### u2-codex-roots
 
@@ -355,7 +355,7 @@ Your write authority is empty. This is a read-only task: your final message is t
 PERSONA (this repository's read-only `context` agent, condensed): you retrieve and verify, nothing else. You never write, edit, create, delete, stage or commit a file, and you never hand work to another agent. Every claim you make comes from a file you opened with your read, grep, find or ls tools, cites `path:line`, and anything you could not settle goes under a final "Gaps" heading as UNKNOWN.
 
 Question: can Codex CLI 0.154.0 load its prompts, agents and hooks from a directory other than `.codex/`, and through which documented flag, environment variable or config key?
-Read these files: /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-help.txt; /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-debug-help.txt; /tmp/skilled-probes-003/strings/codex.txt.
+Read these files: /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-help.txt; /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-debug-help.txt; /tmp/skilled-probes-003/strings/codex.txt.
 Answer with one markdown table whose columns are: Surface | Default location | Override (flag, environment variable or config key, or none) | Verdict (configurable or fixed name) | Evidence (path:line).
 Cite path:line for every cell and write UNKNOWN when no line settles it.
 ```
@@ -367,14 +367,14 @@ Cite path:line for every cell and write UNKNOWN when no line settles it.
 | Citation | Status | Resolved to |
 |----------|--------|-------------|
 | `str:11-12` | matched | /tmp/skilled-probes-003/strings/codex.txt (60 lines) |
-| `help:46` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-help.txt (134 lines) |
+| `help:46` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-help.txt (134 lines) |
 | `str:11` | matched | /tmp/skilled-probes-003/strings/codex.txt (60 lines) |
-| `help:85-86` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-help.txt (134 lines) |
+| `help:85-86` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-help.txt (134 lines) |
 | `str:3` | matched | /tmp/skilled-probes-003/strings/codex.txt (60 lines) |
-| `help:44-135` | struck | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-help.txt (134 lines) |
+| `help:44-135` | struck | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-help.txt (134 lines) |
 | `str:12` | matched | /tmp/skilled-probes-003/strings/codex.txt (60 lines) |
 | `str:36` | matched | /tmp/skilled-probes-003/strings/codex.txt (60 lines) |
-| `home-state-enumeration.md:9` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/home-state-enumeration.md (58 lines) |
+| `home-state-enumeration.md:9` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/home-state-enumeration.md (58 lines) |
 | `str:4` | matched | /tmp/skilled-probes-003/strings/codex.txt (60 lines) |
 | `home-scan.tsv:255` | matched | /tmp/skilled-probes-003/logs/home-scan.tsv (669 lines) |
 | `sync-prompts.cjs:22` | matched | ~/worktrees/public/055-skilled-source-root-migration/.opencode/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs (209 lines) |
@@ -382,28 +382,28 @@ Cite path:line for every cell and write UNKNOWN when no line settles it.
 | `str:19` | matched | /tmp/skilled-probes-003/strings/codex.txt (60 lines) |
 | `str:29-30` | matched | /tmp/skilled-probes-003/strings/codex.txt (60 lines) |
 | `str:50` | matched | /tmp/skilled-probes-003/strings/codex.txt (60 lines) |
-| `home-state-enumeration.md:29` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/home-state-enumeration.md (58 lines) |
+| `home-state-enumeration.md:29` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/home-state-enumeration.md (58 lines) |
 | `cli-reference.md:389` | matched | ~/worktrees/public/055-skilled-source-root-migration/.opencode/skills/cli-external-orchestration/cli-codex/references/cli-reference.md (562 lines) |
 | `sync-agents.cjs:22` | matched | ~/worktrees/public/055-skilled-source-root-migration/.opencode/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs (322 lines) |
 | `SYNC.md:28` | matched | ~/worktrees/public/055-skilled-source-root-migration/.codex/SYNC.md (136 lines) |
-| `home-state-enumeration.md:31` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/home-state-enumeration.md (58 lines) |
+| `home-state-enumeration.md:31` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/home-state-enumeration.md (58 lines) |
 | `str:38` | matched | /tmp/skilled-probes-003/strings/codex.txt (60 lines) |
 | `str:52` | matched | /tmp/skilled-probes-003/strings/codex.txt (60 lines) |
-| `help:100-102` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-help.txt (134 lines) |
+| `help:100-102` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-help.txt (134 lines) |
 | `home-scan.tsv:5` | matched | /tmp/skilled-probes-003/logs/home-scan.tsv (669 lines) |
 | `install-codex-hooks.mjs:13-14` | matched | ambiguous: 4 files, line in range in 4 |
 | `SYNC.md:18` | matched | ~/worktrees/public/055-skilled-source-root-migration/.codex/SYNC.md (136 lines) |
 | `str:35` | matched | /tmp/skilled-probes-003/strings/codex.txt (60 lines) |
-| `help:45-51` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-help.txt (134 lines) |
+| `help:45-51` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-help.txt (134 lines) |
 | `install-codex-hooks.mjs:14` | matched | ambiguous: 4 files, line in range in 4 |
 | `SYNC.md:26-34` | matched | ~/worktrees/public/055-skilled-source-root-migration/.codex/SYNC.md (136 lines) |
-| `help:104-105` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-help.txt (134 lines) |
-| `help:110-111` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-help.txt (134 lines) |
-| `dbg:5-9` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-debug-help.txt (27 lines) |
-| `dbg:12-25` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-debug-help.txt (27 lines) |
+| `help:104-105` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-help.txt (134 lines) |
+| `help:110-111` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-help.txt (134 lines) |
+| `dbg:5-9` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-debug-help.txt (27 lines) |
+| `dbg:12-25` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-debug-help.txt (27 lines) |
 | `SYNC.md:16` | matched | ~/worktrees/public/055-skilled-source-root-migration/.codex/SYNC.md (136 lines) |
-| `help:86` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-help.txt (134 lines) |
-| `dbg:8` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-debug-help.txt (27 lines) |
+| `help:86` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-help.txt (134 lines) |
+| `dbg:8` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/codex-debug-help.txt (27 lines) |
 
 ### u3-cursor-agent-roots
 
@@ -419,7 +419,7 @@ Your write authority is empty. This is a read-only task: your final message is t
 PERSONA (this repository's read-only `context` agent, condensed): you retrieve and verify, nothing else. You never write, edit, create, delete, stage or commit a file, and you never hand work to another agent. Every claim you make comes from a file you opened with your read, grep, find or ls tools, cites `path:line`, and anything you could not settle goes under a final "Gaps" heading as UNKNOWN.
 
 Question: can Cursor Agent 2026.09.10-fd3934a load its commands, agents, rules and hooks from a directory other than `.cursor/`, and through which documented flag, environment variable or config key?
-Read these files: /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/cursor-agent-help.txt; the JavaScript bundle chunks under /Users/michelkerkmeester/.local/share/cursor-agent/versions/2026.09.10-fd3934a/ (search them for `.cursor/`).
+Read these files: /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/cursor-agent-help.txt; the JavaScript bundle chunks under /Users/michelkerkmeester/.local/share/cursor-agent/versions/2026.09.10-fd3934a/ (search them for `.cursor/`).
 Answer with one markdown table whose columns are: Surface | Default location | Override (flag, environment variable or config key, or none) | Verdict (configurable or fixed name) | Evidence (path:line).
 Cite path:line for every cell and write UNKNOWN when no line settles it.
 ```
@@ -434,7 +434,7 @@ Cite path:line for every cell and write UNKNOWN when no line settles it.
 | `CURSORSKILLS/migrate-to-skills/SKILL.md:20` | matched | ~/.cursor/skills-cursor/migrate-to-skills/SKILL.md (134 lines) |
 | `.cursor/SYNC.md:70` | matched | ~/worktrees/public/055-skilled-source-root-migration/.cursor/SYNC.md (126 lines) |
 | `.cursor/SYNC.md:14` | matched | ~/worktrees/public/055-skilled-source-root-migration/.cursor/SYNC.md (126 lines) |
-| `CAPTURE:57-58` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/cursor-agent-help.txt (95 lines) |
+| `CAPTURE:57-58` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/cursor-agent-help.txt (95 lines) |
 | `BUNDLE/8637.index.js:1` | matched | ~/.local/share/cursor-agent/versions/2026.09.10-fd3934a/8637.index.js (1 lines) |
 | `CURSORSKILLS/migrate-to-skills/SKILL.md:21` | matched | ~/.cursor/skills-cursor/migrate-to-skills/SKILL.md (134 lines) |
 | `CURSORSKILLS/create-subagent/SKILL.md:28-29` | matched | ~/.cursor/skills-cursor/create-subagent/SKILL.md (225 lines) |
@@ -442,18 +442,18 @@ Cite path:line for every cell and write UNKNOWN when no line settles it.
 | `.cursor/SYNC.md:23` | matched | ~/worktrees/public/055-skilled-source-root-migration/.cursor/SYNC.md (126 lines) |
 | `BUNDLE/6142.index.js:1` | matched | ~/.local/share/cursor-agent/versions/2026.09.10-fd3934a/6142.index.js (1 lines) |
 | `CURSORSKILLS/create-rule/SKILL.md:41` | matched | ~/.cursor/skills-cursor/create-rule/SKILL.md (164 lines) |
-| `CAPTURE:53-54` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/cursor-agent-help.txt (95 lines) |
+| `CAPTURE:53-54` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/cursor-agent-help.txt (95 lines) |
 | `CURSORSKILLS/create-hook/SKILL.md:28-29` | matched | ~/.cursor/skills-cursor/create-hook/SKILL.md (239 lines) |
 | `.cursor/SYNC.md:34` | matched | ~/worktrees/public/055-skilled-source-root-migration/.cursor/SYNC.md (126 lines) |
-| `CAPTURE:77` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/cursor-agent-help.txt (95 lines) |
-| `CAPTURE:55-56` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/cursor-agent-help.txt (95 lines) |
+| `CAPTURE:77` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/cursor-agent-help.txt (95 lines) |
+| `CAPTURE:55-56` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/cursor-agent-help.txt (95 lines) |
 | `BUNDLE/7327.index.js:1` | matched | ~/.local/share/cursor-agent/versions/2026.09.10-fd3934a/7327.index.js (1 lines) |
 | `BUNDLE/5800.index.js:1` | matched | ~/.local/share/cursor-agent/versions/2026.09.10-fd3934a/5800.index.js (1 lines) |
 | `BUNDLE/index.js:414` | matched | ~/.local/share/cursor-agent/versions/2026.09.10-fd3934a/index.js (414 lines) |
 | `BUNDLE/2842.index.js:1` | matched | ~/.local/share/cursor-agent/versions/2026.09.10-fd3934a/2842.index.js (1 lines) |
 | `BUNDLE/1186.index.js:1` | matched | ~/.local/share/cursor-agent/versions/2026.09.10-fd3934a/1186.index.js (1 lines) |
-| `003-layout-probes/plan.md:207` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md (580 lines) |
-| `003-layout-probes/spec.md:238` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/spec.md (243 lines) |
+| `003-layout-probes/plan.md:207` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md (580 lines) |
+| `003-layout-probes/spec.md:238` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/spec.md (243 lines) |
 | `~/.cursor/cli-config.json:2-114` | matched | ~/.cursor/cli-config.json (115 lines) |
 | `BUNDLE/index.js:8` | matched | ~/.local/share/cursor-agent/versions/2026.09.10-fd3934a/index.js (414 lines) |
 | `BUNDLE/3207.index.js:1` | matched | ~/.local/share/cursor-agent/versions/2026.09.10-fd3934a/3207.index.js (1 lines) |
@@ -474,7 +474,7 @@ Your write authority is empty. This is a read-only task: your final message is t
 PERSONA (this repository's read-only `context` agent, condensed): you retrieve and verify, nothing else. You never write, edit, create, delete, stage or commit a file, and you never hand work to another agent. Every claim you make comes from a file you opened with your read, grep, find or ls tools, cites `path:line`, and anything you could not settle goes under a final "Gaps" heading as UNKNOWN.
 
 Question: can Devin 3000.10.27 load its skills, agents, hooks and rules from a directory other than `.devin/`, and through which documented flag, environment variable or config key?
-Read these files: /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-help.txt; /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-skills-help.txt; /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-skills-paths.txt; /tmp/skilled-probes-003/strings/devin.txt.
+Read these files: /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-help.txt; /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-skills-help.txt; /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-skills-paths.txt; /tmp/skilled-probes-003/strings/devin.txt.
 Answer with one markdown table whose columns are: Surface | Default location | Override (flag, environment variable or config key, or none) | Verdict (configurable or fixed name) | Evidence (path:line).
 Cite path:line for every cell and write UNKNOWN when no line settles it.
 ```
@@ -485,16 +485,16 @@ Cite path:line for every cell and write UNKNOWN when no line settles it.
 
 | Citation | Status | Resolved to |
 |----------|--------|-------------|
-| `probes/../plan.md:176` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/../plan.md (580 lines) |
-| `probes/captures/devin-skills-paths.txt:9-11` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-skills-paths.txt (11 lines) |
-| `probes/captures/devin-help.txt:37-97` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-help.txt (97 lines) |
-| `probes/captures/devin-skills-help.txt:6-9` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-skills-help.txt (12 lines) |
+| `probes/../plan.md:176` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/../plan.md (580 lines) |
+| `probes/captures/devin-skills-paths.txt:9-11` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-skills-paths.txt (11 lines) |
+| `probes/captures/devin-help.txt:37-97` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-help.txt (97 lines) |
+| `probes/captures/devin-skills-help.txt:6-9` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-skills-help.txt (12 lines) |
 | `/tmp/skilled-probes-003/strings/devin.txt:2-4` | matched | /tmp/skilled-probes-003/strings/devin.txt (7 lines) |
 | `/tmp/skilled-probes-003/strings/devin.txt:6` | matched | /tmp/skilled-probes-003/strings/devin.txt (7 lines) |
-| `probes/captures/devin-skills-paths.txt:4-6` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-skills-paths.txt (11 lines) |
-| `plan.md:157-158` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md (580 lines) |
-| `probes/captures/devin-help.txt:51,59,66` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-help.txt (97 lines) |
-| `probes/captures/devin-skills-paths.txt:4` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-skills-paths.txt (11 lines) |
+| `probes/captures/devin-skills-paths.txt:4-6` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-skills-paths.txt (11 lines) |
+| `plan.md:157-158` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md (580 lines) |
+| `probes/captures/devin-help.txt:51,59,66` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-help.txt (97 lines) |
+| `probes/captures/devin-skills-paths.txt:4` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-skills-paths.txt (11 lines) |
 | `/tmp/skilled-probes-003/iso/devin/data/devin/cli/logs/devin_20260916-212058_78004.log:8` | matched | /tmp/skilled-probes-003/iso/devin/data/devin/cli/logs/devin_20260916-212058_78004.log (24 lines) |
 | `/tmp/skilled-probes-003/iso/devin/data/devin/cli/logs/devin_20260916-212058_78004.log:11` | matched | /tmp/skilled-probes-003/iso/devin/data/devin/cli/logs/devin_20260916-212058_78004.log (24 lines) |
 | `.devin/SYNC.md:20` | matched | ~/worktrees/public/055-skilled-source-root-migration/.devin/SYNC.md (142 lines) |
@@ -507,13 +507,13 @@ Cite path:line for every cell and write UNKNOWN when no line settles it.
 | `/tmp/skilled-probes-003/strings/devin.txt:5` | matched | /tmp/skilled-probes-003/strings/devin.txt (7 lines) |
 | `.devin/SYNC.md:78` | matched | ~/worktrees/public/055-skilled-source-root-migration/.devin/SYNC.md (142 lines) |
 | `/tmp/skilled-probes-003/strings/devin.txt:7` | matched | /tmp/skilled-probes-003/strings/devin.txt (7 lines) |
-| `probes/captures/devin-help.txt:44` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-help.txt (97 lines) |
-| `probes/captures/devin-help.txt:41-42` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-help.txt (97 lines) |
-| `probes/captures/devin-help.txt:41-44` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-help.txt (97 lines) |
+| `probes/captures/devin-help.txt:44` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-help.txt (97 lines) |
+| `probes/captures/devin-help.txt:41-42` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-help.txt (97 lines) |
+| `probes/captures/devin-help.txt:41-44` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-help.txt (97 lines) |
 | `/cli-devin/references/cli-reference.md:137` | struck | file not resolved |
 | `/cli-devin/references/cli-reference.md:350` | struck | file not resolved |
-| `probes/captures/devin-skills-paths.txt:6` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-skills-paths.txt (11 lines) |
-| `plan.md:164` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md (580 lines) |
+| `probes/captures/devin-skills-paths.txt:6` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/devin-skills-paths.txt (11 lines) |
+| `plan.md:164` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md (580 lines) |
 
 ### u5-pi-roots
 
@@ -529,7 +529,7 @@ Your write authority is empty. This is a read-only task: your final message is t
 PERSONA (this repository's read-only `context` agent, condensed): you retrieve and verify, nothing else. You never write, edit, create, delete, stage or commit a file, and you never hand work to another agent. Every claim you make comes from a file you opened with your read, grep, find or ls tools, cites `path:line`, and anything you could not settle goes under a final "Gaps" heading as UNKNOWN.
 
 Question: can Pi 0.85.1 load its extensions, skills and prompt templates from a directory other than `.pi/`, and through which documented flag, environment variable or config key?
-Read these files: /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/pi-help.txt; /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/package.json; /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/config.js; /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/core/resource-loader.js; /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/core/package-manager.js; /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/core/extensions/loader.js.
+Read these files: /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/pi-help.txt; /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/package.json; /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/config.js; /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/core/resource-loader.js; /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/core/package-manager.js; /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/core/extensions/loader.js.
 Answer with one markdown table whose columns are: Surface | Default location | Override (flag, environment variable or config key, or none) | Verdict (configurable or fixed name) | Evidence (path:line).
 Cite path:line for every cell and write UNKNOWN when no line settles it.
 ```
@@ -555,19 +555,19 @@ Cite path:line for every cell and write UNKNOWN when no line settles it.
 | `$PI/dist/main.js:567` | matched | ~/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/main.js (804 lines) |
 | `$PI/docs/settings.md:287` | matched | ~/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/settings.md (369 lines) |
 | `$PI/dist/core/settings-manager.js:748` | matched | ~/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/core/settings-manager.js (997 lines) |
-| `pi-help.txt:43` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/pi-help.txt (189 lines) |
+| `pi-help.txt:43` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/pi-help.txt (189 lines) |
 | `$PI/docs/prompt-templates.md:11` | matched | ~/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/prompt-templates.md (96 lines) |
 | `$PI/dist/core/prompt-templates.js:159` | matched | ~/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/core/prompt-templates.js (236 lines) |
 | `$PI/dist/cli/args.js:146` | matched | ~/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/cli/args.js (439 lines) |
 | `$PI/dist/main.js:568` | matched | ~/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/main.js (804 lines) |
 | `$PI/docs/settings.md:288` | matched | ~/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/settings.md (369 lines) |
 | `$PI/dist/core/settings-manager.js:761` | matched | ~/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/core/settings-manager.js (997 lines) |
-| `pi-help.txt:45` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/pi-help.txt (189 lines) |
+| `pi-help.txt:45` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/pi-help.txt (189 lines) |
 | `$PI/dist/config.js:426` | matched | ~/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/config.js (464 lines) |
 | `$PI/docs/environment-variables.md:81` | matched | ~/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/environment-variables.md (99 lines) |
 | `$PI/README.md:677` | matched | ~/.local/lib/node_modules/@earendil-works/pi-coding-agent/README.md (718 lines) |
 | `$PI/dist/config.js:157` | matched | ~/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/config.js (464 lines) |
-| `pi-help.txt:173` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/pi-help.txt (189 lines) |
+| `pi-help.txt:173` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/pi-help.txt (189 lines) |
 | `$PI/dist/config.js:403` | matched | ~/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/config.js (464 lines) |
 | `$PI/package.json:6` | matched | ~/.local/lib/node_modules/@earendil-works/pi-coding-agent/package.json (113 lines) |
 | `$PI/docs/development.md:41` | matched | ~/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/development.md (90 lines) |
@@ -594,7 +594,7 @@ Your write authority is empty. This is a read-only task: your final message is t
 PERSONA (this repository's read-only `context` agent, condensed): you retrieve and verify, nothing else. You never write, edit, create, delete, stage or commit a file, and you never hand work to another agent. Every claim you make comes from a file you opened with your read, grep, find or ls tools, cites `path:line`, and anything you could not settle goes under a final "Gaps" heading as UNKNOWN.
 
 Question: can Hermes Agent 0.21.1 load its skills and plugins from a directory other than `.hermes/`, and through which documented flag, environment variable or config key?
-Read these files: /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/hermes-help.txt; /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/hermes-skills-help.txt; the installed Python source under /Users/michelkerkmeester/.hermes/hermes-agent/ (search it for where skills and plugins are discovered).
+Read these files: /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/hermes-help.txt; /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/hermes-skills-help.txt; the installed Python source under /Users/michelkerkmeester/.hermes/hermes-agent/ (search it for where skills and plugins are discovered).
 Answer with one markdown table whose columns are: Surface | Default location | Override (flag, environment variable or config key, or none) | Verdict (configurable or fixed name) | Evidence (path:line).
 Cite path:line for every cell and write UNKNOWN when no line settles it.
 ```
@@ -626,7 +626,7 @@ Cite path:line for every cell and write UNKNOWN when no line settles it.
 | `website/docs/user-guide/features/skills.md:415-431` | matched | ~/.hermes/hermes-agent/website/docs/user-guide/features/skills.md (1062 lines) |
 | `agent/skill_utils.py:410,482-493` | matched | ~/.hermes/hermes-agent/agent/skill_utils.py (786 lines) |
 | `hermes_cli/config_defaults.py:1330-1335` | matched | ~/.hermes/hermes-agent/hermes_cli/config_defaults.py (2838 lines) |
-| `captures/hermes-skills-help.txt:10-11` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/hermes-skills-help.txt (40 lines) |
+| `captures/hermes-skills-help.txt:10-11` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/hermes-skills-help.txt (40 lines) |
 | `website/docs/user-guide/features/skills.md:461-465` | matched | ~/.hermes/hermes-agent/website/docs/user-guide/features/skills.md (1062 lines) |
 | `hermes_cli/plugins_discovery.py:151-153` | matched | ~/.hermes/hermes-agent/hermes_cli/plugins_discovery.py (218 lines) |
 | `hermes_cli/plugins_cmd.py:165-169` | matched | ~/.hermes/hermes-agent/hermes_cli/plugins_cmd.py (2106 lines) |
@@ -640,8 +640,8 @@ Cite path:line for every cell and write UNKNOWN when no line settles it.
 | `plugins/memory/__init__.py:40-49` | matched | ~/.hermes/hermes-agent/plugins/memory/__init__.py (435 lines) |
 | `website/docs/reference/environment-variables.md:839` | matched | ~/.hermes/hermes-agent/website/docs/reference/environment-variables.md (953 lines) |
 | `website/docs/user-guide/features/plugins.md:93,128` | matched | ~/.hermes/hermes-agent/website/docs/user-guide/features/plugins.md (797 lines) |
-| `captures/hermes-help.txt:160-162` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/hermes-help.txt (224 lines) |
-| `captures/hermes-help.txt:147-150` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/hermes-help.txt (224 lines) |
+| `captures/hermes-help.txt:160-162` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/hermes-help.txt (224 lines) |
+| `captures/hermes-help.txt:147-150` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/hermes-help.txt (224 lines) |
 | `hermes_cli/_parser.py:159-160` | matched | ~/.hermes/hermes-agent/hermes_cli/_parser.py (292 lines) |
 | `hermes_cli/subcommands/skills.py:20-60,165-170` | matched | ~/.hermes/hermes-agent/hermes_cli/subcommands/skills.py (177 lines) |
 | `hermes_cli/subcommands/plugins.py:50-53,99-116` | matched | ~/.hermes/hermes-agent/hermes_cli/subcommands/plugins.py (148 lines) |
@@ -663,7 +663,7 @@ Your write authority is empty. This is a read-only task: your final message is t
 PERSONA (this repository's read-only `context` agent, condensed): you retrieve and verify, nothing else. You never write, edit, create, delete, stage or commit a file, and you never hand work to another agent. Every claim you make comes from a file you opened with your read, grep, find or ls tools, cites `path:line`, and anything you could not settle goes under a final "Gaps" heading as UNKNOWN.
 
 Question: can opencode 1.18.11 load its plugins, commands, agents and skills from a directory other than `.opencode/`, and through which documented flag, environment variable or config key?
-Read these files: /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/opencode-help.txt; /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/opencode-debug-help.txt; /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/opencode-debug-paths.txt; /tmp/skilled-probes-003/strings/opencode.txt.
+Read these files: /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/opencode-help.txt; /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/opencode-debug-help.txt; /Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/opencode-debug-paths.txt; /tmp/skilled-probes-003/strings/opencode.txt.
 Answer with one markdown table whose columns are: Surface | Default location | Override (flag, environment variable or config key, or none) | Verdict (configurable or fixed name) | Evidence (path:line).
 Cite path:line for every cell and write UNKNOWN when no line settles it.
 ```
@@ -674,16 +674,16 @@ Cite path:line for every cell and write UNKNOWN when no line settles it.
 
 | Citation | Status | Resolved to |
 |----------|--------|-------------|
-| `plan.md:27` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md (580 lines) |
-| `plan.md:174` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md (580 lines) |
-| `plan.md:176` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md (580 lines) |
-| `cap/opencode-debug-paths.txt:7` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/opencode-debug-paths.txt (9 lines) |
+| `plan.md:27` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md (580 lines) |
+| `plan.md:174` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md (580 lines) |
+| `plan.md:176` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md (580 lines) |
+| `cap/opencode-debug-paths.txt:7` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/opencode-debug-paths.txt (9 lines) |
 | `dump:15` | matched | /tmp/skilled-probes-003/strings/opencode.txt (17 lines) |
 | `dump:16` | matched | /tmp/skilled-probes-003/strings/opencode.txt (17 lines) |
 | `dump:4` | matched | /tmp/skilled-probes-003/strings/opencode.txt (17 lines) |
 | `dump:14` | matched | /tmp/skilled-probes-003/strings/opencode.txt (17 lines) |
 | `dump:3` | matched | /tmp/skilled-probes-003/strings/opencode.txt (17 lines) |
-| `cap/opencode-help.txt:38` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/opencode-help.txt (56 lines) |
+| `cap/opencode-help.txt:38` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/opencode-help.txt (56 lines) |
 | `dump:8` | matched | /tmp/skilled-probes-003/strings/opencode.txt (17 lines) |
 | `dump:13` | matched | /tmp/skilled-probes-003/strings/opencode.txt (17 lines) |
 | `dump:2` | matched | /tmp/skilled-probes-003/strings/opencode.txt (17 lines) |
@@ -694,10 +694,10 @@ Cite path:line for every cell and write UNKNOWN when no line settles it.
 | `dump:11` | matched | /tmp/skilled-probes-003/strings/opencode.txt (17 lines) |
 | `log:6` | matched | /tmp/skilled-probes-003/logs/opencode-baseline-skills.txt (410 lines) |
 | `log:11` | matched | /tmp/skilled-probes-003/logs/opencode-baseline-skills.txt (410 lines) |
-| `cap/opencode-help.txt:30-31` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/opencode-help.txt (56 lines) |
-| `cap/opencode-debug-help.txt:20-25` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/opencode-debug-help.txt (25 lines) |
-| `cap/opencode-help.txt:27` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/opencode-help.txt (56 lines) |
-| `plan.md:196` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md (580 lines) |
-| `plan.md:200-202` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md (580 lines) |
+| `cap/opencode-help.txt:30-31` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/opencode-help.txt (56 lines) |
+| `cap/opencode-debug-help.txt:20-25` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/opencode-debug-help.txt (25 lines) |
+| `cap/opencode-help.txt:27` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/probes/captures/opencode-help.txt (56 lines) |
+| `plan.md:196` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md (580 lines) |
+| `plan.md:200-202` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md (580 lines) |
 | `dump:6` | matched | /tmp/skilled-probes-003/strings/opencode.txt (17 lines) |
-| `plan.md:159` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md (580 lines) |
+| `plan.md:159` | matched | ~/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/plan.md (580 lines) |

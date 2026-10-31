@@ -12,7 +12,7 @@ trigger_phrases:
   - "durable slice"
 importance_tier: normal
 contextType: implementation
-version: 1.12.1.0
+version: 1.12.2.0
 ---
 
 # Goal Set-String Playbook
@@ -116,7 +116,7 @@ operator's hands carry it.
 From a real four-phase packet whose durable slice measures 1,986 characters, well under the 4,000 limit:
 
 ```text
-Execute specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/goal.md.
+Execute specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/goal.md.
 
 BINDING: read each phase's goal.md before working that phase; its criteria bind
 as if written here. PRECEDENCE: parent decisions outrank child detail; child

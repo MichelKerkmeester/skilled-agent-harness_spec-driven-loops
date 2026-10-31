@@ -35,7 +35,7 @@ contextType: "general"
 ## Phase 1: Setup
 
 - [x] T001 Check `git status --porcelain` for all five surfaces before any other task runs: `.codex/prompts` and `.opencode/commands/design`, `.opencode/skills/sk-design`, `.opencode/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json` plus the README paths it names as missing or mismatched, `specs/system-deep-loop/036-deep-loop-innovation` and `git -C /Users/michelkerkmeester/worktrees/public/046-v4-gemini-research status --porcelain` for the worktree. Record which surfaces are clean and which are dirty, and stop any downstream task whose surface reads dirty
-- [x] T002 [P] Confirm write authority over `specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/spec.md`'s report text, resolving the open question REQ-007 depends on
+- [x] T002 [P] Confirm write authority over `specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/spec.md`'s report text, resolving the open question REQ-007 depends on
 <!-- /ANCHOR:phase-1 -->
 
 ---

@@ -56,8 +56,8 @@
       ".skilled/skills/system-spec-kit/runtime/hooks/README.md",
       ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md",
-      "runtime/tests/spec-gate-pi-extension.vitest.ts",
-      "runtime/tsconfig.json"
+      "specs/system-speckit/031-system-speckit-v4/spec.md",
+      "runtime/tests/spec-gate-pi-extension.vitest.ts"
     ],
     "entities": [
       {
@@ -151,12 +151,6 @@
         "source": "derived"
       },
       {
-        "name": "tsconfig.json",
-        "kind": "config",
-        "path": "runtime/tsconfig.json",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -203,11 +197,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Gate 3 question is delivered by appending a four-option menu to the user's own turn whenever the classifier reads write intent, and the gate almost never closes",
     "created_at": "2026-09-22T06:21:55Z",
-    "last_save_at": "2026-10-31T13:27:04.438Z",
+    "last_save_at": "2026-10-31T13:59:16.343Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ad54c6682d36f45cd6cb513636a39977a05e812bb74988d3467068c96029cc99",
+    "source_fingerprint": "sha256:6e7f838731306ab4f16fc9cd8ad3225381cbf2a1bd761532c16f08a8754a415e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8ac01d728437714acc7b2dec326afcd2cdbcc88e5ba65904a70f40cae52e5c12",
-      "plan.md": "05273c79d2d907b886fe87fa410c8a7d01a0fe08c4f632c0875aada6470bc28a",
-      "tasks.md": "078838aae49c3428b036ca1e4afbeee6855ef609f29722572af0f4ded32220cb",
-      "implementation-summary.md": "4a46b10452253a96b700c50af6c63a477281181aad47b1310f3f70861717a5c1"
+      "plan.md": "85134514fa7aa5b7da7dda6ce619e0065a602b5044d6d3d1232e4a151b17b1ba",
+      "tasks.md": "5440ba75bb6f782748af3c17998d124bed188c9a68e88c36ea6aff5d76a5e616",
+      "implementation-summary.md": "1cc9da56701ddc77b0430c2691142133739318f9b22bcfc6fa88c2003053ac22"
     },
     "last_active_at": null
   }

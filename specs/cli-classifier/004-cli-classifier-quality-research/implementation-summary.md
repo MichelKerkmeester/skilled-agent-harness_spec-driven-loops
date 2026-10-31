@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/004-cli-classifier-quality-research"
+    packet_pointer: "cli-classifier/004-cli-classifier-quality-research"
     last_updated_at: "2026-10-04T12:56:31Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Merged both lineages, confirmed all findings and wrote research/research.md"

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract"
+    packet_pointer: "sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract"
     last_updated_at: "2026-09-25T20:15:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Closed all seven criteria with evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** `sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract`
+**Packet:** `sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract`
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-25

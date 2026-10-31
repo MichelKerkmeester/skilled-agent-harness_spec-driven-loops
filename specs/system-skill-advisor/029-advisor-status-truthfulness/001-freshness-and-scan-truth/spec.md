@@ -54,7 +54,7 @@ This is **Phase 1** of the Make the advisor's freshness, scan and routing report
 
 **Dependencies**:
 - The advisor runtime build: `npm run build` in `.skilled/skills/system-skill-advisor/runtime/` must run before CLI verification, because the shim refuses a stale dist.
-- The doctor freshness panel at `.skilled/commands/doctor/scripts/skill-graph-freshness.cjs` and its route contract in `specs/system-speckit/048-doctor-command-audit/012-skill-graph-freshness`.
+- The doctor freshness panel at `.skilled/commands/doctor/scripts/skill-graph-freshness.cjs` and its route contract in `specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/012-skill-graph-freshness`.
 - A runtime SQLite artifact and its `skill_nodes` rows, which carry the stored content hashes the comparison needs.
 
 **Deliverables**:

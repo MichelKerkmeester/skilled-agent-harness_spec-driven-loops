@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/040-gate-3-option-merge"
+    packet_pointer: "system-speckit/031-system-speckit-v4/040-gate-3-option-merge"
     last_updated_at: "2026-09-15T00:00:00Z"
     last_updated_by: "implementation"
     recent_action: "Merged Gate 3 options C/D, relabeled Skip E to D, repo-wide"

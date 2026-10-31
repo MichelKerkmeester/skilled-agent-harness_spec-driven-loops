@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Every change in the earlier phases reaches runtime mirrors and generated files: Hermes text copies, command prompt stubs, leaf manifests and compiled routes",
     "created_at": "2026-10-28T06:38:52Z",
-    "last_save_at": "2026-10-31T13:25:48.120Z",
+    "last_save_at": "2026-10-31T14:01:36.698Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,7 +202,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd6ca70184cfda63a33fab608c15b0fd083a8ab68bf2dcec3bd61678fe3bad04",
+    "source_fingerprint": "sha256:d92f58997e2752c756a940f997e6d55faa4ac85e4c9d668ac18ba0941748e8e8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "143acc95f36973b039b61e1fe23021478647eb7dd78b98cb1031ae45e76ddbe2",

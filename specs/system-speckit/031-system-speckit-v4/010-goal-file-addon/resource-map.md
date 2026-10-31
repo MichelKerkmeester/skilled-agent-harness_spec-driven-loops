@@ -5,7 +5,7 @@ trigger_phrases:
   - "goal addon research resources"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/010-goal-file-addon"
+    packet_pointer: "system-speckit/031-system-speckit-v4/010-goal-file-addon"
     last_updated_at: "2026-08-30T04:17:55Z"
     last_updated_by: "claude-code"
     recent_action: "Emitted the resource map from the lineage iteration deltas"
@@ -37,7 +37,7 @@ Emitted from this lineage's iteration deltas. Spec-folder `resource-map.md` was 
 - `.opencode/hooks/goal/goal-plugin.md` — OpenCode plugin contract
 - `.opencode/commands/speckit/assets/speckit-plan-auto.yaml` — goal_prompting block
 - `.opencode/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/goal-hook/goal-hook.md` — CC-029
-- `specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/goal.md` — 15028-byte drift exhibit
+- `specs/system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria/goal.md` — 15028-byte drift exhibit
 
 ## Scripts
 
@@ -56,8 +56,8 @@ Emitted from this lineage's iteration deltas. Spec-folder `resource-map.md` was 
 
 ## Specs
 
-- `specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/` — this packet
-- `specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/goal.md`
+- `specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/` — this packet
+- `specs/system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria/goal.md`
 
 ## Config
 

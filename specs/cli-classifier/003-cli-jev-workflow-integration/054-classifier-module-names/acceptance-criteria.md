@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/054-classifier-module-names"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/054-classifier-module-names"
     last_updated_at: "2026-10-05T08:50:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Met all four criteria with evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** cli-jev/003-cli-jev-workflow-integration/054-classifier-module-names
+**Packet:** cli-classifier/003-cli-jev-workflow-integration/054-classifier-module-names
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-05

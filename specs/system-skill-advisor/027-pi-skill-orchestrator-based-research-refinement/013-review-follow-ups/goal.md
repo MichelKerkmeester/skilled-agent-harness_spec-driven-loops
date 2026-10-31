@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups"
+    packet_pointer: "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups"
     last_updated_at: "2026-09-28T08:18:17Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Closed F1 to F12 and proved the parent goal again"

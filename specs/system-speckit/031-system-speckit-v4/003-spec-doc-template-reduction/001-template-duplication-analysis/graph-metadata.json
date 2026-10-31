@@ -45,13 +45,15 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "research/research.md"
+      "research/research.md",
+      "specs/system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis/research/research.md",
+      "specs/system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis/spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "specs/system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis/spec.md",
         "source": "derived"
       },
       {
@@ -195,7 +197,7 @@
     ],
     "causal_summary": "The 13 spec-kit manifest templates contain measured duplication and context waste",
     "created_at": "2026-08-26T05:33:55Z",
-    "last_save_at": "2026-10-31T13:26:31.035Z",
+    "last_save_at": "2026-10-31T13:58:31.509Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,11 +207,11 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:72f074300dfd5f7cb576d1a0c4025bc97678b1a433d64b330165d428afb7a276",
+    "source_fingerprint": "sha256:a111c449d66ad7591a60346cacf77da501370e92022a4c6bdabff7f534451450",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ffaf79867c1b78be3f4a23f36212182d30f45db041dcc0c00b2a89f4078db74c",
-      "plan.md": "81517f48343e1a627da9a893895ab8548789bcf5dfc5dde6ef83c3bc3b729123",
+      "plan.md": "bf014612a3f94c6adb9f1ff2d1794a301c9dd2d72a96e1f0150d73185f327367",
       "tasks.md": "0b225855d7687c5e66d6e57a8fd42b2bf15bcf57ca9ec568b24a7984f3760f0e",
       "implementation-summary.md": "a92b1a6d0c8b95d5d3ebe042d86bfc59ea4cf18506238c3ecbaf33f3ab41ecca",
       "research/research.md": "accc1833c0febf0dc53ee88bbfecfd73457afdb65873566de72298c06760d59e"

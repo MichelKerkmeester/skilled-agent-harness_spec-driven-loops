@@ -14,10 +14,11 @@
     "hub"
   ],
   "lastUpdated": "2026-10-28T06:21:53.879Z",
-  "specId": "072",
+  "specId": "002",
   "folderSlug": "skill-routing-and-clarity",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "051-hub-routing-quality"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

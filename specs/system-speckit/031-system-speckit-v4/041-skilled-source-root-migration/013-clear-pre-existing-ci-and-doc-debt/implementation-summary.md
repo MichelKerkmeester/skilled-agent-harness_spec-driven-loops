@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/013-clear-pre-existing-ci-and-doc-debt"
+    packet_pointer: "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/013-clear-pre-existing-ci-and-doc-debt"
     last_updated_at: "2026-09-18T13:30:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Pushed the phase, rewrote the retired-lane residue and fixed the validator CLI"

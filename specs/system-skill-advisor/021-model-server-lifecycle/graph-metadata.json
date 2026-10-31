@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/021-model-server-lifecycle",
+  "spec_folder": "system-skill-advisor/021-model-server-lifecycle",
+  "parent_id": null,
+  "children_ids": [
+    "system-skill-advisor/021-model-server-lifecycle/001-model-server-default-spawn",
+    "system-skill-advisor/021-model-server-lifecycle/002-advisor-daemon-memory"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "model server default spawn",
+      "hf model server idle timeout",
+      "advisor daemon memory footprint",
+      "orphaned model server reap"
+    ],
+    "key_topics": [
+      "model",
+      "server",
+      "default",
+      "spawn",
+      "idle",
+      "timeout",
+      "advisor",
+      "daemon",
+      "memory",
+      "footprint",
+      "orphaned",
+      "reap"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hugging Face",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After the memory decommission, the default advisor setup no longer started the shared HF model server, leaving the local Hugging Face fallback without its server",
+    "created_at": "2026-10-31T13:41:25.692Z",
+    "last_save_at": "2026-10-31T13:41:25.692Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:c23e8ca2f9a160e7b014b5557ff3bceeb806954906482ddbb4e3f280cad361cb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5ab789c5bf00d97a05371f29d221db20e6dfb0a017da485f7202d2bd97e32547"
+    },
+    "last_active_child_id": "system-skill-advisor/021-model-server-lifecycle/001-model-server-default-spawn",
+    "last_active_at": null
+  }
+}

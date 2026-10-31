@@ -202,7 +202,7 @@
     ],
     "causal_summary": "No speckit command reads or updates goal.md",
     "created_at": "2026-09-11T07:11:50Z",
-    "last_save_at": "2026-10-31T13:26:58.113Z",
+    "last_save_at": "2026-10-31T13:59:06.297Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +212,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2fe7d51682bfea549281b2da5da07f234abad3cbdf663cd1fd87e85a3f702ec7",
+    "source_fingerprint": "sha256:0d4a276fe99c1cb8bcc1cbfd0434e65cadf428a61037373837a56dfbb54e8fd8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a629aadaa99cf13fc74e8f9c8fd29cdaca2c8e58feb0dabfcb8799e5eaa958d4",

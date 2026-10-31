@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-doctor-audit-followups/030-cursor-reconcile-test-exemption"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/030-cursor-reconcile-test-exemption"
     last_updated_at: "2026-10-05T17:00:00Z"
     last_updated_by: "cursor-reconcile-test-exemption"
     recent_action: "Exempted the backgrounded reconcile hook in the Cursor assertion"

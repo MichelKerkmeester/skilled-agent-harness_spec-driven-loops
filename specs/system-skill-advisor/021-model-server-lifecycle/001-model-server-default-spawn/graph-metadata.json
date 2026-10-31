@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The memory server's launcher used to start the shared HF model server on first embed demand",
     "created_at": "2026-09-04T05:06:33Z",
-    "last_save_at": "2026-10-31T13:26:08.757Z",
+    "last_save_at": "2026-10-31T13:41:26.138Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd5fd1748e45e4521d3788c4a808594eb4357702e59dde22cf8fae2e4e3cc2a0",
+    "source_fingerprint": "sha256:6a336f241e1725b7a6dd0ac3046fb0bac6c7108c33bca943c7c9ce3c6083d6f7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5784fbb2420db89966777fac688f3d164ee11bf0e63c6b37cf0342fe73e43c47",
       "plan.md": "32eba48bc6fda6d51cd1aaaccdf8eaf017277bff36a188065e4d68274ec2b263",
-      "tasks.md": "41568ef061e54826c8dc3594949a396fe43c265bcb86438fb13e5a213cde1a98",
+      "tasks.md": "0127bdc79857d1da82bdd473112fe3fb6913f00892b55a680a1b02a7f740b9ae",
       "implementation-summary.md": "b1382891c539e13a1330921b1a1f59b0d2813c2daff17483eeb9395f793c02ad"
     },
     "last_active_child_id": null,

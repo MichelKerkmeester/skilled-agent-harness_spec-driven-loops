@@ -53,7 +53,7 @@ contextType: "planning"
 ## Phase 3: Verification
 
 - [x] T008 Rerun every gate in scope (`scratch/after.md`). Verify: no gate is worse than in `scratch/before.md`. Evidence: `scratch/after.md` §1, 39 gates at exit 0, the same 39 the baseline ran. Accuracy 155/195, 49/66 and 19/24, identical to the baseline. Of the 39 logs, nine differ and every difference is either a debt count the phase moved, a removed advisory, or a duration.
-- [x] T009 Validate this folder. Verify: `validate.sh --strict` prints `RESULT: PASSED`. Evidence: `validate.sh specs/sk-doc/072-skill-routing-and-clarity/008-cli-and-mcp-hubs --strict` and the same command with `--recursive --strict` on the parent both print `RESULT: PASSED`, exit 0.
+- [x] T009 Validate this folder. Verify: `validate.sh --strict` prints `RESULT: PASSED`. Evidence: `validate.sh specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/008-cli-and-mcp-hubs --strict` and the same command with `--recursive --strict` on the parent both print `RESULT: PASSED`, exit 0.
 <!-- /ANCHOR:phase-3 -->
 
 ---

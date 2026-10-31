@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Completed goals in the 011 and 066 trees name scripts that were since renamed to kebab case, counts that later phases grew, branch ranges such as main..HEAD that are empty once merged, and versions that later bumps replaced",
     "created_at": "2026-10-11T04:49:31Z",
-    "last_save_at": "2026-10-11T05:15:39.608Z",
+    "last_save_at": "2026-10-31T14:04:35.803Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ba49c3e61f1276e34a8fc0e3e5e2c61e90629b662346780d717e0d0856c4b9ff",
+    "source_fingerprint": "sha256:3a7ea211281ba622b0bbe8567543a363e4017b1d02fdc6489f376df978152c7c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "06f0245a99b550df098d526179b88cb417446d12d4008032559dac4feed218f0",
+      "spec.md": "92c47f1d03831b24f4322960117ad8f7efa8ad529955752ce48fd1be16a97a1f",
       "plan.md": "af16fbc4417ea49ab9aa26460d8261970aac4b6728ca0d46020f0b7b1297f008",
       "tasks.md": "db6fa8f3d48a65c1b85097e3b16716c44442ed50129d1702da7dcf455ac4b998",
       "implementation-summary.md": "37d64d58834c1287da0c11ab644a3da9056d882763c33a9e07150ddc4d04445f"

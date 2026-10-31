@@ -191,7 +191,7 @@
     ],
     "causal_summary": "`../CHANGELOG-v4.0.0.0.md` was last edited 2026-09-16, and the two late-cycle skill moves that landed 2026-09-20 are absent from it: `cli-jev` becoming its own transport hub, and `mcp-orca-cli` being promoted to the standalone `cli-orca` class-S skill",
     "created_at": "2026-09-20T20:52:56.613Z",
-    "last_save_at": "2026-10-31T13:27:03.772Z",
+    "last_save_at": "2026-10-31T13:59:13.804Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:65962afaab8943fcfa3d2dcf7984e0d4786cda73ae0d806509624d8ff8fa9d75",
+    "source_fingerprint": "sha256:828327539ba8ca6606b1a21d7770a78e8c086ae8b6c8fd65235809a9c481f54a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "48657a98f60c7f0374fb7eb22dd6d4167849bfab34146265875e4ce92b77c3bd",
+      "spec.md": "26afb79e016ec237de74c4f11217ed0c26570dc5304a92326e55389166d7714e",
       "plan.md": "91f8832f5c33ab45a36ab8c2215192609ee15e02527d31d10de922e5fa3c0527",
-      "tasks.md": "3891c255992bfa70ed927ce3347dfdcfddad58df5e24c9fdded36ceb3509628c",
+      "tasks.md": "3fa282193126c616b1274370151f42b13af987b6c739378956779f4c9c6a6e93",
       "implementation-summary.md": "04d7d7d4eb862221f22fb9240e9a5adbc9767761cf4c6e8ba3281676b23601f8"
     },
     "last_active_child_id": null,

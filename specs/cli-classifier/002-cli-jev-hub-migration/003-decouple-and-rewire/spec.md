@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire"
+    packet_pointer: "cli-classifier/002-cli-jev-hub-migration/003-decouple-and-rewire"
     last_updated_at: "2026-09-20T15:20:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Phase specification authored at closeout from the landed decoupling and rewiring"
@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 3** of the cli-jev hub migration program (packet `cli-jev/002-cli-jev-hub-migration`).
+This is **Phase 3** of the cli-jev hub migration program (packet `cli-classifier/002-cli-jev-hub-migration`).
 
 **Scope Boundary**: The wiring that still pointed at the retired location. Phase 002 created the hub and moved the packet; phase 004 onboards the compiled fleet; phase 005 re-runs the playbook from the new home. This phase decouples the old hub, moves the dispatch identity, rewires the rosters and re-derives the generated surfaces the edits invalidate. It changes no judgment behavior and no hard rule.
 
@@ -129,8 +129,8 @@ Leave the repository with one home for the transport and no stale path to it: th
 | `specs/descriptions.json` | Modify | Twelve `cli-jev/…` rows inserted through the folder-discovery upsert |
 | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json` | Modify | Re-minted after the old hub's prose fix, copied to its authored twin |
 | `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json` | Modify | Authored copy of the re-minted manifest |
-| `specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/spec.md`, `implementation-summary.md` | Modify | Changelog path reference follows the rename |
-| `specs/cli-jev/001-cli-jev-creation/spec.md` | Modify | The continuity `key_files` entry follows the moved packet |
+| `specs/cli-classifier/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/spec.md`, `implementation-summary.md` | Modify | Changelog path reference follows the rename |
+| `specs/cli-classifier/001-cli-jev-creation/spec.md` | Modify | The continuity `key_files` entry follows the moved packet |
 <!-- /ANCHOR:scope -->
 
 ---

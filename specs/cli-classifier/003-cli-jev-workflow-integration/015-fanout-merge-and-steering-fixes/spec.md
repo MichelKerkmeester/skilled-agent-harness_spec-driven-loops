@@ -115,7 +115,7 @@ The merge rebuilds every count-only finding the lineage's own files can account 
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts` | Modify | Regression tests from committed lineage records. Owner: `system-deep-loop` |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | One conditional `steer.md` line in `buildLoopPrompt`. Owner: `system-deep-loop` |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Modify | Prompt test for the steering line. Owner: `system-deep-loop` |
-| `specs/cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/implementation-summary.md` | Modify | Diagnosis table and replay results |
+| `specs/cli-classifier/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/implementation-summary.md` | Modify | Diagnosis table and replay results |
 <!-- /ANCHOR:scope -->
 
 ---

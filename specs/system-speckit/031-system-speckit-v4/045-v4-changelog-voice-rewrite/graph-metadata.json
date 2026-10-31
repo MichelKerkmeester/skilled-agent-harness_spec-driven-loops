@@ -206,7 +206,7 @@
     ],
     "causal_summary": "`../CHANGELOG-v4.0.0.0.md` tells the v4 story in the shape of the draft it grew from, and that shape costs the reader",
     "created_at": "2026-09-21T05:52:03Z",
-    "last_save_at": "2026-10-31T13:27:04.246Z",
+    "last_save_at": "2026-10-31T13:59:14.732Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:84d18a0c0230dd853a2a616243988da3515503115c757b53f4d4b2031398fcb6",
+    "source_fingerprint": "sha256:10774803c5e0c0923ea576eec28f3e2e1afd163157efcfcb0dfd1774544c759b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "53076744058e09a12e8ed3cfd8dcbb064162ed99df0166086e9f655ed749945c",
-      "plan.md": "6e66ec94989c2fdaaeb4e2a0fcc67e709a22e413839c864683b818a5aa6d165f",
-      "tasks.md": "8ce526bc06312ea5e37329a26818cef64a011fda08ea5287f03c23ac98c29331",
-      "implementation-summary.md": "0bc4e847616e5645c7656a6a41fb2782f382a30f765e764ac9181eb2bf187368",
+      "spec.md": "db7be62e476a5000a25534b4ff0ddf548bd702ad5c1b2d596ce2a59f274c57db",
+      "plan.md": "218cce15f367541ae95cd15b08302702c9d7bc9382d26e4296e7a53d6b77b2fe",
+      "tasks.md": "7fa8de1df2ab8a85482b8a9de195e018fbbdef2cc4d9c0312648d8d8cfdc5c62",
+      "implementation-summary.md": "fdef2fc54a1704e5105f9ce7ae0b837dbb07caa0798aae69562c8c7126529f22",
       "research/research.md": "4fe5dde4864a0046832760b6c25e8386de891a8ec2e3d3e05e1270254380cf74"
     },
     "last_active_at": null

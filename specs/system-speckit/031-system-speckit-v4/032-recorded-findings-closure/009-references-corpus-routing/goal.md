@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/009-references-corpus-routing"
+    packet_pointer: "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/009-references-corpus-routing"
     last_updated_at: "2026-09-07T17:00:00Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"

@@ -57,7 +57,7 @@ contextType: "general"
 - [x] T010 Run the command-catalog mirror check and the MCP mutation-class guard
 - [x] T011 Run the doctor script tests and compare failures with the pre-batch baseline
 - [x] T012 Confirm the startup menu displays the target and sweep the edited doctor files for retired identifiers
-- [x] T013 Close the phase documentation and validate the packet (specs/system-speckit/048-doctor-command-audit/009-runtime-mirrors)
+- [x] T013 Close the phase documentation and validate the packet (specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/009-runtime-mirrors)
 <!-- /ANCHOR:phase-3 -->
 
 ---

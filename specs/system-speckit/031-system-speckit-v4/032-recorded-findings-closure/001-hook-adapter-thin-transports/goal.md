@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/001-hook-adapter-thin-transports"
+    packet_pointer: "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/001-hook-adapter-thin-transports"
     last_updated_at: "2026-09-07T18:20:00Z"
     last_updated_by: "scaffold"
     recent_action: "Closed every criterion"

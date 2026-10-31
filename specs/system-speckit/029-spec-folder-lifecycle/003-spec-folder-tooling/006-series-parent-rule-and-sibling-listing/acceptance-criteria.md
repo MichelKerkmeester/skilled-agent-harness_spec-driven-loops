@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/006-series-parent-rule-and-sibling-listing"
     last_updated_at: "2026-10-07T10:04:39Z"
     last_updated_by: "deepseek-v4.1-flash"
     recent_action: "Reconciled the acceptance criteria continuity after the phase review"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing
+**Packet:** system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/006-series-parent-rule-and-sibling-listing
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-06

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/056-codex-dispatch-and-checklist"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/056-codex-dispatch-and-checklist"
     last_updated_at: "2026-10-05T15:41:55Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Shipped the Codex Bash fix, the task-dispatch verdict and the checklist header rule"

@@ -204,7 +204,7 @@
     ],
     "causal_summary": "With the cutoff lifted on the 20 comparison packets, 4,407 of 5,860 checked tags warn: 1,748 moved, 1,575 gone, 1,040 guessed and 44 past end",
     "created_at": "2026-10-04T12:00:34Z",
-    "last_save_at": "2026-10-31T13:27:21.943Z",
+    "last_save_at": "2026-10-31T13:59:35.478Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c329624f25934130acf20db1b2965f1c1678a0c51a74b252aba75f8be1cc5295",
+    "source_fingerprint": "sha256:c5e01b3b9d717ff93d13acf9afd5e24ee78bded1a1689c93b5f9ad77a8f447b5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6597b0b3925e11ced5917a94dccf1120e3701d942713a321ef4b872a490ba19c",
       "plan.md": "ba4f9eb6f6e70dbd16e9aed7ff93bff02fe45a7f7962467d70ff3e530ec3954d",
       "tasks.md": "f4d335d3601c441a452964abbbac3674b4f99580de080789b0cc8e568a1aee7b",
-      "decision-record.md": "d2b9dd82957ab88ca7e79961e200043290b8c7cbbd7b4d4e111623ad3bc31244",
+      "decision-record.md": "8c3d47ad774f3db98237ebba82946297118d8c6ce665ee1dd960900708593246",
       "implementation-summary.md": "236f368b48500ef28982ed28804a3101ff51edcb7592b06ef7666a2ecb0cf00a"
     },
     "last_active_at": null

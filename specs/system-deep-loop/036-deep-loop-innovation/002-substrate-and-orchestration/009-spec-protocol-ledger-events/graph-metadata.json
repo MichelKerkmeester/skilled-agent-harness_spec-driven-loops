@@ -46,7 +46,6 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".skilled/commands/deep/assets/compiled/deep-research.contract.md",
       "scratch/verification-gemini-3-8-flash-high.md",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts",
@@ -83,12 +82,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.contract.md",
-        "kind": "doc",
-        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.md",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The spec-check protocol (`system-deep-loop/deep-research/references/protocol/spec-check-protocol.md` §6) requires every spec write a research run makes to reach the state log as a typed audit row, and the research workflows ask for seven such rows",
     "created_at": "2026-09-20T08:33:40.541Z",
-    "last_save_at": "2026-10-08T19:30:18.677Z",
+    "last_save_at": "2026-10-31T14:04:36.092Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +211,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:95e0e760d283e4789a1f66bc3524764dbd8f37a2a0693917106b7d1a7589cbc6",
+    "source_fingerprint": "sha256:5b082dcec1eb20db90abd4363a8abbfe6a4573ffb06777a01eb0f97f2c08781b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bfeb8e5ff648e05fcdf94e3aca10ee01ac7a862c78d13c88d19a878990e08755",
+      "spec.md": "0bf7029426ba478211c5dd8bcc5ce04a6326c6b619d98f1076e06262c2489440",
       "plan.md": "eef622dc9a3d47262be77ea445c3c43c1179f370d8f621c230fc361a18ce0726",
       "tasks.md": "993aa83e45e70af08fb167cbddbfe05628b3524cb6bae3dca45767559262e035",
       "implementation-summary.md": "d75e48f60daa2d7fbc6989289fec18e75b3568ea5c6d370ba690c79867452c92"

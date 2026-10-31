@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification"
     last_updated_at: "2026-10-29T16:57:00Z"
     last_updated_by: "luna"
     recent_action: "Recorded the regeneration evidence"

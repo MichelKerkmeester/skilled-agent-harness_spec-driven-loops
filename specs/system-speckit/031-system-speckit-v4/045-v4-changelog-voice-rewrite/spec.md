@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite"
+    packet_pointer: "system-speckit/031-system-speckit-v4/045-v4-changelog-voice-rewrite"
     last_updated_at: "2026-09-21T00:00:00Z"
     last_updated_by: "pi"
     recent_action: "Opened the packet for the changelog voice rewrite"
@@ -44,7 +44,7 @@ _memory:
 | **Created** | 2026-09-21 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | system-speckit/033-system-speckit-v4 |
+| **Parent Packet** | system-speckit/031-system-speckit-v4 |
 | **Phase** | 45 of 45 |
 | **Predecessor** | 044-v4-changelog-late-cycle-entries |
 | **Successor** | None |

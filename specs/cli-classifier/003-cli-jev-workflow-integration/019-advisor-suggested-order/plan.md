@@ -120,7 +120,7 @@ Commands run from the repository root. `S=.skilled/skills/system-skill-advisor/r
 | No key | `grep -nE 'API_KEY\|TYPESAFE\|Bearer\|Authorization' $S` | Exit 1, no match |
 | Read-only | `git status --porcelain` before and after each run | Identical |
 | Skill docs | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <doc>` on each changed doc | Exit 0 |
-| Phase docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order --strict` | `RESULT: PASSED` |
+| Phase docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-classifier/003-cli-jev-workflow-integration/019-advisor-suggested-order --strict` | `RESULT: PASSED` |
 <!-- /ANCHOR:testing -->
 
 ---

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration"
     last_updated_at: "2026-10-29T19:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Pulled vendored routers, fixed canon, recorded option C"
@@ -15,9 +15,9 @@ _memory:
     blockers:
       - "Four skills fail the strict canon checker on renames, missing sections or resource-doc versions"
     key_files:
-      - "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration/scratch/baseline.md"
-      - "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration/scratch/after.md"
-      - "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration/scratch/reader-inventory.txt"
+      - "specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration/scratch/baseline.md"
+      - "specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration/scratch/after.md"
+      - "specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration/scratch/reader-inventory.txt"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "0269-skill-router-files"

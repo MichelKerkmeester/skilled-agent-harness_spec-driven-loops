@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/052-routing-completeness/003-gate-b-realistic-corpus"
+    packet_pointer: "sk-doc/051-hub-routing-quality/001-routing-completeness/003-gate-b-realistic-corpus"
     last_updated_at: "2026-09-02T17:36:09Z"
     last_updated_by: "claude-code"
     recent_action: "Recorded the approach taken and its verification commands"
@@ -152,7 +152,7 @@ Verification commands, all run from the repository root:
 
 ```bash
 awk -F'\t' 'NR>1 && index(tolower($3),tolower($2))>0 {c++} END{print c+0}' \
-  specs/sk-doc/052-routing-completeness/003-gate-b-realistic-corpus/assets/realistic-corpus.tsv
+  specs/sk-doc/051-hub-routing-quality/001-routing-completeness/003-gate-b-realistic-corpus/assets/realistic-corpus.tsv
 
 node .opencode/bin/skill-advisor.cjs advisor_recommend \
   --json '{"prompt":"<prompt>"}' --format json --timeout-ms 60000

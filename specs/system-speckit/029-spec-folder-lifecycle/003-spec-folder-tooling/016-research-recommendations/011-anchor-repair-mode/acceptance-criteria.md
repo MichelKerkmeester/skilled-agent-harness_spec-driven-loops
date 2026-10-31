@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode"
     last_updated_at: "2026-10-09T00:00:00Z"
     last_updated_by: "closeout"
     recent_action: "Third closeout pass re-cited all eight criteria to the tree5 gate after the Opus alignment fixes"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode
+**Packet:** specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-08

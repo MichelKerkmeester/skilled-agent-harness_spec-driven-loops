@@ -53,7 +53,7 @@ contextType: "planning"
 ## Phase 3: Verification
 
 - [x] T008 Rerun every gate in scope (`scratch/after.md`). Verify: no gate is worse than in `scratch/before.md`. Evidence: `scratch/after.md` §1; 38 gates, 37 exit 0 here. `contract-drift` was 2 on the first run because the phase's own edit to `system-deep-loop/SKILL.md` invalidated the recorded digests; recompiling the three contracts makes it 0. `catalog-packages` is 1 here and 0 on main: the sk-code leaf description it names was fixed in `e244718df9`, which this worktree predates. Accuracy 155/195, 49/66, 19/24, unchanged.
-- [x] T009 Validate this folder. Verify: `validate.sh --strict` prints `RESULT: PASSED`. Evidence: `validate.sh specs/sk-doc/072-skill-routing-and-clarity/006-sk-doc-hub --strict` and `--recursive --strict` both print `RESULT: PASSED`.
+- [x] T009 Validate this folder. Verify: `validate.sh --strict` prints `RESULT: PASSED`. Evidence: `validate.sh specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/006-sk-doc-hub --strict` and `--recursive --strict` both print `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

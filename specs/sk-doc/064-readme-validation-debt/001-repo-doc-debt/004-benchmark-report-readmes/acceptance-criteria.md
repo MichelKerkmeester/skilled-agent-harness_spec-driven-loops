@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/070-repo-doc-debt/004-benchmark-report-readmes"
+    packet_pointer: "sk-doc/064-readme-validation-debt/001-repo-doc-debt/004-benchmark-report-readmes"
     last_updated_at: "2026-10-27T09:30:00Z"
     last_updated_by: "lane-e-conductor"
     recent_action: "Recorded evidence for every criterion"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/070-repo-doc-debt/004-benchmark-report-readmes
+**Packet:** sk-doc/064-readme-validation-debt/001-repo-doc-debt/004-benchmark-report-readmes
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-27

@@ -40,7 +40,7 @@ contextType: "implementation"
 
 This is **Phase 43** of the `system-speckit-v4` parent specification, focusing on the root `README.md` writing quality, readability, structural consistency, and bloat removal.
 
-**Scope Boundary**: The root `README.md` and this spec packet (`specs/system-speckit/033-system-speckit-v4/043-v4-root-readme/`). Parent spec map rows in `../spec.md` are kept synchronized.
+**Scope Boundary**: The root `README.md` and this spec packet (`specs/system-speckit/031-system-speckit-v4/043-v4-root-readme/`). Parent spec map rows in `../spec.md` are kept synchronized.
 
 **Dependencies**:
 - Preceding v4 phases establishing the current architecture: 040 (Gate 3 4-option merge), 041 (.skilled source root migration), and 042 (v4 doc freshness).
@@ -104,8 +104,8 @@ Deliver a clean, scannable, authoritative root `README.md` reflecting current v4
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `README.md` | Modify | Root orientation, architecture guide, and quick start |
-| `specs/system-speckit/033-system-speckit-v4/043-v4-root-readme/*` | Create/Modify | Phase 43 spec packet artifacts |
-| `specs/system-speckit/033-system-speckit-v4/spec.md` | Modify | Update phase 43 scope and criteria in Phase Documentation Map |
+| `specs/system-speckit/031-system-speckit-v4/043-v4-root-readme/*` | Create/Modify | Phase 43 spec packet artifacts |
+| `specs/system-speckit/031-system-speckit-v4/spec.md` | Modify | Update phase 43 scope and criteria in Phase Documentation Map |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -146,7 +146,7 @@ Deliver a clean, scannable, authoritative root `README.md` reflecting current v4
 - **SC-002**: `hvr_scan.py README.md` reports 0 hard semicolons and 0 hard word blockers in prose.
 - **SC-003**: The agent network section lists exactly the 12 agents without duplicates.
 - **SC-004**: All 13 skills are documented across skills library and customization sections.
-- **SC-005**: `validate.sh specs/system-speckit/033-system-speckit-v4/043-v4-root-readme --strict` passes with `RESULT: PASSED`.
+- **SC-005**: `validate.sh specs/system-speckit/031-system-speckit-v4/043-v4-root-readme --strict` passes with `RESULT: PASSED`.
 <!-- /ANCHOR:success-criteria -->
 
 ---

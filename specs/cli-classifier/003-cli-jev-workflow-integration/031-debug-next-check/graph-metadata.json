@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The vendored claude-jev integration asks one `choice` per debug hypothesis: which of `readcode`, `runtest`, `reproduce` or `instrument` is the cheapest way to confirm or rule it out (`../context/external repo's/claude-jev-main/src/domain/catalog/hypotheses.ts:10-15`, `:41-45`)",
     "created_at": "2026-09-29T12:42:43Z",
-    "last_save_at": "2026-10-31T13:25:31.246Z",
+    "last_save_at": "2026-10-31T14:03:51.984Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3b4dd70756e4cd52182fc77d537b5f421117fa738d762a5f62a5ea9612e37732",
+    "source_fingerprint": "sha256:81b245c20800fec7f67391d63c4703ec6c231a6e45569cb313649bccd7e459bd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b6b3497b418011520b1a27aadc837672e23013da0c996e7a6dfa1a281195a3a2",
       "plan.md": "0aff324f5ccd65d480c4bce31f6db531ce5d889f7900982734fb3dca5ba0e9db",
       "tasks.md": "875e8aeb6253d5b6c2b16f02a309a29abd378ed80bc3bd6aac12e2c85cce2556",
-      "implementation-summary.md": "4fedc7be946d4f414b02a98b2928373b90195d06545ef82b3c15db08b1567d84"
+      "implementation-summary.md": "b092b2935a7b7226f6295cfbe273dfa87ec01f1d075683cdf4beb8bb37d8944b"
     },
     "last_active_at": null
   }

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/001-cli-jev-creation/003-hub-mode-registration"
+    packet_pointer: "cli-classifier/001-cli-jev-creation/003-hub-mode-registration"
     last_updated_at: "2026-09-20T10:20:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Registration, hook checks and compiled wiring landed; all gates re-run green"

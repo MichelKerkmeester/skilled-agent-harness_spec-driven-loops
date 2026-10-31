@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity"
     last_updated_at: "2026-10-28T21:55:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Closed the phase 014 deep research and planned its five build phases"
@@ -52,7 +52,7 @@ _memory:
 | **Created** | 2026-10-28 |
 | **Branch** | `worktrees/254-skill-routing-and-clarity` |
 | **Parent Spec** | None |
-| **Parent Packet** | sk-doc/072-skill-routing-and-clarity |
+| **Parent Packet** | sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity |
 | **Predecessor** | None |
 | **Successor** | None |
 | **Handoff Criteria** | Each phase passes `validate.sh --strict` before the next begins |
@@ -91,7 +91,7 @@ Give every skill one source per routing decision, a routing shape that fits its 
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/research/` | Create | 001 | Research loop artifacts and synthesis |
+| `specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/001-deep-research/research/` | Create | 001 | Research loop artifacts and synthesis |
 | `.skilled/skills/system-skill-advisor/SKILL.md`, `.skilled/skills/sk-code/ROUTER.md`, `.skilled/skills/mcp-tooling/ROUTER.md` | Modify | 002 | Routing correctness fixes |
 | `.skilled/skills/sk-doc/sk-create-skill/`, `.skilled/commands/create/` | Modify | 003 | Packet routing canon, sk-create-skill producing it by default, and the creation check that rejects the old shape |
 | `.skilled/skills/*/hub-router.json`, `mode-registry.json`, `ROUTER.md` | Modify | 004 | One authored vocabulary per hub |

@@ -23,7 +23,7 @@ NEW: | A clean full re-run of npx vitest run --config ../../vitest.config.ts --p
 
 EDIT 6 (the AC-009 Verification cell)
 OLD: | N/A - insufficient source context. The evidence pack records no strict validate run and task T014 is open, so the row is Unmet | Unmet | - |
-NEW: | bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof --strict must print RESULT: PASSED, and the parent spec.md must carry phase map row 50 and the 049 to 050 handoff row. Task T014 is open, so the row is Unmet | Unmet | - |
+NEW: | bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof --strict must print RESULT: PASSED, and the parent spec.md must carry phase map row 50 and the 049 to 050 handoff row. Task T014 is open, so the row is Unmet | Unmet | - |
 
 EDIT 7 (the AC-010 Verification cell)
 OLD: | N/A - insufficient source context. Task T016 is open and the evidence pack records no merged-tree run, so the row is Unmet | Unmet | - |

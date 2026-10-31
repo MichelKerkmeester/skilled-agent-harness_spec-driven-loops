@@ -11,7 +11,8 @@
   "folderSlug": "skill-router-files",
   "parentChain": [
     "sk-doc",
-    "072-skill-routing-and-clarity"
+    "051-hub-routing-quality",
+    "002-skill-routing-and-clarity"
   ],
   "memorySequence": 14,
   "memoryNameHistory": [

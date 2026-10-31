@@ -19,7 +19,7 @@
   "specId": "001",
   "folderSlug": "track-and-packet-migration",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "002-cli-jev-hub-migration"
   ],
   "memorySequence": 0,

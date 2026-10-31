@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration"
+    packet_pointer: "cli-classifier/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration"
     last_updated_at: "2026-09-20T14:35:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Phase specification authored at closeout from the landed hub"
@@ -54,12 +54,12 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 2** of the cli-jev hub migration program (packet `cli-jev/002-cli-jev-hub-migration`).
+This is **Phase 2** of the cli-jev hub migration program (packet `cli-classifier/002-cli-jev-hub-migration`).
 
 **Scope Boundary**: The skill-side identity. Phase 001 moved the spec history, phase 003 decouples the old hub and rewires the dispatch chain, phase 004 onboards the compiled fleet, phase 005 re-runs the playbook from the new home. This phase creates the hub, moves the mode and re-authors the mode's own docs. It changes no judgment behavior and no hard rule.
 
 **Dependencies**:
-- Phase 001, because the mode's docs cite the moved spec history at `specs/cli-jev/001-cli-jev-creation`.
+- Phase 001, because the mode's docs cite the moved spec history at `specs/cli-classifier/001-cli-jev-creation`.
 - The sanctioned scaffolder's own assets and the sk-doc parent-skill templates, which define the hub and registry shapes.
 
 **Deliverables**:

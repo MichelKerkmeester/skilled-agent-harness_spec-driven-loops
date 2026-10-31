@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The hub registers `cli-deem` beside `cli-jev` in its registry, router, leaf manifest and docs, and the compiled routing, advisor graph and Hermes mirror all carry it",
     "created_at": "2026-10-02T07:54:42Z",
-    "last_save_at": "2026-10-31T13:25:35.634Z",
+    "last_save_at": "2026-10-31T14:03:56.352Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b45fb70ec57eae00987bd9d55d095442b50abb820ba2f6945d89dc3b128d5965",
+    "source_fingerprint": "sha256:23a835e7e92d4fec283f9fe9cd27d2dfc10760c8ead5b67b7e4503f88a4eba8a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7f4c88930fa567606be7e0cbe1285180b765c123e353395fa7838b4d21d25f19",

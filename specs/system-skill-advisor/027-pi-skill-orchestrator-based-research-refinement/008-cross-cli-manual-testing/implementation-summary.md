@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing"
+    packet_pointer: "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing"
     last_updated_at: "2026-09-26T20:40:00Z"
     last_updated_by: "orchestrate"
     recent_action: "Ran 48 scenario dispatches across five CLIs and traced every FAIL"

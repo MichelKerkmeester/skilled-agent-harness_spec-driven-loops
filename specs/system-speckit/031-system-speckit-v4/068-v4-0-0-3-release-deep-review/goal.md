@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review"
+    packet_pointer: "system-speckit/031-system-speckit-v4/068-v4-0-0-3-release-deep-review"
     last_updated_at: "2026-10-05T21:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Authored the durable directive"
@@ -59,12 +59,12 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/` holds 30 `iteration-*.md` files across its lineage folders: 15 under `lineages/deepseek-flash-max/iterations/`, 10 under `lineages/swe2-max/iterations/`, 3 under `lineages/luna-max/iterations/` and 2 under `luna-wave/lineages/luna-codex/iterations/`
-- [ ] `specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/luna-halt-analysis.md` exists
-- [ ] `specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/review-report.md` exists and states a verdict of PASS, CONDITIONAL or FAIL
-- [ ] `git status --short` lists no changed path outside `specs/system-speckit/033-system-speckit-v4/`
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review --strict` prints `RESULT: PASSED`
-- [ ] `git log origin/main -- specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/review-report.md` lists at least one commit
+- [ ] `specs/system-speckit/031-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/` holds 30 `iteration-*.md` files across its lineage folders: 15 under `lineages/deepseek-flash-max/iterations/`, 10 under `lineages/swe2-max/iterations/`, 3 under `lineages/luna-max/iterations/` and 2 under `luna-wave/lineages/luna-codex/iterations/`
+- [ ] `specs/system-speckit/031-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/luna-halt-analysis.md` exists
+- [ ] `specs/system-speckit/031-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/review-report.md` exists and states a verdict of PASS, CONDITIONAL or FAIL
+- [ ] `git status --short` lists no changed path outside `specs/system-speckit/031-system-speckit-v4/`
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/031-system-speckit-v4/068-v4-0-0-3-release-deep-review --strict` prints `RESULT: PASSED`
+- [ ] `git log origin/main -- specs/system-speckit/031-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/review-report.md` lists at least one commit
 <!-- /ANCHOR:completion -->
 
 ---

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/020-deep-review-remediation"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/020-deep-review-remediation"
     last_updated_at: "2026-10-10T10:30:00Z"
     last_updated_by: "lane-h"
     recent_action: "All 16 rows Met. AC-005 and AC-006 met on live run 38062364636 after the push"
@@ -143,21 +143,21 @@ The table lists this packet's changes against `4669db6522`. Rows marked Deviatio
 | `.skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml` | Modified, Deviation | One command line quoted with single quotes so the YAML parses (Deviation 2) |
 | Three deep-loop stress-test READMEs: `.skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/README.md`, `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/README.md`, `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/README.md` | Modified, Deviation | Reason not found (Deviation 3) |
 | `.skilled/changelog/skilled/README.md`, `.skilled/changelog/skilled/v4.0.0.4.md`, `.skilled/skills/system-spec-kit/changelog/v2.7.1.0.md` | Modified, Deviation | Row for the unreleased `v4.0.0.4.md`, and the Deep Review Fixes sections (Deviation 9) |
-| `specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/spec.md` | Modified | `Superseded by` note |
-| `specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/implementation-summary.md` | Modified | The two LOGIC-SYNC items read as resolved by supersession, the changelog item and the next action |
-| `specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/plan.md` and `tasks.md` | Modified | `actionlint` (exit 0) in the testing row, and T009 and T011 closed |
-| `specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/graph-metadata.json` | Modified | Re-derived by `repair-derived.cjs --apply` |
-| `specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild/scratch/evidence/` (`actionlint-trigger-index-rebuild.txt`, `ci-bot-commit-proof.txt`, `validate-010-closure.txt`) | New | The evidence the 010 docs cite. The files date from 07:57 to 08:02 on 10 October, during this phase |
-| `specs/system-speckit/034-spec-folder-tooling/changelog/` (`changelog-034-010-trigger-index-ci-rebuild.md`, `changelog-034-017-heal-cli-and-compat-yaml-simplification.md`, `changelog-034-018-epic-docs-alignment.md`, `changelog-034-019-epic-follow-up-fixes.md`) | New | Generated phase entries. 010 and 019 were regenerated. The 016 entry was deleted (Known Limitations item 17). 020 has none |
-| `specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/acceptance-criteria.md`, `implementation-summary.md`, `plan.md` and `tasks.md` | Modified | Citations of the renamed evidence now name `.txt`, 30 citations in all. Other edits in these files belong to the 019 lane (see Not this packet's changes) |
-| `specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/graph-metadata.json` | Modified | Re-derived by `repair-derived.cjs --apply` |
-| `specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/goal.md` | Modified | Continuity block closed: `completion_pct` 100, `last_updated_by` `closure-leaf`, box 3 proof named in `recent_action`. The CLI log citation names the `.txt` file. `recent_action` was shortened to one clause in the fix pass, for SPECDOC_FRONTMATTER_004 |
-| `specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/graph-metadata.json` | Modified | Re-derived by `repair-derived.cjs --apply` |
-| `specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/spec.md` | Modified, Deviation | Status In Progress to Complete (Deviation 8) |
-| `specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/scratch/evidence/`, `019-epic-follow-up-fixes/scratch/evidence/` and `020-deep-review-remediation/scratch/evidence/` | Renamed, 26 files | `.log` to `.txt` with each basename kept. The `*.log` rule in `.gitignore` (line 261) had kept them out of git, so the new names are untracked until staged. The 019 folder also holds files the 019 lane wrote, which this packet does not record. `scratch/evidence/workflow-command-trace-route3-closed.txt` is not edited, so its seven `route3-*.log` citations still name `.log` files that now ship as `.txt` |
-| `specs/system-speckit/034-spec-folder-tooling/spec.md`, `timeline.md`, `graph-metadata.json` | Modified | Completion percentage, 016 phase row, 019 and 020 timeline entries, and the parent graph re-derive. `description.json` has no diff and is not listed |
-| `specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation/` | Created | This packet's documents and `scratch/evidence/`. Four uncited, empty `016-closeout-*.done` markers were deleted in the fix pass. `016-closeout-final-gates.done` holds `ALLDONE` and was kept |
-| `specs/system-speckit/034-spec-folder-tooling/020-deep-review-remediation/tasks.md` | Modified | T026 completion figure, now 95 |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/010-trigger-index-ci-rebuild/spec.md` | Modified | `Superseded by` note |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/010-trigger-index-ci-rebuild/implementation-summary.md` | Modified | The two LOGIC-SYNC items read as resolved by supersession, the changelog item and the next action |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/010-trigger-index-ci-rebuild/plan.md` and `tasks.md` | Modified | `actionlint` (exit 0) in the testing row, and T009 and T011 closed |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/010-trigger-index-ci-rebuild/graph-metadata.json` | Modified | Re-derived by `repair-derived.cjs --apply` |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/010-trigger-index-ci-rebuild/scratch/evidence/` (`actionlint-trigger-index-rebuild.txt`, `ci-bot-commit-proof.txt`, `validate-010-closure.txt`) | New | The evidence the 010 docs cite. The files date from 07:57 to 08:02 on 10 October, during this phase |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/changelog/` (`changelog-034-010-trigger-index-ci-rebuild.md`, `changelog-034-017-heal-cli-and-compat-yaml-simplification.md`, `changelog-034-018-epic-docs-alignment.md`, `changelog-034-019-epic-follow-up-fixes.md`) | New | Generated phase entries. 010 and 019 were regenerated. The 016 entry was deleted (Known Limitations item 17). 020 has none |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/019-epic-follow-up-fixes/acceptance-criteria.md`, `implementation-summary.md`, `plan.md` and `tasks.md` | Modified | Citations of the renamed evidence now name `.txt`, 30 citations in all. Other edits in these files belong to the 019 lane (see Not this packet's changes) |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/019-epic-follow-up-fixes/graph-metadata.json` | Modified | Re-derived by `repair-derived.cjs --apply` |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/goal.md` | Modified | Continuity block closed: `completion_pct` 100, `last_updated_by` `closure-leaf`, box 3 proof named in `recent_action`. The CLI log citation names the `.txt` file. `recent_action` was shortened to one clause in the fix pass, for SPECDOC_FRONTMATTER_004 |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/graph-metadata.json` | Modified | Re-derived by `repair-derived.cjs --apply` |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/spec.md` | Modified, Deviation | Status In Progress to Complete (Deviation 8) |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/scratch/evidence/`, `019-epic-follow-up-fixes/scratch/evidence/` and `020-deep-review-remediation/scratch/evidence/` | Renamed, 26 files | `.log` to `.txt` with each basename kept. The `*.log` rule in `.gitignore` (line 261) had kept them out of git, so the new names are untracked until staged. The 019 folder also holds files the 019 lane wrote, which this packet does not record. `scratch/evidence/workflow-command-trace-route3-closed.txt` is not edited, so its seven `route3-*.log` citations still name `.log` files that now ship as `.txt` |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/spec.md`, `timeline.md`, `graph-metadata.json` | Modified | Completion percentage, 016 phase row, 019 and 020 timeline entries, and the parent graph re-derive. `description.json` has no diff and is not listed |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/020-deep-review-remediation/` | Created | This packet's documents and `scratch/evidence/`. Four uncited, empty `016-closeout-*.done` markers were deleted in the fix pass. `016-closeout-final-gates.done` holds `ALLDONE` and was kept |
+| `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/020-deep-review-remediation/tasks.md` | Modified | T026 completion figure, now 95 |
 
 #### Post-review fixes
 
@@ -193,8 +193,8 @@ The fix wave after the fresh Opus code review (9 P2s) and the docs review (3 P1s
 
 These files differ from `4669db6522` in this tree, and this packet does not record them, so their content is not claimed here.
 
-- `specs/system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes/spec.md` and the rest of the 019 edits beyond the citation rename above.
-- `specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/` (four files and its `scratch/evidence/`).
+- `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/019-epic-follow-up-fixes/spec.md` and the rest of the 019 edits beyond the citation rename above.
+- `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/` (four files and its `scratch/evidence/`).
 - `.skilled/skills/system-spec-kit/runtime/cli/tests/frontmatter-template-literals.vitest.ts` (untracked, the 012 lane).
 - `review/` and `goal-file-manifest.txt` under the 034 parent (untracked review inputs).
 - The zero-byte untracked files at the repository root named in this bullet (`specs_system-speckit_034-...` and `.skilled_changelog_skilled_README.md.txt`) are no longer present, and `git status` shows none of them. Their source is not recorded. An empty `scratch/` folder at the repository root is task-created output from the gate runs. `ci-rule-set-comparison.vitest.ts` creates it on every CLI run (line 301, HEAD line 289). It is removed at final-state cleanup, and the fix to the test moves to follow-up 034/021 (Known Limitations item 26).

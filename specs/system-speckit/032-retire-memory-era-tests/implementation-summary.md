@@ -15,7 +15,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/035-retire-memory-era-tests"
+    packet_pointer: "system-speckit/032-retire-memory-era-tests"
     last_updated_at: "2026-09-24T07:10:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Fixed the no-install fallbacks and the --json output, and filled the sk-design/020 phase map"
@@ -53,7 +53,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 035-retire-memory-era-tests |
+| **Spec Folder** | 032-retire-memory-era-tests |
 | **Completed** | 2026-09-24 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

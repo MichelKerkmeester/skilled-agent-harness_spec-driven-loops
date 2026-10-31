@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/074-reference-template-debt"
+    packet_pointer: "sk-doc/066-reference-template-debt"
     last_updated_at: "2026-10-29T23:59:00Z"
     last_updated_by: "claude-opus-worker"
     recent_action: "Landed the exact-suffix format-spec exemption; all 454 references read 445 OK, 0 FAIL, 9 SKIPPED"
@@ -44,8 +44,8 @@ _memory:
 | **Created** | 2026-10-29 |
 | **Branch** | `worktrees/277-reference-template-debt` |
 | **Parent Spec** | None |
-| **Parent Packet** | sk-doc/074-reference-template-debt |
-| **Predecessor** | sk-doc/071-readme-reference-debt |
+| **Parent Packet** | sk-doc/066-reference-template-debt |
+| **Predecessor** | sk-doc/064-readme-validation-debt/002-readme-reference-debt |
 | **Successor** | None |
 | **Handoff Criteria** | Each child validates strict on its own and records its per-file validator counts, its routing replay and the proof that every section reference still lands on the same heading |
 <!-- /ANCHOR:metadata -->

@@ -11,16 +11,16 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration"
     last_updated_at: "2026-09-30T07:32:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Closed the parent with all 35 children Complete"
     next_safe_action: "Operator: push or merge, labels and live runs per goal.md"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/goal.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/goal.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/001-deep-research/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-workflow-integration"
@@ -46,9 +46,9 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-09-26 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
-| **Parent Spec** | `specs/cli-jev/` (track root) |
+| **Parent Spec** | `specs/cli-classifier/` (track root) |
 | **Parent Packet** | `cli-jev` |
-| **Predecessor** | `cli-jev/002-cli-jev-hub-migration` |
+| **Predecessor** | `cli-classifier/002-cli-jev-hub-migration` |
 | **Successor** | None |
 | **Handoff Criteria** | Phase 001 closes with a ranked `research/research.md`, and every build phase it proposes exists as a Planned child that passes strict validation |
 <!-- /ANCHOR:metadata -->

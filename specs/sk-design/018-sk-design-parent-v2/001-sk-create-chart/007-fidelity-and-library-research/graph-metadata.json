@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Three reference overviews start at `## 0",
     "created_at": "2026-09-02T18:50:53Z",
-    "last_save_at": "2026-10-08T19:29:39.842Z",
+    "last_save_at": "2026-10-31T14:04:36.099Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1f597e2a31275091ea140577ea153ada4f54049997e9257871fdf0648b0d7d74",
+    "source_fingerprint": "sha256:e9d789537522cf81fa016d8c345cee366dae08d71daefdebcfe869fcb9e7b75a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "64bd858d95ec130f2ed9708490583c34c31050950c5067aac7d4d0101884e960",
       "plan.md": "29f146c7b340171381e6f1788f8df207aae9867641c7c4ec81ffc0887e7b3fce",
       "tasks.md": "0a16426b834f012a875b539c90e47ff1b135dff660a691d2100ece37bc01c009",
       "decision-record.md": "67548016b50e361bd7dbde4416d907b7795b9736b5155d9966f25c5fdfbcefe9",
-      "implementation-summary.md": "c2989995cda881de5fc321d6a798e375dcf64c059d472f56672e52abf43b9cb7"
+      "implementation-summary.md": "fac14ed0ba777262d7dab6d378cee01b46eef6129a4a2745bdade8b3477f835a"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -4,7 +4,7 @@ You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_
 set in your environment, which this repository's AGENTS.md defines as the autonomous child-dispatch
 exemption: the spec-folder question is pre-resolved and MUST NOT be asked. No answer can reach you.
 Your write authority is already bound. The spec folder is:
-  specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof
+  specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof
 Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 
 PERSONA
@@ -13,7 +13,7 @@ spec document and return one handback block. Nested dispatch is illegal: do not 
 agent process.
 
 Repo root: the current working directory (all paths from there).
-P = specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof
+P = specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof
 
 ROLE
 First run the STEP 0 command exactly as written, if the body has one. Then apply the numbered EDITS below to the one TARGET file, exactly as written. Each EDIT gives the OLD text,
@@ -71,9 +71,9 @@ OLD: T001-T012 are done and T013-T017 are open. Nothing is committed, merged or 
 NEW: T001-T016 are done and T017 is open. The work is committed and merged on the worktree branch, and nothing is pushed yet.
 
 VERIFY - run these, paste each command with its result line
-  grep -c 'STALE\|pending' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md   # expect 0
-  grep -c '0b39a1f6c3' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md      # expect 2
-  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md   # expect 12
+  grep -c 'STALE\|pending' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md   # expect 0
+  grep -c '0b39a1f6c3' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md      # expect 2
+  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md   # expect 12
 
 HANDBACK - emit exactly this, last thing in your reply
 PI_HANDBACK

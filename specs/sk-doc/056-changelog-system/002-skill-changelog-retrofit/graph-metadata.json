@@ -163,19 +163,19 @@
     ],
     "causal_summary": "sk-create-changelog defines two narrative formats for a release, compact and expanded, and its canonical exemplar is `.skilled/skills/system-spec-kit/changelog/v4.0.0.0.md`",
     "created_at": "2026-09-24T15:48:26Z",
-    "last_save_at": "2026-10-31T13:25:55.605Z",
+    "last_save_at": "2026-10-31T13:41:22.475Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:644d6f9315caeb23b4aed1a70f84abd502dcf2f1d433e1218f84fa333ce5e28d",
+    "source_fingerprint": "sha256:194cf8f83725cdfe4f054332f65312c5cb811fc172accd6007c6d71c23b4fc6f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "53307d6c3911ec985b692b3316cbef3816dd4605c9c12969eebad2a18f9eb98b"
+      "spec.md": "7b8177c8efe622fadf0c02881602b33b464298a85ba3dd7323afa52695829c83"
     },
-    "last_active_child_id": "sk-doc/059-skill-changelog-retrofit/016-system-spec-kit",
+    "last_active_child_id": "sk-doc/056-changelog-system/002-skill-changelog-retrofit/016-system-spec-kit",
     "last_active_at": "2026-09-26T08:27:03.158Z"
   }
 }

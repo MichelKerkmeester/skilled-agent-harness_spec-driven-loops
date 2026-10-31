@@ -13,10 +13,11 @@
     "items"
   ],
   "lastUpdated": "2026-10-05T09:56:58.850Z",
-  "specId": "065",
+  "specId": "004",
   "folderSlug": "changelog-section-spacing",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "056-changelog-system"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

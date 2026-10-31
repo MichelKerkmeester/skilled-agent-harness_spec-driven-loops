@@ -25,7 +25,7 @@
   "folderSlug": "goal-inventory-and-mode-contract",
   "parentChain": [
     "sk-doc",
-    "060-create-goal-mode"
+    "057-create-goal-mode"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

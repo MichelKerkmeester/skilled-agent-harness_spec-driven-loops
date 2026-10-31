@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/049-sk-create-frontmatter/001-inventory-and-contract"
+    packet_pointer: "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/001-inventory-and-contract"
     last_updated_at: "2026-09-01T10:43:26Z"
     last_updated_by: "implementation"
     recent_action: "Authored acceptance criteria; confirmed all six AC rows Met"
@@ -37,7 +37,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/049-sk-create-frontmatter/001-inventory-and-contract
+**Packet:** sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/001-inventory-and-contract
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-09-01

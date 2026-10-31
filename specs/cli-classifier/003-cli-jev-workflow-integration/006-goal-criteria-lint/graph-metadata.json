@@ -210,7 +210,7 @@
     ],
     "causal_summary": "No machine check tests rules 4 and 5 of `sk-create-goal`",
     "created_at": "2026-09-27T04:39:32Z",
-    "last_save_at": "2026-10-31T13:25:26.837Z",
+    "last_save_at": "2026-10-31T14:03:47.422Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f86b70544f354b3062aa6d7a3891c93078555c5a311e225e62fbca6495677b13",
+    "source_fingerprint": "sha256:865069032aa57c1eb836708189ea7f20a6ff6e4634c8c07f15df69a688ef6a83",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e8fcf43178ab82e5f08a251489027de260e8ed0dd5179f3cddcccff0e161b2da",
-      "plan.md": "de6ae79d4912c788a295e23a06f872f68fdf3e6d97afc301e354472a5d4c64c2",
+      "plan.md": "bf4a7ae77ee7611e08655d24c575e734e58243a43c8dd3029843a57d8c64e267",
       "tasks.md": "1e9d96055ba54b88a1ab40287e670bc89322b12acdd0636ba369527f57834971",
-      "implementation-summary.md": "8339cd9f8ec593d8c29a76f5fbf511b2b982ea3bb70566e589a0091f1e16a448"
+      "implementation-summary.md": "3de27d80aa6700f03a726295f5101271c8c206fad266feae8752d4e2a7671b5a"
     },
     "last_active_at": null
   }

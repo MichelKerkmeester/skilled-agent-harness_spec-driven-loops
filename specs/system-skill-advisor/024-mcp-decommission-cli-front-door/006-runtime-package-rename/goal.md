@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename"
+    packet_pointer: "system-skill-advisor/024-mcp-decommission-cli-front-door/006-runtime-package-rename"
     last_updated_at: "2026-09-11T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the durable directive"

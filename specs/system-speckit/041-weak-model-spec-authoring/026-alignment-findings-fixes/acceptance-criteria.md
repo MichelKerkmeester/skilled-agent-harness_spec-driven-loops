@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/026-alignment-findings-fixes"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/026-alignment-findings-fixes"
     last_updated_at: "2026-10-27T19:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Marked all six criteria Met with evidence"

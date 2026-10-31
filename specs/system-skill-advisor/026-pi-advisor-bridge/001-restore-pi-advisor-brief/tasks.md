@@ -31,7 +31,7 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Create the 028 packet and the local-only worktree per the operator's choice (specs/system-skill-advisor/028-restore-pi-advisor-brief, .worktrees/059-restore-pi-advisor-brief)
+- [x] T001 Create the 028 packet and the local-only worktree per the operator's choice (specs/system-skill-advisor/026-pi-advisor-bridge/001-restore-pi-advisor-brief, .worktrees/059-restore-pi-advisor-brief)
 - [x] T002 Provision the worktree's dependency trees via the worktree-naming provision step (advisor runtime, spec-kit, deep-loop)
 <!-- /ANCHOR:phase-1 -->
 

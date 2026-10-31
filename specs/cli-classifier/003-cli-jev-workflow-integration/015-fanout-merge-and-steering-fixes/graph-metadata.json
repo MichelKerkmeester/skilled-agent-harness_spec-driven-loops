@@ -52,6 +52,7 @@
       ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/lib/result-envelopes/legacy-shadow.ts",
+      "specs/cli-classifier/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/implementation-summary.md",
       "runtime/package.json"
     ],
     "entities": [
@@ -88,7 +89,7 @@
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "specs/cli-classifier/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/implementation-summary.md",
         "source": "derived"
       },
       {
@@ -202,7 +203,7 @@
     ],
     "causal_summary": "In all three research rounds of this packet, `stepconvergencereport` recorded `synthesisincomplete` with the single invariant `countonlystatefindingsnotreconstructed`",
     "created_at": "2026-09-27T11:50:21Z",
-    "last_save_at": "2026-10-31T13:25:30.779Z",
+    "last_save_at": "2026-10-31T14:03:51.409Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c46e2574fc78b57d0dba3271b7f08714d575b87eaf5f2a771c38e516697e3b30",
+    "source_fingerprint": "sha256:54a5472fe716d26a4f25b67e8cff93bb8f55561a1178b6d57360c781a46867c2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dc7d2f3d58d5660a6076b78c8c6915f0ffb59457ee84182c6e500c19a05686b4",
+      "spec.md": "6095c8d073041aa09c410bd053314bdd0f3098e17fc7577339e11131f7ffbaf8",
       "plan.md": "811aaad9fa265246aef7e40e54354e2d06c9371701404d0a5cc6d356b516fec6",
-      "tasks.md": "9919f939af8661490bcb386bbd247c82a2f91d44b8b2db76cb4902863c922376",
-      "implementation-summary.md": "38b72289914acefed69ffa4ac5f4009d6350d3fab4ece9b0cdae74b870fb60cf"
+      "tasks.md": "10aaf2a6b3053e05c22da4afa78b4a1acf8ddfe24a8c5f15c123895e04eed0c4",
+      "implementation-summary.md": "9512b3d48a6c51a6e77e9504d2234f27340f284922485fb429e5c98a1b210684"
     },
     "last_active_at": null
   }

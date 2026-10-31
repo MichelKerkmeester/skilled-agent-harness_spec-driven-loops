@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/026-runtime-code-standards-research"
+    packet_pointer: "system-speckit/031-system-speckit-v4/026-runtime-code-standards-research"
     last_updated_at: "2026-09-06T10:40:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Closed the packet with its verification evidence"

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/047-plugin-scanner-readiness"
+    packet_pointer: "system-speckit/035-plugin-scanner-readiness"
     last_updated_at: "2026-10-01T18:43:04Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 047-plugin-scanner-readiness |
+| **Spec Folder** | 035-plugin-scanner-readiness |
 | **Completed** | 2026-10-01 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -115,7 +115,7 @@ Every affected suite ran before and after the edits. The tracked-tree change was
 ## Known Limitations
 
 1. **The catalog gate stays red.** With the budget lifted, the scanner reports 3,351 high `HARDCODED_SECRET` findings, 3,302 of them on lines carrying an `sk-` skill name that matches its `^sk-(?:proj-|ant-)?[A-Za-z0-9_-]+$` OpenAI key pattern. Only an upstream scanner fix or a maintainer review clears it.
-2. **The trigger index still lists one `context/` document.** `specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-local.md` stays on disk and in the index, so the advisory CI freshness check reports one obsolete path until the corpus walker excludes `context/`.
+2. **The trigger index still lists one `context/` document.** `specs/cli-classifier/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-local.md` stays on disk and in the index, so the advisory CI freshness check reports one obsolete path until the corpus walker excludes `context/`.
 3. **The score falls to 70 from 76.** The vendored repositories scored well on per-package checks; without them the remaining fixture packages weigh more. The scan still stops at the file budget.
 <!-- /ANCHOR:limitations -->
 

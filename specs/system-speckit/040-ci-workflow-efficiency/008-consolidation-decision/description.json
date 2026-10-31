@@ -49,7 +49,7 @@
   "folderSlug": "consolidation-decision",
   "parentChain": [
     "system-speckit",
-    "053-ci-workflow-efficiency"
+    "040-ci-workflow-efficiency"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening"
     last_updated_at: "2026-10-08T09:55:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Closed with a live rebuild run"

@@ -6,7 +6,7 @@ defines as the autonomous child-dispatch exemption: the spec-folder question is 
 and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
 
 Your write authority is already bound. The spec folder is:
-  specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups
+  specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups
 
 Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 Your task is complete only when every check below has a verdict and the REPORT is printed.
@@ -22,7 +22,7 @@ You re-verify corrections to one root-cause claim. You read files. You run no sc
 signal no process.
 
 WHAT CHANGED
-Your previous verify (specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/luna-verify/report-2.txt)
+Your previous verify (specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/luna-verify/report-2.txt)
 failed checks 1, 3 and 4. The trace, both triage texts and the F12 bullet in the phase spec.md were corrected. Judge
 the files as they stand now, with the same four checks.
 
@@ -32,11 +32,11 @@ Two runs of scenario 433 printed "live generation file CHANGED". The claim is th
 watches, and that the sandbox daemon did not write that file.
 
 FILES
-- The trace: specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/generation-trace.txt
+- The trace: specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/generation-trace.txt
 - The code it cites, under .skilled/skills/system-skill-advisor/runtime/: lib/daemon/watcher.ts,
   lib/daemon/watcher-orchestrator.ts, lib/freshness/generation.ts, lib/skill-graph/skill-graph-db.ts,
   lib/daemon/lifecycle.ts, handlers/skill-graph/scan.ts, handlers/advisor-rebuild.ts and advisor-server.ts
-- The F12 bullet in specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/spec.md
+- The F12 bullet in specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/spec.md
 - The new triage text, seen with git diff: the "Live state changed" row in
   .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md and the
   last five sentences under "### Failure Triage" in

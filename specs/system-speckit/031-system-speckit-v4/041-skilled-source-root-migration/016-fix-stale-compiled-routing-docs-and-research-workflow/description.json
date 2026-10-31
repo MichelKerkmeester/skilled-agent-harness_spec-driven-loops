@@ -25,7 +25,7 @@
   "folderSlug": "fix-stale-compiled-routing-docs-and-research-workflow",
   "parentChain": [
     "system-speckit",
-    "033-system-speckit-v4",
+    "031-system-speckit-v4",
     "041-skilled-source-root-migration"
   ],
   "memorySequence": 0,

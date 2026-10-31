@@ -37,7 +37,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 1** of the review state-init and dispatch packet. The three defects came out of a five-iteration `/deep:review:auto` run on packet 050, whose report lists them in its audit appendix (`specs/system-speckit/050-open-knowledge-format-adoption/review/review-report.md`).
+This is **Phase 1** of the review state-init and dispatch packet. The three defects came out of a five-iteration `/deep:review:auto` run on packet 050, whose report lists them in its audit appendix (`specs/system-speckit/037-open-knowledge-format-adoption/review/review-report.md`).
 
 **Scope Boundary**: the lock release, the iteration verifier's reading of dispatch receipts, receipt retention across a retry, and the review codex branch's shell tail.
 

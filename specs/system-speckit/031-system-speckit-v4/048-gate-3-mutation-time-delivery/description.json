@@ -23,7 +23,7 @@
   "folderSlug": "gate-3-mutation-time-delivery",
   "parentChain": [
     "system-speckit",
-    "033-system-speckit-v4"
+    "031-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -15,7 +15,7 @@
   "specId": "028",
   "folderSlug": "confirm-mode-stop-hint",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,

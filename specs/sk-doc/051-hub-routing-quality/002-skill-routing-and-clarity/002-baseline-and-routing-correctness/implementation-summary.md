@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/002-baseline-and-routing-correctness"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/002-baseline-and-routing-correctness"
     last_updated_at: "2026-10-28T09:30:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Recorded the baseline, fixed six routing defects, regenerated derived files and reran every gate"

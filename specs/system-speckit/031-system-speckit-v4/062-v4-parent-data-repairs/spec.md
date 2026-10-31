@@ -76,7 +76,7 @@ The map lists every child once, in one table, with a status its child's own data
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `specs/system-speckit/033-system-speckit-v4/spec.md` | Modify | Phase Documentation Map repairs |
+| `specs/system-speckit/031-system-speckit-v4/spec.md` | Modify | Phase Documentation Map repairs |
 <!-- /ANCHOR:scope -->
 
 ---

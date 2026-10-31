@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/037-advisor-daemon-memory/002-lighter-advisor-launcher"
+    packet_pointer: "system-skill-advisor/021-model-server-lifecycle/002-advisor-daemon-memory/002-lighter-advisor-launcher"
     last_updated_at: "2026-10-21T14:30:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Measured, mapped the launcher, recorded the no-go"

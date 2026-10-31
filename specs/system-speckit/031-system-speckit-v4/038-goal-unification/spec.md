@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/038-goal-unification"
+    packet_pointer: "system-speckit/031-system-speckit-v4/038-goal-unification"
     last_updated_at: "2026-09-11T07:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Closed all twelve phases with the eight completion criteria evidenced"
@@ -54,7 +54,7 @@ _memory:
 | **Created** | 2026-09-11 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | system-speckit/033-system-speckit-v4 |
+| **Parent Packet** | system-speckit/031-system-speckit-v4 |
 | **Predecessor** | 010-goal-file-addon, 029-goal-operator-resync-rule |
 | **Successor** | None |
 | **Handoff Criteria** | Every child Complete, `validate.sh --strict` recursive passes, goal hook and plugin suites green |

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/052-routing-completeness/008-drift-after-closure"
+    packet_pointer: "sk-doc/051-hub-routing-quality/001-routing-completeness/008-drift-after-closure"
     last_updated_at: "2026-09-05T16:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Fixed both owned findings, worked through review"

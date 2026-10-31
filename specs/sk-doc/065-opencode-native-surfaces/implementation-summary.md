@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/073-opencode-native-surfaces"
+    packet_pointer: "sk-doc/065-opencode-native-surfaces"
     last_updated_at: "2026-10-28T17:30:00Z"
     last_updated_by: "leaf-worker"
     recent_action: "Moved goal-opencode; deleted .skilled/plugins; verified"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 073-opencode-native-surfaces |
+| **Spec Folder** | 065-opencode-native-surfaces |
 | **Completed** | 2026-10-28 on `worktrees/265-opencode-native-surfaces`, not committed |
 | **Level** | 2 |
 | **Status** | Complete |

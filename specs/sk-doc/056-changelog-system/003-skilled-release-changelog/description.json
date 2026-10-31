@@ -12,10 +12,11 @@
     "changelogs"
   ],
   "lastUpdated": "2026-09-27T18:34:16.206Z",
-  "specId": "061",
+  "specId": "003",
   "folderSlug": "skilled-release-changelog",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "056-changelog-system"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

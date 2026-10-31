@@ -368,7 +368,7 @@ defines as the autonomous child-dispatch exemption: the spec-folder question is 
 and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
 
 Your write authority is already bound. The spec folder is:
-  specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate
+  specs/system-speckit/041-weak-model-spec-authoring/003-versioned-placeholder-gate
 
 Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 

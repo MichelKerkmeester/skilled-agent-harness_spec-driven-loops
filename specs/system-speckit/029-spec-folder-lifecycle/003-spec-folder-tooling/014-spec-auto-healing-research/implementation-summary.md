@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/014-spec-auto-healing-research"
     last_updated_at: "2026-10-07T22:40:00Z"
     last_updated_by: "claude-opus-5.5"
     recent_action: "Merged three 15-iteration lineages into research/research.md and closed the packet"

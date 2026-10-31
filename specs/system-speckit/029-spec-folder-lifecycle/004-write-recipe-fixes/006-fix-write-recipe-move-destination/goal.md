@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination"
     last_updated_at: "2026-10-23T13:49:00Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"
@@ -57,11 +57,11 @@ Frozen choices. Changing one is an amendment.
 
 - [x] `grep -cF -- '  <spec-folder>' .skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md` prints `0` and `grep -cF -- '  specs/system-speckit/078-opencode-authoring-recipe' .skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md` prints `1`
 - [x] `grep -cF -- 'track in the destination above is an example' .skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md` prints `1`
-- [x] `grep -c '^YES ' specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/recheck.txt` prints `0` and `grep -c '^bare=0$' specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/recheck.txt` prints `1`
-- [x] `wc -l < specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/changed-files.txt` prints `1`
-- [x] `diff specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/suite-start-summary.txt specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/suite-end-summary.txt > /dev/null && echo SUITE_MATCH` prints `SUITE_MATCH`
-- [x] `grep -cvE '^(P[012]) |^NO FINDINGS$' specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/review/T009.txt` prints `0`
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination --strict` prints `RESULT: PASSED`
+- [x] `grep -c '^YES ' specs/system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/recheck.txt` prints `0` and `grep -c '^bare=0$' specs/system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/recheck.txt` prints `1`
+- [x] `wc -l < specs/system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/changed-files.txt` prints `1`
+- [x] `diff specs/system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/suite-start-summary.txt specs/system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/suite-end-summary.txt > /dev/null && echo SUITE_MATCH` prints `SUITE_MATCH`
+- [x] `grep -cvE '^(P[012]) |^NO FINDINGS$' specs/system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/review/T009.txt` prints `0`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---

@@ -1,5 +1,5 @@
 STEP 1 - fill P/tasks.md (task list plus verification checklist)
-Shape model (read-only): specs/system-speckit/033-system-speckit-v4/049-gate-3-delivery-residue/tasks.md
+Shape model (read-only): specs/system-speckit/031-system-speckit-v4/049-gate-3-delivery-residue/tasks.md
 - Title in frontmatter and H1: "Tasks: CI Cleanup and Pi Gate-3 Live Proof".
 - Phase 1 Setup: T001, T002. Phase 2 Implementation: T003 to T012. Phase 3 Verification: T013 to T017.
   Use the task names in evidence.md. T001 to T012 are "- [x]" and each ends with " - **Evidence**: " plus the

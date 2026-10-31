@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/002-root-numbering-without-track"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/002-root-numbering-without-track"
     last_updated_at: "2026-09-24T09:10:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Replaced the per-name, fetching numbering with a ref-only scan of folders and packet branches"

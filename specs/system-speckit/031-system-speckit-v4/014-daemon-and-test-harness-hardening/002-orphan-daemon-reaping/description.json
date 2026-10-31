@@ -21,7 +21,7 @@
   "folderSlug": "orphan-daemon-reaping",
   "parentChain": [
     "system-speckit",
-    "033-system-speckit-v4",
+    "031-system-speckit-v4",
     "014-daemon-and-test-harness-hardening"
   ],
   "memorySequence": 0,

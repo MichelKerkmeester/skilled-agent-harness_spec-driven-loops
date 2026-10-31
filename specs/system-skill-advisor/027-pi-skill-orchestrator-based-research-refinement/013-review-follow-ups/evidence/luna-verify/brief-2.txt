@@ -6,7 +6,7 @@ defines as the autonomous child-dispatch exemption: the spec-folder question is 
 and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
 
 Your write authority is already bound. The spec folder is:
-  specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups
+  specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups
 
 Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 Your task is complete only when every check below has a verdict and the REPORT is printed.
@@ -27,7 +27,7 @@ Two runs of scenario 433 printed "live generation file CHANGED". The claim is th
 watches, and that the sandbox daemon did not write that file.
 
 FILES
-- The trace: specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/generation-trace.txt
+- The trace: specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/generation-trace.txt
 - The code it cites, under .skilled/skills/system-skill-advisor/runtime/: lib/daemon/watcher.ts,
   lib/daemon/watcher-orchestrator.ts, lib/freshness/generation.ts, lib/skill-graph/skill-graph-db.ts,
   lib/daemon/lifecycle.ts and advisor-server.ts

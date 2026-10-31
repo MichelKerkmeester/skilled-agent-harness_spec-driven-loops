@@ -37,7 +37,7 @@ import { bootstrapLine, clusterBootstrapInterval, marginSlack, marginSlackLine, 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 
 export const DEFAULT_REPO_ROOT = path.resolve(SCRIPT_DIR, '..', '..', '..', '..', '..');
-export const CONTEXT_DIR = 'specs/cli-jev/003-cli-jev-workflow-integration/context';
+export const CONTEXT_DIR = 'specs/cli-classifier/003-cli-jev-workflow-integration/context';
 export const NOTES_FILE = 'ideas from michel kerkmeester.md';
 export const DEFAULT_LABELS_PATH = path.join(SCRIPT_DIR, 'labels.jsonl');
 export const DEFAULT_PLANTED_PATH = path.join(SCRIPT_DIR, 'planted.jsonl');

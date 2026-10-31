@@ -112,18 +112,18 @@
     ],
     "causal_summary": "Skill docs under `.skilled/skills/` are hard to read",
     "created_at": "2026-10-28T06:21:53Z",
-    "last_save_at": "2026-10-31T13:25:47.547Z",
+    "last_save_at": "2026-10-31T13:41:22.540Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:836b5c8f5c0be9825764919a23636306bd3293f2a285514bdc7fc1580dc475d2",
+    "source_fingerprint": "sha256:02669a38a595b7c4dc84a76080de83fe4b627811e4a2ff6bd48ccef351bf7241",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8de07543d9540874786327d71d11c8dd89fb4010862e01fd1bce545fc6aa8c17"
+      "spec.md": "135c0ff987366eccd7f9b85c946e33108b666b08cf0eab78dbc7e56b79b48ddb"
     },
-    "last_active_child_id": "sk-doc/072-skill-routing-and-clarity/014-skill-router-files",
+    "last_active_child_id": "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files",
     "last_active_at": "2026-10-30T04:49:52.232Z"
   }
 }

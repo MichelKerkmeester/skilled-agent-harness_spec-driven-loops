@@ -22,7 +22,7 @@
   "specId": "001",
   "folderSlug": "cli-jev-creation",
   "parentChain": [
-    "cli-jev"
+    "cli-classifier"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -22,10 +22,11 @@
     "describe"
   ],
   "lastUpdated": "2026-10-25T21:51:38.144Z",
-  "specId": "055",
+  "specId": "016",
   "folderSlug": "ci-efficiency-release-docs",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "040-ci-workflow-efficiency"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

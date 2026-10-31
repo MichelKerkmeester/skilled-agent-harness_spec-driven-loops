@@ -10,15 +10,15 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm"
     last_updated_at: "2026-09-28T16:20:00Z"
     last_updated_by: "closure-leaf"
     recent_action: "Recorded briefs 41 and 42 and review round 5"
     next_safe_action: "Orchestrator commits the phase docs"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/build-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/build-evidence.md"
       - ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

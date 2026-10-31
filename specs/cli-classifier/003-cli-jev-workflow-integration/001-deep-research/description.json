@@ -16,7 +16,7 @@
   "specId": "001",
   "folderSlug": "deep-research",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 1,

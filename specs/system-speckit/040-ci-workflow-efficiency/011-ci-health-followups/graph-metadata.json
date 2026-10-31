@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The goal-core test `scope paths hash canonical workspace, runtime, and session identity` asserts that the whole state path holds no `pi`, but the path sits under a `mkdtemp` directory whose random suffix can contain `pi`, so it fails about one run in 750",
     "created_at": "2026-10-27T06:21:04Z",
-    "last_save_at": "2026-10-31T13:27:23.876Z",
+    "last_save_at": "2026-10-31T13:59:40.276Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:146ce48770318612bc5b0447b4f982c2dcb6129eefe665695d7ade203569ba8f",
+    "source_fingerprint": "sha256:8ba8abe1600a26adf975fe6ee1f70c5c605e517eeb342178d8b7d3b681d06b4b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2288385bf1e654799732daa89c4aadfa0dac1770b7bc08c0f067c634021c2719",

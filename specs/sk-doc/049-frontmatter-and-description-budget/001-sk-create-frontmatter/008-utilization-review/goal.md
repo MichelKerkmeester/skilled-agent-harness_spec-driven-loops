@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/049-sk-create-frontmatter/008-utilization-review"
+    packet_pointer: "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/008-utilization-review"
     last_updated_at: "2026-09-02T20:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored the durable directive from the measured review"

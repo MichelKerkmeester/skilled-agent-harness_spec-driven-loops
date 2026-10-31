@@ -48,6 +48,7 @@
       ".opencode/commands/doctor/assets/doctor-speckit-retrieval.yaml",
       "runtime/cli/retrieval/README.md",
       "runtime/cli/runtime-mirrors/README.md",
+      "specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/001-ripgrep-search-system/research/confirmed-findings.md",
       ".opencode/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts",
       ".opencode/skills/system-spec-kit/runtime/cli/retrieval/README.md",
       ".pi/extensions/README.md"
@@ -126,6 +127,12 @@
         "source": "derived"
       },
       {
+        "name": "confirmed-findings.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/001-ripgrep-search-system/research/confirmed-findings.md",
+        "source": "derived"
+      },
+      {
         "name": "session-start-advisories.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts",
@@ -190,17 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Generate",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Gate 1's trigger-index lookup instruction is authored in exactly one place, the root `AGENTS.md` (`AGENTS.md:83`), and `CLAUDE.md` is a symlink to it (`lrwxr-xr-x CLAUDE.md -> AGENTS.md`)",
     "created_at": "2026-09-07T15:05:54Z",
-    "last_save_at": "2026-10-31T13:26:55.047Z",
+    "last_save_at": "2026-10-31T13:59:02.022Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +212,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bb674a58fe918dcae5763422597fc49fc3c48b0cac70c2b39c475a6f04790b27",
+    "source_fingerprint": "sha256:62bd1465faa99a3d2fd07010cc32f5016065871cb0427a2d61f39779348ed643",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a60c627e4be0b4d42c0de31a7e3b9ea298227f1a28485b0fc66854835660812e",
+      "spec.md": "17621ef5293f2feae4ac54a37ed485e004132759f0853f36e8b0d31b7ba51d6b",
       "plan.md": "1488d49750d962c766ff640bdc1ce110815bcea55ac6142fa61d0caa72d4d0a7",
       "tasks.md": "c7cd1f25ea3e8c6b55ca0fb57f4d27ca95969022304601596a8ef70ebe111be0",
       "implementation-summary.md": "57cb09de78bd6a61a6ce7a2aaa79aabae21fb16c88114fa7043b7cdd727fa2cf"

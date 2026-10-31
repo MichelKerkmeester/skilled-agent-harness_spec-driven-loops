@@ -113,7 +113,7 @@ All paths below are under `.skilled/skills/system-spec-kit/` unless they start w
 | `feature-catalog/` and `manual-testing-playbook/` | Modify and Create | Two new catalog leaves, two new scenarios (485, 486), v2.4 stamps, no phase or packet ids (B-01 to B-14) |
 | `SKILL.md`, `templates/`, `references/` | Modify | Word limit, template tree and path fixes, `v2.3-or-later` wording, version 2.12.1.0 |
 | `README.md` (root), `README.md`, `runtime/cli/spec/README.md`, `changelog/v2.9.0.0.md` to `v2.12.0.0.md`, `changelog/v2.12.1.0.md` | Modify and Create | Rule counts, `--quiet` and Draft auto-repair, compact release entries, the new release note |
-| `specs/system-speckit/054-weak-model-spec-authoring/changelog/` | Modify | Root changelog through phase 019, phase changelogs on the template heading set |
+| `specs/system-speckit/041-weak-model-spec-authoring/changelog/` | Modify | Root changelog through phase 019, phase changelogs on the template heading set |
 | `.skilled/agents/orchestrate.md`, `.claude/agents/orchestrate.md` and generated mirrors | Modify | Exit-code rule, real template source, no `Level template contract` |
 | `.skilled/commands/speckit/{plan,implement,complete}.md`, command READMEs | Modify | Three warn-only rules named, no em dashes |
 | `graph-metadata.json`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` | Modify | Spec-scoped advisor phrases and the recompiled graph |

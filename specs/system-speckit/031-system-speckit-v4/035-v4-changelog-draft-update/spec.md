@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/035-v4-changelog-draft-update"
+    packet_pointer: "system-speckit/031-system-speckit-v4/035-v4-changelog-draft-update"
     last_updated_at: "2026-09-08T20:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Applied the confirmed corrections to the draft and closed the packet"
@@ -41,7 +41,7 @@ _memory:
 | **Created** | 2026-09-08 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | system-speckit/033-system-speckit-v4 |
+| **Parent Packet** | system-speckit/031-system-speckit-v4 |
 | **Phase** | 35 of 35 |
 | **Predecessor** | 034-v4-state-inventory-research |
 | **Successor** | None |

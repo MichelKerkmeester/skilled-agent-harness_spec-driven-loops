@@ -202,7 +202,7 @@
     ],
     "causal_summary": "A hub serves compiled routing only after it earns the `compiled-serving` verdict, and the only tool that measured it was retired",
     "created_at": "2026-09-19T05:30:03Z",
-    "last_save_at": "2026-10-31T13:27:02.740Z",
+    "last_save_at": "2026-10-31T13:59:11.718Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +212,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:944f25ce7cd9c34b292da40d0e23affe22ef89819829985fcdc35b183c2bf544",
+    "source_fingerprint": "sha256:2bf086fee191a9e1d44e22e3157555cb80f49b7ce2b9981b7dd6cf8d3bff0b09",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "89d4e38f143620728f0f00e4c802ede224e322dffcdaddfb0d23194c92df05aa",

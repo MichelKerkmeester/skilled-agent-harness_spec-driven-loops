@@ -51,6 +51,7 @@
       ".skilled/skills/system-spec-kit/runtime/hooks/cursor/README.md",
       ".skilled/hooks/completion/README.md",
       ".skilled/hooks/injection-contract.md",
+      "specs/cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/010-completion-claims-research/research/research.md",
       "hooks/pi/completion-evidence.ts"
     ],
     "entities": [
@@ -201,7 +202,7 @@
     ],
     "causal_summary": "Feature 026 stopped on margin, two rows short, against a sentinel regex that catches none of the 10 labeled claims and fires falsely 7 times",
     "created_at": "2026-10-03T05:30:10Z",
-    "last_save_at": "2026-10-31T13:25:39.385Z",
+    "last_save_at": "2026-10-31T14:04:00.075Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,11 +212,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0f2fd8cc4c5ab9332449bc1dd634c7958a792e194c489840d9e414ee6ad3bec6",
+    "source_fingerprint": "sha256:c03246a8f7744ab55491d9087dead0d53c86642c1a7287d23c20e378f1046143",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9dc437607b8481a7da73739f6e9d346a1f8ddb0ddf8b6d092722355935b18034",
-      "plan.md": "e824f93b4fc95278b1e8bca1763922a3ee27f8be7dcc3168aa485ced58d54e54",
+      "spec.md": "eb312e6f3dcd729af783bd0b6ac0dcb2eb9818840dc767320949b1541976e5ca",
+      "plan.md": "f9de9aba0488339fbd72d0ba4265a26a1277a306df3d8ac816564bbfbfe77585",
       "tasks.md": "36f856e3f91f9e806b97ce1beefd5fbb3b35a0f6e497430443b9205a452db3ac",
       "implementation-summary.md": "b1f69019639a6338e0db5ccbdaa43ee8b9003104cee1e741e7af3f2218ca44a9"
     },

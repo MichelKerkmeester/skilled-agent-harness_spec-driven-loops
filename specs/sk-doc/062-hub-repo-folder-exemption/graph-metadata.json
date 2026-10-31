@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Some AI systems are a parent hub and a repository at once: Product Owner and Moneybird Accountant keep `SKILL.md`, `mode-registry.json` and their packets at the repository root, beside `specs/`, `export/` and other repository files",
     "created_at": "2026-10-20T17:23:34Z",
-    "last_save_at": "2026-10-31T13:26:04.781Z",
+    "last_save_at": "2026-10-31T13:41:23.682Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:69c8b99e2604e88e818615a13f0600a1f0aa0686fedd828d92cfd85159855447",
+    "source_fingerprint": "sha256:2f84ea844dbbe82e1d5640e05d420ed8f51985ab6f7e1445ba9dcaae3664e1df",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0d6e8831fb8683efc2d1e6d2214e2143473b72975b0da2a5e02e1a37edf5e671",

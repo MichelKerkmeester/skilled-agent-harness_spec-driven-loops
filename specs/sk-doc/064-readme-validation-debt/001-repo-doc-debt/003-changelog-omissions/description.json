@@ -10,7 +10,8 @@
   "folderSlug": "changelog-omissions",
   "parentChain": [
     "sk-doc",
-    "070-repo-doc-debt"
+    "064-readme-validation-debt",
+    "001-repo-doc-debt"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

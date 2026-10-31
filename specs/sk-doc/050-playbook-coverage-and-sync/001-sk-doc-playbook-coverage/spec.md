@@ -10,16 +10,16 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/050-sk-doc-playbook-coverage"
+    packet_pointer: "sk-doc/050-playbook-coverage-and-sync/001-sk-doc-playbook-coverage"
     last_updated_at: "2026-10-03T12:00:00Z"
     last_updated_by: "spec-validation-backfill"
     recent_action: "Closed phases 001-003 from commit ad9d93df3be, which added all nine playbooks"
     next_safe_action: "None: all three phases closed"
     blockers: []
     key_files:
-      - "specs/sk-doc/050-sk-doc-playbook-coverage/001-authoring-surfaces/implementation-summary.md"
-      - "specs/sk-doc/050-sk-doc-playbook-coverage/002-artifact-producers/implementation-summary.md"
-      - "specs/sk-doc/050-sk-doc-playbook-coverage/003-meta-and-quality/implementation-summary.md"
+      - "specs/sk-doc/050-playbook-coverage-and-sync/001-sk-doc-playbook-coverage/001-authoring-surfaces/implementation-summary.md"
+      - "specs/sk-doc/050-playbook-coverage-and-sync/001-sk-doc-playbook-coverage/002-artifact-producers/implementation-summary.md"
+      - "specs/sk-doc/050-playbook-coverage-and-sync/001-sk-doc-playbook-coverage/003-meta-and-quality/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "019ahF7gmhZy3Bo2bKRKK2i7"

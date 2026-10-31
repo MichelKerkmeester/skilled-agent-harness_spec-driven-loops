@@ -49,7 +49,7 @@ This is **Phase 19** of the spec-folder tooling packet. It closes the follow-ups
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-- Status at closeout: not refreshed. The 034 parent had no `changelog/` folder when this phase closed, and the writer would have created one outside this packet's edit list. The operator later asked for one, and it now holds the generated entries for 010, 017, 018 and 019 at `specs/system-speckit/034-spec-folder-tooling/changelog/`. See implementation-summary.md, Known Limitations item 2.
+- Status at closeout: not refreshed. The 034 parent had no `changelog/` folder when this phase closed, and the writer would have created one outside this packet's edit list. The operator later asked for one, and it now holds the generated entries for 010, 017, 018 and 019 at `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/changelog/`. See implementation-summary.md, Known Limitations item 2.
 <!-- /ANCHOR:phase-context -->
 
 ---

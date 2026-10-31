@@ -49,6 +49,7 @@
       "runtime/ENV-REFERENCE.md",
       "tests/check-ac-coverage.sh",
       ".opencode/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh",
+      "specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/006-retrieval-drift-remediation/acceptance-criteria.md",
       ".opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
     ],
     "entities": [
@@ -199,7 +200,7 @@
     ],
     "causal_summary": "`check-ac-coverage.sh` already ships a floor (default 0.9), an advisory default and an `SPECKITACCOVERAGEENFORCE` switch that is off by default (`runtime/ENV-REFERENCE.md:166-168`)",
     "created_at": "2026-09-07T15:05:56Z",
-    "last_save_at": "2026-10-31T13:26:55.759Z",
+    "last_save_at": "2026-10-31T13:59:01.945Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +212,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:85360eabd6324652f632a11cb948a5f720227a48e890128718464a03a7ab8be2",
+    "source_fingerprint": "sha256:520728363f64ade41ace302d0488311f39a3da97806e7428d8d0f6fd3f5594ed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b35fa2a7fac8cd53991b0b7b43ad46ca645d0e1857116b4876e0cc846dc3a188",
+      "spec.md": "53d665944bbf5d23864ebeacaf29543bcc588299d4e0dca922437f6c5cf7f099",
       "plan.md": "8819e07f0906d1d55baafe7427577ed998d1c16dd8a7be731937d15699ea80bc",
-      "tasks.md": "ece779e2375bc92e3a879489bc2d85ccdb196f9ed7cf37618d880886129d3591",
-      "decision-record.md": "2ce42d29a693e6a468921f6e9b964404d44a34e82add18add70f22b668feeaaa",
+      "tasks.md": "8c78cf752e39594ad3d878fca023b4ef4e11b9b21c39bd4790fbf2df20281b64",
+      "decision-record.md": "d868cc704f00736bab399eb3705e263b4aa3261007d0abe2aacfd2ea9c5e44e0",
       "implementation-summary.md": "b78b37045eded87145f83ad5823eb3aca64564c4b1754eab6ab96f08c81ab16e"
     },
     "last_active_at": null

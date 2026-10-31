@@ -929,7 +929,7 @@
  M specs/system-deep-loop/036-deep-loop-innovation/goal.md
  M specs/system-deep-loop/036-deep-loop-innovation/graph-metadata.json
  M specs/system-deep-loop/036-deep-loop-innovation/handover.md
- M specs/system-speckit/032-relocate-specs-folder/004-code-graph-index-flag-deprecation/description.json
+ M specs/system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/004-code-graph-index-flag-deprecation/description.json
 ?? .opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts
 ?? .opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts
 ?? .opencode/skills/system-spec-kit/benchmark/

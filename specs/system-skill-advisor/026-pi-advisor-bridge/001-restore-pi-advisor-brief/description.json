@@ -11,10 +11,11 @@
     "dedup"
   ],
   "lastUpdated": "2026-09-22T07:10:00.000Z",
-  "specId": "028",
+  "specId": "001",
   "folderSlug": "restore-pi-advisor-brief",
   "parentChain": [
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "026-pi-advisor-bridge"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

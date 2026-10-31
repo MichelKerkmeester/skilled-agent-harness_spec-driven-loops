@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The mode's vocabulary was the contract's vocabulary",
     "created_at": "2026-09-06T06:39:02.253Z",
-    "last_save_at": "2026-10-31T13:25:44.027Z",
+    "last_save_at": "2026-10-31T14:01:31.601Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98011510379b5c718d82e947a12b263281bd5bac83f5f037925a9252c2847792",
+    "source_fingerprint": "sha256:3c4d48b3867249ee461c9b56a498bf370507030879a151f5d8ae382dec7bd672",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6f3ae3a154055168dc55d80b911a76dbe5d07339b09b536e7b29be00aa939c75",
       "plan.md": "51f06e1d2673a7450945951f156d877c883d985f1ebdc15bb36b465b5bc55bb3",
       "tasks.md": "f15097e1f9a0082320c4d249b9ed899a7cedbe6925aa80429f178fbe1cc99477",
-      "decision-record.md": "49629aa24e68b415f9eb22257eada5d18f471111c3b0ef22e81650960888da19",
+      "decision-record.md": "81d585ac5fb5fa8345d0dd68cc36594ce46d443b8070a291f00052f87b5dff3e",
       "implementation-summary.md": "bc434238dcb8f1b9e129c32256eb0be7e110841db25c88b5ddc2a045bc00d81a"
     },
     "last_active_child_id": null,

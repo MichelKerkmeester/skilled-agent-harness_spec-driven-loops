@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/034-v4-state-inventory-research"
+    packet_pointer: "system-speckit/031-system-speckit-v4/034-v4-state-inventory-research"
     last_updated_at: "2026-09-08T18:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Both lanes completed, merged and reproduced; packet closed"
@@ -44,7 +44,7 @@ _memory:
 | **Created** | 2026-09-08 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | system-speckit/033-system-speckit-v4 |
+| **Parent Packet** | system-speckit/031-system-speckit-v4 |
 | **Phase** | 34 of 35 |
 | **Predecessor** | 033-ci-dependency-hardening |
 | **Successor** | None |

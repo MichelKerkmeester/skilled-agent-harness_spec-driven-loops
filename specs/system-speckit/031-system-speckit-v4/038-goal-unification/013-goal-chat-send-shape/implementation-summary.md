@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape"
+    packet_pointer: "system-speckit/031-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape"
     last_updated_at: "2026-09-16T19:03:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Defined the chat slice and the 4,000-character send cap on every goal send surface"

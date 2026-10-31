@@ -18,7 +18,7 @@
   "folderSlug": "repo-rules-source-root-migration",
   "parentChain": [
     "system-speckit",
-    "033-system-speckit-v4",
+    "031-system-speckit-v4",
     "041-skilled-source-root-migration"
   ],
   "memorySequence": 0,

@@ -27,7 +27,7 @@ contextType: "implementation"
 | **Created** | 2026-09-07 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | system-speckit/033-system-speckit-v4 |
+| **Parent Packet** | system-speckit/031-system-speckit-v4 |
 | **Phase** | 31 of 35 |
 | **Predecessor** | 030-spec-kit-simplification-research |
 | **Successor** | 032-recorded-findings-closure |

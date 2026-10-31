@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/074-reference-template-debt/002-remaining-references"
+    packet_pointer: "sk-doc/066-reference-template-debt/002-remaining-references"
     last_updated_at: "2026-10-29T23:59:00Z"
     last_updated_by: "claude-opus-worker"
     recent_action: "Recorded the format-spec exemption and the 445 OK, 0 FAIL, 9 SKIPPED sweep"

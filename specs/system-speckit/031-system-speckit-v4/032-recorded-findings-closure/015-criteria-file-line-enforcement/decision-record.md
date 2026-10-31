@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/015-criteria-file-line-enforcement"
+    packet_pointer: "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/015-criteria-file-line-enforcement"
     last_updated_at: "2026-09-07T22:40:00Z"
     last_updated_by: "implementation-session"
     recent_action: "Recorded the cutoff and exemption decisions"

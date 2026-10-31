@@ -44,6 +44,7 @@
       ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
       ".skilled/skills/cli-classifier/SKILL.md",
       ".hermes/skills/cli-classifier/SKILL.md",
+      "specs/cli-classifier/004-cli-classifier-quality-research/research/research.md",
       ".skilled/skills/cli-classifier/shared/README.md"
     ],
     "entities": [
@@ -192,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The research in `specs/cli-jev/004-cli-classifier-quality-research/research/research.md` confirmed eleven findings in the shipped cli-classifier work",
+    "causal_summary": "The research in `specs/cli-classifier/004-cli-classifier-quality-research/research/research.md` confirmed eleven findings in the shipped cli-classifier work",
     "created_at": "2026-10-04T14:13:20Z",
-    "last_save_at": "2026-10-31T13:25:43.642Z",
+    "last_save_at": "2026-10-31T14:04:01.714Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3963b3ed57042eb96580ed71f78312e136ea3f7912d2903f8520f2665e28bde",
+    "source_fingerprint": "sha256:4670c11b26056ca8e830ccc4a79be6f8f0332d67606981571b4bc13f7560504d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b93f9ef8e22c904ae805b56cbd1f30a8869285186a47cba3e713b81e283d5612",
+      "spec.md": "17d1403fe47439d379387fb57ea489825a6f0b7848e18f556be5ce903d87ba49",
       "plan.md": "2b3254cebf04aab49f9334dc60e0e4ad333bf23e15b37668a482a1925dadd9b3",
       "tasks.md": "227fc2a0693141265fef0ed80b2fff6435658c70dea4f99fe1fe15f473b84c72",
       "implementation-summary.md": "69c45b99b2bcf644f26112bf63430d3b67772079f833ef949727a24aa9ef38dd"

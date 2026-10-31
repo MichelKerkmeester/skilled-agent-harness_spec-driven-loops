@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/057-sk-create-changelog-v4-style"
+    packet_pointer: "sk-doc/056-changelog-system/001-sk-create-changelog-v4-style"
     last_updated_at: "2026-09-29T07:44:06Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Concision pass for entries and docs"
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 057-sk-create-changelog-v4-style |
+| **Spec Folder** | 001-sk-create-changelog-v4-style |
 | **Completed** | 2026-09-22 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -96,8 +96,8 @@ The skill's own docs got the same treatment. Each rule now lives in one place, w
 | `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-doc/manifest.json` | Modified | Re-pinned to the policy hash of the edited SKILL.md |
 | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json` | Modified | The promoted copy, byte-identical to the authored one |
 | `~/.codex/hooks.json` (outside the repo) | Reinstalled | Operator-directed drift fix by the repo's installer, backup kept beside it |
-| `specs/sk-doc/057-sk-create-changelog-v4-style/*` | Created | This packet's docs, this summary and the nested changelog entry |
-| `specs/sk-doc/057-sk-create-changelog-v4-style/scratch/check-changelog-structure.py` | Created | The structural checks as a rerunnable script, so the positive and negative tests can be repeated. The concision pass added O1 (internal labels) and O2 (repeated sentences) |
+| `specs/sk-doc/056-changelog-system/001-sk-create-changelog-v4-style/*` | Created | This packet's docs, this summary and the nested changelog entry |
+| `specs/sk-doc/056-changelog-system/001-sk-create-changelog-v4-style/scratch/check-changelog-structure.py` | Created | The structural checks as a rerunnable script, so the positive and negative tests can be repeated. The concision pass added O1 (internal labels) and O2 (repeated sentences) |
 | `.skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.2.0.md` | Created | Concision pass: the mode's entry, written to the new rules |
 | `.skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/never-infer-release-line.md`, `route-skilled-release-entry.md` | Modified | Concision pass: CHG-008 and CHG-009 cite rule 7 |
 <!-- /ANCHOR:what-built -->

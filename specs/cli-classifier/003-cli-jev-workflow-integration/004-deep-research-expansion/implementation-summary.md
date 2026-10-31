@@ -10,15 +10,15 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/004-deep-research-expansion"
     last_updated_at: "2026-09-27T04:51:56Z"
     last_updated_by: "generate-context"
     recent_action: "Closed round 2 and reconciled the Planned build phases"
     next_safe_action: "Await the operator's build-phase pick; 002's census comes first"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/research.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/implementation-summary.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/004-deep-research-expansion/research/research.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/004-deep-research-expansion/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:28d04f68cd341b57b24e42b3795decc3c21e5321d177e13ec08c3dd08cac790d"
       session_id: "spec-cli-jev-003-workflow-integration"

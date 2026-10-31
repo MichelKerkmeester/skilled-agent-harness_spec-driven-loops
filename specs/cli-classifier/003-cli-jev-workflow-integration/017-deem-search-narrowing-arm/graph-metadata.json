@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The committed trigger-index lookup finds exact wording and little else",
     "created_at": "2026-09-27T11:50:23Z",
-    "last_save_at": "2026-10-31T13:25:31.241Z",
+    "last_save_at": "2026-10-31T14:03:51.557Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a396a6481b7ba3f296ce5b893f5201f3dbc837ff363d69b83346f87c5653dcb",
+    "source_fingerprint": "sha256:d6da957fe801db63d25df5ff5844cb307e30e87880b8f821618b7a18e858fe3e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dfe812c6591d890cf3a9ad26b1cea427d565f0ea0524fede3f62d57d20e6858c",
       "plan.md": "d1a77a51a3d41d3b37c885eb4be5ec30a74d44898f0f82d9c0c109536b025cf4",
       "tasks.md": "40225071ba1a2ca6589c242c80deee42697b276b32a904f18255ae2c00c3f06c",
-      "implementation-summary.md": "622268405f79dfe23b547166cc9033620fed890a6a541dd46aa426fc69c3ec47"
+      "implementation-summary.md": "f596a2d0575a9bfd2ddd9de57900a9536385f3b5e8bffd23bb47757072d6537f"
     },
     "last_active_at": null
   }

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-create-goal-mode/014-goal-no-budget-stop"
+    packet_pointer: "sk-doc/057-create-goal-mode/014-goal-no-budget-stop"
     last_updated_at: "2026-10-24T16:47:40Z"
     last_updated_by: "claude-sonnet-5-5"
     recent_action: "Removed the budget, turn and time stops from the OpenCode goal plugin and documented the change"

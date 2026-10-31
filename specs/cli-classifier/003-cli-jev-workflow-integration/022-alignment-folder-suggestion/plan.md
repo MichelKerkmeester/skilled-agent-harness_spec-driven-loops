@@ -119,7 +119,7 @@ Commands run from `.skilled/skills/system-spec-kit/runtime/cli`. `S=evals/score-
 | Tests | `npx vitest run --config ../../vitest.config.ts --project cli tests/score-alignment-suggestion.vitest.ts` | Exit 0, at least 18 passing |
 | Read-only | `git status --porcelain` before and after each run | Identical |
 | Skill docs | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <doc>` from the repository root | Exit 0 on each changed doc |
-| Phase docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion --strict` from the repository root | `RESULT: PASSED` |
+| Phase docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-classifier/003-cli-jev-workflow-integration/022-alignment-folder-suggestion --strict` from the repository root | `RESULT: PASSED` |
 <!-- /ANCHOR:testing -->
 
 ---

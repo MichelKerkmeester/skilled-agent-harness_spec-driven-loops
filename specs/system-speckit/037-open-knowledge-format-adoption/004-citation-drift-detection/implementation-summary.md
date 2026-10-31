@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection"
+    packet_pointer: "system-speckit/037-open-knowledge-format-adoption/004-citation-drift-detection"
     last_updated_at: "2026-10-04T10:40:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Built the drift scanner changes and reproduced the census"

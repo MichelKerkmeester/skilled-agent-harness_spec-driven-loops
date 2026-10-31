@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/052-routing-completeness"
+    packet_pointer: "sk-doc/051-hub-routing-quality/001-routing-completeness"
     last_updated_at: "2026-09-05T16:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Closed phase 008, the re-measurement after closure, and reconciled the parent with the tree"

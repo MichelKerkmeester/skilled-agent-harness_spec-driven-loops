@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/042-v4-doc-freshness"
+    packet_pointer: "system-speckit/031-system-speckit-v4/042-v4-doc-freshness"
     last_updated_at: "2026-09-19T18:39:04Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -37,7 +37,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/042-v4-doc-freshness
+**Packet:** system-speckit/031-system-speckit-v4/042-v4-doc-freshness
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-19

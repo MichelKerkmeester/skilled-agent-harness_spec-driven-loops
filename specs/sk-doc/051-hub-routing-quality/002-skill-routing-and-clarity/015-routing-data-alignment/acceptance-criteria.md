@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/015-routing-data-alignment"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/015-routing-data-alignment"
     last_updated_at: "2026-10-29T23:10:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Marked every criterion with the evidence that met it"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/072-skill-routing-and-clarity/015-routing-data-alignment
+**Packet:** sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/015-routing-data-alignment
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-29

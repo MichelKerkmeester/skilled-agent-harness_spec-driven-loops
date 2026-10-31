@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/026-defect-and-hardening-fixes"
+    packet_pointer: "system-skill-advisor/025-defect-and-hardening-fixes"
     last_updated_at: "2026-10-06T19:00:00Z"
     last_updated_by: "claude"
     recent_action: "Group the 6 packets under one phase parent"

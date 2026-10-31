@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/001-deep-research"
+    packet_pointer: "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/001-deep-research"
     last_updated_at: "2026-09-16T08:35:04Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Merge and verify both lanes into research/research.md"

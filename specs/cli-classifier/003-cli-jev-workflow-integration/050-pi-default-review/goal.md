@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/050-pi-default-review"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/050-pi-default-review"
     last_updated_at: "2026-10-03T00:00:00Z"
     last_updated_by: "scaffold"
     recent_action: "Both children Complete. The operator kept Pi as the default"

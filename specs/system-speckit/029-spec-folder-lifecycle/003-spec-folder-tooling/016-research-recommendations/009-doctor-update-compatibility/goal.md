@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/009-doctor-update-compatibility"
     last_updated_at: "2026-10-11T21:32:39Z"
     last_updated_by: "orchestrator"
     recent_action: "Real v3 upgrade runs completed and the post-rerun review fixes are verified"

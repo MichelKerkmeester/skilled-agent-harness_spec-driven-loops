@@ -191,7 +191,7 @@
     ],
     "causal_summary": "112 cli-external-orchestration changelogs predate the compact and expanded format that sk-create-changelog now defines",
     "created_at": "2026-09-24T16:54:07Z",
-    "last_save_at": "2026-10-31T13:25:55.755Z",
+    "last_save_at": "2026-10-31T14:01:46.573Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e380a7f716c6e394a7e73562fc6b1aa2931b3e7c5162375e094924c135973846",
+    "source_fingerprint": "sha256:c06c04a6ca6f9ae4bf2bcdcaf732b56d8804c58d8a812b60c3667365c38813bc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "40119df3281ab2817ccdd0b2909225b1a5d8bb9740f72b16d204f1856c048d58",
       "plan.md": "8ebc106415f563f761ec64ee564314165b9914babdaaf013153c0faa3e9f24c6",
       "tasks.md": "e06682793bf1f6ba1041ecf6fe6de20248907b969fc9f2b3983293a4b4996477",
-      "implementation-summary.md": "49adbf7787ba75c805b23b71118e76d0cb24738186badb450b9000dabbed6f38"
+      "implementation-summary.md": "a4b48ed89ad2332c4b06fc05a0a1454c22709daedd1c59ae6c5d1d497e8c0608"
     },
     "last_active_at": null
   }

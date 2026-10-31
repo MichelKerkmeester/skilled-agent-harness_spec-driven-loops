@@ -1,7 +1,7 @@
 ---
 title: "JEV-020 -- The server answers a handshake and claims four tools"
 description: "Confirm `jev-mcp` completes a stdio handshake and lists exactly four tools, for `JEV-020`."
-version: 0.1.0.2
+version: 0.1.1.0
 ---
 
 # JEV-020 -- The server answers a handshake and claims four tools
@@ -48,12 +48,12 @@ Operators run the exact prompt and command sequence for `JEV-020` and confirm th
 ### Commands
 
 ```bash
-python3 specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/scratch/mcp-probe.py
+python3 specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/scratch/mcp-probe.py
 ```
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| JEV-020 | MCP handshake | Confirm the handshake identifies the `jev` server and that the tool list is exactly `noul`, `choice`, `score` and `run` | `initialize, then tools/list` | 1. `python3 specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/scratch/mcp-probe.py` | The handshake returns the server name `jev`, its title and version, and a protocol version; the tool list returns exactly the four names with required arguments `state` and `question`, plus `options` for `choice`, `levels` for `score` and `request` for `run`, and optional provider, model and endpoint on all four | The probe command, the initialize result, the tool names with their required sets, and the exit status | PASS when the handshake completes and the tool list is exactly those four names with those required sets; FAIL when the handshake fails, a tool is missing or renamed, or a required set differs; SKIP only when the probe cannot start the server, naming the missing binary as the blocker | The probe performs no judgment call, so no credential is needed and nothing leaves the machine. Log lines on stdout mean the server is writing diagnostics to the protocol stream; the operator step is the log-level variable that routes them to stderr |
+| JEV-020 | MCP handshake | Confirm the handshake identifies the `jev` server and that the tool list is exactly `noul`, `choice`, `score` and `run` | `initialize, then tools/list` | 1. `python3 specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/scratch/mcp-probe.py` | The handshake returns the server name `jev`, its title and version, and a protocol version; the tool list returns exactly the four names with required arguments `state` and `question`, plus `options` for `choice`, `levels` for `score` and `request` for `run`, and optional provider, model and endpoint on all four | The probe command, the initialize result, the tool names with their required sets, and the exit status | PASS when the handshake completes and the tool list is exactly those four names with those required sets; FAIL when the handshake fails, a tool is missing or renamed, or a required set differs; SKIP only when the probe cannot start the server, naming the missing binary as the blocker | The probe performs no judgment call, so no credential is needed and nothing leaves the machine. Log lines on stdout mean the server is writing diagnostics to the protocol stream; the operator step is the log-level variable that routes them to stderr |
 
 ### Recorded Result
 

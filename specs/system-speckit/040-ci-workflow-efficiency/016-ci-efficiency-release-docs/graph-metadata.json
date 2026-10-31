@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The CI workflow-efficiency program (`specs/system-speckit/053-ci-workflow-efficiency`), the private surface skill work (`specs/sk-code/013-private-surface-skills`) and their companions reached main without changelog entries for eleven touched skills and modes",
+    "causal_summary": "The CI workflow-efficiency program (`specs/system-speckit/040-ci-workflow-efficiency`), the private surface skill work (`specs/sk-code/013-private-surface-skills`) and their companions reached main without changelog entries for eleven touched skills and modes",
     "created_at": "2026-10-25T21:51:38Z",
-    "last_save_at": "2026-10-31T13:27:25.893Z",
+    "last_save_at": "2026-10-31T13:41:31.352Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e38693a5040d0a626478b4067063e982603d9c3d41b22204c7693932e3601e75",
+    "source_fingerprint": "sha256:041461068b0e6e315a4acf70affdffad292921dd2f2933b2c5295c112f72c959",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "af01d1a2cbd9300b0610878f0af651049dfc2cfcf59c07a640ac0b4dca594e32",
-      "plan.md": "d38870f5863e58b033598cdfa70fc4d0592ffb736288bcf8a297a1e6582f9432",
-      "tasks.md": "8695760100bed0e6f67d0f8d8709065fe51a140fc666e82a54f66b70de7f6928",
-      "implementation-summary.md": "645b5d62cccf5496b19d501d80b44aca320c2bd68fa799ae96e890fc35598302"
+      "spec.md": "0d9251299da025addf6f236a1cd1e446471eb2e0a8a6c9f7faf7a3540d6638ba",
+      "plan.md": "57eedf356ebf1513a983dfd1b65507d7369dedef7b8f90878325a5f7ecc0d9a2",
+      "tasks.md": "5aacd342e4f489e916ec6ab58f6d51745a6cf543f7b7a318f744afb6d082ea4c",
+      "implementation-summary.md": "26efdbf53f37145b22772e016e451b429c7251d38402495fd228dbfc951de09f"
     },
     "last_active_at": null
   }

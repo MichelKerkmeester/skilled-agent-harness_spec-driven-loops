@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/052-routing-completeness/007-spec-kit-residue"
+    packet_pointer: "sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue"
     last_updated_at: "2026-09-03T23:30:00Z"
     last_updated_by: "spec-kit-residue-implementer"
     recent_action: "Closed AC-001 to AC-003 on a completed suite run and a measured reference split"

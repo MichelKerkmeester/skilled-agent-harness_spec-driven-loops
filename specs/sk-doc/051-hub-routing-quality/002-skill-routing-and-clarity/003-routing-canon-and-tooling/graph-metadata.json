@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The templates and checks that shape every skill still teach the long inline routing section",
     "created_at": "2026-10-28T06:38:44Z",
-    "last_save_at": "2026-10-31T13:25:48.051Z",
+    "last_save_at": "2026-10-31T14:01:36.354Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6459a48dcb4e274d64a77864487cac208521851ec58e6b5f0a720013e51cb3c5",
+    "source_fingerprint": "sha256:a02af110a076f17302081852a08434d8e40d189e424ef18d523521836a4a2c0e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d4b44b7682c206245f78abe36d85bc86292014b61bc47436c5dc6dbac7062162",

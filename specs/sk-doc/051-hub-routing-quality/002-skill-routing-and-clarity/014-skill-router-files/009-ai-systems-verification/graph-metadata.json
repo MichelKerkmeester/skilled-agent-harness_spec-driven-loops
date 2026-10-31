@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Phase 008 moved the machine router of 16 AI Systems skills into sibling `ROUTER.md` files and reran its own baseline, but the run that made the change also judged it",
     "created_at": "2026-10-29T11:37:25Z",
-    "last_save_at": "2026-10-31T13:25:52.115Z",
+    "last_save_at": "2026-10-31T14:01:42.166Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8a52f10f4267700ae58284dfafff2012a2a6dbca5ffc39e414a6b4e12aa7f4f",
+    "source_fingerprint": "sha256:c4e474cf17b793bea5ae1ae4c81cb3bbf5cda81c683e3be1960c3de1258bb736",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "00b807bc70a03a51b1610b83ee2a4537db151c3b1de198bf38600d015089bd61",
       "plan.md": "1d977320952fa5987bfa45f3f265f7e4335b225ee6d54de0f94cbeace498afcb",
       "tasks.md": "4d20414132b9d0838fa89b085f34636ed31f65c808f57883d033ac909102fd48",
-      "implementation-summary.md": "a005aaf10167af1f140f6ee0da34a9445406cf15cbcb368fb5e9e2d88f364dd5"
+      "implementation-summary.md": "e8c224bafd1d1989e3f666eeeb8ad29141c0e76316f4585561fef994ec7e6bd6"
     },
     "last_active_at": null
   }

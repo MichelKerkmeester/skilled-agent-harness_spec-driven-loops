@@ -44,7 +44,7 @@ This is **Phase 29** of the deep-loop-innovation packet. It aligns the system-de
 **Scope Boundary**: the system-deep-loop runtime and ARCHITECTURE.md, the `verify_alignment_drift.py` flags, the ARCHITECTURE template in sk-create-readme, and the loop driver in this folder's `scratch/`.
 
 **Dependencies**:
-- None upstream. Downstream: `specs/system-skill-advisor/031-align-runtime-code-with-sk-code-skilled` and `specs/system-speckit/046-align-runtime-code-with-sk-code-skilled` wait on prerequisites A-C.
+- None upstream. Downstream: `specs/system-skill-advisor/028-align-runtime-code-with-sk-code-skilled` and `specs/system-speckit/034-align-runtime-code-with-sk-code-skilled` wait on prerequisites A-C.
 
 **Deliverables**:
 - Checker flags, ARCHITECTURE template, loop driver, deep-loop ARCHITECTURE.md, and the aligned runtime.

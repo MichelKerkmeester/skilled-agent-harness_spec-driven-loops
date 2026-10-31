@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-skill-advisor/033-advisor-status-truthfulness/002-router-reach-misroutes
+**Packet:** system-skill-advisor/029-advisor-status-truthfulness/002-router-reach-misroutes
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-10-03

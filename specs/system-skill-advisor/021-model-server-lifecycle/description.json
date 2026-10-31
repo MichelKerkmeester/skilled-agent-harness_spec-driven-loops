@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skill-advisor/021-model-server-lifecycle",
+  "description": "Model server lifecycle: default spawn and daemon memory",
+  "keywords": [
+    "model",
+    "server",
+    "lifecycle"
+  ],
+  "lastUpdated": "2026-10-31T13:31:06.000Z",
+  "specId": "021",
+  "folderSlug": "model-server-lifecycle",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

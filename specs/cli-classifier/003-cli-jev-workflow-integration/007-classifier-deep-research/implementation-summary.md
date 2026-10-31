@@ -10,18 +10,18 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/007-classifier-deep-research"
     last_updated_at: "2026-09-27T09:37:40Z"
     last_updated_by: "generate-context"
     recent_action: "Closed round 3: synthesis, phase amendments, new phases 008 and 009, validation"
     next_safe_action: "Await the operator choice of the first build, 002 zero-call census"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/research.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-local.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/goal.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/goal.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/007-classifier-deep-research/research/research.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-local.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/007-classifier-deep-research/goal.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/008-cli-classifier-hub/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/goal.md"
     session_dedup:
       fingerprint: "sha256:aef7ec217812267d688987880ebfd35f24470a0cf9d2104ce987ffe7912ccde8"
       session_id: "spec-cli-jev-003-workflow-integration"

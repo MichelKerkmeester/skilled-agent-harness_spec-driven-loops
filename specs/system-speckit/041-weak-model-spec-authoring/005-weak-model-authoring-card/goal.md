@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/005-weak-model-authoring-card"
     last_updated_at: "2026-10-23T14:30:00Z"
     last_updated_by: "conductor"
     recent_action: "Authored the durable directive"

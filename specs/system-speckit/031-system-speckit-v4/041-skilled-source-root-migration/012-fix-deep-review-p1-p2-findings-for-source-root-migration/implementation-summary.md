@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/012-fix-deep-review-p1-p2-findings-for-source-root-migration"
+    packet_pointer: "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/012-fix-deep-review-p1-p2-findings-for-source-root-migration"
     last_updated_at: "2026-09-18T10:45:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Pushed the remediation and confirmed Spec-Kit Check green"

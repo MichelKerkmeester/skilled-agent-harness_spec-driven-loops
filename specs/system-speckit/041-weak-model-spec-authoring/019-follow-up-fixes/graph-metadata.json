@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`recursive-child-manifest.vitest.ts` runs `check-goal-file-manifest.sh`, whose bare `git ls-files` hung on fsmonitor for 853305 ms in a full CLI suite run (block below); it had timed out batch runs twice earlier the same day and failed in phase 013's suite baseline",
     "created_at": "2026-10-26T18:10:21Z",
-    "last_save_at": "2026-10-31T13:27:28.953Z",
+    "last_save_at": "2026-10-31T13:59:45.610Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1600aea715de68191bb889d1e306c495056976194372ef52978e20b981aee486",
+    "source_fingerprint": "sha256:c9a7039a1983735689fbcee1e6a6be249ef66d53e4a465b52b0346d60d9100c0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9f50e1091640cb793ba1f159ada8d06bcdadb7f443fbf3841ccd02f3e9264f86",
       "plan.md": "e8ed67e0ff973246484cbcc5f6cd79bb4a84116823a7129da595c3b5f829a958",
-      "tasks.md": "d0ea72734d02dcc8fe6816dd4fe8af79c7daa877669f4abddb511caaeb1e5c3d",
+      "tasks.md": "5160514e15739e7cde7e7f083c088df17508718687992e9fc5341c6f42d41ac1",
       "implementation-summary.md": "e34b62c5d9304d8c5adf5af11f8ab98aa98a4ff0c0f1887cf7881f4f78af390b"
     },
     "last_active_at": null

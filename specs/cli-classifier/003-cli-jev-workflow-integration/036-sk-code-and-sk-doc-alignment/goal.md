@@ -10,16 +10,16 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment"
     last_updated_at: "2026-09-30T13:06:54Z"
     last_updated_by: "markdown-leaf"
     recent_action: "Ticked all five criteria from the build's verify outputs"
     next_safe_action: "None. Landing on main waits on the operator"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/plan.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/tasks.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/plan.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-036-sk-code-and-sk-doc-alignment"

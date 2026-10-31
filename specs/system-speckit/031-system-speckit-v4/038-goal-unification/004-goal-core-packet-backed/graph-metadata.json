@@ -198,7 +198,7 @@
     ],
     "causal_summary": "goal-core.cjs keys state by sha256 of workspace, runtime and session and never reads specs/",
     "created_at": "2026-09-11T07:11:49Z",
-    "last_save_at": "2026-10-31T13:26:57.551Z",
+    "last_save_at": "2026-10-31T13:59:05.976Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c6b9962da2fb9423e6a9c2e05df3bc628abdd9a3357c4b5fa1158a5d830024b3",
+    "source_fingerprint": "sha256:492349601d3aa7283e13bdcbf15ebd08fd8d656485aacd2b6a0ca7aa0fe9c6f3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b02b58222c79cdcef018479b43b9475b86f8d7be1c5e6893cec3a7b7394f4454",

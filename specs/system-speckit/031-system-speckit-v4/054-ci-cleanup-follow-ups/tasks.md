@@ -60,7 +60,7 @@ contextType: "general"
 
 - [x] T010 Drift guards - **Evidence**: `run-all-drift-guards.sh` reports all 2 guards passed and Errors 0, down from the 6 errors the six probe scripts carried before.
 - [x] T011 Commit - **Evidence**: recorded in the commit list: branch `worktrees/066-ci-cleanup-follow-ups` carries `7bde922cba` fix(system-spec-kit): gate a repository under /tmp like any other and `a06dba0800` fix(cli-jev): run the recorded probe scripts under pipefail.
-- [x] T012 Packet docs and parent rows - **Evidence**: recorded in the identity section: this packet is phase 54 of 55 under `specs/system-speckit/033-system-speckit-v4` with predecessor `050-ci-cleanup-pi-proof`, and the evidence pack records all tasks done with status Complete.
+- [x] T012 Packet docs and parent rows - **Evidence**: recorded in the identity section: this packet is phase 54 of 55 under `specs/system-speckit/031-system-speckit-v4` with predecessor `050-ci-cleanup-pi-proof`, and the evidence pack records all tasks done with status Complete.
 <!-- /ANCHOR:phase-3 -->
 
 ---

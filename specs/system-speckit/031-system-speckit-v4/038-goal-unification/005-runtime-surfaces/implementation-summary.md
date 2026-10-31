@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/038-goal-unification/005-runtime-surfaces"
+    packet_pointer: "system-speckit/031-system-speckit-v4/038-goal-unification/005-runtime-surfaces"
     last_updated_at: "2026-09-11T07:11:50Z"
     last_updated_by: "claude-code"
     recent_action: "Shipped pi, opencode, cursor and devin goal surfaces over the packet core"

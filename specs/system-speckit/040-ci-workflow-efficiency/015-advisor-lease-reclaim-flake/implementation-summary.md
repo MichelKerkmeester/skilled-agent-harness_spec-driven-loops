@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/053-ci-workflow-efficiency/015-advisor-lease-reclaim-flake"
+    packet_pointer: "system-speckit/040-ci-workflow-efficiency/015-advisor-lease-reclaim-flake"
     last_updated_at: "2026-10-28T01:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Skipped the startup wait when the bridge is disabled"

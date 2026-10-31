@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/004-template-section-fill-guidance"
     last_updated_at: "2026-10-25T21:45:00Z"
     last_updated_by: "conductor"
     recent_action: "Closed the phase"
@@ -60,7 +60,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `bash runtime/cli/spec/check-example-drift.sh` prints `EXAMPLE_DRIFT_OK`
 - [x] The awk crossing command in `plan.md` section 3 prints nothing on every `.tmpl` under `templates`
 - [x] `diff scratch/baseline/anchor-counts.txt scratch/baseline/anchor-counts-after.txt` prints nothing
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance --strict` prints `RESULT: PASSED`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/041-weak-model-spec-authoring/004-template-section-fill-guidance --strict` prints `RESULT: PASSED`
 - [x] `git status --porcelain` lists only the files in `spec.md` section 3 and this phase folder (read as the diff against `scratch/baseline/status-start.txt`, per AC-007: the start status already held phase 001 scratch leftovers and the conductor-owned parent `goal.md`)
 <!-- /ANCHOR:completion -->
 

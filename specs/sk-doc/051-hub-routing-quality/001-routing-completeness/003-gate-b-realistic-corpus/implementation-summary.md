@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/052-routing-completeness/003-gate-b-realistic-corpus"
+    packet_pointer: "sk-doc/051-hub-routing-quality/001-routing-completeness/003-gate-b-realistic-corpus"
     last_updated_at: "2026-09-02T18:00:00Z"
     last_updated_by: "phase-3-gate-b-realistic-corpus"
     recent_action: "Authored the phase impl-summary from packet docs and git"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Packet** | sk-doc/052-routing-completeness/003-gate-b-realistic-corpus |
+| **Packet** | sk-doc/051-hub-routing-quality/001-routing-completeness/003-gate-b-realistic-corpus |
 | **Level** | 3 |
 | **Status** | Complete |
 | **Delivery** | Shipped. The parent goal LOG records this phase Done |
@@ -181,7 +181,7 @@ AC-004 in `acceptance-criteria.md`, all of which read Met.
 | Strict and loose hit counts computed independently from the same JSON | 8 of 180 top-only and 20 of 180 any-position, the two acting as a check on each other |
 | `advisor_status` for the semantic lane, plus `select count(*) from skill_nodes where embedding is not null` | Weight `0.05` shadow-only, and zero embedded nodes. This satisfies AC-003 |
 | Denominator correction in the measurement document | Both `command-bridge` modes named with their `routingClass`, and 8 of 172 reported alongside 8 of 180. This satisfies AC-004 |
-| `validate.sh specs/sk-doc/052-routing-completeness --strict --recursive` | PASS for this folder, Errors 0 |
+| `validate.sh specs/sk-doc/051-hub-routing-quality/001-routing-completeness --strict --recursive` | PASS for this folder, Errors 0 |
 | `hvr_scan.py` on this document | 0 hard blockers |
 <!-- /ANCHOR:verification -->
 

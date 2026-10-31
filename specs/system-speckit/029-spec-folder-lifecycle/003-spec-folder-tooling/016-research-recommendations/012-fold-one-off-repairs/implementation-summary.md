@@ -7,15 +7,15 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs"
     last_updated_at: "2026-10-11T19:55:45Z"
     last_updated_by: "generate-context"
     recent_action: "Ran the full-tree apply on a clone then the real tree"
     next_safe_action: "Monitor upgrade baselines in the five packets the apply touched"
     blockers: []
     key_files:
-      - "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/scratch/evidence/lane-clone-apply.txt"
-      - "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/goal.md"
+      - "specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/scratch/evidence/lane-clone-apply.txt"
+      - "specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs/goal.md"
     completion_pct: 100
     open_questions: []
     answered_questions: []

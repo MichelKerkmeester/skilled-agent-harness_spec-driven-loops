@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/019-follow-up-fixes"
     last_updated_at: "2026-10-26T19:30:00Z"
     last_updated_by: "phase-doc-writer"
     recent_action: "Recorded both fixes, the review and the remediation"

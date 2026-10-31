@@ -30,6 +30,6 @@ OLD: AC-008 and AC-010 are the open rows and each must turn Met or carry a waive
 NEW: Every criterion is Met. The packet closes once the push, the CI watch and the worktree removal in T017 are done.
 
 VERIFY - run these, paste each command with its result line
-  grep -c '| Met | - |' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/acceptance-criteria.md     # expect 10
-  grep -c '| Unmet |' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/acceptance-criteria.md        # expect 0
-  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/acceptance-criteria.md   # expect 6
+  grep -c '| Met | - |' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/acceptance-criteria.md     # expect 10
+  grep -c '| Unmet |' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/acceptance-criteria.md        # expect 0
+  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/acceptance-criteria.md   # expect 6

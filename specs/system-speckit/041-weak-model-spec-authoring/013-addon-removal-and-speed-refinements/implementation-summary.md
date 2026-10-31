@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/013-addon-removal-and-speed-refinements"
     last_updated_at: "2026-10-26T11:20:00Z"
     last_updated_by: "conductor"
     recent_action: "Removed three add-ons and built the six speed refinements"

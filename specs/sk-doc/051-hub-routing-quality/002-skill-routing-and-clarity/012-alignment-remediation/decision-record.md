@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/012-alignment-remediation"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/012-alignment-remediation"
     last_updated_at: "2026-10-28T23:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Recorded how the README dispositions shipped"

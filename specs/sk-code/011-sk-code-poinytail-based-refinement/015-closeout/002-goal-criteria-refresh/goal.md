@@ -54,7 +54,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `grep -rh --include=goal.md '| Criterion [0-9]* amended 2026-10-11' specs/sk-code/011-sk-code-poinytail-based-refinement specs/sk-doc/066-feature-catalog-template-anchor-deprecation | wc -l`, run from the repository root, prints 75 or more.
+- [ ] `grep -rh --include=goal.md '| Criterion [0-9]* amended 2026-10-11' specs/sk-code/011-sk-code-poinytail-based-refinement specs/sk-doc/060-feature-catalog-template-anchor-deprecation | wc -l`, run from the repository root, prints 75 or more.
 - [ ] `bash specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/005-router-sync-guard/scratch/prototype/negative-controls.sh`, run from the repository root, prints `6/6`.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/015-closeout/002-goal-criteria-refresh --strict`, run from the repository root, prints RESULT: PASSED.
 <!-- /ANCHOR:completion -->

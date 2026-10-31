@@ -27,7 +27,7 @@ python3 .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py 2>&1 | grep
 echo "exit=${PIPESTATUS[0]}"
 
 echo "## parent graph status"
-grep -m1 '"status"' specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/graph-metadata.json
+grep -m1 '"status"' specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/graph-metadata.json
 
 echo "## sandbox folders in /tmp"
 find /tmp/ -maxdepth 1 \( -name 'cli-playbook.*' -o -name 'cp003.*' -o -name 'cp004.*' \) | wc -l | tr -d ' '

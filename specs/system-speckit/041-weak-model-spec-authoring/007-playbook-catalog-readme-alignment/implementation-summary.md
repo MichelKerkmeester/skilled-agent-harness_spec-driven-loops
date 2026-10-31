@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/007-playbook-catalog-readme-alignment"
     last_updated_at: "2026-10-24T23:30:00Z"
     last_updated_by: "conductor"
     recent_action: "Closed phase 007"
     next_safe_action: "Start phase 008"
     blockers: []
     key_files:
-      - "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/tasks.md"
+      - "specs/system-speckit/041-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "054-weak-model-spec-authoring-planning"

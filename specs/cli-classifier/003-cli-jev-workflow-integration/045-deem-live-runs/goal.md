@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/045-deem-live-runs"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/045-deem-live-runs"
     last_updated_at: "2026-10-02T11:00:00Z"
     last_updated_by: "orchestrating-session"
     recent_action: "Closed the phase as superseded by the Deem removal"
@@ -61,7 +61,7 @@ Frozen choices. Changing one is an amendment.
 - [ ] No Deem run reports a `cli-deem` answer-shape error, such as `unexpected response`, in its call log or stderr
 - [x] `node --test .skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs` passes more than 39 tests with 0 failing, with cases for 1 and 11 score levels and 1 choice option exiting 2
 - [ ] The DeepSeek V4.1 Flash review of these changes leaves no open P0 or P1
-- [x] `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` on this phase and on `specs/cli-jev/003-cli-jev-workflow-integration`
+- [x] `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` on this phase and on `specs/cli-classifier/003-cli-jev-workflow-integration`
 <!-- /ANCHOR:completion -->
 
 ---

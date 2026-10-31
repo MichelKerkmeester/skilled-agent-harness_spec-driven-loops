@@ -38,7 +38,7 @@ residue and reconciles the two consumer counts. The order is not negotiable: spl
 consumers are rewired leaves live callers pointed at a half-removed surface, and sweeping before
 either one measures nothing.
 
-Source inventory: specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md
+Source inventory: specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md
 <!-- /ANCHOR:summary -->
 
 ---

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/024-typed-command-ambiguity"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/024-typed-command-ambiguity"
     last_updated_at: "2026-10-27T11:00:00Z"
     last_updated_by: "conductor"
     recent_action: "Built option (d) and verified it on 261 labelled prompts"

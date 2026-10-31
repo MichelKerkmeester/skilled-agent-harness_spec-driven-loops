@@ -41,7 +41,7 @@ The 33 GitHub Actions workflows follow a set of rules that exist mostly in prose
 | **Phase** | 6 of 9 |
 | **Predecessor** | 004-setup-caching-provisioning (with 002-rebuild-fanout-removal) |
 | **Successor** | 007-workflow-hygiene-on-off-control |
-| **Handoff Criteria** | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code` exits 0 with the `3g`, `5k-canary` and `5l` legs passing; `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` exits 0; `node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs` passes; `git diff --exit-code -- .github/workflows/message-contract.yml` is empty; and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface --strict` prints `RESULT: PASSED` |
+| **Handoff Criteria** | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code` exits 0 with the `3g`, `5k-canary` and `5l` legs passing; `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` exits 0; `node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs` passes; `git diff --exit-code -- .github/workflows/message-contract.yml` is empty; and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface --strict` prints `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
 
 ---

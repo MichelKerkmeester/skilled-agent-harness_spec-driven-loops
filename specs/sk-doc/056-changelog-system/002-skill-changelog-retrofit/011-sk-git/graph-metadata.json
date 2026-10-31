@@ -191,7 +191,7 @@
     ],
     "causal_summary": "21 sk-git changelogs predate the compact and expanded format that sk-create-changelog now defines",
     "created_at": "2026-09-24T16:54:13Z",
-    "last_save_at": "2026-10-31T13:25:55.908Z",
+    "last_save_at": "2026-10-31T14:01:46.810Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:716e9ffaad823089a4a8a0ab3df7761ef5f0b4c2b1544e30e649ff45d7dbb332",
+    "source_fingerprint": "sha256:fedd8185cf3a818801ad468bb210af185939f4ef94705efcc484a1ad7c8ab0dd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "467aa0252ad77f8627e9a455e74e79bb12c6a09324148f4f46d0d3cb395d0e07",
       "plan.md": "1938648b3f83d4fd9390c8796a1d17b299d1aa5b27b9f3b25b9b04f59074bb17",
       "tasks.md": "b5cf922f91bcbb3c03df649b0fdee3be9e32527a80f155ea960c9ffb3e2bfafd",
-      "implementation-summary.md": "5b2b61d090fdcdb4350eb5eb9eca11ea37c65df75a06199c600e462d78eb8009"
+      "implementation-summary.md": "6167c3357bc91131f0f02ca978112535dc41a25dffa25724e5b68bbcf5eca71a"
     },
     "last_active_at": null
   }

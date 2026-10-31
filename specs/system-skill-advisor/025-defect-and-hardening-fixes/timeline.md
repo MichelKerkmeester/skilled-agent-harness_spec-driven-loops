@@ -21,7 +21,7 @@ contextType: "general"
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Subject:** `system-skill-advisor/026-defect-and-hardening-fixes`, children 001 to 006
+**Subject:** `system-skill-advisor/025-defect-and-hardening-fixes`, children 001 to 006
 **Status:** Complete
 **Started:** 2026-09-12
 **Last updated:** 2026-10-05

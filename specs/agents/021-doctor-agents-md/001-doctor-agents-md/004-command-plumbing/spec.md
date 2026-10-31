@@ -60,7 +60,7 @@ This is **Phase 4** of the `/doctor:agents-md` build inside `agents/021-doctor-a
 **Scope Boundary**: The human and machine surface around the two engines. It changes no engine behaviour.
 
 **Dependencies**:
-- `/doctor:sk-skill` (packet `sk-doc/075-doctor-sk-skill-command`) must be on `main` before implementation starts, and every phrase, route, bridge and mirror count is re-measured then. That command is the read-only exemplar whose shape this router copies.
+- `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) must be on `main` before implementation starts, and every phrase, route, bridge and mirror count is re-measured then. That command is the read-only exemplar whose shape this router copies.
 - The check and embed engines must exist and answer before their workflows can name them.
 
 **Deliverables**:
@@ -81,7 +81,7 @@ The doctor family is validated by shape, not by intent. A command with a missing
 Wire the three targets the way the family already validates them, and pin the contract in a suite so the next router that lands cannot skip the setup list, the phrase rule or the mutation class.
 
 ### Precondition
-Implementation starts only after `/doctor:sk-skill` (packet `sk-doc/075-doctor-sk-skill-command`) lands on `main`. That command adds a router, a route and an advisor bridge, so the route, bridge, phrase and mirror counts this packet quotes are re-measured from the branch the child starts on, and recorded in `scratch/baseline.txt` before the first edit.
+Implementation starts only after `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) lands on `main`. That command adds a router, a route and an advisor bridge, so the route, bridge, phrase and mirror counts this packet quotes are re-measured from the branch the child starts on, and recorded in `scratch/baseline.txt` before the first edit.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

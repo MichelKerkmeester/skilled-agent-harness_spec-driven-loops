@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/070-repo-doc-debt/005-reference-and-coverage-fixes"
+    packet_pointer: "sk-doc/064-readme-validation-debt/001-repo-doc-debt/005-reference-and-coverage-fixes"
     last_updated_at: "2026-10-27T14:00:00Z"
     last_updated_by: "lane-b-conductor"
     recent_action: "Recorded what changed and how it was verified"

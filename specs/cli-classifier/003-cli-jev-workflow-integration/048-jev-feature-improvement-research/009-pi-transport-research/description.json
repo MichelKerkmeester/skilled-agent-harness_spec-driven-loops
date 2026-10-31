@@ -20,7 +20,7 @@
   "specId": "009",
   "folderSlug": "pi-transport-research",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration",
     "048-jev-feature-improvement-research"
   ],

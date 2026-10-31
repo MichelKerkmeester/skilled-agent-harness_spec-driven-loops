@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/052-routing-completeness/007-spec-kit-residue"
+    packet_pointer: "sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue"
     last_updated_at: "2026-09-03T23:30:00Z"
     last_updated_by: "spec-kit-residue-implementer"
     recent_action: "Ran the suite to completion, grouped the surviving residue, fixed the surviving references"
@@ -207,12 +207,12 @@ exactly the 27, and both edited files now contribute zero.
 | `.opencode/skills/system-spec-kit/runtime/cli/tests/generate-context-cli-authority.vitest.ts` | Modified | Fixture becomes a throwaway packet under a temp root, track metadata included |
 | `.opencode/skills/system-spec-kit/runtime/cli/tests/tree-thinning.vitest.ts` | Modified | Import the `FileEntry` alias twenty annotations already name |
 | `.opencode/skills/system-spec-kit/runtime/cli/tests/progressive-validation.vitest.ts` | Modified | Declare the report shape the validation script prints, and mark three deferred assignments |
-| `specs/sk-doc/052-routing-completeness/007-spec-kit-residue/decision-record.md` | Modified | Nine resolutions, three outcomes, the daemon-recycle entry, seven adjacent findings |
-| `specs/sk-doc/052-routing-completeness/007-spec-kit-residue/tasks.md` | Modified | Real task ledger and verification checklist |
-| `specs/sk-doc/052-routing-completeness/007-spec-kit-residue/acceptance-criteria.md` | Modified | AC-004 met, AC-005 and AC-006 added, closure statement written |
-| `specs/sk-doc/052-routing-completeness/007-spec-kit-residue/spec.md` | Modified | Status, scope and files-to-change reconciled |
-| `specs/sk-doc/052-routing-completeness/007-spec-kit-residue/implementation-summary.md` | Modified | This document |
-| `specs/sk-doc/052-routing-completeness/007-spec-kit-residue/goal.md` | Modified | Log updated with the dispositions and the evidence |
+| `specs/sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/decision-record.md` | Modified | Nine resolutions, three outcomes, the daemon-recycle entry, seven adjacent findings |
+| `specs/sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/tasks.md` | Modified | Real task ledger and verification checklist |
+| `specs/sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/acceptance-criteria.md` | Modified | AC-004 met, AC-005 and AC-006 added, closure statement written |
+| `specs/sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/spec.md` | Modified | Status, scope and files-to-change reconciled |
+| `specs/sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/implementation-summary.md` | Modified | This document |
+| `specs/sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/goal.md` | Modified | Log updated with the dispositions and the evidence |
 <!-- /ANCHOR:what-built -->
 
 ---

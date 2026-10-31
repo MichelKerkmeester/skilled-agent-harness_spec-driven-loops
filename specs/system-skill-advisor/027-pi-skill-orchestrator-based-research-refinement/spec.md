@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement"
+    packet_pointer: "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement"
     last_updated_at: "2026-09-28T08:18:17Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Completed 013-review-follow-ups"

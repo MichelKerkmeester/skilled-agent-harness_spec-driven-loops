@@ -66,7 +66,7 @@ contextType: "general"
 - [x] T017 Run the resolver and scan suites together (`$RT`, `$RS`). Verify: `node --test $RT/router-file-resolver.test.cjs $RT/verify-router-sync.test.cjs` exits 0, and the Python suite prints `OK`. Observed: `pass 7 fail 0` and `pass 11 fail 0` from the two Node suites, and `Ran 36 tests` ending in `OK` from the Python suite.
 - [x] T018 Run both guards over the live tree. Verify: `5/5 checks passed` and `Findings: 0` over 5420 files. Observed: `5/5 checks passed`, and `[alignment-drift] PASS` with `Scanned files: 5420` and `Findings: 0`.
 - [x] T019 Run the advisor suites. Verify: freshness prints `Tests 12 passed`, and the watcher and parity suites print no failing case. Observed: `3 files, 20 tests passed` with no failing case.
-- [x] T020 Run the phase gate. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/002-router-file-tooling --strict` prints `RESULT: PASSED`. Observed: `Summary: Errors: 0  Warnings: 0` and `RESULT: PASSED`, after `repair-derived.cjs --apply` refreshed the derived description and graph metadata that the level change left stale.
+- [x] T020 Run the phase gate. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/002-router-file-tooling --strict` prints `RESULT: PASSED`. Observed: `Summary: Errors: 0  Warnings: 0` and `RESULT: PASSED`, after `repair-derived.cjs --apply` refreshed the derived description and graph metadata that the level change left stale.
 - [x] T021 Record the observed counts in `acceptance-criteria.md` and move each row that now passes to `Met`. Verify: every `Met` row names a command and the output the run printed. Observed: all 11 rows read `Met`, and each one names a command and the output that command printed.
 <!-- /ANCHOR:phase-3 -->
 
@@ -166,7 +166,7 @@ This packet runs no task under `[B]`. A blocked task keeps its line pending, nam
 ## File Organization
 
 - [x] CHK-050 [P1] Each new file sits where its suite already lives: `ls .skilled/skills/sk-code/sk-code-skilled/scripts/tests/router-file-resolver.test.cjs .skilled/skills/system-skill-advisor/runtime/tests/parity/router-signature-parity.vitest.ts` exits 0.
-- [x] CHK-051 [P1] No temp file is left behind: each fixture case removes its own temp root, and `ls -A specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/002-router-file-tooling/scratch` prints only `.gitkeep`.
+- [x] CHK-051 [P1] No temp file is left behind: each fixture case removes its own temp root, and `ls -A specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/002-router-file-tooling/scratch` prints only `.gitkeep`.
 <!-- /ANCHOR:file-org -->
 
 ---

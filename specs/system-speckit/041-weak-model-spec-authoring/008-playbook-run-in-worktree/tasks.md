@@ -29,13 +29,13 @@ contextType: "general"
 
 Shell variables used below, set once by the conductor in `scratch/env.sh`:
 - `RUNROOT`: the checkout that holds this phase folder. It is the build worktree from `../goal.md` section 4 when the operator chose A, otherwise the primary checkout.
-- `PHASE`: `$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree`
+- `PHASE`: `$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree`
 - `MAIN`: the primary checkout, read from the first `git worktree list --porcelain` entry.
 - `BASE_REF`: the ref the operator recorded in `../goal.md` section 4.
 - `START`: the commit hash recorded by T003.
 - `WT_BRANCH` and `WT`: the branch and directory printed by T005.
 - `REPORT` and `FOLDER`: the report folder path and its basename, set by T013.
-- `P7`: `$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment`
+- `P7`: `$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/007-playbook-catalog-readme-alignment`
 - `S`: `.skilled/skills/system-spec-kit`, relative to the tree named by the block.
 
 Every block runs from `RUNROOT` unless it says `cd "$WT"`. A path that starts with `$S` is relative to `RUNROOT` or to `$WT`, as the block states.
@@ -43,7 +43,7 @@ Every block runs from `RUNROOT` unless it says `cd "$WT"`. A path that starts wi
 Before a Verify line that names `$PHASE`, `$WT`, `$REPORT` or another variable, load the environment with this one command:
 
 ```bash
-cd "$(git rev-parse --show-toplevel)" && source "$(git rev-parse --show-toplevel)/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/env.sh"
+cd "$(git rev-parse --show-toplevel)" && source "$(git rev-parse --show-toplevel)/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/env.sh"
 ```
 
 The numbers in these Verify lines are the expected shape, not a measurement of the current tree. A scenario verdict may be `FAIL` and the phase still closes when the failure is escalated. A missing file is always a failure.
@@ -59,11 +59,11 @@ The numbers in these Verify lines are the expected shape, not a measurement of t
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
-P7="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
+P7="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/007-playbook-catalog-readme-alignment"
 rg -c '^\*\*Closeable:\*\* Yes' "$P7/acceptance-criteria.md"
-rg -c '^\| Launch precondition [1-4].*\| Done \|' "$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/goal.md"
-BASE_REF=$(awk -F'|' '/^\| BASE_REF /{gsub(/^ +| +$/,"",$3); print $3}' "$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/goal.md")
+rg -c '^\| Launch precondition [1-4].*\| Done \|' "$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/goal.md"
+BASE_REF=$(awk -F'|' '/^\| BASE_REF /{gsub(/^ +| +$/,"",$3); print $3}' "$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/goal.md")
 test -n "$BASE_REF" && git rev-parse --verify "$BASE_REF^{commit}" >/dev/null && echo BASE_REF_OK
 ```
 
@@ -72,8 +72,8 @@ test -n "$BASE_REF" && git rev-parse --verify "$BASE_REF^{commit}" >/dev/null &&
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
-P7="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
+P7="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/007-playbook-catalog-readme-alignment"
 node --version
 npm --version
 jq --version
@@ -89,11 +89,11 @@ rsync --version | head -1
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
-P7="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
+P7="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/007-playbook-catalog-readme-alignment"
 mkdir -p "$PHASE/scratch/worktree" "$PHASE/scratch/tools" "$PHASE/scratch/runs" "$PHASE/scratch/briefs" "$PHASE/scratch/fix" "$PHASE/scratch/review" "$PHASE/scratch/test"
 START="$(git rev-parse HEAD)"
-BASE_REF=$(awk -F'|' '/^\| BASE_REF /{gsub(/^ +| +$/,"",$3); print $3}' "$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/goal.md")
+BASE_REF=$(awk -F'|' '/^\| BASE_REF /{gsub(/^ +| +$/,"",$3); print $3}' "$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/goal.md")
 MAIN="$(git worktree list --porcelain | awk 'NR==1{print $2}')"
 git status --porcelain --untracked-files=all > "$PHASE/scratch/status-start.txt"
 git -C "$MAIN" status --porcelain --untracked-files=all > "$PHASE/scratch/status-main-start.txt"
@@ -114,7 +114,7 @@ cat "$PHASE/scratch/env.sh"
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 cat > "$PHASE/scratch/tools/build-scenario-map.cjs" <<'JS'
 // Maps the eight frozen scenario labels to the playbook scenario files. The
@@ -176,7 +176,7 @@ node "$PHASE/scratch/tools/build-scenario-map.cjs" \
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 bash .skilled/skills/sk-git/scripts/worktree-naming.sh create playbook-run "$BASE_REF" --no-provision \
   > "$PHASE/scratch/worktree/create.out" 2> "$PHASE/scratch/worktree/create.err"
@@ -195,7 +195,7 @@ test -d "$WT" && echo WORKTREE_DIR_OK
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 rc=0
 perl -e 'alarm shift; exec @ARGV' 2700 bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision "$WT" \
@@ -223,7 +223,7 @@ test -f "$WT/$S/runtime/dist/lib/validation/orchestrator.js" && echo ORCH_OK
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 {
   test -f "$WT/$S/references/workflows/spec-authoring-card.md" && echo "PRESENT card"
@@ -246,7 +246,7 @@ cat "$PHASE/scratch/worktree/precondition.txt"
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 cat > "$PHASE/scratch/tools/run-scenario.sh" <<'SH'
 #!/usr/bin/env bash
@@ -287,7 +287,7 @@ chmod +x "$PHASE/scratch/tools/run-scenario.sh"
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 cat > "$PHASE/scratch/tools/check-run.cjs" <<'JS'
 // Compares one captured run with the frozen patterns for its label. Every
@@ -334,7 +334,7 @@ node --check "$PHASE/scratch/tools/check-run.cjs"
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 cat > "$PHASE/scratch/test/fixture-scenario.md" <<'MD'
 # Fixture Scenario
@@ -361,7 +361,7 @@ MD
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 cat > "$PHASE/scratch/briefs/skeleton.txt" <<'TXT'
 GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
@@ -370,7 +370,7 @@ You are a dispatched Task subagent. This repository's AGENTS.md treats a dispatc
 as pre-resolved for the spec-folder question, and this prompt is that pre-resolution.
 
 Your write authority is already bound. The spec folder is:
-  specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree
+  specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree
 
 Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 A failed edit match means a stale anchor: re-read the file and retry; halt only after three
@@ -392,7 +392,7 @@ TXT
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 bash -n "$PHASE/scratch/tools/run-scenario.sh"
 echo SYNTAX_OK
@@ -411,7 +411,7 @@ printf '%s' "$OUT" | grep -q '^S1\tPASS' && echo COMPARATOR_OK
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 : > "$PHASE/scratch/results.tsv"
 while IFS=$'\t' read -r LABEL ID SCENARIO PASS_A PASS_B; do
@@ -433,7 +433,7 @@ cat "$PHASE/scratch/results.tsv"
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 S8_ID=$(awk -F'\t' '$1=="S8"{print $2}' "$PHASE/scratch/scenarios.tsv")
 S8_FILE=$(awk -F'\t' '$1=="S8"{print $3}' "$PHASE/scratch/scenarios.tsv")
@@ -470,7 +470,7 @@ Then set `ATTEMPT` to the attempt that produced a reply and run the block below.
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 ATTEMPT=${ATTEMPT:-1}
 WORKER="$PHASE/scratch/runs/$S8_ID.worker-$ATTEMPT.txt"
@@ -516,7 +516,7 @@ tail -1 "$PHASE/scratch/results.tsv"
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 ROW=$(awk -F'\t' -v l="$LABEL" '$1==l{print; exit}' "$PHASE/scratch/results.tsv")
 VERDICT=$(printf '%s' "$ROW" | cut -f2)
@@ -554,7 +554,7 @@ attempts in all.
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 ROW=$(awk -F'\t' -v l="$LABEL" '$1==l{print; exit}' "$PHASE/scratch/results.tsv")
 ID=$(printf '%s' "$ROW" | cut -f3)
@@ -584,7 +584,7 @@ test -s "$PHASE/scratch/fix/$LABEL-1.txt" && echo FIX_OK
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 {
   echo "# Phase 8 scenario verdicts"
@@ -601,7 +601,7 @@ cat "$PHASE/scratch/verdicts.md"
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 EXISTING=$(find "$RUNROOT/$S/benchmark/reports" -maxdepth 1 -type d -name '20*--manual-testing-playbook--*' | sort | tail -1)
 printf 'EXISTING_REPORT=%s\n' "$EXISTING"
@@ -757,7 +757,7 @@ MD
   echo '```bash'
   echo "bash .skilled/skills/sk-git/scripts/worktree-naming.sh create playbook-run $BASE_REF"
   echo "bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision <the printed directory>"
-  echo "bash specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/tools/run-scenario.sh <scenario file> <out file>"
+  echo "bash specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/tools/run-scenario.sh <scenario file> <out file>"
   echo '```'
   echo
   echo "Expected wall clock: 4 to 8 hours including provisioning."
@@ -782,7 +782,7 @@ cat "$REPORT/README.md"
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 P=$(awk -F'\t' '$2=="PASS" || $2=="FIXED" {n++} END {print n+0}' "$PHASE/scratch/results.tsv")
 F=$(awk -F'\t' '$2=="FAIL" || $2=="ESCALATED" || $2=="SCENARIO_DEFECT" {n++} END {print n+0}' "$PHASE/scratch/results.tsv")
@@ -803,7 +803,7 @@ rg -c "$FOLDER" "$INDEX"
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 if [ "$RUNROOT" = "$MAIN" ]; then
   BASE="$PHASE/scratch/status-start.txt"
@@ -812,7 +812,7 @@ else
 fi
 git -C "$MAIN" status --porcelain --untracked-files=all > "$PHASE/scratch/primary-status-now.txt"
 {
-  diff "$BASE" "$PHASE/scratch/primary-status-now.txt" | grep '^>' | sed 's/^> .. //' | rg -v "^(specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/|\.skilled/skills/system-spec-kit/benchmark/reports/$FOLDER/|\.skilled/skills/system-spec-kit/benchmark/reports/README\.md$)" || true
+  diff "$BASE" "$PHASE/scratch/primary-status-now.txt" | grep '^>' | sed 's/^> .. //' | rg -v "^(specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree/|\.skilled/skills/system-spec-kit/benchmark/reports/$FOLDER/|\.skilled/skills/system-spec-kit/benchmark/reports/README\.md$)" || true
 } > "$PHASE/scratch/primary-status.txt"
 if [ -s "$PHASE/scratch/primary-status.txt" ]; then
   cat "$PHASE/scratch/primary-status.txt"
@@ -827,7 +827,7 @@ fi
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 mkdir -p "$PHASE/scratch/fixes"
 git -C "$WT" clean -fd -- scratch > "$PHASE/scratch/fixes/scratch-clean.txt" 2>&1 || true
@@ -885,7 +885,7 @@ Correction 2026-10-25: this block forces the removal and runs `branch -D` withou
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 mkdir -p "$PHASE/scratch/review"
 cat > "$PHASE/scratch/review/T017-brief.txt" <<TXT
@@ -906,7 +906,7 @@ TXT
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 AI_SESSION_CHILD=1 codex -a never exec \
   --model gpt-6-luna \
@@ -922,7 +922,7 @@ AI_SESSION_CHILD=1 codex -a never exec \
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 awk 'BEGIN{n=0} /^(P0|P1|P2) /{n++; printf "F%02d\t%s\n", n, $0}' "$PHASE/scratch/review/T017.txt" > "$PHASE/scratch/review/T018-findings.tsv"
 cat "$PHASE/scratch/review/T018-findings.tsv"
@@ -931,7 +931,7 @@ cat "$PHASE/scratch/review/T018-findings.tsv"
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 awk -F'\t' 'FILENAME == ARGV[1] { need[$1] = 1; next }
   /T018-(APPLIED|RECORDED) / {
@@ -950,7 +950,7 @@ awk -F'\t' 'FILENAME == ARGV[1] { need[$1] = 1; next }
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
-PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+PHASE="$RUNROOT/specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh "$PHASE" --strict
 git -C "$RUNROOT" status --porcelain

@@ -88,7 +88,7 @@ The ledger from phase 1 uses ten fields and `apply_row.py` reads only `id`, `fil
 | K-09 to K-13 | `templates/examples/level-3/` decision-record, implementation-summary, plan, spec, tasks | Same |
 | K-14 to K-18 | `templates/examples/level-3+/` decision-record, implementation-summary, plan, spec, tasks | Same |
 | K-19 to K-21 | `templates/examples/` tasks.md of level-2, level-3 and level-3+ | `- [x] Checklist.md fully verified` becomes `- [x] Verification checklist in tasks.md fully verified` |
-| K-22 and K-23 | `references/workflows/spec-folder-authoring-checklist.md` | Replace the bare `<spec-folder>` with the Level 1 packet `specs/system-speckit/041-write-recipe-fixes/001-fix-write-recipe-backfill-flag` |
+| K-22 and K-23 | `references/workflows/spec-folder-authoring-checklist.md` | Replace the bare `<spec-folder>` with the Level 1 packet `specs/system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/001-fix-write-recipe-backfill-flag` |
 | K-24 and K-25 | `references/templates/template-style-guide.md` | Heading `### Why Bulleted Lists` becomes `### Why a Table`, and the manual check row says `Table with Field and Value columns` |
 
 The three example `acceptance-criteria.md` files already have a correct description, so they have no row. The path in K-22 and K-23 was read in the tree: that packet exists and its `spec.md` carries `SPECKIT_LEVEL: 1`.
@@ -341,7 +341,7 @@ You are a dispatched Task subagent. This repository's AGENTS.md treats a dispatc
 pre-resolved for the spec-folder question, and this prompt is that pre-resolution.
 
 Your write authority is already bound. The spec folder is:
-  specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair
+  specs/system-speckit/041-weak-model-spec-authoring/002-template-and-example-defect-repair
 
 Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 A failed edit match means a stale anchor: re-read the file and retry; halt only after three

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The nine features with a measured gain or a near miss were last measured through the jev CLI, several on built rows, and 017 dropped from keep to stop on its repeat",
     "created_at": "2026-10-03T17:39:27Z",
-    "last_save_at": "2026-10-31T13:25:39.601Z",
+    "last_save_at": "2026-10-31T14:04:00.096Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,7 +204,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:81f5a258dae88719dbab1f85552c4df67f1fff72161fa107f9552f648b20a638",
+    "source_fingerprint": "sha256:2957c5976f1bc8424ca3b048f64f82c19de7f36a8c0a2d81682947dc5af2efe2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "878077f90309a5a16e59c3bdc2f4c2a398e4e013504d959200fe6d8b8b459026",

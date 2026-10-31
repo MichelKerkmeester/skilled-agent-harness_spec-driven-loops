@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/049-sk-create-frontmatter/005-command-and-playbook"
+    packet_pointer: "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/005-command-and-playbook"
     last_updated_at: "2026-09-01T08:43:01Z"
     last_updated_by: "implementation"
     recent_action: "Shipped the 11-scenario playbook and settled the command question at no command"

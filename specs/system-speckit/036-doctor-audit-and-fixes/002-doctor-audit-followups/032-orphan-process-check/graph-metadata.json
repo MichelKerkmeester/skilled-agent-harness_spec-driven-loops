@@ -197,7 +197,7 @@
     ],
     "causal_summary": "On 2026-10-21 a manual cleanup found 22 orphaned processes holding about 315 MB: `node --test` runs from removed worktrees, a Pi worker and its child, a harness Python server, test helpers, a `git-live-follow` for a scratch repository, `tail -F` and `grep` monitors, and eight `grep -r` searches stuck on `/private/tmp`",
     "created_at": "2026-10-21T09:51:17Z",
-    "last_save_at": "2026-10-31T13:27:19.248Z",
+    "last_save_at": "2026-10-31T13:59:34.519Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7095a72db6d65525c82560067fee045355593b16357ff1020a93ff5feca2149f",
+    "source_fingerprint": "sha256:b6e825e575b146167aa74558048f041e3a5ed6327fe7402961ef47fd6cfd2971",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5dde6e1144579f746089f26db3c36bef3deeccdb77dac05b01571a3cf2b8330d",

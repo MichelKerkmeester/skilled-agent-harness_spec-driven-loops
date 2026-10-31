@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening"
+    packet_pointer: "system-speckit/037-open-knowledge-format-adoption/008-context-type-hardening"
     last_updated_at: "2026-10-04T12:00:33Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Marked all seven criteria met with evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening
+**Packet:** system-speckit/037-open-knowledge-format-adoption/008-context-type-hardening
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-04

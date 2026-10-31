@@ -43,21 +43,21 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-code/sk-code-webflow/assets/templates/component-template.js",
-      ".skilled/skills/sk-code/sk-code-webflow/assets/templates/component-template.css",
-      ".skilled/skills/sk-code/sk-code-webflow/assets/templates/embed-template.html",
-      ".skilled/skills/sk-code/sk-code-webflow/assets/templates/form-scaffold-template.html",
-      ".skilled/skills/sk-code/sk-code-webflow/assets/templates/head-footer-code-template.html",
-      ".skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md",
-      ".skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md",
-      ".skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md",
-      ".skilled/skills/sk-code/sk-code-webflow/references/css/quality-standards/focus-has-print-and-quick-reference.md",
-      ".skilled/skills/sk-code/sk-code-webflow/references/shared/enforcement.md",
-      ".skilled/skills/sk-code/sk-code-webflow/references/shared/dev-workflow/common-commands.md",
-      ".skilled/skills/sk-code/sk-code-webflow/SKILL.md",
-      ".skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.1.0.md",
-      ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
-      ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md"
+      "scratch/dispatch-units.json",
+      "scratch/fix-units.json",
+      "scratch/fix-units-applied.json",
+      ".skilled/skills/sk-code/leaf-manifest.json",
+      "scratch/build-units.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+      ".skilled/bin/compiled-route-guard.cjs",
+      "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/004-webflow-and-obsidian/scratch/dispatch-units.json",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/sk-doc/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md"
     ],
     "entities": [
       {
@@ -91,87 +91,63 @@
         "source": "derived"
       },
       {
-        "name": "component-template.js",
-        "kind": "code",
-        "path": ".skilled/skills/sk-code/sk-code-webflow/assets/templates/component-template.js",
+        "name": "dispatch-units.json",
+        "kind": "config",
+        "path": "scratch/dispatch-units.json",
         "source": "derived"
       },
       {
-        "name": "component-template.css",
+        "name": "fix-units.json",
+        "kind": "config",
+        "path": "scratch/fix-units.json",
+        "source": "derived"
+      },
+      {
+        "name": "fix-units-applied.json",
+        "kind": "config",
+        "path": "scratch/fix-units-applied.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "build-units.cjs",
         "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-webflow/assets/templates/component-template.css",
+        "path": "scratch/build-units.cjs",
         "source": "derived"
       },
       {
-        "name": "embed-template.html",
+        "name": "run-all-drift-guards.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-guard.cjs",
         "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-webflow/assets/templates/embed-template.html",
-        "source": "derived"
-      },
-      {
-        "name": "form-scaffold-template.html",
-        "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-webflow/assets/templates/form-scaffold-template.html",
-        "source": "derived"
-      },
-      {
-        "name": "head-footer-code-template.html",
-        "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-webflow/assets/templates/head-footer-code-template.html",
-        "source": "derived"
-      },
-      {
-        "name": "style-guide.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-webflow/references/html/style-guide.md",
-        "source": "derived"
-      },
-      {
-        "name": "quick-reference.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "cross-language-rules.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md",
-        "source": "derived"
-      },
-      {
-        "name": "focus-has-print-and-quick-reference.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-webflow/references/css/quality-standards/focus-has-print-and-quick-reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "enforcement.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-webflow/references/shared/enforcement.md",
-        "source": "derived"
-      },
-      {
-        "name": "common-commands.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-webflow/references/shared/dev-workflow/common-commands.md",
+        "path": ".skilled/bin/compiled-route-guard.cjs",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-webflow/SKILL.md",
+        "path": ".skilled/skills/sk-code/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "v1.1.1.0.md",
+        "name": "changelog-template.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.1.0.md",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
         "source": "derived"
       },
       {
-        "name": "manual-testing-playbook.md",
+        "name": "hvr-rules.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md",
+        "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md",
         "source": "derived"
       },
       {
@@ -203,11 +179,35 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "The Webflow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Every",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The five copy-paste templates under `sk-code-webflow/assets/templates/` cite `references/webflow/...` in nine places, and that folder does not exist, so the dead pointers travel into every project that copies a template",
     "created_at": "2026-10-10T10:07:20Z",
-    "last_save_at": "2026-10-18T20:45:14.714Z",
+    "last_save_at": "2026-10-31T14:04:32.308Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:449954a4806badc9c9e14a62c4584843ac843520c99537e0dc3864fc8a5580e7",
+    "source_fingerprint": "sha256:b34f622efdd75778af337b32020c0023d531dbbe9c931c4b41874c0ca836eb90",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3d5ae5a87e4d6fbff4624456d1f94d591c8f39bd6b01ce4dd726b445f30f84f2",

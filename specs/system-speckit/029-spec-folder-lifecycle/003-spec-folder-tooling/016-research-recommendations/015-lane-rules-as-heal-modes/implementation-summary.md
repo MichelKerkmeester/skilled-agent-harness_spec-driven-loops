@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes"
     last_updated_at: "2026-10-09T11:20:00Z"
     last_updated_by: "closeout"
     recent_action: "Third closeout pass: gates re-cited to tree5, corpus proof re-run"

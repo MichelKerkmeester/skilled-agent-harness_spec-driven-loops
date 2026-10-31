@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature
+**Packet:** cli-classifier/003-cli-jev-workflow-integration/047-measure-every-jev-feature
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-02

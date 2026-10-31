@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-create-goal-mode/014-goal-no-budget-stop"
+    packet_pointer: "sk-doc/057-create-goal-mode/014-goal-no-budget-stop"
     last_updated_at: "2026-10-24T16:47:40Z"
     last_updated_by: "claude-sonnet-5-5"
     recent_action: "Met every criterion except the sk-code drift-guard wrapper"
@@ -38,7 +38,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/060-create-goal-mode/014-goal-no-budget-stop
+**Packet:** sk-doc/057-create-goal-mode/014-goal-no-budget-stop
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-24
@@ -83,9 +83,9 @@ rg -n "OPENCODE_GOAL_MAX_AUTO_TURNS|OPENCODE_GOAL_MAX_WALL_MS" .skilled -g '!**/
 # V7, the sk-code drift-guard wrapper
 bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 # V8
-bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/060-create-goal-mode/014-goal-no-budget-stop --strict
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode/014-goal-no-budget-stop --strict
 # V9
-bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/060-create-goal-mode --strict --recursive
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode --strict --recursive
 ```
 
 ### Status values

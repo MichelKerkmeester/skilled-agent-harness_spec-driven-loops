@@ -37,12 +37,12 @@ contextType: "implementation"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 52** of the cli-jev workflow integration packet. Packet `cli-jev/006-jev-feature-auto-enable` wired the four proven Jev features and ran five research iterations per lineage on the three that were not proven. This phase acts on that research.
+This is **Phase 52** of the cli-jev workflow integration packet. Packet `cli-classifier/006-jev-feature-auto-enable` wired the four proven Jev features and ran five research iterations per lineage on the three that were not proven. This phase acts on that research.
 
 **Scope Boundary**: The three scorers, the shared scorer kit, one registry guard test, two recorded runs and the proof plan. No feature gets a live path.
 
 **Dependencies**:
-- `specs/cli-jev/006-jev-feature-auto-enable/research/research.md`, the ranked recommendations
+- `specs/cli-classifier/006-jev-feature-auto-enable/research/research.md`, the ranked recommendations
 - A stored Jev credential for the masked-state run
 
 **Deliverables**:

@@ -131,7 +131,7 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md,
 - Parent spec tracks aggregate progress via this map
 - Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
-- **Precondition on both phases.** No phase starts implementation until `/doctor:sk-skill` (packet `sk-doc/075-doctor-sk-skill-command`) is on `main`. That command adds one route, one router file and one advisor bridge, so the route, bridge, phrase and mirror counts every acceptance criterion quotes must be re-measured from the branch the phase actually starts on. The two phases also share those counts: whichever lands second re-measures and rebases its numbers.
+- **Precondition on both phases.** No phase starts implementation until `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) is on `main`. That command adds one route, one router file and one advisor bridge, so the route, bridge, phrase and mirror counts every acceptance criterion quotes must be re-measured from the branch the phase actually starts on. The two phases also share those counts: whichever lands second re-measures and rebases its numbers.
 
 ### Phase Handoff Criteria
 

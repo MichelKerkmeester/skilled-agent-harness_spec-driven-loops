@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes"
+    packet_pointer: "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/011-observation-fixes"
     last_updated_at: "2026-09-27T13:10:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Wrote the phase goal after the phase closed, during the D1 amendment"

@@ -9,7 +9,7 @@
   "specId": "003",
   "folderSlug": "hub-mode-registration",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "001-cli-jev-creation"
   ],
   "memorySequence": 0,

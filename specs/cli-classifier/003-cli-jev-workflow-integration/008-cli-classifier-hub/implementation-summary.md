@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/008-cli-classifier-hub"
     last_updated_at: "2026-09-28T11:40:00Z"
     last_updated_by: "closure-leaf"
     recent_action: "Closed from build and session evidence, 20 of 20 tasks and 7 of 7 criteria done"
@@ -20,7 +20,7 @@ _memory:
       - ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs"
       - ".skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs"
       - ".skilled/skills/cli-classifier/mode-registry.json"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/scratch/build/build-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/008-cli-classifier-hub/scratch/build/build-evidence.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-workflow-integration"

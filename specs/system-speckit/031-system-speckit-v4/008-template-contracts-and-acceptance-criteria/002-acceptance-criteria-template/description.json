@@ -16,7 +16,7 @@
   "folderSlug": "acceptance-criteria-template",
   "parentChain": [
     "system-speckit",
-    "033-system-speckit-v4",
+    "031-system-speckit-v4",
     "008-template-contracts-and-acceptance-criteria"
   ],
   "memorySequence": 0,

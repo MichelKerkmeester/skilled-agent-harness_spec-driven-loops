@@ -21,8 +21,8 @@ NEW:
 EDIT 5 (INSERT two rows directly after this ANCHOR line)
 ANCHOR: | recursive-child-manifest.vitest.ts | Two hardcoded .opencode/specs paths corrected to the tracked specs/ tree | complete |
 NEW:
-| specs/system-speckit/033-system-speckit-v4/spec.md | Phase map row 50 and the 049 to 050 handoff row added | complete |
-| specs/system-speckit/033-system-speckit-v4/048-gate-3-mutation-time-delivery/implementation-summary.md | One Verification row records this phase's live Pi proof | complete |
+| specs/system-speckit/031-system-speckit-v4/spec.md | Phase map row 50 and the 049 to 050 handoff row added | complete |
+| specs/system-speckit/031-system-speckit-v4/048-gate-3-mutation-time-delivery/implementation-summary.md | One Verification row records this phase's live Pi proof | complete |
 
 EDIT 6
 OLD: | Mirror the primary checkout gitignored link shared -> ../../../system-spec-kit/shared before running parent-skill-check |

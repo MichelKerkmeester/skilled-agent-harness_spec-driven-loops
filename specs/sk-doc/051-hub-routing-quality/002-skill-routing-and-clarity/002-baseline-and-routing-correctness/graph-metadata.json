@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Later phases cannot claim no regressions without numbers from before they start, and the research found routing bugs that are independent of any shape change",
     "created_at": "2026-10-28T06:38:43Z",
-    "last_save_at": "2026-10-31T13:25:48.065Z",
+    "last_save_at": "2026-10-31T14:01:36.230Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:36fbdf3b805e08aab091429a42451b632020f1d779486574e4406b783f88a053",
+    "source_fingerprint": "sha256:4f69c0895d85f92a3bdf6cedacc5e3eb596359ad24c9e55491895f327368fae4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8c287f8c936301b42b74f2be314616d60b0d836398b107bf3077687f49a31b66",
       "plan.md": "c9d8df11cc6c1605a791e21403c005b3aefc23b8937d6723a8b457365422b0d6",
-      "tasks.md": "8c72a75e65b4725ecbcc1ee7179c4d3ae1c52f7149041bde8b57941005f6384e",
+      "tasks.md": "81ffb7e19ef97851e121b525e31fe6dab4da712af236e5c448a052a1a14fa5dc",
       "implementation-summary.md": "250a427cad249d92d69a3ded1f5251cbe4dae2e57dc6ee2ee6cf55f2a11f245e"
     },
     "last_active_at": null

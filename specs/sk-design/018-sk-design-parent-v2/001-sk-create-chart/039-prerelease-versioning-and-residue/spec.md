@@ -97,7 +97,7 @@ The version numbers say what the packet is, and every live surface names a file 
 | `.opencode/skills/sk-design/leaf-manifest.json` | Modify | Re-minted from disk |
 | `.opencode/skills/sk-design/command-metadata.json` | Modify | The catalog count |
 | `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json` | Modify | Regenerated with its manifest |
-| `specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md` | Modify | Two counts and the register claim |
+| `specs/system-speckit/031-system-speckit-v4/CHANGELOG-v4.0.0.0.md` | Modify | Two counts and the register claim |
 <!-- /ANCHOR:scope -->
 
 ---

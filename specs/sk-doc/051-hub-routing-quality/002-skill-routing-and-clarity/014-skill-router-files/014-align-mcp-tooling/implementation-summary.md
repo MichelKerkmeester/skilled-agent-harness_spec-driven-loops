@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/014-align-mcp-tooling"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/014-align-mcp-tooling"
     last_updated_at: "2026-10-29T21:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Recorded the mcp-tooling alignment check and its dispositions"

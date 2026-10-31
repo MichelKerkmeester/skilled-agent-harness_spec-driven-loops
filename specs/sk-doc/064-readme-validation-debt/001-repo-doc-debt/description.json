@@ -18,10 +18,11 @@
     "counts"
   ],
   "lastUpdated": "2026-10-27T06:53:10.429Z",
-  "specId": "070",
+  "specId": "001",
   "folderSlug": "repo-doc-debt",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "064-readme-validation-debt"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-create-goal-mode/012-goal-send-and-dedupe"
+    packet_pointer: "sk-doc/057-create-goal-mode/012-goal-send-and-dedupe"
     last_updated_at: "2026-09-27T07:58:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Every skill changelog linked from the global tree"

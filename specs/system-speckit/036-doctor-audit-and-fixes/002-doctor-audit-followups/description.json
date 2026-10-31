@@ -10,10 +10,11 @@
     "recorded"
   ],
   "lastUpdated": "2026-10-03T05:27:39.835Z",
-  "specId": "049",
+  "specId": "002",
   "folderSlug": "doctor-audit-followups",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "036-doctor-audit-and-fixes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

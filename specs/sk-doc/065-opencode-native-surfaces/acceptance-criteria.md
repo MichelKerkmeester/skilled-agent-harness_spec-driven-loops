@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/073-opencode-native-surfaces"
+    packet_pointer: "sk-doc/065-opencode-native-surfaces"
     last_updated_at: "2026-10-28T17:30:00Z"
     last_updated_by: "leaf-worker"
     recent_action: "Marked every acceptance row Met with observed evidence"
@@ -39,7 +39,7 @@ _memory:
 ## 1. METADATA
 <!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-rotate-logs-keep`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
 
-**Packet:** sk-doc/073-opencode-native-surfaces
+**Packet:** sk-doc/065-opencode-native-surfaces
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-28

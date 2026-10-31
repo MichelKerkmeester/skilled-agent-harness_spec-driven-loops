@@ -10,15 +10,15 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/004-deep-research-expansion"
     last_updated_at: "2026-09-26T20:40:00Z"
     last_updated_by: "orchestrator-session"
     recent_action: "Authored the durable directive"
     next_safe_action: "Dispatch the Opus 5.5 xhigh re-synthesis of round 1"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/council-report.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/004-deep-research-expansion/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/001-deep-research/ai-council/council-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-workflow-integration"

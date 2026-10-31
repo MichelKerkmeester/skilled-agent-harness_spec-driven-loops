@@ -191,7 +191,7 @@ Copied from the approved design with the reasons that decided them. A change to 
 - Parent spec tracks aggregate progress via this map
 - Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
-- **Precondition.** No child starts implementation until `/doctor:sk-skill` (packet `sk-doc/075-doctor-sk-skill-command`) is on `main`. That command adds one route, one router file and one advisor bridge, so every count an acceptance criterion quotes is re-measured from the branch the child starts on before its first edit, and recorded in that child's `scratch/baseline.txt`.
+- **Precondition.** No child starts implementation until `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) is on `main`. That command adds one route, one router file and one advisor bridge, so every count an acceptance criterion quotes is re-measured from the branch the child starts on before its first edit, and recorded in that child's `scratch/baseline.txt`.
 
 ### Phase Handoff Criteria
 

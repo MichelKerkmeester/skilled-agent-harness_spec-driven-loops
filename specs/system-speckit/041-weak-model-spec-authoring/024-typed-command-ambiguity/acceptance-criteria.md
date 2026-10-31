@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/024-typed-command-ambiguity"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/024-typed-command-ambiguity"
     last_updated_at: "2026-10-27T08:30:49Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"

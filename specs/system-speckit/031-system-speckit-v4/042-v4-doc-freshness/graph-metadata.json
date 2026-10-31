@@ -48,6 +48,11 @@
       "goal.md",
       "implementation-summary.md",
       "research/research.md",
+      "specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/verdict-changelog.md",
+      "specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/verdict-readme.md",
+      "specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/research/research.md",
+      "specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/research/review-of-synthesis.md",
+      "specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/research/readme-verdict-rows.md",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
@@ -55,12 +60,7 @@
       ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
       ".skilled/skills/mcp-tooling/mode-registry.json",
       ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
-      ".opencode/README.md",
-      ".skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md",
-      ".claude/mcp.json",
-      ".hermes/SYNC.md",
-      ".skilled/skills/system-deep-loop/mode-registry.json",
-      ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md"
+      ".opencode/README.md"
     ],
     "entities": [
       {
@@ -103,6 +103,30 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "verdict-changelog.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/verdict-changelog.md",
+        "source": "derived"
+      },
+      {
+        "name": "verdict-readme.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/verdict-readme.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-of-synthesis.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/research/review-of-synthesis.md",
+        "source": "derived"
+      },
+      {
+        "name": "readme-verdict-rows.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/031-system-speckit-v4/042-v4-doc-freshness/research/readme-verdict-rows.md",
         "source": "derived"
       },
       {
@@ -154,30 +178,6 @@
         "source": "derived"
       },
       {
-        "name": "hvr-rules.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "SYNC.md",
-        "kind": "doc",
-        "path": ".hermes/SYNC.md",
-        "source": "derived"
-      },
-      {
-        "name": "compiled-routing-architecture.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Both release documents were written to describe a tree that has since moved",
     "created_at": "2026-09-19T18:39:04Z",
-    "last_save_at": "2026-10-31T13:27:04.079Z",
+    "last_save_at": "2026-10-31T13:44:18.010Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +222,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:afed9cb00fba3f2ad5d1bae3e95603909c234dbb9efae467ce3af441bc5055b1",
+    "source_fingerprint": "sha256:b802c9562afd6837170581b50fc992481a98586cff9adbed40f18658c342e39f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1301a2dce6873e42b27c2ad0c084c9926067f549bedd2493d4ecf92551a82d86",
       "plan.md": "cd4bacc0a448773660222cb5ec41d42d339daacdd5bf09ced915884ccdc6af24",
-      "tasks.md": "d584064858ba2448d40ec0c349c55e9fd79e8c36fa2d4db625ccfccf6255e4a9",
-      "implementation-summary.md": "74609d831f0420486ad519e41d2ded13efe0e27be0c903509e911bc92ffe8a55",
+      "tasks.md": "e865093ea3fd56e6f701621e518faed3d8c1fcb1d280feb8befa2c5be0cddbae",
+      "implementation-summary.md": "b4652c363d402e418000cf20993927ec3640a56775c707d127cad71414cd420e",
       "research/research.md": "415216e164af59f25cea64e80992b1cb64e0a878346c9d1338d2060cf02e050e"
     },
     "last_active_at": null

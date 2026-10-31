@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The epic's builds and reviews left eleven loose ends",
     "created_at": "2026-10-09T18:36:35Z",
-    "last_save_at": "2026-10-31T13:26:29.029Z",
+    "last_save_at": "2026-10-31T13:58:24.705Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:df2ae6353dbf899a24033323d87c9d20c7f0a65c43a4f1e185020ed0abff67ee",
+    "source_fingerprint": "sha256:b004630ff154f786919e308281fc9e59eb3a9632d09f723fbb8f344a5c105c9d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9fc2da99700c4331bdf8bad8151ebe369147f14a694dabdf25ec5f1318f37ec7",
+      "spec.md": "f626d2b9cadca145c36fae39bac9fc63dc87d6984b8048a5200ae5bf0fb80b58",
       "plan.md": "325fa45d5399b49f65fe6ead9717e0b4614adb9df5af7ec27e90382ff3340b04",
-      "tasks.md": "b9535055bad008b74abe52c40ff54b3d700f0449f693096b28869ba038399255",
-      "implementation-summary.md": "09d2d559b38f971ce0cec3888b33f7f6c6a6c6e589f701f9282888de19759444"
+      "tasks.md": "96489a86d0e6599a25a6bca7954d8c0766c70d69948c8cd7102f236f2d437dbe",
+      "implementation-summary.md": "aa7cd0032e36d545693d8788763a914e17c6a0d8fd7fe4649c9cbd2f5e9bcf19"
     },
     "last_active_at": null
   }

@@ -122,8 +122,8 @@ Commands run from the repository root unless a row says otherwise, with `S=.skil
 | Skill docs | `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <doc>` on each system-spec-kit doc in `spec.md`'s Files to Change | `VALID` and exit 0 on each (parent D6, parent criterion 3) |
 | Code review | a cross-family review of the script and test, run by the orchestrator session | No open P0 or P1 finding (parent D5) |
 | Read-only | `git status --porcelain` | Only the files in `spec.md`'s Files to Change |
-| Phase docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness --strict` | `RESULT: PASSED` |
-| Phase goal | `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness` | Passes with no finding |
+| Phase docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-classifier/003-cli-jev-workflow-integration/005-compaction-recall-harness --strict` | `RESULT: PASSED` |
+| Phase goal | `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/cli-classifier/003-cli-jev-workflow-integration/005-compaction-recall-harness` | Passes with no finding |
 <!-- /ANCHOR:testing -->
 
 ---

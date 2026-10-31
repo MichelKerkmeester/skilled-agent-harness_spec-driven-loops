@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/049-sk-create-frontmatter/006-verification-and-closeout"
+    packet_pointer: "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/006-verification-and-closeout"
     last_updated_at: "2026-09-01T08:43:02Z"
     last_updated_by: "implementation"
     recent_action: "Ran the whole-gate sweep from the final tree and made the four closeout edits"
@@ -106,7 +106,7 @@ ordering is kept inside it as a note rather than as a stale claim.
 | `.opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt` | Modified | Both playbook roots enrolled, so both packages' clean state is enforced rather than incidental |
 | `.opencode/skills/sk-doc/sk-create-frontmatter/README.md` | Modified | A playbook row in the related-documents table, and two playbook gates in the verification table |
 | `.opencode/skills/sk-doc/sk-create-frontmatter/changelog/v1.0.0.0.md` | Rewritten | The first-version entry now describes the mode as it ships, with the scaffold-then-fill ordering recorded as a note |
-| `specs/sk-doc/049-sk-create-frontmatter/spec.md` | Modified | Two duplicated placeholder rows removed from the phase map: a second phase 7 row reading `[Phase 7 scope]` and a second handoff row reading `[Criteria TBD] \| [Verification TBD]`, both template residue from when phase 7 was appended |
+| `specs/sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/spec.md` | Modified | Two duplicated placeholder rows removed from the phase map: a second phase 7 row reading `[Phase 7 scope]` and a second handoff row reading `[Criteria TBD] \| [Verification TBD]`, both template residue from when phase 7 was appended |
 | The sk-doc canary fixture | Modified | One re-pin for `packets/sk-create-frontmatter/SKILL.md` after a red run, plus the four refreshed live-topology counts |
 <!-- /ANCHOR:what-built -->
 

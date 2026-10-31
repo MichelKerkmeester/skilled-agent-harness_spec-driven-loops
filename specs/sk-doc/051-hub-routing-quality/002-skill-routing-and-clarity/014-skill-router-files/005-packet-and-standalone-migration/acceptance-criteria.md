@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/005-packet-and-standalone-migration"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/005-packet-and-standalone-migration"
     last_updated_at: "2026-10-29T14:15:00Z"
     last_updated_by: "pi"
     recent_action: "Marked every criterion met from the final tree: 54 routers, 0 headings, an empty ledger, an identical replay and green checks"

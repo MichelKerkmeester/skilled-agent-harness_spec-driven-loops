@@ -9,7 +9,7 @@
   "specId": "037",
   "folderSlug": "pi-native-classifier-transport",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,

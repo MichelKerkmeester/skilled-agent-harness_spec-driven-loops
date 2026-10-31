@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-create-goal-mode/010-asset-templates-and-folder-readmes"
+    packet_pointer: "sk-doc/057-create-goal-mode/010-asset-templates-and-folder-readmes"
     last_updated_at: "2026-09-26T13:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Closed all seven criteria with evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/060-create-goal-mode/010-asset-templates-and-folder-readmes
+**Packet:** sk-doc/057-create-goal-mode/010-asset-templates-and-folder-readmes
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-26
@@ -56,7 +56,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-003 | REQ-003 | Given the two code folders, When `validate_document.py --type code_folder` runs on each README, Then both report 0 issues. | T007, T016; both 0 issues (the fixtures README with `--no-exclude`). Cited: `.skilled/skills/sk-doc/sk-create-goal/scripts/README.md:10` and `.skilled/skills/sk-doc/sk-create-goal/scripts/tests/fixtures/README.md:9`. | Met | - |
 | AC-004 | REQ-004 | Given the mode after the change, When its files and the hub router are searched, Then `references/README.md` is gone and nothing live links to it. | T008; `rg -n 'sk-create-goal/references/README'` over `.skilled`, `.hermes`, `.claude`, `.codex`, `.pi` and `.cursor` finds nothing, and the fallback resource moved. Cited: `.skilled/skills/sk-doc/sk-create-goal/SKILL.md:59` and `.skilled/skills/sk-doc/ROUTER.md:263`. | Met | - |
 | AC-005 | REQ-005 | Given the changed hub resources, When the sk-doc route is republished, Then the guard, verify, status, kill-switch, admission and canary gates pass and finalize exits 0. | T011, T015; guard fresh, canary 22 of 22, sk-doc admission `pass`, finalize exit 0. Cited: `.skilled/skills/sk-doc/leaf-manifest.json:105`. | Met | - |
-| AC-006 | REQ-006 | Given the template workflow, When the contract surfaces and the parent goal are read, Then each starts goals from the kind template and D2 says the same. | T009, T012; no workflow step still names the inline renderer, and the playbook package passes. Cited: `.skilled/skills/sk-doc/sk-create-goal/SKILL.md:105` and `specs/sk-doc/060-create-goal-mode/goal.md:50`. | Met | - |
+| AC-006 | REQ-006 | Given the template workflow, When the contract surfaces and the parent goal are read, Then each starts goals from the kind template and D2 says the same. | T009, T012; no workflow step still names the inline renderer, and the playbook package passes. Cited: `.skilled/skills/sk-doc/sk-create-goal/SKILL.md:105` and `specs/sk-doc/057-create-goal-mode/goal.md:50`. | Met | - |
 | AC-007 | REQ-007 | Given the release, When the version and changelog are checked, Then the mode reads 1.1.0.0 and the changelog passes the shape checker with 0 errors. | T010, T016; shape checker 0 errors, HVR 0 hard blockers, validator 0 issues. Cited: `.skilled/skills/sk-doc/sk-create-goal/changelog/v1.1.0.0.md:3`. | Met | - |
 
 ### Status values

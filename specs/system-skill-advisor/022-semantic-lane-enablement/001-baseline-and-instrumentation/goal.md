@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/023-semantic-lane-enablement/001-baseline-and-instrumentation"
+    packet_pointer: "system-skill-advisor/022-semantic-lane-enablement/001-baseline-and-instrumentation"
     last_updated_at: "2026-09-03T00:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the durable directive"

@@ -52,10 +52,10 @@
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs",
       ".skilled/commands/deep/assets/deep-research-auto.yaml",
       ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      "specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/tasks.md",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-      "references/structure/phase-definitions.md",
-      "references/templates/level-selection-guide.md"
+      "references/structure/phase-definitions.md"
     ],
     "entities": [
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Anyone following the series parent recipe gets three placeholder children that the next steps collide with",
     "created_at": "2026-10-07T09:58:43Z",
-    "last_save_at": "2026-10-31T13:26:24.660Z",
+    "last_save_at": "2026-10-31T13:58:17.182Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d31eac2d6bfcf3d8c5454732305852a016ce63a69224eb8cdfc09a7cd6fa7f39",
+    "source_fingerprint": "sha256:30946bf5985af4fda0f99b36e1778fd01e8aab34704dc6aedb42f05eec34b4dd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "abdafb7e25d340a8ce07e1bfc34995b57ba34c08638444e95ff18ffe6daceb4c",
+      "spec.md": "61653c6f7bdedfaf3d93e723982efb9464d6c63e8c34f716b36412dbc598cfc3",
       "plan.md": "5a5762e9c579cda92b1ac170ce4d0e51d8227bd6c5b3c3b73f786754cd136c22",
       "tasks.md": "a041c158120596b41300bccaf60da5e26dcf6818fe857bf2700bd1cb69971a8a",
-      "implementation-summary.md": "486ae4a5854afddcf54a2781da2759e35e7beb7eb4b7741060b00995db713600"
+      "implementation-summary.md": "f443c4ec76107c0fb81c2f1e924c7db589447648dbd87a2c53fd7799f4146ed8"
     },
     "last_active_at": null
   }

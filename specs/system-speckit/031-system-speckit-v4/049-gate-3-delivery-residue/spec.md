@@ -115,9 +115,9 @@ Every runtime that owns a Gate-3 delivery path — Hermes included — delivers 
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | Comment explaining why `SYSTEM_SPEC_GATE_DISABLED=1` accompanies the child env |
 | `.skilled/skills/.state/spec-gate/README.md`, `.skilled/skills/system-skill-advisor/runtime/lib/shadow/README.md` | Modify | State-field table and the default-on suppression naming note |
 | `.skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/confirmed-non-delivery-documentation.md`, `.skilled/skills/cli-external-orchestration/cli-hermes/feature-catalog/runtime-surface/repo-guards-project-plugin.md` | Modify | Cursor's real boundary; the Hermes catalog rows |
-| `specs/system-speckit/033-system-speckit-v4/048-gate-3-mutation-time-delivery/implementation-summary.md` | Modify | Phase 048's Cursor claim corrected against the adapter's own test |
-| `specs/system-speckit/033-system-speckit-v4/049-gate-3-delivery-residue/scratch/**` | Create | Sweep and review reports |
-| `specs/system-speckit/033-system-speckit-v4/spec.md`, `timeline.md` | Modify | Phase-map row, handoff row, timeline milestone |
+| `specs/system-speckit/031-system-speckit-v4/048-gate-3-mutation-time-delivery/implementation-summary.md` | Modify | Phase 048's Cursor claim corrected against the adapter's own test |
+| `specs/system-speckit/031-system-speckit-v4/049-gate-3-delivery-residue/scratch/**` | Create | Sweep and review reports |
+| `specs/system-speckit/031-system-speckit-v4/spec.md`, `timeline.md` | Modify | Phase-map row, handoff row, timeline milestone |
 <!-- /ANCHOR:scope -->
 
 ---

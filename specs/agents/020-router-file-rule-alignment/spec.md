@@ -31,7 +31,7 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The router-file move in `sk-doc/072-skill-routing-and-clarity/014-skill-router-files` gave every hub and every mode packet its own `ROUTER.md`, and a packet's machine router now lives there instead of in its `SKILL.md`. The hub routing repo rule and its `REPO RULES.md` trigger row predate that move: they name a hub's root `ROUTER.md` and nothing else, so an agent about to edit a mode packet's `ROUTER.md` is never routed to the rule that governs it.
+The router-file move in `sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files` gave every hub and every mode packet its own `ROUTER.md`, and a packet's machine router now lives there instead of in its `SKILL.md`. The hub routing repo rule and its `REPO RULES.md` trigger row predate that move: they name a hub's root `ROUTER.md` and nothing else, so an agent about to edit a mode packet's `ROUTER.md` is never routed to the rule that governs it.
 
 ### Purpose
 The rule and its trigger row name every `ROUTER.md` that holds routing, and the rule says where a packet's router lives.

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/053-retire-unproven-features"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/053-retire-unproven-features"
     last_updated_at: "2026-10-05T08:10:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Removed the three retired features outside spec folders"

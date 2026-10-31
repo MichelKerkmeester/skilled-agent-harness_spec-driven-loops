@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/038-goal-unification"
+    packet_pointer: "system-speckit/031-system-speckit-v4/038-goal-unification"
     last_updated_at: "2026-09-11T07:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Closed all seven phases with review fixes and a green sweep"

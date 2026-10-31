@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Seventeen child phases of this packet carry a label gate or follow one, and each is Complete with its gate still open",
     "created_at": "2026-10-01T12:59:07Z",
-    "last_save_at": "2026-10-31T13:25:35.614Z",
+    "last_save_at": "2026-10-31T14:03:55.612Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +217,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a073537a7bb6d75da7f189db5486c758fcc08d6176e6f7a72df3018fbcb7fa8",
+    "source_fingerprint": "sha256:fbd9c2c702302b4dd572b2fb5d869d2ead6bdf1608221a050f661d226d3a8bd6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4a75b8545f236293b9bb1e5a28d54330efb84c6ff59bdf1271c38f5829a2211d",
-      "plan.md": "8ab46289667c681fc2a9041839a265fec22355a16029e853dd3eb75fa86d9f53",
-      "tasks.md": "34c22932adbda27ea14ff9f64eb85af5a22c7e27244afae1e786d2d7baea779b",
-      "decision-record.md": "c877a13f58b48d37294e172fd8a6508f951a5cb99d447ec7f499d0f757d0e05c",
-      "implementation-summary.md": "177ffceba8dfc2e9cab57174ff2fcc3bbf4b88e7c10129703898c987cd6edc4c"
+      "spec.md": "3614152bb79da6a312ac059fcab265a519efe4dd812aaf6a24b20c81a438ff7a",
+      "plan.md": "60780a997c515c549c62075f39c7f03ac446d69aa4524675d1bfe63e2acbbb49",
+      "tasks.md": "322ecc206b49979c7b446682afeaaeea9d92d6d3235d0e1bf2f27db24ae6c631",
+      "decision-record.md": "adcaccdd85d800582d6e1ceb975ad5ae083506f52bbafe056ba544bd646328db",
+      "implementation-summary.md": "0e15220484fc7c82ba3503f6769d14f518e8953d34b206cbe7b649d68bb39399"
     },
     "last_active_at": null
   }

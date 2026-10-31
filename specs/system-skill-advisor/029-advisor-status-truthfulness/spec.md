@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/033-advisor-status-truthfulness"
+    packet_pointer: "system-skill-advisor/029-advisor-status-truthfulness"
     last_updated_at: "2026-10-03T07:50:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "All three phases shipped and verified"
@@ -53,7 +53,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | scaffold/033-advisor-status-truthfulness |
-| **Predecessor** | specs/system-speckit/048-doctor-command-audit |
+| **Predecessor** | specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit |
 | **Successor** | None |
 | **Handoff Criteria** | All three child phases close with strict validation passing, and every recorded truthfulness finding is fixed or explicitly waived on the record |
 <!-- /ANCHOR:metadata -->
@@ -64,7 +64,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The doctor command audit (`specs/system-speckit/048-doctor-command-audit`) recorded that several advisor reporting surfaces disagree with what is actually on disk. A live check in the audit worktree confirmed the disagreements at planning time: `advisor_status` answers `freshness: live` and `skillCount: 20` while `skill_graph_status` reports `changedSourceFiles: 14` and `totalSkills: 14`; the compiled `skill-graph.json` carries `generated_at: 2026-09-29T07:49:34Z` while `.skilled/skills/cli-classifier/graph-metadata.json` carries `derived.last_updated_at: 2026-09-29T09:00:00Z` and the freshness panel reports nothing; with no SQLite artifact (every fresh checkout, because `*.sqlite` is gitignored) the same panel prints `absent`, drops three of its five sets and exits 0 with no degraded marker. The audit also recorded 14 wrong-hub and 18 outranked phrases from a fleet run whose scorer was degraded, and four documentation or contract gaps: the mutating CLI commands' own catalog pages never state the `--trusted` requirement, `references/scoring/advisor-scorer.md` cites moved line ranges, `PHRASE_BOOSTS` has no bound declared where it lives, and `advisor_status` exposes no embedding provider or model-server health.
+The doctor command audit (`specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit`) recorded that several advisor reporting surfaces disagree with what is actually on disk. A live check in the audit worktree confirmed the disagreements at planning time: `advisor_status` answers `freshness: live` and `skillCount: 20` while `skill_graph_status` reports `changedSourceFiles: 14` and `totalSkills: 14`; the compiled `skill-graph.json` carries `generated_at: 2026-09-29T07:49:34Z` while `.skilled/skills/cli-classifier/graph-metadata.json` carries `derived.last_updated_at: 2026-09-29T09:00:00Z` and the freshness panel reports nothing; with no SQLite artifact (every fresh checkout, because `*.sqlite` is gitignored) the same panel prints `absent`, drops three of its five sets and exits 0 with no degraded marker. The audit also recorded 14 wrong-hub and 18 outranked phrases from a fleet run whose scorer was degraded, and four documentation or contract gaps: the mutating CLI commands' own catalog pages never state the `--trusted` requirement, `references/scoring/advisor-scorer.md` cites moved line ranges, `PHRASE_BOOSTS` has no bound declared where it lives, and `advisor_status` exposes no embedding provider or model-server health.
 
 ### Purpose
 Make every advisor reporting surface mean what it says. Freshness, scan counts, the compiled-versus-source comparison and the degraded-artifact state become truthful and consistent; recorded misroutes are verified against the live advisor and only then fixed; and the operator-facing contracts around trusted mutations, scorer bounds, routing phrase sources and embeddings health are stated where the operator reads them.
@@ -84,10 +84,10 @@ Make every advisor reporting surface mean what it says. Freshness, scan counts, 
 - Documentation updates that keep the touched surfaces truthful: feature-catalog pages, scoring references and schema comments.
 
 ### Out of Scope
-- The `/doctor` command layer itself — routes, workflows, presentation and validator were audited and fixed in `specs/system-speckit/048-doctor-command-audit`; this packet only consumes its recorded findings.
+- The `/doctor` command layer itself — routes, workflows, presentation and validator were audited and fixed in `specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit`; this packet only consumes its recorded findings.
 - The advisor's scoring algorithm, lane weights or fusion behavior beyond the phrase-bound declaration and the routing vocabulary fixes required by reproduced misroutes.
 - The daemon architecture, watcher policy, embeddings model quality and the model server's own runtime behavior.
-- Skills, packets and specs outside `specs/system-skill-advisor/033-advisor-status-truthfulness/` except for the routing vocabulary files named by Phase 2, which the audit recorded as defects in the subsystem.
+- Skills, packets and specs outside `specs/system-skill-advisor/029-advisor-status-truthfulness/` except for the routing vocabulary files named by Phase 2, which the audit recorded as defects in the subsystem.
 
 ### Files to Change
 Summary of files touched across all phases, kept for audit trail only; per-phase detail lives in each child's plan.md.
@@ -132,7 +132,7 @@ Summary of files touched across all phases, kept for audit trail only; per-phase
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 001-freshness-and-scan-truth | 002-router-reach-misroutes | Freshness, skill count and panel report lines are consistent with each other and with the on-disk sources; phase validates strict and the changed surfaces stay read-only or report-only | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/033-advisor-status-truthfulness/001-freshness-and-scan-truth --strict` ends `RESULT: PASSED`; a live `advisor_status` and `skill_graph_status` pair shows no disagreement |
+| 001-freshness-and-scan-truth | 002-router-reach-misroutes | Freshness, skill count and panel report lines are consistent with each other and with the on-disk sources; phase validates strict and the changed surfaces stay read-only or report-only | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/029-advisor-status-truthfulness/001-freshness-and-scan-truth --strict` ends `RESULT: PASSED`; a live `advisor_status` and `skill_graph_status` pair shows no disagreement |
 | 002-router-reach-misroutes | 003-status-contract-and-docs | Every wrong-hub and outranked classification in the live fleet rerun is fixed or carries a recorded allowlist rationale; a rerun of the full fleet ends with none of either, or a waiver decision record names what remains | `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs` full-fleet run ends with `wrong-hub= 0 outranked= 0` and a live `advisor generation` number |
 <!-- /ANCHOR:phase-map -->
 
@@ -153,5 +153,5 @@ Summary of files touched across all phases, kept for audit trail only; per-phase
 
 - **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
 - **Parent Spec**: See `../spec.md`
-- **Source audit**: See `specs/system-speckit/048-doctor-command-audit/` for the recorded findings and their evidence
+- **Source audit**: See `specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/` for the recorded findings and their evidence
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer

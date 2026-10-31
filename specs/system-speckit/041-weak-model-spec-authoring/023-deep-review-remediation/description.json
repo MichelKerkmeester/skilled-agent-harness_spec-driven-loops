@@ -10,7 +10,7 @@
   "folderSlug": "deep-review-remediation",
   "parentChain": [
     "system-speckit",
-    "054-weak-model-spec-authoring"
+    "041-weak-model-spec-authoring"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

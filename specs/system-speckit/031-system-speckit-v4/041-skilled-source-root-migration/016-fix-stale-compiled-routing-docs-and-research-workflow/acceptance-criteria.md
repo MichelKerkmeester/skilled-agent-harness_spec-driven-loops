@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow"
+    packet_pointer: "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow"
     last_updated_at: "2026-09-19T05:09:41Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Met every criterion"

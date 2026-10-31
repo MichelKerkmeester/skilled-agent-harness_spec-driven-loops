@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout"
+    packet_pointer: "system-skill-advisor/022-semantic-lane-enablement/005-verification-and-closeout"
     last_updated_at: "2026-09-03T00:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the phase specification"
@@ -117,8 +117,8 @@ consistent account of what happened.
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `research/final-state.md` | Create | Every gate's number from the final state, with the command that produced it |
-| `specs/sk-doc/052-routing-completeness/roadmap.md` | Modify | The Later entry closed with evidence |
-| `specs/sk-doc/052-routing-completeness/research/findings-register.md` | Modify | Finding 10 marked resolved, naming this packet |
+| `specs/sk-doc/051-hub-routing-quality/001-routing-completeness/roadmap.md` | Modify | The Later entry closed with evidence |
+| `specs/sk-doc/051-hub-routing-quality/001-routing-completeness/research/findings-register.md` | Modify | Finding 10 marked resolved, naming this packet |
 | `../spec.md` | Modify | The parent Phase Documentation Map statuses |
 | `../goal.md` | Modify | The parent progress table |
 <!-- /ANCHOR:scope -->

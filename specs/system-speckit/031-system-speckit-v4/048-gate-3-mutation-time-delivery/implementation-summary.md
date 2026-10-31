@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/048-gate-3-mutation-time-delivery"
+    packet_pointer: "system-speckit/031-system-speckit-v4/048-gate-3-mutation-time-delivery"
     last_updated_at: "2026-09-22T07:10:00Z"
     last_updated_by: "implementer"
     recent_action: "Recorded the shipped work, the final-state verification and the two honest boundaries"
@@ -72,7 +72,7 @@ Creating the folder you just named also works now. `resolvePlannedPacketPath()` 
 | `.skilled/hooks/injection-contract.md`, `.skilled/hooks/README.md`, `.skilled/skills/system-spec-kit/runtime/hooks/README.md` | Modified | Delivery contract, kill-switch effect, artifact table |
 | `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md` and the five per-runtime hook READMEs | Modified | Delivery/API/environment tables and channel descriptions |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md` | Modified | Expectations now match the mutation-time output |
-| `specs/system-speckit/033-system-speckit-v4/spec.md`, `timeline.md`, both `graph-metadata.json` files, and this packet | Modified/Created | Phase registration, timelines, derived metadata, evidence |
+| `specs/system-speckit/031-system-speckit-v4/spec.md`, `timeline.md`, both `graph-metadata.json` files, and this packet | Modified/Created | Phase registration, timelines, derived metadata, evidence |
 <!-- /ANCHOR:what-built -->
 
 ---

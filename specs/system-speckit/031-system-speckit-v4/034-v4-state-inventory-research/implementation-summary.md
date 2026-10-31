@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/034-v4-state-inventory-research"
+    packet_pointer: "system-speckit/031-system-speckit-v4/034-v4-state-inventory-research"
     last_updated_at: "2026-09-08T19:30:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Merged both lanes, reproduced every drift row, closed the packet"

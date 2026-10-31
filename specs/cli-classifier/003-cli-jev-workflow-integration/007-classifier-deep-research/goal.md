@@ -10,15 +10,15 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/007-classifier-deep-research"
     last_updated_at: "2026-09-27T05:40:00Z"
     last_updated_by: "orchestrator-session"
     recent_action: "Authored the durable directive"
     next_safe_action: "Check online for a Deem CLI and a Mac serving route"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/goal.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/research.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/goal.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/004-deep-research-expansion/research/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-workflow-integration"

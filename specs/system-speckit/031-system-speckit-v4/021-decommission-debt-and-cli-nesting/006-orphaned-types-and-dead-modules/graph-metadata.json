@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`.opencode/skills/system-spec-kit/shared/types.ts` still exports `IVectorStore` (line 246), `SearchOptions` (189), `SearchResult` (204), `StoreStats` (239), and the structural `Database` (171), `DatabaseExtended` (179), and `PreparedStatement` (157) interfaces; a repository-wide search finds no importer of any of these seven symbols outside `types.ts` itself and `shared/index.ts`'s barrel re-export - no implementer, no caller, no test",
     "created_at": "2026-09-05T06:13:07Z",
-    "last_save_at": "2026-10-31T13:26:45.003Z",
+    "last_save_at": "2026-10-31T13:58:48.877Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:10df283bfdc9204d3a674b5081b7ca4f11be1c7e887c91ae1761ca0c76ec7026",
+    "source_fingerprint": "sha256:ddf1fefca0bbc81cccf450b105dc27559100ece58fec98300a69b069a1b442a0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b3d00d6786524009ebf2f1a7901da6124546f6a473cb21b77a93f706b0ed2cb2",

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/032-relocate-specs-folder/002-migration-plan"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/002-migration-plan"
     last_updated_at: "2026-08-06T18:04:13Z"
     last_updated_by: "claude-code"
     recent_action: "T013 added: fresh Opus ADR-002 consultation, verified"

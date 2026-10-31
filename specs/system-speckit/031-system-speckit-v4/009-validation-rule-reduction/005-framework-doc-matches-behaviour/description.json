@@ -19,7 +19,7 @@
   "folderSlug": "framework-doc-matches-behaviour",
   "parentChain": [
     "system-speckit",
-    "033-system-speckit-v4",
+    "031-system-speckit-v4",
     "009-validation-rule-reduction"
   ],
   "memorySequence": 0,

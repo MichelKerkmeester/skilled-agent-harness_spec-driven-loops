@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/023-semantic-lane-enablement"
+    packet_pointer: "system-skill-advisor/022-semantic-lane-enablement"
     last_updated_at: "2026-09-03T00:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the durable directive and its phase binding"
@@ -92,7 +92,7 @@ left only here is invisible to whatever judges completion.
 - [ ] The Gate B re-measurement on the frozen 180-row corpus reports at least 30 of 172 top-only, with its raw replies kept
 - [ ] Five named canary prompts each return their intended hub at `recommendations[0]`
 - [ ] Unsetting one environment variable and restarting the daemon returns every ratchet metric to its pre-enable value
-- [ ] `validate.sh specs/system-skill-advisor/023-semantic-lane-enablement --strict --recursive` reports `RESULT: PASSED` for all six folders
+- [ ] `validate.sh specs/system-skill-advisor/022-semantic-lane-enablement --strict --recursive` reports `RESULT: PASSED` for all six folders
 <!-- /ANCHOR:completion -->
 
 ---

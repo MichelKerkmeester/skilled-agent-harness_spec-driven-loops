@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/001-deep-research"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/001-deep-research"
     last_updated_at: "2026-10-28T06:45:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Marked every criterion with the evidence observed"
@@ -37,7 +37,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** `sk-doc/072-skill-routing-and-clarity/001-deep-research`
+**Packet:** `sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/001-deep-research`
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-28

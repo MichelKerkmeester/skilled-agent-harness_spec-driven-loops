@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/026-defect-and-hardening-fixes/002-empty-recommendation-diagnostic"
+    packet_pointer: "system-skill-advisor/025-defect-and-hardening-fixes/002-empty-recommendation-diagnostic"
     last_updated_at: "2026-09-12T14:05:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "No-match case reports honestly; advisor suite fully green at 868 passed, 0 failed"

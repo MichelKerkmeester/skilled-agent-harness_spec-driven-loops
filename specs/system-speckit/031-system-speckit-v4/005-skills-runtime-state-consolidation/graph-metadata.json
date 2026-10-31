@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Seven hidden state directories sit directly under `.opencode/skills/`: advisor, authority, completion-sentinel, goal, loop-guard, smart-router-telemetry and spec-gate",
     "created_at": "2026-08-28T08:49:09Z",
-    "last_save_at": "2026-10-31T13:26:35.914Z",
+    "last_save_at": "2026-10-31T13:58:37.039Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a9a4822812e3c953d29bac32a9316c7ce7129c123d07e5f6c14f170d87d4ab21",
+    "source_fingerprint": "sha256:e877db557438e33b64f7fcddc8fbfa4b78e9dc38ad0ac3152091ed7779315fda",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e4c73a3f2db9506bb0cbdbf87ebdc41d69279baacd43f659b8ff9593e56e9eab",
       "plan.md": "c135ac1b10227d1bd738b8a7a002a2d2aac899681564237794d5764b061fc8b1",
-      "tasks.md": "f39211eb94dca423739daa94ee40a30e0873b26221461762ce1da19e5f97f1b2",
-      "decision-record.md": "1fab9e225364d6012cf86a9f85724fe5cb08d8a58d638f17bb107562f494c09f",
+      "tasks.md": "9df4d4842e9a2e0399ea7aa4ac154700549da00398386a1527b7f168ec60e833",
+      "decision-record.md": "318d76400f98eeac5259bed0ad2f4b9e169a5e015cb4093535bb5f1489b9b0c9",
       "implementation-summary.md": "52fe4a37f27f9d6a0fcca0ce68d3e9ffeb1c03820186102cfeb13c2e0e2da779"
     },
     "last_active_child_id": null,

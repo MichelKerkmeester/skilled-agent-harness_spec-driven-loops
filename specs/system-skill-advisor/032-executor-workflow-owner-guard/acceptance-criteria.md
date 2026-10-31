@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/039-executor-workflow-owner-guard"
+    packet_pointer: "system-skill-advisor/032-executor-workflow-owner-guard"
     last_updated_at: "2026-10-28T07:17:16Z"
     last_updated_by: "claude"
     recent_action: "Marked every criterion with observed evidence"

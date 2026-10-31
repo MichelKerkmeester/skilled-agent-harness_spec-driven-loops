@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/053-command-contract-reconciliation"
+    packet_pointer: "sk-doc/052-command-contract-reconciliation"
     last_updated_at: "2026-09-04T11:30:00Z"
     last_updated_by: "claude"
     recent_action: "Reconciled the command contract with the shipped tree and added the catalog mirror check"
@@ -47,7 +47,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 053-command-contract-reconciliation |
+| **Spec Folder** | 052-command-contract-reconciliation |
 | **Completed** | 2026-09-04 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -94,7 +94,7 @@ It carries two tiers, because two kinds of disagreement are not the same failure
 | `.opencode/skills/sk-doc/sk-create-command/references/common-pitfalls.md` | Modified | Hyphenated asset-kind suffixes |
 | `.opencode/skills/sk-doc/sk-create-command/references/router-presentation-split.md` | Modified | Hyphenated asset paths |
 | `.opencode/commands/doctor/scripts/command-catalog-mirror-check.cjs` | Created | Read-only catalog and hub-metadata drift check |
-| `specs/sk-doc/053-command-contract-reconciliation/` | Created | This packet |
+| `specs/sk-doc/052-command-contract-reconciliation/` | Created | This packet |
 
 ### Family-by-family divergence
 

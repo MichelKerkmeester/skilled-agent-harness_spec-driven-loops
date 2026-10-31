@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-doctor-audit-followups/001-trigger-index-freshness"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/001-trigger-index-freshness"
     last_updated_at: "2026-10-03T07:30:00Z"
     last_updated_by: "build-orchestrator"
     recent_action: "Recorded the continuity correction handoff"
@@ -40,7 +40,7 @@ ADR-001 lives in `plan.md` and is Accepted there. This file holds the decision t
 <!-- ANCHOR:adr-002-context -->
 ### Context
 
-REQ-006 asks for the continuity `key_files` in `specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md` to name the live `.skilled/skills/system-spec-kit/runtime/{cli/retrieval,data}` paths. Five orchestrators edit this worktree at once, and the parent session gave this one an explicit list of files it may change. That list covers the system-spec-kit skill, the doctor command family and two named documents of the closed audit packet. It does not include the 033 packet.
+REQ-006 asks for the continuity `key_files` in `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md` to name the live `.skilled/skills/system-spec-kit/runtime/{cli/retrieval,data}` paths. Five orchestrators edit this worktree at once, and the parent session gave this one an explicit list of files it may change. That list covers the system-spec-kit skill, the doctor command family and two named documents of the closed audit packet. It does not include the 033 packet.
 
 ### Constraints
 - No orchestrator may edit a file outside its owned list.

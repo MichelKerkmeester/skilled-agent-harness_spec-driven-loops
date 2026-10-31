@@ -6,7 +6,7 @@ defines as the autonomous child-dispatch exemption: the spec-folder question is 
 and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
 
 Your write authority is already bound. The spec folder is:
-  specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups
+  specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups
 
 Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 Your task is complete only when every check below has a verdict and the REPORT is printed.
@@ -34,7 +34,7 @@ CONTEXT
   .skilled/skills/system-skill-advisor/runtime/advisor-server.ts (main, idle shutdown),
   .skilled/skills/system-skill-advisor/runtime/lib/ipc/launcher-idle-timeout.ts (timeout parsing, check interval).
 - Evidence run by the orchestrator, in
-  specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-check/:
+  specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-check/:
   probe-idle-exit.txt times the wind-down on a short timeout, and idle-result.txt runs the new block on a hostile
   lease, a launcher killed without its handler and the normal path. Their scripts sit beside them.
 

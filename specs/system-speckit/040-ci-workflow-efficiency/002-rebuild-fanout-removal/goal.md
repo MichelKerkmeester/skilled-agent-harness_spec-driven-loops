@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal"
+    packet_pointer: "system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal"
     last_updated_at: "2026-10-25T12:00:00Z"
     last_updated_by: "markdown"
     recent_action: "AC-006 band amended to measured 2,191; all ACs Met"

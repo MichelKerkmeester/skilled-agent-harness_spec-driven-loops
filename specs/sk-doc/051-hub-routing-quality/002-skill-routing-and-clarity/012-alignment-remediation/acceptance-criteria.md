@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/012-alignment-remediation"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/012-alignment-remediation"
     last_updated_at: "2026-10-28T21:50:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Recorded the evidence for every criterion"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** `sk-doc/072-skill-routing-and-clarity/012-alignment-remediation`
+**Packet:** `sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/012-alignment-remediation`
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-28

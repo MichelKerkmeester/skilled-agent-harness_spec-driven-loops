@@ -14,10 +14,11 @@
     "demand"
   ],
   "lastUpdated": "2026-09-04T17:50:18.641Z",
-  "specId": "023",
+  "specId": "001",
   "folderSlug": "model-server-default-spawn",
   "parentChain": [
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "021-model-server-lifecycle"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

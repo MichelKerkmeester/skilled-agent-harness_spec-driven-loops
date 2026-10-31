@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-doctor-audit-followups/033-orphan-check-unsupervised-model-server"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/033-orphan-check-unsupervised-model-server"
     last_updated_at: "2026-10-21T14:17:19Z"
     last_updated_by: "orchestrator"
     recent_action: "Marked AC-001 to AC-003 Met"

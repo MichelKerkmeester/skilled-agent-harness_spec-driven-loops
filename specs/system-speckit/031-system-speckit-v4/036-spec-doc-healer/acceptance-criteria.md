@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/036-spec-doc-healer"
+    packet_pointer: "system-speckit/031-system-speckit-v4/036-spec-doc-healer"
     last_updated_at: "2026-09-11T07:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Every criterion verified from the final state"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/036-spec-doc-healer
+**Packet:** system-speckit/031-system-speckit-v4/036-spec-doc-healer
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-11

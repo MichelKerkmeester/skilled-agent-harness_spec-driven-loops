@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/048-doctor-command-audit/006-fable-mode"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/006-fable-mode"
     last_updated_at: "2026-10-02T20:54:25Z"
     last_updated_by: "markdown-agent"
     recent_action: "Closed the phase docs from the verified fix evidence; verdict fix, all four criteria Met"
@@ -121,7 +121,7 @@ GPT-6 Luna (cli-codex, max, fast) applied the fix in one batch with the other `/
 3. **Running without a directory is now an error by design.** An operator who omits `--dir` gets exit 2 and `pass --dir <path>`; the added setup prompt covers the interactive router flow.
 4. **The three parent-skill test failures are environmental.** They fail at baseline in this worktree for a fixture-loading reason unrelated to this phase's change and are not a regression.
 
-**Follow-up status.** Items 1 and 4 are resolved by `specs/system-speckit/049-doctor-audit-followups` phase 003: the baseline target is null with a retirement note, and the fixtures link `@spec-kit/shared`. Items 2 and 3 stand as recorded: no corpus exists, and the missing-directory error is by design.
+**Follow-up status.** Items 1 and 4 are resolved by `specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups` phase 003: the baseline target is null with a retirement note, and the fixtures link `@spec-kit/shared`. Items 2 and 3 stand as recorded: no corpus exists, and the missing-directory error is by design.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -138,14 +138,14 @@
     ],
     "causal_summary": "Pi answers Jev questions with the same picks as the jev CLI in about half the time, but only when a caller asks for it, and only for `choice` questions in two scorers",
     "created_at": "2026-10-03T17:39:26Z",
-    "last_save_at": "2026-10-31T13:25:39.375Z",
+    "last_save_at": "2026-10-31T14:03:59.978Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:6044875c071447a44c4d23c4ead704ce828614125f5f7b3778deb0305ed43b7f",
+    "source_fingerprint": "sha256:56c57006e3fc27482ce97fe1bdcc6ee874caf9caa3619b507cb6e3f123995aab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4bdd4fdaf94f96928b763f555be43bb97ee6d7714631ead6e46d344abdbfd07c"

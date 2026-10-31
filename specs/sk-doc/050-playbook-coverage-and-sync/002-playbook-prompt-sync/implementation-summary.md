@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/058-playbook-prompt-sync"
+    packet_pointer: "sk-doc/050-playbook-coverage-and-sync/002-playbook-prompt-sync"
     last_updated_at: "2026-09-23T17:29:43Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Shipped the PROMPT_UNSYNCED warning with suite and fleet evidence"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 058-playbook-prompt-sync |
+| **Spec Folder** | 002-playbook-prompt-sync |
 | **Completed** | 2026-09-23 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

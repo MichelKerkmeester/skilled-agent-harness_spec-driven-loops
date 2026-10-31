@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/002-multiplexed-rule-split"
+    packet_pointer: "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/002-multiplexed-rule-split"
     last_updated_at: "2026-09-07T19:05:00Z"
     last_updated_by: "scaffold"
     recent_action: "Marked every criterion met with the evidence observed"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/032-recorded-findings-closure/002-multiplexed-rule-split
+**Packet:** system-speckit/031-system-speckit-v4/032-recorded-findings-closure/002-multiplexed-rule-split
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-07

@@ -11,7 +11,8 @@
   "folderSlug": "doctor-update-research",
   "parentChain": [
     "system-speckit",
-    "049-doctor-audit-followups"
+    "036-doctor-audit-and-fixes",
+    "002-doctor-audit-followups"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

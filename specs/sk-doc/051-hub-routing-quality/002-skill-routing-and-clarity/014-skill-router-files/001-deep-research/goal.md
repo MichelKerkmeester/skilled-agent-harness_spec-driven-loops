@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/001-deep-research"
     last_updated_at: "2026-10-29T13:20:00Z"
     last_updated_by: "claude-haiku-5-5"
     recent_action: "Authored the durable directive"

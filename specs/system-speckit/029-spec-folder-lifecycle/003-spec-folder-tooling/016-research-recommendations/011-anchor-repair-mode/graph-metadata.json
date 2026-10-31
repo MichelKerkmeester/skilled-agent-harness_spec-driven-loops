@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 13's one-off script `fix-dup-anchors.mjs` handled duplicate anchor pairs (two anchor copies in one document, paired by literal position)",
     "created_at": "2026-10-08T04:22:46Z",
-    "last_save_at": "2026-10-31T13:26:27.165Z",
+    "last_save_at": "2026-10-31T13:58:23.056Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e1e462eec16476399f02ea7e89bbff65cf905bd33378b6a8fd1e35870bde24f8",
+    "source_fingerprint": "sha256:3a00458cacb237a703557b6a7659de5a47be72bb818f3e0961522a6e43ce4ff7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8db9fd9b45b8f2256a15a20e1376c353404573c59eb7a1712c4d0a64cea4839c",
       "plan.md": "5bab24dffa2c6cc6ec0700b210692a7a484e6d47a37e040601cfb3f137985d67",
       "tasks.md": "370e8f0dbf6143d3f0b096af4f556038a20c7306616fe22cb725ea5aecf401fc",
-      "implementation-summary.md": "d55f1ff39de4ebb41b6cc9cf88a3a2e5374fc12e4f93a6d6040088ec32c40794"
+      "implementation-summary.md": "ba0e9ea5110dfa2b055b0495bdd0ee0a02ff5b35bd3d43f3a0014219913318c3"
     },
     "last_active_at": null
   }

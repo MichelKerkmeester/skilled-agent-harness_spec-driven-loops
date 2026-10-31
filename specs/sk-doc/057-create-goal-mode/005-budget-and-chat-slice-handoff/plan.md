@@ -24,12 +24,12 @@ contextType: "planning"
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown plus the existing Node.js goal CLI (.skilled/hooks/goal/bin/goal.cjs:203-216). |
-| **Framework** | None. The deliverable is a sk-doc reference file (specs/sk-doc/060-create-goal-mode/spec.md:86,89,104). |
-| **Storage** | A temporary packet fixture containing goal.md. No runtime goal state is changed (specs/sk-doc/060-create-goal-mode/goal.md:51-54). |
+| **Framework** | None. The deliverable is a sk-doc reference file (specs/sk-doc/057-create-goal-mode/spec.md:86,89,104). |
+| **Storage** | A temporary packet fixture containing goal.md. No runtime goal state is changed (specs/sk-doc/057-create-goal-mode/goal.md:51-54). |
 | **Testing** | goal.cjs packet for budget and projection output, strict spec-kit validation for the phase packet. |
 
 ### Overview
-Create .skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md as the only retained phase deliverable. It will measure parent goals with the shared packet command, document the set-string playbook's cut order and preserve all criteria. It will distinguish the printed chat slice from the bind-time objective slice, list the six runtime surfaces and stop at printing the handoff (.skilled/hooks/goal/lib/goal-slice.cjs:59-79,96-118, .skilled/hooks/goal/goal-plugin.md:151-170, specs/sk-doc/060-create-goal-mode/goal.md:51-54).
+Create .skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md as the only retained phase deliverable. It will measure parent goals with the shared packet command, document the set-string playbook's cut order and preserve all criteria. It will distinguish the printed chat slice from the bind-time objective slice, list the six runtime surfaces and stop at printing the handoff (.skilled/hooks/goal/lib/goal-slice.cjs:59-79,96-118, .skilled/hooks/goal/goal-plugin.md:151-170, specs/sk-doc/057-create-goal-mode/goal.md:51-54).
 
 <!-- /ANCHOR:summary -->
 
@@ -39,9 +39,9 @@ Create .skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md as
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 004's incoming fixture meets the parent handoff: every phase is bound (specs/sk-doc/060-create-goal-mode/spec.md:145).
+- [ ] Phase 004's incoming fixture meets the parent handoff: every phase is bound (specs/sk-doc/057-create-goal-mode/spec.md:145).
 - [ ] The packet command, shared slice module, budget manifest and set-string playbook are available at the cited paths (.skilled/hooks/goal/bin/goal.cjs:203-216, .skilled/hooks/goal/lib/goal-slice.cjs:268-285, .skilled/skills/system-spec-kit/templates/spec-kit-docs.json:24-28, .skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md:61-71).
-- [ ] The retained output path is in the mode packet's reference scope (specs/sk-doc/060-create-goal-mode/spec.md:86,89,104).
+- [ ] The retained output path is in the mode packet's reference scope (specs/sk-doc/057-create-goal-mode/spec.md:86,89,104).
 
 ### Definition of Done
 - [ ] The reference describes the configured 4,000-character budget, packet output fields and cut order.
@@ -60,11 +60,11 @@ One mode reference plus a disposable local fixture. No new runtime component.
 
 ### Key Components
 - **Budget measurement**: The existing packet command reads the goal and prints packet_durable_chars, packet_budget, objective_slice and chat_slice (.skilled/hooks/goal/bin/goal.cjs:203-216).
-- **Handoff reference**: The new file documents the current budget and operator handoff without copying the goal template (specs/sk-doc/060-create-goal-mode/spec.md:89,94-99).
-- **Temporary proof fixture**: An over-budget packet is cut in the playbook order and measured again. Its completion-criterion count is compared before and after (.skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md:61-71, specs/sk-doc/060-create-goal-mode/spec.md:146).
+- **Handoff reference**: The new file documents the current budget and operator handoff without copying the goal template (specs/sk-doc/057-create-goal-mode/spec.md:89,94-99).
+- **Temporary proof fixture**: An over-budget packet is cut in the playbook order and measured again. Its completion-criterion count is compared before and after (.skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md:61-71, specs/sk-doc/057-create-goal-mode/spec.md:146).
 
 ### Data Flow
-The author writes a temporary top-level packet under the repository root, calls the packet read action with --workspace set to that root, and reads the reported count and budget state. The author then trims in the set-string order and repeats the command. goal.cjs packet prints both projections. The mode reference directs the operator to use chat_slice and stop, while the runtime objective slice remains separate (.skilled/hooks/goal/bin/goal.cjs:203-216, .skilled/hooks/goal/lib/goal-slice.cjs:96-118, specs/sk-doc/060-create-goal-mode/goal.md:51-54).
+The author writes a temporary top-level packet under the repository root, calls the packet read action with --workspace set to that root, and reads the reported count and budget state. The author then trims in the set-string order and repeats the command. goal.cjs packet prints both projections. The mode reference directs the operator to use chat_slice and stop, while the runtime objective slice remains separate (.skilled/hooks/goal/bin/goal.cjs:203-216, .skilled/hooks/goal/lib/goal-slice.cjs:96-118, specs/sk-doc/057-create-goal-mode/goal.md:51-54).
 
 ### Planned budget cut order
 
@@ -83,9 +83,9 @@ The budget command measures from after the frontmatter fence to the log anchor, 
 | Cursor | /goal-cursor packet <path> is a session-free packet read. packet-log is a separate append action, and session binding is unsupported (.cursor/commands/goal-cursor.md:10,14-19). |
 | Devin | Goal context is injected by hooks. The repository exposes no Devin goal command surface (.skilled/hooks/goal/README.md:79,84, .skilled/hooks/goal/goal-plugin.md:158). |
 
-The mode prints chat_slice and stops. It never calls goal.cjs bind or goal.cjs set, which remain runtime actions outside this mode (specs/sk-doc/060-create-goal-mode/goal.md:51-54, .skilled/hooks/goal/bin/goal.cjs:153-173,233-246).
+The mode prints chat_slice and stops. It never calls goal.cjs bind or goal.cjs set, which remain runtime actions outside this mode (specs/sk-doc/057-create-goal-mode/goal.md:51-54, .skilled/hooks/goal/bin/goal.cjs:153-173,233-246).
 
-A fixed-text cost is not an amendment by itself. The parent log records that the parent was cut from 4,820 to 3,735 durable characters without dropping a criterion. This phase documents the cost and teaches the current budget rule. D4 remains available for a real conflict with the contract (specs/sk-doc/060-create-goal-mode/goal.md:52-54,136).
+A fixed-text cost is not an amendment by itself. The parent log records that the parent was cut from 4,820 to 3,735 durable characters without dropping a criterion. This phase documents the cost and teaches the current budget rule. D4 remains available for a real conflict with the contract (specs/sk-doc/057-create-goal-mode/goal.md:52-54,136).
 
 <!-- /ANCHOR:architecture -->
 
@@ -110,9 +110,9 @@ This phase plans a new reference, not a software fix. These surfaces are read-on
 
 Follow the ordered tasks in tasks.md. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 
-1. **Setup**: Confirm phase 004's handoff, the current 4,000-character setting and the exact slice/projection behavior (specs/sk-doc/060-create-goal-mode/spec.md:145, .skilled/skills/system-spec-kit/templates/spec-kit-docs.json:24-28, .skilled/hooks/goal/lib/goal-slice.cjs:59-79,96-118).
-2. **Write**: Create .skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md with the sourced measurement command, the ordered cut rule, the fixed-text decision and the runtime matrix (specs/sk-doc/060-create-goal-mode/spec.md:86,89,104, .skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md:61-71).
-3. **Prove**: Build a temporary over-budget packet inside the workspace root, preserve its criterion count while trimming it and repeat the packet command. Remove the fixture after recording the output (specs/sk-doc/060-create-goal-mode/spec.md:146).
+1. **Setup**: Confirm phase 004's handoff, the current 4,000-character setting and the exact slice/projection behavior (specs/sk-doc/057-create-goal-mode/spec.md:145, .skilled/skills/system-spec-kit/templates/spec-kit-docs.json:24-28, .skilled/hooks/goal/lib/goal-slice.cjs:59-79,96-118).
+2. **Write**: Create .skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md with the sourced measurement command, the ordered cut rule, the fixed-text decision and the runtime matrix (specs/sk-doc/057-create-goal-mode/spec.md:86,89,104, .skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md:61-71).
+3. **Prove**: Build a temporary over-budget packet inside the workspace root, preserve its criterion count while trimming it and repeat the packet command. Remove the fixture after recording the output (specs/sk-doc/057-create-goal-mode/spec.md:146).
 
 <!-- /ANCHOR:phases -->
 
@@ -156,7 +156,7 @@ The count command reads only the completion anchor, where the goal contract plac
 |-----------|-------|-------|
 | Unit | No code is added in this phase, no unit test is planned. | Not applicable. |
 | Integration | One temporary top-level packet, measured before and after trimming. | goal.cjs packet, node -e, rg and Bash assertions. |
-| Manual | Check the reference's citations, six-runtime matrix and stop boundary against the source files. | rg, source reads, bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/060-create-goal-mode/005-budget-and-chat-slice-handoff --strict. |
+| Manual | Check the reference's citations, six-runtime matrix and stop boundary against the source files. | rg, source reads, bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode/005-budget-and-chat-slice-handoff --strict. |
 
 <!-- /ANCHOR:testing -->
 
@@ -167,7 +167,7 @@ The count command reads only the completion anchor, where the goal contract plac
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 004 parent and child fixture (specs/sk-doc/060-create-goal-mode/spec.md:145) | Internal | Pending | The incoming authoring contract is not established until the predecessor's handoff passes. |
+| Phase 004 parent and child fixture (specs/sk-doc/057-create-goal-mode/spec.md:145) | Internal | Pending | The incoming authoring contract is not established until the predecessor's handoff passes. |
 | Goal budget manifest (.skilled/skills/system-spec-kit/templates/spec-kit-docs.json:24-28) | Internal | Available in this checkout | Without a readable budget, packet_budget can be unknown (.skilled/hooks/goal/lib/goal-slice.cjs:277-285,384-387). |
 | Shared packet CLI (.skilled/hooks/goal/bin/goal.cjs:203-216) | Internal | Available in this checkout | Without the packet action, the required durable count and slice outputs cannot be observed. |
 
@@ -178,8 +178,8 @@ The count command reads only the completion anchor, where the goal contract plac
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: Stop if the fixture can meet budget only by dropping a criterion, if the handoff would need a bind/set action, or if the reference would contradict parent decisions D3-D4 (specs/sk-doc/060-create-goal-mode/goal.md:51-54).
-- **Procedure**: Remove the temporary fixture. Revert only the new reference file to its prior absence. Record any irreconcilable contract gap for a system-spec-kit amendment under D4. Do not change the template or runtime state in this phase (specs/sk-doc/060-create-goal-mode/spec.md:94-99, specs/sk-doc/060-create-goal-mode/goal.md:52-54).
+- **Trigger**: Stop if the fixture can meet budget only by dropping a criterion, if the handoff would need a bind/set action, or if the reference would contradict parent decisions D3-D4 (specs/sk-doc/057-create-goal-mode/goal.md:51-54).
+- **Procedure**: Remove the temporary fixture. Revert only the new reference file to its prior absence. Record any irreconcilable contract gap for a system-spec-kit amendment under D4. Do not change the template or runtime state in this phase (specs/sk-doc/057-create-goal-mode/spec.md:94-99, specs/sk-doc/057-create-goal-mode/goal.md:52-54).
 
 <!-- /ANCHOR:rollback -->
 
@@ -219,19 +219,19 @@ Phase 004 handoff → reference authoring → temporary fixture measurement → 
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] No deployment or runtime-state mutation is part of the plan (specs/sk-doc/060-create-goal-mode/spec.md:94-99, specs/sk-doc/060-create-goal-mode/goal.md:51-54).
+- [ ] No deployment or runtime-state mutation is part of the plan (specs/sk-doc/057-create-goal-mode/spec.md:94-99, specs/sk-doc/057-create-goal-mode/goal.md:51-54).
 - [ ] The fixture location is recorded and its cleanup is part of verification.
-- [ ] Only the new reference is a retained implementation artifact (specs/sk-doc/060-create-goal-mode/spec.md:86,89,104).
+- [ ] Only the new reference is a retained implementation artifact (specs/sk-doc/057-create-goal-mode/spec.md:86,89,104).
 
 ### Rollback Procedure
 1. Stop on any fixture result that requires dropping a criterion.
 2. Remove the temporary fixture directory.
 3. Revert the new reference if it cannot honor the frozen parent scope.
-4. Report a system-spec-kit gap through D4 if the current contract cannot be met (specs/sk-doc/060-create-goal-mode/goal.md:52-54).
+4. Report a system-spec-kit gap through D4 if the current contract cannot be met (specs/sk-doc/057-create-goal-mode/goal.md:52-54).
 
 ### Data Reversal
 - **Has data migrations?** No.
-- **Reversal procedure**: Remove the temporary goal.md fixture and the new reference file. No runtime goal state is part of this plan (specs/sk-doc/060-create-goal-mode/spec.md:94-99, specs/sk-doc/060-create-goal-mode/goal.md:51-54).
+- **Reversal procedure**: Remove the temporary goal.md fixture and the new reference file. No runtime goal state is part of this plan (specs/sk-doc/057-create-goal-mode/spec.md:94-99, specs/sk-doc/057-create-goal-mode/goal.md:51-54).
 
 <!-- /ANCHOR:enhanced-rollback -->
 

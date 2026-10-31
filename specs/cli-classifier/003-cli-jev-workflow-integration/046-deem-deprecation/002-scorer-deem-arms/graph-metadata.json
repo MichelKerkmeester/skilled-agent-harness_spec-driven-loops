@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Twenty scorers accept `--deem`, and each arm has tests, docs and in two cases a side-by-side comparison with Jev",
     "created_at": "2026-10-02T07:54:41Z",
-    "last_save_at": "2026-10-31T13:25:35.604Z",
+    "last_save_at": "2026-10-31T14:03:55.766Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2f70d623061f3a9be1e3821ad6dbb6dfe8c262c16542befb1592ceb6a269b44b",
+    "source_fingerprint": "sha256:08c666b0b3762262629c1c34bcf11409c2c18c9bccbfaf6d725be5c01f0f0c03",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f9f218c86ca51a89f54e51918a8a5b4ae3390c15b6095c6c0d7b6f6de353e3b1",

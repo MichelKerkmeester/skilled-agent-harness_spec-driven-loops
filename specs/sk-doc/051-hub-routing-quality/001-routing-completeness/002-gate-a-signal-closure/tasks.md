@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/052-routing-completeness/002-gate-a-signal-closure"
+    packet_pointer: "sk-doc/051-hub-routing-quality/001-routing-completeness/002-gate-a-signal-closure"
     last_updated_at: "2026-09-04T12:15:00Z"
     last_updated_by: "claude-code"
     recent_action: "Applied and measured the seven fixes the decisions named"

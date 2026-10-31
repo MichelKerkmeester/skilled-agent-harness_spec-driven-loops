@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/013-trigger-phrase-quality-enforcement"
+    packet_pointer: "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/013-trigger-phrase-quality-enforcement"
     last_updated_at: "2026-09-07T06:20:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Closed every criterion"

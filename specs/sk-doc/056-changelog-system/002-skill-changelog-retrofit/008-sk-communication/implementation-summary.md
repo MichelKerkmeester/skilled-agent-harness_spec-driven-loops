@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/059-skill-changelog-retrofit/008-sk-communication"
+    packet_pointer: "sk-doc/056-changelog-system/002-skill-changelog-retrofit/008-sk-communication"
     last_updated_at: "2026-09-26T08:26:21Z"
     last_updated_by: "generate-context"
     recent_action: "Committed and pushed the sk-communication rewrites in bc785755a5"
     next_safe_action: "Close the parent packet"
     blockers: []
     key_files:
-      - "specs/sk-doc/059-skill-changelog-retrofit/scratch/lists/sk-communication.txt"
+      - "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/scratch/lists/sk-communication.txt"
     session_dedup:
       fingerprint: "sha256:54f5b3625058867885ea6257a34f6c05b0855f19a35647fc64f567fcc7c923e4"
       session_id: "fb879d4c-5543-4760-8339-b0f3499f278d"

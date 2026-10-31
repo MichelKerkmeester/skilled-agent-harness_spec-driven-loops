@@ -43,7 +43,8 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/fixtures/047-020-recorded-picks.jsonl"
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/fixtures/047-020-recorded-picks.jsonl",
+      "specs/cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/007-clarify-default-research/research/research.md"
     ],
     "entities": [
       {
@@ -193,7 +194,7 @@
     ],
     "causal_summary": "Feature 020 kept mostly as a none-of-these detector: 12 of 17 wins are abstentions, and always answering none (34 of 54) beats Jev (28)",
     "created_at": "2026-10-03T05:30:07Z",
-    "last_save_at": "2026-10-31T13:25:39.401Z",
+    "last_save_at": "2026-10-31T14:03:59.959Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,11 +204,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a6ab2ebee5f7d0fd62bb9fca26c2e941298b54a4a28217bae22de1a6ee2f406",
+    "source_fingerprint": "sha256:3799734d9c982d979ae414c2f281a48791cd42ade04805dca916daed0d916755",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7c5ee5fcb234538be8301da9d30e20afb9e1f277d3617443a123ae0b2214f818",
-      "plan.md": "56da000c9eb2ad2d6fbd55dbbb6c4187c475280b3e69f110e1b2ddad95abd580",
+      "spec.md": "f92f7b45b2cdabd5c168857f1282257c9fd7d925495609fd475634cfcc929660",
+      "plan.md": "bfe61712a7f0b7498d4e68eb40d6598602e3a8f0d95231bf2c65e9788896e9a9",
       "tasks.md": "5fd69b9a28d3020d0ed731480d0c629aa3a655914f32956af1c303fd329179ff",
       "implementation-summary.md": "a1fcecec4ffb8fe12ac3557406b84061406c78c8ab4c07d017b7ce9199ee7075"
     },

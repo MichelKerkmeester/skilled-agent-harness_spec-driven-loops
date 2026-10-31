@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/040-goal-parent-single-limit"
+    packet_pointer: "system-speckit/033-goal-parent-single-limit"
     last_updated_at: "2026-09-25T16:40:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Aligned runtime goal budgeting with the validator and updated 49 goal documents"
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 040-goal-parent-single-limit |
+| **Spec Folder** | 033-goal-parent-single-limit |
 | **Completed** | 2026-09-25 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

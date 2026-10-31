@@ -55,7 +55,7 @@ contextType: "planning"
 ## Phase 3: Verification
 
 - [x] T010 Rerun every gate in scope (`scratch/after.md`). Verify: no gate is worse than in `scratch/baseline.md`. Evidence: `scratch/after.md` §1, every gate exit 0 and the same result as before.
-- [x] T011 Validate this folder. Verify: `validate.sh --strict` prints `RESULT: PASSED`. Evidence: `validate.sh specs/sk-doc/072-skill-routing-and-clarity --recursive --strict` printed `RESULT: PASSED` for this folder.
+- [x] T011 Validate this folder. Verify: `validate.sh --strict` prints `RESULT: PASSED`. Evidence: `validate.sh specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity --recursive --strict` printed `RESULT: PASSED` for this folder.
 <!-- /ANCHOR:phase-3 -->
 
 ---

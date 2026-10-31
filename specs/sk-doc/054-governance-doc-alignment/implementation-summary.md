@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/055-governance-doc-alignment"
+    packet_pointer: "sk-doc/054-governance-doc-alignment"
     last_updated_at: "2026-09-13T11:50:18Z"
     last_updated_by: "claude-conductor"
     recent_action: "Implementation recap written"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 055-governance-doc-alignment |
+| **Spec Folder** | 054-governance-doc-alignment |
 | **Completed** | 2026-09-14 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -97,7 +97,7 @@ Research first, then two batches. The router batch ran body, then description, t
 | Check | Result |
 |-------|--------|
 | `node .opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs` | PASS, RESULT: PASSED (9/9 checks), exit 0, after failing 7 rows as the negative control |
-| `validate.sh specs/sk-doc/055-governance-doc-alignment --strict` | PASS, RESULT: PASSED, Errors: 0 |
+| `validate.sh specs/sk-doc/054-governance-doc-alignment --strict` | PASS, RESULT: PASSED, Errors: 0 |
 | Router lineage | 3 of 3 iterations, status log terminal event `completed` |
 | Root-doc lineage | 5 of 5 iterations, synthesis at `research/root-doc-staleness/lineages/1789357391666-zngraa-staleness/research.md` |
 | 006 recursive strict validation | PASS, exit 0, RESULT: PASSED for the parent and all nine children at the 006 closeout |

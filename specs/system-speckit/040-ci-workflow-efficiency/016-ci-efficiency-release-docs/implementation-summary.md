@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/055-ci-efficiency-release-docs"
+    packet_pointer: "system-speckit/040-ci-workflow-efficiency/016-ci-efficiency-release-docs"
     last_updated_at: "2026-10-26T00:40:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Closed: 53 of 53 tasks ticked, 12 of 12 criteria Met"
     next_safe_action: "None, packet complete"
     blockers: []
     key_files:
-      - "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
+      - "specs/system-speckit/040-ci-workflow-efficiency/016-ci-efficiency-release-docs/tasks.md"
       - ".skilled/skills/sk-doc/changelog/v2.3.13.0.md"
       - ".skilled/skills/sk-code/changelog/v3.0.0.0.md"
       - "README.md"
@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 055-ci-efficiency-release-docs |
+| **Spec Folder** | 016-ci-efficiency-release-docs |
 | **Completed** | 2026-10-26 |
 | **Level** | 2 |
 | **Status** | Complete |
@@ -197,7 +197,7 @@ The closure pass ran from the current tree. It reran the Phase 2 verify commands
 | CI on the pushed head | Message Contract run 40242193992 concluded failure on `cdd611f210`, because each commit's Spec trailer named this folder before it was on main (deviation f). The other 18 runs on that commit concluded success. |
 | AC-009 private paths | The added lines held 0 user-home paths and 0 temporary-folder paths, and no credential pattern matched. |
 | CHK-051 scratch folder | `scratch/` holds `.gitkeep` only. |
-| Packet validate.sh | `validate.sh specs/system-speckit/055-ci-efficiency-release-docs --strict` printed `RESULT: PASSED` with exit 0, after the final `repair-derived.cjs --apply`. Errors 0, Warnings 0. |
+| Packet validate.sh | `validate.sh specs/system-speckit/040-ci-workflow-efficiency/016-ci-efficiency-release-docs --strict` printed `RESULT: PASSED` with exit 0, after the final `repair-derived.cjs --apply`. Errors 0, Warnings 0. |
 | validate_document on the four packet docs | `validate_document.py --type spec` on spec.md, plan.md, tasks.md and acceptance-criteria.md printed `Total issues: 0` with exit 0 on each file. |
 
 <!-- /ANCHOR:verification -->

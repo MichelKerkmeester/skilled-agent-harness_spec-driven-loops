@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding"
     last_updated_at: "2026-10-08T12:00:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Met all six criteria with observed evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/034-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding
+**Packet:** system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-08

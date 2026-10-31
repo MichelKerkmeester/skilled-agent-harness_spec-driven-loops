@@ -37,10 +37,10 @@ contextType: "general"
 
 This is **Phase 1** of the Build the recommendations from 048's research for each kept Jev feature, and fix the deep-research workflow faults found while running it specification.
 
-**Scope Boundary**: The recommendations listed in scope below, from `specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/001-fanout-merge-research/research/research.md`. Corpus, label and default-on work stays out.
+**Scope Boundary**: The recommendations listed in scope below, from `specs/cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/001-fanout-merge-research/research/research.md`. Corpus, label and default-on work stays out.
 
 **Dependencies**:
-- `specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/001-fanout-merge-research/research/research.md` ranks the recommendations
+- `specs/cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/001-fanout-merge-research/research/research.md` ranks the recommendations
 
 **Deliverables**:
 - Print constant-same and lexical-rule baselines beside the merge oracle in the report

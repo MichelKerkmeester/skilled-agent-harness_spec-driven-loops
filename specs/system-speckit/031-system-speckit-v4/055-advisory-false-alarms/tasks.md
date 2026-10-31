@@ -55,7 +55,7 @@ contextType: "general"
 - [x] T008 Negative control: with the old sources swapped back in, each new test fails and every other test passes. The new sources were restored byte-identical
 - [x] T009 Both sk-git test files pass 33 of 33 and the sentinel suite passes 24 of 24
 - [x] T010 The completion-evidence stop-hook suite, the other test file that imports the sentinel, passes 7 of 7
-- [x] T011 Fast-forward onto main at 83ee20d219, which had taken phases 051 to 053. Set the first scaffold aside, rebuild and scaffold this phase again as 055-advisory-false-alarms (specs/system-speckit/033-system-speckit-v4/055-advisory-false-alarms)
+- [x] T011 Fast-forward onto main at 83ee20d219, which had taken phases 051 to 053. Set the first scaffold aside, rebuild and scaffold this phase again as 055-advisory-false-alarms (specs/system-speckit/031-system-speckit-v4/055-advisory-false-alarms)
 - [x] T012 Full spec-kit root project: PASS: 1294 of 1307 tests in 109 files passed on the merged tree with 13 skipped and none failed. An earlier run on the original base under the runtime config reported 7 failed tests in 4 files. Three of those files failed only because a fresh worktree lacks their build outputs. The fourth, the Pi spec-gate suite, fails only under that config because the path alias it needs is defined in the root config alone. It passes 9 of 9 under the root config
 - [x] T013 The scratch replay is silent for every expansion form, still flags `git reset --hard $REF` on a tree with changes and resolves the cited document to its folder, on the original base and again on the merged tree
 - [x] T014 Comment hygiene exits 0 on all four edited files and strict packet validation passes

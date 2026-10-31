@@ -22,7 +22,7 @@
   "folderSlug": "shared-package-dead-half-removal",
   "parentChain": [
     "system-speckit",
-    "033-system-speckit-v4",
+    "031-system-speckit-v4",
     "030-spec-kit-simplification-research"
   ],
   "memorySequence": 0,

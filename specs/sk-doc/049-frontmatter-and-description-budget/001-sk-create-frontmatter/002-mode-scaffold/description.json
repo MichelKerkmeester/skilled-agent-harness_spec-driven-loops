@@ -18,7 +18,8 @@
   "folderSlug": "mode-scaffold",
   "parentChain": [
     "sk-doc",
-    "049-sk-create-frontmatter"
+    "049-frontmatter-and-description-budget",
+    "001-sk-create-frontmatter"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

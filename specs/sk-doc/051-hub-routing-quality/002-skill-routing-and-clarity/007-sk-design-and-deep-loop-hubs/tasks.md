@@ -52,7 +52,7 @@ contextType: "planning"
 ## Phase 3: Verification
 
 - [x] T007 Rerun every gate in scope (`scratch/after.md`). Verify: no gate is worse than in `scratch/before.md`. Evidence: `scratch/after.md` §1, 39 gates at exit 0. The runner is the baseline's 38 plus `skill-graph-freshness`. Accuracy 155/195, 49/66 and 19/24, identical to the baseline.
-- [x] T008 Validate this folder. Verify: `validate.sh --strict` prints `RESULT: PASSED`. Evidence: `validate.sh specs/sk-doc/072-skill-routing-and-clarity/007-sk-design-and-deep-loop-hubs --strict` and the same command with `--recursive --strict` on the parent both print `RESULT: PASSED`, exit 0.
+- [x] T008 Validate this folder. Verify: `validate.sh --strict` prints `RESULT: PASSED`. Evidence: `validate.sh specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/007-sk-design-and-deep-loop-hubs --strict` and the same command with `--recursive --strict` on the parent both print `RESULT: PASSED`, exit 0.
 <!-- /ANCHOR:phase-3 -->
 
 ---

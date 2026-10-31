@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow"
     last_updated_at: "2026-09-28T21:30:00Z"
     last_updated_by: "closure-leaf"
     recent_action: "Closed the phase at the label gate: 7 of 7 goal criteria ticked, build commit 1da5b193d2"
@@ -20,7 +20,7 @@ _memory:
       - ".skilled/hooks/goal/lib/count-pi-goal-nudges.mjs"
       - ".skilled/hooks/goal/lib/build-verifier-fixture.cjs"
       - ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/scratch/w3-build/build-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/scratch/w3-build/build-evidence.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-workflow-integration"

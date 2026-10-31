@@ -168,7 +168,7 @@ Every required finding is fixed at its source with a check that failed before th
 
 - **SC-001**: In a sandbox copy, `create.sh --track ../../escaped ...` exits non-zero and creates nothing outside `specs/`.
 - **SC-002**: `placeholder-token-gate.vitest.ts` passes with a parity matrix that includes the mixed-line, fenced, indented-fence and legacy-token shapes.
-- **SC-003**: `spec/check-placeholders.sh specs/system-speckit/054-weak-model-spec-authoring --json` prints `"placeholders":0`.
+- **SC-003**: `spec/check-placeholders.sh specs/system-speckit/041-weak-model-spec-authoring --json` prints `"placeholders":0`.
 - **SC-004**: A v2.3 fixture with one required section removed fails strict validation on the new check.
 - **SC-005**: The recursive pass and fail counts over `specs/` match the baseline taken before the first edit.
 - **SC-006**: `check-example-drift.sh` and `check-card-sync.sh` exit 0 on the final tree, and each exits non-zero on a seeded defect.

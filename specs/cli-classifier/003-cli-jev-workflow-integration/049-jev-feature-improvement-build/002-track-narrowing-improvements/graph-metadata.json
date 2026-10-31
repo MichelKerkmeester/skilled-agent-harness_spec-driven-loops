@@ -42,7 +42,8 @@
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "specs/cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/research.md"
     ],
     "entities": [
       {
@@ -192,7 +193,7 @@
     ],
     "causal_summary": "Feature 017 kept at 97 against 68 of 256 with only 3.4 rows of margin slack",
     "created_at": "2026-10-03T05:30:03Z",
-    "last_save_at": "2026-10-31T13:25:39.336Z",
+    "last_save_at": "2026-10-31T14:03:59.806Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,11 +203,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:33b3e51b2aa58b84780d10cbb7c1e3c14dd9841ad59de7f36b293165c7151ce3",
+    "source_fingerprint": "sha256:eb67f2ba5a139ab653516103197da59f4be9a4ea77676b3b579bfd013db8f41d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1f606f755a6bb7919c05620669f65a70bf010de2494f6424a357480ea0c0e226",
-      "plan.md": "2d29e6f363d3a883abd85438de07644426a2a72840438bf292c80c29f3c22d5d",
+      "spec.md": "a746f64c60efde2e66af47bb5c660ec93d1f3e7dcc5fb588b4467797a5008390",
+      "plan.md": "4c4bbf1c0b70e8976e1c9a9c75ba6892ed2f942e9255e7d271512f3f4c104767",
       "tasks.md": "d12fbbc041ee772cf2cdc3066af932883d8e306f26ce42ad9419df8e9ca9c12c",
       "implementation-summary.md": "a7adef6b78da0909fbb9e5168595f4f595d2414913e34579c84343998ee290c7"
     },

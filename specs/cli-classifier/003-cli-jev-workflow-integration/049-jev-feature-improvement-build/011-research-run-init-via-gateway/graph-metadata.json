@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Both deep-research workflows open a run by writing a 15-key config row straight into `deep-research-state.jsonl`",
     "created_at": "2026-10-03T05:30:11Z",
-    "last_save_at": "2026-10-31T13:25:39.467Z",
+    "last_save_at": "2026-10-31T14:04:00.068Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a111edbd7170557a87a36628852bf79168446e11afb2d82bf7de0478a02e1987",
+    "source_fingerprint": "sha256:c69b9604f9200f3a2c1eb194a80e1f23f04d57d88e8919f7923c65e1d7850da6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "92df25fc26783c5e43a37da2f28578329bcdad51712c1401ec397e8badda76c0",

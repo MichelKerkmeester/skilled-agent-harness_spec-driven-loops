@@ -44,6 +44,7 @@
       "implementation-summary.md",
       ".skilled/changelog/skilled/v4.0.0.4.md",
       ".skilled/skills/system-spec-kit/changelog/v2.7.1.0.md",
+      "specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/spec.md",
       "scratch/audit-findings.md",
       "scratch/evidence/playbook-spec-kit.txt",
       "scratch/evidence/playbook-sk-git.txt",
@@ -55,8 +56,7 @@
       "scratch/evidence/doctor-compat.txt",
       "scratch/evidence/removed-behavior-corrected.txt",
       "scratch/evidence/findings-check.txt",
-      "retrieval/lib/README.md",
-      "scratch/evidence/followup-verify.txt"
+      "retrieval/lib/README.md"
     ],
     "entities": [
       {
@@ -174,12 +174,6 @@
         "source": "derived"
       },
       {
-        "name": "followup-verify.txt",
-        "kind": "file",
-        "path": "scratch/evidence/followup-verify.txt",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -202,11 +196,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A read-only audit on 2026-10-09 found the docs around the epic's features behind the code: a playbook expects 12 hook gates where there are 13, five surfaces list `/doctor:update` without `compat`, the env reference lacks `SPECKITSKIPPHRASELINT`, `--layout-map` is undocumented, and no feature catalog entry or playbook scenario covers the new upgrade, heal, era-report and phrase-lint tooling",
     "created_at": "2026-10-09T15:47:54Z",
-    "last_save_at": "2026-10-31T13:26:29.158Z",
+    "last_save_at": "2026-10-31T13:58:23.947Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:790aeb923d39f2b93d9b7a5464a847bbea3affc94a028746059c29d0d5c3a3dd",
+    "source_fingerprint": "sha256:7701a85a09df0fe389407f6b8d1dd9cd9e594c78699fb8ac04c9022841cc9c46",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0c216f7d42be44a37d394ac92db509a9ebfab8f04a6fa251bddde2c01ef1eea9",
       "plan.md": "a0dc11270b2223324087fec4f0bef906d6e89cd2c8a381f13c45bfe775258862",
-      "tasks.md": "c9eb8bd861d7838f2a37a4c282cf73e8b0ca5ea74e3c6336e91df353271a798c",
-      "implementation-summary.md": "0c6ce5967ef1a42ab903d7a276a4859bda59428628cfa8a6ab4d490a13b87f4a"
+      "tasks.md": "76c48f6cacd21bbb1e8f08c4529401e8c6ed6b400a0e9defc17c8b4ec2ac23b8",
+      "implementation-summary.md": "966c834dfa0be9ac259581b67e98d48e03c2905d4cc1217bfa83260827db761b"
     },
     "last_active_at": null
   }

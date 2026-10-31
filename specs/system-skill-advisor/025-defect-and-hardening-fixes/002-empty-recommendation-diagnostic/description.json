@@ -15,7 +15,7 @@
   "folderSlug": "empty-recommendation-diagnostic",
   "parentChain": [
     "system-skill-advisor",
-    "026-defect-and-hardening-fixes"
+    "025-defect-and-hardening-fixes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

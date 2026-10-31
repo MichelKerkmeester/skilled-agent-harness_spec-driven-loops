@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Thirty-nine validator rules, a six-runtime hook matrix, hundreds of reference and catalog documents, and root documents that carry spec-kit procedure: the skill has grown by accretion, and the cost in reads, steps and maintenance has never been weighed against what each piece protects",
     "created_at": "2026-09-06T14:29:33Z",
-    "last_save_at": "2026-10-31T13:26:47.975Z",
+    "last_save_at": "2026-10-31T13:58:54.221Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7162b1f5f43fbfbeb589ca902374450cbd1268f8bc8c755dfb297a312e74176d",
+    "source_fingerprint": "sha256:a5169d50a35d8d3d565b29985cbf7591c11f0b570c6e01f3f749efad1290e623",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b211eb582ca3f67d3aa51bafe0e16a78bb0a81b0155a0f22c7642e0e385aa3cd",

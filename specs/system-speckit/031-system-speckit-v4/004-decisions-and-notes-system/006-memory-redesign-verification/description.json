@@ -23,7 +23,7 @@
   "folderSlug": "memory-redesign-verification",
   "parentChain": [
     "system-speckit",
-    "033-system-speckit-v4",
+    "031-system-speckit-v4",
     "004-decisions-and-notes-system"
   ],
   "memorySequence": 1,

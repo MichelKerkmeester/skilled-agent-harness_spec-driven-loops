@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Phases 001 and 004 were specified before anyone had studied what the replacement actually has to match",
     "created_at": "2026-09-02T16:29:02Z",
-    "last_save_at": "2026-10-31T13:26:42.101Z",
+    "last_save_at": "2026-10-31T13:58:43.620Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6def5ffd59b64d17b701772e22c9d3836698498e762841901089faec80337a64",
+    "source_fingerprint": "sha256:80573301f1cca56ad3168fb6076da8959bd6125ecf341aa11b7a2d67c9fc6e16",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "19b1ed3a6688dc2d274ad04a15f843c90375fa52101602c748cc5955654aeaed",

@@ -45,6 +45,8 @@
       "scratch/after.md",
       "scratch/workflow-run.md",
       ".skilled/changelog/skilled/v4.0.1.0.md",
+      "specs/sk-doc/067-doctor-sk-skill-command/010-verification-and-release/scratch/after.md",
+      "specs/sk-doc/067-doctor-sk-skill-command/010-verification-and-release/scratch/workflow-run.md",
       ".skilled/commands/doctor/assets/doctor-setup-presentation.txt"
     ],
     "entities": [
@@ -195,7 +197,7 @@
     ],
     "causal_summary": "The program edits doctor routes, sk-doc docs and manifests, advisor bridges and a skill template",
     "created_at": "2026-10-30T05:21:20Z",
-    "last_save_at": "2026-10-31T13:26:09.350Z",
+    "last_save_at": "2026-10-31T14:02:01.392Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c50b2b9e0459397455f2feb8e42fb5340d0deafb05872e5723537b1ee10667c1",
+    "source_fingerprint": "sha256:f940ad3193095c36dd401d20a9bd083ad14af406786aa5fbe773ae4e6426bdea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dcbf6c8c8638b2fd6adcfdcfb29081cb29125e761c7a159358b399d6d16881e2",
+      "spec.md": "5a6cd8d23b3c9302b737f15ecc69cd22dc1fe302ad11fb85df72dd5b9799e1f3",
       "plan.md": "d004744c3ac935c76dfc9103370e2bddf2bb9fb3fed2ffda4f6479ceb7b3a207",
       "tasks.md": "d06a090a4ed921d1fdc4debb7bb48591f22035174f6ed3ae089cbfa559f76b42",
       "implementation-summary.md": "836897f80911fe7c7fe6960d3e611701cd749fa7b1ec1c53ed2df429e201249b"

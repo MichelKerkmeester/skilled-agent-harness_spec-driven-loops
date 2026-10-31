@@ -195,7 +195,7 @@
     ],
     "causal_summary": "A hub's `ROUTER.md` advertises the phrases that reach it, and for 173 of 439 such phrases across six hubs that claim was false",
     "created_at": "2026-09-07T05:02:02Z",
-    "last_save_at": "2026-10-31T13:26:13.404Z",
+    "last_save_at": "2026-10-31T13:41:27.122Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f4d439d0588be1fe85f7bd2f6e9de57b3493d77051cb374021999657bfcaa9c",
+    "source_fingerprint": "sha256:0f8d738a0f4f636d83c77c0aad0adfda44a76107402c48ae39779054418d75bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1e0727f74f9ef4ac8e2adf87558617790c79ae91fb4d7875142fa3d9a76321fb",
       "plan.md": "d92be42afc48206add889ad42647fc8ea30f814013e0622dabe7c306ef633814",
       "tasks.md": "6ce3c8849ff77564db5b80b42f1611d7de3ece0102e2cfa4db9bdbfa866875c4",
-      "decision-record.md": "04fa8af5115304147243b85247cd774c65a67a65891a9f020bb735f2493bdd78",
+      "decision-record.md": "3f9338a7432495b10af9795a219d4f68f2b134497a57a4614736079e30d5f70a",
       "implementation-summary.md": "95b9fbff9ac4de81b217e8abaeacfd720fd9ac73d60835e4dbc199e7d84ea372"
     },
     "last_active_at": null

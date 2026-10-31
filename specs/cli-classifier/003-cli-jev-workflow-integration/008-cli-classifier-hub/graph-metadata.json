@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Four Planned phases want a Deem arm (002, 003, 005 and 006), and the repository has 0 runtime Deem callers",
     "created_at": "2026-09-27T09:21:54Z",
-    "last_save_at": "2026-10-31T13:25:26.846Z",
+    "last_save_at": "2026-10-31T14:03:47.273Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5c8bdba6fbc865b01f43c8e9026e69016a2bef0af50350771912a31b85aef058",
+    "source_fingerprint": "sha256:1be1cd582301453fc5ad28e92b753d0de60477befaa486d40823ef62f8f0722c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f451d641fddfc7539489ad7d6770629b82500d330adc25b3db118c9983a7d111",
-      "plan.md": "73d3461ca8df111e7869fa5a4ad5cc5ae275bebaacfc0b3e482486b5e77ea0d4",
+      "plan.md": "ed86b84851f26051b31be24bc90185a13dc5e1b238641369a9d8e3f4c300f0a3",
       "tasks.md": "69d3db0ac56a4bb15c2bbd57a9c21cae4897595d1ee1edc2d7f6d25679c68ce9",
-      "implementation-summary.md": "51ce12e651bb6422b99044d1e4874a11a44d06f808344b1a492c184a1a7815ff"
+      "implementation-summary.md": "dfca49ee2440ab7f9055c44e270c54000a20895a7f1fac5e96e85e3ebf4fd377"
     },
     "last_active_at": null
   }

@@ -17,10 +17,11 @@
     "canonical-only"
   ],
   "lastUpdated": "2026-09-04T17:50:20.827Z",
-  "specId": "029",
+  "specId": "001",
   "folderSlug": "spec-root-resolution-hardening",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "029-spec-folder-lifecycle"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

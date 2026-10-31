@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/037-advisor-daemon-memory/002-lighter-advisor-launcher"
+    packet_pointer: "system-skill-advisor/021-model-server-lifecycle/002-advisor-daemon-memory/002-lighter-advisor-launcher"
     last_updated_at: "2026-10-21T09:51:16Z"
     last_updated_by: "orchestrator"
     recent_action: "Recorded the no-go; AC-001 and AC-004 Met, AC-002 and AC-003 superseded"

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/003-doctor-gates-and-drift"
     last_updated_at: "2026-10-03T05:27:42Z"
     last_updated_by: "build-orchestrator"
     recent_action: "Recorded the validation-debt sweep"
@@ -71,11 +71,11 @@ The guard reads its own manifest, `.skilled/commands/doctor/assets/mcp-mutation-
 | `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` | Modified | Count 154 by the stated method, with the four flag-table-only names |
 | `.skilled/skills/system-spec-kit/runtime/cli/metrics/fable-baseline.json` | Modified | `target: null` plus a retirement note |
 | `.skilled/skills/system-spec-kit/runtime/cli/metrics/README.md` | Modified | Says why the baseline target is null |
-| `specs/system-speckit/048-doctor-command-audit/003-update/spec.md` | Modified | Phase Context describes the split into `/doctor:rebuild` and the three update workflows |
-| `specs/system-speckit/048-doctor-command-audit/013-speckit-retrieval/implementation-summary.md` | Modified | Limitation 2 drops the dead pattern claim; limitation 5 names `/doctor:rebuild` |
+| `specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/spec.md` | Modified | Phase Context describes the split into `/doctor:rebuild` and the three update workflows |
+| `specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/013-speckit-retrieval/implementation-summary.md` | Modified | Limitation 2 drops the dead pattern claim; limitation 5 names `/doctor:rebuild` |
 | `.skilled/scripts/git-hooks/pre-commit` | Modified (handoff sweep) | Mutation-class trigger also matches `mcp-mutation-class-manifest.yaml`; "Fix:" line names that manifest |
 | `.skilled/scripts/git-hooks/tests/pre-commit.test.sh` | Modified (handoff sweep) | Case 29b: staging only the manifest reaches the guard |
-| `specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md` | Modified (handoff sweep) | Two continuity `key_files` paths point at the live `.skilled` runtime |
+| `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md` | Modified (handoff sweep) | Two continuity `key_files` paths point at the live `.skilled` runtime |
 | 32 command, skill and README files (list in `git diff --stat`) | Modified (handoff sweep) | Retired `/doctor` forms replaced with the canonical command names, with stale target lists, counts and packet labels fixed in the same sentences |
 | `.skilled/commands/deep/assets/compiled/{deep-ai-council,deep-review,deep-research}.contract.md` | Regenerated (handoff sweep) | Source digests only |
 | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/{mcp-tooling,sk-doc}/manifest.json` and their authored copies | Re-minted (handoff sweep) | Policy hash matches current routing inputs |
@@ -129,7 +129,7 @@ A later handoff sweep, run by the parent build orchestrator once every packet ha
 | `bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh` | PASS, 67 passed, 0 failed |
 | `node .skilled/bin/install-codex-hooks.mjs --check --allow-worktree` | PASS, exit 0, OK |
 | `node .skilled/commands/doctor/scripts/fable-mode-check.cjs --dir specs/agents/010-repo-rule-system-integration/research` | PASS, exit 0, metric rows printed |
-| `validate.sh specs/system-speckit/048-doctor-command-audit --recursive --strict` | PASS, 15 of 15 `RESULT: PASSED` |
+| `validate.sh specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit --recursive --strict` | PASS, 15 of 15 `RESULT: PASSED` |
 | Handoff sweep: `bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh` | PASS, 69 passed, 0 failed, exit 0; against the HEAD hook the new case fails (68 passed, 1 failed) |
 | Handoff sweep: `bash -n .skilled/scripts/git-hooks/pre-commit` | PASS, exit 0 |
 | Handoff sweep: retired-form `rg` | 93 hits before, 14 after (reasons below) |
@@ -153,7 +153,7 @@ A later handoff sweep, run by the parent build orchestrator once every packet ha
 ## Known Limitations
 
 1. **Resolved in the handoff sweep: the pre-commit staging trigger.** The hook's trigger regex now matches `mcp-mutation-class-manifest.yaml`, proven by hook test case 29b (T022, AC-010).
-2. **Handed off: three skill-budget items** (report title, two docstrings, 8,000 budget) to `specs/sk-doc/064-description-budget` (ADR-004).
+2. **Handed off: three skill-budget items** (report title, two docstrings, 8,000 budget) to `specs/sk-doc/049-frontmatter-and-description-budget/002-description-budget` (ADR-004).
 3. **Resolved in the handoff sweep: `.skilled/commands/README.txt:158`** now shows `/doctor:speckit <target> [flags]`.
 4. **Resolved in the handoff sweep: generic `/doctor` text elsewhere** (T024, AC-011). The 14 bare `/doctor` hits that remain stay on purpose: seven code comments that describe a doctor run generically rather than how to invoke it (`command-catalog-mirror-check.cjs:4,32`, `agent-roster-mirror-check.cjs:4,14`, `fable-mode-check.cjs:4,6`, `skill-graph-freshness.cjs:12`); `fable-metrics.cjs:14`, `advisor-server.ts:229` and two test-header comments (`parent-skill-check-fixtures.vitest.ts:9`, `skill-graph-freshness-panel.vitest.ts:4`), likewise generic; `workflow-invariance.vitest.ts:114`, a comment about the router consolidation docs' vocabulary; `skill-root-metadata-contract.test.cjs:551`, test data for a path helper, not an invocation; and `category-overview.md:6`, a frontmatter trigger phrase that is retrieval vocabulary. `create-command-presentation.txt:92` keeps `/doctor:cache` as a hypothetical naming example.
 5. **Resolved in the closing pass: the `speckit.md` description** no longer says "Router for /doctor" (T031).

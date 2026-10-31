@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-create-goal-mode/007-hub-routing-integration"
+    packet_pointer: "sk-doc/057-create-goal-mode/007-hub-routing-integration"
     last_updated_at: "2026-09-26T08:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Registered sk-create-goal and republished compiled routing"
@@ -125,7 +125,7 @@ The orchestrator's own replay matched the worker's before and after the republis
 | `compiled-route-admission.cjs --all` | sk-doc `pass`, 24 pass and 0 drift; sk-design 1 drift with no sk-design input changed; CI runs it `--warn-only` |
 | Kill-switch | `{"servingAuthority":"legacy","hubId":"sk-doc"}` |
 | Lock and rollback | None left after `--finalize` |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/060-create-goal-mode/007-hub-routing-integration --strict` | `RESULT: PASSED`, 0 errors and 0 warnings, on 2026-09-26 |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode/007-hub-routing-integration --strict` | `RESULT: PASSED`, 0 errors and 0 warnings, on 2026-09-26 |
 <!-- /ANCHOR:verification -->
 
 ---

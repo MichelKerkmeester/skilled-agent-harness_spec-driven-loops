@@ -14,10 +14,11 @@
     "origin"
   ],
   "lastUpdated": "2026-09-11T16:49:41.312Z",
-  "specId": "019",
+  "specId": "001",
   "folderSlug": "code-graph-retirement-drift",
   "parentChain": [
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "019-advisor-test-drift"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

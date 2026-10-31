@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/049-sk-create-frontmatter/003-content-migration"
+    packet_pointer: "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/003-content-migration"
     last_updated_at: "2026-09-01T08:42:58Z"
     last_updated_by: "implementation"
     recent_action: "Moved both frontmatter documents into the mode and repointed 34 consumers"

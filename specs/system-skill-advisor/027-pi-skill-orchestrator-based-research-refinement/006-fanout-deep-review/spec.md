@@ -72,8 +72,8 @@ Two independent model families review the changed files for correctness, securit
 ### Review Setup
 
 ```
-/deep:review:auto specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review
-  --spec-folder=specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review
+/deep:review:auto specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review
+  --spec-folder=specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review
   --executor=cli-pi --model=mimo-v2.6-pro --reasoning-effort=high --iters=3 --label=mimo
   --executor=cli-pi --model=deepseek-v4.1-flash --reasoning-effort=max --iters=3 --label=deepseek
   --stop-policy=max-iterations --concurrency=2

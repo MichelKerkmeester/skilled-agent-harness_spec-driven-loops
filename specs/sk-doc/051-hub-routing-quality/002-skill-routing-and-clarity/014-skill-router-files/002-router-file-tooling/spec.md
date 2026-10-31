@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/002-router-file-tooling"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/002-router-file-tooling"
     last_updated_at: "2026-10-29T10:56:00Z"
     last_updated_by: "pi"
     recent_action: "Built the router file resolver and moved its readers onto it"

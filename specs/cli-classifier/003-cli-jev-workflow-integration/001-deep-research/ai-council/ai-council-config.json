@@ -1,5 +1,5 @@
 {
-  "spec_folder": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research",
+  "spec_folder": "specs/cli-classifier/003-cli-jev-workflow-integration/001-deep-research",
   "current_round": 1,
   "max_rounds": 1,
   "seats_per_round": 3,

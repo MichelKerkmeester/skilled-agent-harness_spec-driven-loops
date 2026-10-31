@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation"
+    packet_pointer: "system-speckit/031-system-speckit-v4/069-v4-0-0-3-review-remediation"
     last_updated_at: "2026-10-06T17:42:01Z"
     last_updated_by: "generate-context"
     recent_action: "Landed all findings and fixes, reran every suite and guard, reconciled the packet docs"
@@ -17,9 +17,9 @@ _memory:
     blockers:
       - "AC-008: live Luna smoke wrote one of two iterations"
     key_files:
-      - "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/implementation-summary.md"
-      - "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/acceptance-criteria.md"
-      - "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/tasks.md"
+      - "specs/system-speckit/031-system-speckit-v4/069-v4-0-0-3-review-remediation/implementation-summary.md"
+      - "specs/system-speckit/031-system-speckit-v4/069-v4-0-0-3-review-remediation/acceptance-criteria.md"
+      - "specs/system-speckit/031-system-speckit-v4/069-v4-0-0-3-review-remediation/tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "e4486fa5-248b-49a4-8970-229354aab7a1"

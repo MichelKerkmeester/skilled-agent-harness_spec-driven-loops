@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The doctor family is validated by shape, not by intent",
     "created_at": "2026-10-30T11:22:44Z",
-    "last_save_at": "2026-10-30T16:04:04.603Z",
+    "last_save_at": "2026-10-31T14:04:32.165Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +220,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:323b13ded1bd9dcfdd1fcd714a3a31a059f06ed2eaf0e75ccdfc6ef988ba4822",
+    "source_fingerprint": "sha256:eeb759b8cd0c3cfd3f9cbdf736ffd9fb093160430db7bd24ec226ade107ad41a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4ae746376f082069c623e998c59df70d242c568800d36d35cfb0cb24ae42ccd0",
+      "spec.md": "3af69a69cb72613612f4a5a6a8f6a56c5593a0631abd6a8544a3ddfc3211174a",
       "plan.md": "a77fdc08ae9b6f5d4b708715179097974a5c0bc7ad02d118cba28c43f3ab90fb",
       "tasks.md": "f29b17c27ef5586d107990bd26d320ed141a695319b1c924b98393045062ec6e",
       "implementation-summary.md": "1ef042fb353e88113e97789b37ef04261a9c1f099c8a7d0637165cfe3c5ebf44"

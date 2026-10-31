@@ -34,7 +34,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 [P0] Confirm parent decisions D1-D6 and the incoming phase-2 handoff before editing mode files (specs/sk-doc/060-create-goal-mode/goal.md; specs/sk-doc/060-create-goal-mode/spec.md) Evidence: phase 002 closed with strict `RESULT: PASSED`; D1-D6 unchanged in the parent goal.
+- [x] T001 [P0] Confirm parent decisions D1-D6 and the incoming phase-2 handoff before editing mode files (specs/sk-doc/057-create-goal-mode/goal.md; specs/sk-doc/057-create-goal-mode/spec.md) Evidence: phase 002 closed with strict `RESULT: PASSED`; D1-D6 unchanged in the parent goal.
 - [x] T002 [P0] Read the goal template contract and record source lines for objective, decisions, criteria and log (goal.md.tmpl; references/authoring-standards.md) Evidence: the standards follow the template sections for objective, decisions, criteria and log (`.skilled/skills/sk-doc/sk-create-goal/references/authoring-standards.md:22`).
 - [x] T003 [P1] Read HVR and its publish supplement, then list the voice checks for the standards (hvr-rules.md; hvr-publish-supplement.md) Evidence: the voice standard links the Human Voice Rules rather than copying them (`.skilled/skills/sk-doc/sk-create-goal/references/authoring-standards.md:70`).
 - [x] T004 [P0] Reopen each of the three bad examples and one good child objective with nl -ba, then record verified path:line citations (assets/goal-exemplars.md) Evidence: the orchestrator re-opened all eleven cited lines with `sed -n`; every quoted string is on its cited line.
@@ -82,7 +82,7 @@ The phase can close when T001-T015 have evidence, the same rubric rejects all th
 - **Specification**: See spec.md
 - **Plan**: See plan.md
 - **Closure Gate**: See acceptance-criteria.md
-- **Parent decisions and handoff**: See specs/sk-doc/060-create-goal-mode/goal.md and specs/sk-doc/060-create-goal-mode/spec.md
+- **Parent decisions and handoff**: See specs/sk-doc/057-create-goal-mode/goal.md and specs/sk-doc/057-create-goal-mode/spec.md
 <!-- /ANCHOR:cross-refs -->
 
 ---

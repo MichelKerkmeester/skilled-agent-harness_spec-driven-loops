@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-doctor-audit-followups/018-doctor-playbook-mcp"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/018-doctor-playbook-mcp"
     last_updated_at: "2026-10-04T13:30:00Z"
     last_updated_by: "doctor-playbook-mcp"
     recent_action: "Wrote, reviewed and validated the doctor scenarios"

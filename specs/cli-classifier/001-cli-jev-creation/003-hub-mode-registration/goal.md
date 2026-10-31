@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/001-cli-jev-creation/003-hub-mode-registration"
+    packet_pointer: "cli-classifier/001-cli-jev-creation/003-hub-mode-registration"
     last_updated_at: "2026-09-20T13:25:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Repointed after the packet move; the directive records the landed registration"

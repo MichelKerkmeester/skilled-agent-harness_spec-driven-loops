@@ -3972,7 +3972,7 @@
       "lastUpdated": "2026-08-30T05:43:10.197Z"
     },
     {
-      "specFolder": "cli-jev/001-cli-jev-creation",
+      "specFolder": "cli-classifier/001-cli-jev-creation",
       "description": "`cli-external-orchestration` routes to seven external CLI executor modes, and every one of them conducts a session that writes into this repository",
       "keywords": [
         "cli-external-orchestration",
@@ -3993,7 +3993,7 @@
       "lastUpdated": "2026-09-20T12:49:32.324Z"
     },
     {
-      "specFolder": "cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin",
+      "specFolder": "cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin",
       "description": "Phase 1: jev-contract-research-and-pin",
       "keywords": [
         "phase",
@@ -4002,7 +4002,7 @@
       "lastUpdated": "2026-09-20T07:39:06.149Z"
     },
     {
-      "specFolder": "cli-jev/001-cli-jev-creation/002-cli-jev-skill-packet",
+      "specFolder": "cli-classifier/001-cli-jev-creation/002-cli-jev-skill-packet",
       "description": "Phase 2: cli-jev-skill-packet",
       "keywords": [
         "phase",
@@ -4011,7 +4011,7 @@
       "lastUpdated": "2026-09-20T07:39:06.860Z"
     },
     {
-      "specFolder": "cli-jev/001-cli-jev-creation/003-hub-mode-registration",
+      "specFolder": "cli-classifier/001-cli-jev-creation/003-hub-mode-registration",
       "description": "Phase 3: hub-mode-registration",
       "keywords": [
         "phase",
@@ -4020,7 +4020,7 @@
       "lastUpdated": "2026-09-20T07:39:07.579Z"
     },
     {
-      "specFolder": "cli-jev/001-cli-jev-creation/004-catalog-and-playbook",
+      "specFolder": "cli-classifier/001-cli-jev-creation/004-catalog-and-playbook",
       "description": "Phase 4: catalog-and-playbook",
       "keywords": [
         "phase",
@@ -4029,7 +4029,7 @@
       "lastUpdated": "2026-09-20T07:39:08.307Z"
     },
     {
-      "specFolder": "cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout",
+      "specFolder": "cli-classifier/001-cli-jev-creation/005-docs-governance-and-closeout",
       "description": "Phase 5: docs-governance-and-closeout",
       "keywords": [
         "phase",
@@ -4038,7 +4038,7 @@
       "lastUpdated": "2026-09-20T09:03:46.678Z"
     },
     {
-      "specFolder": "cli-jev/002-cli-jev-hub-migration",
+      "specFolder": "cli-classifier/002-cli-jev-hub-migration",
       "description": "The jev transport packet sat inside `.skilled/skills/cli-external-orchestration/cli-jev/`, a hub whose seven other modes are the CLI executors that th",
       "keywords": [
         "jev",
@@ -4057,7 +4057,7 @@
       "lastUpdated": "2026-09-20T14:45:46Z"
     },
     {
-      "specFolder": "cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration",
+      "specFolder": "cli-classifier/002-cli-jev-hub-migration/001-track-and-packet-migration",
       "description": "The cli-jev creation packet (former `specs/cli-external-orchestration/074-cli-jev-creation`) records the history of a mode that is being promoted out",
       "keywords": [
         "cli-jev",
@@ -4075,7 +4075,7 @@
       "lastUpdated": "2026-09-20T12:30:55.976Z"
     },
     {
-      "specFolder": "cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration",
+      "specFolder": "cli-classifier/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration",
       "description": "The Jev transport was the eighth mode of `cli-external-orchestration`, which made its identity a row inside another hub's registry, its folder a child",
       "keywords": [
         "jev",
@@ -4095,7 +4095,7 @@
       "lastUpdated": "2026-09-20T12:49:14.334Z"
     },
     {
-      "specFolder": "cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire",
+      "specFolder": "cli-classifier/002-cli-jev-hub-migration/003-decouple-and-rewire",
       "description": "After phase 002 two registries named one packet and the enforcement chain still read the retired path: `dispatch-audit.mjs` resolved the packet `SKILL",
       "keywords": [
         "after",
@@ -4114,7 +4114,7 @@
       "lastUpdated": "2026-09-20T14:45:46Z"
     },
     {
-      "specFolder": "cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding",
+      "specFolder": "cli-classifier/002-cli-jev-hub-migration/004-compiled-fleet-onboarding",
       "description": "Before this phase the hub resolved through the legacy path: it was absent from the engine's dispatch map, so `compiled-route.cjs --hub cli-jev` return",
       "keywords": [
         "before",
@@ -4133,7 +4133,7 @@
       "lastUpdated": "2026-09-20T14:45:46Z"
     },
     {
-      "specFolder": "cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout",
+      "specFolder": "cli-classifier/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout",
       "description": "The migration moved the transport, decoupled the old hub, and onboarded the new one to compiled serving, but it never executed the thing those changes",
       "keywords": [
         "migration",
@@ -26145,7 +26145,7 @@
       "lastUpdated": "2026-09-01T06:54:12.460Z"
     },
     {
-      "specFolder": "sk-doc/049-sk-create-frontmatter",
+      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter",
       "description": "Six modes emit frontmatter",
       "keywords": [
         "six",
@@ -26156,7 +26156,7 @@
       "lastUpdated": "2026-09-06T06:34:09.836Z"
     },
     {
-      "specFolder": "sk-doc/049-sk-create-frontmatter/001-inventory-and-contract",
+      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/001-inventory-and-contract",
       "description": "A move is only as safe as the inventory behind it",
       "keywords": [
         "move",
@@ -26168,7 +26168,7 @@
       "lastUpdated": "2026-09-01T10:49:46.245Z"
     },
     {
-      "specFolder": "sk-doc/049-sk-create-frontmatter/002-mode-scaffold",
+      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/002-mode-scaffold",
       "description": "A packet that gains content and structure at the same time cannot tell you which of the two",
       "keywords": [
         "packet",
@@ -26184,7 +26184,7 @@
       "lastUpdated": "2026-09-01T11:08:12.309Z"
     },
     {
-      "specFolder": "sk-doc/049-sk-create-frontmatter/003-content-migration",
+      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/003-content-migration",
       "description": "Two files move and roughly forty references follow them",
       "keywords": [
         "two",
@@ -26199,7 +26199,7 @@
       "lastUpdated": "2026-09-01T11:12:19.552Z"
     },
     {
-      "specFolder": "sk-doc/049-sk-create-frontmatter/004-routing-integration",
+      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/004-routing-integration",
       "description": "A registry entry is not a route",
       "keywords": [
         "registry",
@@ -26209,7 +26209,7 @@
       "lastUpdated": "2026-09-01T11:17:02.842Z"
     },
     {
-      "specFolder": "sk-doc/049-sk-create-frontmatter/005-command-and-playbook",
+      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/005-command-and-playbook",
       "description": "A mode with no operator surface is reachable only by the router, and a mode with no playbook",
       "keywords": [
         "mode",
@@ -26223,7 +26223,7 @@
       "lastUpdated": "2026-09-01T11:32:43.548Z"
     },
     {
-      "specFolder": "sk-doc/049-sk-create-frontmatter/006-verification-and-closeout",
+      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/006-verification-and-closeout",
       "description": "Each phase proved its own step",
       "keywords": [
         "phase",
@@ -26234,7 +26234,7 @@
       "lastUpdated": "2026-09-01T11:37:52.043Z"
     },
     {
-      "specFolder": "sk-doc/049-sk-create-frontmatter/007-human-voice-playbook",
+      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/007-human-voice-playbook",
       "description": "The human voice mode owns the standard the whole repository writes against, and it is one of",
       "keywords": [
         "human",
@@ -26251,7 +26251,7 @@
       "lastUpdated": "2026-09-01T11:39:46.703Z"
     },
     {
-      "specFolder": "sk-doc/049-sk-create-frontmatter/008-utilization-review",
+      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/008-utilization-review",
       "description": "The packet ships eleven manual-testing scenarios that had never been run, so no claim about the",
       "keywords": [
         "packet",
@@ -26267,7 +26267,7 @@
       "lastUpdated": "2026-09-02T19:25:56.153Z"
     },
     {
-      "specFolder": "sk-doc/049-sk-create-frontmatter/009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract",
+      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract",
       "description": "The mode exists so that one place is accountable for what a frontmatter block must carry",
       "keywords": [
         "mode",
@@ -26283,7 +26283,7 @@
       "lastUpdated": "2026-09-06T14:52:15.708Z"
     },
     {
-      "specFolder": "sk-doc/049-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing",
+      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing",
       "description": "Phase 10: add plain-language phrases to both routing stages so a newcomer describing a frontmatter problem reaches the mode, held to out-of-domain rep",
       "keywords": [
         "phase",
@@ -26306,7 +26306,7 @@
       "lastUpdated": "2026-09-06T06:39:02.034Z"
     },
     {
-      "specFolder": "sk-doc/050-sk-doc-playbook-coverage",
+      "specFolder": "sk-doc/050-playbook-coverage-and-sync/001-sk-doc-playbook-coverage",
       "description": "Three of the fifteen sk-doc modes carry a manual testing playbook",
       "keywords": [
         "three",
@@ -26321,7 +26321,7 @@
       "lastUpdated": "2026-09-01T11:49:39.664Z"
     },
     {
-      "specFolder": "sk-doc/050-sk-doc-playbook-coverage/001-authoring-surfaces",
+      "specFolder": "sk-doc/050-playbook-coverage-and-sync/001-sk-doc-playbook-coverage/001-authoring-surfaces",
       "description": "Each of these takes a request and emits a new component that something else will load",
       "keywords": [
         "takes",
@@ -26336,7 +26336,7 @@
       "lastUpdated": "2026-09-07T16:14:57.142Z"
     },
     {
-      "specFolder": "sk-doc/050-sk-doc-playbook-coverage/002-artifact-producers",
+      "specFolder": "sk-doc/050-playbook-coverage-and-sync/001-sk-doc-playbook-coverage/002-artifact-producers",
       "description": "Each of these derives a document from something that already exists, so their failure mode is drift: the artifact stops describing its source and",
       "keywords": [
         "derives",
@@ -26355,7 +26355,7 @@
       "lastUpdated": "2026-09-07T16:14:57.145Z"
     },
     {
-      "specFolder": "sk-doc/050-sk-doc-playbook-coverage/003-meta-and-quality",
+      "specFolder": "sk-doc/050-playbook-coverage-and-sync/001-sk-doc-playbook-coverage/003-meta-and-quality",
       "description": "Each of these takes another mode's output as its input",
       "keywords": [
         "takes",
@@ -26367,7 +26367,7 @@
       "lastUpdated": "2026-09-07T16:14:57.143Z"
     },
     {
-      "specFolder": "sk-doc/052-routing-completeness",
+      "specFolder": "sk-doc/051-hub-routing-quality/001-routing-completeness",
       "description": "A hub can be complete in every registry and still not be reachable",
       "keywords": [
         "hub",
@@ -26380,7 +26380,7 @@
       "lastUpdated": "2026-09-05T14:38:09.119Z"
     },
     {
-      "specFolder": "sk-doc/052-routing-completeness/001-transport-and-baseline",
+      "specFolder": "sk-doc/051-hub-routing-quality/001-routing-completeness/001-transport-and-baseline",
       "description": "Two scorers answer the same question",
       "keywords": [
         "two",
@@ -26392,7 +26392,7 @@
       "lastUpdated": "2026-09-02T16:35:48.107Z"
     },
     {
-      "specFolder": "sk-doc/052-routing-completeness/002-gate-a-signal-closure",
+      "specFolder": "sk-doc/051-hub-routing-quality/001-routing-completeness/002-gate-a-signal-closure",
       "description": "Across all five hubs, 234 of 444 declared signals resolve end to end to exactly one mode",
       "keywords": [
         "across",
@@ -26409,7 +26409,7 @@
       "lastUpdated": "2026-09-04T10:09:44.345Z"
     },
     {
-      "specFolder": "sk-doc/052-routing-completeness/003-gate-b-realistic-corpus",
+      "specFolder": "sk-doc/051-hub-routing-quality/001-routing-completeness/003-gate-b-realistic-corpus",
       "description": "Against a corpus of 180 prompts written the way people write, 8 reach the intended mode",
       "keywords": [
         "against",
@@ -26426,7 +26426,7 @@
       "lastUpdated": "2026-09-02T17:13:34.031Z"
     },
     {
-      "specFolder": "sk-doc/052-routing-completeness/004-cross-hub-vocabulary",
+      "specFolder": "sk-doc/051-hub-routing-quality/001-routing-completeness/004-cross-hub-vocabulary",
       "description": "This phase was scoped before either gate was measured, on the belief that a cross-hub",
       "keywords": [
         "phase",
@@ -26439,7 +26439,7 @@
       "lastUpdated": "2026-09-02T17:13:57.301Z"
     },
     {
-      "specFolder": "sk-doc/052-routing-completeness/005-hub-surface-truth",
+      "specFolder": "sk-doc/051-hub-routing-quality/001-routing-completeness/005-hub-surface-truth",
       "description": "Three hub surfaces state something their registries contradict, and none of them has a gate",
       "keywords": [
         "three",
@@ -26456,7 +26456,7 @@
       "lastUpdated": "2026-09-02T16:46:56.848Z"
     },
     {
-      "specFolder": "sk-doc/052-routing-completeness/006-validator-and-template-debt",
+      "specFolder": "sk-doc/051-hub-routing-quality/001-routing-completeness/006-validator-and-template-debt",
       "description": "A template is the one document where the fenced block is the deliverable rather than a",
       "keywords": [
         "template",
@@ -26470,7 +26470,7 @@
       "lastUpdated": "2026-09-02T16:46:56.848Z"
     },
     {
-      "specFolder": "sk-doc/052-routing-completeness/007-spec-kit-residue",
+      "specFolder": "sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue",
       "description": "The suite does not complete",
       "keywords": [
         "suite",
@@ -26479,7 +26479,7 @@
       "lastUpdated": "2026-09-05T14:38:06.409Z"
     },
     {
-      "specFolder": "sk-doc/052-routing-completeness/008-drift-after-closure",
+      "specFolder": "sk-doc/051-hub-routing-quality/001-routing-completeness/008-drift-after-closure",
       "description": "A packet that closes on measured numbers stays true only while its inputs hold still",
       "keywords": [
         "packet",
@@ -26497,7 +26497,7 @@
       "lastUpdated": "2026-09-05T14:42:20.141Z"
     },
     {
-      "specFolder": "sk-doc/053-command-contract-reconciliation",
+      "specFolder": "sk-doc/052-command-contract-reconciliation",
       "description": "`sk-create-command` teaches people how to write OpenCode commands, and its `command-contract.json` calls itself the single machine-readable source of",
       "keywords": [
         "sk-create-command",
@@ -43909,7 +43909,7 @@
       "lastUpdated": "2026-08-15T14:41:07.725Z"
     },
     {
-      "specFolder": "system-skill-advisor/019-code-graph-retirement-drift",
+      "specFolder": "system-skill-advisor/019-advisor-test-drift/001-code-graph-retirement-drift",
       "description": "A concurrent refactor retired the code-graph skill (`5a2aab0d37b`, \"stop routing to the retired code-graph skill\", on origin)",
       "keywords": [
         "concurrent",
@@ -43941,7 +43941,7 @@
       "lastUpdated": "2026-08-15T17:21:35.530Z"
     },
     {
-      "specFolder": "system-skill-advisor/021-advisor-suite-drift-reconciliation",
+      "specFolder": "system-skill-advisor/019-advisor-test-drift/002-advisor-suite-drift-reconciliation",
       "description": "Concurrent work \u2014 retiring the code-graph skill, renaming skills, adding hubs (Figma, mcp-tooling, CLI-hub, sk-communication), and rewiring hooks \u2014",
       "keywords": [
         "concurrent",
@@ -43962,7 +43962,7 @@
       "lastUpdated": "2026-09-07T19:42:24.812Z"
     },
     {
-      "specFolder": "system-skill-advisor/022-playbook-inventory-reconciliation",
+      "specFolder": "system-skill-advisor/019-advisor-test-drift/003-playbook-inventory-reconciliation",
       "description": "`tests/manual-testing-playbook.vitest.ts` guards that the root playbook table matches the live scenario corpus",
       "keywords": [
         "tests",
@@ -43980,7 +43980,7 @@
       "lastUpdated": "2026-08-16T04:21:01.296Z"
     },
     {
-      "specFolder": "system-skill-advisor/023-model-server-default-spawn",
+      "specFolder": "system-skill-advisor/021-model-server-lifecycle/001-model-server-default-spawn",
       "description": "The memory server's launcher used to start the shared HF model server on first embed demand",
       "keywords": [
         "memory",
@@ -43996,7 +43996,7 @@
       "lastUpdated": "2026-09-04T17:50:18.641Z"
     },
     {
-      "specFolder": "system-skill-advisor/023-semantic-lane-enablement",
+      "specFolder": "system-skill-advisor/022-semantic-lane-enablement",
       "description": "Eight of 172 realistic phrasings reach the mode they were written for",
       "keywords": [
         "eight",
@@ -44009,7 +44009,7 @@
       "lastUpdated": "2026-09-02T22:20:19.857Z"
     },
     {
-      "specFolder": "system-skill-advisor/023-semantic-lane-enablement/001-baseline-and-instrumentation",
+      "specFolder": "system-skill-advisor/022-semantic-lane-enablement/001-baseline-and-instrumentation",
       "description": "Three numbers this packet is built on are either unmeasured or wrong",
       "keywords": [
         "three",
@@ -44021,7 +44021,7 @@
       "lastUpdated": "2026-09-02T22:23:43.644Z"
     },
     {
-      "specFolder": "system-skill-advisor/023-semantic-lane-enablement/002-embedding-population",
+      "specFolder": "system-skill-advisor/022-semantic-lane-enablement/002-embedding-population",
       "description": "Nine of fourteen skill nodes carry a vector",
       "keywords": [
         "nine",
@@ -44034,7 +44034,7 @@
       "lastUpdated": "2026-09-02T22:29:06.256Z"
     },
     {
-      "specFolder": "system-skill-advisor/023-semantic-lane-enablement/003-weight-and-fusion-research",
+      "specFolder": "system-skill-advisor/022-semantic-lane-enablement/003-weight-and-fusion-research",
       "description": "The lane weight is 0.05 because that is what the registry has always said",
       "keywords": [
         "lane",
@@ -44047,7 +44047,7 @@
       "lastUpdated": "2026-09-02T22:31:54.247Z"
     },
     {
-      "specFolder": "system-skill-advisor/023-semantic-lane-enablement/004-gated-enable",
+      "specFolder": "system-skill-advisor/022-semantic-lane-enablement/004-gated-enable",
       "description": "Raising a lane weight changes every routing decision the advisor makes",
       "keywords": [
         "raising",
@@ -44062,7 +44062,7 @@
       "lastUpdated": "2026-09-02T22:36:30.072Z"
     },
     {
-      "specFolder": "system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout",
+      "specFolder": "system-skill-advisor/022-semantic-lane-enablement/005-verification-and-closeout",
       "description": "A packet that measured well during its work can still leave a repository that disagrees with",
       "keywords": [
         "packet",
@@ -44077,7 +44077,7 @@
       "lastUpdated": "2026-09-02T22:38:35.452Z"
     },
     {
-      "specFolder": "system-skill-advisor/024-routing-perfection-research",
+      "specFolder": "system-skill-advisor/023-routing-perfection-research",
       "description": "A hub's `ROUTER.md` advertises the phrases that reach it, and for 173 of 439 such phrases across six hubs that claim was false",
       "keywords": [
         "hub",
@@ -63434,7 +63434,7 @@
       "lastUpdated": "2026-08-15T14:41:14.291Z"
     },
     {
-      "specFolder": "system-speckit/029-spec-root-resolution-hardening",
+      "specFolder": "system-speckit/029-spec-folder-lifecycle/001-spec-root-resolution-hardening",
       "description": "Spec-root resolution is implemented at ~20 independent call sites with four different precedences (canonical-first, legacy-first, canonical-only,",
       "keywords": [
         "spec-root",
@@ -63453,7 +63453,7 @@
       "lastUpdated": "2026-09-04T17:50:20.827Z"
     },
     {
-      "specFolder": "system-speckit/029-spec-root-resolution-hardening/001-resolver-registry-and-preflight",
+      "specFolder": "system-speckit/029-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight",
       "description": "Root resolution is implemented ~20 times with four different precedences (canonical-first, legacy-first, canonical-only, direct-path-first) and no",
       "keywords": [
         "root",
@@ -63471,7 +63471,7 @@
       "lastUpdated": "2026-08-15T14:41:14.621Z"
     },
     {
-      "specFolder": "system-speckit/029-spec-root-resolution-hardening/002-data-canonicalization",
+      "specFolder": "system-speckit/029-spec-folder-lifecycle/001-spec-root-resolution-hardening/002-data-canonicalization",
       "description": "Before writers change, packet data itself must be canonicalized",
       "keywords": [
         "writers",
@@ -63485,7 +63485,7 @@
       "lastUpdated": "2026-08-15T14:41:14.622Z"
     },
     {
-      "specFolder": "system-speckit/029-spec-root-resolution-hardening/003-writer-canonicalization",
+      "specFolder": "system-speckit/029-spec-folder-lifecycle/001-spec-root-resolution-hardening/003-writer-canonicalization",
       "description": "The automatic writers resolve legacy-first or re-materialize `specs/`: the Stop autosave, bare/new `generate-context`, the phase-pointer refresh",
       "keywords": [
         "automatic",
@@ -63505,7 +63505,7 @@
       "lastUpdated": "2026-08-15T14:41:14.623Z"
     },
     {
-      "specFolder": "system-speckit/029-spec-root-resolution-hardening/004-reader-normalization",
+      "specFolder": "system-speckit/029-spec-folder-lifecycle/001-spec-root-resolution-hardening/004-reader-normalization",
       "description": "The shared scripts helper (`getSpecsDirectories`/`findActiveSpecsDir`) and the independent constructors (startup pending recovery, generic MCP",
       "keywords": [
         "shared",
@@ -63524,7 +63524,7 @@
       "lastUpdated": "2026-08-15T14:41:14.624Z"
     },
     {
-      "specFolder": "system-speckit/029-spec-root-resolution-hardening/005-symlink-retirement-and-validation",
+      "specFolder": "system-speckit/029-spec-folder-lifecycle/001-spec-root-resolution-hardening/005-symlink-retirement-and-validation",
       "description": "The `specs` alias was already deleted in the working tree ahead of plan",
       "keywords": [
         "specs",
@@ -63539,7 +63539,7 @@
       "lastUpdated": "2026-08-15T14:41:14.625Z"
     },
     {
-      "specFolder": "system-speckit/031-memory-reindex-embed-performance",
+      "specFolder": "system-speckit/030-memory-reindex-embed-performance",
       "description": "Measure, then optimize the mk-spec-memory reindex/embed pipeline.",
       "keywords": [
         "measure",
@@ -63552,7 +63552,7 @@
       "lastUpdated": "2026-08-15T14:41:14.649Z"
     },
     {
-      "specFolder": "system-speckit/032-relocate-specs-folder",
+      "specFolder": "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder",
       "description": "Before phase 3 executed, the canonical spec-kit tree lived at `.opencode/specs/`",
       "keywords": [
         "phase",
@@ -63567,7 +63567,7 @@
       "lastUpdated": "2026-08-15T14:41:14.686Z"
     },
     {
-      "specFolder": "system-speckit/032-relocate-specs-folder/001-relocation-implications-research",
+      "specFolder": "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/001-relocation-implications-research",
       "description": "Nobody has mapped what actually breaks if `.opencode/specs/` becomes a top-level `specs/` directory",
       "keywords": [
         "nobody",
@@ -63583,7 +63583,7 @@
       "lastUpdated": "2026-08-15T14:41:14.664Z"
     },
     {
-      "specFolder": "system-speckit/032-relocate-specs-folder/002-migration-plan",
+      "specFolder": "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/002-migration-plan",
       "description": "Phase 001's research recommended inverting and reusing the existing `spec-root-` migration subsystem (`spec-root-registry.ts`,",
       "keywords": [
         "phase",
@@ -63600,7 +63600,7 @@
       "lastUpdated": "2026-08-15T14:41:14.666Z"
     },
     {
-      "specFolder": "system-speckit/032-relocate-specs-folder/003-migration-execution",
+      "specFolder": "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/003-migration-execution",
       "description": "Phase 002's plan names WHAT needs to change (7 registry entries, a new function, a `.gitignore` rebase, a reindex) but not the exact HOW \u2014 the literal",
       "keywords": [
         "phase",
@@ -63621,7 +63621,7 @@
       "lastUpdated": "2026-08-15T14:41:14.667Z"
     },
     {
-      "specFolder": "system-speckit/032-relocate-specs-folder/004-code-graph-index-flag-deprecation",
+      "specFolder": "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/004-code-graph-index-flag-deprecation",
       "description": "`scripts/setup-maintainer-filters.sh` (removed in this session's step-11 cleanup) installed a git clean/smudge filter keeping",
       "keywords": [
         "scripts",
@@ -63640,7 +63640,7 @@
       "lastUpdated": "2026-08-15T14:41:14.669Z"
     },
     {
-      "specFolder": "system-speckit/032-relocate-specs-folder/005-readme-migration-audit",
+      "specFolder": "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/005-readme-migration-audit",
       "description": "The specs-root topology flip (`003-migration-execution`) changed the canonical location of every spec-kit document",
       "keywords": [
         "specs-root",
@@ -63657,7 +63657,7 @@
       "lastUpdated": "2026-08-15T14:41:14.681Z"
     },
     {
-      "specFolder": "system-speckit/032-relocate-specs-folder/006-memory-scan-dedup-gap",
+      "specFolder": "system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/006-memory-scan-dedup-gap",
       "description": "Revised twice after real evidence",
       "keywords": [
         "revised",
@@ -63668,7 +63668,7 @@
       "lastUpdated": "2026-08-15T14:41:14.683Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4",
+      "specFolder": "system-speckit/031-system-speckit-v4",
       "description": "Thirty-five packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-08 as separate top-level folders numbered by creation",
       "keywords": [
         "thirty-five",
@@ -63687,7 +63687,7 @@
       "lastUpdated": "2026-09-08T18:23:18.787Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/001-plan-preflight-track-packets",
+      "specFolder": "system-speckit/031-system-speckit-v4/001-plan-preflight-track-packets",
       "description": "The `/speckit:plan` Step-5 prerequisite helper (`check-prerequisites.sh`) derives the feature directory from the current git branch via `common.sh`,",
       "keywords": [
         "speckit",
@@ -63708,7 +63708,7 @@
       "lastUpdated": "2026-09-08T18:23:18.774Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/002-daemon-reaper-orphan-classification",
+      "specFolder": "system-speckit/031-system-speckit-v4/002-daemon-reaper-orphan-classification",
       "description": "The daemon-reaper (`process-memory-harness.ts`) classifies each running process before deciding whether it is a termination candidate",
       "keywords": [
         "daemon-reaper",
@@ -63724,7 +63724,7 @@
       "lastUpdated": "2026-09-08T18:23:18.783Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction",
+      "specFolder": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction",
       "description": "This phased decomposition tracks Reduce and optimize spec-kit doc templates; merge tasks and checklist; less bloat, better historic context and",
       "keywords": [
         "phased",
@@ -63747,7 +63747,7 @@
       "lastUpdated": "2026-09-06T06:56:48.847Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis",
+      "specFolder": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis",
       "description": "The 13 spec-kit manifest templates contain measured duplication and context waste",
       "keywords": [
         "spec-kit",
@@ -63762,7 +63762,7 @@
       "lastUpdated": "2026-09-06T07:07:37.527Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/002-tasks-checklist-merge",
+      "specFolder": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/002-tasks-checklist-merge",
       "description": "`tasks.md` and `checklist.md` are two separately required documents whose completion signals overlap: research confirmed task rows duplicate checklist",
       "keywords": [
         "tasks",
@@ -63784,7 +63784,7 @@
       "lastUpdated": "2026-09-06T06:44:45.959Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/003-template-dedup",
+      "specFolder": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/003-template-dedup",
       "description": "`decision-record.md.tmpl` already shares its ADR skeleton across the L3 and L3+ blocks",
       "keywords": [
         "decision-record",
@@ -63799,7 +63799,7 @@
       "lastUpdated": "2026-09-06T06:44:45.976Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/004-continuity-single-source",
+      "specFolder": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/004-continuity-single-source",
       "description": "The ~16-line `memory.continuity` YAML block is re-emitted in spec/plan/tasks/checklist/implementation-summary, about 80 near-identical lines across",
       "keywords": [
         "16-line",
@@ -63821,7 +63821,7 @@
       "lastUpdated": "2026-09-06T07:09:10.132Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/005-comment-extraction",
+      "specFolder": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/005-comment-extraction",
       "description": "The inline-gate renderer strips only IF gates, not plain HTML comments, so SELF-CHECK blocks, per-field voice guides, and footer size notes survive",
       "keywords": [
         "inline-gate",
@@ -63845,7 +63845,7 @@
       "lastUpdated": "2026-09-06T06:44:45.935Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/006-template-reduction-verification",
+      "specFolder": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/006-template-reduction-verification",
       "description": "Each prior phase edits shipped, load-bearing templates and validators where a mis-sequenced change regresses the whole packet fleet",
       "keywords": [
         "prior",
@@ -63865,7 +63865,7 @@
       "lastUpdated": "2026-09-06T07:07:37.527Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/007-lazy-addon-docs",
+      "specFolder": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/007-lazy-addon-docs",
       "description": "Spec Kit currently lacks manifest-registered templates for structured before-and-after comparisons, chronological timelines, and forward-looking",
       "keywords": [
         "spec",
@@ -63884,7 +63884,7 @@
       "lastUpdated": "2026-09-06T07:09:10.131Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/008-plan-and-contract-optimization",
+      "specFolder": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/008-plan-and-contract-optimization",
       "description": "The manifest declares `implementation-summary.md` in `requiredCoreDocs` for every numbered level, including Level 1 at",
       "keywords": [
         "manifest",
@@ -63899,7 +63899,7 @@
       "lastUpdated": "2026-09-06T07:09:10.131Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/009-template-folder-restructure",
+      "specFolder": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/009-template-folder-restructure",
       "description": "The former `templates/` directory mixed required core templates, optional add-ons, packet-type templates, the contract manifest, and maintainer guides",
       "keywords": [
         "former",
@@ -63919,7 +63919,7 @@
       "lastUpdated": "2026-09-06T06:24:08.623Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement",
+      "specFolder": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement",
       "description": "The merge that unified tasks and checklist recorded `Delete/retire` against `templates/addons/checklist.md.tmpl` and then kept it, along with its",
       "keywords": [
         "merge",
@@ -63939,7 +63939,7 @@
       "lastUpdated": "2026-09-06T07:09:10.130Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/011-checklist-reference-cleanup",
+      "specFolder": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/011-checklist-reference-cleanup",
       "description": "Finish the retirement: remove what pointed at the deleted document",
       "keywords": [
         "finish",
@@ -63952,7 +63952,7 @@
       "lastUpdated": "2026-09-06T06:56:48.845Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/012-fingerprint-docset-enforcement",
+      "specFolder": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/012-fingerprint-docset-enforcement",
       "description": "The marker skips comparison on an absent value, and the field is optional, so almost nothing is",
       "keywords": [
         "marker",
@@ -63968,7 +63968,7 @@
       "lastUpdated": "2026-09-06T06:56:48.846Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/013-retirement-read-path-closure",
+      "specFolder": "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/013-retirement-read-path-closure",
       "description": "Each of these was reproduced against the live tree",
       "keywords": [
         "reproduced",
@@ -63979,7 +63979,7 @@
       "lastUpdated": "2026-09-06T06:56:48.847Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system",
+      "specFolder": "system-speckit/031-system-speckit-v4/004-decisions-and-notes-system",
       "description": "This phased decomposition tracks Deprecate constitutional memory; build a separate actively-used decisions and notes system integrated with spec and",
       "keywords": [
         "phased",
@@ -63999,7 +63999,7 @@
       "lastUpdated": "2026-09-06T07:13:10.391Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/001-decisions-system-analysis",
+      "specFolder": "system-speckit/031-system-speckit-v4/004-decisions-and-notes-system/001-decisions-system-analysis",
       "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
       "keywords": [
         "broken",
@@ -64014,7 +64014,7 @@
       "lastUpdated": "2026-09-07T16:14:53.563Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/002-active-decisions-design",
+      "specFolder": "system-speckit/031-system-speckit-v4/004-decisions-and-notes-system/002-active-decisions-design",
       "description": "The constitutional DB tier is decorative: its rules are already inlined in the root instruction files, it surfaces only when the model chooses to call",
       "keywords": [
         "constitutional",
@@ -64035,7 +64035,7 @@
       "lastUpdated": "2026-09-07T16:14:53.560Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/003-deprecation-mechanics",
+      "specFolder": "system-speckit/031-system-speckit-v4/004-decisions-and-notes-system/003-deprecation-mechanics",
       "description": "The constitutional DB tier is decorative but not inert: `includeConstitutional` defaults true, so ADR-shaped `memorysearch` calls still pull",
       "keywords": [
         "constitutional",
@@ -64054,7 +64054,7 @@
       "lastUpdated": "2026-09-07T16:14:53.558Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/004-rehome-rules-content",
+      "specFolder": "system-speckit/031-system-speckit-v4/004-decisions-and-notes-system/004-rehome-rules-content",
       "description": "Deleting the constitutional folder naively breaks dangling `See \u2026md` links in CLAUDE.md/AGENTS.md/BARTER.md and any skill doc that cites a rule as its",
       "keywords": [
         "deleting",
@@ -64076,7 +64076,7 @@
       "lastUpdated": "2026-09-07T16:14:53.543Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/005-advisor-integration",
+      "specFolder": "system-speckit/031-system-speckit-v4/004-decisions-and-notes-system/005-advisor-integration",
       "description": "The advisor injects three hardcoded directives every turn",
       "keywords": [
         "advisor",
@@ -64090,7 +64090,7 @@
       "lastUpdated": "2026-09-07T16:14:53.555Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification",
+      "specFolder": "system-speckit/031-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification",
       "description": "The deprecation touches search plumbing, tier config, learned-triggers, a command, root docs, and the advisor \u2014 a wide blast radius",
       "keywords": [
         "deprecation",
@@ -64111,7 +64111,7 @@
       "lastUpdated": "2026-09-07T16:14:53.572Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation",
+      "specFolder": "system-speckit/031-system-speckit-v4/005-skills-runtime-state-consolidation",
       "description": "Seven hidden state directories sit directly under `.opencode/skills/`: advisor, authority, completion-sentinel, goal, loop-guard,",
       "keywords": [
         "seven",
@@ -64131,7 +64131,7 @@
       "lastUpdated": "2026-09-08T18:23:18.777Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/006-derived-metadata-repair-tool",
+      "specFolder": "system-speckit/031-system-speckit-v4/006-derived-metadata-repair-tool",
       "description": "Repair the spec-packet validation failures that are recomputable from repository state, and refuse the ones that record work a person did.",
       "keywords": [
         "repair",
@@ -64150,7 +64150,7 @@
       "lastUpdated": "2026-09-08T18:23:18.775Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/007-completion-gate-coherence",
+      "specFolder": "system-speckit/031-system-speckit-v4/007-completion-gate-coherence",
       "description": "Make the completion gate return the same verdict whatever the environment, stop counting one fault several times, and remove the checks a packet",
       "keywords": [
         "completion",
@@ -64173,7 +64173,7 @@
       "lastUpdated": "2026-09-08T18:23:18.781Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria",
+      "specFolder": "system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria",
       "description": "The spec-kit document templates carry two unresolved costs",
       "keywords": [
         "spec-kit",
@@ -64187,7 +64187,7 @@
       "lastUpdated": "2026-09-06T07:07:37.488Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization",
+      "specFolder": "system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization",
       "description": "The 033 deep-research packet (10 iterations, 4 lineages, 3 model families) tested two external agent-engineering concepts against system-speckit and",
       "keywords": [
         "deep-research",
@@ -64207,7 +64207,7 @@
       "lastUpdated": "2026-09-06T07:09:10.125Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/002-acceptance-criteria-template",
+      "specFolder": "system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria/002-acceptance-criteria-template",
       "description": "Acceptance criteria are split across two documents and owned by neither",
       "keywords": [
         "acceptance",
@@ -64221,7 +64221,7 @@
       "lastUpdated": "2026-09-06T06:44:46.147Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/003-restore-level-upgrade-and-vocabulary-invariance",
+      "specFolder": "system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria/003-restore-level-upgrade-and-vocabulary-invariance",
       "description": "Two defects surfaced during this packet's review, both pre-dating it",
       "keywords": [
         "two",
@@ -64234,7 +64234,7 @@
       "lastUpdated": "2026-09-06T07:09:10.125Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure",
+      "specFolder": "system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure",
       "description": "Phase 2 moved acceptance criteria into `acceptance-criteria.md` and repointed the advisory's total at that document",
       "keywords": [
         "phase",
@@ -64250,7 +64250,7 @@
       "lastUpdated": "2026-09-06T07:09:10.125Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction",
+      "specFolder": "system-speckit/031-system-speckit-v4/009-validation-rule-reduction",
       "description": "The completion gate fails roughly two thirds of the live corpus, and the",
       "keywords": [
         "completion",
@@ -64265,7 +64265,7 @@
       "lastUpdated": "2026-09-06T07:07:37.489Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/001-warnings-stop-blocking",
+      "specFolder": "system-speckit/031-system-speckit-v4/009-validation-rule-reduction/001-warnings-stop-blocking",
       "description": "Strict mode decides which rules run; it stops deciding what a warning means.",
       "keywords": [
         "strict",
@@ -64281,7 +64281,7 @@
       "lastUpdated": "2026-09-06T06:56:48.855Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/002-tracks-are-not-packets",
+      "specFolder": "system-speckit/031-system-speckit-v4/009-validation-rule-reduction/002-tracks-are-not-packets",
       "description": "A track directory stops being graded as though it were a packet.",
       "keywords": [
         "track",
@@ -64294,7 +64294,7 @@
       "lastUpdated": "2026-09-06T06:56:48.857Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/003-scaffold-parity",
+      "specFolder": "system-speckit/031-system-speckit-v4/009-validation-rule-reduction/003-scaffold-parity",
       "description": "A packet created with no human input stops failing validation the moment it exists.",
       "keywords": [
         "packet",
@@ -64309,7 +64309,7 @@
       "lastUpdated": "2026-09-06T06:56:48.859Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/004-stop-grading-prose-shape",
+      "specFolder": "system-speckit/031-system-speckit-v4/009-validation-rule-reduction/004-stop-grading-prose-shape",
       "description": "Documents stop being diffed against templates that change weekly; anchors are checked for what actually reads them.",
       "keywords": [
         "documents",
@@ -64328,7 +64328,7 @@
       "lastUpdated": "2026-09-06T06:56:48.860Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/005-framework-doc-matches-behaviour",
+      "specFolder": "system-speckit/031-system-speckit-v4/009-validation-rule-reduction/005-framework-doc-matches-behaviour",
       "description": "Two validation claims in the always-loaded framework document are corrected to match measured behaviour.",
       "keywords": [
         "two",
@@ -64345,7 +64345,7 @@
       "lastUpdated": "2026-09-06T06:56:48.861Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/006-delete-taste-rules",
+      "specFolder": "system-speckit/031-system-speckit-v4/009-validation-rule-reduction/006-delete-taste-rules",
       "description": "Remove the rules that no code path and no downstream workflow reads, so that",
       "keywords": [
         "remove",
@@ -64359,7 +64359,7 @@
       "lastUpdated": "2026-09-06T06:56:48.861Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/007-retire-the-sweep",
+      "specFolder": "system-speckit/031-system-speckit-v4/009-validation-rule-reduction/007-retire-the-sweep",
       "description": "Make the gate block the thing it can fairly block: the packets a change",
       "keywords": [
         "gate",
@@ -64372,7 +64372,7 @@
       "lastUpdated": "2026-09-06T07:13:10.174Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/009-validation-rule-reduction/008-a-level-for-research",
+      "specFolder": "system-speckit/031-system-speckit-v4/009-validation-rule-reduction/008-a-level-for-research",
       "description": "Give a research record a level it can meet, and make the rules agree with the",
       "keywords": [
         "give",
@@ -64386,7 +64386,7 @@
       "lastUpdated": "2026-09-06T07:13:10.173Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/010-goal-file-addon",
+      "specFolder": "system-speckit/031-system-speckit-v4/010-goal-file-addon",
       "description": "An operator sets one session objective, and whatever they set is frozen at that moment",
       "keywords": [
         "operator",
@@ -64402,7 +64402,7 @@
       "lastUpdated": "2026-09-06T07:45:43.954Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/010-goal-file-addon/001-manifest-and-goal-template",
+      "specFolder": "system-speckit/031-system-speckit-v4/010-goal-file-addon/001-manifest-and-goal-template",
       "description": "There is no goal document anywhere in the documentation-level contract",
       "keywords": [
         "goal",
@@ -64414,7 +64414,7 @@
       "lastUpdated": "2026-09-06T07:09:10.123Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/010-goal-file-addon/002-durable-slice-validator",
+      "specFolder": "system-speckit/031-system-speckit-v4/010-goal-file-addon/002-durable-slice-validator",
       "description": "Nothing checks a goal document",
       "keywords": [
         "nothing",
@@ -64425,7 +64425,7 @@
       "lastUpdated": "2026-09-06T07:09:10.122Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/010-goal-file-addon/003-runtime-neutral-goal-dispatch",
+      "specFolder": "system-speckit/031-system-speckit-v4/010-goal-file-addon/003-runtime-neutral-goal-dispatch",
       "description": "The speckit commands already offer to set a session goal, and the offer calls one runtime's tool by name",
       "keywords": [
         "speckit",
@@ -64444,7 +64444,7 @@
       "lastUpdated": "2026-09-06T07:09:10.122Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/010-goal-file-addon/004-parent-set-string-playbook",
+      "specFolder": "system-speckit/031-system-speckit-v4/010-goal-file-addon/004-parent-set-string-playbook",
       "description": "Nothing dereferences a path inside a goal string",
       "keywords": [
         "nothing",
@@ -64457,7 +64457,7 @@
       "lastUpdated": "2026-09-06T07:09:10.122Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/011-graph-metadata-write-containment",
+      "specFolder": "system-speckit/031-system-speckit-v4/011-graph-metadata-write-containment",
       "description": "`writeGraphMetadataFile` canonicalizes its destination, then asks a classifier whether the result may hold graph metadata",
       "keywords": [
         "writegraphmetadatafile",
@@ -64474,7 +64474,7 @@
       "lastUpdated": "2026-09-08T18:23:18.775Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/012-repair-write-symlink-refusal",
+      "specFolder": "system-speckit/031-system-speckit-v4/012-repair-write-symlink-refusal",
       "description": "The repair script decides whether a candidate is a regular file while walking the tree, using the directory entry \u2014 which reports on the link itself,",
       "keywords": [
         "repair",
@@ -64496,7 +64496,7 @@
       "lastUpdated": "2026-09-08T18:23:18.776Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/013-repair-handle-containment",
+      "specFolder": "system-speckit/031-system-speckit-v4/013-repair-handle-containment",
       "description": "Two packets closed on the same idea \u2014 prove membership rather than match a shape \u2014 and each left a",
       "keywords": [
         "two",
@@ -64514,7 +64514,7 @@
       "lastUpdated": "2026-09-08T18:23:18.784Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening",
+      "specFolder": "system-speckit/031-system-speckit-v4/014-daemon-and-test-harness-hardening",
       "description": "A live process sweep on 2026-08-30 found 13 leaked processes attributable to this repository's system skills: three wedged vitest trees holding",
       "keywords": [
         "live",
@@ -64536,7 +64536,7 @@
       "lastUpdated": "2026-09-06T07:13:10.358Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/001-production-db-isolation",
+      "specFolder": "system-speckit/031-system-speckit-v4/014-daemon-and-test-harness-hardening/001-production-db-isolation",
       "description": "`mcp-server/vitest.config.ts` loads `tests/support/vitest-setup.ts`, whose `isolateProductionDatabase()` exists to stop a test opening the live memory",
       "keywords": [
         "mcp-server",
@@ -64558,7 +64558,7 @@
       "lastUpdated": "2026-09-07T16:14:53.900Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/002-orphan-daemon-reaping",
+      "specFolder": "system-speckit/031-system-speckit-v4/014-daemon-and-test-harness-hardening/002-orphan-daemon-reaping",
       "description": "An orphaned `system-spec-memory-launcher.cjs` survived at `ppid 1` for 2 days 14 hours with dangling stdio pipes and no child server",
       "keywords": [
         "orphaned",
@@ -64577,7 +64577,7 @@
       "lastUpdated": "2026-09-07T16:14:53.895Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/003-test-hang-containment",
+      "specFolder": "system-speckit/031-system-speckit-v4/014-daemon-and-test-harness-hardening/003-test-hang-containment",
       "description": "On 2026-08-30 three vitest trees were killed after 2h35m, 3h41m and 4h12m, each holding roughly 96% of a core",
       "keywords": [
         "three",
@@ -64594,7 +64594,7 @@
       "lastUpdated": "2026-09-07T16:14:53.881Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene",
+      "specFolder": "system-speckit/031-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene",
       "description": "`git-live-follow.sh` emits its divergence warning as two unconditional `echo` statements inside the poll loop, which runs every 5 seconds by default",
       "keywords": [
         "git-live-follow",
@@ -64616,7 +64616,7 @@
       "lastUpdated": "2026-09-07T16:14:53.884Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/015-apply-path-and-candidate-filter-fixes",
+      "specFolder": "system-speckit/031-system-speckit-v4/015-apply-path-and-candidate-filter-fixes",
       "description": "A four-iteration deep review of the daemon-hardening packet, run across three independent models, closed at CONDITIONAL with three P1 findings that",
       "keywords": [
         "four-iteration",
@@ -64636,7 +64636,7 @@
       "lastUpdated": "2026-09-08T18:23:18.782Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal",
+      "specFolder": "system-speckit/031-system-speckit-v4/016-sequential-thinking-residue-removal",
       "description": "Commit `7673da6bc24` decommissioned the Sequential Thinking MCP server: it deleted the install guide, deleted the installer script, and unregistered",
       "keywords": [
         "commit",
@@ -64656,7 +64656,7 @@
       "lastUpdated": "2026-09-08T18:23:18.786Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/017-memory-database-decommission",
+      "specFolder": "system-speckit/031-system-speckit-v4/017-memory-database-decommission",
       "description": "The `system-spec-memory` MCP subsystem is a derived search index over `specs//.md` that",
       "keywords": [
         "system-spec-memory",
@@ -64670,7 +64670,7 @@
       "lastUpdated": "2026-09-06T07:07:37.513Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement",
+      "specFolder": "system-speckit/031-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement",
       "description": "`AGENTS.md` Gate 1 mandates `memorymatchtriggers(prompt)` on every user message, and that tool is",
       "keywords": [
         "agents",
@@ -64686,7 +64686,7 @@
       "lastUpdated": "2026-09-06T07:09:10.122Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/017-memory-database-decommission/002-memory-consumer-rewire",
+      "specFolder": "system-speckit/031-system-speckit-v4/017-memory-database-decommission/002-memory-consumer-rewire",
       "description": "427 files reference the memory MCP surface",
       "keywords": [
         "files",
@@ -64698,7 +64698,7 @@
       "lastUpdated": "2026-09-06T07:09:10.121Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/017-memory-database-decommission/003-spec-memory-server-removal",
+      "specFolder": "system-speckit/031-system-speckit-v4/017-memory-database-decommission/003-spec-memory-server-removal",
       "description": "The subsystem's cost is structural, not incidental: a background service that flaps, 41 tools loaded",
       "keywords": [
         "subsystem",
@@ -64714,7 +64714,7 @@
       "lastUpdated": "2026-09-06T07:09:10.121Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit",
+      "specFolder": "system-speckit/031-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit",
       "description": "Once retrieval is ripgrep, retrieval quality is a property of the corpus rather than of a ranking",
       "keywords": [
         "retrieval",
@@ -64728,7 +64728,7 @@
       "lastUpdated": "2026-09-06T07:09:10.121Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research",
+      "specFolder": "system-speckit/031-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research",
       "description": "Phases 001 and 004 were specified before anyone had studied what the replacement actually has to match",
       "keywords": [
         "phases",
@@ -64742,7 +64742,7 @@
       "lastUpdated": "2026-09-06T06:44:45.787Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory",
+      "specFolder": "system-speckit/031-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory",
       "description": "Phases 002 and 003 were scoped against a parent estimate of roughly 167 logical consumers, a figure derived by judgment rather than by scanning",
       "keywords": [
         "phases",
@@ -64762,7 +64762,7 @@
       "lastUpdated": "2026-09-06T06:44:45.794Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes",
+      "specFolder": "system-speckit/031-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes",
       "description": "The packet closed with every phase Complete, but a read-only deep review over ten forced iterations found contradictions between what the documents",
       "keywords": [
         "packet",
@@ -64784,7 +64784,7 @@
       "lastUpdated": "2026-09-06T07:07:37.535Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/018-single-segment-packet-pointer",
+      "specFolder": "system-speckit/031-system-speckit-v4/018-single-segment-packet-pointer",
       "description": "`SPECDOCFRONTMATTER004` accepts a `packetpointer` with one safe segment as well as two-or-more, so a flattened `specs/` layout can pass validation",
       "keywords": [
         "specdocfrontmatter004",
@@ -64804,7 +64804,7 @@
       "lastUpdated": "2026-09-08T18:23:18.769Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing",
+      "specFolder": "system-speckit/031-system-speckit-v4/019-memory-decommission-branch-landing",
       "description": "Packets 049, 050 and 051 removed the memory database, replaced it with the trigger index and ripgrep, added a semantic lane and vendored its engine,",
       "keywords": [
         "packets",
@@ -64823,7 +64823,7 @@
       "lastUpdated": "2026-09-08T18:23:18.778Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/020-runtime-package-rename",
+      "specFolder": "system-speckit/031-system-speckit-v4/020-runtime-package-rename",
       "description": "The memory decommission deleted the MCP server, its tools and its database, but kept the package that held them because the validation orchestrator,",
       "keywords": [
         "memory",
@@ -64844,7 +64844,7 @@
       "lastUpdated": "2026-09-08T18:23:18.771Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting",
+      "specFolder": "system-speckit/031-system-speckit-v4/021-decommission-debt-and-cli-nesting",
       "description": "The landing and rename packets closed with debt recorded rather than fixed: the scripts freshness table counted the trigger-index generator's fixtures",
       "keywords": [
         "landing",
@@ -64865,7 +64865,7 @@
       "lastUpdated": "2026-09-08T18:23:18.777Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/001-continuity-freshness-claim-binding",
+      "specFolder": "system-speckit/031-system-speckit-v4/021-decommission-debt-and-cli-nesting/001-continuity-freshness-claim-binding",
       "description": "`evaluateCompletionFreshness` (`.opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:292-349`) scans `spec.md`, `plan.md`,",
       "keywords": [
         "evaluatecompletionfreshness",
@@ -64882,7 +64882,7 @@
       "lastUpdated": "2026-09-06T07:09:10.120Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting",
+      "specFolder": "system-speckit/031-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting",
       "description": "Before this phase, `.opencode/skills/system-spec-kit/` ran two npm workspace packages side by side: `runtime/` (the `@spec-kit/runtime` engine -",
       "keywords": [
         "phase",
@@ -64902,7 +64902,7 @@
       "lastUpdated": "2026-09-06T07:09:10.119Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/003-retrieval-coverage-alignment",
+      "specFolder": "system-speckit/031-system-speckit-v4/021-decommission-debt-and-cli-nesting/003-retrieval-coverage-alignment",
       "description": "The trigger-index corpus walker (`.opencode/skills/system-spec-kit/scripts/retrieval/lib/corpus.mjs:20-31`) sets `CORPUSROOTS = ['specs',",
       "keywords": [
         "trigger-index",
@@ -64922,7 +64922,7 @@
       "lastUpdated": "2026-09-06T07:09:10.117Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/004-save-and-resume-freshness",
+      "specFolder": "system-speckit/031-system-speckit-v4/021-decommission-debt-and-cli-nesting/004-save-and-resume-freshness",
       "description": "Problem A - save completes without proving index freshness",
       "keywords": [
         "problem",
@@ -64936,7 +64936,7 @@
       "lastUpdated": "2026-09-06T07:09:10.117Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/005-hook-fallback-failure-signal",
+      "specFolder": "system-speckit/031-system-speckit-v4/021-decommission-debt-and-cli-nesting/005-hook-fallback-failure-signal",
       "description": "`.codex/hooks.json` wraps every registered adapter as `node <adapter> || printf %s '{\"hookSpecificOutput\":{...,\"additionalContext\":\"mk codex hook",
       "keywords": [
         "codex",
@@ -64955,7 +64955,7 @@
       "lastUpdated": "2026-09-06T07:09:10.117Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/006-orphaned-types-and-dead-modules",
+      "specFolder": "system-speckit/031-system-speckit-v4/021-decommission-debt-and-cli-nesting/006-orphaned-types-and-dead-modules",
       "description": "`.opencode/skills/system-spec-kit/shared/types.ts` still exports `IVectorStore` (line 246), `SearchOptions` (189), `SearchResult` (204), `StoreStats`",
       "keywords": [
         "opencode",
@@ -64974,7 +64974,7 @@
       "lastUpdated": "2026-09-06T07:09:10.117Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/007-memory-command-family-naming-decision",
+      "specFolder": "system-speckit/031-system-speckit-v4/021-decommission-debt-and-cli-nesting/007-memory-command-family-naming-decision",
       "description": "The surviving continuity writer and retrieval commands still carry the word \"memory\" throughout their names, paths, and package metadata: the",
       "keywords": [
         "surviving",
@@ -64995,7 +64995,7 @@
       "lastUpdated": "2026-09-06T07:09:10.116Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/022-shared-containment-helper",
+      "specFolder": "system-speckit/031-system-speckit-v4/022-shared-containment-helper",
       "description": "The CLI checked write boundaries three different ways: lexically in the changelog generator, realpath-only in the description generator, and",
       "keywords": [
         "cli",
@@ -65014,7 +65014,7 @@
       "lastUpdated": "2026-09-08T18:23:18.774Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes",
+      "specFolder": "system-speckit/031-system-speckit-v4/023-trigger-index-root-and-drift-fixes",
       "description": "A ten-iteration Sonnet 5 research pass over the repository ranked eleven things that still needed fixing or aligning with system-spec-kit: a critical",
       "keywords": [
         "ten-iteration",
@@ -65034,7 +65034,7 @@
       "lastUpdated": "2026-09-06T07:07:37.526Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/001-index-root-and-docs",
+      "specFolder": "system-speckit/031-system-speckit-v4/023-trigger-index-root-and-drift-fixes/001-index-root-and-docs",
       "description": "The trigger-index generator resolved the repository root one directory short after the CLI nested under runtime/, so the published index carried spec",
       "keywords": [
         "trigger-index",
@@ -65056,7 +65056,7 @@
       "lastUpdated": "2026-09-06T07:09:10.116Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/002-metadata-drift-and-rules",
+      "specFolder": "system-speckit/031-system-speckit-v4/023-trigger-index-root-and-drift-fixes/002-metadata-drift-and-rules",
       "description": "A renamed packet kept the children of its old identity in graph metadata because the writer only unioned, and track roots were never validated.",
       "keywords": [
         "renamed",
@@ -65079,7 +65079,7 @@
       "lastUpdated": "2026-09-06T07:09:10.116Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/003-hook-markers-and-improvement-family",
+      "specFolder": "system-speckit/031-system-speckit-v4/023-trigger-index-root-and-drift-fixes/003-hook-markers-and-improvement-family",
       "description": "Claude and Cursor hook registrations now carry the same self-diagnosing drift fallback as Codex and Devin, and the improvement/ artifact family the",
       "keywords": [
         "claude",
@@ -65101,7 +65101,7 @@
       "lastUpdated": "2026-09-06T07:09:10.116Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/023-trigger-index-root-and-drift-fixes/004-shared-parsers-and-post-run-refresh",
+      "specFolder": "system-speckit/031-system-speckit-v4/023-trigger-index-root-and-drift-fixes/004-shared-parsers-and-post-run-refresh",
       "description": "One frontmatter parser and one write-boundary primitive now live in the spec-kit shared package and are used by the spec-kit CLI, the runtime",
       "keywords": [
         "one",
@@ -65120,7 +65120,7 @@
       "lastUpdated": "2026-09-06T07:09:10.115Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser",
+      "specFolder": "system-speckit/031-system-speckit-v4/024-metadata-regeneration-and-shared-parser",
       "description": "Run the identity-aware metadata writer over every drifted packet that is clean in git, give system-deep-loop and sk-doc a dependency edge to the",
       "keywords": [
         "run",
@@ -65141,7 +65141,7 @@
       "lastUpdated": "2026-09-08T18:23:18.779Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/025-docs-reality-alignment-research",
+      "specFolder": "system-speckit/031-system-speckit-v4/025-docs-reality-alignment-research",
       "description": "The system-spec-kit documentation grew through the memory-database era and the CLI move from `scripts/` to `runtime/cli/`",
       "keywords": [
         "system-spec-kit",
@@ -65157,7 +65157,7 @@
       "lastUpdated": "2026-09-08T18:23:18.769Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/026-runtime-code-standards-research",
+      "specFolder": "system-speckit/031-system-speckit-v4/026-runtime-code-standards-research",
       "description": "The system-spec-kit runtime and shared package were built across many packets and two directory moves, while the sk-code-skilled and sk-code-quality",
       "keywords": [
         "system-spec-kit",
@@ -65177,7 +65177,7 @@
       "lastUpdated": "2026-09-08T18:23:18.771Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/027-doc-path-strict-mode-and-retired-capability-fixes",
+      "specFolder": "system-speckit/031-system-speckit-v4/027-doc-path-strict-mode-and-retired-capability-fixes",
       "description": "Fourteen confirmed mismatches in the system-spec-kit playbook, catalog and references send readers to paths that moved, describe warnings as",
       "keywords": [
         "fourteen",
@@ -65197,7 +65197,7 @@
       "lastUpdated": "2026-09-08T18:23:18.773Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes",
+      "specFolder": "system-speckit/031-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes",
       "description": "The runtime research confirmed 31 shell scripts and 7 module scripts with header tags the sk-code standards do not document, one hook that swallows",
       "keywords": [
         "runtime",
@@ -65218,7 +65218,7 @@
       "lastUpdated": "2026-09-08T18:23:18.785Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/029-goal-operator-resync-rule",
+      "specFolder": "system-speckit/031-system-speckit-v4/029-goal-operator-resync-rule",
       "description": "An operator sets a session objective by pasting a packet's durable goal slice",
       "keywords": [
         "operator",
@@ -65234,7 +65234,7 @@
       "lastUpdated": "2026-09-08T18:23:18.772Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research",
       "description": "This phased decomposition tracks spec-kit simplification research across independently executable child phase folders",
       "keywords": [
         "phased",
@@ -65253,7 +65253,7 @@
       "lastUpdated": "2026-09-08T18:23:18.780Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/001-ripgrep-search-system",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/001-ripgrep-search-system",
       "description": "The lexical retrieval system replaced a database this year, and its generator, lookup, command, Gate 1 usage and documentation have never been audited",
       "keywords": [
         "lexical",
@@ -65274,7 +65274,7 @@
       "lastUpdated": "2026-09-07T13:14:16.353Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/002-cli-runtime-utilization",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/002-cli-runtime-utilization",
       "description": "The CLI package holds roughly thirty directories, a registry that lists fourteen entry points, and a README that describes it as context generation",
       "keywords": [
         "cli",
@@ -65296,7 +65296,7 @@
       "lastUpdated": "2026-09-07T13:09:22.507Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/003-shared-package-utilization",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/003-shared-package-utilization",
       "description": "The shared package grew as the neutral layer under a memory server that no longer exists",
       "keywords": [
         "shared",
@@ -65312,7 +65312,7 @@
       "lastUpdated": "2026-09-07T13:09:22.520Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/004-template-system-and-acceptance-criteria",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/004-template-system-and-acceptance-criteria",
       "description": "The root README mentions a resource map as if it were part of every packet, the timeline and roadmap addons are barely mentioned, and three surfaces",
       "keywords": [
         "root",
@@ -65334,7 +65334,7 @@
       "lastUpdated": "2026-09-07T13:09:22.503Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/005-overengineering-simplification",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/005-overengineering-simplification",
       "description": "Thirty-nine validator rules, a six-runtime hook matrix, hundreds of reference and catalog documents, and root documents that carry spec-kit procedure:",
       "keywords": [
         "thirty-nine",
@@ -65355,7 +65355,7 @@
       "lastUpdated": "2026-09-07T13:09:22.514Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/006-retrieval-drift-remediation",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/006-retrieval-drift-remediation",
       "description": "The retrieval code is correct and its documents are not: the conventions describe a concept lane over an embedded index that does not exist, the",
       "keywords": [
         "retrieval",
@@ -65373,7 +65373,7 @@
       "lastUpdated": "2026-09-06T15:30:20.686Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/007-cli-package-residue-removal",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/007-cli-package-residue-removal",
       "description": "The CLI package carried around thirty files that nothing called: modules whose only importers were tests written to explain them, a registry that",
       "keywords": [
         "cli",
@@ -65397,7 +65397,7 @@
       "lastUpdated": "2026-09-06T18:11:49.549Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/008-env-example-dead-flags",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/008-env-example-dead-flags",
       "description": "The root env template documented 216 variables",
       "keywords": [
         "root",
@@ -65409,7 +65409,7 @@
       "lastUpdated": "2026-09-06T20:48:37.247Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/009-shared-package-dead-half-removal",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/009-shared-package-dead-half-removal",
       "description": "Roughly forty percent of the shared package was a second package nothing imported: an in-process embeddings library and the ranking, contract and",
       "keywords": [
         "roughly",
@@ -65429,7 +65429,7 @@
       "lastUpdated": "2026-09-06T23:37:48.960Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/010-template-contract-alignment",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/010-template-contract-alignment",
       "description": "The template system's documents described a different system from the one that runs: a cumulative per-level ladder where the real add-on list is flat,",
       "keywords": [
         "template",
@@ -65450,7 +65450,7 @@
       "lastUpdated": "2026-09-07T02:11:05.324Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/011-command-surface-contract-realignment",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/011-command-surface-contract-realignment",
       "description": "The level contract retired `checklist.md` and made `acceptance-criteria.md` the closure document, and child 010 brought the skill's own documents to",
       "keywords": [
         "level",
@@ -65469,7 +65469,7 @@
       "lastUpdated": "2026-09-07T03:58:06.817Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/012-pre-existing-test-repair",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/012-pre-existing-test-repair",
       "description": "Two suites failed before this program and stayed red through it",
       "keywords": [
         "two",
@@ -65482,7 +65482,7 @@
       "lastUpdated": "2026-09-07T04:03:53.394Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/013-trigger-phrase-quality-enforcement",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/013-trigger-phrase-quality-enforcement",
       "description": "The convention said to declare phrases of two or more tokens and never to index bare numbers or generic words, and nothing enforced the first two",
       "keywords": [
         "convention",
@@ -65504,7 +65504,7 @@
       "lastUpdated": "2026-09-07T06:03:20.524Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/014-cli-decommission-orphan-removal",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/014-cli-decommission-orphan-removal",
       "description": "Round one certified directories as wired without enumerating their files, and the decommission's orphans survived inside them: an unregistered rule",
       "keywords": [
         "round",
@@ -65526,7 +65526,7 @@
       "lastUpdated": "2026-09-07T06:23:47.846Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/015-shared-package-post-remediation-cleanup",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/015-shared-package-post-remediation-cleanup",
       "description": "Child 009 removed the shared package's dead half and left its edges uneven",
       "keywords": [
         "child",
@@ -65542,7 +65542,7 @@
       "lastUpdated": "2026-09-07T18:24:03.282Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/016-template-seams-and-sentinel-repair",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/016-template-seams-and-sentinel-repair",
       "description": "Child 010 made the level contract the one authority and left the code and prose beside it untouched",
       "keywords": [
         "child",
@@ -65559,7 +65559,7 @@
       "lastUpdated": "2026-09-07T07:05:19.530Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/017-completion-gate-and-catalog-alignment",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/017-completion-gate-and-catalog-alignment",
       "description": "Child 011 aligned the command assets to the acceptance-criteria closure but the mechanical backstop never learned it: `check-completion.sh` read the",
       "keywords": [
         "child",
@@ -65578,7 +65578,7 @@
       "lastUpdated": "2026-09-07T07:19:38.435Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/018-scaffold-placeholder-and-upgrade-truth",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/018-scaffold-placeholder-and-upgrade-truth",
       "description": "The scaffolder replaced every `[YOURVALUEHERE: x]` slot with the feature name, so a phase parent's open questions and predecessor became its own name,",
       "keywords": [
         "scaffolder",
@@ -65599,7 +65599,7 @@
       "lastUpdated": "2026-09-07T13:22:01.457Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/019-ci-push-gates-and-runtime-doc-truth",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/019-ci-push-gates-and-runtime-doc-truth",
       "description": "The spec-kit check workflow, which the round-one census presented as closing the CI-invisibility gap, had no push trigger, so on the repository's",
       "keywords": [
         "spec-kit",
@@ -65618,7 +65618,7 @@
       "lastUpdated": "2026-09-07T13:51:57.845Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/020-rule-headers-registry-coverage-and-playbook-paths",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/020-rule-headers-registry-coverage-and-playbook-paths",
       "description": "Six registry rule ids were named by no test, and one of them, the protocol rule, reported a singular id the registry does not carry, so validation",
       "keywords": [
         "six",
@@ -65638,7 +65638,7 @@
       "lastUpdated": "2026-09-07T13:22:02.714Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/021-shared-readme-generator-and-dead-exports",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/021-shared-readme-generator-and-dead-exports",
       "description": "Child 015 said the README's reader table was generated from the code, but no generator existed in the tree: the table was hand-written from a one-off",
       "keywords": [
         "child",
@@ -65656,7 +65656,7 @@
       "lastUpdated": "2026-09-07T13:22:03.353Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/022-doctor-signal-truth-and-conventions-precision",
+      "specFolder": "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/022-doctor-signal-truth-and-conventions-precision",
       "description": "The doctor retrieval target declared nine staleness signals and computed six: no activity produced a fresh manifest, ran the recipe without",
       "keywords": [
         "doctor",
@@ -65679,7 +65679,7 @@
       "lastUpdated": "2026-09-07T13:22:03.916Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/031-ci-shared-package-resolution",
+      "specFolder": "system-speckit/031-system-speckit-v4/031-ci-shared-package-resolution",
       "description": "Since 2026-09-06 every push to `main` or `skilled/v4.0.0.0` failed four workflows and mailed the operator each time",
       "keywords": [
         "since",
@@ -65697,7 +65697,7 @@
       "lastUpdated": "2026-09-08T18:23:18.769Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure",
+      "specFolder": "system-speckit/031-system-speckit-v4/032-recorded-findings-closure",
       "description": "The spec-kit simplification program ran three research rounds over five lanes and remediated every confirmed finding in seventeen children, but it",
       "keywords": [
         "spec-kit",
@@ -65719,7 +65719,7 @@
       "lastUpdated": "2026-09-08T18:23:18.769Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/001-hook-adapter-thin-transports",
+      "specFolder": "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/001-hook-adapter-thin-transports",
       "description": "The five runtime hook adapters under `.opencode/skills/system-spec-kit/runtime/hooks/` each re-implement the same Gate-3 classify and enforce",
       "keywords": [
         "five",
@@ -65739,7 +65739,7 @@
       "lastUpdated": "2026-09-07T15:55:50.849Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/002-multiplexed-rule-split",
+      "specFolder": "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/002-multiplexed-rule-split",
       "description": "`validator-registry.json` names 39 rule rows, and its `scriptpath` field reads as a one-to-one pointer from a rule id to the script that implements it",
       "keywords": [
         "validator-registry",
@@ -65758,7 +65758,7 @@
       "lastUpdated": "2026-09-07T16:01:40.588Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/003-playbook-provenance-lines",
+      "specFolder": "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/003-playbook-provenance-lines",
       "description": "The manual-testing-playbook under `.opencode/skills/system-spec-kit/manual-testing-playbook/` holds 85 markdown files (1 root index plus 84",
       "keywords": [
         "manual-testing-playbook",
@@ -65775,7 +65775,7 @@
       "lastUpdated": "2026-09-07T16:04:57.239Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/004-fingerprint-stamp-regeneration",
+      "specFolder": "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/004-fingerprint-stamp-regeneration",
       "description": "27 closed packets' `implementation-summary.md` carry a human-mnemonic value in the slot `memory.continuity.sessiondedup.fingerprint` reserves for a",
       "keywords": [
         "closed",
@@ -65794,7 +65794,7 @@
       "lastUpdated": "2026-09-07T16:12:19.417Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/005-provenance-title-sweep",
+      "specFolder": "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/005-provenance-title-sweep",
       "description": "`grep -rIl '\\[template:level' specs` currently returns 1,178 files, of which 947 `.md` documents carry the token on their own `title:` frontmatter",
       "keywords": [
         "grep",
@@ -65815,7 +65815,7 @@
       "lastUpdated": "2026-09-07T16:32:41.656Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/006-lifecycle-command-asset-merge",
+      "specFolder": "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/006-lifecycle-command-asset-merge",
       "description": "The three `/speckit:` lifecycle commands each ship as an auto/confirm pair, six YAML assets between 780 and 1,388 lines (verified 2026-09-07:",
       "keywords": [
         "three",
@@ -65836,7 +65836,7 @@
       "lastUpdated": "2026-09-07T16:52:08.798Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/007-links-scan-registry-rule",
+      "specFolder": "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/007-links-scan-registry-rule",
       "description": "`rules/check-links.sh`'s own header states it plainly: \"A standalone scan run on demand: it has no validator-registry row, so validate.sh never",
       "keywords": [
         "rules",
@@ -65857,7 +65857,7 @@
       "lastUpdated": "2026-09-07T16:59:42.802Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/008-review-research-scaffold-paths",
+      "specFolder": "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/008-review-research-scaffold-paths",
       "description": "`templates/spec-kit-docs.json` declares both `review` and `research` as full level entries with `requiredCoreDocs` of `['spec.md',",
       "keywords": [
         "templates",
@@ -65875,7 +65875,7 @@
       "lastUpdated": "2026-09-07T17:12:20.720Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/009-references-corpus-routing",
+      "specFolder": "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/009-references-corpus-routing",
       "description": "Finding F3-14",
       "keywords": [
         "finding",
@@ -65884,7 +65884,7 @@
       "lastUpdated": "2026-09-07T17:20:37.761Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/010-manifest-dead-fields-and-coaching-markers",
+      "specFolder": "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/010-manifest-dead-fields-and-coaching-markers",
       "description": "`templates/spec-kit-docs.json` carries a `creationTrigger` and an `absenceBehavior` field on every one of its 16 `documents[]` entries (32 key",
       "keywords": [
         "templates",
@@ -65903,7 +65903,7 @@
       "lastUpdated": "2026-09-07T17:30:41.283Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/011-advisor-import-and-ollama-consolidation",
+      "specFolder": "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/011-advisor-import-and-ollama-consolidation",
       "description": "Finding R5-01",
       "keywords": [
         "finding",
@@ -65912,7 +65912,7 @@
       "lastUpdated": "2026-09-07T17:49:14.366Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/012-root-resolver-consolidation",
+      "specFolder": "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/012-root-resolver-consolidation",
       "description": "Finding R6-03",
       "keywords": [
         "finding",
@@ -65921,7 +65921,7 @@
       "lastUpdated": "2026-09-07T17:43:59.559Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/013-gate1-instruction-parity",
+      "specFolder": "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/013-gate1-instruction-parity",
       "description": "Gate 1's trigger-index lookup instruction is authored in exactly one place, the root `AGENTS.md` (`AGENTS.md:83`), and `CLAUDE.md` is a symlink to it",
       "keywords": [
         "gate",
@@ -65940,7 +65940,7 @@
       "lastUpdated": "2026-09-07T17:54:07.512Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/014-registration-schema-unification",
+      "specFolder": "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/014-registration-schema-unification",
       "description": "Five CLI runtimes each register the same behavioral contract (which script runs on which lifecycle event) through five hand-authored files that",
       "keywords": [
         "five",
@@ -65960,7 +65960,7 @@
       "lastUpdated": "2026-09-07T18:01:32.703Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/015-criteria-file-line-enforcement",
+      "specFolder": "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/015-criteria-file-line-enforcement",
       "description": "`check-ac-coverage.sh` already ships a floor (default 0.9), an advisory default and an `SPECKITACCOVERAGEENFORCE` switch that is off by default",
       "keywords": [
         "check-ac-coverage",
@@ -65975,7 +65975,7 @@
       "lastUpdated": "2026-09-07T18:10:21.123Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/032-recorded-findings-closure/016-cross-session-operator-items",
+      "specFolder": "system-speckit/031-system-speckit-v4/032-recorded-findings-closure/016-cross-session-operator-items",
       "description": "The simplification-research program's own report named five items that live on surfaces this program's children never had write authority over,",
       "keywords": [
         "simplification-research",
@@ -65995,7 +65995,7 @@
       "lastUpdated": "2026-09-07T18:38:27.799Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/033-ci-dependency-hardening",
+      "specFolder": "system-speckit/031-system-speckit-v4/033-ci-dependency-hardening",
       "description": "The operator received a \"runs failed\" email on every push for days",
       "keywords": [
         "operator",
@@ -66010,7 +66010,7 @@
       "lastUpdated": "2026-09-08T18:23:18.780Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/034-v4-state-inventory-research",
+      "specFolder": "system-speckit/031-system-speckit-v4/034-v4-state-inventory-research",
       "description": "`CHANGELOG-v4.0.0.0.md` in the parent folder was drafted before the memory-database decommission, the runtime rename, the simplification program, the",
       "keywords": [
         "changelog-v4",
@@ -66027,7 +66027,7 @@
       "lastUpdated": "2026-09-08T18:23:18.771Z"
     },
     {
-      "specFolder": "system-speckit/033-system-speckit-v4/035-v4-changelog-draft-update",
+      "specFolder": "system-speckit/031-system-speckit-v4/035-v4-changelog-draft-update",
       "description": "`../CHANGELOG-v4.0.0.0.md` described a memory engine, an `/interface:` family, an alignment mode, a prompt hub and an owner-first branch grammar that",
       "keywords": [
         "changelog-v4",

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/039-executor-workflow-owner-guard"
+    packet_pointer: "system-skill-advisor/032-executor-workflow-owner-guard"
     last_updated_at: "2026-10-28T07:17:16Z"
     last_updated_by: "claude"
     recent_action: "Recorded the Python guard port and the prefix-rule fix"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 039-executor-workflow-owner-guard |
+| **Spec Folder** | 032-executor-workflow-owner-guard |
 | **Completed** | 2026-10-28 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -165,7 +165,7 @@ The alignment follow-up wrote its tests first and ran them on the unchanged scor
 | `tests/parity/local-native-divergence-ratchet.vitest.ts` | Baseline 1 failed of 9, final 9 of 9 |
 | Typecheck and build of the advisor runtime | Both exit 0 |
 | `node --test` for sk-create-skill and sk-code-skilled | 70 of 70 and 32 of 32, exit 0 |
-| `validate.sh specs/system-skill-advisor/039-executor-workflow-owner-guard --strict` | `RESULT: PASSED` |
+| `validate.sh specs/system-skill-advisor/032-executor-workflow-owner-guard --strict` | `RESULT: PASSED` |
 | Alignment follow-up baseline, whole advisor suite | 1 failed, 1325 passed, 8 skipped of 1334; 153 of 154 files; the failure was a capture-date race with another session's commit |
 | Alignment follow-up final, whole advisor suite | 0 failed, 1339 passed, 8 skipped of 1347; 156 of 156 files; exit 0 |
 | New tests on the unchanged scorer | 8 failed, 73 passed of 81 across the four edited files; the two later test files failed 2 of 2 and 3 of 4 on `HEAD`'s `fusion.ts` and sk-git metadata |

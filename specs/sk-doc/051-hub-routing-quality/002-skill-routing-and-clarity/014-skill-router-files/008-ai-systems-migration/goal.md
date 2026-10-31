@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration"
     last_updated_at: "2026-10-29T15:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Committed the migration locally: gate edits and 16 of 16 routers in five repositories"

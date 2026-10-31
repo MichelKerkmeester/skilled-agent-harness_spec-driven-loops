@@ -19,7 +19,7 @@
   "folderSlug": "fix-deep-review-p1-p2-findings-for-source-root-migration",
   "parentChain": [
     "system-speckit",
-    "033-system-speckit-v4",
+    "031-system-speckit-v4",
     "041-skilled-source-root-migration"
   ],
   "memorySequence": 0,

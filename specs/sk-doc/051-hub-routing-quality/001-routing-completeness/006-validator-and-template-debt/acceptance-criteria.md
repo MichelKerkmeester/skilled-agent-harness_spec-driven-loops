@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/052-routing-completeness/006-validator-and-template-debt"
+    packet_pointer: "sk-doc/051-hub-routing-quality/001-routing-completeness/006-validator-and-template-debt"
     last_updated_at: "2026-09-04T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Added the sweep criterion and re-verified the three original rows"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/052-routing-completeness/006-validator-and-template-debt
+**Packet:** sk-doc/051-hub-routing-quality/001-routing-completeness/006-validator-and-template-debt
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-09-04

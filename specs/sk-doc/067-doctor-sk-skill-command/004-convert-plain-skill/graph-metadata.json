@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Class S needs only two authored files beyond `SKILL.md`, `graph-metadata.json` and `leaf-manifest.config.json` (`skill-root-metadata-contract.md:167-169`), but a plain skill also lacks the section shape, the resource-doc frontmatter and the router file the strict gate expects",
     "created_at": "2026-10-30T05:21:14Z",
-    "last_save_at": "2026-10-31T13:26:08.813Z",
+    "last_save_at": "2026-10-31T14:02:01.858Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e5381cc2edd56664fe7dd9d0ae2670f569ef206d08ef6ba91109d98e0c0e42af",
+    "source_fingerprint": "sha256:dcad83980344daab68a079ae6841ac792bfddac857ad51635b42dd373c4a75d2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a301838447415601289d664824c421d8ec18ad7dc9baa03c8bef745fef4e5c08",
       "plan.md": "363baceee12fc9ca0112d0bfad98dcf42490761f6805e7810fbd625072ab2424",
       "tasks.md": "f7426b7d79e681ffb7c5fccf0eceb3ef094a63314b82abff2d0de28a88e3d5f2",
-      "implementation-summary.md": "acfc70447e8553553830369487141bd83bc88750d39f435aacc9f7cf5cedf900"
+      "implementation-summary.md": "ae8cc9296db32ac27eada339f257cb7336a5c55f7a45031779417e2f80f8c809"
     },
     "last_active_at": null
   }

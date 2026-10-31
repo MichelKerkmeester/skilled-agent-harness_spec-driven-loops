@@ -96,10 +96,10 @@ Leave every reader-facing surface true, complete the parent metadata, and produc
 | `.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md` | Modify | The persona-attachment table gains a transport row |
 | `.skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md` | Modify | Mode counts, the transport paragraph and the inspector line |
 | `.skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md` | Modify | The same corrections at the leaf that owns the routing description |
-| `specs/cli-jev/001-cli-jev-creation/spec.md` | Modify | Parent phase map, handoff criteria and metadata |
-| `specs/cli-jev/001-cli-jev-creation/goal.md` | Create | Parent durable directive, decisions and completion criteria |
-| `specs/cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout/**` | Modify | This phase's five documents |
-| `specs/cli-jev/001-cli-jev-creation/004-catalog-and-playbook/{spec.md,plan.md}` | Modify | Complete the phase-004 pair left at scaffold |
+| `specs/cli-classifier/001-cli-jev-creation/spec.md` | Modify | Parent phase map, handoff criteria and metadata |
+| `specs/cli-classifier/001-cli-jev-creation/goal.md` | Create | Parent durable directive, decisions and completion criteria |
+| `specs/cli-classifier/001-cli-jev-creation/005-docs-governance-and-closeout/**` | Modify | This phase's five documents |
+| `specs/cli-classifier/001-cli-jev-creation/004-catalog-and-playbook/{spec.md,plan.md}` | Modify | Complete the phase-004 pair left at scaffold |
 | `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` | Modify | Regenerated after the spec docs landed |
 <!-- /ANCHOR:scope -->
 
@@ -114,7 +114,7 @@ Leave every reader-facing surface true, complete the parent metadata, and produc
 |----|-------------|---------------------|
 | REQ-001 | Every document that enumerates the hub's modes names `cli-jev` as a transport rather than leaving it out or calling it an executor | The three roster documents and both hub catalog files carry the transport, with a reader able to tell that it runs nothing |
 | REQ-002 | The parent `spec.md` carries the phase map with real statuses and the handoff criteria table, and `goal.md` carries the decisions and completion criteria | `validate.sh --strict` on the parent reports no error for either file |
-| REQ-003 | The recursive strict gate over the parent and the five children prints an explicit `RESULT: PASSED` | `validate.sh specs/cli-jev/001-cli-jev-creation --recursive --strict` output read in full |
+| REQ-003 | The recursive strict gate over the parent and the five children prints an explicit `RESULT: PASSED` | `validate.sh specs/cli-classifier/001-cli-jev-creation --recursive --strict` output read in full |
 | REQ-004 | Every child's five documents are authored rather than scaffold, including the phase-004 pair | A scaffold-token scan over the five children returns empty |
 
 ### P1 - Required (complete OR user-approved deferral)

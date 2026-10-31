@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/052-routing-completeness/004-cross-hub-vocabulary"
+    packet_pointer: "sk-doc/051-hub-routing-quality/001-routing-completeness/004-cross-hub-vocabulary"
     last_updated_at: "2026-09-02T18:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the durable directive"

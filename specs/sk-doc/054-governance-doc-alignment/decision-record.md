@@ -9,14 +9,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/055-governance-doc-alignment"
+    packet_pointer: "sk-doc/054-governance-doc-alignment"
     last_updated_at: "2026-09-14T10:20:00Z"
     last_updated_by: "claude-conductor"
     recent_action: "ADR-001 recorded"
     next_safe_action: "None, the operator may overturn ADR-001"
     blockers: []
     key_files:
-      - "specs/sk-doc/055-governance-doc-alignment/acceptance-criteria.md"
+      - "specs/sk-doc/054-governance-doc-alignment/acceptance-criteria.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-055-governance-doc-alignment"

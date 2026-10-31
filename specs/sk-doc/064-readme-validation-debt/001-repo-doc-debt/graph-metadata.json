@@ -102,16 +102,16 @@
     ],
     "causal_summary": "The README audit (`auditreadmes.py`) over this worktree reports 753 READMEs, 244 template-invalid, 119 broken references, 19 missing key artifacts and 1 warning",
     "created_at": "2026-10-27T06:53:10Z",
-    "last_save_at": "2026-10-31T13:26:03.936Z",
+    "last_save_at": "2026-10-31T13:41:25.554Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:dd45929fa0a89bfe69617d8825727106b56ba40de20a21a905475b3b10462ba9",
+    "source_fingerprint": "sha256:16cb937592bbeda942639fa0b0bc057303a2d353e1cbfa8d8aea11bcd1cbc800",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4ca7988fe4d101d2f33c56832a6feb8d7f91e79c4d417b4884732c22e34997b5"
+      "spec.md": "e9a605d6bcad265c6d05e1745a0319e4a0e577ce7837aa70d96553a8cb00ff11"
     },
     "last_active_at": null
   }

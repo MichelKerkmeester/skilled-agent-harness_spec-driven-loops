@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/014-removed-template-reality-sweep"
     last_updated_at: "2026-10-26T14:00:00Z"
     last_updated_by: "conductor"
     recent_action: "Fixed every stale mention and reality contradiction from both audits"

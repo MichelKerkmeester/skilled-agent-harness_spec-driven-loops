@@ -206,7 +206,7 @@
     ],
     "causal_summary": "`checkreadmereferences.py` and `checkderivedreadmecounts.py` fail on all 12 root and hub READMEs",
     "created_at": "2026-10-27T19:44:37Z",
-    "last_save_at": "2026-10-31T13:26:05.670Z",
+    "last_save_at": "2026-10-31T13:41:26.089Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:57813e3a25e79aaa4232bdc8d04e0c0c1c627512e217861eb6ce7ec00968c607",
+    "source_fingerprint": "sha256:c78590fa178da0ec80a2f4a6e5a998736033ace769136aae9cac3bf0ab7af6d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "660d537f8aa3f6fafe0e78f2cafb4d8344b1aca5fe6aa0e153c48e667e09970b",
+      "spec.md": "26189ef099d4189e055ca313b5b7c07ba7b432fb9b78783d97043ad3250d7fa3",
       "plan.md": "ad1ef5a8f898bd795dcb2943f3cdb2e830b4ef6f4f4d0f497f1f2d56b0dfd9cf",
-      "tasks.md": "41ade258ec933c2b7510e643cd3cf79c4453cab26dedbf6bafd045dc574bddb7",
-      "implementation-summary.md": "f88ef801da71e031220d2cda7290ea3db8539d67842e946a334b4ba76f024560"
+      "tasks.md": "65ea5d495a98f6788b43d03a3ff58703b860112fcf45d7d78c4c9bd743a0e76b",
+      "implementation-summary.md": "50c6f5257195fe9e8054dbacc400275503023ff78ad5a87a0742541586a142af"
     },
     "last_active_at": null
   }

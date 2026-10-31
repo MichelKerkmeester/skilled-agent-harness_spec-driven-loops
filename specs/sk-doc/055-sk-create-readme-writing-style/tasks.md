@@ -31,7 +31,7 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Scaffold Level 2 packet at `specs/sk-doc/056-sk-create-readme-writing-style/` via `create.sh` and move it under `specs/sk-doc/`
+- [x] T001 Scaffold Level 2 packet at `specs/sk-doc/055-sk-create-readme-writing-style/` via `create.sh` and move it under `specs/sk-doc/`
 - [x] T002 Analyze `sk-create-readme` writing-style logic (SKILL.md, three references, two templates, shared core-standards) and enumerate the gaps the root README rework exposed
 - [x] T003 Record scope decisions: Docs + Template, new packet, technical register for non-front-page READMEs
 <!-- /ANCHOR:phase-1 -->

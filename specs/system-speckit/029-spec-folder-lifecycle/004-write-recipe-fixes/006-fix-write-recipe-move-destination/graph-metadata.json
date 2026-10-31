@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Step 2 of `.skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md` moves the scaffold into the selected track",
     "created_at": "2026-10-23T11:48:59Z",
-    "last_save_at": "2026-10-31T13:26:30.942Z",
+    "last_save_at": "2026-10-31T13:58:30.685Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7af34a3b1c88eacd22aaab7daa446af8bc81eed6dee109829260b84481293fda",
+    "source_fingerprint": "sha256:ba5b2f4f36720eaa6ba9096180c4061e7a8757286df63ba8751e8da1fdfc5f73",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "60c94fa200d81a76b2ab4beae491b7bac86a0fec22338ad45ef8e12dc4c191cf",
       "plan.md": "cda2fbb2095675a37ca57268c172d65730ce3352c1048912a853fc7f386afd20",
-      "tasks.md": "9e1c8f50bcf8017f0d9eb2c7399cc17e3ab783f79b10b6bd1cb15290577ba652",
-      "implementation-summary.md": "62162dceb13bf34158725b48442635f0651a7a864e8c22427c5507ab8ea21ee2"
+      "tasks.md": "a5d700e04df4a8cd14c60d4935bdc2c23fd3bba2bb7cb551972d5e25e31df96b",
+      "implementation-summary.md": "28e7fe51d39644191fed92c0df3323fe082ff10435342c009f980041f7698a14"
     },
     "last_active_at": null
   }

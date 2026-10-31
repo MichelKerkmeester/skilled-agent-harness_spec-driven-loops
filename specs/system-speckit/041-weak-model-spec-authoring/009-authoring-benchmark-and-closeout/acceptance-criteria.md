@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/009-authoring-benchmark-and-closeout"
     last_updated_at: "2026-10-25T09:10:15Z"
     last_updated_by: "worker"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout
+**Packet:** system-speckit/041-weak-model-spec-authoring/009-authoring-benchmark-and-closeout
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-10-23
@@ -56,7 +56,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-003 | REQ-003 | Given the v2.3 token form, When the final side is measured, Then M2 counts bare v2.2 hints plus value tokens, the rule is an accepted ADR, and the command is the one in T006 | `rg -c 'ADR-001' plan.md` is at least `1`, `rg -c 'M2 is the sum of two occurrence counts' plan.md` is at least `1`, and the M2 value in `baseline.json` is an integer | Met | - |
 | AC-004 | REQ-004 | Given both `baseline.json` files, When T007 has run, Then `delta.md` holds the minimum, the maximum and the mean per metric per side and the no-significance sentence | `jq '.metrics \| length' scratch/baseline/delta.json` prints `5`, `grep -cE '^\| (strict_passed\|leftover_hints\|missing_anchors\|out_of_scope_writes\|seconds) \|' scratch/baseline/delta.md` prints `5`, and `grep -c 'cannot support a significance claim' scratch/baseline/delta.md` prints `1` | Met | - |
 | AC-005 | REQ-005 | Given `delta.json`, When T008 has run, Then the report folder follows the grammar, `README.md` holds ten sections, `results.csv` holds six rows and the index gains one row | The T008 verify prints `6`, `10`, `1` and `NAME_OK` | Met | - |
-| AC-006 | REQ-006 | Given the packet is closed, When recursive strict validation runs, Then the last `RESULT:` line reads `PASSED` | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/054-weak-model-spec-authoring --recursive --strict \| grep 'RESULT:' \| tail -1` prints `RESULT: PASSED` | Met | - |
+| AC-006 | REQ-006 | Given the packet is closed, When recursive strict validation runs, Then the last `RESULT:` line reads `PASSED` | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/041-weak-model-spec-authoring --recursive --strict \| grep 'RESULT:' \| tail -1` prints `RESULT: PASSED` | Met | - |
 | AC-007 | REQ-007 | Given the packet is closed, When T009 and T011 have run, Then the global entry and the two nested files exist and pass their checks | `ls` lists the three paths, `validate_document.py` prints `Total issues: 0` for each, and `hvr_scan.py` prints `hard blockers: 0` for the global entry | Met | - |
 | AC-008 | REQ-008 | Given the published docs, When T012 has run, Then the generator check exits 0 and only the four index artifacts changed in that step | `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check` exits 0 and the T012 diff line prints `0` | Met | - |
 | AC-009 | REQ-009 | Given the packet folders on disk, When T013 has run, Then the dry rerun reports up to date and the stored children equal the disk children | `system-speckit: up to date` with exit 0, and `cmp` prints `CHILDREN_MATCH` | Met | - |

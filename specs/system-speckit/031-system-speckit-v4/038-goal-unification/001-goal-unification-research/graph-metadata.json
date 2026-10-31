@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Seven design decisions must be frozen before any code changes, and each one is a judgment call the repository cannot settle by grep",
     "created_at": "2026-09-11T07:11:47Z",
-    "last_save_at": "2026-10-31T13:26:57.750Z",
+    "last_save_at": "2026-10-31T13:59:05.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:6c4ddb204985885d7af1ff06e39968d8d3a5e9bda142fca05eb8933761a0074f",
+    "source_fingerprint": "sha256:f9c0779a1c577bb542aac2c40e53b040eba31130e8b79c274c2f3c5bd8bab6b4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c1a3a394bb75398880423774a3aaf766215f61ee1929b9694d9a5e23b7902094",

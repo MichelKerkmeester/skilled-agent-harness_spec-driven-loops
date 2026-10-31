@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin"
+    packet_pointer: "cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin"
     last_updated_at: "2026-09-20T10:00:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Closed the contract-pin criteria against the captured probe evidence"
@@ -37,7 +37,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin
+**Packet:** cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-09-20

@@ -31,7 +31,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Open the packet and mint its derived metadata (`specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/`)
+- [x] T001 Open the packet and mint its derived metadata (`specs/system-speckit/031-system-speckit-v4/045-v4-changelog-voice-rewrite/`)
 - [x] T002 Fix the baseline: wall census, HVR scan, skeleton counts and the token extraction against `HEAD` (`../CHANGELOG-v4.0.0.0.md`)
 - [x] T003 Verify the four corrections at their sources: hub inventory, `mcp-tooling/mode-registry.json`, activation cohort (`.skilled/skills/`, `.skilled/bin/lib/compiled-routing/`)
 <!-- /ANCHOR:phase-1 -->

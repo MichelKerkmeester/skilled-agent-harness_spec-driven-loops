@@ -10,17 +10,17 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/001-deep-research"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/001-deep-research"
     last_updated_at: "2026-09-26T18:38:11Z"
     last_updated_by: "generate-context"
     recent_action: "Closed research phase; authored phases 002 and 003 as Planned"
     next_safe_action: "Await the operator's pick to build 002-advisor-jev-tiebreak-arm"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/research.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/goal.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/001-deep-research/research/research.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/goal.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/spec.md"
     session_dedup:
       fingerprint: "sha256:35ccdd7afa91041b38e29f775b574185e678b387946749f7b6798f5de149091f"
       session_id: "spec-cli-jev-003-workflow-integration"

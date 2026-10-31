@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The machine router takes 22% of all SKILL.md words, and five skills sit within 25 words of the 5,000-word cap",
     "created_at": "2026-10-29T07:52:41Z",
-    "last_save_at": "2026-10-31T13:25:50.461Z",
+    "last_save_at": "2026-10-31T14:01:44.465Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:81f4888766d176d230e5ae57b461b071c73912f7eef1b8c38bd0ac9f14459698",
+    "source_fingerprint": "sha256:1bcab08989f94e14cf0bef647a18e59d9a1a813eaa6e6e84f7d7ab6411cdc230",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0f7576f399ba3178589acba75610464be93b3258ed98eac26dfb37e4b384d5b3",
+      "spec.md": "58e05c21f388c641106de32f2a00ce16afc44885d67d15349721469d6b6919c2",
       "plan.md": "ff1ae63b70cd077da64c0e141c3ef3f4f68f40d005c7ba7de44348a444bf3911",
       "tasks.md": "e0b8ccfc715f99c3ee69845b3e3c3b51460a827d71633830061e023319c36edd",
-      "implementation-summary.md": "6bd9aab7be2bf9bc2c13a693ed7f5c905c59950794298696b61720e5733b3b32",
+      "implementation-summary.md": "2319c7457a9634db7a9eda69d9f6161a1208e507717fcef5591d4f1499bdc441",
       "research/research.md": "a91f5609edc0829cf1921aefd376150b1de3db94e28d14617824f3827dd2bf6f"
     },
     "last_active_at": null

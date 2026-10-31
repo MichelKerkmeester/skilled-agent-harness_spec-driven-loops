@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/002-cli-jev-hub-migration"
+    packet_pointer: "cli-classifier/002-cli-jev-hub-migration"
     last_updated_at: "2026-09-20T14:45:00Z"
     last_updated_by: "orchestrator-session"
     recent_action: "Phases 001-005 closed; both playbooks re-run from the new home"
@@ -37,7 +37,7 @@ _memory:
 ## 1. DURABLE DIRECTIVE
 
 **Objective:** `cli-jev` is a standalone parent hub at `.skilled/skills/cli-jev/` with CLI usage as its first
-mode, `cli-external-orchestration` carries no trace of it, its history lives at `specs/cli-jev/001-cli-jev-creation`,
+mode, `cli-external-orchestration` carries no trace of it, its history lives at `specs/cli-classifier/001-cli-jev-creation`,
 and the compiled fleet serves six hubs.
 
 ### Decisions
@@ -85,7 +85,7 @@ Each phase has its own `goal.md`; a child that changes a decision here amends it
 - [x] The hub passes the doctor and package validator with `cli-usage` as its transport mode
 - [x] `cli-external-orchestration` is back to seven workflow modes with no transport trace
 - [x] The dispatch chain resolves the moved packet; both hook suites pass
-- [x] History lives at `specs/cli-jev/001-cli-jev-creation`; the track root declares both children
+- [x] History lives at `specs/cli-classifier/001-cli-jev-creation`; the track root declares both children
 - [x] Six hubs report `compiled-serving` fresh and the guard exits 0; the suites keep their pre-existing resolution failures only — two of 37 and fifteen of 42, all the archived authored resolver
 - [x] The playbook ran from the new home with zero failures
 - [x] The recursive strict gate passes across both packets
@@ -100,7 +100,7 @@ Each phase has its own `goal.md`; a child that changes a decision here amends it
 |------|-------|
 | 2026-09-20 | Parent scaffolded with five children; track root metadata authored; baseline probes captured |
 | 2026-09-20 | Directive written from the operator's answers: hub `cli-jev` + mode `cli-usage`, fleet membership in scope, playbook re-run approved |
-| 2026-09-20 | Phase 001 closed: the packet history lives at `specs/cli-jev/001-cli-jev-creation`, both packets validate at 0 errors, and the `cli-jev` track sweep reports no drift |
+| 2026-09-20 | Phase 001 closed: the packet history lives at `specs/cli-classifier/001-cli-jev-creation`, both packets validate at 0 errors, and the `cli-jev` track sweep reports no drift |
 | 2026-09-20 | Phase 002 closed: `.skilled/skills/cli-jev/` passes the doctor at 0 warnings and the package validator on all three sub-checks; the mode answers as `cli-usage`; the old hub still registers the retired row until phase 003 |
 | 2026-09-20 | Phase 003 closed: the old hub answers with seven workflow modes and no transport trace (doctor 41 `PASS`), the preflight chain refuses `jev run @request.json --value` with the packet's own rule text, both hook suites pass, the rosters and generated surfaces name the new home, and the hub's release line is `0.1.0.0` |
 | 2026-09-20 | Phase 004 closed: the hub is the sixth fleet member — rollout child `008-cli-jev` built at `3240ebf5…`, six surfaces wired, activation minted (generation 1, fence epoch 1) and fresh, `compiled-route.cjs` serves it under an unset flag, admission passes for the fleet, and the hub's doctor and validator report `0.2.0.0` and `compiled-ready` |

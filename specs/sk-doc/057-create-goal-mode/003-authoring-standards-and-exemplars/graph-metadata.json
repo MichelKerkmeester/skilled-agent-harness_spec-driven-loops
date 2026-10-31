@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Goal files can retain a template objective, include criteria that require checking other files or state a child count that conflicts with the binding table (specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/030-mutation-suite/goal.md:43; specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/goal.md:84-90; specs/sk-git/028-crawlable-commit-history/goal.md:81-90,111)",
+    "causal_summary": "Goal files can retain a template objective, include criteria that require checking other files or state a child count that conflicts with the binding table (specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/030-mutation-suite/goal.md:43; specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/goal.md:84-90; specs/sk-git/028-crawlable-commit-history/goal.md:81-90,111)",
     "created_at": "2026-09-25T18:48:47Z",
-    "last_save_at": "2026-10-31T13:26:00.266Z",
+    "last_save_at": "2026-10-31T14:01:51.023Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5348ee2cb06df5c334ea2df3ed8d8390c096c7d5cc7092b2fc5629d9b0dc0eb3",
+    "source_fingerprint": "sha256:983a47eac3a0f17693827516677d573f3e3c881a4cfa3d4a99990271a6b8ba04",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "daa98b7a4ec6260bdf31d1d627285378682928a7f8c5d4414ad694b0f4f856c4",
-      "plan.md": "86056f4f9a5e0cd84707da85cc52c8a57cf604a09f586aa8ed1b6020f9b69956",
-      "tasks.md": "5c2baafd1815206b1b7dcb724e053fb5ca23f2fb671bdd22f16de66ad4b02c78",
-      "implementation-summary.md": "61821fea5a382a2aedc10afd6901822b69fcb6757abeb9c6a27b88619e28dfa3"
+      "spec.md": "0b7585fa79c9479e51a858d2d22bce0424fea738223e05cdb32c758ed75422c7",
+      "plan.md": "45e1b0637585986cf149d97a73b66bb78c3425b5b1ce7887bd059e03952e9dcc",
+      "tasks.md": "d8e5aac318d541c3a9bbc776d86ac6acfaaf5c5793db8863bc08ffca1682abda",
+      "implementation-summary.md": "0690133eb7b495cdb1dc1d2f4b7a687f3594cf4356b540c830f9317e57367f7a"
     },
     "last_active_at": null
   }

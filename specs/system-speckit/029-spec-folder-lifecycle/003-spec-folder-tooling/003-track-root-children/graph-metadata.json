@@ -204,7 +204,7 @@
     ],
     "causal_summary": "A track root is a folder directly under `specs/`, such as `specs/sk-doc/`, that holds numbered packets and lists them in the `childrenids` of its `graph-metadata.json`",
     "created_at": "2026-09-24T09:53:58Z",
-    "last_save_at": "2026-10-31T13:26:23.398Z",
+    "last_save_at": "2026-10-31T13:58:17.237Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:71a064f78b3d3cedf952ca88feb327e2f04ff9752a33c117e27f221886af71fd",
+    "source_fingerprint": "sha256:f0a021703c10fcebce051149f9ae6c5cdfba813918a31a365d723ce80b29cd17",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b88b78498918faa3ff1cd1eb0321a00ca5a87ec6429741e92dcda867dfea6a57",

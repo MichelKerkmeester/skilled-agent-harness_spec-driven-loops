@@ -25,11 +25,11 @@ contextType: "general"
 |--------|-------|
 | **Language/Stack** | Markdown, Bash, and the existing Node.js goal CLI (`.skilled/hooks/goal/bin/goal.cjs:203-216`) |
 | **Framework** | None; the phase records evidence and decisions. |
-| **Storage** | Existing repository files and five phase analysis artifacts (`specs/sk-doc/060-create-goal-mode/spec.md:121-129`). |
+| **Storage** | Existing repository files and five phase analysis artifacts (`specs/sk-doc/057-create-goal-mode/spec.md:121-129`). |
 | **Testing** | `find`, `rg`, `awk`, `goal.cjs packet`, and strict `validate.sh`. |
 
 ### Overview
-The phase enumerates every non-archive `goal.md`, measures each packet through `goal.cjs packet`, and reproduces the defect examples named by the audit (`.skilled/hooks/goal/bin/goal.cjs:203-216`; `specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md:37,41-45`). It then records the goal anatomy, owner boundary, decision tests, checker decision, and mode target tree, following the inventory-to-contract pattern from 040 phase 002 (`specs/sk-doc/z_archive/040-create-repo-rules/002-inventory-and-skill-contract/decision-tests.md:17-23`; `specs/sk-doc/z_archive/040-create-repo-rules/002-inventory-and-skill-contract/mode-boundary.md:22-42`; `specs/sk-doc/z_archive/040-create-repo-rules/002-inventory-and-skill-contract/rule-anatomy.md:45-78`; `specs/sk-doc/z_archive/040-create-repo-rules/002-inventory-and-skill-contract/target-tree.md:30-69`).
+The phase enumerates every non-archive `goal.md`, measures each packet through `goal.cjs packet`, and reproduces the defect examples named by the audit (`.skilled/hooks/goal/bin/goal.cjs:203-216`; `specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md:37,41-45`). It then records the goal anatomy, owner boundary, decision tests, checker decision, and mode target tree, following the inventory-to-contract pattern from 040 phase 002 (`specs/sk-doc/z_archive/040-create-repo-rules/002-inventory-and-skill-contract/decision-tests.md:17-23`; `specs/sk-doc/z_archive/040-create-repo-rules/002-inventory-and-skill-contract/mode-boundary.md:22-42`; `specs/sk-doc/z_archive/040-create-repo-rules/002-inventory-and-skill-contract/rule-anatomy.md:45-78`; `specs/sk-doc/z_archive/040-create-repo-rules/002-inventory-and-skill-contract/target-tree.md:30-69`).
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,13 +38,13 @@ The phase enumerates every non-archive `goal.md`, measures each packet through `
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The frozen parent scope, D1-D6, both audits, and the goal contract sources are available (`specs/sk-doc/060-create-goal-mode/spec.md:90-99,119-143`; `specs/sk-doc/060-create-goal-mode/goal.md:49-54`).
-- [ ] The five output paths are fixed in `spec.md` and no skill-file edits are planned (`specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/spec.md:68-85`).
+- [ ] The frozen parent scope, D1-D6, both audits, and the goal contract sources are available (`specs/sk-doc/057-create-goal-mode/spec.md:90-99,119-143`; `specs/sk-doc/057-create-goal-mode/goal.md:49-54`).
+- [ ] The five output paths are fixed in `spec.md` and no skill-file edits are planned (`specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/spec.md:68-85`).
 - [ ] The goal CLI invocation is known to accept a packet directory and workspace (`.skilled/hooks/goal/bin/goal.cjs:203-216`).
 
 ### Definition of Done
 - [ ] The five analysis artifacts exist and answer the phase requirements.
-- [ ] Each in-scope goal path has a recorded `goal.cjs packet` result, and each audit-cited defect has a reproduction command and output (`specs/sk-doc/060-create-goal-mode/spec.md:138-143`).
+- [ ] Each in-scope goal path has a recorded `goal.cjs packet` result, and each audit-cited defect has a reproduction command and output (`specs/sk-doc/057-create-goal-mode/spec.md:138-143`).
 - [ ] The mode boundary resolves the conformance-check question against D4 and the strict phase validator passes.
 <!-- /ANCHOR:quality-gates -->
 
@@ -77,7 +77,7 @@ This phase is not a code fix. These are the source surfaces it reads and the pla
 | Goal slice helper and CLI | Produce durable, chat, and objective projections and report packet size | Read only; measure goals with `packet` | `nl -ba .skilled/hooks/goal/lib/goal-slice.cjs`; `node .skilled/hooks/goal/bin/goal.cjs packet <packet-directory> --workspace "$PWD"` |
 | Validator and phase scaffold | Enforce budget/listed binding targets and scaffold parent/child docs | Read only; record gaps for owner decision | `nl -ba .skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts`; `nl -ba .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh` |
 | Goal hooks and host command | Own runtime binding, injection, and session objective handling | Read only; do not mutate runtime state | `.skilled/hooks/goal/bin/goal.cjs:153-173,203-216,233-246`; `.skilled/commands/speckit/assets/speckit-plan.yaml:182-200` |
-| `sk-create-goal` | Own packet-file authoring decisions and content | Define boundary only; do not build mode files in this phase | Parent scope: `specs/sk-doc/060-create-goal-mode/spec.md:90-99` |
+| `sk-create-goal` | Own packet-file authoring decisions and content | Define boundary only; do not build mode files in this phase | Parent scope: `specs/sk-doc/057-create-goal-mode/spec.md:90-99` |
 
 The code-fix inventories do not apply because this phase changes no producer, consumer, or shared contract. Preserve the source-to-owner map and cite the exact evidence instead.
 <!-- /ANCHOR:affected-surfaces -->
@@ -101,7 +101,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Command census | Every non-archive goal file and its goal projection | `find` loop and `node .skilled/hooks/goal/bin/goal.cjs packet` |
 | Defect reproduction | Each concrete corpus defect cited by the audit | `goal.cjs packet`, `rg -nF`, `awk`, and `find` |
 | Source trace | Goal structure, slices, owner responsibilities, and phase scaffold | `nl -ba` and cited `path:line` ranges |
-| Document validation | Six current phase planning documents | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract --strict` |
+| Document validation | Six current phase planning documents | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract --strict` |
 
 Run the census and one `packet` report per file:
 
@@ -120,10 +120,10 @@ Reproduce the cited examples with exact text searches and packet measurements:
 node .skilled/hooks/goal/bin/goal.cjs packet specs/sk-git/028-crawlable-commit-history --workspace "$PWD"
 node .skilled/hooks/goal/bin/goal.cjs packet specs/sk-design/019-sk-design-diagram-upgrade --workspace "$PWD"
 rg -n 'Objective:.*One sentence.*Not how.*progress' specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/030-mutation-suite/goal.md
-rg -nF 'Every phase reports its acceptance criteria closeable' specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/goal.md
+rg -nF 'Every phase reports its acceptance criteria closeable' specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/goal.md
 rg -n 'all six children|^\| 00[1-8] \|' specs/sk-git/028-crawlable-commit-history/goal.md
-rg -n '007' specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/spec.md specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/goal.md
-find specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission -type f -path '*/007-*/goal.md' -print
+rg -n '007' specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/spec.md specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/goal.md
+find specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission -type f -path '*/007-*/goal.md' -print
 ```
 
 Count completion bullets in each goal to classify values outside three to seven:
@@ -144,8 +144,8 @@ done
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Parent scope and D1-D6 | Internal source | Available | Stop if local interpretation conflicts with a frozen decision (`specs/sk-doc/060-create-goal-mode/goal.md:49-54`). |
-| Two audits and goal source set | Internal source | Available for review | Mark missing or unverified claims UNKNOWN; do not infer corpus totals (`specs/sk-doc/060-create-goal-mode/spec.md:164-168`). |
+| Parent scope and D1-D6 | Internal source | Available | Stop if local interpretation conflicts with a frozen decision (`specs/sk-doc/057-create-goal-mode/goal.md:49-54`). |
+| Two audits and goal source set | Internal source | Available for review | Mark missing or unverified claims UNKNOWN; do not infer corpus totals (`specs/sk-doc/057-create-goal-mode/spec.md:164-168`). |
 | `goal.cjs packet` | Existing CLI | Available | Record command and exit status; do not present a substitute metric as CLI output (`.skilled/hooks/goal/bin/goal.cjs:203-216`). |
 <!-- /ANCHOR:dependencies -->
 
@@ -155,7 +155,7 @@ done
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: A planned command writes outside the five phase analysis artifacts, or a report cannot be reconciled to its cited source or command output.
-- **Procedure**: Stop that command. Verify the exact path it created, remove only that unaccepted phase-produced artifact, preserve source audits and scaffolds, then rerun the affected read-only command. Record the deviation in the relevant report; do not edit `.skilled/` (`specs/sk-doc/060-create-goal-mode/spec.md:90-99`).
+- **Procedure**: Stop that command. Verify the exact path it created, remove only that unaccepted phase-produced artifact, preserve source audits and scaffolds, then rerun the affected read-only command. Record the deviation in the relevant report; do not edit `.skilled/` (`specs/sk-doc/057-create-goal-mode/spec.md:90-99`).
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -198,7 +198,7 @@ Phase 1 (Setup) ──────► Phase 2 (Inventory and contract) ───
 ### Pre-deployment Checklist
 - [ ] Source line citations are reopened before handoff.
 - [ ] Output paths are confirmed inside the phase folder.
-- [ ] No mode, hook, host-command, or system-spec-kit edit is included (`specs/sk-doc/060-create-goal-mode/spec.md:90-99`).
+- [ ] No mode, hook, host-command, or system-spec-kit edit is included (`specs/sk-doc/057-create-goal-mode/spec.md:90-99`).
 
 ### Rollback Procedure
 1. Stop the unexpected writer and capture its command, path, output, and exit status.
@@ -207,7 +207,7 @@ Phase 1 (Setup) ──────► Phase 2 (Inventory and contract) ───
 4. Confirm the five planned artifacts and frozen source paths are the only phase outputs.
 
 ### Data Reversal
-- **Has data migrations?** No; the phase is read-only against runtime state and source files (`specs/sk-doc/060-create-goal-mode/spec.md:90-99`).
+- **Has data migrations?** No; the phase is read-only against runtime state and source files (`specs/sk-doc/057-create-goal-mode/spec.md:90-99`).
 - **Reversal procedure**: Not applicable; no data is written.
 <!-- /ANCHOR:enhanced-rollback -->
 

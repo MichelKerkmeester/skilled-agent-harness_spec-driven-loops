@@ -49,7 +49,8 @@
       "specs/descriptions.json",
       ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt",
       ".opencode/skills/sk-doc/sk-create-frontmatter/README.md",
-      ".opencode/skills/sk-doc/sk-create-frontmatter/changelog/v1.0.0.0.md"
+      ".opencode/skills/sk-doc/sk-create-frontmatter/changelog/v1.0.0.0.md",
+      "specs/sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/spec.md"
     ],
     "entities": [
       {
@@ -199,7 +200,7 @@
     ],
     "causal_summary": "Each phase proved its own step",
     "created_at": "2026-09-01T08:43:01Z",
-    "last_save_at": "2026-10-31T13:25:44.058Z",
+    "last_save_at": "2026-10-31T14:01:31.005Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +210,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:28615c06256c3ce870f8362eb4b2b17b02637845dc23ce852d482f64dd6e761f",
+    "source_fingerprint": "sha256:2219ccefc9ffbfe0549a464be591451553cb3bb5f6eccd5a5e42f67a67ed382a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7b6c534b7c0430029b313805a25a2a370cf08d98b1261d617aa3cdabb2c636fc",
+      "spec.md": "18153e5412131374e902909f2a550dc7a082019956332bf9701fc32911d30585",
       "plan.md": "05f5cd9cf33e41427f75c532d84265a10fbdb275c8a32a6ca723c301c20ddd79",
       "tasks.md": "55644dcd1ccff144b8e23b3f75ec414b23cc287f619f0228c830e961271c4253",
-      "implementation-summary.md": "63b1c8b14e9f50ce55a07e3cb017944952904dbf13e1072d58b88139c9a96490"
+      "implementation-summary.md": "10d58930190f9cb1b68243c75a18c3465de35fc64d9889b30b9890c5b3b3e746"
     },
     "last_active_child_id": null,
     "last_active_at": null

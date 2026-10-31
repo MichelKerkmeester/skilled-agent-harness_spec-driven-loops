@@ -43,7 +43,7 @@ This is **Phase 67** of the system-speckit v4 program. It covers what a person w
 **Scope Boundary**: the root docs, the `.env.example` switch list and the block messages of the commit-msg and pre-commit hooks. What the hooks check, and the runtime settings the repository ships, stay as they are.
 
 **Dependencies**:
-- The validation off switches from `specs/sk-doc/062-doc-validation-off-switches`, which the Off Switches section links
+- The validation off switches from `specs/sk-doc/058-doc-validation-off-switches`, which the Off Switches section links
 - The git hooks under `.skilled/scripts/git-hooks/` and their test suites
 
 **Deliverables**:
@@ -85,7 +85,7 @@ A new user learns from the README what the git hooks do, how to get one command 
 - `AGENTS.md` - not requested
 - A switch of its own for the agent mirror gate - its block names the whole-chain switch instead, see the plan's decision
 - The README line naming a `CLAUDE.md` symlink - commit `003dabe08d` fixed it before this phase started
-- The validation switch lines in `.env.example` Section 5 - they close review finding F002 and belong to `specs/sk-doc/062-doc-validation-off-switches`
+- The validation switch lines in `.env.example` Section 5 - they close review finding F002 and belong to `specs/sk-doc/058-doc-validation-off-switches`
 
 ### Files to Change
 

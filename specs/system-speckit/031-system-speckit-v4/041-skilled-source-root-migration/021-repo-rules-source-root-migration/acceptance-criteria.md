@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration"
+    packet_pointer: "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration"
     last_updated_at: "2026-09-20T10:30:00Z"
     last_updated_by: "pi"
     recent_action: "Corpus moved; references and checker updated; harness green"

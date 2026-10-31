@@ -27,7 +27,7 @@ contextType: "implementation"
 | **Status** | Planned |
 | **Created** | 2026-10-12 |
 | **Branch** | `scaffold/051-symlinked-runtime-root` |
-| **Related** | `system-speckit/033-system-speckit-v4/039-entry-point-symlink-resolution`, whose fix covers the case without the flag |
+| **Related** | `system-speckit/031-system-speckit-v4/039-entry-point-symlink-resolution`, whose fix covers the case without the flag |
 <!-- /ANCHOR:metadata -->
 
 ---

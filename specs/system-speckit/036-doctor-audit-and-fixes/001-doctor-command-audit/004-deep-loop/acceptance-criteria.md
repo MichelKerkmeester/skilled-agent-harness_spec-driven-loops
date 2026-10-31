@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/048-doctor-command-audit/004-deep-loop"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/004-deep-loop"
     last_updated_at: "2026-10-02T00:00:00Z"
     last_updated_by: "implementation"
     recent_action: "All four acceptance criteria verified Met"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/048-doctor-command-audit/004-deep-loop
+**Packet:** system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/004-deep-loop
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-02

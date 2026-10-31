@@ -7,14 +7,14 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research"
     last_updated_at: "2026-10-29T12:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Merged the lineage into research.md and checked the citations in the AI Systems checkout"
     next_safe_action: "Scope phase 008 from the findings"
     blockers: []
     key_files:
-      - "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/research/research.md"
+      - "specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/research/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "0271-ai-systems-research"

@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The lexical retrieval system replaced a database this year, and its generator, lookup, command, Gate 1 usage and documentation have never been audited together",
     "created_at": "2026-09-06T14:29:30Z",
-    "last_save_at": "2026-10-31T13:26:47.261Z",
+    "last_save_at": "2026-10-31T13:58:52.725Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34a0c3fa56d11a0e7a0badf12fb1f73dc2415c7a2baadeda68d55c1a7a75c9e7",
+    "source_fingerprint": "sha256:f83d3d28b2c9b9dada7823029d63531c774a25762660da8497a4f5f00cb4f7b7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5062a7d1a83da0769e016ba5b3ef65be14d13d2ba3fcad8fd74da80893aa2946",

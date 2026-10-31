@@ -102,8 +102,8 @@ Seven hubs carry `hub-router.json`, `mode-registry.json` and a root `ROUTER.md`.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/research/` | Create | Loop state, lineage iterations and the merged `research.md` |
-| `specs/sk-doc/072-skill-routing-and-clarity/001-deep-research/*.md` | Modify | Phase docs updated with the outcome |
+| `specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/001-deep-research/research/` | Create | Loop state, lineage iterations and the merged `research.md` |
+| `specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/001-deep-research/*.md` | Modify | Phase docs updated with the outcome |
 <!-- /ANCHOR:scope -->
 
 ---

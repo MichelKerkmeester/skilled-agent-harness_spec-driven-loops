@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/050-open-knowledge-format-adoption/009-census-hardening"
+    packet_pointer: "system-speckit/037-open-knowledge-format-adoption/009-census-hardening"
     last_updated_at: "2026-10-05T06:45:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "AC-004 superseded by ADR-001; all eight criteria closed"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/050-open-knowledge-format-adoption/009-census-hardening
+**Packet:** system-speckit/037-open-knowledge-format-adoption/009-census-hardening
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-04

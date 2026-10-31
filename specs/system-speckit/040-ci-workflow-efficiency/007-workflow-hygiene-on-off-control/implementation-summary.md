@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control"
+    packet_pointer: "system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control"
     last_updated_at: "2026-10-25T21:40:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "T100 to T102 closed: 0 timeout kills in 690 runs, final gates passed"
@@ -63,7 +63,7 @@ The phase closes three gaps that a maintainer meets in production: a hung job ho
 | `.github/workflows/*.yml` (all 32) | Modified (`8ff7da700d`) | A `timeout-minutes` value on every job, sized by `scratch/r24/size-timeouts.mjs` |
 | `.github/workflows/*.yml` (all but Dependabot's) | Modified (`9480d99e6d`) | The `vars.SKILLED_CI` switch on 42 jobs, ANDed with any existing condition |
 | `.github/workflows/README.md` | Modified (`03abdb20d8`) | The `### On/off switches` section at `:76` |
-| `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/` | Created | `decisions.md`, `phase-baseline.md`, `inventory.md`, `switch-groups.md`, `constraints.md`, `r24/`, `r25-dependabot.md`, `pass-permissions.md`, `pass-switch.md`, `r26-probe.md` |
+| `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/` | Created | `decisions.md`, `phase-baseline.md`, `inventory.md`, `switch-groups.md`, `constraints.md`, `r24/`, `r25-dependabot.md`, `pass-permissions.md`, `pass-switch.md`, `r26-probe.md` |
 <!-- /ANCHOR:what-built -->
 
 ---

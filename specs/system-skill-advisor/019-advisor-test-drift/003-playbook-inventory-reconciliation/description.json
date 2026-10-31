@@ -16,10 +16,11 @@
     "corpus"
   ],
   "lastUpdated": "2026-08-16T04:21:01.296Z",
-  "specId": "022",
+  "specId": "003",
   "folderSlug": "playbook-inventory-reconciliation",
   "parentChain": [
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "019-advisor-test-drift"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

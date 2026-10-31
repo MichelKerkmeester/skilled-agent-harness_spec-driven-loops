@@ -21,7 +21,7 @@
   "folderSlug": "stop-grading-prose-shape",
   "parentChain": [
     "system-speckit",
-    "033-system-speckit-v4",
+    "031-system-speckit-v4",
     "009-validation-rule-reduction"
   ],
   "memorySequence": 0,

@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The authored tree has to change roots without losing its history, without a gate run that passes because the gates could not find themselves, and without breaking seven machine-wide hooks that point into the main checkout",
     "created_at": "2026-09-16T17:54:08Z",
-    "last_save_at": "2026-10-31T13:27:00.792Z",
+    "last_save_at": "2026-10-31T13:59:10.645Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fe425a61328ec29b3a028e1f813f37853f5620e8ed4f27fee0b7eb982423feba",
+    "source_fingerprint": "sha256:95a87b8611227475fdf8045ea1160cde51916f9b08805e67bf148af74fd3c70c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "79d4ca05c74fbd9dd0304cdb58e72e56778d9c8c0f04d43872a4e8389b405440",

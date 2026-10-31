@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration"
+    packet_pointer: "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration"
     last_updated_at: "2026-09-19T23:10:00Z"
     last_updated_by: "v4-doc-freshness-run"
     recent_action: "Migration closed; compatibility root settled as per-entry symlinks"
@@ -48,7 +48,7 @@ _memory:
 | **Created** | 2026-09-16 |
 | **Branch** | `worktrees/055-skilled-source-root-migration` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | system-speckit/033-system-speckit-v4 |
+| **Parent Packet** | system-speckit/031-system-speckit-v4 |
 | **Predecessor** | 040-gate-3-option-merge |
 | **Successor** | None |
 | **Handoff Criteria** | Every runtime resolves its skills, commands, agents, hooks and plugins through `.skilled`, and no gate reads a stale `.opencode` path |

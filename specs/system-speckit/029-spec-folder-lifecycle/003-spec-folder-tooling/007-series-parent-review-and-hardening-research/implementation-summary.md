@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/007-series-parent-review-and-hardening-research"
     last_updated_at: "2026-10-07T08:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Both deep loops finished; review-report.md and research.md written and cited"

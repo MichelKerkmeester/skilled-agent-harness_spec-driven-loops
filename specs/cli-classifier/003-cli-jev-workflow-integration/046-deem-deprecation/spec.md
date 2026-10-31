@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation"
     last_updated_at: "2026-10-02T10:30:00Z"
     last_updated_by: "orchestrating-session"
     recent_action: "Closed all four phases of the Deem removal"
@@ -42,7 +42,7 @@ _memory:
 | **Created** | 2026-10-02 |
 | **Branch** | `worktrees/071-cli-jev-sk-alignment` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | cli-jev/003-cli-jev-workflow-integration |
+| **Parent Packet** | cli-classifier/003-cli-jev-workflow-integration |
 | **Predecessor** | 045-deem-live-runs |
 | **Successor** | None |
 | **Handoff Criteria** | The five completion criteria in `goal.md` pass from the final state |

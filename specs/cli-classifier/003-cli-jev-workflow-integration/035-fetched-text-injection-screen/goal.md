@@ -10,15 +10,15 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/035-fetched-text-injection-screen"
     last_updated_at: "2026-09-29T16:19:07Z"
     last_updated_by: "closure-leaf"
     recent_action: "Closed the phase at the label gate: build commit 3d0641004b, all goal criteria ticked"
     next_safe_action: "Operator labels 60 rows, writes 30 sentences, then a live Deem run and a Jev run on their yes"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/plan.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/plan.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-035-fetched-text-injection-screen"

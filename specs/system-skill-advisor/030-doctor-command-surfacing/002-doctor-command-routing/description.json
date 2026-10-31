@@ -14,10 +14,11 @@
     "lines"
   ],
   "lastUpdated": "2026-10-16T21:02:01.559Z",
-  "specId": "035",
+  "specId": "002",
   "folderSlug": "doctor-command-routing",
   "parentChain": [
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "030-doctor-command-surfacing"
   ],
   "memorySequence": 7,
   "memoryNameHistory": [

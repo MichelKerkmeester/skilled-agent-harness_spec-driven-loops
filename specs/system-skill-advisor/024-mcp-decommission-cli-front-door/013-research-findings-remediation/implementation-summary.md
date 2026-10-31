@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/025-mcp-decommission-cli-front-door/013-research-findings-remediation"
+    packet_pointer: "system-skill-advisor/024-mcp-decommission-cli-front-door/013-research-findings-remediation"
     last_updated_at: "2026-09-12T07:20:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Confirmed finding fixed, refuted finding recorded, suites and frontmatter gate green"

@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/001-deep-research"
     last_updated_at: "2026-10-29T09:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Merged both lineages into research.md and checked the citations"
     next_safe_action: "Scope phases 002 to 006 from the findings"
     blockers: []
     key_files:
-      - "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/001-deep-research/research/research.md"
+      - "specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/001-deep-research/research/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "0269-router-files-research"

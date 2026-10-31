@@ -35,7 +35,7 @@ contextType: "general"
 ## Phase 1: Setup
 
 - [x] T001 Read the launcher's spawn gate, the supervision control and the client's socket default (`.opencode/bin/system-skill-advisor-launcher.cjs`, `lib/model-server-supervision.cjs`, `shared/embeddings/providers/hf-local.ts`)
-- [x] T002 Scaffold this packet at Level 1 (`specs/system-skill-advisor/023-model-server-default-spawn`)
+- [x] T002 Scaffold this packet at Level 1 (`specs/system-skill-advisor/021-model-server-lifecycle/001-model-server-default-spawn`)
 - [x] T003 [P] Record the stakes read: one default in one launcher file, reversible by flag or revert
 <!-- /ANCHOR:phase-1 -->
 

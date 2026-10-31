@@ -10,16 +10,16 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/005-compaction-recall-harness"
     last_updated_at: "2026-09-28T23:22:00Z"
     last_updated_by: "closure-leaf"
     recent_action: "Ticked 6 of 6 criteria, amended 1 and 5, arm not built"
     next_safe_action: "None. The orchestrator commits the phase docs"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/build-evidence.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/fix/fix-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/005-compaction-recall-harness/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/build-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/fix/fix-evidence.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-workflow-integration"
@@ -94,7 +94,7 @@ here are invisible to whatever judges completion.
 - [x] With stub `jev` and `cli-deem` binaries first on PATH that log every invocation, the census run leaves both stub logs empty
 - [x] `grep -niE 'api_key|apikey|secret|bearer'` on `score-compaction-recall.mjs` and `compaction-recall.vitest.ts` returns no match
 - [x] `git status --porcelain` and a name, size and mtime listing of the named transcript directory are the same before and after the census run, and the build commit `fbe4e978e1` changes no path other than `runtime/scripts/compaction-recall/`, `runtime/tests/compaction-recall.vitest.ts`, `runtime/tests/compaction-recall-fixtures/`, `runtime/scripts/README.md`, `SKILL.md`, `README.md`, `changelog/`, `feature-catalog/` and `manual-testing-playbook/` under `.skilled/skills/system-spec-kit/`, the Hermes copy of that `SKILL.md` and this phase's build record
-- [x] `validate.sh --strict` on `specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness` prints `RESULT: PASSED`
+- [x] `validate.sh --strict` on `specs/cli-classifier/003-cli-jev-workflow-integration/005-compaction-recall-harness` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---

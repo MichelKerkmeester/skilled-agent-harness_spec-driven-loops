@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/070-repo-doc-debt/007-alignment-fixes"
+    packet_pointer: "sk-doc/064-readme-validation-debt/001-repo-doc-debt/007-alignment-fixes"
     last_updated_at: "2026-10-27T21:30:00Z"
     last_updated_by: "lane-l5"
     recent_action: "Recorded what changed and how it was verified"

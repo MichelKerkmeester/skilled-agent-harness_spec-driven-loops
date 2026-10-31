@@ -1,5 +1,5 @@
 # Review scope for the deep review of this session's changelog and validation work:
-# packet sk-doc/061-skilled-release-changelog (all three phases) and this packet.
+# packet sk-doc/056-changelog-system/003-skilled-release-changelog (all three phases) and this packet.
 # One repo-relative file per line, read by the deep-review scope discovery.
 # Validation switches and every reader of hook-flags.env
 .skilled/hooks/shared/hook-flags.cjs
@@ -113,25 +113,25 @@ README.md
 .skilled/skills/sk-doc/changelog/v2.0.0.0.md
 specs/sk-communication/001-sk-communication-creation/changelog/changelog-035-003-core-normalization-and-assembly.md
 # The two packets' own docs, whose claims the review checks
-specs/sk-doc/061-skilled-release-changelog/001-release-line-split/acceptance-criteria.md
-specs/sk-doc/061-skilled-release-changelog/001-release-line-split/implementation-summary.md
-specs/sk-doc/061-skilled-release-changelog/001-release-line-split/plan.md
-specs/sk-doc/061-skilled-release-changelog/001-release-line-split/spec.md
-specs/sk-doc/061-skilled-release-changelog/001-release-line-split/tasks.md
-specs/sk-doc/061-skilled-release-changelog/002-changelog-findability/acceptance-criteria.md
-specs/sk-doc/061-skilled-release-changelog/002-changelog-findability/decision-record.md
-specs/sk-doc/061-skilled-release-changelog/002-changelog-findability/implementation-summary.md
-specs/sk-doc/061-skilled-release-changelog/002-changelog-findability/plan.md
-specs/sk-doc/061-skilled-release-changelog/002-changelog-findability/spec.md
-specs/sk-doc/061-skilled-release-changelog/002-changelog-findability/tasks.md
-specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/acceptance-criteria.md
-specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/implementation-summary.md
-specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/plan.md
-specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/spec.md
-specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/tasks.md
-specs/sk-doc/061-skilled-release-changelog/spec.md
-specs/sk-doc/062-doc-validation-off-switches/acceptance-criteria.md
-specs/sk-doc/062-doc-validation-off-switches/implementation-summary.md
-specs/sk-doc/062-doc-validation-off-switches/plan.md
-specs/sk-doc/062-doc-validation-off-switches/spec.md
-specs/sk-doc/062-doc-validation-off-switches/tasks.md
+specs/sk-doc/056-changelog-system/003-skilled-release-changelog/001-release-line-split/acceptance-criteria.md
+specs/sk-doc/056-changelog-system/003-skilled-release-changelog/001-release-line-split/implementation-summary.md
+specs/sk-doc/056-changelog-system/003-skilled-release-changelog/001-release-line-split/plan.md
+specs/sk-doc/056-changelog-system/003-skilled-release-changelog/001-release-line-split/spec.md
+specs/sk-doc/056-changelog-system/003-skilled-release-changelog/001-release-line-split/tasks.md
+specs/sk-doc/056-changelog-system/003-skilled-release-changelog/002-changelog-findability/acceptance-criteria.md
+specs/sk-doc/056-changelog-system/003-skilled-release-changelog/002-changelog-findability/decision-record.md
+specs/sk-doc/056-changelog-system/003-skilled-release-changelog/002-changelog-findability/implementation-summary.md
+specs/sk-doc/056-changelog-system/003-skilled-release-changelog/002-changelog-findability/plan.md
+specs/sk-doc/056-changelog-system/003-skilled-release-changelog/002-changelog-findability/spec.md
+specs/sk-doc/056-changelog-system/003-skilled-release-changelog/002-changelog-findability/tasks.md
+specs/sk-doc/056-changelog-system/003-skilled-release-changelog/003-adjacent-alignment/acceptance-criteria.md
+specs/sk-doc/056-changelog-system/003-skilled-release-changelog/003-adjacent-alignment/implementation-summary.md
+specs/sk-doc/056-changelog-system/003-skilled-release-changelog/003-adjacent-alignment/plan.md
+specs/sk-doc/056-changelog-system/003-skilled-release-changelog/003-adjacent-alignment/spec.md
+specs/sk-doc/056-changelog-system/003-skilled-release-changelog/003-adjacent-alignment/tasks.md
+specs/sk-doc/056-changelog-system/003-skilled-release-changelog/spec.md
+specs/sk-doc/058-doc-validation-off-switches/acceptance-criteria.md
+specs/sk-doc/058-doc-validation-off-switches/implementation-summary.md
+specs/sk-doc/058-doc-validation-off-switches/plan.md
+specs/sk-doc/058-doc-validation-off-switches/spec.md
+specs/sk-doc/058-doc-validation-off-switches/tasks.md

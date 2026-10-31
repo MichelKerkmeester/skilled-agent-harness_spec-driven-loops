@@ -54,7 +54,7 @@ The goal budget is configured in `spec-kit-docs.json` as 4,000 characters. The m
 
 The validator extracts the same slice and raises `SPECDOC_SUFFICIENCY_005` only when the length is greater than the configured limit. Exactly 4,000 characters therefore does not trigger that diagnostic. The code uses the level-aware phase-child exception described in section 3. (`.skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts:1030-1062`.)
 
-A measured packet example shows how much fixed text consumes the parent allowance. The parent goal log records a first draft at 4,820 durable characters, estimates the template's fixed text at about 1,900 characters and nine binding rows at about 900 characters, and records the cut-order decision. A read-only `goal.cjs packet specs/sk-doc/060-create-goal-mode --workspace "$PWD"` run measured the current parent at 3,735 characters with `packet_budget=ok`; the reduction from 4,820 to 3,735 is 1,085 characters by subtraction. (`specs/sk-doc/060-create-goal-mode/goal.md:136`; observed command output: `packet_durable_chars=3735`, `packet_budget=ok`, exit 0.)
+A measured packet example shows how much fixed text consumes the parent allowance. The parent goal log records a first draft at 4,820 durable characters, estimates the template's fixed text at about 1,900 characters and nine binding rows at about 900 characters, and records the cut-order decision. A read-only `goal.cjs packet specs/sk-doc/057-create-goal-mode --workspace "$PWD"` run measured the current parent at 3,735 characters with `packet_budget=ok`; the reduction from 4,820 to 3,735 is 1,085 characters by subtraction. (`specs/sk-doc/057-create-goal-mode/goal.md:136`; observed command output: `packet_durable_chars=3735`, `packet_budget=ok`, exit 0.)
 
 ---
 
@@ -74,7 +74,7 @@ For each extracted target, the validator checks that the literal path exists ins
 
 The inline renderer accepts `--level <1|2|3|3+|phase|review|research>` and evaluates inline gates in the template. Its shell wrapper calls the TypeScript renderer when available and otherwise falls back to equivalent JavaScript. In the phase scaffold path, `create.sh` invokes the renderer at `--level phase` for the lean parent-spec template and calls the contract document scaffolder in each child-folder loop. (`.skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh:1-20`; `.skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.ts:274-301`; `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1275-1281,1492-1504`.)
 
-The phase packet's own log records that `create.sh --phase --with-goal` created child goals but no parent goal, and that its parent goal was rendered separately with the inline renderer. This is source-and-log evidence; `create.sh` was not run during this inventory. (`specs/sk-doc/060-create-goal-mode/goal.md:129,137`.)
+The phase packet's own log records that `create.sh --phase --with-goal` created child goals but no parent goal, and that its parent goal was rendered separately with the inline renderer. This is source-and-log evidence; `create.sh` was not run during this inventory. (`specs/sk-doc/057-create-goal-mode/goal.md:129,137`.)
 
 `goal.cjs packet <packet> --workspace <root>` is the read-only printer. It reports packet path, whether the goal is nested, durable character count, budget state, slice hash, objective slice and chat slice. (`.skilled/hooks/goal/bin/goal.cjs:203-216`.)
 

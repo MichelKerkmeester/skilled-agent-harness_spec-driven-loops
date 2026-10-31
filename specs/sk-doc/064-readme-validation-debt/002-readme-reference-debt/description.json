@@ -14,10 +14,11 @@
     "readmes"
   ],
   "lastUpdated": "2026-10-27T19:44:37.230Z",
-  "specId": "071",
+  "specId": "002",
   "folderSlug": "readme-reference-debt",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "064-readme-validation-debt"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

@@ -9,7 +9,7 @@ trigger_phrases:
   - "jev state input"
 importance_tier: "important"
 contextType: "reference"
-version: 0.1.0.2
+version: 0.1.1.0
 ---
 
 # Jev CLI Reference
@@ -22,7 +22,7 @@ The pinned `jev` command contract, read from source and probed live against `jev
 
 ### Purpose
 
-The binary is the authority. Every claim below was read from the vendored source at `specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/src/jev_cli/__init__.py` and then probed live against `jev 0.6.2`. Claims marked **LIVE** carry an observed command, output and exit status; claims marked **SOURCE** are read from that file and are re-probed after any version change.
+The binary is the authority. Every claim below was read from the vendored source at `specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/src/jev_cli/__init__.py` and then probed live against `jev 0.6.2`. Claims marked **LIVE** carry an observed command, output and exit status; claims marked **SOURCE** are read from that file and are re-probed after any version change.
 
 ### Usage
 

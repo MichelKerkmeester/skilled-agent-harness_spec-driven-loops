@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/007-playbook-catalog-readme-alignment"
     last_updated_at: "2026-10-25T21:45:00Z"
     last_updated_by: "conductor"
     recent_action: "Closed the phase"
@@ -140,7 +140,7 @@ The frozen block in `plan.md` section 3.9 named a DeepSeek worker through an Ope
 11. Before: `3. Fill spec.md, plan.md, tasks.md and implementation-summary.md for this feature: add a --quiet flag to .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level. ...`
    After: `3. Fill spec.md, plan.md, tasks.md and implementation-summary.md. Describe this feature in the packet and do not build it: a --quiet flag for .skilled/skills/system-spec- ...`
 12. Before: `2. Dispatch one worker with the Task tool. /  / text / Dispatch with the Task tool: subagent_type general, description 483, prompt = the full text of the brief wri ...`
-   After: `2. Dispatch one worker with cli-devin. /  / bash / OUT="$(cat specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/s ...`
+   After: `2. Dispatch one worker with cli-devin. /  / bash / OUT="$(cat specs/system-speckit/041-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/s ...`
 13. Before: `Step 2 leaves the reply file in the scratch path holding the worker's last RESULT line.`
    After: `Step 2 prints devin_exit=0, then the worker's last RESULT line, and leaves the reply file in the scratch path.`
 14. Before: `- **Pass**: The subagent returns a reply,`

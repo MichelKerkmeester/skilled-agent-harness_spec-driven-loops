@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/048-doctor-command-audit"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit"
     last_updated_at: "2026-10-03T00:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "All fourteen phases closed with a verdict; recursive strict validation passed"

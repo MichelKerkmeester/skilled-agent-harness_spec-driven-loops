@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/052-routing-completeness/004-cross-hub-vocabulary"
+    packet_pointer: "sk-doc/051-hub-routing-quality/001-routing-completeness/004-cross-hub-vocabulary"
     last_updated_at: "2026-09-02T18:00:00Z"
     last_updated_by: "phase-4-cross-hub-vocabulary"
     recent_action: "Authored the phase impl-summary from packet docs and git"
@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Packet** | sk-doc/052-routing-completeness/004-cross-hub-vocabulary |
+| **Packet** | sk-doc/051-hub-routing-quality/001-routing-completeness/004-cross-hub-vocabulary |
 | **Level** | 3 |
 | **Status** | Complete |
 | **Delivery** | Shipped. The parent goal LOG records this phase Done |
@@ -169,7 +169,7 @@ Every check below was run and its output read.
 | Scorer accuracy after the override change | Metrics byte-identical to the committed baseline, with gold labels re-captured |
 | Gate A re-measurement | 234 to 328 of 444, recorded in `aa11c2b622` |
 | Gate B re-measurement | 8 to 21 of 180, recorded in `aa11c2b622` |
-| `validate.sh specs/sk-doc/052-routing-completeness --strict --recursive` | PASS for this folder, Errors 0 |
+| `validate.sh specs/sk-doc/051-hub-routing-quality/001-routing-completeness --strict --recursive` | PASS for this folder, Errors 0 |
 | `hvr_scan.py` on this document | 0 hard blockers |
 <!-- /ANCHOR:verification -->
 

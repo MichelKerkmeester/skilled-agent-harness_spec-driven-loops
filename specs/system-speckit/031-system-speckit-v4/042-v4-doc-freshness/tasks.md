@@ -33,7 +33,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Record the pre-edit baseline: line and byte counts for both target documents plus `git status --short` (`specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md`, `README.md`)
+- [x] T001 Record the pre-edit baseline: line and byte counts for both target documents plus `git status --short` (`specs/system-speckit/031-system-speckit-v4/CHANGELOG-v4.0.0.0.md`, `README.md`)
 - [x] T002 Scaffold this packet through the governed create path at Level 2 and confirm `validate.sh --strict` (`042-v4-doc-freshness/spec.md`)
 - [x] T003 Re-run the executor pre-flight (`command -v devin`, `devin auth status`) and halt rather than substitute if either fails (`042-v4-doc-freshness/plan.md`)
 <!-- /ANCHOR:phase-1 -->
@@ -49,7 +49,7 @@ contextType: "implementation"
 - [x] T007 Read the synthesis and check every finding carries a citation and no placeholder residue (`042-v4-doc-freshness/research/research.md`)
 - [x] T008 Write the changelog verdict: one row per stale, missing or understated claim with cited current truth and the proposed correction (`042-v4-doc-freshness/research/verdict-changelog.md`)
 - [x] T009 Write the README verdict in the same shape (`042-v4-doc-freshness/research/verdict-readme.md`)
-- [x] T010 Apply only verdict-confirmed corrections to the changelog (`specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md`)
+- [x] T010 Apply only verdict-confirmed corrections to the changelog (`specs/system-speckit/031-system-speckit-v4/CHANGELOG-v4.0.0.0.md`)
 - [x] T011 Apply only verdict-confirmed corrections to the root README (`README.md`)
 <!-- /ANCHOR:phase-2 -->
 

@@ -89,7 +89,7 @@ Every retired default left in a doc is reported by name and line, without failin
 | `.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts` | Modify | Legacy-default warning inside the placeholder validation |
 | `.skilled/skills/system-spec-kit/references/validation/validation-rules.md` | Modify | Document the new warning and its severity |
 | `.skilled/skills/system-spec-kit/runtime/tests/` | Create | Tests for a match, a near miss and an exit code that does not change |
-| `specs/system-speckit/033-system-speckit-v4/053-legacy-template-default-detection/scratch/backfill-sample.md` | Create | The sample, the drafts, a verdict per draft and the totals |
+| `specs/system-speckit/031-system-speckit-v4/053-legacy-template-default-detection/scratch/backfill-sample.md` | Create | The sample, the drafts, a verdict per draft and the totals |
 <!-- /ANCHOR:scope -->
 
 ---

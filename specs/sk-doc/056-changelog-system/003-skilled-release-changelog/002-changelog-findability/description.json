@@ -11,7 +11,8 @@
   "folderSlug": "changelog-findability",
   "parentChain": [
     "sk-doc",
-    "061-skilled-release-changelog"
+    "056-changelog-system",
+    "003-skilled-release-changelog"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

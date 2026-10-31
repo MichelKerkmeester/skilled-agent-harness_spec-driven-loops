@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/011-anchor-repair-mode"
     last_updated_at: "2026-10-11T16:00:00Z"
     last_updated_by: "closeout-worker"
     recent_action: "Criterion 3 closed on the operator's decision, see the Log"

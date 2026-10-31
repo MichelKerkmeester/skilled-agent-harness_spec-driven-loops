@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/060-save-resume-pointer-truth"
+    packet_pointer: "system-speckit/031-system-speckit-v4/060-save-resume-pointer-truth"
     last_updated_at: "2026-09-24T06:17:58Z"
     last_updated_by: "generate-context"
     recent_action: "Kept track-root pointers in the store and fixed the save docs"

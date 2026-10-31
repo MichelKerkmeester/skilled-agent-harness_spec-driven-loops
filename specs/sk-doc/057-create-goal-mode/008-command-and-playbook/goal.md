@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-create-goal-mode/008-command-and-playbook"
+    packet_pointer: "sk-doc/057-create-goal-mode/008-command-and-playbook"
     last_updated_at: "2026-09-25T19:30:00Z"
     last_updated_by: "gpt-6-luna"
     recent_action: "Planned command and playbook phase"
@@ -57,7 +57,7 @@ Frozen choices for this phase. Changing one requires an amendment to this child 
 | D1 | The playbook root indexes eight scenarios, with one canonical per-feature file for each required behavior. |
 | D2 | The command argument hint uses the operation names settled by Phase 004; this phase does not invent or rename operations. |
 | D3 | The root index owns scenario display order, and scenario-specific execution truth stays in each per-feature file. |
-| D4 | This phase validates the playbook package but leaves scenario execution to Phase 009 (specs/sk-doc/060-create-goal-mode/spec.md:127-129). |
+| D4 | This phase validates the playbook package but leaves scenario execution to Phase 009 (specs/sk-doc/057-create-goal-mode/spec.md:127-129). |
 
 ### Operator copy
 

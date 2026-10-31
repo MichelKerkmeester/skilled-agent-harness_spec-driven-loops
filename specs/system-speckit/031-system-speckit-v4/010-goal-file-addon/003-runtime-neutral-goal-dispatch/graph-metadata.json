@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The speckit commands already offer to set a session goal, and the offer calls one runtime's tool by name",
     "created_at": "2026-08-29T18:09:18Z",
-    "last_save_at": "2026-10-31T13:26:39.179Z",
+    "last_save_at": "2026-10-31T13:58:41.523Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2f059c408554fe44e2f7a3438cb269b86a4c44b6fa58d31d3bbe7ddb5c3837d5",
+    "source_fingerprint": "sha256:eb4bd406cd2b8fbe5cbdb328cfce05031bf8e391b332936059124e1700b80e3b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "52b490cbe61f323d4aaa741b520d8ad5f169efed3db0ac68eaa8c4f46219c1fc",
+      "spec.md": "2b601720fd154400191e20413f8bfe9e2db9c9029f97109100a28dbc18253072",
       "plan.md": "6fb5fdf06c1d934da69b7aac5f24e69e224710368ffc1ac3bba54a0da3427527",
       "tasks.md": "2d69463cf4a3af9fba0ca63a03fbbdd909c0fbfaba2e580124f2a86600b71be8",
       "implementation-summary.md": "1cccae953b6ead2130ffbcc0c520b822acce73419224f81057f43aba767c6b38"

@@ -24,7 +24,7 @@
   "folderSlug": "decommission-review-p1-p2-fixes",
   "parentChain": [
     "system-speckit",
-    "033-system-speckit-v4",
+    "031-system-speckit-v4",
     "017-memory-database-decommission"
   ],
   "memorySequence": 0,

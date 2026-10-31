@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-doctor-audit-followups/025-doctor-scenario-runs"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/025-doctor-scenario-runs"
     last_updated_at: "2026-10-05T07:30:00Z"
     last_updated_by: "doctor-scenario-runs"
     recent_action: "Ran every doctor scenario and recorded the results"

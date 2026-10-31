@@ -31,7 +31,7 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The CI workflow-efficiency program (`specs/system-speckit/053-ci-workflow-efficiency`), the private surface skill work (`specs/sk-code/013-private-surface-skills`) and their companions reached main without changelog entries for eleven touched skills and modes. Several READMEs, feature catalogs, playbooks and the root README still describe the removed Webflow and Obsidian surfaces, or leave out `/doctor:ci`, the command that reports and toggles the CI switches.
+The CI workflow-efficiency program (`specs/system-speckit/040-ci-workflow-efficiency`), the private surface skill work (`specs/sk-code/013-private-surface-skills`) and their companions reached main without changelog entries for eleven touched skills and modes. Several READMEs, feature catalogs, playbooks and the root README still describe the removed Webflow and Obsidian surfaces, or leave out `/doctor:ci`, the command that reports and toggles the CI switches.
 
 ### Purpose
 Each touched skill and mode gets a changelog entry at its decided version, and each doc that describes the changed surfaces matches main.
@@ -67,7 +67,7 @@ Each touched skill and mode gets a changelog entry at its decided version, and e
 | `.skilled/skills/sk-doc/` hub, `sk-create-skill/`, `sk-create-command/` | Create, Modify | Entries at 2.3.13.0 (open question 1 answered, see deviation a in tasks.md), 1.5.6.0 and 1.0.5.0, their version carriers, their `.hermes/skills/` mirrors, the sk-doc activation manifest, and the sk-create-skill reference fixes |
 | `.skilled/skills/sk-git/` | Create, Modify | Entry at 1.9.5.0, its `SKILL.md` and its Hermes mirror |
 | `README.md`, `.skilled/commands/README.txt`, `.skilled/commands/doctor/assets/doctor-setup.yaml`, `.skilled/skills/README.txt`, `.github/workflows/README.md` | Modify | Root README DOCTOR section and switch notes, plus the catalog rows that list the doctor commands and the CI surface |
-| `specs/system-speckit/055-ci-efficiency-release-docs/` | Modify | This packet's four documents |
+| `specs/system-speckit/040-ci-workflow-efficiency/016-ci-efficiency-release-docs/` | Modify | This packet's four documents |
 <!-- /ANCHOR:scope -->
 
 ---

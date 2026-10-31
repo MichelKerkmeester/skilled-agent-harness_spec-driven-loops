@@ -206,7 +206,7 @@
     ],
     "causal_summary": "`heal-spec-docs.cjs` at line 45 defines `TEMPLATEDEFAULTS`, placeholder trigger phrases from the plan.md, tasks.md and implementation-summary.md templates per document class",
     "created_at": "2026-10-08T04:22:42Z",
-    "last_save_at": "2026-10-31T13:26:26.090Z",
+    "last_save_at": "2026-10-31T13:58:21.746Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de32c75b28f89535f0b1190b4d5fd7681173a9d813ed205a4352854bbc1d3361",
+    "source_fingerprint": "sha256:fc92e3ad65d2f6776a70e94af41cdb95f28f53313ff3eafc94c7cf44a87ade3c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6de4fcb78a7f1e51ebc3547cb335634d59d443928e1a9967c095a0fe131ef15b",

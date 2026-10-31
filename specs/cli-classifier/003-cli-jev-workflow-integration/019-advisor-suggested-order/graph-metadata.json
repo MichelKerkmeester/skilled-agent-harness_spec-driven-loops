@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The advisor marks a near-tie cluster",
     "created_at": "2026-09-29T12:42:32Z",
-    "last_save_at": "2026-10-31T13:25:30.863Z",
+    "last_save_at": "2026-10-31T14:03:51.300Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4c09595fc1729a08c195f64b3b82cdacedb3f67747e484cf35e0dc6a4aac8430",
+    "source_fingerprint": "sha256:d67751fe064581e22ffac4212c86658aece2e8198cce85f1aa42a856c2c85036",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "78c0d6b46af7d2553894a6f8979c096c0ea1aa1c37e36e2320fa626cdda1820a",
-      "plan.md": "797782e381f1a76aa71d9cf48aac8bc6c5209ed3a03ccb11f0a262047fac778b",
+      "plan.md": "24482b4f8e4baf186200b7761e00261f0fb475e4bbd2ded3ff5971b34f407b00",
       "tasks.md": "cb77b884017c4a6d6271cbd4de28eb0512aad8b2617f61e87655a864ac94b925",
-      "implementation-summary.md": "20f4af0dc2443a7a605aca9fd2626eddfb3bbf1a5c2318edafea3cbad0ba9525"
+      "implementation-summary.md": "f604c9f5d1d96e46b1b348ec048f4c3a63d8ccc2517739f86eca8904ac29fb65"
     },
     "last_active_at": null
   }

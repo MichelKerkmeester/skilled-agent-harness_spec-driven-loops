@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The advisor is the only skill whose changelog still uses three-part file names, 10 of its 12 entries, while the contract and the other 539 entries under `.skilled/skills` use four parts",
     "created_at": "2026-09-28T11:14:31Z",
-    "last_save_at": "2026-10-31T13:26:18.089Z",
+    "last_save_at": "2026-10-31T14:00:56.937Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e34b2c025fdc3e723353e391c11c543ec0b7a58925e536de93ca4fac79750e1",
+    "source_fingerprint": "sha256:4180708e1b727c64a6db03bd7982f7fe71883a301688bf1cf1cee1294df1011f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "be2dcd0a6ec2315499d6296bf092e56f95ac3c40520969c8930b155212e0dfec",

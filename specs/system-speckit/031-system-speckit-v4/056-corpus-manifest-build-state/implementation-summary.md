@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/056-corpus-manifest-build-state"
+    packet_pointer: "system-speckit/031-system-speckit-v4/056-corpus-manifest-build-state"
     last_updated_at: "2026-09-23T20:14:39Z"
     last_updated_by: "generate-context"
     recent_action: "Made the corpus skip list independent of build state"

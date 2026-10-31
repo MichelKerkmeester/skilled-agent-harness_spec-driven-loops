@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/061-skilled-release-changelog/001-release-line-split"
+    packet_pointer: "sk-doc/056-changelog-system/003-skilled-release-changelog/001-release-line-split"
     last_updated_at: "2026-09-27T12:31:06Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Marked every acceptance criterion Met with evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/061-skilled-release-changelog/001-release-line-split
+**Packet:** sk-doc/056-changelog-system/003-skilled-release-changelog/001-release-line-split
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-27

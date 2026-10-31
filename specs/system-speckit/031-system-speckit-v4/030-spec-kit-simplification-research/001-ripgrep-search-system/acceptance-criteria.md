@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/001-ripgrep-search-system"
+    packet_pointer: "system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/001-ripgrep-search-system"
     last_updated_at: "2026-09-06T16:40:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Authored the acceptance criteria for this packet"

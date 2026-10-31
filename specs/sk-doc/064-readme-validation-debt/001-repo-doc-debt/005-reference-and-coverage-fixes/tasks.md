@@ -67,7 +67,7 @@ Two sets recur below. `R` is the 59 READMEs in scope, and `V` is `validate_docum
 - [x] T018 Run the two README tests (`.skilled/skills/sk-doc/scripts/tests/`). Verify: `SUMMARY: discovery=pass exclusions=21/21 manifest=reproducible` and `PARITY PASS: verdict diff is empty`, both exit 0 with no baseline rewrite.
 - [x] T019 Run the markdown link guard (`.opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs`). Verify: `7663 files, 13976 links checked, 0 broken`, exit 0.
 - [x] T020 Run the hub invariant check and the Hermes sync (`.skilled/skills/sk-doc`, `.skilled/skills/sk-code`, `.skilled/skills/mcp-tooling`, `.skilled/skills/system-deep-loop`). Verify: `parent-skill-check.cjs` exits 0 on all four hubs with every hard invariant met and 0 warnings, and the sync prints `Wrote 0 of 67 Hermes skill copies`.
-- [x] T021 Validate this packet (`specs/sk-doc/070-repo-doc-debt/005-reference-and-coverage-fixes`). Verify: `validate.sh --strict` prints `RESULT: PASSED` with Errors 0 and Warnings 0.
+- [x] T021 Validate this packet (`specs/sk-doc/064-readme-validation-debt/001-repo-doc-debt/005-reference-and-coverage-fixes`). Verify: `validate.sh --strict` prints `RESULT: PASSED` with Errors 0 and Warnings 0.
 <!-- /ANCHOR:phase-3 -->
 
 ---

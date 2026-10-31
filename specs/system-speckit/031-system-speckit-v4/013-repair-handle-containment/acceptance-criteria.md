@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/013-repair-handle-containment"
+    packet_pointer: "system-speckit/031-system-speckit-v4/013-repair-handle-containment"
     last_updated_at: "2026-08-30T14:17:45Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/013-repair-handle-containment
+**Packet:** system-speckit/031-system-speckit-v4/013-repair-handle-containment
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-08-30

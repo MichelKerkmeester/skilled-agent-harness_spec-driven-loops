@@ -5,9 +5,9 @@ Do not invent any fact that is not here. If a template section has no fact here,
 "N/A - insufficient source context" rather than guessing.
 
 ## Identity
-- Packet: specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups, Level 2.
+- Packet: specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups, Level 2.
 - Title: "CI cleanup follow-ups".
-- Parent: specs/system-speckit/033-system-speckit-v4, phase 54 of 55. Predecessor 050-ci-cleanup-pi-proof, whose
+- Parent: specs/system-speckit/031-system-speckit-v4, phase 54 of 55. Predecessor 050-ci-cleanup-pi-proof, whose
   loose ends this phase closes. Successor none. Phases 051 to 053 and 055 belong to other sessions and share no files
   with this phase.
 - Created 2026-09-23. Work ran 2026-09-23. Status: Complete.
@@ -93,7 +93,7 @@ Do not invent any fact that is not here. If a template section has no fact here,
 - The containment capture fix and the capture untrack: packet
   specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot.
 - The phase 030 goal trim: recorded in the log of
-  specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/goal.md. Its brief is wu8 in
+  specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/goal.md. Its brief is wu8 in
   this packet's evidence/dispatch/, because the same orchestrator run dispatched it.
 
 ## Observation (record, do not fix)

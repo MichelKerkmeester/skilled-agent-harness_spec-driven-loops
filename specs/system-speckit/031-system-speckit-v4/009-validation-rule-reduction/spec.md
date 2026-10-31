@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/009-validation-rule-reduction"
+    packet_pointer: "system-speckit/031-system-speckit-v4/009-validation-rule-reduction"
     last_updated_at: "2026-08-29T18:30:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Decomposed the reduction into phases"
@@ -46,7 +46,7 @@ _memory:
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | system-speckit |
-| **Predecessor** | system-speckit/033-system-speckit-v4/007-completion-gate-coherence |
+| **Predecessor** | system-speckit/031-system-speckit-v4/007-completion-gate-coherence |
 | **Successor** | None |
 | **Handoff Criteria** | Each phase leaves the gate runnable and the corpus no worse than it found it |
 | **Closed With** | Phases 1-6, 9 and 10 shipped; 8 superseded; 7 open and priced |

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/023-semantic-lane-enablement/002-embedding-population"
+    packet_pointer: "system-skill-advisor/022-semantic-lane-enablement/002-embedding-population"
     last_updated_at: "2026-09-03T00:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Recorded the embedder and failure-policy decisions"

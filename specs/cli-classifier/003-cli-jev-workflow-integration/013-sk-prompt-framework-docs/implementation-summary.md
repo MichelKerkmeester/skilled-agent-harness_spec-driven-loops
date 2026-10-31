@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs"
     last_updated_at: "2026-09-27T18:30:00Z"
     last_updated_by: "closure-leaf"
     recent_action: "Recorded the build commit e3cf07f4f9 and its evidence; every acceptance row is Met"
@@ -127,7 +127,7 @@ Every check ran from the worktree root with exit 0 unless the row says otherwise
 
 1. **Hermes mirror.** `.hermes/skills/sk-prompt/SKILL.md` is a generated copy of `SKILL.md`, outside the spec's Files to Change and D3. The orchestrator regenerated it with `sync-skills-hermes.cjs`, as the owner's `SKILL.md` commits `239bc805db` and `86e99e7fc1` did.
 2. **Version bump.** The spec does not name `SKILL.md`'s `version`. It moved from 3.0.1.0 to 3.0.2.0 to match the new changelog, following the owner's `239bc805db` and sk-create-changelog's patch rule.
-3. **Parent changelog.** `spec.md` Phase Context asks for a refresh of `../changelog/`, but `specs/cli-jev/003-cli-jev-workflow-integration/changelog/` does not exist, so there was nothing to refresh.
+3. **Parent changelog.** `spec.md` Phase Context asks for a refresh of `../changelog/`, but `specs/cli-classifier/003-cli-jev-workflow-integration/changelog/` does not exist, so there was nothing to refresh.
 4. **Diff base.** The AC-007 base moved from `00480a8d5c` to the build-start HEAD `6f47c32dce`, because the main merge brought `094cdb9f8a` into the old range. The operator approved the merge, and the `goal.md` log records the move.
 <!-- /ANCHOR:deviations -->
 

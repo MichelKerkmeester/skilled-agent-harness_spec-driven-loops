@@ -142,7 +142,7 @@ exactly one bucket before writing the phase-003 handoff.
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: None expected — this phase wrote exactly one file (`inventory/consumer-inventory.md`) and edited no consumer.
-- **Procedure**: `git rm specs/sk-doc/049-sk-create-frontmatter/001-inventory-and-contract/inventory/consumer-inventory.md` removes the only artifact this phase produced. No other file needs reverting.
+- **Procedure**: `git rm specs/sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/001-inventory-and-contract/inventory/consumer-inventory.md` removes the only artifact this phase produced. No other file needs reverting.
 <!-- /ANCHOR:rollback -->
 
 ---

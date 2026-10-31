@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "cli-classifier/004-cli-classifier-quality-research",
-  "description": "Packet `cli-jev/003-cli-jev-workflow-integration` shipped the cli-classifier parent hub, its cli-jev packet, a shared Jev transport and six scorer",
+  "description": "Packet `cli-classifier/003-cli-jev-workflow-integration` shipped the cli-classifier parent hub, its cli-jev packet, a shared Jev transport and six scorer",
   "keywords": [
     "packet",
     "cli-jev",
@@ -20,7 +20,7 @@
   "specId": "004",
   "folderSlug": "cli-classifier-quality-research",
   "parentChain": [
-    "cli-jev"
+    "cli-classifier"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

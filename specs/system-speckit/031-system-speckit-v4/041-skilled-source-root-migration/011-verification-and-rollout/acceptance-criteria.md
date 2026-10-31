@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout"
+    packet_pointer: "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout"
     last_updated_at: "2026-09-16T22:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Authored one criterion per requirement, each mapped to a parent completion criterion"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout
+**Packet:** system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout
 **Level:** 2
 **Status:** Draft
 **Date:** 2026-09-16

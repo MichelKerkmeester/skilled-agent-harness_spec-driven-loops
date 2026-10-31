@@ -9,7 +9,7 @@
   "specId": "003",
   "folderSlug": "cli-deem-mode-removal",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration",
     "046-deem-deprecation"
   ],

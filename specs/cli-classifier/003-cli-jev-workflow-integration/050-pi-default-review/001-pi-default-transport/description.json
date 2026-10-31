@@ -9,7 +9,7 @@
   "specId": "001",
   "folderSlug": "pi-default-transport",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration",
     "050-pi-default-review"
   ],

@@ -48,7 +48,9 @@
       ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.11.0.md",
       ".hermes/skills/cli-hermes/SKILL.md",
       ".hermes/skills/cli-pi/SKILL.md",
-      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json"
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
+      "specs/system-speckit/031-system-speckit-v4/spec.md",
+      "specs/system-speckit/031-system-speckit-v4/064-cli-devin-cursor-dispatch-rules/spec.md"
     ],
     "entities": [
       {
@@ -198,7 +200,7 @@
     ],
     "causal_summary": "cli-hermes and cli-pi told an orchestrator, in five places each, to send every dispatch to the shared deep-loop runtime: the core principle, Execution Ownership, Dispatch Lifecycle step 4, ALWAYS rule 2 and a success criterion",
     "created_at": "2026-09-24T09:15:36Z",
-    "last_save_at": "2026-10-31T13:27:08.266Z",
+    "last_save_at": "2026-10-31T13:59:17.770Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6290cf8ab0898375dbfc68c1986d0ca23fa9f1316fb5df601fa2b5670b685df7",
+    "source_fingerprint": "sha256:b96f16488a09dce002ec1ab92dad963002573000d2787b9ab7bea685f9a9a106",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2c5ff770d006e7c6f46871f5e80640139e764344e9cd90f3b8b31b0a39fdd605",
       "plan.md": "3e0b31dbcc26affedbabeaeed954df9a253b6143e593ede8b03ede97cc0b63e2",
       "tasks.md": "3f82335e9c2dffb0fc431e9440718015a19698d615101dc7e02959d74a6c62c2",
-      "implementation-summary.md": "99f497bd6bafbc81fdfcdd274ed82ad559dee6cc9be349e3aff18a231b9dd02f"
+      "implementation-summary.md": "1da68970fede8b0d5f26e33ee0596a3100a568a77b372596e02853c40ba45b26"
     },
     "last_active_at": null
   }

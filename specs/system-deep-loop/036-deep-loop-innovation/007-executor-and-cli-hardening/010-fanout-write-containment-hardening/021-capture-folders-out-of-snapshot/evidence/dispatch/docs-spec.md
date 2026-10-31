@@ -36,7 +36,7 @@ DOC RULES (all must hold in the target file)
 - Use the REQ, AC and T ids exactly as listed in evidence.md.
 
 STEP 1 - fill specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/spec.md (Level 2 feature specification)
-Shape model (read-only): specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/spec.md
+Shape model (read-only): specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/spec.md
 - Title in frontmatter and H1: "Feature Specification: Capture Folders out of the Containment Snapshot" (no "Phase 1:" prefix).
 - Metadata table: Priority P0. Status Complete. Created 2026-09-23. Branch worktrees/066-ci-cleanup-follow-ups. Parent Spec ../spec.md. Phase 21 of 21. Predecessor 020-direct-append-sites-through-gateway. Successor None. Handoff Criteria "N/A - last phase of the parent".
 - Phase Context: the first sentence must read "This is **Phase 21** of the fan-out write-containment hardening specification." (the scaffold names the wrong parent). Then scope boundary (write-containment.ts, its test file, .gitignore, the capture untrack, the sk-doc README baseline, packet docs and the parent rows), dependencies (phase 020, the worktree) and deliverables from evidence.md. Keep the Changelog bullet as it is.

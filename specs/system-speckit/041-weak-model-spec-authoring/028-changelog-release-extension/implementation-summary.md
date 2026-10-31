@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/028-changelog-release-extension"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/028-changelog-release-extension"
     last_updated_at: "2026-10-28T06:10:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Fixed every review finding and closed the phase"

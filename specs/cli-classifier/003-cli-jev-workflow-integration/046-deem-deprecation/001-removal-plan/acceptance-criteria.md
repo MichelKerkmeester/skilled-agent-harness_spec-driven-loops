@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan"
     last_updated_at: "2026-10-02T10:45:00Z"
     last_updated_by: "orchestrating-session"
     recent_action: "Closed the phase with the inventory and four decisions"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan
+**Packet:** cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-02
@@ -51,11 +51,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the inventory command, When its file list is compared with `inventory.md`, Then each file has exactly one row with an owner and an action | `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan/inventory.md:28` counts 209 rows, which match `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan/scratch/inventory-files.txt:1` to line 209 one for one and in order | Met | - |
-| AC-002 | REQ-002 | Given the removal, When its decisions are read, Then ADR-001 to ADR-004 are Accepted | `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan/decision-record.md:36`, `:121`, `:206` and `:291`, each Status Accepted | Met | - |
-| AC-003 | REQ-003 | Given the hub check and the compiled router, When their mode-count rules are read, Then each is cited with `file:line` and the check exits 0 on the unchanged hub | `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan/inventory.md:32` cites five rules, and `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan/inventory.md:44` records the check's exit 0 | Met | - |
-| AC-004 | REQ-004 | Given the covering suites, When each runs on the unchanged tree, Then its pass and fail count is recorded | `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan/inventory.md:48` records 25 suites with their pass and fail counts | Met | - |
-| AC-005 | REQ-001 to REQ-004 | Given the final state, When the phase closes, Then `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` | `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan/tasks.md:57` T007: `validate.sh --strict` RESULT: PASSED and `check-goal.cjs` RESULT: PASSED (5/5 checks) | Met | - |
+| AC-001 | REQ-001 | Given the inventory command, When its file list is compared with `inventory.md`, Then each file has exactly one row with an owner and an action | `specs/cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan/inventory.md:28` counts 209 rows, which match `specs/cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan/scratch/inventory-files.txt:1` to line 209 one for one and in order | Met | - |
+| AC-002 | REQ-002 | Given the removal, When its decisions are read, Then ADR-001 to ADR-004 are Accepted | `specs/cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan/decision-record.md:36`, `:121`, `:206` and `:291`, each Status Accepted | Met | - |
+| AC-003 | REQ-003 | Given the hub check and the compiled router, When their mode-count rules are read, Then each is cited with `file:line` and the check exits 0 on the unchanged hub | `specs/cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan/inventory.md:32` cites five rules, and `specs/cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan/inventory.md:44` records the check's exit 0 | Met | - |
+| AC-004 | REQ-004 | Given the covering suites, When each runs on the unchanged tree, Then its pass and fail count is recorded | `specs/cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan/inventory.md:48` records 25 suites with their pass and fail counts | Met | - |
+| AC-005 | REQ-001 to REQ-004 | Given the final state, When the phase closes, Then `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` | `specs/cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan/tasks.md:57` T007: `validate.sh --strict` RESULT: PASSED and `check-goal.cjs` RESULT: PASSED (5/5 checks) | Met | - |
 
 ### Status values
 

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/003-archive-path-follow-ups"
     last_updated_at: "2026-10-09T09:17:51Z"
     last_updated_by: "orchestrator"
     recent_action: "Closeout 3: citations re-checked; gate rows re-cited to tree5"

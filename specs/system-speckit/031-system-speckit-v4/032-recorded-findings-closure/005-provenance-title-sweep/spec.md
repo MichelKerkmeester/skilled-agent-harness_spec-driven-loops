@@ -78,7 +78,7 @@ The committed titles this session owns read like the feature they describe inste
 - Bringing the fixtures that stand for "a valid, fully-authored packet" (`runtime/cli/test-fixtures/002-valid-level1`, `003-valid-level2`, `004-valid-level3`, and any other fixture the extended suite or `progressive-validation.vitest.js`/`.ts` reads as an unconditional pass) in step with the new class, without touching fixtures whose entire purpose is to model an untouched scaffold (`072-scaffold-never-touched-violation`)
 
 ### Out of Scope
-- `specs/sk-doc/052-routing-completeness` (2 title matches) - staged by another session. The brief names it as left for its owner
+- `specs/sk-doc/051-hub-routing-quality/001-routing-completeness` (2 title matches) - staged by another session. The brief names it as left for its owner
 - `specs/system-deep-loop/036-deep-loop-innovation` (1 title match) - same reason
 - every packet under `specs/sk-design/` (15 title matches) - same reason
 - `specs/sk-doc/051-*` - named in the brief as excluded. The live corpus carries zero matches under this prefix, so there is nothing to skip and nothing to verify skipped

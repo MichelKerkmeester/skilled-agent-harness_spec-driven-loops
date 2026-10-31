@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-doctor-audit-followups/032-orphan-process-check"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/032-orphan-process-check"
     last_updated_at: "2026-10-21T13:00:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Marked AC-002 to AC-005 Met, AC-001 superseded by ADR-001"

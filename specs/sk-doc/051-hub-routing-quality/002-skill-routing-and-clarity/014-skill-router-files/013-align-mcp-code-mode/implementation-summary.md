@@ -7,15 +7,15 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/013-align-mcp-code-mode"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/013-align-mcp-code-mode"
     last_updated_at: "2026-10-29T20:10:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Recorded the mcp-code-mode alignment check, its fixes and the recheck"
     next_safe_action: "Commit so the pre-commit gates re-mint the derived files"
     blockers: []
     key_files:
-      - "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/013-align-mcp-code-mode/spec.md"
-      - "specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/013-align-mcp-code-mode/tasks.md"
+      - "specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/013-align-mcp-code-mode/spec.md"
+      - "specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/013-align-mcp-code-mode/tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "0274-packet-router-migration"

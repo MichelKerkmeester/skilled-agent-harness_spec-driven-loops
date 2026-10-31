@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-write-recipe-fixes/001-fix-write-recipe-backfill-flag"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/001-fix-write-recipe-backfill-flag"
     last_updated_at: "2026-09-28T22:43:29Z"
     last_updated_by: "claude"
     recent_action: "Fixed the recipe command and proved it"

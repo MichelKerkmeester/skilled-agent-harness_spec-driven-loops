@@ -60,7 +60,7 @@ contextType: "general"
 - [x] T011 Pause the live agent after the log showed six TERMs to a launcher-supervised `hf-model-server`. Verify: `launchctl list com.michelkerkmeester.orphan-sweep` reports the service is not found.
 - [x] T012 Preserve `hf-model-server` while the advisor launcher is its parent, restore mode 100755, and cover `current_class_of` (`W`, tests by DeepSeek V4.1 Flash via Pi). Verify: dry run shows no `class=hf-model-server` kill; `git ls-files -s W` shows 100755.
 - [x] T013 Bring the env docs, hook runbook, root README, feature catalog, playbook (new scenario 487) and a system-spec-kit v2.12.22.0 changelog in line with the shipped behavior. Verify: `grep -rn "reaps only ownerless" .skilled/skills/system-spec-kit` prints nothing.
-- [x] T014 Restore the two Devin evidence files the first commit removed. Verify: `test -e specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/runtime-verification/devin/02-dv022.txt`.
+- [x] T014 Restore the two Devin evidence files the first commit removed. Verify: `test -e specs/sk-doc/057-create-goal-mode/012-goal-send-and-dedupe/scratch/runtime-verification/devin/02-dv022.txt`.
 - [x] T015 Reload the LaunchAgent once T012 holds. Verify: `launchctl kickstart` logs `kills=0` with no advisor or model-server kill.
 - [x] T016 Make the session tree recognise all seven CLI runtimes and preserve a temp-path process that still drives a live session (`W`, by DeepSeek V4.1 Flash via Pi). Verify: a dry run prints `reason=advisor-launcher-child` for a live `hf-model-server` and `kills=0`; the driver tests pass.
 - [x] T017 Enforce `ORPHAN_AGE_MIN_SEC` as a floor for every candidate (`W`, by DeepSeek V4.1 Flash via Pi). Verify: the age-floor tests pass.

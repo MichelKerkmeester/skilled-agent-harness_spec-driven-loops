@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The packet closed with every phase Complete, but a read-only deep review over ten forced iterations found contradictions between what the documents claim and what they record, plus one runtime gap: the committed trigger-index reader accepted a parseable but malformed artifact and silently returned fewer results than it held",
     "created_at": "2026-09-04T07:21:40Z",
-    "last_save_at": "2026-10-31T13:26:42.622Z",
+    "last_save_at": "2026-10-31T13:58:46.457Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b14ce289df86ffb9aca7dbd4a7d8105d8fe7a6aeff987ad311a92eb89bca1ebd",
+    "source_fingerprint": "sha256:8261414b0be01507024fc031cd6b0861e82e58437dc0d8cba559e12e10f196a7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "feeb97035b6efebae4511d4e64bc80b39b1f67d151639936e21186381584a707",

@@ -91,9 +91,9 @@ A shell-expanded pathspec draws no advisory and a cited document resolves to the
 | .skilled/skills/sk-git/scripts/lib/git-rule-checks.test.mjs | Modify | Test that a `$`, backtick or `~` pathspec never reads as matching nothing |
 | .skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs | Modify | `resolveSpecFolderFromText` trims a line suffix and a trailing file name |
 | .skilled/skills/system-spec-kit/runtime/tests/completion-evidence-sentinel.vitest.ts | Modify | Test that a cited `path:line` document resolves to its folder |
-| specs/system-speckit/033-system-speckit-v4/055-advisory-false-alarms/ (packet docs) | Create | This packet's documentation |
-| specs/system-speckit/033-system-speckit-v4/spec.md | Modify | Phase-map and transition rows for this phase |
-| specs/system-speckit/033-system-speckit-v4/graph-metadata.json | Modify | Re-derived so the parent lists this phase as a child |
+| specs/system-speckit/031-system-speckit-v4/055-advisory-false-alarms/ (packet docs) | Create | This packet's documentation |
+| specs/system-speckit/031-system-speckit-v4/spec.md | Modify | Phase-map and transition rows for this phase |
+| specs/system-speckit/031-system-speckit-v4/graph-metadata.json | Modify | Re-derived so the parent lists this phase as a child |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -113,7 +113,7 @@ A shell-expanded pathspec draws no advisory and a cited document resolves to the
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-003 | No true advisory is lost | Literal paths behave as before, the existing tests pass unchanged and `git reset --hard $REF` still draws `reset-hard-discards-changes` on a tree with changes |
-| REQ-004 | Strict packet validation passes | `validate.sh specs/system-speckit/033-system-speckit-v4/055-advisory-false-alarms --strict` prints `RESULT: PASSED` |
+| REQ-004 | Strict packet validation passes | `validate.sh specs/system-speckit/031-system-speckit-v4/055-advisory-false-alarms --strict` prints `RESULT: PASSED` |
 <!-- /ANCHOR:requirements -->
 
 ---

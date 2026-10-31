@@ -10,14 +10,14 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/006-goal-criteria-lint"
     last_updated_at: "2026-09-28T23:15:00Z"
     last_updated_by: "closure-leaf"
     recent_action: "Closed the phase at the label gate: 7 of 7 criteria ticked, build commit 2139eb8c0d"
     next_safe_action: "Orchestrator commits the phase docs. The operator adopts a rubric and labels the 100 drawn rows"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/006-goal-criteria-lint/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-workflow-integration"

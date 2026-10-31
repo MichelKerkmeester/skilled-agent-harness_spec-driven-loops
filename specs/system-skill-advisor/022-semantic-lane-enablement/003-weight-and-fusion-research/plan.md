@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/023-semantic-lane-enablement/003-weight-and-fusion-research"
+    packet_pointer: "system-skill-advisor/022-semantic-lane-enablement/003-weight-and-fusion-research"
     last_updated_at: "2026-09-03T00:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the implementation plan carrying the draft research design"
@@ -100,7 +100,7 @@ frozen corpora.
 
 ```
 /deep:research:auto "advisor semantic lane weight and fusion behaviour" \
-  --spec-folder=specs/system-skill-advisor/023-semantic-lane-enablement/003-weight-and-fusion-research \
+  --spec-folder=specs/system-skill-advisor/022-semantic-lane-enablement/003-weight-and-fusion-research \
   --max-iterations=14 --stop-policy=max-iterations --convergence-mode=off \
   --executors='[{"type":"cli-codex","model":"gpt-5.6-sol","reasoning-effort":"high","iters":9},
                 {"type":"cli-devin","model":"glm-5.2","reasoning-effort":"high","iters":5}]' \

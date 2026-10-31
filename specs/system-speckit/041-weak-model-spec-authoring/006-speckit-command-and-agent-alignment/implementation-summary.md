@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/006-speckit-command-and-agent-alignment"
     last_updated_at: "2026-10-24T22:00:00Z"
     last_updated_by: "conductor"
     recent_action: "Closed phase 006"
     next_safe_action: "Start phase 007"
     blockers: []
     key_files:
-      - "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/tasks.md"
+      - "specs/system-speckit/041-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "054-weak-model-spec-authoring-planning"

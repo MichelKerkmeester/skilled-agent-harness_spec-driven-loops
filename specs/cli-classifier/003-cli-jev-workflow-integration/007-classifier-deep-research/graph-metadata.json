@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Rounds 1 and 2 asked where Jev, a hosted and keyed typed-judgment model, earns a place here",
     "created_at": "2026-09-27T05:35:24Z",
-    "last_save_at": "2026-10-31T13:25:26.945Z",
+    "last_save_at": "2026-10-31T14:03:47.375Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d1c1561cca291ccd480cdb6436648680716ca9df630c117ba638b8ee8bc1b2cb",
+    "source_fingerprint": "sha256:f490413aee319acf69b595925d58171df2218e0e90614d189a214852f936d030",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4e8b69574e1f1371a4f82d33420f4efbacb7ed315a07332b26bfdc34f1f3db3c",
-      "plan.md": "441e739bf4fb0ffa77b4badd4e97e172acc08c3e574bbc0252549471a69a05d9",
+      "plan.md": "f5c6ee4188ce2cbad8c6c6c94db0f6775f7866ab6d6837f97856d8f8c863848a",
       "tasks.md": "dc3ca4f5695463c7ac89186b137440178ad4ae7008b8883c516fd5c4d0aeed38",
-      "implementation-summary.md": "0553518ef06720a2a3d05178ab85bd5248cc52fd769d836495801d93cdfa435b",
+      "implementation-summary.md": "c9f452247ee7479140a50b3419f1386b6990ada2999500755dff421d02b800b7",
       "research/research.md": "7aa0fae1270ef986a417e1be1af727780d63859de0af6c6c92c488c3586a73e7"
     },
     "last_active_at": null

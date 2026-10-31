@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules"
+    packet_pointer: "system-speckit/031-system-speckit-v4/063-cli-codex-dispatch-rules"
     last_updated_at: "2026-09-24T07:36:36Z"
     last_updated_by: "generate-context"
     recent_action: "Pointed the phase at its successor 064"
@@ -66,8 +66,8 @@ A fifth dispatch gotcha says a child under `--sandbox workspace-write` cannot ru
 | `.hermes/skills/cli-codex/SKILL.md` | Regenerated | Hermes copy of the skill |
 | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json` | Regenerated | Runtime routing manifest for the cli hub |
 | `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json` | Regenerated | Authored source of that manifest |
-| `specs/system-speckit/033-system-speckit-v4/spec.md` | Modified | Row 63 in the phase map |
-| `specs/system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs/spec.md` | Modified | Phase count and successor |
+| `specs/system-speckit/031-system-speckit-v4/spec.md` | Modified | Row 63 in the phase map |
+| `specs/system-speckit/031-system-speckit-v4/062-v4-parent-data-repairs/spec.md` | Modified | Phase count and successor |
 <!-- /ANCHOR:what-built -->
 
 ---

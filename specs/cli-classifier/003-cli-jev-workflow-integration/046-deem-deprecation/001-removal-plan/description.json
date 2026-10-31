@@ -9,7 +9,7 @@
   "specId": "001",
   "folderSlug": "removal-plan",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration",
     "046-deem-deprecation"
   ],

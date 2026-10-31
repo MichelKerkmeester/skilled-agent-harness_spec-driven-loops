@@ -133,17 +133,17 @@
     ],
     "causal_summary": "The operator chose on 2026-10-02 to keep only Jev as the classifier",
     "created_at": "2026-10-02T07:54:39Z",
-    "last_save_at": "2026-10-31T13:25:35.169Z",
+    "last_save_at": "2026-10-31T14:03:55.707Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:873cf82036042c036e98aae437f1e6e8c6c8ab3ee68b3dd82fcc2467a0d7c081",
+    "source_fingerprint": "sha256:ddef594894a1c4604fc2e5fbef955c45f55be409e5df363234e0e1aa5da91d9f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "80a4d8546375d83da143aee93992e99201639e61b873e5fc89b65e9b3a8133ac"
+      "spec.md": "e4ae909cddc97eb5ffac8e4a365532519df4eab582cef144c62bcfeb3c0f6b4b"
     },
     "last_active_at": null
   }

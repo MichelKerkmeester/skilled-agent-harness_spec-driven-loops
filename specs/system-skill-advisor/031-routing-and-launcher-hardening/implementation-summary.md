@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/036-routing-and-launcher-hardening"
+    packet_pointer: "system-skill-advisor/031-routing-and-launcher-hardening"
     last_updated_at: "2026-10-17T12:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "All six items shipped and the full gate list passed"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 036-routing-and-launcher-hardening |
+| **Spec Folder** | 031-routing-and-launcher-hardening |
 | **Completed** | 2026-10-17 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

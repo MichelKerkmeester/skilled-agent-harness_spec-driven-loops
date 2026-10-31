@@ -195,7 +195,7 @@
     ],
     "causal_summary": "sk-design and system-deep-loop restate their mode choice in hub `route()` pseudocode, and the no-match outcome carries a different name in each hub",
     "created_at": "2026-10-28T06:38:48Z",
-    "last_save_at": "2026-10-31T13:25:48.151Z",
+    "last_save_at": "2026-10-31T14:01:36.626Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5fb285110a020873cbb3016ca0b5817ca618c5b70843577da489bd7c585c49c6",
+    "source_fingerprint": "sha256:7f679a1f1ab304888d570da1dd5d8710550695bbf73fdb46f63e807062243283",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fc13e681285bafbd22885e5305e856719c6142d59d8dc89f4c8fb6d8cfb819a9",
       "plan.md": "c7fb4bdf5e81af74265e2fbe282bcaf2a45bafdcbb4d263ac77a813db0a2942b",
-      "tasks.md": "0bdea81153d1a59b80ede77c5c212a3cde1ab36dc7fb02ca40dc97e81fc317d9",
+      "tasks.md": "8748de73c66e0cc58b5abcccff1c0e9e696d2129a864e9a4403811a1c22f584a",
       "implementation-summary.md": "c7dca26c23e24e3aa8f6c35a6c271eab00adef0817900bbe69a32c4304753db7"
     },
     "last_active_at": null

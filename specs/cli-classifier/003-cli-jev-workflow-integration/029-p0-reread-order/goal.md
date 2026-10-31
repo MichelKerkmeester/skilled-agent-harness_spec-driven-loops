@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/029-p0-reread-order"
     last_updated_at: "2026-09-30T06:03:26Z"
     last_updated_by: "markdown-leaf"
     recent_action: "Build committed as 2239858286, closed at its label gate"
@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/scratch/w4-session/session-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/029-p0-reread-order/scratch/w4-session/session-evidence.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-029-p0-reread-order"

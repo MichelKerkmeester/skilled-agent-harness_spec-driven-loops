@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/061-worktree-build-provisioning"
+    packet_pointer: "system-speckit/031-system-speckit-v4/061-worktree-build-provisioning"
     last_updated_at: "2026-10-05T09:40:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Named spec-kit's runtime and CLI build outputs in the provision list"

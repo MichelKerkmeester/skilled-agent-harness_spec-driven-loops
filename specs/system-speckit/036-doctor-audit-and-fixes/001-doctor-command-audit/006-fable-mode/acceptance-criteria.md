@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/048-doctor-command-audit/006-fable-mode"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/006-fable-mode"
     last_updated_at: "2026-10-02T16:10:18Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/048-doctor-command-audit/006-fable-mode
+**Packet:** system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/006-fable-mode
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-02

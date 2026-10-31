@@ -61,7 +61,7 @@ moved in `f4cd27a29e`, which made the mode hold itself to its own standard. Exit
 review reports how often the mode is actually reached, with a number.
 
 Frontmatter utilization review sits at
-`specs/sk-doc/049-sk-create-frontmatter/008-utilization-review/goal.md`. Its packet last
+`specs/sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/008-utilization-review/goal.md`. Its packet last
 moved in `80a4f2036f`, the first run of its own playbook. Exit signal: the same, a
 utilization number rather than an assumption.
 
@@ -75,7 +75,7 @@ templates has a recorded decision, fix or keep with the reason.
 All three follow-up phases hold a goal.md, authored on 2026-09-02. Read the phase goal
 before working the phase; its criteria bind.
 
-**Later:** Done as a plan. Focus: `specs/system-skill-advisor/023-semantic-lane-enablement`,
+**Later:** Done as a plan. Focus: `specs/system-skill-advisor/022-semantic-lane-enablement`,
 five planned phases, no code change. Gate B measures 8 of 172 realistic phrasings, 4.7 percent,
 and the cause is structural rather than lexical. Two premises were corrected while planning it:
 the semantic lane is live at weight 0.05 rather than shadow-only (`lane-registry.ts:12`), and 9
@@ -129,7 +129,7 @@ Planned. Evidence: the 45 of 53 count from phase 006 payload scanning, and the t
 swept in `318620c23d`.
 
 **Semantic lane packet planned:** phase Later, target 2026-09-03. Status: Done. Evidence:
-`specs/system-skill-advisor/023-semantic-lane-enablement` at commit `c0c20756fd`, six folders
+`specs/system-skill-advisor/022-semantic-lane-enablement` at commit `c0c20756fd`, six folders
 validating strict and recursive at zero errors.
 <!-- /ANCHOR:milestones-targets -->
 

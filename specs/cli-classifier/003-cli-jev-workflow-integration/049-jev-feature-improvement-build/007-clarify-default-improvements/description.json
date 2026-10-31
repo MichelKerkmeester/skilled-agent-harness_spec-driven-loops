@@ -9,7 +9,7 @@
   "specId": "007",
   "folderSlug": "clarify-default-improvements",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "003-cli-jev-workflow-integration",
     "049-jev-feature-improvement-build"
   ],

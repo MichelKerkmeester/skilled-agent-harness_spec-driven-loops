@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs"
     last_updated_at: "2026-10-11T21:32:39Z"
     last_updated_by: "closeout"
     recent_action: "Full-tree apply finished and the changelog refresh is closed"

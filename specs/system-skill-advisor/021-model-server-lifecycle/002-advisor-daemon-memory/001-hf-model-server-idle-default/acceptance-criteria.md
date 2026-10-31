@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/037-advisor-daemon-memory/001-hf-model-server-idle-default"
+    packet_pointer: "system-skill-advisor/021-model-server-lifecycle/002-advisor-daemon-memory/001-hf-model-server-idle-default"
     last_updated_at: "2026-10-21T11:45:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Marked AC-001 to AC-004 and AC-006 Met, AC-005 superseded by ADR-002"

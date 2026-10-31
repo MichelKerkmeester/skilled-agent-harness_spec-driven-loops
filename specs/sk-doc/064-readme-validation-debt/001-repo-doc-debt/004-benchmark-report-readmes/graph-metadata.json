@@ -194,7 +194,7 @@
     ],
     "causal_summary": "235 benchmark report READMEs, under 13 skills and 2 Pi extensions, were written in an older layout: a title, sometimes a derived-record line, a `>` line, a verdict line, then `## Run`, `## Files` and `## Reading This Folder`",
     "created_at": "2026-10-27T08:26:07Z",
-    "last_save_at": "2026-10-31T13:26:04.506Z",
+    "last_save_at": "2026-10-31T14:01:57.494Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,7 +204,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6a5a8d20344ab8e7222a3699927c6b90ae0389fd5b5dff191038217404d3e10",
+    "source_fingerprint": "sha256:4d3d74309afe654cd676669ea31c828b85a5bc0f0e3db89dbe2e8b1d9a1e546d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ce2cc0bcbd8ff2c335446b3eb5a09ec7fa56c809a34c447737cf2c70a7d1e0b9",

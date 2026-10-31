@@ -8,15 +8,15 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity"
     last_updated_at: "2026-10-11T19:55:54Z"
     last_updated_by: "generate-context"
     recent_action: "Rechecked the three short menu files and found them fixed"
     next_safe_action: "Monitor the Gate 3 menu parity check in CI"
     blockers: []
     key_files:
-      - "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/implementation-summary.md"
-      - "specs/system-speckit/034-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/scratch/evidence/lane-followup-recheck.txt"
+      - "specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/implementation-summary.md"
+      - "specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity/scratch/evidence/lane-followup-recheck.txt"
     session_dedup:
       fingerprint: "sha256:f092f137e09d7b937908072d29769b6f1374e7d0cd147021b8cb6fcd0f595c4c"
       session_id: "bd2aa56c-623b-43f8-a2ef-69a13c32d626"

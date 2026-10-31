@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/019-advisor-suggested-order"
     last_updated_at: "2026-09-30T10:07:58Z"
     last_updated_by: "markdown-leaf"
     recent_action: "Recorded the operator's live Jev run and its kill verdict"
@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs"
       - ".skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-build/build-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-build/build-evidence.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-019-advisor-suggested-order"

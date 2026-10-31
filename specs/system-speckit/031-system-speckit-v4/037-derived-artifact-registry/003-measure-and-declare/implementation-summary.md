@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/037-derived-artifact-registry/003-measure-and-declare"
+    packet_pointer: "system-speckit/031-system-speckit-v4/037-derived-artifact-registry/003-measure-and-declare"
     last_updated_at: "2026-09-11T06:37:37Z"
     last_updated_by: "template-author"
     recent_action: "Initialized the pre-implementation record"
     next_safe_action: "Execute the phase and replace this file with what shipped"
     blockers: []
     key_files:
-      - "specs/system-speckit/033-system-speckit-v4/037-derived-artifact-registry/003-measure-and-declare/spec.md"
+      - "specs/system-speckit/031-system-speckit-v4/037-derived-artifact-registry/003-measure-and-declare/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-003-measure-and-declare"

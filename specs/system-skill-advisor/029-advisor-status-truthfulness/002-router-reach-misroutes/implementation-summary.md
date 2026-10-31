@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/033-advisor-status-truthfulness/002-router-reach-misroutes"
+    packet_pointer: "system-skill-advisor/029-advisor-status-truthfulness/002-router-reach-misroutes"
     last_updated_at: "2026-10-03T07:45:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Shipped and verified phase 2"
     next_safe_action: "Parent session reviews and commits the packet"
     blockers: []
     key_files:
-      - "specs/system-skill-advisor/033-advisor-status-truthfulness/002-router-reach-misroutes/scratch/reproduction.md"
+      - "specs/system-skill-advisor/029-advisor-status-truthfulness/002-router-reach-misroutes/scratch/reproduction.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-002-router-reach-misroutes"

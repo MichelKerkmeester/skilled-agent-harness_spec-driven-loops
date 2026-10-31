@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination"
     last_updated_at: "2026-10-23T13:49:00Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination
+**Packet:** system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-10-23

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-create-goal-mode/009-verification-and-closeout"
+    packet_pointer: "sk-doc/057-create-goal-mode/009-verification-and-closeout"
     last_updated_at: "2026-09-26T12:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Met every completion criterion with evidence"
@@ -88,7 +88,7 @@ here are invisible to whatever judges completion.
 - [ ] The reachability record contains ten prompt rows and a count for advisor, compiled-route and joint success.
 - [ ] `sk-create-goal/README.md` passes `validate_document.py` and `hvr_scan.py` reports zero hard blockers.
 - [ ] `sk-create-goal/changelog/v1.0.0.0.md` exists and `test -f .skilled/changelog/sk-doc/create-goal/v1.0.0.0.md` succeeds.
-- [ ] Recursive strict validation of `specs/sk-doc/060-create-goal-mode` prints `RESULT: PASSED` and exits 0.
+- [ ] Recursive strict validation of `specs/sk-doc/057-create-goal-mode` prints `RESULT: PASSED` and exits 0.
 <!-- /ANCHOR:completion -->
 
 ---

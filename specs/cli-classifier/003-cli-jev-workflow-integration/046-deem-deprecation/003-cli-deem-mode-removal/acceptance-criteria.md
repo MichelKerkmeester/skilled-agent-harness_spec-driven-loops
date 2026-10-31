@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal"
     last_updated_at: "2026-10-02T13:40:00Z"
     last_updated_by: "orchestrating-session"
     recent_action: "Met every criterion"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal
+**Packet:** cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-02
@@ -51,12 +51,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the removal, When the two folders are listed and the mirror is checked, Then neither exists and `--check` exits 0 | `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/implementation-summary.md:99` both folders absent and `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/implementation-summary.md:100` mirror `--check` exit 0 | Met | - |
-| AC-002 | REQ-002 | Given the reduced hub, When the parent-hub check runs, Then it exits 0 and the registry lists only `cli-jev` | `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/implementation-summary.md:101` exit 0, 0 warnings, modes `[cli-jev]` | Met | - |
-| AC-003 | REQ-003 | Given the re-minted routing, When status and harness run, Then status reads `compiled-serving` and 0 fail | `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/implementation-summary.md:102` `compiled-serving` and `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/implementation-summary.md:103` harness built, exit 0 | Met | - |
-| AC-004 | REQ-004 | Given the advisor and orchestration files, When `cli-deem` is searched, Then nothing prints and the advisor suite passes | `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/implementation-summary.md:105` grep prints nothing and `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/implementation-summary.md:106` advisor suite | Met | - |
-| AC-005 | REQ-005 | Given the changes, When a reviewer from the other worker family reads them, Then no P0 or P1 stays open | `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/implementation-summary.md:107` no P0 or P1, P2 logged in `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/goal.md:91` | Met | - |
-| AC-006 | REQ-001 to REQ-005 | Given the final state, When the phase closes, Then `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` | `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/tasks.md:58` T008: `validate.sh --strict` RESULT: PASSED and `check-goal.cjs` RESULT: PASSED (5/5 checks) | Met | - |
+| AC-001 | REQ-001 | Given the removal, When the two folders are listed and the mirror is checked, Then neither exists and `--check` exits 0 | `specs/cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/implementation-summary.md:99` both folders absent and `specs/cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/implementation-summary.md:100` mirror `--check` exit 0 | Met | - |
+| AC-002 | REQ-002 | Given the reduced hub, When the parent-hub check runs, Then it exits 0 and the registry lists only `cli-jev` | `specs/cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/implementation-summary.md:101` exit 0, 0 warnings, modes `[cli-jev]` | Met | - |
+| AC-003 | REQ-003 | Given the re-minted routing, When status and harness run, Then status reads `compiled-serving` and 0 fail | `specs/cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/implementation-summary.md:102` `compiled-serving` and `specs/cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/implementation-summary.md:103` harness built, exit 0 | Met | - |
+| AC-004 | REQ-004 | Given the advisor and orchestration files, When `cli-deem` is searched, Then nothing prints and the advisor suite passes | `specs/cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/implementation-summary.md:105` grep prints nothing and `specs/cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/implementation-summary.md:106` advisor suite | Met | - |
+| AC-005 | REQ-005 | Given the changes, When a reviewer from the other worker family reads them, Then no P0 or P1 stays open | `specs/cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/implementation-summary.md:107` no P0 or P1, P2 logged in `specs/cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/goal.md:91` | Met | - |
+| AC-006 | REQ-001 to REQ-005 | Given the final state, When the phase closes, Then `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` | `specs/cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/tasks.md:58` T008: `validate.sh --strict` RESULT: PASSED and `check-goal.cjs` RESULT: PASSED (5/5 checks) | Met | - |
 
 ### Status values
 

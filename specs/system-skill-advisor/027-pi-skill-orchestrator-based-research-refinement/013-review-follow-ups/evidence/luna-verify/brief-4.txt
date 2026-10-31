@@ -6,7 +6,7 @@ defines as the autonomous child-dispatch exemption: the spec-folder question is 
 and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
 
 Your write authority is already bound. The spec folder is:
-  specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups
+  specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups
 
 Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 Your task is complete only when every check below has a verdict and the REPORT is printed.
@@ -21,7 +21,7 @@ ROLE
 You re-verify one correction. You read files. You run no scenario, start no advisor process and signal no process.
 
 WHAT CHANGED
-Your previous verify (specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/luna-verify/report-3.txt)
+Your previous verify (specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/luna-verify/report-3.txt)
 passed checks 1 to 3 and failed check 4: the two triage entries and the F12 bullet left out the trace's condition
 that no skill_graph_scan or advisor_rebuild runs during the quiet rerun. All three now carry it.
 
@@ -30,8 +30,8 @@ FILES
   .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md
 - The last five sentences under "### Failure Triage" in
   .skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md
-- The F12 bullet in specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/spec.md
-- For reference: specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/generation-trace.txt
+- The F12 bullet in specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/spec.md
+- For reference: specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/generation-trace.txt
   and, under .skilled/skills/system-skill-advisor/runtime/, handlers/skill-graph/scan.ts, handlers/advisor-rebuild.ts,
   lib/daemon/lifecycle.ts, lib/daemon/watcher.ts and advisor-server.ts
 

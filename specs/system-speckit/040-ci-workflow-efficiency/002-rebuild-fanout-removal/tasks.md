@@ -34,7 +34,7 @@ contextType: "general"
 
 ### T001 [x] DECISION D1 (operator yes required) - choose how rebuild commits skip CI (AC-001)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/d1-answer.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
+File: `specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/d1-answer.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
 
 Done: `scratch/d1-answer.md` holds `D1=A`.
 
@@ -47,8 +47,8 @@ Change: the operator answered on 2026-10-23, and the file already holds the answ
 Check:
 
 ```bash
-mkdir -p specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch
-cat specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/d1-answer.md
+mkdir -p specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch
+cat specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/d1-answer.md
 ```
 
 Expected: `D1=A`.
@@ -61,7 +61,7 @@ Stop and escalate if: the operator answers B, or no answer arrives. This task li
 
 ### T002 [x] Capture the pre-change fan-out for three rebuild SHAs (AC-005)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/pre-change/` (new directory). Anchor: none.
+File: `specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/pre-change/` (new directory). Anchor: none.
 
 Done: `scratch/pre-change/` holds `ac2be31ec6…`, `b786d850c7…` and `bf2bd5ca8a….json`, each 14 rows; they are the three rebuild commits immediately preceding 8e62a3d096.
 
@@ -70,7 +70,7 @@ Change: create one `gh run list` JSON per rebuild SHA, so AC-005 has a before nu
 Check:
 
 ```bash
-mkdir -p specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/pre-change
+mkdir -p specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/pre-change
 git log --format='%H %s' -40 origin/main | grep 'rebuild the trigger index' | head -3
 ```
 
@@ -80,13 +80,13 @@ Then, for each of the three SHAs, replace `<sha>` and run:
 
 ```bash
 gh run list --commit <sha> --json databaseId,workflowName,event,conclusion --limit 30 \
-  > specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/pre-change/<sha>.json
+  > specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/pre-change/<sha>.json
 ```
 
 Expected: three files under `scratch/pre-change/`.
 
 ```bash
-for f in specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/pre-change/*.json; do
+for f in specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/pre-change/*.json; do
   printf '%s ' "$(basename "$f")"
   node -e 'process.stdout.write(String(JSON.parse(require("node:fs").readFileSync(process.argv[1], "utf8")).length) + "\n")' "$f"
 done
@@ -94,7 +94,7 @@ done
 
 Expected: three lines, each ending in `14`.
 
-Rollback: `rm -rf specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/pre-change`.
+Rollback: `rm -rf specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/pre-change`.
 
 Stop and escalate if: fewer than three SHAs are listed, or any captured file holds a count other than 14.
 
@@ -462,7 +462,7 @@ The rebuild commit re-ran 13 workflows on four generated files no gate reads.
 GitHub starts no workflow for a commit whose message carries the skip token, so
 the body line carries it and the loop-guard trailer stays the last line.
 
-Spec: system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal
+Spec: system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg.txt
 git commit -F /tmp/commit-msg.txt
@@ -583,7 +583,7 @@ ci(workflows): probe the rebuild workflow trigger
 The probe proves a workflow-only change reaches spec-kit-check through the new
 filter entry before the trigger is relied on.
 
-Spec: system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal
+Spec: system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-commit-msg.txt
 git commit -F /tmp/probe-commit-msg.txt
@@ -602,7 +602,7 @@ Stop and escalate if: no run is listed for the probe head SHA, or the pull reque
 
 ### T019 [x] Record the 24 h baseline (AC-006)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/` (new directory). Anchor: none.
+File: `specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/` (new directory). Anchor: none.
 
 Done: collected 2026-10-24T21:58Z and every command exited 0. `runs-last-1000.json` holds 1000 runs reaching back to 2026-10-23T15:24:36Z, `window.json` holds 795 runs from 2026-10-23T21:59:34Z, `run-ids.txt` holds 191 ids with 191 `jobs/<id>.json` files, and `summary.md` records the window, the per-workflow rows and the total. The measured total for `.github/workflows/` runs is 2,191 runner-min in the 24 h window, outside the original 1,700-1,850 band; the 67 `dynamic` runs (about 584 min, 420 of them `Push on main`) are on a separate line. Runs started by the 19 rebuild commits in the window: 0 (push, pull_request and schedule events). The stop condition below fired, the number was reported as measured, and on 2026-10-25 the operator ruled "Amend the band to the measured value." (ADR-006). The total was recomputed from the window run list and the 191 job samples on 2026-10-25 and is 2,191; the saving against 3,812 is 1,621 runner-min, 42.5%. The task is done against the amended band.
 
@@ -610,10 +610,10 @@ Change: create the run list, the per-workflow run-id selection, the job samples 
 
 Counting note: Count only workflow runs from `.github/workflows/` in this baseline and in the deltas for 003 T036 and phase 008. Report any CodeQL default-setup `dynamic` run on a separate line so totals remain comparable with the pre-change baseline.
 
-Check: at least 24 hours after T014 merges, run every block in this task from `specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal`:
+Check: at least 24 hours after T014 merges, run every block in this task from `specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal`:
 
 ```bash
-cd specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal
+cd specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal
 mkdir -p scratch/baseline-24h/jobs
 gh run list --limit 1000 --json databaseId,name,headSha,event,conclusion,createdAt,startedAt,updatedAt > scratch/baseline-24h/runs-last-1000.json
 ```
@@ -654,7 +654,7 @@ Write `scratch/baseline-24h/summary.md` with the window bounds, the per-workflow
 
 Expected: the total in `summary.md` equals the amended band of 2,191 runner-min/day (originally 1,700-1,850; ADR-006), against 3,812 before the change, and the per-rebuild-SHA run count in the window is 0.
 
-Rollback: `rm -rf specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h` and re-collect after another 24 h.
+Rollback: `rm -rf specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h` and re-collect after another 24 h.
 
 Stop and escalate if: fewer than 24 hours have passed, or the total falls outside the band. Report the measured number; do not rescale or adjust it. (This condition fired once at 2,191 and ended in the operator's band amendment, ADR-006.)
 
@@ -671,7 +671,7 @@ Change: set each row's Status to `Met` and copy the observed number into its Ver
 Check:
 
 ```bash
-grep -c '| Unmet |' specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/acceptance-criteria.md
+grep -c '| Unmet |' specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/acceptance-criteria.md
 ```
 
 Expected: `0`.
@@ -684,7 +684,7 @@ Stop and escalate if: any check from T012 to T019 has not passed.
 
 ### T021 [x] Commit the closure (AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal` (the packet folder). Anchor: `| AC-007 | Gates | REQ-007 |` at `acceptance-criteria.md:65`.
+File: `specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal` (the packet folder). Anchor: `| AC-007 | Gates | REQ-007 |` at `acceptance-criteria.md:65`.
 
 Evidence: the closure edits landed as commit `03baa89ac6`, `docs(spec): close the rebuild fan-out phase on the measured band`, and `git merge-base --is-ancestor 03baa89ac6 origin/main` printed `on-main` (observed 2026-10-25). `git status --short` over the packet folder printed nothing before this tick. The subject differs from the one drafted below because the commit states the measured band the operator amended to.
 
@@ -700,12 +700,12 @@ Every acceptance row now carries the observed run id, gate output or baseline
 number that proves it, so the packet records the measured state rather than a
 plan.
 
-Spec: system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal
+Spec: system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-closure.txt
-git add specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal
+git add specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal
 git commit -F /tmp/commit-msg-closure.txt
-git status --porcelain -- specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal
+git status --porcelain -- specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal
 ```
 
 Expected: `validate-message.mjs` exits `0`; `git log -1 --format=%s` prints `docs(spec): close the rebuild fan-out removal criteria`; `git status --porcelain` prints nothing.

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The deep review of the move from `.opencode` to `.skilled` returned verdict CONDITIONAL with 26 distinct findings",
     "created_at": "2026-09-18T09:25:35Z",
-    "last_save_at": "2026-10-31T13:27:02.091Z",
+    "last_save_at": "2026-10-31T13:59:12.013Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:efda01ee975e83c7a12e8d79f1c811260d29ec206d18d571bd46b8994b8abc4c",
+    "source_fingerprint": "sha256:50af724353e2d9c74ef2f26dde93ba35e0071fccc458c8eb206f78befb9df84e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7a2db1d487ef7947f73a7c7210c2844262f1c5bfe4e30076dc099c545565f1fd",

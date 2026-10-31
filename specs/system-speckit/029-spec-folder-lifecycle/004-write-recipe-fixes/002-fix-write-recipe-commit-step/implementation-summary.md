@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-write-recipe-fixes/002-fix-write-recipe-commit-step"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/002-fix-write-recipe-commit-step"
     last_updated_at: "2026-09-29T06:09:49Z"
     last_updated_by: "claude"
     recent_action: "Rewrote the recipe commit step and proved it"

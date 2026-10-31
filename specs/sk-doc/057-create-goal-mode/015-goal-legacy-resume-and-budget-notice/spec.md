@@ -89,7 +89,7 @@ An older suppressed goal can be resumed, the budget option tells the operator it
 | .opencode/plugins/opencode-goal.js (also reachable as .skilled/plugins/opencode-goal.js) | Modify | Resume clears a legacy suppression, and a recorded budget prints its notice |
 | .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs and opencode-goal-capabilities.test.cjs | Modify | Failing-first tests for both |
 | .skilled/hooks/goal/goal-plugin.md and .skilled/commands/goal-opencode.md | Modify | Say how an older suppressed goal resumes and that the budget is a reading |
-| specs/sk-doc/060-create-goal-mode/014-goal-no-budget-stop/implementation-summary.md | Modify | Correct limitation 2 |
+| specs/sk-doc/057-create-goal-mode/014-goal-no-budget-stop/implementation-summary.md | Modify | Correct limitation 2 |
 | scratch/ in this folder | Create | The live autonomy run transcript |
 <!-- /ANCHOR:scope -->
 

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/025-mcp-decommission-cli-front-door"
+    packet_pointer: "system-skill-advisor/024-mcp-decommission-cli-front-door"
     last_updated_at: "2026-09-11T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Compressed the durable directive to fit the operator goal surface"

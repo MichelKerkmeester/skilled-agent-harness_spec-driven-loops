@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/003-versioned-placeholder-gate"
     last_updated_at: "2026-10-24T15:45:00Z"
     last_updated_by: "conductor"
     recent_action: "Closed phase 3 after the census, suite and review"
     next_safe_action: "Start phase 004"
     blockers: []
     key_files:
-      - "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/tasks.md"
+      - "specs/system-speckit/041-weak-model-spec-authoring/003-versioned-placeholder-gate/tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-003-versioned-placeholder-gate"

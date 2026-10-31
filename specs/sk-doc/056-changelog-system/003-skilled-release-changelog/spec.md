@@ -10,15 +10,15 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/061-skilled-release-changelog"
+    packet_pointer: "sk-doc/056-changelog-system/003-skilled-release-changelog"
     last_updated_at: "2026-09-27T15:13:12Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Both phases built and verified, phase 1 pushed and phase 2 being committed"
     next_safe_action: "None once phase 2's commits and the index rebuild are pushed"
     blockers: []
     key_files:
-      - "specs/sk-doc/061-skilled-release-changelog/001-release-line-split/implementation-summary.md"
-      - "specs/sk-doc/061-skilled-release-changelog/002-changelog-findability/spec.md"
+      - "specs/sk-doc/056-changelog-system/003-skilled-release-changelog/001-release-line-split/implementation-summary.md"
+      - "specs/sk-doc/056-changelog-system/003-skilled-release-changelog/002-changelog-findability/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "75aab0e6-dcc7-401b-9d10-f48248374023"
@@ -54,7 +54,7 @@ _memory:
 | **Created** | 2026-09-27 |
 | **Branch** | `main` |
 | **Parent Spec** | None - this is a top-level phase parent |
-| **Parent Packet** | sk-doc/061-skilled-release-changelog |
+| **Parent Packet** | sk-doc/056-changelog-system/003-skilled-release-changelog |
 | **Predecessor** | None |
 | **Successor** | None |
 | **Handoff Criteria** | The framework release notes have their own line under `.skilled/changelog/skilled/`, and system-spec-kit writes its own changelog again. Every changelog in the repository can be found by Gate 1 and `/speckit:search` the way a spec document can, and the tools and docs around changelogs match what ships |

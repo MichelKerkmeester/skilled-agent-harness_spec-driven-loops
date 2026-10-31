@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/066-feature-catalog-template-anchor-deprecation/009-review-remediation"
+    packet_pointer: "sk-doc/060-feature-catalog-template-anchor-deprecation/009-review-remediation"
     last_updated_at: "2026-10-10T22:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Fixed the review findings and handoffs"
@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files:
       - ".skilled/skills/sk-design/SKILL.md"
-      - "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/goal.md"
+      - "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/goal.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "t4-feature-catalog-anchor"

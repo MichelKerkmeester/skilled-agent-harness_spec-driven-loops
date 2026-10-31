@@ -131,7 +131,7 @@ Verification commands (each reads its own output and exit status):
 - `node .skilled/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs`
 - `bash .skilled/commands/doctor/scripts/route-validate.sh`
 - `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check`
-- `git check-ignore -v specs/system-speckit/048-doctor-command-audit/003-update/research/.deep-research.lock`
+- `git check-ignore -v specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/.deep-research.lock`
 
 <!-- /ANCHOR:phases -->
 

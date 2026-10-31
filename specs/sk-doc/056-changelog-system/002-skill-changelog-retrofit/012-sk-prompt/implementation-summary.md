@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/059-skill-changelog-retrofit/012-sk-prompt"
+    packet_pointer: "sk-doc/056-changelog-system/002-skill-changelog-retrofit/012-sk-prompt"
     last_updated_at: "2026-09-26T08:26:44Z"
     last_updated_by: "generate-context"
     recent_action: "Committed and pushed the sk-prompt rewrites in ee5852eae6"
     next_safe_action: "Close the parent packet"
     blockers: []
     key_files:
-      - "specs/sk-doc/059-skill-changelog-retrofit/scratch/lists/sk-prompt.txt"
+      - "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/scratch/lists/sk-prompt.txt"
     session_dedup:
       fingerprint: "sha256:8351bbb3355e006e47d2639de943a47237dc747f7ed2c72042631369054347f5"
       session_id: "fb879d4c-5543-4760-8339-b0f3499f278d"

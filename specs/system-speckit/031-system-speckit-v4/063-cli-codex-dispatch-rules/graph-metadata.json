@@ -45,7 +45,9 @@
       ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
       ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.4.0.md",
       ".hermes/skills/cli-codex/SKILL.md",
-      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json"
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
+      "specs/system-speckit/031-system-speckit-v4/spec.md",
+      "specs/system-speckit/031-system-speckit-v4/062-v4-parent-data-repairs/spec.md"
     ],
     "entities": [
       {
@@ -195,7 +197,7 @@
     ],
     "causal_summary": "ALWAYS rule 2 and the Execution Ownership section told an orchestrator to delegate every orchestrated Codex dispatch to `fanout-run.cjs`",
     "created_at": "2026-09-24T06:59:47Z",
-    "last_save_at": "2026-10-31T13:27:07.636Z",
+    "last_save_at": "2026-10-31T13:59:17.667Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3e3ff5b5b901e1b6425abd6702de99d518a1d40cabc8351ea7b58266e2a1451",
+    "source_fingerprint": "sha256:a8de9ae2e01e48b8cd135a09fbdadeb4c2c965784f832c25f19a95b5fe4a94de",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c93ecf9afae11e3c5d7a27e9eaec7af163da372358f9a20b3ca39bfb5ab81271",
       "plan.md": "5b1b33721e6cb252bc6b870a0c6a1d81a1d6d51540da51912ad4d2edf67a1c97",
       "tasks.md": "05a9d38540d73908189994e564c41c3a2b32dc758c9c37f2200e42034a4b9161",
-      "implementation-summary.md": "994522df170d039e0041891ab930c472ed73de050c4c1fdfbf13c69d366bd362"
+      "implementation-summary.md": "f2b3ed900fed905faed3d62f87eb9ab802de74d597cdf1236abd938bd4bacb6b"
     },
     "last_active_at": null
   }

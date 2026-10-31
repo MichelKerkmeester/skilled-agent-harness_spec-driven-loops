@@ -174,19 +174,19 @@
     ],
     "causal_summary": "A hub can be complete in every registry and still not be reachable",
     "created_at": "2026-09-02T16:33:39Z",
-    "last_save_at": "2026-10-31T13:25:43.682Z",
+    "last_save_at": "2026-10-31T13:41:22.587Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:1659c6f9ba921049a7d9d67e11b6530d5e399f93c4847615112058e364402dee",
+    "source_fingerprint": "sha256:a7226324511cdb76d814aeb843d24f001fb7388477f9849598b43e513e4bd4c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d46bad51d3bd86b8d471cbaefbfd667b0075169105a5d8050791d4f31ffe17f1"
     },
-    "last_active_child_id": "sk-doc/052-routing-completeness/003-gate-b-realistic-corpus",
+    "last_active_child_id": "sk-doc/051-hub-routing-quality/001-routing-completeness/003-gate-b-realistic-corpus",
     "last_active_at": "2026-09-02T21:41:53.247Z"
   }
 }

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-create-goal-mode/009-verification-and-closeout"
+    packet_pointer: "sk-doc/057-create-goal-mode/009-verification-and-closeout"
     last_updated_at: "2026-09-26T12:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Closed phase 009 with evidence"
@@ -65,7 +65,7 @@ The mode now has run evidence, not only a passing package. All eight playbook sc
 | `.skilled/changelog/sk-doc/create-goal` | Created | Relative link to `../../skills/sk-doc/sk-create-goal/changelog`. |
 | `.skilled/skills/sk-doc/benchmark/reports/README.md` | Created | Index of the report folders. |
 | `.skilled/skills/sk-doc/benchmark/reports/2026-09-26--manual-testing-playbook--create-goal/` | Created | `README.md`, `results.csv` and `source.md` for the playbook run. |
-| `specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/goal.md` | Modified | One binding row added for phase 007. Nothing else changed. |
+| `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/goal.md` | Modified | One binding row added for phase 007. Nothing else changed. |
 | `.../017-memory-database-decommission/007-decommission-review-p1-p2-fixes/goal.md` | Created | The missing child goal, rendered from the system-spec-kit goal template. |
 | 017 parent and child `description.json`, `graph-metadata.json` | Regenerated | Needed for 017 to pass strict validation after the goal edit. |
 | `006`, `007`, `008` `acceptance-criteria.md` | Modified | Headers and closure statements closed; every row was already `Met`. |
@@ -140,7 +140,7 @@ Two MiMo 2.6 Pro workers ran in parallel on cli-pi at high thinking. One wrote t
 | `parent-skill-check.cjs .skilled/skills/sk-doc` | `OK: parent-skill-check — all hard invariants passed, 0 warnings` |
 | Five runtime-mirror checks | runtime mirrors 170, Codex, Pi and Hermes prompts 34 each, Hermes skill copies 71; each exit 0 |
 | `command-catalog-mirror-check.cjs`, package check, compiled-route guard | `STATUS=OK`; `Result: PASS`; all hubs fresh or excused |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/060-create-goal-mode --recursive --strict` | `RESULT: PASSED` for the parent and all nine children |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode --recursive --strict` | `RESULT: PASSED` for the parent and all nine children |
 <!-- /ANCHOR:verification -->
 
 ---

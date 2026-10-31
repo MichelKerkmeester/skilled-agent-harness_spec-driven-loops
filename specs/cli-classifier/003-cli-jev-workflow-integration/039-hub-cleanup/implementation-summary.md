@@ -11,15 +11,15 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/039-hub-cleanup"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/039-hub-cleanup"
     last_updated_at: "2026-09-30T17:42:32Z"
     last_updated_by: "markdown-leaf"
     recent_action: "Rewrote this file with the build, review and gate results"
     next_safe_action: "None. The orchestrator commits the build and the phase docs path-scoped"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/039-hub-cleanup/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/039-hub-cleanup/scratch/context/context.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/039-hub-cleanup/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/039-hub-cleanup/scratch/context/context.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-039-hub-cleanup"
@@ -124,9 +124,9 @@ All checks ran from the final working tree at start HEAD `b3964f2a3f`, with the 
 | `compiled-route-guard.cjs`, `ci-leaf-manifest-freshness.cjs`, `parent-skill-check.cjs`, `sync-skills-hermes.cjs --check` | guard all 7 hubs fresh; leaf `checked=15 fresh=15 failed=0`; parent `0 warnings`; Hermes `PASS: 72` (`scratch/verify/guard.txt`, `leaf.txt`, `psc.txt`, `hermes.txt`) |
 | Compiled-routing build and promotion | `build.txt` `status built`; `sync2.txt` `promoted 62 closure files`; `verify.txt` `move-simulation OK: all 7 hubs resolve`; `fin.txt` `finalized` |
 | Touched suites | dispatch-audit 75 of 75 (`t-audit.txt`), dispatch-rule-checks 20 of 20 (`t-rules.txt`), sk-doc README manifest reproducible (`t-rm.txt`), README parity PASS (`t-rvp.txt`) and pi-transport 41 of 41 (`scratch/verify/session-evidence.md`) |
-| `repair-derived.cjs --folder specs/cli-jev/003-cli-jev-workflow-integration/039-hub-cleanup --apply` | `inspected=1 repaired=1 failed=0`, graph metadata re-derived (this closure pass) |
-| `validate.sh specs/cli-jev/003-cli-jev-workflow-integration/039-hub-cleanup --strict` | `RESULT: PASSED` (this closure pass) |
-| `check-goal.cjs specs/cli-jev/003-cli-jev-workflow-integration/039-hub-cleanup` | `RESULT: PASSED (5/5 checks)` (this closure pass) |
+| `repair-derived.cjs --folder specs/cli-classifier/003-cli-jev-workflow-integration/039-hub-cleanup --apply` | `inspected=1 repaired=1 failed=0`, graph metadata re-derived (this closure pass) |
+| `validate.sh specs/cli-classifier/003-cli-jev-workflow-integration/039-hub-cleanup --strict` | `RESULT: PASSED` (this closure pass) |
+| `check-goal.cjs specs/cli-classifier/003-cli-jev-workflow-integration/039-hub-cleanup` | `RESULT: PASSED (5/5 checks)` (this closure pass) |
 <!-- /ANCHOR:verification -->
 
 ---

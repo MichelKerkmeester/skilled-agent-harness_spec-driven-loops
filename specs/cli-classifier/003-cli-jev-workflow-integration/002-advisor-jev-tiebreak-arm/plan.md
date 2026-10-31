@@ -148,7 +148,7 @@ Commands run from the repository root, with `S=.skilled/skills/system-skill-advi
 | Keep verdict line | vitest case with a synthetic Deem column | All four keep conditions met prints `verdict: keep backend=deem` with `model_commit` and `source_commit`. An MRR at or below one comparator's prints `verdict: inconclusive`, and a stopped arm prints no verdict line |
 | Read-only | `git status --porcelain` before and after each script run | The same output both times. At close, only the rows of `spec.md` Files to Change and this phase folder |
 | Skill docs | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <doc>` on each changed skill doc | Exit 0 on every doc (parent criterion 3) |
-| Phase docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm --strict` | `RESULT: PASSED` |
+| Phase docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm --strict` | `RESULT: PASSED` |
 <!-- /ANCHOR:testing -->
 
 ---

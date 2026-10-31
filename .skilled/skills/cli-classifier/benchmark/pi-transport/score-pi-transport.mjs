@@ -80,7 +80,7 @@ const ESCALATION_MARGIN = 0.10;
 // The recorded CLI run a replay is measured against: the answers and timings
 // this comparison treats as the CLI side. Repo-relative, so a printed line or
 // report names the same artifact wherever the worktree sits.
-const BASELINE_PATH = 'specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-session/jev-run/calls.jsonl';
+const BASELINE_PATH = 'specs/cli-classifier/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-session/jev-run/calls.jsonl';
 
 // The repository root, derived from this file's own location so the recorded
 // baseline resolves the same no matter which directory a run starts in.

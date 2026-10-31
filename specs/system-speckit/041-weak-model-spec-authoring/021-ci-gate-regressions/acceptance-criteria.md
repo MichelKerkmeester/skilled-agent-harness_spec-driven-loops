@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/021-ci-gate-regressions"
     last_updated_at: "2026-10-26T23:45:00Z"
     last_updated_by: "closeout-doc-writer"
     recent_action: "Recorded the gate replays; every row Met"

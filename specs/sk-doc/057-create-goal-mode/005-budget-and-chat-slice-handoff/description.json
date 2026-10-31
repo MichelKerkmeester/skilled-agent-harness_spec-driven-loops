@@ -22,7 +22,7 @@
   "folderSlug": "budget-and-chat-slice-handoff",
   "parentChain": [
     "sk-doc",
-    "060-create-goal-mode"
+    "057-create-goal-mode"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

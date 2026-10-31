@@ -208,7 +208,7 @@
     ],
     "causal_summary": "`.codex/hooks.json` wraps every registered adapter as `node <adapter> || printf %s '{\"hookSpecificOutput\":{...,\"additionalContext\":\"mk codex hook could not resolve; re-run the codex hooks installer with --check\"}}'` (for example lines 8, 13, 18, 27, 33, 40, 48, 56, 64, 72)",
     "created_at": "2026-09-05T06:13:07Z",
-    "last_save_at": "2026-10-31T13:26:44.708Z",
+    "last_save_at": "2026-10-31T13:58:49.085Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,7 +218,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4c6ff72c33be01a94b87dc380281ed7a2482f33cc65ffb9b5ee2747a3f67c418",
+    "source_fingerprint": "sha256:55b9d7e96c58b0486f171de6e14c38fdb682612f36874d4fe0bf2ac79efb6b25",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5ae2bee815dfe3d19a62497af3523f8282cba1d5e55b81c56cf6db5dfc8f01f8",

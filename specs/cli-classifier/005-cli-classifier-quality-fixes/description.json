@@ -24,7 +24,7 @@
   "specId": "005",
   "folderSlug": "cli-classifier-quality-fixes",
   "parentChain": [
-    "cli-jev"
+    "cli-classifier"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

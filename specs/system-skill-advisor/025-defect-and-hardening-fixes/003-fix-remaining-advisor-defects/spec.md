@@ -66,13 +66,13 @@ A changed pi contribution delivers its full brief again, the advisor runtime bat
 - Shim test (lane K): the unavailable-branch case in `runtime/tests/compat/shim.vitest.ts` sets `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1` and runs every time instead of skipping on a probe taken earlier.
 - Main integration (lane L): merge main into the fix branch, take main's side on the conflicting `graph-metadata.json` files for cli-external-orchestration, cli-jev, mcp-tooling and sk-git, regenerate `skill-graph.json` and re-capture both baselines with reviewed reasons.
 - Tri-daemon drill (lane M): delete `runtime/tests/tri-daemon-drill.vitest.ts`, remove its five references and fix the six `stdin` null errors in `skill-advisor-launcher-orphan-reaping.vitest.ts` so the test type check runs clean.
-- CI corpus gate (lane N): point the corpus-gate step and the two baseline path filters in `.github/workflows/routing-registry-drift.yml` at the archived baseline. Commit b566f9fc28 in `system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof` made the same three-line change first, so after the merge the two agree line for line.
+- CI corpus gate (lane N): point the corpus-gate step and the two baseline path filters in `.github/workflows/routing-registry-drift.yml` at the archived baseline. Commit b566f9fc28 in `system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof` made the same three-line change first, so after the merge the two agree line for line.
 
 ### Out of Scope
 - Rewriting packet 028's verification record: its original numbers stay, and the overclaim is corrected with a note instead.
 - Renewing baselines by hand: only the capture tools write them, so the reason lands beside each change.
 - Pushing the follow-up (lanes M and N) to main and skilled/v4.0.0.0: it needed the operator's own go-ahead, given for a merge-then-push route.
-- The Spec-Kit Check failure in `.skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts` (five `pi enforce` tests): it failed the same way on 997cd8ee2e, before this packet's merge. Commit 5b522489a2 in `system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof` fixed it by giving the runtime suites a temp dir outside `/tmp`, which the spec gate exempts.
+- The Spec-Kit Check failure in `.skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts` (five `pi enforce` tests): it failed the same way on 997cd8ee2e, before this packet's merge. Commit 5b522489a2 in `system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof` fixed it by giving the runtime suites a temp dir outside `/tmp`, which the spec gate exempts.
 
 ### Files to Change
 
@@ -99,8 +99,8 @@ A changed pi contribution delivers its full brief again, the advisor runtime bat
 | .skilled/skills/system-skill-advisor/hooks/pi/README.md | Modify | Lane H: describe the current dedup behavior |
 | .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md | Modify | Lane H: describe the current fallback behavior. Lane J: state which kill-switch name each surface reads |
 | .skilled/skills/system-skill-advisor/hooks/lib/README.md | Modify | Lane H: describe the current fallback behavior |
-| specs/system-skill-advisor/028-restore-pi-advisor-brief/implementation-summary.md | Modify | Lane H: correction note, original numbers kept |
-| specs/system-skill-advisor/028-restore-pi-advisor-brief/plan.md | Modify | Lane H: correction note, original numbers kept |
+| specs/system-skill-advisor/026-pi-advisor-bridge/001-restore-pi-advisor-brief/implementation-summary.md | Modify | Lane H: correction note, original numbers kept |
+| specs/system-skill-advisor/026-pi-advisor-bridge/001-restore-pi-advisor-brief/plan.md | Modify | Lane H: correction note, original numbers kept |
 | .skilled/bin/system-skill-advisor-launcher.cjs | Modify | Lane I: list `SYSTEM_SKILL_ADVISOR_DB_DIR` once in the child env allowlist |
 | .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py | Modify | Lane I: list `SYSTEM_SKILL_ADVISOR_DB_DIR` once in the native bridge allowlist |
 | .skilled/commands/doctor/scripts/skill-graph-freshness.cjs | Modify | Lane I: read `SYSTEM_SKILL_ADVISOR_DB_DIR` once |
@@ -122,7 +122,7 @@ A changed pi contribution delivers its full brief again, the advisor runtime bat
 | .skilled/skills/system-skill-advisor/runtime/tests/tsconfig.tests.json | Modify | Lane M: drop the drill from the include list |
 | .skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-launcher-orphan-reaping.vitest.ts | Modify | Lane M: assert `second.child.stdin` non-null at its six uses |
 | .github/workflows/routing-registry-drift.yml | Modify | Lane N: the corpus-gate step and both baseline path filters name the archived baseline (the same change as b566f9fc28) |
-| specs/system-skill-advisor/026-defect-and-hardening-fixes/003-fix-remaining-advisor-defects/ (packet docs) | Create | This packet's documentation |
+| specs/system-skill-advisor/025-defect-and-hardening-fixes/003-fix-remaining-advisor-defects/ (packet docs) | Create | This packet's documentation |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -144,7 +144,7 @@ A changed pi contribution delivers its full brief again, the advisor runtime bat
 |----|-------------|---------------------|
 | REQ-004 | The battery lanes hold: the skill graph repairs and regeneration, the golden-hub `NODE_PATH` fix and the baseline renewals through the capture tools with the frozen counts moved alongside | The full advisor runtime battery reports 0 failed tests (891 passed, 7 skipped of 898) |
 | REQ-005 | The documentation lane closes the stale surfaces and corrects packet 028 with a note | Each named surface matches current fallback and dedup behavior and packet 028 keeps its original numbers beside the correction note |
-| REQ-006 | Strict packet validation passes for this packet | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/026-defect-and-hardening-fixes/003-fix-remaining-advisor-defects --strict` reports `RESULT: PASSED` |
+| REQ-006 | Strict packet validation passes for this packet | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/025-defect-and-hardening-fixes/003-fix-remaining-advisor-defects --strict` reports `RESULT: PASSED` |
 | REQ-007 | Each renamed environment variable is read or listed once (lane I) | A repository-wide search finds no variable read twice in one expression, deleted twice in a row, listed twice in one list or named twice in one sentence, and the edited scripts pass `node --check` and `py_compile` |
 | REQ-008 | The kill-switch table states which name each surface reads (lane J) | The `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED` row names the native adapters only, and the `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` row says the Python CLI reads that name, set to exactly `1`, from its compat contract |
 | REQ-009 | The shim's unavailable-branch case runs every time (lane K) | The case sets `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1`, has no early return and passes inside the full battery |
@@ -163,7 +163,7 @@ A changed pi contribution delivers its full brief again, the advisor runtime bat
 - **SC-002**: The fallback module ends at `env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? defaultDbDir` and the root probes read `.skilled` before `.opencode`, with the compiled-routing-consumption and diagnostic-redaction tests green (REQ-002, REQ-003).
 - **SC-003**: The advisor runtime battery reports 0 failed tests, with 891 passed and 7 skipped of 898, against the renewed baselines (REQ-004).
 - **SC-004**: Every documentation surface named in lane H matches current fallback and dedup behavior, and packet 028 carries the correction note with its original numbers intact (REQ-005).
-- **SC-005**: `validate.sh --strict` reports `RESULT: PASSED` for `specs/system-skill-advisor/026-defect-and-hardening-fixes/003-fix-remaining-advisor-defects` (REQ-006).
+- **SC-005**: `validate.sh --strict` reports `RESULT: PASSED` for `specs/system-skill-advisor/025-defect-and-hardening-fixes/003-fix-remaining-advisor-defects` (REQ-006).
 - **SC-006**: The repeated-name search finds nothing and the old and new allowlists hold the same members (REQ-007).
 - **SC-007**: The two kill-switch alias rows in `skill-advisor-hook.md` match what the adapters and the Python CLI read (REQ-008).
 - **SC-008**: The shim case passes in a full battery run of 891 passed, 0 failed and 7 skipped of 898 (REQ-009).

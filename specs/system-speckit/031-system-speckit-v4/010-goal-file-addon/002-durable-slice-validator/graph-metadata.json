@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Nothing checks a goal document",
     "created_at": "2026-08-29T18:09:18Z",
-    "last_save_at": "2026-10-31T13:26:39.115Z",
+    "last_save_at": "2026-10-31T13:58:40.758Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ffaea8d8760a58ad525762a186eeafca0db3ba88958b3774be81175614d957bb",
+    "source_fingerprint": "sha256:185241d522aa77180edd603f9266d265824290232816c4b949dbd85b09fa441c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c4afe7bbd9c2f7589d489dd416cbd2c1b079c7af15d22dba91d7df2a65328756",
+      "spec.md": "f7a017dc46269b3f91f2152a545f4bb6b4033a17f59ed79b9e57af5f30d081a6",
       "plan.md": "96382fc16aae5b8bca7bfc350984dc58414126459a39223b466902afde75aedd",
       "tasks.md": "06bb0f22f680ab28ab704d54f9328f8284a4363c79f7ec3497fd2d6ff686efa2",
       "implementation-summary.md": "1e3c047ca08160d82abfce57abc0f095a2aa768002d89cda1e9fb60911b3d2e1"

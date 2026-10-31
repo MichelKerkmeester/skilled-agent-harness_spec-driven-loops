@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review"
+    packet_pointer: "system-speckit/031-system-speckit-v4/068-v4-0-0-3-release-deep-review"
     last_updated_at: "2026-10-06T08:20:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Synthesized the review report and the Luna halt analysis"

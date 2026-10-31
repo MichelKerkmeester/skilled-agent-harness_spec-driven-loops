@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/052-research-folder-continuity"
+    packet_pointer: "system-speckit/039-research-folder-continuity"
     last_updated_at: "2026-10-19T22:06:11Z"
     last_updated_by: "generate-context"
     recent_action: "Wrote research continuity into spec.md and saved 082 children 014-018"
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 052-research-folder-continuity |
+| **Spec Folder** | 039-research-folder-continuity |
 | **Completed** | 2026-10-19 |
 | **Level** | 1 |
 | **Status** | Complete |
@@ -78,9 +78,9 @@ You gain a research record that shows the stop state, the fix backlog pointer an
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The baseline suite ran green before any edit at 15 of 15 (`specs/system-speckit/052-research-folder-continuity/scratch/before/vitest-baseline.txt`). The two new cases then ran against the unfixed writer: 1 failed, 16 passed, exit 1, with the research case failing (`specs/system-speckit/052-research-folder-continuity/scratch/before/vitest-new-test-on-old-code.txt`). With `continuityHostPath` in place the suite passed 17 of 17 with exit 0 (`specs/system-speckit/052-research-folder-continuity/scratch/after/vitest.txt`). `tsc --noEmit` exited 0 and dist was rebuilt with `npm run build`, exit 0.
+The baseline suite ran green before any edit at 15 of 15 (`specs/system-speckit/039-research-folder-continuity/scratch/before/vitest-baseline.txt`). The two new cases then ran against the unfixed writer: 1 failed, 16 passed, exit 1, with the research case failing (`specs/system-speckit/039-research-folder-continuity/scratch/before/vitest-new-test-on-old-code.txt`). With `continuityHostPath` in place the suite passed 17 of 17 with exit 0 (`specs/system-speckit/039-research-folder-continuity/scratch/after/vitest.txt`). `tsc --noEmit` exited 0 and dist was rebuilt with `npm run build`, exit 0.
 
-On the writer side, the five 082 research children 014 through 018 were saved through `generate-context.js --full-auto --json` with continuity fields composed from each `research/research.md` (the answer and stop state in it, plus the fix backlog section) and `research/deep-research-state.jsonl`. All five saves exited 0 and none logged "Continuity not written" (`specs/system-speckit/052-research-folder-continuity/scratch/after/save-runs.txt`). The scaffold string "Scaffolded the research record before the first iteration" appeared in 5 continuity blocks before the run and in 0 after (`specs/system-speckit/052-research-folder-continuity/scratch/before/research-continuity-blocks.txt` and `specs/system-speckit/052-research-folder-continuity/scratch/after/research-continuity-blocks.txt`). completion_pct is 80 for 014 (manual stop, key question 2 open) and 90 for 015 through 018 (open questions stay in each research.md section 12, since the block only takes question ids).
+On the writer side, the five 082 research children 014 through 018 were saved through `generate-context.js --full-auto --json` with continuity fields composed from each `research/research.md` (the answer and stop state in it, plus the fix backlog section) and `research/deep-research-state.jsonl`. All five saves exited 0 and none logged "Continuity not written" (`specs/system-speckit/039-research-folder-continuity/scratch/after/save-runs.txt`). The scaffold string "Scaffolded the research record before the first iteration" appeared in 5 continuity blocks before the run and in 0 after (`specs/system-speckit/039-research-folder-continuity/scratch/before/research-continuity-blocks.txt` and `specs/system-speckit/039-research-folder-continuity/scratch/after/research-continuity-blocks.txt`). completion_pct is 80 for 014 (manual stop, key question 2 open) and 90 for 015 through 018 (open questions stay in each research.md section 12, since the block only takes question ids).
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -103,13 +103,13 @@ On the writer side, the five 082 research children 014 through 018 were saved th
 
 | Check | Result |
 |-------|--------|
-| Baseline suite before any change | PASS: 15 of 15 (`specs/system-speckit/052-research-folder-continuity/scratch/before/vitest-baseline.txt`) |
-| New cases against the unfixed writer | FAIL as intended: 1 failed, 16 passed, exit 1, the research case failing (`specs/system-speckit/052-research-folder-continuity/scratch/before/vitest-new-test-on-old-code.txt`) |
-| Suite against the fixed writer | PASS: 17 of 17, exit 0 (`specs/system-speckit/052-research-folder-continuity/scratch/after/vitest.txt`) |
+| Baseline suite before any change | PASS: 15 of 15 (`specs/system-speckit/039-research-folder-continuity/scratch/before/vitest-baseline.txt`) |
+| New cases against the unfixed writer | FAIL as intended: 1 failed, 16 passed, exit 1, the research case failing (`specs/system-speckit/039-research-folder-continuity/scratch/before/vitest-new-test-on-old-code.txt`) |
+| Suite against the fixed writer | PASS: 17 of 17, exit 0 (`specs/system-speckit/039-research-folder-continuity/scratch/after/vitest.txt`) |
 | `tsc --noEmit` | PASS: exit 0 |
 | `npm run build` | PASS: dist rebuilt, exit 0 |
-| Full-auto saves of the five 082 research children | PASS: all five exit 0, zero "Continuity not written" warnings (`specs/system-speckit/052-research-folder-continuity/scratch/after/save-runs.txt`) |
-| Scaffold string census across the five blocks | PASS: 5 blocks before, 0 after (`specs/system-speckit/052-research-folder-continuity/scratch/before/research-continuity-blocks.txt`, `specs/system-speckit/052-research-folder-continuity/scratch/after/research-continuity-blocks.txt`) |
+| Full-auto saves of the five 082 research children | PASS: all five exit 0, zero "Continuity not written" warnings (`specs/system-speckit/039-research-folder-continuity/scratch/after/save-runs.txt`) |
+| Scaffold string census across the five blocks | PASS: 5 blocks before, 0 after (`specs/system-speckit/039-research-folder-continuity/scratch/before/research-continuity-blocks.txt`, `specs/system-speckit/039-research-folder-continuity/scratch/after/research-continuity-blocks.txt`) |
 | Recursive strict validation of the 082 packet | PASS: 19 of 19 RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 

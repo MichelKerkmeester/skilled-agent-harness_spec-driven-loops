@@ -332,15 +332,15 @@ A targeted revision is warranted, not a rerun of the 30 iterations. The changes 
 
 Path prefixes:
 - ROOT = `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration`
-- PKT = `ROOT/specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research`
+- PKT = `ROOT/specs/cli-classifier/003-cli-jev-workflow-integration/001-deep-research`
 - ADV = `ROOT/.skilled/skills/system-skill-advisor/runtime`
 - SSK = `ROOT/.skilled/skills/system-spec-kit/runtime`
-- VEND = `ROOT/specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/jev-cli-main`
+- VEND = `ROOT/specs/cli-classifier/003-cli-jev-workflow-integration/context/external repo's/jev-cli-main`
 
 **Synthesis, digests and phase specs**
 - `PKT/research/research.md`: :135 and :1037 (advisor `fail_open` at 2504 ms in both Pi lineage logs), :169 (the compaction answer), :196 (Gate 3 kept as a negative control), :380-405 (R1 record, keep rule, "Passes all 15", proof plan), :407-430 (R2, whose fitness list omits Q3), :432-702 (R3 to R18), :706-746 (What Not To Build rows 1 to 35), :750-776 (Divergence Map), :780-851 (open questions and phases)
 - `PKT/context/repo-rules-digest.md`: digest items at :12-49 and Q1 to Q15 at :56-85
-- `ROOT/specs/cli-jev/003-cli-jev-workflow-integration/goal.md`: :55 (D5) and :107 (criterion defined in research.md)
+- `ROOT/specs/cli-classifier/003-cli-jev-workflow-integration/goal.md`: :55 (D5) and :107 (criterion defined in research.md)
 - `.../002-advisor-jev-tiebreak-arm/spec.md`: :113 (key from the credential store or `TYPESAFE_API_KEY`), :114, :122, :123, :124 (call record fields), :125
 - `.../003-goal-verifier-jev-shadow/spec.md`: :122, :124 ("on each of 3 reruns" and (d)), :125, :132, :133
 

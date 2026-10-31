@@ -26,7 +26,7 @@ contextType: "general"
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
-`S` is `.skilled/skills/system-spec-kit`. `C` is `S/runtime/cli`, and commands that name `C` run from there. `P` is this phase folder, `specs/system-speckit/054-weak-model-spec-authoring/020-alignment-audit-fixes`. `CH` is `specs/system-speckit/054-weak-model-spec-authoring/changelog`. Every other command runs from the repository root, and read-only git runs with fsmonitor off. A box is ticked only when the closeout ran the Verify command and it printed what the line says.
+`S` is `.skilled/skills/system-spec-kit`. `C` is `S/runtime/cli`, and commands that name `C` run from there. `P` is this phase folder, `specs/system-speckit/041-weak-model-spec-authoring/020-alignment-audit-fixes`. `CH` is `specs/system-speckit/041-weak-model-spec-authoring/changelog`. Every other command runs from the repository root, and read-only git runs with fsmonitor off. A box is ticked only when the closeout ran the Verify command and it printed what the line says.
 <!-- /ANCHOR:notation -->
 
 ---

@@ -10,15 +10,15 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/037-pi-native-classifier-transport"
     last_updated_at: "2026-09-30T15:48:14Z"
     last_updated_by: "markdown-leaf"
     recent_action: "Rewrote this file with the build, review and live-run results"
     next_safe_action: "None. Wiring Pi as a transport is a later phase on the operator's call"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/verify/session-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/verify/session-evidence.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-037-pi-native-classifier-transport"
@@ -128,8 +128,8 @@ All checks ran from the final build state, with the raw outputs under `scratch/v
 | Comment hygiene and the key grep on the pi-transport folder and both measurement docs | Hygiene exit 0 on both files, key grep exit 1 with no match (`scratch/verify/session-evidence.md`) |
 | `validate_document.py` on each changed doc | All changed docs VALID, playbook package PASS (7 scenarios), catalog 0 violations, HVR hard blockers 0 (`scratch/verify/session-evidence.md`) |
 | The one approved live run | Exit 0 after 1 min 29 s; `scratch/live-run.stdout.txt` ends in `verdict pi-transport: adopt K=111 M=111 coverage=100.0 agreement=95.5 median_abs_dp=0.0100 p95_ms=340/387 cost_per_100=0.0022` |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport --strict` | `RESULT: PASSED` (this closure pass) |
-| `check-goal.cjs specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport` | `RESULT: PASSED (5/5 checks)` (this closure pass) |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-classifier/003-cli-jev-workflow-integration/037-pi-native-classifier-transport --strict` | `RESULT: PASSED` (this closure pass) |
+| `check-goal.cjs specs/cli-classifier/003-cli-jev-workflow-integration/037-pi-native-classifier-transport` | `RESULT: PASSED (5/5 checks)` (this closure pass) |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/055-alignment-and-hook-parity"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/055-alignment-and-hook-parity"
     last_updated_at: "2026-10-05T12:55:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Met all six criteria with evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** cli-jev/003-cli-jev-workflow-integration/055-alignment-and-hook-parity
+**Packet:** cli-classifier/003-cli-jev-workflow-integration/055-alignment-and-hook-parity
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-05

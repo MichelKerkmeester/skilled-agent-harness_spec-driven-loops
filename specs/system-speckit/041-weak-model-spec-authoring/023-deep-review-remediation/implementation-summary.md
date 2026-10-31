@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/023-deep-review-remediation"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/023-deep-review-remediation"
     last_updated_at: "2026-10-27T08:20:00Z"
     last_updated_by: "conductor"
     recent_action: "Fixed every deep review finding and closed the phase"

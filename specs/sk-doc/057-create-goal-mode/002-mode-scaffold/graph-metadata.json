@@ -48,7 +48,8 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/sk-doc/sk-create-goal/SKILL.md",
-      ".skilled/skills/sk-doc/sk-create-goal/README.md"
+      ".skilled/skills/sk-doc/sk-create-goal/README.md",
+      "specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/target-tree.md"
     ],
     "entities": [
       {
@@ -97,6 +98,12 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/sk-create-goal/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "target-tree.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/target-tree.md",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The parent assigns packet scaffolding to phase 002 and reserves authoring standards, conformance checking, routing and command work for later phases (`specs/sk-doc/060-create-goal-mode/spec.md:121-129`)",
+    "causal_summary": "The parent assigns packet scaffolding to phase 002 and reserves authoring standards, conformance checking, routing and command work for later phases (`specs/sk-doc/057-create-goal-mode/spec.md:121-129`)",
     "created_at": "2026-09-25T18:48:46Z",
-    "last_save_at": "2026-10-31T13:26:00.346Z",
+    "last_save_at": "2026-10-31T14:01:51.190Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8929e6c58f07122df5160583b80ac6c73dbd589e42b5ef0a053298a4db601ad1",
+    "source_fingerprint": "sha256:c4231a2be41e0f064362b6c005ba361412e84c708f6b220b62cd3f44d30101e1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "03f47393f7e2ddcfd236fd5a91eb1474a347fa0f1993c77bb9bbedebd50e3ef8",
-      "plan.md": "0afc32e207c73aa2f4e2ec73e9486d0123b9826bcb2a5f23c00bd6d234c3a784",
-      "tasks.md": "fc19964753102001b6aec1202bc11ba109167103a1df404946e76dd8fbe29a75",
-      "implementation-summary.md": "ee689ca2a0a42163a361b6e09c32cfacaf6347f54130de117e356f09efe0a9bc"
+      "spec.md": "449640a94e6360b6c4ffdb92ea4dc8963037c347c8946b8d428455382a5f6504",
+      "plan.md": "d28b3db3954576689cf6a0a2d72889465873c6a8fb3ac6ddc535a82e2c314146",
+      "tasks.md": "5611a76d34defba177b685401ea86c4f8371ab64d2c0876d963a00c8ad0211e9",
+      "implementation-summary.md": "27cfaa27ec3a8bf9f0b8bc39fd62959f83ba5c3dd5147bca42bc4eae416a2da2"
     },
     "last_active_at": null
   }

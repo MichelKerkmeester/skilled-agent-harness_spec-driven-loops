@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research"
     last_updated_at: "2026-10-03T00:00:00Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"

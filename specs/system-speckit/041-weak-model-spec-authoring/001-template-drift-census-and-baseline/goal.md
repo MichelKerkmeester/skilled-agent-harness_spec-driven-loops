@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/001-template-drift-census-and-baseline"
     last_updated_at: "2026-10-24T00:00:00Z"
     last_updated_by: "scaffold"
     recent_action: "Closed phase 001 with the verified ledger and baseline"
@@ -77,7 +77,7 @@ and findings belong here.
 | Phase opened | Done | Worktree `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring`, branch `worktrees/217-weak-model-spec-authoring`, provisioned with 11 installed, 5 built, 0 failed. |
 | Start commit | `ac2be31ec60c3a15db527b3d8400ae68b373984a` | `git rev-parse HEAD` on the worktree before the first phase write. |
 | T001 tools and provider | Done | `rg -c 'deepseek-v4.1-flash-1017' opencode.json` printed `3`; `which jq rg` printed `/usr/bin/jq` and `/opt/homebrew/bin/rg`. |
-| T002 worktree validation | Done | `validate.sh specs/system-speckit/041-write-recipe-fixes/001-fix-write-recipe-backfill-flag --strict` printed `RESULT: PASSED`, pipeline exit `0`. |
+| T002 worktree validation | Done | `validate.sh specs/system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/001-fix-write-recipe-backfill-flag --strict` printed `RESULT: PASSED`, pipeline exit `0`. |
 | T003 start state | Done | `status-start.txt` written; Start commit recorded. The suite finished with `exit=0` and `Results: 12 passed, 0 failed (of 12)` in `suite-start.txt` after a third run with `SPECKIT_TEST_RUN_TIMEOUT_MS=1800000`. |
 | T004 census lanes | Done | Three Task subagents returned `[T004-A] DONE - 22 rows`, `[T004-B] DONE - 31 rows`, `[T004-C] DONE - 28 rows`; `jq -c .` parsed all three lane files. |
 | T005 lane coverage | Done | `coverage.txt`: lane-a 28 of 29, lane-b 26 of 26, lane-c 16 of 16; `under90=0`. Lane A's one unread file is `templates/scratch/.gitkeep`. |

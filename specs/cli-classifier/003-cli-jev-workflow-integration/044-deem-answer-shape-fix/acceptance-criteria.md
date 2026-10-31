@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/044-deem-answer-shape-fix"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/044-deem-answer-shape-fix"
     last_updated_at: "2026-10-02T06:02:32Z"
     last_updated_by: "orchestrating-session"
     recent_action: "Met every acceptance criterion at closure"

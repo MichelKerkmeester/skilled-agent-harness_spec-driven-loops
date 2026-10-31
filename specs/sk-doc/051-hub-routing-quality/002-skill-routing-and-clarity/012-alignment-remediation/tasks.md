@@ -67,7 +67,7 @@ Two paths are used throughout. `R` is the alignment run folder that holds each f
 
 - [x] T019 Rerun the nine battery rows (`P/scratch/after.md`). Verify: each row's own command exits 0 and the record holds its output line beside the line it printed before the fix.
 - [x] T020 Walk every finding in `P/spec.md` §4 and record its evidence (`P/scratch/after.md`). Verify: each finding id has the command that failed and the line that proves it now passes.
-- [x] T021 Validate the parent packet. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/072-skill-routing-and-clarity --strict --recursive` prints `RESULT: PASSED`.
+- [x] T021 Validate the parent packet. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity --strict --recursive` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

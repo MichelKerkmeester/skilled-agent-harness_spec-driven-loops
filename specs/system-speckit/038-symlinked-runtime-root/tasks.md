@@ -80,7 +80,7 @@ contextType: "implementation"
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Acceptance**: See `acceptance-criteria.md`
-- **Earlier fix**: `system-speckit/033-system-speckit-v4/039-entry-point-symlink-resolution`
+- **Earlier fix**: `system-speckit/031-system-speckit-v4/039-entry-point-symlink-resolution`
 <!-- /ANCHOR:cross-refs -->
 
 ---

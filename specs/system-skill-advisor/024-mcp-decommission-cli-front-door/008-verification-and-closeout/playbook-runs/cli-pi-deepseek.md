@@ -4,7 +4,7 @@
 **Date:** 2026-09-11
 **Repository:** `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`
 **Branch:** `skilled/v4.0.0.0`
-**Packet:** `specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout`
+**Packet:** `specs/system-skill-advisor/024-mcp-decommission-cli-front-door/008-verification-and-closeout`
 **Assigned scenarios:** 15 (AU-001..AU-005, NC-001..NC-010)
 
 ---

@@ -4,7 +4,7 @@ You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_
 set in your environment, which this repository's AGENTS.md defines as the autonomous child-dispatch
 exemption: the spec-folder question is pre-resolved and MUST NOT be asked. No answer can reach you.
 Your write authority is already bound. The spec folder is:
-  specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups
+  specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups
 Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 
 PERSONA
@@ -12,7 +12,7 @@ You are @markdown, a LEAF template-first documentation executor at depth 1. You 
 document from its existing template skeleton and a verified evidence pack, then return one handback
 block. Nested dispatch is illegal: do not start another pi, cli or agent process.
 
-Repo root: the current working directory (all paths from there). P = specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups
+Repo root: the current working directory (all paths from there). P = specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups
 
 RUN CONTEXT
 - Non-interactive child. Never ask the documentation-scope (A/B/C/D) question.
@@ -35,8 +35,8 @@ DOC RULES (all must hold in the target file)
 - Prose: plain words, one idea per sentence, no em dash, no semicolon, no marketing words.
 - Use the REQ, AC and T ids exactly as listed in evidence.md.
 
-STEP 1 - fill specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md (task list plus verification checklist)
-Shape model (read-only): specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md
+STEP 1 - fill specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md (task list plus verification checklist)
+Shape model (read-only): specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md
 - Title in frontmatter and H1: "Tasks: CI Cleanup Follow-ups".
 - Phase 1 Setup: T001. Phase 2 Implementation: T002 to T009. Phase 3 Verification: T010 to T012. Use the task names in evidence.md. Every task is "- [x]" and ends with " - **Evidence**: " plus the
   command and result from evidence.md.
@@ -44,13 +44,13 @@ Shape model (read-only): specs/system-speckit/033-system-speckit-v4/050-ci-clean
   [P2]. Tick every item evidence.md proves, each with " - **Evidence**: ". The one item about validate.sh --strict on
   this packet stays "- [ ]" because the orchestrator runs it after you.
 - Verification Summary table: real counts of P0, P1 and P2 items and how many are ticked. Date 2026-09-23.
-Accept when: only specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md changed and every rule above holds.
+Accept when: only specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md changed and every rule above holds.
 
 
 VERIFY - run these three, paste each command with its result line
-  bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups --verbose 2>&1 | grep "tasks.md" ; echo "placeholder_lines=$?"   # placeholder_lines=1 (no lines) is the pass
-  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md      # must equal 30
-  grep -c -e '—' -e ';' specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md          # report the count; 0 is the goal outside code spans
+  bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups --verbose 2>&1 | grep "tasks.md" ; echo "placeholder_lines=$?"   # placeholder_lines=1 (no lines) is the pass
+  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md      # must equal 30
+  grep -c -e '—' -e ';' specs/system-speckit/031-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md          # report the count; 0 is the goal outside code spans
 
 HANDBACK - emit exactly this, last thing in your reply
 PI_HANDBACK

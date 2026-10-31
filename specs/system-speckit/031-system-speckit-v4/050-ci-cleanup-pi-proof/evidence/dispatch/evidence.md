@@ -5,8 +5,8 @@ Do not invent any fact that is not here. If a template section has no fact here,
 "N/A - insufficient source context" rather than guessing.
 
 ## Identity
-- Packet: specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof, Level 2.
-- Parent: specs/system-speckit/033-system-speckit-v4 (phase 50 of 50). Predecessor 049-gate-3-delivery-residue. Successor none.
+- Packet: specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof, Level 2.
+- Parent: specs/system-speckit/031-system-speckit-v4 (phase 50 of 50). Predecessor 049-gate-3-delivery-residue. Successor none.
 - Title: "CI cleanup and Pi Gate-3 live proof".
 - Created 2026-09-22. Work ran 2026-09-22 to 2026-09-23.
 - Worktree .worktrees/061-ci-cleanup-pi-proof, branch worktrees/061-ci-cleanup-pi-proof, base commit 1cc5dfa692.
@@ -71,7 +71,7 @@ Do not invent any fact that is not here. If a template section has no fact here,
   fallback (status fail_open, freshness unavailable), not from the model provider. A later run logged status ok.
 - TUI run (evidence/pi-tui-select.txt, pi-tui-input.txt, pi-tui-final.txt, pi-tui-state.json, pi-tui-warning.log):
   select dialog, then path input, then the first write refused with "Spec gate: bound to
-  specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof for this session. Retry the same call.",
+  specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof for this session. Retry the same call.",
   retry passed, later edits passed with no second question. State file status satisfied with that bound path.
   Warning log: 2026-09-22T15:10:47Z would-deny for write docs/gate3-probe.md. Probe files removed afterwards.
   The TUI capture carries a tmux extended-keys warning, so a future scripted drive may need tmux configured before
@@ -147,9 +147,9 @@ Do not invent any fact that is not here. If a template section has no fact here,
 
 ## Primary checkout residue (merge blocker, open)
 - The scaffold for this packet ran against the primary checkout path, so the primary checkout holds this phase's own
-  residue: specs/system-speckit/033-system-speckit-v4/spec.md modified with two placeholder rows only
+  residue: specs/system-speckit/031-system-speckit-v4/spec.md modified with two placeholder rows only
   ("| 50 | 050-ci-cleanup-pi-proof/ | [Phase 50 scope] | Pending |" and the 049 -> 050 handoff row with [Criteria TBD]),
-  and an untracked specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/ folder byte-identical to the
+  and an untracked specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/ folder byte-identical to the
   original scaffold. Both block updating the primary checkout's main to the phase commit. Removing them touches the
   primary checkout, so it waits for the operator's yes at the merge step. The primary's other dirty entries belong to
   another session and are not touched.

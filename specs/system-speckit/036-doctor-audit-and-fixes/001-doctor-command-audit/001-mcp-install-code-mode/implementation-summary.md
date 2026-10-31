@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/048-doctor-command-audit/001-mcp-install-code-mode"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/001-mcp-install-code-mode"
     last_updated_at: "2026-10-02T00:00:00Z"
     last_updated_by: "implementation"
     recent_action: "Narrowed /doctor:mcp install and debug to Code Mode and .utcp_config.json"
@@ -116,7 +116,7 @@ state was written.
 | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/commands/doctor/mcp.md --type command` | `VALID`, 0 issues |
 | `node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs` | `STATUS=OK`, exit 0 |
 | `bash .skilled/commands/doctor/scripts/route-validate.sh` | Exit 0 — "OK: route-validate — 10 routes validated, 2 warnings" |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode --strict` | `RESULT: PASSED` — see the validation run recorded in `tasks.md` |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/001-mcp-install-code-mode --strict` | `RESULT: PASSED` — see the validation run recorded in `tasks.md` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -131,7 +131,7 @@ state was written.
 5. **The health run stays red on this worktree by design.** `package.json`, `node_modules` and `dist/index.js` are absent, so the run exits 2 and reports three FAIL rows. Codex TOML validation also reports WARN under Python 3.9 because `tomllib` is unavailable; a Python 3.11 interpreter clears that row.
 6. **The mutation-class commit gate no longer covers the mcp-tooling CLI scripts.** `scripts/check-mcp-mutation-class.sh` reads its manifest from the `servers:` block of `doctor-mcp-install.yaml`. That block now declares only `code_mode`, because the workflow covers only Code Mode. The Figma, Chrome DevTools and ClickUp entries are gone, and they declared their installers as `mutating` and their doctor scripts as `read-only`. The gate no longer checks that line for `mcp-figma`, `mcp-chrome-devtools` or `mcp-click-up`. Restoring that coverage needs a manifest the guard can read outside this workflow, which is a change to the guard itself and was left out of this phase.
 
-**Follow-up status.** Items 1, 2, 3 and 5 are resolved by `specs/mcp-tooling/021-code-mode-fresh-clone-build`: the server manifest is tracked, `install.sh` builds `dist`, the validator checks each manual type's own fields and the doubled-underscore credential key, and the health run reports 18 PASS, 1 WARN (credential values absent), 0 FAIL. Item 4 turned out to be a validator defect, not a config defect: a CLI manual needs `commands`, which MagicPath has. Item 6 is resolved by `specs/system-speckit/049-doctor-audit-followups` phase 003: the guard reads its own manifest.
+**Follow-up status.** Items 1, 2, 3 and 5 are resolved by `specs/mcp-tooling/021-code-mode-fresh-clone-build`: the server manifest is tracked, `install.sh` builds `dist`, the validator checks each manual type's own fields and the doubled-underscore credential key, and the health run reports 18 PASS, 1 WARN (credential values absent), 0 FAIL. Item 4 turned out to be a validator defect, not a config defect: a CLI manual needs `commands`, which MagicPath has. Item 6 is resolved by `specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups` phase 003: the guard reads its own manifest.
 <!-- /ANCHOR:limitations -->
 
 ---

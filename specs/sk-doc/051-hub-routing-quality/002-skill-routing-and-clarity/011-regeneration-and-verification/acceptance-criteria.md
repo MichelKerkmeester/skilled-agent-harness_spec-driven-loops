@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/011-regeneration-and-verification"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/011-regeneration-and-verification"
     last_updated_at: "2026-10-28T19:30:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Regenerated every derived surface and verified the gates against the phase 002 baseline"
@@ -38,7 +38,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** `sk-doc/072-skill-routing-and-clarity/011-regeneration-and-verification`
+**Packet:** `sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/011-regeneration-and-verification`
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-28

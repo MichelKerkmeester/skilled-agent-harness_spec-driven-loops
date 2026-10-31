@@ -28,5 +28,5 @@ contextType: "implementation"
 <!-- ANCHOR:verification -->
 ## Verification
 
-Gate: every cited hash resolves via `git log --format="%h %ad %s" --date=short <hash>`; `rg "22 PASS|3 PASS"` hits both recorded reports; a `python3` read of `.skilled/skills/mcp-tooling/mode-registry.json` prints 9; `git rev-list --count 1d43dbd38b..HEAD` prints 266; the changed lines return no hits on the HVR hard-blocker sweep; `validate.sh specs/system-speckit/033-system-speckit-v4 --strict` first verdict `RESULT: PASSED`.
+Gate: every cited hash resolves via `git log --format="%h %ad %s" --date=short <hash>`; `rg "22 PASS|3 PASS"` hits both recorded reports; a `python3` read of `.skilled/skills/mcp-tooling/mode-registry.json` prints 9; `git rev-list --count 1d43dbd38b..HEAD` prints 266; the changed lines return no hits on the HVR hard-blocker sweep; `validate.sh specs/system-speckit/031-system-speckit-v4 --strict` first verdict `RESULT: PASSED`.
 <!-- /ANCHOR:verification -->

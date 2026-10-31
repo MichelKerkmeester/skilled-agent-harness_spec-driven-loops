@@ -18,7 +18,8 @@
   "folderSlug": "cli-jev",
   "parentChain": [
     "sk-doc",
-    "059-skill-changelog-retrofit"
+    "056-changelog-system",
+    "002-skill-changelog-retrofit"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

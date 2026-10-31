@@ -54,7 +54,7 @@ contextType: "planning"
 ## Phase 3: Verification
 
 - [x] T008 Rerun every gate in scope (`scratch/after.md`). Verify: no gate is worse than in `scratch/before.md`. Evidence: `scratch/after.md` §1, 39 gates. The first after run left two red, `route-guard` at 1 and `sk-code-setup` at 1, and both read the same stale `mcp-tooling` manifest, because `mcp-code-mode` changed and that hub hashes its packets. After the hub was re-minted and the refreshed manifest copied over its archived activation copy, the final run is 39 of 39 at exit 0, the guard reports `failures: 0` and the setup battery `STATUS=OK legs=9`. Accuracy 155/195, 49/66 and 19/24, identical to the baseline. The final run left `git status` unchanged.
-- [x] T009 Validate this folder. Verify: `validate.sh --strict` prints `RESULT: PASSED`. Evidence: `validate.sh specs/sk-doc/072-skill-routing-and-clarity/009-standalone-skills --strict` and the same command with `--recursive --strict` on the parent both print `RESULT: PASSED` at exit 0, both run against the final tree with these docs in place.
+- [x] T009 Validate this folder. Verify: `validate.sh --strict` prints `RESULT: PASSED`. Evidence: `validate.sh specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/009-standalone-skills --strict` and the same command with `--recursive --strict` on the parent both print `RESULT: PASSED` at exit 0, both run against the final tree with these docs in place.
 <!-- /ANCHOR:phase-3 -->
 
 ---

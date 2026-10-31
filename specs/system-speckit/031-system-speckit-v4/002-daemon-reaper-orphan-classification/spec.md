@@ -13,7 +13,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/002-daemon-reaper-orphan-classification"
+    packet_pointer: "system-speckit/031-system-speckit-v4/002-daemon-reaper-orphan-classification"
     last_updated_at: "2026-08-22T19:31:50Z"
     last_updated_by: "claude-code"
     recent_action: "Implemented + verified reaper classification fix; validators 0"

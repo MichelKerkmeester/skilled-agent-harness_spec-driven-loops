@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/053-ci-workflow-efficiency/012-alignment-fixes"
+    packet_pointer: "system-speckit/040-ci-workflow-efficiency/012-alignment-fixes"
     last_updated_at: "2026-10-27T21:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Fixed all seven findings with before and after checks"

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/031-memory-reindex-embed-performance"
+    packet_pointer: "system-speckit/030-memory-reindex-embed-performance"
     last_updated_at: "2026-07-23T17:10:53Z"
     last_updated_by: "orchestrator"
     recent_action: "Fixed FIX ADDENDUM verification cells + phase-label wording per deep-review P2s"

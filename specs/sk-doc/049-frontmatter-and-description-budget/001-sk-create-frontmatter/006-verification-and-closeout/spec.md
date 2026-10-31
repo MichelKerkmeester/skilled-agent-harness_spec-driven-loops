@@ -98,7 +98,7 @@ Every gate is green from the tree as it finally stands, and the evidence says so
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `specs/.../007-sk-doc/harness/validate-canary.cjs` | Modify | Digest re-pins, if any drifted |
-| `specs/sk-doc/049-sk-create-frontmatter/**` | Modify | Closure documents |
+| `specs/sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/**` | Modify | Closure documents |
 <!-- /ANCHOR:scope -->
 
 ---

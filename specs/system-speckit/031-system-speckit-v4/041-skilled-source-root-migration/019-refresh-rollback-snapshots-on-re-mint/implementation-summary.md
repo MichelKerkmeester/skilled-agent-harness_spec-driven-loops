@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/019-refresh-rollback-snapshots-on-re-mint"
+    packet_pointer: "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/019-refresh-rollback-snapshots-on-re-mint"
     last_updated_at: "2026-09-19T06:44:20Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Planned the phase"

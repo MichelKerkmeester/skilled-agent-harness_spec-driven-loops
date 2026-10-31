@@ -58,9 +58,9 @@
       ".skilled/skills/system-spec-kit/SKILL.md",
       ".hermes/skills/system-spec-kit/SKILL.md",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-      "scratch/tools/run-final.sh",
-      "scratch/baseline/baseline.json",
-      "scratch/amend3/fresh2/baseline.json"
+      "specs/system-speckit/041-weak-model-spec-authoring/spec.md",
+      "specs/system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/spec.md",
+      "specs/system-speckit/041-weak-model-spec-authoring/graph-metadata.json"
     ],
     "entities": [
       {
@@ -160,15 +160,9 @@
         "source": "derived"
       },
       {
-        "name": "run-final.sh",
-        "kind": "script",
-        "path": "scratch/tools/run-final.sh",
-        "source": "derived"
-      },
-      {
-        "name": "baseline.json",
+        "name": "graph-metadata.json",
         "kind": "config",
-        "path": "scratch/baseline/baseline.json",
+        "path": "specs/system-speckit/041-weak-model-spec-authoring/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases 1 to 8 change the templates, the validator, the examples, the authoring card, the commands and the playbooks",
     "created_at": "2026-10-23T11:27:27Z",
-    "last_save_at": "2026-10-31T13:27:27.797Z",
+    "last_save_at": "2026-10-31T13:59:45.356Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ce67a45b754679c139c615dedf8abd15b7c3bfa36a86ea6c6ccce2d78f6fbf27",
+    "source_fingerprint": "sha256:f78079a5cef1267c55c152179a0dc8f8c309ec140805ccc4df25c7edd1abfb7c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9ac283ef35e5489c5ab574330309345ec8d70542d4e1d08362a4ea2d2f4a3c28",
-      "plan.md": "899cfaeb011e01deb53d0bfdbf5ac951c134611051dacbba02bb0e67cff3478b",
-      "tasks.md": "2f531df13a5e80fb0c265ded32c0511e5b220b502588c82e84f36e935aed7218",
-      "implementation-summary.md": "083b52826b378b2d3b9096a338a7a84295f3a771aa39a3b4b7f4a053bad95646"
+      "spec.md": "87f8776529eb8d51400f746fce9eb0f7cb90df5a32cf08c67882fd0a229a3e7b",
+      "plan.md": "01c669e48aaac7b60d9def5f17760467329dbd087863fe25e58d15d71a38736e",
+      "tasks.md": "1d05cdf10ae789ace9e0a3847a04a9f2693a30c5ee12caedd843b4942d3f7d73",
+      "implementation-summary.md": "00f171d07c139e548f770f6b5f776769a40b1e4802af40ea0fd74410579c42f6"
     },
     "last_active_at": null
   }

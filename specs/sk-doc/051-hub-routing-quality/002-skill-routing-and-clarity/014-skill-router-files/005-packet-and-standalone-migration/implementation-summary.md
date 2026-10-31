@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/005-packet-and-standalone-migration"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/005-packet-and-standalone-migration"
     last_updated_at: "2026-10-29T14:15:00Z"
     last_updated_by: "pi"
     recent_action: "Recorded the delivered packet and standalone migration"

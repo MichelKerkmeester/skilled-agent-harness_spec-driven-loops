@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The daemon-reaper (`process-memory-harness.ts`) classifies each running process before deciding whether it is a termination candidate",
     "created_at": "2026-08-22T19:27:51.675Z",
-    "last_save_at": "2026-10-31T13:26:31.095Z",
+    "last_save_at": "2026-10-31T13:58:31.486Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5554a1b832b669ec7d9e31bfb6800e91c2f855290cb9797c2647cdb6bcb620df",
+    "source_fingerprint": "sha256:335434cfc14526e2244ff1d712fe2f99a056a8e5c91ffdb0fe1e62312b0dd5f9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4c8ca4363753f34230f904ea9c06e542f4f7d9fb362791f5d19327de03059723",
-      "plan.md": "238bc50ca83404b68eb15cd780f9ebf724762af639a2cd452f974e2e905e601c",
-      "tasks.md": "084f29813ae23347db70a2a52e126cd011a467fbb26696103a47740f898ab770",
-      "implementation-summary.md": "0d871277444efa827d8cca3faf03605d94bb17ff52f9b8bf09ace076672f8580"
+      "plan.md": "12d78cfab31de745dbca3e6c75e0f324282fd6569fe5ef1c57b93d093891c8b2",
+      "tasks.md": "d69fc16d10e9465186c7983215f16f73f3d22008d7846333d417ede028a4fe15",
+      "implementation-summary.md": "34214cc93646bf32c6dd96692473dadadee44f376ca7534b1814e3bff38dfd90"
     },
     "last_active_child_id": null,
     "last_active_at": null

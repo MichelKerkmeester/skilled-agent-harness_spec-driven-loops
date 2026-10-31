@@ -256,9 +256,9 @@ the process exit code carries the class.
 
 ### Evidence Base
 
-- Contract pin: `specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/implementation-summary.md`,
+- Contract pin: `specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/implementation-summary.md`,
   with the captured probes beside it at `scratch/probe-matrix.txt` and `scratch/probe-surface.txt`.
-- Vendored source: `specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/`
+- Vendored source: `specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/`
   (read-only; `src/jev_cli/__init__.py` is the CLI contract and `src/jev_cli/mcp_server.py` the MCP
   contract).
 
@@ -315,7 +315,7 @@ judgment gets one from a workflow executor and reads the result.
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-- Upstream project: `specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/README.md`.
+- Upstream project: `specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/README.md`.
 - Upstream bundled skill: the same tree's `skills/jev-cli/SKILL.md` — the vendor's own guidance,
   which this packet supersedes for repo dispatch behavior.
 - Hub router: `hub-router.json`; stage-two control map: `ROUTER.md`; registry: `mode-registry.json`.

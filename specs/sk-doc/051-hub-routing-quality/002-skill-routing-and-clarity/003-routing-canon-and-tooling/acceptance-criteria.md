@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/003-routing-canon-and-tooling"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/003-routing-canon-and-tooling"
     last_updated_at: "2026-10-28T15:30:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Fixed the review findings and re-verified every criterion"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** `sk-doc/072-skill-routing-and-clarity/003-routing-canon-and-tooling`
+**Packet:** `sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/003-routing-canon-and-tooling`
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-28

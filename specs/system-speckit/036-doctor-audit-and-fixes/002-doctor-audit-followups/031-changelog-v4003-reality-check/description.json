@@ -10,7 +10,8 @@
   "folderSlug": "changelog-v4003-reality-check",
   "parentChain": [
     "system-speckit",
-    "049-doctor-audit-followups"
+    "036-doctor-audit-and-fixes",
+    "002-doctor-audit-followups"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

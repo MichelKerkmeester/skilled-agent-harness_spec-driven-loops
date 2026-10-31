@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The sk-git advisory hook warned that `git add -- $A/...` matched no files when the files existed",
     "created_at": "2026-09-23T19:09:39Z",
-    "last_save_at": "2026-10-31T13:27:06.441Z",
+    "last_save_at": "2026-10-31T13:59:16.589Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd0210affd821c6ff3046ac049e68b3b16f23846736bf8401768271b399a90e5",
+    "source_fingerprint": "sha256:6487242bebd754ef8ea32a81fb8026dc65d50ca8c184a368ce021523f781acdd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "baeb9515e73132e6fb6986288d7621476e792536ea3deab2c8dab08bd582b0d2",
+      "spec.md": "88541a4d64e65c9b44315aaab127605b48e16c656d71e49093722f165b2449b8",
       "plan.md": "082cd39bd9af22679ef91298c1230ea8bfa367774ee9de23fb77bce50f55ed09",
-      "tasks.md": "c6550a63051dc31aedcbf59e12e5716cef20ed1d7c4123a41ca3ee323b2b0bbd",
-      "implementation-summary.md": "ec0f8b6d3479eaf4ef6fbb8f4c49b59bbbe975d161fe1ae1d9d4b5a1bcf3873c"
+      "tasks.md": "ca068daf3f69cb3659378ea206e3b3e62f82a8bbf07d7793fba7d30e2a43de21",
+      "implementation-summary.md": "4e57819a2c90f274a4c535b5fa370cdf568e13f9e83790f452bf7bd7fc939da5"
     },
     "last_active_at": null
   }

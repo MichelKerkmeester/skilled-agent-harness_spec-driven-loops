@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/027-stop-second-rater"
     last_updated_at: "2026-09-29T19:50:00Z"
     last_updated_by: "markdown-leaf"
     recent_action: "Closed the phase at its label gate and set Status Complete"
@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files:
       - ".skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/scratch/w4-session/session-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/027-stop-second-rater/scratch/w4-session/session-evidence.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-027-stop-second-rater"

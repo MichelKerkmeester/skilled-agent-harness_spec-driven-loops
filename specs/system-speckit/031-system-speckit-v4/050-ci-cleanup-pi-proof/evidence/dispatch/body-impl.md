@@ -1,7 +1,7 @@
 STEP 1 - fill P/implementation-summary.md
-Shape model (read-only): specs/system-speckit/033-system-speckit-v4/049-gate-3-delivery-residue/implementation-summary.md
+Shape model (read-only): specs/system-speckit/031-system-speckit-v4/049-gate-3-delivery-residue/implementation-summary.md
 - Title in frontmatter and H1: "Implementation Summary: CI Cleanup and Pi Gate-3 Live Proof".
-- Frontmatter _memory.continuity: packet_pointer "system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof",
+- Frontmatter _memory.continuity: packet_pointer "system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof",
   last_updated_at "2026-09-23T06:00:00Z", last_updated_by "cli-pi mimo-v2.6-pro (orchestrated)",
   recent_action, next_safe_action, key_files from evidence.md, completion_pct 70. Keep session_dedup unchanged.
 - Metadata: Spec Folder 050-ci-cleanup-pi-proof. Completed "In progress". Level 2.

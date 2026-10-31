@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/055-alignment-and-hook-parity"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/055-alignment-and-hook-parity"
     last_updated_at: "2026-10-05T12:55:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Shipped cross-runtime hook parity and doc alignment"

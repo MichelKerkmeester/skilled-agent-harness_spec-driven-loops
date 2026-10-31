@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The machine router of cli-classifier moved from SKILL.md to ROUTER.md",
     "created_at": "2026-10-29T17:20:33Z",
-    "last_save_at": "2026-10-31T13:25:51.804Z",
+    "last_save_at": "2026-10-31T14:01:41.624Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:99747935d7cd797042ed7947d7d7a6a18e381a390e89ab435762327c83b5f9d8",
+    "source_fingerprint": "sha256:a3d93d95376f2dc17fae913a3a6acb611a10e4a8cef408bcc63926f38d510a69",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "30c322b0765dd299e9a862f320b21fb18b0989513943ffff5356aeb664a06982",
       "plan.md": "0f85c5a4929152eb53886c3a09b3979e416fb17b39ac0e85eec6e9b561ca1a85",
       "tasks.md": "485f430a6a5e0be4c8a6a6947487a6a2e7e68f90c1b91324767c4016f4dacdee",
-      "implementation-summary.md": "f6e82383645767f52c1f8282362592768189ba918ef59dc2197f4d8a96a84c23"
+      "implementation-summary.md": "9c93ddb3da736fcb93a9441b60e9cee2bfa0954f4e788f69616b2169b7d196a3"
     },
     "last_active_at": null
   }

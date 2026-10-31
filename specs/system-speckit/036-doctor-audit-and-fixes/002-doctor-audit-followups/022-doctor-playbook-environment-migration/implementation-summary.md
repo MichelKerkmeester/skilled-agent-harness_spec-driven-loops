@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-doctor-audit-followups/022-doctor-playbook-environment-migration"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/022-doctor-playbook-environment-migration"
     last_updated_at: "2026-10-04T19:50:00Z"
     last_updated_by: "doctor-playbook-environment-migration"
     recent_action: "Moved the doctor scenarios onto the two environments and verified every changed file"

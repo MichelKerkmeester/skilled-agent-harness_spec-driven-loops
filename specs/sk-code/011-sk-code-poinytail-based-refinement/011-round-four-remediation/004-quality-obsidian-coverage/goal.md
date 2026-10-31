@@ -96,6 +96,6 @@ and findings belong here.
 | Reviewer finding | One stale path-shaped label in `verification-quick-reference-and-related.md` line 130, fixed by T063 through the fix chain |
 | Orchestrator rerun | All six criteria rerun on 2026-10-10 after the fix chains, each as written above |
 | Orchestrator steps | Done on 2026-10-10. Hermes `--check` prints `PASS: 70 Hermes skill copies in sync`, `compiled-route-guard.cjs` prints `sk-code fresh` after the re-mint and archive copy, and the trigger index `--check` exits 0 |
-| Criterion 4 amended 2026-10-11 | The sk-code-skilled scripts were renamed to kebab-case by `sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file |
+| Criterion 4 amended 2026-10-11 | The sk-code-skilled scripts were renamed to kebab-case by `sk-doc/060-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file |
 | Criterion 5 amended 2026-10-11 | This was a pre-commit status check. It now reads the phase commit bcf0dfa653, which holds the same five changes |
 <!-- /ANCHOR:log -->

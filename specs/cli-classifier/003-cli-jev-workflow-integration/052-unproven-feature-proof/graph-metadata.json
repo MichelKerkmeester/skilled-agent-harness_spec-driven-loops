@@ -44,6 +44,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      "specs/cli-classifier/006-jev-feature-auto-enable/research/research.md",
       ".skilled/skills/cli-classifier/shared/scripts/scorer-report.mjs",
       ".skilled/skills/cli-classifier/shared/scripts/tests/scorer-report.test.mjs",
       ".skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs"
@@ -196,7 +197,7 @@
     ],
     "causal_summary": "Spec-track narrowing kept once and stopped on its repeat",
     "created_at": "2026-10-05T04:56:52Z",
-    "last_save_at": "2026-10-31T13:25:39.951Z",
+    "last_save_at": "2026-10-31T14:04:00.294Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +207,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:38d3eed8d90b9007876a9fd0154abaed34a819079f0055ef7fa48b8320d8b810",
+    "source_fingerprint": "sha256:b9816dbc5622201a08c21e72108d49e0c18c4131c9d557a918131e1d3649ca3c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "70d55a32069bdaa350be7effeecb616bb2b4d39e1cd1f62c2a6faf01fba77a4e",
+      "spec.md": "00364446fa943db0e9656b1200fbdd0a509b8dfa8a899bec2e97cacf375de36a",
       "plan.md": "778f610ebd4dd4f06ebe5b7ab1caf36d356b7113b3e501ffa15cf40ac974673f",
       "tasks.md": "cb0c586bbb73ed50e8938dc8729a67338258ab5703d0a65776e018c2ec64881e",
       "implementation-summary.md": "1480efeba3b448b3351680396a23e60ce892de5ed0d689f14ddf8becee4c4c8a"

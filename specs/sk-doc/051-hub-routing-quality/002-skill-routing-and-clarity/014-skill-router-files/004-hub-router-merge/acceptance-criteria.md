@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/004-hub-router-merge"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/004-hub-router-merge"
     last_updated_at: "2026-10-29T13:50:00Z"
     last_updated_by: "pi"
     recent_action: "Marked every criterion met from the final tree: seven pointer lines, an identical replay, identical routes and green checks"

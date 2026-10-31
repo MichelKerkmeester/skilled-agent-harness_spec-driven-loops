@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The migration moved the transport, decoupled the old hub, and onboarded the new one to compiled serving, but it never executed the thing those changes exist to protect: the mode's own playbook",
     "created_at": "2026-09-20T11:00:14Z",
-    "last_save_at": "2026-10-31T13:25:26.875Z",
+    "last_save_at": "2026-10-31T14:03:47.138Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:12651761de07e9c7088b60ce41ceb13e5e4af251931c70d0c970cb603fe2ab35",
+    "source_fingerprint": "sha256:3ced44be9d15a972f2fd8d4f21c8dfa4c9b4fd593ec843e9893d5fac05f9c960",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "12aacb1334844516ff4d09fc2ebcf2ef578f1b984e88b45feb0f3d481eadb988",

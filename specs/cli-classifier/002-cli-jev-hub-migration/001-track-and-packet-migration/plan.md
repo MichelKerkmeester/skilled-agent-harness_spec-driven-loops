@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration"
+    packet_pointer: "cli-classifier/002-cli-jev-hub-migration/001-track-and-packet-migration"
     last_updated_at: "2026-09-20T13:20:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Plan authored at closeout, mirroring the executed move"
@@ -72,7 +72,7 @@ In-place move with derived-fact repair. The move is atomic at the folder level, 
 ### Key Components
 - **`git mv` of the packet folder**: records the rename and preserves per-file history, nothing else.
 - **Track root metadata (`description.json`, `graph-metadata.json`)**: hand-authored, because track roots are spec-less directories the scaffolder does not write.
-- **`repair-derived.cjs --roots specs/cli-jev --apply`**: rewrites recorded folder names, packet pointers, declared levels and generated-metadata fingerprints, and refuses authored facts by design.
+- **`repair-derived.cjs --roots specs/cli-classifier --apply`**: rewrites recorded folder names, packet pointers, declared levels and generated-metadata fingerprints, and refuses authored facts by design.
 - **Ordered citation substitution**: one pass over live trees for the four string forms of the old path (specs-prefixed, track-prefixed, quoted `parentChain`, bare folder plus slash), touching the moved packet, the skill-side docs and the generated surfaces.
 - **Blessed regenerators**: the trigger index and the retrieval fixtures are rebuilt from the final tree so they cannot carry the retired path.
 
@@ -111,7 +111,7 @@ No unit tests apply: the change moves documents and metadata. Verification is th
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Re-run `git mv specs/cli-jev/001-cli-jev-creation specs/cli-external-orchestration/074-cli-jev-creation`, re-run `repair-derived.cjs --roots specs/cli-external-orchestration --apply`, and re-apply the citation substitutions in reverse. The program packet's own citations of the moved history would need the same reverse pass.
+Re-run `git mv specs/cli-classifier/001-cli-jev-creation specs/cli-external-orchestration/074-cli-jev-creation`, re-run `repair-derived.cjs --roots specs/cli-external-orchestration --apply`, and re-apply the citation substitutions in reverse. The program packet's own citations of the moved history would need the same reverse pass.
 <!-- /ANCHOR:rollback -->
 
 ---

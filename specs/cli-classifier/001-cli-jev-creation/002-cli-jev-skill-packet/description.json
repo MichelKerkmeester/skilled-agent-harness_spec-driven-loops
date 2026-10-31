@@ -9,7 +9,7 @@
   "specId": "002",
   "folderSlug": "cli-jev-skill-packet",
   "parentChain": [
-    "cli-jev",
+    "cli-classifier",
     "001-cli-jev-creation"
   ],
   "memorySequence": 0,

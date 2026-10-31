@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning"
+    packet_pointer: "system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning"
     last_updated_at: "2026-10-25T22:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Closed on the scheduled cold run: 17/17 criteria met, 26/26 checks ticked"

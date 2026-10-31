@@ -4,7 +4,7 @@ You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_
 set in your environment, which this repository's AGENTS.md defines as the autonomous child-dispatch
 exemption: the spec-folder question is pre-resolved and MUST NOT be asked. No answer can reach you.
 Your write authority is already bound. The spec folder is:
-  specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof
+  specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof
 Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 
 PERSONA
@@ -13,7 +13,7 @@ spec document and return one handback block. Nested dispatch is illegal: do not 
 agent process.
 
 Repo root: the current working directory (all paths from there).
-P = specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof
+P = specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof
 
 ROLE
 First run the STEP 0 command exactly as written, if the body has one. Then apply the numbered EDITS below to the one TARGET file, exactly as written. Each EDIT gives the OLD text,
@@ -29,7 +29,7 @@ DON'T
 TARGET: P/implementation-summary.md
 
 STEP 0 (the cited captures moved from scratch/ to evidence/; rewrite their paths)
-  sed -i '' -e 's#scratch/dispatch/#evidence/dispatch/#g' -e 's#scratch/pi-#evidence/pi-#g' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md
+  sed -i '' -e 's#scratch/dispatch/#evidence/dispatch/#g' -e 's#scratch/pi-#evidence/pi-#g' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md
 
 EDIT 1
 OLD:     recent_action: "T001-T012 done with the Pi Gate-3 live proof captured and the six CI surfaces green"
@@ -60,7 +60,7 @@ The live-proof captures and the dispatch trail first lived in scratch/. They mov
 EDIT 7 (INSERT three rows directly after this ANCHOR line)
 ANCHOR: | Re-score after the cli-jev fix | PASS. 152/195 full corpus and 27/32 memory_save, with row 26 routing to system-deep-loop |
 NEW:
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof --strict` | PASS. RESULT: PASSED, 0 errors, 0 warnings |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof --strict` | PASS. RESULT: PASSED, 0 errors, 0 warnings |
 | `validate.sh --strict` on `048-gate-3-mutation-time-delivery` after its derived metadata was regenerated | PASS. RESULT: PASSED, 0 errors, 0 warnings |
 | `validate.sh --strict` on the parent `033-system-speckit-v4`, which recurses into its 50 phases | FAIL on one phase only. The parent folder and 49 of its 50 phases pass. 030-spec-kit-simplification-research fails SPECDOC_SUFFICIENCY_005 because its goal.md durable slice is 6498 characters against a 4000 limit. This phase did not touch 030 |
 
@@ -71,9 +71,9 @@ NEW:
 5. **Phase 030 fails strict validation on its own goal.md.** Its durable slice is 6498 characters against a 4000 limit. That predates this phase and sits outside its scope, so the parent's recursive strict run stays red on that one phase.
 
 VERIFY - run these, paste each command with its result line
-  grep -c 'scratch/pi-\|scratch/dispatch' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md   # expect 0
-  grep -c 'wu8' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md                            # expect 2
-  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md                 # expect 12
+  grep -c 'scratch/pi-\|scratch/dispatch' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md   # expect 0
+  grep -c 'wu8' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md                            # expect 2
+  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md                 # expect 12
 
 HANDBACK - emit exactly this, last thing in your reply
 PI_HANDBACK

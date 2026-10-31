@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring"
+    packet_pointer: "system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring"
     last_updated_at: "2026-10-25T10:20:00Z"
     last_updated_by: "markdown"
     recent_action: "Closed all 22 rows: 17 Met and 5 Superseded by ADR-013"
@@ -41,7 +41,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring
+**Packet:** system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-10-23 (closed 2026-10-25)
@@ -52,7 +52,7 @@ _memory:
 <!-- ANCHOR:criteria -->
 ## 2. CRITERIA
 
-One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it. `P` is the phase path `specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring`; run every command from the repository root.
+One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it. `P` is the phase path `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring`; run every command from the repository root.
 
 | AC-ID | R-id | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|------|-----|---------------------|--------------|--------|--------|
@@ -78,7 +78,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-020 | R29 | REQ-002 | Given the report's fixture tree, When the report test runs, Then the switch states, the four missing flags, the rebuild exclusion, `--no-gh` and the malformed YAML each have their own passing subtest | `node --test .skilled/commands/doctor/scripts/tests/ci-report.test.cjs` exits `0`; the output contains at least `5` lines matching `pass` and one line matching `fail 0`. Observed 2026-10-25: exit 0 with `pass 14` and `fail 0`. | Met | - |
 | AC-021 | R29 | REQ-005, REQ-008 | Given the command folder, When the contract test scans it, Then the three routes, the three assets, the presentation displays and the no-ephemeral-id rule all match | `node --test .skilled/commands/doctor/scripts/tests/doctor-ci-contract.test.cjs` exits `0` with `fail 0`; `grep -c 'command-doctor-ci-' .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json` returns `6`. Observed 2026-10-25: the contract test exited 0 with `tests 12`, `pass 12` and `fail 0`. DEVIATION: the literal `grep -c` printed `12`, not `6`, because each of the six activation entries has two lines that match (`inventoryId` and `id`). A JSON parse of both lists counts `6` entries whose `inventoryId` starts with `command-doctor-ci-`, three in each list. | Met | - |
 | AC-022 | R30 | REQ-006 | Given a workflow prompt and phase 006's registration, When the compiled route runs, Then the route bundles `sk-code-ci` and the observation is recorded | `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "review the GitHub Actions workflow diff in .github/workflows/spec-kit-check.yml" --surface-hint CI \| grep -c '"sk-code-ci"'` returns `1`; `$P/scratch/compiled-route.md` holds one verdict line; a `0` count is recorded as `bundles: no` and leaves this row `Unmet`. Observed 2026-10-25: the hinted run piped to `grep -c '"sk-code-ci"'` printed `1`, and `scratch/compiled-route.md` holds one verdict line, `bundles: yes`. An unhinted run for `review this github actions workflow diff` returned `sk-code-review` then `sk-code-ci`, so the bundle comes from request vocabulary. | Met | - |
-| AC-023 | Gates | REQ-010 | Given the finished phase packet, When the strict validator runs on it, Then it prints `RESULT: PASSED` | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring --strict` prints `RESULT: PASSED`. Observed at T030 (`scratch/phase-result.md`, `## Gates`): exit `0`, `Summary: Errors: 0  Warnings: 0` then `RESULT: PASSED`. **Amendment (2026-10-25, row added after review)**: the row was added because REQ-010 had no acceptance row, and the recursive packet run on 2026-10-25 printed `RESULT: PASSED` for this folder | Met | - |
+| AC-023 | Gates | REQ-010 | Given the finished phase packet, When the strict validator runs on it, Then it prints `RESULT: PASSED` | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring --strict` prints `RESULT: PASSED`. Observed at T030 (`scratch/phase-result.md`, `## Gates`): exit `0`, `Summary: Errors: 0  Warnings: 0` then `RESULT: PASSED`. **Amendment (2026-10-25, row added after review)**: the row was added because REQ-010 had no acceptance row, and the recursive packet run on 2026-10-25 printed `RESULT: PASSED` for this folder | Met | - |
 | AC-024 | Gates | REQ-011 | Given `scratch/phase-result.md`, When it is read, Then it records the gate commands with their exit status and last line, the R28 probe, the live report's workflow count and newest non-rebuild SHA, and the D9 answer | `grep -c '^## Gates$'`, `grep -c '^## R28 probe and D9$'`, `grep -c '^D9: write$'`, `grep -c '^workflows: 32$'` and `grep -cE '^newest non-rebuild SHA: [0-9a-f]{40}$'` over `scratch/phase-result.md` each return `1`. **Amendment (2026-10-25, row added after review)**: the row was added because REQ-011 had no acceptance row, and each of the five counts printed `1` | Met | - |
 
 ### Status values

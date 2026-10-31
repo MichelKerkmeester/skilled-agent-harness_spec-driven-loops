@@ -529,7 +529,7 @@ R11 is folded into R19. R14 is dropped (What Not To Build row 41).
 
 ## L. §13 Proposed Build Phases (replaces lines 804 to 851)
 
-Four phases, all under `specs/cli-jev/003-cli-jev-workflow-integration/`.
+Four phases, all under `specs/cli-classifier/003-cli-jev-workflow-integration/`.
 - 002 and 003 are Planned children, so each change to them below is an amendment the operator approves before their docs change.
 - 004 and 005 are new.
 - No separate measurement-only phase is needed, because each phase's first slice is its own measurement.

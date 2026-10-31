@@ -147,19 +147,19 @@
     ],
     "causal_summary": "The spec-kit document templates carry two unresolved costs",
     "created_at": "2026-08-29T12:08:53Z",
-    "last_save_at": "2026-10-31T13:26:35.584Z",
+    "last_save_at": "2026-10-31T13:58:37.507Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:3fa92c0c67562d887039614a1f38065621a8d372bacf76fa25df0df4637891fe",
+    "source_fingerprint": "sha256:4d4071fd4271de0d141408bf93c66d571531cc091a692d76990eb384db40d948",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "471ab14378df8edb53582bac660d16ab74d70669afa5e3e37ff26ad10d0b0e22"
+      "spec.md": "a5f226d27751553997da39bb8db64ff90b980778fe7793575337f127fead1f1a"
     },
-    "last_active_child_id": "system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/002-acceptance-criteria-template",
+    "last_active_child_id": "system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria/002-acceptance-criteria-template",
     "last_active_at": null
   }
 }

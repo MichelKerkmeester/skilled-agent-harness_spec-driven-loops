@@ -49,6 +49,7 @@
       ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts",
       ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml",
       ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs",
+      "specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/spec.md",
       "scratch/baseline-summary.txt",
       "scratch/cli-summary.txt",
       "scratch/vitest-two-summary.txt",
@@ -56,8 +57,7 @@
       "scratch/mutation-results.txt",
       "scratch/corpus-summary.txt",
       "scratch/search.txt",
-      "scratch/recheck.txt",
-      "tests/upgrade-legacy.vitest.ts"
+      "scratch/recheck.txt"
     ],
     "entities": [
       {
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The phase 16 build carries three optional surfaces that no requirement asks for",
     "created_at": "2026-10-09T10:43:48Z",
-    "last_save_at": "2026-10-31T13:26:29.190Z",
+    "last_save_at": "2026-10-31T13:58:24.572Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:568a716a9a80dedbac451ce30963a08a0dab50443ab38adac5ed5d63a66b89f7",
+    "source_fingerprint": "sha256:d070cadc45ea3c244ca2e0236c4e9f434001433c536fc05230086e60ea6b97f2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "523f3252e94c5137ea0d19b0843e497772593dc53d1a18e4575cb335d7c4d2e6",
       "plan.md": "f5448f90b62a3f0e1a42422c2e7e82abc339757884db4c14b06aa65caeb6f05b",
       "tasks.md": "0a90b62653b842316830186c31fafce18d2bdbf580c0bf0423bd2cb10e0a8a72",
-      "implementation-summary.md": "db8a13f6664eca84b9ee2961dafd2aad77f325e823c89ae2dc3b2bb7cb2daafc"
+      "implementation-summary.md": "94637083c9e0a65582c437e4b6bde6d3d1ac639fecbcbb10e378ac28b060c94a"
     },
     "last_active_at": null
   }

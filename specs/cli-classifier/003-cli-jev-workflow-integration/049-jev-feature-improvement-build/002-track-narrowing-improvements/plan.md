@@ -83,7 +83,7 @@ Each behavior gets a case in the existing suite. Replays of the recorded 047 run
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-- `specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/research.md`
+- `specs/cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/research.md`
 - Live Jev for the re-measure, behind `jev auth status`
 <!-- /ANCHOR:dependencies -->
 

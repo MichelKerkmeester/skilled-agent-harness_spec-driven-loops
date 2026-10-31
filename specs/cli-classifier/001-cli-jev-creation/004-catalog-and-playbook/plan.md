@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/001-cli-jev-creation/004-catalog-and-playbook"
+    packet_pointer: "cli-classifier/001-cli-jev-creation/004-catalog-and-playbook"
     last_updated_at: "2026-09-20T11:30:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Plan executed; the playbook was restructured to the per-scenario contract"

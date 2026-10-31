@@ -2,7 +2,7 @@
 
 Spec Folder Validation v3.0.0
 
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement
   Level:  phase
   Engine: orchestrator
 
@@ -31,7 +31,7 @@ Spec Folder Validation v3.0.0
 + GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
 + GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
 + GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
-+ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement
 + DESCRIPTION_SHAPE: description.json shape validation passed
 + NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
 + SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
@@ -51,7 +51,7 @@ RESULT: PASSED
 
 Spec Folder Validation v3.0.0
 
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/001-deep-research
   Level:  1
   Engine: orchestrator
 
@@ -84,7 +84,7 @@ Spec Folder Validation v3.0.0
 + GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
 + GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
 + GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
-+ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/001-deep-research
 + DESCRIPTION_SHAPE: description.json shape validation passed
 + NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
 + SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
@@ -104,7 +104,7 @@ RESULT: PASSED
 
 Spec Folder Validation v3.0.0
 
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics
   Level:  1
   Engine: orchestrator
 
@@ -137,7 +137,7 @@ Spec Folder Validation v3.0.0
 + GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
 + GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
 + GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
-+ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics
 + DESCRIPTION_SHAPE: description.json shape validation passed
 + NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
 + SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
@@ -157,7 +157,7 @@ RESULT: PASSED
 
 Spec Folder Validation v3.0.0
 
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim
   Level:  1
   Engine: orchestrator
 
@@ -190,7 +190,7 @@ Spec Folder Validation v3.0.0
 + GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
 + GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
 + GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
-+ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim
 + DESCRIPTION_SHAPE: description.json shape validation passed
 + NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
 + SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
@@ -210,7 +210,7 @@ RESULT: PASSED
 
 Spec Folder Validation v3.0.0
 
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup
   Level:  1
   Engine: orchestrator
 
@@ -243,7 +243,7 @@ Spec Folder Validation v3.0.0
 + GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
 + GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
 + GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
-+ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup
 + DESCRIPTION_SHAPE: description.json shape validation passed
 + NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
 + SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
@@ -263,7 +263,7 @@ RESULT: PASSED
 
 Spec Folder Validation v3.0.0
 
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/005-follow-up-fixes
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/005-follow-up-fixes
   Level:  1
   Engine: orchestrator
 
@@ -296,7 +296,7 @@ Spec Folder Validation v3.0.0
 + GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
 + GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
 + GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
-+ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/005-follow-up-fixes
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/005-follow-up-fixes
 + DESCRIPTION_SHAPE: description.json shape validation passed
 + NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
 + SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
@@ -316,7 +316,7 @@ RESULT: PASSED
 
 Spec Folder Validation v3.0.0
 
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review
   Level:  1
   Engine: orchestrator
 
@@ -349,7 +349,7 @@ Spec Folder Validation v3.0.0
 + GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
 + GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
 + GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
-+ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review
 + DESCRIPTION_SHAPE: description.json shape validation passed
 + NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
 + SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
@@ -369,7 +369,7 @@ RESULT: PASSED
 
 Spec Folder Validation v3.0.0
 
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment
   Level:  1
   Engine: orchestrator
 
@@ -402,7 +402,7 @@ Spec Folder Validation v3.0.0
 + GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
 + GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
 + GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
-+ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment
 + DESCRIPTION_SHAPE: description.json shape validation passed
 + NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
 + SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
@@ -422,7 +422,7 @@ RESULT: PASSED
 
 Spec Folder Validation v3.0.0
 
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing
   Level:  1
   Engine: orchestrator
 
@@ -455,7 +455,7 @@ Spec Folder Validation v3.0.0
 + GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
 + GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
 + GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
-+ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing
 + DESCRIPTION_SHAPE: description.json shape validation passed
 + NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
 + SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
@@ -475,7 +475,7 @@ RESULT: PASSED
 
 Spec Folder Validation v3.0.0
 
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation
   Level:  1
   Engine: orchestrator
 
@@ -508,7 +508,7 @@ Spec Folder Validation v3.0.0
 + GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
 + GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
 + GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
-+ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation
 + DESCRIPTION_SHAPE: description.json shape validation passed
 + NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
 + SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
@@ -528,7 +528,7 @@ RESULT: PASSED
 
 Spec Folder Validation v3.0.0
 
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup
   Level:  1
   Engine: orchestrator
 
@@ -561,7 +561,7 @@ Spec Folder Validation v3.0.0
 + GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
 + GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
 + GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
-+ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup
 + DESCRIPTION_SHAPE: description.json shape validation passed
 + NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
 + SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
@@ -581,7 +581,7 @@ RESULT: PASSED
 
 Spec Folder Validation v3.0.0
 
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/011-observation-fixes
   Level:  1
   Engine: orchestrator
 
@@ -614,7 +614,7 @@ Spec Folder Validation v3.0.0
 + GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
 + GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
 + GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
-+ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/011-observation-fixes
 + DESCRIPTION_SHAPE: description.json shape validation passed
 + NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
 + SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
@@ -634,7 +634,7 @@ RESULT: PASSED
 
 Spec Folder Validation v3.0.0
 
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups
   Level:  1
   Engine: orchestrator
 
@@ -667,7 +667,7 @@ Spec Folder Validation v3.0.0
 + GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
 + GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
 + GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
-+ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups
 + DESCRIPTION_SHAPE: description.json shape validation passed
 + NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
 + SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
@@ -687,7 +687,7 @@ RESULT: PASSED
 
 Spec Folder Validation v3.0.0
 
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups
   Level:  1
   Engine: orchestrator
 
@@ -720,7 +720,7 @@ Spec Folder Validation v3.0.0
 + GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
 + GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
 + GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
-+ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups
 + DESCRIPTION_SHAPE: description.json shape validation passed
 + NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
 + SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
@@ -740,7 +740,7 @@ RESULT: PASSED
 
 Spec Folder Validation v3.0.0
 
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment
   Level:  2
   Engine: orchestrator
 
@@ -774,7 +774,7 @@ Spec Folder Validation v3.0.0
 + GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
 + GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
 + GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
-+ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment
 + DESCRIPTION_SHAPE: description.json shape validation passed
 + NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
 + SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly

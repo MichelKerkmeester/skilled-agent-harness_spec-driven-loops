@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment"
     last_updated_at: "2026-10-26T05:35:00Z"
     last_updated_by: "conductor"
     recent_action: "Timed the refined tree with the speed loop"

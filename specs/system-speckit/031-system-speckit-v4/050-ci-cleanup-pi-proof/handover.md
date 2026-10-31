@@ -81,8 +81,8 @@ Handover for phase 050 of system-speckit-v4. It records the CI cleanup results, 
 | scorer-eval-baseline.json | Restored to its committed content after the cli-jev fix | complete |
 | Six Markdown links (cli-jev manual-testing-playbook (1), system-spec-kit runtime/hooks/cursor/README.md (1), runtime/hooks/devin/README.md (2), sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md (2)) | Repointed to their z_archive/ locations | complete |
 | recursive-child-manifest.vitest.ts | Two hardcoded .opencode/specs paths corrected to the tracked specs/ tree | complete |
-| specs/system-speckit/033-system-speckit-v4/spec.md | Phase map row 50 and the 049 to 050 handoff row added | complete |
-| specs/system-speckit/033-system-speckit-v4/048-gate-3-mutation-time-delivery/implementation-summary.md | One Verification row records this phase's live Pi proof | complete |
+| specs/system-speckit/031-system-speckit-v4/spec.md | Phase map row 50 and the 049 to 050 handoff row added | complete |
+| specs/system-speckit/031-system-speckit-v4/048-gate-3-mutation-time-delivery/implementation-summary.md | One Verification row records this phase's live Pi proof | complete |
 
 ### 2.4 Traps & Scar Tissue
 Carry only what the next reader cannot re-derive: where a trap bit, what triggers it, and whether the guard is load-bearing or defensive. A green tree does not erase a trap.
@@ -103,7 +103,7 @@ Carry only what the next reader cannot re-derive: where a trap bit, what trigger
 ## 3. For Next Session
 
 ### 3.1 Recommended Starting Point
-- **File:** specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/evidence.md
+- **File:** specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/evidence.md
 - **Next safe action**: Remove the worktree after the closing commit is pushed.
 - **Cold-read order** (role-play a reader who knows nothing): 1. evidence/dispatch/evidence.md -> 2. handover.md -> 3. evidence/dispatch/handover-v1.md (the minimal numbered path to context)
 - **Context:** The work is pushed to main and skilled/v4.0.0.0 at 5b522489a2, and all 21 CI runs passed. Worktree .worktrees/061-ci-cleanup-pi-proof sits on branch worktrees/061-ci-cleanup-pi-proof at base commit 1cc5dfa692. Tasks T001 to T018 are done.
@@ -136,7 +136,7 @@ Before handover, verify:
 <!-- ANCHOR:session-notes -->
 ## 5. Session Notes
 
-Packet: specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof, Level 2, phase 50 of 50. Created 2026-09-22. Work ran 2026-09-22 to 2026-09-23. Status now is Complete.
+Packet: specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof, Level 2, phase 50 of 50. Created 2026-09-22. Work ran 2026-09-22 to 2026-09-23. Status now is Complete.
 
 The delivery model ran implementation edits through cli-pi with model llmgateway/mimo-v2.6-pro and one change per brief. The Claude session orchestrated, verified every handback independently and made the decisions above with the operator. Briefs and handbacks live in evidence/dispatch/ as wu1-links, wu2-jev-run-topic, wu3-jev-run-keyword, wu4-baseline-restore, wu5-doc-* for the six packet documents, wu6-parent-rows, wu7-048-live-row and wu8-rev-* for the revision pass over the six documents. The live-proof captures and the dispatch trail first lived in scratch/ and moved to evidence/ before the commit, because the packet docs cite them and the spec-kit folder rules keep cited files out of scratch/.
 

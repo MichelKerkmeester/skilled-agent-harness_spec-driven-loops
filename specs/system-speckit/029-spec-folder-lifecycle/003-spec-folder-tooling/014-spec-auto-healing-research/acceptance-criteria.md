@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/014-spec-auto-healing-research"
     last_updated_at: "2026-10-07T22:40:00Z"
     last_updated_by: "claude-opus-5.5"
     recent_action: "Met every criterion with the evidence named in each row"
@@ -37,7 +37,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research
+**Packet:** system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/014-spec-auto-healing-research
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-07

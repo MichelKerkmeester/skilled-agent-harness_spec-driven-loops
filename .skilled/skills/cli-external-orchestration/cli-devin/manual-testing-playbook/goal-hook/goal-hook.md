@@ -1,7 +1,7 @@
 ---
 title: "DV-022 -- Session-bound Devin goal injection"
 description: "Verify the Devin goal adapter injects a bound packet goal on SessionStart and UserPromptSubmit, carries the resend reminder, never leaks frontmatter, and fails open on bad input."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # DV-022 -- Session-bound Devin goal injection
@@ -42,7 +42,7 @@ A Devin session that works a packet without its goal drifts from the directive t
 
 ```bash
 export OPENCODE_GOAL_STATE_DIR="$(mktemp -d /tmp/goal-devin.XXXXXX)"
-PACKET=specs/system-speckit/033-system-speckit-v4/038-goal-unification
+PACKET=specs/system-speckit/031-system-speckit-v4/038-goal-unification
 node .skilled/hooks/goal/bin/goal.cjs bind "$PACKET" --runtime devin --session session-d --workspace "$PWD"
 printf '%s' '{"session_id":"session-d","hook_event_name":"SessionStart","cwd":"'"$PWD"'"}' | node .skilled/hooks/goal/devin/goal-inject.mjs
 printf '%s' '{"session_id":"session-d","hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'"}' | node .skilled/hooks/goal/devin/goal-inject.mjs

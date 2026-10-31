@@ -134,7 +134,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Integration | The merged job runs every step after a failure | One test branch with a forced failure; `gh run view <id> --json jobs --jq '.jobs[] | {name, conclusion, steps: [.steps[] | {name, conclusion}]}'` |
 | Manual | The post-007 snapshot and the re-measure | `gh run list --limit 1000 --json ...` and `gh run view <id> --json jobs` |
 | Manual | The decision record's numbers reproduce | `node scratch/consolidation-cost.mjs --check` against the saved JSON |
-| Docs | The packet validates | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision --strict` |
+| Docs | The packet validates | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision --strict` |
 <!-- /ANCHOR:testing -->
 
 ---

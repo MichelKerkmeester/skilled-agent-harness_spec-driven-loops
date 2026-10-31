@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/006-template-reduction-verification"
+    packet_pointer: "system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/006-template-reduction-verification"
     last_updated_at: "2026-08-26T07:15:00Z"
     last_updated_by: "design-author"
     recent_action: "Authored verify-rollout design"

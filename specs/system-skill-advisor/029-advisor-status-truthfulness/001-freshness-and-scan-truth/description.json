@@ -10,7 +10,7 @@
   "folderSlug": "freshness-and-scan-truth",
   "parentChain": [
     "system-skill-advisor",
-    "033-advisor-status-truthfulness"
+    "029-advisor-status-truthfulness"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

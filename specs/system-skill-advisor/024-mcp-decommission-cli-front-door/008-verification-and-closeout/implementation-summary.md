@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout"
+    packet_pointer: "system-skill-advisor/024-mcp-decommission-cli-front-door/008-verification-and-closeout"
     last_updated_at: "2026-09-11T00:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Re-proved every completion criterion from the final state"

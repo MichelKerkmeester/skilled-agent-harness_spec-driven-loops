@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-create-goal-mode/011-cross-surface-references"
+    packet_pointer: "sk-doc/057-create-goal-mode/011-cross-surface-references"
     last_updated_at: "2026-09-26T14:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Closed all five criteria with evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/060-create-goal-mode/011-cross-surface-references
+**Packet:** sk-doc/057-create-goal-mode/011-cross-surface-references
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-26

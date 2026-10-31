@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The canon keeps the machine router inside `SKILL.md`",
     "created_at": "2026-10-29T07:52:42Z",
-    "last_save_at": "2026-10-31T13:25:52.216Z",
+    "last_save_at": "2026-10-31T14:01:37.757Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +220,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d2e3d81019703cc432c5f2a445e492060ed9965bbfac9931fedf8fef230eff31",
+    "source_fingerprint": "sha256:a3cf9c609f7251a05c093daf93ac3da682546c8d0d1cf16779e1090b370aa2ff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3cdf7bbc2189a14a328b03f3ab1ade3d3bf7d854de840fe366bc22713d5fed27",
       "plan.md": "35bd2e95e4995d2aa4fb8536d069ad59ae350f093093bca68d389debce23e427",
-      "tasks.md": "bb4c457dcae38d1ca72af1ec55da405d0f39b515e15fe8d1d100927dd9d4208d",
+      "tasks.md": "2bc0bcb239a17e83746bfd53625379780c9a169eec6fb1fd15ac8f7c1ba368f0",
       "implementation-summary.md": "0a6012a222b7fe7bf5e2cda1f1553bdb9260854fa3eacad8c61c8401f3328555"
     },
     "last_active_at": null

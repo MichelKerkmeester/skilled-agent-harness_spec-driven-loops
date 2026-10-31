@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup"
+    packet_pointer: "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup"
     last_updated_at: "2026-09-27T10:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Closed every finding with a verified fix and live proof"

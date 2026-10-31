@@ -49,7 +49,7 @@ The first slice is a zero-call census, the pattern phases 002 and 019 already us
 - The operator's yes for the live run. The default run needs none of it.
 - For any llama.cpp column, an install yes, because `command -v llama-server llama-cli` finds nothing on this machine.
 - Installed Pi 0.99.1 at `~/.local/lib/node_modules/@earendil-works/pi-coding-agent` and `jev 0.6.2` on `PATH`, both recorded in `scratch/context/context.md`.
-- The 019 baseline `specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-session/jev-run/calls.jsonl`, 334 lines: one `auth_test` and 333 `choice` calls over 111 rows on `jev-1.13.0` through provider `official`.
+- The 019 baseline `specs/cli-classifier/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-session/jev-run/calls.jsonl`, 334 lines: one `auth_test` and 333 `choice` calls over 111 rows on `jev-1.13.0` through provider `official`.
 - Build roles: parent D5 through this phase's D6. Skill docs: parent D6.
 
 **Deliverables**:
@@ -117,7 +117,7 @@ Produce one measured verdict, before any integration change, on whether Pi's nat
 | `.skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md` | Modify | The index row for the scenario above |
 | `<operator-named report dir>/` | Create at run time | `report.json` and `calls.jsonl` from a live run |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs` | Read only | The prompt shape a replay needs. Owned outside this phase |
-| `specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-session/jev-run/calls.jsonl` | Read only | The recorded CLI answers and their timings |
+| `specs/cli-classifier/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-session/jev-run/calls.jsonl` | Read only | The recorded CLI answers and their timings |
 | This phase folder's six docs, plus `description.json` and `graph-metadata.json` through `repair-derived.cjs` | Modify | The phase record |
 <!-- /ANCHOR:scope -->
 
@@ -196,7 +196,7 @@ Written before the build. `S` is the proposed `.skilled/skills/cli-classifier/be
 2. `node --test $T` exits 0 with at least one happy path and one edge case per public surface. Boundary: a partial probability map marks its row `unmeasured` and never a zero.
 3. `node $S --pi --out <dir>` on stubs writes `calls.jsonl` with one line per call and prints the report lines. `node $S --pi` without `--out` exits 2 before any call (proposed).
 4. On the operator's yes, one live run on the real tree prints one `verdict pi-transport:` line and every report line, with the model identity on each side read from the run. Boundary: any number not read from the run voids the verdict.
-5. `python3 .skilled/skills/sk-doc/scripts/validate_document.py` exits 0 on every changed doc, and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport --strict` prints `RESULT: PASSED`.
+5. `python3 .skilled/skills/sk-doc/scripts/validate_document.py` exits 0 on every changed doc, and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-classifier/003-cli-jev-workflow-integration/037-pi-native-classifier-transport --strict` prints `RESULT: PASSED`.
 
 **Kill criterion.** A stub or vitest verdict never counts. A `stop (coverage)` closes nothing. An `adopt` or `keep-cli` holds only for the identities on its line, and a later Pi or Jev identity reruns the rule in full before any use.
 <!-- /ANCHOR:success-criteria -->

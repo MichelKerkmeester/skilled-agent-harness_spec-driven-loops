@@ -202,7 +202,7 @@
     ],
     "causal_summary": "When a compiled hub router finds near-tied modes it answers `clarify` with a short list of alternatives and suggests no default",
     "created_at": "2026-09-29T12:42:33Z",
-    "last_save_at": "2026-10-31T13:25:31.086Z",
+    "last_save_at": "2026-10-31T14:03:51.368Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:47ac7ec057a532829cd1cce4d6f12dae0af9a7cea231cb99f140ff90ff66b0a2",
+    "source_fingerprint": "sha256:4a945e0d98883e95c5dc3277569d7fb110a0d82970d7f7dce7c26af810d9fb91",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0510df6c8de80da6e6647981fd7166805d09cb4c55bcbdce34508a6f5f37f93f",
-      "plan.md": "010994ab00451ee80f58a73e9c0459ec6a8fa8f6a033d76b65efdc3f1bae98fb",
+      "plan.md": "df303a29aad70a9cf2f22124cc998f29bd7449a3b65d3019e5594841f348d060",
       "tasks.md": "24fc81ddc75d12e81e5cdf074cfe447e3d8ac963719add7197371207537e2ad2",
-      "implementation-summary.md": "fba3d1517aa9d1e45cbfc2d73c3ff25126afe2ec59490f6bb378917221174579"
+      "implementation-summary.md": "1654f86e0ed47228137bf4e1f6133335c05b9d1760c4ab1c0100b2153f00d6c5"
     },
     "last_active_at": null
   }

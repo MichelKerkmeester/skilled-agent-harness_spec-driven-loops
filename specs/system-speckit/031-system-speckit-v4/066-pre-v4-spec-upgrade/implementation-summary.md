@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade"
+    packet_pointer: "system-speckit/031-system-speckit-v4/066-pre-v4-spec-upgrade"
     last_updated_at: "2026-09-25T06:15:00Z"
     last_updated_by: "claude-code"
     recent_action: "Closed out: final proof reruns, full suites and the gate review passed"

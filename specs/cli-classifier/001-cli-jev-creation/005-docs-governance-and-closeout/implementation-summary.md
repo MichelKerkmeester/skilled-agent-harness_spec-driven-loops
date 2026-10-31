@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout"
+    packet_pointer: "cli-classifier/001-cli-jev-creation/005-docs-governance-and-closeout"
     last_updated_at: "2026-09-20T11:45:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Roster and catalog truth authored; gate green; credential step closed"
@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files:
       - ".skilled/agents/orchestrate.md"
-      - "specs/cli-jev/001-cli-jev-creation/spec.md"
+      - "specs/cli-classifier/001-cli-jev-creation/spec.md"
     session_dedup:
       fingerprint: "sha256:c97e646c55d6a89e292cbb0d7a12559f7a66808d90d529c884dd9133da17ef93"
       session_id: "spec-074-005-docs-governance-and-closeout"
@@ -65,11 +65,11 @@ The roster documents now name `cli-jev` where they enumerate modes, each phrased
 | `.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md` | Modify | `NONE (transport)` row in the persona-attachment table |
 | `.skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md` | Modify | Mode count, transport paragraph, inspector line |
 | `.skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md` | Modify | The zero-axis claims at the leaf that owns the routing description |
-| `specs/cli-jev/001-cli-jev-creation/spec.md` | Modify | Phase map, handoff criteria, metadata |
-| `specs/cli-jev/001-cli-jev-creation/goal.md` | Create | Parent durable directive, decisions, completion criteria |
-| `specs/cli-jev/001-cli-jev-creation/004-catalog-and-playbook/spec.md` | Modify | Authored from scaffold |
-| `specs/cli-jev/001-cli-jev-creation/004-catalog-and-playbook/plan.md` | Modify | Authored from scaffold |
-| `specs/cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout/**` | Modify | This phase's five documents |
+| `specs/cli-classifier/001-cli-jev-creation/spec.md` | Modify | Phase map, handoff criteria, metadata |
+| `specs/cli-classifier/001-cli-jev-creation/goal.md` | Create | Parent durable directive, decisions, completion criteria |
+| `specs/cli-classifier/001-cli-jev-creation/004-catalog-and-playbook/spec.md` | Modify | Authored from scaffold |
+| `specs/cli-classifier/001-cli-jev-creation/004-catalog-and-playbook/plan.md` | Modify | Authored from scaffold |
+| `specs/cli-classifier/001-cli-jev-creation/005-docs-governance-and-closeout/**` | Modify | This phase's five documents |
 <!-- /ANCHOR:what-built -->
 
 ---

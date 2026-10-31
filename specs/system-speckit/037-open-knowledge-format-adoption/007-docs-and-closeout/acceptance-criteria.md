@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout"
+    packet_pointer: "system-speckit/037-open-knowledge-format-adoption/007-docs-and-closeout"
     last_updated_at: "2026-10-04T13:15:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "All six criteria met"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout
+**Packet:** system-speckit/037-open-knowledge-format-adoption/007-docs-and-closeout
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-04

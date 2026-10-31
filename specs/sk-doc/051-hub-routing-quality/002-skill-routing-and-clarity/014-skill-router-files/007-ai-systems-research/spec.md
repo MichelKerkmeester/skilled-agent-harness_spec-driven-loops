@@ -94,7 +94,7 @@ $ grep -l "^## .*SMART ROUTING" <the 16 SKILL.md files> | wc -l
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `specs/sk-doc/072-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/research/` | Create | The research state, iterations and `research.md` |
+| `specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/research/` | Create | The research state, iterations and `research.md` |
 <!-- /ANCHOR:scope -->
 
 ---

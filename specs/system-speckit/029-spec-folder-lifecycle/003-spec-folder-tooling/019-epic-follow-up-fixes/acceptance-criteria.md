@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/019-epic-follow-up-fixes"
     last_updated_at: "2026-10-09T19:59:32Z"
     last_updated_by: "closeout"
     recent_action: "Recorded evidence for each criterion and the gate results"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/034-spec-folder-tooling/019-epic-follow-up-fixes
+**Packet:** system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/019-epic-follow-up-fixes
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-09
@@ -61,7 +61,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-008 | REQ-004 | Given the Gate 3 parity list of 17 files, When any one option C copy drifts from `GATE_3_CHOICE_RELATED`, Then the test fails | `u08-gate3-parity-final.txt`: 17 pass, 0 fail. Planted drift in `create-agent-presentation.txt` (`u08-gate3-parity-planted-drift-agent.txt`) and in `create-command-presentation.txt` (`u08-gate3-parity-planted-drift-command.txt`) each fails with `ERR_ASSERTION` on that file. Gate 3 hook glob at closeout: `gate-03-hooks-node-test.txt`, 186 pass, 0 fail, 3 skipped | Met | - |
 | AC-009 | REQ-002 | Given a CLI test run, When it finishes, Then no fixture is left under the real `specs/` root and the three tests build their fixtures in OS temp sandboxes | `u09-specs-root-before.txt` and `u09-specs-root-after.txt` list the same top-level entries, with no `.repair-fixture-*` or `001-scaffold-gate-phase-probe`. The before and after snapshots are from the closeout runs. The during-run poll of the three edited files is in `u09-during-run-poll.txt`. Sandbox tests: `u09-cli-sandbox-vitest.txt`, 3 files and 33 tests passing. Containment cases: `u09-containment-guard-cases.txt` | Met | - |
 | AC-010 | REQ-005 | Given the sk-code leaf manifest, When the generator runs with `--check`, Then it passes, and dot-named directories cannot change a manifest | `gate-08-leaf-manifests.txt`: sk-code reports `leaf-manifest.json OK`, and all 14 hub manifests exit 0. The sk-code manifest is unchanged in git. The skip is pinned by `u10-leaf-manifest-scope-test.txt` (test "dot-named directory does not change manifest"), since no `.pytest_cache` exists under sk-code in the live tree | Met | - |
-| AC-011 | REQ-006 | Given the 018 push receipt, When the packet closes, Then it is committed with the 018 evidence | Committed in 9bd0eecc44 (`docs(specs): record the epic docs alignment push`). `git ls-files` lists `specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment/scratch/evidence/push.txt` at that commit | Met | - |
+| AC-011 | REQ-006 | Given the 018 push receipt, When the packet closes, Then it is committed with the 018 evidence | Committed in 9bd0eecc44 (`docs(specs): record the epic docs alignment push`). `git ls-files` lists `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/018-epic-docs-alignment/scratch/evidence/push.txt` at that commit | Met | - |
 | AC-012 | REQ-006 | Given the full CLI suite with `SPECKIT_TEST_RUN_TIMEOUT_MS=3600000`, When it finishes, Then passed is at least 1776 and failed is 0 | `scratch/evidence/gate-01-cli-suite.txt` lines 188 and 189: Test Files 171 passed, 3 skipped (174), and Tests 1776 passed, 19 skipped (1795). `gate-01-cli-suite.exit` reads `EXIT=0`. The chained legacy and validation stages report 0 failed (lines 2214, 2222 and 2266). The real `specs/` listing after the run equals the one before it (`u09-specs-root-after-cli-run.txt`) | Met | - |
 | AC-013 | REQ-006 | Given the gates named in implementation-summary.md, When each runs at closeout, Then each exits 0 with the stated numbers | Gates 2 to 12 exit 0 (`gate-*.exit`). Gate 6 prints 85 warnings and 0 failures against the baseline of 85. Gate 8 prints 14 of 14. Gate 4 prints 2 of 2 tests. Gate 11 prints no violations (`gate-11-comment-hygiene.txt`), and a seeded violation exits 1 (`gate-11-positive-control.txt`) | Met | - |
 | AC-014 | REQ-006 | Given this folder and the 034 parent, When `validate.sh --strict` runs on each, Then each prints `RESULT: PASSED` | `scratch/evidence/validate-019-strict-final.txt` and `scratch/evidence/validate-034-strict-final.txt` both end with `RESULT: PASSED`. Before this row was marked, the same two runs failed only on AC_CLOSURE for AC-014. The earlier run that failed on AC-011 and AC-014 is `scratch/evidence/validate-019-strict.txt` | Met | - |

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Each of these derives a document from something that already exists, so their failure mode is drift: the artifact stops describing its source and nobody notices, because it still looks like a valid document",
     "created_at": "2026-09-01T11:48:00Z",
-    "last_save_at": "2026-10-31T13:25:43.953Z",
+    "last_save_at": "2026-10-31T14:01:31.263Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d25f0fdf8e685ad08c6fa70ba02669c5b408f71e3953859dd35b5880eb9739d2",
+    "source_fingerprint": "sha256:50be8cc37cdecabb32591da3d18b27dc255d5cf46fe14552582a5680d56be30d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "48fd4c5fd815008a06641382a66892c70c602dc5cb9a878350356bd054cf1fb3",

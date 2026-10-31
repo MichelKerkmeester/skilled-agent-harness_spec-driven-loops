@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes"
+    packet_pointer: "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/011-observation-fixes"
     last_updated_at: "2026-09-27T14:45:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Proved the parent goal's six criteria again from the final state"
@@ -93,11 +93,11 @@ The 18 folders, under `specs/`:
 
 - `cli-external-orchestration/071-cli-hermes-creation/013-close-silent-preflight-holes`
 - `cli-external-orchestration/071-cli-hermes-creation/016-dispatch-enforcement-ci-guard`, found at final state
-- `cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin`
-- `sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring/scratch/001-parent-and-nested-goals-fixture/001-source-audit`
-- `system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions`
-- `system-speckit/033-system-speckit-v4/038-goal-unification/011-goal-drift-remediation`, numbered
-- `system-speckit/033-system-speckit-v4/` children `045-v4-changelog-voice-rewrite`, `046-v4-changelog-remediation`, `047-v4-changelog-review-fixes`, `048-gate-3-mutation-time-delivery`, `049-gate-3-delivery-residue` and `050-ci-cleanup-pi-proof`
+- `cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin`
+- `sk-doc/057-create-goal-mode/004-parent-and-nested-goal-authoring/scratch/001-parent-and-nested-goals-fixture/001-source-audit`
+- `system-speckit/031-system-speckit-v4/038-goal-unification/009-close-open-decisions`
+- `system-speckit/031-system-speckit-v4/038-goal-unification/011-goal-drift-remediation`, numbered
+- `system-speckit/031-system-speckit-v4/` children `045-v4-changelog-voice-rewrite`, `046-v4-changelog-remediation`, `047-v4-changelog-review-fixes`, `048-gate-3-mutation-time-delivery`, `049-gate-3-delivery-residue` and `050-ci-cleanup-pi-proof`
 - `system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/phase-quarantine/` children `021` to `026`, all numbered. The final-state check found `022`, `023`, `025` and `026`
 <!-- /ANCHOR:what-built -->
 

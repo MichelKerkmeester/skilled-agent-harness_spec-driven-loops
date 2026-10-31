@@ -10,15 +10,15 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/022-alignment-folder-suggestion"
     last_updated_at: "2026-09-29T16:53:36Z"
     last_updated_by: "closure-leaf"
     recent_action: "Closed the phase at the label gate: build commit ba70806077, all goal criteria ticked"
     next_safe_action: "Operator labels 30 rows, then one live Deem run and a Jev run on their yes"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/plan.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/plan.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-022-alignment-folder-suggestion"

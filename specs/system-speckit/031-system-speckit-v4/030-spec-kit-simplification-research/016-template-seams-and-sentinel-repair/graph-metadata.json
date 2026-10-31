@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Child 010 made the level contract the one authority and left the code and prose beside it untouched",
     "created_at": "2026-09-07T06:57:32.879Z",
-    "last_save_at": "2026-10-31T13:26:51.121Z",
+    "last_save_at": "2026-10-31T13:58:56.644Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:271d16b8f3c51af31fcd3300f9f9e6b6cede6ae04b483cc7c67b15fd7410344f",
+    "source_fingerprint": "sha256:26ec02c977d101cc4014e1bd1aca7fce97519fdddf25e5436315e706141515ce",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e736fdcb27f106329ae394aa9f011227be0cb88b2f9a3ff1470abff5be0712b8",

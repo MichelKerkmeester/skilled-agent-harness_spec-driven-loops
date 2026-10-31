@@ -97,7 +97,7 @@ Every spec-protocol row the research workflows emit is accepted by the gateway, 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The command that failed in `specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research` succeeds on the same row.
+- **SC-001**: The command that failed in `specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research` succeeds on the same row.
 - **SC-002**: A research run's write-back is visible in its state log.
 <!-- /ANCHOR:success-criteria -->
 

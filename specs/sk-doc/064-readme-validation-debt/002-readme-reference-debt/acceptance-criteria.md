@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/071-readme-reference-debt"
+    packet_pointer: "sk-doc/064-readme-validation-debt/002-readme-reference-debt"
     last_updated_at: "2026-10-27T23:30:00Z"
     last_updated_by: "readme-reference-debt-followup-worker"
     recent_action: "Marked every criterion with the evidence that met it"
@@ -38,7 +38,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/071-readme-reference-debt
+**Packet:** sk-doc/064-readme-validation-debt/002-readme-reference-debt
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-27

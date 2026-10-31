@@ -29,7 +29,7 @@ contextType: "general"
 
 Shell variables used below, set once by the conductor:
 - `WORKTREE`: the build worktree path recorded in `../goal.md` section 4.
-- `PHASE`: `$WORKTREE/specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance`
+- `PHASE`: `$WORKTREE/specs/system-speckit/041-weak-model-spec-authoring/004-template-section-fill-guidance`
 - `S`: `.skilled/skills/system-spec-kit`
 - `START`: the commit hash recorded by T002.
 <!-- /ANCHOR:notation -->
@@ -479,7 +479,7 @@ Shell variables used below, set once by the conductor:
 
   ```text
   You are a read-only reviewer. Do not edit, create or delete any file.
-  Read specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/plan.md
+  Read specs/system-speckit/041-weak-model-spec-authoring/004-template-section-fill-guidance/plan.md
   and the templates it changes. For each FILL line in the four core templates and the ten
   addon templates, check:
   (1) the instruction names one action and ends with a period,

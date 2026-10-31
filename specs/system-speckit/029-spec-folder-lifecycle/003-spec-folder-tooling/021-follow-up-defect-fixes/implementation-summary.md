@@ -7,15 +7,15 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/021-follow-up-defect-fixes"
     last_updated_at: "2026-10-11T12:16:56Z"
     last_updated_by: "generate-context"
     recent_action: "Closed on push 01db8367c3 with CI green except main's corpus pin"
     next_safe_action: "Monitor main CI and reopen only for a new tooling defect"
     blockers: []
     key_files:
-      - "specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes/scratch/evidence/post-push-ci.txt"
-      - "specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes/scratch/evidence/decision-ledger.txt"
+      - "specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/021-follow-up-defect-fixes/scratch/evidence/post-push-ci.txt"
+      - "specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/021-follow-up-defect-fixes/scratch/evidence/decision-ledger.txt"
       - ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs"
       - ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts"
       - ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs"

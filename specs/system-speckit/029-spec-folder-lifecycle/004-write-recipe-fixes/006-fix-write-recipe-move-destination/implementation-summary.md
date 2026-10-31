@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination"
     last_updated_at: "2026-10-24T12:00:00Z"
     last_updated_by: "conductor"
     recent_action: "Applied the known row and closed the phase"
     next_safe_action: "Phase 009 moves the 041 phase map row to Complete"
     blockers: []
     key_files:
-      - "specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/tasks.md"
+      - "specs/system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination/tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "041-write-recipe-fixes-006-planning"

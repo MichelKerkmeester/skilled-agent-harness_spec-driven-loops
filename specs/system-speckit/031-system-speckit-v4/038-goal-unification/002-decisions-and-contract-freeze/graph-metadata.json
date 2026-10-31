@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Phases 003 through 007 each depend on a decision no single phase can make alone",
     "created_at": "2026-09-11T07:11:47Z",
-    "last_save_at": "2026-10-31T13:26:57.502Z",
+    "last_save_at": "2026-10-31T13:59:05.831Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e47aa4b10b676bfd7df022be038d4bd43132e75f211bf21b3d43a51b1a7960fc",
+    "source_fingerprint": "sha256:4361e68019d13bd7479efbe83809a315cb4dd2dec19300a88aebf1048d908718",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cae877cf02101e15f92f9adecbf8166916e1201823b677a50710470b52aa99a8",
       "plan.md": "55db740286242707d0092defff8712ae70a08f6dfaf45827ed2b445fb72289b1",
       "tasks.md": "d3cf9d12d1a465e5dc0cc1a7f6f5bd5c92372af1eb6caa5c1e48370bd7e62a35",
-      "decision-record.md": "a8105d2314f238b12a990bbc083ebcd1f27371fa17481aebe1ae277ce51a6745",
+      "decision-record.md": "5229f13b09e47bcce9a46aef4710d0281e52903ad2bd15315f071e54bca3ba4d",
       "implementation-summary.md": "b072a946b11f22aeaec4c71f672e9d01b8a7798e3477ed582d27aae7fe6981bc"
     },
     "last_active_at": null

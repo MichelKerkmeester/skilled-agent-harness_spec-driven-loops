@@ -42,7 +42,7 @@ This is **Phase 15** of the Recorded findings closure specification.
 **Scope Boundary**: `check-ac-coverage.sh`'s enforce/cutoff behavior, its lifecycle-activation check, `runtime/ENV-REFERENCE.md`'s documentation of the new variable and the acceptance-criteria.md content of the simplification program's own children 006 through 022. No change to `check-ac-closure.sh`'s existing cutoff (it stays the model this phase copies, not a file this phase edits) and no change to any packet outside that program.
 
 **Dependencies**:
-- Lane 004 round two `f-iter004-002` and `f-iter004-001`, `specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/research/confirmed-findings.md:101,120`
+- Lane 004 round two `f-iter004-002` and `f-iter004-001`, `specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/research/confirmed-findings.md:101,120`
 - `check-ac-coverage.sh` and `check-ac-closure.sh` under `.opencode/skills/system-spec-kit/runtime/cli/rules/`
 - `runtime/ENV-REFERENCE.md:166-170`, which already documents `SPECKIT_AC_COVERAGE`, `SPECKIT_AC_COVERAGE_ENFORCE`, `SPECKIT_AC_COVERAGE_FLOOR`, `SPECKIT_AC_CLOSURE` and `SPECKIT_AC_CLOSURE_CUTOFF`
 
@@ -80,7 +80,7 @@ This is **Phase 15** of the Recorded findings closure specification.
 
 ### Out of Scope
 - `check-ac-closure.sh` itself - it is the pattern this phase copies, not a file this phase edits
-- Any packet outside `specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/006-*` through `022-*` - the retrofit is scoped to the program lane 004 measured, not a repository-wide sweep
+- Any packet outside `specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/006-*` through `022-*` - the retrofit is scoped to the program lane 004 measured, not a repository-wide sweep
 - Raising or lowering the 0.9 floor value itself - `SPECKIT_AC_COVERAGE_FLOOR` is unchanged. This phase is about the enforce switch's rollout boundary and the gate's ability to activate, not the floor's height
 
 ### Files to Change
@@ -90,7 +90,7 @@ This is **Phase 15** of the Recorded findings closure specification.
 | `.opencode/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh` | Modify | Add a cutoff-gated enforce path mirroring `check-ac-closure.sh`'s pattern |
 | `.opencode/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh` (`_ac_lifecycle_active`, lines 69-99) | Modify (same file) | Close the Status-detection gap so the gate activates for a completed packet whose signal lives in `acceptance-criteria.md` |
 | `.opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md:166-170` | Modify | Document the new cutoff variable next to the existing `SPECKIT_AC_COVERAGE*` rows |
-| `specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/006-retrieval-drift-remediation/acceptance-criteria.md` through `.../022-doctor-signal-truth-and-conventions-precision/acceptance-criteria.md` (15 files. 010 already meets the floor, 008 has no such file) | Modify | Add `file:line` citations, or a documented alternative, to reach the 90 percent floor per packet |
+| `specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/006-retrieval-drift-remediation/acceptance-criteria.md` through `.../022-doctor-signal-truth-and-conventions-precision/acceptance-criteria.md` (15 files. 010 already meets the floor, 008 has no such file) | Modify | Add `file:line` citations, or a documented alternative, to reach the 90 percent floor per packet |
 <!-- /ANCHOR:scope -->
 
 ---

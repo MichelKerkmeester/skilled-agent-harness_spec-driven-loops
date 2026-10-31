@@ -10,15 +10,15 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/043-label-finding-fixes"
     last_updated_at: "2026-10-01T19:00:00Z"
     last_updated_by: "orchestrating-session"
     recent_action: "Closed the phase after three cross-family reviews"
     next_safe_action: "None for this phase"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes/goal.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes/acceptance-criteria.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/043-label-finding-fixes/goal.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/043-label-finding-fixes/acceptance-criteria.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-043-label-finding-fixes"

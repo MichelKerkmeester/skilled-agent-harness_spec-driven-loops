@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
     last_updated_at: "2026-10-25T00:00:00Z"
     last_updated_by: "conductor"
     recent_action: "Ran the eight scenarios and published the report"
     next_safe_action: "Start phase 009 from the report folder and results.csv"
     blockers: []
     key_files:
-      - "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md"
+      - "specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "054-weak-model-spec-authoring-planning"

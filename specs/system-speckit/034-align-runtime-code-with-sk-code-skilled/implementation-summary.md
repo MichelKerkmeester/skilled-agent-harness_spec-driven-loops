@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/046-align-runtime-code-with-sk-code-skilled"
+    packet_pointer: "system-speckit/034-align-runtime-code-with-sk-code-skilled"
     last_updated_at: "2026-09-30T22:06:54Z"
     last_updated_by: "generate-context"
     recent_action: "Merged to main with the checker at 0 findings and the scoped suite at 2985/0"
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 046-align-runtime-code-with-sk-code-skilled |
+| **Spec Folder** | 034-align-runtime-code-with-sk-code-skilled |
 | **Completed** | 2026-10-01, merged to main as `46fc86c8e8` |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

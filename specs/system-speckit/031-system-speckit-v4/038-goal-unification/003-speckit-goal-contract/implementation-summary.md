@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/038-goal-unification/003-speckit-goal-contract"
+    packet_pointer: "system-speckit/031-system-speckit-v4/038-goal-unification/003-speckit-goal-contract"
     last_updated_at: "2026-09-11T07:11:49Z"
     last_updated_by: "claude-code"
     recent_action: "Aligned template, playbook, contract and validator on the goal budget"

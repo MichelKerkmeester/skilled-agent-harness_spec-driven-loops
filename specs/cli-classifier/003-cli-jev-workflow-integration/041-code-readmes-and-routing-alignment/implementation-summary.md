@@ -7,15 +7,15 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment"
     last_updated_at: "2026-10-01T07:16:01Z"
     last_updated_by: "markdown-leaf"
     recent_action: "Rewrote this file with the build, review and gate results"
     next_safe_action: "None. The orchestrator commits these docs path-scoped"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/scratch/evidence/build-evidence.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/scratch/evidence/build-evidence.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-041-code-readmes-and-routing-alignment"
@@ -159,7 +159,7 @@ All checks ran from the final state, with the raw recordings under `scratch/evid
 2. **The strict scenario checker fails fleet-wide on evidence fields.** `validate-compiled-routing-scenarios.cjs --strict` on hub-routing fails 5 of 5, the same at HEAD and on the canon-clean `cli-external-orchestration` hub (`scratch/evidence/build-evidence.md:42`), so the phase's leaf evidence stands on the replay's own numbers (`scratch/evidence/leaf-route-replay.txt:7`) rather than on that checker.
 3. **The two Luna audit attempts produced no review.** Try 1 hit a codex host timeout before reading any file and try 2 hit the 2,400 s alarm with no output, so cross-family review went to SWE 2 max on `cli-devin` (`scratch/evidence/build-evidence.md:65`). No Luna verdict exists to cite.
 4. **The session kept no separate design note.** The probe baseline and the README commands are recorded directly under `scratch/evidence/` (`probe-before.txt`, `build-evidence.md`), so tasks T001 and T002 closed on 2026-10-01 with that deviation recorded on each row, by the operator's choice. Every other clause of both checks was already covered.
-5. **The parent folder's generated metadata reported two strict errors at this pass.** `validate.sh --strict --no-recursive` on `specs/cli-jev/003-cli-jev-workflow-integration` reported a source-fingerprint mismatch and a description drift in its derived files, plus the missing `041` child id in `children_ids`, while other workers were editing the parent folder. All three live in the parent folder, which this phase may not write; the orchestrator's sweep re-derives them after the workers return. This phase's own strict run passes.
+5. **The parent folder's generated metadata reported two strict errors at this pass.** `validate.sh --strict --no-recursive` on `specs/cli-classifier/003-cli-jev-workflow-integration` reported a source-fingerprint mismatch and a description drift in its derived files, plus the missing `041` child id in `children_ids`, while other workers were editing the parent folder. All three live in the parent folder, which this phase may not write; the orchestrator's sweep re-derives them after the workers return. This phase's own strict run passes.
 6. **The dated hub changelog keeps the old class name.** `changelog/v0.6.0.0.md:20` records that `cli-usage-aliases` became `cli-jev-aliases`, which REQ-005 keeps as history, so a grep over the whole hub returns that one line by design.
 <!-- /ANCHOR:limitations -->
 

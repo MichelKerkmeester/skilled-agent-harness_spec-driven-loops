@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Five template and doc defects are confirmed, but they came from a spot check, not a census, so the full list is unknown",
     "created_at": "2026-10-23T11:27:18Z",
-    "last_save_at": "2026-10-31T13:27:25.833Z",
+    "last_save_at": "2026-10-31T13:59:41.301Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:501e26d41a830bbd21a11c048ed05e8f53b672437120543dbab0b7873b9c0767",
+    "source_fingerprint": "sha256:6087d20634347be1708c39c58f65d86c3203fddb4027baef43fd0aaf252ace83",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7a28a554c7db5cc38f2d592d644e10c12d6daad911a1e19b834287641d5da55e",
-      "plan.md": "c525be7e8f66720475e1701142ef1755e4db1d3783af4595b1fd01c9f55c3a10",
-      "tasks.md": "275c9b81cd94835a417a7962b8b0d9bfb24dbbbc2c88a83cfe9ce551ed90eb94",
-      "implementation-summary.md": "6d8b5d251fbdb2e3a4d83e4e7fd6737e6854f0e2a64efeb063423df8f269dedf"
+      "plan.md": "22a0b830ffbf37abf2367c8cba2b0c4685b3986c6f564f422dacecea24ac25cd",
+      "tasks.md": "4c3cd51f3a54fd5a2bc7a1b8fb3592c3e85dc7787ad9d03635ce324e18739647",
+      "implementation-summary.md": "ca66c4b8b955c8644eab40eeb8f22ae89fd02a99146613ca69f27b8d35dccf42"
     },
     "last_active_at": null
   }

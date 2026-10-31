@@ -11,7 +11,7 @@
     "pipeline"
   ],
   "lastUpdated": "2026-08-15T14:41:14.649Z",
-  "specId": "031",
+  "specId": "030",
   "folderSlug": "memory-reindex-embed-performance",
   "parentChain": [
     "system-speckit"

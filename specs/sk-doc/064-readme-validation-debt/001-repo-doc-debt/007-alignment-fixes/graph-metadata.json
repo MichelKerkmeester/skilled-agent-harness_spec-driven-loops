@@ -206,7 +206,7 @@
     ],
     "causal_summary": "`validatedocument.py` finds no rule for benchmark report companion files or for files in a `review-output-fixture/` folder, falls back to README rules and fails them for a missing Overview",
     "created_at": "2026-10-27T20:01:06Z",
-    "last_save_at": "2026-10-31T13:26:04.950Z",
+    "last_save_at": "2026-10-31T14:01:57.510Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f98d7f6865964e407ae517266ec773ecdaad96f842c24c37872c0f3a0732973c",
+    "source_fingerprint": "sha256:6cbd17b857e54f1037ab5121873b3ac8fc97b4b0ae64af13c1b815d6de73758d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d3b21d50ff5e5f522d116e12097cb79d127d5aab9a1faa04fc2b181a46b40d8d",

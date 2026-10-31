@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-create-goal-mode/008-command-and-playbook"
+    packet_pointer: "sk-doc/057-create-goal-mode/008-command-and-playbook"
     last_updated_at: "2026-09-26T10:15:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Built the command, its mirrors and the playbook; ran SCG-007 and SCG-008"
@@ -111,7 +111,7 @@ Two MiMo 2.6 Pro workers ran in parallel on cli-pi at high thinking. One built t
 | SCG-007 run | PASS: redirect to the goal hooks, no goal file, no session state |
 | SCG-008 run | PASS: parent edited before child, slice hash changed, amended decision in `chat_slice` |
 | `package_skill.py --check --strict` on the mode | `Result: PASS` |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/060-create-goal-mode/008-command-and-playbook --strict` | `RESULT: PASSED`, 0 errors and 0 warnings, on 2026-09-26 |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode/008-command-and-playbook --strict` | `RESULT: PASSED`, 0 errors and 0 warnings, on 2026-09-26 |
 <!-- /ANCHOR:verification -->
 
 ---

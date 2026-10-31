@@ -57,7 +57,7 @@ contextType: "implementation"
 
 - [x] T009 Rebuild the runtime and run the env-reference drift guard (.opencode/skills/system-spec-kit/runtime)
 - [x] T010 Run the CLI typecheck (.opencode/skills/system-spec-kit/runtime/cli)
-- [x] T011 Rerun the census over the final template and validate this child and the parent (specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research)
+- [x] T011 Rerun the census over the final template and validate this child and the parent (specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research)
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/049-sk-create-frontmatter/008-utilization-review"
+    packet_pointer: "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/008-utilization-review"
     last_updated_at: "2026-09-02T18:55:24Z"
     last_updated_by: "implementation"
     recent_action: "Closed the five open goal items and re-minted the hub activation manifests"

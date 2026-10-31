@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The frontmatter versioning standard requires a four-part `version` key on every changelog entry, but 217 older entries across 14 skills and modes carried the five search keys without it",
     "created_at": "2026-10-10T19:23:34Z",
-    "last_save_at": "2026-10-31T13:26:04.409Z",
+    "last_save_at": "2026-10-31T14:01:55.618Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc097aa32cce244f5c57fb503e21419f88107ffcc68844bf2d5ce9536310ddee",
+    "source_fingerprint": "sha256:fb91d40448cc65c494e58b0733a4fa14fd494bb88540edc7d58bbcb3d4d74b7f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "52d45889f9c3c4f4c8c6182603db19cadba940254a16bd7338f39cf79ae2b7bb",
       "plan.md": "fdf54591bb4c2edc2d6885815e53d12a6750a8ef28afc9249f2ddb75443b3a0c",
       "tasks.md": "771e4cbe696f00682c2e1a63301c23c817f0ac67a7d697857ac4c76066fc54cd",
-      "implementation-summary.md": "42290b825ab770f7b47172b475f5212d1bbf1c73dd059ee6ab29f185b1cc1a0a"
+      "implementation-summary.md": "f7367e3ab67f08ce1bf60a29c15ce18b9c9b38e50095f60da16bf421149a7185"
     },
     "last_active_at": null
   }

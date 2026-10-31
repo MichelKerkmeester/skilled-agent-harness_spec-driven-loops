@@ -19,10 +19,11 @@
     "folder"
   ],
   "lastUpdated": "2026-10-06T19:00:00.000Z",
-  "specId": "041",
+  "specId": "004",
   "folderSlug": "write-recipe-fixes",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "029-spec-folder-lifecycle"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

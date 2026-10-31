@@ -25,7 +25,7 @@
   "folderSlug": "metadata-drift-and-rules",
   "parentChain": [
     "system-speckit",
-    "033-system-speckit-v4",
+    "031-system-speckit-v4",
     "023-trigger-index-root-and-drift-fixes"
   ],
   "memorySequence": 0,

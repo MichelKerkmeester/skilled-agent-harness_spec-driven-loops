@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Skill docs cite code as `file:line`, and agents follow those citations to decide what the code does",
     "created_at": "2026-09-29T12:42:43Z",
-    "last_save_at": "2026-10-31T13:25:31.230Z",
+    "last_save_at": "2026-10-31T14:03:51.918Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:90791f5e7da51fb88344c2b7c9dc2408445fb8389f9789705e0f2bd0be8fb703",
+    "source_fingerprint": "sha256:484b0557d73c6b2d0c136681e84d43052551052f56c30029b0fe1d086a16176b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "979f9532b5711c005b14046c3b7099f72969cda4b7fdf31e714fa302676248f2",
       "plan.md": "dc57f481c9eb373e44668036943f3019952726cbb217f749b1bc1b8641c5f759",
       "tasks.md": "7a728cf939883c774e49ccac0678acc82e3cc3e18381a2f5f25ec1651af7ad2d",
-      "implementation-summary.md": "134c287db9aeddf3f2dbf49330ea8bb78cabdd82af0f527b14af6c02171c09cc"
+      "implementation-summary.md": "8b48a7e54a48d95f2d489e34ddf541892d39906dd71214d0b73bb84701af982c"
     },
     "last_active_at": null
   }

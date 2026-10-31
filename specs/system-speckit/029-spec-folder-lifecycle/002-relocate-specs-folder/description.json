@@ -13,10 +13,11 @@
     "specs"
   ],
   "lastUpdated": "2026-08-15T14:41:14.686Z",
-  "specId": "032",
+  "specId": "002",
   "folderSlug": "relocate-specs-folder",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "029-spec-folder-lifecycle"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

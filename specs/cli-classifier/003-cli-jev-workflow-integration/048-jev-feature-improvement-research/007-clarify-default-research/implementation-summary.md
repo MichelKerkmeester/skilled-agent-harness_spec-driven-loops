@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/007-clarify-default-research"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/007-clarify-default-research"
     last_updated_at: "2026-10-02T21:59:48Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Both lineages ran and the merged research.md was written"

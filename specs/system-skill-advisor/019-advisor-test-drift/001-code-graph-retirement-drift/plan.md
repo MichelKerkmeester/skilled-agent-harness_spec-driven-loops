@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/019-code-graph-retirement-drift"
+    packet_pointer: "system-skill-advisor/019-advisor-test-drift/001-code-graph-retirement-drift"
     last_updated_at: "2026-08-15T14:37:23Z"
     last_updated_by: "claude-code"
     recent_action: "Scorer null-id crash fixed via SOL-HIGH; remaining suite failures triaged"

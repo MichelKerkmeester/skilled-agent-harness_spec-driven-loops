@@ -21,7 +21,7 @@
   "folderSlug": "fingerprint-stamp-regeneration",
   "parentChain": [
     "system-speckit",
-    "033-system-speckit-v4",
+    "031-system-speckit-v4",
     "032-recorded-findings-closure"
   ],
   "memorySequence": 0,

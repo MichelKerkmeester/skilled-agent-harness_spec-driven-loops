@@ -48,7 +48,12 @@
       "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/spec.md",
       "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/spec.md",
       "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/spec.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/dist/core/workflow.js"
+      "specs/system-speckit/039-research-folder-continuity/scratch/before/vitest-baseline.txt",
+      "specs/system-speckit/039-research-folder-continuity/scratch/before/vitest-new-test-on-old-code.txt",
+      "specs/system-speckit/039-research-folder-continuity/scratch/after/vitest.txt",
+      "specs/system-speckit/039-research-folder-continuity/scratch/after/save-runs.txt",
+      "specs/system-speckit/039-research-folder-continuity/scratch/before/research-continuity-blocks.txt",
+      "specs/system-speckit/039-research-folder-continuity/scratch/after/research-continuity-blocks.txt"
     ],
     "entities": [
       {
@@ -106,9 +111,33 @@
         "source": "derived"
       },
       {
-        "name": "workflow.js",
-        "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/dist/core/workflow.js",
+        "name": "vitest-baseline.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/039-research-folder-continuity/scratch/before/vitest-baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "vitest-new-test-on-old-code.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/039-research-folder-continuity/scratch/before/vitest-new-test-on-old-code.txt",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/039-research-folder-continuity/scratch/after/vitest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "save-runs.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/039-research-folder-continuity/scratch/after/save-runs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "research-continuity-blocks.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/039-research-folder-continuity/scratch/before/research-continuity-blocks.txt",
         "source": "derived"
       },
       {
@@ -170,35 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A full-auto save with continuity fields refused every research record and left its continuity block scaffolded",
     "created_at": "2026-10-19T21:44:00Z",
-    "last_save_at": "2026-10-31T13:27:23.110Z",
+    "last_save_at": "2026-10-31T13:41:30.874Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:80ea573894d9d9a6b8eae32b5889345d730465037ef557ddd81697426661d868",
+    "source_fingerprint": "sha256:960749eb7483a5c3c2bd3e5d00a618e79f4a84686e0749e5a717562509ffb993",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b41887b995ba3d98ee4b51b231be0a2f68ccb26237d6f227cf4af22aa047792e",
-      "plan.md": "3bea642e07b9150cc9e3a2c15f8d7aa0cbcb71a71f40dfa02e2edd0ca0af6e5f",
-      "tasks.md": "4fdb7ce521b74cbefe6717349d90875806bc3f8020ea194971a501c433676b6c",
-      "implementation-summary.md": "9b6a510168d29b750f2af2d81cb95e6562100e6f9c6011d0468ec43fd9cd1064"
+      "plan.md": "a9c4fd94cfe2e49210fb62bf1f8166ef7f2da0e2d0f1b4475fff37490c81aace",
+      "tasks.md": "3f982149f80b7585e5f022e127172de807e47068a96a1e47f54d1729db7dc739",
+      "implementation-summary.md": "763fd9df3ff9e2212ee92869ded0ccc6d22665558e2c3c193eb564dd9925b317"
     },
     "last_active_at": null
   }

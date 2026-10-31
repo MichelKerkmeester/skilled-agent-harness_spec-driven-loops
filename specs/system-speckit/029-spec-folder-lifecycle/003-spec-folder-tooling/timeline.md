@@ -21,7 +21,7 @@ contextType: "general"
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Subject:** `system-speckit/034-spec-folder-tooling`, children 001 to 020
+**Subject:** `system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling`, children 001 to 020
 **Status:** In Progress
 **Started:** 2026-09-23
 **Last updated:** 2026-10-10

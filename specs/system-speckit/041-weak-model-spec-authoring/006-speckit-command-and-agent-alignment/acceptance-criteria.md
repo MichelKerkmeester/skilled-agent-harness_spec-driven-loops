@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment"
+    packet_pointer: "system-speckit/041-weak-model-spec-authoring/006-speckit-command-and-agent-alignment"
     last_updated_at: "2026-10-24T22:00:00Z"
     last_updated_by: "conductor"
     recent_action: "Closed phase 006: all eight criteria Met"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment
+**Packet:** system-speckit/041-weak-model-spec-authoring/006-speckit-command-and-agent-alignment
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-10-23

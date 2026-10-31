@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`validator-registry.json` names 39 rule rows, and its `scriptpath` field reads as a one-to-one pointer from a rule id to the script that implements it",
     "created_at": "2026-09-07T15:05:41Z",
-    "last_save_at": "2026-10-31T13:26:52.605Z",
+    "last_save_at": "2026-10-31T13:59:00.393Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:395d6fcac79ba3fd7909746c82ebe9071cde5a08ada650125c571e0dc34bafa0",
+    "source_fingerprint": "sha256:016c68a6af2273b183c2e9944ea5559edd8df83c3112dc47795a983c367dc398",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2eddaa497bed8ac1ae73b8dd1eadb58b6765aadc1f9d2756d9770415ecaeddb1",

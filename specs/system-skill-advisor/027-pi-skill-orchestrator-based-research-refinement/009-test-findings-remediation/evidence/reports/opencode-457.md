@@ -25,7 +25,7 @@ STEPS:
 DEVIATIONS:
 - Step 1 (both `npm run build`): skipped: prebuilt by orchestrator.
 - Step 6 (hand-recorded report under `.skilled/skills/system-spec-kit/benchmark/reports/`): hand-recorded report owned by the orchestrator.
-- Step 5 output directory: the scenario's `<new-output-directory>` under the 018 packet was replaced with the dispatch-named active-packet evidence root `specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation/evidence/runtime/opencode-registered-adapter` (the only permitted repository write).
+- Step 5 output directory: the scenario's `<new-output-directory>` under the 018 packet was replaced with the dispatch-named active-packet evidence root `specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation/evidence/runtime/opencode-registered-adapter` (the only permitted repository write).
 - Evidence-section artifacts (focused command logs under `evidence/tests/`, race/latency output under `evidence/performance/`): not written — dispatch HARD RULE permits only the one named evidence directory; command output is captured in this report instead.
 NOTES:
 - Native-host evidence class (separate from the adapter tests): an `Advisor:` line is visible in this OpenCode runtime's model-visible context for this prompt → classified **native-host-delivered** per dispatch rule. The visible slice is the dynamic route line only (no `Directives:` / `Comment hygiene` in this prompt's delivered context); whether this session's first turn carried the full block cannot be determined from inside this receipt. Per scenario §1, a pass at one rung never upgrades another; registered-path/adapter rungs were judged from the tests and harness only.

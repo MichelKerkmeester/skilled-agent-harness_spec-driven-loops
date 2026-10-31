@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review
+**Packet:** system-speckit/031-system-speckit-v4/068-v4-0-0-3-release-deep-review
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-05
@@ -56,7 +56,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-003 | REQ-001 | Given both fan-outs, When the run stops, Then `fanout-merge.cjs` merges each into a findings registry | `review/fanout-attribution.md:1` and `review/luna-wave/fanout-attribution.md:1` written by `fanout-merge.cjs` (exit 0) | Met | - |
 | AC-004 | REQ-001 | Given the early stop, When the Luna stops are analysed, Then `review/luna-halt-analysis.md` names the root cause and ranked fixes | `review/luna-halt-analysis.md:1`, root cause and ranked fixes from `review/luna-halt-analysis.md:19` | Met | - |
 | AC-005 | REQ-002, REQ-004 | Given the merged registry, When a fresh Opus 5.5 high agent synthesizes it, Then `review/review-report.md` states a verdict and lists findings ranked P0, P1, P2, each with file:line or commit evidence | `review/review-report.md:13` reads `**Verdict: CONDITIONAL**` | Met | - |
-| AC-006 | REQ-003 | Given the run is done, When the diff is inspected, Then only this packet and the parent phase map changed | `git status --short` lists only `specs/system-speckit/033-system-speckit-v4/spec.md:1` and the untracked packet | Met | - |
+| AC-006 | REQ-003 | Given the run is done, When the diff is inspected, Then only this packet and the parent phase map changed | `git status --short` lists only `specs/system-speckit/031-system-speckit-v4/spec.md:1` and the untracked packet | Met | - |
 | AC-007 | REQ-005 | Given the packet docs, When strict validation runs, Then it passes and the packet is pushed | `validate.sh --strict` RESULT: PASSED; commit on `origin/main` touching `review/review-report.md:1` | Met | - |
 
 ### Status values

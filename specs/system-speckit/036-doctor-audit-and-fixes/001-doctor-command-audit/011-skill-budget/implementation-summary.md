@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/048-doctor-command-audit/011-skill-budget"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/011-skill-budget"
     last_updated_at: "2026-10-02T21:04:43Z"
     last_updated_by: "markdown-agent"
     recent_action: "Closed the phase docs"
@@ -105,7 +105,7 @@ The two fixes were applied in the shared `/doctor:speckit` batch with the other 
 | Direct execution of the audit script path | exit 126, `Permission denied` — the mismatch the interpreter fix removes |
 | Doctor script tests | `skill-advisor-route-contract.test.cjs` passes; the three `parent-skill-check-*.test.cjs` files fail exactly as at baseline |
 | Stale-reference scan over the edited doctor files | no matches for `system_skill_advisor.`, `deep_loop_graph_status`, `query(` or `convergence(` |
-| Packet validation: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/048-doctor-command-audit/011-skill-budget --strict` | Summary: Errors: 0, Warnings: 0; RESULT: PASSED |
+| Packet validation: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/011-skill-budget --strict` | Summary: Errors: 0, Warnings: 0; RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -120,7 +120,7 @@ The two fixes were applied in the shared `/doctor:speckit` batch with the other 
 5. **Recorded observations left unfixed.** `doctor-update-presentation.txt:176` describes `/doctor skill-budget` as an "Advisor budget/status helper" when it audits description budgets; `audit_descriptions.py` prints a packet label in its report title and `quick_validate.py` carries one in its docstring; and the audit's Claude Code budget is hardcoded at 8,000 while `SLASH_COMMAND_TOOL_CHAR_BUDGET` is unset in this checkout. Recorded, not fixed.
 6. **The three `parent-skill-check-*.test.cjs` fixtures fail in this worktree exactly as at baseline.** They cannot load `@spec-kit/shared/frontmatter/parse-frontmatter.js`, so their temporary fixtures report a false FAIL. This is pre-existing, not a regression from this phase.
 
-**Follow-up status.** Items 2 to 4 are resolved by `specs/sk-doc/064-description-budget`: seven trims, the ceiling raised to 6,400 by operator decision, the counted surface stated, and the accepted invocation in both references. Items 5 and 6 are resolved by `specs/system-speckit/049-doctor-audit-followups` phase 003. Item 1 stands as recorded.
+**Follow-up status.** Items 2 to 4 are resolved by `specs/sk-doc/049-frontmatter-and-description-budget/002-description-budget`: seven trims, the ceiling raised to 6,400 by operator decision, the counted surface stated, and the accepted invocation in both references. Items 5 and 6 are resolved by `specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups` phase 003. Item 1 stands as recorded.
 <!-- /ANCHOR:limitations -->
 
 ---

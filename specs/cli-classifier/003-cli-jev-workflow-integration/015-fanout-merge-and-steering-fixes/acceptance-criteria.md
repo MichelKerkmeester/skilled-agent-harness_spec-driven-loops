@@ -7,14 +7,14 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes"
     last_updated_at: "2026-09-27T21:00:00Z"
     last_updated_by: "closure-leaf"
     recent_action: "Marked all seven criteria Met from the build evidence"
     next_safe_action: "None; the orchestrator commits the phase docs"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/spec.md"
       - ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs"
       - ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
     session_dedup:
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes
+**Packet:** cli-classifier/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-27
@@ -60,7 +60,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-004 | REQ-004 | Given a lineage where no iteration's count matches any source, When the merge runs, Then it keeps the registry, emits no `lineage_reconstruction_failed` for that lineage and reports the counted gap | `npx vitest run --no-coverage tests/unit/fanout-merge.vitest.ts -t "no iteration matches"` exits 0, asserting `reconstructionGaps` equals the count-only sum minus the registry count Observed: the `-t "no iteration matches"` run printed `Tests 1 passed` with `58 skipped (59)`. The test asserts exit 0, no `reconstruction_warnings` and `reconstructionGaps` 12 (15 counted minus 3 kept). The final full suite, which holds it, exited 0 | Met | - |
 | AC-005 | REQ-005 | Given the fix, When the merge test file runs in full, Then the new tests and every existing test pass | `npx vitest run --no-coverage tests/unit/fanout-merge.vitest.ts` exits 0 with the T002 baseline count plus the new tests passed and 0 failed Observed at `7de30fb16f`: the file run alone printed `Test Files 1 passed (1)`, `Tests 61 passed (61)`, exit 0. The baseline is 57: `grep -cE '^\s*it\('` over the file at `6f47c32dce` prints 57, with no skip or todo, so 61 is 57 plus the 4 new tests with 0 failed | Met | - |
 | AC-006 | REQ-006 | Given a CLI lineage, When `buildLoopPrompt` builds its prompt, Then the prompt names `<lineageDir>/steer.md` by absolute path with conditional wording | `npx vitest run --no-coverage tests/unit/fanout-run.vitest.ts -t "steer.md"` exits 0, asserting the absolute path and the words "when it exists" Observed at `7de30fb16f`: `Tests 1 passed` with `153 skipped (154)`, exit 0. The test asserts the prompt contains `Before each iteration, read <absolute steer.md path> when it exists.` and that a native lineage's prompt does not | Met | - |
-| AC-007 | REQ-007 | Given the fixed merge, When the replay command runs again, Then round 1 rebuilds every count-only finding and rounds 2 and 3 name the rest as a gap, with no committed file changed | The replay prints round 1 `sourceFindings` at least 112 with gap 0, rounds 2 and 3 above 74 and 65 with gaps equal to the AC-001 table's unmatched totals, and `git status --short -- 'specs/cli-jev/003-cli-jev-workflow-integration/*/research'` prints nothing Observed: the final replay printed `001-deep-research 134 0`, `004-deep-research-expansion 105 13` and `007-classifier-deep-research 168 38`, each merge exit 0. The gaps equal the table's unmatched totals, 13 and 38. The `git status` command printed nothing | Met | - |
+| AC-007 | REQ-007 | Given the fixed merge, When the replay command runs again, Then round 1 rebuilds every count-only finding and rounds 2 and 3 name the rest as a gap, with no committed file changed | The replay prints round 1 `sourceFindings` at least 112 with gap 0, rounds 2 and 3 above 74 and 65 with gaps equal to the AC-001 table's unmatched totals, and `git status --short -- 'specs/cli-classifier/003-cli-jev-workflow-integration/*/research'` prints nothing Observed: the final replay printed `001-deep-research 134 0`, `004-deep-research-expansion 105 13` and `007-classifier-deep-research 168 38`, each merge exit 0. The gaps equal the table's unmatched totals, 13 and 38. The `git status` command printed nothing | Met | - |
 
 ### Replay command
 
@@ -70,7 +70,7 @@ Run it from the worktree root. It copies each round's lineages to a temp directo
 for r in 001-deep-research 004-deep-research-expansion 007-classifier-deep-research
 do
   t=$(mktemp -d)
-  cp -R "specs/cli-jev/003-cli-jev-workflow-integration/$r/research/lineages" "$t/"
+  cp -R "specs/cli-classifier/003-cli-jev-workflow-integration/$r/research/lineages" "$t/"
   node .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs --loop-type research --artifact-dir "$t" > /dev/null
   node -p '[process.argv[2], require(process.argv[1]).metrics.sourceFindings, require(process.argv[1]).metrics.reconstructionGaps].join(" ")' "$t/findings-registry.json" "$r"
   rm -rf "$t"

@@ -10,15 +10,15 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment"
     last_updated_at: "2026-09-30T13:06:54Z"
     last_updated_by: "markdown-leaf"
     recent_action: "Rewrote this file with the build, review and proof results"
     next_safe_action: "None. Landing on main waits on the operator"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/scratch/verify/drift.txt"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/scratch/verify/review-mimo.txt"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/scratch/verify/drift.txt"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/scratch/verify/review-mimo.txt"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-036-sk-code-and-sk-doc-alignment"

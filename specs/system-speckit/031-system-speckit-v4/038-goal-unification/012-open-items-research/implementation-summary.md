@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research"
+    packet_pointer: "system-speckit/031-system-speckit-v4/038-goal-unification/012-open-items-research"
     last_updated_at: "2026-09-12T08:16:29Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

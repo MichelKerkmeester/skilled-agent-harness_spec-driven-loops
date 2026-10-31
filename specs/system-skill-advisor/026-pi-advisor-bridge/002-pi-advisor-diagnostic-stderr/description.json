@@ -7,10 +7,11 @@
     "stderr"
   ],
   "lastUpdated": "2026-10-21T16:37:25.149Z",
-  "specId": "038",
+  "specId": "002",
   "folderSlug": "pi-advisor-diagnostic-stderr",
   "parentChain": [
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "026-pi-advisor-bridge"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/023-semantic-lane-enablement"
+    packet_pointer: "system-skill-advisor/022-semantic-lane-enablement"
     last_updated_at: "2026-09-03T00:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the phase parent and its five children as a plan-only packet"
@@ -47,8 +47,8 @@ _memory:
 | **Created** | 2026-09-03 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | system-skill-advisor/023-semantic-lane-enablement |
-| **Predecessor** | sk-doc/052-routing-completeness |
+| **Parent Packet** | system-skill-advisor/022-semantic-lane-enablement |
+| **Predecessor** | sk-doc/051-hub-routing-quality/001-routing-completeness |
 | **Successor** | None |
 | **Handoff Criteria** | Each phase validates under `validate.sh --strict` before the next one starts |
 <!-- /ANCHOR:metadata -->
@@ -61,7 +61,7 @@ _memory:
 ### Problem Statement
 
 Eight of 172 realistic phrasings reach the mode they were written for. That measurement lives in
-`specs/sk-doc/052-routing-completeness/003-gate-b-realistic-corpus/`, and it found that 94 of its
+`specs/sk-doc/051-hub-routing-quality/001-routing-completeness/003-gate-b-realistic-corpus/`, and it found that 94 of its
 180 rows returned nothing at all. Keyword work cannot move a row that matches no keyword, so the
 only lane that could read meaning instead of spelling is the one that has to carry it.
 
@@ -169,5 +169,5 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 - **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
 - **Packet goal**: See `goal.md` for the durable directive and its phase binding
-- **Predecessor measurement**: See `specs/sk-doc/052-routing-completeness/003-gate-b-realistic-corpus/research/gate-b-measurement.md`
+- **Predecessor measurement**: See `specs/sk-doc/051-hub-routing-quality/001-routing-completeness/003-gate-b-realistic-corpus/research/gate-b-measurement.md`
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer

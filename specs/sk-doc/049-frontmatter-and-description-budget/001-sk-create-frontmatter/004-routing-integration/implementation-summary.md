@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/049-sk-create-frontmatter/004-routing-integration"
+    packet_pointer: "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/004-routing-integration"
     last_updated_at: "2026-09-01T08:42:59Z"
     last_updated_by: "implementation"
     recent_action: "Registered the mode, wired both routing stages, and published compiled routing"

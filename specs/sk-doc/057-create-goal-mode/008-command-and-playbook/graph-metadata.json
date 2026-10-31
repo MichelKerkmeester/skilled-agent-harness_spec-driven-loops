@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The parent packet reserves `/create:goal`, its runtime mirrors and a manual testing playbook for this phase, with command resolution and a passing playbook validator as the outgoing check (specs/sk-doc/060-create-goal-mode/spec.md:100-108, 127-149)",
+    "causal_summary": "The parent packet reserves `/create:goal`, its runtime mirrors and a manual testing playbook for this phase, with command resolution and a passing playbook validator as the outgoing check (specs/sk-doc/057-create-goal-mode/spec.md:100-108, 127-149)",
     "created_at": "2026-09-25T18:48:52Z",
-    "last_save_at": "2026-10-31T13:26:00.462Z",
+    "last_save_at": "2026-10-31T14:01:51.031Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6d027afab186e7c68fd6b0fac9600e8a48b5ca53ee12c897f27562f08c666457",
+    "source_fingerprint": "sha256:1d04041398337150d6988422a1a0e1b4621c5599b477327243fba4a81a8e6b45",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "896a05f9bdc9d086a2bcd125b78b1e3e02dbe813f8549ed8297f77c01f2f802a",
-      "plan.md": "e24280ef936b046e10f4cc82d1bfbda1b3267674b2fae69c26045f03d0ebdf2a",
-      "tasks.md": "2fddf09795db7507f5cd1aeaaf9f18606bf68137665ba29a30986804acf754a6",
-      "implementation-summary.md": "c9a969e754d137f341b59713b1ed656befabd415a3e8920ed99c1a80e01c9627"
+      "spec.md": "95f4007e68d0cc46e6685216d361c81a6ebe618b994c1c45ba1a2cedfd9d3b49",
+      "plan.md": "5cbba926f4bf952a5a6a6f7749072b9c73dc6c525a73c15d7f8106f24c3c1ac2",
+      "tasks.md": "2c98ab610eae94868348828986011ec7c46532595d618eded5b93cf99f436966",
+      "implementation-summary.md": "8aa7df8c84b24e658109ed3167c6f2cc39ec93f9c3c2b369ab109f239be01e2a"
     },
     "last_active_at": null
   }

@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/063-security-policy-alignment"
+    packet_pointer: "sk-doc/059-security-policy-alignment"
     last_updated_at: "2026-10-02T10:42:03Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Expanded SECURITY.md and validated it against the sk-doc README rule set"
@@ -55,7 +55,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Commit `b0f89ee5f0` (2026-10-01, `chore(repo): stop tracking vendored packet context and add a security policy`) created `SECURITY.md` as a 35-line file. That commit belonged to the `system-speckit/047-plugin-scanner-readiness` packet. The HOL plugin scanner that gates the `awesome-ai-plugins` listing scored the repository 76 with 75 high findings. Most of those came from 32,372 vendored files under `specs/**/context/`, and the repository had no vulnerability reporting policy. The commit untracked the vendored files, rebuilt the sk-doc README verdict baseline and added `SECURITY.md` to point reporters at GitHub private vulnerability reporting.
+Commit `b0f89ee5f0` (2026-10-01, `chore(repo): stop tracking vendored packet context and add a security policy`) created `SECURITY.md` as a 35-line file. That commit belonged to the `system-speckit/035-plugin-scanner-readiness` packet. The HOL plugin scanner that gates the `awesome-ai-plugins` listing scored the repository 76 with 75 high findings. Most of those came from 32,372 vendored files under `specs/**/context/`, and the repository had no vulnerability reporting policy. The commit untracked the vendored files, rebuilt the sk-doc README verdict baseline and added `SECURITY.md` to point reporters at GitHub private vulnerability reporting.
 
 The file did that one job. It fails `validate_document.py`, which applies the README rule set and requires an overview section. It also says nothing about what Skilled runs on a user's machine: hooks on every tool call, permissive shipped permission modes, CLI dispatches with approval switched off, npm installs on first use and MCP servers fetched at launch.
 
@@ -85,7 +85,7 @@ Make `SECURITY.md` pass the sk-doc README standard and give reporters and users 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `SECURITY.md` | Modify | Restructure to the README rule set and expand with grounded content |
-| `specs/sk-doc/063-security-policy-alignment/` | Create | This packet |
+| `specs/sk-doc/059-security-policy-alignment/` | Create | This packet |
 | `specs/sk-doc/graph-metadata.json` | Modify | Track root lists the new packet, written by `create.sh` |
 <!-- /ANCHOR:scope -->
 
@@ -118,7 +118,7 @@ Make `SECURITY.md` pass the sk-doc README standard and give reporters and users 
 
 - **SC-001**: `validate_document.py SECURITY.md` exits 0, where it exited 1 before the change.
 - **SC-002**: DQI rises from 86 to at least 90, with 0 HVR hard blockers.
-- **SC-003**: `validate.sh specs/sk-doc/063-security-policy-alignment --strict` prints `RESULT: PASSED`.
+- **SC-003**: `validate.sh specs/sk-doc/059-security-policy-alignment --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:success-criteria -->
 
 ---

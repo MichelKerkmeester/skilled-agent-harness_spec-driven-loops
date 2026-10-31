@@ -10,14 +10,14 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/024-hallucination-grader"
     last_updated_at: "2026-09-29T16:30:55Z"
     last_updated_by: "closure-leaf"
     recent_action: "Closed the phase at the label gate: 6 of 6 goal criteria ticked, build commit fb3f9c0599"
     next_safe_action: "Operator: label 30 outputs, then a live Deem run and a Jev run on their yes"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/024-hallucination-grader/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-024-hallucination-grader"

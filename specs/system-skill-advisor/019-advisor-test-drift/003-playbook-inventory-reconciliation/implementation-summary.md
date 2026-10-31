@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/022-playbook-inventory-reconciliation"
+    packet_pointer: "system-skill-advisor/019-advisor-test-drift/003-playbook-inventory-reconciliation"
     last_updated_at: "2026-08-16T04:15:28Z"
     last_updated_by: "claude-code"
     recent_action: "Reconciled 43 stale round-trip links + the kebab dir glob; inventory test green, tsc exit 0"
@@ -32,7 +32,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 022-playbook-inventory-reconciliation |
+| **Spec Folder** | 003-playbook-inventory-reconciliation |
 | **Completed** | 2026-08-16 |
 | **Level** | 1 |
 | **Executor** | claude-code (direct; the delegated DeepSeek-Flash pass failed on `402 Insufficient Balance`) |

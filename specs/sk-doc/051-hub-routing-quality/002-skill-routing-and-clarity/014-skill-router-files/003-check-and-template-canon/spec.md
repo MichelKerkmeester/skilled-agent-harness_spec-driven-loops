@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/003-check-and-template-canon"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/003-check-and-template-canon"
     last_updated_at: "2026-10-29T11:23:00Z"
     last_updated_by: "pi"
     recent_action: "Moved the routing canon, checks, ledger and templates to the sibling ROUTER.md"

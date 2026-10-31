@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/053-ci-workflow-efficiency/011-ci-health-followups"
+    packet_pointer: "system-speckit/040-ci-workflow-efficiency/011-ci-health-followups"
     last_updated_at: "2026-10-27T06:21:05Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Fixed both flakes; lockfiles at pi-coding-agent 1.4.0 with audit 0"

@@ -12,10 +12,11 @@
     "format"
   ],
   "lastUpdated": "2026-09-23T07:04:14.593Z",
-  "specId": "057",
+  "specId": "001",
   "folderSlug": "sk-create-changelog-v4-style",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "056-changelog-system"
   ],
   "memorySequence": 6,
   "memoryNameHistory": [

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/002-baseline-and-routing-correctness"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/002-baseline-and-routing-correctness"
     last_updated_at: "2026-10-28T06:50:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Closed the phase: baseline, six fixes, rerun"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** `sk-doc/072-skill-routing-and-clarity/002-baseline-and-routing-correctness`
+**Packet:** `sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/002-baseline-and-routing-correctness`
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-28

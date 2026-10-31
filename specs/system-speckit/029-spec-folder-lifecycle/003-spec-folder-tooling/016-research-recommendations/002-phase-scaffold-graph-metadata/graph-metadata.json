@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The `create.sh --phase` command scaffolds a parent packet and all its child packets, but exits at line 1919 before running the graph-metadata backfill code (lines 2006 to 2021) that root scaffolds reach",
     "created_at": "2026-10-08T04:22:40Z",
-    "last_save_at": "2026-10-31T13:26:26.024Z",
+    "last_save_at": "2026-10-31T13:58:20.861Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:af60a460a8a4b2abf9757d1359f42021d29a6477b41f5635108d438443c1c7ed",
+    "source_fingerprint": "sha256:7aae9bee1a2acf57dd68298e7d4e9705d1d3a7a71bfd6dca194e63742bed0502",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ce0dc224c4673fb19bd4a7a5464c7ad1eab4075f304e14ff55bb22df7e8fc2a0",

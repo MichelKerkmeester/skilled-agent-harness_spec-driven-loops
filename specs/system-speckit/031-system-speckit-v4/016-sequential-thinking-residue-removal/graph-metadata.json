@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Commit `edff3a4c161` decommissioned the Sequential Thinking MCP server: it deleted the install guide, deleted the installer script, and unregistered the server from `opencode.json`",
     "created_at": "2026-08-31T13:24:32Z",
-    "last_save_at": "2026-10-31T13:26:41.673Z",
+    "last_save_at": "2026-10-31T13:58:43.951Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +215,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c17e4e8e8ffd4e9314d197b788be7acab6ffedd5d692e5df20a8ccee8f84a2aa",
+    "source_fingerprint": "sha256:a18a78eeecec623fb83aeadc6ad6459bc338fa210b82376f2e0aee2ec33b9c22",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ecadcff5db262b37942dfcc9e30ed71abbf3d79d044eb049abcae018ce728b49",
+      "spec.md": "bfe55e7c59f3b133762a309f0dec993e8183a011b8f6164fa86e6011af562914",
       "plan.md": "6f559f8471549ec0894a9f386afed2d8688999810bb362ce1d91355b151d677e",
       "tasks.md": "2db9c0ed878d7226bfc1bacaccefb29d51ac9066848601b74b1ac81c2aa36536",
       "implementation-summary.md": "08b2ff00c849822f5d310c7281a5be860608117fdb7ed9b0a045a95858d6a588"

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/031-memory-reindex-embed-performance"
+    packet_pointer: "system-speckit/030-memory-reindex-embed-performance"
     last_updated_at: "2026-07-23T13:10:17Z"
     last_updated_by: "orchestrator"
     recent_action: "Completed Phase 7 tasks (T034-T047); 521 tests passed, build clean"

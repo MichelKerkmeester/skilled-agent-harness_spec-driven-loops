@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/049-doctor-audit-followups/029-main-ci-regenerations"
+    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/029-main-ci-regenerations"
     last_updated_at: "2026-10-05T13:00:00Z"
     last_updated_by: "main-ci-regenerations"
     recent_action: "Regenerated Hermes copies, the README manifest and two deep-loop contracts"

@@ -35,7 +35,7 @@ Every task is one cli-pi brief, or one orchestrator step where the task says so.
 
 ### Measure before any runtime change
 
-- [x] T001 Orchestrator: rebuild with G0, then re-take the per-prompt snapshot of the labeled, holdout and ambiguity corpora at the implement HEAD, and run G4 once to record the full suite count. Store the snapshot with its HEAD in the packet's `scratch/baseline-per-prompt.json` (`specs/system-skill-advisor/035-doctor-command-routing/scratch/`)
+- [x] T001 Orchestrator: rebuild with G0, then re-take the per-prompt snapshot of the labeled, holdout and ambiguity corpora at the implement HEAD, and run G4 once to record the full suite count. Store the snapshot with its HEAD in the packet's `scratch/baseline-per-prompt.json` (`specs/system-skill-advisor/030-doctor-command-surfacing/002-doctor-command-routing/scratch/`)
   - Evidence: G0 build exit 0 and typecheck exit 0. The capture at `8b1e3a409a` gave labeled 155 of 195, holdout 49 of 66 and ambiguity 19 of 24, metrics identical to the committed baseline. `scratch/baseline-per-prompt.json` was taken at HEAD `828cb749da`, which changed only two trigger-index fixtures, and its totals match the capture. G4 exit 0: 138 test files passed, 1054 tests passed and 6 skipped (1060).
 - [x] T002 Orchestrator: run the three inventories in `plan.md` (Fix Addendum) and record what they return in `scratch/inventories.md`
   - Evidence: `scratch/inventories.md` holds 22 producer hits, 97 consumer hits across 27 files and the 36-cell matrix.
@@ -208,7 +208,7 @@ Two read-only reviews of v4.0.0.12 and v4.0.0.13, `scratch/review-v4.0.0.12-code
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Acceptance**: See `acceptance-criteria.md`
-- **Research**: See `specs/system-skill-advisor/034-doctor-command-guidance/research/research.md`
+- **Research**: See `specs/system-skill-advisor/030-doctor-command-surfacing/001-doctor-command-guidance/research/research.md`
 <!-- /ANCHOR:cross-refs -->
 
 ---

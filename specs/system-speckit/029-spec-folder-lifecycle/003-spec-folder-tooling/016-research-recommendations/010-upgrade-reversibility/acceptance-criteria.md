@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility"
     last_updated_at: "2026-10-08T13:00:36Z"
     last_updated_by: "orchestrator"
     recent_action: "Met all nine criteria with observed evidence"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/034-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility
+**Packet:** system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/010-upgrade-reversibility
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-08

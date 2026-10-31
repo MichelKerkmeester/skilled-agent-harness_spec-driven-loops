@@ -29,8 +29,8 @@ NEW: | `.skilled/skills/cli-jev/SKILL.md`, `.skilled/skills/cli-jev/graph-metada
 EDIT 7 (INSERT two rows directly after this ANCHOR line)
 ANCHOR: | `recursive-child-manifest.vitest.ts` | Modified | Two hardcoded .opencode/specs paths corrected to the tracked specs/ tree |
 NEW:
-| `specs/system-speckit/033-system-speckit-v4/spec.md` | Modified | Phase map row 50 and the 049 to 050 handoff row added |
-| `specs/system-speckit/033-system-speckit-v4/048-gate-3-mutation-time-delivery/implementation-summary.md` | Modified | One Verification row records this phase's live Pi proof |
+| `specs/system-speckit/031-system-speckit-v4/spec.md` | Modified | Phase map row 50 and the 049 to 050 handoff row added |
+| `specs/system-speckit/031-system-speckit-v4/048-gate-3-mutation-time-delivery/implementation-summary.md` | Modified | One Verification row records this phase's live Pi proof |
 
 EDIT 8
 OLD: | Live proof captures and the four dispatch briefs with their handbacks |

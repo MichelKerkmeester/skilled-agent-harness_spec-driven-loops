@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/046-v4-changelog-remediation"
+    packet_pointer: "system-speckit/031-system-speckit-v4/046-v4-changelog-remediation"
     last_updated_at: "2026-09-21T13:33:00Z"
     last_updated_by: "pi-agent"
     recent_action: "Applied the 045 report; all gates green"

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/034-doctor-command-guidance"
+    packet_pointer: "system-skill-advisor/030-doctor-command-surfacing/001-doctor-command-guidance"
     last_updated_at: "2026-10-15T13:45:45Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 034-doctor-command-guidance |
+| **Spec Folder** | 001-doctor-command-guidance |
 | **Completed** | 2026-10-15 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

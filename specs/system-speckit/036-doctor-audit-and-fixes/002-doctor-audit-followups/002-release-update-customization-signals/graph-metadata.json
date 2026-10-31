@@ -208,7 +208,7 @@
     ],
     "causal_summary": "`release-update.cjs` compares base, local and release blobs per file and derives a unit status from the resulting classes",
     "created_at": "2026-10-03T05:27:40Z",
-    "last_save_at": "2026-10-31T13:27:14.299Z",
+    "last_save_at": "2026-10-31T13:59:27.113Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,7 +218,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f03b0067a62e5ab55e58299b5589beac5e538b557912cf983d9c8266d1c4b93d",
+    "source_fingerprint": "sha256:f8f88f42050b25cbaa32a166f7a45602f594d0f1f147ad51855c32d44b33c4d5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "59d2f465e945723deed8e55abce9dd67f49357511e51b0d1d901b9fb6f4db4c5",

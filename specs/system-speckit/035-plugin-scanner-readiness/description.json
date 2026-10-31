@@ -19,7 +19,7 @@
     "context"
   ],
   "lastUpdated": "2026-10-01T18:43:04.283Z",
-  "specId": "047",
+  "specId": "035",
   "folderSlug": "plugin-scanner-readiness",
   "parentChain": [
     "system-speckit"

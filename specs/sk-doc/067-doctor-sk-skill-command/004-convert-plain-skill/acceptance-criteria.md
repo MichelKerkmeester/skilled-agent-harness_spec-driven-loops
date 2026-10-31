@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/075-doctor-sk-skill-command/004-convert-plain-skill"
+    packet_pointer: "sk-doc/067-doctor-sk-skill-command/004-convert-plain-skill"
     last_updated_at: "2026-10-30T10:45:00Z"
     last_updated_by: "code-agent-worker"
     recent_action: "Re-pointed every Met row at evidence that holds after the review fixes"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/075-doctor-sk-skill-command/004-convert-plain-skill
+**Packet:** sk-doc/067-doctor-sk-skill-command/004-convert-plain-skill
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-30

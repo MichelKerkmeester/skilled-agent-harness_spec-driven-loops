@@ -3820,7 +3820,7 @@
     },
     {
       "from": ".opencode/specs/system-speckit/042-spec-root-resolution-hardening/",
-      "to": ".opencode/specs/system-speckit/029-spec-root-resolution-hardening/",
+      "to": ".opencode/specs/system-speckit/029-spec-folder-lifecycle/001-spec-root-resolution-hardening/",
       "records": 130,
       "agreement": 1
     },
@@ -3904,7 +3904,7 @@
     },
     {
       "from": "specs/cli-external-orchestration/074-cli-jev-creation/",
-      "to": "specs/cli-jev/001-cli-jev-creation/",
+      "to": "specs/cli-classifier/001-cli-jev-creation/",
       "records": 93,
       "agreement": 1
     },
@@ -4096,7 +4096,7 @@
     },
     {
       "from": "specs/system-speckit/033-spec-kit-template-optimization/",
-      "to": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/",
+      "to": "specs/system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria/",
       "records": 200,
       "agreement": 1
     },
@@ -4113,8 +4113,8 @@
       "agreement": 1
     },
     {
-      "from": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/",
-      "to": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/",
+      "from": "specs/system-speckit/031-system-speckit-v4/036-goal-unification/",
+      "to": "specs/system-speckit/031-system-speckit-v4/038-goal-unification/",
       "records": 450,
       "agreement": 1
     },
@@ -4126,67 +4126,67 @@
     },
     {
       "from": "specs/system-speckit/035-spec-kit-simplification-research/",
-      "to": "specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/",
+      "to": "specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/",
       "records": 713,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/036-recorded-findings-closure/",
-      "to": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/",
+      "to": "specs/system-speckit/031-system-speckit-v4/032-recorded-findings-closure/",
       "records": 150,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/036-spec-doc-template-reduction/",
-      "to": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/",
+      "to": "specs/system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/",
       "records": 323,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/037-decisions-memory-redesign/",
-      "to": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/",
+      "to": "specs/system-speckit/031-system-speckit-v4/004-decisions-and-notes-system/",
       "records": 52,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/037-decisions-memory-redesign/001-analysis/",
-      "to": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/001-decisions-system-analysis/",
+      "to": "specs/system-speckit/031-system-speckit-v4/004-decisions-and-notes-system/001-decisions-system-analysis/",
       "records": 96,
       "agreement": 0.9896
     },
     {
       "from": "specs/system-speckit/042-nested-goal-template-addon/",
-      "to": "specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/",
+      "to": "specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/",
       "records": 88,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/045-daemon-and-test-harness-hardening/",
-      "to": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/",
+      "to": "specs/system-speckit/031-system-speckit-v4/014-daemon-and-test-harness-hardening/",
       "records": 61,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/049-memory-decommission/",
-      "to": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/",
+      "to": "specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/",
       "records": 362,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/052-memory-decommission-landing/",
-      "to": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/",
+      "to": "specs/system-speckit/031-system-speckit-v4/019-memory-decommission-branch-landing/",
       "records": 96,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/053-spec-kit-runtime-rename/",
-      "to": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/",
+      "to": "specs/system-speckit/031-system-speckit-v4/020-runtime-package-rename/",
       "records": 137,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/054-decommission-debt-fixes/",
-      "to": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/",
+      "to": "specs/system-speckit/031-system-speckit-v4/021-decommission-debt-and-cli-nesting/",
       "records": 652,
       "agreement": 1
     }

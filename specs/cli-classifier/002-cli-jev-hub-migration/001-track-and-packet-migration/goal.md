@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration"
+    packet_pointer: "cli-classifier/002-cli-jev-hub-migration/001-track-and-packet-migration"
     last_updated_at: "2026-09-20T14:40:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Goal authored at closeout, replacing the scaffold placeholder"
@@ -70,7 +70,7 @@ apply it there first, then resend the parent.
 <!-- ANCHOR:completion -->
 ## 2. COMPLETION CRITERIA
 
-- [x] The packet lives at `specs/cli-jev/001-cli-jev-creation` and the old path is gone from disk and from the index as a live file
+- [x] The packet lives at `specs/cli-classifier/001-cli-jev-creation` and the old path is gone from disk and from the index as a live file
 - [x] The track root describes itself and declares both children
 - [x] The derived facts a move invalidates are repaired, and a report-only re-run has nothing left to repair
 - [x] A repo-wide census finds no live citation of the retired path
@@ -89,8 +89,8 @@ Everything below is VOLATILE. It is not part of the directive and it is expected
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet moved | Done | `git mv` staged as rename entries; `specs/cli-external-orchestration/074-cli-jev-creation` absent |
-| Track root authored | Done | `specs/cli-jev/description.json` (`level: track`) and `graph-metadata.json` declaring both children |
-| Derived facts repaired | Done | `repair-derived.cjs --roots specs/cli-jev --apply`, then a report-only run at `repaired=0 failed=0` |
+| Track root authored | Done | `specs/cli-classifier/description.json` (`level: track`) and `graph-metadata.json` declaring both children |
+| Derived facts repaired | Done | `repair-derived.cjs --roots specs/cli-classifier --apply`, then a report-only run at `repaired=0 failed=0` |
 | Citations repointed | Done | One ordered pass over four string forms, 36 files; zero-hit census afterwards |
 | Retrieval surfaces regenerated | Done | Trigger index and retrieval fixtures rebuilt from the final tree |
 | Recursive strict gate | Done | `validate.sh --strict --recursive` exit 0, six `RESULT: PASSED` lines across the packet and five children |

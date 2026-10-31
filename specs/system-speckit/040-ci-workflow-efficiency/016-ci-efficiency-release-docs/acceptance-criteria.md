@@ -14,8 +14,8 @@ _memory:
     next_safe_action: "None, packet complete"
     blockers: []
     key_files:
-      - "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
-      - "specs/system-speckit/055-ci-efficiency-release-docs/implementation-summary.md"
+      - "specs/system-speckit/040-ci-workflow-efficiency/016-ci-efficiency-release-docs/tasks.md"
+      - "specs/system-speckit/040-ci-workflow-efficiency/016-ci-efficiency-release-docs/implementation-summary.md"
       - ".skilled/skills/sk-doc/changelog/v2.3.13.0.md"
       - ".skilled/skills/sk-code/changelog/v3.0.0.0.md"
       - "README.md"

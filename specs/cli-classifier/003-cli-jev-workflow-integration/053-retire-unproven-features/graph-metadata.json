@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The repository ships measurement tooling for three features that never beat their baselines",
     "created_at": "2026-10-05T07:20:41Z",
-    "last_save_at": "2026-10-31T13:25:39.606Z",
+    "last_save_at": "2026-10-31T14:04:00.265Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,7 +203,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ce9502b541c28866b9e5e9ca74f20ec4b261a6a62c9c23c7b7631fbdd09b3a0",
+    "source_fingerprint": "sha256:93a99b85418e33de8fc8d04ed2113b7150a022c63705b211cee4f2eb97d0f85c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3a2a9440286df438ff73cb111e376f1ea83ad7b482b4e5dec4a438454731d3f1",

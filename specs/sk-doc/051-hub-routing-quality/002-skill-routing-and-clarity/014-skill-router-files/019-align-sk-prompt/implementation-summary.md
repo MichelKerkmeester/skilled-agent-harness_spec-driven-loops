@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/014-skill-router-files/019-align-sk-prompt"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/019-align-sk-prompt"
     last_updated_at: "2026-10-29T21:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Recorded the sk-prompt alignment check, its fixes and its recheck"

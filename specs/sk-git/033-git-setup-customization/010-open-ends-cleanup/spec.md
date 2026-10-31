@@ -37,7 +37,7 @@ contextType: "general"
 
 This is **Phase 10** of the sk-git setup customization specification. It closes the open ends the doctor releases left behind in the areas sk-git, sk-doc, sk-prompt and deep-loop own.
 
-**Scope Boundary**: the four items below, and nothing beside them. The advisor runtime, `_routes.yaml`, the bridge files, the playbook validator and the advisor launcher belong to the parallel packet `specs/system-skill-advisor/036-routing-and-launcher-hardening`.
+**Scope Boundary**: the four items below, and nothing beside them. The advisor runtime, `_routes.yaml`, the bridge files, the playbook validator and the advisor launcher belong to the parallel packet `specs/system-skill-advisor/031-routing-and-launcher-hardening`.
 
 **Dependencies**:
 - The parallel 036 build edits the advisor surfaces at the same time, so shared files are diffed before each edit.

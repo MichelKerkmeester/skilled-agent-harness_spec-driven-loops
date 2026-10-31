@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/035-v4-changelog-draft-update"
+    packet_pointer: "system-speckit/031-system-speckit-v4/035-v4-changelog-draft-update"
     last_updated_at: "2026-09-08T20:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Applied the confirmed corrections to the draft and closed the packet"

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/018-epic-docs-alignment"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/018-epic-docs-alignment"
     last_updated_at: "2026-10-09T17:09:29Z"
     last_updated_by: "close-out"
     recent_action: "Closed the packet with 26 findings fixed, two release changelogs and five requirement rows Met"
@@ -60,7 +60,7 @@ A playbook that expected twelve hook gates now expects thirteen. The `/doctor:up
 | READMEs and references | 9 | 0 | System-spec-kit `README.md`, spec README, sweep README, retrieval lib README, test-fixtures README, hook test README, `path-scoped-rules.md`, `worked-examples.md`, `trigger-config.md` |
 | Doctor, env, hooks and root docs | 7 | 0 | Root `README.md`, `.env.example`, `ENV-REFERENCE.md`, commands `README.txt`, doctor tests README, git-hooks README, `speckit-implement.yaml` |
 | Changelogs and version | 2 | 1 | `.skilled/changelog/skilled/v4.0.0.4.md`, `SKILL.md` (version 2.7.1.0). New: `.skilled/skills/system-spec-kit/changelog/v2.7.1.0.md` |
-| Parent spec status | 2 | 0 | `specs/system-speckit/034-spec-folder-tooling/spec.md`, `016-research-recommendations/spec.md` |
+| Parent spec status | 2 | 0 | `specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/spec.md`, `016-research-recommendations/spec.md` |
 
 The new playbook scenarios are DOC-381 (`/doctor:update compat`) and 466 to 475. Those ten cover the upgrade-legacy dry run, apply with manifest and refusal without git, the heal anchor repair dry run and apply, the lane modes, the repo era report, the template phrase lint bypass and blocked commit, and the nested anchor check.
 <!-- /ANCHOR:what-built -->

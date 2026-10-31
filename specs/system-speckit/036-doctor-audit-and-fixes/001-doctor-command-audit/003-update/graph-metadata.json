@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`/doctor:update` was a database rebuild",
     "created_at": "2026-10-02T16:10:13Z",
-    "last_save_at": "2026-10-31T13:27:10.417Z",
+    "last_save_at": "2026-10-31T13:59:21.692Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,14 +223,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:09ac48d5ed68ce120eb635126ff51e1cb61585abbdeda5c376418eb66fc4605d",
+    "source_fingerprint": "sha256:7922366cdeb3178ec80aaad5c66412aa686bcb143bfe763adae283a1313280c3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e9601624683a8de066ae26051f0ef485af348b09c70fab817c34aede5392fe24",
       "plan.md": "55bf2780f334caa6bd8cc37e2996b852fe2afff1760fc37e1c900106ab53864e",
       "tasks.md": "8a50d68b54c2f1019a3c1b57dcbefe8fdeedb22e5a36a5fed83a3926a45945c2",
-      "decision-record.md": "d15f90ded7024ef2560253bbdfbfd78798068b80ef58fd3296714cb4e67ffaa1",
-      "implementation-summary.md": "13674e992aa77e0763b9fa50b9a23045cd9f90b111112b76c0ea529a92e25b24",
+      "decision-record.md": "ddc2c63a3e8963e1c014f2d7354051974b54f016bda8f69e9c7753eb0f093517",
+      "implementation-summary.md": "e6c0bb8559bad59932dfe50457bc5bc85df1ddfe2a6d8c817a1fc3c14defe09a",
       "research/research.md": "d609708f8552bde5e29460b5dceee485eb41353ad26d490612ac2a59f6cb3e8b"
     },
     "last_active_at": null

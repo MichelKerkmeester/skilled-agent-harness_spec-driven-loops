@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/075-doctor-sk-skill-command/010-verification-and-release"
+    packet_pointer: "sk-doc/067-doctor-sk-skill-command/010-verification-and-release"
     last_updated_at: "2026-10-30T14:30:39Z"
     last_updated_by: "markdown-agent-010"
     recent_action: "Read CI on main for the release commit and turned the last acceptance row"
@@ -37,7 +37,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/075-doctor-sk-skill-command/010-verification-and-release
+**Packet:** sk-doc/067-doctor-sk-skill-command/010-verification-and-release
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-30

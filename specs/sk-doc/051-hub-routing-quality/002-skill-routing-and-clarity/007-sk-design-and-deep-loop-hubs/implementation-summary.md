@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/072-skill-routing-and-clarity/007-sk-design-and-deep-loop-hubs"
+    packet_pointer: "sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/007-sk-design-and-deep-loop-hubs"
     last_updated_at: "2026-10-28T14:30:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Moved both hubs and all seven packets to the routing canon and fixed every review finding"

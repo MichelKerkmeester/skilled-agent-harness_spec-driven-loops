@@ -42,7 +42,8 @@
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "specs/cli-classifier/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/006-verdict-fallback-research/research/research.md"
     ],
     "entities": [
       {
@@ -192,7 +193,7 @@
     ],
     "causal_summary": "Feature 025 scored 24 of 24, but on reports written so the regex misses them",
     "created_at": "2026-10-03T05:30:07Z",
-    "last_save_at": "2026-10-31T13:25:39.517Z",
+    "last_save_at": "2026-10-31T14:03:59.886Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,11 +203,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d3e5653a6f19e3948fa7a54fb57b2aea22d6b41669c584f29f13e832028ca00a",
+    "source_fingerprint": "sha256:52f3fa99efab1049c75a6866991b48884dc2782da8d698dc3710d3bec7f84c53",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "716d1b5861c7db8c95ed83d36ad6adcd59138d043c44902b6de847990b742bbf",
-      "plan.md": "e53fca3be34a61998cb53be3b09ae4b702df1768ce7cc2b6c36397fc2627e9bf",
+      "spec.md": "4b835adfe73eb048819794f4de66f5d2d931769894aa7cf20805d2b6af97dd89",
+      "plan.md": "986e1780f8e9fdde6a1ccdf433d31073517a5e6775487e1bf431fd15406f9871",
       "tasks.md": "72a0170c9e7d51b7e49a6974d840d1a733aa81fff2dc98289dce97e93f8e1c8d",
       "implementation-summary.md": "60079509ddf544c3fe28445943423edbfa27733884e3fb56b19502a9264389a0"
     },

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 27 type files, the catalog, the three import and export procedures, the output spec, the derivation record and the icon primitive all fail the reference format",
     "created_at": "2026-10-29T21:27:27Z",
-    "last_save_at": "2026-10-31T13:26:06.858Z",
+    "last_save_at": "2026-10-31T14:01:59.878Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc3e954357b0e405a034590f9de6a8a49ecd0053e35d6b12078d4d11c2d3117e",
+    "source_fingerprint": "sha256:4953b6a657ad8a80afca226b84ac3928ba376d45f2abb4756187fac154edf2ca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d9c4aa5238a2e9c53b9a1977ba146d20dfc9926250be89a759657ae6c327cd4d",

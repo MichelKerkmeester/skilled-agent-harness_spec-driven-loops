@@ -70,7 +70,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]`, or a task reports its blocker with the command output that shows it. Evidence: T001 to T012 are `[x]`. T001 and T002 closed with a recorded deviation, their design-note clause met by the evidence files each row names, with the phase `scratch/` tree showing no note (`find specs/cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/scratch -type f` lists the build record and its five recordings).
+- [x] All tasks marked `[x]`, or a task reports its blocker with the command output that shows it. Evidence: T001 to T012 are `[x]`. T001 and T002 closed with a recorded deviation, their design-note clause met by the evidence files each row names, with the phase `scratch/` tree showing no note (`find specs/cli-classifier/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/scratch -type f` lists the build record and its five recordings).
 - [x] No `[B]` blocked tasks remaining. Evidence: no task carries `[B]`.
 - [x] Manual verification passed: the eleven README doc gates and their documented commands, both hub gates, the ten-prompt probe, the compiled-route guard and the Hermes check all run from the final state, and no routing decision that was correct at baseline moved. Evidence: `scratch/evidence/build-evidence.md:29-30` (the doc gates and the commands), `:31-32` (both hub gates), `:38` and `scratch/evidence/probe-after.txt:1-10` (the ten-prompt probe), `:33` and `:37` (the compiled-route guard and the Hermes check); every baseline-correct row kept its decision.
 <!-- /ANCHOR:completion -->
@@ -173,7 +173,7 @@ contextType: "general"
 ## File Organization
 
 - [x] CHK-050 [P1] The design note and the probe recordings stay in `scratch/` only. Planned: T001 and T003. Evidence: the five recordings sit under `scratch/evidence/` only and none is in the commit (`git show --stat --name-status 2116de635c`, this pass); the session kept no design note, recorded on T001.
-- [x] CHK-051 [P1] `scratch/` is cleaned before completion, and no temp file sits outside it. Planned: T012. Evidence: `find specs/cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/scratch -type f` lists the build record and its five recordings plus `.gitkeep`, all under `scratch/`; no temp file sits outside it.
+- [x] CHK-051 [P1] `scratch/` is cleaned before completion, and no temp file sits outside it. Planned: T012. Evidence: `find specs/cli-classifier/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/scratch -type f` lists the build record and its five recordings plus `.gitkeep`, all under `scratch/`; no temp file sits outside it.
 <!-- /ANCHOR:file-org -->
 
 ---

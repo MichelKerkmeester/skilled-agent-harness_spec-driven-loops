@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-create-goal-mode/010-asset-templates-and-folder-readmes"
+    packet_pointer: "sk-doc/057-create-goal-mode/010-asset-templates-and-folder-readmes"
     last_updated_at: "2026-09-26T13:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Shipped the goal templates and closed phase 010"
@@ -113,7 +113,7 @@ The orchestrator did this phase directly. It rendered `goal.md.tmpl` at level 2 
 | Routing | Guard fresh, verify OK, all hubs `compiled-serving`, kill-switch legacy, sk-doc admission `pass`, canary 22 of 22, finalize exit 0 |
 | Mirror checks | 170 mirrors, 34 prompts each for Codex, Pi and Hermes, 71 Hermes skill copies |
 | Parent goal | `packet_budget=ok` at 3,901; `check-goal.cjs` 4/4 on the parent and on this phase |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/060-create-goal-mode --recursive --strict` | `RESULT: PASSED` for all 11 folders |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode --recursive --strict` | `RESULT: PASSED` for all 11 folders |
 <!-- /ANCHOR:verification -->
 
 ---

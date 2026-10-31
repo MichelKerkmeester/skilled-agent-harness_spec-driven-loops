@@ -7,15 +7,15 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes"
+    packet_pointer: "cli-classifier/003-cli-jev-workflow-integration/010-trigger-index-search-fixes"
     last_updated_at: "2026-09-27T12:30:00Z"
     last_updated_by: "authoring-leaf"
     recent_action: "Authored the planning documents. Nothing is built"
     next_safe_action: "Run T001 to reproduce the refused rebuild"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes/plan.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/010-trigger-index-search-fixes/spec.md"
+      - "specs/cli-classifier/003-cli-jev-workflow-integration/010-trigger-index-search-fixes/plan.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-workflow-integration"

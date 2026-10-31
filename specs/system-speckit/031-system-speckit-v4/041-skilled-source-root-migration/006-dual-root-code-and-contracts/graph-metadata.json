@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Root discovery, installers, launchers and two gates recognise the source root by the literal name `.opencode`",
     "created_at": "2026-09-16T17:54:07Z",
-    "last_save_at": "2026-10-31T13:27:00.449Z",
+    "last_save_at": "2026-10-31T13:59:10.736Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:74702474a2bdf26dbff4040313206331d532f6da7eccc8841f5433d7ff297484",
+    "source_fingerprint": "sha256:1c8c499c360e8d47fa2a9563d6559b34e9bdb038663127146fd9ce2b0af65bb1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6bd09fcd9896f599696313d8af47b44f06815c365d1accb296457c77acaeb29b",

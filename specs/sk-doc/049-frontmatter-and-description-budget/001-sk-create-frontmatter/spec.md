@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/049-sk-create-frontmatter"
+    packet_pointer: "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter"
     last_updated_at: "2026-09-05T00:00:00Z"
     last_updated_by: "phase-9-contract-drift-remediation"
     recent_action: "Closed phase 010 newcomer reachability"
@@ -58,7 +58,7 @@ _memory:
 | **Created** | 2026-09-01 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | None, this is the top-level phase parent |
-| **Parent Packet** | sk-doc/049-sk-create-frontmatter |
+| **Parent Packet** | sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter |
 | **Predecessor** | None |
 | **Successor** | None |
 | **Handoff Criteria** | Validator + template + generator changes ship so parent validates under tolerant policy |

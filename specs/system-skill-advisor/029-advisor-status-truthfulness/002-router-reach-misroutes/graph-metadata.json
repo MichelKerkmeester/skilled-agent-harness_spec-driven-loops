@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The source audit's fleet run reported `checked=7 hub(s), wrong-hub=14, outranked=18, no-reach=221, allowed=8, probe-error=0`, `advisor generation: unknown`, `RESULT: FAILED` (`specs/system-speckit/048-doctor-command-audit/008-router-reach/scratch/doctor-run.log:303-305`)",
+    "causal_summary": "The source audit's fleet run reported `checked=7 hub(s), wrong-hub=14, outranked=18, no-reach=221, allowed=8, probe-error=0`, `advisor generation: unknown`, `RESULT: FAILED` (`specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/008-router-reach/scratch/doctor-run.log:303-305`)",
     "created_at": "2026-10-03T05:27:36Z",
-    "last_save_at": "2026-10-31T13:26:20.317Z",
+    "last_save_at": "2026-10-31T14:00:57.590Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9ef599aad18745e0038c43e15c80a116690102c393658e1fa2d5fa4d0efdded2",
+    "source_fingerprint": "sha256:addff5637417bb278700cb362b6feba342c0b74ca47f86a9c8e881263dced2a1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3504699a4e7fd515dd214ae9c907f1eea65f5fae580cd8f3e05b5817c3fd1a62",
+      "spec.md": "8fb7d9f35495dc9f3fcde8bba631ed2b94a7584a4a285bf88848473ef2e95a61",
       "plan.md": "54bafe8e9d56cc048f760633679db847ac5b14c542b7d1683d3055ae32afeb24",
       "tasks.md": "e920a8dc0cd7caa0d6ead5beaff596d1a2328e4648634f4c90b82b6a0a66f889",
-      "implementation-summary.md": "786e7258cb2b348680155936c7d82152b509f839c4bb7e137c9d3ecc97409c83"
+      "implementation-summary.md": "ca8d90d4f9a31c4cfa4e48f51aa0b0115e83f546c16fbdd5f573d409b4feeef7"
     },
     "last_active_at": null
   }

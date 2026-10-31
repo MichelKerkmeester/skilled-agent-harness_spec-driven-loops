@@ -191,7 +191,7 @@
     ],
     "causal_summary": "When the launcher dies by SIGKILL or an uncaught exception, its model server keeps running: the launcher's `uncaughtException` handler clears only the leases (`system-skill-advisor-launcher.cjs:1489-1496`)",
     "created_at": "2026-10-21T14:17:13Z",
-    "last_save_at": "2026-10-31T13:26:10.560Z",
+    "last_save_at": "2026-10-31T14:00:49.775Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,7 +201,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:079ece15d6f83310b3126563302ed53a2f6ac3f67096f1b588c675d0cf132f6c",
+    "source_fingerprint": "sha256:4405ac446d9ac570c27ab36e5003df13b5336367aab46cfb89defb3f155dd867",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d963879aa93120f4fd147065a8a79eac394dd33e6e665c7c0cccf3c555955b98",

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-folder-tooling/001-create-canonical-specs-root"
+    packet_pointer: "system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/001-create-canonical-specs-root"
     last_updated_at: "2026-09-23T18:46:18Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Pointed create.sh at specs/ with the writer test proved red then green"

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map"
+    packet_pointer: "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map"
     last_updated_at: "2026-09-16T12:30:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Reconcile both lanes into one verified per-row map"

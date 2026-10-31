@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes"
+    packet_pointer: "system-speckit/031-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes"
     last_updated_at: "2026-09-16T18:17:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Authored the phase directive and probe plan"

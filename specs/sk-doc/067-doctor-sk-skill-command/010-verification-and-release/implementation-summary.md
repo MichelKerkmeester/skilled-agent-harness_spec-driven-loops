@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/075-doctor-sk-skill-command/010-verification-and-release"
+    packet_pointer: "sk-doc/067-doctor-sk-skill-command/010-verification-and-release"
     last_updated_at: "2026-10-30T14:30:39Z"
     last_updated_by: "markdown-agent-010"
     recent_action: "Read CI on main for the release commit; every run success"

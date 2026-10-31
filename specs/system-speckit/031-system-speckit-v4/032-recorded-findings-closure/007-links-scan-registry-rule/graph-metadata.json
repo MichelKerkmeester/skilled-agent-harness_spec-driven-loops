@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`rules/check-links.sh`'s own header states it plainly: \"A standalone scan run on demand: it has no validator-registry row, so validate.sh never sources it\" (`check-links.sh:5-6`)",
     "created_at": "2026-09-07T15:05:48Z",
-    "last_save_at": "2026-10-31T13:26:53.456Z",
+    "last_save_at": "2026-10-31T13:59:01.341Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ea6c9eb74db51b813d7765e041dbe3134e05d9a1cd4d75fe785b2b02c4c8e295",
+    "source_fingerprint": "sha256:7b31228e20bc13a40f462117d7faaf7d7bd8adf2fe64fda1bb9e23b4d7bb694b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5ab33fcf5bad546734a84b37c5c1c81269ef2510e567e67f8875e8cc10943280",
+      "spec.md": "9dd7694f38c20e5ce4623477417d3f4b0d466c5ebe1b25fed2f9c743c5f7c112",
       "plan.md": "e2a002f380b20325ba050364430a3f65817c6e0afe5e1b2f09696714b7503cfb",
       "tasks.md": "5a659c629aaf69b720e223cca2a007527eebbed14c747969dd729496a04353af",
       "implementation-summary.md": "bb930efcc27cb17f3e82e027f083c8a3ca896db9527e3c7cd6e0a9d39c227e0b"

@@ -74,5 +74,5 @@ NEW: - `node .skilled/bin/compiled-route-guard.cjs` -> before the merge, cli-jev
 - merges -> f127890ea7 was clean. 0b39a1f6c3 conflicted on three generated Hermes mirrors, resolved by taking main's copies and regenerating every mirror. `compiled-route-admission.cjs --all` warns on sk-design with 1 drift, the same as on origin/main, and CI runs it with --warn-only
 
 VERIFY - run these, paste each command with its result line
-  grep -c 'Unmet' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/handover.md            # expect 0
-  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/handover.md    # expect 14
+  grep -c 'Unmet' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/handover.md            # expect 0
+  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/031-system-speckit-v4/050-ci-cleanup-pi-proof/handover.md    # expect 14

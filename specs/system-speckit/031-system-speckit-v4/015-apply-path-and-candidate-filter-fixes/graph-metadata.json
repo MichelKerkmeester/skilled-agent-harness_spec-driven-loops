@@ -196,7 +196,7 @@
     ],
     "causal_summary": "A four-iteration deep review of the daemon-hardening packet, run across three independent models, closed at CONDITIONAL with three P1 findings that survived every pass",
     "created_at": "2026-08-31T04:50:04Z",
-    "last_save_at": "2026-10-31T13:26:41.727Z",
+    "last_save_at": "2026-10-31T13:58:44.393Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0ad5678b3c4524f377a041395df0f7be0df876e6ea808e0328628c36d731c94d",
+    "source_fingerprint": "sha256:47ee0ab2d8e1504e62c060330d8dbba5beb1200746339b54e8657669a7857e9a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aabec572267e6635bf84076a17d7f86e5184115c840ac03ada9d801e99687f2e",
