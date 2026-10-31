@@ -1,0 +1,18 @@
+{
+  "specFolder": "commands/005-doctor-symlink-install/001-symlink-engine-and-command",
+  "description": "Phase 1: symlink-engine-and-command",
+  "keywords": [
+    "phase",
+    "symlink-engine-and-command"
+  ],
+  "lastUpdated": "2026-10-31T13:38:32.878Z",
+  "specId": "001",
+  "folderSlug": "symlink-engine-and-command",
+  "parentChain": [
+    "commands",
+    "005-doctor-symlink-install"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

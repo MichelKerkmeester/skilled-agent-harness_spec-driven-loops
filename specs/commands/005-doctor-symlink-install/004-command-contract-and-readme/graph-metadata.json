@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "commands/005-doctor-symlink-install/004-command-contract-and-readme",
+  "spec_folder": "commands/005-doctor-symlink-install/004-command-contract-and-readme",
+  "parent_id": "commands/005-doctor-symlink-install",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command contract and readme",
+      "phase 4 command contract and readme",
+      "command contract and readme plan",
+      "command contract and readme tasks",
+      "command contract and readme acceptance criteria",
+      "command contract and readme implementation summary"
+    ],
+    "key_topics": [
+      "command",
+      "contract",
+      "readme",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "command-contract",
+      "json"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".skilled/commands/doctor/symlink.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/codex/generate-command-routers.cjs",
+      "specs/commands/005-doctor-symlink-install/scratch/verification-evidence.md",
+      ".skilled/commands/doctor/install.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "symlink.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/symlink.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-command-routers.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/codex/generate-command-routers.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verification-evidence.md",
+        "kind": "doc",
+        "path": "specs/commands/005-doctor-symlink-install/scratch/verification-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "install.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/install.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Skilled",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`command-contract.json` is the shape `sk-create-command` publishes for a command family, and its doctor entry named neither new command: no `/doctor:symlink` target workflow, no install workflow, no loader requirement and no destructive operation for either",
+    "created_at": "2026-10-31T14:41:33Z",
+    "last_save_at": "2026-10-31T16:29:18.590Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6d42ff225294f460d8714795d943741d76f4f2f46cac2505186a630a35813d7e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "19c69071b6da164d1d88111716ef3428a24f57c9e10b133fb22556eeb2b45ada",
+      "plan.md": "66f669b0353f3f2a0994da3cb969dad508088312cea9cba7b32bdfa4c3a3b870",
+      "tasks.md": "42f4d22832ff16413852d3453652801fff06b543a3a4ffe7456154996c6af452",
+      "implementation-summary.md": "c5cf64190a46b49d9547a3c5e24ce937434a44e6c3f931694e297f9b8190383e"
+    },
+    "last_active_at": null
+  }
+}

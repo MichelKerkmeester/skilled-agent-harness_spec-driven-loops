@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "commands/005-doctor-symlink-install/002-install-guide-router",
+  "spec_folder": "commands/005-doctor-symlink-install/002-install-guide-router",
+  "parent_id": "commands/005-doctor-symlink-install",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "install guide router",
+      "phase 2 install guide router",
+      "install guide router plan",
+      "install guide router tasks",
+      "install guide router acceptance criteria",
+      "install guide live check",
+      "manifest entries decision",
+      "pi-subagents link",
+      "install guide decision record",
+      "install guide router implementation summary"
+    ],
+    "key_topics": [
+      "install",
+      "guide",
+      "router",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "live",
+      "check",
+      "manifest",
+      "entries"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/install.md",
+      ".skilled/commands/doctor/assets/doctor-install.yaml",
+      ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
+      "scratch/install-contract.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "install.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/install.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-install.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-install.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-install-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "install-contract.md",
+        "kind": "doc",
+        "path": "scratch/install-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A user who wants Skilled in their own project repository has to read the README, work out which runtime folders to link, and run each setup command in the right order from the right directory",
+    "created_at": "2026-10-31T13:38:33Z",
+    "last_save_at": "2026-10-31T16:29:15.708Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1144aa45adcb4ea53a0d3beba89d7cecd1f75744fc06b14150dc6580097a204e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "edff88442b9eff6af947ec2cb87cb24f9fca03386fb1b8803b1384f4917f7945",
+      "plan.md": "186ccbfddbcd84efec20fac10fb7ffd336cab199c7398ef667e1540bdd48c5b5",
+      "tasks.md": "3ab02c1ca3d3cdf8b773ccb1d07cc2b01f9112c09b351cc7a58bdbafcbb056f2",
+      "decision-record.md": "9acb0cd3bf15101ad3d88bb801e976036d935ac61f7db72b5e4c7cb7278da045",
+      "implementation-summary.md": "bfa9b588f693a7149f057321eb6a854051e87b60182ca6c30bfbeac40fb41d88"
+    },
+    "last_active_at": null
+  }
+}

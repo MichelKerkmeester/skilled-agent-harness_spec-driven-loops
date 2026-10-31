@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "packet_id": "commands/005-doctor-symlink-install",
+  "spec_folder": "commands/005-doctor-symlink-install",
+  "parent_id": null,
+  "children_ids": [
+    "commands/005-doctor-symlink-install/001-symlink-engine-and-command",
+    "commands/005-doctor-symlink-install/002-install-guide-router",
+    "commands/005-doctor-symlink-install/003-integration-and-docs",
+    "commands/005-doctor-symlink-install/004-command-contract-and-readme",
+    "commands/005-doctor-symlink-install/005-central-doctor-playbook"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor symlink install phase parent spec"
+    ],
+    "key_topics": [
+      "doctor",
+      "symlink",
+      "install",
+      "phase",
+      "parent",
+      "spec",
+      "people",
+      "skilled",
+      "own",
+      "project",
+      "repositories",
+      "link"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".skilled/bin/relink-local-specs.sh",
+      ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+      ".skilled/commands/doctor/symlink.md",
+      ".skilled/commands/doctor/install.md",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/README.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "relink-local-specs.sh",
+        "kind": "script",
+        "path": ".skilled/bin/relink-local-specs.sh",
+        "source": "derived"
+      },
+      {
+        "name": "symlink-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "symlink.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/symlink.md",
+        "source": "derived"
+      },
+      {
+        "name": "install.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/install.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement People",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ship",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "People who use Skilled in their own project repositories link the framework in by hand, and two link shapes have grown up side by side",
+    "created_at": "2026-10-31T13:38:32Z",
+    "last_save_at": "2026-10-31T16:29:12.825Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:29a95ca057ff1ecfa18bbd7262b3e474cad0b233409902d3d8a51729552115dd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "58c2147444cd8a138f09566931a755f08ef2e87f5b861bef8464a13c8b9b4e73"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "commands/005-doctor-symlink-install/005-central-doctor-playbook",
+  "spec_folder": "commands/005-doctor-symlink-install/005-central-doctor-playbook",
+  "parent_id": "commands/005-doctor-symlink-install",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "central doctor playbook",
+      "phase 5 central doctor playbook",
+      "central doctor playbook plan",
+      "central doctor playbook tasks",
+      "central doctor playbook acceptance criteria",
+      "central doctor playbook implementation summary"
+    ],
+    "key_topics": [
+      "central",
+      "doctor",
+      "playbook",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "command",
+      "documented"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/manual-testing-playbook/doctor-commands/README.md",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-install.md",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-helper-read-only-pick.md",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-sk-skill-check.md",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-sk-skill-convert.md",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-agents-md-check.md",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-agents-md-embed-restore.md",
+      ".skilled/skills/sk-code/feature-catalog/quality-gate/codebase-agnostic-quality-gate.md",
+      ".skilled/skills/sk-code/feature-catalog/doctor-commands/ci-workflow-doctor-and-switches.md",
+      ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-install.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-install.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-helper-read-only-pick.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-helper-read-only-pick.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-skill-check.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-sk-skill-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-skill-convert.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-sk-skill-convert.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-agents-md-check.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-agents-md-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-agents-md-embed-restore.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-agents-md-embed-restore.md",
+        "source": "derived"
+      },
+      {
+        "name": "codebase-agnostic-quality-gate.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/feature-catalog/quality-gate/codebase-agnostic-quality-gate.md",
+        "source": "derived"
+      },
+      {
+        "name": "ci-workflow-doctor-and-switches.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/feature-catalog/doctor-commands/ci-workflow-doctor-and-switches.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-settings.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md",
+        "source": "derived"
+      },
+      {
+        "name": "category-overview.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-package.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-failclosed-allowlist.txt",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-package.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A doctor command was documented in whichever skill happened to own a neighbouring feature",
+    "created_at": "2026-10-31T14:41:33Z",
+    "last_save_at": "2026-10-31T16:29:19.946Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dd3a17284eacd2b3cf851c26dbae2f1c5c4c680fc5970365a7453f5e0b8a536f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1f6a2349a7e4dd7ef831d0576a6ad3ebb45a7bdd842fed2068898dbfd80d478b",
+      "plan.md": "d959bfe6bb03570a781dd596a11498c689c33c69587bc71ce6dea553d8d5fa21",
+      "tasks.md": "7b16754e7483900e4e94935135aacf132a23f26e2bfc87c4ff5bd3eadb5d927c",
+      "implementation-summary.md": "a07628ccd3af77c4562c1cccf5410d272da92dda22cf7a0dd092099f47003030"
+    },
+    "last_active_at": null
+  }
+}

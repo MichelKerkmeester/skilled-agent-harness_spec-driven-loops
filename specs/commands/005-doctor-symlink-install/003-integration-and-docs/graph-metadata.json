@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "commands/005-doctor-symlink-install/003-integration-and-docs",
+  "spec_folder": "commands/005-doctor-symlink-install/003-integration-and-docs",
+  "parent_id": "commands/005-doctor-symlink-install",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "integration and docs",
+      "phase 3 integration and docs",
+      "integration and docs plan",
+      "integration and docs tasks",
+      "integration and docs acceptance criteria",
+      "doctor command registration decision",
+      "advisor readme doctor commands",
+      "ac-008 superseded",
+      "integration and docs implementation summary"
+    ],
+    "key_topics": [
+      "integration",
+      "docs",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "doctor",
+      "command",
+      "registration",
+      "decision",
+      "advisor"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+      ".skilled/commands/doctor/scripts/tests/fixtures/doctor-helper/tune.jsonl",
+      ".skilled/commands/README.txt",
+      ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+      ".skilled/skills/system-spec-kit/README.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md",
+      ".skilled/commands/doctor/symlink.md",
+      ".skilled/commands/doctor/install.md",
+      ".skilled/skills/system-skill-advisor/README.md",
+      "specs/commands/005-doctor-symlink-install/001-symlink-engine-and-command/scratch/engine-contract.md",
+      "specs/commands/005-doctor-symlink-install/002-install-guide-router/scratch/install-contract.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "scoring-compatibility.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-bridges.generated.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        "source": "derived"
+      },
+      {
+        "name": "tune.jsonl",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/fixtures/doctor-helper/tune.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "category-overview.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-command-routing.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "symlink.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/symlink.md",
+        "source": "derived"
+      },
+      {
+        "name": "install.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/install.md",
+        "source": "derived"
+      },
+      {
+        "name": "engine-contract.md",
+        "kind": "doc",
+        "path": "specs/commands/005-doctor-symlink-install/001-symlink-engine-and-command/scratch/engine-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "install-contract.md",
+        "kind": "doc",
+        "path": "specs/commands/005-doctor-symlink-install/002-install-guide-router/scratch/install-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A doctor command that no entry point names is a command nobody runs",
+    "created_at": "2026-10-31T13:38:33Z",
+    "last_save_at": "2026-10-31T16:29:17.122Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:aba94cd15a37bdcc877f56f66b3232c3ff4bff8f51513e4330383b3ea02c1190",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7b1cf0ba801bcaea4f1ad6c9dc4d5cb39ec8ab09f0132e257a89ffd4e19a4298",
+      "plan.md": "0426a25e126660b446cb1b25b9f62b057d7d9a5870c7535f6ff50d0af3fe96e7",
+      "tasks.md": "adfde5ac01735d5417bfea6b9bdd0ba82d8ce3e03e4659ccf52e97aa88a4602f",
+      "decision-record.md": "c5067cb875aae96462d76931f1d2132a91a24a068f1b4f6aad103118ea452314",
+      "implementation-summary.md": "e3d5e714e089e75354ca17024c4680555fc9c7ba4818b0eb15a03667718794df"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "specFolder": "commands/005-doctor-symlink-install",
+  "description": "Doctor symlink and install commands: link Skilled into user project repos and guide setup",
+  "keywords": [
+    "doctor",
+    "symlink",
+    "install",
+    "commands",
+    "link",
+    "skilled",
+    "user",
+    "project",
+    "repos",
+    "guide",
+    "setup"
+  ],
+  "lastUpdated": "2026-10-31T13:38:32.181Z",
+  "specId": "005",
+  "folderSlug": "doctor-symlink-install",
+  "parentChain": [
+    "commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

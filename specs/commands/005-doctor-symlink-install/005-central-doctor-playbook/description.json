@@ -1,0 +1,18 @@
+{
+  "specFolder": "commands/005-doctor-symlink-install/005-central-doctor-playbook",
+  "description": "Phase 5: central-doctor-playbook",
+  "keywords": [
+    "phase",
+    "central-doctor-playbook"
+  ],
+  "lastUpdated": "2026-10-31T14:41:34.522Z",
+  "specId": "005",
+  "folderSlug": "central-doctor-playbook",
+  "parentChain": [
+    "commands",
+    "005-doctor-symlink-install"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

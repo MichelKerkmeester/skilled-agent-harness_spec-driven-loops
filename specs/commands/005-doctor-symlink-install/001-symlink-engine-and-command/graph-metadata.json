@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "commands/005-doctor-symlink-install/001-symlink-engine-and-command",
+  "spec_folder": "commands/005-doctor-symlink-install/001-symlink-engine-and-command",
+  "parent_id": "commands/005-doctor-symlink-install",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "symlink engine and command",
+      "phase 1 symlink engine and command",
+      "symlink engine and command plan",
+      "symlink engine and command tasks",
+      "symlink engine and command acceptance criteria",
+      "symlink engine and command implementation summary"
+    ],
+    "key_topics": [
+      "symlink",
+      "engine",
+      "command",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "two",
+      "link"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+      ".skilled/commands/doctor/assets/symlink-manifest.json",
+      ".skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs",
+      ".skilled/commands/doctor/symlink.md",
+      ".skilled/commands/doctor/assets/doctor-symlink-check.yaml",
+      ".skilled/commands/doctor/assets/doctor-symlink-link.yaml",
+      ".skilled/commands/doctor/assets/doctor-symlink-unlink.yaml",
+      ".skilled/commands/doctor/assets/doctor-symlink-presentation.txt",
+      ".skilled/commands/doctor/scripts/lib/agents-md-sections.cjs",
+      ".skilled/commands/doctor/scripts/agents-md-embed.cjs",
+      "scratch/engine-contract.md",
+      ".claude/mcp.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "symlink-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "symlink-manifest.json",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/symlink-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "symlink-engine.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "symlink.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/symlink.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-symlink-check.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-symlink-check.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-symlink-link.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-symlink-link.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-symlink-unlink.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-symlink-unlink.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-symlink-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-symlink-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-sections.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/lib/agents-md-sections.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-embed.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/agents-md-embed.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "engine-contract.md",
+        "kind": "doc",
+        "path": "scratch/engine-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two link shapes grew up in the projects that use Skilled, and no script made either one",
+    "created_at": "2026-10-31T13:38:32Z",
+    "last_save_at": "2026-10-31T16:29:14.206Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:89d3fd260fccce624bfc8aaf18be084ed8de73b2e103d28dd799ea94272ccc7f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7eed251dc8dea1a861394ff66647644dc9f95d6929cd2daa8be1a7fa15e3f7d7",
+      "plan.md": "210162f06d4d8fe9a2bd01cbe74584b505c9b39114d07684ee04e4b3c6cdbf4b",
+      "tasks.md": "044b4eb625ea7713322ce41492b13c4245386520a0727d9bc4e78d8f097ef6b0",
+      "implementation-summary.md": "a3b7684b1b238f1ff6024cb3ac0deee15dbe81c3f944dbcbfa1c500528b4654c"
+    },
+    "last_active_at": null
+  }
+}

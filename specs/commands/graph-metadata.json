@@ -7,7 +7,8 @@
     "commands/001-command-contract-reconciliation",
     "commands/002-doctor-audit-and-fixes",
     "commands/003-local-command-support",
-    "commands/004-doctor-sk-skill-command"
+    "commands/004-doctor-sk-skill-command",
+    "commands/005-doctor-symlink-install"
   ],
   "manual": {
     "depends_on": [],
