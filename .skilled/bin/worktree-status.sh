@@ -69,7 +69,7 @@ git worktree list --porcelain 2>/dev/null | while IFS= read -r line; do
     "")
       # End of a record: emit the row.
       [ -z "$wt_path" ] && continue
-      short_path="${wt_path##*/Code_Environment/Public}"
+      short_path="${wt_path#"$MAIN_ROOT"}"
       [ "$short_path" = "$wt_path" ] && short_path="$wt_path"
       short_path=".${short_path}"
       [ "$short_path" = ".$wt_path" ] && short_path="$wt_path"
