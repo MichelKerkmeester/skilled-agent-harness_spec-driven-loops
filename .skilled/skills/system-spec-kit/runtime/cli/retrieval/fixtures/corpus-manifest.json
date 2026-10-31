@@ -1,5 +1,5 @@
 {
-  "corpusHash": "db5e8aba0bc078bf3109b9212ec527b69e5e3f33b9d2d4fbcfcdf9beb278b2db",
+  "corpusHash": "154b031f0088553fb3eb019fbf6366620c24cfd1ca00b7b5d06987ee1dbe7b9d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27179,
+  "includedPathCount": 27184,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10520,6 +10520,11 @@
     "specs/commands/005-doctor-symlink-install/005-central-doctor-playbook/plan.md",
     "specs/commands/005-doctor-symlink-install/005-central-doctor-playbook/spec.md",
     "specs/commands/005-doctor-symlink-install/005-central-doctor-playbook/tasks.md",
+    "specs/commands/005-doctor-symlink-install/006-doctor-helper-handoff/acceptance-criteria.md",
+    "specs/commands/005-doctor-symlink-install/006-doctor-helper-handoff/implementation-summary.md",
+    "specs/commands/005-doctor-symlink-install/006-doctor-helper-handoff/plan.md",
+    "specs/commands/005-doctor-symlink-install/006-doctor-helper-handoff/spec.md",
+    "specs/commands/005-doctor-symlink-install/006-doctor-helper-handoff/tasks.md",
     "specs/commands/005-doctor-symlink-install/spec.md",
     "specs/hooks/001-hook-docs-relocation/decision-record.md",
     "specs/hooks/001-hook-docs-relocation/fix-report-preexisting-ghosts.md",
@@ -27210,7 +27215,7 @@
     "specs/system-speckit/041-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "744ba60f1747d454e885c1c53f1837a899f6cf27ba910034fb8859e972b5cdb7",
+  "manifestHash": "36ea011533ed9f3c7f6a75ed003de6524a1d2b3da6d7a3f405e5f574076e52b9",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29190,6 +29195,10 @@
     },
     {
       "path": "specs/commands/005-doctor-symlink-install/005-central-doctor-playbook/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/005-doctor-symlink-install/006-doctor-helper-handoff/scratch",
       "reason": "excluded directory"
     },
     {

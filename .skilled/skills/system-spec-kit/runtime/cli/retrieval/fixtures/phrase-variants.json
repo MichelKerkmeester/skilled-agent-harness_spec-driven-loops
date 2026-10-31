@@ -1,5 +1,5 @@
 {
-  "manifestHash": "744ba60f1747d454e885c1c53f1837a899f6cf27ba910034fb8859e972b5cdb7",
+  "manifestHash": "36ea011533ed9f3c7f6a75ed003de6524a1d2b3da6d7a3f405e5f574076e52b9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8829,6 +8829,9 @@
     ],
     "advisor guard case count dropped": [
       "advisor guard case count dropped"
+    ],
+    "advisor hands off to doctor helper": [
+      "advisor hands off to doctor helper"
     ],
     "advisor health degraded": [
       "advisor health degraded"
@@ -40431,6 +40434,21 @@
     ],
     "doctor helper command routing": [
       "doctor helper command routing"
+    ],
+    "doctor helper handoff": [
+      "doctor helper handoff"
+    ],
+    "doctor helper handoff acceptance criteria": [
+      "doctor helper handoff acceptance criteria"
+    ],
+    "doctor helper handoff implementation summary": [
+      "doctor helper handoff implementation summary"
+    ],
+    "doctor helper handoff plan": [
+      "doctor helper handoff plan"
+    ],
+    "doctor helper handoff tasks": [
+      "doctor helper handoff tasks"
     ],
     "doctor helper implementation summary": [
       "doctor helper implementation summary"
@@ -76848,6 +76866,9 @@
     "phase 6 deep review 2 remediation": [
       "phase 6 deep review 2 remediation"
     ],
+    "phase 6 doctor helper handoff": [
+      "phase 6 doctor helper handoff"
+    ],
     "phase 6 evidence gated provenance": [
       "phase 6 evidence gated provenance"
     ],
@@ -90547,6 +90568,9 @@
     ],
     "rewire and delete worklist": [
       "rewire and delete worklist"
+    ],
+    "reworded doctor prompt routing": [
+      "reworded doctor prompt routing"
     ],
     "rewrite 379 references": [
       "rewrite 379 references"

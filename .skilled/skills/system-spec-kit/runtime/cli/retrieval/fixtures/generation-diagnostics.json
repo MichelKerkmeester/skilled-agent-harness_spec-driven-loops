@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7253,
-    "ok": 16378,
+    "ok": 16383,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27179,
+  "documentsScanned": 27184,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "744ba60f1747d454e885c1c53f1837a899f6cf27ba910034fb8859e972b5cdb7",
+  "manifestHash": "36ea011533ed9f3c7f6a75ed003de6524a1d2b3da6d7a3f405e5f574076e52b9",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40003,
+      "ok": 40011,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -70379,6 +70379,10 @@
     },
     {
       "path": "specs/commands/005-doctor-symlink-install/005-central-doctor-playbook/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/005-doctor-symlink-install/006-doctor-helper-handoff/scratch",
       "reason": "excluded directory"
     },
     {
