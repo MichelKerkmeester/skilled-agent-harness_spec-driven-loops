@@ -11,7 +11,7 @@ trigger_phrases:
   - "rule lifecycle"
 importance_tier: important
 contextType: reference
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # Integration and Lifecycle: Wiring, Revising and Retiring a Rule
@@ -159,7 +159,7 @@ that shares the set. Each omission breaks something specific:
 
 **The symlink shape.** Create a relative symlink in the sibling's `repo-rules/`
 directory, named after the rule and pointing at the source file, for example
-`../../Code_Environment/Public/.skilled/repo-rules/<rule>.md`. A relative target names the
+`../../Skilled/.skilled/repo-rules/<rule>.md`. A relative target names the
 sibling's own layout instead of an absolute home directory. A source repository that
 keeps its corpus under a source root also keeps the public `repo-rules/<rule>.md` path
 as a link into that directory, so a sibling already pointing at the public path keeps
