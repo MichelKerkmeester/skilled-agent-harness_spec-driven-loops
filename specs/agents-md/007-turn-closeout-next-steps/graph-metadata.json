@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents-md/007-turn-closeout-next-steps",
+  "spec_folder": "agents-md/007-turn-closeout-next-steps",
+  "parent_id": null,
+  "children_ids": [
+    "agents-md/007-turn-closeout-next-steps/001-deep-research",
+    "agents-md/007-turn-closeout-next-steps/002-decision-and-design",
+    "agents-md/007-turn-closeout-next-steps/003-rule-authoring",
+    "agents-md/007-turn-closeout-next-steps/004-agents-md-integration",
+    "agents-md/007-turn-closeout-next-steps/005-verification",
+    "agents-md/007-turn-closeout-next-steps/006-synthesis-presentation",
+    "agents-md/007-turn-closeout-next-steps/007-progress-updates",
+    "agents-md/007-turn-closeout-next-steps/008-communication-split"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "end with next steps",
+      "what the operator must do next",
+      "ask question tool",
+      "structured choice",
+      "turn close-out",
+      "repo rule"
+    ],
+    "key_topics": [
+      "end",
+      "next",
+      "steps",
+      "operator",
+      "must",
+      "ask",
+      "question",
+      "tool",
+      "structured",
+      "choice",
+      "turn",
+      "close-out"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "REPO RULES.md",
+      "AGENTS.md",
+      "repo-rules/communication.md",
+      "repo-rules/evidence-and-proof.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "REPO RULES.md",
+        "kind": "doc",
+        "path": "REPO RULES.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": "AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication.md",
+        "kind": "doc",
+        "path": "repo-rules/communication.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-and-proof.md",
+        "kind": "doc",
+        "path": "repo-rules/evidence-and-proof.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Nothing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Settle",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nothing in the framework binds a turn to end with what the operator has to do next",
+    "created_at": "2026-09-11T10:54:55Z",
+    "last_save_at": "2026-10-31T15:21:40.578Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:b7a19b0ad6c263d912e5b56555864df23e068e41dcd1c91bf3575c77f00b593e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "feb930d14a96873bac99da68f0b00c7679be6a67134b7473faa6f99b13ce0f51"
+    },
+    "last_active_at": null
+  }
+}

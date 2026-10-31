@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/036-open-knowledge-format-adoption/001-okf-deep-research",
+  "spec_folder": "system-speckit/036-open-knowledge-format-adoption/001-okf-deep-research",
+  "parent_id": "system-speckit/036-open-knowledge-format-adoption",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "okf deep research",
+      "ten iteration deep research comparing how system spec",
+      "okf deep research plan",
+      "okf deep research tasks",
+      "okf deep research acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "okf deep research implementation summary"
+    ],
+    "key_topics": [
+      "okf",
+      "deep",
+      "research",
+      "ten",
+      "iteration",
+      "comparing",
+      "system",
+      "spec",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/orchestration-summary.json",
+      "scratch/seed/okf-SPEC.md",
+      "scratch/seed/okf-README.md",
+      "research/lineages/deepseek-flash-max/deep-research-state.jsonl",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      "references/structure/folder-structure.md",
+      "references/retrieval/retrieval-conventions.md",
+      "runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+      "templates/addons/timeline.md.tmpl"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "research/orchestration-summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "okf-SPEC.md",
+        "kind": "doc",
+        "path": "scratch/seed/okf-SPEC.md",
+        "source": "derived"
+      },
+      {
+        "name": "okf-README.md",
+        "kind": "doc",
+        "path": "scratch/seed/okf-README.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/lineages/deepseek-flash-max/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "folder-structure.md",
+        "kind": "doc",
+        "path": "references/structure/folder-structure.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": "references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "generation-diagnostics.json",
+        "kind": "config",
+        "path": "runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        "source": "derived"
+      },
+      {
+        "name": "timeline.md.tmpl",
+        "kind": "file",
+        "path": "templates/addons/timeline.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Knowledge Format",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "No one has compared system-spec-kit against the Open Knowledge Format (OKF) with evidence",
+    "created_at": "2026-10-04T05:36:11Z",
+    "last_save_at": "2026-10-31T15:22:12.674Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:af728f569b1f07d40e612540c0753a89b87976d8bbfda8982addb281d5af4bbc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c68f8e24d29f2475030175f9c20af48cd7e8296f65b143205af81b9a16f380c7",
+      "plan.md": "88112f8db6584c737d63df8dd941aea6858cc37446c71d249d0ccc5dfdef348c",
+      "tasks.md": "270768f5775806113b3eaa5dc9101d778e48dfb8d31247e0505d3e2f5eafa247",
+      "implementation-summary.md": "a6d98c543645c124c7afd6d86e26d4fa07ba7e352dd1f8bfbb596997a84aacf5",
+      "research/research.md": "dc94928f76ef505bf41763f507339840c00472de651bc2963d557ce99b98a424"
+    },
+    "last_active_at": null
+  }
+}

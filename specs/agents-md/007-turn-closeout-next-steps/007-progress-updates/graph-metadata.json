@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents-md/007-turn-closeout-next-steps/007-progress-updates",
+  "spec_folder": "agents-md/007-turn-closeout-next-steps/007-progress-updates",
+  "parent_id": "agents-md/007-turn-closeout-next-steps",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "forward looking progress update",
+      "roadmap style update",
+      "what happens at each checkpoint",
+      "say the plan before working",
+      "clipped register versus a plan",
+      "progress updates plan",
+      "progress updates tasks",
+      "progress updates acceptance criteria",
+      "progress updates implementation summary"
+    ],
+    "key_topics": [
+      "forward",
+      "looking",
+      "progress",
+      "roadmap",
+      "style",
+      "happens",
+      "checkpoint",
+      "say",
+      "plan",
+      "working",
+      "clipped",
+      "register"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".opencode/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md",
+      "repo-rules/communication.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-tests.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication.md",
+        "kind": "doc",
+        "path": "repo-rules/communication.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Answer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator asked for forward-looking progress updates during multi-step work: a numbered list of",
+    "created_at": "2026-09-11T16:51:31Z",
+    "last_save_at": "2026-10-31T15:21:40.880Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:8014c657d79deeb018feaa5a05cb804bdead1d3c6cfee4477bb2707ade03de39",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "db430a17ff0a0facb14f549334e2621eacbbd8c6fda242c8cfbef50d18e986dc",
+      "plan.md": "a804843353d58bec4756a621c6636d01f86894d03207d4d9f585a834f3a29507",
+      "tasks.md": "516b36bd847d7f69fd22cbd0c84b12cec2fb94263567870f90e44178735a8370",
+      "implementation-summary.md": "b744b9c3b8e56cfa49ac4c40d36532f0f0230947e616ad9a73efbd3f422129e7",
+      "research/research.md": "cae71c807f7d6aa9a2056cf0b4c4486992e7ee158362b1224d5c0b61e47a7ac6"
+    },
+    "last_active_at": null
+  }
+}

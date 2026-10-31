@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/055-changelog-system/003-skilled-release-changelog",
+  "spec_folder": "sk-doc/055-changelog-system/003-skilled-release-changelog",
+  "parent_id": "sk-doc/055-changelog-system",
+  "children_ids": [
+    "sk-doc/055-changelog-system/003-skilled-release-changelog/001-release-line-split",
+    "sk-doc/055-changelog-system/003-skilled-release-changelog/002-changelog-findability",
+    "sk-doc/055-changelog-system/003-skilled-release-changelog/003-adjacent-alignment"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skilled release changelog",
+      "framework release line",
+      "changelog findability",
+      "searchable changelogs"
+    ],
+    "key_topics": [
+      "skilled",
+      "release",
+      "changelog",
+      "framework",
+      "line",
+      "findability",
+      "searchable",
+      "changelogs",
+      "system-spec-kit",
+      "serving",
+      "repository",
+      "global"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "runtime/cli/spec-folder/nested-changelog.ts",
+      "references/workflows/nested-changelog.md",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-git/references/finish-workflows.md",
+      "runtime/cli/retrieval/lib/README.md",
+      ".opencode/SYNC.md",
+      ".opencode/README.md",
+      ".skilled/changelog/skilled/v4.0.0.2.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.ts",
+        "kind": "code",
+        "path": "runtime/cli/spec-folder/nested-changelog.ts",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.md",
+        "kind": "doc",
+        "path": "references/workflows/nested-changelog.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "finish-workflows.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/references/finish-workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/retrieval/lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".opencode/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.2.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.2.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The system-spec-kit changelog was serving as the repository's global release notes",
+    "created_at": "2026-09-27T12:01:28Z",
+    "last_save_at": "2026-10-31T15:22:03.066Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:5a02ca6787c0b0c587968735946a2c65e27b192bad1f29ff75f33c6b24f1c862",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "15c2ff7ec5f0bd0a9c2581f2cf4cb229d4f6acfe27bb86128b27fa29c95a438a"
+    },
+    "last_active_child_id": "sk-doc/056-changelog-system/003-skilled-release-changelog/003-adjacent-alignment",
+    "last_active_at": "2026-09-27T18:56:10.146Z"
+  }
+}

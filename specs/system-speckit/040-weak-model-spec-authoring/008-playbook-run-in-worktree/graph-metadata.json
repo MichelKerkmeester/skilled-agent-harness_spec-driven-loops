@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/040-weak-model-spec-authoring/008-playbook-run-in-worktree",
+  "spec_folder": "system-speckit/040-weak-model-spec-authoring/008-playbook-run-in-worktree",
+  "parent_id": "system-speckit/040-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "playbook run in worktree",
+      "phase 8 playbook run in worktree",
+      "manual testing playbook execution",
+      "disposable worktree scenario run",
+      "playbook run in worktree plan",
+      "disposable worktree scenario runner",
+      "manual testing playbook report package",
+      "playbook run in worktree tasks",
+      "manual testing playbook report tasks",
+      "playbook run in worktree acceptance criteria",
+      "playbook run in worktree goal",
+      "playbook run in worktree implementation summary"
+    ],
+    "key_topics": [
+      "playbook",
+      "run",
+      "worktree",
+      "phase",
+      "manual",
+      "testing",
+      "execution",
+      "disposable",
+      "scenario",
+      "plan",
+      "runner",
+      "report"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/scenarios.tsv",
+      "scratch/results.tsv",
+      "scratch/verdicts.md",
+      ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
+      "scratch/worktree/create.out",
+      "scratch/fixes/fix.patch",
+      "scratch/fixes/status.txt",
+      "scratch/review/T017.txt",
+      ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+      "scratch/worktree/provision.out",
+      "scratch/worktree/own-code.txt",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "scenarios.tsv",
+        "kind": "file",
+        "path": "scratch/scenarios.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "results.tsv",
+        "kind": "file",
+        "path": "scratch/results.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "verdicts.md",
+        "kind": "doc",
+        "path": "scratch/verdicts.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.out",
+        "kind": "file",
+        "path": "scratch/worktree/create.out",
+        "source": "derived"
+      },
+      {
+        "name": "fix.patch",
+        "kind": "file",
+        "path": "scratch/fixes/fix.patch",
+        "source": "derived"
+      },
+      {
+        "name": "status.txt",
+        "kind": "file",
+        "path": "scratch/fixes/status.txt",
+        "source": "derived"
+      },
+      {
+        "name": "T017.txt",
+        "kind": "file",
+        "path": "scratch/review/T017.txt",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+        "source": "derived"
+      },
+      {
+        "name": "provision.out",
+        "kind": "file",
+        "path": "scratch/worktree/provision.out",
+        "source": "derived"
+      },
+      {
+        "name": "own-code.txt",
+        "kind": "file",
+        "path": "scratch/worktree/own-code.txt",
+        "source": "derived"
+      },
+      {
+        "name": "check-example-drift.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-card-sync.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 007 adds playbook scenarios that claim new gate, guard and card behavior",
+    "created_at": "2026-10-23T11:27:26Z",
+    "last_save_at": "2026-10-31T15:22:18.862Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:02ceff8ccbc1dc77e779832900bbd3a0094723d8ced0639cacc1e8d4940aae6a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7c78c67fc843b687f2df35db305e399467f0fe504c9ebf5643ed6772918c3799",
+      "plan.md": "c24a23d3d7adb9f6ea4c3cc06d65e49d2008780642d8e6fedfcd0bb6d0fcd276",
+      "tasks.md": "087dace7a98f3a27a26a42802c76923e6598bc1e6b4cc033617efc8442107a86",
+      "implementation-summary.md": "b5669fff704954f9a628fba421f4456da0307fe97cd075684bea070933747162"
+    },
+    "last_active_at": null
+  }
+}

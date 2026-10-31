@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring",
+  "spec_folder": "system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring",
+  "parent_id": "system-speckit/039-ci-workflow-efficiency",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor ci review wiring",
+      "phase 9 doctor ci review wiring",
+      "ci workflow status report",
+      "ci workflow surface detection",
+      "doctor ci review wiring plan",
+      "phase 9 doctor ci review wiring plan",
+      "ci workflow report command plan",
+      "ci surface detection plan",
+      "doctor ci review wiring tasks",
+      "phase 9 doctor ci review wiring tasks",
+      "ci workflow report command tasks",
+      "doctor ci review wiring acceptance criteria"
+    ],
+    "key_topics": [
+      "doctor",
+      "review",
+      "wiring",
+      "phase",
+      "workflow",
+      "status",
+      "report",
+      "surface",
+      "detection",
+      "plan",
+      "command",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/ci.md",
+      ".skilled/commands/doctor/scripts/ci-report.cjs",
+      ".skilled/commands/doctor/_routes.yaml",
+      "scratch/phase-result.md",
+      ".github/workflows/spec-kit-check.yml",
+      ".github/workflows/README.md",
+      ".skilled/commands/doctor/assets/doctor-ci-presentation.txt",
+      ".skilled/commands/doctor/assets/doctor-ci-report.yaml",
+      ".skilled/commands/doctor/assets/doctor-ci-scaffold.yaml",
+      ".skilled/commands/doctor/assets/doctor-ci-toggle.yaml",
+      ".skilled/commands/doctor/scripts/tests/ci-report.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/doctor-ci-contract.test.cjs",
+      ".skilled/commands/doctor/assets/doctor-setup-presentation.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ci.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/ci.md",
+        "source": "derived"
+      },
+      {
+        "name": "ci-report.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/ci-report.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "phase-result.md",
+        "kind": "doc",
+        "path": "scratch/phase-result.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-ci-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-ci-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-ci-report.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-ci-report.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-ci-scaffold.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-ci-scaffold.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-ci-toggle.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-ci-toggle.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "ci-report.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/ci-report.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-ci-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-ci-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The on/off control lands six repository variables, but a clone cannot see which jobs a tree has switched off without reading every `if:` line, and there is no command that creates a new workflow with the timeout, permissions, concurrency and switch shape the standard requires",
+    "created_at": "2026-10-23T08:48:01Z",
+    "last_save_at": "2026-10-31T15:22:18.019Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c969385085f334ee82b1fee58d31e24b54025b197e8f5185c5ee2dcfaad88277",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "634900c09d43bab3506b20954d7b03943c1fce60fd7805088293d9de7db52792",
+      "plan.md": "d182d6e93e6e7760df2d5dae3d2c7e4597e7c442ed43b7512f49473c61c61d25",
+      "tasks.md": "cf3a0d0b2b7e5008fbe4a597147569e59fa7ad42b2510bd2bc13a4ae404fff4e",
+      "decision-record.md": "1a2658096b9dcf88b0d050ef26b145979a378ce4fa05542ca35fbb6a4ebdfffc",
+      "implementation-summary.md": "d9a817b7ba513ec714a2cdb431e6274f94ae7fe609d2640fc2ac9a4d97c55490"
+    },
+    "last_active_at": null
+  }
+}

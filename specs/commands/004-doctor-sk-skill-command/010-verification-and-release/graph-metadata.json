@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "commands/004-doctor-sk-skill-command/010-verification-and-release",
+  "spec_folder": "commands/004-doctor-sk-skill-command/010-verification-and-release",
+  "parent_id": "commands/004-doctor-sk-skill-command",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "verification and release",
+      "phase 10 verification and release",
+      "verification and release plan",
+      "verification and release tasks",
+      "verification and release acceptance criteria",
+      "verification and release goal",
+      "verification and release implementation summary"
+    ],
+    "key_topics": [
+      "verification",
+      "release",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "program",
+      "edits"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/after.md",
+      "scratch/workflow-run.md",
+      ".skilled/changelog/skilled/v4.0.1.0.md",
+      ".skilled/commands/doctor/assets/doctor-setup-presentation.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.md",
+        "kind": "doc",
+        "path": "scratch/after.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-run.md",
+        "kind": "doc",
+        "path": "scratch/workflow-run.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Baseline",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The program edits doctor routes, sk-doc docs and manifests, advisor bridges and a skill template",
+    "created_at": "2026-10-30T05:21:20Z",
+    "last_save_at": "2026-10-31T15:21:59.551Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e29aed83d2ab42125e1b3de3f942576c3cf58edf62ef5b17920d7413f5d51a29",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5a6cd8d23b3c9302b737f15ecc69cd22dc1fe302ad11fb85df72dd5b9799e1f3",
+      "plan.md": "d004744c3ac935c76dfc9103370e2bddf2bb9fb3fed2ffda4f6479ceb7b3a207",
+      "tasks.md": "d06a090a4ed921d1fdc4debb7bb48591f22035174f6ed3ae089cbfa559f76b42",
+      "implementation-summary.md": "b1c8ea42854e5e701eabe09f3ed79886019eb3f2c23cc89e1777eca4586329af"
+    },
+    "last_active_at": null
+  }
+}

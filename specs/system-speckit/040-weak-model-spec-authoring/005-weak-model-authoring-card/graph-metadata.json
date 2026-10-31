@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/040-weak-model-spec-authoring/005-weak-model-authoring-card",
+  "spec_folder": "system-speckit/040-weak-model-spec-authoring/005-weak-model-authoring-card",
+  "parent_id": "system-speckit/040-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "weak model authoring card",
+      "phase 5 weak model authoring card",
+      "spec authoring card",
+      "route authoring intents to a card",
+      "weak model authoring card plan",
+      "spec authoring card text",
+      "router intent card rows",
+      "card sync guard",
+      "weak model authoring card tasks",
+      "card router edits",
+      "card sync guard tasks",
+      "level 1 smoke run brief"
+    ],
+    "key_topics": [
+      "weak",
+      "model",
+      "authoring",
+      "card",
+      "phase",
+      "spec",
+      "route",
+      "intents",
+      "plan",
+      "text",
+      "router",
+      "intent"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+      "templates/core/tasks.md.tmpl",
+      "runtime/cli/spec/check-card-sync.sh",
+      "runtime/cli/tests/card-sync.vitest.ts",
+      "references/workflows/spec-authoring-card.md",
+      "references/workflows/spec-folder-authoring-checklist.md",
+      "runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap",
+      "runtime/cli/spec/README.md",
+      "scratch/card-bench/baseline.md",
+      "scratch/review/T014.txt",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh",
+      "references/templates/template-guide.md",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      ".skilled/skills/system-spec-kit/leaf-manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-authoring-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md.tmpl",
+        "kind": "file",
+        "path": "templates/core/tasks.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "check-card-sync.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/check-card-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "card-sync.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/card-sync.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-folder-authoring-checklist.md",
+        "kind": "doc",
+        "path": "references/workflows/spec-folder-authoring-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-golden-snapshots.vitest.ts.snap",
+        "kind": "file",
+        "path": "runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.md",
+        "kind": "doc",
+        "path": "scratch/card-bench/baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "T014.txt",
+        "kind": "file",
+        "path": "scratch/review/T014.txt",
+        "source": "derived"
+      },
+      {
+        "name": "template-guide.md",
+        "kind": "doc",
+        "path": "references/templates/template-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The router sends four authoring intents to `references/templates/template-guide.md`, a 1,200-line guide",
+    "created_at": "2026-10-23T11:27:23Z",
+    "last_save_at": "2026-10-31T15:22:17.971Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7e16941e42a12d86cbe448b8d38dd8390c945b16aa3b8173251bb84199d6da13",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3415f30774c8bd519987ffa5b3e58e2b4cf58bc927b61b22be201cb0ae6df72d",
+      "plan.md": "521eef2fccf9da3155b8b6538abf9fc73ce876d20c73d11768d0e54042df265d",
+      "tasks.md": "7faf7e20daa163a024492e6a80026fb6cb04edf6bc37f08702115b84c23a6c74",
+      "implementation-summary.md": "8105c2d265f7c683d05c099476798da83700d5e120693a5b2a650752f330329f"
+    },
+    "last_active_at": null
+  }
+}

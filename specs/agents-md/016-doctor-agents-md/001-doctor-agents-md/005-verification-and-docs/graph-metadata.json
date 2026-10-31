@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents-md/016-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs",
+  "spec_folder": "agents-md/016-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs",
+  "parent_id": "agents-md/016-doctor-agents-md/001-doctor-agents-md",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agents md verification and docs",
+      "end to end fixture pass",
+      "doctor manual playbook rows",
+      "agents md verification plan",
+      "agents md verification tasks",
+      "agents md verification acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "agents md verification implementation summary"
+    ],
+    "key_topics": [
+      "agents",
+      "verification",
+      "docs",
+      "end",
+      "fixture",
+      "pass",
+      "doctor",
+      "manual",
+      "playbook",
+      "rows",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/run-e2e.sh",
+      ".skilled/commands/doctor/scripts/README.markdown",
+      ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-agents-md-block-devin-quote.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-agents-md-cursor-mirror-load.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/changelog/skilled/v4.0.1.0.md",
+      ".skilled/skills/system-spec-kit/changelog/v2.12.27.0.md",
+      ".skilled/skills/system-skill-advisor/changelog/v0.17.28.0.md",
+      ".skilled/skills/sk-doc/changelog/v2.3.34.0.md",
+      "scratch/baseline.txt",
+      "scratch/doc-locations.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-e2e.sh",
+        "kind": "script",
+        "path": "scratch/run-e2e.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/README.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "category-overview.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-agents-md-block-devin-quote.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-agents-md-block-devin-quote.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-agents-md-cursor-mirror-load.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-agents-md-cursor-mirror-load.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.12.27.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/changelog/v2.12.27.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.17.28.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/changelog/v0.17.28.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.3.34.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/changelog/v2.3.34.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doc-locations.txt",
+        "kind": "file",
+        "path": "scratch/doc-locations.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The engines can each pass their own suite and still fail together: a check that classifies correctly and an embed that composes correctly can still disagree about the same tree",
+    "created_at": "2026-10-30T11:22:45Z",
+    "last_save_at": "2026-10-31T15:21:45.239Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ee6d7c173ce1107a030d115f3e0348f9199d6a70798a6e1c4ac8b1fc6a3046de",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "56681e488330bfc2dff81777e71884212cfa16fcf623028734ed1364e6914d32",
+      "plan.md": "21fdf8abc9a63bf5e56b46d848354f34134df5e5f2e05b5459b24c5ec338eec1",
+      "tasks.md": "f5518da77e1cd0d752692fc5838ed7ef9b9e6a759642585938bc504bae253bc6",
+      "implementation-summary.md": "d7c6b45565d005b494da25ea8aba3d72eef8de3e7684fe6a17ab715e1867d216"
+    },
+    "last_active_at": null
+  }
+}

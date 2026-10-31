@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/040-weak-model-spec-authoring/001-template-drift-census-and-baseline",
+  "spec_folder": "system-speckit/040-weak-model-spec-authoring/001-template-drift-census-and-baseline",
+  "parent_id": "system-speckit/040-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "template drift census and baseline",
+      "phase 1 template drift census and baseline",
+      "spec kit defect ledger",
+      "weak model authoring baseline",
+      "template drift census and baseline plan",
+      "defect ledger schema",
+      "census lane detection commands",
+      "template drift census and baseline tasks",
+      "census lane brief",
+      "baseline authoring run",
+      "template drift census and baseline acceptance criteria",
+      "template drift census and baseline goal"
+    ],
+    "key_topics": [
+      "template",
+      "drift",
+      "census",
+      "baseline",
+      "phase",
+      "spec",
+      "kit",
+      "defect",
+      "ledger",
+      "weak",
+      "model",
+      "authoring"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/ledger/ledger.jsonl",
+      "scratch/baseline/baseline.json",
+      "scratch/review/T011.txt",
+      "templates/scratch/.gitkeep",
+      "scratch/baseline/baseline.md",
+      "scratch/ledger/coverage.txt",
+      "scratch/baseline/hints-v2.2.txt",
+      "scratch/baseline/anchors-v2.2.txt",
+      "scratch/baseline/runs.jsonl",
+      "scratch/ledger/lane-a.jsonl",
+      "scratch/ledger/candidates.jsonl",
+      "scratch/baseline/status-start.txt",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      "scratch/ledger/lane-a.read.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ledger.jsonl",
+        "kind": "file",
+        "path": "scratch/ledger/ledger.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.json",
+        "kind": "config",
+        "path": "scratch/baseline/baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "T011.txt",
+        "kind": "file",
+        "path": "scratch/review/T011.txt",
+        "source": "derived"
+      },
+      {
+        "name": ".gitkeep",
+        "kind": "file",
+        "path": "templates/scratch/.gitkeep",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.md",
+        "kind": "doc",
+        "path": "scratch/baseline/baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "coverage.txt",
+        "kind": "file",
+        "path": "scratch/ledger/coverage.txt",
+        "source": "derived"
+      },
+      {
+        "name": "hints-v2.2.txt",
+        "kind": "file",
+        "path": "scratch/baseline/hints-v2.2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "anchors-v2.2.txt",
+        "kind": "file",
+        "path": "scratch/baseline/anchors-v2.2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "runs.jsonl",
+        "kind": "file",
+        "path": "scratch/baseline/runs.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "lane-a.jsonl",
+        "kind": "file",
+        "path": "scratch/ledger/lane-a.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "candidates.jsonl",
+        "kind": "file",
+        "path": "scratch/ledger/candidates.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "status-start.txt",
+        "kind": "file",
+        "path": "scratch/baseline/status-start.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "lane-a.read.txt",
+        "kind": "file",
+        "path": "scratch/ledger/lane-a.read.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Five template and doc defects are confirmed, but they came from a spot check, not a census, so the full list is unknown",
+    "created_at": "2026-10-23T11:27:18Z",
+    "last_save_at": "2026-10-31T15:22:17.525Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:664ef7642d1d1dba6acf675c194364bd079b9b610333dc1a1bea13bda1fe5f6e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7a28a554c7db5cc38f2d592d644e10c12d6daad911a1e19b834287641d5da55e",
+      "plan.md": "22a0b830ffbf37abf2367c8cba2b0c4685b3986c6f564f422dacecea24ac25cd",
+      "tasks.md": "4c3cd51f3a54fd5a2bc7a1b8fb3592c3e85dc7787ad9d03635ce324e18739647",
+      "implementation-summary.md": "a4bd4baef64104f6e051ca43c27a7bf2e1613977ba5c52463d71eae8855c601c"
+    },
+    "last_active_at": null
+  }
+}

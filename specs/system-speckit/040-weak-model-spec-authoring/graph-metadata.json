@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/040-weak-model-spec-authoring",
+  "spec_folder": "system-speckit/040-weak-model-spec-authoring",
+  "parent_id": null,
+  "children_ids": [
+    "system-speckit/040-weak-model-spec-authoring/001-template-drift-census-and-baseline",
+    "system-speckit/040-weak-model-spec-authoring/002-template-and-example-defect-repair",
+    "system-speckit/040-weak-model-spec-authoring/003-versioned-placeholder-gate",
+    "system-speckit/040-weak-model-spec-authoring/004-template-section-fill-guidance",
+    "system-speckit/040-weak-model-spec-authoring/005-weak-model-authoring-card",
+    "system-speckit/040-weak-model-spec-authoring/006-speckit-command-and-agent-alignment",
+    "system-speckit/040-weak-model-spec-authoring/007-playbook-catalog-readme-alignment",
+    "system-speckit/040-weak-model-spec-authoring/008-playbook-run-in-worktree",
+    "system-speckit/040-weak-model-spec-authoring/009-authoring-benchmark-and-closeout",
+    "system-speckit/040-weak-model-spec-authoring/010-deep-review-finding-fixes",
+    "system-speckit/040-weak-model-spec-authoring/011-authoring-speed-research",
+    "system-speckit/040-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment",
+    "system-speckit/040-weak-model-spec-authoring/013-addon-removal-and-speed-refinements",
+    "system-speckit/040-weak-model-spec-authoring/014-removed-template-reality-sweep",
+    "system-speckit/040-weak-model-spec-authoring/015-template-example-neutralization",
+    "system-speckit/040-weak-model-spec-authoring/016-scaffold-filler-section-trim",
+    "system-speckit/040-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata",
+    "system-speckit/040-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure",
+    "system-speckit/040-weak-model-spec-authoring/019-follow-up-fixes",
+    "system-speckit/040-weak-model-spec-authoring/020-alignment-audit-fixes",
+    "system-speckit/040-weak-model-spec-authoring/021-ci-gate-regressions",
+    "system-speckit/040-weak-model-spec-authoring/022-advisor-routing-and-local-install",
+    "system-speckit/040-weak-model-spec-authoring/023-deep-review-remediation",
+    "system-speckit/040-weak-model-spec-authoring/024-typed-command-ambiguity",
+    "system-speckit/040-weak-model-spec-authoring/025-deprecate-nested-changelogs",
+    "system-speckit/040-weak-model-spec-authoring/026-alignment-findings-fixes",
+    "system-speckit/040-weak-model-spec-authoring/027-alignment-preexisting-gaps",
+    "system-speckit/040-weak-model-spec-authoring/028-changelog-release-extension"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "weak model spec authoring phase parent spec",
+      "deepseek flash spec authoring",
+      "followable spec templates",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "weak",
+      "model",
+      "spec",
+      "authoring",
+      "phase",
+      "parent",
+      "deepseek",
+      "flash",
+      "followable",
+      "templates",
+      "packet",
+      "goal"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      ".skilled/agents/markdown.md",
+      "review/review-report.md",
+      "011-authoring-speed-research/research/research.md",
+      "011-authoring-speed-research/goal.md",
+      "018-benchmark-redesign-and-remeasure/scratch/report.md",
+      "020-alignment-audit-fixes/scratch/audit/findings.json",
+      "026-alignment-findings-fixes/scratch/items.md",
+      "027-alignment-preexisting-gaps/scratch/items.md",
+      ".skilled/changelog/skilled/v4.0.0.16.md",
+      "028-changelog-release-extension/spec.md",
+      "spec/check-placeholders.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-placeholders.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.md",
+        "kind": "doc",
+        "path": ".skilled/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "report.md",
+        "kind": "doc",
+        "path": "018-benchmark-redesign-and-remeasure/scratch/report.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.json",
+        "kind": "config",
+        "path": "020-alignment-audit-fixes/scratch/audit/findings.json",
+        "source": "derived"
+      },
+      {
+        "name": "items.md",
+        "kind": "doc",
+        "path": "026-alignment-findings-fixes/scratch/items.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.16.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.16.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Level",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A weak-model worker (the benchmark subject is cli-devin `deepseek-v4-1-flash-1017-max`, and single-change swarm lanes run on DeepSeek V4.1 Flash) that authors a spec packet from the system-spec-kit templates leaves scaffold hints in place and still passes `validate.sh --strict`",
+    "created_at": "2026-10-23T11:27:18Z",
+    "last_save_at": "2026-10-31T15:22:18.313Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:c0c4a0bca475fe87b72fe57b8a7f87a1d7bacbc00a1a3e307e4c0c433fe63863",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fca5896945e245f490570b85ecf0f8c408fea144454325837988262657b1fdd1"
+    },
+    "last_active_child_id": "system-speckit/041-weak-model-spec-authoring/010-deep-review-finding-fixes",
+    "last_active_at": "2026-10-25T21:42:09.493Z"
+  }
+}

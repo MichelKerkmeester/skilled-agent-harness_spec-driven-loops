@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research",
+  "spec_folder": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research",
+  "parent_id": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v4.0.0.3 changelog research",
+      "changelog doctor git hooks gap",
+      "changelog research plan",
+      "v4.0.0.3 research plan",
+      "changelog v4003 research tasks",
+      "v4.0.0.3 changelog research summary",
+      "changelog doctor git hooks findings",
+      "v4.0.0.3 changelog gaps",
+      "doctor changelog research",
+      "git hook changelog coverage"
+    ],
+    "key_topics": [
+      "changelog",
+      "research",
+      "doctor",
+      "git",
+      "hooks",
+      "gap",
+      "plan",
+      "v4003",
+      "tasks",
+      "summary",
+      "findings",
+      "gaps"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".skilled/changelog/skilled/v4.0.0.3.md",
+      ".skilled/scripts/git-hooks/README.md",
+      ".skilled/commands/doctor/speckit.md",
+      ".skilled/commands/doctor/scripts/release-update.cjs",
+      ".skilled/commands/doctor/mcp.md",
+      ".skilled/commands/doctor/scripts/tests/run-all.sh",
+      ".github/workflows/spec-kit-check.yml",
+      ".skilled/commands/doctor/git.md",
+      "research/iterations/iteration-001.md",
+      "research/deltas/iter-001.jsonl",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      "research/resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.3.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.3.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/scripts/git-hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "release-update.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/release-update.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-all.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/tests/run-all.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "git.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/git.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-001.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-001.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The v4.0.0.3 entry was last edited on 2026-10-02",
+    "created_at": "2026-10-04T08:12:36Z",
+    "last_save_at": "2026-10-31T15:21:50.437Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:454bfe1f172d4961fabd509f50d9708a85fa3f32e547192a87185271d3eaec64",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "db74ca1a7ff2d6001cb457fbb0557b6ae7ddbd2b86bd870ef4163fb11be75ad7",
+      "plan.md": "883ae7817f715e7c52594bc7d165e1536bcb51ac1a98266da44513ed96bf29ee",
+      "tasks.md": "d3523bd596e16a4400986a75ad19955a91f9bccf43165ff085a6931823a50d1a",
+      "implementation-summary.md": "a8ded3e941b6b9d3557d4c2924f855fac4325613e48c16a49606b0a8e75b13f3",
+      "research/research.md": "cf877608146b3addb01975a2b96dca62c8cf0677788419eaa35d2805b148a3f9"
+    },
+    "last_active_at": null
+  }
+}

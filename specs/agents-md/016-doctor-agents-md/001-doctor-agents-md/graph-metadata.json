@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents-md/016-doctor-agents-md/001-doctor-agents-md",
+  "spec_folder": "agents-md/016-doctor-agents-md/001-doctor-agents-md",
+  "parent_id": "agents-md/016-doctor-agents-md",
+  "children_ids": [
+    "agents-md/016-doctor-agents-md/001-doctor-agents-md/001-manifest-and-template-block",
+    "agents-md/016-doctor-agents-md/001-doctor-agents-md/002-check-engine",
+    "agents-md/016-doctor-agents-md/001-doctor-agents-md/003-embed-engine",
+    "agents-md/016-doctor-agents-md/001-doctor-agents-md/004-command-plumbing",
+    "agents-md/016-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor agents md phase",
+      "agents md shipped manifest",
+      "embed repo unique instructions",
+      "agents md phase plan",
+      "agents md phase tasks",
+      "agents md phase acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "agents md phase implementation summary"
+    ],
+    "key_topics": [
+      "doctor",
+      "agents",
+      "phase",
+      "shipped",
+      "manifest",
+      "embed",
+      "repo",
+      "unique",
+      "instructions",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/baseline.txt",
+      "001-manifest-and-template-block/spec.md",
+      ".skilled/commands/doctor/assets/agents-md-manifest.json",
+      ".skilled/commands/doctor/scripts/agents-md-manifest.cjs",
+      ".skilled/commands/doctor/scripts/lib/agents-md-sections.cjs",
+      ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+      ".skilled/commands/doctor/scripts/agents-md-embed.cjs",
+      ".skilled/commands/doctor/agents-md.md",
+      ".skilled/commands/doctor/assets/doctor-agents-md-check.yaml",
+      ".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml",
+      ".skilled/commands/doctor/assets/doctor-agents-md-restore.yaml",
+      ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".github/workflows/spec-kit-check.yml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-manifest.json",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-manifest.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/agents-md-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-sections.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/lib/agents-md-sections.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-embed.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/agents-md-embed.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/agents-md.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-agents-md-check.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-agents-md-check.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-agents-md-embed.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-agents-md-restore.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-agents-md-restore.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-agents-md-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The template at the repository root is the only copy of the shipped instructions anywhere in the framework, and `/doctor:update` never reads it because it enumerates release units from paths under `.skilled/`",
+    "created_at": "2026-10-30T11:22:11Z",
+    "last_save_at": "2026-10-31T15:21:44.860Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bbdf1fedbfe7ba72bd5c6215bec52ecd5ce35af9299b3e12b907bd2206ab7a1d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "18c88f0bdeb9f28adc527da3639480e1605f15d2eb64bfb095846f7950f013f1",
+      "plan.md": "8350146052b2db6bbd1878a977f7e976e278df4d9b5271527e0e075c5b7ac7e3",
+      "tasks.md": "047a94923541df7c20857e09bfd11b1b27e812fc0aace2e2b209474772e61cb2",
+      "implementation-summary.md": "c3e690bce836fe7488f1e2054a24c6b36137aef646a9feb2d40e633ea58f5243"
+    },
+    "last_active_at": null
+  }
+}

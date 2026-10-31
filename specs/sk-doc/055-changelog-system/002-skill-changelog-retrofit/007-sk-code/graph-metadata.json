@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/055-changelog-system/002-skill-changelog-retrofit/007-sk-code",
+  "spec_folder": "sk-doc/055-changelog-system/002-skill-changelog-retrofit/007-sk-code",
+  "parent_id": "sk-doc/055-changelog-system/002-skill-changelog-retrofit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code changelog rewrite",
+      "sk-code changelog retrofit",
+      "sk-code changelog rewrite plan",
+      "sk-code changelog rewrite tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "sk-code changelog rewrite status"
+    ],
+    "key_topics": [
+      "sk-code",
+      "changelog",
+      "rewrite",
+      "retrofit",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "fixes",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "29 sk-code changelogs predate the compact and expanded format that sk-create-changelog now defines",
+    "created_at": "2026-09-24T16:54:10Z",
+    "last_save_at": "2026-10-31T15:21:59.803Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7d646b86adf633c139f91eea2fca721253878a3e3a7f1c5e1d1d5db50d0129f8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5c853e676dc2dce00a1713aa18430d479117927ffb0b8f3c5496ee5c22109224",
+      "plan.md": "ca8dfdad818b889518a136b6c13f2505af6853f6accd6579291f3434a27f0011",
+      "tasks.md": "a61058b497a8a63d7b4cb10f00fc9e7002fb59eca4347468346e6cf82848d45b",
+      "implementation-summary.md": "2c10e1a4306f789b6b2d08fac8497b5155943c5cc65bd63bf851f818cb82a2a1"
+    },
+    "last_active_at": null
+  }
+}

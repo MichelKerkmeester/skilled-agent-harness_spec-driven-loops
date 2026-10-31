@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups",
+  "spec_folder": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups",
+  "parent_id": "commands/002-doctor-audit-and-fixes",
+  "children_ids": [
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/001-trigger-index-freshness",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/002-release-update-customization-signals",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/003-doctor-gates-and-drift",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/004-doctor-scripts-conformance",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/006-doctor-update-fixes",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/007-speckit-router-contract-drift",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/008-doctor-ownership-split",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/009-doctor-git",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/010-doctor-router-gates",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/012-changelog-v4003-update",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/013-doctor-docs-and-ci-fix",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/014-doctor-playbook-spec-kit",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/015-doctor-playbook-skill-advisor",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/016-doctor-playbook-deep-loop",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/017-doctor-playbook-git",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/018-doctor-playbook-mcp",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/019-doctor-test-environment-research",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/020-doctor-contract-fixes",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/021-doctor-test-environments",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/022-doctor-playbook-environment-migration",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/023-release-update-symlink-parent",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/024-doctor-docs-alignment",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/025-doctor-scenario-runs",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/026-doctor-run-followups",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/027-derived-sanitizer-instruction-shape",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/028-advisor-stress-fixtures",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/029-main-ci-regenerations",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/030-cursor-reconcile-test-exemption",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/031-changelog-v4003-reality-check",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/032-orphan-process-check",
+    "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/033-orphan-check-unsupervised-model-server"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor audit followups",
+      "trigger index freshness",
+      "release update signals",
+      "doctor gates drift"
+    ],
+    "key_topics": [
+      "doctor",
+      "audit",
+      "followups",
+      "trigger",
+      "index",
+      "freshness",
+      "release",
+      "signals",
+      "gates",
+      "drift",
+      "command",
+      "packet"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+      ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+      ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+      "specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md",
+      ".skilled/commands/doctor/scripts/release-update.cjs",
+      ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+      ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh",
+      ".skilled/commands/doctor/scripts/route-validate.py",
+      ".skilled/commands/doctor/scripts/audit_descriptions.py",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "generate-trigger-index.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-retrieval.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "release-update.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/release-update.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "release-update.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-mcp-mutation-class.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.py",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/route-validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "audit_descriptions.py",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/audit_descriptions.py",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The doctor command audit (packet 048) inspected every doctor target against the current checkout and applied its verdicts, but it deliberately recorded the defects it found in the subsystems the doctors inspect instead of fixing them",
+    "created_at": "2026-10-03T05:27:39Z",
+    "last_save_at": "2026-10-31T15:21:49.449Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:0686814b12df0c0fe37afb5da01feee5d93f7bdb8c2f268107b5d848f27cb81b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3c7e6d075193e77d1214eb96a4dd00a6409426e0b5296eda79fd27c0779d3557"
+    },
+    "last_active_child_id": "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research",
+    "last_active_at": "2026-10-04T08:38:47.405Z"
+  }
+}

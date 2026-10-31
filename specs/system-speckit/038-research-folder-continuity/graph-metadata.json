@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/038-research-folder-continuity",
+  "spec_folder": "system-speckit/038-research-folder-continuity",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "research folder continuity",
+      "let the continuity writer save into a research",
+      "research folder continuity plan",
+      "research folder continuity tasks",
+      "research folder continuity implementation summary"
+    ],
+    "key_topics": [
+      "research",
+      "folder",
+      "continuity",
+      "let",
+      "writer",
+      "save",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "full-auto",
+      "fields"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+      "templates/packet-types/research.spec.md.tmpl",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/save-continuity-write.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+      ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/spec.md",
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/spec.md",
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/spec.md",
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/spec.md",
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/spec.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/dist/core/workflow.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "research.spec.md.tmpl",
+        "kind": "file",
+        "path": "templates/packet-types/research.spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "save-continuity-write.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/save-continuity-write.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "save-workflow.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.js",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/dist/core/workflow.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Monolith",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A full-auto save with continuity fields refused every research record and left its continuity block scaffolded",
+    "created_at": "2026-10-19T21:44:00Z",
+    "last_save_at": "2026-10-31T15:22:13.760Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3daeec0bd115bcb46f010381222227f1a1877f8b83c75509e791977328477d45",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b41887b995ba3d98ee4b51b231be0a2f68ccb26237d6f227cf4af22aa047792e",
+      "plan.md": "a9c4fd94cfe2e49210fb62bf1f8166ef7f2da0e2d0f1b4475fff37490c81aace",
+      "tasks.md": "3f982149f80b7585e5f022e127172de807e47068a96a1e47f54d1729db7dc739",
+      "implementation-summary.md": "045cdfafc92080d99e5a62d178da221737f2f37ab45b26aa98ce835e475a9be3"
+    },
+    "last_active_at": null
+  }
+}

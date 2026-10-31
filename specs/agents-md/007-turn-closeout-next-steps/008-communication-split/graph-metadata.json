@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents-md/007-turn-closeout-next-steps/008-communication-split",
+  "spec_folder": "agents-md/007-turn-closeout-next-steps/008-communication-split",
+  "parent_id": "agents-md/007-turn-closeout-next-steps",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "communication split",
+      "split communication md two ways prose craft keeps",
+      "communication split plan",
+      "communication split tasks",
+      "communication split acceptance criteria",
+      "communication split implementation summary"
+    ],
+    "key_topics": [
+      "communication",
+      "split",
+      "two",
+      "ways",
+      "prose",
+      "craft",
+      "keeps",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/repo-rules/communication-decisions.md",
+      "repo-rules/communication.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication-decisions.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/communication-decisions.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication.md",
+        "kind": "doc",
+        "path": "repo-rules/communication.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Split",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`communication.md` bundled three different trigger conditions under one",
+    "created_at": "2026-09-11T17:16:17Z",
+    "last_save_at": "2026-10-31T15:21:40.529Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c3ba74112147fd57a6bcefe5de11b125903798ead2f9d0a7540b5fceb17fea22",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "61e098809321669140c9a547c0d8bbc78e6f59f2cd49d7aaabc17825bd595fdb",
+      "plan.md": "6af76d42d8857ade80f23d8b517fb1963ff830dd01ff201e008b3e0d02f8611c",
+      "tasks.md": "4f505e3f4b91fe26003aad75ec36ea576040dec3a1e8e20b3abb518dd6f65922",
+      "implementation-summary.md": "16bf32b3b8947b840a4db9eeb88798ad19aab5070a34a4b6d57d3d0ea83a1fc4"
+    },
+    "last_active_at": null
+  }
+}
